@@ -1,3 +1,5 @@
 syntax: glob
 *.cache
 *.suo
+bin
+obj
