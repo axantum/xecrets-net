@@ -115,7 +115,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestFindMagicGuidFromSimpleFile()
+        public static void TestFindMagicGuidFromSimpleFile()
         {
             using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
             {
