@@ -133,24 +133,22 @@ namespace Axantum.AxCrypt.Core.Reader
             HeaderBlockType headerBlockType = (HeaderBlockType)blockType;
 
             byte[] lengthBytes = new byte[sizeof(Int32)];
-            int bytesRead = InputStream.Read(lengthBytes, 0, lengthBytes.Length);
-            if (bytesRead != lengthBytes.Length)
+            if (!InputStream.ReadExact(lengthBytes))
             {
                 return false;
             }
             Int32 headerBlockLength = BitConverter.ToInt32(lengthBytes, 0);
 
-            byte[] blockData = new byte[headerBlockLength];
-            bytesRead = InputStream.Read(blockData, 0, blockData.Length);
-            if (bytesRead != blockData.Length)
+            byte[] dataBLock = new byte[headerBlockLength];
+            if (!InputStream.ReadExact(dataBLock))
             {
                 return false;
             }
 
-            return ParseHeaderBlock(headerBlockType, blockData);
+            return ParseHeaderBlock(headerBlockType, dataBLock);
         }
 
-        private bool ParseHeaderBlock(HeaderBlockType headerBlockType, byte[] blockData)
+        private bool ParseHeaderBlock(HeaderBlockType headerBlockType, byte[] dataBlock)
         {
             switch (headerBlockType)
             {
@@ -161,7 +159,7 @@ namespace Axantum.AxCrypt.Core.Reader
                 case HeaderBlockType.Preamble:
                     break;
                 case HeaderBlockType.Version:
-                    HeaderBlock = new VersionHeaderBlock(headerBlockType, blockData);
+                    HeaderBlock = new VersionHeaderBlock(headerBlockType, dataBlock);
                     return true;
                 case HeaderBlockType.KeyWrap1:
                     break;

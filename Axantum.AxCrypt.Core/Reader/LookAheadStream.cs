@@ -124,6 +124,13 @@ namespace Axantum.AxCrypt.Core.Reader
             return bytesRead;
         }
 
+        public bool ReadExact(byte[] buffer)
+        {
+            int bytesRead = Read(buffer, 0, buffer.Length);
+
+            return bytesRead == buffer.Length;
+        }
+
         public override long Seek(long offset, SeekOrigin origin)
         {
             throw new NotSupportedException();
