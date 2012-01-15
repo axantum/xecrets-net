@@ -43,25 +43,41 @@
  </Rules>
  <FxCopReport Version="10.0">
   <Namespaces>
-   <Namespace Name="Axantum.AxCrypt.Core.Header">
+   <Namespace Name="Axantum.AxCrypt.Core">
     <Messages>
-     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2012-01-13 14:32:00Z">
+     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Excluded" Created="2012-01-15 20:45:04Z">
       <Issue>
-       <Item>Axantum.AxCrypt.Core.Header</Item>
+       <Item>Axantum.AxCrypt.Core</Item>
       </Issue>
+      <Notes>
+       <User Name="Svante">
+        <Note Id="0" />
+       </User>
+      </Notes>
      </Message>
     </Messages>
    </Namespace>
    <Namespace Name="Axantum.AxCrypt.Core.Reader">
     <Messages>
-     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2012-01-13 14:32:00Z">
+     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Excluded" Created="2012-01-13 14:32:00Z">
       <Issue>
        <Item>Axantum.AxCrypt.Core.Reader</Item>
       </Issue>
+      <Notes>
+       <User Name="Svante">
+        <Note Id="1" />
+       </User>
+      </Notes>
      </Message>
     </Messages>
    </Namespace>
   </Namespaces>
+  <Notes>
+   <User Name="Svante">
+    <Note Id="0" Modified="2012-01-15 20:45:43Z">We can check this at a later stage, in the beginning some namespaces will be small...</Note>
+    <Note Id="1" Modified="2012-01-15 20:45:48Z">We can check this at a later stage, in the beginning some namespaces will be small...</Note>
+   </User>
+  </Notes>
   <Rules>
    <Rule TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020">
     <Resolution Name="Default">Consider merging the types defined in '{0}' with another namespace.</Resolution>
