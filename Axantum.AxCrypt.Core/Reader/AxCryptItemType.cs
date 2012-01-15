@@ -47,13 +47,9 @@ namespace Axantum.AxCrypt.Core.Reader
         /// </summary>
         HeaderBlock,
         /// <summary>
-        /// A (part) of Encrypted Compressed data has been found
+        /// A (part) of Encrypted and possibly Compressed data has been found
         /// </summary>
-        EncryptedCompressedData,
-        /// <summary>
-        /// A (part) of Compressed data has been found
-        /// </summary>
-        EncryptedData,
+        Data,
         /// <summary>
         /// The end of the stream has been reached
         /// </summary>

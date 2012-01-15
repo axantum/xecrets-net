@@ -37,6 +37,8 @@ namespace Axantum.AxCrypt.Core.Reader
 {
     public class AxCryptReader : IDisposable
     {
+        private const int DATA_CHUNK_SIZE = 65536;
+
         public static readonly Guid AxCrypt1Guid = new Guid("2e07b9c0-934f-46f1-a015-792ca1d9e821");
 
         private static readonly byte[] _axCrypt1GuidAsBytes = AxCrypt1Guid.ToByteArray();
@@ -45,6 +47,16 @@ namespace Axantum.AxCrypt.Core.Reader
         {
             return _axCrypt1GuidAsBytes;
         }
+
+        private byte[] _dataChunk;
+        public byte[] GetAndOwnDataChunk()
+        {
+            byte[] dataChunk = _dataChunk;
+            _dataChunk = null;
+            return dataChunk;
+        }
+
+        private Int64 _dataBytesLeftToRead;
 
         private LookAheadStream InputStream { get; set; }
 
@@ -69,6 +81,16 @@ namespace Axantum.AxCrypt.Core.Reader
         /// <returns>true if there was a next item read.</returns>
         public bool Read()
         {
+            if (ItemType == AxCryptItemType.HeaderBlock)
+            {
+                DataHeaderBlock dataHeaderBlock = HeaderBlock as DataHeaderBlock;
+                if (dataHeaderBlock != null)
+                {
+                    ItemType = AxCryptItemType.Data;
+                    _dataBytesLeftToRead = dataHeaderBlock.DataLength;
+                }
+            }
+
             switch (ItemType)
             {
                 case AxCryptItemType.None:
@@ -77,9 +99,7 @@ namespace Axantum.AxCrypt.Core.Reader
                     return LookForHeaderBlock();
                 case AxCryptItemType.HeaderBlock:
                     return LookForHeaderBlock();
-                case AxCryptItemType.EncryptedCompressedData:
-                    return LookForData();
-                case AxCryptItemType.EncryptedData:
+                case AxCryptItemType.Data:
                     return LookForData();
                 case AxCryptItemType.EndOfStream:
                     return false;
@@ -118,26 +138,44 @@ namespace Axantum.AxCrypt.Core.Reader
             }
         }
 
-        private static bool LookForData()
+        private bool LookForData()
         {
-            throw new NotImplementedException();
+            int bytesToRead = _dataBytesLeftToRead > DATA_CHUNK_SIZE ? DATA_CHUNK_SIZE : (int)_dataBytesLeftToRead;
+            if (bytesToRead == 0)
+            {
+                ItemType = AxCryptItemType.EndOfStream;
+                return true;
+            }
+
+            _dataChunk = new byte[bytesToRead];
+            int bytesRead = InputStream.Read(_dataChunk, 0, bytesToRead);
+            if (bytesRead != bytesToRead)
+            {
+                throw new InvalidOperationException("Data stream truncated too short");
+            }
+            _dataBytesLeftToRead -= bytesRead;
+            return true;
         }
 
         private bool LookForHeaderBlock()
         {
+            byte[] lengthBytes = new byte[sizeof(Int32)];
+            if (!InputStream.ReadExact(lengthBytes))
+            {
+                return false;
+            }
+            Int32 headerBlockLength = BitConverter.ToInt32(lengthBytes, 0) - 5;
+            if (headerBlockLength < 0 || headerBlockLength > 0xfffff)
+            {
+                throw new InvalidOperationException("Invalid headerBlockLength {0}".FormatWith(headerBlockLength));
+            }
+
             int blockType = InputStream.ReadByte();
             if (blockType < 0)
             {
                 return false;
             }
             HeaderBlockType headerBlockType = (HeaderBlockType)blockType;
-
-            byte[] lengthBytes = new byte[sizeof(Int32)];
-            if (!InputStream.ReadExact(lengthBytes))
-            {
-                return false;
-            }
-            Int32 headerBlockLength = BitConverter.ToInt32(lengthBytes, 0);
 
             byte[] dataBLock = new byte[headerBlockLength];
             if (!InputStream.ReadExact(dataBLock))
@@ -150,6 +188,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
         private bool ParseHeaderBlock(HeaderBlockType headerBlockType, byte[] dataBlock)
         {
+            ItemType = AxCryptItemType.HeaderBlock;
             switch (headerBlockType)
             {
                 case HeaderBlockType.None:
@@ -160,7 +199,7 @@ namespace Axantum.AxCrypt.Core.Reader
                     break;
                 case HeaderBlockType.Version:
                     HeaderBlock = new VersionHeaderBlock(headerBlockType, dataBlock);
-                    return true;
+                    break;
                 case HeaderBlockType.KeyWrap1:
                     break;
                 case HeaderBlockType.KeyWrap2:
@@ -168,6 +207,8 @@ namespace Axantum.AxCrypt.Core.Reader
                 case HeaderBlockType.IdTag:
                     break;
                 case HeaderBlockType.Data:
+                    DataHeaderBlock dataHeaderBlock = new DataHeaderBlock(headerBlockType, dataBlock);
+                    HeaderBlock = dataHeaderBlock;
                     break;
                 case HeaderBlockType.Encrypted:
                     break;
@@ -184,9 +225,9 @@ namespace Axantum.AxCrypt.Core.Reader
                 case HeaderBlockType.UnicodeFileNameInfo:
                     break;
                 default:
-                    break;
+                    return false;
             }
-            return false;
+            return true;
         }
 
         #region IDisposable Members

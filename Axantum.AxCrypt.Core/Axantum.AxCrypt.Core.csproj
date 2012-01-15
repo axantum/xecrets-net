@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Header\DataHeaderBlock.cs" />
     <Compile Include="Reader\Extensions.cs" />
     <Compile Include="Reader\LookAheadStream.cs" />
     <Compile Include="Header\HeaderBlock.cs" />
