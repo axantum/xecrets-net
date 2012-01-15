@@ -1,31 +1,4 @@
-﻿#region Coypright and License
-
-/*
- * AxCrypt - Copyright 2012, Svante Seleborg, All Rights Reserved
- *
- * This file is part of AxCrypt.
- *
- * AxCrypt is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * AxCrypt is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with AxCrypt.  If not, see <http://www.gnu.org/licenses/>.
- *
- * The source is maintained at http://AxCrypt.codeplex.com/ please visit for
- * updates, contributions and contact with the author. You may also visit
- * http://www.axantum.com for more information about the author.
-*/
-
-#endregion Coypright and License
-
-using System.IO;
+﻿using System.IO;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Test.Properties;
@@ -34,10 +7,10 @@ using NUnit.Framework;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public static class TestAxCryptReaderVersionHeaderBlock
+    public static class TestAxCryptReaderPreambleHeaderBlock
     {
         [Test]
-        public static void TestFindVersionHeaderBlockFromSimpleFile()
+        public static void TestFindPreambleHeaderBlockFromSimpleFile()
         {
             using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
             {
@@ -54,10 +27,12 @@ namespace Axantum.AxCrypt.Core.Test
                             case AxCryptItemType.MagicGuid:
                                 break;
                             case AxCryptItemType.HeaderBlock:
-                                if (axCryptReader.HeaderBlock.HeaderBlockType == HeaderBlockType.Version)
+                                if (axCryptReader.HeaderBlock.HeaderBlockType == HeaderBlockType.Preamble)
                                 {
-                                    Assert.That(blockFound, Is.False, "We should only find one single VersionHeaderBlock");
+                                    Assert.That(blockFound, Is.False, "We should only find one single PreambleHeaderBlock");
                                     blockFound = true;
+
+                                    Assert.That(headers, Is.EqualTo(0), "Preamble must be first");
                                 }
                                 ++headers;
                                 break;

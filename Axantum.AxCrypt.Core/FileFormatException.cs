@@ -25,23 +25,35 @@
 
 #endregion Coypright and License
 
-namespace Axantum.AxCrypt.Core.Header
-{
-    public abstract class HeaderBlock
-    {
-        private byte[] _dataBlock;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
 
-        protected HeaderBlock(HeaderBlockType headerBlockType, byte[] dataBlock)
+namespace Axantum.AxCrypt.Core
+{
+    [Serializable]
+    public class FileFormatException : AxCryptException
+    {
+        public FileFormatException()
+            : base()
         {
-            HeaderBlockType = headerBlockType;
-            _dataBlock = dataBlock;
         }
 
-        public HeaderBlockType HeaderBlockType { get; protected set; }
-
-        public byte[] GetDataBlock()
+        public FileFormatException(string message)
+            : base(message)
         {
-            return _dataBlock;
+        }
+
+        protected FileFormatException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        {
+        }
+
+        public FileFormatException(string message, Exception innerException)
+            : base(message, innerException)
+        {
         }
     }
 }

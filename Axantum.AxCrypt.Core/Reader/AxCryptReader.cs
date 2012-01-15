@@ -26,12 +26,8 @@
 #endregion Coypright and License
 
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using Axantum.AxCrypt.Core.Header;
-using Axantum.AxCrypt.Core.Reader;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
@@ -49,6 +45,7 @@ namespace Axantum.AxCrypt.Core.Reader
         }
 
         private byte[] _dataChunk;
+
         public byte[] GetAndOwnDataChunk()
         {
             byte[] dataChunk = _dataChunk;
@@ -104,7 +101,7 @@ namespace Axantum.AxCrypt.Core.Reader
                 case AxCryptItemType.EndOfStream:
                     return false;
                 default:
-                    throw new InvalidOperationException("Unexpected AxCryptItemType");
+                    throw new FileFormatException("Unexpected AxCryptItemType");
             }
         }
 
@@ -151,7 +148,7 @@ namespace Axantum.AxCrypt.Core.Reader
             int bytesRead = InputStream.Read(_dataChunk, 0, bytesToRead);
             if (bytesRead != bytesToRead)
             {
-                throw new InvalidOperationException("Data stream truncated too short");
+                throw new FileFormatException("Data stream truncated too short");
             }
             _dataBytesLeftToRead -= bytesRead;
             return true;
@@ -167,7 +164,7 @@ namespace Axantum.AxCrypt.Core.Reader
             Int32 headerBlockLength = BitConverter.ToInt32(lengthBytes, 0) - 5;
             if (headerBlockLength < 0 || headerBlockLength > 0xfffff)
             {
-                throw new InvalidOperationException("Invalid headerBlockLength {0}".FormatWith(headerBlockLength));
+                throw new FileFormatException("Invalid headerBlockLength {0}".InvariantFormat(headerBlockLength));
             }
 
             int blockType = InputStream.ReadByte();
@@ -188,42 +185,56 @@ namespace Axantum.AxCrypt.Core.Reader
 
         private bool ParseHeaderBlock(HeaderBlockType headerBlockType, byte[] dataBlock)
         {
+            bool isFirst = ItemType == AxCryptItemType.MagicGuid;
             ItemType = AxCryptItemType.HeaderBlock;
             switch (headerBlockType)
             {
-                case HeaderBlockType.None:
-                    break;
-                case HeaderBlockType.Any:
-                    break;
                 case HeaderBlockType.Preamble:
+                    if (!isFirst)
+                    {
+                        throw new FileFormatException("Preamble must be first.");
+                    }
+                    HeaderBlock = new PreambleHeaderBlock(headerBlockType, dataBlock);
                     break;
                 case HeaderBlockType.Version:
                     HeaderBlock = new VersionHeaderBlock(headerBlockType, dataBlock);
                     break;
                 case HeaderBlockType.KeyWrap1:
+                    HeaderBlock = new KeyWrap1HeaderBlock(headerBlockType, dataBlock);
                     break;
                 case HeaderBlockType.KeyWrap2:
+                    HeaderBlock = new KeyWrap2HeaderBlock(headerBlockType, dataBlock);
                     break;
                 case HeaderBlockType.IdTag:
+                    HeaderBlock = new IdTagHeaderBlock(headerBlockType, dataBlock);
                     break;
                 case HeaderBlockType.Data:
                     DataHeaderBlock dataHeaderBlock = new DataHeaderBlock(headerBlockType, dataBlock);
                     HeaderBlock = dataHeaderBlock;
                     break;
                 case HeaderBlockType.Encrypted:
+                    HeaderBlock = new EncryptedHeaderBlock(headerBlockType, dataBlock);
                     break;
                 case HeaderBlockType.FileNameInfo:
+                    HeaderBlock = new FileNameInfoHeaderBlock(headerBlockType, dataBlock);
                     break;
                 case HeaderBlockType.EncryptionInfo:
+                    HeaderBlock = new EncryptionInfoHeaderBlock(headerBlockType, dataBlock);
                     break;
                 case HeaderBlockType.CompressionInfo:
+                    HeaderBlock = new CompressionInfoHeaderBlock(headerBlockType, dataBlock);
                     break;
                 case HeaderBlockType.FileInfo:
+                    HeaderBlock = new FileInfoHeaderBlock(headerBlockType, dataBlock);
                     break;
                 case HeaderBlockType.Compression:
+                    HeaderBlock = new CompressionHeaderBlock(headerBlockType, dataBlock);
                     break;
                 case HeaderBlockType.UnicodeFileNameInfo:
+                    HeaderBlock = new UnicodeFileNameInfoHeaderBlock(headerBlockType, dataBlock);
                     break;
+                case HeaderBlockType.None:
+                case HeaderBlockType.Any:
                 default:
                     return false;
             }

@@ -50,9 +50,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AxCryptException.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="FileFormatException.cs" />
+    <Compile Include="Header\CompressionHeaderBlock.cs" />
+    <Compile Include="Header\CompressionInfoHeaderBlock.cs" />
     <Compile Include="Header\DataHeaderBlock.cs" />
-    <Compile Include="Reader\Extensions.cs" />
+    <Compile Include="Header\EncryptedHeaderBlock.cs" />
+    <Compile Include="Header\EncryptionInfoHeaderBlock.cs" />
+    <Compile Include="Header\FileInfoHeaderBlock.cs" />
+    <Compile Include="Header\FileNameInfoHeaderBlock.cs" />
+    <Compile Include="Header\IdTagHeaderBlock.cs" />
+    <Compile Include="Header\KeyWrap1HeaderBlock.cs" />
+    <Compile Include="Header\KeyWrap2HeaderBlock.cs" />
+    <Compile Include="Header\PreambleHeaderBlock.cs" />
+    <Compile Include="Header\UnicodeFileNameInfoHeaderBlock.cs" />
     <Compile Include="Reader\LookAheadStream.cs" />
     <Compile Include="Header\HeaderBlock.cs" />
     <Compile Include="Header\HeaderBlockType.cs" />
