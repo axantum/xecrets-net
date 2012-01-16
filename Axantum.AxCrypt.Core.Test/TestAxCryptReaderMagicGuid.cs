@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public void Setup()
         {
-            _axCrypt1GuidAsBytes = AxCryptReader.GetAxCrypt1GuidAsBytes();
+            _axCrypt1GuidAsBytes = AxCryptReader.GetAxCrypt1GuidBytes();
         }
 
         [Test]

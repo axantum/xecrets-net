@@ -29,8 +29,8 @@ namespace Axantum.AxCrypt.Core.Header
 {
     public class UnicodeFileNameInfoHeaderBlock : HeaderBlock
     {
-        public UnicodeFileNameInfoHeaderBlock(HeaderBlockType headerBlockType, byte[] dataBlock)
-            : base(headerBlockType, dataBlock)
+        public UnicodeFileNameInfoHeaderBlock(byte[] dataBlock)
+            : base(HeaderBlockType.UnicodeFileNameInfo, dataBlock)
         {
         }
     }

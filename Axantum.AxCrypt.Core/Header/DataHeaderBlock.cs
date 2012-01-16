@@ -33,8 +33,8 @@ namespace Axantum.AxCrypt.Core.Header
     {
         public Int64 DataLength { get; private set; }
 
-        public DataHeaderBlock(HeaderBlockType headerBlockType, byte[] dataBlock)
-            : base(headerBlockType, dataBlock)
+        public DataHeaderBlock(byte[] dataBlock)
+            : base(HeaderBlockType.Data, dataBlock)
         {
             DataLength = BitConverter.ToInt64(dataBlock, 0);
         }

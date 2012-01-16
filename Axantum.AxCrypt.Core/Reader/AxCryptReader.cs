@@ -37,11 +37,11 @@ namespace Axantum.AxCrypt.Core.Reader
 
         public static readonly Guid AxCrypt1Guid = new Guid("2e07b9c0-934f-46f1-a015-792ca1d9e821");
 
-        private static readonly byte[] _axCrypt1GuidAsBytes = AxCrypt1Guid.ToByteArray();
+        private static readonly byte[] _axCrypt1GuidBytes = AxCrypt1Guid.ToByteArray();
 
-        public static byte[] GetAxCrypt1GuidAsBytes()
+        public static byte[] GetAxCrypt1GuidBytes()
         {
-            return _axCrypt1GuidAsBytes;
+            return (byte[])_axCrypt1GuidBytes.Clone();
         }
 
         private byte[] _dataChunk;
@@ -111,16 +111,16 @@ namespace Axantum.AxCrypt.Core.Reader
             while (true)
             {
                 int bytesRead = InputStream.Read(buffer, 0, buffer.Length);
-                if (bytesRead < _axCrypt1GuidAsBytes.Length)
+                if (bytesRead < _axCrypt1GuidBytes.Length)
                 {
                     InputStream.Pushback(buffer, 0, bytesRead);
                     return false;
                 }
 
-                int i = buffer.Locate(_axCrypt1GuidAsBytes, 0, bytesRead);
+                int i = buffer.Locate(_axCrypt1GuidBytes, 0, bytesRead);
                 if (i < 0)
                 {
-                    int n = bytesRead - _axCrypt1GuidAsBytes.Length + 1;
+                    int n = bytesRead - _axCrypt1GuidBytes.Length + 1;
                     if (n < 0)
                     {
                         n = bytesRead;
@@ -128,7 +128,7 @@ namespace Axantum.AxCrypt.Core.Reader
                     InputStream.Pushback(buffer, 0, n);
                     continue;
                 }
-                int pos = i + _axCrypt1GuidAsBytes.Length;
+                int pos = i + _axCrypt1GuidBytes.Length;
                 InputStream.Pushback(buffer, pos, bytesRead - pos);
                 ItemType = AxCryptItemType.MagicGuid;
                 return true;
@@ -194,44 +194,44 @@ namespace Axantum.AxCrypt.Core.Reader
                     {
                         throw new FileFormatException("Preamble must be first.");
                     }
-                    HeaderBlock = new PreambleHeaderBlock(headerBlockType, dataBlock);
+                    HeaderBlock = new PreambleHeaderBlock(dataBlock);
                     break;
                 case HeaderBlockType.Version:
-                    HeaderBlock = new VersionHeaderBlock(headerBlockType, dataBlock);
+                    HeaderBlock = new VersionHeaderBlock(dataBlock);
                     break;
                 case HeaderBlockType.KeyWrap1:
-                    HeaderBlock = new KeyWrap1HeaderBlock(headerBlockType, dataBlock);
+                    HeaderBlock = new KeyWrap1HeaderBlock(dataBlock);
                     break;
                 case HeaderBlockType.KeyWrap2:
-                    HeaderBlock = new KeyWrap2HeaderBlock(headerBlockType, dataBlock);
+                    HeaderBlock = new KeyWrap2HeaderBlock(dataBlock);
                     break;
                 case HeaderBlockType.IdTag:
-                    HeaderBlock = new IdTagHeaderBlock(headerBlockType, dataBlock);
+                    HeaderBlock = new IdTagHeaderBlock(dataBlock);
                     break;
                 case HeaderBlockType.Data:
-                    DataHeaderBlock dataHeaderBlock = new DataHeaderBlock(headerBlockType, dataBlock);
+                    DataHeaderBlock dataHeaderBlock = new DataHeaderBlock(dataBlock);
                     HeaderBlock = dataHeaderBlock;
                     break;
                 case HeaderBlockType.Encrypted:
-                    HeaderBlock = new EncryptedHeaderBlock(headerBlockType, dataBlock);
+                    HeaderBlock = new EncryptedHeaderBlock(dataBlock);
                     break;
                 case HeaderBlockType.FileNameInfo:
-                    HeaderBlock = new FileNameInfoHeaderBlock(headerBlockType, dataBlock);
+                    HeaderBlock = new FileNameInfoHeaderBlock(dataBlock);
                     break;
                 case HeaderBlockType.EncryptionInfo:
-                    HeaderBlock = new EncryptionInfoHeaderBlock(headerBlockType, dataBlock);
+                    HeaderBlock = new EncryptionInfoHeaderBlock(dataBlock);
                     break;
                 case HeaderBlockType.CompressionInfo:
-                    HeaderBlock = new CompressionInfoHeaderBlock(headerBlockType, dataBlock);
+                    HeaderBlock = new CompressionInfoHeaderBlock(dataBlock);
                     break;
                 case HeaderBlockType.FileInfo:
-                    HeaderBlock = new FileInfoHeaderBlock(headerBlockType, dataBlock);
+                    HeaderBlock = new FileInfoHeaderBlock(dataBlock);
                     break;
                 case HeaderBlockType.Compression:
-                    HeaderBlock = new CompressionHeaderBlock(headerBlockType, dataBlock);
+                    HeaderBlock = new CompressionHeaderBlock(dataBlock);
                     break;
                 case HeaderBlockType.UnicodeFileNameInfo:
-                    HeaderBlock = new UnicodeFileNameInfoHeaderBlock(headerBlockType, dataBlock);
+                    HeaderBlock = new UnicodeFileNameInfoHeaderBlock(dataBlock);
                     break;
                 case HeaderBlockType.None:
                 case HeaderBlockType.Any:

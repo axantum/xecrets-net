@@ -29,8 +29,8 @@ namespace Axantum.AxCrypt.Core.Header
 {
     public class KeyWrap1HeaderBlock : HeaderBlock
     {
-        public KeyWrap1HeaderBlock(HeaderBlockType headerBlockType, byte[] dataBlock)
-            : base(headerBlockType, dataBlock)
+        public KeyWrap1HeaderBlock(byte[] dataBlock)
+            : base(HeaderBlockType.KeyWrap1, dataBlock)
         {
         }
     }

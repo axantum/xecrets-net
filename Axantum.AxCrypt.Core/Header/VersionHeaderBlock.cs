@@ -29,8 +29,8 @@ namespace Axantum.AxCrypt.Core.Header
 {
     public class VersionHeaderBlock : HeaderBlock
     {
-        public VersionHeaderBlock(HeaderBlockType headerBlockType, byte[] dataBlock)
-            : base(headerBlockType, dataBlock)
+        public VersionHeaderBlock(byte[] dataBlock)
+            : base(HeaderBlockType.Version, dataBlock)
         {
             FileVersionMajor = dataBlock[0];
             FileVersionMinor = dataBlock[1];

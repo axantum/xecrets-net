@@ -25,6 +25,8 @@
 
 #endregion Coypright and License
 
+using System;
+
 namespace Axantum.AxCrypt.Core.Header
 {
     public abstract class HeaderBlock
@@ -42,6 +44,16 @@ namespace Axantum.AxCrypt.Core.Header
         public byte[] GetDataBlock()
         {
             return _dataBlock;
+        }
+
+        public virtual byte[] GetBytes()
+        {
+            byte[] headerBlock = new byte[1 + 4 + _dataBlock.Length];
+            BitConverter.GetBytes(headerBlock.Length).CopyTo(headerBlock, 0);
+            headerBlock[4] = (byte)HeaderBlockType;
+            _dataBlock.CopyTo(headerBlock, 5);
+
+            return headerBlock;
         }
     }
 }

@@ -29,8 +29,8 @@ namespace Axantum.AxCrypt.Core.Header
 {
     public class IdTagHeaderBlock : HeaderBlock
     {
-        public IdTagHeaderBlock(HeaderBlockType headerBlockType, byte[] dataBlock)
-            : base(headerBlockType, dataBlock)
+        public IdTagHeaderBlock(byte[] dataBlock)
+            : base(HeaderBlockType.IdTag, dataBlock)
         {
         }
     }

@@ -7,8 +7,39 @@ using NUnit.Framework;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public static class TestAxCryptReaderPreambleHeaderBlock
+    public class TestAxCryptReaderPreambleHeaderBlock
     {
+        private byte[] _axCrypt1GuidAsBytes;
+
+        [SetUp]
+        public void Setup()
+        {
+            _axCrypt1GuidAsBytes = AxCryptReader.GetAxCrypt1GuidBytes();
+        }
+
+        [Test]
+        public void TestFindPreambleHeaderBlockFirstButMoreThanOnce()
+        {
+            using (MemoryStream testStream = new MemoryStream())
+            {
+                testStream.Write(_axCrypt1GuidAsBytes, 0, _axCrypt1GuidAsBytes.Length);
+                PreambleHeaderBlock preambleHeaderBlock = new PreambleHeaderBlock(new byte[8]);
+                byte[] preambleHeaderBlockBytes = preambleHeaderBlock.GetBytes();
+                testStream.Write(preambleHeaderBlockBytes, 0, preambleHeaderBlockBytes.Length);
+                testStream.Write(preambleHeaderBlockBytes, 0, preambleHeaderBlockBytes.Length);
+                testStream.Position = 0;
+                using (AxCryptReader axCryptReader = new AxCryptReader(testStream))
+                {
+                    Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
+                    Assert.That(axCryptReader.ItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
+                    Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the next HeaderBlock");
+                    Assert.That(axCryptReader.ItemType, Is.EqualTo(AxCryptItemType.HeaderBlock), "We're expecting to have found a HeaderBlock");
+                    Assert.That(axCryptReader.HeaderBlock.HeaderBlockType, Is.EqualTo(HeaderBlockType.Preamble), "We're expecting to have found a Preamble specifically");
+                    Assert.Throws<FileFormatException>(() => axCryptReader.Read());
+                }
+            }
+        }
+
         [Test]
         public static void TestFindPreambleHeaderBlockFromSimpleFile()
         {

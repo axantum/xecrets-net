@@ -29,8 +29,8 @@ namespace Axantum.AxCrypt.Core.Header
 {
     public class EncryptionInfoHeaderBlock : HeaderBlock
     {
-        public EncryptionInfoHeaderBlock(HeaderBlockType headerBlockType, byte[] dataBlock)
-            : base(headerBlockType, dataBlock)
+        public EncryptionInfoHeaderBlock(byte[] dataBlock)
+            : base(HeaderBlockType.EncryptionInfo, dataBlock)
         {
         }
     }
