@@ -187,12 +187,16 @@ namespace Axantum.AxCrypt.Core.Reader
         {
             bool isFirst = ItemType == AxCryptItemType.MagicGuid;
             ItemType = AxCryptItemType.HeaderBlock;
+            if (isFirst && headerBlockType != HeaderBlockType.Preamble)
+            {
+                throw new FileFormatException("Preamble must be first.");
+            }
             switch (headerBlockType)
             {
                 case HeaderBlockType.Preamble:
                     if (!isFirst)
                     {
-                        throw new FileFormatException("Preamble must be first.");
+                        throw new FileFormatException("Preamble can only be first.");
                     }
                     HeaderBlock = new PreambleHeaderBlock(dataBlock);
                     break;

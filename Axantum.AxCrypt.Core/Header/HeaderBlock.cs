@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using System;
+using System.IO;
 
 namespace Axantum.AxCrypt.Core.Header
 {
@@ -54,6 +55,12 @@ namespace Axantum.AxCrypt.Core.Header
             _dataBlock.CopyTo(headerBlock, 5);
 
             return headerBlock;
+        }
+
+        public virtual void Write(Stream stream)
+        {
+            byte[] headerBlockBytes = GetBytes();
+            stream.Write(headerBlockBytes, 0, headerBlockBytes.Length);
         }
     }
 }

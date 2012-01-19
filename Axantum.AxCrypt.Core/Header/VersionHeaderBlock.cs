@@ -32,36 +32,91 @@ namespace Axantum.AxCrypt.Core.Header
         public VersionHeaderBlock(byte[] dataBlock)
             : base(HeaderBlockType.Version, dataBlock)
         {
-            FileVersionMajor = dataBlock[0];
-            FileVersionMinor = dataBlock[1];
-            VersionMajor = dataBlock[2];
-            VersionMinor = dataBlock[3];
-            VersionMinuscule = dataBlock[4];
+        }
+
+        public VersionHeaderBlock()
+            : base(HeaderBlockType.Version, new byte[5])
+        {
+            FileVersionMajor = 3;
+            FileVersionMinor = 2;
+            VersionMajor = 2;
+            VersionMinor = 0;
+            VersionMinuscule = 0;
         }
 
         /// <summary>
         /// FileMajor - Older versions cannot not read the format.
         /// </summary>
-        public byte FileVersionMajor { get; private set; }
+        public byte FileVersionMajor
+        {
+            get
+            {
+                return GetDataBlock()[0];
+            }
+            private set
+            {
+                GetDataBlock()[0] = value;
+            }
+        }
 
         /// <summary>
         /// FileMinor - Older versions can read the format, but will not retain on save.
         /// </summary>
-        public byte FileVersionMinor { get; private set; }
+        public byte FileVersionMinor
+        {
+            get
+            {
+                return GetDataBlock()[1];
+            }
+            private set
+            {
+                GetDataBlock()[1] = value;
+            }
+        }
 
         /// <summary>
         /// Major - New release, major functionality change.
         /// </summary>
-        public byte VersionMajor { get; private set; }
+        public byte VersionMajor
+        {
+            get
+            {
+                return GetDataBlock()[2];
+            }
+            private set
+            {
+                GetDataBlock()[2] = value;
+            }
+        }
 
         /// <summary>
         /// Minor - Changes, but no big deal.
         /// </summary>
-        public byte VersionMinor { get; private set; }
+        public byte VersionMinor
+        {
+            get
+            {
+                return GetDataBlock()[3];
+            }
+            private set
+            {
+                GetDataBlock()[3] = value;
+            }
+        }
 
         /// <summary>
         /// Minuscule - bug fix.
         /// </summary>
-        public byte VersionMinuscule { get; private set; }
+        public byte VersionMinuscule
+        {
+            get
+            {
+                return GetDataBlock()[4];
+            }
+            private set
+            {
+                GetDataBlock()[4] = value;
+            }
+        }
     }
 }

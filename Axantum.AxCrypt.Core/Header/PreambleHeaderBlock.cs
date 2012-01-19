@@ -33,5 +33,15 @@ namespace Axantum.AxCrypt.Core.Header
             : base(HeaderBlockType.Preamble, dataBlock)
         {
         }
+
+        public PreambleHeaderBlock()
+            : base(HeaderBlockType.Preamble, new byte[16])
+        {
+        }
+
+        public byte[] GetHmac()
+        {
+            return GetBytes();
+        }
     }
 }
