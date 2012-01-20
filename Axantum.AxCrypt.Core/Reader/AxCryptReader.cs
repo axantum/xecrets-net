@@ -35,15 +35,6 @@ namespace Axantum.AxCrypt.Core.Reader
     {
         private const int DATA_CHUNK_SIZE = 65536;
 
-        public static readonly Guid AxCrypt1Guid = new Guid("2e07b9c0-934f-46f1-a015-792ca1d9e821");
-
-        private static readonly byte[] _axCrypt1GuidBytes = AxCrypt1Guid.ToByteArray();
-
-        public static byte[] GetAxCrypt1GuidBytes()
-        {
-            return (byte[])_axCrypt1GuidBytes.Clone();
-        }
-
         private byte[] _dataChunk;
 
         public byte[] GetAndOwnDataChunk()
@@ -105,13 +96,15 @@ namespace Axantum.AxCrypt.Core.Reader
             }
         }
 
+        private static byte[] _axCrypt1GuidBytes = AxCrypt1Guid.GetBytes();
+
         private bool LookForMagicGuid()
         {
             byte[] buffer = new byte[4096];
             while (true)
             {
                 int bytesRead = InputStream.Read(buffer, 0, buffer.Length);
-                if (bytesRead < _axCrypt1GuidBytes.Length)
+                if (bytesRead < AxCrypt1Guid.Length)
                 {
                     InputStream.Pushback(buffer, 0, bytesRead);
                     return false;
@@ -120,7 +113,7 @@ namespace Axantum.AxCrypt.Core.Reader
                 int i = buffer.Locate(_axCrypt1GuidBytes, 0, bytesRead);
                 if (i < 0)
                 {
-                    int n = bytesRead - _axCrypt1GuidBytes.Length + 1;
+                    int n = bytesRead - AxCrypt1Guid.Length + 1;
                     if (n < 0)
                     {
                         n = bytesRead;
@@ -128,7 +121,7 @@ namespace Axantum.AxCrypt.Core.Reader
                     InputStream.Pushback(buffer, 0, n);
                     continue;
                 }
-                int pos = i + _axCrypt1GuidBytes.Length;
+                int pos = i + AxCrypt1Guid.Length;
                 InputStream.Pushback(buffer, pos, bytesRead - pos);
                 ItemType = AxCryptItemType.MagicGuid;
                 return true;

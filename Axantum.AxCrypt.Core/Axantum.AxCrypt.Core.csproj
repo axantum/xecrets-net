@@ -18,7 +18,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -53,6 +53,7 @@
     <Compile Include="AxCryptException.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="FileFormatException.cs" />
+    <Compile Include="Header\AxCrypt1Guid.cs" />
     <Compile Include="Header\CompressionHeaderBlock.cs" />
     <Compile Include="Header\CompressionInfoHeaderBlock.cs" />
     <Compile Include="Header\DataHeaderBlock.cs" />

@@ -40,17 +40,35 @@ namespace Axantum.AxCrypt.Core.Header
             _dataBlock = dataBlock;
         }
 
+        protected HeaderBlock(HeaderBlockType headerBlockType)
+        {
+            HeaderBlockType = headerBlockType;
+        }
+
         public HeaderBlockType HeaderBlockType { get; protected set; }
 
+        /// <summary>
+        /// Get a reference to the internally maintained data block. Beware modifying the contents of the array!
+        /// </summary>
+        /// <returns></returns>
         protected byte[] GetDataBlockBytesReference()
         {
             return _dataBlock;
         }
 
+        /// <summary>
+        /// Set a reference to the internally maintained data block. Beware modifying the contents of the array!
+        /// </summary>
+        /// <param name="dataBlock"></param>
+        protected void SetDataBlockBytesReference(byte[] dataBlock)
+        {
+            _dataBlock = dataBlock;
+        }
+
         protected byte[] GetPrefixBytes()
         {
             byte[] headerBlockPrefix = new byte[4 + 1];
-            BitConverter.GetBytes(headerBlockPrefix.Length).CopyTo(headerBlockPrefix, 0);
+            BitConverter.GetBytes(headerBlockPrefix.Length + _dataBlock.Length).CopyTo(headerBlockPrefix, 0);
             headerBlockPrefix[4] = (byte)HeaderBlockType;
 
             return headerBlockPrefix;

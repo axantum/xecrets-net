@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Test.Properties;
@@ -9,20 +10,13 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public class TestAxCryptReaderPreambleHeaderBlock
     {
-        private byte[] _axCrypt1GuidAsBytes;
-
-        [SetUp]
-        public void Setup()
-        {
-            _axCrypt1GuidAsBytes = AxCryptReader.GetAxCrypt1GuidBytes();
-        }
-
         [Test]
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This is test, readability and coding ease is a concern, not performance.")]
         public void TestFindPreambleHeaderBlockFirstButMoreThanOnceShouldThrow()
         {
             using (MemoryStream testStream = new MemoryStream())
             {
-                testStream.Write(_axCrypt1GuidAsBytes, 0, _axCrypt1GuidAsBytes.Length);
+                AxCrypt1Guid.Write(testStream);
                 PreambleHeaderBlock preambleHeaderBlock = new PreambleHeaderBlock();
                 preambleHeaderBlock.Write(testStream);
                 preambleHeaderBlock.Write(testStream);
@@ -40,11 +34,12 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This is test, readability and coding ease is a concern, not performance.")]
         public void TestFindPreambleHeaderBlockNotFirstShouldThrow()
         {
             using (MemoryStream testStream = new MemoryStream())
             {
-                testStream.Write(_axCrypt1GuidAsBytes, 0, _axCrypt1GuidAsBytes.Length);
+                AxCrypt1Guid.Write(testStream);
                 VersionHeaderBlock versionHeaderBlock = new VersionHeaderBlock();
                 versionHeaderBlock.Write(testStream);
                 PreambleHeaderBlock preambleHeaderBlock = new PreambleHeaderBlock();

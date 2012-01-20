@@ -25,8 +25,10 @@
 
 #endregion Coypright and License
 
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
+using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Test.Properties;
 using NUnit.Framework;
@@ -36,20 +38,18 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public class TestAxCryptReaderMagicGuid
     {
-        private byte[] _axCrypt1GuidAsBytes;
-
         [SetUp]
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This is test, readability and coding ease is a concern, not performance.")]
         public void Setup()
         {
-            _axCrypt1GuidAsBytes = AxCryptReader.GetAxCrypt1GuidBytes();
         }
 
         [Test]
-        public void TestFindMagicGuidFirstAndOnly()
+        public static void TestFindMagicGuidFirstAndOnly()
         {
             using (MemoryStream testStream = new MemoryStream())
             {
-                testStream.Write(_axCrypt1GuidAsBytes, 0, _axCrypt1GuidAsBytes.Length);
+                AxCrypt1Guid.Write(testStream);
                 testStream.Position = 0;
                 using (AxCryptReader axCryptReader = new AxCryptReader(testStream))
                 {
@@ -60,11 +60,11 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestFindMagicGuidFirstWithMore()
+        public static void TestFindMagicGuidFirstWithMore()
         {
             using (MemoryStream testStream = new MemoryStream())
             {
-                testStream.Write(_axCrypt1GuidAsBytes, 0, _axCrypt1GuidAsBytes.Length);
+                AxCrypt1Guid.Write(testStream);
                 byte[] someBytes = Encoding.UTF8.GetBytes("This is a test string that we'll convert into some random bytes....");
                 testStream.Write(someBytes, 0, someBytes.Length);
                 testStream.Position = 0;
@@ -77,13 +77,13 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestFindMagicGuidWithOtherFirstButNoMore()
+        public static void TestFindMagicGuidWithOtherFirstButNoMore()
         {
             using (MemoryStream testStream = new MemoryStream())
             {
                 byte[] someBytes = Encoding.UTF8.GetBytes("This is a test string that we'll convert into some random bytes....");
                 testStream.Write(someBytes, 0, someBytes.Length);
-                testStream.Write(_axCrypt1GuidAsBytes, 0, _axCrypt1GuidAsBytes.Length);
+                AxCrypt1Guid.Write(testStream);
                 testStream.Position = 0;
                 using (AxCryptReader axCryptReader = new AxCryptReader(testStream))
                 {
@@ -94,13 +94,13 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestFindMagicGuidWithOtherFirstAndMore()
+        public static void TestFindMagicGuidWithOtherFirstAndMore()
         {
             using (MemoryStream testStream = new MemoryStream())
             {
                 byte[] someBytes = Encoding.UTF8.GetBytes("This is a test string that we'll convert into some random bytes....");
                 testStream.Write(someBytes, 0, someBytes.Length);
-                testStream.Write(_axCrypt1GuidAsBytes, 0, _axCrypt1GuidAsBytes.Length);
+                AxCrypt1Guid.Write(testStream);
                 testStream.Write(someBytes, 0, someBytes.Length);
                 testStream.Position = 0;
                 using (AxCryptReader axCryptReader = new AxCryptReader(testStream))

@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Core.Header
         /// </summary>
         KeyWrap2,
         /// <summary>
-        /// An arbitrary string defined by the caller.
+        /// An arbitrary string encoded as Ansi Code Page 1252 defined by the caller.
         /// </summary>
         IdTag,
         /// <summary>

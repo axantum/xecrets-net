@@ -25,46 +25,33 @@
 
 #endregion Coypright and License
 
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace Axantum.AxCrypt.Core.Header
 {
-    /// <summary>
-    /// An arbitrary string encoded as Ansi Code Page 1252, with a C-style terminating 'nul' character.
-    /// </summary>
-    public class IdTagHeaderBlock : HeaderBlock
+    public static class AxCrypt1Guid
     {
-        public IdTagHeaderBlock(byte[] dataBlock)
-            : base(HeaderBlockType.IdTag, dataBlock)
+        public static readonly Guid Value = new Guid("2e07b9c0-934f-46f1-a015-792ca1d9e821");
+
+        private static readonly byte[] _axCrypt1GuidBytes = Value.ToByteArray();
+
+        public static byte[] GetBytes()
         {
+            return (byte[])_axCrypt1GuidBytes.Clone();
         }
 
-        public IdTagHeaderBlock(string idTag)
-            : base(HeaderBlockType.IdTag)
+        public static void Write(Stream stream)
         {
-            IdTag = idTag;
+            stream.Write(_axCrypt1GuidBytes, 0, _axCrypt1GuidBytes.Length);
         }
 
-        private static Encoding GetEncoding()
+        public static int Length
         {
-            return Encoding.GetEncoding(1252, new EncoderReplacementFallback("?"), new DecoderReplacementFallback("?"));
-        }
-
-        public string IdTag
-        {
-            get
-            {
-                string idTag = GetEncoding().GetString(GetDataBlockBytesReference(), 0, GetDataBlockBytesReference().Length - 1);
-                return idTag;
-            }
-            set
-            {
-                byte[] idTagBytes = GetEncoding().GetBytes(value);
-                byte[] dataBlock = new byte[idTagBytes.Length + 1];
-                idTagBytes.CopyTo(dataBlock, 0);
-                dataBlock[dataBlock.Length - 1] = 0;
-                SetDataBlockBytesReference(dataBlock);
-            }
+            get { return _axCrypt1GuidBytes.Length; }
         }
     }
 }
