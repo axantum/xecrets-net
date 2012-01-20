@@ -42,25 +42,25 @@ namespace Axantum.AxCrypt.Core.Header
 
         public HeaderBlockType HeaderBlockType { get; protected set; }
 
-        public byte[] GetDataBlock()
+        protected byte[] GetDataBlockBytesReference()
         {
             return _dataBlock;
         }
 
-        public virtual byte[] GetBytes()
+        protected byte[] GetPrefixBytes()
         {
-            byte[] headerBlock = new byte[1 + 4 + _dataBlock.Length];
-            BitConverter.GetBytes(headerBlock.Length).CopyTo(headerBlock, 0);
-            headerBlock[4] = (byte)HeaderBlockType;
-            _dataBlock.CopyTo(headerBlock, 5);
+            byte[] headerBlockPrefix = new byte[4 + 1];
+            BitConverter.GetBytes(headerBlockPrefix.Length).CopyTo(headerBlockPrefix, 0);
+            headerBlockPrefix[4] = (byte)HeaderBlockType;
 
-            return headerBlock;
+            return headerBlockPrefix;
         }
 
         public virtual void Write(Stream stream)
         {
-            byte[] headerBlockBytes = GetBytes();
-            stream.Write(headerBlockBytes, 0, headerBlockBytes.Length);
+            byte[] headerPrefixBytes = GetPrefixBytes();
+            stream.Write(headerPrefixBytes, 0, headerPrefixBytes.Length);
+            stream.Write(_dataBlock, 0, _dataBlock.Length);
         }
     }
 }

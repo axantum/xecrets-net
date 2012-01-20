@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt.Core.Header
 
         public byte[] GetHmac()
         {
-            return GetBytes();
+            return (byte[])GetDataBlockBytesReference().Clone();
         }
     }
 }

@@ -51,11 +51,11 @@ namespace Axantum.AxCrypt.Core.Header
         {
             get
             {
-                return GetDataBlock()[0];
+                return GetDataBlockBytesReference()[0];
             }
             private set
             {
-                GetDataBlock()[0] = value;
+                GetDataBlockBytesReference()[0] = value;
             }
         }
 
@@ -66,11 +66,11 @@ namespace Axantum.AxCrypt.Core.Header
         {
             get
             {
-                return GetDataBlock()[1];
+                return GetDataBlockBytesReference()[1];
             }
             private set
             {
-                GetDataBlock()[1] = value;
+                GetDataBlockBytesReference()[1] = value;
             }
         }
 
@@ -81,11 +81,11 @@ namespace Axantum.AxCrypt.Core.Header
         {
             get
             {
-                return GetDataBlock()[2];
+                return GetDataBlockBytesReference()[2];
             }
             private set
             {
-                GetDataBlock()[2] = value;
+                GetDataBlockBytesReference()[2] = value;
             }
         }
 
@@ -96,11 +96,11 @@ namespace Axantum.AxCrypt.Core.Header
         {
             get
             {
-                return GetDataBlock()[3];
+                return GetDataBlockBytesReference()[3];
             }
             private set
             {
-                GetDataBlock()[3] = value;
+                GetDataBlockBytesReference()[3] = value;
             }
         }
 
@@ -111,11 +111,11 @@ namespace Axantum.AxCrypt.Core.Header
         {
             get
             {
-                return GetDataBlock()[4];
+                return GetDataBlockBytesReference()[4];
             }
             private set
             {
-                GetDataBlock()[4] = value;
+                GetDataBlockBytesReference()[4] = value;
             }
         }
     }

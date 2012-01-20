@@ -239,8 +239,9 @@ namespace Axantum.AxCrypt.Core.Reader
                     break;
                 case HeaderBlockType.None:
                 case HeaderBlockType.Any:
-                default:
                     return false;
+                default:
+                    return true;
             }
             return true;
         }

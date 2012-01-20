@@ -24,9 +24,8 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 testStream.Write(_axCrypt1GuidAsBytes, 0, _axCrypt1GuidAsBytes.Length);
                 PreambleHeaderBlock preambleHeaderBlock = new PreambleHeaderBlock();
-                byte[] preambleHeaderBlockBytes = preambleHeaderBlock.GetBytes();
-                testStream.Write(preambleHeaderBlockBytes, 0, preambleHeaderBlockBytes.Length);
-                testStream.Write(preambleHeaderBlockBytes, 0, preambleHeaderBlockBytes.Length);
+                preambleHeaderBlock.Write(testStream);
+                preambleHeaderBlock.Write(testStream);
                 testStream.Position = 0;
                 using (AxCryptReader axCryptReader = new AxCryptReader(testStream))
                 {
@@ -84,6 +83,8 @@ namespace Axantum.AxCrypt.Core.Test
                                     blockFound = true;
 
                                     Assert.That(headers, Is.EqualTo(0), "Preamble must be first");
+                                    PreambleHeaderBlock preambleHeaderBlock = (PreambleHeaderBlock)axCryptReader.HeaderBlock;
+                                    Assert.That(preambleHeaderBlock.GetHmac().Length, Is.EqualTo(16), "The HMAC in the preamble must be exactly 16 bytes.");
                                 }
                                 ++headers;
                                 break;
