@@ -21,7 +21,7 @@ namespace Axantum.AxCrypt.Core.Test
                 preambleHeaderBlock.Write(testStream);
                 preambleHeaderBlock.Write(testStream);
                 testStream.Position = 0;
-                using (AxCryptReader axCryptReader = new AxCryptReader(testStream))
+                using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
                 {
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
                     Assert.That(axCryptReader.ItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
@@ -45,7 +45,7 @@ namespace Axantum.AxCrypt.Core.Test
                 PreambleHeaderBlock preambleHeaderBlock = new PreambleHeaderBlock();
                 preambleHeaderBlock.Write(testStream);
                 testStream.Position = 0;
-                using (AxCryptReader axCryptReader = new AxCryptReader(testStream))
+                using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
                 {
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
                     Assert.That(axCryptReader.ItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
@@ -59,7 +59,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
             {
-                using (AxCryptReader axCryptReader = new AxCryptReader(testStream))
+                using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
                 {
                     bool blockFound = false;
                     int headers = 0;

@@ -31,7 +31,7 @@ using Axantum.AxCrypt.Core.Header;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
-    public class AxCryptReader : IDisposable
+    public abstract class AxCryptReader : IDisposable
     {
         private const int DATA_CHUNK_SIZE = 65536;
 
@@ -46,14 +46,26 @@ namespace Axantum.AxCrypt.Core.Reader
 
         private Int64 _dataBytesLeftToRead;
 
-        private LookAheadStream InputStream { get; set; }
+        protected LookAheadStream InputStream { get; set; }
+
+        protected AxCryptReaderSettings Settings { get; set; }
 
         private bool Disposed { get; set; }
 
-        public AxCryptReader(Stream inputStream)
+        public static AxCryptReader Create(Stream inputStream)
         {
-            InputStream = new LookAheadStream(inputStream);
-            ItemType = AxCryptItemType.None;
+            AxCryptReader reader = new AxCryptStreamReader(inputStream);
+            reader.ItemType = AxCryptItemType.None;
+
+            return reader;
+        }
+
+        public static AxCryptReader Create(Stream inputStream, AxCryptReaderSettings settings)
+        {
+            AxCryptReader reader = Create(inputStream);
+            reader.Settings = settings;
+
+            return reader;
         }
 
         /// <summary>

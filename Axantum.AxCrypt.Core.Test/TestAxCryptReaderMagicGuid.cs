@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 AxCrypt1Guid.Write(testStream);
                 testStream.Position = 0;
-                using (AxCryptReader axCryptReader = new AxCryptReader(testStream))
+                using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
                 {
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
                     Assert.That(axCryptReader.ItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Test
                 byte[] someBytes = Encoding.UTF8.GetBytes("This is a test string that we'll convert into some random bytes....");
                 testStream.Write(someBytes, 0, someBytes.Length);
                 testStream.Position = 0;
-                using (AxCryptReader axCryptReader = new AxCryptReader(testStream))
+                using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
                 {
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
                     Assert.That(axCryptReader.ItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
@@ -85,7 +85,7 @@ namespace Axantum.AxCrypt.Core.Test
                 testStream.Write(someBytes, 0, someBytes.Length);
                 AxCrypt1Guid.Write(testStream);
                 testStream.Position = 0;
-                using (AxCryptReader axCryptReader = new AxCryptReader(testStream))
+                using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
                 {
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
                     Assert.That(axCryptReader.ItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
@@ -103,7 +103,7 @@ namespace Axantum.AxCrypt.Core.Test
                 AxCrypt1Guid.Write(testStream);
                 testStream.Write(someBytes, 0, someBytes.Length);
                 testStream.Position = 0;
-                using (AxCryptReader axCryptReader = new AxCryptReader(testStream))
+                using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
                 {
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
                     Assert.That(axCryptReader.ItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
@@ -116,7 +116,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
             {
-                using (AxCryptReader axCryptReader = new AxCryptReader(testStream))
+                using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
                 {
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
                     Assert.That(axCryptReader.ItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");

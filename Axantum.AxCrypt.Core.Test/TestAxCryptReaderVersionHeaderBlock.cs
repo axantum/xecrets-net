@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
             {
-                using (AxCryptReader axCryptReader = new AxCryptReader(testStream))
+                using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
                 {
                     bool blockFound = false;
                     int headers = 0;

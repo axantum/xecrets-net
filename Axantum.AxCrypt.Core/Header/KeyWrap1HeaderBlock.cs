@@ -25,6 +25,8 @@
 
 #endregion Coypright and License
 
+using System;
+
 namespace Axantum.AxCrypt.Core.Header
 {
     public class KeyWrap1HeaderBlock : HeaderBlock
@@ -32,6 +34,29 @@ namespace Axantum.AxCrypt.Core.Header
         public KeyWrap1HeaderBlock(byte[] dataBlock)
             : base(HeaderBlockType.KeyWrap1, dataBlock)
         {
+        }
+
+        public byte[] GetKeyData()
+        {
+            byte[] keyData = new byte[16 + 8];
+            Array.Copy(GetDataBlockBytesReference(), 0, keyData, 0, keyData.Length);
+
+            return keyData;
+        }
+
+        public byte[] GetSalt()
+        {
+            byte[] salt = new byte[16];
+            Array.Copy(GetDataBlockBytesReference(), 16 + 8, salt, 0, salt.Length);
+
+            return salt;
+        }
+
+        public long Iterations()
+        {
+            uint iterations = BitConverter.ToUInt32(GetDataBlockBytesReference(), 16 + 8 + 16);
+
+            return iterations;
         }
     }
 }
