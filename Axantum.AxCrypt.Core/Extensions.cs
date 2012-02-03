@@ -86,5 +86,22 @@ namespace Axantum.AxCrypt.Core
             }
             return -1;
         }
+
+        public static void Xor(this byte[] buffer, byte[] other)
+        {
+            if (buffer == null)
+            {
+                throw new ArgumentNullException("buffer");
+            }
+            if (other == null)
+            {
+                throw new ArgumentNullException("other");
+            }
+            int bytesToXor = buffer.Length < other.Length ? buffer.Length : other.Length;
+            for (int i = 0; i < bytesToXor; ++i)
+            {
+                buffer[i] ^= other[i];
+            }
+        }
     }
 }
