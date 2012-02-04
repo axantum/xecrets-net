@@ -124,5 +124,24 @@ namespace Axantum.AxCrypt.Core
                 buffer[bufferIndex + i] ^= other[otherIndex + i];
             }
         }
+
+        public static byte[] Append(this byte[] left, params byte[][] arrays)
+        {
+            int length = 0;
+            foreach (byte[] array in arrays)
+            {
+                length += array.Length;
+            }
+            length += left.Length;
+            byte[] concatenatedArray = new byte[length];
+            left.CopyTo(concatenatedArray, 0);
+            int index = left.Length;
+            foreach (byte[] array in arrays)
+            {
+                array.CopyTo(concatenatedArray, index);
+                index += array.Length;
+            }
+            return concatenatedArray;
+        }
     }
 }

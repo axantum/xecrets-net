@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace Axantum.AxCrypt.Core.Header
 {
-    public class KeyWrap
+    /// <summary>
+    /// Implements AES Key Wrap Specification - http://csrc.nist.gov/groups/ST/toolkit/documents/kms/key-wrap.pdf .
+    /// </summary>
+    public class KeyWrap : IDisposable
     {
         private byte[] _key;
         private byte[] _salt;
@@ -17,6 +21,27 @@ namespace Axantum.AxCrypt.Core.Header
             _key = (byte[])key.Clone();
             _salt = (byte[])salt.Clone();
             _iterations = iterations;
+
+            byte[] saltedKey = (byte[])_key.Clone();
+            saltedKey.Xor(_salt);
+            Aes.Key = saltedKey;
+        }
+
+        private AesManaged _aes = null;
+
+        private AesManaged Aes
+        {
+            get
+            {
+                if (_aes == null)
+                {
+                    _aes = new AesManaged();
+                    _aes.Mode = CipherMode.ECB;
+                    _aes.KeySize = 128;
+                    _aes.Padding = PaddingMode.None;
+                }
+                return _aes;
+            }
         }
 
         public byte[] Unwrap(byte[] wrapped)
@@ -27,51 +52,69 @@ namespace Axantum.AxCrypt.Core.Header
             }
 
             wrapped = (byte[])wrapped.Clone();
-            byte[] saltedKey = (byte[])_key.Clone();
-            saltedKey.Xor(_salt);
-
-            AesManaged aes = new AesManaged();
-            aes.Mode = CipherMode.ECB;
-            aes.KeySize = 128;
-            aes.Key = saltedKey;
-            aes.Padding = PaddingMode.None;
-            ICryptoTransform decryptor = aes.CreateDecryptor();
+            ICryptoTransform decryptor = Aes.CreateDecryptor();
 
             byte[] block = new byte[decryptor.InputBlockSize];
 
             // wrapped[0..7] contains the A (IV) of the Key Wrap algorithm,
-            // the rest is 'Wrapped Key Data'. We do the transform in-place.
+            // the rest is 'Wrapped Key Data', R[1], ..., R[n]. We do the transform in-place.
             for (long j = _iterations - 1; j >= 0; --j)
             {
-                for (int i = (aes.KeySize / 8) / 8; i >= 1; --i)
+                for (int i = (Aes.KeySize / 8) / 8; i >= 1; --i)
                 {
-                    long t = (((aes.KeySize / 8) / 8) * j) + i;
+                    long t = (((Aes.KeySize / 8) / 8) * j) + i;
                     // MSB(B) = A XOR t
                     Array.Copy(wrapped, 0, block, 0, 8);
-                    block.Xor(0, GetBytes(t), 0, 8);
-                    // LSB(B) = Ri
+                    block.Xor(0, GetBigEndianBytes(t), 0, 8);
+                    // LSB(B) = R[i]
                     Array.Copy(wrapped, i * 8, block, 8, 8);
                     // B = AESD(K, X xor t | Ri) where t = (n * j) + i
                     byte[] b = decryptor.TransformFinalBlock(block, 0, decryptor.InputBlockSize);
                     // A = MSB(B)
                     Array.Copy(b, 0, wrapped, 0, 8);
-                    // Ri = LSB(B)
+                    // R[i] = LSB(B)
                     Array.Copy(b, 8, wrapped, i * 8, 8);
                 }
             }
             return wrapped;
         }
 
-        private static byte[] GetBytes(long value)
+        private static byte[] GetBigEndianBytes(long value)
         {
             byte[] bytes = new byte[sizeof(long)];
 
-            for (int i = bytes.Length - 1; i >= 0; --i)
+            for (int i = bytes.Length - 1; value != 0 && i >= 0; --i)
             {
                 bytes[i] = (byte)value;
                 value >>= 8;
             }
             return bytes;
         }
+
+        #region IDisposable Members
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", Justification = "Even if we're not using the parameter, it is part of the IDisposable pattern.")]
+        private void Dispose(bool disposing)
+        {
+            if (_aes == null)
+            {
+                return;
+            }
+            _aes.Dispose();
+            _aes = null;
+        }
+
+        ~KeyWrap()
+        {
+            Dispose(false);
+        }
+
+        #endregion IDisposable Members
     }
 }
