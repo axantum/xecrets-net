@@ -66,6 +66,7 @@
     <Compile Include="Header\KeyWrap.cs" />
     <Compile Include="Header\KeyWrap1HeaderBlock.cs" />
     <Compile Include="Header\KeyWrap2HeaderBlock.cs" />
+    <Compile Include="Header\KeyWrapMode.cs" />
     <Compile Include="Header\PreambleHeaderBlock.cs" />
     <Compile Include="Header\UnicodeFileNameInfoHeaderBlock.cs" />
     <Compile Include="Reader\AxCryptReaderSettings.cs" />

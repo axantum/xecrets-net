@@ -27,22 +27,19 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Reader
+namespace Axantum.AxCrypt.Core.Header
 {
-    public class AxCryptStreamReader : AxCryptReader
+    /// <summary>
+    /// Due to a minor bug in the AxCrypt-implementation we need to separate two modes. AxCrypt
+    /// treats the value 't' in the iteration using little endian notation, while it in fact should
+    /// be big endian according to the NIST specification. Oops... should not be a problem, but it's
+    /// still wrong.
+    /// </summary>
+    public enum KeyWrapMode
     {
-        public AxCryptStreamReader(Stream inputStream)
-        {
-            LookAheadStream lookAheadStream = inputStream as LookAheadStream;
-            if (lookAheadStream == null)
-            {
-                lookAheadStream = new LookAheadStream(inputStream);
-            }
-            InputStream = lookAheadStream;
-        }
-    }
+        Specification, AxCrypt
+    };
 }

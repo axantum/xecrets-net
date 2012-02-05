@@ -1,10 +1,40 @@
-﻿using System;
+﻿#region Coypright and License
+
+/*
+ * AxCrypt - Copyright 2012, Svante Seleborg, All Rights Reserved
+ *
+ * This file is part of AxCrypt.
+ *
+ * AxCrypt is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * AxCrypt is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with AxCrypt.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * The source is maintained at http://AxCrypt.codeplex.com/ please visit for
+ * updates, contributions and contact with the author. You may also visit
+ * http://www.axantum.com for more information about the author.
+*/
+
+#endregion Coypright and License
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.Reader;
+using Axantum.AxCrypt.Core.Test.Properties;
 using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -22,10 +52,61 @@ namespace Axantum.AxCrypt.Core.Test
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This is test, readability and coding ease is a concern, not performance.")]
         public void TestUnwrap()
         {
-            KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, new byte[] { }, 6);
-            byte[] unwrapped = keyWrap.Unwrap(_wrapped);
+            byte[] unwrapped;
+            using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, new byte[] { }, 6, KeyWrapMode.Specification))
+            {
+                unwrapped = keyWrap.Unwrap(_wrapped);
+            }
 
             Assert.That(unwrapped, Is.EquivalentTo(_unwrapped), "Unwrapped the wrong data");
+        }
+
+        [Test]
+        public static void TestUnwrapFromSimpleFile()
+        {
+            using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
+            {
+                KeyWrap1HeaderBlock keyWrapHeaderBlock = null;
+                using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
+                {
+                    int headers = 0;
+                    while (axCryptReader.Read())
+                    {
+                        switch (axCryptReader.ItemType)
+                        {
+                            case AxCryptItemType.None:
+                                break;
+                            case AxCryptItemType.MagicGuid:
+                                break;
+                            case AxCryptItemType.HeaderBlock:
+                                if (axCryptReader.HeaderBlock.HeaderBlockType == HeaderBlockType.KeyWrap1)
+                                {
+                                    keyWrapHeaderBlock = (KeyWrap1HeaderBlock)axCryptReader.HeaderBlock;
+                                    ++headers;
+                                }
+                                break;
+                            case AxCryptItemType.Data:
+                                break;
+                            case AxCryptItemType.EndOfStream:
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    Assert.That(headers, Is.EqualTo(1), "We're expecting exactly one KeyWrap1 block to be found!");
+                    byte[] salt = keyWrapHeaderBlock.GetSalt();
+                    byte[] wrapped = keyWrapHeaderBlock.GetKeyData();
+                    long iterations = keyWrapHeaderBlock.Iterations();
+                    AxCryptReaderSettings readerSettings = new AxCryptReaderSettings("a");
+                    using (KeyWrap keyWrap = new KeyWrap(readerSettings.GetDerivedPassphrase(), salt, iterations, KeyWrapMode.AxCrypt))
+                    {
+                        byte[] unwrapped = keyWrap.Unwrap(wrapped);
+                        byte[] a = new byte[8];
+                        Array.Copy(unwrapped, 0, a, 0, 8);
+                        Assert.That(a, Is.EquivalentTo(_a), "An unwrapped key should always start with the known IV 'A' from the specification.");
+                    }
+                }
+            }
         }
     }
 }

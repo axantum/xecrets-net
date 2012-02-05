@@ -1,4 +1,31 @@
-﻿using System;
+﻿#region Coypright and License
+
+/*
+ * AxCrypt - Copyright 2012, Svante Seleborg, All Rights Reserved
+ *
+ * This file is part of AxCrypt.
+ *
+ * AxCrypt is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * AxCrypt is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with AxCrypt.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * The source is maintained at http://AxCrypt.codeplex.com/ please visit for
+ * updates, contributions and contact with the author. You may also visit
+ * http://www.axantum.com for more information about the author.
+*/
+
+#endregion Coypright and License
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -15,8 +42,9 @@ namespace Axantum.AxCrypt.Core.Header
         private byte[] _key;
         private byte[] _salt;
         private long _iterations;
+        private KeyWrapMode _mode;
 
-        public KeyWrap(byte[] key, byte[] salt, long iterations)
+        public KeyWrap(byte[] key, byte[] salt, long iterations, KeyWrapMode mode)
         {
             _key = (byte[])key.Clone();
             _salt = (byte[])salt.Clone();
@@ -25,6 +53,7 @@ namespace Axantum.AxCrypt.Core.Header
             byte[] saltedKey = (byte[])_key.Clone();
             saltedKey.Xor(_salt);
             Aes.Key = saltedKey;
+            _mode = mode;
         }
 
         private AesManaged _aes = null;
@@ -62,13 +91,23 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 for (int i = (Aes.KeySize / 8) / 8; i >= 1; --i)
                 {
-                    long t = (((Aes.KeySize / 8) / 8) * j) + i;
+                    ulong t = (ulong)((((Aes.KeySize / 8) / 8) * j) + i);
                     // MSB(B) = A XOR t
                     Array.Copy(wrapped, 0, block, 0, 8);
-                    block.Xor(0, GetBigEndianBytes(t), 0, 8);
+                    switch (_mode)
+                    {
+                        case KeyWrapMode.Specification:
+                            block.Xor(0, GetBigEndianBytes(t), 0, 8);
+                            break;
+                        case KeyWrapMode.AxCrypt:
+                            block.Xor(0, GetLittleEndianBytes(t), 0, 8);
+                            break;
+                        default:
+                            throw new InvalidOperationException("Unrecognized Mode");
+                    }
                     // LSB(B) = R[i]
                     Array.Copy(wrapped, i * 8, block, 8, 8);
-                    // B = AESD(K, X xor t | Ri) where t = (n * j) + i
+                    // B = AESD(K, X xor t | R[i]) where t = (n * j) + i
                     byte[] b = decryptor.TransformFinalBlock(block, 0, decryptor.InputBlockSize);
                     // A = MSB(B)
                     Array.Copy(b, 0, wrapped, 0, 8);
@@ -79,11 +118,33 @@ namespace Axantum.AxCrypt.Core.Header
             return wrapped;
         }
 
-        private static byte[] GetBigEndianBytes(long value)
+        private static byte[] GetBigEndianBytes(ulong value)
         {
-            byte[] bytes = new byte[sizeof(long)];
+            if (!BitConverter.IsLittleEndian)
+            {
+                return BitConverter.GetBytes(value);
+            }
+
+            byte[] bytes = new byte[sizeof(ulong)];
 
             for (int i = bytes.Length - 1; value != 0 && i >= 0; --i)
+            {
+                bytes[i] = (byte)value;
+                value >>= 8;
+            }
+            return bytes;
+        }
+
+        private static byte[] GetLittleEndianBytes(ulong value)
+        {
+            if (BitConverter.IsLittleEndian)
+            {
+                return BitConverter.GetBytes(value);
+            }
+
+            byte[] bytes = new byte[sizeof(ulong)];
+
+            for (int i = 0; value != 0 && i < bytes.Length; ++i)
             {
                 bytes[i] = (byte)value;
                 value >>= 8;
@@ -102,11 +163,16 @@ namespace Axantum.AxCrypt.Core.Header
         [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", Justification = "Even if we're not using the parameter, it is part of the IDisposable pattern.")]
         private void Dispose(bool disposing)
         {
+            if (!disposing)
+            {
+                return;
+            }
             if (_aes == null)
             {
                 return;
             }
-            _aes.Dispose();
+            // Clear() is implemented as a call to Dispose(), but Mono does not implement Dispose(), so this avoids a MoMA warning.
+            _aes.Clear();
             _aes = null;
         }
 

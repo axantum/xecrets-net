@@ -72,6 +72,33 @@
     </Messages>
    </Namespace>
   </Namespaces>
+  <Targets>
+   <Target Name="$(ProjectDir)/Axantum.AxCrypt.Core/bin/Debug/Axantum.AxCrypt.Core.dll">
+    <Modules>
+     <Module Name="axantum.axcrypt.core.dll">
+      <Namespaces>
+       <Namespace Name="Axantum.AxCrypt.Core">
+        <Types>
+         <Type Name="AxCryptDocument">
+          <Members>
+           <Member Name="#_axCryptReader">
+            <Messages>
+             <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Created="2012-02-04 12:35:53Z">
+              <Issue>
+               <Item>'AxCryptDocument._axCryptReader'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+  </Targets>
   <Notes>
    <User Name="Svante">
     <Note Id="0" Modified="2012-01-15 20:45:43Z">We can check this at a later stage, in the beginning some namespaces will be small...</Note>
@@ -81,6 +108,9 @@
   <Rules>
    <Rule TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020">
     <Resolution Name="Default">Consider merging the types defined in '{0}' with another namespace.</Resolution>
+   </Rule>
+   <Rule TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823">
+    <Resolution Name="Default">It appears that field {0} is never used or is only ever assigned to. Use this field or remove it.</Resolution>
    </Rule>
   </Rules>
  </FxCopReport>
