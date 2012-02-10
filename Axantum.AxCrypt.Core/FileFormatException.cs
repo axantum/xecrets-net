@@ -27,6 +27,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -36,6 +37,7 @@ namespace Axantum.AxCrypt.Core
     [Serializable]
     public class FileFormatException : AxCryptException
     {
+        [ExcludeFromCodeCoverage]
         public FileFormatException()
             : base()
         {
@@ -51,6 +53,7 @@ namespace Axantum.AxCrypt.Core
         {
         }
 
+        [ExcludeFromCodeCoverage]
         public FileFormatException(string message, Exception innerException)
             : base(message, innerException)
         {
