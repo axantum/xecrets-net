@@ -43,8 +43,14 @@ namespace Axantum.AxCrypt.Core.Header
         private byte[] _salt;
         private long _iterations;
         private KeyWrapMode _mode;
+        private bool _isLittleEndian;
 
         public KeyWrap(byte[] key, byte[] salt, long iterations, KeyWrapMode mode)
+            : this(key, salt, iterations, mode, Environment.Current)
+        {
+        }
+
+        protected KeyWrap(byte[] key, byte[] salt, long iterations, KeyWrapMode mode, IEnvironment environment)
         {
             _key = (byte[])key.Clone();
             _salt = (byte[])salt.Clone();
@@ -54,6 +60,8 @@ namespace Axantum.AxCrypt.Core.Header
             saltedKey.Xor(_salt);
             Aes.Key = saltedKey;
             _mode = mode;
+
+            _isLittleEndian = environment.IsLittleEndian;
         }
 
         private AesManaged _aes = null;
@@ -91,7 +99,7 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 for (int i = (Aes.KeySize / 8) / 8; i >= 1; --i)
                 {
-                    ulong t = (ulong)((((Aes.KeySize / 8) / 8) * j) + i);
+                    long t = (((Aes.KeySize / 8) / 8) * j) + i;
                     // MSB(B) = A XOR t
                     Array.Copy(wrapped, 0, block, 0, 8);
                     switch (_mode)
@@ -118,9 +126,9 @@ namespace Axantum.AxCrypt.Core.Header
             return wrapped;
         }
 
-        private static byte[] GetBigEndianBytes(ulong value)
+        protected byte[] GetBigEndianBytes(long value)
         {
-            if (!BitConverter.IsLittleEndian)
+            if (!_isLittleEndian)
             {
                 return BitConverter.GetBytes(value);
             }
@@ -135,9 +143,9 @@ namespace Axantum.AxCrypt.Core.Header
             return bytes;
         }
 
-        private static byte[] GetLittleEndianBytes(ulong value)
+        protected byte[] GetLittleEndianBytes(long value)
         {
-            if (BitConverter.IsLittleEndian)
+            if (_isLittleEndian)
             {
                 return BitConverter.GetBytes(value);
             }

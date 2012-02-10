@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="AxCryptDocument.cs" />
     <Compile Include="AxCryptException.cs" />
+    <Compile Include="Environment.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="FileFormatException.cs" />
     <Compile Include="Header\AxCrypt1Guid.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Header\KeyWrapMode.cs" />
     <Compile Include="Header\PreambleHeaderBlock.cs" />
     <Compile Include="Header\UnicodeFileNameInfoHeaderBlock.cs" />
+    <Compile Include="IEnvironment.cs" />
     <Compile Include="Reader\AxCryptReaderSettings.cs" />
     <Compile Include="Reader\AxCryptStreamReader.cs" />
     <Compile Include="Reader\LookAheadStream.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reader\AxCryptReader.cs" />
     <Compile Include="Reader\AxCryptItemType.cs" />
+    <Compile Include="RuntimeEnvironment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />

@@ -118,5 +118,58 @@ namespace Axantum.AxCrypt.Core.Test
                 }
             }
         }
+
+        private class EnvironmentForTest : IEnvironment
+        {
+            public bool IsLittleEndian
+            {
+                get { return !BitConverter.IsLittleEndian; }
+            }
+        }
+
+        private class KeyWrapForTest : KeyWrap
+        {
+            public KeyWrapForTest(byte[] key, byte[] salt, long iterations, KeyWrapMode mode)
+                : base(key, salt, iterations, mode, new EnvironmentForTest())
+            {
+            }
+
+            public new byte[] GetBigEndianBytes(long value)
+            {
+                return base.GetBigEndianBytes(value);
+            }
+
+            public new byte[] GetLittleEndianBytes(long value)
+            {
+                return base.GetLittleEndianBytes(value);
+            }
+        }
+
+        [Test]
+        public static void TestEndianOptimization()
+        {
+            long iterations = 1000;
+            byte[] salt = new byte[16];
+            AxCryptReaderSettings readerSettings = new AxCryptReaderSettings("a");
+            using (KeyWrapForTest keyWrap = new KeyWrapForTest(readerSettings.GetDerivedPassphrase(), salt, iterations, KeyWrapMode.AxCrypt))
+            {
+                if (BitConverter.IsLittleEndian)
+                {
+                    byte[] actuallyLittleEndianBytes = keyWrap.GetBigEndianBytes(0x0102030405060708);
+                    Assert.That(actuallyLittleEndianBytes, Is.EqualTo(new byte[] { 0x08, 0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01 }), "Getting big endian, thinking we are big endian but in fact are not, will get us little endian bytes.");
+
+                    byte[] actuallyStillLittleEndianBytes = keyWrap.GetLittleEndianBytes(0x0102030405060708);
+                    Assert.That(actuallyStillLittleEndianBytes, Is.EqualTo(new byte[] { 0x08, 0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01 }), "Getting little endian, thinking we are big endian but in fact are not, will still get us little endian.");
+                }
+                else
+                {
+                    byte[] actuallyStillBigEndianBytes = keyWrap.GetBigEndianBytes(0x0102030405060708);
+                    Assert.That(actuallyStillBigEndianBytes, Is.EqualTo(new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 }), "Getting big endian, thinking we are little endian but in fact are not, will still get us big endian bytes.");
+
+                    byte[] actuallyBigEndianBytes = keyWrap.GetLittleEndianBytes(0x0102030405060708);
+                    Assert.That(actuallyBigEndianBytes, Is.EqualTo(new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 }), "Getting little endian, thinking we are big endian but in fact are not, will get us big endian bytes.");
+                }
+            }
+        }
     }
 }
