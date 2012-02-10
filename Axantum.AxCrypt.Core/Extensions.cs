@@ -60,11 +60,11 @@ namespace Axantum.AxCrypt.Core
         /// <summary>
         /// Naive implementation of IndexOf - optimize only if it proves necessary. Look for Boyer Moore.
         /// </summary>
-        /// <param name="buffer"></param>
-        /// <param name="pattern"></param>
-        /// <param name="offset"></param>
-        /// <param name="count"></param>
-        /// <returns></returns>
+        /// <param name="buffer">The buffer to search in</param>
+        /// <param name="pattern">The pattern to search for</param>
+        /// <param name="offset">Where to start the search in buffer</param>
+        /// <param name="count">How many bytes to include in the search</param>
+        /// <returns>The location in the buffer of the pattern, or -1 if not found</returns>
         public static int Locate(this byte[] buffer, byte[] pattern, int offset, int count)
         {
             int candidatePosition = offset;

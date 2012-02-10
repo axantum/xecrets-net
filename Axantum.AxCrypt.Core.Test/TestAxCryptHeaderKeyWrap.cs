@@ -63,13 +63,11 @@ namespace Axantum.AxCrypt.Core.Test
 
         [Test]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This is test, readability and coding ease is a concern, not performance.")]
-        [ExpectedException(typeof(ArgumentException), UserMessage = "This should result in an argument exception, since the 'wrapped' data does not conform to the expected length")]
         public void TestUnwrapWithBadArgument()
         {
-            byte[] unwrapped;
             using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, new byte[] { }, 6, KeyWrapMode.Specification))
             {
-                unwrapped = keyWrap.Unwrap(_keyData);
+                Assert.Throws<ArgumentException>(() => { keyWrap.Unwrap(_keyData); });
             }
         }
 
