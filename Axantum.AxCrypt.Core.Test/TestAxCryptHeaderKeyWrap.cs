@@ -67,7 +67,12 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, new byte[] { }, 6, KeyWrapMode.Specification))
             {
-                Assert.Throws<ArgumentException>(() => { keyWrap.Unwrap(_keyData); });
+                Assert.Throws<ArgumentException>(() => { keyWrap.Unwrap(_keyData); }, "Calling with too short wrapped data");
+            }
+
+            using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, new byte[] { }, 6, (KeyWrapMode)9999))
+            {
+                Assert.Throws<InvalidOperationException>(() => { keyWrap.Unwrap(_wrapped); }, "Calling with a bogus KeyWrapMode.");
             }
         }
 
