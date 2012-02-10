@@ -112,6 +112,45 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        public static void TestFindMagicGuidWithMuchOtherFirstAndMore()
+        {
+            using (MemoryStream testStream = new MemoryStream())
+            {
+                byte[] someBytes = Encoding.UTF8.GetBytes("This is a test string that we'll convert into some random bytes....");
+                int targetAmountOfBytesBefore = 1024 * 1024 * 4;
+                while (targetAmountOfBytesBefore > 0)
+                {
+                    testStream.Write(someBytes, 0, someBytes.Length);
+                    targetAmountOfBytesBefore -= someBytes.Length;
+                }
+                AxCrypt1Guid.Write(testStream);
+                testStream.Write(someBytes, 0, someBytes.Length);
+                testStream.Position = 0;
+                using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
+                {
+                    Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
+                    Assert.That(axCryptReader.ItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
+                }
+            }
+        }
+
+        [Test]
+        public static void TestFindMagicGuidButInputTooShort()
+        {
+            using (MemoryStream testStream = new MemoryStream())
+            {
+                byte[] someBytes = new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f };
+                testStream.Write(someBytes, 0, someBytes.Length);
+                testStream.Position = 0;
+                using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
+                {
+                    Assert.That(axCryptReader.Read(), Is.False, "There should be no Guid found, since there are not enough bytes in the stream.");
+                    Assert.That(axCryptReader.ItemType, Is.EqualTo(AxCryptItemType.None), "Nothing has been found yet in the stream.");
+                }
+            }
+        }
+
+        [Test]
         public static void TestFindMagicGuidFromSimpleFile()
         {
             using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))

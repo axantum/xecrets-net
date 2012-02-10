@@ -125,16 +125,12 @@ namespace Axantum.AxCrypt.Core.Reader
                 int i = buffer.Locate(_axCrypt1GuidBytes, 0, bytesRead);
                 if (i < 0)
                 {
-                    int n = bytesRead - AxCrypt1Guid.Length + 1;
-                    if (n < 0)
-                    {
-                        n = bytesRead;
-                    }
-                    InputStream.Pushback(buffer, 0, n);
+                    int offsetToBytesToKeep = bytesRead - AxCrypt1Guid.Length + 1;
+                    InputStream.Pushback(buffer, offsetToBytesToKeep, bytesRead - offsetToBytesToKeep);
                     continue;
                 }
-                int pos = i + AxCrypt1Guid.Length;
-                InputStream.Pushback(buffer, pos, bytesRead - pos);
+                int offsetJustAfterTheGuid = i + AxCrypt1Guid.Length;
+                InputStream.Pushback(buffer, offsetJustAfterTheGuid, bytesRead - offsetJustAfterTheGuid);
                 ItemType = AxCryptItemType.MagicGuid;
                 return true;
             }
