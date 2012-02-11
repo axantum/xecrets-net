@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
         protected LookAheadStream InputStream { get; set; }
 
-        protected AxCryptReaderSettings Settings { get; set; }
+        public AxCryptReaderSettings Settings { get; set; }
 
         private bool Disposed { get; set; }
 

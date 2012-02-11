@@ -27,23 +27,76 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Reader;
 
 namespace Axantum.AxCrypt.Core
 {
+    /// <summary>
+    /// Enables an single point of interaction for a an AxCrypt encrypted stream with all but the data available
+    /// in-memory.
+    /// </summary>
     public class AxCryptDocument
     {
-        private AxCryptReader _axCryptReader;
-
-        public AxCryptDocument()
+        private enum State
         {
         }
 
+        private AxCryptReader _axCryptReader;
+
+        /// <summary>
+        /// Loads an AxCrypt file from the specified reader.
+        /// </summary>
+        /// <param name="axCryptReader">The reader.</param>
         public void Load(AxCryptReader axCryptReader)
         {
             _axCryptReader = axCryptReader;
+            LoadHeaders();
+        }
+
+        private void LoadHeaders()
+        {
+            _axCryptReader.Read();
+            if (_axCryptReader.ItemType != AxCryptItemType.MagicGuid)
+            {
+                throw new FileFormatException("No magic Guid was found.");
+            }
+            List<HeaderBlock> headerBlocks = new List<HeaderBlock>();
+            while (_axCryptReader.Read())
+            {
+                switch (_axCryptReader.ItemType)
+                {
+                    case AxCryptItemType.None:
+                        throw new FileFormatException("Header type is not allowed to be 'none'.");
+                    case AxCryptItemType.MagicGuid:
+                        throw new FileFormatException("Duplicate magic Guid found.");
+                    case AxCryptItemType.HeaderBlock:
+                        headerBlocks.Add(_axCryptReader.HeaderBlock);
+                        break;
+                    case AxCryptItemType.Data:
+                        return;
+                    case AxCryptItemType.EndOfStream:
+                        throw new FileFormatException("End of stream found too early.");
+                    default:
+                        throw new FileFormatException("Unknown header type found.");
+                }
+            }
+            ParseHeaders(headerBlocks);
+        }
+
+        private void ParseHeaders(IList<HeaderBlock> headerBlocks)
+        {
+        }
+
+        /// <summary>
+        /// Decrypts the encrypted data to the given stream
+        /// </summary>
+        /// <param name="plainTextStream">The plain text stream.</param>
+        public void DecryptTo(Stream plaintextStream)
+        {
         }
     }
 }
