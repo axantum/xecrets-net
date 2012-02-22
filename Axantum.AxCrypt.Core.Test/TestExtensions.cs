@@ -165,5 +165,36 @@ namespace Axantum.AxCrypt.Core.Test
             byte[] oneTwoAppendThreeAppend = one.Append(two).Append(three);
             Assert.That(oneTwoAppendThreeAppend, Is.EqualTo(new byte[] { 0x01, 0x02, 0x02, 0x03, 0x03, 0x03 }), "Append of one with two and append again three should yield the appended result (just less efficiently).");
         }
+
+        [Test]
+        public static void TestByteArrayIsEquivalentTo()
+        {
+            byte[] one = new byte[] { 0x01 };
+            byte[] two = new byte[] { 0x02, 0x01 };
+            byte[] three = new byte[] { 0x02, 0x01, 0x03 };
+            byte[] nullArray = null;
+            bool isEquivalent = false;
+
+            Assert.Throws<ArgumentNullException>(() => { isEquivalent = nullArray.IsEquivalentTo(0, one, 0, 1); });
+            Assert.Throws<ArgumentNullException>(() => { isEquivalent = one.IsEquivalentTo(0, nullArray, 0, 1); });
+            Assert.Throws<ArgumentOutOfRangeException>(() => { isEquivalent = one.IsEquivalentTo(one.Length, one, 0, one.Length); });
+            Assert.Throws<ArgumentOutOfRangeException>(() => { isEquivalent = two.IsEquivalentTo(0, one, 1, one.Length); });
+            Assert.Throws<ArgumentOutOfRangeException>(() => { isEquivalent = three.IsEquivalentTo(0, two, 0, two.Length + 1); });
+            Assert.Throws<ArgumentOutOfRangeException>(() => { isEquivalent = three.IsEquivalentTo(-1, three, 0, three.Length); });
+            Assert.Throws<ArgumentOutOfRangeException>(() => { isEquivalent = two.IsEquivalentTo(0, three, -1, two.Length); });
+            Assert.Throws<ArgumentOutOfRangeException>(() => { isEquivalent = one.IsEquivalentTo(0, one, 0, -1); });
+
+            isEquivalent = one.IsEquivalentTo(0, one, 0, 1);
+            Assert.IsTrue(isEquivalent, "An array should be equivalent to itself.");
+
+            isEquivalent = one.IsEquivalentTo(0, two, 1, 1);
+            Assert.IsTrue(isEquivalent, "'one' should be equivalent to second byte of 'two'.");
+
+            isEquivalent = three.IsEquivalentTo(1, one, 0, 1);
+            Assert.IsTrue(isEquivalent, "the second byte of 'three' should be equivalent to 'one'");
+
+            isEquivalent = two.IsEquivalentTo(0, three, 1, two.Length);
+            Assert.IsFalse(isEquivalent, "'two' should not be equivalent to 'three' with offset one.");
+        }
     }
 }

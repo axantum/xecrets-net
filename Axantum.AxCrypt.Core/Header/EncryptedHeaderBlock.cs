@@ -25,13 +25,82 @@
 
 #endregion Coypright and License
 
+using System;
+using System.IO;
+using System.Security.Cryptography;
+
 namespace Axantum.AxCrypt.Core.Header
 {
-    public class EncryptedHeaderBlock : HeaderBlock
+    public abstract class EncryptedHeaderBlock : HeaderBlock
     {
-        public EncryptedHeaderBlock(byte[] dataBlock)
-            : base(HeaderBlockType.Encrypted, dataBlock)
+        public EncryptedHeaderBlock(HeaderBlockType headerBlockType, byte[] dataBlock)
+            : base(headerBlockType, dataBlock)
         {
+        }
+
+        private static readonly byte[] _iv = new byte[] { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 };
+
+        private const int KEY_BITS = 128;
+
+        private byte[] _keyBytes = null;
+
+        public void SetKey(byte[] keyBytes)
+        {
+            _keyBytes = (byte[])keyBytes.Clone();
+        }
+
+        private AesManaged _aes = null;
+
+        private AesManaged Aes
+        {
+            get
+            {
+                if (_aes == null)
+                {
+                    _aes = new AesManaged();
+                    _aes.Mode = CipherMode.CBC;
+                    _aes.IV = _iv;
+                    _aes.KeySize = KEY_BITS;
+                    _aes.Padding = PaddingMode.None;
+                }
+                return _aes;
+            }
+        }
+
+        private byte[] _dataBlockBytes = null;
+
+        protected override byte[] GetDataBlockBytesReference()
+        {
+            if (_keyBytes == null)
+            {
+                throw new InvalidOperationException("Can't get encrypted block without a key being set.");
+            }
+            if (_dataBlockBytes != null)
+            {
+                return _dataBlockBytes;
+            }
+            byte[] encryptedDataBlockBytesReference = base.GetDataBlockBytesReference();
+            using (ICryptoTransform decryptor = _aes.CreateDecryptor())
+            {
+                _dataBlockBytes = decryptor.TransformFinalBlock(encryptedDataBlockBytesReference, 0, encryptedDataBlockBytesReference.Length);
+            }
+            return _dataBlockBytes;
+        }
+
+        public override void Write(Stream stream)
+        {
+            if (_keyBytes == null)
+            {
+                throw new InvalidOperationException("Can't write encrypted block without a key being set.");
+            }
+            WritePrefix(stream);
+            byte[] encryptedDataBlock;
+            byte[] dataBlockBytesReference = GetDataBlockBytesReference();
+            using (ICryptoTransform encryptor = _aes.CreateEncryptor())
+            {
+                encryptedDataBlock = encryptor.TransformFinalBlock(dataBlockBytesReference, 0, dataBlockBytesReference.Length);
+            }
+            stream.Write(encryptedDataBlock, 0, encryptedDataBlock.Length);
         }
     }
 }

@@ -218,7 +218,6 @@ namespace Axantum.AxCrypt.Core.Reader
                     HeaderBlock = dataHeaderBlock;
                     break;
                 case HeaderBlockType.Encrypted:
-                    HeaderBlock = new EncryptedHeaderBlock(dataBlock);
                     break;
                 case HeaderBlockType.FileNameInfo:
                     HeaderBlock = new FileNameInfoHeaderBlock(dataBlock);

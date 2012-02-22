@@ -143,5 +143,41 @@ namespace Axantum.AxCrypt.Core
             }
             return concatenatedArray;
         }
+
+        public static bool IsEquivalentTo(this byte[] left, int leftOffset, byte[] right, int rightOffset, int length)
+        {
+            if (left == null)
+            {
+                throw new ArgumentNullException("left");
+            }
+            if (right == null)
+            {
+                throw new ArgumentNullException("right");
+            }
+            if (leftOffset + length > left.Length || length < 0)
+            {
+                throw new ArgumentOutOfRangeException("length");
+            }
+            if (leftOffset < 0)
+            {
+                throw new ArgumentOutOfRangeException("leftOffset");
+            }
+            if (rightOffset + length > right.Length)
+            {
+                throw new ArgumentOutOfRangeException("length");
+            }
+            if (rightOffset < 0)
+            {
+                throw new ArgumentOutOfRangeException("rightOffset");
+            }
+            for (int i = 0; i < length; ++i)
+            {
+                if (left[leftOffset + i] != right[rightOffset + i])
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

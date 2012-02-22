@@ -39,6 +39,9 @@ namespace Axantum.AxCrypt.Core.Header
     /// </summary>
     public class KeyWrap : IDisposable
     {
+        private static readonly byte[] _a = new byte[] { 0x0a, 0x0a, 0x0a, 0x0a, 0x0a, 0x0a, 0x0a, 0x0a };
+        private const int KEY_BITS = 128;
+
         private byte[] _key;
         private byte[] _salt;
         private long _iterations;
@@ -74,7 +77,7 @@ namespace Axantum.AxCrypt.Core.Header
                 {
                     _aes = new AesManaged();
                     _aes.Mode = CipherMode.ECB;
-                    _aes.KeySize = 128;
+                    _aes.KeySize = KEY_BITS;
                     _aes.Padding = PaddingMode.None;
                 }
                 return _aes;
@@ -83,7 +86,7 @@ namespace Axantum.AxCrypt.Core.Header
 
         public byte[] Unwrap(byte[] wrapped)
         {
-            if (wrapped.Length != 128 / 8 + 8)
+            if (wrapped.Length != KEY_BITS / 8 + _a.Length)
             {
                 throw new ArgumentException("The length of the wrapped data must be exactly the length of a key plus 8 bytes");
             }
@@ -124,6 +127,34 @@ namespace Axantum.AxCrypt.Core.Header
                 }
             }
             return wrapped;
+        }
+
+        public static bool IsKeyUnwrapValid(byte[] unwrapped)
+        {
+            if (unwrapped == null)
+            {
+                throw new ArgumentNullException("unwrapped");
+            }
+            if (unwrapped.Length != KEY_BITS / 8 + 8)
+            {
+                return false;
+            }
+            return unwrapped.IsEquivalentTo(0, _a, 0, _a.Length);
+        }
+
+        internal static byte[] GetKeyBytes(byte[] unwrapped)
+        {
+            if (unwrapped == null)
+            {
+                throw new ArgumentNullException("unwrapped");
+            }
+            if (unwrapped.Length != KEY_BITS / 8 + 8)
+            {
+                throw new ArgumentException("unwrapped has incorrect length");
+            }
+            byte[] keyBytes = new byte[KEY_BITS / 8];
+            Array.Copy(unwrapped, 8, keyBytes, 0, keyBytes.Length);
+            return keyBytes;
         }
 
         protected byte[] GetBigEndianBytes(long value)

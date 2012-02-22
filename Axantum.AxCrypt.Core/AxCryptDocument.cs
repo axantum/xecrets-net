@@ -43,9 +43,19 @@ namespace Axantum.AxCrypt.Core
     {
         private enum State
         {
+            KeyOk,
+            KeyNotOk,
+        }
+
+        private State KeyState { get; set; }
+
+        public AxCryptDocument()
+        {
+            KeyState = State.KeyNotOk;
         }
 
         private AxCryptReader _axCryptReader;
+        private byte[] _hmac;
 
         /// <summary>
         /// Loads an AxCrypt file from the specified reader.
@@ -89,6 +99,78 @@ namespace Axantum.AxCrypt.Core
 
         private void ParseHeaders(IList<HeaderBlock> headerBlocks)
         {
+            KeyWrap1HeaderBlock keyHeaderBlock = FindKeyHeaderBlock(headerBlocks);
+            byte[] wrappedKeyData = keyHeaderBlock.GetKeyData();
+            byte[] salt = keyHeaderBlock.GetSalt();
+            long iterations = keyHeaderBlock.Iterations();
+            byte[] unwrappedKeyData = null;
+            using (KeyWrap keyWrap = new KeyWrap(_axCryptReader.Settings.GetDerivedPassphrase(), salt, iterations, KeyWrapMode.AxCrypt))
+            {
+                unwrappedKeyData = keyWrap.Unwrap(wrappedKeyData);
+                if (!KeyWrap.IsKeyUnwrapValid(unwrappedKeyData))
+                {
+                    return;
+                }
+            }
+            byte[] keyData = KeyWrap.GetKeyBytes(unwrappedKeyData);
+
+            foreach (HeaderBlock headerBlock in headerBlocks)
+            {
+                switch (headerBlock.HeaderBlockType)
+                {
+                    case HeaderBlockType.None:
+                        break;
+                    case HeaderBlockType.Any:
+                        break;
+                    case HeaderBlockType.Preamble:
+                        _hmac = ((PreambleHeaderBlock)headerBlock).GetHmac();
+                        break;
+                    case HeaderBlockType.Version:
+                        VersionHeaderBlock versionHeaderBlock = (VersionHeaderBlock)headerBlock;
+                        if (versionHeaderBlock.FileVersionMajor > 3)
+                        {
+                            throw new FileFormatException("Too new file format.");
+                        }
+                        break;
+                    case HeaderBlockType.KeyWrap1:
+                        break;
+                    case HeaderBlockType.KeyWrap2:
+                        break;
+                    case HeaderBlockType.IdTag:
+                        break;
+                    case HeaderBlockType.Data:
+                        break;
+                    case HeaderBlockType.Encrypted:
+                        break;
+                    case HeaderBlockType.FileNameInfo:
+                        break;
+                    case HeaderBlockType.EncryptionInfo:
+                        break;
+                    case HeaderBlockType.CompressionInfo:
+                        break;
+                    case HeaderBlockType.FileInfo:
+                        break;
+                    case HeaderBlockType.Compression:
+                        break;
+                    case HeaderBlockType.UnicodeFileNameInfo:
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private KeyWrap1HeaderBlock FindKeyHeaderBlock(IList<HeaderBlock> headerBlocks)
+        {
+            foreach (HeaderBlock headerBlock in headerBlocks)
+            {
+                KeyWrap1HeaderBlock keyHeaderBlock = headerBlock as KeyWrap1HeaderBlock;
+                if (keyHeaderBlock != null)
+                {
+                    return keyHeaderBlock;
+                }
+            }
+            throw new FileFormatException("No key header block found.");
         }
 
         /// <summary>

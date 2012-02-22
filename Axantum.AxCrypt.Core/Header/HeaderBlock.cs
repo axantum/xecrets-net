@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Core.Header
         /// Get a reference to the internally maintained data block. Beware modifying the contents of the array!
         /// </summary>
         /// <returns></returns>
-        protected byte[] GetDataBlockBytesReference()
+        protected virtual byte[] GetDataBlockBytesReference()
         {
             return _dataBlock;
         }
@@ -74,10 +74,15 @@ namespace Axantum.AxCrypt.Core.Header
             return headerBlockPrefix;
         }
 
-        public virtual void Write(Stream stream)
+        protected void WritePrefix(Stream stream)
         {
             byte[] headerPrefixBytes = GetPrefixBytes();
             stream.Write(headerPrefixBytes, 0, headerPrefixBytes.Length);
+        }
+
+        public virtual void Write(Stream stream)
+        {
+            WritePrefix(stream);
             stream.Write(_dataBlock, 0, _dataBlock.Length);
         }
     }
