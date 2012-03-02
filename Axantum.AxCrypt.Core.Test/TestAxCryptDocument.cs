@@ -26,16 +26,33 @@
 #endregion Coypright and License
 
 using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Security.Cryptography;
+using System.Linq;
+using System.Text;
+using Axantum.AxCrypt.Core.Reader;
+using Axantum.AxCrypt.Core.Test.Properties;
+using NUnit.Framework;
 
-namespace Axantum.AxCrypt.Core.Header
+namespace Axantum.AxCrypt.Core.Test
 {
-    public abstract class EncryptedHeaderBlock : HeaderBlock
+    [TestFixture]
+    public class TestAxCryptDocument
     {
-        public EncryptedHeaderBlock(HeaderBlockType headerBlockType, byte[] dataBlock)
-            : base(headerBlockType, dataBlock)
+        [Test]
+        public static void TestFileNameFromSimpleFile()
         {
+            using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
+            {
+                AxCryptDocument document = new AxCryptDocument();
+                AxCryptReaderSettings settings = new AxCryptReaderSettings("a");
+                using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream, settings))
+                {
+                    document.Load(axCryptReader);
+                    string fileName = document.FileName;
+                    Assert.That(fileName, Is.EqualTo("HelloWorld-Key-a.txt"), "Wrong file name");
+                }
+            }
         }
     }
 }

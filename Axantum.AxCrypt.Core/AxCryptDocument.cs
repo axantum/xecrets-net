@@ -56,6 +56,9 @@ namespace Axantum.AxCrypt.Core
 
         private AxCryptReader _axCryptReader;
         private byte[] _hmac;
+        private byte[] _masterKey;
+
+        private IList<HeaderBlock> HeaderBlocks { get; set; }
 
         /// <summary>
         /// Loads an AxCrypt file from the specified reader.
@@ -74,7 +77,7 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new FileFormatException("No magic Guid was found.");
             }
-            List<HeaderBlock> headerBlocks = new List<HeaderBlock>();
+            HeaderBlocks = new List<HeaderBlock>();
             while (_axCryptReader.Read())
             {
                 switch (_axCryptReader.ItemType)
@@ -84,9 +87,10 @@ namespace Axantum.AxCrypt.Core
                     case AxCryptItemType.MagicGuid:
                         throw new FileFormatException("Duplicate magic Guid found.");
                     case AxCryptItemType.HeaderBlock:
-                        headerBlocks.Add(_axCryptReader.HeaderBlock);
+                        HeaderBlocks.Add(_axCryptReader.HeaderBlock);
                         break;
                     case AxCryptItemType.Data:
+                        ParseHeaders();
                         return;
                     case AxCryptItemType.EndOfStream:
                         throw new FileFormatException("End of stream found too early.");
@@ -94,12 +98,12 @@ namespace Axantum.AxCrypt.Core
                         throw new FileFormatException("Unknown header type found.");
                 }
             }
-            ParseHeaders(headerBlocks);
+            throw new FileFormatException("No Data was found.");
         }
 
-        private void ParseHeaders(IList<HeaderBlock> headerBlocks)
+        private void ParseHeaders()
         {
-            KeyWrap1HeaderBlock keyHeaderBlock = FindKeyHeaderBlock(headerBlocks);
+            KeyWrap1HeaderBlock keyHeaderBlock = FindHeaderBlock<KeyWrap1HeaderBlock>();
             byte[] wrappedKeyData = keyHeaderBlock.GetKeyData();
             byte[] salt = keyHeaderBlock.GetSalt();
             long iterations = keyHeaderBlock.Iterations();
@@ -112,9 +116,9 @@ namespace Axantum.AxCrypt.Core
                     return;
                 }
             }
-            byte[] keyData = KeyWrap.GetKeyBytes(unwrappedKeyData);
+            _masterKey = KeyWrap.GetKeyBytes(unwrappedKeyData);
 
-            foreach (HeaderBlock headerBlock in headerBlocks)
+            foreach (HeaderBlock headerBlock in HeaderBlocks)
             {
                 switch (headerBlock.HeaderBlockType)
                 {
@@ -160,17 +164,49 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        private KeyWrap1HeaderBlock FindKeyHeaderBlock(IList<HeaderBlock> headerBlocks)
+        private T FindHeaderBlock<T>() where T : class
         {
-            foreach (HeaderBlock headerBlock in headerBlocks)
+            foreach (HeaderBlock headerBlock in HeaderBlocks)
             {
-                KeyWrap1HeaderBlock keyHeaderBlock = headerBlock as KeyWrap1HeaderBlock;
-                if (keyHeaderBlock != null)
+                T typedHeaderHeaderBlock = headerBlock as T;
+                if (typedHeaderHeaderBlock != null)
                 {
-                    return keyHeaderBlock;
+                    return typedHeaderHeaderBlock;
                 }
             }
-            throw new FileFormatException("No key header block found.");
+            throw new FileFormatException("No header block found.");
+        }
+
+        public string FileName
+        {
+            get
+            {
+                return GetFileNameInternal();
+            }
+        }
+
+        private SubKey _headersSubKey = null;
+
+        private SubKey HeadersSubKey
+        {
+            get
+            {
+                if (_headersSubKey == null)
+                {
+                    _headersSubKey = new SubKey(_masterKey, HeaderSubKey.Headers);
+                }
+                return _headersSubKey;
+            }
+        }
+
+        private string GetFileNameInternal()
+        {
+            FileNameInfoHeaderBlock headerBlock = FindHeaderBlock<FileNameInfoHeaderBlock>();
+
+            AesCrypto aesCrypto = new AesCrypto(HeadersSubKey.Get());
+
+            string fileName = headerBlock.GetFileName(aesCrypto);
+            return fileName;
         }
 
         /// <summary>

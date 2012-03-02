@@ -26,33 +26,52 @@
 #endregion Coypright and License
 
 using System;
-using System.Globalization;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Axantum.AxCrypt.Core.Header
 {
-    public class FileNameInfoHeaderBlock : EncryptedHeaderBlock
+    public class SubKey
     {
-        public FileNameInfoHeaderBlock(byte[] dataBlock)
-            : base(HeaderBlockType.FileNameInfo, dataBlock)
-        {
-        }
+        private byte[] _subKey;
 
-        public string GetFileName(AesCrypto aesCrypto)
+        public SubKey(byte[] masterKey, HeaderSubKey headerSubKey)
         {
-            byte[] rawFileName = aesCrypto.Decrypt(GetDataBlockBytesReference());
-
-            int end = Array.IndexOf<byte>(rawFileName, 0);
-            if (end == -1)
+            if (masterKey == null)
             {
-                throw new InvalidOperationException("Could not find terminating nul byte in file name");
+                throw new ArgumentNullException("masterKey");
             }
 
-            Encoding ascii = Encoding.GetEncoding(1252);
+            byte[] block = new byte[16];
+            byte subKeyValue;
+            switch (headerSubKey)
+            {
+                case HeaderSubKey.Hmac:
+                    subKeyValue = 0;
+                    break;
+                case HeaderSubKey.Validator:
+                    subKeyValue = 1;
+                    break;
+                case HeaderSubKey.Headers:
+                    subKeyValue = 2;
+                    break;
+                case HeaderSubKey.Data:
+                    subKeyValue = 3;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("headerSubKey");
+            }
 
-            string fileName = ascii.GetString(rawFileName, 0, end);
+            block[0] = subKeyValue;
+            AesCrypto aesCrypto = new AesCrypto(masterKey);
 
-            return fileName;
+            _subKey = aesCrypto.Encrypt(block);
+        }
+
+        public byte[] Get()
+        {
+            return (byte[])_subKey.Clone();
         }
     }
 }

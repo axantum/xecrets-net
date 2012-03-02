@@ -39,7 +39,7 @@ namespace Axantum.AxCrypt.Core.Header
     /// </summary>
     public class KeyWrap : IDisposable
     {
-        private static readonly byte[] _a = new byte[] { 0x0a, 0x0a, 0x0a, 0x0a, 0x0a, 0x0a, 0x0a, 0x0a };
+        private static readonly byte[] _a = new byte[] { 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6 };
         private const int KEY_BITS = 128;
 
         private byte[] _key;
