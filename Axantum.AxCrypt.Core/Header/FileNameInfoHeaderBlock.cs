@@ -48,9 +48,7 @@ namespace Axantum.AxCrypt.Core.Header
                 throw new InvalidOperationException("Could not find terminating nul byte in file name");
             }
 
-            Encoding ascii = Encoding.GetEncoding(1252);
-
-            string fileName = ascii.GetString(rawFileName, 0, end);
+            string fileName = Encoding.ASCII.GetString(rawFileName, 0, end);
 
             return fileName;
         }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Header
 {
-    public enum HeaderSubKey
+    public enum HeaderSubkey
     {
         None,
         Hmac,

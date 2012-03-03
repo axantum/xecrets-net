@@ -32,11 +32,11 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Header
 {
-    public class SubKey
+    public class Subkey
     {
         private byte[] _subKey;
 
-        public SubKey(byte[] masterKey, HeaderSubKey headerSubKey)
+        public Subkey(byte[] masterKey, HeaderSubkey headerSubkey)
         {
             if (masterKey == null)
             {
@@ -45,18 +45,18 @@ namespace Axantum.AxCrypt.Core.Header
 
             byte[] block = new byte[16];
             byte subKeyValue;
-            switch (headerSubKey)
+            switch (headerSubkey)
             {
-                case HeaderSubKey.Hmac:
+                case HeaderSubkey.Hmac:
                     subKeyValue = 0;
                     break;
-                case HeaderSubKey.Validator:
+                case HeaderSubkey.Validator:
                     subKeyValue = 1;
                     break;
-                case HeaderSubKey.Headers:
+                case HeaderSubkey.Headers:
                     subKeyValue = 2;
                     break;
-                case HeaderSubKey.Data:
+                case HeaderSubkey.Data:
                     subKeyValue = 3;
                     break;
                 default:
@@ -64,9 +64,10 @@ namespace Axantum.AxCrypt.Core.Header
             }
 
             block[0] = subKeyValue;
-            AesCrypto aesCrypto = new AesCrypto(masterKey);
-
-            _subKey = aesCrypto.Encrypt(block);
+            using (AesCrypto aesCrypto = new AesCrypto(masterKey))
+            {
+                _subKey = aesCrypto.Encrypt(block);
+            }
         }
 
         public byte[] Get()

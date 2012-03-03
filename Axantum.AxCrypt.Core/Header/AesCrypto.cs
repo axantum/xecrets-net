@@ -33,14 +33,14 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Header
 {
-    public class AesCrypto
+    public class AesCrypto : IDisposable
     {
         private static readonly byte[] _zeroIv = new byte[] { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 };
 
         private AesManaged _aes = null;
 
-        public static readonly int KEY_BITS = 128;
-        public static readonly int KEY_BYTES = KEY_BITS / 8;
+        public static readonly int KeyBits = 128;
+        public static readonly int KeyBytes = KeyBits / 8;
 
         public AesCrypto(byte[] key, byte[] iv, CipherMode cipherMode, PaddingMode paddingMode)
         {
@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 throw new ArgumentNullException("key");
             }
-            if (key.Length != KEY_BYTES)
+            if (key.Length != KeyBytes)
             {
                 throw new ArgumentOutOfRangeException("key");
             }
@@ -81,12 +81,32 @@ namespace Axantum.AxCrypt.Core.Header
             }
         }
 
-        public byte[] Encrypt(byte[] plainText)
+        public byte[] Encrypt(byte[] plaintext)
         {
             using (ICryptoTransform encryptor = _aes.CreateEncryptor())
             {
-                byte[] cipherText = encryptor.TransformFinalBlock(plainText, 0, plainText.Length);
+                byte[] cipherText = encryptor.TransformFinalBlock(plaintext, 0, plaintext.Length);
                 return cipherText;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_aes == null)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                _aes.Dispose();
+                _aes = null;
             }
         }
     }

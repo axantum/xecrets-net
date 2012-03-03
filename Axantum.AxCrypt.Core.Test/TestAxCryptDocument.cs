@@ -27,6 +27,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -40,17 +41,59 @@ namespace Axantum.AxCrypt.Core.Test
     public class TestAxCryptDocument
     {
         [Test]
-        public static void TestFileNameFromSimpleFile()
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This is test, readability and coding ease is a concern, not performance.")]
+        public void TestFileNameFromSimpleFile()
         {
             using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
             {
-                AxCryptDocument document = new AxCryptDocument();
-                AxCryptReaderSettings settings = new AxCryptReaderSettings("a");
-                using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream, settings))
+                using (AxCryptDocument document = new AxCryptDocument())
                 {
-                    document.Load(axCryptReader);
-                    string fileName = document.FileName;
-                    Assert.That(fileName, Is.EqualTo("HelloWorld-Key-a.txt"), "Wrong file name");
+                    AxCryptReaderSettings settings = new AxCryptReaderSettings("a");
+                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream, settings))
+                    {
+                        document.Load(axCryptReader);
+                        string fileName = document.FileName;
+                        Assert.That(fileName, Is.EqualTo("HelloWorld-Key-a.txt"), "Wrong file name");
+                    }
+                }
+            }
+        }
+
+        [Test]
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This is test, readability and coding ease is a concern, not performance.")]
+        public static void TestUnicodeFileNameFromSimpleFile()
+        {
+            using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
+            {
+                using (AxCryptDocument document = new AxCryptDocument())
+                {
+                    AxCryptReaderSettings settings = new AxCryptReaderSettings("a");
+                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream, settings))
+                    {
+                        document.Load(axCryptReader);
+                        string fileName = document.UnicodeFileName;
+                        Assert.That(fileName, Is.EqualTo("HelloWorld-Key-a.txt"), "Wrong file name");
+                    }
+                }
+            }
+        }
+
+        [Test]
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This is test, readability and coding ease is a concern, not performance.")]
+        public static void TestHmacFromSimpleFile()
+        {
+            byte[] expectedHmac = new byte[] { 0xF9, 0xAF, 0x2E, 0x67, 0x7D, 0xCF, 0xC9, 0xFE, 0x06, 0x4B, 0x39, 0x08, 0xE7, 0x5A, 0x87, 0x81 };
+            using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
+            {
+                using (AxCryptDocument document = new AxCryptDocument())
+                {
+                    AxCryptReaderSettings settings = new AxCryptReaderSettings("a");
+                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream, settings))
+                    {
+                        document.Load(axCryptReader);
+                        byte[] hmac = document.GetHmac();
+                        Assert.That(hmac, Is.EqualTo(expectedHmac), "Wrong HMAC");
+                    }
                 }
             }
         }

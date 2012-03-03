@@ -25,6 +25,9 @@
 
 #endregion Coypright and License
 
+using System;
+using System.Text;
+
 namespace Axantum.AxCrypt.Core.Header
 {
     public class UnicodeFileNameInfoHeaderBlock : EncryptedHeaderBlock
@@ -32,6 +35,21 @@ namespace Axantum.AxCrypt.Core.Header
         public UnicodeFileNameInfoHeaderBlock(byte[] dataBlock)
             : base(HeaderBlockType.UnicodeFileNameInfo, dataBlock)
         {
+        }
+
+        public string GetFileName(AesCrypto aesCrypto)
+        {
+            byte[] rawFileName = aesCrypto.Decrypt(GetDataBlockBytesReference());
+
+            int end = rawFileName.Locate(new byte[] { 0, 0, }, 0, rawFileName.Length, 2);
+            if (end == -1)
+            {
+                throw new InvalidOperationException("Could not find terminating double nul byte in file name");
+            }
+
+            string fileName = Encoding.Unicode.GetString(rawFileName, 0, end);
+
+            return fileName;
         }
     }
 }

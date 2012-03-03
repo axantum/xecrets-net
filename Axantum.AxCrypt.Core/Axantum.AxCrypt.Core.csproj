@@ -64,14 +64,14 @@
     <Compile Include="Header\EncryptionInfoHeaderBlock.cs" />
     <Compile Include="Header\FileInfoHeaderBlock.cs" />
     <Compile Include="Header\FileNameInfoHeaderBlock.cs" />
-    <Compile Include="Header\HeaderSubKey.cs" />
+    <Compile Include="Header\HeaderSubkey.cs" />
     <Compile Include="Header\IdTagHeaderBlock.cs" />
     <Compile Include="Header\KeyWrap.cs" />
     <Compile Include="Header\KeyWrap1HeaderBlock.cs" />
     <Compile Include="Header\KeyWrap2HeaderBlock.cs" />
     <Compile Include="Header\KeyWrapMode.cs" />
     <Compile Include="Header\PreambleHeaderBlock.cs" />
-    <Compile Include="Header\SubKey.cs" />
+    <Compile Include="Header\Subkey.cs" />
     <Compile Include="Header\UnicodeFileNameInfoHeaderBlock.cs" />
     <Compile Include="IEnvironment.cs" />
     <Compile Include="Reader\AxCryptReaderSettings.cs" />

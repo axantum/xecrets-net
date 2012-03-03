@@ -39,19 +39,10 @@ namespace Axantum.AxCrypt.Core
     /// Enables an single point of interaction for a an AxCrypt encrypted stream with all but the data available
     /// in-memory.
     /// </summary>
-    public class AxCryptDocument
+    public class AxCryptDocument : IDisposable
     {
-        private enum State
-        {
-            KeyOk,
-            KeyNotOk,
-        }
-
-        private State KeyState { get; set; }
-
         public AxCryptDocument()
         {
-            KeyState = State.KeyNotOk;
         }
 
         private AxCryptReader _axCryptReader;
@@ -177,36 +168,46 @@ namespace Axantum.AxCrypt.Core
             throw new FileFormatException("No header block found.");
         }
 
+        public byte[] GetHmac()
+        {
+            return (byte[])_hmac.Clone();
+        }
+
         public string FileName
         {
             get
             {
-                return GetFileNameInternal();
+                FileNameInfoHeaderBlock headerBlock = FindHeaderBlock<FileNameInfoHeaderBlock>();
+
+                string fileName = headerBlock.GetFileName(HeaderCrypto);
+                return fileName;
             }
         }
 
-        private SubKey _headersSubKey = null;
-
-        private SubKey HeadersSubKey
+        public string UnicodeFileName
         {
             get
             {
-                if (_headersSubKey == null)
-                {
-                    _headersSubKey = new SubKey(_masterKey, HeaderSubKey.Headers);
-                }
-                return _headersSubKey;
+                UnicodeFileNameInfoHeaderBlock headerBlock = FindHeaderBlock<UnicodeFileNameInfoHeaderBlock>();
+
+                string fileName = headerBlock.GetFileName(HeaderCrypto);
+                return fileName;
             }
         }
 
-        private string GetFileNameInternal()
+        private AesCrypto _headerCrypto;
+
+        private AesCrypto HeaderCrypto
         {
-            FileNameInfoHeaderBlock headerBlock = FindHeaderBlock<FileNameInfoHeaderBlock>();
-
-            AesCrypto aesCrypto = new AesCrypto(HeadersSubKey.Get());
-
-            string fileName = headerBlock.GetFileName(aesCrypto);
-            return fileName;
+            get
+            {
+                if (_headerCrypto == null)
+                {
+                    Subkey headersSubKey = new Subkey(_masterKey, HeaderSubkey.Headers);
+                    _headerCrypto = new AesCrypto(headersSubKey.Get());
+                }
+                return _headerCrypto;
+            }
         }
 
         /// <summary>
@@ -215,6 +216,26 @@ namespace Axantum.AxCrypt.Core
         /// <param name="plainTextStream">The plain text stream.</param>
         public void DecryptTo(Stream plaintextStream)
         {
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (_headerCrypto == null)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                _headerCrypto.Dispose();
+                _headerCrypto = null;
+            }
         }
     }
 }

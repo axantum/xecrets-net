@@ -67,13 +67,35 @@ namespace Axantum.AxCrypt.Core
         /// <returns>The location in the buffer of the pattern, or -1 if not found</returns>
         public static int Locate(this byte[] buffer, byte[] pattern, int offset, int count)
         {
+            return buffer.Locate(pattern, offset, count, 1);
+        }
+
+        /// <summary>
+        /// Naive implementation of IndexOf - optimize only if it proves necessary. Look for Boyer Moore.
+        /// </summary>
+        /// <param name="buffer">The buffer to search in</param>
+        /// <param name="pattern">The pattern to search for</param>
+        /// <param name="offset">Where to start the search in buffer</param>
+        /// <param name="count">How many bytes to include in the search</param>
+        /// <param name="increment">How much to increment when stepping forward</param>
+        /// <returns>The location in the buffer of the pattern, or -1 if not found</returns>
+        public static int Locate(this byte[] buffer, byte[] pattern, int offset, int count, int increment)
+        {
             int candidatePosition = offset;
             while (candidatePosition - offset + pattern.Length <= count)
             {
-                int i = 0;
-                for (; i < pattern.Length; ++i)
+                int i;
+                for (i = 0; i < pattern.Length; i += increment)
                 {
-                    if (buffer[candidatePosition + i] != pattern[i])
+                    int j;
+                    for (j = 0; j < increment; ++j)
+                    {
+                        if (buffer[candidatePosition + i + j] != pattern[i + j])
+                        {
+                            break;
+                        }
+                    }
+                    if (j < increment)
                     {
                         break;
                     }
@@ -82,7 +104,7 @@ namespace Axantum.AxCrypt.Core
                 {
                     return candidatePosition;
                 }
-                ++candidatePosition;
+                candidatePosition += increment;
             }
             return -1;
         }
