@@ -25,6 +25,8 @@
 
 #endregion Coypright and License
 
+using System;
+
 namespace Axantum.AxCrypt.Core.Header
 {
     public class EncryptionInfoHeaderBlock : EncryptedHeaderBlock
@@ -32,6 +34,26 @@ namespace Axantum.AxCrypt.Core.Header
         public EncryptionInfoHeaderBlock(byte[] dataBlock)
             : base(HeaderBlockType.EncryptionInfo, dataBlock)
         {
+        }
+
+        public long PlaintextLength
+        {
+            get
+            {
+                byte[] rawData = GetDataBlockBytesReference();
+
+                long plaintextLength = BitConverter.ToInt64(rawData, 0);
+                return plaintextLength;
+            }
+        }
+
+        public byte[] GetIV()
+        {
+            byte[] rawData = GetDataBlockBytesReference();
+
+            byte[] iv = new byte[16];
+            Array.Copy(rawData, 8, iv, 0, iv.Length);
+            return iv;
         }
     }
 }

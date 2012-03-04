@@ -76,6 +76,7 @@
     <Compile Include="IEnvironment.cs" />
     <Compile Include="Reader\AxCryptReaderSettings.cs" />
     <Compile Include="Reader\AxCryptStreamReader.cs" />
+    <Compile Include="Reader\LengthLimitedStream.cs" />
     <Compile Include="Reader\LookAheadStream.cs" />
     <Compile Include="Header\HeaderBlock.cs" />
     <Compile Include="Header\HeaderBlockType.cs" />

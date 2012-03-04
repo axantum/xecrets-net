@@ -75,6 +75,13 @@ namespace Axantum.AxCrypt.Core.Reader
 
         public HeaderBlock HeaderBlock { get; private set; }
 
+        public Stream CreateEncryptedDataStream()
+        {
+            ItemType = AxCryptItemType.EndOfStream;
+
+            return new LengthLimitedStream(InputStream, _dataBytesLeftToRead);
+        }
+
         /// <summary>
         /// Read the next item from the stream
         /// </summary>
@@ -138,20 +145,20 @@ namespace Axantum.AxCrypt.Core.Reader
 
         private bool LookForData()
         {
-            int bytesToRead = _dataBytesLeftToRead > DATA_CHUNK_SIZE ? DATA_CHUNK_SIZE : (int)_dataBytesLeftToRead;
-            if (bytesToRead == 0)
-            {
-                ItemType = AxCryptItemType.EndOfStream;
-                return true;
-            }
+            //int bytesToRead = _dataBytesLeftToRead > DATA_CHUNK_SIZE ? DATA_CHUNK_SIZE : (int)_dataBytesLeftToRead;
+            //if (bytesToRead == 0)
+            //{
+            //    ItemType = AxCryptItemType.EndOfStream;
+            //    return true;
+            //}
 
-            _dataChunk = new byte[bytesToRead];
-            int bytesRead = InputStream.Read(_dataChunk, 0, bytesToRead);
-            if (bytesRead != bytesToRead)
-            {
-                throw new FileFormatException("Data stream truncated too short");
-            }
-            _dataBytesLeftToRead -= bytesRead;
+            //_dataChunk = new byte[bytesToRead];
+            //int bytesRead = InputStream.Read(_dataChunk, 0, bytesToRead);
+            //if (bytesRead != bytesToRead)
+            //{
+            //    throw new FileFormatException("Data stream truncated too short");
+            //}
+            //_dataBytesLeftToRead -= bytesRead;
             return true;
         }
 

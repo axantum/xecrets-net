@@ -90,6 +90,11 @@ namespace Axantum.AxCrypt.Core.Header
             }
         }
 
+        public ICryptoTransform CreateDecryptingTransform()
+        {
+            return _aes.CreateDecryptor();
+        }
+
         public void Dispose()
         {
             Dispose(true);
@@ -105,7 +110,7 @@ namespace Axantum.AxCrypt.Core.Header
 
             if (disposing)
             {
-                _aes.Dispose();
+                _aes.Clear();
                 _aes = null;
             }
         }

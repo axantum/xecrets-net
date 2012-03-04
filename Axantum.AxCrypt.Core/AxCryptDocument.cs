@@ -29,6 +29,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Reader;
@@ -205,6 +206,14 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
+        public byte[] GetIV()
+        {
+            EncryptionInfoHeaderBlock headerBlock = FindHeaderBlock<EncryptionInfoHeaderBlock>();
+
+            byte[] iv = headerBlock.GetIV();
+            return iv;
+        }
+
         private AesCrypto _headerCrypto;
 
         private AesCrypto HeaderCrypto
@@ -213,10 +222,25 @@ namespace Axantum.AxCrypt.Core
             {
                 if (_headerCrypto == null)
                 {
-                    Subkey headersSubKey = new Subkey(_masterKey, HeaderSubkey.Headers);
-                    _headerCrypto = new AesCrypto(headersSubKey.Get());
+                    Subkey headersSubkey = new Subkey(_masterKey, HeaderSubkey.Headers);
+                    _headerCrypto = new AesCrypto(headersSubkey.Get());
                 }
                 return _headerCrypto;
+            }
+        }
+
+        private AesCrypto _dataCrypto;
+
+        private AesCrypto DataCrypto
+        {
+            get
+            {
+                if (_dataCrypto == null)
+                {
+                    Subkey dataSubkey = new Subkey(_masterKey, HeaderSubkey.Data);
+                    _dataCrypto = new AesCrypto(dataSubkey.Get(), GetIV(), CipherMode.CBC, PaddingMode.PKCS7);
+                }
+                return _dataCrypto;
             }
         }
 
@@ -231,8 +255,16 @@ namespace Axantum.AxCrypt.Core
                 switch (_axCryptReader.ItemType)
                 {
                     case AxCryptItemType.Data:
-                        byte[] dataChunk = _axCryptReader.GetAndOwnDataChunk();
-                        plaintextStream.Write(dataChunk, 0, dataChunk.Length);
+                        using (Stream encryptedDataStream = _axCryptReader.CreateEncryptedDataStream())
+                        {
+                            using (ICryptoTransform decryptor = DataCrypto.CreateDecryptingTransform())
+                            {
+                                using (CryptoStream cryptoStream = new CryptoStream(encryptedDataStream, decryptor, CryptoStreamMode.Read))
+                                {
+                                    cryptoStream.CopyTo(plaintextStream);
+                                }
+                            }
+                        }
                         break;
                     case AxCryptItemType.EndOfStream:
                         return;
@@ -242,6 +274,8 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
+        private bool _disposed = false;
+
         public void Dispose()
         {
             Dispose(true);
@@ -250,16 +284,26 @@ namespace Axantum.AxCrypt.Core
 
         private void Dispose(bool disposing)
         {
-            if (_headerCrypto == null)
+            if (_disposed)
             {
                 return;
             }
 
             if (disposing)
             {
-                _headerCrypto.Dispose();
-                _headerCrypto = null;
+                if (_headerCrypto != null)
+                {
+                    _headerCrypto.Dispose();
+                    _headerCrypto = null;
+                }
+                if (_dataCrypto != null)
+                {
+                    _dataCrypto.Dispose();
+                    _dataCrypto = null;
+                }
             }
+
+            _disposed = true;
         }
     }
 }
