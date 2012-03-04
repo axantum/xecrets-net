@@ -195,6 +195,16 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
+        public bool IsCompressed
+        {
+            get
+            {
+                CompressionHeaderBlock headerBlock = FindHeaderBlock<CompressionHeaderBlock>();
+
+                return headerBlock.IsCompressed(HeaderCrypto);
+            }
+        }
+
         private AesCrypto _headerCrypto;
 
         private AesCrypto HeaderCrypto
@@ -216,6 +226,20 @@ namespace Axantum.AxCrypt.Core
         /// <param name="plainTextStream">The plain text stream.</param>
         public void DecryptTo(Stream plaintextStream)
         {
+            while (_axCryptReader.Read())
+            {
+                switch (_axCryptReader.ItemType)
+                {
+                    case AxCryptItemType.Data:
+                        byte[] dataChunk = _axCryptReader.GetAndOwnDataChunk();
+                        plaintextStream.Write(dataChunk, 0, dataChunk.Length);
+                        break;
+                    case AxCryptItemType.EndOfStream:
+                        return;
+                    default:
+                        throw new FileFormatException("Unexpected header type found.");
+                }
+            }
         }
 
         public void Dispose()

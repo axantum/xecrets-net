@@ -25,6 +25,8 @@
 
 #endregion Coypright and License
 
+using System;
+
 namespace Axantum.AxCrypt.Core.Header
 {
     public class CompressionHeaderBlock : HeaderBlock
@@ -32,6 +34,15 @@ namespace Axantum.AxCrypt.Core.Header
         public CompressionHeaderBlock(byte[] dataBlock)
             : base(HeaderBlockType.Compression, dataBlock)
         {
+        }
+
+        public bool IsCompressed(AesCrypto aesCrypto)
+        {
+            byte[] rawBlock = aesCrypto.Decrypt(GetDataBlockBytesReference());
+
+            Int32 isCompressed = BitConverter.ToInt32(rawBlock, 0);
+
+            return isCompressed != 0;
         }
     }
 }

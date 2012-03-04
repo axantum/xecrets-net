@@ -214,8 +214,7 @@ namespace Axantum.AxCrypt.Core.Reader
                     HeaderBlock = new IdTagHeaderBlock(dataBlock);
                     break;
                 case HeaderBlockType.Data:
-                    DataHeaderBlock dataHeaderBlock = new DataHeaderBlock(dataBlock);
-                    HeaderBlock = dataHeaderBlock;
+                    HeaderBlock = new DataHeaderBlock(dataBlock);
                     break;
                 case HeaderBlockType.Encrypted:
                     break;

@@ -97,5 +97,25 @@ namespace Axantum.AxCrypt.Core.Test
                 }
             }
         }
+
+        [Test]
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This is test, readability and coding ease is a concern, not performance.")]
+        [SuppressMessage("Microsoft.Naming", "CA1702:CompundWordsShouldBeCasedCorrectly", Justification = "This is a test, and they should start with 'Test'.")]
+        public static void TestIsCompressedFromSimpleFile()
+        {
+            using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
+            {
+                using (AxCryptDocument document = new AxCryptDocument())
+                {
+                    AxCryptReaderSettings settings = new AxCryptReaderSettings("a");
+                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream, settings))
+                    {
+                        document.Load(axCryptReader);
+                        bool isCompressed = document.IsCompressed;
+                        Assert.That(isCompressed, Is.False, "This file should not be compressed.");
+                    }
+                }
+            }
+        }
     }
 }

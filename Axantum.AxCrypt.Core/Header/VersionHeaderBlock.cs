@@ -25,6 +25,8 @@
 
 #endregion Coypright and License
 
+using System.IO;
+
 namespace Axantum.AxCrypt.Core.Header
 {
     public class VersionHeaderBlock : HeaderBlock
@@ -37,11 +39,6 @@ namespace Axantum.AxCrypt.Core.Header
         public VersionHeaderBlock()
             : base(HeaderBlockType.Version, new byte[5])
         {
-            FileVersionMajor = 3;
-            FileVersionMinor = 2;
-            VersionMajor = 2;
-            VersionMinor = 0;
-            VersionMinuscule = 0;
         }
 
         /// <summary>
@@ -117,6 +114,17 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 GetDataBlockBytesReference()[4] = value;
             }
+        }
+
+        public override void Write(Stream stream)
+        {
+            FileVersionMajor = 3;
+            FileVersionMinor = 2;
+            VersionMajor = 2;
+            VersionMinor = 0;
+            VersionMinuscule = 0;
+
+            base.Write(stream);
         }
     }
 }

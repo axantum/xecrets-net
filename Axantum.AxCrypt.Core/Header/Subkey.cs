@@ -60,7 +60,7 @@ namespace Axantum.AxCrypt.Core.Header
                     subKeyValue = 3;
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException("headerSubKey");
+                    throw new ArgumentOutOfRangeException("headerSubkey");
             }
 
             block[0] = subKeyValue;
