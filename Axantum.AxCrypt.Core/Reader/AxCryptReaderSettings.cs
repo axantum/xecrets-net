@@ -27,6 +27,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -37,6 +38,8 @@ namespace Axantum.AxCrypt.Core.Reader
     {
         private string _passphrase;
 
+        private Stream _hmacStream = null;
+
         public AxCryptReaderSettings()
         {
         }
@@ -44,6 +47,17 @@ namespace Axantum.AxCrypt.Core.Reader
         public AxCryptReaderSettings(string passphrase)
         {
             _passphrase = passphrase;
+        }
+
+        public AxCryptReaderSettings(string passphrase, Stream hmacStream)
+            : this(passphrase)
+        {
+            _hmacStream = hmacStream;
+        }
+
+        public Stream HmacStream
+        {
+            get { return _hmacStream; }
         }
 
         public byte[] GetDerivedPassphrase()

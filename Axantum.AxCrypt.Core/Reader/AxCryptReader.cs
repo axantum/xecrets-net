@@ -27,22 +27,14 @@
 
 using System;
 using System.IO;
+using System.Security.Cryptography;
 using Axantum.AxCrypt.Core.Header;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
     public abstract class AxCryptReader : IDisposable
     {
-        private const int DATA_CHUNK_SIZE = 65536;
-
-        private byte[] _dataChunk;
-
-        public byte[] GetAndOwnDataChunk()
-        {
-            byte[] dataChunk = _dataChunk;
-            _dataChunk = null;
-            return dataChunk;
-        }
+        private bool _sendDataToHmacStream = false;
 
         private Int64 _dataBytesLeftToRead;
 
@@ -54,15 +46,15 @@ namespace Axantum.AxCrypt.Core.Reader
 
         public static AxCryptReader Create(Stream inputStream)
         {
-            AxCryptReader reader = new AxCryptStreamReader(inputStream);
-            reader.ItemType = AxCryptItemType.None;
+            AxCryptReader reader = Create(inputStream, new AxCryptReaderSettings());
 
             return reader;
         }
 
         public static AxCryptReader Create(Stream inputStream, AxCryptReaderSettings settings)
         {
-            AxCryptReader reader = Create(inputStream);
+            AxCryptReader reader = new AxCryptStreamReader(inputStream);
+            reader.ItemType = AxCryptItemType.None;
             reader.Settings = settings;
 
             return reader;
@@ -77,9 +69,11 @@ namespace Axantum.AxCrypt.Core.Reader
 
         public Stream CreateEncryptedDataStream()
         {
-            ItemType = AxCryptItemType.EndOfStream;
-
-            return new LengthLimitedStream(InputStream, _dataBytesLeftToRead);
+            if (ItemType != AxCryptItemType.Data)
+            {
+                throw new InvalidOperationException("Called out of sequence, expecting Data.");
+            }
+            return new AxCryptDataStream(InputStream, _sendDataToHmacStream ? Settings.HmacStream : null, _dataBytesLeftToRead);
         }
 
         /// <summary>
@@ -88,16 +82,10 @@ namespace Axantum.AxCrypt.Core.Reader
         /// <returns>true if there was a next item read.</returns>
         public bool Read()
         {
-            if (ItemType == AxCryptItemType.HeaderBlock)
+            if (ItemType == AxCryptItemType.EndOfStream)
             {
-                DataHeaderBlock dataHeaderBlock = HeaderBlock as DataHeaderBlock;
-                if (dataHeaderBlock != null)
-                {
-                    ItemType = AxCryptItemType.Data;
-                    _dataBytesLeftToRead = dataHeaderBlock.DataLength;
-                }
+                return false;
             }
-
             switch (ItemType)
             {
                 case AxCryptItemType.None:
@@ -107,9 +95,10 @@ namespace Axantum.AxCrypt.Core.Reader
                 case AxCryptItemType.HeaderBlock:
                     return LookForHeaderBlock();
                 case AxCryptItemType.Data:
-                    return LookForData();
+                    ItemType = AxCryptItemType.EndOfStream;
+                    return true;
                 case AxCryptItemType.EndOfStream:
-                    return false;
+                    return true;
                 default:
                     throw new FileFormatException("Unexpected AxCryptItemType");
             }
@@ -143,25 +132,6 @@ namespace Axantum.AxCrypt.Core.Reader
             }
         }
 
-        private bool LookForData()
-        {
-            //int bytesToRead = _dataBytesLeftToRead > DATA_CHUNK_SIZE ? DATA_CHUNK_SIZE : (int)_dataBytesLeftToRead;
-            //if (bytesToRead == 0)
-            //{
-            //    ItemType = AxCryptItemType.EndOfStream;
-            //    return true;
-            //}
-
-            //_dataChunk = new byte[bytesToRead];
-            //int bytesRead = InputStream.Read(_dataChunk, 0, bytesToRead);
-            //if (bytesRead != bytesToRead)
-            //{
-            //    throw new FileFormatException("Data stream truncated too short");
-            //}
-            //_dataBytesLeftToRead -= bytesRead;
-            return true;
-        }
-
         private bool LookForHeaderBlock()
         {
             byte[] lengthBytes = new byte[sizeof(Int32)];
@@ -188,7 +158,19 @@ namespace Axantum.AxCrypt.Core.Reader
                 return false;
             }
 
-            return ParseHeaderBlock(headerBlockType, dataBLock);
+            if (!ParseHeaderBlock(headerBlockType, dataBLock))
+            {
+                return false;
+            }
+
+            DataHeaderBlock dataHeaderBlock = HeaderBlock as DataHeaderBlock;
+            if (dataHeaderBlock != null)
+            {
+                ItemType = AxCryptItemType.Data;
+                _dataBytesLeftToRead = dataHeaderBlock.DataLength;
+            }
+
+            return true;
         }
 
         private bool ParseHeaderBlock(HeaderBlockType headerBlockType, byte[] dataBlock)
@@ -207,6 +189,10 @@ namespace Axantum.AxCrypt.Core.Reader
                         throw new FileFormatException("Preamble can only be first.");
                     }
                     HeaderBlock = new PreambleHeaderBlock(dataBlock);
+                    if (Settings.HmacStream != null)
+                    {
+                        _sendDataToHmacStream = true;
+                    }
                     break;
                 case HeaderBlockType.Version:
                     HeaderBlock = new VersionHeaderBlock(dataBlock);
@@ -247,8 +233,15 @@ namespace Axantum.AxCrypt.Core.Reader
                 case HeaderBlockType.Any:
                     return false;
                 default:
-                    return true;
+                    HeaderBlock = new UnrecognizedHeaderBlock(dataBlock);
+                    break;
             }
+
+            if (_sendDataToHmacStream)
+            {
+                HeaderBlock.Write(Settings.HmacStream);
+            }
+
             return true;
         }
 

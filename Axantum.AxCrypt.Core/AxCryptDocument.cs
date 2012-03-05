@@ -250,27 +250,30 @@ namespace Axantum.AxCrypt.Core
         /// <param name="plainTextStream">The plain text stream.</param>
         public void DecryptTo(Stream plaintextStream)
         {
-            while (_axCryptReader.Read())
+            if (_axCryptReader.ItemType != AxCryptItemType.Data)
             {
-                switch (_axCryptReader.ItemType)
+                throw new InvalidOperationException("Load() must have been called first.");
+            }
+
+            using (Stream encryptedDataStream = _axCryptReader.CreateEncryptedDataStream())
+            {
+                using (ICryptoTransform decryptor = DataCrypto.CreateDecryptingTransform())
                 {
-                    case AxCryptItemType.Data:
-                        using (Stream encryptedDataStream = _axCryptReader.CreateEncryptedDataStream())
-                        {
-                            using (ICryptoTransform decryptor = DataCrypto.CreateDecryptingTransform())
-                            {
-                                using (CryptoStream cryptoStream = new CryptoStream(encryptedDataStream, decryptor, CryptoStreamMode.Read))
-                                {
-                                    cryptoStream.CopyTo(plaintextStream);
-                                }
-                            }
-                        }
-                        break;
-                    case AxCryptItemType.EndOfStream:
-                        return;
-                    default:
-                        throw new FileFormatException("Unexpected header type found.");
+                    using (CryptoStream cryptoStream = new CryptoStream(encryptedDataStream, decryptor, CryptoStreamMode.Read))
+                    {
+                        cryptoStream.CopyTo(plaintextStream);
+                    }
                 }
+            }
+
+            if (!_axCryptReader.Read())
+            {
+                throw new FileFormatException("Should be able to Read() EndOfStream after Data.");
+            }
+
+            if (_axCryptReader.ItemType != AxCryptItemType.EndOfStream)
+            {
+                throw new FileFormatException("The stream should end here.");
             }
         }
 
