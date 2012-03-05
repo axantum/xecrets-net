@@ -36,20 +36,17 @@ namespace Axantum.AxCrypt.Core.Header
         {
         }
 
-        public long PlaintextLength
+        public long PlaintextLength(AesCrypto aesCrypto)
         {
-            get
-            {
-                byte[] rawData = GetDataBlockBytesReference();
+            byte[] rawData = aesCrypto.Decrypt(GetDataBlockBytesReference());
 
-                long plaintextLength = BitConverter.ToInt64(rawData, 0);
-                return plaintextLength;
-            }
+            long plaintextLength = BitConverter.ToInt64(rawData, 0);
+            return plaintextLength;
         }
 
-        public byte[] GetIV()
+        public byte[] GetIV(AesCrypto aesCrypto)
         {
-            byte[] rawData = GetDataBlockBytesReference();
+            byte[] rawData = aesCrypto.Decrypt(GetDataBlockBytesReference());
 
             byte[] iv = new byte[16];
             Array.Copy(rawData, 8, iv, 0, iv.Length);

@@ -210,7 +210,7 @@ namespace Axantum.AxCrypt.Core
         {
             EncryptionInfoHeaderBlock headerBlock = FindHeaderBlock<EncryptionInfoHeaderBlock>();
 
-            byte[] iv = headerBlock.GetIV();
+            byte[] iv = headerBlock.GetIV(HeaderCrypto);
             return iv;
         }
 

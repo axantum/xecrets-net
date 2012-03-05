@@ -117,5 +117,27 @@ namespace Axantum.AxCrypt.Core.Test
                 }
             }
         }
+
+        [Test]
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This is test, readability and coding ease is a concern, not performance.")]
+        public static void TestDecryptUncompressedFromSimpleFile()
+        {
+            using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
+            {
+                using (AxCryptDocument document = new AxCryptDocument())
+                {
+                    AxCryptReaderSettings settings = new AxCryptReaderSettings("a");
+                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream, settings))
+                    {
+                        document.Load(axCryptReader);
+                        using (MemoryStream plaintextStream = new MemoryStream())
+                        {
+                            document.DecryptTo(plaintextStream);
+                            Assert.That(Encoding.ASCII.GetString(plaintextStream.GetBuffer(), 0, (int)plaintextStream.Length), Is.EqualTo("HelloWorld"), "Unexpected result of decryption.");
+                        }
+                    }
+                }
+            }
+        }
     }
 }
