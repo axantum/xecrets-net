@@ -42,7 +42,7 @@ namespace Axantum.AxCrypt.Core.Reader
             {
                 lookAheadStream = new LookAheadStream(inputStream);
             }
-            InputStream = lookAheadStream;
+            SetInputStream(lookAheadStream);
         }
     }
 }

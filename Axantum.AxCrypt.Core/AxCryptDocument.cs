@@ -49,6 +49,7 @@ namespace Axantum.AxCrypt.Core
         private AxCryptReader _axCryptReader;
         private byte[] _hmac;
         private byte[] _masterKey;
+        private byte[] _calculatedHmac;
 
         private IList<HeaderBlock> HeaderBlocks { get; set; }
 
@@ -255,17 +256,20 @@ namespace Axantum.AxCrypt.Core
                 throw new InvalidOperationException("Load() must have been called first.");
             }
 
-            using (Stream encryptedDataStream = _axCryptReader.CreateEncryptedDataStream())
+            using (HmacStream hmacStream = new HmacStream(new Subkey(_masterKey, HeaderSubkey.Hmac).Get()))
             {
-                using (ICryptoTransform decryptor = DataCrypto.CreateDecryptingTransform())
+                using (Stream encryptedDataStream = _axCryptReader.CreateEncryptedDataStream(hmacStream))
                 {
-                    using (CryptoStream cryptoStream = new CryptoStream(encryptedDataStream, decryptor, CryptoStreamMode.Read))
+                    using (ICryptoTransform decryptor = DataCrypto.CreateDecryptingTransform())
                     {
-                        cryptoStream.CopyTo(plaintextStream);
+                        using (CryptoStream cryptoStream = new CryptoStream(encryptedDataStream, decryptor, CryptoStreamMode.Read))
+                        {
+                            cryptoStream.CopyTo(plaintextStream);
+                        }
                     }
                 }
+                _calculatedHmac = hmacStream.GetHmacResult();
             }
-
             if (!_axCryptReader.Read())
             {
                 throw new FileFormatException("Should be able to Read() EndOfStream after Data.");
@@ -275,6 +279,11 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new FileFormatException("The stream should end here.");
             }
+        }
+
+        public byte[] GetCalculatedHmac()
+        {
+            return (byte[])_calculatedHmac.Clone();
         }
 
         private bool _disposed = false;

@@ -78,6 +78,7 @@
     <Compile Include="Reader\AxCryptReaderSettings.cs" />
     <Compile Include="Reader\AxCryptStreamReader.cs" />
     <Compile Include="Reader\AxCryptDataStream.cs" />
+    <Compile Include="Reader\HmacStream.cs" />
     <Compile Include="Reader\LookAheadStream.cs" />
     <Compile Include="Header\HeaderBlock.cs" />
     <Compile Include="Header\HeaderBlockType.cs" />

@@ -36,13 +36,15 @@ namespace Axantum.AxCrypt.Core.Reader
     {
         private bool _sendDataToHmacStream = false;
 
+        private MemoryStream _hmacBufferStream = new MemoryStream();
+
         private Int64 _dataBytesLeftToRead;
 
-        protected LookAheadStream InputStream { get; set; }
+        private LookAheadStream _inputStream;
 
         public AxCryptReaderSettings Settings { get; set; }
 
-        private bool Disposed { get; set; }
+        private bool _disposed;
 
         public static AxCryptReader Create(Stream inputStream)
         {
@@ -67,13 +69,24 @@ namespace Axantum.AxCrypt.Core.Reader
 
         public HeaderBlock HeaderBlock { get; private set; }
 
-        public Stream CreateEncryptedDataStream()
+        public Stream CreateEncryptedDataStream(Stream hmacStream)
         {
             if (ItemType != AxCryptItemType.Data)
             {
                 throw new InvalidOperationException("Called out of sequence, expecting Data.");
             }
-            return new AxCryptDataStream(InputStream, _sendDataToHmacStream ? Settings.HmacStream : null, _dataBytesLeftToRead);
+            if (_hmacBufferStream == null)
+            {
+                throw new InvalidOperationException("Can only be called once.");
+            }
+            if (hmacStream != null)
+            {
+                _hmacBufferStream.Position = 0;
+                _hmacBufferStream.CopyTo(hmacStream);
+            }
+            _hmacBufferStream.Dispose();
+            _hmacBufferStream = null;
+            return new AxCryptDataStream(_inputStream, hmacStream, _dataBytesLeftToRead);
         }
 
         /// <summary>
@@ -104,6 +117,11 @@ namespace Axantum.AxCrypt.Core.Reader
             }
         }
 
+        protected void SetInputStream(LookAheadStream inputStream)
+        {
+            _inputStream = inputStream;
+        }
+
         private static byte[] _axCrypt1GuidBytes = AxCrypt1Guid.GetBytes();
 
         private bool LookForMagicGuid()
@@ -111,10 +129,10 @@ namespace Axantum.AxCrypt.Core.Reader
             byte[] buffer = new byte[4096];
             while (true)
             {
-                int bytesRead = InputStream.Read(buffer, 0, buffer.Length);
+                int bytesRead = _inputStream.Read(buffer, 0, buffer.Length);
                 if (bytesRead < AxCrypt1Guid.Length)
                 {
-                    InputStream.Pushback(buffer, 0, bytesRead);
+                    _inputStream.Pushback(buffer, 0, bytesRead);
                     return false;
                 }
 
@@ -122,11 +140,11 @@ namespace Axantum.AxCrypt.Core.Reader
                 if (i < 0)
                 {
                     int offsetToBytesToKeep = bytesRead - AxCrypt1Guid.Length + 1;
-                    InputStream.Pushback(buffer, offsetToBytesToKeep, bytesRead - offsetToBytesToKeep);
+                    _inputStream.Pushback(buffer, offsetToBytesToKeep, bytesRead - offsetToBytesToKeep);
                     continue;
                 }
                 int offsetJustAfterTheGuid = i + AxCrypt1Guid.Length;
-                InputStream.Pushback(buffer, offsetJustAfterTheGuid, bytesRead - offsetJustAfterTheGuid);
+                _inputStream.Pushback(buffer, offsetJustAfterTheGuid, bytesRead - offsetJustAfterTheGuid);
                 ItemType = AxCryptItemType.MagicGuid;
                 return true;
             }
@@ -135,7 +153,7 @@ namespace Axantum.AxCrypt.Core.Reader
         private bool LookForHeaderBlock()
         {
             byte[] lengthBytes = new byte[sizeof(Int32)];
-            if (!InputStream.ReadExact(lengthBytes))
+            if (!_inputStream.ReadExact(lengthBytes))
             {
                 return false;
             }
@@ -145,7 +163,7 @@ namespace Axantum.AxCrypt.Core.Reader
                 throw new FileFormatException("Invalid headerBlockLength {0}".InvariantFormat(headerBlockLength));
             }
 
-            int blockType = InputStream.ReadByte();
+            int blockType = _inputStream.ReadByte();
             if (blockType < 0)
             {
                 return false;
@@ -153,7 +171,7 @@ namespace Axantum.AxCrypt.Core.Reader
             HeaderBlockType headerBlockType = (HeaderBlockType)blockType;
 
             byte[] dataBLock = new byte[headerBlockLength];
-            if (!InputStream.ReadExact(dataBLock))
+            if (!_inputStream.ReadExact(dataBLock))
             {
                 return false;
             }
@@ -177,23 +195,27 @@ namespace Axantum.AxCrypt.Core.Reader
         {
             bool isFirst = ItemType == AxCryptItemType.MagicGuid;
             ItemType = AxCryptItemType.HeaderBlock;
-            if (isFirst && headerBlockType != HeaderBlockType.Preamble)
+
+            if (headerBlockType == HeaderBlockType.Preamble)
             {
-                throw new FileFormatException("Preamble must be first.");
+                if (!isFirst)
+                {
+                    throw new FileFormatException("Preamble can only be first.");
+                }
+                HeaderBlock = new PreambleHeaderBlock(dataBlock);
+                _sendDataToHmacStream = true;
+                return true;
             }
+            else
+            {
+                if (isFirst)
+                {
+                    throw new FileFormatException("Preamble must be first.");
+                }
+            }
+
             switch (headerBlockType)
             {
-                case HeaderBlockType.Preamble:
-                    if (!isFirst)
-                    {
-                        throw new FileFormatException("Preamble can only be first.");
-                    }
-                    HeaderBlock = new PreambleHeaderBlock(dataBlock);
-                    if (Settings.HmacStream != null)
-                    {
-                        _sendDataToHmacStream = true;
-                    }
-                    break;
                 case HeaderBlockType.Version:
                     HeaderBlock = new VersionHeaderBlock(dataBlock);
                     break;
@@ -239,7 +261,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
             if (_sendDataToHmacStream)
             {
-                HeaderBlock.Write(Settings.HmacStream);
+                HeaderBlock.Write(_hmacBufferStream);
             }
 
             return true;
@@ -255,18 +277,23 @@ namespace Axantum.AxCrypt.Core.Reader
 
         private void Dispose(bool disposing)
         {
-            if (Disposed)
+            if (_disposed)
             {
                 return;
             }
             if (disposing)
             {
-                if (InputStream != null)
+                if (_inputStream != null)
                 {
-                    InputStream.Dispose();
-                    InputStream = null;
+                    _inputStream.Dispose();
+                    _inputStream = null;
                 }
-                Disposed = true;
+                if (_hmacBufferStream != null)
+                {
+                    _hmacBufferStream.Dispose();
+                    _hmacBufferStream = null;
+                }
+                _disposed = true;
             }
         }
 

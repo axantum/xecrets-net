@@ -139,5 +139,25 @@ namespace Axantum.AxCrypt.Core.Test
                 }
             }
         }
+
+        [Test]
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This is test, readability and coding ease is a concern, not performance.")]
+        public static void TestHmacCalculationFromSimpleFile()
+        {
+            using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
+            {
+                using (AxCryptDocument document = new AxCryptDocument())
+                {
+                    AxCryptReaderSettings settings = new AxCryptReaderSettings("a");
+                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream, settings))
+                    {
+                        document.Load(axCryptReader);
+                        document.DecryptTo(Stream.Null);
+                        byte[] calculatedHmac = document.GetCalculatedHmac();
+                        byte[] hmac = document.GetHmac();
+                    }
+                }
+            }
+        }
     }
 }
