@@ -31,13 +31,15 @@ namespace Axantum.AxCrypt.Core.Header
 {
     public class VersionHeaderBlock : HeaderBlock
     {
+        private static readonly byte[] _version = new byte[] { 3, 2, 2, 0, 0 };
+
         public VersionHeaderBlock(byte[] dataBlock)
             : base(HeaderBlockType.Version, dataBlock)
         {
         }
 
         public VersionHeaderBlock()
-            : base(HeaderBlockType.Version, new byte[5])
+            : this(_version)
         {
         }
 
@@ -50,10 +52,6 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 return GetDataBlockBytesReference()[0];
             }
-            private set
-            {
-                GetDataBlockBytesReference()[0] = value;
-            }
         }
 
         /// <summary>
@@ -64,10 +62,6 @@ namespace Axantum.AxCrypt.Core.Header
             get
             {
                 return GetDataBlockBytesReference()[1];
-            }
-            private set
-            {
-                GetDataBlockBytesReference()[1] = value;
             }
         }
 
@@ -80,10 +74,6 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 return GetDataBlockBytesReference()[2];
             }
-            private set
-            {
-                GetDataBlockBytesReference()[2] = value;
-            }
         }
 
         /// <summary>
@@ -94,10 +84,6 @@ namespace Axantum.AxCrypt.Core.Header
             get
             {
                 return GetDataBlockBytesReference()[3];
-            }
-            private set
-            {
-                GetDataBlockBytesReference()[3] = value;
             }
         }
 
@@ -110,21 +96,6 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 return GetDataBlockBytesReference()[4];
             }
-            private set
-            {
-                GetDataBlockBytesReference()[4] = value;
-            }
-        }
-
-        public override void Write(Stream stream)
-        {
-            FileVersionMajor = 3;
-            FileVersionMinor = 2;
-            VersionMajor = 2;
-            VersionMinor = 0;
-            VersionMinuscule = 0;
-
-            base.Write(stream);
         }
     }
 }

@@ -29,6 +29,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -42,7 +43,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
         public HmacStream(byte[] key)
         {
-            _hmac = new HMACSHA1(key);
+            _hmac = AxCryptHMACSHA1.Create(key);
         }
 
         private byte[] _result = null;
@@ -54,7 +55,9 @@ namespace Axantum.AxCrypt.Core.Reader
                 _hmac.TransformFinalBlock(new byte[] { }, 0, 0);
                 _result = _hmac.Hash;
             }
-            return (byte[])_result.Clone();
+            byte[] result = new byte[16];
+            Array.Copy(_result, 0, result, 0, result.Length);
+            return result;
         }
 
         public override bool CanRead

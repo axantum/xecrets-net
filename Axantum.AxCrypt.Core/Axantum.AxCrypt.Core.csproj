@@ -75,6 +75,7 @@
     <Compile Include="Header\UnicodeFileNameInfoHeaderBlock.cs" />
     <Compile Include="Header\UnrecognizedHeaderBlock.cs" />
     <Compile Include="IEnvironment.cs" />
+    <Compile Include="Reader\AxCryptHMACSHA1.cs" />
     <Compile Include="Reader\AxCryptReaderSettings.cs" />
     <Compile Include="Reader\AxCryptStreamReader.cs" />
     <Compile Include="Reader\AxCryptDataStream.cs" />

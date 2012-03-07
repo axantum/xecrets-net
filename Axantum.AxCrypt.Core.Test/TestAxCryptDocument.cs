@@ -155,6 +155,8 @@ namespace Axantum.AxCrypt.Core.Test
                         document.DecryptTo(Stream.Null);
                         byte[] calculatedHmac = document.GetCalculatedHmac();
                         byte[] hmac = document.GetHmac();
+
+                        Assert.That(calculatedHmac, Is.EqualTo(hmac), "Calculated HMAC differs from HMAC in headers.");
                     }
                 }
             }
