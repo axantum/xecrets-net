@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />
+    <None Include="Resources\David Copperfield-Key-Å ä Ö-txt.axx" />
     <None Include="Resources\HelloWorld-Key-a-txt.axx" />
   </ItemGroup>
   <ItemGroup>

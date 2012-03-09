@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU General Public License
  * along with AxCrypt.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The source is maintained at http://AxCrypt.codeplex.com/ please visit for
+ * The source is maintained at http://bitbucket.org/axantum/axcrypt-net please visit for
  * updates, contributions and contact with the author. You may also visit
  * http://www.axantum.com for more information about the author.
 */
@@ -36,7 +36,7 @@ namespace Axantum.AxCrypt.Core.Header
         {
         }
 
-        public long PlaintextLength(AesCrypto aesCrypto)
+        public long GetPlaintextLength(AesCrypto aesCrypto)
         {
             byte[] rawData = aesCrypto.Decrypt(GetDataBlockBytesReference());
 

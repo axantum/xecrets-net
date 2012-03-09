@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU General Public License
  * along with AxCrypt.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The source is maintained at http://AxCrypt.codeplex.com/ please visit for
+ * The source is maintained at http://bitbucket.org/axantum/axcrypt-net please visit for
  * updates, contributions and contact with the author. You may also visit
  * http://www.axantum.com for more information about the author.
 */
@@ -28,11 +28,13 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Reader;
+using Org.BouncyCastle.Utilities.Zlib;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -66,21 +68,21 @@ namespace Axantum.AxCrypt.Core
         private void LoadHeaders()
         {
             _axCryptReader.Read();
-            if (_axCryptReader.ItemType != AxCryptItemType.MagicGuid)
+            if (_axCryptReader.CurrentItemType != AxCryptItemType.MagicGuid)
             {
                 throw new FileFormatException("No magic Guid was found.");
             }
             HeaderBlocks = new List<HeaderBlock>();
             while (_axCryptReader.Read())
             {
-                switch (_axCryptReader.ItemType)
+                switch (_axCryptReader.CurrentItemType)
                 {
                     case AxCryptItemType.None:
                         throw new FileFormatException("Header type is not allowed to be 'none'.");
                     case AxCryptItemType.MagicGuid:
                         throw new FileFormatException("Duplicate magic Guid found.");
                     case AxCryptItemType.HeaderBlock:
-                        HeaderBlocks.Add(_axCryptReader.HeaderBlock);
+                        HeaderBlocks.Add(_axCryptReader.CurrentHeaderBlock);
                         break;
                     case AxCryptItemType.Data:
                         ParseHeaders();
@@ -215,6 +217,16 @@ namespace Axantum.AxCrypt.Core
             return iv;
         }
 
+        public long PlaintextLength
+        {
+            get
+            {
+                EncryptionInfoHeaderBlock headerBlock = FindHeaderBlock<EncryptionInfoHeaderBlock>();
+
+                return headerBlock.GetPlaintextLength(HeaderCrypto);
+            }
+        }
+
         private AesCrypto _headerCrypto;
 
         private AesCrypto HeaderCrypto
@@ -251,7 +263,7 @@ namespace Axantum.AxCrypt.Core
         /// <param name="plainTextStream">The plain text stream.</param>
         public void DecryptTo(Stream plaintextStream)
         {
-            if (_axCryptReader.ItemType != AxCryptItemType.Data)
+            if (_axCryptReader.CurrentItemType != AxCryptItemType.Data)
             {
                 throw new InvalidOperationException("Load() must have been called first.");
             }
@@ -262,20 +274,38 @@ namespace Axantum.AxCrypt.Core
                 {
                     using (ICryptoTransform decryptor = DataCrypto.CreateDecryptingTransform())
                     {
-                        using (CryptoStream cryptoStream = new CryptoStream(encryptedDataStream, decryptor, CryptoStreamMode.Read))
+                        if (IsCompressed)
                         {
-                            cryptoStream.CopyTo(plaintextStream);
+                            using (CryptoStream cryptoStream = new CryptoStream(encryptedDataStream, decryptor, CryptoStreamMode.Read))
+                            {
+                                using (Stream deflatedCryptoStream = new ZInputStream(cryptoStream))
+                                {
+                                    deflatedCryptoStream.CopyTo(plaintextStream);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            using (CryptoStream cryptoStream = new CryptoStream(encryptedDataStream, decryptor, CryptoStreamMode.Read))
+                            {
+                                cryptoStream.CopyTo(plaintextStream);
+                            }
                         }
                     }
                 }
                 _calculatedHmac = hmacStream.GetHmacResult();
             }
+            if (!_calculatedHmac.IsEquivalentTo(GetHmac()))
+            {
+                throw new InvalidDataException("HMAC validation error.");
+            }
+
             if (!_axCryptReader.Read())
             {
                 throw new FileFormatException("Should be able to Read() EndOfStream after Data.");
             }
 
-            if (_axCryptReader.ItemType != AxCryptItemType.EndOfStream)
+            if (_axCryptReader.CurrentItemType != AxCryptItemType.EndOfStream)
             {
                 throw new FileFormatException("The stream should end here.");
             }

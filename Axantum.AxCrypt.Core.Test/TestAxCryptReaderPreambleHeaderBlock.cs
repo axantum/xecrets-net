@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU General Public License
  * along with AxCrypt.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The source is maintained at http://AxCrypt.codeplex.com/ please visit for
+ * The source is maintained at http://bitbucket.org/axantum/axcrypt-net please visit for
  * updates, contributions and contact with the author. You may also visit
  * http://www.axantum.com for more information about the author.
 */
@@ -51,10 +51,10 @@ namespace Axantum.AxCrypt.Core.Test
                 using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
                 {
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
-                    Assert.That(axCryptReader.ItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
+                    Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the next HeaderBlock");
-                    Assert.That(axCryptReader.ItemType, Is.EqualTo(AxCryptItemType.HeaderBlock), "We're expecting to have found a HeaderBlock");
-                    Assert.That(axCryptReader.HeaderBlock.HeaderBlockType, Is.EqualTo(HeaderBlockType.Preamble), "We're expecting to have found a Preamble specifically");
+                    Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.HeaderBlock), "We're expecting to have found a HeaderBlock");
+                    Assert.That(axCryptReader.CurrentHeaderBlock.HeaderBlockType, Is.EqualTo(HeaderBlockType.Preamble), "We're expecting to have found a Preamble specifically");
                     Assert.Throws<FileFormatException>(() => axCryptReader.Read());
                 }
             }
@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt.Core.Test
                 using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
                 {
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
-                    Assert.That(axCryptReader.ItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
+                    Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
                     Assert.Throws<FileFormatException>(() => axCryptReader.Read());
                 }
             }
@@ -92,20 +92,20 @@ namespace Axantum.AxCrypt.Core.Test
                     int headers = 0;
                     while (axCryptReader.Read())
                     {
-                        switch (axCryptReader.ItemType)
+                        switch (axCryptReader.CurrentItemType)
                         {
                             case AxCryptItemType.None:
                                 break;
                             case AxCryptItemType.MagicGuid:
                                 break;
                             case AxCryptItemType.HeaderBlock:
-                                if (axCryptReader.HeaderBlock.HeaderBlockType == HeaderBlockType.Preamble)
+                                if (axCryptReader.CurrentHeaderBlock.HeaderBlockType == HeaderBlockType.Preamble)
                                 {
                                     Assert.That(blockFound, Is.False, "We should only find one single PreambleHeaderBlock");
                                     blockFound = true;
 
                                     Assert.That(headers, Is.EqualTo(0), "Preamble must be first");
-                                    PreambleHeaderBlock preambleHeaderBlock = (PreambleHeaderBlock)axCryptReader.HeaderBlock;
+                                    PreambleHeaderBlock preambleHeaderBlock = (PreambleHeaderBlock)axCryptReader.CurrentHeaderBlock;
                                     Assert.That(preambleHeaderBlock.GetHmac().Length, Is.EqualTo(16), "The HMAC in the preamble must be exactly 16 bytes.");
                                 }
                                 ++headers;

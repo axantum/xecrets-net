@@ -41,6 +41,9 @@
     <DelaySign>false</DelaySign>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>..\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -75,6 +78,7 @@
     <Compile Include="Header\UnicodeFileNameInfoHeaderBlock.cs" />
     <Compile Include="Header\UnrecognizedHeaderBlock.cs" />
     <Compile Include="IEnvironment.cs" />
+    <Compile Include="InvalidDataException.cs" />
     <Compile Include="Reader\AxCryptHMACSHA1.cs" />
     <Compile Include="Reader\AxCryptReaderSettings.cs" />
     <Compile Include="Reader\AxCryptStreamReader.cs" />

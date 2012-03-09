@@ -60,6 +60,13 @@ namespace Axantum.AxCrypt.Core.Test.Properties {
             }
         }
         
+        internal static byte[] David_Copperfield_Key_Å_ä_Ö_txt {
+            get {
+                object obj = ResourceManager.GetObject("David_Copperfield_Key_Å_ä_Ö_txt", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         internal static byte[] HelloWorld_Key_a_txt {
             get {
                 object obj = ResourceManager.GetObject("HelloWorld_Key_a_txt", resourceCulture);

@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU General Public License
  * along with AxCrypt.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The source is maintained at http://AxCrypt.codeplex.com/ please visit for
+ * The source is maintained at http://bitbucket.org/axantum/axcrypt-net please visit for
  * updates, contributions and contact with the author. You may also visit
  * http://www.axantum.com for more information about the author.
 */
@@ -176,7 +176,7 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("right");
             }
-            if (leftOffset + length > left.Length || length < 0)
+            if (length < 0)
             {
                 throw new ArgumentOutOfRangeException("length");
             }
@@ -184,7 +184,7 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentOutOfRangeException("leftOffset");
             }
-            if (rightOffset + length > right.Length)
+            if (leftOffset + length > left.Length)
             {
                 throw new ArgumentOutOfRangeException("length");
             }
@@ -192,6 +192,15 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentOutOfRangeException("rightOffset");
             }
+            if (rightOffset + length > right.Length)
+            {
+                throw new ArgumentOutOfRangeException("length");
+            }
+            return left.IsEquivalentToInternal(leftOffset, right, rightOffset, length);
+        }
+
+        private static bool IsEquivalentToInternal(this byte[] left, int leftOffset, byte[] right, int rightOffset, int length)
+        {
             for (int i = 0; i < length; ++i)
             {
                 if (left[leftOffset + i] != right[rightOffset + i])
@@ -200,6 +209,23 @@ namespace Axantum.AxCrypt.Core
                 }
             }
             return true;
+        }
+
+        public static bool IsEquivalentTo(this byte[] left, byte[] right)
+        {
+            if (left == null)
+            {
+                throw new ArgumentNullException("left");
+            }
+            if (right == null)
+            {
+                throw new ArgumentNullException("right");
+            }
+            if (right.Length != left.Length)
+            {
+                return false;
+            }
+            return left.IsEquivalentTo(0, right, 0, right.Length);
         }
     }
 }

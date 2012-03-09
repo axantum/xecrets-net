@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU General Public License
  * along with AxCrypt.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The source is maintained at http://AxCrypt.codeplex.com/ please visit for
+ * The source is maintained at http://bitbucket.org/axantum/axcrypt-net please visit for
  * updates, contributions and contact with the author. You may also visit
  * http://www.axantum.com for more information about the author.
 */
@@ -53,14 +53,14 @@ namespace Axantum.AxCrypt.Core.Test
                 using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
                 {
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
-                    Assert.That(axCryptReader.ItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
+                    Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the next HeaderBlock");
-                    Assert.That(axCryptReader.ItemType, Is.EqualTo(AxCryptItemType.HeaderBlock), "This should be a header block");
-                    Assert.That(axCryptReader.HeaderBlock.HeaderBlockType, Is.EqualTo(HeaderBlockType.Preamble), "This should be an Preamble block");
+                    Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.HeaderBlock), "This should be a header block");
+                    Assert.That(axCryptReader.CurrentHeaderBlock.HeaderBlockType, Is.EqualTo(HeaderBlockType.Preamble), "This should be an Preamble block");
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the next HeaderBlock");
-                    Assert.That(axCryptReader.ItemType, Is.EqualTo(AxCryptItemType.HeaderBlock), "This should be a header block");
-                    Assert.That(axCryptReader.HeaderBlock.HeaderBlockType, Is.EqualTo(HeaderBlockType.IdTag), "This should be an IdTag block");
-                    IdTagHeaderBlock idTagHeaderBlock = (IdTagHeaderBlock)axCryptReader.HeaderBlock;
+                    Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.HeaderBlock), "This should be a header block");
+                    Assert.That(axCryptReader.CurrentHeaderBlock.HeaderBlockType, Is.EqualTo(HeaderBlockType.IdTag), "This should be an IdTag block");
+                    IdTagHeaderBlock idTagHeaderBlock = (IdTagHeaderBlock)axCryptReader.CurrentHeaderBlock;
                     Assert.That(idTagHeaderBlock.IdTag, Is.EqualTo("A test"), "We're expecting to be able to read the same tag we wrote");
                 }
             }

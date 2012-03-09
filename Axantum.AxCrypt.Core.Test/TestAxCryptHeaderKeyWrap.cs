@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU General Public License
  * along with AxCrypt.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The source is maintained at http://AxCrypt.codeplex.com/ please visit for
+ * The source is maintained at http://bitbucket.org/axantum/axcrypt-net please visit for
  * updates, contributions and contact with the author. You may also visit
  * http://www.axantum.com for more information about the author.
 */
@@ -87,16 +87,16 @@ namespace Axantum.AxCrypt.Core.Test
                     int headers = 0;
                     while (axCryptReader.Read())
                     {
-                        switch (axCryptReader.ItemType)
+                        switch (axCryptReader.CurrentItemType)
                         {
                             case AxCryptItemType.None:
                                 break;
                             case AxCryptItemType.MagicGuid:
                                 break;
                             case AxCryptItemType.HeaderBlock:
-                                if (axCryptReader.HeaderBlock.HeaderBlockType == HeaderBlockType.KeyWrap1)
+                                if (axCryptReader.CurrentHeaderBlock.HeaderBlockType == HeaderBlockType.KeyWrap1)
                                 {
-                                    keyWrapHeaderBlock = (KeyWrap1HeaderBlock)axCryptReader.HeaderBlock;
+                                    keyWrapHeaderBlock = (KeyWrap1HeaderBlock)axCryptReader.CurrentHeaderBlock;
                                     ++headers;
                                 }
                                 break;

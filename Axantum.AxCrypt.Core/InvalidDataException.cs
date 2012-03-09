@@ -27,40 +27,36 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Security.Cryptography;
+using System.Runtime.Serialization;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Reader
+namespace Axantum.AxCrypt.Core
 {
-    public class AxCryptReaderSettings
+    [Serializable]
+    public class InvalidDataException : AxCryptException
     {
-        private string _passphrase;
-
-        public AxCryptReaderSettings()
+        [ExcludeFromCodeCoverage]
+        public InvalidDataException()
+            : base()
         {
         }
 
-        public AxCryptReaderSettings(string passphrase)
+        public InvalidDataException(string message)
+            : base(message)
         {
-            _passphrase = passphrase;
         }
 
-        public byte[] GetDerivedPassphrase()
+        protected InvalidDataException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
-            if (_passphrase == null)
-            {
-                return new byte[0];
-            }
+        }
 
-            HashAlgorithm hashAlgorithm = new SHA1Managed();
-            byte[] ansiBytes = Encoding.GetEncoding(1252).GetBytes(_passphrase);
-            byte[] hash = hashAlgorithm.ComputeHash(ansiBytes);
-            byte[] derivedPassphrase = new byte[16];
-            Array.Copy(hash, derivedPassphrase, derivedPassphrase.Length);
-
-            return derivedPassphrase;
+        [ExcludeFromCodeCoverage]
+        public InvalidDataException(string message, Exception innerException)
+            : base(message, innerException)
+        {
         }
     }
 }

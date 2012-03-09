@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU General Public License
  * along with AxCrypt.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The source is maintained at http://AxCrypt.codeplex.com/ please visit for
+ * The source is maintained at http://bitbucket.org/axantum/axcrypt-net please visit for
  * updates, contributions and contact with the author. You may also visit
  * http://www.axantum.com for more information about the author.
 */
@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Core.Reader
         public static AxCryptReader Create(Stream inputStream, AxCryptReaderSettings settings)
         {
             AxCryptReader reader = new AxCryptStreamReader(inputStream);
-            reader.ItemType = AxCryptItemType.None;
+            reader.CurrentItemType = AxCryptItemType.None;
             reader.Settings = settings;
 
             return reader;
@@ -65,13 +65,13 @@ namespace Axantum.AxCrypt.Core.Reader
         /// <summary>
         /// Gets the type of the current item
         /// </summary>
-        public AxCryptItemType ItemType { get; private set; }
+        public AxCryptItemType CurrentItemType { get; private set; }
 
-        public HeaderBlock HeaderBlock { get; private set; }
+        public HeaderBlock CurrentHeaderBlock { get; private set; }
 
         public Stream CreateEncryptedDataStream(Stream hmacStream)
         {
-            if (ItemType != AxCryptItemType.Data)
+            if (CurrentItemType != AxCryptItemType.Data)
             {
                 throw new InvalidOperationException("Called out of sequence, expecting Data.");
             }
@@ -95,11 +95,11 @@ namespace Axantum.AxCrypt.Core.Reader
         /// <returns>true if there was a next item read.</returns>
         public bool Read()
         {
-            if (ItemType == AxCryptItemType.EndOfStream)
+            if (CurrentItemType == AxCryptItemType.EndOfStream)
             {
                 return false;
             }
-            switch (ItemType)
+            switch (CurrentItemType)
             {
                 case AxCryptItemType.None:
                     return LookForMagicGuid();
@@ -108,7 +108,7 @@ namespace Axantum.AxCrypt.Core.Reader
                 case AxCryptItemType.HeaderBlock:
                     return LookForHeaderBlock();
                 case AxCryptItemType.Data:
-                    ItemType = AxCryptItemType.EndOfStream;
+                    CurrentItemType = AxCryptItemType.EndOfStream;
                     return true;
                 case AxCryptItemType.EndOfStream:
                     return true;
@@ -145,7 +145,7 @@ namespace Axantum.AxCrypt.Core.Reader
                 }
                 int offsetJustAfterTheGuid = i + AxCrypt1Guid.Length;
                 _inputStream.Pushback(buffer, offsetJustAfterTheGuid, bytesRead - offsetJustAfterTheGuid);
-                ItemType = AxCryptItemType.MagicGuid;
+                CurrentItemType = AxCryptItemType.MagicGuid;
                 return true;
             }
         }
@@ -181,10 +181,10 @@ namespace Axantum.AxCrypt.Core.Reader
                 return false;
             }
 
-            DataHeaderBlock dataHeaderBlock = HeaderBlock as DataHeaderBlock;
+            DataHeaderBlock dataHeaderBlock = CurrentHeaderBlock as DataHeaderBlock;
             if (dataHeaderBlock != null)
             {
-                ItemType = AxCryptItemType.Data;
+                CurrentItemType = AxCryptItemType.Data;
                 _dataBytesLeftToRead = dataHeaderBlock.DataLength;
             }
 
@@ -193,8 +193,8 @@ namespace Axantum.AxCrypt.Core.Reader
 
         private bool ParseHeaderBlock(HeaderBlockType headerBlockType, byte[] dataBlock)
         {
-            bool isFirst = ItemType == AxCryptItemType.MagicGuid;
-            ItemType = AxCryptItemType.HeaderBlock;
+            bool isFirst = CurrentItemType == AxCryptItemType.MagicGuid;
+            CurrentItemType = AxCryptItemType.HeaderBlock;
 
             if (headerBlockType == HeaderBlockType.Preamble)
             {
@@ -202,7 +202,7 @@ namespace Axantum.AxCrypt.Core.Reader
                 {
                     throw new FileFormatException("Preamble can only be first.");
                 }
-                HeaderBlock = new PreambleHeaderBlock(dataBlock);
+                CurrentHeaderBlock = new PreambleHeaderBlock(dataBlock);
                 _sendDataToHmacStream = true;
                 return true;
             }
@@ -217,51 +217,51 @@ namespace Axantum.AxCrypt.Core.Reader
             switch (headerBlockType)
             {
                 case HeaderBlockType.Version:
-                    HeaderBlock = new VersionHeaderBlock(dataBlock);
+                    CurrentHeaderBlock = new VersionHeaderBlock(dataBlock);
                     break;
                 case HeaderBlockType.KeyWrap1:
-                    HeaderBlock = new KeyWrap1HeaderBlock(dataBlock);
+                    CurrentHeaderBlock = new KeyWrap1HeaderBlock(dataBlock);
                     break;
                 case HeaderBlockType.KeyWrap2:
-                    HeaderBlock = new KeyWrap2HeaderBlock(dataBlock);
+                    CurrentHeaderBlock = new KeyWrap2HeaderBlock(dataBlock);
                     break;
                 case HeaderBlockType.IdTag:
-                    HeaderBlock = new IdTagHeaderBlock(dataBlock);
+                    CurrentHeaderBlock = new IdTagHeaderBlock(dataBlock);
                     break;
                 case HeaderBlockType.Data:
-                    HeaderBlock = new DataHeaderBlock(dataBlock);
+                    CurrentHeaderBlock = new DataHeaderBlock(dataBlock);
                     break;
                 case HeaderBlockType.Encrypted:
                     break;
                 case HeaderBlockType.FileNameInfo:
-                    HeaderBlock = new FileNameInfoHeaderBlock(dataBlock);
+                    CurrentHeaderBlock = new FileNameInfoHeaderBlock(dataBlock);
                     break;
                 case HeaderBlockType.EncryptionInfo:
-                    HeaderBlock = new EncryptionInfoHeaderBlock(dataBlock);
+                    CurrentHeaderBlock = new EncryptionInfoHeaderBlock(dataBlock);
                     break;
                 case HeaderBlockType.CompressionInfo:
-                    HeaderBlock = new CompressionInfoHeaderBlock(dataBlock);
+                    CurrentHeaderBlock = new CompressionInfoHeaderBlock(dataBlock);
                     break;
                 case HeaderBlockType.FileInfo:
-                    HeaderBlock = new FileInfoHeaderBlock(dataBlock);
+                    CurrentHeaderBlock = new FileInfoHeaderBlock(dataBlock);
                     break;
                 case HeaderBlockType.Compression:
-                    HeaderBlock = new CompressionHeaderBlock(dataBlock);
+                    CurrentHeaderBlock = new CompressionHeaderBlock(dataBlock);
                     break;
                 case HeaderBlockType.UnicodeFileNameInfo:
-                    HeaderBlock = new UnicodeFileNameInfoHeaderBlock(dataBlock);
+                    CurrentHeaderBlock = new UnicodeFileNameInfoHeaderBlock(dataBlock);
                     break;
                 case HeaderBlockType.None:
                 case HeaderBlockType.Any:
                     return false;
                 default:
-                    HeaderBlock = new UnrecognizedHeaderBlock(dataBlock);
+                    CurrentHeaderBlock = new UnrecognizedHeaderBlock(dataBlock);
                     break;
             }
 
             if (_sendDataToHmacStream)
             {
-                HeaderBlock.Write(_hmacBufferStream);
+                CurrentHeaderBlock.Write(_hmacBufferStream);
             }
 
             return true;
