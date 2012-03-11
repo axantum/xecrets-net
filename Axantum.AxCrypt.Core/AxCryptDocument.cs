@@ -56,7 +56,8 @@ namespace Axantum.AxCrypt.Core
         private IList<HeaderBlock> HeaderBlocks { get; set; }
 
         /// <summary>
-        /// Loads an AxCrypt file from the specified reader.
+        /// Loads an AxCrypt file from the specified reader. After this, the reader is positioned to
+        /// read encrypted data.
         /// </summary>
         /// <param name="axCryptReader">The reader.</param>
         public void Load(AxCryptReader axCryptReader)
@@ -77,23 +78,17 @@ namespace Axantum.AxCrypt.Core
             {
                 switch (_axCryptReader.CurrentItemType)
                 {
-                    case AxCryptItemType.None:
-                        throw new FileFormatException("Header type is not allowed to be 'none'.");
-                    case AxCryptItemType.MagicGuid:
-                        throw new FileFormatException("Duplicate magic Guid found.");
                     case AxCryptItemType.HeaderBlock:
                         HeaderBlocks.Add(_axCryptReader.CurrentHeaderBlock);
                         break;
                     case AxCryptItemType.Data:
                         ParseHeaders();
                         return;
-                    case AxCryptItemType.EndOfStream:
-                        throw new FileFormatException("End of stream found too early.");
                     default:
-                        throw new FileFormatException("Unknown header type found.");
+                        throw new InternalErrorException("The reader returned an AxCryptItemType it should not be possible for it to return.");
                 }
             }
-            throw new FileFormatException("No Data was found.");
+            throw new FileFormatException("An expected header is missing from the data stream.");
         }
 
         private void ParseHeaders()

@@ -25,30 +25,40 @@
 
 #endregion Coypright and License
 
-namespace Axantum.AxCrypt.Core.Reader
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace Axantum.AxCrypt.Core
 {
-    public enum AxCryptItemType
+    /// <summary>
+    /// An internal program logic error has been detected
+    /// </summary>
+    public class InternalErrorException : AxCryptException
     {
-        /// <summary>
-        /// Initial state before we have read any items at all, or an error state when
-        /// what was expected was not found.
-        /// </summary>
-        None,
-        /// <summary>
-        /// We have seen the AxCrypt Guid
-        /// </summary>
-        MagicGuid,
-        /// <summary>
-        /// A header block of HeaderBlockType has been found
-        /// </summary>
-        HeaderBlock,
-        /// <summary>
-        /// A (part) of Encrypted and possibly Compressed data has been found
-        /// </summary>
-        Data,
-        /// <summary>
-        /// The end of the stream has been reached
-        /// </summary>
-        EndOfStream,
+        [ExcludeFromCodeCoverage]
+        public InternalErrorException()
+            : base()
+        {
+        }
+
+        public InternalErrorException(string message)
+            : base(message)
+        {
+        }
+
+        protected InternalErrorException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        {
+        }
+
+        [ExcludeFromCodeCoverage]
+        public InternalErrorException(string message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
     }
 }

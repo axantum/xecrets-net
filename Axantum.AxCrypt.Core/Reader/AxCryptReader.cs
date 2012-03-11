@@ -99,22 +99,30 @@ namespace Axantum.AxCrypt.Core.Reader
             {
                 return false;
             }
+            bool expectedItemWasFound = false;
             switch (CurrentItemType)
             {
                 case AxCryptItemType.None:
-                    return LookForMagicGuid();
+                    expectedItemWasFound = LookForMagicGuid();
+                    break;
                 case AxCryptItemType.MagicGuid:
-                    return LookForHeaderBlock();
                 case AxCryptItemType.HeaderBlock:
-                    return LookForHeaderBlock();
+                    expectedItemWasFound = LookForHeaderBlock();
+                    break;
                 case AxCryptItemType.Data:
                     CurrentItemType = AxCryptItemType.EndOfStream;
                     return true;
                 case AxCryptItemType.EndOfStream:
                     return true;
                 default:
-                    throw new FileFormatException("Unexpected AxCryptItemType");
+                    throw new InternalErrorException("An AxCryptItemType that should not be possible to get was found.");
             }
+            if (expectedItemWasFound)
+            {
+                return true;
+            }
+            CurrentItemType = AxCryptItemType.None;
+            return false;
         }
 
         protected void SetInputStream(LookAheadStream inputStream)
