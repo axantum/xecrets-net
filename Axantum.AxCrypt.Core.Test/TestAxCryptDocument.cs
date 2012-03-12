@@ -31,6 +31,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Test.Properties;
 using NUnit.Framework;
@@ -213,6 +214,24 @@ namespace Axantum.AxCrypt.Core.Test
                     using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream, settings))
                     {
                         Assert.Throws<FileFormatException>(() => { document.Load(axCryptReader); }, "Calling with dummy data that does not contain a GUID.");
+                    }
+                }
+            }
+        }
+
+        [Test]
+        public static void TestInputStreamTooShort()
+        {
+            using (MemoryStream testStream = new MemoryStream())
+            {
+                byte[] guid = AxCrypt1Guid.GetBytes();
+                testStream.Write(guid, 0, guid.Length);
+                testStream.Position = 0;
+                using (AxCryptDocument document = new AxCryptDocument())
+                {
+                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
+                    {
+                        Assert.Throws<FileFormatException>(() => { document.Load(axCryptReader); }, "Calling with too short a stream, only containing a GUID.");
                     }
                 }
             }

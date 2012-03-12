@@ -49,7 +49,6 @@ namespace Axantum.AxCrypt.Core
         }
 
         private AxCryptReader _axCryptReader;
-        private byte[] _hmac;
         private byte[] _masterKey;
         private byte[] _calculatedHmac;
 
@@ -88,11 +87,17 @@ namespace Axantum.AxCrypt.Core
                         throw new InternalErrorException("The reader returned an AxCryptItemType it should not be possible for it to return.");
                 }
             }
-            throw new FileFormatException("An expected header is missing from the data stream.");
+            throw new FileFormatException("Premature end of stream.");
         }
 
         private void ParseHeaders()
         {
+            VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();
+            if (versionHeaderBlock.FileVersionMajor > 3)
+            {
+                throw new FileFormatException("Too new file format.");
+            }
+
             KeyWrap1HeaderBlock keyHeaderBlock = FindHeaderBlock<KeyWrap1HeaderBlock>();
             byte[] wrappedKeyData = keyHeaderBlock.GetKeyData();
             byte[] salt = keyHeaderBlock.GetSalt();
@@ -107,51 +112,6 @@ namespace Axantum.AxCrypt.Core
                 }
             }
             _masterKey = KeyWrap.GetKeyBytes(unwrappedKeyData);
-
-            foreach (HeaderBlock headerBlock in HeaderBlocks)
-            {
-                switch (headerBlock.HeaderBlockType)
-                {
-                    case HeaderBlockType.None:
-                        break;
-                    case HeaderBlockType.Any:
-                        break;
-                    case HeaderBlockType.Preamble:
-                        _hmac = ((PreambleHeaderBlock)headerBlock).GetHmac();
-                        break;
-                    case HeaderBlockType.Version:
-                        VersionHeaderBlock versionHeaderBlock = (VersionHeaderBlock)headerBlock;
-                        if (versionHeaderBlock.FileVersionMajor > 3)
-                        {
-                            throw new FileFormatException("Too new file format.");
-                        }
-                        break;
-                    case HeaderBlockType.KeyWrap1:
-                        break;
-                    case HeaderBlockType.KeyWrap2:
-                        break;
-                    case HeaderBlockType.IdTag:
-                        break;
-                    case HeaderBlockType.Data:
-                        break;
-                    case HeaderBlockType.Encrypted:
-                        break;
-                    case HeaderBlockType.FileNameInfo:
-                        break;
-                    case HeaderBlockType.EncryptionInfo:
-                        break;
-                    case HeaderBlockType.CompressionInfo:
-                        break;
-                    case HeaderBlockType.FileInfo:
-                        break;
-                    case HeaderBlockType.Compression:
-                        break;
-                    case HeaderBlockType.UnicodeFileNameInfo:
-                        break;
-                    default:
-                        break;
-                }
-            }
         }
 
         private T FindHeaderBlock<T>() where T : class
@@ -169,7 +129,9 @@ namespace Axantum.AxCrypt.Core
 
         public byte[] GetHmac()
         {
-            return (byte[])_hmac.Clone();
+            PreambleHeaderBlock headerBlock = FindHeaderBlock<PreambleHeaderBlock>();
+
+            return headerBlock.GetHmac();
         }
 
         public string FileName

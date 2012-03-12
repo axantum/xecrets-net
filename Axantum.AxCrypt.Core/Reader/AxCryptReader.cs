@@ -101,7 +101,7 @@ namespace Axantum.AxCrypt.Core.Reader
                 case AxCryptItemType.MagicGuid:
                 case AxCryptItemType.HeaderBlock:
                     LookForHeaderBlock();
-                    return true;
+                    return CurrentItemType != AxCryptItemType.EndOfStream;
                 case AxCryptItemType.Data:
                     CurrentItemType = AxCryptItemType.EndOfStream;
                     return false;
