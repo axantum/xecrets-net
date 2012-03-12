@@ -230,9 +230,14 @@ namespace Axantum.AxCrypt.Core
         /// <param name="plainTextStream">The plain text stream.</param>
         public void DecryptTo(Stream plaintextStream)
         {
+            if (_axCryptReader == null)
+            {
+                throw new InvalidOperationException("Load() must have been called.");
+            }
+
             if (_axCryptReader.CurrentItemType != AxCryptItemType.Data)
             {
-                throw new InvalidOperationException("Load() must have been called first.");
+                throw new InvalidOperationException("Load() has been called, but appears to have failed.");
             }
 
             using (HmacStream hmacStream = new HmacStream(new Subkey(GetMasterKey(), HeaderSubkey.Hmac).Get()))

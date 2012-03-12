@@ -181,6 +181,40 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        public static void TestDecryptWithoutLoadFirstFromEmptyFile()
+        {
+            using (AxCryptDocument document = new AxCryptDocument())
+            {
+                using (MemoryStream plaintextStream = new MemoryStream())
+                {
+                    Assert.Throws<InvalidOperationException>(() => { document.DecryptTo(plaintextStream); });
+                }
+            }
+        }
+
+        [Test]
+        public static void TestDecryptAfterFailedLoad()
+        {
+            using (Stream testStream = new MemoryStream())
+            {
+                AxCrypt1Guid.Write(testStream);
+                testStream.Position = 0;
+                using (AxCryptDocument document = new AxCryptDocument())
+                {
+                    AxCryptReaderSettings settings = new AxCryptReaderSettings("Å ä Ö");
+                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream, settings))
+                    {
+                        Assert.Throws<FileFormatException>(() => { document.Load(axCryptReader); });
+                        using (MemoryStream plaintextStream = new MemoryStream())
+                        {
+                            Assert.Throws<InvalidOperationException>(() => { document.DecryptTo(plaintextStream); });
+                        }
+                    }
+                }
+            }
+        }
+
+        [Test]
         public static void TestDecryptCompressedFromLargerFile()
         {
             using (Stream testStream = new MemoryStream(Resources.David_Copperfield_Key_Å_ä_Ö_txt))
