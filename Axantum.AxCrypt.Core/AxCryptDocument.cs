@@ -70,7 +70,7 @@ namespace Axantum.AxCrypt.Core
             _axCryptReader.Read();
             if (_axCryptReader.CurrentItemType != AxCryptItemType.MagicGuid)
             {
-                throw new FileFormatException("No magic Guid was found.");
+                throw new FileFormatException("No magic Guid was found.", ErrorStatus.MagicGuidMissing);
             }
             HeaderBlocks = new List<HeaderBlock>();
             while (_axCryptReader.Read())
@@ -87,7 +87,7 @@ namespace Axantum.AxCrypt.Core
                         throw new InternalErrorException("The reader returned an AxCryptItemType it should not be possible for it to return.");
                 }
             }
-            throw new FileFormatException("Premature end of stream.");
+            throw new FileFormatException("Premature end of stream.", ErrorStatus.EndOfStream);
         }
 
         private void ParseHeaders()
@@ -95,7 +95,7 @@ namespace Axantum.AxCrypt.Core
             VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();
             if (versionHeaderBlock.FileVersionMajor > 3)
             {
-                throw new FileFormatException("Too new file format.");
+                throw new FileFormatException("Too new file format.", ErrorStatus.TooNewFileFormatVersion);
             }
 
             KeyWrap1HeaderBlock keyHeaderBlock = FindHeaderBlock<KeyWrap1HeaderBlock>();
@@ -124,7 +124,7 @@ namespace Axantum.AxCrypt.Core
                     return typedHeaderHeaderBlock;
                 }
             }
-            throw new FileFormatException("No header block found.");
+            throw new FileFormatException("No header block found.", ErrorStatus.FileFormatError);
         }
 
         public byte[] GetHmac()
@@ -254,12 +254,12 @@ namespace Axantum.AxCrypt.Core
             }
             if (!_calculatedHmac.IsEquivalentTo(GetHmac()))
             {
-                throw new InvalidDataException("HMAC validation error.");
+                throw new InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
             }
 
             if (_axCryptReader.CurrentItemType != AxCryptItemType.EndOfStream)
             {
-                throw new FileFormatException("The stream should end here.");
+                throw new FileFormatException("The stream should end here.", ErrorStatus.FileFormatError);
             }
         }
 

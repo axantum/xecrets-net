@@ -37,15 +37,18 @@ namespace Axantum.AxCrypt.Core
     [Serializable]
     public abstract class AxCryptException : Exception
     {
+        public ErrorStatus ErrorStatus { get; set; }
+
         [ExcludeFromCodeCoverage]
         protected AxCryptException()
             : base()
         {
         }
 
-        protected AxCryptException(string message)
+        protected AxCryptException(string message, ErrorStatus errorStatus)
             : base(message)
         {
+            ErrorStatus = errorStatus;
         }
 
         [ExcludeFromCodeCoverage]
@@ -54,9 +57,10 @@ namespace Axantum.AxCrypt.Core
         {
         }
 
-        protected AxCryptException(string message, Exception innerException)
+        protected AxCryptException(string message, ErrorStatus errorStatus, Exception innerException)
             : base(message, innerException)
         {
+            ErrorStatus = errorStatus;
         }
     }
 }

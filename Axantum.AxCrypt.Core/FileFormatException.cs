@@ -43,8 +43,8 @@ namespace Axantum.AxCrypt.Core
         {
         }
 
-        public FileFormatException(string message)
-            : base(message)
+        public FileFormatException(string message, ErrorStatus errorStatus)
+            : base(message, errorStatus)
         {
         }
 
@@ -54,8 +54,8 @@ namespace Axantum.AxCrypt.Core
         }
 
         [ExcludeFromCodeCoverage]
-        public FileFormatException(string message, Exception innerException)
-            : base(message, innerException)
+        public FileFormatException(string message, ErrorStatus errorStatus, Exception innerException)
+            : base(message, errorStatus, innerException)
         {
         }
     }

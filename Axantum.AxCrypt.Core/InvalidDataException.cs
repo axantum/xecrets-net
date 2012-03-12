@@ -43,8 +43,8 @@ namespace Axantum.AxCrypt.Core
         {
         }
 
-        public InvalidDataException(string message)
-            : base(message)
+        public InvalidDataException(string message, ErrorStatus errorStatus)
+            : base(message, errorStatus)
         {
         }
 
@@ -54,8 +54,8 @@ namespace Axantum.AxCrypt.Core
         }
 
         [ExcludeFromCodeCoverage]
-        public InvalidDataException(string message, Exception innerException)
-            : base(message, innerException)
+        public InvalidDataException(string message, ErrorStatus errorStatus, Exception innerException)
+            : base(message, errorStatus, innerException)
         {
         }
     }

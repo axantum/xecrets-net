@@ -157,13 +157,13 @@ namespace Axantum.AxCrypt.Core.Reader
             Int32 headerBlockLength = BitConverter.ToInt32(lengthBytes, 0) - 5;
             if (headerBlockLength < 0 || headerBlockLength > 0xfffff)
             {
-                throw new FileFormatException("Invalid headerBlockLength {0}".InvariantFormat(headerBlockLength));
+                throw new FileFormatException("Invalid headerBlockLength {0}".InvariantFormat(headerBlockLength), ErrorStatus.FileFormatError);
             }
 
             int blockType = _inputStream.ReadByte();
             if (blockType < 0)
             {
-                throw new FileFormatException("Invalid block type {0}".InvariantFormat(blockType));
+                throw new FileFormatException("Invalid block type {0}".InvariantFormat(blockType), ErrorStatus.FileFormatError);
             }
             HeaderBlockType headerBlockType = (HeaderBlockType)blockType;
 
@@ -193,7 +193,7 @@ namespace Axantum.AxCrypt.Core.Reader
             {
                 if (!isFirst)
                 {
-                    throw new FileFormatException("Preamble can only be first.");
+                    throw new FileFormatException("Preamble can only be first.", ErrorStatus.FileFormatError);
                 }
                 CurrentHeaderBlock = new PreambleHeaderBlock(dataBlock);
                 _sendDataToHmacStream = true;
@@ -203,7 +203,7 @@ namespace Axantum.AxCrypt.Core.Reader
             {
                 if (isFirst)
                 {
-                    throw new FileFormatException("Preamble must be first.");
+                    throw new FileFormatException("Preamble must be first.", ErrorStatus.FileFormatError);
                 }
             }
 
@@ -246,7 +246,7 @@ namespace Axantum.AxCrypt.Core.Reader
                     break;
                 case HeaderBlockType.None:
                 case HeaderBlockType.Any:
-                    throw new FileFormatException("Illegal header block type.");
+                    throw new FileFormatException("Illegal header block type.", ErrorStatus.FileFormatError);
                 default:
                     CurrentHeaderBlock = new UnrecognizedHeaderBlock(dataBlock);
                     break;
