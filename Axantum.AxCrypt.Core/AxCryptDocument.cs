@@ -213,6 +213,36 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
+        public DateTime CreationTimeUtc
+        {
+            get
+            {
+                FileInfoHeaderBlock headerBlock = FindHeaderBlock<FileInfoHeaderBlock>();
+
+                return headerBlock.GetCreationTimeUtc(HeaderCrypto);
+            }
+        }
+
+        public DateTime LastAccessTimeUtc
+        {
+            get
+            {
+                FileInfoHeaderBlock headerBlock = FindHeaderBlock<FileInfoHeaderBlock>();
+
+                return headerBlock.GetLastAccessTimeUtc(HeaderCrypto);
+            }
+        }
+
+        public DateTime LastWriteTimeUtc
+        {
+            get
+            {
+                FileInfoHeaderBlock headerBlock = FindHeaderBlock<FileInfoHeaderBlock>();
+
+                return headerBlock.GetLastWriteTimeUtc(HeaderCrypto);
+            }
+        }
+
         /// <summary>
         /// The Initial Vector used for CBC encryption of the data
         /// </summary>

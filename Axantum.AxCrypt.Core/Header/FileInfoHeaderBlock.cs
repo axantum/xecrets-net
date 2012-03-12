@@ -25,13 +25,49 @@
 
 #endregion Coypright and License
 
+using System;
+
 namespace Axantum.AxCrypt.Core.Header
 {
     public class FileInfoHeaderBlock : EncryptedHeaderBlock
     {
+        private const int CreationTimeOffset = 0;
+        private const int LastAccessTimeOffset = 8;
+        private const int LastWriteTimeOffset = 16;
+        private static readonly long WindowsTimeTicksStart = new DateTime(1601, 1, 1).Ticks;
+
         public FileInfoHeaderBlock(byte[] dataBlock)
             : base(HeaderBlockType.FileInfo, dataBlock)
         {
+        }
+
+        public DateTime GetCreationTimeUtc(AesCrypto aesCrypto)
+        {
+            DateTime creationTime = GetTimeStamp(CreationTimeOffset, aesCrypto);
+            return creationTime;
+        }
+
+        public DateTime GetLastAccessTimeUtc(AesCrypto aesCrypto)
+        {
+            DateTime lastAccessTime = GetTimeStamp(LastAccessTimeOffset, aesCrypto);
+            return lastAccessTime;
+        }
+
+        public DateTime GetLastWriteTimeUtc(AesCrypto aesCrypto)
+        {
+            DateTime lastWriteTime = GetTimeStamp(LastWriteTimeOffset, aesCrypto);
+            return lastWriteTime;
+        }
+
+        private DateTime GetTimeStamp(int CreationTimeOffset, AesCrypto aesCrypto)
+        {
+            byte[] rawFileTimes = aesCrypto.Decrypt(GetDataBlockBytesReference());
+            uint lowDateTime = (uint)rawFileTimes.GetLittleEndianValue(CreationTimeOffset, 4);
+            uint hiDateTime = (uint)rawFileTimes.GetLittleEndianValue(CreationTimeOffset + 4, 4);
+            long filetime = ((long)hiDateTime << 32) | lowDateTime;
+
+            DateTime timeStampUtc = new DateTime(WindowsTimeTicksStart + filetime, DateTimeKind.Utc);
+            return timeStampUtc;
         }
     }
 }

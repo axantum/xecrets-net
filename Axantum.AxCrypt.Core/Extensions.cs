@@ -227,5 +227,16 @@ namespace Axantum.AxCrypt.Core
             }
             return left.IsEquivalentTo(0, right, 0, right.Length);
         }
+
+        public static long GetLittleEndianValue(this byte[] bytes, int offset, int length)
+        {
+            long value = 0;
+            while (length-- > 0)
+            {
+                value <<= 8;
+                value |= bytes[offset + length];
+            }
+            return value;
+        }
     }
 }

@@ -28,6 +28,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -338,6 +339,30 @@ namespace Axantum.AxCrypt.Core.Test
                     using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
                     {
                         Assert.Throws<FileFormatException>(() => { document.Load(axCryptReader); }, "Calling with too short a stream, only containing a GUID.");
+                    }
+                }
+            }
+        }
+
+        [Test]
+        public static void TestFileTimesFromSimpleFile()
+        {
+            using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
+            {
+                using (AxCryptDocument document = new AxCryptDocument())
+                {
+                    AxCryptReaderSettings settings = new AxCryptReaderSettings("a");
+                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream, settings))
+                    {
+                        bool keyIsOk = document.Load(axCryptReader);
+                        Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+
+                        string creationTime = document.CreationTimeUtc.ToString(CultureInfo.InvariantCulture);
+                        Assert.That(creationTime, Is.EqualTo("01/13/2012 17:17:18"), "Checking creation time.");
+                        string lastAccessTime = document.LastAccessTimeUtc.ToString(CultureInfo.InvariantCulture);
+                        Assert.That(lastAccessTime, Is.EqualTo("01/13/2012 17:17:18"), "Checking creation time.");
+                        string lastWriteTime = document.LastWriteTimeUtc.ToString(CultureInfo.InvariantCulture);
+                        Assert.That(lastWriteTime, Is.EqualTo("01/13/2012 17:17:45"), "Checking creation time.");
                     }
                 }
             }
