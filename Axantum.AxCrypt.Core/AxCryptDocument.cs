@@ -126,6 +126,8 @@ namespace Axantum.AxCrypt.Core
                 VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();
                 if (versionHeaderBlock.FileVersionMajor <= 1)
                 {
+                    // Due to a bug in 1.1 and earlier we only used a truncated part of the key and salt :-(
+                    // Compensate for this here. Users should be warned if FileVersionMajor <= 1 .
                     byte[] badKey = new byte[keyEncryptingKey.Length];
                     Array.Copy(keyEncryptingKey, 0, badKey, 0, 4);
                     keyEncryptingKey = badKey;

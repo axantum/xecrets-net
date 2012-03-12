@@ -55,12 +55,19 @@ namespace Axantum.AxCrypt.Core
         protected AxCryptException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
+            ErrorStatus = (ErrorStatus)info.GetInt32("ErrorStatus");
         }
 
         protected AxCryptException(string message, ErrorStatus errorStatus, Exception innerException)
             : base(message, innerException)
         {
             ErrorStatus = errorStatus;
+        }
+
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
+            info.AddValue("ErrorStatus", (int)ErrorStatus);
         }
     }
 }

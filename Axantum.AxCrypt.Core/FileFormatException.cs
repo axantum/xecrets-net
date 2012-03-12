@@ -43,6 +43,12 @@ namespace Axantum.AxCrypt.Core
         {
         }
 
+        [ExcludeFromCodeCoverage]
+        public FileFormatException(string message)
+            : this(message, ErrorStatus.FileFormatError)
+        {
+        }
+
         public FileFormatException(string message, ErrorStatus errorStatus)
             : base(message, errorStatus)
         {
@@ -50,6 +56,12 @@ namespace Axantum.AxCrypt.Core
 
         protected FileFormatException(SerializationInfo info, StreamingContext context)
             : base(info, context)
+        {
+        }
+
+        [ExcludeFromCodeCoverage]
+        public FileFormatException(string message, Exception innerException)
+            : this(message, ErrorStatus.FileFormatError, innerException)
         {
         }
 

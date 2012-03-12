@@ -43,6 +43,12 @@ namespace Axantum.AxCrypt.Core
         {
         }
 
+        [ExcludeFromCodeCoverage]
+        public InvalidDataException(string message)
+            : this(message, ErrorStatus.DataError)
+        {
+        }
+
         public InvalidDataException(string message, ErrorStatus errorStatus)
             : base(message, errorStatus)
         {
@@ -50,6 +56,12 @@ namespace Axantum.AxCrypt.Core
 
         protected InvalidDataException(SerializationInfo info, StreamingContext context)
             : base(info, context)
+        {
+        }
+
+        [ExcludeFromCodeCoverage]
+        public InvalidDataException(string message, Exception innerException)
+            : this(message, ErrorStatus.DataError, innerException)
         {
         }
 

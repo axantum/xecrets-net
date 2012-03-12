@@ -37,6 +37,7 @@ namespace Axantum.AxCrypt.Core
     /// <summary>
     /// An internal program logic error has been detected
     /// </summary>
+    [Serializable]
     public class InternalErrorException : AxCryptException
     {
         [ExcludeFromCodeCoverage]

@@ -201,7 +201,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptCompressedFromLegacy0b6()
+        public static void TestDecryptCompressedFromLegacy0B6()
         {
             using (Stream testStream = new MemoryStream(Resources.Tst_0_0b6___Key__åäö____Medium____html__))
             {
@@ -360,9 +360,9 @@ namespace Axantum.AxCrypt.Core.Test
                         string creationTime = document.CreationTimeUtc.ToString(CultureInfo.InvariantCulture);
                         Assert.That(creationTime, Is.EqualTo("01/13/2012 17:17:18"), "Checking creation time.");
                         string lastAccessTime = document.LastAccessTimeUtc.ToString(CultureInfo.InvariantCulture);
-                        Assert.That(lastAccessTime, Is.EqualTo("01/13/2012 17:17:18"), "Checking creation time.");
+                        Assert.That(lastAccessTime, Is.EqualTo("01/13/2012 17:17:18"), "Checking last access time.");
                         string lastWriteTime = document.LastWriteTimeUtc.ToString(CultureInfo.InvariantCulture);
-                        Assert.That(lastWriteTime, Is.EqualTo("01/13/2012 17:17:45"), "Checking creation time.");
+                        Assert.That(lastWriteTime, Is.EqualTo("01/13/2012 17:17:45"), "Checking last modify time.");
                     }
                 }
             }
