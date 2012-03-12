@@ -51,7 +51,8 @@ namespace Axantum.AxCrypt.Core.Test
                     AxCryptReaderSettings settings = new AxCryptReaderSettings("a");
                     using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream, settings))
                     {
-                        document.Load(axCryptReader);
+                        bool keyIsOk = document.Load(axCryptReader);
+                        Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                         string fileName = document.FileName;
                         Assert.That(fileName, Is.EqualTo("HelloWorld-Key-a.txt"), "Wrong file name");
                     }
@@ -69,7 +70,8 @@ namespace Axantum.AxCrypt.Core.Test
                     AxCryptReaderSettings settings = new AxCryptReaderSettings("a");
                     using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream, settings))
                     {
-                        document.Load(axCryptReader);
+                        bool keyIsOk = document.Load(axCryptReader);
+                        Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                         string fileName = document.UnicodeFileName;
                         Assert.That(fileName, Is.EqualTo("HelloWorld-Key-a.txt"), "Wrong file name");
                     }
@@ -88,7 +90,8 @@ namespace Axantum.AxCrypt.Core.Test
                     AxCryptReaderSettings settings = new AxCryptReaderSettings("a");
                     using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream, settings))
                     {
-                        document.Load(axCryptReader);
+                        bool keyIsOk = document.Load(axCryptReader);
+                        Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                         byte[] hmac = document.GetHmac();
                         Assert.That(hmac, Is.EqualTo(expectedHmac), "Wrong HMAC");
                     }
@@ -107,9 +110,28 @@ namespace Axantum.AxCrypt.Core.Test
                     AxCryptReaderSettings settings = new AxCryptReaderSettings("a");
                     using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream, settings))
                     {
-                        document.Load(axCryptReader);
+                        bool keyIsOk = document.Load(axCryptReader);
+                        Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                         bool isCompressed = document.IsCompressed;
                         Assert.That(isCompressed, Is.False, "This file should not be compressed.");
+                    }
+                }
+            }
+        }
+
+        [Test]
+        [SuppressMessage("Microsoft.Naming", "CA1702:CompundWordsShouldBeCasedCorrectly", Justification = "This is a test, and they should start with 'Test'.")]
+        public static void TestInvalidPassphraseWithSimpleFile()
+        {
+            using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
+            {
+                using (AxCryptDocument document = new AxCryptDocument())
+                {
+                    AxCryptReaderSettings settings = new AxCryptReaderSettings("b");
+                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream, settings))
+                    {
+                        bool keyIsOk = document.Load(axCryptReader);
+                        Assert.That(keyIsOk, Is.False, "The passphrase provided is wrong!");
                     }
                 }
             }
@@ -126,7 +148,8 @@ namespace Axantum.AxCrypt.Core.Test
                     AxCryptReaderSettings settings = new AxCryptReaderSettings("Å ä Ö");
                     using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream, settings))
                     {
-                        document.Load(axCryptReader);
+                        bool keyIsOk = document.Load(axCryptReader);
+                        Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                         bool isCompressed = document.IsCompressed;
                         Assert.That(isCompressed, Is.True, "This file should be compressed.");
                     }
@@ -144,7 +167,8 @@ namespace Axantum.AxCrypt.Core.Test
                     AxCryptReaderSettings settings = new AxCryptReaderSettings("a");
                     using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream, settings))
                     {
-                        document.Load(axCryptReader);
+                        bool keyIsOk = document.Load(axCryptReader);
+                        Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                         using (MemoryStream plaintextStream = new MemoryStream())
                         {
                             document.DecryptTo(plaintextStream);
@@ -166,7 +190,8 @@ namespace Axantum.AxCrypt.Core.Test
                     AxCryptReaderSettings settings = new AxCryptReaderSettings("Å ä Ö");
                     using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream, settings))
                     {
-                        document.Load(axCryptReader);
+                        bool keyIsOk = document.Load(axCryptReader);
+                        Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                         using (MemoryStream plaintextStream = new MemoryStream())
                         {
                             document.DecryptTo(plaintextStream);
@@ -191,7 +216,8 @@ namespace Axantum.AxCrypt.Core.Test
                     AxCryptReaderSettings settings = new AxCryptReaderSettings("a");
                     using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream, settings))
                     {
-                        document.Load(axCryptReader);
+                        bool keyIsOk = document.Load(axCryptReader);
+                        Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                         document.DecryptTo(Stream.Null);
                         byte[] calculatedHmac = document.GetCalculatedHmac();
                         byte[] hmac = document.GetHmac();

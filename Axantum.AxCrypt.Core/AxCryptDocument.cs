@@ -59,10 +59,13 @@ namespace Axantum.AxCrypt.Core
         /// read encrypted data.
         /// </summary>
         /// <param name="axCryptReader">The reader.</param>
-        public void Load(AxCryptReader axCryptReader)
+        /// <returns>True if the key was valid, false if it was wrong.</returns>
+        public bool Load(AxCryptReader axCryptReader)
         {
             _axCryptReader = axCryptReader;
             LoadHeaders();
+
+            return GetMasterKey() != null;
         }
 
         private void LoadHeaders()
@@ -81,7 +84,7 @@ namespace Axantum.AxCrypt.Core
                         HeaderBlocks.Add(_axCryptReader.CurrentHeaderBlock);
                         break;
                     case AxCryptItemType.Data:
-                        ParseHeaders();
+                        EnsureFileFormatVersion();
                         return;
                     default:
                         throw new InternalErrorException("The reader returned an AxCryptItemType it should not be possible for it to return.");
@@ -90,28 +93,13 @@ namespace Axantum.AxCrypt.Core
             throw new FileFormatException("Premature end of stream.", ErrorStatus.EndOfStream);
         }
 
-        private void ParseHeaders()
+        private void EnsureFileFormatVersion()
         {
             VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();
             if (versionHeaderBlock.FileVersionMajor > 3)
             {
                 throw new FileFormatException("Too new file format.", ErrorStatus.TooNewFileFormatVersion);
             }
-
-            KeyWrap1HeaderBlock keyHeaderBlock = FindHeaderBlock<KeyWrap1HeaderBlock>();
-            byte[] wrappedKeyData = keyHeaderBlock.GetKeyData();
-            byte[] salt = keyHeaderBlock.GetSalt();
-            long iterations = keyHeaderBlock.Iterations();
-            byte[] unwrappedKeyData = null;
-            using (KeyWrap keyWrap = new KeyWrap(_axCryptReader.Settings.GetDerivedPassphrase(), salt, iterations, KeyWrapMode.AxCrypt))
-            {
-                unwrappedKeyData = keyWrap.Unwrap(wrappedKeyData);
-                if (!KeyWrap.IsKeyUnwrapValid(unwrappedKeyData))
-                {
-                    return;
-                }
-            }
-            _masterKey = KeyWrap.GetKeyBytes(unwrappedKeyData);
         }
 
         private T FindHeaderBlock<T>() where T : class
@@ -125,6 +113,28 @@ namespace Axantum.AxCrypt.Core
                 }
             }
             throw new FileFormatException("No header block found.", ErrorStatus.FileFormatError);
+        }
+
+        public byte[] GetMasterKey()
+        {
+            if (_masterKey == null)
+            {
+                KeyWrap1HeaderBlock keyHeaderBlock = FindHeaderBlock<KeyWrap1HeaderBlock>();
+                byte[] wrappedKeyData = keyHeaderBlock.GetKeyData();
+                byte[] salt = keyHeaderBlock.GetSalt();
+                long iterations = keyHeaderBlock.Iterations();
+                byte[] unwrappedKeyData = null;
+                using (KeyWrap keyWrap = new KeyWrap(_axCryptReader.Settings.GetDerivedPassphrase(), salt, iterations, KeyWrapMode.AxCrypt))
+                {
+                    unwrappedKeyData = keyWrap.Unwrap(wrappedKeyData);
+                    if (!KeyWrap.IsKeyUnwrapValid(unwrappedKeyData))
+                    {
+                        return null;
+                    }
+                }
+                _masterKey = KeyWrap.GetKeyBytes(unwrappedKeyData);
+            }
+            return _masterKey;
         }
 
         public byte[] GetHmac()
@@ -192,7 +202,7 @@ namespace Axantum.AxCrypt.Core
             {
                 if (_headerCrypto == null)
                 {
-                    Subkey headersSubkey = new Subkey(_masterKey, HeaderSubkey.Headers);
+                    Subkey headersSubkey = new Subkey(GetMasterKey(), HeaderSubkey.Headers);
                     _headerCrypto = new AesCrypto(headersSubkey.Get());
                 }
                 return _headerCrypto;
@@ -207,7 +217,7 @@ namespace Axantum.AxCrypt.Core
             {
                 if (_dataCrypto == null)
                 {
-                    Subkey dataSubkey = new Subkey(_masterKey, HeaderSubkey.Data);
+                    Subkey dataSubkey = new Subkey(GetMasterKey(), HeaderSubkey.Data);
                     _dataCrypto = new AesCrypto(dataSubkey.Get(), GetIV(), CipherMode.CBC, PaddingMode.PKCS7);
                 }
                 return _dataCrypto;
@@ -225,7 +235,7 @@ namespace Axantum.AxCrypt.Core
                 throw new InvalidOperationException("Load() must have been called first.");
             }
 
-            using (HmacStream hmacStream = new HmacStream(new Subkey(_masterKey, HeaderSubkey.Hmac).Get()))
+            using (HmacStream hmacStream = new HmacStream(new Subkey(GetMasterKey(), HeaderSubkey.Hmac).Get()))
             {
                 using (Stream encryptedDataStream = _axCryptReader.CreateEncryptedDataStream(hmacStream))
                 {
