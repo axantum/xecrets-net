@@ -73,5 +73,12 @@ namespace Axantum.AxCrypt.Core.Test.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        internal static byte[] Tst_0_0b6___Key__åäö____Medium____html__ {
+            get {
+                object obj = ResourceManager.GetObject("Tst_0_0b6___Key__åäö____Medium____html__", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

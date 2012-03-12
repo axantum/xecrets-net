@@ -42,7 +42,7 @@ namespace Axantum.AxCrypt.Core.Test
     public static class TestAxCryptDocument
     {
         [Test]
-        public static void TestFileNameFromSimpleFile()
+        public static void TestAnsiFileNameFromSimpleFile()
         {
             using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
             {
@@ -53,7 +53,7 @@ namespace Axantum.AxCrypt.Core.Test
                     {
                         bool keyIsOk = document.Load(axCryptReader);
                         Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                        string fileName = document.FileName;
+                        string fileName = document.AnsiFileName;
                         Assert.That(fileName, Is.EqualTo("HelloWorld-Key-a.txt"), "Wrong file name");
                     }
                 }
@@ -73,6 +73,25 @@ namespace Axantum.AxCrypt.Core.Test
                         bool keyIsOk = document.Load(axCryptReader);
                         Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                         string fileName = document.UnicodeFileName;
+                        Assert.That(fileName, Is.EqualTo("HelloWorld-Key-a.txt"), "Wrong file name");
+                    }
+                }
+            }
+        }
+
+        [Test]
+        public static void TestFileNameFromSimpleFileWithUnicode()
+        {
+            using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
+            {
+                using (AxCryptDocument document = new AxCryptDocument())
+                {
+                    AxCryptReaderSettings settings = new AxCryptReaderSettings("a");
+                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream, settings))
+                    {
+                        bool keyIsOk = document.Load(axCryptReader);
+                        Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+                        string fileName = document.FileName;
                         Assert.That(fileName, Is.EqualTo("HelloWorld-Key-a.txt"), "Wrong file name");
                     }
                 }
@@ -174,6 +193,33 @@ namespace Axantum.AxCrypt.Core.Test
                             document.DecryptTo(plaintextStream);
                             Assert.That(Encoding.ASCII.GetString(plaintextStream.GetBuffer(), 0, (int)plaintextStream.Length), Is.EqualTo("HelloWorld"), "Unexpected result of decryption.");
                             Assert.That(document.PlaintextLength, Is.EqualTo(10), "'HelloWorld' should be 10 bytes uncompressed plaintext.");
+                        }
+                    }
+                }
+            }
+        }
+
+        [Test]
+        public static void TestDecryptCompressedFromLegacy0b6()
+        {
+            using (Stream testStream = new MemoryStream(Resources.Tst_0_0b6___Key__åäö____Medium____html__))
+            {
+                using (AxCryptDocument document = new AxCryptDocument())
+                {
+                    AxCryptReaderSettings settings = new AxCryptReaderSettings("åäö");
+                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream, settings))
+                    {
+                        bool keyIsOk = document.Load(axCryptReader);
+                        Assert.That(keyIsOk, Is.True, "A correct passphrase was provided, but it was not accepted.");
+                        Assert.That(document.IsCompressed, Is.True, "The file is compressed.");
+                        Assert.That(document.UnicodeFileName, Is.EqualTo(String.Empty), "This is a legacy file and it should not have the Unicode file header.");
+                        Assert.That(document.AnsiFileName, Is.EqualTo("readme.html"), "The file name should be 'readme.html'.");
+                        Assert.That(document.FileName, Is.EqualTo("readme.html"), "The file name should be 'readme.html'.");
+                        using (MemoryStream plaintextStream = new MemoryStream())
+                        {
+                            document.DecryptTo(plaintextStream);
+                            Assert.That(document.PlaintextLength, Is.EqualTo(3736), "The compressed content should be recorded as 3736 bytes in the headers.");
+                            Assert.That(plaintextStream.Length, Is.EqualTo(9528), "The file should be 9528 bytes uncompressed plaintext in actual fact.");
                         }
                     }
                 }

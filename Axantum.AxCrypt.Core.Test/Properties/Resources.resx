@@ -124,4 +124,7 @@
   <data name="HelloWorld_Key_a_txt" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HelloWorld-Key-a-txt.axx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Tst_0_0b6___Key__åäö____Medium____html__" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tst 0.0b6 - Key 'åäö' - Medium - .html - .axx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

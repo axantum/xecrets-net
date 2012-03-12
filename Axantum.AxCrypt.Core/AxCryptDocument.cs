@@ -112,7 +112,7 @@ namespace Axantum.AxCrypt.Core
                     return typedHeaderHeaderBlock;
                 }
             }
-            throw new FileFormatException("No header block found.", ErrorStatus.FileFormatError);
+            return null;
         }
 
         public byte[] GetMasterKey()
@@ -122,9 +122,22 @@ namespace Axantum.AxCrypt.Core
                 KeyWrap1HeaderBlock keyHeaderBlock = FindHeaderBlock<KeyWrap1HeaderBlock>();
                 byte[] wrappedKeyData = keyHeaderBlock.GetKeyData();
                 byte[] salt = keyHeaderBlock.GetSalt();
+                byte[] keyEncryptingKey = _axCryptReader.Settings.GetDerivedPassphrase();
+                VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();
+                if (versionHeaderBlock.FileVersionMajor <= 1)
+                {
+                    byte[] badKey = new byte[keyEncryptingKey.Length];
+                    Array.Copy(keyEncryptingKey, 0, badKey, 0, 4);
+                    keyEncryptingKey = badKey;
+
+                    byte[] badSalt = new byte[salt.Length];
+                    Array.Copy(salt, 0, badSalt, 0, 4);
+                    salt = badSalt;
+                }
+
                 long iterations = keyHeaderBlock.Iterations();
                 byte[] unwrappedKeyData = null;
-                using (KeyWrap keyWrap = new KeyWrap(_axCryptReader.Settings.GetDerivedPassphrase(), salt, iterations, KeyWrapMode.AxCrypt))
+                using (KeyWrap keyWrap = new KeyWrap(keyEncryptingKey, salt, iterations, KeyWrapMode.AxCrypt))
                 {
                     unwrappedKeyData = keyWrap.Unwrap(wrappedKeyData);
                     if (!KeyWrap.IsKeyUnwrapValid(unwrappedKeyData))
@@ -144,7 +157,7 @@ namespace Axantum.AxCrypt.Core
             return headerBlock.GetHmac();
         }
 
-        public string FileName
+        public string AnsiFileName
         {
             get
             {
@@ -160,9 +173,28 @@ namespace Axantum.AxCrypt.Core
             get
             {
                 UnicodeFileNameInfoHeaderBlock headerBlock = FindHeaderBlock<UnicodeFileNameInfoHeaderBlock>();
+                if (headerBlock == null)
+                {
+                    // Unicode file name was added in 1.6.3.3 - if we can't find it signal it's absence with an empty string.
+                    return String.Empty;
+                }
 
                 string fileName = headerBlock.GetFileName(HeaderCrypto);
                 return fileName;
+            }
+        }
+
+        public string FileName
+        {
+            get
+            {
+                UnicodeFileNameInfoHeaderBlock unicodeHeaderBlock = FindHeaderBlock<UnicodeFileNameInfoHeaderBlock>();
+                if (unicodeHeaderBlock != null)
+                {
+                    return unicodeHeaderBlock.GetFileName(HeaderCrypto);
+                }
+                FileNameInfoHeaderBlock ansiHeaderBlock = FindHeaderBlock<FileNameInfoHeaderBlock>();
+                return ansiHeaderBlock.GetFileName(HeaderCrypto);
             }
         }
 
@@ -171,11 +203,20 @@ namespace Axantum.AxCrypt.Core
             get
             {
                 CompressionHeaderBlock headerBlock = FindHeaderBlock<CompressionHeaderBlock>();
+                if (headerBlock == null)
+                {
+                    // Conditional compression was added in 1.2.2, before then it was always compressed.
+                    return true;
+                }
 
                 return headerBlock.IsCompressed(HeaderCrypto);
             }
         }
 
+        /// <summary>
+        /// The Initial Vector used for CBC encryption of the data
+        /// </summary>
+        /// <returns>The Initial Vector</returns>
         public byte[] GetIV()
         {
             EncryptionInfoHeaderBlock headerBlock = FindHeaderBlock<EncryptionInfoHeaderBlock>();
@@ -184,6 +225,9 @@ namespace Axantum.AxCrypt.Core
             return iv;
         }
 
+        /// <summary>
+        /// The length in bytes of the plain text. This may still require decompression (inflate).
+        /// </summary>
         public long PlaintextLength
         {
             get

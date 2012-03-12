@@ -195,6 +195,16 @@ namespace Axantum.AxCrypt.Core.Test
 
             isEquivalent = two.IsEquivalentTo(0, three, 1, two.Length);
             Assert.IsFalse(isEquivalent, "'two' should not be equivalent to 'three' with offset one.");
+
+            Assert.Throws<ArgumentNullException>(() => { isEquivalent = nullArray.IsEquivalentTo(one); });
+            Assert.Throws<ArgumentNullException>(() => { isEquivalent = one.IsEquivalentTo(nullArray); });
+
+            byte[] threeAgain = new byte[] { 0x02, 0x01, 0x03 };
+            isEquivalent = threeAgain.IsEquivalentTo(three);
+            Assert.IsTrue(isEquivalent, "'threeAgain' should be equivalent to 'three'.");
+
+            isEquivalent = threeAgain.IsEquivalentTo(two);
+            Assert.IsFalse(isEquivalent, "'threeAgain' should be not be equivalent to 'two'.");
         }
     }
 }
