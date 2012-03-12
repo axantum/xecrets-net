@@ -145,7 +145,7 @@ namespace Axantum.AxCrypt.Core.Test
                 using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
                 {
                     Assert.That(axCryptReader.Read(), Is.False, "There should be no Guid found, since there are not enough bytes in the stream.");
-                    Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.None), "Nothing has been found yet in the stream.");
+                    Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.EndOfStream), "Nothing has been found yet in the stream.");
                 }
             }
         }

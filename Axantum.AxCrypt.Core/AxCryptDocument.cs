@@ -295,11 +295,6 @@ namespace Axantum.AxCrypt.Core
                 throw new InvalidDataException("HMAC validation error.");
             }
 
-            if (!_axCryptReader.Read())
-            {
-                throw new FileFormatException("Should be able to Read() EndOfStream after Data.");
-            }
-
             if (_axCryptReader.CurrentItemType != AxCryptItemType.EndOfStream)
             {
                 throw new FileFormatException("The stream should end here.");

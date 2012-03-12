@@ -75,10 +75,7 @@ namespace Axantum.AxCrypt.Core.Reader
             {
                 throw new InvalidOperationException("Called out of sequence, expecting Data.");
             }
-            if (_hmacBufferStream == null)
-            {
-                throw new InvalidOperationException("Can only be called once.");
-            }
+            CurrentItemType = AxCryptItemType.EndOfStream;
             if (hmacStream != null)
             {
                 _hmacBufferStream.Position = 0;
@@ -90,39 +87,29 @@ namespace Axantum.AxCrypt.Core.Reader
         }
 
         /// <summary>
-        /// Read the next item from the stream
+        /// Read the next item from the stream.
         /// </summary>
-        /// <returns>true if there was a next item read.</returns>
+        /// <returns>true if there was a next item read, false if at end of stream.</returns>
+        /// <exception cref="Axantum.AxCrypt.Core.AxCryptException">Any error except premature end of stream will throw.</exception>
         public bool Read()
         {
-            if (CurrentItemType == AxCryptItemType.EndOfStream)
-            {
-                return false;
-            }
-            bool expectedItemWasFound = false;
             switch (CurrentItemType)
             {
                 case AxCryptItemType.None:
-                    expectedItemWasFound = LookForMagicGuid();
-                    break;
+                    LookForMagicGuid();
+                    return CurrentItemType != AxCryptItemType.EndOfStream;
                 case AxCryptItemType.MagicGuid:
                 case AxCryptItemType.HeaderBlock:
-                    expectedItemWasFound = LookForHeaderBlock();
-                    break;
+                    LookForHeaderBlock();
+                    return true;
                 case AxCryptItemType.Data:
                     CurrentItemType = AxCryptItemType.EndOfStream;
-                    return true;
+                    return false;
                 case AxCryptItemType.EndOfStream:
-                    return true;
+                    return false;
                 default:
                     throw new InternalErrorException("An AxCryptItemType that should not be possible to get was found.");
             }
-            if (expectedItemWasFound)
-            {
-                return true;
-            }
-            CurrentItemType = AxCryptItemType.None;
-            return false;
         }
 
         protected void SetInputStream(LookAheadStream inputStream)
@@ -132,7 +119,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
         private static byte[] _axCrypt1GuidBytes = AxCrypt1Guid.GetBytes();
 
-        private bool LookForMagicGuid()
+        private void LookForMagicGuid()
         {
             byte[] buffer = new byte[4096];
             while (true)
@@ -141,7 +128,8 @@ namespace Axantum.AxCrypt.Core.Reader
                 if (bytesRead < AxCrypt1Guid.Length)
                 {
                     _inputStream.Pushback(buffer, 0, bytesRead);
-                    return false;
+                    CurrentItemType = AxCryptItemType.EndOfStream;
+                    return;
                 }
 
                 int i = buffer.Locate(_axCrypt1GuidBytes, 0, bytesRead);
@@ -154,16 +142,17 @@ namespace Axantum.AxCrypt.Core.Reader
                 int offsetJustAfterTheGuid = i + AxCrypt1Guid.Length;
                 _inputStream.Pushback(buffer, offsetJustAfterTheGuid, bytesRead - offsetJustAfterTheGuid);
                 CurrentItemType = AxCryptItemType.MagicGuid;
-                return true;
+                return;
             }
         }
 
-        private bool LookForHeaderBlock()
+        private void LookForHeaderBlock()
         {
             byte[] lengthBytes = new byte[sizeof(Int32)];
             if (!_inputStream.ReadExact(lengthBytes))
             {
-                return false;
+                CurrentItemType = AxCryptItemType.EndOfStream;
+                return;
             }
             Int32 headerBlockLength = BitConverter.ToInt32(lengthBytes, 0) - 5;
             if (headerBlockLength < 0 || headerBlockLength > 0xfffff)
@@ -174,20 +163,18 @@ namespace Axantum.AxCrypt.Core.Reader
             int blockType = _inputStream.ReadByte();
             if (blockType < 0)
             {
-                return false;
+                throw new FileFormatException("Invalid block type {0}".InvariantFormat(blockType));
             }
             HeaderBlockType headerBlockType = (HeaderBlockType)blockType;
 
             byte[] dataBLock = new byte[headerBlockLength];
             if (!_inputStream.ReadExact(dataBLock))
             {
-                return false;
+                CurrentItemType = AxCryptItemType.EndOfStream;
+                return;
             }
 
-            if (!ParseHeaderBlock(headerBlockType, dataBLock))
-            {
-                return false;
-            }
+            ParseHeaderBlock(headerBlockType, dataBLock);
 
             DataHeaderBlock dataHeaderBlock = CurrentHeaderBlock as DataHeaderBlock;
             if (dataHeaderBlock != null)
@@ -195,11 +182,9 @@ namespace Axantum.AxCrypt.Core.Reader
                 CurrentItemType = AxCryptItemType.Data;
                 _dataBytesLeftToRead = dataHeaderBlock.DataLength;
             }
-
-            return true;
         }
 
-        private bool ParseHeaderBlock(HeaderBlockType headerBlockType, byte[] dataBlock)
+        private void ParseHeaderBlock(HeaderBlockType headerBlockType, byte[] dataBlock)
         {
             bool isFirst = CurrentItemType == AxCryptItemType.MagicGuid;
             CurrentItemType = AxCryptItemType.HeaderBlock;
@@ -212,7 +197,7 @@ namespace Axantum.AxCrypt.Core.Reader
                 }
                 CurrentHeaderBlock = new PreambleHeaderBlock(dataBlock);
                 _sendDataToHmacStream = true;
-                return true;
+                return;
             }
             else
             {
@@ -261,7 +246,7 @@ namespace Axantum.AxCrypt.Core.Reader
                     break;
                 case HeaderBlockType.None:
                 case HeaderBlockType.Any:
-                    return false;
+                    throw new FileFormatException("Illegal header block type.");
                 default:
                     CurrentHeaderBlock = new UnrecognizedHeaderBlock(dataBlock);
                     break;
@@ -272,7 +257,7 @@ namespace Axantum.AxCrypt.Core.Reader
                 CurrentHeaderBlock.Write(_hmacBufferStream);
             }
 
-            return true;
+            return;
         }
 
         #region IDisposable Members
