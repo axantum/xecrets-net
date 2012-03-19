@@ -39,7 +39,7 @@ using Org.BouncyCastle.Utilities.Zlib;
 namespace Axantum.AxCrypt.Core
 {
     /// <summary>
-    /// Enables an single point of interaction for a an AxCrypt encrypted stream with all but the data available
+    /// Enables an single point of interaction for an AxCrypt encrypted stream with all but the data available
     /// in-memory.
     /// </summary>
     public class AxCryptDocument : IDisposable
@@ -66,6 +66,57 @@ namespace Axantum.AxCrypt.Core
             LoadHeaders();
 
             return GetMasterKey() != null;
+        }
+
+        /// <summary>
+        /// Write a copy of the current encrypted stream. Used to change meta-data
+        /// and encryption key(s) etc.
+        /// </summary>
+        /// <param name="outputStream"></param>
+        public void CopyEncryptedTo(Stream ciphertextStream)
+        {
+            if (ciphertextStream == null)
+            {
+                throw new ArgumentNullException("ciphertextStream");
+            }
+
+            if (!ciphertextStream.CanSeek)
+            {
+                throw new ArgumentException("The output stream must support seek in order to back-track and write the HMAC.");
+            }
+
+            if (_axCryptReader == null)
+            {
+                throw new InvalidOperationException("Load() must have been called.");
+            }
+
+            if (_axCryptReader.CurrentItemType == AxCryptItemType.EndOfStream)
+            {
+                throw new InvalidOperationException("This method can only be called once.");
+            }
+
+            if (_axCryptReader.CurrentItemType != AxCryptItemType.Data)
+            {
+                throw new InvalidOperationException("Load() has been called, but appears to have failed.");
+            }
+
+            using (HmacStream hmacStream = new HmacStream(new Subkey(GetMasterKey(), HeaderSubkey.Hmac).Get()))
+            {
+                WriteHeaders(ciphertextStream);
+                using (Stream encryptedDataStream = _axCryptReader.CreateEncryptedDataStream(hmacStream))
+                {
+                }
+                _calculatedHmac = hmacStream.GetHmacResult();
+            }
+        }
+
+        private void WriteHeaders(Stream ciphertextStream)
+        {
+            ciphertextStream.Position = 0;
+            foreach (HeaderBlock headerBlock in HeaderBlocks)
+            {
+                headerBlock.Write(ciphertextStream);
+            }
         }
 
         private void LoadHeaders()
@@ -309,6 +360,11 @@ namespace Axantum.AxCrypt.Core
             if (_axCryptReader == null)
             {
                 throw new InvalidOperationException("Load() must have been called.");
+            }
+
+            if (_axCryptReader.CurrentItemType == AxCryptItemType.EndOfStream)
+            {
+                throw new InvalidOperationException("This method can only be called once.");
             }
 
             if (_axCryptReader.CurrentItemType != AxCryptItemType.Data)
