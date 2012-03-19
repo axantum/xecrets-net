@@ -25,6 +25,8 @@
 
 #endregion Coypright and License
 
+using System;
+
 namespace Axantum.AxCrypt.Core.Header
 {
     public class PreambleHeaderBlock : HeaderBlock
@@ -42,6 +44,19 @@ namespace Axantum.AxCrypt.Core.Header
         public byte[] GetHmac()
         {
             return (byte[])GetDataBlockBytesReference().Clone();
+        }
+
+        public void SetHmac(byte[] hmac)
+        {
+            if (hmac == null)
+            {
+                throw new ArgumentNullException("hmac");
+            }
+            if (hmac.Length != GetDataBlockBytesReference().Length)
+            {
+                throw new ArgumentException("hmac has wrong length");
+            }
+            hmac.CopyTo(GetDataBlockBytesReference(), 0);
         }
     }
 }

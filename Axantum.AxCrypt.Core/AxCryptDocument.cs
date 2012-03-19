@@ -39,7 +39,7 @@ using Org.BouncyCastle.Utilities.Zlib;
 namespace Axantum.AxCrypt.Core
 {
     /// <summary>
-    /// Enables an single point of interaction for an AxCrypt encrypted stream with all but the data available
+    /// Enables a single point of interaction for an AxCrypt encrypted stream with all but the data available
     /// in-memory.
     /// </summary>
     public class AxCryptDocument : IDisposable
@@ -73,14 +73,14 @@ namespace Axantum.AxCrypt.Core
         /// and encryption key(s) etc.
         /// </summary>
         /// <param name="outputStream"></param>
-        public void CopyEncryptedTo(Stream ciphertextStream)
+        public void CopyEncryptedTo(Stream cipherStream)
         {
-            if (ciphertextStream == null)
+            if (cipherStream == null)
             {
-                throw new ArgumentNullException("ciphertextStream");
+                throw new ArgumentNullException("cipherStream");
             }
 
-            if (!ciphertextStream.CanSeek)
+            if (!cipherStream.CanSeek)
             {
                 throw new ArgumentException("The output stream must support seek in order to back-track and write the HMAC.");
             }
@@ -102,20 +102,22 @@ namespace Axantum.AxCrypt.Core
 
             using (HmacStream hmacStream = new HmacStream(new Subkey(GetMasterKey(), HeaderSubkey.Hmac).Get()))
             {
-                WriteHeaders(ciphertextStream);
+                WriteHeaders(cipherStream);
                 using (Stream encryptedDataStream = _axCryptReader.CreateEncryptedDataStream(hmacStream))
                 {
+                    encryptedDataStream.CopyTo(cipherStream);
                 }
                 _calculatedHmac = hmacStream.GetHmacResult();
             }
         }
 
-        private void WriteHeaders(Stream ciphertextStream)
+        private void WriteHeaders(Stream cipherStream)
         {
-            ciphertextStream.Position = 0;
+            cipherStream.Position = 0;
+            AxCrypt1Guid.Write(cipherStream);
             foreach (HeaderBlock headerBlock in HeaderBlocks)
             {
-                headerBlock.Write(ciphertextStream);
+                headerBlock.Write(cipherStream);
             }
         }
 
@@ -208,6 +210,16 @@ namespace Axantum.AxCrypt.Core
             PreambleHeaderBlock headerBlock = FindHeaderBlock<PreambleHeaderBlock>();
 
             return headerBlock.GetHmac();
+        }
+
+        public void SetHmac(byte[] hmac)
+        {
+            if (hmac == null)
+            {
+                throw new ArgumentNullException("hmac");
+            }
+            PreambleHeaderBlock headerBlock = FindHeaderBlock<PreambleHeaderBlock>();
+            headerBlock.SetHmac(hmac);
         }
 
         public string AnsiFileName
