@@ -54,6 +54,20 @@ namespace Axantum.AxCrypt.Core
 
         private IList<HeaderBlock> HeaderBlocks { get; set; }
 
+        private RandomNumberGenerator _rng;
+
+        private byte[] GetRandomBytes(int n)
+        {
+            if (_rng == null)
+            {
+                _rng = RandomNumberGenerator.Create();
+            }
+
+            byte[] data = new byte[n];
+            _rng.GetBytes(data);
+            return data;
+        }
+
         /// <summary>
         /// Loads an AxCrypt file from the specified reader. After this, the reader is positioned to
         /// read encrypted data.
@@ -66,6 +80,22 @@ namespace Axantum.AxCrypt.Core
             LoadHeaders();
 
             return GetMasterKey() != null;
+        }
+
+        public void SetReader(AxCryptReader axCryptReader)
+        {
+            EnsureLoaded();
+
+            KeyWrap1HeaderBlock keyHeaderBlock = FindHeaderBlock<KeyWrap1HeaderBlock>();
+
+            byte[] keyEncryptingKey = _axCryptReader.Settings.GetDerivedPassphrase();
+            long iterations = keyHeaderBlock.Iterations();
+            byte[] salt = GetRandomBytes(16);
+            using (KeyWrap keyWrap = new KeyWrap(keyEncryptingKey, salt, iterations, KeyWrapMode.AxCrypt))
+            {
+                byte[] wrappedKeyData = keyWrap.Wrap(keyEncryptingKey);
+                keyHeaderBlock.Set(wrappedKeyData, salt, iterations);
+            }
         }
 
         /// <summary>
@@ -85,20 +115,7 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentException("The output stream must support seek in order to back-track and write the HMAC.");
             }
 
-            if (_axCryptReader == null)
-            {
-                throw new InvalidOperationException("Load() must have been called.");
-            }
-
-            if (_axCryptReader.CurrentItemType == AxCryptItemType.EndOfStream)
-            {
-                throw new InvalidOperationException("This method can only be called once.");
-            }
-
-            if (_axCryptReader.CurrentItemType != AxCryptItemType.Data)
-            {
-                throw new InvalidOperationException("Load() has been called, but appears to have failed.");
-            }
+            EnsureLoaded();
 
             using (HmacStream hmacStream = new HmacStream(new Subkey(GetMasterKey(), HeaderSubkey.Hmac).Get()))
             {
@@ -195,12 +212,12 @@ namespace Axantum.AxCrypt.Core
                 using (KeyWrap keyWrap = new KeyWrap(keyEncryptingKey, salt, iterations, KeyWrapMode.AxCrypt))
                 {
                     unwrappedKeyData = keyWrap.Unwrap(wrappedKeyData);
-                    if (!KeyWrap.IsKeyUnwrapValid(unwrappedKeyData))
+                    if (unwrappedKeyData.Length == 0)
                     {
                         return null;
                     }
                 }
-                _masterKey = KeyWrap.GetKeyBytes(unwrappedKeyData);
+                _masterKey = unwrappedKeyData;
             }
             return _masterKey;
         }
@@ -363,11 +380,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        /// <summary>
-        /// Decrypts the encrypted data to the given stream
-        /// </summary>
-        /// <param name="plainTextStream">The plain text stream.</param>
-        public void DecryptTo(Stream plaintextStream)
+        private void EnsureLoaded()
         {
             if (_axCryptReader == null)
             {
@@ -383,6 +396,15 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new InvalidOperationException("Load() has been called, but appears to have failed.");
             }
+        }
+
+        /// <summary>
+        /// Decrypts the encrypted data to the given stream
+        /// </summary>
+        /// <param name="plainTextStream">The plain text stream.</param>
+        public void DecryptTo(Stream plaintextStream)
+        {
+            EnsureLoaded();
 
             using (HmacStream hmacStream = new HmacStream(new Subkey(GetMasterKey(), HeaderSubkey.Hmac).Get()))
             {

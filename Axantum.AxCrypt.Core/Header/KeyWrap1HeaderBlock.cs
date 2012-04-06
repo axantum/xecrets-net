@@ -44,6 +44,10 @@ namespace Axantum.AxCrypt.Core.Header
             return keyData;
         }
 
+        public void Set(byte[] keyData, byte[] salt, long iterations)
+        {
+        }
+
         public byte[] GetSalt()
         {
             byte[] salt = new byte[16];

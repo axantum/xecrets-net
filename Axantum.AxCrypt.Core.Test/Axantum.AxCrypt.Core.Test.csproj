@@ -64,6 +64,7 @@
     <Compile Include="TestAxCryptReaderPreambleHeaderBlock.cs" />
     <Compile Include="TestAxCryptReaderVersionHeaderBlock.cs" />
     <Compile Include="TestExtensions.cs" />
+    <Compile Include="TestKeyWrap.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />

@@ -39,8 +39,9 @@ namespace Axantum.AxCrypt.Core.Header
     /// </summary>
     public class KeyWrap : IDisposable
     {
-        private static readonly byte[] _a = new byte[] { 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6 };
+        private static readonly byte[] A = new byte[] { 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6 };
         private const int KEY_BITS = 128;
+        private const int KEY_BYTES = KEY_BITS / 8;
 
         private byte[] _key;
         private byte[] _salt;
@@ -49,14 +50,46 @@ namespace Axantum.AxCrypt.Core.Header
         private bool _isLittleEndian;
 
         public KeyWrap(byte[] key, byte[] salt, long iterations, KeyWrapMode mode)
-            : this(key, salt, iterations, mode, Environment.Current)
         {
+            if (key == null)
+            {
+                throw new ArgumentNullException("key");
+            }
+            if (key.Length != KEY_BYTES)
+            {
+                throw new ArgumentException("key length is incorrect");
+            }
+            if (salt != null && salt.Length != 0 && salt.Length != KEY_BYTES)
+            {
+                throw new ArgumentException("salt length is incorrect");
+            }
+            if (iterations < 6)
+            {
+                throw new ArgumentOutOfRangeException("iterations");
+            }
+            if (mode != KeyWrapMode.Specification && mode != KeyWrapMode.AxCrypt)
+            {
+                throw new ArgumentOutOfRangeException("mode");
+            }
+            Initialize(key, salt, iterations, mode, Environment.Current);
         }
 
         protected KeyWrap(byte[] key, byte[] salt, long iterations, KeyWrapMode mode, IEnvironment environment)
         {
+            Initialize(key, salt, iterations, mode, environment);
+        }
+
+        private void Initialize(byte[] key, byte[] salt, long iterations, KeyWrapMode mode, IEnvironment environment)
+        {
             _key = (byte[])key.Clone();
-            _salt = (byte[])salt.Clone();
+            if (salt != null)
+            {
+                _salt = (byte[])salt.Clone();
+            }
+            else
+            {
+                _salt = new byte[0];
+            }
             _iterations = iterations;
 
             byte[] saltedKey = (byte[])_key.Clone();
@@ -84,9 +117,71 @@ namespace Axantum.AxCrypt.Core.Header
             }
         }
 
+        /// <summary>
+        /// Wrap key data using the AES Key Wrap specification
+        /// </summary>
+        /// <param name="keyToWrap">The key to wrap</param>
+        /// <returns>The wrapped key data, 8 bytes longer than the key</returns>
+        public byte[] Wrap(byte[] keyToWrap)
+        {
+            if (keyToWrap == null)
+            {
+                throw new ArgumentNullException("keyToWrap");
+            }
+            if (keyToWrap.Length != KEY_BITS / 8)
+            {
+                throw new ArgumentException("keyToWrap has incorrect length.");
+            }
+
+            byte[] wrapped = new byte[KEY_BITS / 8 + A.Length];
+            A.CopyTo(wrapped, 0);
+
+            Array.Copy(keyToWrap, 0, wrapped, A.Length, keyToWrap.Length);
+
+            ICryptoTransform encryptor = Aes.CreateEncryptor();
+
+            byte[] block = new byte[encryptor.InputBlockSize];
+
+            // wrapped[0..7] contains the A (IV) of the Key Wrap algorithm,
+            // the rest is 'Key Data'. We do the transform in-place.
+            for (int j = 0; j < _iterations; j++)
+            {
+                for (int i = 1; i <= (Aes.KeySize / 8) / 8; i++)
+                {
+                    // B = AESE(K, A | R[i])
+                    Array.Copy(wrapped, 0, block, 0, 8);
+                    Array.Copy(wrapped, i * 8, block, 8, 8);
+                    byte[] b = encryptor.TransformFinalBlock(block, 0, encryptor.InputBlockSize);
+                    // A = MSB64(B) XOR t where t = (n * j) + i
+                    long t = (((Aes.KeySize / 8) / 8) * j) + i;
+                    switch (_mode)
+                    {
+                        case KeyWrapMode.Specification:
+                            b.Xor(0, GetBigEndianBytes(t), 0, 8);
+                            break;
+                        case KeyWrapMode.AxCrypt:
+                            b.Xor(0, GetLittleEndianBytes(t), 0, 8);
+                            break;
+                        default:
+                            throw new InvalidOperationException("Unrecognized Mode");
+                    }
+                    Array.Copy(b, 0, wrapped, 0, 8);
+                    // R[i] = LSB64(B)
+                    Array.Copy(b, 8, wrapped, i * 8, 8);
+                }
+            }
+
+            return wrapped;
+        }
+
+        /// <summary>
+        /// Unwrap an AES Key Wrapped-key
+        /// </summary>
+        /// <param name="wrapped">The full wrapped data, the length of a key + 8 bytes</param>
+        /// <returns>The unwrapped key data, or a zero-length array if the unwrap was unsuccessful due to wrong key</returns>
         public byte[] Unwrap(byte[] wrapped)
         {
-            if (wrapped.Length != KEY_BITS / 8 + _a.Length)
+            if (wrapped.Length != KEY_BITS / 8 + A.Length)
             {
                 throw new ArgumentException("The length of the wrapped data must be exactly the length of a key plus 8 bytes");
             }
@@ -126,10 +221,18 @@ namespace Axantum.AxCrypt.Core.Header
                     Array.Copy(b, 8, wrapped, i * 8, 8);
                 }
             }
-            return wrapped;
+
+            if (!IsKeyUnwrapValid(wrapped))
+            {
+                return new byte[0];
+            }
+
+            byte[] unwrapped = new byte[KEY_BITS / 8];
+            Array.Copy(wrapped, A.Length, unwrapped, 0, unwrapped.Length);
+            return unwrapped;
         }
 
-        public static bool IsKeyUnwrapValid(byte[] unwrapped)
+        private static bool IsKeyUnwrapValid(byte[] unwrapped)
         {
             if (unwrapped == null)
             {
@@ -139,22 +242,7 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 return false;
             }
-            return unwrapped.IsEquivalentTo(0, _a, 0, _a.Length);
-        }
-
-        internal static byte[] GetKeyBytes(byte[] unwrapped)
-        {
-            if (unwrapped == null)
-            {
-                throw new ArgumentNullException("unwrapped");
-            }
-            if (unwrapped.Length != KEY_BITS / 8 + 8)
-            {
-                throw new ArgumentException("unwrapped has incorrect length");
-            }
-            byte[] keyBytes = new byte[KEY_BITS / 8];
-            Array.Copy(unwrapped, 8, keyBytes, 0, keyBytes.Length);
-            return keyBytes;
+            return unwrapped.IsEquivalentTo(0, A, 0, A.Length);
         }
 
         protected byte[] GetBigEndianBytes(long value)
