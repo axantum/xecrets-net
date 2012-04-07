@@ -206,5 +206,43 @@ namespace Axantum.AxCrypt.Core.Test
             isEquivalent = threeAgain.IsEquivalentTo(two);
             Assert.IsFalse(isEquivalent, "'threeAgain' should be not be equivalent to 'two'.");
         }
+
+        private class EnvironmentForTest : IEnvironment
+        {
+            public bool IsLittleEndian
+            {
+                get { return !BitConverter.IsLittleEndian; }
+            }
+        }
+
+        [Test]
+        public static void TestEndianOptimization()
+        {
+            IEnvironment currentEnvironment = Environment.Current;
+            Environment.Current = new EnvironmentForTest();
+            try
+            {
+                if (BitConverter.IsLittleEndian)
+                {
+                    byte[] actuallyLittleEndianBytes = 0x0102030405060708.GetBigEndianBytes();
+                    Assert.That(actuallyLittleEndianBytes, Is.EqualTo(new byte[] { 0x08, 0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01 }), "Getting big endian, thinking we are big endian but in fact are not, will get us little endian bytes.");
+
+                    byte[] actuallyStillLittleEndianBytes = 0x0102030405060708.GetLittleEndianBytes();
+                    Assert.That(actuallyStillLittleEndianBytes, Is.EqualTo(new byte[] { 0x08, 0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01 }), "Getting little endian, thinking we are big endian but in fact are not, will still get us little endian.");
+                }
+                else
+                {
+                    byte[] actuallyStillBigEndianBytes = 0x0102030405060708.GetBigEndianBytes();
+                    Assert.That(actuallyStillBigEndianBytes, Is.EqualTo(new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 }), "Getting big endian, thinking we are little endian but in fact are not, will still get us big endian bytes.");
+
+                    byte[] actuallyBigEndianBytes = 0x0102030405060708.GetLittleEndianBytes();
+                    Assert.That(actuallyBigEndianBytes, Is.EqualTo(new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 }), "Getting little endian, thinking we are big endian but in fact are not, will get us big endian bytes.");
+                }
+            }
+            finally
+            {
+                Environment.Current = currentEnvironment;
+            }
+        }
     }
 }

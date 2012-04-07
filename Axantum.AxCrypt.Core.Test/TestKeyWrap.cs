@@ -21,7 +21,7 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestUnwrap()
         {
             byte[] unwrapped;
-            using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, new byte[] { }, 6, KeyWrapMode.Specification))
+            using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, 6, KeyWrapMode.Specification))
             {
                 unwrapped = keyWrap.Unwrap(_wrapped);
             }
@@ -34,7 +34,7 @@ namespace Axantum.AxCrypt.Core.Test
         public void TestWrap()
         {
             byte[] wrapped;
-            using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, new byte[] { }, 6, KeyWrapMode.Specification))
+            using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, 6, KeyWrapMode.Specification))
             {
                 wrapped = keyWrap.Wrap(_keyData);
             }
@@ -90,14 +90,14 @@ namespace Axantum.AxCrypt.Core.Test
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This is test, readability and coding ease is a concern, not performance.")]
         public void TestKeyWrapConstructorWithBadArgument()
         {
-            using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, new byte[] { }, 6, KeyWrapMode.Specification))
+            using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, 6, KeyWrapMode.Specification))
             {
                 Assert.Throws<ArgumentException>(() => { keyWrap.Unwrap(_keyData); }, "Calling with too short wrapped data.");
             }
 
             Assert.Throws<ArgumentException>(() =>
             {
-                using (KeyWrap keyWrap = new KeyWrap(new byte[] { 0 }, new byte[] { }, 6, KeyWrapMode.AxCrypt))
+                using (KeyWrap keyWrap = new KeyWrap(new byte[] { 0 }, 6, KeyWrapMode.AxCrypt))
                 {
                 }
             }, "Calling with too short wrapped data.");
@@ -111,84 +111,31 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
-                using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, null, 5, KeyWrapMode.AxCrypt))
+                using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, 5, KeyWrapMode.AxCrypt))
                 {
                 }
             }, "Calling with too few iterations.");
 
             Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
-                using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, null, 0, KeyWrapMode.AxCrypt))
+                using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, 0, KeyWrapMode.AxCrypt))
                 {
                 }
             }, "Calling with zero (too few) iterations.");
 
             Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
-                using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, null, -100, KeyWrapMode.AxCrypt))
+                using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, -100, KeyWrapMode.AxCrypt))
                 {
                 }
             }, "Calling with negative number of iterations.");
 
             Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
-                using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, new byte[] { }, 6, (KeyWrapMode)9999))
+                using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, 6, (KeyWrapMode)9999))
                 {
                 }
             }, "Calling with bogus KeyWrapMode.");
-        }
-
-        private class EnvironmentForTest : IEnvironment
-        {
-            public bool IsLittleEndian
-            {
-                get { return !BitConverter.IsLittleEndian; }
-            }
-        }
-
-        private class KeyWrapForTest : KeyWrap
-        {
-            public KeyWrapForTest(byte[] key, byte[] salt, long iterations, KeyWrapMode mode)
-                : base(key, salt, iterations, mode, new EnvironmentForTest())
-            {
-            }
-
-            public new byte[] GetBigEndianBytes(long value)
-            {
-                return base.GetBigEndianBytes(value);
-            }
-
-            public new byte[] GetLittleEndianBytes(long value)
-            {
-                return base.GetLittleEndianBytes(value);
-            }
-        }
-
-        [Test]
-        public static void TestEndianOptimization()
-        {
-            long iterations = 1000;
-            byte[] salt = new byte[16];
-            AxCryptReaderSettings readerSettings = new AxCryptReaderSettings("a");
-            using (KeyWrapForTest keyWrap = new KeyWrapForTest(readerSettings.GetDerivedPassphrase(), salt, iterations, KeyWrapMode.AxCrypt))
-            {
-                if (BitConverter.IsLittleEndian)
-                {
-                    byte[] actuallyLittleEndianBytes = keyWrap.GetBigEndianBytes(0x0102030405060708);
-                    Assert.That(actuallyLittleEndianBytes, Is.EqualTo(new byte[] { 0x08, 0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01 }), "Getting big endian, thinking we are big endian but in fact are not, will get us little endian bytes.");
-
-                    byte[] actuallyStillLittleEndianBytes = keyWrap.GetLittleEndianBytes(0x0102030405060708);
-                    Assert.That(actuallyStillLittleEndianBytes, Is.EqualTo(new byte[] { 0x08, 0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01 }), "Getting little endian, thinking we are big endian but in fact are not, will still get us little endian.");
-                }
-                else
-                {
-                    byte[] actuallyStillBigEndianBytes = keyWrap.GetBigEndianBytes(0x0102030405060708);
-                    Assert.That(actuallyStillBigEndianBytes, Is.EqualTo(new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 }), "Getting big endian, thinking we are little endian but in fact are not, will still get us big endian bytes.");
-
-                    byte[] actuallyBigEndianBytes = keyWrap.GetLittleEndianBytes(0x0102030405060708);
-                    Assert.That(actuallyBigEndianBytes, Is.EqualTo(new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 }), "Getting little endian, thinking we are big endian but in fact are not, will get us big endian bytes.");
-                }
-            }
         }
     }
 }

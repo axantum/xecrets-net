@@ -44,8 +44,28 @@ namespace Axantum.AxCrypt.Core.Header
             return keyData;
         }
 
-        public void Set(byte[] keyData, byte[] salt, long iterations)
+        public void Set(byte[] wrapped, byte[] salt, long iterations)
         {
+            if (wrapped == null)
+            {
+                throw new ArgumentNullException("wrapped");
+            }
+            if (wrapped.Length != 16 + 8)
+            {
+                throw new ArgumentException("wrapped must be 128 bits + 8 bytes.");
+            }
+            if (salt == null)
+            {
+                throw new ArgumentNullException("salt");
+            }
+            if (salt.Length != 16)
+            {
+                throw new ArgumentException("salt must have same length as the wrapped key, i.e. 128 bits.");
+            }
+            Array.Copy(wrapped, 0, GetDataBlockBytesReference(), 0, wrapped.Length);
+            Array.Copy(salt, 0, GetDataBlockBytesReference(), 16 + 8, salt.Length);
+            byte[] iterationsBytes = iterations.GetLittleEndianBytes();
+            Array.Copy(iterationsBytes, 0, GetDataBlockBytesReference(), 16 + 8 + 16, sizeof(uint));
         }
 
         public byte[] GetSalt()
@@ -58,7 +78,7 @@ namespace Axantum.AxCrypt.Core.Header
 
         public long Iterations()
         {
-            uint iterations = BitConverter.ToUInt32(GetDataBlockBytesReference(), 16 + 8 + 16);
+            long iterations = GetDataBlockBytesReference().GetLittleEndianValue(16 + 8 + 16, sizeof(uint));
 
             return iterations;
         }

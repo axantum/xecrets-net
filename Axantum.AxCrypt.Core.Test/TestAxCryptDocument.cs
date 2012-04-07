@@ -367,5 +367,45 @@ namespace Axantum.AxCrypt.Core.Test
                 }
             }
         }
+
+        [Test]
+        public static void TestChangePassphraseForSimpleFile()
+        {
+            using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
+            {
+                using (AxCryptDocument document = new AxCryptDocument())
+                {
+                    AxCryptReaderSettings settings = new AxCryptReaderSettings("a");
+                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream, settings))
+                    {
+                        bool keyIsOk = document.Load(axCryptReader);
+                        Assert.That(keyIsOk, Is.True, "The passphrase provided is correct and should work!");
+
+                        AxCryptReaderSettings newSettings = new AxCryptReaderSettings("b");
+                        document.SetReaderSettings(newSettings);
+                        using (Stream changedStream = new MemoryStream())
+                        {
+                            document.CopyEncryptedTo(changedStream);
+                            changedStream.Position = 0;
+                            using (AxCryptDocument changedDocument = new AxCryptDocument())
+                            {
+                                using (AxCryptReader changedAxCryptReader = AxCryptReader.Create(changedStream, newSettings))
+                                {
+                                    bool changedKeyIsOk = changedDocument.Load(changedAxCryptReader);
+                                    Assert.That(changedKeyIsOk, Is.True, "The changed passphrase provided is correct and should work!");
+
+                                    using (MemoryStream plaintextStream = new MemoryStream())
+                                    {
+                                        changedDocument.DecryptTo(plaintextStream);
+                                        Assert.That(Encoding.ASCII.GetString(plaintextStream.GetBuffer(), 0, (int)plaintextStream.Length), Is.EqualTo("HelloWorld"), "Unexpected result of decryption.");
+                                        Assert.That(changedDocument.PlaintextLength, Is.EqualTo(10), "'HelloWorld' should be 10 bytes uncompressed plaintext.");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

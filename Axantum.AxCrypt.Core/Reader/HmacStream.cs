@@ -39,15 +39,36 @@ namespace Axantum.AxCrypt.Core.Reader
     {
         private HashAlgorithm _hmac;
 
+        private Stream _chainedStream;
+
         private long _count = 0;
 
+        /// <summary>
+        /// A AxCrypt HMAC-calculating stream. This uses the AxCrypt variant with a block size of 20 for the key.
+        /// </summary>
+        /// <param name="key">The key for the HMAC</param>
         public HmacStream(byte[] key)
+            : this(key, null)
+        {
+        }
+
+        /// <summary>
+        /// An AxCrypt HMAC SHA1-calculating stream. This uses the AxCrypt variant with a block size of 20 for the key.
+        /// </summary>
+        /// <param name="key">The key for the HMAC</param>
+        /// <param name="chainedStream">A stream where data is chain-written to. This stream is not disposed of when this instance is disposed.</param>
+        public HmacStream(byte[] key, Stream chainedStream)
         {
             _hmac = AxCryptHMACSHA1.Create(key);
+            _chainedStream = chainedStream;
         }
 
         private byte[] _result = null;
 
+        /// <summary>
+        /// Get the calculated HMAC
+        /// </summary>
+        /// <returns>A HMAC truncated to 128 bits</returns>
         public byte[] GetHmacResult()
         {
             if (_result == null)
@@ -115,6 +136,10 @@ namespace Axantum.AxCrypt.Core.Reader
         {
             _hmac.TransformBlock(buffer, offset, count, null, 0);
             _count += count;
+            if (_chainedStream != null)
+            {
+                _chainedStream.Write(buffer, offset, count);
+            }
         }
 
         protected override void Dispose(bool disposing)

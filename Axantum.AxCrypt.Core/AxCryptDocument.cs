@@ -82,20 +82,23 @@ namespace Axantum.AxCrypt.Core
             return GetMasterKey() != null;
         }
 
-        public void SetReader(AxCryptReader axCryptReader)
+        public void SetReaderSettings(AxCryptReaderSettings settings)
         {
             EnsureLoaded();
 
             KeyWrap1HeaderBlock keyHeaderBlock = FindHeaderBlock<KeyWrap1HeaderBlock>();
 
-            byte[] keyEncryptingKey = _axCryptReader.Settings.GetDerivedPassphrase();
+            byte[] keyEncryptingKey = settings.GetDerivedPassphrase();
             long iterations = keyHeaderBlock.Iterations();
+            byte[] masterKey = GetMasterKey();
             byte[] salt = GetRandomBytes(16);
             using (KeyWrap keyWrap = new KeyWrap(keyEncryptingKey, salt, iterations, KeyWrapMode.AxCrypt))
             {
-                byte[] wrappedKeyData = keyWrap.Wrap(keyEncryptingKey);
+                byte[] wrappedKeyData = keyWrap.Wrap(masterKey);
                 keyHeaderBlock.Set(wrappedKeyData, salt, iterations);
             }
+
+            _axCryptReader.Settings = settings;
         }
 
         /// <summary>
@@ -117,24 +120,50 @@ namespace Axantum.AxCrypt.Core
 
             EnsureLoaded();
 
-            using (HmacStream hmacStream = new HmacStream(new Subkey(GetMasterKey(), HeaderSubkey.Hmac).Get()))
+            using (HmacStream hmacStreamInput = new HmacStream(new Subkey(GetMasterKey(), HeaderSubkey.Hmac).Get()))
             {
-                WriteHeaders(cipherStream);
-                using (Stream encryptedDataStream = _axCryptReader.CreateEncryptedDataStream(hmacStream))
+                using (HmacStream hmacStreamOutput = new HmacStream(new Subkey(GetMasterKey(), HeaderSubkey.Hmac).Get(), cipherStream))
                 {
-                    encryptedDataStream.CopyTo(cipherStream);
+                    WriteHeaders(cipherStream, hmacStreamOutput);
+                    using (Stream encryptedDataStream = _axCryptReader.CreateEncryptedDataStream(hmacStreamInput))
+                    {
+                        encryptedDataStream.CopyTo(hmacStreamOutput);
+
+                        if (!hmacStreamInput.GetHmacResult().IsEquivalentTo(GetHmac()))
+                        {
+                            throw new InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
+                        }
+                    }
+
+                    _calculatedHmac = hmacStreamOutput.GetHmacResult();
+                    SetHmac(_calculatedHmac);
+
+                    // Rewind and rewrite the headers, now with the updated HMAC
+                    WriteHeaders(cipherStream, null);
+                    cipherStream.Position = cipherStream.Length;
                 }
-                _calculatedHmac = hmacStream.GetHmacResult();
             }
         }
 
-        private void WriteHeaders(Stream cipherStream)
+        private void WriteHeaders(Stream cipherStream, Stream hmacStream)
         {
             cipherStream.Position = 0;
             AxCrypt1Guid.Write(cipherStream);
+            bool preambleSeen = false;
             foreach (HeaderBlock headerBlock in HeaderBlocks)
             {
-                headerBlock.Write(cipherStream);
+                if (preambleSeen && hmacStream != null)
+                {
+                    headerBlock.Write(hmacStream);
+                }
+                else
+                {
+                    headerBlock.Write(cipherStream);
+                }
+                if (headerBlock is PreambleHeaderBlock)
+                {
+                    preambleSeen = true;
+                }
             }
         }
 
@@ -154,6 +183,7 @@ namespace Axantum.AxCrypt.Core
                         HeaderBlocks.Add(_axCryptReader.CurrentHeaderBlock);
                         break;
                     case AxCryptItemType.Data:
+                        HeaderBlocks.Add(_axCryptReader.CurrentHeaderBlock);
                         EnsureFileFormatVersion();
                         return;
                     default:
