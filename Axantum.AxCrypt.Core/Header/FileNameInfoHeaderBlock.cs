@@ -38,6 +38,12 @@ namespace Axantum.AxCrypt.Core.Header
         {
         }
 
+        public override object Clone()
+        {
+            FileNameInfoHeaderBlock block = new FileNameInfoHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
+            return block;
+        }
+
         public string GetFileName(AesCrypto aesCrypto)
         {
             byte[] rawFileName = aesCrypto.Decrypt(GetDataBlockBytesReference());

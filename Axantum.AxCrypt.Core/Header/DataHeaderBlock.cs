@@ -31,12 +31,23 @@ namespace Axantum.AxCrypt.Core.Header
 {
     public class DataHeaderBlock : HeaderBlock
     {
-        public Int64 DataLength { get; private set; }
-
         public DataHeaderBlock(byte[] dataBlock)
             : base(HeaderBlockType.Data, dataBlock)
         {
-            DataLength = BitConverter.ToInt64(dataBlock, 0);
+        }
+
+        public override object Clone()
+        {
+            DataHeaderBlock block = new DataHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
+            return block;
+        }
+
+        public Int64 DataLength
+        {
+            get
+            {
+                return GetDataBlockBytesReference().GetLittleEndianValue(0, sizeof(Int64));
+            }
         }
     }
 }

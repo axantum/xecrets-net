@@ -38,5 +38,11 @@ namespace Axantum.AxCrypt.Core.Header
             : base(HeaderBlockType.None, dataBlock)
         {
         }
+
+        public override object Clone()
+        {
+            UnrecognizedHeaderBlock block = new UnrecognizedHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
+            return block;
+        }
     }
 }

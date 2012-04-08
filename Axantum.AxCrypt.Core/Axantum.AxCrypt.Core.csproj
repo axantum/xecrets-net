@@ -64,6 +64,7 @@
     <Compile Include="Header\CompressionHeaderBlock.cs" />
     <Compile Include="Header\CompressionInfoHeaderBlock.cs" />
     <Compile Include="Header\DataHeaderBlock.cs" />
+    <Compile Include="Header\DocumentHeaders.cs" />
     <Compile Include="Header\EncryptedHeaderBlock.cs" />
     <Compile Include="Header\EncryptionInfoHeaderBlock.cs" />
     <Compile Include="Header\FileInfoHeaderBlock.cs" />

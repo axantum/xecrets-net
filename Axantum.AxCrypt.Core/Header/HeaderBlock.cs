@@ -30,7 +30,7 @@ using System.IO;
 
 namespace Axantum.AxCrypt.Core.Header
 {
-    public abstract class HeaderBlock
+    public abstract class HeaderBlock : ICloneable
     {
         private byte[] _dataBlock;
 
@@ -85,5 +85,7 @@ namespace Axantum.AxCrypt.Core.Header
             WritePrefix(stream);
             stream.Write(_dataBlock, 0, _dataBlock.Length);
         }
+
+        public abstract object Clone();
     }
 }

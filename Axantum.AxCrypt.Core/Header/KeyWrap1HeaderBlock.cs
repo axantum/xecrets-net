@@ -36,6 +36,12 @@ namespace Axantum.AxCrypt.Core.Header
         {
         }
 
+        public override object Clone()
+        {
+            KeyWrap1HeaderBlock block = new KeyWrap1HeaderBlock((byte[])GetDataBlockBytesReference().Clone());
+            return block;
+        }
+
         public byte[] GetKeyData()
         {
             byte[] keyData = new byte[16 + 8];

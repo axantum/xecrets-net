@@ -33,5 +33,11 @@ namespace Axantum.AxCrypt.Core.Header
             : base(HeaderBlockType.CompressionInfo, dataBlock)
         {
         }
+
+        public override object Clone()
+        {
+            CompressionInfoHeaderBlock block = new CompressionInfoHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
+            return block;
+        }
     }
 }

@@ -41,6 +41,12 @@ namespace Axantum.AxCrypt.Core.Header
         {
         }
 
+        public override object Clone()
+        {
+            PreambleHeaderBlock block = new PreambleHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
+            return block;
+        }
+
         public byte[] GetHmac()
         {
             return (byte[])GetDataBlockBytesReference().Clone();

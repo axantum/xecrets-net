@@ -33,5 +33,11 @@ namespace Axantum.AxCrypt.Core.Header
             : base(HeaderBlockType.KeyWrap2, dataBlock)
         {
         }
+
+        public override object Clone()
+        {
+            KeyWrap2HeaderBlock block = new KeyWrap2HeaderBlock((byte[])GetDataBlockBytesReference().Clone());
+            return block;
+        }
     }
 }

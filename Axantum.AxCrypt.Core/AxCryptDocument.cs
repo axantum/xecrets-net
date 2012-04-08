@@ -49,24 +49,10 @@ namespace Axantum.AxCrypt.Core
         }
 
         private AxCryptReader _axCryptReader;
-        private byte[] _masterKey;
+
         private byte[] _calculatedHmac;
 
-        private IList<HeaderBlock> HeaderBlocks { get; set; }
-
-        private RandomNumberGenerator _rng;
-
-        private byte[] GetRandomBytes(int n)
-        {
-            if (_rng == null)
-            {
-                _rng = RandomNumberGenerator.Create();
-            }
-
-            byte[] data = new byte[n];
-            _rng.GetBytes(data);
-            return data;
-        }
+        public DocumentHeaders DocumentHeaders { get; set; }
 
         /// <summary>
         /// Loads an AxCrypt file from the specified reader. After this, the reader is positioned to
@@ -77,28 +63,14 @@ namespace Axantum.AxCrypt.Core
         public bool Load(AxCryptReader axCryptReader)
         {
             _axCryptReader = axCryptReader;
-            LoadHeaders();
-
-            return GetMasterKey() != null;
-        }
-
-        public void SetReaderSettings(AxCryptReaderSettings settings)
-        {
-            EnsureLoaded();
-
-            KeyWrap1HeaderBlock keyHeaderBlock = FindHeaderBlock<KeyWrap1HeaderBlock>();
-
-            byte[] keyEncryptingKey = settings.GetDerivedPassphrase();
-            long iterations = keyHeaderBlock.Iterations();
-            byte[] masterKey = GetMasterKey();
-            byte[] salt = GetRandomBytes(16);
-            using (KeyWrap keyWrap = new KeyWrap(keyEncryptingKey, salt, iterations, KeyWrapMode.AxCrypt))
+            DocumentHeaders documentHeaders = new DocumentHeaders();
+            bool loadedOk = documentHeaders.Load(_axCryptReader, _axCryptReader.Settings.GetDerivedPassphrase());
+            if (!loadedOk)
             {
-                byte[] wrappedKeyData = keyWrap.Wrap(masterKey);
-                keyHeaderBlock.Set(wrappedKeyData, salt, iterations);
+                return false;
             }
-
-            _axCryptReader.Settings = settings;
+            DocumentHeaders = documentHeaders;
+            return true;
         }
 
         /// <summary>
@@ -106,7 +78,7 @@ namespace Axantum.AxCrypt.Core
         /// and encryption key(s) etc.
         /// </summary>
         /// <param name="outputStream"></param>
-        public void CopyEncryptedTo(Stream cipherStream)
+        public void CopyEncryptedTo(Stream cipherStream, byte[] keyEncryptingKey)
         {
             if (cipherStream == null)
             {
@@ -120,278 +92,31 @@ namespace Axantum.AxCrypt.Core
 
             EnsureLoaded();
 
-            using (HmacStream hmacStreamInput = new HmacStream(new Subkey(GetMasterKey(), HeaderSubkey.Hmac).Get()))
+            using (HmacStream hmacStreamInput = new HmacStream(new Subkey(DocumentHeaders.GetMasterKey(), HeaderSubkey.Hmac).Get()))
             {
-                using (HmacStream hmacStreamOutput = new HmacStream(new Subkey(GetMasterKey(), HeaderSubkey.Hmac).Get(), cipherStream))
+                using (DocumentHeaders outputDocumentHeaders = new DocumentHeaders(DocumentHeaders))
                 {
-                    WriteHeaders(cipherStream, hmacStreamOutput);
-                    using (Stream encryptedDataStream = _axCryptReader.CreateEncryptedDataStream(hmacStreamInput))
+                    outputDocumentHeaders.RewrapMasterKey(keyEncryptingKey);
+                    using (HmacStream hmacStreamOutput = new HmacStream(new Subkey(outputDocumentHeaders.GetMasterKey(), HeaderSubkey.Hmac).Get(), cipherStream))
                     {
-                        encryptedDataStream.CopyTo(hmacStreamOutput);
-
-                        if (!hmacStreamInput.GetHmacResult().IsEquivalentTo(GetHmac()))
+                        outputDocumentHeaders.Write(cipherStream, hmacStreamOutput);
+                        using (Stream encryptedDataStream = _axCryptReader.CreateEncryptedDataStream(hmacStreamInput))
                         {
-                            throw new InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
+                            encryptedDataStream.CopyTo(hmacStreamOutput);
+
+                            if (!hmacStreamInput.GetHmacResult().IsEquivalentTo(DocumentHeaders.GetHmac()))
+                            {
+                                throw new InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
+                            }
                         }
-                    }
 
-                    _calculatedHmac = hmacStreamOutput.GetHmacResult();
-                    SetHmac(_calculatedHmac);
+                        outputDocumentHeaders.SetHmac(hmacStreamOutput.GetHmacResult());
 
-                    // Rewind and rewrite the headers, now with the updated HMAC
-                    WriteHeaders(cipherStream, null);
-                    cipherStream.Position = cipherStream.Length;
-                }
-            }
-        }
-
-        private void WriteHeaders(Stream cipherStream, Stream hmacStream)
-        {
-            cipherStream.Position = 0;
-            AxCrypt1Guid.Write(cipherStream);
-            bool preambleSeen = false;
-            foreach (HeaderBlock headerBlock in HeaderBlocks)
-            {
-                if (preambleSeen && hmacStream != null)
-                {
-                    headerBlock.Write(hmacStream);
-                }
-                else
-                {
-                    headerBlock.Write(cipherStream);
-                }
-                if (headerBlock is PreambleHeaderBlock)
-                {
-                    preambleSeen = true;
-                }
-            }
-        }
-
-        private void LoadHeaders()
-        {
-            _axCryptReader.Read();
-            if (_axCryptReader.CurrentItemType != AxCryptItemType.MagicGuid)
-            {
-                throw new FileFormatException("No magic Guid was found.", ErrorStatus.MagicGuidMissing);
-            }
-            HeaderBlocks = new List<HeaderBlock>();
-            while (_axCryptReader.Read())
-            {
-                switch (_axCryptReader.CurrentItemType)
-                {
-                    case AxCryptItemType.HeaderBlock:
-                        HeaderBlocks.Add(_axCryptReader.CurrentHeaderBlock);
-                        break;
-                    case AxCryptItemType.Data:
-                        HeaderBlocks.Add(_axCryptReader.CurrentHeaderBlock);
-                        EnsureFileFormatVersion();
-                        return;
-                    default:
-                        throw new InternalErrorException("The reader returned an AxCryptItemType it should not be possible for it to return.");
-                }
-            }
-            throw new FileFormatException("Premature end of stream.", ErrorStatus.EndOfStream);
-        }
-
-        private void EnsureFileFormatVersion()
-        {
-            VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();
-            if (versionHeaderBlock.FileVersionMajor > 3)
-            {
-                throw new FileFormatException("Too new file format.", ErrorStatus.TooNewFileFormatVersion);
-            }
-        }
-
-        private T FindHeaderBlock<T>() where T : class
-        {
-            foreach (HeaderBlock headerBlock in HeaderBlocks)
-            {
-                T typedHeaderHeaderBlock = headerBlock as T;
-                if (typedHeaderHeaderBlock != null)
-                {
-                    return typedHeaderHeaderBlock;
-                }
-            }
-            return null;
-        }
-
-        public byte[] GetMasterKey()
-        {
-            if (_masterKey == null)
-            {
-                KeyWrap1HeaderBlock keyHeaderBlock = FindHeaderBlock<KeyWrap1HeaderBlock>();
-                byte[] wrappedKeyData = keyHeaderBlock.GetKeyData();
-                byte[] salt = keyHeaderBlock.GetSalt();
-                byte[] keyEncryptingKey = _axCryptReader.Settings.GetDerivedPassphrase();
-                VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();
-                if (versionHeaderBlock.FileVersionMajor <= 1)
-                {
-                    // Due to a bug in 1.1 and earlier we only used a truncated part of the key and salt :-(
-                    // Compensate for this here. Users should be warned if FileVersionMajor <= 1 .
-                    byte[] badKey = new byte[keyEncryptingKey.Length];
-                    Array.Copy(keyEncryptingKey, 0, badKey, 0, 4);
-                    keyEncryptingKey = badKey;
-
-                    byte[] badSalt = new byte[salt.Length];
-                    Array.Copy(salt, 0, badSalt, 0, 4);
-                    salt = badSalt;
-                }
-
-                long iterations = keyHeaderBlock.Iterations();
-                byte[] unwrappedKeyData = null;
-                using (KeyWrap keyWrap = new KeyWrap(keyEncryptingKey, salt, iterations, KeyWrapMode.AxCrypt))
-                {
-                    unwrappedKeyData = keyWrap.Unwrap(wrappedKeyData);
-                    if (unwrappedKeyData.Length == 0)
-                    {
-                        return null;
+                        // Rewind and rewrite the headers, now with the updated HMAC
+                        outputDocumentHeaders.Write(cipherStream, null);
+                        cipherStream.Position = cipherStream.Length;
                     }
                 }
-                _masterKey = unwrappedKeyData;
-            }
-            return _masterKey;
-        }
-
-        public byte[] GetHmac()
-        {
-            PreambleHeaderBlock headerBlock = FindHeaderBlock<PreambleHeaderBlock>();
-
-            return headerBlock.GetHmac();
-        }
-
-        public void SetHmac(byte[] hmac)
-        {
-            if (hmac == null)
-            {
-                throw new ArgumentNullException("hmac");
-            }
-            PreambleHeaderBlock headerBlock = FindHeaderBlock<PreambleHeaderBlock>();
-            headerBlock.SetHmac(hmac);
-        }
-
-        public string AnsiFileName
-        {
-            get
-            {
-                FileNameInfoHeaderBlock headerBlock = FindHeaderBlock<FileNameInfoHeaderBlock>();
-
-                string fileName = headerBlock.GetFileName(HeaderCrypto);
-                return fileName;
-            }
-        }
-
-        public string UnicodeFileName
-        {
-            get
-            {
-                UnicodeFileNameInfoHeaderBlock headerBlock = FindHeaderBlock<UnicodeFileNameInfoHeaderBlock>();
-                if (headerBlock == null)
-                {
-                    // Unicode file name was added in 1.6.3.3 - if we can't find it signal it's absence with an empty string.
-                    return String.Empty;
-                }
-
-                string fileName = headerBlock.GetFileName(HeaderCrypto);
-                return fileName;
-            }
-        }
-
-        public string FileName
-        {
-            get
-            {
-                UnicodeFileNameInfoHeaderBlock unicodeHeaderBlock = FindHeaderBlock<UnicodeFileNameInfoHeaderBlock>();
-                if (unicodeHeaderBlock != null)
-                {
-                    return unicodeHeaderBlock.GetFileName(HeaderCrypto);
-                }
-                FileNameInfoHeaderBlock ansiHeaderBlock = FindHeaderBlock<FileNameInfoHeaderBlock>();
-                return ansiHeaderBlock.GetFileName(HeaderCrypto);
-            }
-        }
-
-        public bool IsCompressed
-        {
-            get
-            {
-                CompressionHeaderBlock headerBlock = FindHeaderBlock<CompressionHeaderBlock>();
-                if (headerBlock == null)
-                {
-                    // Conditional compression was added in 1.2.2, before then it was always compressed.
-                    return true;
-                }
-
-                return headerBlock.IsCompressed(HeaderCrypto);
-            }
-        }
-
-        public DateTime CreationTimeUtc
-        {
-            get
-            {
-                FileInfoHeaderBlock headerBlock = FindHeaderBlock<FileInfoHeaderBlock>();
-
-                return headerBlock.GetCreationTimeUtc(HeaderCrypto);
-            }
-        }
-
-        public DateTime LastAccessTimeUtc
-        {
-            get
-            {
-                FileInfoHeaderBlock headerBlock = FindHeaderBlock<FileInfoHeaderBlock>();
-
-                return headerBlock.GetLastAccessTimeUtc(HeaderCrypto);
-            }
-        }
-
-        public DateTime LastWriteTimeUtc
-        {
-            get
-            {
-                FileInfoHeaderBlock headerBlock = FindHeaderBlock<FileInfoHeaderBlock>();
-
-                return headerBlock.GetLastWriteTimeUtc(HeaderCrypto);
-            }
-        }
-
-        /// <summary>
-        /// The Initial Vector used for CBC encryption of the data
-        /// </summary>
-        /// <returns>The Initial Vector</returns>
-        public byte[] GetIV()
-        {
-            EncryptionInfoHeaderBlock headerBlock = FindHeaderBlock<EncryptionInfoHeaderBlock>();
-
-            byte[] iv = headerBlock.GetIV(HeaderCrypto);
-            return iv;
-        }
-
-        /// <summary>
-        /// The length in bytes of the plain text. This may still require decompression (inflate).
-        /// </summary>
-        public long PlaintextLength
-        {
-            get
-            {
-                EncryptionInfoHeaderBlock headerBlock = FindHeaderBlock<EncryptionInfoHeaderBlock>();
-
-                return headerBlock.GetPlaintextLength(HeaderCrypto);
-            }
-        }
-
-        private AesCrypto _headerCrypto;
-
-        private AesCrypto HeaderCrypto
-        {
-            get
-            {
-                if (_headerCrypto == null)
-                {
-                    Subkey headersSubkey = new Subkey(GetMasterKey(), HeaderSubkey.Headers);
-                    _headerCrypto = new AesCrypto(headersSubkey.Get());
-                }
-                return _headerCrypto;
             }
         }
 
@@ -403,8 +128,8 @@ namespace Axantum.AxCrypt.Core
             {
                 if (_dataCrypto == null)
                 {
-                    Subkey dataSubkey = new Subkey(GetMasterKey(), HeaderSubkey.Data);
-                    _dataCrypto = new AesCrypto(dataSubkey.Get(), GetIV(), CipherMode.CBC, PaddingMode.PKCS7);
+                    Subkey dataSubkey = new Subkey(DocumentHeaders.GetMasterKey(), HeaderSubkey.Data);
+                    _dataCrypto = new AesCrypto(dataSubkey.Get(), DocumentHeaders.GetIV(), CipherMode.CBC, PaddingMode.PKCS7);
                 }
                 return _dataCrypto;
             }
@@ -436,13 +161,13 @@ namespace Axantum.AxCrypt.Core
         {
             EnsureLoaded();
 
-            using (HmacStream hmacStream = new HmacStream(new Subkey(GetMasterKey(), HeaderSubkey.Hmac).Get()))
+            using (HmacStream hmacStream = new HmacStream(new Subkey(DocumentHeaders.GetMasterKey(), HeaderSubkey.Hmac).Get()))
             {
                 using (Stream encryptedDataStream = _axCryptReader.CreateEncryptedDataStream(hmacStream))
                 {
                     using (ICryptoTransform decryptor = DataCrypto.CreateDecryptingTransform())
                     {
-                        if (IsCompressed)
+                        if (DocumentHeaders.IsCompressed)
                         {
                             using (CryptoStream cryptoStream = new CryptoStream(encryptedDataStream, decryptor, CryptoStreamMode.Read))
                             {
@@ -463,7 +188,7 @@ namespace Axantum.AxCrypt.Core
                 }
                 _calculatedHmac = hmacStream.GetHmacResult();
             }
-            if (!_calculatedHmac.IsEquivalentTo(GetHmac()))
+            if (!_calculatedHmac.IsEquivalentTo(DocumentHeaders.GetHmac()))
             {
                 throw new InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
             }
@@ -496,15 +221,16 @@ namespace Axantum.AxCrypt.Core
 
             if (disposing)
             {
-                if (_headerCrypto != null)
-                {
-                    _headerCrypto.Dispose();
-                    _headerCrypto = null;
-                }
                 if (_dataCrypto != null)
                 {
                     _dataCrypto.Dispose();
                     _dataCrypto = null;
+                }
+
+                if (DocumentHeaders != null)
+                {
+                    DocumentHeaders.Dispose();
+                    DocumentHeaders = null;
                 }
             }
 

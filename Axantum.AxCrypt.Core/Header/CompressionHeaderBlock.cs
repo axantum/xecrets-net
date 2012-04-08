@@ -36,6 +36,12 @@ namespace Axantum.AxCrypt.Core.Header
         {
         }
 
+        public override object Clone()
+        {
+            CompressionHeaderBlock block = new CompressionHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
+            return block;
+        }
+
         public bool IsCompressed(AesCrypto aesCrypto)
         {
             byte[] rawBlock = aesCrypto.Decrypt(GetDataBlockBytesReference());

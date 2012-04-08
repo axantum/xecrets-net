@@ -36,6 +36,12 @@ namespace Axantum.AxCrypt.Core.Header
         {
         }
 
+        public override object Clone()
+        {
+            EncryptionInfoHeaderBlock block = new EncryptionInfoHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
+            return block;
+        }
+
         public long GetPlaintextLength(AesCrypto aesCrypto)
         {
             byte[] rawData = aesCrypto.Decrypt(GetDataBlockBytesReference());

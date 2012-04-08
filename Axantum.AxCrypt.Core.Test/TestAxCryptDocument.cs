@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Core.Test
                     {
                         bool keyIsOk = document.Load(axCryptReader);
                         Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                        string fileName = document.AnsiFileName;
+                        string fileName = document.DocumentHeaders.AnsiFileName;
                         Assert.That(fileName, Is.EqualTo("HelloWorld-Key-a.txt"), "Wrong file name");
                     }
                 }
@@ -73,7 +73,7 @@ namespace Axantum.AxCrypt.Core.Test
                     {
                         bool keyIsOk = document.Load(axCryptReader);
                         Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                        string fileName = document.UnicodeFileName;
+                        string fileName = document.DocumentHeaders.UnicodeFileName;
                         Assert.That(fileName, Is.EqualTo("HelloWorld-Key-a.txt"), "Wrong file name");
                     }
                 }
@@ -92,7 +92,7 @@ namespace Axantum.AxCrypt.Core.Test
                     {
                         bool keyIsOk = document.Load(axCryptReader);
                         Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                        string fileName = document.FileName;
+                        string fileName = document.DocumentHeaders.FileName;
                         Assert.That(fileName, Is.EqualTo("HelloWorld-Key-a.txt"), "Wrong file name");
                     }
                 }
@@ -112,7 +112,7 @@ namespace Axantum.AxCrypt.Core.Test
                     {
                         bool keyIsOk = document.Load(axCryptReader);
                         Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                        byte[] hmac = document.GetHmac();
+                        byte[] hmac = document.DocumentHeaders.GetHmac();
                         Assert.That(hmac, Is.EqualTo(expectedHmac), "Wrong HMAC");
                     }
                 }
@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Core.Test
                     {
                         bool keyIsOk = document.Load(axCryptReader);
                         Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                        bool isCompressed = document.IsCompressed;
+                        bool isCompressed = document.DocumentHeaders.IsCompressed;
                         Assert.That(isCompressed, Is.False, "This file should not be compressed.");
                     }
                 }
@@ -170,7 +170,7 @@ namespace Axantum.AxCrypt.Core.Test
                     {
                         bool keyIsOk = document.Load(axCryptReader);
                         Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                        bool isCompressed = document.IsCompressed;
+                        bool isCompressed = document.DocumentHeaders.IsCompressed;
                         Assert.That(isCompressed, Is.True, "This file should be compressed.");
                     }
                 }
@@ -193,7 +193,7 @@ namespace Axantum.AxCrypt.Core.Test
                         {
                             document.DecryptTo(plaintextStream);
                             Assert.That(Encoding.ASCII.GetString(plaintextStream.GetBuffer(), 0, (int)plaintextStream.Length), Is.EqualTo("HelloWorld"), "Unexpected result of decryption.");
-                            Assert.That(document.PlaintextLength, Is.EqualTo(10), "'HelloWorld' should be 10 bytes uncompressed plaintext.");
+                            Assert.That(document.DocumentHeaders.PlaintextLength, Is.EqualTo(10), "'HelloWorld' should be 10 bytes uncompressed plaintext.");
                         }
                     }
                 }
@@ -212,14 +212,14 @@ namespace Axantum.AxCrypt.Core.Test
                     {
                         bool keyIsOk = document.Load(axCryptReader);
                         Assert.That(keyIsOk, Is.True, "A correct passphrase was provided, but it was not accepted.");
-                        Assert.That(document.IsCompressed, Is.True, "The file is compressed.");
-                        Assert.That(document.UnicodeFileName, Is.EqualTo(String.Empty), "This is a legacy file and it should not have the Unicode file header.");
-                        Assert.That(document.AnsiFileName, Is.EqualTo("readme.html"), "The file name should be 'readme.html'.");
-                        Assert.That(document.FileName, Is.EqualTo("readme.html"), "The file name should be 'readme.html'.");
+                        Assert.That(document.DocumentHeaders.IsCompressed, Is.True, "The file is compressed.");
+                        Assert.That(document.DocumentHeaders.UnicodeFileName, Is.EqualTo(String.Empty), "This is a legacy file and it should not have the Unicode file header.");
+                        Assert.That(document.DocumentHeaders.AnsiFileName, Is.EqualTo("readme.html"), "The file name should be 'readme.html'.");
+                        Assert.That(document.DocumentHeaders.FileName, Is.EqualTo("readme.html"), "The file name should be 'readme.html'.");
                         using (MemoryStream plaintextStream = new MemoryStream())
                         {
                             document.DecryptTo(plaintextStream);
-                            Assert.That(document.PlaintextLength, Is.EqualTo(3736), "The compressed content should be recorded as 3736 bytes in the headers.");
+                            Assert.That(document.DocumentHeaders.PlaintextLength, Is.EqualTo(3736), "The compressed content should be recorded as 3736 bytes in the headers.");
                             Assert.That(plaintextStream.Length, Is.EqualTo(9528), "The file should be 9528 bytes uncompressed plaintext in actual fact.");
                         }
                     }
@@ -280,7 +280,7 @@ namespace Axantum.AxCrypt.Core.Test
                             Assert.That(text, Is.StringStarting("The Project Gutenberg EBook of David Copperfield, by Charles Dickens"), "Unexpected start of David Copperfield.");
                             Assert.That(text, Is.StringEnding("subscribe to our email newsletter to hear about new eBooks." + (Char)13 + (Char)10), "Unexpected end of David Copperfield.");
                             Assert.That(text.Length, Is.EqualTo(1992490), "Wrong length of full text of David Copperfield.");
-                            Assert.That(document.PlaintextLength, Is.EqualTo(795855), "Wrong expected length of compressed text of David Copperfield.");
+                            Assert.That(document.DocumentHeaders.PlaintextLength, Is.EqualTo(795855), "Wrong expected length of compressed text of David Copperfield.");
                         }
                     }
                 }
@@ -301,7 +301,7 @@ namespace Axantum.AxCrypt.Core.Test
                         Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                         document.DecryptTo(Stream.Null);
                         byte[] calculatedHmac = document.GetCalculatedHmac();
-                        byte[] hmac = document.GetHmac();
+                        byte[] hmac = document.DocumentHeaders.GetHmac();
 
                         Assert.That(calculatedHmac, Is.EqualTo(hmac), "Calculated HMAC differs from HMAC in headers.");
                     }
@@ -357,11 +357,11 @@ namespace Axantum.AxCrypt.Core.Test
                         bool keyIsOk = document.Load(axCryptReader);
                         Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
 
-                        string creationTime = document.CreationTimeUtc.ToString(CultureInfo.InvariantCulture);
+                        string creationTime = document.DocumentHeaders.CreationTimeUtc.ToString(CultureInfo.InvariantCulture);
                         Assert.That(creationTime, Is.EqualTo("01/13/2012 17:17:18"), "Checking creation time.");
-                        string lastAccessTime = document.LastAccessTimeUtc.ToString(CultureInfo.InvariantCulture);
+                        string lastAccessTime = document.DocumentHeaders.LastAccessTimeUtc.ToString(CultureInfo.InvariantCulture);
                         Assert.That(lastAccessTime, Is.EqualTo("01/13/2012 17:17:18"), "Checking last access time.");
-                        string lastWriteTime = document.LastWriteTimeUtc.ToString(CultureInfo.InvariantCulture);
+                        string lastWriteTime = document.DocumentHeaders.LastWriteTimeUtc.ToString(CultureInfo.InvariantCulture);
                         Assert.That(lastWriteTime, Is.EqualTo("01/13/2012 17:17:45"), "Checking last modify time.");
                     }
                 }
@@ -382,10 +382,9 @@ namespace Axantum.AxCrypt.Core.Test
                         Assert.That(keyIsOk, Is.True, "The passphrase provided is correct and should work!");
 
                         AxCryptReaderSettings newSettings = new AxCryptReaderSettings("b");
-                        document.SetReaderSettings(newSettings);
                         using (Stream changedStream = new MemoryStream())
                         {
-                            document.CopyEncryptedTo(changedStream);
+                            document.CopyEncryptedTo(changedStream, newSettings.GetDerivedPassphrase());
                             changedStream.Position = 0;
                             using (AxCryptDocument changedDocument = new AxCryptDocument())
                             {
@@ -398,7 +397,7 @@ namespace Axantum.AxCrypt.Core.Test
                                     {
                                         changedDocument.DecryptTo(plaintextStream);
                                         Assert.That(Encoding.ASCII.GetString(plaintextStream.GetBuffer(), 0, (int)plaintextStream.Length), Is.EqualTo("HelloWorld"), "Unexpected result of decryption.");
-                                        Assert.That(changedDocument.PlaintextLength, Is.EqualTo(10), "'HelloWorld' should be 10 bytes uncompressed plaintext.");
+                                        Assert.That(changedDocument.DocumentHeaders.PlaintextLength, Is.EqualTo(10), "'HelloWorld' should be 10 bytes uncompressed plaintext.");
                                     }
                                 }
                             }

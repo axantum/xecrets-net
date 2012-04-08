@@ -45,6 +45,12 @@ namespace Axantum.AxCrypt.Core.Header
             IdTag = idTag;
         }
 
+        public override object Clone()
+        {
+            IdTagHeaderBlock block = new IdTagHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
+            return block;
+        }
+
         private static Encoding GetEncoding()
         {
             // The default fall back is "?", and we use the parameterless constructor to avoid Mono Migration Assistant (MoMA) warnings.

@@ -43,6 +43,12 @@ namespace Axantum.AxCrypt.Core.Header
         {
         }
 
+        public override object Clone()
+        {
+            VersionHeaderBlock block = new VersionHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
+            return block;
+        }
+
         /// <summary>
         /// FileMajor - Older versions cannot not read the format.
         /// </summary>
