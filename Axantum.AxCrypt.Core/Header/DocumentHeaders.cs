@@ -128,7 +128,7 @@ namespace Axantum.AxCrypt.Core.Header
         {
             if (_masterKey == null)
             {
-                return _masterKey;
+                return null;
             }
             return (byte[])_masterKey.Clone();
         }
@@ -144,6 +144,24 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 byte[] wrappedKeyData = keyWrap.Wrap(masterKey);
                 keyHeaderBlock.Set(wrappedKeyData, salt, iterations);
+            }
+        }
+
+        Subkey _hmacSubkey;
+
+        public Subkey HmacSubkey
+        {
+            get
+            {
+                if (_hmacSubkey == null)
+                {
+                    if (_masterKey == null)
+                    {
+                        return null;
+                    }
+                    _hmacSubkey = new Subkey(_masterKey, HeaderSubkey.Hmac);
+                }
+                return _hmacSubkey;
             }
         }
 

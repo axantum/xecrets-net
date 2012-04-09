@@ -78,7 +78,7 @@ namespace Axantum.AxCrypt.Core
         /// and encryption key(s) etc.
         /// </summary>
         /// <param name="outputStream"></param>
-        public void CopyEncryptedTo(Stream cipherStream, byte[] keyEncryptingKey)
+        public void CopyEncryptedTo(DocumentHeaders outputDocumentHeaders, Stream cipherStream)
         {
             if (cipherStream == null)
             {
@@ -92,30 +92,26 @@ namespace Axantum.AxCrypt.Core
 
             EnsureLoaded();
 
-            using (HmacStream hmacStreamInput = new HmacStream(new Subkey(DocumentHeaders.GetMasterKey(), HeaderSubkey.Hmac).Get()))
+            using (HmacStream hmacStreamInput = new HmacStream(DocumentHeaders.HmacSubkey.Get()))
             {
-                using (DocumentHeaders outputDocumentHeaders = new DocumentHeaders(DocumentHeaders))
+                using (HmacStream hmacStreamOutput = new HmacStream(outputDocumentHeaders.HmacSubkey.Get(), cipherStream))
                 {
-                    outputDocumentHeaders.RewrapMasterKey(keyEncryptingKey);
-                    using (HmacStream hmacStreamOutput = new HmacStream(new Subkey(outputDocumentHeaders.GetMasterKey(), HeaderSubkey.Hmac).Get(), cipherStream))
+                    outputDocumentHeaders.Write(cipherStream, hmacStreamOutput);
+                    using (Stream encryptedDataStream = _axCryptReader.CreateEncryptedDataStream(hmacStreamInput))
                     {
-                        outputDocumentHeaders.Write(cipherStream, hmacStreamOutput);
-                        using (Stream encryptedDataStream = _axCryptReader.CreateEncryptedDataStream(hmacStreamInput))
+                        encryptedDataStream.CopyTo(hmacStreamOutput);
+
+                        if (!hmacStreamInput.GetHmacResult().IsEquivalentTo(DocumentHeaders.GetHmac()))
                         {
-                            encryptedDataStream.CopyTo(hmacStreamOutput);
-
-                            if (!hmacStreamInput.GetHmacResult().IsEquivalentTo(DocumentHeaders.GetHmac()))
-                            {
-                                throw new InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
-                            }
+                            throw new InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
                         }
-
-                        outputDocumentHeaders.SetHmac(hmacStreamOutput.GetHmacResult());
-
-                        // Rewind and rewrite the headers, now with the updated HMAC
-                        outputDocumentHeaders.Write(cipherStream, null);
-                        cipherStream.Position = cipherStream.Length;
                     }
+
+                    outputDocumentHeaders.SetHmac(hmacStreamOutput.GetHmacResult());
+
+                    // Rewind and rewrite the headers, now with the updated HMAC
+                    outputDocumentHeaders.Write(cipherStream, null);
+                    cipherStream.Position = cipherStream.Length;
                 }
             }
         }

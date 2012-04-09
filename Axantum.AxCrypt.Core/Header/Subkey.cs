@@ -32,6 +32,9 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Header
 {
+    /// <summary>
+    /// Generates a sub key from a master key. This class is immutable.
+    /// </summary>
     public class Subkey
     {
         private byte[] _subKey;
