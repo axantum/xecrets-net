@@ -88,5 +88,31 @@ namespace Axantum.AxCrypt.Core.Header
 
             return iterations;
         }
+
+        public byte[] UnwrapMasterKey(byte[] keyEncryptingKey, byte fileVersionMajor)
+        {
+            byte[] wrappedKeyData = GetKeyData();
+            byte[] salt = GetSalt();
+            if (fileVersionMajor <= 1)
+            {
+                // Due to a bug in 1.1 and earlier we only used a truncated part of the key and salt :-(
+                // Compensate for this here. Users should be warned if FileVersionMajor <= 1 .
+                byte[] badKey = new byte[keyEncryptingKey.Length];
+                Array.Copy(keyEncryptingKey, 0, badKey, 0, 4);
+                keyEncryptingKey = badKey;
+
+                byte[] badSalt = new byte[salt.Length];
+                Array.Copy(salt, 0, badSalt, 0, 4);
+                salt = badSalt;
+            }
+
+            long iterations = Iterations();
+            byte[] unwrappedKeyData;
+            using (KeyWrap keyWrap = new KeyWrap(keyEncryptingKey, salt, iterations, KeyWrapMode.AxCrypt))
+            {
+                unwrappedKeyData = keyWrap.Unwrap(wrappedKeyData);
+            }
+            return unwrappedKeyData;
+        }
     }
 }

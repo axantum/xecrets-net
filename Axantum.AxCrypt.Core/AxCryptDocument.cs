@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Core
         /// <returns>True if the key was valid, false if it was wrong.</returns>
         public bool Load(AxCryptReader axCryptReader, AxCryptReaderSettings settings)
         {
-            DocumentHeaders documentHeaders = new DocumentHeaders();
+            DocumentHeaders documentHeaders = new DocumentHeaders(settings.GetDerivedPassphrase());
             bool loadedOk = documentHeaders.Load(axCryptReader, settings.GetDerivedPassphrase());
             if (!loadedOk)
             {

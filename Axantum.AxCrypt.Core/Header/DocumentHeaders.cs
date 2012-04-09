@@ -16,8 +16,10 @@ namespace Axantum.AxCrypt.Core.Header
 
         private RandomNumberGenerator _rng;
 
-        public DocumentHeaders()
+        public DocumentHeaders(byte[] keyEncryptingKey)
         {
+            HeaderBlocks = new List<HeaderBlock>();
+            HeaderBlocks.Add(new PreambleHeaderBlock());
         }
 
         public DocumentHeaders(DocumentHeaders documentHeaders)
@@ -95,31 +97,11 @@ namespace Axantum.AxCrypt.Core.Header
         private void UnwrapMasterKey(byte[] keyEncryptingKey)
         {
             KeyWrap1HeaderBlock keyHeaderBlock = FindHeaderBlock<KeyWrap1HeaderBlock>();
-            byte[] wrappedKeyData = keyHeaderBlock.GetKeyData();
-            byte[] salt = keyHeaderBlock.GetSalt();
             VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();
-            if (versionHeaderBlock.FileVersionMajor <= 1)
+            byte[] unwrappedKeyData = keyHeaderBlock.UnwrapMasterKey(keyEncryptingKey, versionHeaderBlock.FileVersionMajor);
+            if (unwrappedKeyData.Length == 0)
             {
-                // Due to a bug in 1.1 and earlier we only used a truncated part of the key and salt :-(
-                // Compensate for this here. Users should be warned if FileVersionMajor <= 1 .
-                byte[] badKey = new byte[keyEncryptingKey.Length];
-                Array.Copy(keyEncryptingKey, 0, badKey, 0, 4);
-                keyEncryptingKey = badKey;
-
-                byte[] badSalt = new byte[salt.Length];
-                Array.Copy(salt, 0, badSalt, 0, 4);
-                salt = badSalt;
-            }
-
-            long iterations = keyHeaderBlock.Iterations();
-            byte[] unwrappedKeyData = null;
-            using (KeyWrap keyWrap = new KeyWrap(keyEncryptingKey, salt, iterations, KeyWrapMode.AxCrypt))
-            {
-                unwrappedKeyData = keyWrap.Unwrap(wrappedKeyData);
-                if (unwrappedKeyData.Length == 0)
-                {
-                    return;
-                }
+                return;
             }
             _masterKey = unwrappedKeyData;
         }
