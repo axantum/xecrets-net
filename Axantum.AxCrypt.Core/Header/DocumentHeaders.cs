@@ -165,6 +165,24 @@ namespace Axantum.AxCrypt.Core.Header
             }
         }
 
+        Subkey _dataSubkey;
+
+        public Subkey DataSubkey
+        {
+            get
+            {
+                if (_dataSubkey == null)
+                {
+                    if (_masterKey == null)
+                    {
+                        return null;
+                    }
+                    _dataSubkey = new Subkey(_masterKey, HeaderSubkey.Data);
+                }
+                return _dataSubkey;
+            }
+        }
+
         public byte[] GetHmac()
         {
             PreambleHeaderBlock headerBlock = FindHeaderBlock<PreambleHeaderBlock>();

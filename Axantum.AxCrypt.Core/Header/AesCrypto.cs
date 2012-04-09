@@ -95,6 +95,11 @@ namespace Axantum.AxCrypt.Core.Header
             return _aes.CreateDecryptor();
         }
 
+        public ICryptoTransform CreateEncryptingTransform()
+        {
+            return _aes.CreateEncryptor();
+        }
+
         public void Dispose()
         {
             Dispose(true);

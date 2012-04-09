@@ -42,22 +42,12 @@ namespace Axantum.AxCrypt.Core.Reader
 
         private LookAheadStream _inputStream;
 
-        public AxCryptReaderSettings Settings { get; set; }
-
         private bool _disposed;
 
         public static AxCryptReader Create(Stream inputStream)
         {
-            AxCryptReader reader = Create(inputStream, new AxCryptReaderSettings());
-
-            return reader;
-        }
-
-        public static AxCryptReader Create(Stream inputStream, AxCryptReaderSettings settings)
-        {
             AxCryptReader reader = new AxCryptStreamReader(inputStream);
             reader.CurrentItemType = AxCryptItemType.None;
-            reader.Settings = settings;
 
             return reader;
         }
@@ -69,21 +59,36 @@ namespace Axantum.AxCrypt.Core.Reader
 
         public HeaderBlock CurrentHeaderBlock { get; private set; }
 
-        public Stream CreateEncryptedDataStream(Stream hmacStream)
+        public Stream HmacStream { get; set; }
+
+        private Stream _encryptedDataStream;
+
+        public Stream EncryptedDataStream
         {
-            if (CurrentItemType != AxCryptItemType.Data)
+            get
             {
-                throw new InvalidOperationException("Called out of sequence, expecting Data.");
+                if (_encryptedDataStream != null)
+                {
+                    return _encryptedDataStream;
+                }
+
+                if (CurrentItemType != AxCryptItemType.Data)
+                {
+                    return null;
+                }
+
+                CurrentItemType = AxCryptItemType.EndOfStream;
+                if (HmacStream != null)
+                {
+                    _hmacBufferStream.Position = 0;
+                    _hmacBufferStream.CopyTo(HmacStream);
+                }
+                _hmacBufferStream.Dispose();
+                _hmacBufferStream = null;
+
+                _encryptedDataStream = new AxCryptDataStream(_inputStream, HmacStream, _dataBytesLeftToRead);
+                return _encryptedDataStream;
             }
-            CurrentItemType = AxCryptItemType.EndOfStream;
-            if (hmacStream != null)
-            {
-                _hmacBufferStream.Position = 0;
-                _hmacBufferStream.CopyTo(hmacStream);
-            }
-            _hmacBufferStream.Dispose();
-            _hmacBufferStream = null;
-            return new AxCryptDataStream(_inputStream, hmacStream, _dataBytesLeftToRead);
         }
 
         /// <summary>
@@ -285,6 +290,11 @@ namespace Axantum.AxCrypt.Core.Reader
                 {
                     _hmacBufferStream.Dispose();
                     _hmacBufferStream = null;
+                }
+                if (_encryptedDataStream != null)
+                {
+                    _encryptedDataStream.Dispose();
+                    _encryptedDataStream = null;
                 }
                 _disposed = true;
             }

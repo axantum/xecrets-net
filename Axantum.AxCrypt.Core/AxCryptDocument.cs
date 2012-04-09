@@ -48,10 +48,6 @@ namespace Axantum.AxCrypt.Core
         {
         }
 
-        private AxCryptReader _axCryptReader;
-
-        private byte[] _calculatedHmac;
-
         public DocumentHeaders DocumentHeaders { get; set; }
 
         /// <summary>
@@ -60,11 +56,10 @@ namespace Axantum.AxCrypt.Core
         /// </summary>
         /// <param name="axCryptReader">The reader.</param>
         /// <returns>True if the key was valid, false if it was wrong.</returns>
-        public bool Load(AxCryptReader axCryptReader)
+        public bool Load(AxCryptReader axCryptReader, AxCryptReaderSettings settings)
         {
-            _axCryptReader = axCryptReader;
             DocumentHeaders documentHeaders = new DocumentHeaders();
-            bool loadedOk = documentHeaders.Load(_axCryptReader, _axCryptReader.Settings.GetDerivedPassphrase());
+            bool loadedOk = documentHeaders.Load(axCryptReader, settings.GetDerivedPassphrase());
             if (!loadedOk)
             {
                 return false;
@@ -73,31 +68,68 @@ namespace Axantum.AxCrypt.Core
             return true;
         }
 
+        public void EncryptTo(DocumentHeaders outputDocumentHeaders, Stream inputPlainStream, Stream outputCipherStream)
+        {
+            if (outputDocumentHeaders == null)
+            {
+                throw new ArgumentNullException("outputDocumentHeaders");
+            }
+            if (inputPlainStream == null)
+            {
+                throw new ArgumentNullException("plainStream");
+            }
+            if (outputCipherStream == null)
+            {
+                throw new ArgumentNullException("cipherStream");
+            }
+            if (!outputCipherStream.CanSeek)
+            {
+                throw new ArgumentException("The output stream must support seek in order to back-track and write the HMAC.");
+            }
+            using (HmacStream outputHmacStream = new HmacStream(outputDocumentHeaders.HmacSubkey.Get(), outputCipherStream))
+            {
+                outputDocumentHeaders.Write(outputCipherStream, outputHmacStream);
+                using (ICryptoTransform encryptor = DataCrypto.CreateEncryptingTransform())
+                {
+                    using (Stream deflatedPlainStream = new ZOutputStream(inputPlainStream))
+                    {
+                        using (Stream deflatedCipherStream = new CryptoStream(deflatedPlainStream, encryptor, CryptoStreamMode.Write))
+                        {
+                            deflatedCipherStream.CopyTo(outputCipherStream);
+                        }
+                    }
+                }
+                outputDocumentHeaders.SetHmac(outputHmacStream.GetHmacResult());
+
+                // Rewind and rewrite the headers, now with the updated HMAC
+                outputDocumentHeaders.Write(outputCipherStream, null);
+                outputCipherStream.Position = outputCipherStream.Length;
+            }
+        }
+
         /// <summary>
         /// Write a copy of the current encrypted stream. Used to change meta-data
         /// and encryption key(s) etc.
         /// </summary>
         /// <param name="outputStream"></param>
-        public void CopyEncryptedTo(DocumentHeaders outputDocumentHeaders, Stream cipherStream)
+        public void CopyEncryptedTo(AxCryptReader axCryptReader, DocumentHeaders outputDocumentHeaders, Stream cipherStream)
         {
             if (cipherStream == null)
             {
                 throw new ArgumentNullException("cipherStream");
             }
-
             if (!cipherStream.CanSeek)
             {
                 throw new ArgumentException("The output stream must support seek in order to back-track and write the HMAC.");
             }
-
-            EnsureLoaded();
 
             using (HmacStream hmacStreamInput = new HmacStream(DocumentHeaders.HmacSubkey.Get()))
             {
                 using (HmacStream hmacStreamOutput = new HmacStream(outputDocumentHeaders.HmacSubkey.Get(), cipherStream))
                 {
                     outputDocumentHeaders.Write(cipherStream, hmacStreamOutput);
-                    using (Stream encryptedDataStream = _axCryptReader.CreateEncryptedDataStream(hmacStreamInput))
+                    axCryptReader.HmacStream = hmacStreamInput;
+                    using (Stream encryptedDataStream = axCryptReader.EncryptedDataStream)
                     {
                         encryptedDataStream.CopyTo(hmacStreamOutput);
 
@@ -124,80 +156,57 @@ namespace Axantum.AxCrypt.Core
             {
                 if (_dataCrypto == null)
                 {
-                    Subkey dataSubkey = new Subkey(DocumentHeaders.GetMasterKey(), HeaderSubkey.Data);
-                    _dataCrypto = new AesCrypto(dataSubkey.Get(), DocumentHeaders.GetIV(), CipherMode.CBC, PaddingMode.PKCS7);
+                    _dataCrypto = new AesCrypto(DocumentHeaders.DataSubkey.Get(), DocumentHeaders.GetIV(), CipherMode.CBC, PaddingMode.PKCS7);
                 }
                 return _dataCrypto;
-            }
-        }
-
-        private void EnsureLoaded()
-        {
-            if (_axCryptReader == null)
-            {
-                throw new InvalidOperationException("Load() must have been called.");
-            }
-
-            if (_axCryptReader.CurrentItemType == AxCryptItemType.EndOfStream)
-            {
-                throw new InvalidOperationException("This method can only be called once.");
-            }
-
-            if (_axCryptReader.CurrentItemType != AxCryptItemType.Data)
-            {
-                throw new InvalidOperationException("Load() has been called, but appears to have failed.");
             }
         }
 
         /// <summary>
         /// Decrypts the encrypted data to the given stream
         /// </summary>
-        /// <param name="plainTextStream">The plain text stream.</param>
-        public void DecryptTo(Stream plaintextStream)
+        /// <param name="outputPlaintextStream">The resulting plain text stream.</param>
+        public void DecryptTo(AxCryptReader axCryptReader, Stream outputPlaintextStream)
         {
-            EnsureLoaded();
-
-            using (HmacStream hmacStream = new HmacStream(new Subkey(DocumentHeaders.GetMasterKey(), HeaderSubkey.Hmac).Get()))
+            if (DocumentHeaders == null)
             {
-                using (Stream encryptedDataStream = _axCryptReader.CreateEncryptedDataStream(hmacStream))
+                throw new InternalErrorException("Document headers are not loaded");
+            }
+            byte[] calculatedHmac;
+            using (HmacStream hmacStream = new HmacStream(DocumentHeaders.HmacSubkey.Get()))
+            {
+                axCryptReader.HmacStream = hmacStream;
+                using (ICryptoTransform decryptor = DataCrypto.CreateDecryptingTransform())
                 {
-                    using (ICryptoTransform decryptor = DataCrypto.CreateDecryptingTransform())
+                    if (DocumentHeaders.IsCompressed)
                     {
-                        if (DocumentHeaders.IsCompressed)
+                        using (Stream deflatedPlaintextStream = new CryptoStream(axCryptReader.EncryptedDataStream, decryptor, CryptoStreamMode.Read))
                         {
-                            using (CryptoStream cryptoStream = new CryptoStream(encryptedDataStream, decryptor, CryptoStreamMode.Read))
+                            using (Stream inflatedPlaintextStream = new ZInputStream(deflatedPlaintextStream))
                             {
-                                using (Stream deflatedCryptoStream = new ZInputStream(cryptoStream))
-                                {
-                                    deflatedCryptoStream.CopyTo(plaintextStream);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            using (CryptoStream cryptoStream = new CryptoStream(encryptedDataStream, decryptor, CryptoStreamMode.Read))
-                            {
-                                cryptoStream.CopyTo(plaintextStream);
+                                inflatedPlaintextStream.CopyTo(outputPlaintextStream);
                             }
                         }
                     }
+                    else
+                    {
+                        using (Stream plainStream = new CryptoStream(axCryptReader.EncryptedDataStream, decryptor, CryptoStreamMode.Read))
+                        {
+                            plainStream.CopyTo(outputPlaintextStream);
+                        }
+                    }
                 }
-                _calculatedHmac = hmacStream.GetHmacResult();
+                calculatedHmac = hmacStream.GetHmacResult();
             }
-            if (!_calculatedHmac.IsEquivalentTo(DocumentHeaders.GetHmac()))
+            if (!calculatedHmac.IsEquivalentTo(DocumentHeaders.GetHmac()))
             {
                 throw new InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
             }
 
-            if (_axCryptReader.CurrentItemType != AxCryptItemType.EndOfStream)
+            if (axCryptReader.CurrentItemType != AxCryptItemType.EndOfStream)
             {
                 throw new FileFormatException("The stream should end here.", ErrorStatus.FileFormatError);
             }
-        }
-
-        public byte[] GetCalculatedHmac()
-        {
-            return (byte[])_calculatedHmac.Clone();
         }
 
         private bool _disposed = false;
