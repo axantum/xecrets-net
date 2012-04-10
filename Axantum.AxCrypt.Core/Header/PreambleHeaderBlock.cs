@@ -27,7 +27,7 @@
 
 using System;
 
-namespace Axantum.AxCrypt.Core.Header
+namespace Axantum.AxCrypt.Core.Crypto
 {
     public class PreambleHeaderBlock : HeaderBlock
     {

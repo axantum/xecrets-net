@@ -26,7 +26,7 @@
 #endregion Coypright and License
 
 using System.IO;
-using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Test.Properties;
 using NUnit.Framework;

@@ -55,11 +55,15 @@
   <ItemGroup>
     <Compile Include="AxCryptDocument.cs" />
     <Compile Include="AxCryptException.cs" />
+    <Compile Include="Crypto\AesCrypto.cs" />
+    <Compile Include="Crypto\AesKey.cs" />
+    <Compile Include="Crypto\KeyWrap.cs" />
+    <Compile Include="Crypto\KeyWrapMode.cs" />
+    <Compile Include="Crypto\Subkey.cs" />
     <Compile Include="Environment.cs" />
     <Compile Include="ErrorStatus.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="FileFormatException.cs" />
-    <Compile Include="Header\AesCrypto.cs" />
     <Compile Include="Header\AxCrypt1Guid.cs" />
     <Compile Include="Header\CompressionHeaderBlock.cs" />
     <Compile Include="Header\CompressionInfoHeaderBlock.cs" />
@@ -71,12 +75,9 @@
     <Compile Include="Header\FileNameInfoHeaderBlock.cs" />
     <Compile Include="Header\HeaderSubkey.cs" />
     <Compile Include="Header\IdTagHeaderBlock.cs" />
-    <Compile Include="Header\KeyWrap.cs" />
     <Compile Include="Header\KeyWrap1HeaderBlock.cs" />
     <Compile Include="Header\KeyWrap2HeaderBlock.cs" />
-    <Compile Include="Header\KeyWrapMode.cs" />
     <Compile Include="Header\PreambleHeaderBlock.cs" />
-    <Compile Include="Header\Subkey.cs" />
     <Compile Include="Header\UnicodeFileNameInfoHeaderBlock.cs" />
     <Compile Include="Header\UnrecognizedHeaderBlock.cs" />
     <Compile Include="IEnvironment.cs" />
@@ -99,9 +100,7 @@
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Crypto\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

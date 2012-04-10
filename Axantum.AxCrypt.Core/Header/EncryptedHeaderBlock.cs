@@ -29,7 +29,7 @@ using System;
 using System.IO;
 using System.Security.Cryptography;
 
-namespace Axantum.AxCrypt.Core.Header
+namespace Axantum.AxCrypt.Core.Crypto
 {
     public abstract class EncryptedHeaderBlock : HeaderBlock
     {

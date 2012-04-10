@@ -32,7 +32,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Header
+namespace Axantum.AxCrypt.Core.Crypto
 {
     /// <summary>
     /// Implements AES Key Wrap Specification - http://csrc.nist.gov/groups/ST/toolkit/documents/kms/key-wrap.pdf .
@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt.Core.Header
     {
         private static readonly byte[] A = new byte[] { 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6 };
 
-        private byte[] _key;
+        private AesKey _key;
         private byte[] _salt;
         private long _iterations;
         private KeyWrapMode _mode;
@@ -52,7 +52,7 @@ namespace Axantum.AxCrypt.Core.Header
         /// <param name="key">The key wrapping key</param>
         /// <param name="iterations">The number of wrapping iterations, at least 6</param>
         /// <param name="mode">Use original specification mode or AxCrypt mode (only difference is that 't' is little endian in AxCrypt mode)</param>
-        public KeyWrap(byte[] key, long iterations, KeyWrapMode mode)
+        public KeyWrap(AesKey key, long iterations, KeyWrapMode mode)
             : this(key, null, iterations, mode)
         {
         }
@@ -64,15 +64,11 @@ namespace Axantum.AxCrypt.Core.Header
         /// <param name="salt">An optional salt, or null if none. AxCrypt uses a salt.</param>
         /// <param name="iterations">The number of wrapping iterations, at least 6</param>
         /// <param name="mode">Use original specification mode or AxCrypt mode (only difference is that 't' is little endian in AxCrypt mode)</param>
-        public KeyWrap(byte[] key, byte[] salt, long iterations, KeyWrapMode mode)
+        public KeyWrap(AesKey key, byte[] salt, long iterations, KeyWrapMode mode)
         {
             if (key == null)
             {
                 throw new ArgumentNullException("key");
-            }
-            if (!IsKeySizeValid(key.Length * 8))
-            {
-                throw new ArgumentException("key length is incorrect");
             }
             if (salt != null && salt.Length != key.Length)
             {
@@ -89,9 +85,9 @@ namespace Axantum.AxCrypt.Core.Header
             Initialize(key, salt, iterations, mode);
         }
 
-        private void Initialize(byte[] key, byte[] salt, long iterations, KeyWrapMode mode)
+        private void Initialize(AesKey key, byte[] salt, long iterations, KeyWrapMode mode)
         {
-            _key = (byte[])key.Clone();
+            _key = key;
             if (salt != null)
             {
                 _salt = (byte[])salt.Clone();
@@ -102,7 +98,7 @@ namespace Axantum.AxCrypt.Core.Header
             }
             _iterations = iterations;
 
-            byte[] saltedKey = (byte[])_key.Clone();
+            byte[] saltedKey = _key.Get();
             saltedKey.Xor(_salt);
 
             _aes.Mode = CipherMode.ECB;
@@ -135,7 +131,7 @@ namespace Axantum.AxCrypt.Core.Header
         /// </summary>
         /// <param name="keyToWrap">The key to wrap</param>
         /// <returns>The wrapped key data, 8 bytes longer than the key</returns>
-        public byte[] Wrap(byte[] keyToWrap)
+        public byte[] Wrap(AesKey keyToWrap)
         {
             if (keyToWrap == null)
             {
@@ -149,7 +145,7 @@ namespace Axantum.AxCrypt.Core.Header
             byte[] wrapped = new byte[_key.Length + A.Length];
             A.CopyTo(wrapped, 0);
 
-            Array.Copy(keyToWrap, 0, wrapped, A.Length, keyToWrap.Length);
+            Array.Copy(keyToWrap.Get(), 0, wrapped, A.Length, keyToWrap.Length);
 
             ICryptoTransform encryptor = _aes.CreateEncryptor();
 

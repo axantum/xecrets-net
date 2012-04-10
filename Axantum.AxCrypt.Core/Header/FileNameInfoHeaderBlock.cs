@@ -29,7 +29,7 @@ using System;
 using System.Globalization;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Header
+namespace Axantum.AxCrypt.Core.Crypto
 {
     public class FileNameInfoHeaderBlock : EncryptedHeaderBlock
     {

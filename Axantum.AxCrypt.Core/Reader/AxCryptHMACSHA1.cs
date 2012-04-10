@@ -31,6 +31,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using Axantum.AxCrypt.Core.Crypto;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
@@ -51,11 +52,11 @@ namespace Axantum.AxCrypt.Core.Reader
             // idea in a constructor.
         }
 
-        public static HMAC Create(byte[] key)
+        public static HMAC Create(AesKey key)
         {
             AxCryptHMACSHA1 hmac = new AxCryptHMACSHA1();
             hmac.BlockSizeValue = 20;
-            hmac.Key = key;
+            hmac.Key = key.Get();
 
             return hmac;
         }

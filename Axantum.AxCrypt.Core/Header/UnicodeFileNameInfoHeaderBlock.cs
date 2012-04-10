@@ -28,7 +28,7 @@
 using System;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Header
+namespace Axantum.AxCrypt.Core.Crypto
 {
     public class UnicodeFileNameInfoHeaderBlock : EncryptedHeaderBlock
     {

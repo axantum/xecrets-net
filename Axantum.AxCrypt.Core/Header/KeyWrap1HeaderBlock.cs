@@ -27,7 +27,7 @@
 
 using System;
 
-namespace Axantum.AxCrypt.Core.Header
+namespace Axantum.AxCrypt.Core.Crypto
 {
     public class KeyWrap1HeaderBlock : HeaderBlock
     {
@@ -94,7 +94,7 @@ namespace Axantum.AxCrypt.Core.Header
             return iterations;
         }
 
-        public byte[] UnwrapMasterKey(byte[] keyEncryptingKey, byte fileVersionMajor)
+        public byte[] UnwrapMasterKey(AesKey keyEncryptingKey, byte fileVersionMajor)
         {
             byte[] wrappedKeyData = GetKeyData();
             byte[] salt = GetSalt();
@@ -103,8 +103,8 @@ namespace Axantum.AxCrypt.Core.Header
                 // Due to a bug in 1.1 and earlier we only used a truncated part of the key and salt :-(
                 // Compensate for this here. Users should be warned if FileVersionMajor <= 1 .
                 byte[] badKey = new byte[keyEncryptingKey.Length];
-                Array.Copy(keyEncryptingKey, 0, badKey, 0, 4);
-                keyEncryptingKey = badKey;
+                Array.Copy(keyEncryptingKey.Get(), 0, badKey, 0, 4);
+                keyEncryptingKey = new AesKey(badKey);
 
                 byte[] badSalt = new byte[salt.Length];
                 Array.Copy(salt, 0, badSalt, 0, 4);
@@ -120,9 +120,9 @@ namespace Axantum.AxCrypt.Core.Header
             return unwrappedKeyData;
         }
 
-        private void Initialize(byte[] keyEncryptingKey)
+        private void Initialize(AesKey keyEncryptingKey)
         {
-            byte[] masterKey = Environment.Current.GetRandomBytes(16);
+            AesKey masterKey = new AesKey();
             long iterations = DefaultIterations;
             byte[] salt = Environment.Current.GetRandomBytes(16);
             using (KeyWrap keyWrap = new KeyWrap(keyEncryptingKey, salt, iterations, KeyWrapMode.AxCrypt))
@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Core.Header
             }
         }
 
-        public void RewrapMasterKey(byte[] masterKey, byte[] keyEncryptingKey)
+        public void RewrapMasterKey(AesKey masterKey, AesKey keyEncryptingKey)
         {
             long iterations = Iterations();
             byte[] salt = Environment.Current.GetRandomBytes(16);
@@ -153,16 +153,17 @@ namespace Axantum.AxCrypt.Core.Header
                 {
                     return _defaultIterations.Value;
                 }
-                byte[] dummyKeyAndSalt = Environment.Current.GetRandomBytes(16);
+                AesKey dummyKey = new AesKey();
+                byte[] dummySalt = Environment.Current.GetRandomBytes(16);
                 DateTime startTime = DateTime.Now;
                 DateTime endTime;
                 long totalIterations = 0;
                 int iterationsIncrement = 1000;
-                using (KeyWrap keyWrap = new KeyWrap(dummyKeyAndSalt, dummyKeyAndSalt, iterationsIncrement, KeyWrapMode.AxCrypt))
+                using (KeyWrap keyWrap = new KeyWrap(dummyKey, dummySalt, iterationsIncrement, KeyWrapMode.AxCrypt))
                 {
                     do
                     {
-                        keyWrap.Wrap(dummyKeyAndSalt);
+                        keyWrap.Wrap(dummyKey);
                         totalIterations += iterationsIncrement;
                         endTime = DateTime.Now;
                     } while ((endTime - startTime).TotalMilliseconds < 500);

@@ -6,17 +6,17 @@ using System.Security.Cryptography;
 using System.Text;
 using Axantum.AxCrypt.Core.Reader;
 
-namespace Axantum.AxCrypt.Core.Header
+namespace Axantum.AxCrypt.Core.Crypto
 {
     public class DocumentHeaders : IDisposable
     {
         private IList<HeaderBlock> HeaderBlocks { get; set; }
 
-        private byte[] _keyEncryptingKey;
+        private AesKey _keyEncryptingKey;
 
-        public DocumentHeaders(byte[] keyEncryptingKey)
+        public DocumentHeaders(AesKey keyEncryptingKey)
         {
-            _keyEncryptingKey = (byte[])keyEncryptingKey.Clone();
+            _keyEncryptingKey = keyEncryptingKey;
 
             HeaderBlocks = new List<HeaderBlock>();
             HeaderBlocks.Add(new PreambleHeaderBlock());
@@ -32,7 +32,7 @@ namespace Axantum.AxCrypt.Core.Header
             }
             HeaderBlocks = headerBlocks;
 
-            _keyEncryptingKey = (byte[])documentHeaders._keyEncryptingKey.Clone();
+            _keyEncryptingKey = documentHeaders._keyEncryptingKey;
         }
 
         public bool Load(AxCryptReader axCryptReader)
@@ -86,7 +86,7 @@ namespace Axantum.AxCrypt.Core.Header
             }
         }
 
-        private byte[] GetMasterKey()
+        private AesKey GetMasterKey()
         {
             KeyWrap1HeaderBlock keyHeaderBlock = FindHeaderBlock<KeyWrap1HeaderBlock>();
             VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();
@@ -95,21 +95,21 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 return null;
             }
-            return unwrappedKeyData;
+            return new AesKey(unwrappedKeyData);
         }
 
-        public void RewrapMasterKey(byte[] keyEncryptingKey)
+        public void RewrapMasterKey(AesKey keyEncryptingKey)
         {
             KeyWrap1HeaderBlock keyHeaderBlock = FindHeaderBlock<KeyWrap1HeaderBlock>();
             keyHeaderBlock.RewrapMasterKey(GetMasterKey(), keyEncryptingKey);
-            _keyEncryptingKey = (byte[])keyEncryptingKey.Clone();
+            _keyEncryptingKey = keyEncryptingKey;
         }
 
         public Subkey HmacSubkey
         {
             get
             {
-                byte[] masterKey = GetMasterKey();
+                AesKey masterKey = GetMasterKey();
                 if (masterKey == null)
                 {
                     return null;
@@ -122,7 +122,7 @@ namespace Axantum.AxCrypt.Core.Header
         {
             get
             {
-                byte[] masterKey = GetMasterKey();
+                AesKey masterKey = GetMasterKey();
                 if (masterKey == null)
                 {
                     return null;
@@ -268,7 +268,7 @@ namespace Axantum.AxCrypt.Core.Header
                 if (_headerCrypto == null)
                 {
                     Subkey headersSubkey = new Subkey(GetMasterKey(), HeaderSubkey.Headers);
-                    _headerCrypto = new AesCrypto(headersSubkey.Get());
+                    _headerCrypto = new AesCrypto(headersSubkey.Key);
                 }
                 return _headerCrypto;
             }

@@ -32,7 +32,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Reader;
 using Org.BouncyCastle.Utilities.Zlib;
 
@@ -86,7 +86,7 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentException("The output stream must support seek in order to back-track and write the HMAC.");
             }
-            using (HmacStream outputHmacStream = new HmacStream(outputDocumentHeaders.HmacSubkey.Get(), outputCipherStream))
+            using (HmacStream outputHmacStream = new HmacStream(outputDocumentHeaders.HmacSubkey.Key, outputCipherStream))
             {
                 outputDocumentHeaders.Write(outputCipherStream, outputHmacStream);
                 using (ICryptoTransform encryptor = DataCrypto.CreateEncryptingTransform())
@@ -123,9 +123,9 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentException("The output stream must support seek in order to back-track and write the HMAC.");
             }
 
-            using (HmacStream hmacStreamInput = new HmacStream(DocumentHeaders.HmacSubkey.Get()))
+            using (HmacStream hmacStreamInput = new HmacStream(DocumentHeaders.HmacSubkey.Key))
             {
-                using (HmacStream hmacStreamOutput = new HmacStream(outputDocumentHeaders.HmacSubkey.Get(), cipherStream))
+                using (HmacStream hmacStreamOutput = new HmacStream(outputDocumentHeaders.HmacSubkey.Key, cipherStream))
                 {
                     outputDocumentHeaders.Write(cipherStream, hmacStreamOutput);
                     axCryptReader.HmacStream = hmacStreamInput;
@@ -156,7 +156,7 @@ namespace Axantum.AxCrypt.Core
             {
                 if (_dataCrypto == null)
                 {
-                    _dataCrypto = new AesCrypto(DocumentHeaders.DataSubkey.Get(), DocumentHeaders.GetIV(), CipherMode.CBC, PaddingMode.PKCS7);
+                    _dataCrypto = new AesCrypto(DocumentHeaders.DataSubkey.Key, DocumentHeaders.GetIV(), CipherMode.CBC, PaddingMode.PKCS7);
                 }
                 return _dataCrypto;
             }
@@ -173,7 +173,7 @@ namespace Axantum.AxCrypt.Core
                 throw new InternalErrorException("Document headers are not loaded");
             }
             byte[] calculatedHmac;
-            using (HmacStream hmacStream = new HmacStream(DocumentHeaders.HmacSubkey.Get()))
+            using (HmacStream hmacStream = new HmacStream(DocumentHeaders.HmacSubkey.Key))
             {
                 axCryptReader.HmacStream = hmacStream;
                 using (ICryptoTransform decryptor = DataCrypto.CreateDecryptingTransform())

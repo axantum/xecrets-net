@@ -28,7 +28,7 @@
 using System;
 using System.IO;
 
-namespace Axantum.AxCrypt.Core.Header
+namespace Axantum.AxCrypt.Core.Crypto
 {
     public abstract class HeaderBlock : ICloneable
     {

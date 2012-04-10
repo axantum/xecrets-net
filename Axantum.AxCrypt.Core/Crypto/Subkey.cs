@@ -30,16 +30,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Header
+namespace Axantum.AxCrypt.Core.Crypto
 {
     /// <summary>
     /// Generates a sub key from a master key. This class is immutable.
     /// </summary>
     public class Subkey
     {
-        private byte[] _subKey;
+        private AesKey _subKey;
 
-        public Subkey(byte[] masterKey, HeaderSubkey headerSubkey)
+        public Subkey(AesKey masterKey, HeaderSubkey headerSubkey)
         {
             if (masterKey == null)
             {
@@ -69,13 +69,16 @@ namespace Axantum.AxCrypt.Core.Header
             block[0] = subKeyValue;
             using (AesCrypto aesCrypto = new AesCrypto(masterKey))
             {
-                _subKey = aesCrypto.Encrypt(block);
+                _subKey = new AesKey(aesCrypto.Encrypt(block));
             }
         }
 
-        public byte[] Get()
+        public AesKey Key
         {
-            return (byte[])_subKey.Clone();
+            get
+            {
+                return _subKey;
+            }
         }
     }
 }

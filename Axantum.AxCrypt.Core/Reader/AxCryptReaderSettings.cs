@@ -31,6 +31,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using Axantum.AxCrypt.Core.Crypto;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
@@ -47,11 +48,11 @@ namespace Axantum.AxCrypt.Core.Reader
             _passphrase = passphrase;
         }
 
-        public byte[] GetDerivedPassphrase()
+        public AesKey GetDerivedPassphrase()
         {
             if (_passphrase == null)
             {
-                return new byte[0];
+                return null;
             }
 
             HashAlgorithm hashAlgorithm = new SHA1Managed();
@@ -60,7 +61,7 @@ namespace Axantum.AxCrypt.Core.Reader
             byte[] derivedPassphrase = new byte[16];
             Array.Copy(hash, derivedPassphrase, derivedPassphrase.Length);
 
-            return derivedPassphrase;
+            return new AesKey(derivedPassphrase);
         }
     }
 }

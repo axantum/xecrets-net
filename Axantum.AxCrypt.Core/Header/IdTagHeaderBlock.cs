@@ -27,7 +27,7 @@
 
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Header
+namespace Axantum.AxCrypt.Core.Crypto
 {
     /// <summary>
     /// An arbitrary string encoded as Ansi Code Page 1252, with a C-style terminating 'nul' character.

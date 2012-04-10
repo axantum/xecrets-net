@@ -25,7 +25,7 @@
 
 #endregion Coypright and License
 
-namespace Axantum.AxCrypt.Core.Header
+namespace Axantum.AxCrypt.Core.Crypto
 {
     public class KeyWrap2HeaderBlock : HeaderBlock
     {

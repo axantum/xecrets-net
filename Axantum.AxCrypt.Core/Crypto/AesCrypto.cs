@@ -31,7 +31,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Header
+namespace Axantum.AxCrypt.Core.Crypto
 {
     public class AesCrypto : IDisposable
     {
@@ -42,15 +42,11 @@ namespace Axantum.AxCrypt.Core.Header
         public static readonly int KeyBits = 128;
         public static readonly int KeyBytes = KeyBits / 8;
 
-        public AesCrypto(byte[] key, byte[] iv, CipherMode cipherMode, PaddingMode paddingMode)
+        public AesCrypto(AesKey key, byte[] iv, CipherMode cipherMode, PaddingMode paddingMode)
         {
             if (key == null)
             {
                 throw new ArgumentNullException("key");
-            }
-            if (key.Length != KeyBytes)
-            {
-                throw new ArgumentOutOfRangeException("key");
             }
             if (iv == null)
             {
@@ -61,13 +57,13 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 throw new ArgumentOutOfRangeException("iv");
             }
-            _aes.Key = key;
+            _aes.Key = key.Get();
             _aes.Mode = cipherMode;
             _aes.IV = iv;
             _aes.Padding = paddingMode;
         }
 
-        public AesCrypto(byte[] key)
+        public AesCrypto(AesKey key)
             : this(key, _zeroIv, CipherMode.CBC, PaddingMode.None)
         {
         }

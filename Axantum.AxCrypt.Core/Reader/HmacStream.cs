@@ -32,6 +32,7 @@ using System.Linq;
 using System.Security;
 using System.Security.Cryptography;
 using System.Text;
+using Axantum.AxCrypt.Core.Crypto;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
@@ -47,7 +48,7 @@ namespace Axantum.AxCrypt.Core.Reader
         /// A AxCrypt HMAC-calculating stream. This uses the AxCrypt variant with a block size of 20 for the key.
         /// </summary>
         /// <param name="key">The key for the HMAC</param>
-        public HmacStream(byte[] key)
+        public HmacStream(AesKey key)
             : this(key, null)
         {
         }
@@ -57,7 +58,7 @@ namespace Axantum.AxCrypt.Core.Reader
         /// </summary>
         /// <param name="key">The key for the HMAC</param>
         /// <param name="chainedStream">A stream where data is chain-written to. This stream is not disposed of when this instance is disposed.</param>
-        public HmacStream(byte[] key, Stream chainedStream)
+        public HmacStream(AesKey key, Stream chainedStream)
         {
             _hmac = AxCryptHMACSHA1.Create(key);
             _chainedStream = chainedStream;

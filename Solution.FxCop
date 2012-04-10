@@ -72,6 +72,33 @@
     </Messages>
    </Namespace>
   </Namespaces>
+  <Targets>
+   <Target Name="$(ProjectDir)/Axantum.AxCrypt.Core/bin/Debug/Axantum.AxCrypt.Core.dll">
+    <Modules>
+     <Module Name="axantum.axcrypt.core.dll">
+      <Namespaces>
+       <Namespace Name="Axantum.AxCrypt.Core.Crypto">
+        <Types>
+         <Type Name="KeyWrap1HeaderBlock">
+          <Members>
+           <Member Name="#Initialize(System.Byte[])">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2012-04-10 18:15:39Z">
+              <Issue>
+               <Item>'KeyWrap1HeaderBlock.Initialize(byte[])'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+  </Targets>
   <Notes>
    <User Name="Svante">
     <Note Id="0" Modified="2012-01-15 20:45:43Z">We can check this at a later stage, in the beginning some namespaces will be small...</Note>
@@ -81,6 +108,9 @@
   <Rules>
    <Rule TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020">
     <Resolution Name="Default">Consider merging the types defined in '{0}' with another namespace.</Resolution>
+   </Rule>
+   <Rule TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811">
+    <Resolution Name="Default">{0} appears to have no upstream public or protected callers.</Resolution>
    </Rule>
   </Rules>
  </FxCopReport>

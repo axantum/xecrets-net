@@ -30,7 +30,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Header
+namespace Axantum.AxCrypt.Core.Crypto
 {
     /// <summary>
     /// Due to a minor bug in the AxCrypt-implementation we need to separate two modes. AxCrypt
