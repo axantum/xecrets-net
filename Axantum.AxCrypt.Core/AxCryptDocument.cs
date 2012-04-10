@@ -59,7 +59,7 @@ namespace Axantum.AxCrypt.Core
         public bool Load(AxCryptReader axCryptReader, AxCryptReaderSettings settings)
         {
             DocumentHeaders documentHeaders = new DocumentHeaders(settings.GetDerivedPassphrase());
-            bool loadedOk = documentHeaders.Load(axCryptReader, settings.GetDerivedPassphrase());
+            bool loadedOk = documentHeaders.Load(axCryptReader);
             if (!loadedOk)
             {
                 return false;

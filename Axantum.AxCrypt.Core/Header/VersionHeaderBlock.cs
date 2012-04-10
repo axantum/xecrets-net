@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using System;
 using System.IO;
 
 namespace Axantum.AxCrypt.Core.Header
@@ -47,6 +48,11 @@ namespace Axantum.AxCrypt.Core.Header
         {
             VersionHeaderBlock block = new VersionHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
             return block;
+        }
+
+        public void SetCurrentVersion()
+        {
+            Array.Copy(_version, GetDataBlockBytesReference(), _version.Length);
         }
 
         /// <summary>

@@ -12,12 +12,12 @@ namespace Axantum.AxCrypt.Core.Header
     {
         private IList<HeaderBlock> HeaderBlocks { get; set; }
 
-        private byte[] _masterKey;
-
-        private RandomNumberGenerator _rng;
+        private byte[] _keyEncryptingKey;
 
         public DocumentHeaders(byte[] keyEncryptingKey)
         {
+            _keyEncryptingKey = (byte[])keyEncryptingKey.Clone();
+
             HeaderBlocks = new List<HeaderBlock>();
             HeaderBlocks.Add(new PreambleHeaderBlock());
         }
@@ -30,22 +30,11 @@ namespace Axantum.AxCrypt.Core.Header
                 headerBlocks.Add((HeaderBlock)headerBlock.Clone());
             }
             HeaderBlocks = headerBlocks;
-            _masterKey = (byte[])documentHeaders._masterKey.Clone();
+
+            _keyEncryptingKey = (byte[])documentHeaders._keyEncryptingKey.Clone();
         }
 
-        private byte[] GetRandomBytes(int n)
-        {
-            if (_rng == null)
-            {
-                _rng = RandomNumberGenerator.Create();
-            }
-
-            byte[] data = new byte[n];
-            _rng.GetBytes(data);
-            return data;
-        }
-
-        public bool Load(AxCryptReader axCryptReader, byte[] keyEncryptingKey)
+        public bool Load(AxCryptReader axCryptReader)
         {
             axCryptReader.Read();
             if (axCryptReader.CurrentItemType != AxCryptItemType.MagicGuid)
@@ -63,7 +52,6 @@ namespace Axantum.AxCrypt.Core.Header
                     case AxCryptItemType.Data:
                         HeaderBlocks.Add(axCryptReader.CurrentHeaderBlock);
                         EnsureFileFormatVersion();
-                        UnwrapMasterKey(keyEncryptingKey);
                         return GetMasterKey() != null;
                     default:
                         throw new InternalErrorException("The reader returned an AxCryptItemType it should not be possible for it to return.");
@@ -74,6 +62,9 @@ namespace Axantum.AxCrypt.Core.Header
 
         public void Write(Stream cipherStream, Stream hmacStream)
         {
+            VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();
+            versionHeaderBlock.SetCurrentVersion();
+
             cipherStream.Position = 0;
             AxCrypt1Guid.Write(cipherStream);
             bool preambleSeen = false;
@@ -94,74 +85,48 @@ namespace Axantum.AxCrypt.Core.Header
             }
         }
 
-        private void UnwrapMasterKey(byte[] keyEncryptingKey)
+        public byte[] GetMasterKey()
         {
             KeyWrap1HeaderBlock keyHeaderBlock = FindHeaderBlock<KeyWrap1HeaderBlock>();
             VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();
-            byte[] unwrappedKeyData = keyHeaderBlock.UnwrapMasterKey(keyEncryptingKey, versionHeaderBlock.FileVersionMajor);
+            byte[] unwrappedKeyData = keyHeaderBlock.UnwrapMasterKey(_keyEncryptingKey, versionHeaderBlock.FileVersionMajor);
             if (unwrappedKeyData.Length == 0)
-            {
-                return;
-            }
-            _masterKey = unwrappedKeyData;
-        }
-
-        public byte[] GetMasterKey()
-        {
-            if (_masterKey == null)
             {
                 return null;
             }
-            return (byte[])_masterKey.Clone();
+            return unwrappedKeyData;
         }
 
         public void RewrapMasterKey(byte[] keyEncryptingKey)
         {
             KeyWrap1HeaderBlock keyHeaderBlock = FindHeaderBlock<KeyWrap1HeaderBlock>();
-
-            long iterations = keyHeaderBlock.Iterations();
-            byte[] masterKey = GetMasterKey();
-            byte[] salt = GetRandomBytes(16);
-            using (KeyWrap keyWrap = new KeyWrap(keyEncryptingKey, salt, iterations, KeyWrapMode.AxCrypt))
-            {
-                byte[] wrappedKeyData = keyWrap.Wrap(masterKey);
-                keyHeaderBlock.Set(wrappedKeyData, salt, iterations);
-            }
+            keyHeaderBlock.RewrapMasterKey(GetMasterKey(), keyEncryptingKey);
+            _keyEncryptingKey = (byte[])keyEncryptingKey.Clone();
         }
-
-        Subkey _hmacSubkey;
 
         public Subkey HmacSubkey
         {
             get
             {
-                if (_hmacSubkey == null)
+                byte[] masterKey = GetMasterKey();
+                if (masterKey == null)
                 {
-                    if (_masterKey == null)
-                    {
-                        return null;
-                    }
-                    _hmacSubkey = new Subkey(_masterKey, HeaderSubkey.Hmac);
+                    return null;
                 }
-                return _hmacSubkey;
+                return new Subkey(masterKey, HeaderSubkey.Hmac);
             }
         }
-
-        Subkey _dataSubkey;
 
         public Subkey DataSubkey
         {
             get
             {
-                if (_dataSubkey == null)
+                byte[] masterKey = GetMasterKey();
+                if (masterKey == null)
                 {
-                    if (_masterKey == null)
-                    {
-                        return null;
-                    }
-                    _dataSubkey = new Subkey(_masterKey, HeaderSubkey.Data);
+                    return null;
                 }
-                return _dataSubkey;
+                return new Subkey(masterKey, HeaderSubkey.Data);
             }
         }
 

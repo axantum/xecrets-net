@@ -114,5 +114,16 @@ namespace Axantum.AxCrypt.Core.Header
             }
             return unwrappedKeyData;
         }
+
+        public void RewrapMasterKey(byte[] masterKey, byte[] keyEncryptingKey)
+        {
+            long iterations = Iterations();
+            byte[] salt = Environment.Current.GetRandomBytes(16);
+            using (KeyWrap keyWrap = new KeyWrap(keyEncryptingKey, salt, iterations, KeyWrapMode.AxCrypt))
+            {
+                byte[] wrappedKeyData = keyWrap.Wrap(masterKey);
+                Set(wrappedKeyData, salt, iterations);
+            }
+        }
     }
 }

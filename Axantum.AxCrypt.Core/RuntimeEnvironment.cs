@@ -28,6 +28,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Axantum.AxCrypt.Core
@@ -40,6 +41,20 @@ namespace Axantum.AxCrypt.Core
             {
                 return BitConverter.IsLittleEndian;
             }
+        }
+
+        private RandomNumberGenerator _rng;
+
+        public byte[] GetRandomBytes(int count)
+        {
+            if (_rng == null)
+            {
+                _rng = RandomNumberGenerator.Create();
+            }
+
+            byte[] data = new byte[count];
+            _rng.GetBytes(data);
+            return data;
         }
     }
 }

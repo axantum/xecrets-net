@@ -35,5 +35,7 @@ namespace Axantum.AxCrypt.Core
     public interface IEnvironment
     {
         bool IsLittleEndian { get; }
+
+        byte[] GetRandomBytes(int count);
     }
 }
