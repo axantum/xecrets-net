@@ -76,11 +76,11 @@ namespace Axantum.AxCrypt.Core
             }
             if (inputPlainStream == null)
             {
-                throw new ArgumentNullException("plainStream");
+                throw new ArgumentNullException("inputPlainStream");
             }
             if (outputCipherStream == null)
             {
-                throw new ArgumentNullException("cipherStream");
+                throw new ArgumentNullException("outputCipherStream");
             }
             if (!outputCipherStream.CanSeek)
             {

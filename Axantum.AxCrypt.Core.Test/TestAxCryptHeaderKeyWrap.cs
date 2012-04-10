@@ -44,6 +44,15 @@ namespace Axantum.AxCrypt.Core.Test
     {
         [Test]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This is test, readability and coding ease is a concern, not performance.")]
+        public void TestDefaultIterations()
+        {
+            long defaultIterations = KeyWrap1HeaderBlock.DefaultIterations;
+
+            Assert.That(defaultIterations, Is.GreaterThan(1000), "It really should be larger than 1000...");
+        }
+
+        [Test]
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This is test, readability and coding ease is a concern, not performance.")]
         public void TestUnwrapFromSimpleFile()
         {
             using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))

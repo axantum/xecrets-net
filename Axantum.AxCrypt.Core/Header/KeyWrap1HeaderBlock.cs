@@ -36,6 +36,11 @@ namespace Axantum.AxCrypt.Core.Header
         {
         }
 
+        public KeyWrap1HeaderBlock()
+            : this(new byte[44])
+        {
+        }
+
         public override object Clone()
         {
             KeyWrap1HeaderBlock block = new KeyWrap1HeaderBlock((byte[])GetDataBlockBytesReference().Clone());
@@ -50,7 +55,7 @@ namespace Axantum.AxCrypt.Core.Header
             return keyData;
         }
 
-        public void Set(byte[] wrapped, byte[] salt, long iterations)
+        private void Set(byte[] wrapped, byte[] salt, long iterations)
         {
             if (wrapped == null)
             {
@@ -115,6 +120,18 @@ namespace Axantum.AxCrypt.Core.Header
             return unwrappedKeyData;
         }
 
+        private void Initialize(byte[] keyEncryptingKey)
+        {
+            byte[] masterKey = Environment.Current.GetRandomBytes(16);
+            long iterations = DefaultIterations;
+            byte[] salt = Environment.Current.GetRandomBytes(16);
+            using (KeyWrap keyWrap = new KeyWrap(keyEncryptingKey, salt, iterations, KeyWrapMode.AxCrypt))
+            {
+                byte[] wrappedKeyData = keyWrap.Wrap(masterKey);
+                Set(wrappedKeyData, salt, iterations);
+            }
+        }
+
         public void RewrapMasterKey(byte[] masterKey, byte[] keyEncryptingKey)
         {
             long iterations = Iterations();
@@ -123,6 +140,37 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 byte[] wrappedKeyData = keyWrap.Wrap(masterKey);
                 Set(wrappedKeyData, salt, iterations);
+            }
+        }
+
+        private static long? _defaultIterations;
+
+        public static long DefaultIterations
+        {
+            get
+            {
+                if (_defaultIterations.HasValue)
+                {
+                    return _defaultIterations.Value;
+                }
+                byte[] dummyKeyAndSalt = Environment.Current.GetRandomBytes(16);
+                DateTime startTime = DateTime.Now;
+                DateTime endTime;
+                long totalIterations = 0;
+                int iterationsIncrement = 1000;
+                using (KeyWrap keyWrap = new KeyWrap(dummyKeyAndSalt, dummyKeyAndSalt, iterationsIncrement, KeyWrapMode.AxCrypt))
+                {
+                    do
+                    {
+                        keyWrap.Wrap(dummyKeyAndSalt);
+                        totalIterations += iterationsIncrement;
+                        endTime = DateTime.Now;
+                    } while ((endTime - startTime).TotalMilliseconds < 500);
+                }
+                long iterationsPerSecond = totalIterations * 1000 / (long)(endTime - startTime).TotalMilliseconds;
+                _defaultIterations = iterationsPerSecond / 10;
+
+                return _defaultIterations.Value;
             }
         }
     }

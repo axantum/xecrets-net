@@ -20,6 +20,7 @@ namespace Axantum.AxCrypt.Core.Header
 
             HeaderBlocks = new List<HeaderBlock>();
             HeaderBlocks.Add(new PreambleHeaderBlock());
+            HeaderBlocks.Add(new VersionHeaderBlock());
         }
 
         public DocumentHeaders(DocumentHeaders documentHeaders)
@@ -85,7 +86,7 @@ namespace Axantum.AxCrypt.Core.Header
             }
         }
 
-        public byte[] GetMasterKey()
+        private byte[] GetMasterKey()
         {
             KeyWrap1HeaderBlock keyHeaderBlock = FindHeaderBlock<KeyWrap1HeaderBlock>();
             VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();
