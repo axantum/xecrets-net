@@ -31,7 +31,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Crypto
+namespace Axantum.AxCrypt.Core.Reader
 {
     public static class AxCrypt1Guid
     {

@@ -28,8 +28,9 @@
 using System;
 using System.Globalization;
 using System.Text;
+using Axantum.AxCrypt.Core.Crypto;
 
-namespace Axantum.AxCrypt.Core.Crypto
+namespace Axantum.AxCrypt.Core.Reader
 {
     public class FileNameInfoHeaderBlock : EncryptedHeaderBlock
     {

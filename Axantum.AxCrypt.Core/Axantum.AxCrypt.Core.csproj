@@ -58,6 +58,8 @@
     <Compile Include="Crypto\AesCrypto.cs" />
     <Compile Include="Crypto\AesIV.cs" />
     <Compile Include="Crypto\AesKey.cs" />
+    <Compile Include="Crypto\AxCryptHMACSHA1.cs" />
+    <Compile Include="Crypto\HeaderSubkey.cs" />
     <Compile Include="Crypto\KeyWrap.cs" />
     <Compile Include="Crypto\KeyWrapMode.cs" />
     <Compile Include="Crypto\KeyWrapSalt.cs" />
@@ -75,7 +77,6 @@
     <Compile Include="Header\EncryptionInfoHeaderBlock.cs" />
     <Compile Include="Header\FileInfoHeaderBlock.cs" />
     <Compile Include="Header\FileNameInfoHeaderBlock.cs" />
-    <Compile Include="Header\HeaderSubkey.cs" />
     <Compile Include="Header\IdTagHeaderBlock.cs" />
     <Compile Include="Header\KeyWrap1HeaderBlock.cs" />
     <Compile Include="Header\KeyWrap2HeaderBlock.cs" />
@@ -85,7 +86,6 @@
     <Compile Include="IEnvironment.cs" />
     <Compile Include="InternalErrorException.cs" />
     <Compile Include="InvalidDataException.cs" />
-    <Compile Include="Reader\AxCryptHMACSHA1.cs" />
     <Compile Include="Reader\AxCryptReaderSettings.cs" />
     <Compile Include="Reader\AxCryptStreamReader.cs" />
     <Compile Include="Reader\AxCryptDataStream.cs" />

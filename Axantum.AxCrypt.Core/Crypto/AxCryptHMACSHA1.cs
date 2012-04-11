@@ -33,7 +33,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 
-namespace Axantum.AxCrypt.Core.Reader
+namespace Axantum.AxCrypt.Core.Crypto
 {
     /// <summary>
     /// Calculate HMACSHA1 the AxCrypt way.

@@ -4,9 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Reader;
 
-namespace Axantum.AxCrypt.Core.Crypto
+namespace Axantum.AxCrypt.Core.Reader
 {
     public class DocumentHeaders : IDisposable
     {

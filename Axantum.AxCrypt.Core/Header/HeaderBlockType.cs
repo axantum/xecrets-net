@@ -25,7 +25,7 @@
 
 #endregion Coypright and License
 
-namespace Axantum.AxCrypt.Core.Crypto
+namespace Axantum.AxCrypt.Core.Reader
 {
     public enum HeaderBlockType
     {

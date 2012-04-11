@@ -27,7 +27,7 @@
 
 using System;
 
-namespace Axantum.AxCrypt.Core.Crypto
+namespace Axantum.AxCrypt.Core.Reader
 {
     public class DataHeaderBlock : HeaderBlock
     {
