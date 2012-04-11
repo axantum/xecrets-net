@@ -359,7 +359,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
                     {
-                        Assert.Throws<FileFormatException>(() => { document.Load(axCryptReader, new AxCryptReaderSettings()); }, "Calling with too short a stream, only containing a GUID.");
+                        Assert.Throws<FileFormatException>(() => { document.Load(axCryptReader, new AxCryptReaderSettings(String.Empty)); }, "Calling with too short a stream, only containing a GUID.");
                     }
                 }
             }
@@ -427,6 +427,26 @@ namespace Axantum.AxCrypt.Core.Test
                                     }
                                 }
                             }
+                        }
+                    }
+                }
+            }
+        }
+
+        [Test]
+        public static void TestSimpleEncryptTo()
+        {
+            using (Stream inputStream = new MemoryStream(Encoding.UTF8.GetBytes("AxCrypt is Great!")))
+            {
+                using (Stream outputStream = new MemoryStream())
+                {
+                    using (AxCryptDocument document = new AxCryptDocument())
+                    {
+                        AxCryptReaderSettings settings = new AxCryptReaderSettings("a");
+                        using (DocumentHeaders headers = new DocumentHeaders(settings.DerivedPassphrase))
+                        {
+                            document.DocumentHeaders = headers;
+                            document.EncryptTo(headers, inputStream, outputStream);
                         }
                     }
                 }

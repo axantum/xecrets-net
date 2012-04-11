@@ -28,11 +28,14 @@
 using System;
 using System.IO;
 using System.Security.Cryptography;
+using Axantum.AxCrypt.Core.Crypto;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
     public abstract class EncryptedHeaderBlock : HeaderBlock
     {
+        public AesCrypto HeaderCrypto { get; set; }
+
         protected EncryptedHeaderBlock(HeaderBlockType headerBlockType, byte[] dataBlock)
             : base(headerBlockType, dataBlock)
         {

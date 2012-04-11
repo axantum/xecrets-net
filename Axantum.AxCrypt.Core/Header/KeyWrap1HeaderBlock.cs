@@ -37,9 +37,10 @@ namespace Axantum.AxCrypt.Core.Reader
         {
         }
 
-        public KeyWrap1HeaderBlock()
+        public KeyWrap1HeaderBlock(AesKey keyEncryptingKey)
             : this(new byte[44])
         {
+            Initialize(keyEncryptingKey);
         }
 
         public override object Clone()

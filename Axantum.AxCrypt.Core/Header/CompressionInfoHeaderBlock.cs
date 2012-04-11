@@ -25,12 +25,19 @@
 
 #endregion Coypright and License
 
+using System;
+
 namespace Axantum.AxCrypt.Core.Reader
 {
-    public class CompressionInfoHeaderBlock : HeaderBlock
+    public class CompressionInfoHeaderBlock : EncryptedHeaderBlock
     {
         public CompressionInfoHeaderBlock(byte[] dataBlock)
             : base(HeaderBlockType.CompressionInfo, dataBlock)
+        {
+        }
+
+        public CompressionInfoHeaderBlock()
+            : this(Environment.Current.GetRandomBytes(16))
         {
         }
 
@@ -38,6 +45,27 @@ namespace Axantum.AxCrypt.Core.Reader
         {
             CompressionInfoHeaderBlock block = new CompressionInfoHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
             return block;
+        }
+
+        /// <summary>
+        /// The uncompressed size of the data
+        /// </summary>
+        public long NormalSize
+        {
+            get
+            {
+                byte[] rawBlock = HeaderCrypto.Decrypt(GetDataBlockBytesReference());
+                long normalSize = rawBlock.GetLittleEndianValue(0, sizeof(long));
+                return normalSize;
+            }
+
+            set
+            {
+                byte[] normalSizeBytes = value.GetLittleEndianBytes();
+                Array.Copy(normalSizeBytes, 0, GetDataBlockBytesReference(), 0, normalSizeBytes.Length);
+                byte[] encryptedBlock = HeaderCrypto.Encrypt(GetDataBlockBytesReference());
+                SetDataBlockBytesReference(encryptedBlock);
+            }
         }
     }
 }

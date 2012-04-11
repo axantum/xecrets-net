@@ -39,10 +39,6 @@ namespace Axantum.AxCrypt.Core.Reader
     {
         private string _passphrase;
 
-        public AxCryptReaderSettings()
-        {
-        }
-
         public AxCryptReaderSettings(string passphrase)
         {
             _passphrase = passphrase;

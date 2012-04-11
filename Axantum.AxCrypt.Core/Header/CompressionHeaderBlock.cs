@@ -30,10 +30,15 @@ using Axantum.AxCrypt.Core.Crypto;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
-    public class CompressionHeaderBlock : HeaderBlock
+    public class CompressionHeaderBlock : EncryptedHeaderBlock
     {
         public CompressionHeaderBlock(byte[] dataBlock)
             : base(HeaderBlockType.Compression, dataBlock)
+        {
+        }
+
+        public CompressionHeaderBlock()
+            : this(new byte[8])
         {
         }
 
@@ -43,13 +48,22 @@ namespace Axantum.AxCrypt.Core.Reader
             return block;
         }
 
-        public bool IsCompressed(AesCrypto aesCrypto)
+        public bool IsCompressed
         {
-            byte[] rawBlock = aesCrypto.Decrypt(GetDataBlockBytesReference());
+            get
+            {
+                byte[] rawBlock = HeaderCrypto.Decrypt(GetDataBlockBytesReference());
+                Int32 isCompressed = (Int32)rawBlock.GetLittleEndianValue(0, sizeof(Int32));
+                return isCompressed != 0;
+            }
 
-            Int32 isCompressed = BitConverter.ToInt32(rawBlock, 0);
-
-            return isCompressed != 0;
+            set
+            {
+                int isCompressed = value ? 1 : 0;
+                byte[] isCompressedBytes = isCompressed.GetLittleEndianBytes();
+                byte[] encryptedBlock = HeaderCrypto.Encrypt(isCompressedBytes);
+                SetDataBlockBytesReference(encryptedBlock);
+            }
         }
     }
 }

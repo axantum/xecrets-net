@@ -37,28 +37,61 @@ namespace Axantum.AxCrypt.Core.Reader
         {
         }
 
+        public EncryptionInfoHeaderBlock()
+            : this(Environment.Current.GetRandomBytes(32))
+        {
+        }
+
         public override object Clone()
         {
             EncryptionInfoHeaderBlock block = new EncryptionInfoHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
             return block;
         }
 
-        public long GetPlaintextLength(AesCrypto aesCrypto)
+        public long PlaintextLength
         {
-            byte[] rawData = aesCrypto.Decrypt(GetDataBlockBytesReference());
+            get
+            {
+                byte[] rawData = HeaderCrypto.Decrypt(GetDataBlockBytesReference());
 
-            long plaintextLength = BitConverter.ToInt64(rawData, 0);
-            return plaintextLength;
+                long plaintextLength = rawData.GetLittleEndianValue(0, sizeof(long));
+                return plaintextLength;
+            }
+
+            set
+            {
+                byte[] rawData = HeaderCrypto.Decrypt(GetDataBlockBytesReference());
+
+                byte[] plaintextLengthBytes = value.GetLittleEndianBytes();
+                Array.Copy(plaintextLengthBytes, 0, rawData, 0, plaintextLengthBytes.Length);
+
+                byte[] encryptedData = HeaderCrypto.Encrypt(rawData);
+                SetDataBlockBytesReference(encryptedData);
+            }
         }
 
-        public AesIV GetIV(AesCrypto aesCrypto)
+        public AesIV IV
         {
-            byte[] rawData = aesCrypto.Decrypt(GetDataBlockBytesReference());
+            get
+            {
+                byte[] rawData = HeaderCrypto.Decrypt(GetDataBlockBytesReference());
 
-            byte[] iv = new byte[16];
-            Array.Copy(rawData, 8, iv, 0, iv.Length);
+                byte[] iv = new byte[16];
+                Array.Copy(rawData, 8, iv, 0, iv.Length);
 
-            return new AesIV(iv);
+                return new AesIV(iv);
+            }
+
+            set
+            {
+                byte[] rawData = HeaderCrypto.Decrypt(GetDataBlockBytesReference());
+
+                byte[] encryptedIV = HeaderCrypto.Encrypt(value.GetBytes());
+                Array.Copy(encryptedIV, 0, rawData, 8, encryptedIV.Length);
+
+                byte[] encryptedData = HeaderCrypto.Encrypt(rawData);
+                SetDataBlockBytesReference(encryptedData);
+            }
         }
     }
 }

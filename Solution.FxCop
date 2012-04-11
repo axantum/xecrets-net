@@ -47,13 +47,13 @@
     <Modules>
      <Module Name="axantum.axcrypt.core.dll">
       <Namespaces>
-       <Namespace Name="Axantum.AxCrypt.Core.Crypto">
+       <Namespace Name="Axantum.AxCrypt.Core.Reader">
         <Types>
          <Type Name="KeyWrap1HeaderBlock">
           <Members>
            <Member Name="#Initialize(Axantum.AxCrypt.Core.Crypto.AesKey)">
             <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2012-04-11 07:05:59Z">
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2012-04-11 08:14:00Z">
               <Issue>
                <Item>'KeyWrap1HeaderBlock.Initialize(AesKey)'</Item>
               </Issue>

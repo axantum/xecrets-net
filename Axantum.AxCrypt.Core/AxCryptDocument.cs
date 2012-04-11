@@ -68,6 +68,13 @@ namespace Axantum.AxCrypt.Core
             return true;
         }
 
+        /// <summary>
+        /// Encrypt a stream with a given set of headers and write to an output stream. The caller is responsible for consistency and completeness
+        /// of the headers. Headers that are not known until encryption and compression are added here.
+        /// </summary>
+        /// <param name="outputDocumentHeaders"></param>
+        /// <param name="inputPlainStream"></param>
+        /// <param name="outputCipherStream"></param>
         public void EncryptTo(DocumentHeaders outputDocumentHeaders, Stream inputPlainStream, Stream outputCipherStream)
         {
             if (outputDocumentHeaders == null)
@@ -91,12 +98,13 @@ namespace Axantum.AxCrypt.Core
                 outputDocumentHeaders.Write(outputCipherStream, outputHmacStream);
                 using (ICryptoTransform encryptor = DataCrypto.CreateEncryptingTransform())
                 {
-                    using (Stream deflatedPlainStream = new ZOutputStream(inputPlainStream))
+                    using (ZInputStream deflatedPlainStream = new ZInputStream(inputPlainStream, -1))
                     {
-                        using (Stream deflatedCipherStream = new CryptoStream(deflatedPlainStream, encryptor, CryptoStreamMode.Write))
+                        using (Stream deflatedCipherStream = new CryptoStream(deflatedPlainStream, encryptor, CryptoStreamMode.Read))
                         {
                             deflatedCipherStream.CopyTo(outputCipherStream);
                         }
+                        outputDocumentHeaders.NormalSize = deflatedPlainStream.TotalIn;
                     }
                 }
                 outputDocumentHeaders.SetHmac(outputHmacStream.GetHmacResult());
