@@ -407,7 +407,7 @@ namespace Axantum.AxCrypt.Core.Test
                         {
                             using (DocumentHeaders outputDocumentHeaders = new DocumentHeaders(document.DocumentHeaders))
                             {
-                                outputDocumentHeaders.RewrapMasterKey(newSettings.GetDerivedPassphrase());
+                                outputDocumentHeaders.RewrapMasterKey(newSettings.DerivedPassphrase);
 
                                 document.CopyEncryptedTo(axCryptReader, outputDocumentHeaders, changedStream);
                                 changedStream.Position = 0;

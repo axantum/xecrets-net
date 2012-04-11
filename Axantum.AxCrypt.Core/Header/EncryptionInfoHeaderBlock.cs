@@ -50,13 +50,14 @@ namespace Axantum.AxCrypt.Core.Crypto
             return plaintextLength;
         }
 
-        public byte[] GetIV(AesCrypto aesCrypto)
+        public AesIv GetIV(AesCrypto aesCrypto)
         {
             byte[] rawData = aesCrypto.Decrypt(GetDataBlockBytesReference());
 
             byte[] iv = new byte[16];
             Array.Copy(rawData, 8, iv, 0, iv.Length);
-            return iv;
+
+            return new AesIv(iv);
         }
     }
 }

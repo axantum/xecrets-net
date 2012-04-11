@@ -238,12 +238,14 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// The Initial Vector used for CBC encryption of the data
         /// </summary>
         /// <returns>The Initial Vector</returns>
-        public byte[] GetIV()
+        public AesIv IV
         {
-            EncryptionInfoHeaderBlock headerBlock = FindHeaderBlock<EncryptionInfoHeaderBlock>();
+            get
+            {
+                EncryptionInfoHeaderBlock headerBlock = FindHeaderBlock<EncryptionInfoHeaderBlock>();
 
-            byte[] iv = headerBlock.GetIV(HeaderCrypto);
-            return iv;
+                return headerBlock.GetIV(HeaderCrypto);
+            }
         }
 
         /// <summary>

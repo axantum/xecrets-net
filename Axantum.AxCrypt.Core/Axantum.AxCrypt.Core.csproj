@@ -56,6 +56,7 @@
     <Compile Include="AxCryptDocument.cs" />
     <Compile Include="AxCryptException.cs" />
     <Compile Include="Crypto\AesCrypto.cs" />
+    <Compile Include="Crypto\AesIv.cs" />
     <Compile Include="Crypto\AesKey.cs" />
     <Compile Include="Crypto\KeyWrap.cs" />
     <Compile Include="Crypto\KeyWrapMode.cs" />

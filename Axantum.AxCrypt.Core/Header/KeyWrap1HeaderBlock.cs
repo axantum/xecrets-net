@@ -103,7 +103,7 @@ namespace Axantum.AxCrypt.Core.Crypto
                 // Due to a bug in 1.1 and earlier we only used a truncated part of the key and salt :-(
                 // Compensate for this here. Users should be warned if FileVersionMajor <= 1 .
                 byte[] badKey = new byte[keyEncryptingKey.Length];
-                Array.Copy(keyEncryptingKey.Get(), 0, badKey, 0, 4);
+                Array.Copy(keyEncryptingKey.GetBytes(), 0, badKey, 0, 4);
                 keyEncryptingKey = new AesKey(badKey);
 
                 byte[] badSalt = new byte[salt.Length];

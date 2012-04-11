@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Core
         /// <returns>True if the key was valid, false if it was wrong.</returns>
         public bool Load(AxCryptReader axCryptReader, AxCryptReaderSettings settings)
         {
-            DocumentHeaders documentHeaders = new DocumentHeaders(settings.GetDerivedPassphrase());
+            DocumentHeaders documentHeaders = new DocumentHeaders(settings.DerivedPassphrase);
             bool loadedOk = documentHeaders.Load(axCryptReader);
             if (!loadedOk)
             {
@@ -156,7 +156,7 @@ namespace Axantum.AxCrypt.Core
             {
                 if (_dataCrypto == null)
                 {
-                    _dataCrypto = new AesCrypto(DocumentHeaders.DataSubkey.Key, DocumentHeaders.GetIV(), CipherMode.CBC, PaddingMode.PKCS7);
+                    _dataCrypto = new AesCrypto(DocumentHeaders.DataSubkey.Key, DocumentHeaders.IV, CipherMode.CBC, PaddingMode.PKCS7);
                 }
                 return _dataCrypto;
             }

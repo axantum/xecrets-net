@@ -89,7 +89,7 @@ namespace Axantum.AxCrypt.Core.Test
                     byte[] wrapped = keyWrapHeaderBlock.GetKeyData();
                     long iterations = keyWrapHeaderBlock.Iterations();
                     AxCryptReaderSettings readerSettings = new AxCryptReaderSettings("a");
-                    using (KeyWrap keyWrap = new KeyWrap(readerSettings.GetDerivedPassphrase(), salt, iterations, KeyWrapMode.AxCrypt))
+                    using (KeyWrap keyWrap = new KeyWrap(readerSettings.DerivedPassphrase, salt, iterations, KeyWrapMode.AxCrypt))
                     {
                         byte[] unwrapped = keyWrap.Unwrap(wrapped);
                         Assert.That(unwrapped.Length, Is.Not.EqualTo(0), "An unwrapped key is invalid if it is returned as a zero-length array.");

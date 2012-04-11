@@ -35,14 +35,12 @@ namespace Axantum.AxCrypt.Core.Crypto
 {
     public class AesCrypto : IDisposable
     {
-        private static readonly byte[] _zeroIv = new byte[] { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 };
-
         private AesManaged _aes = null;
 
         public static readonly int KeyBits = 128;
         public static readonly int KeyBytes = KeyBits / 8;
 
-        public AesCrypto(AesKey key, byte[] iv, CipherMode cipherMode, PaddingMode paddingMode)
+        public AesCrypto(AesKey key, AesIv iv, CipherMode cipherMode, PaddingMode paddingMode)
         {
             if (key == null)
             {
@@ -53,18 +51,14 @@ namespace Axantum.AxCrypt.Core.Crypto
                 throw new ArgumentNullException("iv");
             }
             _aes = new AesManaged();
-            if (iv.Length != _aes.BlockSize / 8)
-            {
-                throw new ArgumentOutOfRangeException("iv");
-            }
-            _aes.Key = key.Get();
+            _aes.Key = key.GetBytes();
             _aes.Mode = cipherMode;
-            _aes.IV = iv;
+            _aes.IV = iv.GetBytes();
             _aes.Padding = paddingMode;
         }
 
         public AesCrypto(AesKey key)
-            : this(key, _zeroIv, CipherMode.CBC, PaddingMode.None)
+            : this(key, AesIv.Zero, CipherMode.CBC, PaddingMode.None)
         {
         }
 

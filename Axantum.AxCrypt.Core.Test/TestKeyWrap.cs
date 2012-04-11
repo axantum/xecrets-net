@@ -26,7 +26,7 @@ namespace Axantum.AxCrypt.Core.Test
                 unwrapped = keyWrap.Unwrap(_wrapped);
             }
 
-            Assert.That(unwrapped, Is.EquivalentTo(_keyData.Get()), "Unwrapped the wrong data");
+            Assert.That(unwrapped, Is.EquivalentTo(_keyData.GetBytes()), "Unwrapped the wrong data");
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace Axantum.AxCrypt.Core.Test
                 unwrapped = keyWrap.Unwrap(wrapped);
             }
 
-            Assert.That(unwrapped, Is.EquivalentTo(keyToWrap.Get()), "The unwrapped data should be equal to original.");
+            Assert.That(unwrapped, Is.EquivalentTo(keyToWrap.GetBytes()), "The unwrapped data should be equal to original.");
         }
 
         [Test]
@@ -83,7 +83,7 @@ namespace Axantum.AxCrypt.Core.Test
                 unwrapped = keyWrap.Unwrap(wrapped);
             }
 
-            Assert.That(unwrapped, Is.EquivalentTo(keyToWrap.Get()), "The unwrapped data should be equal to original.");
+            Assert.That(unwrapped, Is.EquivalentTo(keyToWrap.GetBytes()), "The unwrapped data should be equal to original.");
         }
 
         [Test]
@@ -92,7 +92,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, 6, KeyWrapMode.Specification))
             {
-                Assert.Throws<ArgumentException>(() => { keyWrap.Unwrap(_keyData.Get()); }, "Calling with too short wrapped data.");
+                Assert.Throws<ArgumentException>(() => { keyWrap.Unwrap(_keyData.GetBytes()); }, "Calling with too short wrapped data.");
             }
 
             Assert.Throws<ArgumentException>(() =>

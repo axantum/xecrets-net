@@ -33,7 +33,7 @@ using System.Text;
 namespace Axantum.AxCrypt.Core.Crypto
 {
     /// <summary>
-    /// Generates a sub key from a master key. This class is immutable.
+    /// Generates a sub key from a master key. Instances of this class are immutable.
     /// </summary>
     public class Subkey
     {

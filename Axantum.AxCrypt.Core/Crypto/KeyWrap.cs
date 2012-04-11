@@ -98,7 +98,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
             _iterations = iterations;
 
-            byte[] saltedKey = _key.Get();
+            byte[] saltedKey = _key.GetBytes();
             saltedKey.Xor(_salt);
 
             _aes.Mode = CipherMode.ECB;
@@ -107,21 +107,6 @@ namespace Axantum.AxCrypt.Core.Crypto
             _aes.Padding = PaddingMode.None;
 
             _mode = mode;
-        }
-
-        private bool IsKeySizeValid(int keySizeInBits)
-        {
-            foreach (KeySizes keySizes in _aes.LegalKeySizes)
-            {
-                for (int validKeySizeInBits = keySizes.MinSize; validKeySizeInBits <= keySizes.MaxSize; validKeySizeInBits += keySizes.SkipSize)
-                {
-                    if (validKeySizeInBits == keySizeInBits)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
         }
 
         private AesManaged _aes = new AesManaged();
@@ -145,7 +130,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             byte[] wrapped = new byte[_key.Length + A.Length];
             A.CopyTo(wrapped, 0);
 
-            Array.Copy(keyToWrap.Get(), 0, wrapped, A.Length, keyToWrap.Length);
+            Array.Copy(keyToWrap.GetBytes(), 0, wrapped, A.Length, keyToWrap.Length);
 
             ICryptoTransform encryptor = _aes.CreateEncryptor();
 

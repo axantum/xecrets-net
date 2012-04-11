@@ -27,38 +27,41 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
-using Axantum.AxCrypt.Core.Crypto;
 
-namespace Axantum.AxCrypt.Core.Reader
+namespace Axantum.AxCrypt.Core.Crypto
 {
-    /// <summary>
-    /// Calculate HMACSHA1 the AxCrypt way.
-    /// </summary>
-    /// <remarks>
-    /// The .NET standard implementation uses a block size of 64, which is really only relevant
-    /// as to how to treat the key. AxCrypt uses a block size of 20. This class is required because
-    /// the .NET implementation has the BlockSizeValue as protected.
-    /// </remarks>
-    [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", Justification = "Both HMAC and SHA1 are meaningful acronyms and this is the way .NET does the naming.")]
-    public sealed class AxCryptHMACSHA1 : HMACSHA1
+    public class AesIv
     {
-        private AxCryptHMACSHA1()
+        /// <summary>
+        /// An Initial Vector for CBC chaining with AES. Instances of this class are immutable.
+        /// </summary>
+        private byte[] _iv;
+
+        public static readonly AesIv Zero = new AesIv(new byte[16]);
+
+        public AesIv()
         {
-            // We can't do it all in the constructor because then we need to call virtual methods and that's a bad
-            // idea in a constructor.
+            _iv = Environment.Current.GetRandomBytes(16);
         }
 
-        public static HMAC Create(AesKey key)
+        public AesIv(byte[] iv)
         {
-            AxCryptHMACSHA1 hmac = new AxCryptHMACSHA1();
-            hmac.BlockSizeValue = 20;
-            hmac.Key = key.GetBytes();
+            if (iv == null)
+            {
+                throw new ArgumentNullException("iv");
+            }
+            if (iv.Length != 16)
+            {
+                throw new InternalErrorException("AesIv must be exactly 16 bytes long.");
+            }
+            _iv = (byte[])iv.Clone();
+        }
 
-            return hmac;
+        public byte[] GetBytes()
+        {
+            return (byte[])_iv.Clone();
         }
     }
 }

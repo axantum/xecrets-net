@@ -48,20 +48,23 @@ namespace Axantum.AxCrypt.Core.Reader
             _passphrase = passphrase;
         }
 
-        public AesKey GetDerivedPassphrase()
+        public AesKey DerivedPassphrase
         {
-            if (_passphrase == null)
+            get
             {
-                return null;
+                if (_passphrase == null)
+                {
+                    return null;
+                }
+
+                HashAlgorithm hashAlgorithm = new SHA1Managed();
+                byte[] ansiBytes = Encoding.GetEncoding(1252).GetBytes(_passphrase);
+                byte[] hash = hashAlgorithm.ComputeHash(ansiBytes);
+                byte[] derivedPassphrase = new byte[16];
+                Array.Copy(hash, derivedPassphrase, derivedPassphrase.Length);
+
+                return new AesKey(derivedPassphrase);
             }
-
-            HashAlgorithm hashAlgorithm = new SHA1Managed();
-            byte[] ansiBytes = Encoding.GetEncoding(1252).GetBytes(_passphrase);
-            byte[] hash = hashAlgorithm.ComputeHash(ansiBytes);
-            byte[] derivedPassphrase = new byte[16];
-            Array.Copy(hash, derivedPassphrase, derivedPassphrase.Length);
-
-            return new AesKey(derivedPassphrase);
         }
     }
 }
