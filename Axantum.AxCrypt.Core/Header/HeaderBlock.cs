@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Core.Reader
         /// Get a reference to the internally maintained data block. Beware modifying the contents of the array!
         /// </summary>
         /// <returns></returns>
-        protected virtual byte[] GetDataBlockBytesReference()
+        protected byte[] GetDataBlockBytesReference()
         {
             return _dataBlock;
         }

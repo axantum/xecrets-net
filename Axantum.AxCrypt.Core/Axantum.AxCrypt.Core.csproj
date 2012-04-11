@@ -59,6 +59,7 @@
     <Compile Include="Crypto\AesIV.cs" />
     <Compile Include="Crypto\AesKey.cs" />
     <Compile Include="Crypto\AxCryptHMACSHA1.cs" />
+    <Compile Include="Crypto\DataHmac.cs" />
     <Compile Include="Crypto\HeaderSubkey.cs" />
     <Compile Include="Crypto\KeyWrap.cs" />
     <Compile Include="Crypto\KeyWrapMode.cs" />

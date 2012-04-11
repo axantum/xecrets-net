@@ -105,6 +105,8 @@ namespace Axantum.AxCrypt.Core
                             deflatedCipherStream.CopyTo(outputCipherStream);
                         }
                         outputDocumentHeaders.NormalSize = deflatedPlainStream.TotalIn;
+                        outputDocumentHeaders.PlaintextLength = deflatedPlainStream.TotalOut;
+                        outputDocumentHeaders.DataLength = deflatedPlainStream.TotalOut + 16 - deflatedPlainStream.TotalOut % 16;
                     }
                 }
                 outputDocumentHeaders.SetHmac(outputHmacStream.GetHmacResult());
@@ -141,7 +143,7 @@ namespace Axantum.AxCrypt.Core
                     {
                         encryptedDataStream.CopyTo(hmacStreamOutput);
 
-                        if (!hmacStreamInput.GetHmacResult().IsEquivalentTo(DocumentHeaders.GetHmac()))
+                        if (!hmacStreamInput.GetHmacResult().GetBytes().IsEquivalentTo(DocumentHeaders.GetHmac().GetBytes()))
                         {
                             throw new InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
                         }
@@ -180,7 +182,7 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new InternalErrorException("Document headers are not loaded");
             }
-            byte[] calculatedHmac;
+            DataHmac calculatedHmac;
             using (HmacStream hmacStream = new HmacStream(DocumentHeaders.HmacSubkey.Key))
             {
                 axCryptReader.HmacStream = hmacStream;
@@ -206,7 +208,7 @@ namespace Axantum.AxCrypt.Core
                 }
                 calculatedHmac = hmacStream.GetHmacResult();
             }
-            if (!calculatedHmac.IsEquivalentTo(DocumentHeaders.GetHmac()))
+            if (!calculatedHmac.GetBytes().IsEquivalentTo(DocumentHeaders.GetHmac().GetBytes()))
             {
                 throw new InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
             }

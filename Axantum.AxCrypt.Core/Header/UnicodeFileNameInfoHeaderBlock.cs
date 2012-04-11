@@ -38,25 +38,41 @@ namespace Axantum.AxCrypt.Core.Reader
         {
         }
 
+        public UnicodeFileNameInfoHeaderBlock()
+            : this(new byte[0])
+        {
+        }
+
         public override object Clone()
         {
             UnicodeFileNameInfoHeaderBlock block = new UnicodeFileNameInfoHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
             return block;
         }
 
-        public string GetFileName(AesCrypto aesCrypto)
+        public string FileName
         {
-            byte[] rawFileName = aesCrypto.Decrypt(GetDataBlockBytesReference());
-
-            int end = rawFileName.Locate(new byte[] { 0, 0, }, 0, rawFileName.Length, 2);
-            if (end == -1)
+            get
             {
-                throw new InvalidOperationException("Could not find terminating double nul byte in file name");
+                byte[] rawFileName = HeaderCrypto.Decrypt(GetDataBlockBytesReference());
+
+                int end = rawFileName.Locate(new byte[] { 0, 0, }, 0, rawFileName.Length, 2);
+                if (end == -1)
+                {
+                    throw new InvalidOperationException("Could not find terminating double nul byte in file name");
+                }
+
+                string fileName = Encoding.Unicode.GetString(rawFileName, 0, end);
+
+                return fileName;
             }
 
-            string fileName = Encoding.Unicode.GetString(rawFileName, 0, end);
-
-            return fileName;
+            set
+            {
+                byte[] rawFileName = Encoding.Unicode.GetBytes(value);
+                byte[] dataBlock = new byte[rawFileName.Length + 2 + 15 - (rawFileName.Length + 2 + 15) % 16];
+                rawFileName.CopyTo(dataBlock, 0);
+                SetDataBlockBytesReference(HeaderCrypto.Encrypt(dataBlock));
+            }
         }
     }
 }

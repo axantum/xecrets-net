@@ -36,17 +36,27 @@ namespace Axantum.AxCrypt.Core.Reader
         {
         }
 
+        public DataHeaderBlock()
+            : this(new byte[8])
+        {
+        }
+
         public override object Clone()
         {
             DataHeaderBlock block = new DataHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
             return block;
         }
 
-        public Int64 DataLength
+        public long DataLength
         {
             get
             {
-                return GetDataBlockBytesReference().GetLittleEndianValue(0, sizeof(Int64));
+                return GetDataBlockBytesReference().GetLittleEndianValue(0, sizeof(long));
+            }
+
+            set
+            {
+                value.GetLittleEndianBytes().CopyTo(GetDataBlockBytesReference(), 0);
             }
         }
     }

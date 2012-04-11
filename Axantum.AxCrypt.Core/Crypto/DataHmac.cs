@@ -26,40 +26,43 @@
 #endregion Coypright and License
 
 using System;
-using Axantum.AxCrypt.Core.Crypto;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Axantum.AxCrypt.Core.Reader
+namespace Axantum.AxCrypt.Core.Crypto
 {
-    public class PreambleHeaderBlock : HeaderBlock
+    /// <summary>
+    /// The HMAC of the encrypted data. Instances of this class are immutable.
+    /// </summary>
+    public class DataHmac
     {
-        public PreambleHeaderBlock(byte[] dataBlock)
-            : base(HeaderBlockType.Preamble, dataBlock)
-        {
-        }
+        private byte[] _hmac;
 
-        public PreambleHeaderBlock()
-            : base(HeaderBlockType.Preamble, new byte[16])
-        {
-        }
-
-        public override object Clone()
-        {
-            PreambleHeaderBlock block = new PreambleHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
-            return block;
-        }
-
-        public DataHmac GetHmac()
-        {
-            return new DataHmac(GetDataBlockBytesReference());
-        }
-
-        public void SetHmac(DataHmac hmac)
+        public DataHmac(byte[] hmac)
         {
             if (hmac == null)
             {
                 throw new ArgumentNullException("hmac");
             }
-            SetDataBlockBytesReference(hmac.GetBytes());
+            if (hmac.Length != 16)
+            {
+                throw new InternalErrorException("HMAC must be exactly 16 bytes.");
+            }
+            _hmac = (byte[])hmac.Clone();
+        }
+
+        public int Length
+        {
+            get
+            {
+                return _hmac.Length;
+            }
+        }
+
+        public byte[] GetBytes()
+        {
+            return (byte[])_hmac.Clone();
         }
     }
 }

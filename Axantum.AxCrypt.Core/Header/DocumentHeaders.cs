@@ -25,6 +25,10 @@ namespace Axantum.AxCrypt.Core.Reader
             HeaderBlocks.Add(new KeyWrap1HeaderBlock(keyEncryptingKey));
             HeaderBlocks.Add(new EncryptionInfoHeaderBlock());
             HeaderBlocks.Add(new CompressionInfoHeaderBlock());
+            HeaderBlocks.Add(new FileInfoHeaderBlock());
+            HeaderBlocks.Add(new UnicodeFileNameInfoHeaderBlock());
+            HeaderBlocks.Add(new FileNameInfoHeaderBlock());
+            HeaderBlocks.Add(new DataHeaderBlock());
 
             SetMasterKeyForEncryptedHeaderBlocks(HeaderBlocks);
         }
@@ -96,22 +100,22 @@ namespace Axantum.AxCrypt.Core.Reader
 
             cipherStream.Position = 0;
             AxCrypt1Guid.Write(cipherStream);
-            bool preambleSeen = false;
+            PreambleHeaderBlock preambleHaderBlock = FindHeaderBlock<PreambleHeaderBlock>();
+            preambleHaderBlock.Write(cipherStream);
             foreach (HeaderBlock headerBlock in HeaderBlocks)
             {
-                if (preambleSeen && hmacStream != null)
+                if (headerBlock is DataHeaderBlock)
                 {
-                    headerBlock.Write(hmacStream);
-                }
-                else
-                {
-                    headerBlock.Write(cipherStream);
+                    continue;
                 }
                 if (headerBlock is PreambleHeaderBlock)
                 {
-                    preambleSeen = true;
+                    continue;
                 }
+                headerBlock.Write(hmacStream != null ? hmacStream : cipherStream);
             }
+            DataHeaderBlock dataHeaderBlock = FindHeaderBlock<DataHeaderBlock>();
+            dataHeaderBlock.Write(hmacStream != null ? hmacStream : cipherStream);
         }
 
         private AesKey GetMasterKey()
@@ -159,14 +163,14 @@ namespace Axantum.AxCrypt.Core.Reader
             }
         }
 
-        public byte[] GetHmac()
+        public DataHmac GetHmac()
         {
             PreambleHeaderBlock headerBlock = FindHeaderBlock<PreambleHeaderBlock>();
 
             return headerBlock.GetHmac();
         }
 
-        public void SetHmac(byte[] hmac)
+        public void SetHmac(DataHmac hmac)
         {
             if (hmac == null)
             {
@@ -191,7 +195,6 @@ namespace Axantum.AxCrypt.Core.Reader
             set
             {
                 CompressionInfoHeaderBlock compressionInfo = FindHeaderBlock<CompressionInfoHeaderBlock>();
-
                 compressionInfo.NormalSize = value;
             }
         }
@@ -201,9 +204,13 @@ namespace Axantum.AxCrypt.Core.Reader
             get
             {
                 FileNameInfoHeaderBlock headerBlock = FindHeaderBlock<FileNameInfoHeaderBlock>();
+                return headerBlock.FileName;
+            }
 
-                string fileName = headerBlock.GetFileName(HeaderCrypto);
-                return fileName;
+            set
+            {
+                FileNameInfoHeaderBlock headerBlock = FindHeaderBlock<FileNameInfoHeaderBlock>();
+                headerBlock.FileName = value;
             }
         }
 
@@ -218,8 +225,15 @@ namespace Axantum.AxCrypt.Core.Reader
                     return String.Empty;
                 }
 
-                string fileName = headerBlock.GetFileName(HeaderCrypto);
-                return fileName;
+                return headerBlock.FileName;
+            }
+
+            set
+            {
+                UnicodeFileNameInfoHeaderBlock headerBlock = FindHeaderBlock<UnicodeFileNameInfoHeaderBlock>();
+                headerBlock.FileName = value;
+
+                AnsiFileName = value;
             }
         }
 
@@ -227,13 +241,12 @@ namespace Axantum.AxCrypt.Core.Reader
         {
             get
             {
-                UnicodeFileNameInfoHeaderBlock unicodeHeaderBlock = FindHeaderBlock<UnicodeFileNameInfoHeaderBlock>();
-                if (unicodeHeaderBlock != null)
+                string unicodeFileName = UnicodeFileName;
+                if (!String.IsNullOrEmpty(unicodeFileName))
                 {
-                    return unicodeHeaderBlock.GetFileName(HeaderCrypto);
+                    return unicodeFileName;
                 }
-                FileNameInfoHeaderBlock ansiHeaderBlock = FindHeaderBlock<FileNameInfoHeaderBlock>();
-                return ansiHeaderBlock.GetFileName(HeaderCrypto);
+                return AnsiFileName;
             }
         }
 
@@ -247,7 +260,6 @@ namespace Axantum.AxCrypt.Core.Reader
                     // Conditional compression was added in 1.2.2, before then it was always compressed.
                     return true;
                 }
-
                 return headerBlock.IsCompressed;
             }
         }
@@ -257,8 +269,12 @@ namespace Axantum.AxCrypt.Core.Reader
             get
             {
                 FileInfoHeaderBlock headerBlock = FindHeaderBlock<FileInfoHeaderBlock>();
-
-                return headerBlock.GetCreationTimeUtc(HeaderCrypto);
+                return headerBlock.CreationTimeUtc;
+            }
+            set
+            {
+                FileInfoHeaderBlock headerBlock = FindHeaderBlock<FileInfoHeaderBlock>();
+                headerBlock.CreationTimeUtc = value;
             }
         }
 
@@ -267,8 +283,12 @@ namespace Axantum.AxCrypt.Core.Reader
             get
             {
                 FileInfoHeaderBlock headerBlock = FindHeaderBlock<FileInfoHeaderBlock>();
-
-                return headerBlock.GetLastAccessTimeUtc(HeaderCrypto);
+                return headerBlock.LastAccessTimeUtc;
+            }
+            set
+            {
+                FileInfoHeaderBlock headerBlock = FindHeaderBlock<FileInfoHeaderBlock>();
+                headerBlock.LastAccessTimeUtc = value;
             }
         }
 
@@ -277,8 +297,12 @@ namespace Axantum.AxCrypt.Core.Reader
             get
             {
                 FileInfoHeaderBlock headerBlock = FindHeaderBlock<FileInfoHeaderBlock>();
-
-                return headerBlock.GetLastWriteTimeUtc(HeaderCrypto);
+                return headerBlock.LastWriteTimeUtc;
+            }
+            set
+            {
+                FileInfoHeaderBlock headerBlock = FindHeaderBlock<FileInfoHeaderBlock>();
+                headerBlock.LastWriteTimeUtc = value;
             }
         }
 
@@ -291,7 +315,6 @@ namespace Axantum.AxCrypt.Core.Reader
             get
             {
                 EncryptionInfoHeaderBlock headerBlock = FindHeaderBlock<EncryptionInfoHeaderBlock>();
-
                 return headerBlock.IV;
             }
         }
@@ -304,8 +327,27 @@ namespace Axantum.AxCrypt.Core.Reader
             get
             {
                 EncryptionInfoHeaderBlock headerBlock = FindHeaderBlock<EncryptionInfoHeaderBlock>();
-
                 return headerBlock.PlaintextLength;
+            }
+
+            set
+            {
+                EncryptionInfoHeaderBlock headerBlock = FindHeaderBlock<EncryptionInfoHeaderBlock>();
+                headerBlock.PlaintextLength = value;
+            }
+        }
+
+        public long DataLength
+        {
+            get
+            {
+                DataHeaderBlock headerBlock = FindHeaderBlock<DataHeaderBlock>();
+                return headerBlock.DataLength;
+            }
+            set
+            {
+                DataHeaderBlock headerBlock = FindHeaderBlock<DataHeaderBlock>();
+                headerBlock.DataLength = value;
             }
         }
 
@@ -333,7 +375,7 @@ namespace Axantum.AxCrypt.Core.Reader
             }
         }
 
-        private T FindHeaderBlock<T>() where T : class
+        private T FindHeaderBlock<T>() where T : HeaderBlock
         {
             foreach (HeaderBlock headerBlock in HeaderBlocks)
             {

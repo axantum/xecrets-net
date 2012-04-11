@@ -42,39 +42,111 @@ namespace Axantum.AxCrypt.Core.Reader
         {
         }
 
+        public FileInfoHeaderBlock()
+            : this(new byte[0])
+        {
+        }
+
+        private void EnsureDataBlock()
+        {
+            if (GetDataBlockBytesReference().Length > 0)
+            {
+                return;
+            }
+            byte[] timeBytes = GetTimeStampBytes(DateTime.UtcNow);
+
+            byte[] rawData = new byte[32];
+            Array.Copy(timeBytes, 0, rawData, CreationTimeOffset, timeBytes.Length);
+            Array.Copy(timeBytes, 0, rawData, LastAccessTimeOffset, timeBytes.Length);
+            Array.Copy(timeBytes, 0, rawData, LastWriteTimeOffset, timeBytes.Length);
+
+            SetDataBlockBytesReference(HeaderCrypto.Encrypt(rawData));
+        }
+
         public override object Clone()
         {
             FileInfoHeaderBlock block = new FileInfoHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
             return block;
         }
 
-        public DateTime GetCreationTimeUtc(AesCrypto aesCrypto)
+        public DateTime CreationTimeUtc
         {
-            DateTime creationTime = GetTimeStamp(CreationTimeOffset, aesCrypto);
-            return creationTime;
+            get
+            {
+                DateTime creationTime = GetTimeStamp(CreationTimeOffset);
+                return creationTime;
+            }
+            set
+            {
+                SetTimeStamp(value, CreationTimeOffset);
+            }
         }
 
-        public DateTime GetLastAccessTimeUtc(AesCrypto aesCrypto)
+        public DateTime LastAccessTimeUtc
         {
-            DateTime lastAccessTime = GetTimeStamp(LastAccessTimeOffset, aesCrypto);
-            return lastAccessTime;
+            get
+            {
+                DateTime lastAccessTime = GetTimeStamp(LastAccessTimeOffset);
+                return lastAccessTime;
+            }
+            set
+            {
+                SetTimeStamp(value, LastAccessTimeOffset);
+            }
         }
 
-        public DateTime GetLastWriteTimeUtc(AesCrypto aesCrypto)
+        public DateTime LastWriteTimeUtc
         {
-            DateTime lastWriteTime = GetTimeStamp(LastWriteTimeOffset, aesCrypto);
-            return lastWriteTime;
+            get
+            {
+                DateTime lastWriteTime = GetTimeStamp(LastWriteTimeOffset);
+                return lastWriteTime;
+            }
+            set
+            {
+                SetTimeStamp(value, LastWriteTimeOffset);
+            }
         }
 
-        private DateTime GetTimeStamp(int CreationTimeOffset, AesCrypto aesCrypto)
+        private DateTime GetTimeStamp(int timeOffset)
         {
-            byte[] rawFileTimes = aesCrypto.Decrypt(GetDataBlockBytesReference());
-            uint lowDateTime = (uint)rawFileTimes.GetLittleEndianValue(CreationTimeOffset, 4);
-            uint hiDateTime = (uint)rawFileTimes.GetLittleEndianValue(CreationTimeOffset + 4, 4);
+            EnsureDataBlock();
+            byte[] rawFileTimes = HeaderCrypto.Decrypt(GetDataBlockBytesReference());
+            uint lowDateTime = (uint)rawFileTimes.GetLittleEndianValue(timeOffset, 4);
+            uint hiDateTime = (uint)rawFileTimes.GetLittleEndianValue(timeOffset + 4, 4);
             long filetime = ((long)hiDateTime << 32) | lowDateTime;
 
             DateTime timeStampUtc = new DateTime(WindowsTimeTicksStart + filetime, DateTimeKind.Utc);
             return timeStampUtc;
+        }
+
+        private void SetTimeStamp(DateTime dateTime, int timeOffset)
+        {
+            EnsureDataBlock();
+            byte[] timeStampBytes = GetTimeStampBytes(dateTime);
+            byte[] rawFileTimes = HeaderCrypto.Decrypt(GetDataBlockBytesReference());
+            Array.Copy(timeStampBytes, 0, rawFileTimes, timeOffset, timeStampBytes.Length);
+            SetDataBlockBytesReference(HeaderCrypto.Encrypt(rawFileTimes));
+        }
+
+        private static byte[] GetTimeStampBytes(DateTime dateTime)
+        {
+            if (dateTime.Kind != DateTimeKind.Utc)
+            {
+                dateTime = dateTime.ToUniversalTime();
+            }
+
+            long filetime = dateTime.Ticks - WindowsTimeTicksStart;
+            long lowDateTime = filetime & 0xffffffff;
+            long hiDateTime = (filetime >> 32) & 0xffffffff;
+            byte[] lowDateTimeBytes = lowDateTime.GetLittleEndianBytes();
+            byte[] hiDateTimeBytes = hiDateTime.GetLittleEndianBytes();
+
+            byte[] timeStampBytes = new byte[sizeof(long)];
+            Array.Copy(lowDateTimeBytes, 0, timeStampBytes, 0, sizeof(uint));
+            Array.Copy(hiDateTimeBytes, 0, timeStampBytes, sizeof(uint), sizeof(uint));
+
+            return timeStampBytes;
         }
     }
 }

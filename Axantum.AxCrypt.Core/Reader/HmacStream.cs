@@ -70,7 +70,7 @@ namespace Axantum.AxCrypt.Core.Reader
         /// Get the calculated HMAC
         /// </summary>
         /// <returns>A HMAC truncated to 128 bits</returns>
-        public byte[] GetHmacResult()
+        public DataHmac GetHmacResult()
         {
             if (_result == null)
             {
@@ -79,7 +79,7 @@ namespace Axantum.AxCrypt.Core.Reader
             }
             byte[] result = new byte[16];
             Array.Copy(_result, 0, result, 0, result.Length);
-            return result;
+            return new DataHmac(result);
         }
 
         public override bool CanRead

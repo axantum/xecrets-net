@@ -26,11 +26,9 @@
 #endregion Coypright and License
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Reader;
@@ -102,7 +100,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestHmacFromSimpleFile()
         {
-            byte[] expectedHmac = new byte[] { 0xF9, 0xAF, 0x2E, 0x67, 0x7D, 0xCF, 0xC9, 0xFE, 0x06, 0x4B, 0x39, 0x08, 0xE7, 0x5A, 0x87, 0x81 };
+            DataHmac expectedHmac = new DataHmac(new byte[] { 0xF9, 0xAF, 0x2E, 0x67, 0x7D, 0xCF, 0xC9, 0xFE, 0x06, 0x4B, 0x39, 0x08, 0xE7, 0x5A, 0x87, 0x81 });
             using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
             {
                 using (AxCryptDocument document = new AxCryptDocument())
@@ -112,8 +110,8 @@ namespace Axantum.AxCrypt.Core.Test
                     {
                         bool keyIsOk = document.Load(axCryptReader, settings);
                         Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                        byte[] hmac = document.DocumentHeaders.GetHmac();
-                        Assert.That(hmac, Is.EqualTo(expectedHmac), "Wrong HMAC");
+                        DataHmac hmac = document.DocumentHeaders.GetHmac();
+                        Assert.That(hmac.GetBytes(), Is.EqualTo(expectedHmac.GetBytes()), "Wrong HMAC");
                     }
                 }
             }
@@ -320,7 +318,7 @@ namespace Axantum.AxCrypt.Core.Test
                     {
                         bool keyIsOk = document.Load(axCryptReader, settings);
                         Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                        document.DocumentHeaders.SetHmac(new byte[document.DocumentHeaders.GetHmac().Length]);
+                        document.DocumentHeaders.SetHmac(new DataHmac(new byte[document.DocumentHeaders.GetHmac().Length]));
                         Assert.Throws<InvalidDataException>(() =>
                         {
                             document.DecryptTo(axCryptReader, Stream.Null);
@@ -445,6 +443,11 @@ namespace Axantum.AxCrypt.Core.Test
                         AxCryptReaderSettings settings = new AxCryptReaderSettings("a");
                         using (DocumentHeaders headers = new DocumentHeaders(settings.DerivedPassphrase))
                         {
+                            headers.UnicodeFileName = "MyFile.txt";
+                            DateTime fileTime = new DateTime(2012, 1, 1, 1, 2, 3);
+                            headers.CreationTimeUtc = fileTime;
+                            headers.LastAccessTimeUtc = fileTime + new TimeSpan(1, 0, 0);
+                            headers.LastWriteTimeUtc = fileTime + new TimeSpan(2, 0, 0); ;
                             document.DocumentHeaders = headers;
                             document.EncryptTo(headers, inputStream, outputStream);
                         }
