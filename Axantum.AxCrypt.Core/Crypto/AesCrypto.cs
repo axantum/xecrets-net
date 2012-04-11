@@ -40,7 +40,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         public static readonly int KeyBits = 128;
         public static readonly int KeyBytes = KeyBits / 8;
 
-        public AesCrypto(AesKey key, AesIv iv, CipherMode cipherMode, PaddingMode paddingMode)
+        public AesCrypto(AesKey key, AesIV iv, CipherMode cipherMode, PaddingMode paddingMode)
         {
             if (key == null)
             {
@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         }
 
         public AesCrypto(AesKey key)
-            : this(key, AesIv.Zero, CipherMode.CBC, PaddingMode.None)
+            : this(key, AesIV.Zero, CipherMode.CBC, PaddingMode.None)
         {
         }
 

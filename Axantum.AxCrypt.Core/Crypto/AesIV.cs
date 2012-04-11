@@ -27,26 +27,28 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
-    public class AesIv
+    public class AesIV
     {
         /// <summary>
         /// An Initial Vector for CBC chaining with AES. Instances of this class are immutable.
         /// </summary>
         private byte[] _iv;
 
-        public static readonly AesIv Zero = new AesIv(new byte[16]);
+        [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "The reference type 'AesIV' is, in fact, immutable.")]
+        public static readonly AesIV Zero = new AesIV(new byte[16]);
 
-        public AesIv()
+        public AesIV()
         {
             _iv = Environment.Current.GetRandomBytes(16);
         }
 
-        public AesIv(byte[] iv)
+        public AesIV(byte[] iv)
         {
             if (iv == null)
             {

@@ -42,36 +42,6 @@
   <Settings />
  </Rules>
  <FxCopReport Version="10.0">
-  <Namespaces>
-   <Namespace Name="Axantum.AxCrypt.Core">
-    <Messages>
-     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Excluded" Created="2012-01-15 20:45:04Z">
-      <Issue>
-       <Item>Axantum.AxCrypt.Core</Item>
-      </Issue>
-      <Notes>
-       <User Name="Svante">
-        <Note Id="0" />
-       </User>
-      </Notes>
-     </Message>
-    </Messages>
-   </Namespace>
-   <Namespace Name="Axantum.AxCrypt.Core.Reader">
-    <Messages>
-     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Excluded" Created="2012-01-13 14:32:00Z">
-      <Issue>
-       <Item>Axantum.AxCrypt.Core.Reader</Item>
-      </Issue>
-      <Notes>
-       <User Name="Svante">
-        <Note Id="1" />
-       </User>
-      </Notes>
-     </Message>
-    </Messages>
-   </Namespace>
-  </Namespaces>
   <Targets>
    <Target Name="$(ProjectDir)/Axantum.AxCrypt.Core/bin/Debug/Axantum.AxCrypt.Core.dll">
     <Modules>
@@ -81,11 +51,11 @@
         <Types>
          <Type Name="KeyWrap1HeaderBlock">
           <Members>
-           <Member Name="#Initialize(System.Byte[])">
+           <Member Name="#Initialize(Axantum.AxCrypt.Core.Crypto.AesKey)">
             <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2012-04-10 18:15:39Z">
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2012-04-11 07:05:59Z">
               <Issue>
-               <Item>'KeyWrap1HeaderBlock.Initialize(byte[])'</Item>
+               <Item>'KeyWrap1HeaderBlock.Initialize(AesKey)'</Item>
               </Issue>
              </Message>
             </Messages>
@@ -99,16 +69,7 @@
     </Modules>
    </Target>
   </Targets>
-  <Notes>
-   <User Name="Svante">
-    <Note Id="0" Modified="2012-01-15 20:45:43Z">We can check this at a later stage, in the beginning some namespaces will be small...</Note>
-    <Note Id="1" Modified="2012-01-15 20:45:48Z">We can check this at a later stage, in the beginning some namespaces will be small...</Note>
-   </User>
-  </Notes>
   <Rules>
-   <Rule TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020">
-    <Resolution Name="Default">Consider merging the types defined in '{0}' with another namespace.</Resolution>
-   </Rule>
    <Rule TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811">
     <Resolution Name="Default">{0} appears to have no upstream public or protected callers.</Resolution>
    </Rule>

@@ -238,7 +238,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// The Initial Vector used for CBC encryption of the data
         /// </summary>
         /// <returns>The Initial Vector</returns>
-        public AesIv IV
+        public AesIV IV
         {
             get
             {
