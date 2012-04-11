@@ -42,7 +42,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         private static readonly byte[] A = new byte[] { 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6 };
 
         private AesKey _key;
-        private byte[] _salt;
+        private KeyWrapSalt _salt;
         private long _iterations;
         private KeyWrapMode _mode;
 
@@ -53,7 +53,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <param name="iterations">The number of wrapping iterations, at least 6</param>
         /// <param name="mode">Use original specification mode or AxCrypt mode (only difference is that 't' is little endian in AxCrypt mode)</param>
         public KeyWrap(AesKey key, long iterations, KeyWrapMode mode)
-            : this(key, null, iterations, mode)
+            : this(key, KeyWrapSalt.Zero, iterations, mode)
         {
         }
 
@@ -64,13 +64,17 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <param name="salt">An optional salt, or null if none. AxCrypt uses a salt.</param>
         /// <param name="iterations">The number of wrapping iterations, at least 6</param>
         /// <param name="mode">Use original specification mode or AxCrypt mode (only difference is that 't' is little endian in AxCrypt mode)</param>
-        public KeyWrap(AesKey key, byte[] salt, long iterations, KeyWrapMode mode)
+        public KeyWrap(AesKey key, KeyWrapSalt salt, long iterations, KeyWrapMode mode)
         {
             if (key == null)
             {
                 throw new ArgumentNullException("key");
             }
-            if (salt != null && salt.Length != key.Length)
+            if (salt == null)
+            {
+                throw new ArgumentNullException("salt");
+            }
+            if (salt.Length != 0 && salt.Length != key.Length)
             {
                 throw new ArgumentException("salt length is incorrect");
             }
@@ -85,21 +89,15 @@ namespace Axantum.AxCrypt.Core.Crypto
             Initialize(key, salt, iterations, mode);
         }
 
-        private void Initialize(AesKey key, byte[] salt, long iterations, KeyWrapMode mode)
+        private void Initialize(AesKey key, KeyWrapSalt salt, long iterations, KeyWrapMode mode)
         {
             _key = key;
-            if (salt != null)
-            {
-                _salt = (byte[])salt.Clone();
-            }
-            else
-            {
-                _salt = new byte[0];
-            }
+            _salt = salt;
+
             _iterations = iterations;
 
             byte[] saltedKey = _key.GetBytes();
-            saltedKey.Xor(_salt);
+            saltedKey.Xor(_salt.GetBytes());
 
             _aes.Mode = CipherMode.ECB;
             _aes.KeySize = _key.Length * 8;

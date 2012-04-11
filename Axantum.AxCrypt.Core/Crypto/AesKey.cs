@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new ArgumentNullException("key");
             }
-            if (!_validAesKeySizes.Contains(key.Length))
+            if (!IsValidKeyLength(key.Length))
             {
                 throw new InternalErrorException("Invalid AES key size");
             }
@@ -68,6 +68,11 @@ namespace Axantum.AxCrypt.Core.Crypto
         public byte[] GetBytes()
         {
             return (byte[])_aesKey.Clone();
+        }
+
+        public static bool IsValidKeyLength(int length)
+        {
+            return _validAesKeySizes.Contains(length);
         }
 
         public int Length

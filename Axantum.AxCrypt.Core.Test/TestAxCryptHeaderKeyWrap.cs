@@ -85,11 +85,9 @@ namespace Axantum.AxCrypt.Core.Test
                         }
                     }
                     Assert.That(headers, Is.EqualTo(1), "We're expecting exactly one KeyWrap1 block to be found!");
-                    byte[] salt = keyWrapHeaderBlock.GetSalt();
                     byte[] wrapped = keyWrapHeaderBlock.GetKeyData();
-                    long iterations = keyWrapHeaderBlock.Iterations();
                     AxCryptReaderSettings readerSettings = new AxCryptReaderSettings("a");
-                    using (KeyWrap keyWrap = new KeyWrap(readerSettings.DerivedPassphrase, salt, iterations, KeyWrapMode.AxCrypt))
+                    using (KeyWrap keyWrap = new KeyWrap(readerSettings.DerivedPassphrase, keyWrapHeaderBlock.Salt, keyWrapHeaderBlock.Iterations, KeyWrapMode.AxCrypt))
                     {
                         byte[] unwrapped = keyWrap.Unwrap(wrapped);
                         Assert.That(unwrapped.Length, Is.Not.EqualTo(0), "An unwrapped key is invalid if it is returned as a zero-length array.");

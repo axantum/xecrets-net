@@ -60,6 +60,7 @@
     <Compile Include="Crypto\AesKey.cs" />
     <Compile Include="Crypto\KeyWrap.cs" />
     <Compile Include="Crypto\KeyWrapMode.cs" />
+    <Compile Include="Crypto\KeyWrapSalt.cs" />
     <Compile Include="Crypto\Subkey.cs" />
     <Compile Include="Environment.cs" />
     <Compile Include="ErrorStatus.cs" />
