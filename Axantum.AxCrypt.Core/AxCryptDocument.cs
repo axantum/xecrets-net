@@ -57,7 +57,7 @@ namespace Axantum.AxCrypt.Core
         /// </summary>
         /// <param name="axCryptReader">The reader.</param>
         /// <returns>True if the key was valid, false if it was wrong.</returns>
-        public bool Load(AxCryptReader axCryptReader, AxCryptReaderSettings settings)
+        public bool Load(AxCryptReader axCryptReader, Passphrase settings)
         {
             DocumentHeaders documentHeaders = new DocumentHeaders(settings.DerivedPassphrase);
             bool loadedOk = documentHeaders.Load(axCryptReader);
@@ -112,12 +112,12 @@ namespace Axantum.AxCrypt.Core
                         deflatedPlainStream.FlushMode = JZlib.Z_FINISH;
                         deflatedPlainStream.Finish();
 
-                        outputDocumentHeaders.NormalSize = deflatedPlainStream.TotalIn;
+                        outputDocumentHeaders.UncompressedLength = deflatedPlainStream.TotalIn;
                         outputDocumentHeaders.PlaintextLength = deflatedPlainStream.TotalOut;
 
                         deflatedCipherStream.FlushFinalBlock();
                         outputCipherStream.Flush();
-                        outputDocumentHeaders.DataLength = outputCipherStream.Position - cipherStartPosition;
+                        outputDocumentHeaders.CipherTextLength = outputCipherStream.Position - cipherStartPosition;
                     }
                 }
                 using (HmacStream outputHmacStream = new HmacStream(outputDocumentHeaders.HmacSubkey.Key, outputCipherStream))

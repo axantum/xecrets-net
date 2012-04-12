@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core.Reader
         /// <summary>
         /// The uncompressed size of the data
         /// </summary>
-        public long NormalSize
+        public long UncompressedLength
         {
             get
             {

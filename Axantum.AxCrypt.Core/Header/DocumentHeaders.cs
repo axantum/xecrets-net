@@ -182,7 +182,7 @@ namespace Axantum.AxCrypt.Core.Reader
             }
         }
 
-        public long NormalSize
+        public long UncompressedLength
         {
             get
             {
@@ -191,13 +191,13 @@ namespace Axantum.AxCrypt.Core.Reader
                 {
                     return -1;
                 }
-                return compressionInfo.NormalSize;
+                return compressionInfo.UncompressedLength;
             }
 
             set
             {
                 CompressionInfoHeaderBlock compressionInfo = FindHeaderBlock<CompressionInfoHeaderBlock>();
-                compressionInfo.NormalSize = value;
+                compressionInfo.UncompressedLength = value;
             }
         }
 
@@ -339,17 +339,17 @@ namespace Axantum.AxCrypt.Core.Reader
             }
         }
 
-        public long DataLength
+        public long CipherTextLength
         {
             get
             {
                 DataHeaderBlock headerBlock = FindHeaderBlock<DataHeaderBlock>();
-                return headerBlock.DataLength;
+                return headerBlock.CipherTextLength;
             }
             set
             {
                 DataHeaderBlock headerBlock = FindHeaderBlock<DataHeaderBlock>();
-                headerBlock.DataLength = value;
+                headerBlock.CipherTextLength = value;
             }
         }
 

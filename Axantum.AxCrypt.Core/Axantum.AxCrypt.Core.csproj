@@ -64,6 +64,7 @@
     <Compile Include="Crypto\KeyWrap.cs" />
     <Compile Include="Crypto\KeyWrapMode.cs" />
     <Compile Include="Crypto\KeyWrapSalt.cs" />
+    <Compile Include="Crypto\Passphrase.cs" />
     <Compile Include="Crypto\Subkey.cs" />
     <Compile Include="Environment.cs" />
     <Compile Include="ErrorStatus.cs" />
@@ -91,7 +92,6 @@
     <Compile Include="IO\HmacStream.cs" />
     <Compile Include="IO\LookAheadStream.cs" />
     <Compile Include="IO\NonClosingStream.cs" />
-    <Compile Include="Reader\AxCryptReaderSettings.cs" />
     <Compile Include="Header\HeaderBlock.cs" />
     <Compile Include="Header\HeaderBlockType.cs" />
     <Compile Include="Header\VersionHeaderBlock.cs" />

@@ -31,16 +31,24 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using Axantum.AxCrypt.Core.Crypto;
 
-namespace Axantum.AxCrypt.Core.Reader
+namespace Axantum.AxCrypt.Core.Crypto
 {
-    public class AxCryptReaderSettings
+    /// <summary>
+    /// Derive a AesKey from a string passphrase representation
+    /// </summary>
+    public class Passphrase
     {
         private string _passphrase;
 
-        public AxCryptReaderSettings(string passphrase)
+        private AesKey _derivedPassphrase;
+
+        public Passphrase(string passphrase)
         {
+            if (passphrase == null)
+            {
+                throw new ArgumentNullException("passphrase");
+            }
             _passphrase = passphrase;
         }
 
@@ -48,18 +56,17 @@ namespace Axantum.AxCrypt.Core.Reader
         {
             get
             {
-                if (_passphrase == null)
+                if (_derivedPassphrase == null)
                 {
-                    return null;
+                    HashAlgorithm hashAlgorithm = new SHA1Managed();
+                    byte[] ansiBytes = Encoding.GetEncoding(1252).GetBytes(_passphrase);
+                    byte[] hash = hashAlgorithm.ComputeHash(ansiBytes);
+                    byte[] derivedPassphrase = new byte[16];
+                    Array.Copy(hash, derivedPassphrase, derivedPassphrase.Length);
+
+                    _derivedPassphrase = new AesKey(derivedPassphrase);
                 }
-
-                HashAlgorithm hashAlgorithm = new SHA1Managed();
-                byte[] ansiBytes = Encoding.GetEncoding(1252).GetBytes(_passphrase);
-                byte[] hash = hashAlgorithm.ComputeHash(ansiBytes);
-                byte[] derivedPassphrase = new byte[16];
-                Array.Copy(hash, derivedPassphrase, derivedPassphrase.Length);
-
-                return new AesKey(derivedPassphrase);
+                return _derivedPassphrase;
             }
         }
     }

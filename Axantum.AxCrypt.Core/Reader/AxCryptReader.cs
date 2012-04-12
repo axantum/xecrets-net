@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Security.Cryptography;
 using Axantum.AxCrypt.Core.Crypto;
@@ -98,6 +99,15 @@ namespace Axantum.AxCrypt.Core.Reader
         /// <returns>true if there was a next item read, false if at end of stream.</returns>
         /// <exception cref="Axantum.AxCrypt.Core.AxCryptException">Any error except premature end of stream will throw.</exception>
         public bool Read()
+        {
+            AxCryptItemType before = CurrentItemType;
+            bool readOk = ReadInternal();
+            AxCryptItemType after = CurrentItemType;
+            Trace.TraceInformation("AxCryptReader.Read() from type {0} to type {1} : {2}.", before, after, CurrentHeaderBlock == null ? "(None)" : CurrentHeaderBlock.GetType().ToString());
+            return readOk;
+        }
+
+        private bool ReadInternal()
         {
             switch (CurrentItemType)
             {
@@ -186,7 +196,7 @@ namespace Axantum.AxCrypt.Core.Reader
             if (dataHeaderBlock != null)
             {
                 CurrentItemType = AxCryptItemType.Data;
-                _dataBytesLeftToRead = dataHeaderBlock.DataLength;
+                _dataBytesLeftToRead = dataHeaderBlock.CipherTextLength;
             }
         }
 

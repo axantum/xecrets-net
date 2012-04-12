@@ -47,7 +47,7 @@ namespace Axantum.AxCrypt.Core.Reader
             return block;
         }
 
-        public long DataLength
+        public long CipherTextLength
         {
             get
             {
