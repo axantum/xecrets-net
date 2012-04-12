@@ -9,7 +9,7 @@ using Axantum.AxCrypt.Core.Reader;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
-    public class DocumentHeaders : IDisposable
+    public class DocumentHeaders
     {
         private IList<HeaderBlock> HeaderBlocks { get; set; }
 
@@ -163,21 +163,23 @@ namespace Axantum.AxCrypt.Core.Reader
             }
         }
 
-        public DataHmac GetHmac()
+        public DataHmac Hmac
         {
-            PreambleHeaderBlock headerBlock = FindHeaderBlock<PreambleHeaderBlock>();
-
-            return headerBlock.GetHmac();
-        }
-
-        public void SetHmac(DataHmac hmac)
-        {
-            if (hmac == null)
+            get
             {
-                throw new ArgumentNullException("hmac");
+                PreambleHeaderBlock headerBlock = FindHeaderBlock<PreambleHeaderBlock>();
+
+                return headerBlock.Hmac;
             }
-            PreambleHeaderBlock headerBlock = FindHeaderBlock<PreambleHeaderBlock>();
-            headerBlock.SetHmac(hmac);
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value");
+                }
+                PreambleHeaderBlock headerBlock = FindHeaderBlock<PreambleHeaderBlock>();
+                headerBlock.Hmac = value;
+            }
         }
 
         public long NormalSize
@@ -351,21 +353,6 @@ namespace Axantum.AxCrypt.Core.Reader
             }
         }
 
-        private AesCrypto _headerCrypto;
-
-        private AesCrypto HeaderCrypto
-        {
-            get
-            {
-                if (_headerCrypto == null)
-                {
-                    Subkey headersSubkey = new Subkey(GetMasterKey(), HeaderSubkey.Headers);
-                    _headerCrypto = new AesCrypto(headersSubkey.Key);
-                }
-                return _headerCrypto;
-            }
-        }
-
         private void EnsureFileFormatVersion()
         {
             VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();
@@ -386,33 +373,6 @@ namespace Axantum.AxCrypt.Core.Reader
                 }
             }
             return null;
-        }
-
-        private bool _disposed = false;
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        private void Dispose(bool disposing)
-        {
-            if (_disposed)
-            {
-                return;
-            }
-
-            if (disposing)
-            {
-                if (_headerCrypto != null)
-                {
-                    _headerCrypto.Dispose();
-                    _headerCrypto = null;
-                }
-            }
-
-            _disposed = true;
         }
     }
 }

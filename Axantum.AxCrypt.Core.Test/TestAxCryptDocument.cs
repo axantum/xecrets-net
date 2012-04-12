@@ -111,7 +111,7 @@ namespace Axantum.AxCrypt.Core.Test
                     {
                         bool keyIsOk = document.Load(axCryptReader, settings);
                         Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                        DataHmac hmac = document.DocumentHeaders.GetHmac();
+                        DataHmac hmac = document.DocumentHeaders.Hmac;
                         Assert.That(hmac.GetBytes(), Is.EqualTo(expectedHmac.GetBytes()), "Wrong HMAC");
                     }
                 }
@@ -319,7 +319,7 @@ namespace Axantum.AxCrypt.Core.Test
                     {
                         bool keyIsOk = document.Load(axCryptReader, settings);
                         Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                        document.DocumentHeaders.SetHmac(new DataHmac(new byte[document.DocumentHeaders.GetHmac().Length]));
+                        document.DocumentHeaders.Hmac = new DataHmac(new byte[document.DocumentHeaders.Hmac.Length]);
                         Assert.Throws<InvalidDataException>(() =>
                         {
                             document.DecryptTo(axCryptReader, Stream.Null);
@@ -404,25 +404,23 @@ namespace Axantum.AxCrypt.Core.Test
                         AxCryptReaderSettings newSettings = new AxCryptReaderSettings("b");
                         using (Stream changedStream = new MemoryStream())
                         {
-                            using (DocumentHeaders outputDocumentHeaders = new DocumentHeaders(document.DocumentHeaders))
+                            DocumentHeaders outputDocumentHeaders = new DocumentHeaders(document.DocumentHeaders);
+                            outputDocumentHeaders.RewrapMasterKey(newSettings.DerivedPassphrase);
+
+                            document.CopyEncryptedTo(axCryptReader, outputDocumentHeaders, changedStream);
+                            changedStream.Position = 0;
+                            using (AxCryptDocument changedDocument = new AxCryptDocument())
                             {
-                                outputDocumentHeaders.RewrapMasterKey(newSettings.DerivedPassphrase);
-
-                                document.CopyEncryptedTo(axCryptReader, outputDocumentHeaders, changedStream);
-                                changedStream.Position = 0;
-                                using (AxCryptDocument changedDocument = new AxCryptDocument())
+                                using (AxCryptReader changedAxCryptReader = AxCryptReader.Create(changedStream))
                                 {
-                                    using (AxCryptReader changedAxCryptReader = AxCryptReader.Create(changedStream))
-                                    {
-                                        bool changedKeyIsOk = changedDocument.Load(changedAxCryptReader, newSettings);
-                                        Assert.That(changedKeyIsOk, Is.True, "The changed passphrase provided is correct and should work!");
+                                    bool changedKeyIsOk = changedDocument.Load(changedAxCryptReader, newSettings);
+                                    Assert.That(changedKeyIsOk, Is.True, "The changed passphrase provided is correct and should work!");
 
-                                        using (MemoryStream plaintextStream = new MemoryStream())
-                                        {
-                                            changedDocument.DecryptTo(changedAxCryptReader, plaintextStream);
-                                            Assert.That(Encoding.ASCII.GetString(plaintextStream.GetBuffer(), 0, (int)plaintextStream.Length), Is.EqualTo("HelloWorld"), "Unexpected result of decryption.");
-                                            Assert.That(changedDocument.DocumentHeaders.PlaintextLength, Is.EqualTo(10), "'HelloWorld' should be 10 bytes uncompressed plaintext.");
-                                        }
+                                    using (MemoryStream plaintextStream = new MemoryStream())
+                                    {
+                                        changedDocument.DecryptTo(changedAxCryptReader, plaintextStream);
+                                        Assert.That(Encoding.ASCII.GetString(plaintextStream.GetBuffer(), 0, (int)plaintextStream.Length), Is.EqualTo("HelloWorld"), "Unexpected result of decryption.");
+                                        Assert.That(changedDocument.DocumentHeaders.PlaintextLength, Is.EqualTo(10), "'HelloWorld' should be 10 bytes uncompressed plaintext.");
                                     }
                                 }
                             }
@@ -445,15 +443,13 @@ namespace Axantum.AxCrypt.Core.Test
                     using (AxCryptDocument document = new AxCryptDocument())
                     {
                         AxCryptReaderSettings settings = new AxCryptReaderSettings("a");
-                        using (DocumentHeaders headers = new DocumentHeaders(settings.DerivedPassphrase))
-                        {
-                            headers.UnicodeFileName = "MyFile.txt";
-                            headers.CreationTimeUtc = creationTimeUtc;
-                            headers.LastAccessTimeUtc = lastAccessTimeUtc;
-                            headers.LastWriteTimeUtc = lastWriteTimeUtc;
-                            document.DocumentHeaders = headers;
-                            document.EncryptTo(headers, inputStream, outputStream);
-                        }
+                        DocumentHeaders headers = new DocumentHeaders(settings.DerivedPassphrase);
+                        headers.UnicodeFileName = "MyFile.txt";
+                        headers.CreationTimeUtc = creationTimeUtc;
+                        headers.LastAccessTimeUtc = lastAccessTimeUtc;
+                        headers.LastWriteTimeUtc = lastWriteTimeUtc;
+                        document.DocumentHeaders = headers;
+                        document.EncryptTo(headers, inputStream, outputStream);
                     }
                     outputStream.Position = 0;
                     using (AxCryptDocument document = new AxCryptDocument())

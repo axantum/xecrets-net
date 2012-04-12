@@ -124,7 +124,7 @@ namespace Axantum.AxCrypt.Core
                 {
                     outputDocumentHeaders.Write(outputCipherStream, outputHmacStream);
                     outputHmacStream.ReadFrom(outputCipherStream);
-                    outputDocumentHeaders.SetHmac(outputHmacStream.GetHmacResult());
+                    outputDocumentHeaders.Hmac = outputHmacStream.HmacResult;
                 }
 
                 // Rewind and rewrite the headers, now with the updated HMAC
@@ -159,13 +159,13 @@ namespace Axantum.AxCrypt.Core
                     {
                         encryptedDataStream.CopyTo(hmacStreamOutput);
 
-                        if (!hmacStreamInput.GetHmacResult().GetBytes().IsEquivalentTo(DocumentHeaders.GetHmac().GetBytes()))
+                        if (!hmacStreamInput.HmacResult.GetBytes().IsEquivalentTo(DocumentHeaders.Hmac.GetBytes()))
                         {
                             throw new InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
                         }
                     }
 
-                    outputDocumentHeaders.SetHmac(hmacStreamOutput.GetHmacResult());
+                    outputDocumentHeaders.Hmac = hmacStreamOutput.HmacResult;
 
                     // Rewind and rewrite the headers, now with the updated HMAC
                     outputDocumentHeaders.Write(cipherStream, null);
@@ -222,9 +222,9 @@ namespace Axantum.AxCrypt.Core
                         }
                     }
                 }
-                calculatedHmac = hmacStream.GetHmacResult();
+                calculatedHmac = hmacStream.HmacResult;
             }
-            if (!calculatedHmac.GetBytes().IsEquivalentTo(DocumentHeaders.GetHmac().GetBytes()))
+            if (!calculatedHmac.GetBytes().IsEquivalentTo(DocumentHeaders.Hmac.GetBytes()))
             {
                 throw new InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
             }
@@ -256,12 +256,6 @@ namespace Axantum.AxCrypt.Core
                 {
                     _dataCrypto.Dispose();
                     _dataCrypto = null;
-                }
-
-                if (DocumentHeaders != null)
-                {
-                    DocumentHeaders.Dispose();
-                    DocumentHeaders = null;
                 }
             }
 

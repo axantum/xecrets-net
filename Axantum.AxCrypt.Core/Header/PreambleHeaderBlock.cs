@@ -48,18 +48,20 @@ namespace Axantum.AxCrypt.Core.Reader
             return block;
         }
 
-        public DataHmac GetHmac()
+        public DataHmac Hmac
         {
-            return new DataHmac(GetDataBlockBytesReference());
-        }
-
-        public void SetHmac(DataHmac hmac)
-        {
-            if (hmac == null)
+            get
             {
-                throw new ArgumentNullException("hmac");
+                return new DataHmac(GetDataBlockBytesReference());
             }
-            SetDataBlockBytesReference(hmac.GetBytes());
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value");
+                }
+                SetDataBlockBytesReference(value.GetBytes());
+            }
         }
     }
 }

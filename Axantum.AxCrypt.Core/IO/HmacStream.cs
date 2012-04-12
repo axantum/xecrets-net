@@ -70,16 +70,19 @@ namespace Axantum.AxCrypt.Core.IO
         /// Get the calculated HMAC
         /// </summary>
         /// <returns>A HMAC truncated to 128 bits</returns>
-        public DataHmac GetHmacResult()
+        public DataHmac HmacResult
         {
-            if (_result == null)
+            get
             {
-                _hmac.TransformFinalBlock(new byte[] { }, 0, 0);
-                _result = _hmac.Hash;
+                if (_result == null)
+                {
+                    _hmac.TransformFinalBlock(new byte[] { }, 0, 0);
+                    _result = _hmac.Hash;
+                }
+                byte[] result = new byte[16];
+                Array.Copy(_result, 0, result, 0, result.Length);
+                return new DataHmac(result);
             }
-            byte[] result = new byte[16];
-            Array.Copy(_result, 0, result, 0, result.Length);
-            return new DataHmac(result);
         }
 
         public override bool CanRead

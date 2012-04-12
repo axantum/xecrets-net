@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt.Core.Test
 
                                     Assert.That(headers, Is.EqualTo(0), "Preamble must be first");
                                     PreambleHeaderBlock preambleHeaderBlock = (PreambleHeaderBlock)axCryptReader.CurrentHeaderBlock;
-                                    Assert.That(preambleHeaderBlock.GetHmac().Length, Is.EqualTo(16), "The HMAC in the preamble must be exactly 16 bytes.");
+                                    Assert.That(preambleHeaderBlock.Hmac.Length, Is.EqualTo(16), "The HMAC in the preamble must be exactly 16 bytes.");
                                 }
                                 ++headers;
                                 break;
