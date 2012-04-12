@@ -28,32 +28,38 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
 
-namespace Axantum.AxCrypt.Core.Reader
+namespace Axantum.AxCrypt.Core.IO
 {
-    public class LookAheadStream : Stream
+    /// <summary>
+    /// Present an input stream as having an exact limit on it's size, although the input
+    /// stream in fact may be longer.
+    /// </summary>
+    /// <remarks>Does not dispose of the input stream or the hmac stream when disposed!</remarks>
+    public class AxCryptDataStream : Stream
     {
-        private struct ByteBuffer
+        private Stream _inputStream;
+        private Stream _hmacStream;
+
+        private long _length;
+
+        private long _remaining;
+
+        /// <summary>
+        /// Wrap a general stream to serve as a stream for AxCrypt data, limited in length
+        /// and optionally sending the data to a presumed hmacStream.
+        /// </summary>
+        /// <param name="inputStream">A stream positioned at the first byte of data</param>
+        /// <param name="hmacStream">A stream where all data read is mirrored, presumably to calculate an HMAC. If null, ignored.</param>
+        /// <param name="length">The exact number of bytes to expect and read from the input stream</param>
+        public AxCryptDataStream(Stream inputStream, Stream hmacStream, long length)
         {
-            public ByteBuffer(byte[] buffer, int offset, int length)
-            {
-                Buffer = buffer;
-                Offset = offset;
-                Length = length;
-            }
-
-            public byte[] Buffer;
-            public int Offset;
-            public int Length;
-        }
-
-        private Stream InputStream { get; set; }
-
-        private Stack<ByteBuffer> pushBack = new Stack<ByteBuffer>();
-
-        public LookAheadStream(Stream inputStream)
-        {
-            InputStream = inputStream;
+            _inputStream = inputStream;
+            _hmacStream = hmacStream;
+            _length = length;
+            _remaining = _length;
         }
 
         public override bool CanRead
@@ -77,7 +83,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
         public override long Length
         {
-            get { throw new NotSupportedException(); }
+            get { return _length; }
         }
 
         public override long Position
@@ -92,41 +98,23 @@ namespace Axantum.AxCrypt.Core.Reader
             }
         }
 
-        public void Pushback(byte[] buffer, int offset, int length)
-        {
-            pushBack.Push(new ByteBuffer(buffer, offset, length));
-        }
-
         public override int Read(byte[] buffer, int offset, int count)
         {
-            int bytesRead = 0;
-            while (count > 0 && pushBack.Count > 0)
+            if (_remaining == 0)
             {
-                ByteBuffer byteBuffer = pushBack.Pop();
-                int length = byteBuffer.Length >= count ? count : byteBuffer.Length;
-                Array.Copy(byteBuffer.Buffer, byteBuffer.Offset, buffer, offset, length);
-                offset += length;
-                count -= length;
-                byteBuffer.Length -= length;
-                byteBuffer.Offset += length;
-                bytesRead += length;
-                if (byteBuffer.Length > 0)
-                {
-                    pushBack.Push(byteBuffer);
-                }
+                return 0;
             }
-            if (count > 0)
+
+            int bytesToRead = _remaining < count ? (int)_remaining : count;
+            int bytesRead = _inputStream.Read(buffer, offset, bytesToRead);
+            _remaining -= bytesRead;
+
+            if (_hmacStream != null)
             {
-                bytesRead += InputStream.Read(buffer, offset, count);
+                _hmacStream.Write(buffer, 0, bytesRead);
             }
+
             return bytesRead;
-        }
-
-        public bool ReadExact(byte[] buffer)
-        {
-            int bytesRead = Read(buffer, 0, buffer.Length);
-
-            return bytesRead == buffer.Length;
         }
 
         public override long Seek(long offset, SeekOrigin origin)
@@ -142,19 +130,6 @@ namespace Axantum.AxCrypt.Core.Reader
         public override void Write(byte[] buffer, int offset, int count)
         {
             throw new NotSupportedException();
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (InputStream != null)
-                {
-                    InputStream.Dispose();
-                    InputStream = null;
-                }
-            }
-            base.Dispose(disposing);
         }
     }
 }

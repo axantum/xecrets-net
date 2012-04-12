@@ -87,17 +87,20 @@
     <Compile Include="IEnvironment.cs" />
     <Compile Include="InternalErrorException.cs" />
     <Compile Include="InvalidDataException.cs" />
+    <Compile Include="IO\AxCryptDataStream.cs" />
+    <Compile Include="IO\HmacStream.cs" />
+    <Compile Include="IO\LookAheadStream.cs" />
+    <Compile Include="IO\NonClosingStream.cs" />
     <Compile Include="Reader\AxCryptReaderSettings.cs" />
-    <Compile Include="Reader\AxCryptStreamReader.cs" />
-    <Compile Include="Reader\AxCryptDataStream.cs" />
-    <Compile Include="Reader\HmacStream.cs" />
-    <Compile Include="Reader\LookAheadStream.cs" />
     <Compile Include="Header\HeaderBlock.cs" />
     <Compile Include="Header\HeaderBlockType.cs" />
     <Compile Include="Header\VersionHeaderBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reader\AxCryptReader.cs" />
     <Compile Include="Reader\AxCryptItemType.cs" />
+    <Compile Include="Reader\AxCryptStreamReader.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="RuntimeEnvironment.cs" />
   </ItemGroup>
   <ItemGroup>

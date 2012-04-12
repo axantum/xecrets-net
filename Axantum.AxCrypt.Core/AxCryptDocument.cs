@@ -33,6 +33,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Org.BouncyCastle.Utilities.Zlib;
 
@@ -93,23 +94,38 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentException("The output stream must support seek in order to back-track and write the HMAC.");
             }
-            using (HmacStream outputHmacStream = new HmacStream(outputDocumentHeaders.HmacSubkey.Key, outputCipherStream))
+            outputDocumentHeaders.Write(outputCipherStream, null);
+            using (ICryptoTransform encryptor = DataCrypto.CreateEncryptingTransform())
             {
-                outputDocumentHeaders.Write(outputCipherStream, outputHmacStream);
-                using (ICryptoTransform encryptor = DataCrypto.CreateEncryptingTransform())
+                long cipherStartPosition = outputCipherStream.Position;
+                using (CryptoStream deflatedCipherStream = new CryptoStream(new NonClosingStream(outputCipherStream), encryptor, CryptoStreamMode.Write))
                 {
-                    using (ZInputStream deflatedPlainStream = new ZInputStream(inputPlainStream, -1))
+                    using (ZOutputStream deflatedPlainStream = new ZOutputStream(deflatedCipherStream, -1))
                     {
-                        using (Stream deflatedCipherStream = new CryptoStream(deflatedPlainStream, encryptor, CryptoStreamMode.Read))
+                        byte[] buffer = new byte[4096];
+                        int count;
+                        while ((count = inputPlainStream.Read(buffer, 0, buffer.Length)) != 0)
                         {
-                            deflatedCipherStream.CopyTo(outputCipherStream);
+                            deflatedPlainStream.FlushMode = JZlib.Z_SYNC_FLUSH;
+                            deflatedPlainStream.Write(buffer, 0, count);
                         }
+                        deflatedPlainStream.FlushMode = JZlib.Z_FINISH;
+                        deflatedPlainStream.Finish();
+
                         outputDocumentHeaders.NormalSize = deflatedPlainStream.TotalIn;
                         outputDocumentHeaders.PlaintextLength = deflatedPlainStream.TotalOut;
-                        outputDocumentHeaders.DataLength = deflatedPlainStream.TotalOut + 16 - deflatedPlainStream.TotalOut % 16;
+
+                        deflatedCipherStream.FlushFinalBlock();
+                        outputCipherStream.Flush();
+                        outputDocumentHeaders.DataLength = outputCipherStream.Position - cipherStartPosition;
                     }
                 }
-                outputDocumentHeaders.SetHmac(outputHmacStream.GetHmacResult());
+                using (HmacStream outputHmacStream = new HmacStream(outputDocumentHeaders.HmacSubkey.Key, outputCipherStream))
+                {
+                    outputDocumentHeaders.Write(outputCipherStream, outputHmacStream);
+                    outputHmacStream.ReadFrom(outputCipherStream);
+                    outputDocumentHeaders.SetHmac(outputHmacStream.GetHmacResult());
+                }
 
                 // Rewind and rewrite the headers, now with the updated HMAC
                 outputDocumentHeaders.Write(outputCipherStream, null);

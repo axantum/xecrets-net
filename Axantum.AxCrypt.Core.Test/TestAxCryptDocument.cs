@@ -31,6 +31,7 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Test.Properties;
 using NUnit.Framework;
@@ -434,6 +435,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSimpleEncryptTo()
         {
+            DateTime creationTimeUtc = new DateTime(2012, 1, 1, 1, 2, 3, DateTimeKind.Utc);
+            DateTime lastAccessTimeUtc = creationTimeUtc + new TimeSpan(1, 0, 0);
+            DateTime lastWriteTimeUtc = creationTimeUtc + new TimeSpan(2, 0, 0); ;
             using (Stream inputStream = new MemoryStream(Encoding.UTF8.GetBytes("AxCrypt is Great!")))
             {
                 using (Stream outputStream = new MemoryStream())
@@ -444,12 +448,31 @@ namespace Axantum.AxCrypt.Core.Test
                         using (DocumentHeaders headers = new DocumentHeaders(settings.DerivedPassphrase))
                         {
                             headers.UnicodeFileName = "MyFile.txt";
-                            DateTime fileTime = new DateTime(2012, 1, 1, 1, 2, 3);
-                            headers.CreationTimeUtc = fileTime;
-                            headers.LastAccessTimeUtc = fileTime + new TimeSpan(1, 0, 0);
-                            headers.LastWriteTimeUtc = fileTime + new TimeSpan(2, 0, 0); ;
+                            headers.CreationTimeUtc = creationTimeUtc;
+                            headers.LastAccessTimeUtc = lastAccessTimeUtc;
+                            headers.LastWriteTimeUtc = lastWriteTimeUtc;
                             document.DocumentHeaders = headers;
                             document.EncryptTo(headers, inputStream, outputStream);
+                        }
+                    }
+                    outputStream.Position = 0;
+                    using (AxCryptDocument document = new AxCryptDocument())
+                    {
+                        AxCryptReaderSettings settings = new AxCryptReaderSettings("a");
+                        using (AxCryptReader axCryptReader = AxCryptReader.Create(outputStream))
+                        {
+                            bool keyIsOk = document.Load(axCryptReader, settings);
+                            Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+                            Assert.That(document.DocumentHeaders.FileName, Is.EqualTo("MyFile.txt"));
+                            Assert.That(document.DocumentHeaders.CreationTimeUtc, Is.EqualTo(creationTimeUtc));
+                            Assert.That(document.DocumentHeaders.LastAccessTimeUtc, Is.EqualTo(lastAccessTimeUtc));
+                            Assert.That(document.DocumentHeaders.LastWriteTimeUtc, Is.EqualTo(lastWriteTimeUtc));
+                            using (MemoryStream plaintextStream = new MemoryStream())
+                            {
+                                document.DecryptTo(axCryptReader, plaintextStream);
+                                Assert.That(document.DocumentHeaders.NormalSize, Is.EqualTo(17), "'AxCrypt is Great!' should be 17 bytes uncompressed plaintext.");
+                                Assert.That(Encoding.ASCII.GetString(plaintextStream.GetBuffer(), 0, (int)plaintextStream.Length), Is.EqualTo("AxCrypt is Great!"), "Unexpected result of decryption.");
+                            }
                         }
                     }
                 }

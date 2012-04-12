@@ -29,6 +29,7 @@ using System;
 using System.IO;
 using System.Security.Cryptography;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
