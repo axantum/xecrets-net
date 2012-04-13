@@ -35,7 +35,7 @@ using Axantum.AxCrypt.Core.IO;
 
 namespace Axantum.AxCrypt.Core
 {
-    public class RuntimeEnvironment : IEnvironment
+    public class RuntimeEnvironment : IRuntimeEnvironment
     {
         public bool IsLittleEndian
         {
@@ -59,7 +59,7 @@ namespace Axantum.AxCrypt.Core
             return data;
         }
 
-        public IFileInfo FileInfo(FileInfo fileInfo)
+        public IRuntimeFileInfo FileInfo(FileInfo file)
         {
             throw new Exception("The method or operation is not implemented.");
         }

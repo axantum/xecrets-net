@@ -34,12 +34,12 @@ using Axantum.AxCrypt.Core.IO;
 
 namespace Axantum.AxCrypt.Core
 {
-    public interface IEnvironment
+    public interface IRuntimeEnvironment
     {
         bool IsLittleEndian { get; }
 
         byte[] GetRandomBytes(int count);
 
-        IFileInfo FileInfo(FileInfo fileInfo);
+        IRuntimeFileInfo FileInfo(FileInfo file);
     }
 }

@@ -9,7 +9,7 @@ namespace Axantum.AxCrypt.Core.IO
     /// <summary>
     /// Abstraction for FileInfo-related operations
     /// </summary>
-    public interface IFileInfo
+    public interface IRuntimeFileInfo
     {
         FileStream OpenRead();
 

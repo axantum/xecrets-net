@@ -209,36 +209,11 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.IsFalse(isEquivalent, "'threeAgain' should be not be equivalent to 'two'.");
         }
 
-        private class EnvironmentForTest : IEnvironment
-        {
-            private byte _randomForTest = 0;
-
-            public bool IsLittleEndian
-            {
-                get { return !BitConverter.IsLittleEndian; }
-            }
-
-            public byte[] GetRandomBytes(int count)
-            {
-                byte[] bytes = new byte[count];
-                for (int i = 0; i < count; ++i)
-                {
-                    bytes[i] = _randomForTest++;
-                }
-                return bytes;
-            }
-
-            public IFileInfo FileInfo(FileInfo fileInfo)
-            {
-                throw new Exception("The method or operation is not implemented.");
-            }
-        }
-
         [Test]
         public static void TestEndianOptimization()
         {
-            IEnvironment currentEnvironment = Environment.Current;
-            Environment.Current = new EnvironmentForTest();
+            IRuntimeEnvironment currentEnvironment = Environment.Current;
+            Environment.Current = new FakeRuntimeEnvironment(Endian.Reverse);
             try
             {
                 if (BitConverter.IsLittleEndian)

@@ -39,6 +39,6 @@ namespace Axantum.AxCrypt.Core
             Current = new RuntimeEnvironment();
         }
 
-        public static IEnvironment Current { get; set; }
+        public static IRuntimeEnvironment Current { get; set; }
     }
 }

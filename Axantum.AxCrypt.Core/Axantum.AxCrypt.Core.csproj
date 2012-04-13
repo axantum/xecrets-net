@@ -86,12 +86,12 @@
     <Compile Include="Header\PreambleHeaderBlock.cs" />
     <Compile Include="Header\UnicodeFileNameInfoHeaderBlock.cs" />
     <Compile Include="Header\UnrecognizedHeaderBlock.cs" />
-    <Compile Include="IEnvironment.cs" />
+    <Compile Include="IRuntimeEnvironment.cs" />
     <Compile Include="InternalErrorException.cs" />
     <Compile Include="InvalidDataException.cs" />
     <Compile Include="IO\AxCryptDataStream.cs" />
     <Compile Include="IO\HmacStream.cs" />
-    <Compile Include="IO\IFileInfo.cs" />
+    <Compile Include="IO\IRuntimeFileInfo.cs" />
     <Compile Include="IO\LookAheadStream.cs" />
     <Compile Include="IO\NonClosingStream.cs" />
     <Compile Include="Header\HeaderBlock.cs" />
