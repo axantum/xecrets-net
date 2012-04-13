@@ -27,8 +27,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using Axantum.AxCrypt.Core.IO;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -37,5 +39,7 @@ namespace Axantum.AxCrypt.Core
         bool IsLittleEndian { get; }
 
         byte[] GetRandomBytes(int count);
+
+        IFileInfo FileInfo(FileInfo fileInfo);
     }
 }

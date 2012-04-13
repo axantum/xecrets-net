@@ -28,9 +28,11 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using Axantum.AxCrypt.Core.IO;
 using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -224,6 +226,11 @@ namespace Axantum.AxCrypt.Core.Test
                     bytes[i] = _randomForTest++;
                 }
                 return bytes;
+            }
+
+            public IFileInfo FileInfo(FileInfo fileInfo)
+            {
+                throw new Exception("The method or operation is not implemented.");
             }
         }
 

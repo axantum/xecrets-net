@@ -27,9 +27,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using Axantum.AxCrypt.Core.IO;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -55,6 +57,11 @@ namespace Axantum.AxCrypt.Core
             byte[] data = new byte[count];
             _rng.GetBytes(data);
             return data;
+        }
+
+        public IFileInfo FileInfo(FileInfo fileInfo)
+        {
+            throw new Exception("The method or operation is not implemented.");
         }
     }
 }

@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="AxCryptDocument.cs" />
     <Compile Include="AxCryptException.cs" />
+    <Compile Include="AxCryptFile.cs" />
     <Compile Include="Crypto\AesCrypto.cs" />
     <Compile Include="Crypto\AesIV.cs" />
     <Compile Include="Crypto\AesKey.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="InvalidDataException.cs" />
     <Compile Include="IO\AxCryptDataStream.cs" />
     <Compile Include="IO\HmacStream.cs" />
+    <Compile Include="IO\IFileInfo.cs" />
     <Compile Include="IO\LookAheadStream.cs" />
     <Compile Include="IO\NonClosingStream.cs" />
     <Compile Include="Header\HeaderBlock.cs" />
