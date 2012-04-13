@@ -36,31 +36,35 @@ using NUnit.Framework;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public class TestAxCryptFile
+    public static class TestAxCryptFile
     {
         private static IRuntimeEnvironment _environment;
 
         [TestFixtureSetUp]
-        public static void InitFixture()
+        public static void SetupFixture()
         {
             _environment = Environment.Current;
             Environment.Current = new FakeRuntimeEnvironment();
 
-            FakeRuntimeFileInfo.AddFile(@"c:\test.txt", new DateTime(2012, 1, 2, 3, 4, 5, DateTimeKind.Utc), new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
-            FakeRuntimeFileInfo.AddFile(@"c:\test-txt.axx", new DateTime(2012, 2, 2, 3, 4, 5, 6, DateTimeKind.Utc), new MemoryStream());
+            FakeRuntimeFileInfo.AddFile(@"c:\test.txt", FakeRuntimeFileInfo.TestDate1Utc, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
+            FakeRuntimeFileInfo.AddFile(@"c:\test-txt.axx", FakeRuntimeFileInfo.TestDate6Utc, new MemoryStream());
+            FakeRuntimeFileInfo.AddFile(@"c:\decrypted test.txt", FakeRuntimeFileInfo.TestDate6Utc, new MemoryStream());
         }
 
         [TestFixtureTearDownAttribute]
-        public static void UnInitFixture()
+        public static void TeardownFixture()
         {
             Environment.Current = _environment;
             FakeRuntimeFileInfo.ClearFiles();
         }
 
         [Test]
-        public static void TestEncrypt()
+        public static void TestEncryptDecrypt()
         {
             AxCryptFile.Encrypt(Environment.Current.FileInfo(@"c:\test.txt"), Environment.Current.FileInfo(@"c:\test-txt.axx"), new Passphrase("axcrypt"));
+            AxCryptFile.Decrypt(Environment.Current.FileInfo(@"c:\test-txt.axx"), Environment.Current.FileInfo(@"c:\decrypted test.txt"), new Passphrase("axcrypt"));
+            string decrypted = new StreamReader(Environment.Current.FileInfo(@"c:\decrypted test.txt").OpenRead(), Encoding.UTF8).ReadToEnd();
+            Assert.That(decrypted, Is.EqualTo("This is a short file"));
         }
     }
 }

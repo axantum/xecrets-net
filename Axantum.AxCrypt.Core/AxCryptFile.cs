@@ -64,5 +64,27 @@ namespace Axantum.AxCrypt.Core
                 }
             }
         }
+
+        public static bool Decrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, Passphrase passphrase)
+        {
+            using (Stream sourceStream = sourceFile.OpenRead())
+            {
+                using (AxCryptDocument document = new AxCryptDocument())
+                {
+                    using (AxCryptReader axCryptReader = AxCryptReader.Create(sourceStream))
+                    {
+                        if (!document.Load(axCryptReader, passphrase))
+                        {
+                            return false;
+                        }
+                        using (Stream destinationStream = destinationFile.OpenWrite())
+                        {
+                            document.DecryptTo(axCryptReader, destinationStream);
+                        }
+                    }
+                }
+            }
+            return true;
+        }
     }
 }
