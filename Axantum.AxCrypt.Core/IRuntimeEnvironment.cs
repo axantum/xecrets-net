@@ -41,5 +41,7 @@ namespace Axantum.AxCrypt.Core
         byte[] GetRandomBytes(int count);
 
         IRuntimeFileInfo FileInfo(FileInfo file);
+
+        IRuntimeFileInfo FileInfo(string path);
     }
 }

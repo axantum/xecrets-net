@@ -33,21 +33,55 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.IO
 {
-    /// <summary>
-    /// Abstraction for FileInfo-related operations
-    /// </summary>
-    public interface IRuntimeFileInfo
+    public class RuntimeFileInfo : IRuntimeFileInfo
     {
-        Stream OpenRead();
+        private FileInfo _file;
 
-        Stream OpenWrite();
+        public RuntimeFileInfo(FileInfo file)
+        {
+            _file = new FileInfo(file.FullName);
+        }
 
-        string Name { get; }
+        public Stream OpenRead()
+        {
+            return _file.OpenRead();
+        }
 
-        DateTime CreationTimeUtc { get; }
+        public Stream OpenWrite()
+        {
+            return _file.OpenWrite();
+        }
 
-        DateTime LastAccessTimeUtc { get; }
+        public string Name
+        {
+            get
+            {
+                return _file.Name;
+            }
+        }
 
-        DateTime LastWriteTimeUtc { get; }
+        public DateTime CreationTimeUtc
+        {
+            get
+            {
+                return _file.CreationTimeUtc;
+            }
+        }
+
+        public DateTime LastAccessTimeUtc
+        {
+            get
+            {
+                return _file.LastAccessTimeUtc;
+            }
+        }
+
+        public DateTime LastWriteTimeUtc
+        {
+            get
+            {
+                return _file.LastWriteTimeUtc;
+            }
+        }
     }
 }

@@ -61,7 +61,12 @@ namespace Axantum.AxCrypt.Core
 
         public IRuntimeFileInfo FileInfo(FileInfo file)
         {
-            throw new Exception("The method or operation is not implemented.");
+            return new RuntimeFileInfo(file);
+        }
+
+        public IRuntimeFileInfo FileInfo(string path)
+        {
+            return FileInfo(new FileInfo(path));
         }
     }
 }

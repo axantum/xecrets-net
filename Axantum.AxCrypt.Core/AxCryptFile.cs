@@ -31,6 +31,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 
 namespace Axantum.AxCrypt.Core
@@ -44,7 +45,7 @@ namespace Axantum.AxCrypt.Core
         /// <param name="destination">The destination file</param>
         /// <remarks>It is the callers responsibility to ensure that the source file exists, that the the destination file
         /// does not exist and can be created etc.</remarks>
-        public static void Encrypt(FileInfo sourceFile, FileInfo destinationFile, Passphrase passphrase)
+        public static void Encrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, Passphrase passphrase)
         {
             using (Stream sourceStream = sourceFile.OpenRead())
             {

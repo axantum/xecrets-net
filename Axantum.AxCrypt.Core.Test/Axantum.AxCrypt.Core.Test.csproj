@@ -53,12 +53,14 @@
   <ItemGroup>
     <Compile Include="Endian.cs" />
     <Compile Include="FakeRuntimeEnvironment.cs" />
+    <Compile Include="FakeRuntimeFileInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="TestAxCryptDocument.cs" />
+    <Compile Include="TestAxCryptFile.cs" />
     <Compile Include="TestAxCryptHeaderKeyWrap.cs" />
     <Compile Include="TestAxCryptReaderIdTagHeaderBlock.cs" />
     <Compile Include="TestAxCryptReaderMagicGuid.cs" />

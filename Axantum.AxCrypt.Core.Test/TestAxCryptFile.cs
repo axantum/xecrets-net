@@ -30,24 +30,37 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Axantum.AxCrypt.Core.Crypto;
+using NUnit.Framework;
 
-namespace Axantum.AxCrypt.Core.IO
+namespace Axantum.AxCrypt.Core.Test
 {
-    /// <summary>
-    /// Abstraction for FileInfo-related operations
-    /// </summary>
-    public interface IRuntimeFileInfo
+    [TestFixture]
+    public class TestAxCryptFile
     {
-        Stream OpenRead();
+        private static IRuntimeEnvironment _environment;
 
-        Stream OpenWrite();
+        [TestFixtureSetUp]
+        public static void InitFixture()
+        {
+            _environment = Environment.Current;
+            Environment.Current = new FakeRuntimeEnvironment();
 
-        string Name { get; }
+            FakeRuntimeFileInfo.AddFile(@"c:\test.txt", new DateTime(2012, 1, 2, 3, 4, 5, DateTimeKind.Utc), new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
+            FakeRuntimeFileInfo.AddFile(@"c:\test-txt.axx", new DateTime(2012, 2, 2, 3, 4, 5, 6, DateTimeKind.Utc), new MemoryStream());
+        }
 
-        DateTime CreationTimeUtc { get; }
+        [TestFixtureTearDownAttribute]
+        public static void UnInitFixture()
+        {
+            Environment.Current = _environment;
+            FakeRuntimeFileInfo.ClearFiles();
+        }
 
-        DateTime LastAccessTimeUtc { get; }
-
-        DateTime LastWriteTimeUtc { get; }
+        [Test]
+        public static void TestEncrypt()
+        {
+            AxCryptFile.Encrypt(Environment.Current.FileInfo(@"c:\test.txt"), Environment.Current.FileInfo(@"c:\test-txt.axx"), new Passphrase("axcrypt"));
+        }
     }
 }
