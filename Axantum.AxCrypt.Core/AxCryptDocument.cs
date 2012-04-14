@@ -51,16 +51,19 @@ namespace Axantum.AxCrypt.Core
 
         public DocumentHeaders DocumentHeaders { get; set; }
 
+        private AxCryptReader _reader;
+
         /// <summary>
         /// Loads an AxCrypt file from the specified reader. After this, the reader is positioned to
         /// read encrypted data.
         /// </summary>
         /// <param name="axCryptReader">The reader.</param>
         /// <returns>True if the key was valid, false if it was wrong.</returns>
-        public bool Load(AxCryptReader axCryptReader, Passphrase settings)
+        public bool Load(Stream stream, Passphrase settings)
         {
+            _reader = AxCryptReader.Create(stream);
             DocumentHeaders documentHeaders = new DocumentHeaders(settings.DerivedPassphrase);
-            bool loadedOk = documentHeaders.Load(axCryptReader);
+            bool loadedOk = documentHeaders.Load(_reader);
             if (!loadedOk)
             {
                 return false;
@@ -138,7 +141,7 @@ namespace Axantum.AxCrypt.Core
         /// and encryption key(s) etc.
         /// </summary>
         /// <param name="outputStream"></param>
-        public void CopyEncryptedTo(AxCryptReader axCryptReader, DocumentHeaders outputDocumentHeaders, Stream cipherStream)
+        public void CopyEncryptedTo(DocumentHeaders outputDocumentHeaders, Stream cipherStream)
         {
             if (cipherStream == null)
             {
@@ -154,8 +157,8 @@ namespace Axantum.AxCrypt.Core
                 using (HmacStream hmacStreamOutput = new HmacStream(outputDocumentHeaders.HmacSubkey.Key, cipherStream))
                 {
                     outputDocumentHeaders.Write(cipherStream, hmacStreamOutput);
-                    axCryptReader.HmacStream = hmacStreamInput;
-                    using (Stream encryptedDataStream = axCryptReader.EncryptedDataStream)
+                    _reader.HmacStream = hmacStreamInput;
+                    using (Stream encryptedDataStream = _reader.EncryptedDataStream)
                     {
                         encryptedDataStream.CopyTo(hmacStreamOutput);
 
@@ -192,7 +195,7 @@ namespace Axantum.AxCrypt.Core
         /// Decrypts the encrypted data to the given stream
         /// </summary>
         /// <param name="outputPlaintextStream">The resulting plain text stream.</param>
-        public void DecryptTo(AxCryptReader axCryptReader, Stream outputPlaintextStream)
+        public void DecryptTo(Stream outputPlaintextStream)
         {
             if (DocumentHeaders == null)
             {
@@ -201,12 +204,12 @@ namespace Axantum.AxCrypt.Core
             DataHmac calculatedHmac;
             using (HmacStream hmacStream = new HmacStream(DocumentHeaders.HmacSubkey.Key))
             {
-                axCryptReader.HmacStream = hmacStream;
+                _reader.HmacStream = hmacStream;
                 using (ICryptoTransform decryptor = DataCrypto.CreateDecryptingTransform())
                 {
                     if (DocumentHeaders.IsCompressed)
                     {
-                        using (Stream deflatedPlaintextStream = new CryptoStream(axCryptReader.EncryptedDataStream, decryptor, CryptoStreamMode.Read))
+                        using (Stream deflatedPlaintextStream = new CryptoStream(_reader.EncryptedDataStream, decryptor, CryptoStreamMode.Read))
                         {
                             using (Stream inflatedPlaintextStream = new ZInputStream(deflatedPlaintextStream))
                             {
@@ -216,7 +219,7 @@ namespace Axantum.AxCrypt.Core
                     }
                     else
                     {
-                        using (Stream plainStream = new CryptoStream(axCryptReader.EncryptedDataStream, decryptor, CryptoStreamMode.Read))
+                        using (Stream plainStream = new CryptoStream(_reader.EncryptedDataStream, decryptor, CryptoStreamMode.Read))
                         {
                             plainStream.CopyTo(outputPlaintextStream);
                         }
@@ -229,7 +232,7 @@ namespace Axantum.AxCrypt.Core
                 throw new InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
             }
 
-            if (axCryptReader.CurrentItemType != AxCryptItemType.EndOfStream)
+            if (_reader.CurrentItemType != AxCryptItemType.EndOfStream)
             {
                 throw new FileFormatException("The stream should end here.", ErrorStatus.FileFormatError);
             }
@@ -256,6 +259,11 @@ namespace Axantum.AxCrypt.Core
                 {
                     _dataCrypto.Dispose();
                     _dataCrypto = null;
+                }
+                if (_reader != null)
+                {
+                    _reader.Dispose();
+                    _reader = null;
                 }
             }
 

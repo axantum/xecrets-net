@@ -71,16 +71,13 @@ namespace Axantum.AxCrypt.Core
             {
                 using (AxCryptDocument document = new AxCryptDocument())
                 {
-                    using (AxCryptReader axCryptReader = AxCryptReader.Create(sourceStream))
+                    if (!document.Load(sourceStream, passphrase))
                     {
-                        if (!document.Load(axCryptReader, passphrase))
-                        {
-                            return false;
-                        }
-                        using (Stream destinationStream = destinationFile.OpenWrite())
-                        {
-                            document.DecryptTo(axCryptReader, destinationStream);
-                        }
+                        return false;
+                    }
+                    using (Stream destinationStream = destinationFile.OpenWrite())
+                    {
+                        document.DecryptTo(destinationStream);
                     }
                 }
             }

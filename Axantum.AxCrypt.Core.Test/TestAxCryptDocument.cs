@@ -49,13 +49,10 @@ namespace Axantum.AxCrypt.Core.Test
                 using (AxCryptDocument document = new AxCryptDocument())
                 {
                     Passphrase passphrase = new Passphrase("a");
-                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
-                    {
-                        bool keyIsOk = document.Load(axCryptReader, passphrase);
-                        Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                        string fileName = document.DocumentHeaders.AnsiFileName;
-                        Assert.That(fileName, Is.EqualTo("HelloWorld-Key-a.txt"), "Wrong file name");
-                    }
+                    bool keyIsOk = document.Load(testStream, passphrase);
+                    Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+                    string fileName = document.DocumentHeaders.AnsiFileName;
+                    Assert.That(fileName, Is.EqualTo("HelloWorld-Key-a.txt"), "Wrong file name");
                 }
             }
         }
@@ -68,13 +65,10 @@ namespace Axantum.AxCrypt.Core.Test
                 using (AxCryptDocument document = new AxCryptDocument())
                 {
                     Passphrase passphrase = new Passphrase("a");
-                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
-                    {
-                        bool keyIsOk = document.Load(axCryptReader, passphrase);
-                        Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                        string fileName = document.DocumentHeaders.UnicodeFileName;
-                        Assert.That(fileName, Is.EqualTo("HelloWorld-Key-a.txt"), "Wrong file name");
-                    }
+                    bool keyIsOk = document.Load(testStream, passphrase);
+                    Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+                    string fileName = document.DocumentHeaders.UnicodeFileName;
+                    Assert.That(fileName, Is.EqualTo("HelloWorld-Key-a.txt"), "Wrong file name");
                 }
             }
         }
@@ -87,13 +81,10 @@ namespace Axantum.AxCrypt.Core.Test
                 using (AxCryptDocument document = new AxCryptDocument())
                 {
                     Passphrase passphrase = new Passphrase("a");
-                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
-                    {
-                        bool keyIsOk = document.Load(axCryptReader, passphrase);
-                        Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                        string fileName = document.DocumentHeaders.FileName;
-                        Assert.That(fileName, Is.EqualTo("HelloWorld-Key-a.txt"), "Wrong file name");
-                    }
+                    bool keyIsOk = document.Load(testStream, passphrase);
+                    Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+                    string fileName = document.DocumentHeaders.FileName;
+                    Assert.That(fileName, Is.EqualTo("HelloWorld-Key-a.txt"), "Wrong file name");
                 }
             }
         }
@@ -107,13 +98,10 @@ namespace Axantum.AxCrypt.Core.Test
                 using (AxCryptDocument document = new AxCryptDocument())
                 {
                     Passphrase passphrase = new Passphrase("a");
-                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
-                    {
-                        bool keyIsOk = document.Load(axCryptReader, passphrase);
-                        Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                        DataHmac hmac = document.DocumentHeaders.Hmac;
-                        Assert.That(hmac.GetBytes(), Is.EqualTo(expectedHmac.GetBytes()), "Wrong HMAC");
-                    }
+                    bool keyIsOk = document.Load(testStream, passphrase);
+                    Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+                    DataHmac hmac = document.DocumentHeaders.Hmac;
+                    Assert.That(hmac.GetBytes(), Is.EqualTo(expectedHmac.GetBytes()), "Wrong HMAC");
                 }
             }
         }
@@ -127,13 +115,10 @@ namespace Axantum.AxCrypt.Core.Test
                 using (AxCryptDocument document = new AxCryptDocument())
                 {
                     Passphrase passphrase = new Passphrase("a");
-                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
-                    {
-                        bool keyIsOk = document.Load(axCryptReader, passphrase);
-                        Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                        bool isCompressed = document.DocumentHeaders.IsCompressed;
-                        Assert.That(isCompressed, Is.False, "This file should not be compressed.");
-                    }
+                    bool keyIsOk = document.Load(testStream, passphrase);
+                    Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+                    bool isCompressed = document.DocumentHeaders.IsCompressed;
+                    Assert.That(isCompressed, Is.False, "This file should not be compressed.");
                 }
             }
         }
@@ -147,11 +132,8 @@ namespace Axantum.AxCrypt.Core.Test
                 using (AxCryptDocument document = new AxCryptDocument())
                 {
                     Passphrase passphrase = new Passphrase("b");
-                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
-                    {
-                        bool keyIsOk = document.Load(axCryptReader, passphrase);
-                        Assert.That(keyIsOk, Is.False, "The passphrase provided is wrong!");
-                    }
+                    bool keyIsOk = document.Load(testStream, passphrase);
+                    Assert.That(keyIsOk, Is.False, "The passphrase provided is wrong!");
                 }
             }
         }
@@ -165,13 +147,10 @@ namespace Axantum.AxCrypt.Core.Test
                 using (AxCryptDocument document = new AxCryptDocument())
                 {
                     Passphrase passphrase = new Passphrase("Å ä Ö");
-                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
-                    {
-                        bool keyIsOk = document.Load(axCryptReader, passphrase);
-                        Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                        bool isCompressed = document.DocumentHeaders.IsCompressed;
-                        Assert.That(isCompressed, Is.True, "This file should be compressed.");
-                    }
+                    bool keyIsOk = document.Load(testStream, passphrase);
+                    Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+                    bool isCompressed = document.DocumentHeaders.IsCompressed;
+                    Assert.That(isCompressed, Is.True, "This file should be compressed.");
                 }
             }
         }
@@ -184,16 +163,13 @@ namespace Axantum.AxCrypt.Core.Test
                 using (AxCryptDocument document = new AxCryptDocument())
                 {
                     Passphrase passphrase = new Passphrase("a");
-                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
+                    bool keyIsOk = document.Load(testStream, passphrase);
+                    Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+                    using (MemoryStream plaintextStream = new MemoryStream())
                     {
-                        bool keyIsOk = document.Load(axCryptReader, passphrase);
-                        Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                        using (MemoryStream plaintextStream = new MemoryStream())
-                        {
-                            document.DecryptTo(axCryptReader, plaintextStream);
-                            Assert.That(Encoding.ASCII.GetString(plaintextStream.GetBuffer(), 0, (int)plaintextStream.Length), Is.EqualTo("HelloWorld"), "Unexpected result of decryption.");
-                            Assert.That(document.DocumentHeaders.PlaintextLength, Is.EqualTo(10), "'HelloWorld' should be 10 bytes uncompressed plaintext.");
-                        }
+                        document.DecryptTo(plaintextStream);
+                        Assert.That(Encoding.ASCII.GetString(plaintextStream.GetBuffer(), 0, (int)plaintextStream.Length), Is.EqualTo("HelloWorld"), "Unexpected result of decryption.");
+                        Assert.That(document.DocumentHeaders.PlaintextLength, Is.EqualTo(10), "'HelloWorld' should be 10 bytes uncompressed plaintext.");
                     }
                 }
             }
@@ -207,20 +183,17 @@ namespace Axantum.AxCrypt.Core.Test
                 using (AxCryptDocument document = new AxCryptDocument())
                 {
                     Passphrase passphrase = new Passphrase("åäö");
-                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
+                    bool keyIsOk = document.Load(testStream, passphrase);
+                    Assert.That(keyIsOk, Is.True, "A correct passphrase was provided, but it was not accepted.");
+                    Assert.That(document.DocumentHeaders.IsCompressed, Is.True, "The file is compressed.");
+                    Assert.That(document.DocumentHeaders.UnicodeFileName, Is.EqualTo(String.Empty), "This is a legacy file and it should not have the Unicode file header.");
+                    Assert.That(document.DocumentHeaders.AnsiFileName, Is.EqualTo("readme.html"), "The file name should be 'readme.html'.");
+                    Assert.That(document.DocumentHeaders.FileName, Is.EqualTo("readme.html"), "The file name should be 'readme.html'.");
+                    using (MemoryStream plaintextStream = new MemoryStream())
                     {
-                        bool keyIsOk = document.Load(axCryptReader, passphrase);
-                        Assert.That(keyIsOk, Is.True, "A correct passphrase was provided, but it was not accepted.");
-                        Assert.That(document.DocumentHeaders.IsCompressed, Is.True, "The file is compressed.");
-                        Assert.That(document.DocumentHeaders.UnicodeFileName, Is.EqualTo(String.Empty), "This is a legacy file and it should not have the Unicode file header.");
-                        Assert.That(document.DocumentHeaders.AnsiFileName, Is.EqualTo("readme.html"), "The file name should be 'readme.html'.");
-                        Assert.That(document.DocumentHeaders.FileName, Is.EqualTo("readme.html"), "The file name should be 'readme.html'.");
-                        using (MemoryStream plaintextStream = new MemoryStream())
-                        {
-                            document.DecryptTo(axCryptReader, plaintextStream);
-                            Assert.That(document.DocumentHeaders.PlaintextLength, Is.EqualTo(3736), "The compressed content should be recorded as 3736 bytes in the headers.");
-                            Assert.That(plaintextStream.Length, Is.EqualTo(9528), "The file should be 9528 bytes uncompressed plaintext in actual fact.");
-                        }
+                        document.DecryptTo(plaintextStream);
+                        Assert.That(document.DocumentHeaders.PlaintextLength, Is.EqualTo(3736), "The compressed content should be recorded as 3736 bytes in the headers.");
+                        Assert.That(plaintextStream.Length, Is.EqualTo(9528), "The file should be 9528 bytes uncompressed plaintext in actual fact.");
                     }
                 }
             }
@@ -229,14 +202,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptWithoutLoadFirstFromEmptyFile()
         {
-            using (AxCryptReader axCryptReader = new AxCryptStreamReader(new MemoryStream()))
+            using (AxCryptDocument document = new AxCryptDocument())
             {
-                using (AxCryptDocument document = new AxCryptDocument())
+                using (MemoryStream plaintextStream = new MemoryStream())
                 {
-                    using (MemoryStream plaintextStream = new MemoryStream())
-                    {
-                        Assert.Throws<InternalErrorException>(() => { document.DecryptTo(axCryptReader, plaintextStream); });
-                    }
+                    Assert.Throws<InternalErrorException>(() => { document.DecryptTo(plaintextStream); });
                 }
             }
         }
@@ -251,13 +221,10 @@ namespace Axantum.AxCrypt.Core.Test
                 using (AxCryptDocument document = new AxCryptDocument())
                 {
                     Passphrase passphrase = new Passphrase("Å ä Ö");
-                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
+                    Assert.Throws<FileFormatException>(() => { document.Load(testStream, passphrase); });
+                    using (MemoryStream plaintextStream = new MemoryStream())
                     {
-                        Assert.Throws<FileFormatException>(() => { document.Load(axCryptReader, passphrase); });
-                        using (MemoryStream plaintextStream = new MemoryStream())
-                        {
-                            Assert.Throws<InternalErrorException>(() => { document.DecryptTo(axCryptReader, plaintextStream); });
-                        }
+                        Assert.Throws<InternalErrorException>(() => { document.DecryptTo(plaintextStream); });
                     }
                 }
             }
@@ -271,19 +238,16 @@ namespace Axantum.AxCrypt.Core.Test
                 using (AxCryptDocument document = new AxCryptDocument())
                 {
                     Passphrase passphrase = new Passphrase("Å ä Ö");
-                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
+                    bool keyIsOk = document.Load(testStream, passphrase);
+                    Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+                    using (MemoryStream plaintextStream = new MemoryStream())
                     {
-                        bool keyIsOk = document.Load(axCryptReader, passphrase);
-                        Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                        using (MemoryStream plaintextStream = new MemoryStream())
-                        {
-                            document.DecryptTo(axCryptReader, plaintextStream);
-                            string text = Encoding.UTF8.GetString(plaintextStream.GetBuffer(), 0, (int)plaintextStream.Length);
-                            Assert.That(text, Is.StringStarting("The Project Gutenberg EBook of David Copperfield, by Charles Dickens"), "Unexpected start of David Copperfield.");
-                            Assert.That(text, Is.StringEnding("subscribe to our email newsletter to hear about new eBooks." + (Char)13 + (Char)10), "Unexpected end of David Copperfield.");
-                            Assert.That(text.Length, Is.EqualTo(1992490), "Wrong length of full text of David Copperfield.");
-                            Assert.That(document.DocumentHeaders.PlaintextLength, Is.EqualTo(795855), "Wrong expected length of compressed text of David Copperfield.");
-                        }
+                        document.DecryptTo(plaintextStream);
+                        string text = Encoding.UTF8.GetString(plaintextStream.GetBuffer(), 0, (int)plaintextStream.Length);
+                        Assert.That(text, Is.StringStarting("The Project Gutenberg EBook of David Copperfield, by Charles Dickens"), "Unexpected start of David Copperfield.");
+                        Assert.That(text, Is.StringEnding("subscribe to our email newsletter to hear about new eBooks." + (Char)13 + (Char)10), "Unexpected end of David Copperfield.");
+                        Assert.That(text.Length, Is.EqualTo(1992490), "Wrong length of full text of David Copperfield.");
+                        Assert.That(document.DocumentHeaders.PlaintextLength, Is.EqualTo(795855), "Wrong expected length of compressed text of David Copperfield.");
                     }
                 }
             }
@@ -297,12 +261,9 @@ namespace Axantum.AxCrypt.Core.Test
                 using (AxCryptDocument document = new AxCryptDocument())
                 {
                     Passphrase passphrase = new Passphrase("a");
-                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
-                    {
-                        bool keyIsOk = document.Load(axCryptReader, passphrase);
-                        Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                        document.DecryptTo(axCryptReader, Stream.Null);
-                    }
+                    bool keyIsOk = document.Load(testStream, passphrase);
+                    Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+                    document.DecryptTo(Stream.Null);
                 }
             }
         }
@@ -315,16 +276,13 @@ namespace Axantum.AxCrypt.Core.Test
                 using (AxCryptDocument document = new AxCryptDocument())
                 {
                     Passphrase passphrase = new Passphrase("a");
-                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
+                    bool keyIsOk = document.Load(testStream, passphrase);
+                    Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+                    document.DocumentHeaders.Hmac = new DataHmac(new byte[document.DocumentHeaders.Hmac.Length]);
+                    Assert.Throws<InvalidDataException>(() =>
                     {
-                        bool keyIsOk = document.Load(axCryptReader, passphrase);
-                        Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                        document.DocumentHeaders.Hmac = new DataHmac(new byte[document.DocumentHeaders.Hmac.Length]);
-                        Assert.Throws<InvalidDataException>(() =>
-                        {
-                            document.DecryptTo(axCryptReader, Stream.Null);
-                        });
-                    }
+                        document.DecryptTo(Stream.Null);
+                    });
                 }
             }
         }
@@ -338,10 +296,7 @@ namespace Axantum.AxCrypt.Core.Test
                 using (AxCryptDocument document = new AxCryptDocument())
                 {
                     Passphrase passphrase = new Passphrase("a");
-                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
-                    {
-                        Assert.Throws<FileFormatException>(() => { document.Load(axCryptReader, passphrase); }, "Calling with dummy data that does not contain a GUID.");
-                    }
+                    Assert.Throws<FileFormatException>(() => { document.Load(testStream, passphrase); }, "Calling with dummy data that does not contain a GUID.");
                 }
             }
         }
@@ -356,10 +311,7 @@ namespace Axantum.AxCrypt.Core.Test
                 testStream.Position = 0;
                 using (AxCryptDocument document = new AxCryptDocument())
                 {
-                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
-                    {
-                        Assert.Throws<FileFormatException>(() => { document.Load(axCryptReader, new Passphrase(String.Empty)); }, "Calling with too short a stream, only containing a GUID.");
-                    }
+                    Assert.Throws<FileFormatException>(() => { document.Load(testStream, new Passphrase(String.Empty)); }, "Calling with too short a stream, only containing a GUID.");
                 }
             }
         }
@@ -372,18 +324,15 @@ namespace Axantum.AxCrypt.Core.Test
                 using (AxCryptDocument document = new AxCryptDocument())
                 {
                     Passphrase passphrase = new Passphrase("a");
-                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
-                    {
-                        bool keyIsOk = document.Load(axCryptReader, passphrase);
-                        Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+                    bool keyIsOk = document.Load(testStream, passphrase);
+                    Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
 
-                        string creationTime = document.DocumentHeaders.CreationTimeUtc.ToString(CultureInfo.InvariantCulture);
-                        Assert.That(creationTime, Is.EqualTo("01/13/2012 17:17:18"), "Checking creation time.");
-                        string lastAccessTime = document.DocumentHeaders.LastAccessTimeUtc.ToString(CultureInfo.InvariantCulture);
-                        Assert.That(lastAccessTime, Is.EqualTo("01/13/2012 17:17:18"), "Checking last access time.");
-                        string lastWriteTime = document.DocumentHeaders.LastWriteTimeUtc.ToString(CultureInfo.InvariantCulture);
-                        Assert.That(lastWriteTime, Is.EqualTo("01/13/2012 17:17:45"), "Checking last modify time.");
-                    }
+                    string creationTime = document.DocumentHeaders.CreationTimeUtc.ToString(CultureInfo.InvariantCulture);
+                    Assert.That(creationTime, Is.EqualTo("01/13/2012 17:17:18"), "Checking creation time.");
+                    string lastAccessTime = document.DocumentHeaders.LastAccessTimeUtc.ToString(CultureInfo.InvariantCulture);
+                    Assert.That(lastAccessTime, Is.EqualTo("01/13/2012 17:17:18"), "Checking last access time.");
+                    string lastWriteTime = document.DocumentHeaders.LastWriteTimeUtc.ToString(CultureInfo.InvariantCulture);
+                    Assert.That(lastWriteTime, Is.EqualTo("01/13/2012 17:17:45"), "Checking last modify time.");
                 }
             }
         }
@@ -396,33 +345,27 @@ namespace Axantum.AxCrypt.Core.Test
                 using (AxCryptDocument document = new AxCryptDocument())
                 {
                     Passphrase passphrase = new Passphrase("a");
-                    using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
+                    bool keyIsOk = document.Load(testStream, passphrase);
+                    Assert.That(keyIsOk, Is.True, "The passphrase provided is correct and should work!");
+
+                    Passphrase newPassphrase = new Passphrase("b");
+                    using (Stream changedStream = new MemoryStream())
                     {
-                        bool keyIsOk = document.Load(axCryptReader, passphrase);
-                        Assert.That(keyIsOk, Is.True, "The passphrase provided is correct and should work!");
+                        DocumentHeaders outputDocumentHeaders = new DocumentHeaders(document.DocumentHeaders);
+                        outputDocumentHeaders.RewrapMasterKey(newPassphrase.DerivedPassphrase);
 
-                        Passphrase newPassphrase = new Passphrase("b");
-                        using (Stream changedStream = new MemoryStream())
+                        document.CopyEncryptedTo(outputDocumentHeaders, changedStream);
+                        changedStream.Position = 0;
+                        using (AxCryptDocument changedDocument = new AxCryptDocument())
                         {
-                            DocumentHeaders outputDocumentHeaders = new DocumentHeaders(document.DocumentHeaders);
-                            outputDocumentHeaders.RewrapMasterKey(newPassphrase.DerivedPassphrase);
+                            bool changedKeyIsOk = changedDocument.Load(changedStream, newPassphrase);
+                            Assert.That(changedKeyIsOk, Is.True, "The changed passphrase provided is correct and should work!");
 
-                            document.CopyEncryptedTo(axCryptReader, outputDocumentHeaders, changedStream);
-                            changedStream.Position = 0;
-                            using (AxCryptDocument changedDocument = new AxCryptDocument())
+                            using (MemoryStream plaintextStream = new MemoryStream())
                             {
-                                using (AxCryptReader changedAxCryptReader = AxCryptReader.Create(changedStream))
-                                {
-                                    bool changedKeyIsOk = changedDocument.Load(changedAxCryptReader, newPassphrase);
-                                    Assert.That(changedKeyIsOk, Is.True, "The changed passphrase provided is correct and should work!");
-
-                                    using (MemoryStream plaintextStream = new MemoryStream())
-                                    {
-                                        changedDocument.DecryptTo(changedAxCryptReader, plaintextStream);
-                                        Assert.That(Encoding.ASCII.GetString(plaintextStream.GetBuffer(), 0, (int)plaintextStream.Length), Is.EqualTo("HelloWorld"), "Unexpected result of decryption.");
-                                        Assert.That(changedDocument.DocumentHeaders.PlaintextLength, Is.EqualTo(10), "'HelloWorld' should be 10 bytes uncompressed plaintext.");
-                                    }
-                                }
+                                changedDocument.DecryptTo(plaintextStream);
+                                Assert.That(Encoding.ASCII.GetString(plaintextStream.GetBuffer(), 0, (int)plaintextStream.Length), Is.EqualTo("HelloWorld"), "Unexpected result of decryption.");
+                                Assert.That(changedDocument.DocumentHeaders.PlaintextLength, Is.EqualTo(10), "'HelloWorld' should be 10 bytes uncompressed plaintext.");
                             }
                         }
                     }
@@ -455,20 +398,17 @@ namespace Axantum.AxCrypt.Core.Test
                     using (AxCryptDocument document = new AxCryptDocument())
                     {
                         Passphrase passphrase = new Passphrase("a");
-                        using (AxCryptReader axCryptReader = AxCryptReader.Create(outputStream))
+                        bool keyIsOk = document.Load(outputStream, passphrase);
+                        Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+                        Assert.That(document.DocumentHeaders.FileName, Is.EqualTo("MyFile.txt"));
+                        Assert.That(document.DocumentHeaders.CreationTimeUtc, Is.EqualTo(creationTimeUtc));
+                        Assert.That(document.DocumentHeaders.LastAccessTimeUtc, Is.EqualTo(lastAccessTimeUtc));
+                        Assert.That(document.DocumentHeaders.LastWriteTimeUtc, Is.EqualTo(lastWriteTimeUtc));
+                        using (MemoryStream plaintextStream = new MemoryStream())
                         {
-                            bool keyIsOk = document.Load(axCryptReader, passphrase);
-                            Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                            Assert.That(document.DocumentHeaders.FileName, Is.EqualTo("MyFile.txt"));
-                            Assert.That(document.DocumentHeaders.CreationTimeUtc, Is.EqualTo(creationTimeUtc));
-                            Assert.That(document.DocumentHeaders.LastAccessTimeUtc, Is.EqualTo(lastAccessTimeUtc));
-                            Assert.That(document.DocumentHeaders.LastWriteTimeUtc, Is.EqualTo(lastWriteTimeUtc));
-                            using (MemoryStream plaintextStream = new MemoryStream())
-                            {
-                                document.DecryptTo(axCryptReader, plaintextStream);
-                                Assert.That(document.DocumentHeaders.UncompressedLength, Is.EqualTo(17), "'AxCrypt is Great!' should be 17 bytes uncompressed plaintext.");
-                                Assert.That(Encoding.ASCII.GetString(plaintextStream.GetBuffer(), 0, (int)plaintextStream.Length), Is.EqualTo("AxCrypt is Great!"), "Unexpected result of decryption.");
-                            }
+                            document.DecryptTo(plaintextStream);
+                            Assert.That(document.DocumentHeaders.UncompressedLength, Is.EqualTo(17), "'AxCrypt is Great!' should be 17 bytes uncompressed plaintext.");
+                            Assert.That(Encoding.ASCII.GetString(plaintextStream.GetBuffer(), 0, (int)plaintextStream.Length), Is.EqualTo("AxCrypt is Great!"), "Unexpected result of decryption.");
                         }
                     }
                 }
