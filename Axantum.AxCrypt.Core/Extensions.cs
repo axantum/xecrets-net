@@ -291,7 +291,7 @@ namespace Axantum.AxCrypt.Core
             return bytes;
         }
 
-        public static FileInfo GetEncryptedName(this FileInfo fileInfo)
+        public static FileInfo CreateEncryptedName(this FileSystemInfo fileInfo)
         {
             string extension = Path.GetExtension(fileInfo.FullName);
             if (String.Compare(extension, Environment.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)

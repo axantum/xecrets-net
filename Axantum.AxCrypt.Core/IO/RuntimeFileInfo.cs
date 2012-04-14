@@ -103,9 +103,9 @@ namespace Axantum.AxCrypt.Core.IO
             LastWriteTimeUtc = LastWriteTimeUtc;
         }
 
-        public IRuntimeFileInfo GetEncryptedName()
+        public IRuntimeFileInfo CreateEncryptedName()
         {
-            FileInfo encryptedNameFileInfo = _file.GetEncryptedName();
+            FileInfo encryptedNameFileInfo = _file.CreateEncryptedName();
 
             return new RuntimeFileInfo(encryptedNameFileInfo);
         }

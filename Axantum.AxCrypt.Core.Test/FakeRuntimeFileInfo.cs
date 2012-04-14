@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static readonly DateTime TestDate3Utc = DateTime.Parse("2100-12-31 00:00:00", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
         //public static readonly DateTime TestDate4Utc = DateTime.Parse("2008-09-10 11:12:13", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
         //public static readonly DateTime TestDate5Utc = DateTime.Parse("2009-03-31 06:07:08", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
-        public static readonly DateTime TestDate6Utc = DateTime.Parse("2012-02-29 12:00:00", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
+        //public static readonly DateTime TestDate6Utc = DateTime.Parse("2012-02-29 12:00:00", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
 
         private static Dictionary<string, FakeFileInfo> _fakeFileSystem = new Dictionary<string, FakeFileInfo>();
 
@@ -58,11 +58,6 @@ namespace Axantum.AxCrypt.Core.Test
         {
             FakeFileInfo fileInfo = new FakeFileInfo { CreationTimeUtc = creationTimeUtc, LastAccessTimeUtc = lastAccessTimeUtc, LastWriteTimeUtc = lastWriteTimeUtc, Stream = stream };
             _fakeFileSystem.Add(path, fileInfo);
-        }
-
-        public static void AddFile(string path, DateTime timeUtc, Stream stream)
-        {
-            AddFile(path, timeUtc, timeUtc, timeUtc, stream);
         }
 
         public static void AddFile(string path, Stream stream)
@@ -191,9 +186,9 @@ namespace Axantum.AxCrypt.Core.Test
             LastWriteTimeUtc = lastWriteTimeUtc;
         }
 
-        public IRuntimeFileInfo GetEncryptedName()
+        public IRuntimeFileInfo CreateEncryptedName()
         {
-            FileInfo encryptedNameFileInfo = _file.GetEncryptedName();
+            FileInfo encryptedNameFileInfo = _file.CreateEncryptedName();
 
             return new FakeRuntimeFileInfo(encryptedNameFileInfo);
         }

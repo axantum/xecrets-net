@@ -48,7 +48,6 @@ namespace Axantum.AxCrypt.Core.Test
             Environment.Current = new FakeRuntimeEnvironment();
 
             FakeRuntimeFileInfo.AddFile(@"c:\test.txt", FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate3Utc, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
-            FakeRuntimeFileInfo.AddFile(@"c:\decrypted test.txt", new MemoryStream());
         }
 
         [TestFixtureTearDownAttribute]
@@ -62,7 +61,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestEncryptDecrypt()
         {
             IRuntimeFileInfo sourceFileInfo = Environment.Current.FileInfo(@"c:\test.txt");
-            IRuntimeFileInfo destinationFileInfo = sourceFileInfo.GetEncryptedName();
+            IRuntimeFileInfo destinationFileInfo = sourceFileInfo.CreateEncryptedName();
             Assert.That(destinationFileInfo.Name, Is.EqualTo("test-txt.axx"), "Wrong encrypted file name based on the plain text file name.");
             AxCryptFile.Encrypt(sourceFileInfo, destinationFileInfo, new Passphrase("axcrypt"), AxCryptFileOptions.None);
             using (AxCryptDocument document = AxCryptFile.Document(destinationFileInfo, new Passphrase("axcrypt")))
