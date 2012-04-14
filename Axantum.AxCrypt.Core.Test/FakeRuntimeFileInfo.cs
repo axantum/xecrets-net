@@ -87,7 +87,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeFileInfo fakeFileInfo;
             if (!_fakeFileSystem.TryGetValue(_file.FullName, out fakeFileInfo))
             {
-                throw new DirectoryNotFoundException(_file.FullName);
+                return null;
             }
             return fakeFileInfo;
         }
@@ -112,6 +112,10 @@ namespace Axantum.AxCrypt.Core.Test
         public Stream OpenRead()
         {
             FakeFileInfo fakeFileInfo = FindFileInfo();
+            if (fakeFileInfo == null)
+            {
+                throw new FileNotFoundException("Can't find '{0}'.".InvariantFormat(_file.Name));
+            }
             fakeFileInfo.Stream.Position = 0;
             EnsureDateTimes(fakeFileInfo);
             return new NonClosingStream(fakeFileInfo.Stream);
@@ -185,6 +189,13 @@ namespace Axantum.AxCrypt.Core.Test
             CreationTimeUtc = creationTimeUtc;
             LastAccessTimeUtc = lastAccessTimeUtc;
             LastWriteTimeUtc = lastWriteTimeUtc;
+        }
+
+        public IRuntimeFileInfo GetEncryptedName()
+        {
+            FileInfo encryptedNameFileInfo = _file.GetEncryptedName();
+
+            return new FakeRuntimeFileInfo(encryptedNameFileInfo);
         }
     }
 }

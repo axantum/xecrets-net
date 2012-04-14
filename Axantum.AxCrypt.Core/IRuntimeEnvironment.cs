@@ -43,5 +43,7 @@ namespace Axantum.AxCrypt.Core
         IRuntimeFileInfo FileInfo(FileInfo file);
 
         IRuntimeFileInfo FileInfo(string path);
+
+        string AxCryptExtension { get; }
     }
 }

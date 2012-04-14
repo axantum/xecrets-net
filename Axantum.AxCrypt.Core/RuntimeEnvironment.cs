@@ -37,6 +37,16 @@ namespace Axantum.AxCrypt.Core
 {
     public class RuntimeEnvironment : IRuntimeEnvironment
     {
+        public RuntimeEnvironment()
+            : this(".axx")
+        {
+        }
+
+        public RuntimeEnvironment(string extension)
+        {
+            AxCryptExtension = extension;
+        }
+
         public bool IsLittleEndian
         {
             get
@@ -67,6 +77,12 @@ namespace Axantum.AxCrypt.Core
         public IRuntimeFileInfo FileInfo(string path)
         {
             return FileInfo(new FileInfo(path));
+        }
+
+        public string AxCryptExtension
+        {
+            get;
+            set;
         }
     }
 }

@@ -48,7 +48,6 @@ namespace Axantum.AxCrypt.Core.Test
             Environment.Current = new FakeRuntimeEnvironment();
 
             FakeRuntimeFileInfo.AddFile(@"c:\test.txt", FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate3Utc, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
-            FakeRuntimeFileInfo.AddFile(@"c:\test-txt.axx", FakeRuntimeFileInfo.TestDate6Utc, new MemoryStream());
             FakeRuntimeFileInfo.AddFile(@"c:\decrypted test.txt", new MemoryStream());
         }
 
@@ -62,8 +61,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptDecrypt()
         {
-            AxCryptFile.Encrypt(Environment.Current.FileInfo(@"c:\test.txt"), Environment.Current.FileInfo(@"c:\test-txt.axx"), new Passphrase("axcrypt"), AxCryptFileOptions.None);
-            using (AxCryptDocument document = AxCryptFile.Document(Environment.Current.FileInfo(@"c:\test-txt.axx"), new Passphrase("axcrypt")))
+            IRuntimeFileInfo sourceFileInfo = Environment.Current.FileInfo(@"c:\test.txt");
+            IRuntimeFileInfo destinationFileInfo = sourceFileInfo.GetEncryptedName();
+            Assert.That(destinationFileInfo.Name, Is.EqualTo("test-txt.axx"), "Wrong encrypted file name based on the plain text file name.");
+            AxCryptFile.Encrypt(sourceFileInfo, destinationFileInfo, new Passphrase("axcrypt"), AxCryptFileOptions.None);
+            using (AxCryptDocument document = AxCryptFile.Document(destinationFileInfo, new Passphrase("axcrypt")))
             {
                 Assert.That(document.PassphraseIsValid, Is.True, "The passphrase should be ok.");
                 Assert.That(document.DocumentHeaders.FileName, Is.EqualTo("test.txt"), "Unexpected file name in headers.");

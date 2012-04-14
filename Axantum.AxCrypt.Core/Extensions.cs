@@ -27,6 +27,7 @@
 
 using System;
 using System.Globalization;
+using System.IO;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -288,6 +289,22 @@ namespace Axantum.AxCrypt.Core
                 value >>= 8;
             }
             return bytes;
+        }
+
+        public static FileInfo GetEncryptedName(this FileInfo fileInfo)
+        {
+            string extension = Path.GetExtension(fileInfo.FullName);
+            if (String.Compare(extension, Environment.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                throw new InternalErrorException("Can't get encrypted name for a file that already has the encrypted extension.");
+            }
+            string encryptedName = fileInfo.FullName;
+            encryptedName = encryptedName.Substring(0, encryptedName.Length - extension.Length);
+            encryptedName += extension.Replace('.', '-');
+            encryptedName += Environment.Current.AxCryptExtension;
+
+            FileInfo encryptedNameFileInfo = new FileInfo(encryptedName);
+            return encryptedNameFileInfo;
         }
     }
 }

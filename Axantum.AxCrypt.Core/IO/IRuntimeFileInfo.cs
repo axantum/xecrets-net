@@ -51,5 +51,7 @@ namespace Axantum.AxCrypt.Core.IO
         DateTime LastWriteTimeUtc { get; set; }
 
         void SetFileTimes(DateTime creationTimeUtc, DateTime lastAccessTimeUtc, DateTime lastWriteTimeUtc);
+
+        IRuntimeFileInfo GetEncryptedName();
     }
 }

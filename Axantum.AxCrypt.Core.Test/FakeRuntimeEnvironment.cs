@@ -42,9 +42,11 @@ namespace Axantum.AxCrypt.Core.Test
 
         public FakeRuntimeEnvironment()
         {
+            AxCryptExtension = ".axx";
         }
 
         public FakeRuntimeEnvironment(Endian endianness)
+            : this()
         {
             _isLittleEndian = endianness == Endian.Reverse ? !_isLittleEndian : _isLittleEndian;
         }
@@ -72,6 +74,12 @@ namespace Axantum.AxCrypt.Core.Test
         public IRuntimeFileInfo FileInfo(string path)
         {
             return FileInfo(new FileInfo(path));
+        }
+
+        public string AxCryptExtension
+        {
+            get;
+            set;
         }
     }
 }
