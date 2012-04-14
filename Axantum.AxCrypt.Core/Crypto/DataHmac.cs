@@ -67,7 +67,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public override bool Equals(object obj)
         {
-            if (obj == null || GetType() != obj.GetType())
+            if (obj == null || !GetType().Equals(obj.GetType()))
             {
                 return false;
             }
