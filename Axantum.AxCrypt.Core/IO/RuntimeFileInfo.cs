@@ -66,6 +66,10 @@ namespace Axantum.AxCrypt.Core.IO
             {
                 return _file.CreationTimeUtc;
             }
+            set
+            {
+                _file.CreationTimeUtc = value;
+            }
         }
 
         public DateTime LastAccessTimeUtc
@@ -73,6 +77,10 @@ namespace Axantum.AxCrypt.Core.IO
             get
             {
                 return _file.LastAccessTimeUtc;
+            }
+            set
+            {
+                _file.LastAccessTimeUtc = value;
             }
         }
 
@@ -82,6 +90,17 @@ namespace Axantum.AxCrypt.Core.IO
             {
                 return _file.LastWriteTimeUtc;
             }
+            set
+            {
+                _file.LastWriteTimeUtc = value;
+            }
+        }
+
+        public void SetFileTimes(DateTime creationTimeUtc, DateTime lastAccessTimeUtc, DateTime lastWriteTimeUtc)
+        {
+            CreationTimeUtc = creationTimeUtc;
+            LastAccessTimeUtc = lastAccessTimeUtc;
+            LastWriteTimeUtc = LastWriteTimeUtc;
         }
     }
 }

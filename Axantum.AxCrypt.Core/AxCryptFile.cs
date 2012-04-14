@@ -45,7 +45,7 @@ namespace Axantum.AxCrypt.Core
         /// <param name="destination">The destination file</param>
         /// <remarks>It is the callers responsibility to ensure that the source file exists, that the destination file
         /// does not exist and can be created etc.</remarks>
-        public static void Encrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, Passphrase passphrase)
+        public static void Encrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, Passphrase passphrase, AxCryptFileOptions options)
         {
             using (Stream sourceStream = sourceFile.OpenRead())
             {
@@ -62,6 +62,10 @@ namespace Axantum.AxCrypt.Core
                         document.EncryptTo(headers, sourceStream, destinationStream);
                     }
                 }
+                if (options.HasFlag(AxCryptFileOptions.SetFileTimes))
+                {
+                    destinationFile.SetFileTimes(sourceFile.CreationTimeUtc, sourceFile.LastAccessTimeUtc, sourceFile.LastWriteTimeUtc);
+                }
             }
         }
 
@@ -72,7 +76,7 @@ namespace Axantum.AxCrypt.Core
         /// <param name="destinationFile">The destination file</param>
         /// <param name="passphrase">The passphrase</param>
         /// <returns>true if the passphrase was correct</returns>
-        public static bool Decrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, Passphrase passphrase)
+        public static bool Decrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, Passphrase passphrase, AxCryptFileOptions options)
         {
             using (AxCryptDocument document = Document(sourceFile, passphrase))
             {
@@ -80,7 +84,7 @@ namespace Axantum.AxCrypt.Core
                 {
                     return false;
                 }
-                Decrypt(document, destinationFile);
+                Decrypt(document, destinationFile, options);
             }
             return true;
         }
@@ -90,11 +94,16 @@ namespace Axantum.AxCrypt.Core
         /// </summary>
         /// <param name="document">The loaded AxCryptDocument</param>
         /// <param name="destinationFile">The destination file</param>
-        public static void Decrypt(AxCryptDocument document, IRuntimeFileInfo destinationFile)
+        public static void Decrypt(AxCryptDocument document, IRuntimeFileInfo destinationFile, AxCryptFileOptions options)
         {
             using (Stream destinationStream = destinationFile.OpenWrite())
             {
                 document.DecryptTo(destinationStream);
+            }
+            if (options.HasFlag(AxCryptFileOptions.SetFileTimes))
+            {
+                DocumentHeaders headers = document.DocumentHeaders;
+                destinationFile.SetFileTimes(headers.CreationTimeUtc, headers.LastAccessTimeUtc, headers.LastWriteTimeUtc);
             }
         }
 

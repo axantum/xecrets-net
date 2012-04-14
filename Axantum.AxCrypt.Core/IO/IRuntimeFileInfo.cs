@@ -44,10 +44,12 @@ namespace Axantum.AxCrypt.Core.IO
 
         string Name { get; }
 
-        DateTime CreationTimeUtc { get; }
+        DateTime CreationTimeUtc { get; set; }
 
-        DateTime LastAccessTimeUtc { get; }
+        DateTime LastAccessTimeUtc { get; set; }
 
-        DateTime LastWriteTimeUtc { get; }
+        DateTime LastWriteTimeUtc { get; set; }
+
+        void SetFileTimes(DateTime creationTimeUtc, DateTime lastAccessTimeUtc, DateTime lastWriteTimeUtc);
     }
 }

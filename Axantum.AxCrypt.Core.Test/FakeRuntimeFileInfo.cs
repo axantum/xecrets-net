@@ -56,7 +56,8 @@ namespace Axantum.AxCrypt.Core.Test
 
         public static void AddFile(string path, DateTime creationTimeUtc, DateTime lastAccessTimeUtc, DateTime lastWriteTimeUtc, Stream stream)
         {
-            _fakeFileSystem.Add(path, new FakeFileInfo { CreationTimeUtc = creationTimeUtc, LastAccessTimeUtc = lastAccessTimeUtc, LastWriteTimeUtc = lastWriteTimeUtc, Stream = stream });
+            FakeFileInfo fileInfo = new FakeFileInfo { CreationTimeUtc = creationTimeUtc, LastAccessTimeUtc = lastAccessTimeUtc, LastWriteTimeUtc = lastWriteTimeUtc, Stream = stream };
+            _fakeFileSystem.Add(path, fileInfo);
         }
 
         public static void AddFile(string path, DateTime timeUtc, Stream stream)
@@ -119,6 +120,11 @@ namespace Axantum.AxCrypt.Core.Test
         public Stream OpenWrite()
         {
             FakeFileInfo fakeFileInfo = FindFileInfo();
+            if (fakeFileInfo == null)
+            {
+                AddFile(_file.FullName, new MemoryStream());
+                fakeFileInfo = FindFileInfo();
+            }
             fakeFileInfo.Stream.Position = 0;
             EnsureDateTimes(fakeFileInfo);
             return new NonClosingStream(fakeFileInfo.Stream);
@@ -139,6 +145,11 @@ namespace Axantum.AxCrypt.Core.Test
                 FakeFileInfo fakeFileInfo = FindFileInfo();
                 return fakeFileInfo.CreationTimeUtc;
             }
+            set
+            {
+                FakeFileInfo fakeFileInfo = FindFileInfo();
+                fakeFileInfo.CreationTimeUtc = value;
+            }
         }
 
         public DateTime LastAccessTimeUtc
@@ -147,6 +158,11 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 FakeFileInfo fakeFileInfo = FindFileInfo();
                 return fakeFileInfo.LastAccessTimeUtc;
+            }
+            set
+            {
+                FakeFileInfo fakeFileInfo = FindFileInfo();
+                fakeFileInfo.LastAccessTimeUtc = value;
             }
         }
 
@@ -157,6 +173,18 @@ namespace Axantum.AxCrypt.Core.Test
                 FakeFileInfo fakeFileInfo = FindFileInfo();
                 return fakeFileInfo.LastWriteTimeUtc;
             }
+            set
+            {
+                FakeFileInfo fakeFileInfo = FindFileInfo();
+                fakeFileInfo.LastWriteTimeUtc = value;
+            }
+        }
+
+        public void SetFileTimes(DateTime creationTimeUtc, DateTime lastAccessTimeUtc, DateTime lastWriteTimeUtc)
+        {
+            CreationTimeUtc = creationTimeUtc;
+            LastAccessTimeUtc = lastAccessTimeUtc;
+            LastWriteTimeUtc = lastWriteTimeUtc;
         }
     }
 }

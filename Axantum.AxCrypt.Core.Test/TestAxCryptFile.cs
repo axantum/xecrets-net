@@ -62,7 +62,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptDecrypt()
         {
-            AxCryptFile.Encrypt(Environment.Current.FileInfo(@"c:\test.txt"), Environment.Current.FileInfo(@"c:\test-txt.axx"), new Passphrase("axcrypt"));
+            AxCryptFile.Encrypt(Environment.Current.FileInfo(@"c:\test.txt"), Environment.Current.FileInfo(@"c:\test-txt.axx"), new Passphrase("axcrypt"), AxCryptFileOptions.None);
             using (AxCryptDocument document = AxCryptFile.Document(Environment.Current.FileInfo(@"c:\test-txt.axx"), new Passphrase("axcrypt")))
             {
                 Assert.That(document.PassphraseIsValid, Is.True, "The passphrase should be ok.");
@@ -71,12 +71,15 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(document.DocumentHeaders.LastAccessTimeUtc, Is.EqualTo(FakeRuntimeFileInfo.TestDate2Utc));
                 Assert.That(document.DocumentHeaders.LastWriteTimeUtc, Is.EqualTo(FakeRuntimeFileInfo.TestDate3Utc));
                 IRuntimeFileInfo decryptedFileInfo = Environment.Current.FileInfo(@"c:\decrypted test.txt");
-                AxCryptFile.Decrypt(document, decryptedFileInfo);
+                AxCryptFile.Decrypt(document, decryptedFileInfo, AxCryptFileOptions.SetFileTimes);
                 using (Stream decryptedStream = decryptedFileInfo.OpenRead())
                 {
                     string decrypted = new StreamReader(decryptedStream, Encoding.UTF8).ReadToEnd();
                     Assert.That(decrypted, Is.EqualTo("This is a short file"));
                 }
+                Assert.That(decryptedFileInfo.CreationTimeUtc, Is.EqualTo(document.DocumentHeaders.CreationTimeUtc), "We're expecting file times to be set as the original from the headers.");
+                Assert.That(decryptedFileInfo.LastAccessTimeUtc, Is.EqualTo(document.DocumentHeaders.LastAccessTimeUtc), "We're expecting file times to be set as the original from the headers.");
+                Assert.That(decryptedFileInfo.LastWriteTimeUtc, Is.EqualTo(document.DocumentHeaders.LastWriteTimeUtc), "We're expecting file times to be set as the original from the headers.");
             }
         }
     }
