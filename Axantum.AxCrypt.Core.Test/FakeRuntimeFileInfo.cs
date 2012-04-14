@@ -45,12 +45,12 @@ namespace Axantum.AxCrypt.Core.Test
             public Stream Stream;
         }
 
-        public static readonly DateTime TestDate1Utc = DateTime.Parse("2012-01-02 03:04:05", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal);
-        //public static readonly DateTime TestDate2Utc = DateTime.Parse("1950-12-24 15:16:17", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal);
-        //public static readonly DateTime TestDate3Utc = DateTime.Parse("2100-12-31 00:00:00", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal);
-        //public static readonly DateTime TestDate4Utc = DateTime.Parse("2008-09-10 11:12:13", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal);
-        //public static readonly DateTime TestDate5Utc = DateTime.Parse("2009-03-31 06:07:08", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal);
-        public static readonly DateTime TestDate6Utc = DateTime.Parse("2012-02-29 12:00:00", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal);
+        public static readonly DateTime TestDate1Utc = DateTime.Parse("2012-01-02 03:04:05", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
+        public static readonly DateTime TestDate2Utc = DateTime.Parse("1950-12-24 15:16:17", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
+        public static readonly DateTime TestDate3Utc = DateTime.Parse("2100-12-31 00:00:00", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
+        //public static readonly DateTime TestDate4Utc = DateTime.Parse("2008-09-10 11:12:13", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
+        //public static readonly DateTime TestDate5Utc = DateTime.Parse("2009-03-31 06:07:08", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
+        public static readonly DateTime TestDate6Utc = DateTime.Parse("2012-02-29 12:00:00", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
 
         private static Dictionary<string, FakeFileInfo> _fakeFileSystem = new Dictionary<string, FakeFileInfo>();
 
@@ -62,6 +62,11 @@ namespace Axantum.AxCrypt.Core.Test
         public static void AddFile(string path, DateTime timeUtc, Stream stream)
         {
             AddFile(path, timeUtc, timeUtc, timeUtc, stream);
+        }
+
+        public static void AddFile(string path, Stream stream)
+        {
+            AddFile(path, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, stream);
         }
 
         public static void ClearFiles()
@@ -86,10 +91,28 @@ namespace Axantum.AxCrypt.Core.Test
             return fakeFileInfo;
         }
 
+        private static void EnsureDateTimes(FakeFileInfo fakeFileInfo)
+        {
+            DateTime utcNow = DateTime.UtcNow;
+            if (fakeFileInfo.CreationTimeUtc == DateTime.MinValue)
+            {
+                fakeFileInfo.CreationTimeUtc = utcNow;
+            }
+            if (fakeFileInfo.LastAccessTimeUtc == DateTime.MinValue)
+            {
+                fakeFileInfo.LastAccessTimeUtc = utcNow;
+            }
+            if (fakeFileInfo.LastWriteTimeUtc == DateTime.MinValue)
+            {
+                fakeFileInfo.LastWriteTimeUtc = utcNow;
+            }
+        }
+
         public Stream OpenRead()
         {
             FakeFileInfo fakeFileInfo = FindFileInfo();
             fakeFileInfo.Stream.Position = 0;
+            EnsureDateTimes(fakeFileInfo);
             return new NonClosingStream(fakeFileInfo.Stream);
         }
 
@@ -97,6 +120,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             FakeFileInfo fakeFileInfo = FindFileInfo();
             fakeFileInfo.Stream.Position = 0;
+            EnsureDateTimes(fakeFileInfo);
             return new NonClosingStream(fakeFileInfo.Stream);
         }
 

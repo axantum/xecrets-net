@@ -51,6 +51,10 @@ namespace Axantum.AxCrypt.Core.IO
 
         private Stack<ByteBuffer> pushBack = new Stack<ByteBuffer>();
 
+        /// <summary>
+        /// Implement a stream with push back capability thus enabling look ahead.
+        /// </summary>
+        /// <param name="inputStream">The stream. Will be disposed when this instance is disposed.</param>
         public LookAheadStream(Stream inputStream)
         {
             InputStream = inputStream;

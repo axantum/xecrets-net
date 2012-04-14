@@ -201,7 +201,7 @@ namespace Axantum.AxCrypt.Core.Reader
             }
         }
 
-        public string AnsiFileName
+        private string AnsiFileName
         {
             get
             {
@@ -216,15 +216,15 @@ namespace Axantum.AxCrypt.Core.Reader
             }
         }
 
-        public string UnicodeFileName
+        private string UnicodeFileName
         {
             get
             {
                 UnicodeFileNameInfoHeaderBlock headerBlock = FindHeaderBlock<UnicodeFileNameInfoHeaderBlock>();
                 if (headerBlock == null)
                 {
-                    // Unicode file name was added in 1.6.3.3 - if we can't find it signal it's absence with an empty string.
-                    return String.Empty;
+                    // Unicode file name was added in 1.6.3.3 - if we can't find it signal it's absence with null.
+                    return null;
                 }
 
                 return headerBlock.FileName;
@@ -234,8 +234,6 @@ namespace Axantum.AxCrypt.Core.Reader
             {
                 UnicodeFileNameInfoHeaderBlock headerBlock = FindHeaderBlock<UnicodeFileNameInfoHeaderBlock>();
                 headerBlock.FileName = value;
-
-                AnsiFileName = value;
             }
         }
 
@@ -243,12 +241,13 @@ namespace Axantum.AxCrypt.Core.Reader
         {
             get
             {
-                string unicodeFileName = UnicodeFileName;
-                if (!String.IsNullOrEmpty(unicodeFileName))
-                {
-                    return unicodeFileName;
-                }
-                return AnsiFileName;
+                return UnicodeFileName ?? AnsiFileName;
+            }
+
+            set
+            {
+                UnicodeFileName = value;
+                AnsiFileName = value;
             }
         }
 

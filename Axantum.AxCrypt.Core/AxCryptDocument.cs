@@ -53,23 +53,24 @@ namespace Axantum.AxCrypt.Core
 
         private AxCryptReader _reader;
 
+        public bool PassphraseIsValid { get; set; }
+
         /// <summary>
         /// Loads an AxCrypt file from the specified reader. After this, the reader is positioned to
         /// read encrypted data.
         /// </summary>
-        /// <param name="axCryptReader">The reader.</param>
+        /// <param name="stream">The stream to read from. Will be disposed when this instance is disposed.</param>
         /// <returns>True if the key was valid, false if it was wrong.</returns>
         public bool Load(Stream stream, Passphrase settings)
         {
             _reader = AxCryptReader.Create(stream);
             DocumentHeaders documentHeaders = new DocumentHeaders(settings.DerivedPassphrase);
-            bool loadedOk = documentHeaders.Load(_reader);
-            if (!loadedOk)
+            PassphraseIsValid = documentHeaders.Load(_reader);
+            if (PassphraseIsValid)
             {
-                return false;
+                DocumentHeaders = documentHeaders;
             }
-            DocumentHeaders = documentHeaders;
-            return true;
+            return PassphraseIsValid;
         }
 
         /// <summary>
@@ -162,7 +163,7 @@ namespace Axantum.AxCrypt.Core
                     {
                         encryptedDataStream.CopyTo(hmacStreamOutput);
 
-                        if (!hmacStreamInput.HmacResult.GetBytes().IsEquivalentTo(DocumentHeaders.Hmac.GetBytes()))
+                        if (hmacStreamInput.HmacResult != DocumentHeaders.Hmac)
                         {
                             throw new InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
                         }
@@ -227,7 +228,7 @@ namespace Axantum.AxCrypt.Core
                 }
                 calculatedHmac = hmacStream.HmacResult;
             }
-            if (!calculatedHmac.GetBytes().IsEquivalentTo(DocumentHeaders.Hmac.GetBytes()))
+            if (calculatedHmac != DocumentHeaders.Hmac)
             {
                 throw new InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
             }

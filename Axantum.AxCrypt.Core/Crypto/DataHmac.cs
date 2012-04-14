@@ -64,5 +64,34 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             return (byte[])_hmac.Clone();
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+            DataHmac right = (DataHmac)obj;
+            return this == right;
+        }
+
+        public override int GetHashCode()
+        {
+            return _hmac.GetHashCode();
+        }
+
+        public static bool operator ==(DataHmac left, DataHmac right)
+        {
+            if (Object.ReferenceEquals(left, null) || Object.ReferenceEquals(right, null))
+            {
+                return false;
+            }
+            return left._hmac.IsEquivalentTo(right._hmac);
+        }
+
+        public static bool operator !=(DataHmac left, DataHmac right)
+        {
+            return !(left == right);
+        }
     }
 }

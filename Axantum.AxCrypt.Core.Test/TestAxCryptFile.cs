@@ -31,6 +31,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
 using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -46,9 +47,9 @@ namespace Axantum.AxCrypt.Core.Test
             _environment = Environment.Current;
             Environment.Current = new FakeRuntimeEnvironment();
 
-            FakeRuntimeFileInfo.AddFile(@"c:\test.txt", FakeRuntimeFileInfo.TestDate1Utc, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
+            FakeRuntimeFileInfo.AddFile(@"c:\test.txt", FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate3Utc, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
             FakeRuntimeFileInfo.AddFile(@"c:\test-txt.axx", FakeRuntimeFileInfo.TestDate6Utc, new MemoryStream());
-            FakeRuntimeFileInfo.AddFile(@"c:\decrypted test.txt", FakeRuntimeFileInfo.TestDate6Utc, new MemoryStream());
+            FakeRuntimeFileInfo.AddFile(@"c:\decrypted test.txt", new MemoryStream());
         }
 
         [TestFixtureTearDownAttribute]
@@ -62,9 +63,21 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestEncryptDecrypt()
         {
             AxCryptFile.Encrypt(Environment.Current.FileInfo(@"c:\test.txt"), Environment.Current.FileInfo(@"c:\test-txt.axx"), new Passphrase("axcrypt"));
-            AxCryptFile.Decrypt(Environment.Current.FileInfo(@"c:\test-txt.axx"), Environment.Current.FileInfo(@"c:\decrypted test.txt"), new Passphrase("axcrypt"));
-            string decrypted = new StreamReader(Environment.Current.FileInfo(@"c:\decrypted test.txt").OpenRead(), Encoding.UTF8).ReadToEnd();
-            Assert.That(decrypted, Is.EqualTo("This is a short file"));
+            using (AxCryptDocument document = AxCryptFile.Document(Environment.Current.FileInfo(@"c:\test-txt.axx"), new Passphrase("axcrypt")))
+            {
+                Assert.That(document.PassphraseIsValid, Is.True, "The passphrase should be ok.");
+                Assert.That(document.DocumentHeaders.FileName, Is.EqualTo("test.txt"), "Unexpected file name in headers.");
+                Assert.That(document.DocumentHeaders.CreationTimeUtc, Is.EqualTo(FakeRuntimeFileInfo.TestDate1Utc));
+                Assert.That(document.DocumentHeaders.LastAccessTimeUtc, Is.EqualTo(FakeRuntimeFileInfo.TestDate2Utc));
+                Assert.That(document.DocumentHeaders.LastWriteTimeUtc, Is.EqualTo(FakeRuntimeFileInfo.TestDate3Utc));
+                IRuntimeFileInfo decryptedFileInfo = Environment.Current.FileInfo(@"c:\decrypted test.txt");
+                AxCryptFile.Decrypt(document, decryptedFileInfo);
+                using (Stream decryptedStream = decryptedFileInfo.OpenRead())
+                {
+                    string decrypted = new StreamReader(decryptedStream, Encoding.UTF8).ReadToEnd();
+                    Assert.That(decrypted, Is.EqualTo("This is a short file"));
+                }
+            }
         }
     }
 }

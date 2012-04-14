@@ -36,6 +36,10 @@ namespace Axantum.AxCrypt.Core.Reader
 {
     public class AxCryptStreamReader : AxCryptReader
     {
+        /// <summary>
+        /// Implement an AxCryptReader based on a Stream.
+        /// </summary>
+        /// <param name="inputStream">The stream. Will be disposed when this instance is disposed.</param>
         public AxCryptStreamReader(Stream inputStream)
         {
             LookAheadStream lookAheadStream = inputStream as LookAheadStream;

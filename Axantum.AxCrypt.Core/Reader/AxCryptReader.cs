@@ -46,6 +46,11 @@ namespace Axantum.AxCrypt.Core.Reader
 
         private bool _disposed;
 
+        /// <summary>
+        /// Instantiate an AxCryptReader from a stream.
+        /// </summary>
+        /// <param name="inputStream">The stream to read from, will be disposed when this instance is disposed.</param>
+        /// <returns></returns>
         public static AxCryptReader Create(Stream inputStream)
         {
             AxCryptReader reader = new AxCryptStreamReader(inputStream);
