@@ -376,5 +376,94 @@ namespace Axantum.AxCrypt.Core.Test
                 }
             }
         }
+
+        private class NonSeekableStream : Stream
+        {
+            public override bool CanRead
+            {
+                get { return false; }
+            }
+
+            public override bool CanSeek
+            {
+                get { return false; }
+            }
+
+            public override bool CanWrite
+            {
+                get { return true; }
+            }
+
+            public override void Flush()
+            {
+            }
+
+            public override long Length
+            {
+                get { return 0; }
+            }
+
+            public override long Position
+            {
+                get
+                {
+                    return 0;
+                }
+                set
+                {
+                }
+            }
+
+            public override int Read(byte[] buffer, int offset, int count)
+            {
+                return 0;
+            }
+
+            public override long Seek(long offset, SeekOrigin origin)
+            {
+                throw new NotSupportedException();
+            }
+
+            public override void SetLength(long value)
+            {
+                throw new NotSupportedException();
+            }
+
+            public override void Write(byte[] buffer, int offset, int count)
+            {
+            }
+        }
+
+        [Test]
+        public static void TestInvalidArguments()
+        {
+            using (Stream inputStream = new MemoryStream(Encoding.UTF8.GetBytes("AxCrypt is Great!")))
+            {
+                using (Stream outputStream = new MemoryStream())
+                {
+                    using (AxCryptDocument document = new AxCryptDocument())
+                    {
+                        Passphrase passphrase = new Passphrase("a");
+                        DocumentHeaders headers = new DocumentHeaders(passphrase.DerivedPassphrase);
+
+                        Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(null, inputStream, outputStream); });
+                        Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(headers, null, outputStream); });
+                        Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(headers, inputStream, null); });
+                        Assert.Throws<ArgumentException>(() => { document.EncryptTo(headers, inputStream, new NonSeekableStream()); });
+                        Assert.Throws<ArgumentNullException>(() => { document.CopyEncryptedTo(null, outputStream); });
+                        Assert.Throws<ArgumentNullException>(() => { document.CopyEncryptedTo(headers, null); });
+                        Assert.Throws<ArgumentException>(() => { document.CopyEncryptedTo(headers, new NonSeekableStream()); });
+                    }
+                }
+            }
+        }
+
+        [Test]
+        public static void TestDoubleDispose()
+        {
+            AxCryptDocument document = new AxCryptDocument();
+            document.Dispose();
+            document.Dispose();
+        }
     }
 }

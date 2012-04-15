@@ -144,6 +144,10 @@ namespace Axantum.AxCrypt.Core
         /// <param name="outputStream"></param>
         public void CopyEncryptedTo(DocumentHeaders outputDocumentHeaders, Stream cipherStream)
         {
+            if (outputDocumentHeaders == null)
+            {
+                throw new ArgumentNullException("outputDocumentHeaders");
+            }
             if (cipherStream == null)
             {
                 throw new ArgumentNullException("cipherStream");
