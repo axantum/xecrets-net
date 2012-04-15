@@ -32,6 +32,7 @@ using System.Linq;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Test.Properties;
 using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -48,6 +49,7 @@ namespace Axantum.AxCrypt.Core.Test
             Environment.Current = new FakeRuntimeEnvironment();
 
             FakeRuntimeFileInfo.AddFile(@"c:\test.txt", FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate3Utc, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
+            FakeRuntimeFileInfo.AddFile(@"c:\Users\AxCrypt\David Copperfield.txt", FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate6Utc, new MemoryStream(Resources.David_Copperfield));
         }
 
         [TestFixtureTearDownAttribute]
@@ -58,7 +60,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptDecrypt()
+        public static void TestSmallEncryptDecrypt()
         {
             IRuntimeFileInfo sourceFileInfo = Environment.Current.FileInfo(@"c:\test.txt");
             IRuntimeFileInfo destinationFileInfo = sourceFileInfo.CreateEncryptedName();
@@ -81,6 +83,44 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(decryptedFileInfo.CreationTimeUtc, Is.EqualTo(document.DocumentHeaders.CreationTimeUtc), "We're expecting file times to be set as the original from the headers.");
                 Assert.That(decryptedFileInfo.LastAccessTimeUtc, Is.EqualTo(document.DocumentHeaders.LastAccessTimeUtc), "We're expecting file times to be set as the original from the headers.");
                 Assert.That(decryptedFileInfo.LastWriteTimeUtc, Is.EqualTo(document.DocumentHeaders.LastWriteTimeUtc), "We're expecting file times to be set as the original from the headers.");
+            }
+        }
+
+        [Test]
+        public static void TestLargeEncryptDecrypt()
+        {
+            DirectoryInfo sourceDirectory = new DirectoryInfo(@"C:\Users\AxCrypt");
+            FileInfo sourceFileInfo = new FileInfo(Path.Combine(sourceDirectory.FullName, "David Copperfield.txt"));
+
+            IRuntimeFileInfo sourceRuntimeFileInfo = Environment.Current.FileInfo(sourceFileInfo);
+            IRuntimeFileInfo destinationRuntimeFileInfo = sourceRuntimeFileInfo.CreateEncryptedName();
+            Passphrase passphrase = new Passphrase("laDabled@tAmeopot33");
+
+            AxCryptFile.Encrypt(sourceRuntimeFileInfo, destinationRuntimeFileInfo, passphrase, AxCryptFileOptions.SetFileTimes);
+
+            Assert.That(destinationRuntimeFileInfo.CreationTimeUtc, Is.EqualTo(sourceRuntimeFileInfo.CreationTimeUtc), "We're expecting file times to be set as the original from the headers.");
+            Assert.That(destinationRuntimeFileInfo.LastAccessTimeUtc, Is.EqualTo(sourceRuntimeFileInfo.LastAccessTimeUtc), "We're expecting file times to be set as the original from the headers.");
+            Assert.That(destinationRuntimeFileInfo.LastWriteTimeUtc, Is.EqualTo(sourceRuntimeFileInfo.LastWriteTimeUtc), "We're expecting file times to be set as the original from the headers.");
+
+            DirectoryInfo decryptedDirectoryInfo = new DirectoryInfo(@"C:\Users\AxCrypt\Decrypted");
+            FileInfo decryptedFileInfo = new FileInfo(Path.Combine(decryptedDirectoryInfo.FullName, "David Copperfield.txt"));
+            IRuntimeFileInfo decryptedRuntimeFileInfo = Environment.Current.FileInfo(decryptedFileInfo);
+
+            AxCryptFile.Decrypt(destinationRuntimeFileInfo, decryptedRuntimeFileInfo, passphrase, AxCryptFileOptions.SetFileTimes);
+
+            Assert.That(decryptedRuntimeFileInfo.CreationTimeUtc, Is.EqualTo(sourceRuntimeFileInfo.CreationTimeUtc), "We're expecting file times to be set as the original from the headers.");
+            Assert.That(decryptedRuntimeFileInfo.LastAccessTimeUtc, Is.EqualTo(sourceRuntimeFileInfo.LastAccessTimeUtc), "We're expecting file times to be set as the original from the headers.");
+            Assert.That(decryptedRuntimeFileInfo.LastWriteTimeUtc, Is.EqualTo(sourceRuntimeFileInfo.LastWriteTimeUtc), "We're expecting file times to be set as the original from the headers.");
+
+            using (StreamReader sourceStreamReader = new StreamReader(sourceRuntimeFileInfo.OpenRead(), Encoding.GetEncoding("Windows-1252")))
+            {
+                using (StreamReader decryptedStreamReader = new StreamReader(decryptedRuntimeFileInfo.OpenRead(), Encoding.GetEncoding("Windows-1252")))
+                {
+                    string source = sourceStreamReader.ReadToEnd();
+                    string decrypted = decryptedStreamReader.ReadToEnd();
+
+                    Assert.That(decrypted, Is.EqualTo(source), "Comparing original plain text with the decrypted encrypted plain text.");
+                }
             }
         }
     }

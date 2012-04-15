@@ -48,11 +48,11 @@ namespace Axantum.AxCrypt.Core.Test
         public static readonly DateTime TestDate1Utc = DateTime.Parse("2012-01-02 03:04:05", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
         public static readonly DateTime TestDate2Utc = DateTime.Parse("1950-12-24 15:16:17", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
         public static readonly DateTime TestDate3Utc = DateTime.Parse("2100-12-31 00:00:00", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
-        //public static readonly DateTime TestDate4Utc = DateTime.Parse("2008-09-10 11:12:13", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
-        //public static readonly DateTime TestDate5Utc = DateTime.Parse("2009-03-31 06:07:08", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
-        //public static readonly DateTime TestDate6Utc = DateTime.Parse("2012-02-29 12:00:00", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
+        public static readonly DateTime TestDate4Utc = DateTime.Parse("2008-09-10 11:12:13", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
+        public static readonly DateTime TestDate5Utc = DateTime.Parse("2009-03-31 06:07:08", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
+        public static readonly DateTime TestDate6Utc = DateTime.Parse("2012-02-29 12:00:00", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
 
-        private static Dictionary<string, FakeFileInfo> _fakeFileSystem = new Dictionary<string, FakeFileInfo>();
+        private static Dictionary<string, FakeFileInfo> _fakeFileSystem = new Dictionary<string, FakeFileInfo>(StringComparer.OrdinalIgnoreCase);
 
         public static void AddFile(string path, DateTime creationTimeUtc, DateTime lastAccessTimeUtc, DateTime lastWriteTimeUtc, Stream stream)
         {

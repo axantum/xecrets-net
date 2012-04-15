@@ -291,6 +291,13 @@ namespace Axantum.AxCrypt.Core
             return bytes;
         }
 
+        /// <summary>
+        /// Create a FileInfo based on an existing, but convert the file name to the pattern used by
+        /// AxCrypt for encrypted files. The original must not already be in that form.
+        /// </summary>
+        /// <param name="fileInfo">A FileInfo representing a file that is not encrypted</param>
+        /// <returns>A corresponding FileInfo representing the encrypted version of the original</returns>
+        /// <exception cref="InternalErrorException">Can't get encrypted name for a file that already has the encrypted extension.</exception>
         public static FileInfo CreateEncryptedName(this FileSystemInfo fileInfo)
         {
             string extension = Path.GetExtension(fileInfo.FullName);
