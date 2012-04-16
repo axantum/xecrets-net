@@ -59,6 +59,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="TestAesCrypto.cs" />
     <Compile Include="TestAxCryptDocument.cs" />
     <Compile Include="TestAxCryptFile.cs" />
     <Compile Include="TestAxCryptHeaderKeyWrap.cs" />

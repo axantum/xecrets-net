@@ -64,6 +64,10 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public byte[] Decrypt(byte[] cipherText)
         {
+            if (_aes == null)
+            {
+                throw new ObjectDisposedException("_aes");
+            }
             using (ICryptoTransform decryptor = _aes.CreateDecryptor())
             {
                 byte[] plainText = decryptor.TransformFinalBlock(cipherText, 0, cipherText.Length);
@@ -73,6 +77,10 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public byte[] Encrypt(byte[] plaintext)
         {
+            if (_aes == null)
+            {
+                throw new ObjectDisposedException("_aes");
+            }
             using (ICryptoTransform encryptor = _aes.CreateEncryptor())
             {
                 byte[] cipherText = encryptor.TransformFinalBlock(plaintext, 0, plaintext.Length);
@@ -82,11 +90,19 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public ICryptoTransform CreateDecryptingTransform()
         {
+            if (_aes == null)
+            {
+                throw new ObjectDisposedException("_aes");
+            }
             return _aes.CreateDecryptor();
         }
 
         public ICryptoTransform CreateEncryptingTransform()
         {
+            if (_aes == null)
+            {
+                throw new ObjectDisposedException("_aes");
+            }
             return _aes.CreateEncryptor();
         }
 
