@@ -57,13 +57,11 @@ namespace Axantum.AxCrypt.Core
         {
         }
 
-        [ExcludeFromCodeCoverage]
         public InvalidDataException(string message, Exception innerException)
             : this(message, ErrorStatus.DataError, innerException)
         {
         }
 
-        [ExcludeFromCodeCoverage]
         public InvalidDataException(string message, ErrorStatus errorStatus, Exception innerException)
             : base(message, errorStatus, innerException)
         {

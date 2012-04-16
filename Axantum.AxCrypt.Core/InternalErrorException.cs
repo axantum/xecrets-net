@@ -61,7 +61,12 @@ namespace Axantum.AxCrypt.Core
         }
 
         public InternalErrorException(string message, Exception innerException)
-            : base(message, ErrorStatus.InternalError, innerException)
+            : this(message, ErrorStatus.InternalError, innerException)
+        {
+        }
+
+        public InternalErrorException(string message, ErrorStatus errorStatus, Exception innerException)
+            : base(message, errorStatus, innerException)
         {
         }
     }

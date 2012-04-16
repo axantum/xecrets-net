@@ -83,6 +83,64 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        public static void TestInnerException()
+        {
+            try
+            {
+                int i = (int)new object();
+            }
+            catch (InvalidCastException ice)
+            {
+                try
+                {
+                    throw new FileFormatException("Testing inner", ErrorStatus.FileFormatError, ice);
+                }
+                catch (AxCryptException ace)
+                {
+                    Assert.That(ace.ErrorStatus, Is.EqualTo(ErrorStatus.FileFormatError), "Wrong status.");
+                    Assert.That(ace.Message, Is.EqualTo("Testing inner"), "Wrong message.");
+                    Assert.That(ace.InnerException.GetType(), Is.EqualTo(typeof(InvalidCastException)), "Wrong inner exception.");
+                }
+            }
+
+            try
+            {
+                int i = (int)new object();
+            }
+            catch (InvalidCastException ice)
+            {
+                try
+                {
+                    throw new InternalErrorException("Testing inner", ice);
+                }
+                catch (AxCryptException ace)
+                {
+                    Assert.That(ace.ErrorStatus, Is.EqualTo(ErrorStatus.InternalError), "Wrong status.");
+                    Assert.That(ace.Message, Is.EqualTo("Testing inner"), "Wrong message.");
+                    Assert.That(ace.InnerException.GetType(), Is.EqualTo(typeof(InvalidCastException)), "Wrong inner exception.");
+                }
+            }
+
+            try
+            {
+                int i = (int)new object();
+            }
+            catch (InvalidCastException ice)
+            {
+                try
+                {
+                    throw new InvalidDataException("Testing inner", ice);
+                }
+                catch (AxCryptException ace)
+                {
+                    Assert.That(ace.ErrorStatus, Is.EqualTo(ErrorStatus.DataError), "Wrong status.");
+                    Assert.That(ace.Message, Is.EqualTo("Testing inner"), "Wrong message.");
+                    Assert.That(ace.InnerException.GetType(), Is.EqualTo(typeof(InvalidCastException)), "Wrong inner exception.");
+                }
+            }
+        }
+
+        [Test]
         public static void TestAxCryptExceptionSerialization()
         {
             FileFormatException ffe = new FileFormatException("A test-exception", ErrorStatus.InternalError);
