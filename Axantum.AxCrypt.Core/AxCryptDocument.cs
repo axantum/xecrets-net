@@ -236,11 +236,6 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
             }
-
-            if (_reader.CurrentItemType != AxCryptItemType.EndOfStream)
-            {
-                throw new FileFormatException("The stream should end here.", ErrorStatus.FileFormatError);
-            }
         }
 
         private bool _disposed = false;
