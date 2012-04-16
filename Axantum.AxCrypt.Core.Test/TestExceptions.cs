@@ -27,6 +27,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -88,6 +89,7 @@ namespace Axantum.AxCrypt.Core.Test
             try
             {
                 int i = (int)new object();
+                Debug.WriteLine("Use 'i' so it appears used to FxCopy {0}", i);
             }
             catch (InvalidCastException ice)
             {
