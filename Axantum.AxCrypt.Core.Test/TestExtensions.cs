@@ -218,19 +218,25 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 if (BitConverter.IsLittleEndian)
                 {
-                    byte[] actuallyLittleEndianBytes = 0x0102030405060708.GetBigEndianBytes();
-                    Assert.That(actuallyLittleEndianBytes, Is.EqualTo(new byte[] { 0x08, 0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01 }), "Getting big endian, thinking we are big endian but in fact are not, will get us little endian bytes.");
+                    byte[] actuallyLittleEndianBytes = 0x0102030405060708L.GetBigEndianBytes();
+                    Assert.That(actuallyLittleEndianBytes, Is.EqualTo(new byte[] { 0x08, 0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01 }), "Getting big endian long, thinking we are big endian but in fact are not, will get us little endian bytes.");
 
-                    byte[] actuallyStillLittleEndianBytes = 0x0102030405060708.GetLittleEndianBytes();
-                    Assert.That(actuallyStillLittleEndianBytes, Is.EqualTo(new byte[] { 0x08, 0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01 }), "Getting little endian, thinking we are big endian but in fact are not, will still get us little endian.");
+                    byte[] actuallyStillLittleEndianBytes = 0x0102030405060708L.GetLittleEndianBytes();
+                    Assert.That(actuallyStillLittleEndianBytes, Is.EqualTo(new byte[] { 0x08, 0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01 }), "Getting little endian long, thinking we are big endian but in fact are not, will still get us little endian.");
+
+                    byte[] actuallyIntStillLittleEndianBytes = 0x01020304.GetLittleEndianBytes();
+                    Assert.That(actuallyIntStillLittleEndianBytes, Is.EqualTo(new byte[] { 0x04, 0x03, 0x02, 0x01 }), "Getting little endian int, thinking we are big endian but in fact are not, will still get us little endian.");
                 }
                 else
                 {
-                    byte[] actuallyStillBigEndianBytes = 0x0102030405060708.GetBigEndianBytes();
-                    Assert.That(actuallyStillBigEndianBytes, Is.EqualTo(new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 }), "Getting big endian, thinking we are little endian but in fact are not, will still get us big endian bytes.");
+                    byte[] actuallyStillBigEndianBytes = 0x0102030405060708L.GetBigEndianBytes();
+                    Assert.That(actuallyStillBigEndianBytes, Is.EqualTo(new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 }), "Getting big endian long, thinking we are little endian but in fact are not, will still get us big endian bytes.");
 
-                    byte[] actuallyBigEndianBytes = 0x0102030405060708.GetLittleEndianBytes();
-                    Assert.That(actuallyBigEndianBytes, Is.EqualTo(new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 }), "Getting little endian, thinking we are big endian but in fact are not, will get us big endian bytes.");
+                    byte[] actuallyBigEndianBytes = 0x0102030405060708L.GetLittleEndianBytes();
+                    Assert.That(actuallyBigEndianBytes, Is.EqualTo(new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 }), "Getting little endian long, thinking we are big endian but in fact are not, will get us big endian bytes.");
+
+                    byte[] actuallyIntBigEndianBytes = 0x01020304.GetLittleEndianBytes();
+                    Assert.That(actuallyIntBigEndianBytes, Is.EqualTo(new byte[] { 0x01, 0x02, 0x03, 0x04 }), "Getting little endian int, thinking we are big endian but in fact are not, will get us big endian bytes.");
                 }
             }
             finally
