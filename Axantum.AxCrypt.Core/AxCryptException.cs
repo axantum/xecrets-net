@@ -39,10 +39,10 @@ namespace Axantum.AxCrypt.Core
     {
         public ErrorStatus ErrorStatus { get; set; }
 
-        [ExcludeFromCodeCoverage]
         protected AxCryptException()
             : base()
         {
+            ErrorStatus = ErrorStatus.Unknown;
         }
 
         protected AxCryptException(string message, ErrorStatus errorStatus)
@@ -51,7 +51,6 @@ namespace Axantum.AxCrypt.Core
             ErrorStatus = errorStatus;
         }
 
-        [ExcludeFromCodeCoverage]
         protected AxCryptException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {

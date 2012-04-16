@@ -8,6 +8,7 @@ namespace Axantum.AxCrypt.Core
     public enum ErrorStatus
     {
         Success,
+        Unknown,
         MagicGuidMissing,
         InternalError,
         EndOfStream,

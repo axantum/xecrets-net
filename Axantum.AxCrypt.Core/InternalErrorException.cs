@@ -40,7 +40,6 @@ namespace Axantum.AxCrypt.Core
     [Serializable]
     public class InternalErrorException : AxCryptException
     {
-        [ExcludeFromCodeCoverage]
         public InternalErrorException()
             : base()
         {
@@ -51,12 +50,16 @@ namespace Axantum.AxCrypt.Core
         {
         }
 
+        public InternalErrorException(string message, ErrorStatus errorStatus)
+            : base(message, errorStatus)
+        {
+        }
+
         protected InternalErrorException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
 
-        [ExcludeFromCodeCoverage]
         public InternalErrorException(string message, Exception innerException)
             : base(message, ErrorStatus.InternalError, innerException)
         {

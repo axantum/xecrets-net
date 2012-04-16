@@ -37,13 +37,11 @@ namespace Axantum.AxCrypt.Core
     [Serializable]
     public class FileFormatException : AxCryptException
     {
-        [ExcludeFromCodeCoverage]
         public FileFormatException()
             : base()
         {
         }
 
-        [ExcludeFromCodeCoverage]
         public FileFormatException(string message)
             : this(message, ErrorStatus.FileFormatError)
         {
@@ -59,13 +57,11 @@ namespace Axantum.AxCrypt.Core
         {
         }
 
-        [ExcludeFromCodeCoverage]
         public FileFormatException(string message, Exception innerException)
             : this(message, ErrorStatus.FileFormatError, innerException)
         {
         }
 
-        [ExcludeFromCodeCoverage]
         public FileFormatException(string message, ErrorStatus errorStatus, Exception innerException)
             : base(message, errorStatus, innerException)
         {

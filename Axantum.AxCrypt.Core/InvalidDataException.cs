@@ -37,13 +37,11 @@ namespace Axantum.AxCrypt.Core
     [Serializable]
     public class InvalidDataException : AxCryptException
     {
-        [ExcludeFromCodeCoverage]
         public InvalidDataException()
             : base()
         {
         }
 
-        [ExcludeFromCodeCoverage]
         public InvalidDataException(string message)
             : this(message, ErrorStatus.DataError)
         {
