@@ -169,7 +169,7 @@ namespace Axantum.AxCrypt.Core
 
                         if (hmacStreamInput.HmacResult != DocumentHeaders.Hmac)
                         {
-                            throw new InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
+                            throw new InvalidDataException("HMAC validation error in the input stream.", ErrorStatus.HmacValidationError);
                         }
                     }
 

@@ -465,5 +465,31 @@ namespace Axantum.AxCrypt.Core.Test
             document.Dispose();
             document.Dispose();
         }
+
+        [Test]
+        public static void TestInvalidHmacInCopyEncryptedTo()
+        {
+            using (AxCryptDocument document = new AxCryptDocument())
+            {
+                Passphrase passphrase = new Passphrase("a");
+                bool keyIsOk = document.Load(new MemoryStream(Resources.HelloWorld_Key_a_txt), passphrase);
+                Assert.That(keyIsOk, Is.True, "The passphrase provided is correct and should work!");
+
+                Passphrase newPassphrase = new Passphrase("b");
+                using (Stream changedStream = new MemoryStream())
+                {
+                    DocumentHeaders outputDocumentHeaders = new DocumentHeaders(document.DocumentHeaders);
+                    outputDocumentHeaders.RewrapMasterKey(newPassphrase.DerivedPassphrase);
+
+                    byte[] modifiedHmacBytes = document.DocumentHeaders.Hmac.GetBytes();
+                    modifiedHmacBytes[0] += 1;
+                    document.DocumentHeaders.Hmac = new DataHmac(modifiedHmacBytes);
+                    Assert.Throws<InvalidDataException>(() =>
+                    {
+                        document.CopyEncryptedTo(outputDocumentHeaders, changedStream);
+                    });
+                }
+            }
+        }
     }
 }
