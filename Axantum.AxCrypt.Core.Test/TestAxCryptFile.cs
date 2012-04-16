@@ -123,5 +123,18 @@ namespace Axantum.AxCrypt.Core.Test
                 }
             }
         }
+
+        [Test]
+        public static void TestInvalidPassphrase()
+        {
+            IRuntimeFileInfo sourceFileInfo = Environment.Current.FileInfo(@"c:\test.txt");
+            IRuntimeFileInfo encryptedFileInfo = sourceFileInfo.CreateEncryptedName();
+            Assert.That(encryptedFileInfo.Name, Is.EqualTo("test-txt.axx"), "Wrong encrypted file name based on the plain text file name.");
+            AxCryptFile.Encrypt(sourceFileInfo, encryptedFileInfo, new Passphrase("axcrypt"), AxCryptFileOptions.None);
+
+            IRuntimeFileInfo decryptedFileInfo = Environment.Current.FileInfo(@"c:\decrypted.txt");
+            bool isPassphraseOk = AxCryptFile.Decrypt(encryptedFileInfo, decryptedFileInfo, new Passphrase("wrong"), AxCryptFileOptions.None);
+            Assert.That(isPassphraseOk, Is.False, "The passphrase is wrong and should be wrong!");
+        }
     }
 }
