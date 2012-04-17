@@ -49,6 +49,10 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public AesKey(AesKey aesKey)
         {
+            if (aesKey == null)
+            {
+                throw new ArgumentNullException("aesKey");
+            }
             _aesKey = (byte[])aesKey._aesKey.Clone();
         }
 

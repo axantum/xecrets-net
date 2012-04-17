@@ -36,41 +36,41 @@ using NUnit.Framework;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public static class TestAesIV
+    public static class TestAesKey
     {
         [Test]
         public static void TestInvalidArguments()
         {
-            AesIV iv = null;
+            AesKey key = null;
+            Assert.DoesNotThrow(() =>
+            {
+                key = new AesKey(new byte[16]);
+            });
+            Assert.DoesNotThrow(() =>
+            {
+                key = new AesKey(new byte[24]);
+            });
+            Assert.DoesNotThrow(() =>
+            {
+                key = new AesKey(new byte[32]);
+            });
+
+            Assert.Throws<InternalErrorException>(() =>
+            {
+                key = new AesKey(new byte[0]);
+            });
+
             Assert.Throws<ArgumentNullException>(() =>
             {
-                iv = new AesIV(null);
+                key = new AesKey((byte[])null);
             });
 
-            Assert.Throws<InternalErrorException>(() =>
+            Assert.Throws<ArgumentNullException>(() =>
             {
-                iv = new AesIV(new byte[0]);
+                key = new AesKey((AesKey)null);
             });
 
-            Assert.Throws<InternalErrorException>(() =>
-            {
-                iv = new AesIV(new byte[32]);
-            });
-
-            Debug.WriteLine("Use the 'iv' instance to avoid FxCopy issues {0}.", iv);
-        }
-
-        [Test]
-        public static void TestMethods()
-        {
-            AesIV zeroIV = AesIV.Zero;
-            Assert.That(zeroIV.GetBytes(), Is.EquivalentTo(new byte[16]), "The IV 'zero' should consist of all zeros.");
-
-            AesIV iv = new AesIV(new byte[16] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
-            Assert.That(iv.GetBytes(), Is.EquivalentTo(new byte[16] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }), "An IV specified should consist of just those bytes.");
-
-            iv = new AesIV();
-            Assert.That(iv.GetBytes(), Is.Not.EquivalentTo(new byte[16]), "A random iv will in practice never be all zeros.");
+            Debug.WriteLine("Use the 'key' instance to avoid FxCop issues {0}.", key);
         }
     }
 }

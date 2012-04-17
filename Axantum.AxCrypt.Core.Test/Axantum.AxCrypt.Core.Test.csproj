@@ -61,6 +61,7 @@
     </Compile>
     <Compile Include="TestAesCrypto.cs" />
     <Compile Include="TestAesIV.cs" />
+    <Compile Include="TestAesKey.cs" />
     <Compile Include="TestAxCryptDocument.cs" />
     <Compile Include="TestAxCryptFile.cs" />
     <Compile Include="TestAxCryptHeaderKeyWrap.cs" />
