@@ -77,7 +77,12 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public override int GetHashCode()
         {
-            return _hmac.GetHashCode();
+            int hashCode = 0;
+            foreach (byte b in _hmac)
+            {
+                hashCode += (hashCode << 8) + b;
+            }
+            return hashCode;
         }
 
         public static bool operator ==(DataHmac left, DataHmac right)
