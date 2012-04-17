@@ -70,8 +70,10 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(hmac.GetHashCode(), Is.Not.EqualTo(0), "The hash code should not be zero (can be, but it's not in this case).");
             Assert.That(hmac.GetHashCode(), Is.EqualTo(hmac2.GetHashCode()), "The hash code for two different instances with same value should be the same.");
 
-            Assert.That(hmac, Is.Not.EqualTo(null), "An instance is never equal to null.");
-            Assert.That(hmac, Is.Not.EqualTo(new object()), "An instance is never equal to another instance of a differing type.");
+            Assert.That(hmac.Equals(null), Is.False, "An instance is never equal to null.");
+            Assert.That(hmac.Equals(new object()), Is.False, "An instance is never equal to another instance of a differing type.");
+            DataHmac hmacSynonym = hmac;
+            Assert.That(hmac == hmacSynonym, Is.True, "These should compare equal via reference equality.");
         }
     }
 }

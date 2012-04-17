@@ -91,6 +91,10 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 return false;
             }
+            if (Object.ReferenceEquals(left, right))
+            {
+                return true;
+            }
             return left._hmac.IsEquivalentTo(right._hmac);
         }
 
