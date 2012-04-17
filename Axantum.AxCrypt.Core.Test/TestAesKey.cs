@@ -65,12 +65,18 @@ namespace Axantum.AxCrypt.Core.Test
                 key = new AesKey((byte[])null);
             });
 
-            Assert.Throws<ArgumentNullException>(() =>
-            {
-                key = new AesKey((AesKey)null);
-            });
-
             Debug.WriteLine("Use the 'key' instance to avoid FxCop issues {0}.", key);
+        }
+
+        [Test]
+        public static void TestMethods()
+        {
+            AesKey key = new AesKey();
+            Assert.That(key.GetBytes().Length, Is.EqualTo(16), "The default key length is 128 bits.");
+            Assert.That(key.GetBytes(), Is.Not.EquivalentTo(new byte[16]), "A random key cannot be expected to be all zeros.");
+
+            AesKey specifiedKey = new AesKey(key.GetBytes());
+            Assert.That(specifiedKey.GetBytes(), Is.EquivalentTo(key.GetBytes()), "The specified key should contain the bits given to it.");
         }
     }
 }
