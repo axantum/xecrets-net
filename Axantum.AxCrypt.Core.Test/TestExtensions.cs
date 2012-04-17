@@ -27,6 +27,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -243,6 +244,43 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 Environment.Current = currentEnvironment;
             }
+        }
+
+        [Test]
+        public static void TestEndianConversion()
+        {
+            byte[] actuallyLittleEndianBytes = 0x0102030405060708L.GetBigEndianBytes();
+            Assert.That(actuallyLittleEndianBytes, Is.EqualTo(new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 }), "Getting big endian long.");
+
+            byte[] actuallyStillLittleEndianBytes = 0x0102030405060708L.GetLittleEndianBytes();
+            Assert.That(actuallyStillLittleEndianBytes, Is.EqualTo(new byte[] { 0x08, 0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01 }), "Getting little endian long.");
+
+            byte[] actuallyIntStillLittleEndianBytes = 0x01020304.GetLittleEndianBytes();
+            Assert.That(actuallyIntStillLittleEndianBytes, Is.EqualTo(new byte[] { 0x04, 0x03, 0x02, 0x01 }), "Getting little endian int.");
+        }
+
+        [Test]
+        public static void TestCreateEncryptedName()
+        {
+            FileInfo fileInfo = new FileInfo(@"C:\Users\Axantum\My Documents\My Document.docx");
+            FileInfo encryptedFileInfo = fileInfo.CreateEncryptedName();
+            Assert.That(encryptedFileInfo.FullName, Is.EqualTo(@"C:\Users\Axantum\My Documents\My Document-docx.axx"), "Standard conversion of file name to encrypted form.");
+
+            Assert.Throws<InternalErrorException>(() =>
+                 {
+                     FileInfo encryptedEncryptedFileInfo = encryptedFileInfo.CreateEncryptedName();
+                     Debug.WriteLine("Use encryptedEncryptedFileInfo so FxCop does not warn {0}", encryptedEncryptedFileInfo);
+                 });
+
+            fileInfo = new FileInfo(@"C:\Users\Axantum\My Documents\My Extensionless File");
+            encryptedFileInfo = fileInfo.CreateEncryptedName();
+            Assert.That(encryptedFileInfo.FullName, Is.EqualTo(@"C:\Users\Axantum\My Documents\My Extensionless File.axx"), "Conversion of file name without extension to encrypted form.");
+
+            Assert.Throws<InternalErrorException>(() =>
+            {
+                FileInfo encryptedEncryptedFileInfo = encryptedFileInfo.CreateEncryptedName();
+                Debug.WriteLine("Use encryptedEncryptedFileInfo so FxCop does not warn {0}", encryptedEncryptedFileInfo);
+            });
         }
     }
 }
