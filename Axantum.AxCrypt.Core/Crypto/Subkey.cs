@@ -64,7 +64,7 @@ namespace Axantum.AxCrypt.Core.Crypto
                     subKeyValue = 3;
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException("headerSubkey");
+                    throw new InternalErrorException("headerSubkey");
             }
 
             block[0] = subKeyValue;

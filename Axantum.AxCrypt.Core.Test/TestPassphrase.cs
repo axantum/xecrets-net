@@ -37,6 +37,7 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestPassphrase
     {
+        [Test]
         public static void TestPassphraseConstructor()
         {
             Passphrase passphrase = new Passphrase("A Passphrase");

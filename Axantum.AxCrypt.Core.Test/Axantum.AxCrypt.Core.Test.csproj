@@ -78,6 +78,7 @@
     <Compile Include="TestKeyWrapSalt.cs" />
     <Compile Include="TestPassphrase.cs" />
     <Compile Include="TestRuntimeEnvironment.cs" />
+    <Compile Include="TestSubkey.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />
