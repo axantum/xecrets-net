@@ -39,7 +39,15 @@ namespace Axantum.AxCrypt.Core.Test
                 wrapped = keyWrap.Wrap(_keyData);
             }
 
-            Assert.That(wrapped, Is.EquivalentTo(_wrapped), "The wrapped data is not correct according to specfication.");
+            Assert.That(wrapped, Is.EquivalentTo(_wrapped), "The wrapped data is not correct according to specification.");
+
+            using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, 6, KeyWrapMode.Specification))
+            {
+                Assert.Throws<ArgumentNullException>(() =>
+                {
+                    wrapped = keyWrap.Wrap(null);
+                });
+            }
         }
 
         [Test]
@@ -92,43 +100,78 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, 6, KeyWrapMode.Specification))
             {
-                Assert.Throws<ArgumentException>(() => { keyWrap.Unwrap(_keyData.GetBytes()); }, "Calling with too short wrapped data.");
+                Assert.Throws<InternalErrorException>(() => { keyWrap.Unwrap(_keyData.GetBytes()); }, "Calling with too short wrapped data.");
             }
 
-            Assert.Throws<ArgumentException>(() =>
+            Assert.Throws<InternalErrorException>(() =>
             {
                 using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, new KeyWrapSalt(32), 6, KeyWrapMode.AxCrypt))
                 {
                 }
             }, "Calling with too long salt.");
 
-            Assert.Throws<ArgumentOutOfRangeException>(() =>
+            Assert.Throws<InternalErrorException>(() =>
             {
                 using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, 5, KeyWrapMode.AxCrypt))
                 {
                 }
             }, "Calling with too few iterations.");
 
-            Assert.Throws<ArgumentOutOfRangeException>(() =>
+            Assert.Throws<InternalErrorException>(() =>
             {
                 using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, 0, KeyWrapMode.AxCrypt))
                 {
                 }
             }, "Calling with zero (too few) iterations.");
 
-            Assert.Throws<ArgumentOutOfRangeException>(() =>
+            Assert.Throws<InternalErrorException>(() =>
             {
                 using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, -100, KeyWrapMode.AxCrypt))
                 {
                 }
             }, "Calling with negative number of iterations.");
 
-            Assert.Throws<ArgumentOutOfRangeException>(() =>
+            Assert.Throws<InternalErrorException>(() =>
             {
                 using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, 6, (KeyWrapMode)9999))
                 {
                 }
             }, "Calling with bogus KeyWrapMode.");
+
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                using (KeyWrap keyWrap = new KeyWrap(null, new KeyWrapSalt(16), 6, KeyWrapMode.AxCrypt))
+                {
+                }
+            }, "Calling with null key argument.");
+
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, null, 6, KeyWrapMode.Specification))
+                {
+                }
+            }, "Calling with null salt argument.");
+        }
+
+        [Test]
+        public static void TestDispose()
+        {
+            KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, 6, KeyWrapMode.Specification);
+            keyWrap.Dispose();
+            Assert.Throws<ObjectDisposedException>(() =>
+            {
+                keyWrap.Wrap(new AesKey());
+            });
+
+            Assert.Throws<ObjectDisposedException>(() =>
+            {
+                keyWrap.Unwrap(new byte[16 + 8]);
+            });
+
+            Assert.DoesNotThrow(() =>
+            {
+                keyWrap.Dispose();
+            });
         }
     }
 }

@@ -44,7 +44,8 @@ namespace Axantum.AxCrypt.Core.Crypto
         private AesKey _key;
         private KeyWrapSalt _salt;
         private long _iterations;
-        private KeyWrapMode _mode;
+        private readonly KeyWrapMode _mode;
+        private AesManaged _aes = new AesManaged();
 
         /// <summary>
         /// Create a KeyWrap instance for wrapping or unwrapping
@@ -76,21 +77,18 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
             if (salt.Length != 0 && salt.Length != key.Length)
             {
-                throw new ArgumentException("salt length is incorrect");
+                throw new InternalErrorException("salt length is incorrect");
             }
             if (iterations < 6)
             {
-                throw new ArgumentOutOfRangeException("iterations");
+                throw new InternalErrorException("iterations");
             }
             if (mode != KeyWrapMode.Specification && mode != KeyWrapMode.AxCrypt)
             {
-                throw new ArgumentOutOfRangeException("mode");
+                throw new InternalErrorException("mode");
             }
-            Initialize(key, salt, iterations, mode);
-        }
+            _mode = mode;
 
-        private void Initialize(AesKey key, KeyWrapSalt salt, long iterations, KeyWrapMode mode)
-        {
             _key = key;
             _salt = salt;
 
@@ -103,11 +101,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             _aes.KeySize = _key.Length * 8;
             _aes.Key = saltedKey;
             _aes.Padding = PaddingMode.None;
-
-            _mode = mode;
         }
-
-        private AesManaged _aes = new AesManaged();
 
         /// <summary>
         /// Wrap key data using the AES Key Wrap specification
@@ -120,12 +114,12 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new ArgumentNullException("keyToWrap");
             }
-            if (keyToWrap.Length != _key.Length)
+            if (_aes == null)
             {
-                throw new ArgumentException("keyToWrap has incorrect length.");
+                throw new ObjectDisposedException("_aes");
             }
 
-            byte[] wrapped = new byte[_key.Length + A.Length];
+            byte[] wrapped = new byte[keyToWrap.Length + A.Length];
             A.CopyTo(wrapped, 0);
 
             Array.Copy(keyToWrap.GetBytes(), 0, wrapped, A.Length, keyToWrap.Length);
@@ -138,14 +132,14 @@ namespace Axantum.AxCrypt.Core.Crypto
             // the rest is 'Key Data'. We do the transform in-place.
             for (int j = 0; j < _iterations; j++)
             {
-                for (int i = 1; i <= (_aes.KeySize / 8) / 8; i++)
+                for (int i = 1; i <= keyToWrap.Length / 8; i++)
                 {
                     // B = AESE(K, A | R[i])
                     Array.Copy(wrapped, 0, block, 0, 8);
                     Array.Copy(wrapped, i * 8, block, 8, 8);
                     byte[] b = encryptor.TransformFinalBlock(block, 0, encryptor.InputBlockSize);
                     // A = MSB64(B) XOR t where t = (n * j) + i
-                    long t = (((_aes.KeySize / 8) / 8) * j) + i;
+                    long t = ((keyToWrap.Length / 8) * j) + i;
                     switch (_mode)
                     {
                         case KeyWrapMode.Specification:
@@ -154,8 +148,6 @@ namespace Axantum.AxCrypt.Core.Crypto
                         case KeyWrapMode.AxCrypt:
                             b.Xor(0, t.GetLittleEndianBytes(), 0, 8);
                             break;
-                        default:
-                            throw new InvalidOperationException("Unrecognized Mode");
                     }
                     Array.Copy(b, 0, wrapped, 0, 8);
                     // R[i] = LSB64(B)
@@ -173,9 +165,15 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>The unwrapped key data, or a zero-length array if the unwrap was unsuccessful due to wrong key</returns>
         public byte[] Unwrap(byte[] wrapped)
         {
-            if (wrapped.Length != _key.Length + A.Length)
+            if (_aes == null)
             {
-                throw new ArgumentException("The length of the wrapped data must be exactly the length of a key plus 8 bytes");
+                throw new ObjectDisposedException("_aes");
+            }
+
+            int wrappedKeyLength = wrapped.Length - A.Length;
+            if (!AesKey.IsValidKeyLength(wrappedKeyLength))
+            {
+                throw new InternalErrorException("The length of the wrapped data must be exactly the length of a valid key length plus 8 bytes");
             }
 
             wrapped = (byte[])wrapped.Clone();
@@ -187,9 +185,9 @@ namespace Axantum.AxCrypt.Core.Crypto
             // the rest is 'Wrapped Key Data', R[1], ..., R[n]. We do the transform in-place.
             for (long j = _iterations - 1; j >= 0; --j)
             {
-                for (int i = (_aes.KeySize / 8) / 8; i >= 1; --i)
+                for (int i = wrappedKeyLength / 8; i >= 1; --i)
                 {
-                    long t = (((_aes.KeySize / 8) / 8) * j) + i;
+                    long t = ((wrappedKeyLength / 8) * j) + i;
                     // MSB(B) = A XOR t
                     Array.Copy(wrapped, 0, block, 0, 8);
                     switch (_mode)
@@ -200,8 +198,6 @@ namespace Axantum.AxCrypt.Core.Crypto
                         case KeyWrapMode.AxCrypt:
                             block.Xor(0, t.GetLittleEndianBytes(), 0, 8);
                             break;
-                        default:
-                            throw new InvalidOperationException("Unrecognized Mode");
                     }
                     // LSB(B) = R[i]
                     Array.Copy(wrapped, i * 8, block, 8, 8);
@@ -214,7 +210,7 @@ namespace Axantum.AxCrypt.Core.Crypto
                 }
             }
 
-            if (!IsKeyUnwrapValid(wrapped))
+            if (!wrapped.IsEquivalentTo(0, A, 0, A.Length))
             {
                 return new byte[0];
             }
@@ -222,19 +218,6 @@ namespace Axantum.AxCrypt.Core.Crypto
             byte[] unwrapped = new byte[_key.Length];
             Array.Copy(wrapped, A.Length, unwrapped, 0, unwrapped.Length);
             return unwrapped;
-        }
-
-        private bool IsKeyUnwrapValid(byte[] unwrapped)
-        {
-            if (unwrapped == null)
-            {
-                throw new ArgumentNullException("unwrapped");
-            }
-            if (unwrapped.Length != _key.Length + A.Length)
-            {
-                return false;
-            }
-            return unwrapped.IsEquivalentTo(0, A, 0, A.Length);
         }
 
         #region IDisposable Members
