@@ -82,5 +82,35 @@ namespace Axantum.AxCrypt.Core.Test
                 transform = crypto.CreateDecryptingTransform();
             });
         }
+
+        [Test]
+        public static void TestObjectDisposed()
+        {
+            AesKey key = new AesKey();
+            AesIV iv = new AesIV();
+
+            AesCrypto crypto = new AesCrypto(key, iv, CipherMode.CBC, PaddingMode.None);
+            crypto.Dispose();
+
+            Assert.Throws<ObjectDisposedException>(() =>
+            {
+                crypto.Decrypt(new byte[16]);
+            });
+
+            Assert.Throws<ObjectDisposedException>(() =>
+            {
+                crypto.Encrypt(new byte[16]);
+            });
+
+            Assert.Throws<ObjectDisposedException>(() =>
+            {
+                crypto.CreateDecryptingTransform();
+            });
+
+            Assert.Throws<ObjectDisposedException>(() =>
+            {
+                crypto.CreateEncryptingTransform();
+            });
+        }
     }
 }
