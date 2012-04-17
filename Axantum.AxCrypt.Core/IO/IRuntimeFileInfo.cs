@@ -42,6 +42,9 @@ namespace Axantum.AxCrypt.Core.IO
 
         Stream OpenWrite();
 
+        /// <summary>
+        /// Get the Name part without the folder part of the path.
+        /// </summary>
         string Name { get; }
 
         DateTime CreationTimeUtc { get; set; }

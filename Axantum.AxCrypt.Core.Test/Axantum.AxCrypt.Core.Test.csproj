@@ -71,6 +71,7 @@
     <Compile Include="TestExceptions.cs" />
     <Compile Include="TestExtensions.cs" />
     <Compile Include="TestKeyWrap.cs" />
+    <Compile Include="TestRuntimeEnvironment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />
