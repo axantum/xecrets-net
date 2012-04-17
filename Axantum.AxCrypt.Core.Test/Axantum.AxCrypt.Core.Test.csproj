@@ -76,6 +76,7 @@
     <Compile Include="TestExtensions.cs" />
     <Compile Include="TestKeyWrap.cs" />
     <Compile Include="TestKeyWrapSalt.cs" />
+    <Compile Include="TestPassphrase.cs" />
     <Compile Include="TestRuntimeEnvironment.cs" />
   </ItemGroup>
   <ItemGroup>

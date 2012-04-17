@@ -27,42 +27,26 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
+using Axantum.AxCrypt.Core.Crypto;
+using NUnit.Framework;
 
-namespace Axantum.AxCrypt.Core.Crypto
+namespace Axantum.AxCrypt.Core.Test
 {
-    /// <summary>
-    /// Derive a AesKey from a string passphrase representation. Instances of this class are immutable.
-    /// </summary>
-    public class Passphrase
+    [TestFixture]
+    public static class TestPassphrase
     {
-        private readonly AesKey _derivedPassphrase;
-
-        public Passphrase(string passphrase)
+        public static void TestPassphraseConstructor()
         {
-            if (passphrase == null)
+            Passphrase passphrase = new Passphrase("A Passphrase");
+            AesKey derivedKey = passphrase.DerivedPassphrase;
+            Assert.That(derivedKey.Length, Is.EqualTo(16), "The default derived key is 128 bits.");
+
+            Assert.Throws<ArgumentNullException>(() =>
             {
-                throw new ArgumentNullException("passphrase");
-            }
-
-            HashAlgorithm hashAlgorithm = new SHA1Managed();
-            byte[] ansiBytes = Encoding.GetEncoding(1252).GetBytes(passphrase);
-            byte[] hash = hashAlgorithm.ComputeHash(ansiBytes);
-            byte[] derivedPassphrase = new byte[16];
-            Array.Copy(hash, derivedPassphrase, derivedPassphrase.Length);
-
-            _derivedPassphrase = new AesKey(derivedPassphrase);
-        }
-
-        public AesKey DerivedPassphrase
-        {
-            get
-            {
-                return _derivedPassphrase;
-            }
+                passphrase = new Passphrase(null);
+            });
         }
     }
 }
