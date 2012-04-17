@@ -269,7 +269,8 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<InternalErrorException>(() =>
                  {
                      FileInfo encryptedEncryptedFileInfo = encryptedFileInfo.CreateEncryptedName();
-                     Debug.WriteLine("Use encryptedEncryptedFileInfo so FxCop does not warn {0}", encryptedEncryptedFileInfo);
+                     // Use the instance to avoid FxCop errors.
+                     Object.Equals(encryptedEncryptedFileInfo, null);
                  });
 
             fileInfo = new FileInfo(@"C:\Users\Axantum\My Documents\My Extensionless File");
@@ -279,7 +280,8 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<InternalErrorException>(() =>
             {
                 FileInfo encryptedEncryptedFileInfo = encryptedFileInfo.CreateEncryptedName();
-                Debug.WriteLine("Use encryptedEncryptedFileInfo so FxCop does not warn {0}", encryptedEncryptedFileInfo);
+                // Use the instance to avoid FxCop errors.
+                Object.Equals(encryptedEncryptedFileInfo, null);
             });
         }
     }

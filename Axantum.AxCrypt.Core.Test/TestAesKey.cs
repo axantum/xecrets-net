@@ -65,7 +65,8 @@ namespace Axantum.AxCrypt.Core.Test
                 key = new AesKey((byte[])null);
             });
 
-            Debug.WriteLine("Use the 'key' instance to avoid FxCop issues {0}.", key);
+            // Use the instance to avoid FxCop errors.
+            Object.Equals(key, null);
         }
 
         [Test]

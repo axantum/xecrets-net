@@ -57,7 +57,8 @@ namespace Axantum.AxCrypt.Core.Test
                 iv = new AesIV(new byte[32]);
             });
 
-            Debug.WriteLine("Use the 'iv' instance to avoid FxCopy issues {0}.", iv);
+            // Use the instance to avoid FxCop errors.
+            Object.Equals(iv, null);
         }
 
         [Test]

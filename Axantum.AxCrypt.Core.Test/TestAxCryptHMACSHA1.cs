@@ -27,42 +27,40 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
+using NUnit.Framework;
 
-namespace Axantum.AxCrypt.Core.Crypto
+namespace Axantum.AxCrypt.Core.Test
 {
-    /// <summary>
-    /// Calculate HMACSHA1 the AxCrypt way.
-    /// </summary>
-    /// <remarks>
-    /// The .NET standard implementation uses a block size of 64, which is really only relevant
-    /// as to how to treat the key. AxCrypt uses a block size of 20. This class is required because
-    /// the .NET implementation has the BlockSizeValue as protected.
-    /// </remarks>
+    [TestFixture]
     [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", Justification = "Both HMAC and SHA1 are meaningful acronyms and this is the way .NET does the naming.")]
-    public sealed class AxCryptHMACSHA1 : HMACSHA1
+    public static class TestAxCryptHMACSHA1
     {
-        private AxCryptHMACSHA1()
+        [Test]
+        public static void TestInvalidArguments()
         {
-            // We can't do it all in the constructor because then we need to call virtual methods and that's a bad
-            // idea in a constructor.
+            HMAC hmac = null;
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                hmac = AxCryptHMACSHA1.Create(null);
+            });
+
+            // Use the instance to avoid FxCop errors.
+            Object.Equals(hmac, null);
         }
 
-        public static HMAC Create(AesKey key)
+        [Test]
+        public static void TestMethods()
         {
-            if (key == null)
-            {
-                throw new ArgumentNullException("key");
-            }
-            AxCryptHMACSHA1 hmac = new AxCryptHMACSHA1();
-            hmac.BlockSizeValue = 20;
-            hmac.Key = key.GetBytes();
+            AesKey key = new AesKey();
+            HMAC hmac = AxCryptHMACSHA1.Create(key);
 
-            return hmac;
+            Assert.That(hmac.Key, Is.EquivalentTo(key.GetBytes()), "Ensure that we're using the specified key.");
         }
     }
 }

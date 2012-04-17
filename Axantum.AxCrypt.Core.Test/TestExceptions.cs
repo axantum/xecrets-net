@@ -89,7 +89,8 @@ namespace Axantum.AxCrypt.Core.Test
             try
             {
                 int i = (int)new object();
-                Debug.WriteLine("Use 'i' so it appears used to FxCopy {0}", i);
+                // Use the instance to avoid FxCop errors.
+                Object.Equals(i, null);
             }
             catch (InvalidCastException ice)
             {
