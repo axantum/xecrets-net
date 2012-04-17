@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// </summary>
     public class KeyWrapSalt
     {
-        private byte[] _salt;
+        private readonly byte[] _salt;
 
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "The reference type 'AesIV' is, in fact, immutable.")]
         public static readonly KeyWrapSalt Zero = new KeyWrapSalt(new byte[0]);
@@ -54,6 +54,10 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public KeyWrapSalt(byte[] salt)
         {
+            if (salt == null)
+            {
+                throw new ArgumentNullException("salt");
+            }
             if (salt.Length != 0 && !AesKey.IsValidKeyLength(salt.Length))
             {
                 throw new InternalErrorException("A key wrap salt length must at least be equal to a valid AES key length.");
