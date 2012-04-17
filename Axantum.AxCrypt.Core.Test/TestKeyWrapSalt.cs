@@ -63,6 +63,9 @@ namespace Axantum.AxCrypt.Core.Test
 
                 salt = new KeyWrapSalt(new byte[32]);
                 Assert.That(salt.GetBytes(), Is.EquivalentTo(new byte[32]), "A salt with all zeros was requested.");
+
+                salt = new KeyWrapSalt(new byte[0]);
+                Assert.That(salt.Length, Is.EqualTo(0), "As a special case, zero length salt is supported - equivalent to no salt.");
             }
             );
 
@@ -84,11 +87,6 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<InternalErrorException>(() =>
             {
                 salt = new KeyWrapSalt(48);
-            });
-
-            Assert.Throws<InternalErrorException>(() =>
-            {
-                salt = new KeyWrapSalt(new byte[0]);
             });
 
             Assert.Throws<InternalErrorException>(() =>
