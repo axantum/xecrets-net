@@ -74,6 +74,7 @@
     <Compile Include="TestDataHmac.cs" />
     <Compile Include="TestExceptions.cs" />
     <Compile Include="TestExtensions.cs" />
+    <Compile Include="TestIOStreams.cs" />
     <Compile Include="TestKeyWrap.cs" />
     <Compile Include="TestKeyWrapSalt.cs" />
     <Compile Include="TestPassphrase.cs" />
