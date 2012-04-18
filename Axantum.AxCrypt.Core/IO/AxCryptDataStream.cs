@@ -64,6 +64,10 @@ namespace Axantum.AxCrypt.Core.IO
             {
                 throw new ArgumentNullException("hmacStream");
             }
+            if (length < 0)
+            {
+                throw new ArgumentOutOfRangeException("length");
+            }
             _inputStream = inputStream;
             _hmacStream = hmacStream;
             _length = length;

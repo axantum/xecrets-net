@@ -453,6 +453,7 @@ namespace Axantum.AxCrypt.Core.Test
                         Assert.Throws<ArgumentNullException>(() => { document.CopyEncryptedTo(null, outputStream); });
                         Assert.Throws<ArgumentNullException>(() => { document.CopyEncryptedTo(headers, null); });
                         Assert.Throws<ArgumentException>(() => { document.CopyEncryptedTo(headers, new NonSeekableStream()); });
+                        Assert.Throws<InternalErrorException>(() => { document.CopyEncryptedTo(headers, outputStream); });
                     }
                 }
             }
