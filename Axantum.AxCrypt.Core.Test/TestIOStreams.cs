@@ -80,6 +80,16 @@ namespace Axantum.AxCrypt.Core.Test
                             axCryptDataStream.Write(new byte[1], 0, 1);
                         }, "Write is not supported.");
 
+                        Assert.Throws<NotSupportedException>(() =>
+                        {
+                            axCryptDataStream.Position = 0;
+                        }, "Setting the position is not supported.");
+
+                        Assert.Throws<NotSupportedException>(() =>
+                        {
+                            axCryptDataStream.Flush();
+                        }, "Flush is not supported, and not meaningful on a read-only stream.");
+
                         Assert.That(axCryptDataStream.CanRead, Is.True, "AxCryptDataStream can be read.");
                         Assert.That(axCryptDataStream.CanSeek, Is.False, "AxCryptDataStream is a forward only reader stream, it does not support seeking.");
                         Assert.That(axCryptDataStream.CanWrite, Is.False, "AxCryptDataStream is a forward only reader stream, it does not support writing.");
