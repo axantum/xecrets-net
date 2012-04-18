@@ -61,10 +61,10 @@ namespace Axantum.AxCrypt.Core
         /// </summary>
         /// <param name="stream">The stream to read from. Will be disposed when this instance is disposed.</param>
         /// <returns>True if the key was valid, false if it was wrong.</returns>
-        public bool Load(Stream stream, Passphrase settings)
+        public bool Load(Stream stream, Passphrase passphrase)
         {
             _reader = AxCryptReader.Create(stream);
-            DocumentHeaders documentHeaders = new DocumentHeaders(settings.DerivedPassphrase);
+            DocumentHeaders documentHeaders = new DocumentHeaders(passphrase.DerivedPassphrase);
             PassphraseIsValid = documentHeaders.Load(_reader);
             if (PassphraseIsValid)
             {
@@ -156,29 +156,29 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentException("The output stream must support seek in order to back-track and write the HMAC.");
             }
-
-            using (HmacStream hmacStreamInput = new HmacStream(DocumentHeaders.HmacSubkey.Key))
+            if (DocumentHeaders == null)
             {
-                using (HmacStream hmacStreamOutput = new HmacStream(outputDocumentHeaders.HmacSubkey.Key, cipherStream))
+                throw new InternalErrorException("Document headers are not loaded");
+            }
+
+            using (HmacStream hmacStreamOutput = new HmacStream(outputDocumentHeaders.HmacSubkey.Key, cipherStream))
+            {
+                outputDocumentHeaders.Write(cipherStream, hmacStreamOutput);
+                using (Stream encryptedDataStream = _reader.GetEncryptedDataStream(DocumentHeaders.HmacSubkey.Key))
                 {
-                    outputDocumentHeaders.Write(cipherStream, hmacStreamOutput);
-                    _reader.HmacStream = hmacStreamInput;
-                    using (Stream encryptedDataStream = _reader.EncryptedDataStream)
+                    encryptedDataStream.CopyTo(hmacStreamOutput);
+
+                    if (_reader.Hmac != DocumentHeaders.Hmac)
                     {
-                        encryptedDataStream.CopyTo(hmacStreamOutput);
-
-                        if (hmacStreamInput.HmacResult != DocumentHeaders.Hmac)
-                        {
-                            throw new InvalidDataException("HMAC validation error in the input stream.", ErrorStatus.HmacValidationError);
-                        }
+                        throw new InvalidDataException("HMAC validation error in the input stream.", ErrorStatus.HmacValidationError);
                     }
-
-                    outputDocumentHeaders.Hmac = hmacStreamOutput.HmacResult;
-
-                    // Rewind and rewrite the headers, now with the updated HMAC
-                    outputDocumentHeaders.Write(cipherStream, null);
-                    cipherStream.Position = cipherStream.Length;
                 }
+
+                outputDocumentHeaders.Hmac = hmacStreamOutput.HmacResult;
+
+                // Rewind and rewrite the headers, now with the updated HMAC
+                outputDocumentHeaders.Write(cipherStream, null);
+                cipherStream.Position = cipherStream.Length;
             }
         }
 
@@ -192,6 +192,7 @@ namespace Axantum.AxCrypt.Core
                 {
                     _dataCrypto = new AesCrypto(DocumentHeaders.DataSubkey.Key, DocumentHeaders.IV, CipherMode.CBC, PaddingMode.PKCS7);
                 }
+
                 return _dataCrypto;
             }
         }
@@ -206,33 +207,27 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new InternalErrorException("Document headers are not loaded");
             }
-            DataHmac calculatedHmac;
-            using (HmacStream hmacStream = new HmacStream(DocumentHeaders.HmacSubkey.Key))
+            using (ICryptoTransform decryptor = DataCrypto.CreateDecryptingTransform())
             {
-                _reader.HmacStream = hmacStream;
-                using (ICryptoTransform decryptor = DataCrypto.CreateDecryptingTransform())
+                if (DocumentHeaders.IsCompressed)
                 {
-                    if (DocumentHeaders.IsCompressed)
+                    using (Stream deflatedPlaintextStream = new CryptoStream(_reader.GetEncryptedDataStream(DocumentHeaders.HmacSubkey.Key), decryptor, CryptoStreamMode.Read))
                     {
-                        using (Stream deflatedPlaintextStream = new CryptoStream(_reader.EncryptedDataStream, decryptor, CryptoStreamMode.Read))
+                        using (Stream inflatedPlaintextStream = new ZInputStream(deflatedPlaintextStream))
                         {
-                            using (Stream inflatedPlaintextStream = new ZInputStream(deflatedPlaintextStream))
-                            {
-                                inflatedPlaintextStream.CopyTo(outputPlaintextStream);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        using (Stream plainStream = new CryptoStream(_reader.EncryptedDataStream, decryptor, CryptoStreamMode.Read))
-                        {
-                            plainStream.CopyTo(outputPlaintextStream);
+                            inflatedPlaintextStream.CopyTo(outputPlaintextStream);
                         }
                     }
                 }
-                calculatedHmac = hmacStream.HmacResult;
+                else
+                {
+                    using (Stream plainStream = new CryptoStream(_reader.GetEncryptedDataStream(DocumentHeaders.HmacSubkey.Key), decryptor, CryptoStreamMode.Read))
+                    {
+                        plainStream.CopyTo(outputPlaintextStream);
+                    }
+                }
             }
-            if (calculatedHmac != DocumentHeaders.Hmac)
+            if (_reader.Hmac != DocumentHeaders.Hmac)
             {
                 throw new InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
             }

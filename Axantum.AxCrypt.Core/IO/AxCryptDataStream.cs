@@ -56,6 +56,14 @@ namespace Axantum.AxCrypt.Core.IO
         /// <param name="length">The exact number of bytes to expect and read from the input stream</param>
         public AxCryptDataStream(Stream inputStream, Stream hmacStream, long length)
         {
+            if (inputStream == null)
+            {
+                throw new ArgumentNullException("inputStream");
+            }
+            if (hmacStream == null)
+            {
+                throw new ArgumentNullException("hmacStream");
+            }
             _inputStream = inputStream;
             _hmacStream = hmacStream;
             _length = length;
@@ -90,7 +98,7 @@ namespace Axantum.AxCrypt.Core.IO
         {
             get
             {
-                throw new NotSupportedException();
+                return _length - _remaining;
             }
             set
             {
@@ -109,10 +117,7 @@ namespace Axantum.AxCrypt.Core.IO
             int bytesRead = _inputStream.Read(buffer, offset, bytesToRead);
             _remaining -= bytesRead;
 
-            if (_hmacStream != null)
-            {
-                _hmacStream.Write(buffer, 0, bytesRead);
-            }
+            _hmacStream.Write(buffer, 0, bytesRead);
 
             return bytesRead;
         }
