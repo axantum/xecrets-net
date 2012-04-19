@@ -302,5 +302,42 @@ namespace Axantum.AxCrypt.Core.Test
                 }
             }
         }
+
+        [Test]
+        public static void TestNonClosingStream()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                using (Stream stream = new NonClosingStream(null)) { }
+            });
+
+            using (MemoryStream backingStream = new MemoryStream())
+            {
+                using (NonClosingStream nonClosingStream = new NonClosingStream(backingStream))
+                {
+                    Assert.That(nonClosingStream.CanRead, Is.EqualTo(backingStream.CanRead), "NonClosingStream is a clean wrapper and should always return the same as the backing stream.");
+                    Assert.That(nonClosingStream.CanSeek, Is.EqualTo(backingStream.CanSeek), "NonClosingStream is a clean wrapper and should always return the same as the backing stream.");
+                    Assert.That(nonClosingStream.CanWrite, Is.EqualTo(backingStream.CanWrite), "NonClosingStream is a clean wrapper and should always return the same as the backing stream.");
+                    Assert.That(nonClosingStream.Length, Is.EqualTo(backingStream.Length), "NonClosingStream is a clean wrapper and should always return the same as the backing stream.");
+
+                    nonClosingStream.Flush();
+                    nonClosingStream.Write(new byte[] { 20, 21, 22, 23, 24, 25, 26, 27, 28, 29 }, 0, 10);
+                    Assert.That(backingStream.Length, Is.EqualTo(10), "NonClosingStream is a clean wrapper and should always return the same as the backing stream.");
+                    nonClosingStream.Position = 7;
+                    Assert.That(backingStream.Position, Is.EqualTo(7), "NonClosingStream is a clean wrapper and should always return the same as the backing stream.");
+                    nonClosingStream.Seek(-5, SeekOrigin.End);
+                    Assert.That(backingStream.Position, Is.EqualTo(5), "NonClosingStream is a clean wrapper and should always return the same as the backing stream.");
+                    nonClosingStream.SetLength(9);
+                    Assert.That(backingStream.Length, Is.EqualTo(9), "NonClosingStream is a clean wrapper and should always return the same as the backing stream.");
+                    byte[] buffer = new byte[4];
+                    nonClosingStream.Read(buffer, 0, buffer.Length);
+                    Assert.That(backingStream.Position, Is.EqualTo(9), "NonClosingStream is a clean wrapper and should always return the same as the backing stream.");
+                }
+                backingStream.Position = 0;
+                byte[] otherBuffer = new byte[9];
+                backingStream.Read(otherBuffer, 0, otherBuffer.Length);
+                Assert.That(otherBuffer, Is.EquivalentTo(new byte[] { 20, 21, 22, 23, 24, 25, 26, 27, 28 }), "NonClosingStream is a clean wrapper and should always return the same as the backing stream.");
+            }
+        }
     }
 }

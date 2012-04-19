@@ -39,6 +39,10 @@ namespace Axantum.AxCrypt.Core.IO
 
         public NonClosingStream(Stream stream)
         {
+            if (stream == null)
+            {
+                throw new ArgumentNullException("stream");
+            }
             _stream = stream;
         }
 
@@ -97,6 +101,10 @@ namespace Axantum.AxCrypt.Core.IO
         public override void Write(byte[] buffer, int offset, int count)
         {
             _stream.Write(buffer, offset, count);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
         }
     }
 }
