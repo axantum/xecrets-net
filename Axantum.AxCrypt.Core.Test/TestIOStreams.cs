@@ -272,6 +272,9 @@ namespace Axantum.AxCrypt.Core.Test
                     lookAheadStream.Pushback(new byte[] { 51 }, 0, 1);
                     lookAheadStream.Pushback(new byte[] { 48, 49, 50 }, 0, 3);
 
+                    // Nothing should happen, this is a pure dummy call.
+                    lookAheadStream.Flush();
+
                     buffer = new byte[10];
                     bool exactWasRead = lookAheadStream.ReadExact(buffer);
                     Assert.That(exactWasRead, Is.True, "Ten bytes were read.");
