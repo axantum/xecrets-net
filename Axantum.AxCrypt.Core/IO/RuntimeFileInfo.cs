@@ -39,6 +39,10 @@ namespace Axantum.AxCrypt.Core.IO
 
         public RuntimeFileInfo(FileInfo file)
         {
+            if (file == null)
+            {
+                throw new ArgumentNullException("file");
+            }
             _file = new FileInfo(file.FullName);
         }
 
@@ -100,7 +104,7 @@ namespace Axantum.AxCrypt.Core.IO
         {
             CreationTimeUtc = creationTimeUtc;
             LastAccessTimeUtc = lastAccessTimeUtc;
-            LastWriteTimeUtc = LastWriteTimeUtc;
+            LastWriteTimeUtc = lastWriteTimeUtc;
         }
 
         public IRuntimeFileInfo CreateEncryptedName()
