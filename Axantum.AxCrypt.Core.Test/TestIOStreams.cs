@@ -166,6 +166,8 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.Throws<ObjectDisposedException>(() =>
                 {
                     DataHmac invalidDataHmac = hmacStream.HmacResult;
+                    // Remove FxCop warning
+                    Object.Equals(invalidDataHmac, null);
                 });
                 Assert.Throws<ObjectDisposedException>(() =>
                 {
