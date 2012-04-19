@@ -156,9 +156,24 @@ namespace Axantum.AxCrypt.Core.Test
                     dataStream.Position = 0;
                     hmacStream.ReadFrom(dataStream);
                 }
+                Assert.That(hmacStream.Position, Is.EqualTo(20), "There are 20 bytes written so the position should be 20.");
+                Assert.That(hmacStream.Length, Is.EqualTo(20), "There are 20 bytes written so the position should be 20.");
+                hmacStream.Flush();
+                Assert.That(hmacStream.Position, Is.EqualTo(20), "Nothing should change after Flush(), this is not a buffered stream.");
+                Assert.That(hmacStream.Length, Is.EqualTo(20), "Nothing should change after Flush(), this is not a buffered stream.");
+
+                Assert.Throws<NotSupportedException>(() =>
+                {
+                    hmacStream.Position = 0;
+                }, "Position is not supported.");
 
                 DataHmac dataHmac = hmacStream.HmacResult;
                 Assert.That(dataHmac.GetBytes(), Is.EquivalentTo(new byte[] { 0x62, 0x6f, 0x2c, 0x61, 0xc7, 0x68, 0x00, 0xb3, 0xa6, 0x8d, 0xf9, 0x55, 0x95, 0xbc, 0x1f, 0xd1 }), "The HMAC of 20 bytes of zero with 128-bit AesKey all zero should be this.");
+
+                Assert.Throws<InvalidOperationException>(() =>
+                {
+                    hmacStream.Write(new byte[1], 0, 1);
+                }, "Can't write to the stream after checking and thus finalizing the HMAC");
 
                 // This also implicitly covers double-dispose since we're in a using block.
                 hmacStream.Dispose();
