@@ -28,6 +28,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
@@ -195,6 +196,107 @@ namespace Axantum.AxCrypt.Core.Test
                         hmacStream.ReadFrom(stream);
                     }
                 });
+            }
+        }
+
+        [Test]
+        public static void TestLookAheadStream()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                using (Stream stream = new LookAheadStream(null)) { }
+            }, "Input stream cannot be null.");
+
+            Assert.Throws<ArgumentException>(() =>
+            {
+                using (Stream writeOnlyStream = new DeflateStream(new MemoryStream(), CompressionMode.Compress))
+                {
+                    using (Stream stream = new LookAheadStream(writeOnlyStream)) { }
+                }
+            }, "The input stream must support reading.");
+
+            using (Stream inputStream = new MemoryStream())
+            {
+                byte[] inData = Encoding.UTF8.GetBytes("0123456789");
+                inputStream.Write(inData, 0, inData.Length);
+                inputStream.Position = 0;
+                using (LookAheadStream lookAheadStream = new LookAheadStream(inputStream))
+                {
+                    Assert.That(lookAheadStream.CanRead, Is.True, "The stream always supports reading.");
+                    Assert.That(lookAheadStream.CanSeek, Is.False, "The stream does not support seeking.");
+                    Assert.That(lookAheadStream.CanWrite, Is.False, "The stream does not support writing.");
+                    Assert.Throws<NotSupportedException>(() =>
+                    {
+                        long length = lookAheadStream.Length;
+                        // Make FxCop not complain
+                        Object.Equals(length, null);
+                    });
+                    Assert.Throws<NotSupportedException>(() =>
+                    {
+                        long position = lookAheadStream.Position;
+                        // Make FxCop not complain
+                        Object.Equals(position, null);
+                    });
+                    Assert.Throws<NotSupportedException>(() =>
+                    {
+                        lookAheadStream.Position = 0;
+                    });
+                    Assert.Throws<NotSupportedException>(() =>
+                    {
+                        lookAheadStream.Seek(0, SeekOrigin.Begin);
+                    });
+                    Assert.Throws<NotSupportedException>(() =>
+                    {
+                        lookAheadStream.SetLength(0);
+                    });
+                    Assert.Throws<NotSupportedException>(() =>
+                    {
+                        lookAheadStream.Write(new byte[1], 0, 1);
+                    });
+
+                    int count;
+                    byte[] buffer;
+
+                    lookAheadStream.Pushback(new byte[] { 0x99 }, 0, 1);
+                    buffer = new byte[1];
+                    count = lookAheadStream.Read(buffer, 0, 1);
+                    Assert.That(count, Is.EqualTo(1), "One byte was read.");
+                    Assert.That(buffer[0], Is.EqualTo(0x99), "A byte with value 0x99 was pushed back.");
+
+                    buffer = new byte[5];
+                    count = lookAheadStream.Read(buffer, 0, buffer.Length);
+                    Assert.That(count, Is.EqualTo(5), "Five bytes were read.");
+                    Assert.That(buffer, Is.EquivalentTo(new byte[] { 48, 49, 50, 51, 52 }), "The string '01234' was read.");
+
+                    lookAheadStream.Pushback(new byte[] { 52 }, 0, 1);
+                    lookAheadStream.Pushback(new byte[] { 51 }, 0, 1);
+                    lookAheadStream.Pushback(new byte[] { 48, 49, 50 }, 0, 3);
+
+                    buffer = new byte[10];
+                    bool exactWasRead = lookAheadStream.ReadExact(buffer);
+                    Assert.That(exactWasRead, Is.True, "Ten bytes were read.");
+                    Assert.That(buffer, Is.EquivalentTo(new byte[] { 48, 49, 50, 51, 52, 53, 54, 55, 56, 57 }), "The string '0123456789' was read.");
+
+                    // This also implicitly tests double-dispose since we're in a using block
+                    lookAheadStream.Dispose();
+                    Assert.Throws<ObjectDisposedException>(() =>
+                    {
+                        buffer = new byte[3];
+                        lookAheadStream.Read(buffer, 0, 3);
+                    });
+
+                    Assert.Throws<ObjectDisposedException>(() =>
+                    {
+                        buffer = new byte[5];
+                        lookAheadStream.ReadExact(buffer);
+                    });
+
+                    Assert.Throws<ObjectDisposedException>(() =>
+                    {
+                        buffer = new byte[5];
+                        lookAheadStream.Pushback(buffer, 0, buffer.Length);
+                    });
+                }
             }
         }
     }

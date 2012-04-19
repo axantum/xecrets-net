@@ -31,6 +31,9 @@ using System.IO;
 
 namespace Axantum.AxCrypt.Core.IO
 {
+    /// <summary>
+    /// A stream wrapper with push back capability, thus enabling look ahead in the stream.
+    /// </summary>
     public class LookAheadStream : Stream
     {
         private struct ByteBuffer
@@ -47,17 +50,27 @@ namespace Axantum.AxCrypt.Core.IO
             public int Length;
         }
 
-        private Stream InputStream { get; set; }
+        private Stream _inputStream;
+
+        private bool _disposed = false;
 
         private Stack<ByteBuffer> pushBack = new Stack<ByteBuffer>();
 
         /// <summary>
-        /// Implement a stream with push back capability thus enabling look ahead.
+        /// Implement a stream wrapper with push back capability thus enabling look ahead.
         /// </summary>
         /// <param name="inputStream">The stream. Will be disposed when this instance is disposed.</param>
         public LookAheadStream(Stream inputStream)
         {
-            InputStream = inputStream;
+            if (inputStream == null)
+            {
+                throw new ArgumentNullException("inputStream");
+            }
+            if (!inputStream.CanRead)
+            {
+                throw new ArgumentException("inputStream must be readable.");
+            }
+            _inputStream = inputStream;
         }
 
         public override bool CanRead
@@ -98,11 +111,13 @@ namespace Axantum.AxCrypt.Core.IO
 
         public void Pushback(byte[] buffer, int offset, int length)
         {
+            EnsureNotDisposed();
             pushBack.Push(new ByteBuffer(buffer, offset, length));
         }
 
         public override int Read(byte[] buffer, int offset, int count)
         {
+            EnsureNotDisposed();
             int bytesRead = 0;
             while (count > 0 && pushBack.Count > 0)
             {
@@ -121,7 +136,7 @@ namespace Axantum.AxCrypt.Core.IO
             }
             if (count > 0)
             {
-                bytesRead += InputStream.Read(buffer, offset, count);
+                bytesRead += _inputStream.Read(buffer, offset, count);
             }
             return bytesRead;
         }
@@ -152,13 +167,26 @@ namespace Axantum.AxCrypt.Core.IO
         {
             if (disposing)
             {
-                if (InputStream != null)
+                if (_disposed)
                 {
-                    InputStream.Dispose();
-                    InputStream = null;
+                    return;
                 }
+                if (_inputStream != null)
+                {
+                    _inputStream.Dispose();
+                    _inputStream = null;
+                }
+                _disposed = true;
             }
             base.Dispose(disposing);
+        }
+
+        private void EnsureNotDisposed()
+        {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException(GetType().FullName);
+            }
         }
     }
 }
