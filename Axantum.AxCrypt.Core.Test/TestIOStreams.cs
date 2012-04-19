@@ -30,6 +30,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using NUnit.Framework;
 
@@ -109,6 +110,74 @@ namespace Axantum.AxCrypt.Core.Test
                         Assert.That(hmacStream.Length, Is.EqualTo(total), "The hmac stream should have all data read written to it.");
                     }
                 }
+            }
+        }
+
+        [Test]
+        public static void TestHmacStream()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                using (HmacStream hmacStream = new HmacStream(null)) { }
+            });
+
+            AesKey key = new AesKey(new byte[16]);
+            using (HmacStream hmacStream = new HmacStream(key))
+            {
+                Assert.That(hmacStream.CanRead, Is.False, "HmacStream does not support reading.");
+                Assert.That(hmacStream.CanSeek, Is.False, "HmacStream does not support seeking.");
+                Assert.That(hmacStream.CanWrite, Is.True, "HmacStream does support writing.");
+
+                Assert.Throws<NotSupportedException>(() =>
+                {
+                    byte[] buffer = new byte[5];
+                    hmacStream.Read(buffer, 0, buffer.Length);
+                });
+
+                Assert.Throws<NotSupportedException>(() =>
+                {
+                    hmacStream.Seek(0, SeekOrigin.Begin);
+                });
+
+                Assert.Throws<NotSupportedException>(() =>
+                {
+                    hmacStream.SetLength(0);
+                });
+
+                Assert.Throws<ArgumentNullException>(() =>
+                {
+                    hmacStream.ReadFrom(null);
+                });
+
+                hmacStream.Write(new byte[10], 0, 10);
+                using (Stream dataStream = new MemoryStream())
+                {
+                    dataStream.Write(new byte[10], 0, 10);
+                    dataStream.Position = 0;
+                    hmacStream.ReadFrom(dataStream);
+                }
+
+                DataHmac dataHmac = hmacStream.HmacResult;
+                Assert.That(dataHmac.GetBytes(), Is.EquivalentTo(new byte[] { 0x62, 0x6f, 0x2c, 0x61, 0xc7, 0x68, 0x00, 0xb3, 0xa6, 0x8d, 0xf9, 0x55, 0x95, 0xbc, 0x1f, 0xd1 }), "The HMAC of 20 bytes of zero with 128-bit AesKey all zero should be this.");
+
+                // This also implicitly covers double-dispose since we're in a using block.
+                hmacStream.Dispose();
+
+                Assert.Throws<ObjectDisposedException>(() =>
+                {
+                    DataHmac invalidDataHmac = hmacStream.HmacResult;
+                });
+                Assert.Throws<ObjectDisposedException>(() =>
+                {
+                    hmacStream.Write(new byte[1], 0, 1);
+                });
+                Assert.Throws<ObjectDisposedException>(() =>
+                {
+                    using (Stream stream = new MemoryStream())
+                    {
+                        hmacStream.ReadFrom(stream);
+                    }
+                });
             }
         }
     }

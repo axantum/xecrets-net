@@ -44,6 +44,8 @@ namespace Axantum.AxCrypt.Core.IO
 
         private long _count = 0;
 
+        private bool _disposed = false;
+
         /// <summary>
         /// A AxCrypt HMAC-calculating stream. This uses the AxCrypt variant with a block size of 20 for the key.
         /// </summary>
@@ -60,11 +62,15 @@ namespace Axantum.AxCrypt.Core.IO
         /// <param name="chainedStream">A stream where data is chain-written to. This stream is not disposed of when this instance is disposed.</param>
         public HmacStream(AesKey key, Stream chainedStream)
         {
+            if (key == null)
+            {
+                throw new ArgumentNullException("key");
+            }
             _hmac = AxCryptHMACSHA1.Create(key);
             _chainedStream = chainedStream;
         }
 
-        private byte[] _result = null;
+        private DataHmac _hmacResult = null;
 
         /// <summary>
         /// Get the calculated HMAC
@@ -74,14 +80,15 @@ namespace Axantum.AxCrypt.Core.IO
         {
             get
             {
-                if (_result == null)
+                EnsureNotDisposed();
+                if (_hmacResult == null)
                 {
                     _hmac.TransformFinalBlock(new byte[] { }, 0, 0);
-                    _result = _hmac.Hash;
+                    byte[] result = new byte[16];
+                    Array.Copy(_hmac.Hash, 0, result, 0, result.Length);
+                    _hmacResult = new DataHmac(result);
                 }
-                byte[] result = new byte[16];
-                Array.Copy(_result, 0, result, 0, result.Length);
-                return new DataHmac(result);
+                return _hmacResult;
             }
         }
 
@@ -98,10 +105,6 @@ namespace Axantum.AxCrypt.Core.IO
         public override bool CanWrite
         {
             get { return true; }
-        }
-
-        public override void Flush()
-        {
         }
 
         public override long Length
@@ -121,6 +124,10 @@ namespace Axantum.AxCrypt.Core.IO
             }
         }
 
+        public override void Flush()
+        {
+        }
+
         public override int Read(byte[] buffer, int offset, int count)
         {
             throw new NotSupportedException();
@@ -138,6 +145,7 @@ namespace Axantum.AxCrypt.Core.IO
 
         public override void Write(byte[] buffer, int offset, int count)
         {
+            EnsureNotDisposed();
             WriteInternal(buffer, offset, count);
             if (_chainedStream != null)
             {
@@ -147,6 +155,10 @@ namespace Axantum.AxCrypt.Core.IO
 
         private void WriteInternal(byte[] buffer, int offset, int count)
         {
+            if (_hmacResult != null)
+            {
+                throw new InvalidOperationException("Cannot add to the HMAC once it has been finalized.");
+            }
             _hmac.TransformBlock(buffer, offset, count, null, 0);
             _count += count;
         }
@@ -155,22 +167,40 @@ namespace Axantum.AxCrypt.Core.IO
         {
             if (disposing)
             {
+                if (_disposed)
+                {
+                    return;
+                }
                 if (_hmac != null)
                 {
                     _hmac.Clear();
                     _hmac = null;
                 }
+                _disposed = true;
             }
             base.Dispose(disposing);
         }
 
-        public void ReadFrom(Stream outputCipherStream)
+        public void ReadFrom(Stream dataStream)
         {
+            if (dataStream == null)
+            {
+                throw new ArgumentNullException("dataStream");
+            }
+            EnsureNotDisposed();
             byte[] buffer = new byte[4096];
             int count;
-            while ((count = outputCipherStream.Read(buffer, 0, buffer.Length)) != 0)
+            while ((count = dataStream.Read(buffer, 0, buffer.Length)) != 0)
             {
                 WriteInternal(buffer, 0, count);
+            }
+        }
+
+        private void EnsureNotDisposed()
+        {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException(GetType().FullName);
             }
         }
     }

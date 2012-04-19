@@ -87,13 +87,13 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public static bool operator ==(DataHmac left, DataHmac right)
         {
-            if (Object.ReferenceEquals(left, null) || Object.ReferenceEquals(right, null))
-            {
-                return false;
-            }
             if (Object.ReferenceEquals(left, right))
             {
                 return true;
+            }
+            if (Object.ReferenceEquals(left, null) || Object.ReferenceEquals(right, null))
+            {
+                return false;
             }
             return left._hmac.IsEquivalentTo(right._hmac);
         }
