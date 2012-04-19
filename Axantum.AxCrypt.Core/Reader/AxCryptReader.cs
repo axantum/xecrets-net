@@ -53,6 +53,10 @@ namespace Axantum.AxCrypt.Core.Reader
         /// <returns></returns>
         public static AxCryptReader Create(Stream inputStream)
         {
+            if (inputStream == null)
+            {
+                throw new ArgumentNullException("inputStream");
+            }
             AxCryptReader reader = new AxCryptStreamReader(inputStream);
             reader.CurrentItemType = AxCryptItemType.None;
 

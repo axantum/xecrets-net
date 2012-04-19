@@ -42,6 +42,10 @@ namespace Axantum.AxCrypt.Core.Reader
         /// <param name="inputStream">The stream. Will be disposed when this instance is disposed.</param>
         public AxCryptStreamReader(Stream inputStream)
         {
+            if (inputStream == null)
+            {
+                throw new ArgumentNullException("inputStream");
+            }
             LookAheadStream lookAheadStream = inputStream as LookAheadStream;
             if (lookAheadStream == null)
             {
