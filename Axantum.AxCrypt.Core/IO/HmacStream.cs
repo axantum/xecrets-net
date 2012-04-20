@@ -40,7 +40,7 @@ namespace Axantum.AxCrypt.Core.IO
     {
         private HashAlgorithm _hmac;
 
-        private Stream _chainedStream;
+        public Stream ChainedStream { get; protected set; }
 
         private long _count = 0;
 
@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Core.IO
         /// </summary>
         /// <param name="key">The key for the HMAC</param>
         public HmacStream(AesKey key)
-            : this(key, null)
+            : this(key, Stream.Null)
         {
         }
 
@@ -67,7 +67,7 @@ namespace Axantum.AxCrypt.Core.IO
                 throw new ArgumentNullException("key");
             }
             _hmac = AxCryptHMACSHA1.Create(key);
-            _chainedStream = chainedStream;
+            ChainedStream = chainedStream;
         }
 
         private DataHmac _hmacResult = null;
@@ -147,10 +147,7 @@ namespace Axantum.AxCrypt.Core.IO
         {
             EnsureNotDisposed();
             WriteInternal(buffer, offset, count);
-            if (_chainedStream != null)
-            {
-                _chainedStream.Write(buffer, offset, count);
-            }
+            ChainedStream.Write(buffer, offset, count);
         }
 
         private void WriteInternal(byte[] buffer, int offset, int count)

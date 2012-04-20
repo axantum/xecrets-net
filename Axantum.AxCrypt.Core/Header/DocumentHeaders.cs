@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 
 namespace Axantum.AxCrypt.Core.Reader
@@ -94,13 +95,28 @@ namespace Axantum.AxCrypt.Core.Reader
             }
         }
 
-        public void Write(Stream cipherStream, Stream hmacStream)
+        public void WriteWithoutHmac(Stream cipherStream)
         {
             if (cipherStream == null)
             {
                 throw new ArgumentNullException("cipherStream");
             }
 
+            WriteInternal(cipherStream, cipherStream);
+        }
+
+        public void WriteWithHmac(HmacStream hmacStream)
+        {
+            if (hmacStream == null)
+            {
+                throw new ArgumentNullException("hmacStream");
+            }
+
+            WriteInternal(hmacStream.ChainedStream, hmacStream);
+        }
+
+        private void WriteInternal(Stream cipherStream, Stream hmacStream)
+        {
             VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();
             versionHeaderBlock.SetCurrentVersion();
 
@@ -118,10 +134,10 @@ namespace Axantum.AxCrypt.Core.Reader
                 {
                     continue;
                 }
-                headerBlock.Write(hmacStream != null ? hmacStream : cipherStream);
+                headerBlock.Write(hmacStream);
             }
             DataHeaderBlock dataHeaderBlock = FindHeaderBlock<DataHeaderBlock>();
-            dataHeaderBlock.Write(hmacStream != null ? hmacStream : cipherStream);
+            dataHeaderBlock.Write(hmacStream);
         }
 
         private AesKey GetMasterKey()

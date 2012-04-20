@@ -99,7 +99,7 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentException("The output stream must support seek in order to back-track and write the HMAC.");
             }
             outputDocumentHeaders.IsCompressed = true;
-            outputDocumentHeaders.Write(outputCipherStream, null);
+            outputDocumentHeaders.WriteWithoutHmac(outputCipherStream);
             using (ICryptoTransform encryptor = DataCrypto.CreateEncryptingTransform())
             {
                 long cipherStartPosition = outputCipherStream.Position;
@@ -127,13 +127,13 @@ namespace Axantum.AxCrypt.Core
                 }
                 using (HmacStream outputHmacStream = new HmacStream(outputDocumentHeaders.HmacSubkey.Key, outputCipherStream))
                 {
-                    outputDocumentHeaders.Write(outputCipherStream, outputHmacStream);
+                    outputDocumentHeaders.WriteWithHmac(outputHmacStream);
                     outputHmacStream.ReadFrom(outputCipherStream);
                     outputDocumentHeaders.Hmac = outputHmacStream.HmacResult;
                 }
 
                 // Rewind and rewrite the headers, now with the updated HMAC
-                outputDocumentHeaders.Write(outputCipherStream, null);
+                outputDocumentHeaders.WriteWithoutHmac(outputCipherStream);
                 outputCipherStream.Position = outputCipherStream.Length;
             }
         }
@@ -164,7 +164,7 @@ namespace Axantum.AxCrypt.Core
 
             using (HmacStream hmacStreamOutput = new HmacStream(outputDocumentHeaders.HmacSubkey.Key, cipherStream))
             {
-                outputDocumentHeaders.Write(cipherStream, hmacStreamOutput);
+                outputDocumentHeaders.WriteWithHmac(hmacStreamOutput);
                 using (Stream encryptedDataStream = _reader.CreateEncryptedDataStream(DocumentHeaders.HmacSubkey.Key))
                 {
                     encryptedDataStream.CopyTo(hmacStreamOutput);
@@ -178,7 +178,7 @@ namespace Axantum.AxCrypt.Core
                 outputDocumentHeaders.Hmac = hmacStreamOutput.HmacResult;
 
                 // Rewind and rewrite the headers, now with the updated HMAC
-                outputDocumentHeaders.Write(cipherStream, null);
+                outputDocumentHeaders.WriteWithoutHmac(cipherStream);
                 cipherStream.Position = cipherStream.Length;
             }
         }
