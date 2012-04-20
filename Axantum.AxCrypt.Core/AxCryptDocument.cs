@@ -165,7 +165,7 @@ namespace Axantum.AxCrypt.Core
             using (HmacStream hmacStreamOutput = new HmacStream(outputDocumentHeaders.HmacSubkey.Key, cipherStream))
             {
                 outputDocumentHeaders.WriteWithHmac(hmacStreamOutput);
-                using (Stream encryptedDataStream = _reader.CreateEncryptedDataStream(DocumentHeaders.HmacSubkey.Key))
+                using (Stream encryptedDataStream = _reader.CreateEncryptedDataStream(DocumentHeaders.HmacSubkey.Key, DocumentHeaders.CipherTextLength))
                 {
                     encryptedDataStream.CopyTo(hmacStreamOutput);
 
@@ -210,7 +210,7 @@ namespace Axantum.AxCrypt.Core
             }
             using (ICryptoTransform decryptor = DataCrypto.CreateDecryptingTransform())
             {
-                using (Stream encryptedDataStream = _reader.CreateEncryptedDataStream(DocumentHeaders.HmacSubkey.Key))
+                using (Stream encryptedDataStream = _reader.CreateEncryptedDataStream(DocumentHeaders.HmacSubkey.Key, DocumentHeaders.CipherTextLength))
                 {
                     if (DocumentHeaders.IsCompressed)
                     {

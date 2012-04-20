@@ -103,19 +103,19 @@ namespace Axantum.AxCrypt.Core.Test
                     Stream encryptedDataStream;
                     Assert.Throws<ArgumentNullException>(() =>
                     {
-                        encryptedDataStream = axCryptReader.CreateEncryptedDataStream(null);
+                        encryptedDataStream = axCryptReader.CreateEncryptedDataStream(null, 0);
                     }, "A non-null HMAC key must be specified.");
 
                     Assert.Throws<InvalidOperationException>(() =>
                     {
-                        encryptedDataStream = axCryptReader.CreateEncryptedDataStream(new AesKey());
+                        encryptedDataStream = axCryptReader.CreateEncryptedDataStream(new AesKey(), 0);
                     }, "The reader is not positioned properly to read encrypted data.");
 
                     axCryptReader.Dispose();
 
                     Assert.Throws<ObjectDisposedException>(() =>
                     {
-                        encryptedDataStream = axCryptReader.CreateEncryptedDataStream(new AesKey());
+                        encryptedDataStream = axCryptReader.CreateEncryptedDataStream(new AesKey(), 0);
                     }, "The reader is disposed.");
                 }
             }
@@ -139,7 +139,7 @@ namespace Axantum.AxCrypt.Core.Test
                     bool keyIsOk = documentHeaders.Load(axCryptReader);
                     Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
 
-                    using (Stream encrypedDataStream = axCryptReader.CreateEncryptedDataStream(documentHeaders.HmacSubkey.Key))
+                    using (Stream encrypedDataStream = axCryptReader.CreateEncryptedDataStream(documentHeaders.HmacSubkey.Key, documentHeaders.CipherTextLength))
                     {
                         Assert.Throws<InvalidOperationException>(() =>
                         {

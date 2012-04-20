@@ -75,5 +75,23 @@ namespace Axantum.AxCrypt.Core.Test
                 }
             }
         }
+
+        [Test]
+        public static void TestBadArguments()
+        {
+            DocumentHeaders documentHeaders = new DocumentHeaders(new AesKey());
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                documentHeaders.WriteWithHmac(null);
+            });
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                documentHeaders.WriteWithoutHmac(null);
+            });
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                documentHeaders.Hmac = null;
+            });
+        }
     }
 }

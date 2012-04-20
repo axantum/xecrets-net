@@ -40,8 +40,6 @@ namespace Axantum.AxCrypt.Core.Reader
 
         private MemoryStream _hmacBufferStream = new MemoryStream();
 
-        private long _dataBytesLeftToRead;
-
         private long _expectedTotalHmacLength = 0;
 
         private LookAheadStream _inputStream;
@@ -74,7 +72,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
         private HmacStream _hmacStream;
 
-        public Stream CreateEncryptedDataStream(AesKey hmacKey)
+        public Stream CreateEncryptedDataStream(AesKey hmacKey, long cipherTextLength)
         {
             if (hmacKey == null)
             {
@@ -95,9 +93,9 @@ namespace Axantum.AxCrypt.Core.Reader
             _hmacBufferStream.Position = 0;
             _hmacBufferStream.CopyTo(_hmacStream);
 
-            _expectedTotalHmacLength = _hmacBufferStream.Length + _dataBytesLeftToRead;
+            _expectedTotalHmacLength = _hmacBufferStream.Length + cipherTextLength;
 
-            Stream encryptedDataStream = new AxCryptDataStream(_inputStream, _hmacStream, _dataBytesLeftToRead);
+            Stream encryptedDataStream = new AxCryptDataStream(_inputStream, _hmacStream, cipherTextLength);
 
             return encryptedDataStream;
         }
@@ -229,7 +227,6 @@ namespace Axantum.AxCrypt.Core.Reader
             if (dataHeaderBlock != null)
             {
                 CurrentItemType = AxCryptItemType.Data;
-                _dataBytesLeftToRead = dataHeaderBlock.CipherTextLength;
             }
         }
 
