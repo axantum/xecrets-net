@@ -167,6 +167,7 @@ namespace Axantum.AxCrypt.Core.Test
                     Assert.Throws<ObjectDisposedException>(() =>
                     {
                         bool isOk = axCryptReader.Read();
+                        Object.Equals(isOk, null);
                     }, "The reader is disposed.");
                 }
             }
@@ -196,6 +197,7 @@ namespace Axantum.AxCrypt.Core.Test
                     Assert.Throws<InternalErrorException>(() =>
                     {
                         bool isOk = axCryptReader.Read();
+                        Object.Equals(isOk, null);
                     });
                 }
             }
