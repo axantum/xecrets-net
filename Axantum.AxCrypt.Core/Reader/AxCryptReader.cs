@@ -127,7 +127,7 @@ namespace Axantum.AxCrypt.Core.Reader
         /// </summary>
         /// <returns>true if there was a next item read, false if at end of stream.</returns>
         /// <exception cref="Axantum.AxCrypt.Core.AxCryptException">Any error except premature end of stream will throw.</exception>
-        public bool Read()
+        public virtual bool Read()
         {
             if (_disposed)
             {
