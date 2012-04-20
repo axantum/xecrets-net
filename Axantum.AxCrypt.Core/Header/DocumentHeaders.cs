@@ -11,7 +11,7 @@ namespace Axantum.AxCrypt.Core.Reader
 {
     public class DocumentHeaders
     {
-        private IList<HeaderBlock> HeaderBlocks { get; set; }
+        private IList<HeaderBlock> _headerBlocks;
 
         private AesKey _keyEncryptingKey;
 
@@ -19,28 +19,28 @@ namespace Axantum.AxCrypt.Core.Reader
         {
             _keyEncryptingKey = keyEncryptingKey;
 
-            HeaderBlocks = new List<HeaderBlock>();
-            HeaderBlocks.Add(new PreambleHeaderBlock());
-            HeaderBlocks.Add(new VersionHeaderBlock());
-            HeaderBlocks.Add(new KeyWrap1HeaderBlock(keyEncryptingKey));
-            HeaderBlocks.Add(new EncryptionInfoHeaderBlock());
-            HeaderBlocks.Add(new CompressionInfoHeaderBlock());
-            HeaderBlocks.Add(new FileInfoHeaderBlock());
-            HeaderBlocks.Add(new UnicodeFileNameInfoHeaderBlock());
-            HeaderBlocks.Add(new FileNameInfoHeaderBlock());
-            HeaderBlocks.Add(new DataHeaderBlock());
+            _headerBlocks = new List<HeaderBlock>();
+            _headerBlocks.Add(new PreambleHeaderBlock());
+            _headerBlocks.Add(new VersionHeaderBlock());
+            _headerBlocks.Add(new KeyWrap1HeaderBlock(keyEncryptingKey));
+            _headerBlocks.Add(new EncryptionInfoHeaderBlock());
+            _headerBlocks.Add(new CompressionInfoHeaderBlock());
+            _headerBlocks.Add(new FileInfoHeaderBlock());
+            _headerBlocks.Add(new UnicodeFileNameInfoHeaderBlock());
+            _headerBlocks.Add(new FileNameInfoHeaderBlock());
+            _headerBlocks.Add(new DataHeaderBlock());
 
-            SetMasterKeyForEncryptedHeaderBlocks(HeaderBlocks);
+            SetMasterKeyForEncryptedHeaderBlocks(_headerBlocks);
         }
 
         public DocumentHeaders(DocumentHeaders documentHeaders)
         {
             List<HeaderBlock> headerBlocks = new List<HeaderBlock>();
-            foreach (HeaderBlock headerBlock in documentHeaders.HeaderBlocks)
+            foreach (HeaderBlock headerBlock in documentHeaders._headerBlocks)
             {
                 headerBlocks.Add((HeaderBlock)headerBlock.Clone());
             }
-            HeaderBlocks = headerBlocks;
+            _headerBlocks = headerBlocks;
 
             _keyEncryptingKey = documentHeaders._keyEncryptingKey;
         }
@@ -62,14 +62,14 @@ namespace Axantum.AxCrypt.Core.Reader
                         break;
                     case AxCryptItemType.Data:
                         headerBlocks.Add(axCryptReader.CurrentHeaderBlock);
-                        HeaderBlocks = headerBlocks;
+                        _headerBlocks = headerBlocks;
                         EnsureFileFormatVersion();
                         if (GetMasterKey() != null)
                         {
                             SetMasterKeyForEncryptedHeaderBlocks(headerBlocks);
                             return true;
                         }
-                        HeaderBlocks = null;
+                        _headerBlocks = null;
                         return false;
                     default:
                         throw new InternalErrorException("The reader returned an AxCryptItemType it should not be possible for it to return.");
@@ -95,6 +95,11 @@ namespace Axantum.AxCrypt.Core.Reader
 
         public void Write(Stream cipherStream, Stream hmacStream)
         {
+            if (cipherStream == null)
+            {
+                throw new ArgumentNullException("cipherStream");
+            }
+
             VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();
             versionHeaderBlock.SetCurrentVersion();
 
@@ -102,7 +107,7 @@ namespace Axantum.AxCrypt.Core.Reader
             AxCrypt1Guid.Write(cipherStream);
             PreambleHeaderBlock preambleHaderBlock = FindHeaderBlock<PreambleHeaderBlock>();
             preambleHaderBlock.Write(cipherStream);
-            foreach (HeaderBlock headerBlock in HeaderBlocks)
+            foreach (HeaderBlock headerBlock in _headerBlocks)
             {
                 if (headerBlock is DataHeaderBlock)
                 {
@@ -363,7 +368,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
         private T FindHeaderBlock<T>() where T : HeaderBlock
         {
-            foreach (HeaderBlock headerBlock in HeaderBlocks)
+            foreach (HeaderBlock headerBlock in _headerBlocks)
             {
                 T typedHeaderHeaderBlock = headerBlock as T;
                 if (typedHeaderHeaderBlock != null)

@@ -164,7 +164,7 @@ namespace Axantum.AxCrypt.Core
             using (HmacStream hmacStreamOutput = new HmacStream(outputDocumentHeaders.HmacSubkey.Key, cipherStream))
             {
                 outputDocumentHeaders.Write(cipherStream, hmacStreamOutput);
-                using (Stream encryptedDataStream = _reader.GetEncryptedDataStream(DocumentHeaders.HmacSubkey.Key))
+                using (Stream encryptedDataStream = _reader.CreateEncryptedDataStream(DocumentHeaders.HmacSubkey.Key))
                 {
                     encryptedDataStream.CopyTo(hmacStreamOutput);
 
@@ -209,21 +209,24 @@ namespace Axantum.AxCrypt.Core
             }
             using (ICryptoTransform decryptor = DataCrypto.CreateDecryptingTransform())
             {
-                if (DocumentHeaders.IsCompressed)
+                using (Stream encryptedDataStream = _reader.CreateEncryptedDataStream(DocumentHeaders.HmacSubkey.Key))
                 {
-                    using (Stream deflatedPlaintextStream = new CryptoStream(_reader.GetEncryptedDataStream(DocumentHeaders.HmacSubkey.Key), decryptor, CryptoStreamMode.Read))
+                    if (DocumentHeaders.IsCompressed)
                     {
-                        using (Stream inflatedPlaintextStream = new ZInputStream(deflatedPlaintextStream))
+                        using (Stream deflatedPlaintextStream = new CryptoStream(encryptedDataStream, decryptor, CryptoStreamMode.Read))
                         {
-                            inflatedPlaintextStream.CopyTo(outputPlaintextStream);
+                            using (Stream inflatedPlaintextStream = new ZInputStream(deflatedPlaintextStream))
+                            {
+                                inflatedPlaintextStream.CopyTo(outputPlaintextStream);
+                            }
                         }
                     }
-                }
-                else
-                {
-                    using (Stream plainStream = new CryptoStream(_reader.GetEncryptedDataStream(DocumentHeaders.HmacSubkey.Key), decryptor, CryptoStreamMode.Read))
+                    else
                     {
-                        plainStream.CopyTo(outputPlaintextStream);
+                        using (Stream plainStream = new CryptoStream(encryptedDataStream, decryptor, CryptoStreamMode.Read))
+                        {
+                            plainStream.CopyTo(outputPlaintextStream);
+                        }
                     }
                 }
             }

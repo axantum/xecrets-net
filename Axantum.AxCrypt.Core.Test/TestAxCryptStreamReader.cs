@@ -70,5 +70,25 @@ namespace Axantum.AxCrypt.Core.Test
                 }
             }
         }
+
+        [Test]
+        public static void TestFactoryMethod()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                using (AxCryptReader axCryptReader = AxCryptReader.Create(null)) { }
+            }, "A non-null input-stream must be specified.");
+
+            using (MemoryStream inputStream = new MemoryStream())
+            {
+                AxCrypt1Guid.Write(inputStream);
+                inputStream.Position = 0;
+                using (AxCryptReader axCryptReader = AxCryptReader.Create(inputStream))
+                {
+                    Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
+                    Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
+                }
+            }
+        }
     }
 }
