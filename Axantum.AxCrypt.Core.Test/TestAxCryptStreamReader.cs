@@ -30,8 +30,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
+using Axantum.AxCrypt.Core.Test.Properties;
 using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -87,6 +89,66 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
                     Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
+                }
+            }
+        }
+
+        [Test]
+        public static void TestCreateEncryptedDataStreamErrorChecks()
+        {
+            using (MemoryStream inputStream = new MemoryStream())
+            {
+                using (AxCryptReader axCryptReader = new AxCryptStreamReader(inputStream))
+                {
+                    Stream encryptedDataStream;
+                    Assert.Throws<ArgumentNullException>(() =>
+                    {
+                        encryptedDataStream = axCryptReader.CreateEncryptedDataStream(null);
+                    }, "A non-null HMAC key must be specified.");
+
+                    Assert.Throws<InvalidOperationException>(() =>
+                    {
+                        encryptedDataStream = axCryptReader.CreateEncryptedDataStream(new AesKey());
+                    }, "The reader is not positioned properly to read encrypted data.");
+
+                    axCryptReader.Dispose();
+
+                    Assert.Throws<ObjectDisposedException>(() =>
+                    {
+                        encryptedDataStream = axCryptReader.CreateEncryptedDataStream(new AesKey());
+                    }, "The reader is disposed.");
+                }
+            }
+        }
+
+        [Test]
+        public static void TestHmac()
+        {
+            using (Stream inputStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
+            {
+                using (AxCryptReader axCryptReader = new AxCryptStreamReader(inputStream))
+                {
+                    DataHmac hmac;
+                    Assert.Throws<InvalidOperationException>(() =>
+                    {
+                        hmac = axCryptReader.Hmac;
+                    }, "The reader is not positioned properly to get the HMAC.");
+
+                    Passphrase passphrase = new Passphrase("a");
+                    DocumentHeaders documentHeaders = new DocumentHeaders(passphrase.DerivedPassphrase);
+                    bool keyIsOk = documentHeaders.Load(axCryptReader);
+                    Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+
+                    using (Stream encrypedDataStream = axCryptReader.CreateEncryptedDataStream(documentHeaders.HmacSubkey.Key))
+                    {
+                        Assert.Throws<InvalidOperationException>(() =>
+                        {
+                            hmac = axCryptReader.Hmac;
+                        }, "We have not read the encrypted data yet.");
+
+                        encrypedDataStream.CopyTo(Stream.Null);
+                        Assert.That(documentHeaders.Hmac, Is.EqualTo(axCryptReader.Hmac), "The HMAC should be correct.");
+                    }
                 }
             }
         }
