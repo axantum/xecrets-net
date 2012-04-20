@@ -216,6 +216,7 @@ namespace Axantum.AxCrypt.Core.Test
             public BadHeaderBlock()
                 : base(HeaderBlockType.Undefined, new byte[0])
             {
+                FakeHeaderBlockLength = 5;
             }
 
             public override object Clone()
