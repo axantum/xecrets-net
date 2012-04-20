@@ -150,6 +150,14 @@ namespace Axantum.AxCrypt.Core.Test
 
                         encrypedDataStream.CopyTo(Stream.Null);
                         Assert.That(documentHeaders.Hmac, Is.EqualTo(axCryptReader.Hmac), "The HMAC should be correct.");
+
+                        axCryptReader.Dispose();
+
+                        Assert.Throws<ObjectDisposedException>(() =>
+                        {
+                            DataHmac disposedHmac = axCryptReader.Hmac;
+                            Object.Equals(disposedHmac, null);
+                        }, "The reader is disposed.");
                     }
                 }
             }
@@ -199,6 +207,117 @@ namespace Axantum.AxCrypt.Core.Test
                         bool isOk = axCryptReader.Read();
                         Object.Equals(isOk, null);
                     });
+                }
+            }
+        }
+
+        private class BadHeaderBlock : HeaderBlock
+        {
+            public BadHeaderBlock()
+                : base(HeaderBlockType.Undefined, new byte[0])
+            {
+            }
+
+            public override object Clone()
+            {
+                throw new NotImplementedException();
+            }
+
+            public int FakeHeaderBlockLength { get; set; }
+
+            public void SetHeaderBlockType(HeaderBlockType headerBlockType)
+            {
+                HeaderBlockType = headerBlockType;
+            }
+
+            public override void Write(Stream stream)
+            {
+                byte[] headerBlockPrefix = new byte[4 + 1];
+                BitConverter.GetBytes(FakeHeaderBlockLength).CopyTo(headerBlockPrefix, 0);
+                headerBlockPrefix[4] = (byte)HeaderBlockType;
+                stream.Write(headerBlockPrefix, 0, headerBlockPrefix.Length);
+                stream.Write(GetDataBlockBytesReference(), 0, GetDataBlockBytesReference().Length);
+            }
+        }
+
+        [Test]
+        public static void TestBadHeaderBlocks()
+        {
+            using (MemoryStream inputStream = new MemoryStream())
+            {
+                AxCrypt1Guid.Write(inputStream);
+
+                BadHeaderBlock badHeaderBlock = new BadHeaderBlock();
+                badHeaderBlock.SetHeaderBlockType((HeaderBlockType)(-1));
+                badHeaderBlock.Write(inputStream);
+                inputStream.Position = 0;
+
+                using (AxCryptReaderForTest axCryptReader = new AxCryptReaderForTest(inputStream))
+                {
+                    Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
+                    Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
+                    Assert.Throws<FileFormatException>(() =>
+                    {
+                        axCryptReader.Read();
+                    }, "A negative header block type is not valid.");
+                }
+            }
+
+            using (MemoryStream inputStream = new MemoryStream())
+            {
+                AxCrypt1Guid.Write(inputStream);
+
+                BadHeaderBlock badHeaderBlock = new BadHeaderBlock();
+                badHeaderBlock.FakeHeaderBlockLength = -50;
+                badHeaderBlock.Write(inputStream);
+                inputStream.Position = 0;
+
+                using (AxCryptReaderForTest axCryptReader = new AxCryptReaderForTest(inputStream))
+                {
+                    Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
+                    Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
+                    Assert.Throws<FileFormatException>(() =>
+                    {
+                        axCryptReader.Read();
+                    }, "A negative header block length is not valid.");
+                }
+            }
+
+            using (MemoryStream inputStream = new MemoryStream())
+            {
+                AxCrypt1Guid.Write(inputStream);
+
+                BadHeaderBlock badHeaderBlock = new BadHeaderBlock();
+                badHeaderBlock.FakeHeaderBlockLength = 0x1000000;
+                badHeaderBlock.Write(inputStream);
+                inputStream.Position = 0;
+
+                using (AxCryptReaderForTest axCryptReader = new AxCryptReaderForTest(inputStream))
+                {
+                    Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
+                    Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
+                    Assert.Throws<FileFormatException>(() =>
+                    {
+                        axCryptReader.Read();
+                    }, "A too large header block length is not valid.");
+                }
+            }
+
+            using (MemoryStream inputStream = new MemoryStream())
+            {
+                AxCrypt1Guid.Write(inputStream);
+
+                BadHeaderBlock badHeaderBlock = new BadHeaderBlock();
+                badHeaderBlock.FakeHeaderBlockLength = 5 + 1;
+                badHeaderBlock.Write(inputStream);
+                inputStream.Position = 0;
+
+                using (AxCryptReaderForTest axCryptReader = new AxCryptReaderForTest(inputStream))
+                {
+                    Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
+                    Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
+                    Assert.That(axCryptReader.Read(), Is.False, "The stream is too short and end prematurely and should thus be able to read the block");
+                    Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.EndOfStream), "The stream is at an end and current item type should reflect this.");
                 }
             }
         }

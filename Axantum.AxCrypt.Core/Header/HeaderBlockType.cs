@@ -58,6 +58,10 @@ namespace Axantum.AxCrypt.Core.Reader
         /// </summary>
         IdTag,
         /// <summary>
+        /// An undefined header block type, used for tests
+        /// </summary>
+        Undefined = 62,
+        /// <summary>
         /// The data, compressed and/or encrypted.
         /// </summary>
         Data = 63,
