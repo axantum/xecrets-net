@@ -32,6 +32,7 @@ using System.Linq;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Reader;
+using Axantum.AxCrypt.Core.Test.Properties;
 using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -92,6 +93,24 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 documentHeaders.Hmac = null;
             });
+        }
+
+        [Test]
+        public static void TestBadKey()
+        {
+            using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
+            {
+                using (AxCryptReader reader = AxCryptReader.Create(testStream))
+                {
+                    Passphrase passphrase = new Passphrase("b");
+                    DocumentHeaders documentHeaders = new DocumentHeaders(passphrase.DerivedPassphrase);
+                    bool isPassphraseValid = documentHeaders.Load(reader);
+
+                    Assert.That(isPassphraseValid, Is.False, "The passphrase is intentionally wrong for this test case.");
+                    Assert.That(documentHeaders.HmacSubkey, Is.Null, "Since the passphrase is wrong, HmacSubkey should return null.");
+                    Assert.That(documentHeaders.DataSubkey, Is.Null, "Since the passphrase is wrong, DataSubkey should return null.");
+                }
+            }
         }
     }
 }

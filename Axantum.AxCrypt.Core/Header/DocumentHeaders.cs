@@ -71,7 +71,6 @@ namespace Axantum.AxCrypt.Core.Reader
                             SetMasterKeyForEncryptedHeaderBlocks(headerBlocks);
                             return true;
                         }
-                        _headerBlocks = null;
                         return false;
                     default:
                         throw new InternalErrorException("The reader returned an AxCryptItemType it should not be possible for it to return.");
