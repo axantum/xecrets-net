@@ -34,14 +34,14 @@ namespace Axantum.AxCrypt.Core.Reader
 {
     public class UnrecognizedHeaderBlock : HeaderBlock
     {
-        public UnrecognizedHeaderBlock(byte[] dataBlock)
-            : base(HeaderBlockType.None, dataBlock)
+        public UnrecognizedHeaderBlock(HeaderBlockType headerBlockType, byte[] dataBlock)
+            : base(headerBlockType, dataBlock)
         {
         }
 
         public override object Clone()
         {
-            UnrecognizedHeaderBlock block = new UnrecognizedHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
+            UnrecognizedHeaderBlock block = new UnrecognizedHeaderBlock(HeaderBlockType, (byte[])GetDataBlockBytesReference().Clone());
             return block;
         }
     }

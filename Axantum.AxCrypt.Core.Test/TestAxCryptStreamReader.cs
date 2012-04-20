@@ -241,7 +241,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestBadHeaderBlocks()
+        public static void TestNegativeHeaderBlockType()
         {
             using (MemoryStream inputStream = new MemoryStream())
             {
@@ -262,7 +262,11 @@ namespace Axantum.AxCrypt.Core.Test
                     }, "A negative header block type is not valid.");
                 }
             }
+        }
 
+        [Test]
+        public static void TestNegativeHeaderBlockLength()
+        {
             using (MemoryStream inputStream = new MemoryStream())
             {
                 AxCrypt1Guid.Write(inputStream);
@@ -282,7 +286,11 @@ namespace Axantum.AxCrypt.Core.Test
                     }, "A negative header block length is not valid.");
                 }
             }
+        }
 
+        [Test]
+        public static void TestTooLargeHeaderBlockLength()
+        {
             using (MemoryStream inputStream = new MemoryStream())
             {
                 AxCrypt1Guid.Write(inputStream);
@@ -302,7 +310,11 @@ namespace Axantum.AxCrypt.Core.Test
                     }, "A too large header block length is not valid.");
                 }
             }
+        }
 
+        [Test]
+        public static void TestTooShortStream()
+        {
             using (MemoryStream inputStream = new MemoryStream())
             {
                 AxCrypt1Guid.Write(inputStream);
@@ -318,6 +330,89 @@ namespace Axantum.AxCrypt.Core.Test
                     Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
                     Assert.That(axCryptReader.Read(), Is.False, "The stream is too short and end prematurely and should thus be able to read the block");
                     Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.EndOfStream), "The stream is at an end and current item type should reflect this.");
+                }
+            }
+        }
+
+        [Test]
+        public static void TestInvalidHeaderBlockType()
+        {
+            using (MemoryStream inputStream = new MemoryStream())
+            {
+                AxCrypt1Guid.Write(inputStream);
+                PreambleHeaderBlock preambleHeaderBlock = new PreambleHeaderBlock();
+                preambleHeaderBlock.Write(inputStream);
+
+                BadHeaderBlock badHeaderBlock = new BadHeaderBlock();
+                badHeaderBlock.FakeHeaderBlockLength = 5;
+                badHeaderBlock.SetHeaderBlockType(HeaderBlockType.Encrypted);
+                badHeaderBlock.Write(inputStream);
+                inputStream.Position = 0;
+
+                using (AxCryptReaderForTest axCryptReader = new AxCryptReaderForTest(inputStream))
+                {
+                    Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
+                    Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
+                    Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the next HeaderBlock");
+                    Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.HeaderBlock), "We're expecting to have found a HeaderBlock");
+                    Assert.That(axCryptReader.CurrentHeaderBlock.HeaderBlockType, Is.EqualTo(HeaderBlockType.Preamble), "We're expecting to have found a Preamble specifically");
+
+                    Assert.Throws<FileFormatException>(() =>
+                    {
+                        axCryptReader.Read();
+                    });
+                }
+            }
+        }
+
+        [Test]
+        public static void TestKeyWrap2HeaderBlock()
+        {
+            using (MemoryStream inputStream = new MemoryStream())
+            {
+                AxCrypt1Guid.Write(inputStream);
+                PreambleHeaderBlock preambleHeaderBlock = new PreambleHeaderBlock();
+                preambleHeaderBlock.Write(inputStream);
+                KeyWrap2HeaderBlock keyWrap2HeaderBlock = new KeyWrap2HeaderBlock(new byte[0]);
+                keyWrap2HeaderBlock.Write(inputStream);
+                inputStream.Position = 0;
+                using (AxCryptReader axCryptReader = AxCryptReader.Create(inputStream))
+                {
+                    Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
+                    Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
+                    Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the next HeaderBlock");
+                    Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.HeaderBlock), "We're expecting to have found a HeaderBlock");
+                    Assert.That(axCryptReader.CurrentHeaderBlock.HeaderBlockType, Is.EqualTo(HeaderBlockType.Preamble), "We're expecting to have found a Preamble specifically");
+
+                    Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the next HeaderBlock");
+                    Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.HeaderBlock), "We're expecting to have found a HeaderBlock");
+                    Assert.That(axCryptReader.CurrentHeaderBlock.HeaderBlockType, Is.EqualTo(HeaderBlockType.KeyWrap2), "We're expecting to have found a KeyWrap2 specifically");
+                }
+            }
+        }
+
+        [Test]
+        public static void TestUnrecognizedHeaderBlock()
+        {
+            using (MemoryStream inputStream = new MemoryStream())
+            {
+                AxCrypt1Guid.Write(inputStream);
+                PreambleHeaderBlock preambleHeaderBlock = new PreambleHeaderBlock();
+                preambleHeaderBlock.Write(inputStream);
+                UnrecognizedHeaderBlock unrecognizedHeaderBlock = new UnrecognizedHeaderBlock(HeaderBlockType.Unrecognized, new byte[0]);
+                unrecognizedHeaderBlock.Write(inputStream);
+                inputStream.Position = 0;
+                using (AxCryptReader axCryptReader = AxCryptReader.Create(inputStream))
+                {
+                    Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
+                    Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
+                    Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the next HeaderBlock");
+                    Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.HeaderBlock), "We're expecting to have found a HeaderBlock");
+                    Assert.That(axCryptReader.CurrentHeaderBlock.HeaderBlockType, Is.EqualTo(HeaderBlockType.Preamble), "We're expecting to have found a Preamble specifically");
+
+                    Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the next HeaderBlock");
+                    Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.HeaderBlock), "We're expecting to have found a HeaderBlock");
+                    Assert.That(axCryptReader.CurrentHeaderBlock.HeaderBlockType, Is.EqualTo(HeaderBlockType.Unrecognized), "We're expecting to have found an unrecognized block specifically");
                 }
             }
         }

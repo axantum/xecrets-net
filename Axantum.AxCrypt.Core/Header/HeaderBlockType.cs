@@ -58,6 +58,11 @@ namespace Axantum.AxCrypt.Core.Reader
         /// </summary>
         IdTag,
         /// <summary>
+        /// The code should accept and skip header block types that are defined later. This is here to simulate that
+        /// condition for tests.
+        /// </summary>
+        Unrecognized = 61,
+        /// <summary>
         /// An undefined header block type, used for tests
         /// </summary>
         Undefined = 62,

@@ -210,7 +210,7 @@ namespace Axantum.AxCrypt.Core.Reader
             }
 
             int blockType = _inputStream.ReadByte();
-            if (blockType < 0)
+            if (blockType > 127)
             {
                 throw new FileFormatException("Invalid block type {0}".InvariantFormat(blockType), ErrorStatus.FileFormatError);
             }
@@ -296,7 +296,7 @@ namespace Axantum.AxCrypt.Core.Reader
                 case HeaderBlockType.Any:
                     throw new FileFormatException("Illegal header block type.", ErrorStatus.FileFormatError);
                 default:
-                    CurrentHeaderBlock = new UnrecognizedHeaderBlock(dataBlock);
+                    CurrentHeaderBlock = new UnrecognizedHeaderBlock(headerBlockType, dataBlock);
                     break;
             }
 
