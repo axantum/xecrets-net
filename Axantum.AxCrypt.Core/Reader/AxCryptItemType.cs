@@ -50,5 +50,9 @@ namespace Axantum.AxCrypt.Core.Reader
         /// The end of the stream has been reached
         /// </summary>
         EndOfStream,
+        /// <summary>
+        /// An undefined item type that should never occur, used for unit testing.
+        /// </summary>
+        Undefined,
     }
 }

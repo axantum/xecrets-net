@@ -35,7 +35,8 @@ using System.Text;
 namespace Axantum.AxCrypt.Core
 {
     /// <summary>
-    /// An internal program logic error has been detected
+    /// An internal program logic error in the library itself has been detected. Use InvalidOperationException for invalid
+    /// program states typically caused by caller errors.
     /// </summary>
     [Serializable]
     public class InternalErrorException : AxCryptException

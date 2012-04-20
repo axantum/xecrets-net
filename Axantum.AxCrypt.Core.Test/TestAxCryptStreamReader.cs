@@ -146,9 +146,57 @@ namespace Axantum.AxCrypt.Core.Test
                             hmac = axCryptReader.Hmac;
                         }, "We have not read the encrypted data yet.");
 
+                        Assert.That(axCryptReader.Read(), Is.False, "The reader should be at end of stream now, and Read() should return false.");
+
                         encrypedDataStream.CopyTo(Stream.Null);
                         Assert.That(documentHeaders.Hmac, Is.EqualTo(axCryptReader.Hmac), "The HMAC should be correct.");
                     }
+                }
+            }
+        }
+
+        [Test]
+        public static void TestObjectDisposed()
+        {
+            using (Stream inputStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
+            {
+                using (AxCryptReader axCryptReader = new AxCryptStreamReader(inputStream))
+                {
+                    axCryptReader.Dispose();
+
+                    Assert.Throws<ObjectDisposedException>(() =>
+                    {
+                        bool isOk = axCryptReader.Read();
+                    }, "The reader is disposed.");
+                }
+            }
+        }
+
+        private class AxCryptReaderForTest : AxCryptStreamReader
+        {
+            public AxCryptReaderForTest(Stream inputStream)
+                : base(inputStream)
+            {
+            }
+
+            public void SetCurrentItemType(AxCryptItemType itemType)
+            {
+                CurrentItemType = itemType;
+            }
+        }
+
+        [Test]
+        public static void TestUndefinedItemType()
+        {
+            using (MemoryStream testStream = new MemoryStream())
+            {
+                using (AxCryptReaderForTest axCryptReader = new AxCryptReaderForTest(testStream))
+                {
+                    axCryptReader.SetCurrentItemType(AxCryptItemType.Undefined);
+                    Assert.Throws<InternalErrorException>(() =>
+                    {
+                        bool isOk = axCryptReader.Read();
+                    });
                 }
             }
         }

@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Reader
         /// <summary>
         /// Gets the type of the current item
         /// </summary>
-        public AxCryptItemType CurrentItemType { get; private set; }
+        public AxCryptItemType CurrentItemType { get; protected set; }
 
         public HeaderBlock CurrentHeaderBlock { get; private set; }
 
@@ -273,8 +273,6 @@ namespace Axantum.AxCrypt.Core.Reader
                 case HeaderBlockType.Data:
                     CurrentHeaderBlock = new DataHeaderBlock(dataBlock);
                     break;
-                case HeaderBlockType.Encrypted:
-                    break;
                 case HeaderBlockType.FileNameInfo:
                     CurrentHeaderBlock = new FileNameInfoHeaderBlock(dataBlock);
                     break;
@@ -293,6 +291,7 @@ namespace Axantum.AxCrypt.Core.Reader
                 case HeaderBlockType.UnicodeFileNameInfo:
                     CurrentHeaderBlock = new UnicodeFileNameInfoHeaderBlock(dataBlock);
                     break;
+                case HeaderBlockType.Encrypted:
                 case HeaderBlockType.None:
                 case HeaderBlockType.Any:
                     throw new FileFormatException("Illegal header block type.", ErrorStatus.FileFormatError);
