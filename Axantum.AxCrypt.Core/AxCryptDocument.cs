@@ -98,6 +98,7 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentException("The output stream must support seek in order to back-track and write the HMAC.");
             }
+            outputDocumentHeaders.IsCompressed = true;
             outputDocumentHeaders.Write(outputCipherStream, null);
             using (ICryptoTransform encryptor = DataCrypto.CreateEncryptingTransform())
             {

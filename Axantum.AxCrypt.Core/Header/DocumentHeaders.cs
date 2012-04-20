@@ -24,6 +24,7 @@ namespace Axantum.AxCrypt.Core.Reader
             _headerBlocks.Add(new VersionHeaderBlock());
             _headerBlocks.Add(new KeyWrap1HeaderBlock(keyEncryptingKey));
             _headerBlocks.Add(new EncryptionInfoHeaderBlock());
+            _headerBlocks.Add(new CompressionHeaderBlock());
             _headerBlocks.Add(new CompressionInfoHeaderBlock());
             _headerBlocks.Add(new FileInfoHeaderBlock());
             _headerBlocks.Add(new UnicodeFileNameInfoHeaderBlock());
@@ -267,6 +268,11 @@ namespace Axantum.AxCrypt.Core.Reader
                     return true;
                 }
                 return headerBlock.IsCompressed;
+            }
+            set
+            {
+                CompressionHeaderBlock headerBlock = FindHeaderBlock<CompressionHeaderBlock>();
+                headerBlock.IsCompressed = value;
             }
         }
 

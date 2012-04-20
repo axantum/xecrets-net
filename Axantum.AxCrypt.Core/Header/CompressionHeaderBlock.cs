@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt.Core.Reader
         }
 
         public CompressionHeaderBlock()
-            : this(new byte[8])
+            : this(new byte[16])
         {
         }
 
@@ -61,7 +61,8 @@ namespace Axantum.AxCrypt.Core.Reader
             {
                 int isCompressed = value ? 1 : 0;
                 byte[] isCompressedBytes = isCompressed.GetLittleEndianBytes();
-                byte[] encryptedBlock = HeaderCrypto.Encrypt(isCompressedBytes);
+                Array.Copy(isCompressedBytes, 0, GetDataBlockBytesReference(), 0, isCompressedBytes.Length);
+                byte[] encryptedBlock = HeaderCrypto.Encrypt(GetDataBlockBytesReference());
                 SetDataBlockBytesReference(encryptedBlock);
             }
         }
