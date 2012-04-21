@@ -26,7 +26,6 @@ namespace Axantum.AxCrypt.Core.Reader
             _headerBlocks.Add(new KeyWrap1HeaderBlock(keyEncryptingKey));
             _headerBlocks.Add(new EncryptionInfoHeaderBlock());
             _headerBlocks.Add(new CompressionHeaderBlock());
-            _headerBlocks.Add(new CompressionInfoHeaderBlock());
             _headerBlocks.Add(new FileInfoHeaderBlock());
             _headerBlocks.Add(new UnicodeFileNameInfoHeaderBlock());
             _headerBlocks.Add(new FileNameInfoHeaderBlock());
@@ -81,8 +80,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
         private void SetMasterKeyForEncryptedHeaderBlocks(IList<HeaderBlock> headerBlocks)
         {
-            Subkey headersSubkey = new Subkey(GetMasterKey(), HeaderSubkey.Headers);
-            AesCrypto headerCrypto = new AesCrypto(headersSubkey.Key);
+            AesCrypto headerCrypto = new AesCrypto(HeadersSubkey.Key);
 
             foreach (HeaderBlock headerBlock in headerBlocks)
             {
@@ -184,6 +182,19 @@ namespace Axantum.AxCrypt.Core.Reader
             }
         }
 
+        public Subkey HeadersSubkey
+        {
+            get
+            {
+                AesKey masterKey = GetMasterKey();
+                if (masterKey == null)
+                {
+                    return null;
+                }
+                return new Subkey(masterKey, HeaderSubkey.Headers);
+            }
+        }
+
         public DataHmac Hmac
         {
             get
@@ -218,6 +229,12 @@ namespace Axantum.AxCrypt.Core.Reader
             set
             {
                 CompressionInfoHeaderBlock compressionInfo = FindHeaderBlock<CompressionInfoHeaderBlock>();
+                if (compressionInfo == null)
+                {
+                    compressionInfo = new CompressionInfoHeaderBlock();
+                    compressionInfo.HeaderCrypto = new AesCrypto(HeadersSubkey.Key);
+                    _headerBlocks.Add(compressionInfo);
+                }
                 compressionInfo.UncompressedLength = value;
             }
         }
@@ -288,6 +305,11 @@ namespace Axantum.AxCrypt.Core.Reader
             {
                 CompressionHeaderBlock headerBlock = FindHeaderBlock<CompressionHeaderBlock>();
                 headerBlock.IsCompressed = value;
+                if (value)
+                {
+                    // When compressed, ensure we reserve room in headers for the CompressionInfo block
+                    UncompressedLength = 0;
+                }
             }
         }
 

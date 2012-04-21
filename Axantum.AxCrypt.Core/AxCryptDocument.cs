@@ -78,64 +78,91 @@ namespace Axantum.AxCrypt.Core
         /// of the headers. Headers that are not known until encryption and compression are added here.
         /// </summary>
         /// <param name="outputDocumentHeaders"></param>
-        /// <param name="inputPlainStream"></param>
-        /// <param name="outputCipherStream"></param>
-        public void EncryptTo(DocumentHeaders outputDocumentHeaders, Stream inputPlainStream, Stream outputCipherStream)
+        /// <param name="inputStream"></param>
+        /// <param name="outputStream"></param>
+        public void EncryptTo(DocumentHeaders outputDocumentHeaders, Stream inputStream, Stream outputStream, AxCryptOptions options)
         {
             if (outputDocumentHeaders == null)
             {
                 throw new ArgumentNullException("outputDocumentHeaders");
             }
-            if (inputPlainStream == null)
+            if (inputStream == null)
             {
-                throw new ArgumentNullException("inputPlainStream");
+                throw new ArgumentNullException("inputStream");
             }
-            if (outputCipherStream == null)
+            if (outputStream == null)
             {
-                throw new ArgumentNullException("outputCipherStream");
+                throw new ArgumentNullException("outputStream");
             }
-            if (!outputCipherStream.CanSeek)
+            if (!outputStream.CanSeek)
             {
                 throw new ArgumentException("The output stream must support seek in order to back-track and write the HMAC.");
             }
-            outputDocumentHeaders.IsCompressed = true;
-            outputDocumentHeaders.WriteWithoutHmac(outputCipherStream);
+            if (options.HasFlag(AxCryptOptions.EncryptWithCompression) && options.HasFlag(AxCryptOptions.EncryptWithoutCompression))
+            {
+                throw new ArgumentException("Invalid options, cannot specify both with and without compression.");
+            }
+            if (!options.HasFlag(AxCryptOptions.EncryptWithCompression) && !options.HasFlag(AxCryptOptions.EncryptWithoutCompression))
+            {
+                throw new ArgumentException("Invalid options, must specify either with or without compression.");
+            }
+            bool isCompressed = options.HasFlag(AxCryptOptions.EncryptWithCompression);
+            outputDocumentHeaders.IsCompressed = isCompressed;
+            outputDocumentHeaders.WriteWithoutHmac(outputStream);
             using (ICryptoTransform encryptor = DataCrypto.CreateEncryptingTransform())
             {
-                long cipherStartPosition = outputCipherStream.Position;
-                using (CryptoStream deflatedCipherStream = new CryptoStream(new NonClosingStream(outputCipherStream), encryptor, CryptoStreamMode.Write))
+                long outputStartPosition = outputStream.Position;
+                using (CryptoStream encryptingStream = new CryptoStream(new NonClosingStream(outputStream), encryptor, CryptoStreamMode.Write))
                 {
-                    using (ZOutputStream deflatedPlainStream = new ZOutputStream(deflatedCipherStream, -1))
+                    if (isCompressed)
                     {
-                        byte[] buffer = new byte[4096];
-                        int count;
-                        while ((count = inputPlainStream.Read(buffer, 0, buffer.Length)) != 0)
-                        {
-                            deflatedPlainStream.FlushMode = JZlib.Z_SYNC_FLUSH;
-                            deflatedPlainStream.Write(buffer, 0, count);
-                        }
-                        deflatedPlainStream.FlushMode = JZlib.Z_FINISH;
-                        deflatedPlainStream.Finish();
-
-                        outputDocumentHeaders.UncompressedLength = deflatedPlainStream.TotalIn;
-                        outputDocumentHeaders.PlaintextLength = deflatedPlainStream.TotalOut;
-
-                        deflatedCipherStream.FlushFinalBlock();
-                        outputCipherStream.Flush();
-                        outputDocumentHeaders.CipherTextLength = outputCipherStream.Position - cipherStartPosition;
+                        EncryptWithCompressionInternal(outputDocumentHeaders, inputStream, encryptingStream);
+                    }
+                    else
+                    {
+                        outputDocumentHeaders.PlaintextLength = CopyToWithCount(inputStream, encryptingStream);
                     }
                 }
-                using (HmacStream outputHmacStream = new HmacStream(outputDocumentHeaders.HmacSubkey.Key, outputCipherStream))
+                outputStream.Flush();
+                outputDocumentHeaders.CipherTextLength = outputStream.Position - outputStartPosition;
+                using (HmacStream outputHmacStream = new HmacStream(outputDocumentHeaders.HmacSubkey.Key, outputStream))
                 {
                     outputDocumentHeaders.WriteWithHmac(outputHmacStream);
-                    outputHmacStream.ReadFrom(outputCipherStream);
+                    outputHmacStream.ReadFrom(outputStream);
                     outputDocumentHeaders.Hmac = outputHmacStream.HmacResult;
                 }
 
                 // Rewind and rewrite the headers, now with the updated HMAC
-                outputDocumentHeaders.WriteWithoutHmac(outputCipherStream);
-                outputCipherStream.Position = outputCipherStream.Length;
+                outputDocumentHeaders.WriteWithoutHmac(outputStream);
+                outputStream.Position = outputStream.Length;
             }
+        }
+
+        private static void EncryptWithCompressionInternal(DocumentHeaders outputDocumentHeaders, Stream inputStream, CryptoStream encryptingStream)
+        {
+            using (ZOutputStream deflatingStream = new ZOutputStream(encryptingStream, -1))
+            {
+                deflatingStream.FlushMode = JZlib.Z_SYNC_FLUSH;
+                CopyToWithCount(inputStream, deflatingStream);
+                deflatingStream.FlushMode = JZlib.Z_FINISH;
+                deflatingStream.Finish();
+
+                outputDocumentHeaders.UncompressedLength = deflatingStream.TotalIn;
+                outputDocumentHeaders.PlaintextLength = deflatingStream.TotalOut;
+            }
+        }
+
+        private static long CopyToWithCount(Stream inputStream, Stream outputStream)
+        {
+            byte[] buffer = new byte[4096];
+            int count;
+            long totalCount = 0;
+            while ((count = inputStream.Read(buffer, 0, buffer.Length)) != 0)
+            {
+                outputStream.Write(buffer, 0, count);
+                totalCount += count;
+            }
+            return totalCount;
         }
 
         /// <summary>

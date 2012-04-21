@@ -336,7 +336,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestSimpleEncryptTo()
+        public static void TestSimpleEncryptToWithCompression()
         {
             DateTime creationTimeUtc = new DateTime(2012, 1, 1, 1, 2, 3, DateTimeKind.Utc);
             DateTime lastAccessTimeUtc = creationTimeUtc + new TimeSpan(1, 0, 0);
@@ -354,7 +354,7 @@ namespace Axantum.AxCrypt.Core.Test
                         headers.LastAccessTimeUtc = lastAccessTimeUtc;
                         headers.LastWriteTimeUtc = lastWriteTimeUtc;
                         document.DocumentHeaders = headers;
-                        document.EncryptTo(headers, inputStream, outputStream);
+                        document.EncryptTo(headers, inputStream, outputStream, AxCryptOptions.EncryptWithCompression);
                     }
                     outputStream.Position = 0;
                     using (AxCryptDocument document = new AxCryptDocument())
@@ -370,6 +370,49 @@ namespace Axantum.AxCrypt.Core.Test
                         {
                             document.DecryptTo(plaintextStream);
                             Assert.That(document.DocumentHeaders.UncompressedLength, Is.EqualTo(17), "'AxCrypt is Great!' should be 17 bytes uncompressed plaintext.");
+                            Assert.That(Encoding.ASCII.GetString(plaintextStream.GetBuffer(), 0, (int)plaintextStream.Length), Is.EqualTo("AxCrypt is Great!"), "Unexpected result of decryption.");
+                        }
+                    }
+                }
+            }
+        }
+
+        [Test]
+        public static void TestSimpleEncryptToWithoutCompression()
+        {
+            DateTime creationTimeUtc = new DateTime(2012, 1, 1, 1, 2, 3, DateTimeKind.Utc);
+            DateTime lastAccessTimeUtc = creationTimeUtc + new TimeSpan(1, 0, 0);
+            DateTime lastWriteTimeUtc = creationTimeUtc + new TimeSpan(2, 0, 0); ;
+            using (Stream inputStream = new MemoryStream(Encoding.UTF8.GetBytes("AxCrypt is Great!")))
+            {
+                using (Stream outputStream = new MemoryStream())
+                {
+                    using (AxCryptDocument document = new AxCryptDocument())
+                    {
+                        Passphrase passphrase = new Passphrase("a");
+                        DocumentHeaders headers = new DocumentHeaders(passphrase.DerivedPassphrase);
+                        headers.FileName = "MyFile.txt";
+                        headers.CreationTimeUtc = creationTimeUtc;
+                        headers.LastAccessTimeUtc = lastAccessTimeUtc;
+                        headers.LastWriteTimeUtc = lastWriteTimeUtc;
+                        document.DocumentHeaders = headers;
+                        document.EncryptTo(headers, inputStream, outputStream, AxCryptOptions.EncryptWithoutCompression);
+                    }
+                    outputStream.Position = 0;
+                    using (AxCryptDocument document = new AxCryptDocument())
+                    {
+                        Passphrase passphrase = new Passphrase("a");
+                        bool keyIsOk = document.Load(outputStream, passphrase);
+                        Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+                        Assert.That(document.DocumentHeaders.FileName, Is.EqualTo("MyFile.txt"));
+                        Assert.That(document.DocumentHeaders.CreationTimeUtc, Is.EqualTo(creationTimeUtc));
+                        Assert.That(document.DocumentHeaders.LastAccessTimeUtc, Is.EqualTo(lastAccessTimeUtc));
+                        Assert.That(document.DocumentHeaders.LastWriteTimeUtc, Is.EqualTo(lastWriteTimeUtc));
+                        using (MemoryStream plaintextStream = new MemoryStream())
+                        {
+                            document.DecryptTo(plaintextStream);
+                            Assert.That(document.DocumentHeaders.UncompressedLength, Is.EqualTo(-1), "'AxCrypt is Great!' should not return a value at all for uncompressed, since it was not compressed.");
+                            Assert.That(document.DocumentHeaders.PlaintextLength, Is.EqualTo(17), "'AxCrypt is Great!' is 17 bytes plaintext length.");
                             Assert.That(Encoding.ASCII.GetString(plaintextStream.GetBuffer(), 0, (int)plaintextStream.Length), Is.EqualTo("AxCrypt is Great!"), "Unexpected result of decryption.");
                         }
                     }
@@ -446,10 +489,10 @@ namespace Axantum.AxCrypt.Core.Test
                         Passphrase passphrase = new Passphrase("a");
                         DocumentHeaders headers = new DocumentHeaders(passphrase.DerivedPassphrase);
 
-                        Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(null, inputStream, outputStream); });
-                        Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(headers, null, outputStream); });
-                        Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(headers, inputStream, null); });
-                        Assert.Throws<ArgumentException>(() => { document.EncryptTo(headers, inputStream, new NonSeekableStream()); });
+                        Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(null, inputStream, outputStream, AxCryptOptions.EncryptWithCompression); });
+                        Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(headers, null, outputStream, AxCryptOptions.EncryptWithCompression); });
+                        Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(headers, inputStream, null, AxCryptOptions.EncryptWithCompression); });
+                        Assert.Throws<ArgumentException>(() => { document.EncryptTo(headers, inputStream, new NonSeekableStream(), AxCryptOptions.EncryptWithCompression); });
                         Assert.Throws<ArgumentNullException>(() => { document.CopyEncryptedTo(null, outputStream); });
                         Assert.Throws<ArgumentNullException>(() => { document.CopyEncryptedTo(headers, null); });
                         Assert.Throws<ArgumentException>(() => { document.CopyEncryptedTo(headers, new NonSeekableStream()); });
