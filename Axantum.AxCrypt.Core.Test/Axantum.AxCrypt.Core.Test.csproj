@@ -89,6 +89,7 @@
     <None Include="Resources\David Copperfield-Key-Å ä Ö-txt.axx" />
     <None Include="Resources\HelloWorld-Key-a-txt.axx" />
     <None Include="Resources\Tst 0.0b6 - Key %27åäö%27 - Medium - .html - .axx" />
+    <None Include="Resources\Uncompressable-zip.axx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Axantum.AxCrypt.Core\Axantum.AxCrypt.Core.csproj">

@@ -50,6 +50,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             FakeRuntimeFileInfo.AddFile(@"c:\test.txt", FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate3Utc, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
             FakeRuntimeFileInfo.AddFile(@"c:\Users\AxCrypt\David Copperfield.txt", FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate5Utc, FakeRuntimeFileInfo.TestDate6Utc, new MemoryStream(Resources.David_Copperfield));
+            FakeRuntimeFileInfo.AddFile(@"c:\Documents\Uncompressed.axx", new MemoryStream(Resources.Uncompressable_zip));
         }
 
         [TestFixtureTearDownAttribute]
@@ -135,6 +136,21 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo decryptedFileInfo = Environment.Current.FileInfo(@"c:\decrypted.txt");
             bool isPassphraseOk = AxCryptFile.Decrypt(encryptedFileInfo, decryptedFileInfo, new Passphrase("wrong"), AxCryptFileOptions.None);
             Assert.That(isPassphraseOk, Is.False, "The passphrase is wrong and should be wrong!");
+        }
+
+        [Test]
+        public static void TestUncompressedEncryptedDecryptAxCrypt17()
+        {
+            IRuntimeFileInfo sourceRuntimeFileInfo = Environment.Current.FileInfo(@"c:\Documents\Uncompressed.axx");
+            IRuntimeFileInfo destinationRuntimeFileInfo = Environment.Current.FileInfo(@"c:\Documents\Uncompressed.zip");
+            Passphrase passphrase = new Passphrase("Uncompressable");
+            using (AxCryptDocument document = new AxCryptDocument())
+            {
+                bool isOk = document.Load(sourceRuntimeFileInfo.OpenRead(), passphrase);
+                Assert.That(isOk, Is.True, "The document should load ok.");
+                AxCryptFile.Decrypt(document, destinationRuntimeFileInfo, AxCryptFileOptions.None);
+                Assert.That(document.DocumentHeaders.UncompressedLength, Is.EqualTo(0), "Since the data is not compressed, there should not be a CompressionInfo, but in 1.x there is, with value zero.");
+            }
         }
     }
 }

@@ -87,5 +87,12 @@ namespace Axantum.AxCrypt.Core.Test.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        internal static byte[] Uncompressable_zip {
+            get {
+                object obj = ResourceManager.GetObject("Uncompressable_zip", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }
