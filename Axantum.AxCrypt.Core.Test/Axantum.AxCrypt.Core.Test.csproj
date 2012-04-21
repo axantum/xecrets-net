@@ -76,6 +76,8 @@
     <Compile Include="TestDocumentHeaders.cs" />
     <Compile Include="TestExceptions.cs" />
     <Compile Include="TestExtensions.cs" />
+    <Compile Include="TestFileInfoHeaderBlock.cs" />
+    <Compile Include="TestFileNameInfoHeaderBlock.cs" />
     <Compile Include="TestIOStreams.cs" />
     <Compile Include="TestKeyWrap.cs" />
     <Compile Include="TestKeyWrapSalt.cs" />
