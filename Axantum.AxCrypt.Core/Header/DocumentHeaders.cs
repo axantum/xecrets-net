@@ -32,6 +32,10 @@ namespace Axantum.AxCrypt.Core.Reader
             _headerBlocks.Add(new DataHeaderBlock());
 
             SetMasterKeyForEncryptedHeaderBlocks(_headerBlocks);
+
+            EncryptionInfoHeaderBlock encryptionInfoHeaderBlock = FindHeaderBlock<EncryptionInfoHeaderBlock>();
+            encryptionInfoHeaderBlock.IV = new AesIV();
+            encryptionInfoHeaderBlock.PlaintextLength = 0;
         }
 
         public DocumentHeaders(DocumentHeaders documentHeaders)

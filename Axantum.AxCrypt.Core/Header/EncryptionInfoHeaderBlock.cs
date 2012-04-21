@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt.Core.Reader
         }
 
         public EncryptionInfoHeaderBlock()
-            : this(Environment.Current.GetRandomBytes(32))
+            : this(new byte[0])
         {
         }
 
@@ -48,10 +48,21 @@ namespace Axantum.AxCrypt.Core.Reader
             return block;
         }
 
+        private void EnsureDataBlock()
+        {
+            if (GetDataBlockBytesReference().Length > 0)
+            {
+                return;
+            }
+
+            SetDataBlockBytesReference(HeaderCrypto.Encrypt(new byte[32]));
+        }
+
         public long PlaintextLength
         {
             get
             {
+                EnsureDataBlock();
                 byte[] rawData = HeaderCrypto.Decrypt(GetDataBlockBytesReference());
 
                 long plaintextLength = rawData.GetLittleEndianValue(0, sizeof(long));
@@ -60,6 +71,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
             set
             {
+                EnsureDataBlock();
                 byte[] rawData = HeaderCrypto.Decrypt(GetDataBlockBytesReference());
 
                 byte[] plaintextLengthBytes = value.GetLittleEndianBytes();
@@ -74,6 +86,7 @@ namespace Axantum.AxCrypt.Core.Reader
         {
             get
             {
+                EnsureDataBlock();
                 byte[] rawData = HeaderCrypto.Decrypt(GetDataBlockBytesReference());
 
                 byte[] iv = new byte[16];
@@ -84,6 +97,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
             set
             {
+                EnsureDataBlock();
                 byte[] rawData = HeaderCrypto.Decrypt(GetDataBlockBytesReference());
 
                 byte[] encryptedIV = HeaderCrypto.Encrypt(value.GetBytes());
