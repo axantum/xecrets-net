@@ -64,6 +64,10 @@ namespace Axantum.AxCrypt.Core.Reader
             {
                 return GetDataBlockBytesReference()[0];
             }
+            set
+            {
+                GetDataBlockBytesReference()[0] = value;
+            }
         }
 
         /// <summary>

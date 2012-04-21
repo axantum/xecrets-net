@@ -400,6 +400,15 @@ namespace Axantum.AxCrypt.Core.Reader
             }
         }
 
+        protected VersionHeaderBlock VersionHeaderBlock
+        {
+            get
+            {
+                VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();
+                return versionHeaderBlock;
+            }
+        }
+
         private void EnsureFileFormatVersion()
         {
             VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();

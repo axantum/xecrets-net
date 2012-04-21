@@ -109,6 +109,53 @@ namespace Axantum.AxCrypt.Core.Test
                     Assert.That(isPassphraseValid, Is.False, "The passphrase is intentionally wrong for this test case.");
                     Assert.That(documentHeaders.HmacSubkey, Is.Null, "Since the passphrase is wrong, HmacSubkey should return null.");
                     Assert.That(documentHeaders.DataSubkey, Is.Null, "Since the passphrase is wrong, DataSubkey should return null.");
+                    Assert.That(documentHeaders.HeadersSubkey, Is.Null, "Since the passphrase is wrong, HeadersSubkey should return null.");
+                }
+            }
+        }
+
+        private class DocumentHeadersForTest : DocumentHeaders
+        {
+            public DocumentHeadersForTest(AesKey keyEncryptingKey)
+                : base(keyEncryptingKey)
+            {
+            }
+
+            public void SetNextFileVersionMajor()
+            {
+                VersionHeaderBlock versionHeaderBlock = VersionHeaderBlock;
+                versionHeaderBlock.FileVersionMajor = (byte)(versionHeaderBlock.FileVersionMajor + 1);
+            }
+        }
+
+        [Test]
+        public static void TestDecryptOfTooNewFileVersion()
+        {
+            DateTime creationTimeUtc = new DateTime(2012, 1, 1, 1, 2, 3, DateTimeKind.Utc);
+            DateTime lastAccessTimeUtc = creationTimeUtc + new TimeSpan(1, 0, 0);
+            DateTime lastWriteTimeUtc = creationTimeUtc + new TimeSpan(2, 0, 0); ;
+            using (Stream inputStream = new MemoryStream(Encoding.UTF8.GetBytes("AxCrypt is Great!")))
+            {
+                using (Stream outputStream = new MemoryStream())
+                {
+                    using (AxCryptDocument document = new AxCryptDocument())
+                    {
+                        Passphrase passphrase = new Passphrase("a");
+                        DocumentHeadersForTest headers = new DocumentHeadersForTest(passphrase.DerivedPassphrase);
+                        headers.FileName = "MyFile.txt";
+                        headers.CreationTimeUtc = creationTimeUtc;
+                        headers.LastAccessTimeUtc = lastAccessTimeUtc;
+                        headers.LastWriteTimeUtc = lastWriteTimeUtc;
+                        headers.SetNextFileVersionMajor();
+                        document.DocumentHeaders = headers;
+                        document.EncryptTo(headers, inputStream, outputStream, AxCryptOptions.EncryptWithoutCompression);
+                    }
+                    outputStream.Position = 0;
+                    using (AxCryptDocument document = new AxCryptDocument())
+                    {
+                        Passphrase passphrase = new Passphrase("a");
+                        Assert.Throws<FileFormatException>(() => { document.Load(outputStream, passphrase); });
+                    }
                 }
             }
         }
