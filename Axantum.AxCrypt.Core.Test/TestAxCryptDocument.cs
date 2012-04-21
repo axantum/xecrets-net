@@ -493,6 +493,9 @@ namespace Axantum.AxCrypt.Core.Test
                         Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(headers, null, outputStream, AxCryptOptions.EncryptWithCompression); });
                         Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(headers, inputStream, null, AxCryptOptions.EncryptWithCompression); });
                         Assert.Throws<ArgumentException>(() => { document.EncryptTo(headers, inputStream, new NonSeekableStream(), AxCryptOptions.EncryptWithCompression); });
+                        Assert.Throws<ArgumentException>(() => { document.EncryptTo(headers, inputStream, outputStream, AxCryptOptions.EncryptWithCompression | AxCryptOptions.EncryptWithoutCompression); });
+                        Assert.Throws<ArgumentException>(() => { document.EncryptTo(headers, inputStream, outputStream, AxCryptOptions.None); });
+
                         Assert.Throws<ArgumentNullException>(() => { document.CopyEncryptedTo(null, outputStream); });
                         Assert.Throws<ArgumentNullException>(() => { document.CopyEncryptedTo(headers, null); });
                         Assert.Throws<ArgumentException>(() => { document.CopyEncryptedTo(headers, new NonSeekableStream()); });
