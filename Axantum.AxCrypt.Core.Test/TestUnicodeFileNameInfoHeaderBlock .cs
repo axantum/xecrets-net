@@ -61,6 +61,8 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<InvalidOperationException>(() =>
             {
                 string fileName = unicodeFileInfoHeaderBlock.FileName;
+                // Avoid FxCop errors
+                Object.Equals(fileName, null);
             });
         }
     }
