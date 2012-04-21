@@ -57,7 +57,7 @@ namespace Axantum.AxCrypt.Core.Reader
             return keyData;
         }
 
-        private void Set(byte[] wrapped, KeyWrapSalt salt, long iterations)
+        protected void Set(byte[] wrapped, KeyWrapSalt salt, long iterations)
         {
             if (wrapped == null)
             {

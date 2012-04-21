@@ -81,6 +81,7 @@
     <Compile Include="TestIdTagHeaderBlock.cs" />
     <Compile Include="TestIOStreams.cs" />
     <Compile Include="TestKeyWrap.cs" />
+    <Compile Include="TestKeyWrap1HeaderBlock.cs" />
     <Compile Include="TestKeyWrap2HeaderBlock.cs" />
     <Compile Include="TestKeyWrapSalt.cs" />
     <Compile Include="TestPassphrase.cs" />
