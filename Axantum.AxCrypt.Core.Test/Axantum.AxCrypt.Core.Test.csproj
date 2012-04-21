@@ -78,13 +78,17 @@
     <Compile Include="TestExtensions.cs" />
     <Compile Include="TestFileInfoHeaderBlock.cs" />
     <Compile Include="TestFileNameInfoHeaderBlock.cs" />
+    <Compile Include="TestIdTagHeaderBlock.cs" />
     <Compile Include="TestIOStreams.cs" />
     <Compile Include="TestKeyWrap.cs" />
+    <Compile Include="TestKeyWrap2HeaderBlock.cs" />
     <Compile Include="TestKeyWrapSalt.cs" />
     <Compile Include="TestPassphrase.cs" />
     <Compile Include="TestRuntimeEnvironment.cs" />
     <Compile Include="TestRuntimeFileInfo.cs" />
     <Compile Include="TestSubkey.cs" />
+    <Compile Include="TestUnrecognizedHeaderBlock .cs" />
+    <Compile Include="TestVersionHeaderBlock .cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />

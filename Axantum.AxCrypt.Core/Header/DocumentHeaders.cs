@@ -118,9 +118,6 @@ namespace Axantum.AxCrypt.Core.Reader
 
         private void WriteInternal(Stream cipherStream, Stream hmacStream)
         {
-            VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();
-            versionHeaderBlock.SetCurrentVersion();
-
             cipherStream.Position = 0;
             AxCrypt1Guid.Write(cipherStream);
             PreambleHeaderBlock preambleHaderBlock = FindHeaderBlock<PreambleHeaderBlock>();
@@ -402,6 +399,12 @@ namespace Axantum.AxCrypt.Core.Reader
                 DataHeaderBlock headerBlock = FindHeaderBlock<DataHeaderBlock>();
                 headerBlock.CipherTextLength = value;
             }
+        }
+
+        public void SetCurrentVersion()
+        {
+            VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();
+            versionHeaderBlock.SetCurrentVersion();
         }
 
         protected VersionHeaderBlock VersionHeaderBlock

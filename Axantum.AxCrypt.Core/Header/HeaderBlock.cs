@@ -57,6 +57,15 @@ namespace Axantum.AxCrypt.Core.Reader
         }
 
         /// <summary>
+        /// Get a copy of the raw data block.
+        /// </summary>
+        /// <returns>Returns a cloned copy of the data block.</returns>
+        public byte[] GetDataBlockBytes()
+        {
+            return (byte[])GetDataBlockBytesReference().Clone();
+        }
+
+        /// <summary>
         /// Set a reference to the internally maintained data block. Beware modifying the contents of the array!
         /// </summary>
         /// <param name="dataBlock"></param>

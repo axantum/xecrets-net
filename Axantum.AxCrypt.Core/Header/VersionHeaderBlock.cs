@@ -40,7 +40,7 @@ namespace Axantum.AxCrypt.Core.Reader
         }
 
         public VersionHeaderBlock()
-            : this(_version)
+            : this((byte[])_version.Clone())
         {
         }
 

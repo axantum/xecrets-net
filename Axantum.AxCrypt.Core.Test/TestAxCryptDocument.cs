@@ -315,6 +315,7 @@ namespace Axantum.AxCrypt.Core.Test
                 using (Stream changedStream = new MemoryStream())
                 {
                     DocumentHeaders outputDocumentHeaders = new DocumentHeaders(document.DocumentHeaders);
+                    outputDocumentHeaders.SetCurrentVersion();
                     outputDocumentHeaders.RewrapMasterKey(newPassphrase.DerivedPassphrase);
 
                     document.CopyEncryptedTo(outputDocumentHeaders, changedStream);
@@ -526,6 +527,7 @@ namespace Axantum.AxCrypt.Core.Test
                 using (Stream changedStream = new MemoryStream())
                 {
                     DocumentHeaders outputDocumentHeaders = new DocumentHeaders(document.DocumentHeaders);
+                    outputDocumentHeaders.SetCurrentVersion();
                     outputDocumentHeaders.RewrapMasterKey(newPassphrase.DerivedPassphrase);
 
                     byte[] modifiedHmacBytes = document.DocumentHeaders.Hmac.GetBytes();
