@@ -1,0 +1,189 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Visual Studio 8.0">
+<TITLE></TITLE>
+</HEAD>
+<BODY>
+<h1>Introduction</h1>
+    <p>
+        AxCrypt version 2 is intended to extend and improve on AxCrypt 1.x in various ways,
+        based on the almost 10 years of experience with version 1.</p>
+<h1>Main Design Goals</h1>
+    <p>
+        The main design goals lists features and behavior that will be realized by version
+        2. Some are the same as in version 1, some are different etc.</p>
+    <ul>
+        <li>Portability - AxCrypt was designed to use and exploit the Win32 API as much as possible.
+            AxCrypt2 will instead focus on cross platform portability, primarily for Linux and
+            Mac, and secondary for mobile platforms (the idea being that differences will be
+            reduced in time). This will be achieved by use of portability layers:
+    <ul>
+            <ul>
+            <li>AxCryptLib provides a platform independent library for the actual encryption operations.
+                It uses callbacks/interfaces to provide platform specific functionality. It also
+                implements pluggable memory allocation to make it possible to ensure security for
+                used memory.</li>
+                <li>gettext is used for localization of texts. It is portable and available on the various
+                    platforms.</li>
+                <li>wxWidgets is used for platform independent GUI. It is portable and availabe on the
+                    various platforms.</li>
+                <li>zlib for compression. </li>
+                <li>AxPipe with Crypto++ for actual encryption operations. AxPipe will need to be made
+                    fully platform independent, possibly by depending on APR.</li>
+                <li>AxPortLib provided various platform independent utility functions that are not part
+                    of APR such as (Unicode/Ansi conversion), XML parsing, user settings handling (this
+                    may be handled by wxWidgets) and other utility functions. Callback
+                    interfaces are used for platform dependent operations.</li>
+                <li>Apache Portable Runtime for platform independent operations.&nbsp;</li>
+            </ul>
+    </ul>
+    </li>
+        <li>Simpler build process - AxCrypt has a very complex build process with extensive
+            scripting for various reasons. Although the build may consist of quite a few separately
+            built compontents and libraries, the end result should just be a simple link, and
+            that should be it.</li>
+        <li>No installation when not absolutely required. The regular AxCrypt2Go executable
+            should as far as is possible be a simple executable without any need for installation.</li>
+        <li>No installer scripting. For parts such as the shell extension in Windows that really
+            needs an installer, all logic should be part of the Windows specific part of the
+            main executable code. The installer should be limited to simple copying of files,
+            and unistallation removal of the same installed files. Registry etc must be managed
+            by code in the main installer.</li>
+        <li>Less dependence on advanced features of Visual Studio - Should be buildable and
+            compileable with Visual Studio Express.</li>
+        <li>More forgiving for fatal errors during uninstallation - an uninstall should probably
+            never give up. It may ask the users permission to continue if an error is encountered,
+            but it really should complete.</li>
+        <li>A separate uinstaller/cleaner, that can be run to clean up just about any situation,
+            including corruption/deletion of the original uninstaller.</li>
+        <li>No scripting logic to handle OEM adaptions. This will be handled by branching in
+            the repository instead - but all OEM-variable texts and data should be concentrated
+            to as few files as possible.</li>
+        <li>No use of registry for user settings. User settings are stored in a monitored XML
+            file, which is stored in a platform-dependent user-local location. Global settings,
+            if any are stored in an XML file in a platform-dependent location, typically the
+            same folder as the program. (Check wxWidgets capabilities in this regard).</li>
+        <li>Less use of advanced features - much more robust handling of automatic reencryption,
+            possibly at the expense of some manual operation.</li>
+    </ul>
+<h1>Main Anti Goals</h1>
+    <ul>
+        <li>Less worry about clear-text in memory, but prepare for it with AxCryptLib allocation.</li>
+    </ul>
+    <p>
+    </p>
+<h1>Design Details</h1>
+<h2>Decrypt-Modify-Encrypt</h2>
+    <p>
+        The current implementation in AxCrypt works reasonably well in many cases, but is
+        very platform dependent, and very hard to port. It's also rather sensitive to various
+        smarter applications, and their creative behavior.</p>
+    <p>
+        A more robust scheme should depend as little as possible on advanced platform features.
+        Waitable applications are probably ok, but non-returning and too-quick-returning
+        applications must be handled.</p>
+    <p>
+        Turning this on it's head... Opportunistic re-encryption? As soon as it's modified,
+        and we can get exclusive access, re-encrypt. Keep a "transaction log", recording
+        what is in the temp folder, where it came from and thus should be re-encrypted to.</p>
+    <p>
+        Use of platform dependent file watching should be ok, in Windows use file system
+        watcher, otherwise a polling implementation.</p>
+    <p>
+        Deletion of a sucessfully re-encrypted file that could be opened exclusively should
+        be ok. If it's kept in memory by the app, and then re-saved nothing bad should happen,
+        as long as we know where it came from we can still re-encrypt.</p>
+    <p>
+        This implies the transaction log must be encrypted, using the key of course, and
+        using a non-identifiable (i.e. a keyed hash of the file name or similar).</p>
+    <ol>
+        <li>A file is decrypted (if required, it may already be decrypted), and the application
+            launched. The fact is noted in the user transaction log, which contains the source
+            path, the temp path and the time of the original. Nothing more happens in this thread.</li>
+        <li>A watcher thread will check if a file is modified later than what is recorded in
+            the transaction log. Each record in the transaction log is encrypted with the same
+            key as the file it concerns. Every time a modification is noted, and the clear text
+            file can be accessed exclusively, it is re-encrypted. The watcher thread could be
+            driven by file system watchers, but for simplicity sake it just polls every X seconds,
+            or when it is kicked. When something happens, the wiper thread is kicked to ensure
+            that things happen rapidly.</li>
+        <li>A wiper thread will check every Y seconds if a file in the transaction log can be
+            accessed excusively with no change. Y is dynamic and stored in the transaction log,
+            so it can grow and shrink. If the file can be access exclusively, it is wiped. This
+            is really the only weakness, an application could let go of all handles, and still
+            expect to read more from the file - if so it will be somewhat surprised to see it
+            gone...</li>
+        <li>Conditional wiping is handled by associating applications with enabled and disabled
+            automatic wipe. An unknown associated application prompts the user, with the recommendation
+            being automatic.This is platform dependent, but the idea is that there should be
+            a pre-populated list of the most common applications.</li>
+        <li>Deferred wiping occurs during system shutdown, logout and with a manual dialog.</li>
+        <li>The transaction log can also mark a directory as encrypted, in which case files
+            placed there will be automatically encrypted (as long as AxCrypt is running of course).</li>
+        <li>A user request for encryption of a plain-text-file, or a directory, is actually
+            accomplished by entering it into the transaction log, and kicking the watcher thread.</li>
+        <li>Command line operations typically mimic the same operations as performed by the
+            GUI, as if entered via the GUI (with some obvious extensions) - but they must be
+            possible to run synchronously so that operations are waitable. For real batch operations,
+            a new non-interactive flag will be introduced, which will cause no GUI at all to
+            be invoked, and a purely synchronous execution model - no transaction log etc.</li>
+    </ol>
+    <h2>
+        Inter Process Communication</h2>
+    <p>
+        This should be minimized and simplified... But how? We want and need a resident
+        process for reencryption and wiper threads, and we probably need to keep keys there.</p>
+    <p>
+        The shell extension and similar components can launch AxCrypt as a child process,
+        and can thus provide a pipe for IPC. How this secondary delegating process actually
+        communicates with the primary work process is less of a problem since it's an internal
+        issue. But since we can now use the secondary delegating instance as a proxy, there's
+        a single simple interface to use along side with the command line.</p>
+    <p>
+        In any way, command line launching is always GUI-free, thus bypassing all complex
+        windowing problems of AxCrypt 1. A client that wants to provide a GUI will have
+        to do so by itself.</p>
+    <p>
+        The command line can have an option specifying a file descriptor to write status
+        messages, progress etc to. These will be text-free, since it's supposed the client
+        will have to handle localization issues. Text-only, localized messages, are provided
+        on stderr (possibly only if requested).</p>
+    <p>
+        This means the shell extension passphrase dialog and progress dialog will by necessity
+        be managed by the shell extension. Progress information etc will have to be communicated
+        from the main instance via IPC, as well as passphrase info. Should be ok.</p>
+    <p>
+        Options for IPC are:</p>
+    <ol>
+        <li>Shared Memory</li>
+        <li>Shared Files (This is probably the only portable one).</li>
+        <li>Named Pipes</li>
+        <li>TCP/IP</li>
+    </ol>
+    <h2>
+        Primary GUI Worker/Secondary Proxy design</h2>
+    <p>
+        The same basic design is used as in AxCrypt 1, but the difference is that the secondary
+        processes never have any GUI actions. They do emit output to standard output and/or
+        standard error, just like a command line utility. They also offer the capability
+        to accept commands via stdin instead, and emit protocol rather than text responses
+        and progress feedback etc via stdout.</p>
+    <p>
+        IPC between Primary and Secondary is implemented using APR and shared memory, if
+        no better solution is found. I'd prefer named pipes, but that requires a platform
+        independent library implementation.</p>
+    <h2>
+        GUI behavior</h2>
+    <p>
+        The GUI will be a simple tree view with support for right-click and double-click.
+        Passphrase entry will be a typical modal dialog box. Progress indication will be
+        a separate element in the window, and also visible in the tray icon (for windows)
+        and when hovering.
+    </p>
+    <h2>
+        Shell Extension Implementation</h2>
+    <p>
+        The shell extension has been fraught with problems due to the issues of cross process
+        communication and windowing.</p>
+</BODY>
+</HTML>
