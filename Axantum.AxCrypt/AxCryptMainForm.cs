@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Properties;
 
 namespace Axantum.AxCrypt
@@ -14,7 +15,10 @@ namespace Axantum.AxCrypt
         public AxCryptMainForm()
         {
             InitializeComponent();
+            _messageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
         }
+
+        private MessageBoxOptions _messageBoxOptions;
 
         private void toolStripButtonEncrypt_Click(object sender, EventArgs e)
         {
@@ -58,7 +62,13 @@ namespace Axantum.AxCrypt
                     return;
                 }
 
-                EncryptedFileManager.Open(ofd.FileNames);
+                foreach (string file in ofd.FileNames)
+                {
+                    if (EncryptedFileManager.Open(file) != FileOperationStatus.Success)
+                    {
+                        MessageBox.Show("Failed to decrypt and open {0}".InvariantFormat(file), "AxCypt", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, _messageBoxOptions);
+                    }
+                }
             }
         }
 
