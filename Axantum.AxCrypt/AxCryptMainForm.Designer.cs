@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AxCryptMainForm));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonOpenEncrypted = new System.Windows.Forms.ToolStripButton();
@@ -40,14 +41,15 @@
             this.openEncryptedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.encryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.decryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StatusTabs = new System.Windows.Forms.TabControl();
             this.OpenFilesTab = new System.Windows.Forms.TabPage();
             this.OpenFilesListView = new System.Windows.Forms.ListView();
             this.WatchedFoldersTab = new System.Windows.Forms.TabPage();
             this.WatchedFoldersListView = new System.Windows.Forms.ListView();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.ActiveFilePolling = new System.Windows.Forms.Timer(this.components);
             this.toolStrip1.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.StatusTabs.SuspendLayout();
@@ -133,6 +135,17 @@
             this.decryptToolStripMenuItem.Name = "decryptToolStripMenuItem";
             resources.ApplyResources(this.decryptToolStripMenuItem, "decryptToolStripMenuItem");
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            resources.ApplyResources(this.exitToolStripMenuItem, "exitToolStripMenuItem");
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
@@ -173,16 +186,11 @@
             this.WatchedFoldersListView.Name = "WatchedFoldersListView";
             this.WatchedFoldersListView.UseCompatibleStateImageBehavior = false;
             // 
-            // exitToolStripMenuItem
+            // ActiveFilePolling
             // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            resources.ApplyResources(this.exitToolStripMenuItem, "exitToolStripMenuItem");
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
+            this.ActiveFilePolling.Enabled = true;
+            this.ActiveFilePolling.Interval = 1000;
+            this.ActiveFilePolling.Tick += new System.EventHandler(this.ActiveFilePolling_Tick);
             // 
             // AxCryptMainForm
             // 
@@ -227,6 +235,7 @@
         private System.Windows.Forms.ListView WatchedFoldersListView;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.Timer ActiveFilePolling;
     }
 }
 

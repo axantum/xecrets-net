@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt
                 return FileOperationStatus.CannotStartApplication;
             }
 
-            ActiveFileState.ActiveFiles.Add(activeFile);
+            ActiveFileState.AddActiveFile(activeFile);
 
             return FileOperationStatus.Success;
         }

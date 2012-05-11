@@ -81,5 +81,10 @@ namespace Axantum.AxCrypt
         {
             Application.Exit();
         }
+
+        private void ActiveFilePolling_Tick(object sender, EventArgs e)
+        {
+            ActiveFileState.CheckActiveFileStatus();
+        }
     }
 }

@@ -9,9 +9,35 @@ namespace Axantum.AxCrypt
     {
         private static IList<ActiveFile> _activeFiles = new List<ActiveFile>();
 
-        public static IList<ActiveFile> ActiveFiles
+        public static void AddActiveFile(ActiveFile activeFile)
         {
-            get { return _activeFiles; }
+            lock (_activeFiles)
+            {
+                _activeFiles.Add(activeFile);
+            }
+        }
+
+        public static void CheckActiveFileStatus()
+        {
+            lock (_activeFiles)
+            {
+                IList<ActiveFile> activeFiles = new List<ActiveFile>();
+
+                foreach (ActiveFile activeFile in _activeFiles)
+                {
+                    ActiveFile updatedActiveFile = CheckActiveFileStatus(activeFile);
+                    if (updatedActiveFile != null)
+                    {
+                        activeFiles.Add(activeFile);
+                    }
+                }
+                _activeFiles = activeFiles;
+            }
+        }
+
+        private static ActiveFile CheckActiveFileStatus(ActiveFile activeFile)
+        {
+            return activeFile;
         }
     }
 }
