@@ -66,10 +66,15 @@ namespace Axantum.AxCrypt
                 {
                     if (EncryptedFileManager.Open(file) != FileOperationStatus.Success)
                     {
-                        MessageBox.Show("Failed to decrypt and open {0}".InvariantFormat(file), "AxCypt", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, _messageBoxOptions);
+                        ShowMessageBox("Failed to decrypt and open {0}".InvariantFormat(file));
                     }
                 }
             }
+        }
+
+        private void ShowMessageBox(string message)
+        {
+            MessageBox.Show(message, "AxCypt", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, _messageBoxOptions);
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
