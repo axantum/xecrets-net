@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt
             {
                 if (activeFileInfo.LastWriteTimeUtc > activeFile.LastWriteTimeUtc)
                 {
-                    CopyToWithBackup(activeFileStream, activeFile.EncryptedPath);
+                    WriteToFileWithBackup(activeFile.EncryptedPath, (Stream destination) => { activeFileStream.CopyTo(destination); });
                     activeFile = new ActiveFile(activeFile.EncryptedPath, activeFile.DecryptedPath, activeFileInfo.LastWriteTimeUtc);
                 }
             }
@@ -70,29 +70,35 @@ namespace Axantum.AxCrypt
             return activeFile;
         }
 
-        private static void CopyToWithBackup(FileStream activeFileStream, string destinationPath)
+        private static void WriteToFileWithBackup(string destinationFilePath, Action<Stream> writeFileStreamTo)
         {
-            FileInfo destinationFileInfo = new FileInfo(destinationPath);
-            FileInfo temporaryDestination;
-            do
+            FileInfo destinationFileInfo = new FileInfo(destinationFilePath);
+            string temporaryFilePath = MakeAlternatePath(destinationFileInfo, ".tmp");
+            FileInfo temporaryFileInfo = new FileInfo(temporaryFilePath);
+
+            using (FileStream temporaryStream = temporaryFileInfo.Open(FileMode.CreateNew, FileAccess.ReadWrite, FileShare.None))
             {
-                temporaryDestination = new FileInfo(Path.Combine(destinationFileInfo.DirectoryName, Path.GetRandomFileName()));
+                writeFileStreamTo(temporaryStream);
             }
-            while (temporaryDestination.Exists);
-            using (FileStream destinationStream = temporaryDestination.Open(FileMode.CreateNew, FileAccess.ReadWrite, FileShare.None))
-            {
-                activeFileStream.CopyTo(destinationStream);
-            }
-            string backupFilePath;
+
+            string backupFilePath = MakeAlternatePath(destinationFileInfo, ".bak");
+            destinationFileInfo.MoveTo(backupFilePath);
+            temporaryFileInfo.MoveTo(destinationFilePath);
+            File.Delete(backupFilePath);
+        }
+
+        private static string MakeAlternatePath(FileInfo fileInfo, string extension)
+        {
+            string alternatePath;
             int version = 0;
             do
             {
-                backupFilePath = Path.Combine(destinationFileInfo.DirectoryName, destinationFileInfo.Name + "." + version.ToString(CultureInfo.InvariantCulture));
+                string alternateExtension = (version > 0 ? "." + version.ToString(CultureInfo.InvariantCulture) : String.Empty) + extension;
+                alternatePath = Path.Combine(fileInfo.DirectoryName, Path.GetFileNameWithoutExtension(fileInfo.Name) + alternateExtension);
                 ++version;
-            } while (File.Exists(backupFilePath));
-            destinationFileInfo.MoveTo(backupFilePath);
-            temporaryDestination.MoveTo(destinationPath);
-            File.Delete(backupFilePath);
+            } while (File.Exists(alternatePath));
+
+            return alternatePath;
         }
     }
 }
