@@ -11,16 +11,37 @@ namespace Axantum.AxCrypt
     {
         private static IList<ActiveFile> _activeFiles = new List<ActiveFile>();
 
+        public static event EventHandler<EventArgs> Changed;
+
         public static void AddActiveFile(ActiveFile activeFile)
         {
             lock (_activeFiles)
             {
                 _activeFiles.Add(activeFile);
             }
+            OnChanged(new EventArgs());
         }
 
-        public static void CheckActiveFileStatus()
+        public static IEnumerable<ActiveFile> ActiveFiles
         {
+            get
+            {
+                return new List<ActiveFile>(_activeFiles);
+            }
+        }
+
+        private static void OnChanged(EventArgs eventArgs)
+        {
+            EventHandler<EventArgs> changed = Changed;
+            if (changed != null)
+            {
+                changed(null, eventArgs);
+            }
+        }
+
+        public static void CheckActiveFilesStatus()
+        {
+            bool isChanged = false;
             lock (_activeFiles)
             {
                 IList<ActiveFile> activeFiles = new List<ActiveFile>();
@@ -32,8 +53,13 @@ namespace Axantum.AxCrypt
                     {
                         activeFiles.Add(activeFile);
                     }
+                    isChanged |= updatedActiveFile == null || !updatedActiveFile.Equals(activeFile);
                 }
                 _activeFiles = activeFiles;
+            }
+            if (isChanged)
+            {
+                OnChanged(new EventArgs());
             }
         }
 

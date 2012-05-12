@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -16,6 +17,16 @@ namespace Axantum.AxCrypt
         {
             InitializeComponent();
             _messageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
+            ActiveFileState.Changed += new EventHandler<EventArgs>(ActiveFileState_Changed);
+        }
+
+        private void ActiveFileState_Changed(object sender, EventArgs e)
+        {
+            OpenFilesListView.Clear();
+            foreach (ActiveFile activeFile in ActiveFileState.ActiveFiles)
+            {
+                OpenFilesListView.Items.Add(new ListViewItem(Path.GetFileName(activeFile.DecryptedPath)));
+            }
         }
 
         private MessageBoxOptions _messageBoxOptions;
@@ -84,7 +95,7 @@ namespace Axantum.AxCrypt
 
         private void ActiveFilePolling_Tick(object sender, EventArgs e)
         {
-            ActiveFileState.CheckActiveFileStatus();
+            ActiveFileState.CheckActiveFilesStatus();
         }
     }
 }
