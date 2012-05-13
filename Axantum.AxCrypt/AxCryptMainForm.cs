@@ -23,7 +23,23 @@ namespace Axantum.AxCrypt
         private void ActiveFileState_Changed(object sender, EventArgs e)
         {
             OpenFilesListView.Clear();
-            ActiveFileState.ForEach((ActiveFile activeFile) => { OpenFilesListView.Items.Add(new ListViewItem(Path.GetFileName(activeFile.DecryptedPath))); });
+            ActiveFileState.ForEach((ActiveFile activeFile) => { UpdateOpenFilesWith(activeFile); });
+        }
+
+        private void UpdateOpenFilesWith(ActiveFile activeFile)
+        {
+            ListViewItem item;
+            if (!File.Exists(activeFile.DecryptedPath))
+            {
+                item = new ListViewItem(Path.GetFileName(activeFile.DecryptedPath), "InactiveFile");
+                ListViewItem.ListViewSubItem activeInactiveFlag = new ListViewItem.ListViewSubItem(item, "Inactive");
+            }
+            else
+            {
+                item = new ListViewItem(Path.GetFileName(activeFile.DecryptedPath), "ActiveFile");
+                ListViewItem.ListViewSubItem activeInactiveFlag = new ListViewItem.ListViewSubItem(item, "Active");
+            }
+            OpenFilesListView.Items.Add(item);
         }
 
         private MessageBoxOptions _messageBoxOptions;

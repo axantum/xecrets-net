@@ -47,6 +47,8 @@
             this.StatusTabs = new System.Windows.Forms.TabControl();
             this.OpenFilesTab = new System.Windows.Forms.TabPage();
             this.OpenFilesListView = new System.Windows.Forms.ListView();
+            this.ImageList48 = new System.Windows.Forms.ImageList(this.components);
+            this.ImageList16 = new System.Windows.Forms.ImageList(this.components);
             this.WatchedFoldersTab = new System.Windows.Forms.TabPage();
             this.WatchedFoldersListView = new System.Windows.Forms.ListView();
             this.ActiveFilePolling = new System.Windows.Forms.Timer(this.components);
@@ -170,8 +172,24 @@
             // OpenFilesListView
             // 
             resources.ApplyResources(this.OpenFilesListView, "OpenFilesListView");
+            this.OpenFilesListView.LargeImageList = this.ImageList48;
             this.OpenFilesListView.Name = "OpenFilesListView";
+            this.OpenFilesListView.SmallImageList = this.ImageList16;
             this.OpenFilesListView.UseCompatibleStateImageBehavior = false;
+            // 
+            // ImageList48
+            // 
+            this.ImageList48.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImageList48.ImageStream")));
+            this.ImageList48.TransparentColor = System.Drawing.Color.Transparent;
+            this.ImageList48.Images.SetKeyName(0, "ActiveFile");
+            this.ImageList48.Images.SetKeyName(1, "InactiveFile");
+            // 
+            // ImageList16
+            // 
+            this.ImageList16.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImageList16.ImageStream")));
+            this.ImageList16.TransparentColor = System.Drawing.Color.Transparent;
+            this.ImageList16.Images.SetKeyName(0, "ActiveFile");
+            this.ImageList16.Images.SetKeyName(1, "InactiveFile");
             // 
             // WatchedFoldersTab
             // 
@@ -236,6 +254,8 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.Timer ActiveFilePolling;
+        private System.Windows.Forms.ImageList ImageList48;
+        private System.Windows.Forms.ImageList ImageList16;
     }
 }
 
