@@ -17,16 +17,40 @@ namespace Axantum.AxCrypt
         {
             lock (_activeFiles)
             {
-                _activeFiles.Add(activeFile);
+                int index = _activeFiles.IndexOf(activeFile);
+                if (index < 0)
+                {
+                    _activeFiles.Add(activeFile);
+                }
+                else
+                {
+                    _activeFiles[index] = activeFile;
+                }
             }
             OnChanged(new EventArgs());
         }
 
-        public static IEnumerable<ActiveFile> ActiveFiles
+        public static void ForEach(Action<ActiveFile> action)
         {
-            get
+            lock (_activeFiles)
             {
-                return new List<ActiveFile>(_activeFiles);
+                foreach (ActiveFile activeFile in _activeFiles)
+                {
+                    action(activeFile);
+                }
+            }
+        }
+
+        public static ActiveFile FindActiveFile(string encryptedPath)
+        {
+            lock (_activeFiles)
+            {
+                int index = _activeFiles.IndexOf(new ActiveFile(encryptedPath));
+                if (index < 0)
+                {
+                    return null;
+                }
+                return _activeFiles[index];
             }
         }
 

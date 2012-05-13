@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 
 namespace Axantum.AxCrypt
@@ -29,29 +30,35 @@ namespace Axantum.AxCrypt
                 return FileOperationStatus.FileDoesNotExist;
             }
 
-            string destinationFileName = Path.Combine(_tempDir.FullName, fileInfo.Name);
-            FileInfo copy;
+            ActiveFile destinationActiveFile = ActiveFileState.FindActiveFile(fileInfo.FullName);
+
+            if (destinationActiveFile == null)
+            {
+                string destinationFileName = Path.Combine(_tempDir.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()));
+                Directory.CreateDirectory(destinationFileName);
+                destinationFileName = Path.Combine(destinationFileName, fileInfo.Name);
+                destinationActiveFile = new ActiveFile(fileInfo.FullName, destinationFileName, fileInfo.LastWriteTimeUtc);
+            }
+
             try
             {
-                copy = fileInfo.CopyTo(destinationFileName);
+                fileInfo.CopyTo(destinationActiveFile.DecryptedPath);
             }
             catch (IOException)
             {
                 return FileOperationStatus.CannotWriteDestination;
             }
 
-            ActiveFile activeFile = new ActiveFile(fileInfo.FullName, copy.FullName, fileInfo.LastWriteTimeUtc);
-
             try
             {
-                Process.Start(destinationFileName);
+                Process.Start(destinationActiveFile.DecryptedPath);
             }
             catch (Win32Exception)
             {
                 return FileOperationStatus.CannotStartApplication;
             }
 
-            ActiveFileState.AddActiveFile(activeFile);
+            ActiveFileState.AddActiveFile(destinationActiveFile);
 
             return FileOperationStatus.Success;
         }
