@@ -20,6 +20,7 @@ namespace Axantum.AxCrypt
             FileInfo decryptedFileInfo = new FileInfo(decryptedPath);
             LastWriteTimeUtc = decryptedFileInfo.LastWriteTimeUtc;
             Status = status;
+            LastLaunchUtc = DateTime.UtcNow;
         }
 
         public string DecryptedPath { get; private set; }
@@ -29,5 +30,7 @@ namespace Axantum.AxCrypt
         public DateTime LastWriteTimeUtc { get; private set; }
 
         public ActiveFileStatus Status { get; private set; }
+
+        public DateTime LastLaunchUtc { get; private set; }
     }
 }

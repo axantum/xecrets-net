@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Security.AccessControl;
 using System.Text;
+using System.Threading;
 
 namespace Axantum.AxCrypt
 {
@@ -13,6 +14,20 @@ namespace Axantum.AxCrypt
     {
         private static DirectoryInfo _tempDir = MakeTemporaryDirectory();
         private static readonly object _lock = new object();
+        public static event EventHandler<EventArgs> Changed;
+
+        static EncryptedFileManager()
+        {
+            ActiveFileMonitor.Changed += new EventHandler<EventArgs>(ActiveFileMonitor_Changed);
+        }
+
+        private static void ActiveFileMonitor_Changed(object sender, EventArgs e)
+        {
+            lock (_lock)
+            {
+                OnChanged(e);
+            }
+        }
 
         private static DirectoryInfo MakeTemporaryDirectory()
         {
@@ -36,6 +51,15 @@ namespace Axantum.AxCrypt
             lock (_lock)
             {
                 ActiveFileMonitor.CheckActiveFilesStatus();
+            }
+        }
+
+        private static void OnChanged(EventArgs eventArgs)
+        {
+            EventHandler<EventArgs> changed = Changed;
+            if (changed != null)
+            {
+                changed(null, eventArgs);
             }
         }
 

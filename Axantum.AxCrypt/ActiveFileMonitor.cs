@@ -12,7 +12,7 @@ namespace Axantum.AxCrypt
         private static IDictionary<string, ActiveFile> _activeFiles = new Dictionary<string, ActiveFile>();
         private static readonly object _lock = new object();
 
-        public static event EventHandler<EventArgs> Changed;
+        internal static event EventHandler<EventArgs> Changed;
 
         public static void AddActiveFile(ActiveFile activeFile)
         {
@@ -65,7 +65,11 @@ namespace Axantum.AxCrypt
 
                 foreach (ActiveFile activeFile in _activeFiles.Values)
                 {
-                    ActiveFile updatedActiveFile = CheckActiveFileStatus(activeFile);
+                    ActiveFile updatedActiveFile = activeFile;
+                    if (activeFile.Status != ActiveFileStatus.Locked || (DateTime.UtcNow - activeFile.LastLaunchUtc) > new TimeSpan(0, 0, 5))
+                    {
+                        updatedActiveFile = CheckActiveFileStatus(activeFile);
+                    }
                     activeFiles[updatedActiveFile.EncryptedPath] = updatedActiveFile;
                     isChanged |= updatedActiveFile != activeFile;
                 }
@@ -79,6 +83,11 @@ namespace Axantum.AxCrypt
 
         private static ActiveFile CheckActiveFileStatus(ActiveFile activeFile)
         {
+            if (activeFile.Status == ActiveFileStatus.Deleted)
+            {
+                return activeFile;
+            }
+
             FileInfo activeFileInfo = new FileInfo(activeFile.DecryptedPath);
             FileStream activeFileStream = null;
             try

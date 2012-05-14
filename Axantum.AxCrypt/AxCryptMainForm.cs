@@ -17,29 +17,31 @@ namespace Axantum.AxCrypt
         {
             InitializeComponent();
             _messageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
-            ActiveFileMonitor.Changed += new EventHandler<EventArgs>(ActiveFileState_Changed);
+            EncryptedFileManager.Changed += new EventHandler<EventArgs>(ActiveFileState_Changed);
         }
 
         private void ActiveFileState_Changed(object sender, EventArgs e)
         {
             OpenFilesListView.Clear();
+            RecentFilesListView.Clear();
             ActiveFileMonitor.ForEach((ActiveFile activeFile) => { UpdateOpenFilesWith(activeFile); });
         }
 
         private void UpdateOpenFilesWith(ActiveFile activeFile)
         {
             ListViewItem item;
-            if (!File.Exists(activeFile.DecryptedPath))
+            if (activeFile.Status == ActiveFileStatus.Deleted)
             {
                 item = new ListViewItem(Path.GetFileName(activeFile.DecryptedPath), "InactiveFile");
                 ListViewItem.ListViewSubItem activeInactiveFlag = new ListViewItem.ListViewSubItem(item, "Inactive");
+                RecentFilesListView.Items.Add(item);
             }
-            else
+            if (activeFile.Status == ActiveFileStatus.Locked)
             {
                 item = new ListViewItem(Path.GetFileName(activeFile.DecryptedPath), "ActiveFile");
                 ListViewItem.ListViewSubItem activeInactiveFlag = new ListViewItem.ListViewSubItem(item, "Active");
+                OpenFilesListView.Items.Add(item);
             }
-            OpenFilesListView.Items.Add(item);
         }
 
         private MessageBoxOptions _messageBoxOptions;
@@ -113,7 +115,7 @@ namespace Axantum.AxCrypt
 
         private void ActiveFilePolling_Tick(object sender, EventArgs e)
         {
-            ActiveFileMonitor.CheckActiveFilesStatus();
+            EncryptedFileManager.CheckActiveFilesStatus();
         }
 
         private void openEncryptedToolStripMenuItem_Click(object sender, EventArgs e)

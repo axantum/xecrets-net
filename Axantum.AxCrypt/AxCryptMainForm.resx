@@ -398,6 +398,36 @@
   <metadata name="menuStripMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>122, 17</value>
   </metadata>
+  <data name="menuStripMain.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="menuStripMain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>712, 24</value>
+  </data>
+  <data name="menuStripMain.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="menuStripMain.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;menuStripMain.Name" xml:space="preserve">
+    <value>menuStripMain</value>
+  </data>
+  <data name="&gt;&gt;menuStripMain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuStripMain.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;menuStripMain.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 20</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;File</value>
+  </data>
   <data name="openEncryptedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>159, 22</value>
   </data>
@@ -425,44 +455,53 @@
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>E&amp;xit</value>
   </data>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 20</value>
-  </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;File</value>
-  </data>
   <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 20</value>
   </data>
   <data name="helpToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Help</value>
   </data>
-  <data name="menuStripMain.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
+  <data name="&gt;&gt;OpenFilesListView.Name" xml:space="preserve">
+    <value>OpenFilesListView</value>
   </data>
-  <data name="menuStripMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>712, 24</value>
+  <data name="&gt;&gt;OpenFilesListView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="menuStripMain.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="&gt;&gt;OpenFilesListView.Parent" xml:space="preserve">
+    <value>OpenFilesTab</value>
   </data>
-  <data name="menuStripMain.Text" xml:space="preserve">
-    <value>menuStrip1</value>
+  <data name="&gt;&gt;OpenFilesListView.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="&gt;&gt;menuStripMain.Name" xml:space="preserve">
-    <value>menuStripMain</value>
-  </data>
-  <data name="&gt;&gt;menuStripMain.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;menuStripMain.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;menuStripMain.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="OpenFilesTab.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="OpenFilesListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="OpenFilesTab.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="OpenFilesTab.Size" type="System.Drawing.Size, System.Drawing">
+    <value>704, 162</value>
+  </data>
+  <data name="OpenFilesTab.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="OpenFilesTab.Text" xml:space="preserve">
+    <value>Open Files</value>
+  </data>
+  <data name="&gt;&gt;OpenFilesTab.Name" xml:space="preserve">
+    <value>OpenFilesTab</value>
+  </data>
+  <data name="&gt;&gt;OpenFilesTab.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;OpenFilesTab.Parent" xml:space="preserve">
+    <value>StatusTabs</value>
+  </data>
+  <data name="&gt;&gt;OpenFilesTab.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="RecentFilesListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <metadata name="ImageList48.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -1027,10 +1066,10 @@
         AwABMAMAAQEBAAEBBQABgAEEFgAD//8A/wD/AP8AhQAL
 </value>
   </data>
-  <data name="OpenFilesListView.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="RecentFilesListView.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
-  <data name="OpenFilesListView.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="RecentFilesListView.Size" type="System.Drawing.Size, System.Drawing">
     <value>698, 156</value>
   </data>
   <metadata name="ImageList16.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -1106,59 +1145,47 @@
         AwABQAMAARADAAEBAQABAQUAAYAXAAP/gQAL
 </value>
   </data>
-  <data name="OpenFilesListView.TabIndex" type="System.Int32, mscorlib">
+  <data name="RecentFilesListView.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;OpenFilesListView.Name" xml:space="preserve">
-    <value>OpenFilesListView</value>
+  <data name="&gt;&gt;RecentFilesListView.Name" xml:space="preserve">
+    <value>RecentFilesListView</value>
   </data>
-  <data name="&gt;&gt;OpenFilesListView.Type" xml:space="preserve">
+  <data name="&gt;&gt;RecentFilesListView.Type" xml:space="preserve">
     <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;OpenFilesListView.Parent" xml:space="preserve">
-    <value>OpenFilesTab</value>
+  <data name="&gt;&gt;RecentFilesListView.Parent" xml:space="preserve">
+    <value>RecentFilesTab</value>
   </data>
-  <data name="&gt;&gt;OpenFilesListView.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;RecentFilesListView.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="OpenFilesTab.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="RecentFilesTab.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
   </data>
-  <data name="OpenFilesTab.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="RecentFilesTab.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
-  <data name="OpenFilesTab.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="RecentFilesTab.Size" type="System.Drawing.Size, System.Drawing">
     <value>704, 162</value>
   </data>
-  <data name="OpenFilesTab.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="RecentFilesTab.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
-  <data name="OpenFilesTab.Text" xml:space="preserve">
-    <value>Open Files</value>
+  <data name="RecentFilesTab.Text" xml:space="preserve">
+    <value>Recent Files</value>
   </data>
-  <data name="&gt;&gt;OpenFilesTab.Name" xml:space="preserve">
-    <value>OpenFilesTab</value>
+  <data name="&gt;&gt;RecentFilesTab.Name" xml:space="preserve">
+    <value>RecentFilesTab</value>
   </data>
-  <data name="&gt;&gt;OpenFilesTab.Type" xml:space="preserve">
+  <data name="&gt;&gt;RecentFilesTab.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;OpenFilesTab.Parent" xml:space="preserve">
+  <data name="&gt;&gt;RecentFilesTab.Parent" xml:space="preserve">
     <value>StatusTabs</value>
   </data>
-  <data name="&gt;&gt;OpenFilesTab.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="WatchedFoldersListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="WatchedFoldersListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="WatchedFoldersListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>698, 156</value>
-  </data>
-  <data name="WatchedFoldersListView.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="&gt;&gt;RecentFilesTab.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="&gt;&gt;WatchedFoldersListView.Name" xml:space="preserve">
     <value>WatchedFoldersListView</value>
@@ -1197,7 +1224,7 @@
     <value>StatusTabs</value>
   </data>
   <data name="&gt;&gt;WatchedFoldersTab.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="StatusTabs.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1221,6 +1248,54 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;StatusTabs.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="OpenFilesListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="OpenFilesListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="OpenFilesListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>698, 156</value>
+  </data>
+  <data name="OpenFilesListView.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;OpenFilesListView.Name" xml:space="preserve">
+    <value>OpenFilesListView</value>
+  </data>
+  <data name="&gt;&gt;OpenFilesListView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;OpenFilesListView.Parent" xml:space="preserve">
+    <value>OpenFilesTab</value>
+  </data>
+  <data name="&gt;&gt;OpenFilesListView.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="WatchedFoldersListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="WatchedFoldersListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="WatchedFoldersListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>698, 156</value>
+  </data>
+  <data name="WatchedFoldersListView.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;WatchedFoldersListView.Name" xml:space="preserve">
+    <value>WatchedFoldersListView</value>
+  </data>
+  <data name="&gt;&gt;WatchedFoldersListView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;WatchedFoldersListView.Parent" xml:space="preserve">
+    <value>WatchedFoldersTab</value>
+  </data>
+  <data name="&gt;&gt;WatchedFoldersListView.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="ActiveFilePolling.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

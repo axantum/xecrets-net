@@ -52,11 +52,14 @@
             this.WatchedFoldersTab = new System.Windows.Forms.TabPage();
             this.WatchedFoldersListView = new System.Windows.Forms.ListView();
             this.ActiveFilePolling = new System.Windows.Forms.Timer(this.components);
+            this.RecentFilesTab = new System.Windows.Forms.TabPage();
+            this.RecentFilesListView = new System.Windows.Forms.ListView();
             this.toolStrip1.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.StatusTabs.SuspendLayout();
             this.OpenFilesTab.SuspendLayout();
             this.WatchedFoldersTab.SuspendLayout();
+            this.RecentFilesTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -158,6 +161,7 @@
             // StatusTabs
             // 
             this.StatusTabs.Controls.Add(this.OpenFilesTab);
+            this.StatusTabs.Controls.Add(this.RecentFilesTab);
             this.StatusTabs.Controls.Add(this.WatchedFoldersTab);
             resources.ApplyResources(this.StatusTabs, "StatusTabs");
             this.StatusTabs.Name = "StatusTabs";
@@ -211,6 +215,21 @@
             this.ActiveFilePolling.Interval = 1000;
             this.ActiveFilePolling.Tick += new System.EventHandler(this.ActiveFilePolling_Tick);
             // 
+            // RecentFilesTab
+            // 
+            this.RecentFilesTab.Controls.Add(this.RecentFilesListView);
+            resources.ApplyResources(this.RecentFilesTab, "RecentFilesTab");
+            this.RecentFilesTab.Name = "RecentFilesTab";
+            this.RecentFilesTab.UseVisualStyleBackColor = true;
+            // 
+            // RecentFilesListView
+            // 
+            resources.ApplyResources(this.RecentFilesListView, "RecentFilesListView");
+            this.RecentFilesListView.LargeImageList = this.ImageList48;
+            this.RecentFilesListView.Name = "RecentFilesListView";
+            this.RecentFilesListView.SmallImageList = this.ImageList16;
+            this.RecentFilesListView.UseCompatibleStateImageBehavior = false;
+            // 
             // AxCryptMainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -228,6 +247,7 @@
             this.StatusTabs.ResumeLayout(false);
             this.OpenFilesTab.ResumeLayout(false);
             this.WatchedFoldersTab.ResumeLayout(false);
+            this.RecentFilesTab.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -257,6 +277,8 @@
         private System.Windows.Forms.Timer ActiveFilePolling;
         private System.Windows.Forms.ImageList ImageList48;
         private System.Windows.Forms.ImageList ImageList16;
+        private System.Windows.Forms.TabPage RecentFilesTab;
+        private System.Windows.Forms.ListView RecentFilesListView;
     }
 }
 
