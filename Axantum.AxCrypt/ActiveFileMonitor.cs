@@ -7,34 +7,27 @@ using System.Text;
 
 namespace Axantum.AxCrypt
 {
-    public static class ActiveFileState
+    public static class ActiveFileMonitor
     {
-        private static IList<ActiveFile> _activeFiles = new List<ActiveFile>();
+        private static IDictionary<string, ActiveFile> _activeFiles = new Dictionary<string, ActiveFile>();
+        private static readonly object _lock = new object();
 
         public static event EventHandler<EventArgs> Changed;
 
         public static void AddActiveFile(ActiveFile activeFile)
         {
-            lock (_activeFiles)
+            lock (_lock)
             {
-                int index = _activeFiles.IndexOf(activeFile);
-                if (index < 0)
-                {
-                    _activeFiles.Add(activeFile);
-                }
-                else
-                {
-                    _activeFiles[index] = activeFile;
-                }
+                _activeFiles[activeFile.EncryptedPath] = activeFile;
             }
             OnChanged(new EventArgs());
         }
 
         public static void ForEach(Action<ActiveFile> action)
         {
-            lock (_activeFiles)
+            lock (_lock)
             {
-                foreach (ActiveFile activeFile in _activeFiles)
+                foreach (ActiveFile activeFile in _activeFiles.Values)
                 {
                     action(activeFile);
                 }
@@ -43,14 +36,14 @@ namespace Axantum.AxCrypt
 
         public static ActiveFile FindActiveFile(string encryptedPath)
         {
-            lock (_activeFiles)
+            lock (_lock)
             {
-                int index = _activeFiles.IndexOf(new ActiveFile(encryptedPath));
-                if (index < 0)
+                ActiveFile activeFile;
+                if (_activeFiles.TryGetValue(encryptedPath, out activeFile))
                 {
-                    return null;
+                    return activeFile;
                 }
-                return _activeFiles[index];
+                return null;
             }
         }
 
@@ -63,21 +56,18 @@ namespace Axantum.AxCrypt
             }
         }
 
-        public static void CheckActiveFilesStatus()
+        internal static void CheckActiveFilesStatus()
         {
             bool isChanged = false;
-            lock (_activeFiles)
+            lock (_lock)
             {
-                IList<ActiveFile> activeFiles = new List<ActiveFile>();
+                IDictionary<string, ActiveFile> activeFiles = new Dictionary<string, ActiveFile>();
 
-                foreach (ActiveFile activeFile in _activeFiles)
+                foreach (ActiveFile activeFile in _activeFiles.Values)
                 {
                     ActiveFile updatedActiveFile = CheckActiveFileStatus(activeFile);
-                    if (updatedActiveFile != null)
-                    {
-                        activeFiles.Add(activeFile);
-                    }
-                    isChanged |= updatedActiveFile == null || !updatedActiveFile.Equals(activeFile);
+                    activeFiles[updatedActiveFile.EncryptedPath] = updatedActiveFile;
+                    isChanged |= updatedActiveFile != activeFile;
                 }
                 _activeFiles = activeFiles;
             }
@@ -105,7 +95,6 @@ namespace Axantum.AxCrypt
                 if (activeFileInfo.LastWriteTimeUtc > activeFile.LastWriteTimeUtc)
                 {
                     WriteToFileWithBackup(activeFile.EncryptedPath, (Stream destination) => { activeFileStream.CopyTo(destination); });
-                    activeFile = new ActiveFile(activeFile.EncryptedPath, activeFile.DecryptedPath, activeFileInfo.LastWriteTimeUtc);
                 }
             }
             finally
@@ -116,6 +105,7 @@ namespace Axantum.AxCrypt
                 }
             }
 
+            activeFile = new ActiveFile(activeFile.EncryptedPath, activeFile.DecryptedPath, ActiveFileStatus.Deleted);
             activeFileInfo.Delete();
             return activeFile;
         }

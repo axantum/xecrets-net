@@ -12,6 +12,7 @@ namespace Axantum.AxCrypt
     public static class EncryptedFileManager
     {
         private static DirectoryInfo _tempDir = MakeTemporaryDirectory();
+        private static readonly object _lock = new object();
 
         private static DirectoryInfo MakeTemporaryDirectory()
         {
@@ -24,25 +25,48 @@ namespace Axantum.AxCrypt
 
         public static FileOperationStatus Open(string file)
         {
+            lock (_lock)
+            {
+                return OpenInternal(file);
+            }
+        }
+
+        public static void CheckActiveFilesStatus()
+        {
+            lock (_lock)
+            {
+                ActiveFileMonitor.CheckActiveFilesStatus();
+            }
+        }
+
+        private static FileOperationStatus OpenInternal(string file)
+        {
             FileInfo fileInfo = new FileInfo(file);
             if (!fileInfo.Exists)
             {
                 return FileOperationStatus.FileDoesNotExist;
             }
 
-            ActiveFile destinationActiveFile = ActiveFileState.FindActiveFile(fileInfo.FullName);
+            ActiveFile destinationActiveFile = ActiveFileMonitor.FindActiveFile(fileInfo.FullName);
 
+            string destinationPath;
             if (destinationActiveFile == null)
             {
-                string destinationFileName = Path.Combine(_tempDir.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()));
-                Directory.CreateDirectory(destinationFileName);
-                destinationFileName = Path.Combine(destinationFileName, fileInfo.Name);
-                destinationActiveFile = new ActiveFile(fileInfo.FullName, destinationFileName, fileInfo.LastWriteTimeUtc);
+                destinationPath = Path.Combine(_tempDir.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()));
+                Directory.CreateDirectory(destinationPath);
+                destinationPath = Path.Combine(destinationPath, fileInfo.Name);
+            }
+            else
+            {
+                destinationPath = destinationActiveFile.DecryptedPath;
             }
 
             try
             {
-                fileInfo.CopyTo(destinationActiveFile.DecryptedPath);
+                if (!File.Exists(destinationPath))
+                {
+                    fileInfo.CopyTo(destinationPath);
+                }
             }
             catch (IOException)
             {
@@ -51,15 +75,15 @@ namespace Axantum.AxCrypt
 
             try
             {
-                Process.Start(destinationActiveFile.DecryptedPath);
+                Process.Start(destinationPath);
             }
             catch (Win32Exception)
             {
                 return FileOperationStatus.CannotStartApplication;
             }
 
-            ActiveFileState.AddActiveFile(destinationActiveFile);
-
+            destinationActiveFile = new ActiveFile(fileInfo.FullName, destinationPath, ActiveFileStatus.Locked);
+            ActiveFileMonitor.AddActiveFile(destinationActiveFile);
             return FileOperationStatus.Success;
         }
     }

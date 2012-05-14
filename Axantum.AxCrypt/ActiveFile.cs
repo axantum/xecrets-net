@@ -7,24 +7,19 @@ using System.Text;
 namespace Axantum.AxCrypt
 {
     /// <summary>
-    /// This class represent an active source files current state. Instances of this class are
+    /// This class represent an active source files' current known state. Instances of this class are
     /// immutable. Instances of this class are considered equal on basis of equivalence of the
     /// path of the encrypted source file.
     /// </summary>
     public class ActiveFile
     {
-        public ActiveFile(string encryptedPath, string decryptedPath, DateTime lastWriteTimeUtc)
+        public ActiveFile(string encryptedPath, string decryptedPath, ActiveFileStatus status)
         {
             EncryptedPath = Path.GetFullPath(encryptedPath);
             DecryptedPath = Path.GetFullPath(decryptedPath);
-            LastWriteTimeUtc = lastWriteTimeUtc;
-        }
-
-        public ActiveFile(string encryptedPath)
-        {
-            EncryptedPath = Path.GetFullPath(encryptedPath);
-            DecryptedPath = String.Empty;
-            LastWriteTimeUtc = DateTime.MinValue;
+            FileInfo decryptedFileInfo = new FileInfo(decryptedPath);
+            LastWriteTimeUtc = decryptedFileInfo.LastWriteTimeUtc;
+            Status = status;
         }
 
         public string DecryptedPath { get; private set; }
@@ -33,19 +28,6 @@ namespace Axantum.AxCrypt
 
         public DateTime LastWriteTimeUtc { get; private set; }
 
-        public override bool Equals(object obj)
-        {
-            ActiveFile other = obj as ActiveFile;
-            if (other == null)
-            {
-                return false;
-            }
-            return EncryptedPath.Equals(other.EncryptedPath);
-        }
-
-        public override int GetHashCode()
-        {
-            return EncryptedPath.GetHashCode();
-        }
+        public ActiveFileStatus Status { get; private set; }
     }
 }

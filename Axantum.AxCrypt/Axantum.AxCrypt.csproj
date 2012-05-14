@@ -49,7 +49,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActiveFile.cs" />
-    <Compile Include="ActiveFileState.cs" />
+    <Compile Include="ActiveFileMonitor.cs" />
+    <Compile Include="ActiveFileStatus.cs" />
     <Compile Include="AxCryptMainForm.cs">
       <SubType>Form</SubType>
     </Compile>

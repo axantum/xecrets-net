@@ -13,5 +13,6 @@ namespace Axantum.AxCrypt
         FileDoesNotExist,
         CannotWriteDestination,
         CannotStartApplication,
+        InconsistentState,
     }
 }

@@ -17,13 +17,13 @@ namespace Axantum.AxCrypt
         {
             InitializeComponent();
             _messageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
-            ActiveFileState.Changed += new EventHandler<EventArgs>(ActiveFileState_Changed);
+            ActiveFileMonitor.Changed += new EventHandler<EventArgs>(ActiveFileState_Changed);
         }
 
         private void ActiveFileState_Changed(object sender, EventArgs e)
         {
             OpenFilesListView.Clear();
-            ActiveFileState.ForEach((ActiveFile activeFile) => { UpdateOpenFilesWith(activeFile); });
+            ActiveFileMonitor.ForEach((ActiveFile activeFile) => { UpdateOpenFilesWith(activeFile); });
         }
 
         private void UpdateOpenFilesWith(ActiveFile activeFile)
@@ -74,6 +74,11 @@ namespace Axantum.AxCrypt
 
         private void toolStripButtonOpenEncrypted_Click(object sender, EventArgs e)
         {
+            OpenDialog();
+        }
+
+        private void OpenDialog()
+        {
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
                 ofd.Title = Resources.OpenEncryptedFileOpenDialogTitle;
@@ -108,7 +113,12 @@ namespace Axantum.AxCrypt
 
         private void ActiveFilePolling_Tick(object sender, EventArgs e)
         {
-            ActiveFileState.CheckActiveFilesStatus();
+            ActiveFileMonitor.CheckActiveFilesStatus();
+        }
+
+        private void openEncryptedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenDialog();
         }
     }
 }

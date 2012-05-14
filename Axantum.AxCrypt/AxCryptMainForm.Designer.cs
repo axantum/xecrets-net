@@ -126,6 +126,7 @@
             // 
             this.openEncryptedToolStripMenuItem.Name = "openEncryptedToolStripMenuItem";
             resources.ApplyResources(this.openEncryptedToolStripMenuItem, "openEncryptedToolStripMenuItem");
+            this.openEncryptedToolStripMenuItem.Click += new System.EventHandler(this.openEncryptedToolStripMenuItem_Click);
             // 
             // encryptToolStripMenuItem
             // 
