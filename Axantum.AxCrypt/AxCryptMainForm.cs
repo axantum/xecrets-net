@@ -33,13 +33,13 @@ namespace Axantum.AxCrypt
             if (activeFile.Status == ActiveFileStatus.Deleted)
             {
                 item = new ListViewItem(Path.GetFileName(activeFile.DecryptedPath), "InactiveFile");
-                ListViewItem.ListViewSubItem activeInactiveFlag = new ListViewItem.ListViewSubItem(item, "Inactive");
+                item.SubItems.Add(new ListViewItem.ListViewSubItem(item, "Inactive"));
                 RecentFilesListView.Items.Add(item);
             }
             if (activeFile.Status == ActiveFileStatus.Locked)
             {
                 item = new ListViewItem(Path.GetFileName(activeFile.DecryptedPath), "ActiveFile");
-                ListViewItem.ListViewSubItem activeInactiveFlag = new ListViewItem.ListViewSubItem(item, "Active");
+                item.SubItems.Add(new ListViewItem.ListViewSubItem(item, "Active"));
                 OpenFilesListView.Items.Add(item);
             }
         }
