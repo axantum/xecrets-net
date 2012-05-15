@@ -36,7 +36,7 @@ namespace Axantum.AxCrypt
                 item = new ListViewItem(Path.GetFileName(activeFile.DecryptedPath), "InactiveFile");
                 item.SubItems.Add(activeFile.EncryptedPath);
                 ListViewItem.ListViewSubItem dateColumn = new ListViewItem.ListViewSubItem();
-                dateColumn.Text = activeFile.LastAccessTimeUtc.ToString(CultureInfo.CurrentUICulture);
+                dateColumn.Text = activeFile.LastAccessTimeUtc.ToString(CultureInfo.CurrentCulture);
                 dateColumn.Tag = activeFile.LastAccessTimeUtc;
                 item.SubItems.Add(dateColumn);
                 RecentFilesListView.Items.Add(item);

@@ -12,14 +12,9 @@ namespace Axantum.AxCrypt
 {
     public static class EncryptedFileManager
     {
-        private static DirectoryInfo _tempDir = MakeTemporaryDirectory();
+        private static DirectoryInfo _tempDir = InitializeAndMakeTemporaryDirectory();
         private static readonly object _lock = new object();
         public static event EventHandler<EventArgs> Changed;
-
-        static EncryptedFileManager()
-        {
-            ActiveFileMonitor.Changed += new EventHandler<EventArgs>(ActiveFileMonitor_Changed);
-        }
 
         private static void ActiveFileMonitor_Changed(object sender, EventArgs e)
         {
@@ -29,12 +24,23 @@ namespace Axantum.AxCrypt
             }
         }
 
+        private static DirectoryInfo InitializeAndMakeTemporaryDirectory()
+        {
+            Initialize();
+
+            return MakeTemporaryDirectory();
+        }
+
+        private static void Initialize()
+        {
+            ActiveFileMonitor.Changed += new EventHandler<EventArgs>(ActiveFileMonitor_Changed);
+        }
+
         private static DirectoryInfo MakeTemporaryDirectory()
         {
             string tempDir = Path.Combine(Path.GetTempPath(), "AxCrypt");
             DirectoryInfo tempInfo = new DirectoryInfo(tempDir);
             tempInfo.Create();
-
             return tempInfo;
         }
 
