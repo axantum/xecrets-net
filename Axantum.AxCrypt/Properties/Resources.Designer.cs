@@ -70,6 +70,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Encrypted File.
+        /// </summary>
+        internal static string EncryptedSourceColumnHeader {
+            get {
+                return ResourceManager.GetString("EncryptedSourceColumnHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select files to encrypt.
         /// </summary>
         internal static string EncryptFileOpenDialogTitle {
@@ -84,6 +93,15 @@ namespace Axantum.AxCrypt.Properties {
         internal static string OpenEncryptedFileOpenDialogTitle {
             get {
                 return ResourceManager.GetString("OpenEncryptedFileOpenDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        internal static string OpenFileColumnHeader {
+            get {
+                return ResourceManager.GetString("OpenFileColumnHeader", resourceCulture);
             }
         }
     }

@@ -67,6 +67,9 @@
     <EmbeddedResource Include="AxCryptMainForm.sv-SE.resx">
       <DependentUpon>AxCryptMainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AxCryptMainForm.sv.resx">
+      <DependentUpon>AxCryptMainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

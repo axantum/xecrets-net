@@ -47,19 +47,24 @@
             this.StatusTabs = new System.Windows.Forms.TabControl();
             this.OpenFilesTab = new System.Windows.Forms.TabPage();
             this.OpenFilesListView = new System.Windows.Forms.ListView();
+            this.OpenFile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.EncryptedSource = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ImageList48 = new System.Windows.Forms.ImageList(this.components);
             this.ImageList16 = new System.Windows.Forms.ImageList(this.components);
+            this.RecentFilesTab = new System.Windows.Forms.TabPage();
+            this.RecentFilesListView = new System.Windows.Forms.ListView();
             this.WatchedFoldersTab = new System.Windows.Forms.TabPage();
             this.WatchedFoldersListView = new System.Windows.Forms.ListView();
             this.ActiveFilePolling = new System.Windows.Forms.Timer(this.components);
-            this.RecentFilesTab = new System.Windows.Forms.TabPage();
-            this.RecentFilesListView = new System.Windows.Forms.ListView();
+            this.EncryptedPath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LastAccessTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.DecryptedFile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip1.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.StatusTabs.SuspendLayout();
             this.OpenFilesTab.SuspendLayout();
-            this.WatchedFoldersTab.SuspendLayout();
             this.RecentFilesTab.SuspendLayout();
+            this.WatchedFoldersTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -176,11 +181,23 @@
             // 
             // OpenFilesListView
             // 
+            this.OpenFilesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.OpenFile,
+            this.EncryptedSource});
             resources.ApplyResources(this.OpenFilesListView, "OpenFilesListView");
             this.OpenFilesListView.LargeImageList = this.ImageList48;
             this.OpenFilesListView.Name = "OpenFilesListView";
             this.OpenFilesListView.SmallImageList = this.ImageList16;
             this.OpenFilesListView.UseCompatibleStateImageBehavior = false;
+            this.OpenFilesListView.View = System.Windows.Forms.View.Details;
+            // 
+            // OpenFile
+            // 
+            resources.ApplyResources(this.OpenFile, "OpenFile");
+            // 
+            // EncryptedSource
+            // 
+            resources.ApplyResources(this.EncryptedSource, "EncryptedSource");
             // 
             // ImageList48
             // 
@@ -195,6 +212,27 @@
             this.ImageList16.TransparentColor = System.Drawing.Color.Transparent;
             this.ImageList16.Images.SetKeyName(0, "ActiveFile");
             this.ImageList16.Images.SetKeyName(1, "InactiveFile");
+            // 
+            // RecentFilesTab
+            // 
+            this.RecentFilesTab.Controls.Add(this.RecentFilesListView);
+            resources.ApplyResources(this.RecentFilesTab, "RecentFilesTab");
+            this.RecentFilesTab.Name = "RecentFilesTab";
+            this.RecentFilesTab.UseVisualStyleBackColor = true;
+            // 
+            // RecentFilesListView
+            // 
+            this.RecentFilesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.DecryptedFile,
+            this.EncryptedPath,
+            this.LastAccessTime});
+            resources.ApplyResources(this.RecentFilesListView, "RecentFilesListView");
+            this.RecentFilesListView.LargeImageList = this.ImageList48;
+            this.RecentFilesListView.Name = "RecentFilesListView";
+            this.RecentFilesListView.SmallImageList = this.ImageList16;
+            this.RecentFilesListView.UseCompatibleStateImageBehavior = false;
+            this.RecentFilesListView.View = System.Windows.Forms.View.Details;
+            this.RecentFilesListView.SelectedIndexChanged += new System.EventHandler(this.RecentFilesListView_SelectedIndexChanged);
             // 
             // WatchedFoldersTab
             // 
@@ -215,20 +253,17 @@
             this.ActiveFilePolling.Interval = 1000;
             this.ActiveFilePolling.Tick += new System.EventHandler(this.ActiveFilePolling_Tick);
             // 
-            // RecentFilesTab
+            // EncryptedPath
             // 
-            this.RecentFilesTab.Controls.Add(this.RecentFilesListView);
-            resources.ApplyResources(this.RecentFilesTab, "RecentFilesTab");
-            this.RecentFilesTab.Name = "RecentFilesTab";
-            this.RecentFilesTab.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.EncryptedPath, "EncryptedPath");
             // 
-            // RecentFilesListView
+            // LastAccessTime
             // 
-            resources.ApplyResources(this.RecentFilesListView, "RecentFilesListView");
-            this.RecentFilesListView.LargeImageList = this.ImageList48;
-            this.RecentFilesListView.Name = "RecentFilesListView";
-            this.RecentFilesListView.SmallImageList = this.ImageList16;
-            this.RecentFilesListView.UseCompatibleStateImageBehavior = false;
+            resources.ApplyResources(this.LastAccessTime, "LastAccessTime");
+            // 
+            // DecryptedFile
+            // 
+            resources.ApplyResources(this.DecryptedFile, "DecryptedFile");
             // 
             // AxCryptMainForm
             // 
@@ -246,8 +281,8 @@
             this.menuStripMain.PerformLayout();
             this.StatusTabs.ResumeLayout(false);
             this.OpenFilesTab.ResumeLayout(false);
-            this.WatchedFoldersTab.ResumeLayout(false);
             this.RecentFilesTab.ResumeLayout(false);
+            this.WatchedFoldersTab.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -279,6 +314,11 @@
         private System.Windows.Forms.ImageList ImageList16;
         private System.Windows.Forms.TabPage RecentFilesTab;
         private System.Windows.Forms.ListView RecentFilesListView;
+        private System.Windows.Forms.ColumnHeader OpenFile;
+        private System.Windows.Forms.ColumnHeader EncryptedSource;
+        private System.Windows.Forms.ColumnHeader EncryptedPath;
+        private System.Windows.Forms.ColumnHeader LastAccessTime;
+        private System.Windows.Forms.ColumnHeader DecryptedFile;
     }
 }
 

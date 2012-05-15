@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt
                 foreach (ActiveFile activeFile in _activeFiles.Values)
                 {
                     ActiveFile updatedActiveFile = activeFile;
-                    if (activeFile.Status != ActiveFileStatus.Locked || (DateTime.UtcNow - activeFile.LastLaunchUtc) > new TimeSpan(0, 0, 5))
+                    if (activeFile.Status != ActiveFileStatus.Locked || (DateTime.UtcNow - activeFile.LastAccessTimeUtc) > new TimeSpan(0, 0, 5))
                     {
                         updatedActiveFile = CheckActiveFileStatus(activeFile);
                     }
