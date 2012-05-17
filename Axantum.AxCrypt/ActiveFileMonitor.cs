@@ -7,12 +7,12 @@ using System.Text;
 
 namespace Axantum.AxCrypt
 {
-    public static class ActiveFileMonitor
+    internal static class ActiveFileMonitor
     {
         private static IDictionary<string, ActiveFile> _activeFiles = new Dictionary<string, ActiveFile>();
         private static readonly object _lock = new object();
 
-        internal static event EventHandler<EventArgs> Changed;
+        public static event EventHandler<EventArgs> Changed;
 
         public static void AddActiveFile(ActiveFile activeFile)
         {
@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        internal static void CheckActiveFilesStatus()
+        public static void CheckActiveFilesStatus()
         {
             bool isChanged = false;
             lock (_lock)
