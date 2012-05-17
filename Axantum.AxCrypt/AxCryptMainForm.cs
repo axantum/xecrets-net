@@ -19,6 +19,7 @@ namespace Axantum.AxCrypt
             InitializeComponent();
             _messageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
             EncryptedFileManager.Changed += new EventHandler<EventArgs>(ActiveFileState_Changed);
+            EncryptedFileManager.ForceActiveFilesStatus();
         }
 
         private void ActiveFileState_Changed(object sender, EventArgs e)

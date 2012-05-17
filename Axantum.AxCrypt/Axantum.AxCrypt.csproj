@@ -44,11 +44,13 @@
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActiveFile.cs" />
+    <Compile Include="ActiveFileCollection.cs" />
     <Compile Include="ActiveFileMonitor.cs" />
     <Compile Include="ActiveFileStatus.cs" />
     <Compile Include="AxCryptMainForm.cs">

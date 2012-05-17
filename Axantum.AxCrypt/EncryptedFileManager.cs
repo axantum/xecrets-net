@@ -12,8 +12,8 @@ namespace Axantum.AxCrypt
 {
     public static class EncryptedFileManager
     {
-        private static DirectoryInfo _tempDir = InitializeAndMakeTemporaryDirectory();
-        private static readonly object _lock = new object();
+        private static readonly object _lock = InitializeGetLockObject();
+
         public static event EventHandler<EventArgs> Changed;
 
         private static void ActiveFileMonitor_Changed(object sender, EventArgs e)
@@ -24,24 +24,16 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private static DirectoryInfo InitializeAndMakeTemporaryDirectory()
+        private static object InitializeGetLockObject()
         {
             Initialize();
 
-            return MakeTemporaryDirectory();
+            return new object();
         }
 
         private static void Initialize()
         {
             ActiveFileMonitor.Changed += new EventHandler<EventArgs>(ActiveFileMonitor_Changed);
-        }
-
-        private static DirectoryInfo MakeTemporaryDirectory()
-        {
-            string tempDir = Path.Combine(Path.GetTempPath(), "AxCrypt");
-            DirectoryInfo tempInfo = new DirectoryInfo(tempDir);
-            tempInfo.Create();
-            return tempInfo;
         }
 
         public static FileOperationStatus Open(string file)
@@ -57,6 +49,14 @@ namespace Axantum.AxCrypt
             lock (_lock)
             {
                 ActiveFileMonitor.CheckActiveFilesStatus();
+            }
+        }
+
+        public static void ForceActiveFilesStatus()
+        {
+            lock (_lock)
+            {
+                ActiveFileMonitor.ForceActiveFilesStatus();
             }
         }
 
@@ -82,7 +82,7 @@ namespace Axantum.AxCrypt
             string destinationPath;
             if (destinationActiveFile == null)
             {
-                destinationPath = Path.Combine(_tempDir.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()));
+                destinationPath = Path.Combine(ActiveFileMonitor.TemporaryFolderInfo.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()));
                 Directory.CreateDirectory(destinationPath);
                 destinationPath = Path.Combine(destinationPath, fileInfo.Name);
             }

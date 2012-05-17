@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Axantum.AxCrypt
 {
     internal static class ActiveFileMonitor
     {
-        private static IDictionary<string, ActiveFile> _activeFiles = new Dictionary<string, ActiveFile>();
         private static readonly object _lock = new object();
+
+        private static ActiveFileCollection _activeFiles = Load();
 
         public static event EventHandler<EventArgs> Changed;
 
@@ -19,6 +21,7 @@ namespace Axantum.AxCrypt
             lock (_lock)
             {
                 _activeFiles[activeFile.EncryptedPath] = activeFile;
+                Save();
             }
             OnChanged(new EventArgs());
         }
@@ -58,10 +61,20 @@ namespace Axantum.AxCrypt
 
         public static void CheckActiveFilesStatus()
         {
-            bool isChanged = false;
+            CheckActiveFilesStatusInternal(false);
+        }
+
+        public static void ForceActiveFilesStatus()
+        {
+            CheckActiveFilesStatusInternal(true);
+        }
+
+        private static void CheckActiveFilesStatusInternal(bool forceChanged)
+        {
+            bool isChanged = forceChanged;
             lock (_lock)
             {
-                IDictionary<string, ActiveFile> activeFiles = new Dictionary<string, ActiveFile>();
+                ActiveFileCollection activeFiles = new ActiveFileCollection();
 
                 foreach (ActiveFile activeFile in _activeFiles.Values)
                 {
@@ -77,6 +90,7 @@ namespace Axantum.AxCrypt
             }
             if (isChanged)
             {
+                Save();
                 OnChanged(new EventArgs());
             }
         }
@@ -148,6 +162,61 @@ namespace Axantum.AxCrypt
             } while (File.Exists(alternatePath));
 
             return alternatePath;
+        }
+
+        private static DirectoryInfo _temporaryFolderInfo;
+
+        public static DirectoryInfo TemporaryFolderInfo
+        {
+            get
+            {
+                if (_temporaryFolderInfo == null)
+                {
+                    string temporaryFolderPath = Path.Combine(Path.GetTempPath(), "AxCrypt");
+                    DirectoryInfo temporaryFolderInfo = new DirectoryInfo(temporaryFolderPath);
+                    temporaryFolderInfo.Create();
+                    _temporaryFolderInfo = temporaryFolderInfo;
+                }
+
+                return _temporaryFolderInfo;
+            }
+        }
+
+        private static ActiveFileCollection Load()
+        {
+            DataContractSerializer serializer = CreateSerializer();
+            string path = Path.Combine(TemporaryFolderInfo.FullName, "ActiveFiles.xml");
+            if (!File.Exists(path))
+            {
+                return new ActiveFileCollection();
+            }
+            using (FileStream activeFileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None))
+            {
+                lock (_lock)
+                {
+                    ActiveFileCollection activeFiles = (ActiveFileCollection)serializer.ReadObject(activeFileStream);
+                    return activeFiles;
+                }
+            }
+        }
+
+        private static DataContractSerializer CreateSerializer()
+        {
+            DataContractSerializer serializer = new DataContractSerializer(typeof(ActiveFileCollection), "ActiveFiles", "http://www.axantum.com/Serialization/");
+            return serializer;
+        }
+
+        private static void Save()
+        {
+            DataContractSerializer serializer = CreateSerializer();
+            string path = Path.Combine(TemporaryFolderInfo.FullName, "ActiveFiles.xml");
+            using (FileStream activeFileStream = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
+            {
+                lock (_lock)
+                {
+                    serializer.WriteObject(activeFileStream, _activeFiles);
+                }
+            }
         }
     }
 }
