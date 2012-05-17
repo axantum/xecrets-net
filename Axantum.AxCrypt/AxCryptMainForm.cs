@@ -35,10 +35,16 @@ namespace Axantum.AxCrypt
             if (activeFile.Status == ActiveFileStatus.Deleted)
             {
                 item = new ListViewItem(Path.GetFileName(activeFile.DecryptedPath), "InactiveFile");
-                item.SubItems.Add(activeFile.EncryptedPath);
+
+                ListViewItem.ListViewSubItem encryptedPathColumn = new ListViewItem.ListViewSubItem();
+                encryptedPathColumn.Name = "EncryptedPath";
+                encryptedPathColumn.Text = activeFile.EncryptedPath;
+                item.SubItems.Add(encryptedPathColumn);
+
                 ListViewItem.ListViewSubItem dateColumn = new ListViewItem.ListViewSubItem();
-                dateColumn.Text = activeFile.LastAccessTimeUtc.ToString(CultureInfo.CurrentCulture);
+                dateColumn.Text = activeFile.LastAccessTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
                 dateColumn.Tag = activeFile.LastAccessTimeUtc;
+                dateColumn.Name = "Date";
                 item.SubItems.Add(dateColumn);
                 RecentFilesListView.Items.Add(item);
             }
@@ -101,11 +107,16 @@ namespace Axantum.AxCrypt
 
                 foreach (string file in ofd.FileNames)
                 {
-                    if (EncryptedFileManager.Open(file) != FileOperationStatus.Success)
-                    {
-                        ShowMessageBox("Failed to decrypt and open {0}".InvariantFormat(file));
-                    }
+                    OpenEncrypted(file);
                 }
+            }
+        }
+
+        private void OpenEncrypted(string file)
+        {
+            if (EncryptedFileManager.Open(file) != FileOperationStatus.Success)
+            {
+                ShowMessageBox("Failed to decrypt and open {0}".InvariantFormat(file));
             }
         }
 
@@ -131,6 +142,12 @@ namespace Axantum.AxCrypt
 
         private void RecentFilesListView_SelectedIndexChanged(object sender, EventArgs e)
         {
+        }
+
+        private void RecentFilesListView_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            string encryptedPath = RecentFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text;
+            OpenEncrypted(encryptedPath);
         }
     }
 }

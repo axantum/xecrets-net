@@ -233,6 +233,7 @@
             this.RecentFilesListView.UseCompatibleStateImageBehavior = false;
             this.RecentFilesListView.View = System.Windows.Forms.View.Details;
             this.RecentFilesListView.SelectedIndexChanged += new System.EventHandler(this.RecentFilesListView_SelectedIndexChanged);
+            this.RecentFilesListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.RecentFilesListView_MouseDoubleClick);
             // 
             // WatchedFoldersTab
             // 
