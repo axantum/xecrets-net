@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Properties;
 
 namespace Axantum.AxCrypt
@@ -20,6 +21,16 @@ namespace Axantum.AxCrypt
             _messageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
             EncryptedFileManager.Changed += new EventHandler<EventArgs>(ActiveFileState_Changed);
             EncryptedFileManager.ForceActiveFilesStatus();
+            UserPreferences userPreferences = Settings.Default.UserPreferences;
+            if (userPreferences == null)
+            {
+                userPreferences = new UserPreferences();
+                Settings.Default.UserPreferences = userPreferences;
+                Settings.Default.Save();
+                return;
+            }
+            RecentFilesListView.Columns[0].Name = "DecryptedFile";
+            RecentFilesListView.Columns[0].Width = userPreferences.RecentFilesDocumentWidth > 0 ? userPreferences.RecentFilesDocumentWidth : RecentFilesListView.Columns[0].Width;
         }
 
         private void ActiveFileState_Changed(object sender, EventArgs e)
@@ -34,18 +45,26 @@ namespace Axantum.AxCrypt
             ListViewItem item;
             if (activeFile.Status == ActiveFileStatus.Deleted)
             {
-                item = new ListViewItem(Path.GetFileName(activeFile.DecryptedPath), "InactiveFile");
-
-                ListViewItem.ListViewSubItem encryptedPathColumn = new ListViewItem.ListViewSubItem();
-                encryptedPathColumn.Name = "EncryptedPath";
-                encryptedPathColumn.Text = activeFile.EncryptedPath;
-                item.SubItems.Add(encryptedPathColumn);
+                if (String.IsNullOrEmpty(activeFile.DecryptedPath))
+                {
+                    item = new ListViewItem(Path.GetFileName(activeFile.DecryptedPath), "InactiveFile");
+                }
+                else
+                {
+                    item = new ListViewItem(Path.GetFileName(activeFile.DecryptedPath), "ActiveFile");
+                }
 
                 ListViewItem.ListViewSubItem dateColumn = new ListViewItem.ListViewSubItem();
                 dateColumn.Text = activeFile.LastAccessTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
                 dateColumn.Tag = activeFile.LastAccessTimeUtc;
                 dateColumn.Name = "Date";
                 item.SubItems.Add(dateColumn);
+
+                ListViewItem.ListViewSubItem encryptedPathColumn = new ListViewItem.ListViewSubItem();
+                encryptedPathColumn.Name = "EncryptedPath";
+                encryptedPathColumn.Text = activeFile.EncryptedPath;
+                item.SubItems.Add(encryptedPathColumn);
+
                 RecentFilesListView.Items.Add(item);
             }
             if (activeFile.Status == ActiveFileStatus.Locked)
@@ -148,6 +167,19 @@ namespace Axantum.AxCrypt
         {
             string encryptedPath = RecentFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text;
             OpenEncrypted(encryptedPath);
+        }
+
+        private void RecentFilesListView_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
+        {
+            ListView listView = (ListView)sender;
+            string columnName = listView.Columns[e.ColumnIndex].Name;
+            switch (columnName)
+            {
+                case "DecryptedFile":
+                    Settings.Default.UserPreferences.RecentFilesDocumentWidth = listView.Columns[e.ColumnIndex].Width;
+                    Settings.Default.Save();
+                    break;
+            }
         }
     }
 }

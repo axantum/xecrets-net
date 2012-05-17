@@ -80,7 +80,7 @@ namespace Axantum.AxCrypt
             ActiveFile destinationActiveFile = ActiveFileMonitor.FindActiveFile(fileInfo.FullName);
 
             string destinationPath;
-            if (destinationActiveFile == null)
+            if (destinationActiveFile == null || String.IsNullOrEmpty(destinationActiveFile.DecryptedPath))
             {
                 destinationPath = Path.Combine(ActiveFileMonitor.TemporaryFolderInfo.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()));
                 Directory.CreateDirectory(destinationPath);
