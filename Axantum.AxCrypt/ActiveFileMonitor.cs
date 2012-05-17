@@ -12,7 +12,7 @@ namespace Axantum.AxCrypt
     {
         private static readonly object _lock = new object();
 
-        private static ActiveFileCollection _activeFiles = Load();
+        private static ActiveFileDictionary _activeFiles = Load();
 
         public static event EventHandler<EventArgs> Changed;
 
@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt
             bool isChanged = forceChanged;
             lock (_lock)
             {
-                ActiveFileCollection activeFiles = new ActiveFileCollection();
+                ActiveFileDictionary activeFiles = new ActiveFileDictionary();
 
                 foreach (ActiveFile activeFile in _activeFiles.Values)
                 {
@@ -182,19 +182,19 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private static ActiveFileCollection Load()
+        private static ActiveFileDictionary Load()
         {
             DataContractSerializer serializer = CreateSerializer();
             string path = Path.Combine(TemporaryFolderInfo.FullName, "ActiveFiles.xml");
             if (!File.Exists(path))
             {
-                return new ActiveFileCollection();
+                return new ActiveFileDictionary();
             }
             using (FileStream activeFileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None))
             {
                 lock (_lock)
                 {
-                    ActiveFileCollection activeFiles = (ActiveFileCollection)serializer.ReadObject(activeFileStream);
+                    ActiveFileDictionary activeFiles = (ActiveFileDictionary)serializer.ReadObject(activeFileStream);
                     return activeFiles;
                 }
             }
@@ -202,7 +202,7 @@ namespace Axantum.AxCrypt
 
         private static DataContractSerializer CreateSerializer()
         {
-            DataContractSerializer serializer = new DataContractSerializer(typeof(ActiveFileCollection), "ActiveFiles", "http://www.axantum.com/Serialization/");
+            DataContractSerializer serializer = new DataContractSerializer(typeof(ActiveFileDictionary), "ActiveFiles", "http://www.axantum.com/Serialization/");
             return serializer;
         }
 

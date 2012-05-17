@@ -26,7 +26,6 @@ namespace Axantum.AxCrypt
             LastAccessTimeUtc = DateTime.UtcNow;
         }
 
-        [IgnoreDataMember]
         public string DecryptedPath { get; private set; }
 
         [DataMember]

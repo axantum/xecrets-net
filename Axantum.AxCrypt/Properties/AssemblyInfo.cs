@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("AxCrypt")]
 [assembly: AssemblyDescription("AxCrypt File Encryption")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Axantum Softwar AB")]
+[assembly: AssemblyCompany("Axantum Software AB")]
 [assembly: AssemblyProduct("AxCrypt")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]

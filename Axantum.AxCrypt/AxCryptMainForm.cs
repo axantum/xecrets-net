@@ -177,9 +177,9 @@ namespace Axantum.AxCrypt
             {
                 case "DecryptedFile":
                     Settings.Default.UserPreferences.RecentFilesDocumentWidth = listView.Columns[e.ColumnIndex].Width;
-                    Settings.Default.Save();
                     break;
             }
+            Settings.Default.Save();
         }
     }
 }

@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActiveFile.cs" />
-    <Compile Include="ActiveFileCollection.cs" />
+    <Compile Include="ActiveFileDictionary.cs" />
     <Compile Include="ActiveFileMonitor.cs" />
     <Compile Include="ActiveFileStatus.cs" />
     <Compile Include="AxCryptMainForm.cs">
