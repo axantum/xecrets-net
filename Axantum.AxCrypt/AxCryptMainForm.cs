@@ -181,5 +181,11 @@ namespace Axantum.AxCrypt
             }
             Settings.Default.Save();
         }
+
+        private void AxCryptMainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            EncryptedFileManager.IgnoreApplication = true;
+            EncryptedFileManager.CheckActiveFilesStatus();
+        }
     }
 }

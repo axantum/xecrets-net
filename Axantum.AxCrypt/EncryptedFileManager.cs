@@ -7,6 +7,7 @@ using System.Linq;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading;
+using Axantum.AxCrypt.Core;
 
 namespace Axantum.AxCrypt
 {
@@ -57,6 +58,18 @@ namespace Axantum.AxCrypt
             lock (_lock)
             {
                 ActiveFileMonitor.ForceActiveFilesStatus();
+            }
+        }
+
+        public static bool IgnoreApplication
+        {
+            get
+            {
+                return ActiveFileMonitor.IgnoreApplication;
+            }
+            set
+            {
+                ActiveFileMonitor.IgnoreApplication = value;
             }
         }
 
@@ -113,8 +126,17 @@ namespace Axantum.AxCrypt
                 return FileOperationStatus.CannotStartApplication;
             }
 
+            if (Logging.IsWarningEnabled)
+            {
+                if (process.HasExited)
+                {
+                    Logging.Warning("The process seems to exit immediately for '{0}'".InvariantFormat(destinationPath));
+                }
+            }
+
             destinationActiveFile = new ActiveFile(fileInfo.FullName, destinationPath, ActiveFileStatus.Locked, process);
             ActiveFileMonitor.AddActiveFile(destinationActiveFile);
+
             return FileOperationStatus.Success;
         }
     }

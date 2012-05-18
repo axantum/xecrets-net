@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using Axantum.AxCrypt.Core;
 
 namespace Axantum.AxCrypt
 {
@@ -47,6 +48,23 @@ namespace Axantum.AxCrypt
                     return activeFile;
                 }
                 return null;
+            }
+        }
+
+        private static bool _ignoreApplication;
+
+        public static bool IgnoreApplication
+        {
+            get
+            {
+                return _ignoreApplication;
+            }
+            set
+            {
+                lock (_lock)
+                {
+                    _ignoreApplication = value;
+                }
             }
         }
 
@@ -102,6 +120,21 @@ namespace Axantum.AxCrypt
                 return activeFile;
             }
 
+            if (activeFile.Process != null && !IgnoreApplication)
+            {
+                if (!activeFile.Process.HasExited)
+                {
+                    return activeFile;
+                }
+                if (Logging.IsInfoEnabled)
+                {
+                    Logging.Info("An active file process has exited for '{0}'".InvariantFormat(activeFile.DecryptedPath));
+                }
+                ActiveFile activeFileNoProcess = new ActiveFile(activeFile.EncryptedPath, activeFile.DecryptedPath, activeFile.Status, null);
+                activeFile.Dispose();
+                activeFile = activeFileNoProcess;
+            }
+
             FileInfo activeFileInfo = new FileInfo(activeFile.DecryptedPath);
             FileStream activeFileStream = null;
             try
@@ -113,20 +146,15 @@ namespace Axantum.AxCrypt
                 return activeFile;
             }
 
-            if (activeFile.Process != null)
-            {
-                if (!activeFile.Process.HasExited)
-                {
-                    activeFileStream.Close();
-                    return activeFile;
-                }
-            }
-
             try
             {
                 if (activeFileInfo.LastWriteTimeUtc > activeFile.LastWriteTimeUtc)
                 {
                     WriteToFileWithBackup(activeFile.EncryptedPath, (Stream destination) => { activeFileStream.CopyTo(destination); });
+                    if (Logging.IsInfoEnabled)
+                    {
+                        Logging.Info("Wrote back '{0}' to '{1}'".InvariantFormat(activeFile.DecryptedPath, activeFile.EncryptedPath));
+                    }
                 }
             }
             finally
@@ -142,6 +170,11 @@ namespace Axantum.AxCrypt
             activeFile = newActiveFile;
 
             activeFileInfo.Delete();
+
+            if (Logging.IsInfoEnabled)
+            {
+                Logging.Info("Active file '{0}' from '{1}' has been deleted.".InvariantFormat(activeFile.DecryptedPath, activeFile.EncryptedPath));
+            }
             return activeFile;
         }
 

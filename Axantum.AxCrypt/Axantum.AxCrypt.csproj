@@ -61,6 +61,7 @@
     </Compile>
     <Compile Include="EncryptedFileManager.cs" />
     <Compile Include="FileOperationStatus.cs" />
+    <Compile Include="Logging.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AxCryptMainForm.resx">
