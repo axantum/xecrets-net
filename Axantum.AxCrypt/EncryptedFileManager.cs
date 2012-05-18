@@ -142,8 +142,13 @@ namespace Axantum.AxCrypt
                 }
             }
 
-            destinationActiveFile = new ActiveFile(fileInfo.FullName, destinationPath, ActiveFileStatus.Locked, process);
+            destinationActiveFile = new ActiveFile(fileInfo.FullName, destinationPath, ActiveFileStatus.Active, process);
             ActiveFileMonitor.AddActiveFile(destinationActiveFile);
+
+            if (Logging.IsInfoEnabled)
+            {
+                Logging.Info("Launched and opened '{0}'.".InvariantFormat(destinationActiveFile.DecryptedPath));
+            }
 
             return FileOperationStatus.Success;
         }

@@ -29,6 +29,16 @@ namespace Axantum.AxCrypt
             Process = process;
         }
 
+        public ActiveFile(ActiveFile activeFile, ActiveFileStatus status, Process process)
+        {
+            EncryptedPath = activeFile.EncryptedPath;
+            DecryptedPath = activeFile.DecryptedPath;
+            LastWriteTimeUtc = activeFile.LastWriteTimeUtc;
+            Status = status;
+            LastAccessTimeUtc = activeFile.LastAccessTimeUtc;
+            Process = process;
+        }
+
         [DataMember]
         public string DecryptedPath { get; private set; }
 

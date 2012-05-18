@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt
         {
             ForEach(forceChanged, (ActiveFile activeFile) =>
             {
-                if (activeFile.Status != ActiveFileStatus.Locked || (DateTime.UtcNow - activeFile.LastAccessTimeUtc) > new TimeSpan(0, 0, 5))
+                if (activeFile.Status != ActiveFileStatus.Active || (DateTime.UtcNow - activeFile.LastAccessTimeUtc) > new TimeSpan(0, 0, 5))
                 {
                     activeFile = CheckActiveFileStatus(activeFile);
                 }
@@ -131,7 +131,7 @@ namespace Axantum.AxCrypt
                 {
                     Logging.Info("An active file process has exited for '{0}'".InvariantFormat(activeFile.DecryptedPath));
                 }
-                activeFile = new ActiveFile(activeFile.EncryptedPath, activeFile.DecryptedPath, activeFile.Status, null);
+                activeFile = new ActiveFile(activeFile, activeFile.Status, null);
             }
 
             FileInfo activeFileInfo = new FileInfo(activeFile.DecryptedPath);
@@ -143,10 +143,14 @@ namespace Axantum.AxCrypt
                 {
                     try
                     {
-                        activeFileStream = activeFileInfo.Open(FileMode.Open, FileAccess.Read, FileShare.None);
+                        activeFileStream = activeFileInfo.Open(FileMode.Open, FileAccess.Read, FileShare.Read);
                     }
                     catch (IOException)
                     {
+                        if (Logging.IsWarningEnabled && !IgnoreApplication)
+                        {
+                            Logging.Warning("Could not open modified '{0}' exclusively to update although application appears to have exited.".InvariantFormat(activeFileInfo.FullName));
+                        }
                         return activeFile;
                     }
                     WriteToFileWithBackup(activeFile.EncryptedPath, (Stream destination) => { activeFileStream.CopyTo(destination); });
@@ -154,6 +158,7 @@ namespace Axantum.AxCrypt
                     {
                         Logging.Info("Wrote back '{0}' to '{1}'".InvariantFormat(activeFile.DecryptedPath, activeFile.EncryptedPath));
                     }
+                    activeFile = new ActiveFile(activeFile.EncryptedPath, activeFile.DecryptedPath, ActiveFileStatus.Active, null);
                 }
             }
             finally
@@ -164,11 +169,12 @@ namespace Axantum.AxCrypt
                 }
             }
 
-            activeFile = new ActiveFile(activeFile.EncryptedPath, activeFile.DecryptedPath, activeFile.Status, null);
-
             if (AxCryptEnvironment.Current.IsDesktopWindows)
             {
-                activeFile = TryDelete(activeFile);
+                if (activeFile.Status == ActiveFileStatus.Active)
+                {
+                    activeFile = TryDelete(activeFile);
+                }
             }
 
             return activeFile;
@@ -178,7 +184,7 @@ namespace Axantum.AxCrypt
         {
             ForEach(false, (ActiveFile activeFile) =>
             {
-                if (activeFile.Status == ActiveFileStatus.Locked)
+                if (activeFile.Status == ActiveFileStatus.Active || activeFile.Status == ActiveFileStatus.PendingDelete)
                 {
                     activeFile = TryDelete(activeFile);
                 }
@@ -205,6 +211,7 @@ namespace Axantum.AxCrypt
                 {
                     Logging.Error("Failed to delete '{0}'".InvariantFormat(activeFileInfo.FullName));
                 }
+                activeFile = new ActiveFile(activeFile, ActiveFileStatus.PendingDelete, null);
                 return activeFile;
             }
 

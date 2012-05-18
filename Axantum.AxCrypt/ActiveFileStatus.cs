@@ -7,8 +7,9 @@ namespace Axantum.AxCrypt
 {
     public enum ActiveFileStatus
     {
-        Locked,
+        Active,
         Deleted,
         Error,
+        PendingDelete,
     }
 }
