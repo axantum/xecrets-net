@@ -137,7 +137,10 @@ namespace Axantum.AxCrypt
                 }
             }
 
-            activeFile = new ActiveFile(activeFile.EncryptedPath, activeFile.DecryptedPath, ActiveFileStatus.Deleted, null);
+            ActiveFile newActiveFile = new ActiveFile(activeFile.EncryptedPath, activeFile.DecryptedPath, ActiveFileStatus.Deleted, null);
+            activeFile.Dispose();
+            activeFile = newActiveFile;
+
             activeFileInfo.Delete();
             return activeFile;
         }
