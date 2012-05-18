@@ -103,16 +103,17 @@ namespace Axantum.AxCrypt
                 return FileOperationStatus.CannotWriteDestination;
             }
 
+            Process process;
             try
             {
-                Process.Start(destinationPath);
+                process = Process.Start(destinationPath);
             }
             catch (Win32Exception)
             {
                 return FileOperationStatus.CannotStartApplication;
             }
 
-            destinationActiveFile = new ActiveFile(fileInfo.FullName, destinationPath, ActiveFileStatus.Locked);
+            destinationActiveFile = new ActiveFile(fileInfo.FullName, destinationPath, ActiveFileStatus.Locked, process);
             ActiveFileMonitor.AddActiveFile(destinationActiveFile);
             return FileOperationStatus.Success;
         }

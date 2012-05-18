@@ -113,6 +113,15 @@ namespace Axantum.AxCrypt
                 return activeFile;
             }
 
+            if (activeFile.Process != null)
+            {
+                if (!activeFile.Process.HasExited)
+                {
+                    activeFileStream.Close();
+                    return activeFile;
+                }
+            }
+
             try
             {
                 if (activeFileInfo.LastWriteTimeUtc > activeFile.LastWriteTimeUtc)
@@ -128,7 +137,7 @@ namespace Axantum.AxCrypt
                 }
             }
 
-            activeFile = new ActiveFile(activeFile.EncryptedPath, activeFile.DecryptedPath, ActiveFileStatus.Deleted);
+            activeFile = new ActiveFile(activeFile.EncryptedPath, activeFile.DecryptedPath, ActiveFileStatus.Deleted, null);
             activeFileInfo.Delete();
             return activeFile;
         }

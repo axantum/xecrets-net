@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -16,7 +17,7 @@ namespace Axantum.AxCrypt
     [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
     public class ActiveFile
     {
-        public ActiveFile(string encryptedPath, string decryptedPath, ActiveFileStatus status)
+        public ActiveFile(string encryptedPath, string decryptedPath, ActiveFileStatus status, Process process)
         {
             EncryptedPath = Path.GetFullPath(encryptedPath);
             DecryptedPath = Path.GetFullPath(decryptedPath);
@@ -24,8 +25,10 @@ namespace Axantum.AxCrypt
             LastWriteTimeUtc = decryptedFileInfo.LastWriteTimeUtc;
             Status = status;
             LastAccessTimeUtc = DateTime.UtcNow;
+            Process = process;
         }
 
+        [DataMember]
         public string DecryptedPath { get; private set; }
 
         [DataMember]
@@ -39,5 +42,7 @@ namespace Axantum.AxCrypt
 
         [DataMember]
         public DateTime LastAccessTimeUtc { get; private set; }
+
+        public Process Process { get; private set; }
     }
 }
