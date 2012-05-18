@@ -242,7 +242,7 @@ namespace Axantum.AxCrypt.Core
 
         public static byte[] GetLittleEndianBytes(this long value)
         {
-            if (Environment.Current.IsLittleEndian)
+            if (AxCryptEnvironment.Current.IsLittleEndian)
             {
                 return BitConverter.GetBytes(value);
             }
@@ -259,7 +259,7 @@ namespace Axantum.AxCrypt.Core
 
         public static byte[] GetLittleEndianBytes(this int value)
         {
-            if (Environment.Current.IsLittleEndian)
+            if (AxCryptEnvironment.Current.IsLittleEndian)
             {
                 return BitConverter.GetBytes(value);
             }
@@ -276,7 +276,7 @@ namespace Axantum.AxCrypt.Core
 
         public static byte[] GetBigEndianBytes(this long value)
         {
-            if (!Environment.Current.IsLittleEndian)
+            if (!AxCryptEnvironment.Current.IsLittleEndian)
             {
                 return BitConverter.GetBytes(value);
             }
@@ -301,14 +301,14 @@ namespace Axantum.AxCrypt.Core
         public static FileInfo CreateEncryptedName(this FileSystemInfo fileInfo)
         {
             string extension = Path.GetExtension(fileInfo.FullName);
-            if (String.Compare(extension, Environment.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
+            if (String.Compare(extension, AxCryptEnvironment.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 throw new InternalErrorException("Can't get encrypted name for a file that already has the encrypted extension.");
             }
             string encryptedName = fileInfo.FullName;
             encryptedName = encryptedName.Substring(0, encryptedName.Length - extension.Length);
             encryptedName += extension.Replace('.', '-');
-            encryptedName += Environment.Current.AxCryptExtension;
+            encryptedName += AxCryptEnvironment.Current.AxCryptExtension;
 
             FileInfo encryptedNameFileInfo = new FileInfo(encryptedName);
             return encryptedNameFileInfo;

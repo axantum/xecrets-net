@@ -84,5 +84,27 @@ namespace Axantum.AxCrypt.Core
             get;
             set;
         }
+
+        public bool IsDesktopWindows
+        {
+            get
+            {
+                OperatingSystem os = System.Environment.OSVersion;
+                PlatformID pid = os.Platform;
+                switch (pid)
+                {
+                    case PlatformID.Win32NT:
+                    case PlatformID.Win32S:
+                    case PlatformID.Win32Windows:
+                        return true;
+                    case PlatformID.MacOSX:
+                    case PlatformID.Unix:
+                    case PlatformID.WinCE:
+                    case PlatformID.Xbox:
+                    default:
+                        return false;
+                }
+            }
+        }
     }
 }

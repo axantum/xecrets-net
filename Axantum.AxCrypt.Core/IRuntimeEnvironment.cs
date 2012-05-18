@@ -45,5 +45,7 @@ namespace Axantum.AxCrypt.Core
         IRuntimeFileInfo FileInfo(string path);
 
         string AxCryptExtension { get; }
+
+        bool IsDesktopWindows { get; }
     }
 }

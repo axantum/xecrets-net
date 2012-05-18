@@ -45,8 +45,8 @@ namespace Axantum.AxCrypt.Core.Test
         [TestFixtureSetUp]
         public static void SetupFixture()
         {
-            _environment = Environment.Current;
-            Environment.Current = new FakeRuntimeEnvironment();
+            _environment = AxCryptEnvironment.Current;
+            AxCryptEnvironment.Current = new FakeRuntimeEnvironment();
 
             FakeRuntimeFileInfo.AddFile(@"c:\test.txt", FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate3Utc, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
             FakeRuntimeFileInfo.AddFile(@"c:\Users\AxCrypt\David Copperfield.txt", FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate5Utc, FakeRuntimeFileInfo.TestDate6Utc, new MemoryStream(Resources.David_Copperfield));
@@ -56,14 +56,14 @@ namespace Axantum.AxCrypt.Core.Test
         [TestFixtureTearDownAttribute]
         public static void TeardownFixture()
         {
-            Environment.Current = _environment;
+            AxCryptEnvironment.Current = _environment;
             FakeRuntimeFileInfo.ClearFiles();
         }
 
         [Test]
         public static void TestSmallEncryptDecrypt()
         {
-            IRuntimeFileInfo sourceFileInfo = Environment.Current.FileInfo(@"c:\test.txt");
+            IRuntimeFileInfo sourceFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\test.txt");
             IRuntimeFileInfo destinationFileInfo = sourceFileInfo.CreateEncryptedName();
             Assert.That(destinationFileInfo.Name, Is.EqualTo("test-txt.axx"), "Wrong encrypted file name based on the plain text file name.");
             AxCryptFile.Encrypt(sourceFileInfo, destinationFileInfo, new Passphrase("axcrypt"), AxCryptOptions.EncryptWithCompression);
@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(document.DocumentHeaders.CreationTimeUtc, Is.EqualTo(FakeRuntimeFileInfo.TestDate1Utc));
                 Assert.That(document.DocumentHeaders.LastAccessTimeUtc, Is.EqualTo(FakeRuntimeFileInfo.TestDate2Utc));
                 Assert.That(document.DocumentHeaders.LastWriteTimeUtc, Is.EqualTo(FakeRuntimeFileInfo.TestDate3Utc));
-                IRuntimeFileInfo decryptedFileInfo = Environment.Current.FileInfo(@"c:\decrypted test.txt");
+                IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\decrypted test.txt");
                 AxCryptFile.Decrypt(document, decryptedFileInfo, AxCryptOptions.SetFileTimes);
                 using (Stream decryptedStream = decryptedFileInfo.OpenRead())
                 {
@@ -93,7 +93,7 @@ namespace Axantum.AxCrypt.Core.Test
             DirectoryInfo sourceDirectory = new DirectoryInfo(@"C:\Users\AxCrypt");
             FileInfo sourceFileInfo = new FileInfo(Path.Combine(sourceDirectory.FullName, "David Copperfield.txt"));
 
-            IRuntimeFileInfo sourceRuntimeFileInfo = Environment.Current.FileInfo(sourceFileInfo);
+            IRuntimeFileInfo sourceRuntimeFileInfo = AxCryptEnvironment.Current.FileInfo(sourceFileInfo);
             IRuntimeFileInfo destinationRuntimeFileInfo = sourceRuntimeFileInfo.CreateEncryptedName();
             Passphrase passphrase = new Passphrase("laDabled@tAmeopot33");
 
@@ -105,7 +105,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             DirectoryInfo decryptedDirectoryInfo = new DirectoryInfo(@"C:\Users\AxCrypt\Decrypted");
             FileInfo decryptedFileInfo = new FileInfo(Path.Combine(decryptedDirectoryInfo.FullName, "David Copperfield.txt"));
-            IRuntimeFileInfo decryptedRuntimeFileInfo = Environment.Current.FileInfo(decryptedFileInfo);
+            IRuntimeFileInfo decryptedRuntimeFileInfo = AxCryptEnvironment.Current.FileInfo(decryptedFileInfo);
 
             AxCryptFile.Decrypt(destinationRuntimeFileInfo, decryptedRuntimeFileInfo, passphrase, AxCryptOptions.SetFileTimes);
 
@@ -128,12 +128,12 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestInvalidPassphrase()
         {
-            IRuntimeFileInfo sourceFileInfo = Environment.Current.FileInfo(@"c:\test.txt");
+            IRuntimeFileInfo sourceFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\test.txt");
             IRuntimeFileInfo encryptedFileInfo = sourceFileInfo.CreateEncryptedName();
             Assert.That(encryptedFileInfo.Name, Is.EqualTo("test-txt.axx"), "Wrong encrypted file name based on the plain text file name.");
             AxCryptFile.Encrypt(sourceFileInfo, encryptedFileInfo, new Passphrase("axcrypt"), AxCryptOptions.EncryptWithCompression);
 
-            IRuntimeFileInfo decryptedFileInfo = Environment.Current.FileInfo(@"c:\decrypted.txt");
+            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\decrypted.txt");
             bool isPassphraseOk = AxCryptFile.Decrypt(encryptedFileInfo, decryptedFileInfo, new Passphrase("wrong"), AxCryptOptions.None);
             Assert.That(isPassphraseOk, Is.False, "The passphrase is wrong and should be wrong!");
         }
@@ -141,8 +141,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestUncompressedEncryptedDecryptAxCrypt17()
         {
-            IRuntimeFileInfo sourceRuntimeFileInfo = Environment.Current.FileInfo(@"c:\Documents\Uncompressed.axx");
-            IRuntimeFileInfo destinationRuntimeFileInfo = Environment.Current.FileInfo(@"c:\Documents\Uncompressed.zip");
+            IRuntimeFileInfo sourceRuntimeFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\Documents\Uncompressed.axx");
+            IRuntimeFileInfo destinationRuntimeFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\Documents\Uncompressed.zip");
             Passphrase passphrase = new Passphrase("Uncompressable");
             using (AxCryptDocument document = new AxCryptDocument())
             {

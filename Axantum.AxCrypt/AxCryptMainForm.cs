@@ -19,6 +19,8 @@ namespace Axantum.AxCrypt
         {
             InitializeComponent();
             _messageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
+
+            EncryptedFileManager.IgnoreApplication = !AxCryptEnvironment.Current.IsDesktopWindows;
             EncryptedFileManager.Changed += new EventHandler<EventArgs>(ActiveFileState_Changed);
             EncryptedFileManager.ForceActiveFilesStatus();
             UserPreferences userPreferences = Settings.Default.UserPreferences;
@@ -37,10 +39,10 @@ namespace Axantum.AxCrypt
         {
             OpenFilesListView.Items.Clear();
             RecentFilesListView.Items.Clear();
-            ActiveFileMonitor.ForEach((ActiveFile activeFile) => { UpdateOpenFilesWith(activeFile); });
+            ActiveFileMonitor.ForEach(false, (ActiveFile activeFile) => { return UpdateOpenFilesWith(activeFile); });
         }
 
-        private void UpdateOpenFilesWith(ActiveFile activeFile)
+        private ActiveFile UpdateOpenFilesWith(ActiveFile activeFile)
         {
             ListViewItem item;
             if (activeFile.Status == ActiveFileStatus.Deleted)
@@ -73,6 +75,7 @@ namespace Axantum.AxCrypt
                 item.SubItems.Add(activeFile.EncryptedPath);
                 OpenFilesListView.Items.Add(item);
             }
+            return activeFile;
         }
 
         private MessageBoxOptions _messageBoxOptions;
@@ -186,6 +189,7 @@ namespace Axantum.AxCrypt
         {
             EncryptedFileManager.IgnoreApplication = true;
             EncryptedFileManager.CheckActiveFilesStatus();
+            EncryptedFileManager.PurgeActiveFiles();
         }
     }
 }

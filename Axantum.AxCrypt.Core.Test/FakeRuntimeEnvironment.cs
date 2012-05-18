@@ -81,5 +81,10 @@ namespace Axantum.AxCrypt.Core.Test
             get;
             set;
         }
+
+        public bool IsDesktopWindows
+        {
+            get { return true; }
+        }
     }
 }

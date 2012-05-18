@@ -44,7 +44,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public AesKey()
         {
-            _aesKey = Environment.Current.GetRandomBytes(16);
+            _aesKey = AxCryptEnvironment.Current.GetRandomBytes(16);
         }
 
         public AesKey(byte[] key)

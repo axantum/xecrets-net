@@ -61,6 +61,14 @@ namespace Axantum.AxCrypt
             }
         }
 
+        public static void PurgeActiveFiles()
+        {
+            lock (_lock)
+            {
+                ActiveFileMonitor.PurgeActiveFiles();
+            }
+        }
+
         public static bool IgnoreApplication
         {
             get

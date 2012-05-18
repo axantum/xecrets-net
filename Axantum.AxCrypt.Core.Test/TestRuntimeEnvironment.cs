@@ -41,14 +41,14 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestRuntimeEnvironmentMethods()
         {
-            Assert.That(Environment.Current.AxCryptExtension, Is.EqualTo(".axx"), "Checking the standard AxCrypt extension.");
-            Assert.That(Environment.Current.IsLittleEndian, Is.EqualTo(BitConverter.IsLittleEndian), "Checking endianess.");
-            byte[] randomBytes = Environment.Current.GetRandomBytes(100);
+            Assert.That(AxCryptEnvironment.Current.AxCryptExtension, Is.EqualTo(".axx"), "Checking the standard AxCrypt extension.");
+            Assert.That(AxCryptEnvironment.Current.IsLittleEndian, Is.EqualTo(BitConverter.IsLittleEndian), "Checking endianess.");
+            byte[] randomBytes = AxCryptEnvironment.Current.GetRandomBytes(100);
             Assert.That(randomBytes.Length, Is.EqualTo(100), "Ensuring we really got the right number of bytes.");
             Assert.That(randomBytes, Is.Not.EquivalentTo(new byte[100]), "It is not in practice possible that all zero bytes are returned by GetRandomBytes().");
-            IRuntimeFileInfo runtimeFileInfo = Environment.Current.FileInfo(new FileInfo(@"C:\Temp\A File.txt"));
+            IRuntimeFileInfo runtimeFileInfo = AxCryptEnvironment.Current.FileInfo(new FileInfo(@"C:\Temp\A File.txt"));
             Assert.That(runtimeFileInfo.Name, Is.EqualTo("A File.txt"));
-            runtimeFileInfo = Environment.Current.FileInfo(@"C:\Temp\A File.txt");
+            runtimeFileInfo = AxCryptEnvironment.Current.FileInfo(@"C:\Temp\A File.txt");
             Assert.That(runtimeFileInfo.Name, Is.EqualTo("A File.txt"));
         }
     }

@@ -32,9 +32,9 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core
 {
-    public static class Environment
+    public static class AxCryptEnvironment
     {
-        static Environment()
+        static AxCryptEnvironment()
         {
             Current = new RuntimeEnvironment();
         }
