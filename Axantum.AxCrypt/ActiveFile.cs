@@ -1,4 +1,6 @@
-﻿using System;
+﻿#define CODE_ANALYSIS
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -68,6 +70,7 @@ namespace Axantum.AxCrypt
         string _protectedDecryptedName;
 
         [DataMember]
+        [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "This is a protected method, only used for serialization where an array in this case is appropriate.")]
         protected byte[] ProtectedDecryptedName
         {
             get
