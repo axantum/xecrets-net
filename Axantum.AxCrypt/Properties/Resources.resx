@@ -134,4 +134,8 @@
     <value>File</value>
     <comment>The column header for the plaintext file name of an open and locked file</comment>
   </data>
+  <data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
+    <value>AxCrypt Files({0})|{0}|All files (*.*)|*.*</value>
+    <comment>A filter for a FileDialog. {0} represents the pattern, like *.axx.</comment>
+  </data>
 </root>

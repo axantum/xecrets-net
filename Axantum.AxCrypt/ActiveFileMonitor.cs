@@ -132,9 +132,9 @@ namespace Axantum.AxCrypt
                 {
                     if (Logging.IsInfoEnabled)
                     {
-                        Logging.Info("An active file process has exited for '{0}'".InvariantFormat(activeFile.DecryptedPath));
+                        Logging.Info("Process exit for '{0}'".InvariantFormat(activeFile.DecryptedPath));
                     }
-                    activeFile = new ActiveFile(activeFile, activeFile.Status & ~ActiveFileStatus.NotShareable, null);
+                    activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted, null);
                 }
             }
 
@@ -153,7 +153,7 @@ namespace Axantum.AxCrypt
                     {
                         if (Logging.IsWarningEnabled && !IgnoreApplication)
                         {
-                            Logging.Warning("Could not open modified '{0}' exclusively to update.".InvariantFormat(activeFileInfo.FullName));
+                            Logging.Warning("Failed exclusive open modified for '{0}'.".InvariantFormat(activeFileInfo.FullName));
                         }
                         activeFile = new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.NotShareable, activeFile.Process);
                         return activeFile;
@@ -209,7 +209,7 @@ namespace Axantum.AxCrypt
             {
                 if (Logging.IsInfoEnabled)
                 {
-                    Logging.Info("Tried to delete '{0}' but it is modified.".InvariantFormat(activeFile.DecryptedPath));
+                    Logging.Info("Tried delete '{0}' but it is modified.".InvariantFormat(activeFile.DecryptedPath));
                 }
                 return activeFile;
             }
@@ -226,7 +226,7 @@ namespace Axantum.AxCrypt
             {
                 if (Logging.IsErrorEnabled)
                 {
-                    Logging.Error("Failed to delete '{0}'".InvariantFormat(activeFileInfo.FullName));
+                    Logging.Error("Delete failed for '{0}'".InvariantFormat(activeFileInfo.FullName));
                 }
                 activeFile = new ActiveFile(activeFile, ActiveFileStatus.DecryptedIsPendingDelete, activeFile.Process);
                 return activeFile;
@@ -236,7 +236,7 @@ namespace Axantum.AxCrypt
 
             if (Logging.IsInfoEnabled)
             {
-                Logging.Info("Active file '{0}' from '{1}' has been deleted.".InvariantFormat(activeFile.DecryptedPath, activeFile.EncryptedPath));
+                Logging.Info("Deleted '{0}' from '{1}'.".InvariantFormat(activeFile.DecryptedPath, activeFile.EncryptedPath));
             }
 
             return activeFile;

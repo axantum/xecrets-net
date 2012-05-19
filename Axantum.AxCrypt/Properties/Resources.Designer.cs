@@ -70,6 +70,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Files({0})|{0}|All files (*.*)|*.*.
+        /// </summary>
+        internal static string EncryptedFileDialogFilterPattern {
+            get {
+                return ResourceManager.GetString("EncryptedFileDialogFilterPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Encrypted File.
         /// </summary>
         internal static string EncryptedSourceColumnHeader {

@@ -122,6 +122,8 @@ namespace Axantum.AxCrypt
                 ofd.Multiselect = false;
                 ofd.CheckFileExists = true;
                 ofd.CheckPathExists = true;
+                ofd.DefaultExt = AxCryptEnvironment.Current.AxCryptExtension;
+                ofd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat("*{0}".InvariantFormat(AxCryptEnvironment.Current.AxCryptExtension));
                 DialogResult result = ofd.ShowDialog();
                 if (result != DialogResult.OK)
                 {
