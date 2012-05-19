@@ -5,7 +5,9 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Security.Cryptography;
 using System.Text;
+using Axantum.AxCrypt.Core;
 
 namespace Axantum.AxCrypt
 {
@@ -21,7 +23,9 @@ namespace Axantum.AxCrypt
         public ActiveFile(string encryptedPath, string decryptedPath, ActiveFileStatus status, Process process)
         {
             EncryptedPath = Path.GetFullPath(encryptedPath);
-            DecryptedPath = Path.GetFullPath(decryptedPath);
+            decryptedPath = Path.GetFullPath(decryptedPath);
+            _decryptedFolder = Path.GetDirectoryName(decryptedPath);
+            _protectedDecryptedName = Path.GetFileName(decryptedPath);
             FileInfo decryptedFileInfo = new FileInfo(decryptedPath);
             LastWriteTimeUtc = decryptedFileInfo.LastWriteTimeUtc;
             Status = status;
@@ -32,15 +36,56 @@ namespace Axantum.AxCrypt
         public ActiveFile(ActiveFile activeFile, ActiveFileStatus status, Process process)
         {
             EncryptedPath = activeFile.EncryptedPath;
-            DecryptedPath = activeFile.DecryptedPath;
+            _decryptedFolder = activeFile._decryptedFolder;
+            _protectedDecryptedName = activeFile._protectedDecryptedName;
             LastWriteTimeUtc = activeFile.LastWriteTimeUtc;
             Status = status;
             LastAccessTimeUtc = activeFile.LastAccessTimeUtc;
             Process = process;
+            if (process != null && Object.ReferenceEquals(process, activeFile.Process))
+            {
+                activeFile.Process = null;
+            }
         }
 
+        public string DecryptedPath
+        {
+            get
+            {
+                return Path.Combine(_decryptedFolder, _protectedDecryptedName);
+            }
+        }
+
+        string _protectedDecryptedName;
+
         [DataMember]
-        public string DecryptedPath { get; private set; }
+        protected byte[] ProtectedDecryptedName
+        {
+            get
+            {
+                return ProtectedData.Protect(Encoding.UTF8.GetBytes(Path.GetFileName(DecryptedPath)), null, DataProtectionScope.CurrentUser);
+            }
+            set
+            {
+                byte[] bytes = ProtectedData.Unprotect(value, null, DataProtectionScope.CurrentUser);
+                _protectedDecryptedName = Encoding.UTF8.GetString(bytes);
+            }
+        }
+
+        string _decryptedFolder;
+
+        [DataMember]
+        protected string DecryptedFolder
+        {
+            get
+            {
+                return Path.GetDirectoryName(DecryptedPath);
+            }
+            set
+            {
+                _decryptedFolder = value;
+            }
+        }
 
         [DataMember]
         public string EncryptedPath { get; private set; }

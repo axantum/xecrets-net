@@ -45,38 +45,35 @@ namespace Axantum.AxCrypt
         private ActiveFile UpdateOpenFilesWith(ActiveFile activeFile)
         {
             ListViewItem item;
-            switch (activeFile.Status)
+            if (activeFile.Status.HasFlag(ActiveFileStatus.NotDecrypted))
             {
-                case ActiveFileStatus.Deleted:
-                    if (String.IsNullOrEmpty(activeFile.DecryptedPath))
-                    {
-                        item = new ListViewItem(Path.GetFileName(activeFile.DecryptedPath), "InactiveFile");
-                    }
-                    else
-                    {
-                        item = new ListViewItem(Path.GetFileName(activeFile.DecryptedPath), "ActiveFile");
-                    }
-
-                    ListViewItem.ListViewSubItem dateColumn = new ListViewItem.ListViewSubItem();
-                    dateColumn.Text = activeFile.LastAccessTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
-                    dateColumn.Tag = activeFile.LastAccessTimeUtc;
-                    dateColumn.Name = "Date";
-                    item.SubItems.Add(dateColumn);
-
-                    ListViewItem.ListViewSubItem encryptedPathColumn = new ListViewItem.ListViewSubItem();
-                    encryptedPathColumn.Name = "EncryptedPath";
-                    encryptedPathColumn.Text = activeFile.EncryptedPath;
-                    item.SubItems.Add(encryptedPathColumn);
-
-                    RecentFilesListView.Items.Add(item);
-                    break;
-
-                case ActiveFileStatus.PendingDelete:
-                case ActiveFileStatus.Active:
+                if (String.IsNullOrEmpty(activeFile.DecryptedPath))
+                {
+                    item = new ListViewItem(Path.GetFileName(activeFile.DecryptedPath), "InactiveFile");
+                }
+                else
+                {
                     item = new ListViewItem(Path.GetFileName(activeFile.DecryptedPath), "ActiveFile");
-                    item.SubItems.Add(activeFile.EncryptedPath);
-                    OpenFilesListView.Items.Add(item);
-                    break;
+                }
+
+                ListViewItem.ListViewSubItem dateColumn = new ListViewItem.ListViewSubItem();
+                dateColumn.Text = activeFile.LastAccessTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
+                dateColumn.Tag = activeFile.LastAccessTimeUtc;
+                dateColumn.Name = "Date";
+                item.SubItems.Add(dateColumn);
+
+                ListViewItem.ListViewSubItem encryptedPathColumn = new ListViewItem.ListViewSubItem();
+                encryptedPathColumn.Name = "EncryptedPath";
+                encryptedPathColumn.Text = activeFile.EncryptedPath;
+                item.SubItems.Add(encryptedPathColumn);
+
+                RecentFilesListView.Items.Add(item);
+            }
+            if (activeFile.Status.HasFlag(ActiveFileStatus.DecryptedIsPendingDelete) || activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted))
+            {
+                item = new ListViewItem(Path.GetFileName(activeFile.DecryptedPath), "ActiveFile");
+                item.SubItems.Add(activeFile.EncryptedPath);
+                OpenFilesListView.Items.Add(item);
             }
             return activeFile;
         }

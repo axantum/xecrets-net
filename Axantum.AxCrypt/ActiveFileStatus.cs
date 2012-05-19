@@ -5,11 +5,13 @@ using System.Text;
 
 namespace Axantum.AxCrypt
 {
+    [Flags]
     public enum ActiveFileStatus
     {
-        Active,
-        Deleted,
-        Error,
-        PendingDelete,
+        AssumedOpenAndDecrypted = 1,
+        NotDecrypted = 2,
+        Error = 4,
+        DecryptedIsPendingDelete = 8,
+        NotShareable = 16,
     }
 }

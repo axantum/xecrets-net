@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt
         {
             ForEach(forceChanged, (ActiveFile activeFile) =>
             {
-                if (activeFile.Status != ActiveFileStatus.Active || (DateTime.UtcNow - activeFile.LastAccessTimeUtc) > new TimeSpan(0, 0, 5))
+                if (DateTime.UtcNow - activeFile.LastAccessTimeUtc > new TimeSpan(0, 0, 5))
                 {
                     activeFile = CheckActiveFileStatus(activeFile);
                 }
@@ -116,22 +116,25 @@ namespace Axantum.AxCrypt
 
         private static ActiveFile CheckActiveFileStatus(ActiveFile activeFile)
         {
-            if (activeFile.Status == ActiveFileStatus.Deleted)
+            if (activeFile.Status == ActiveFileStatus.NotDecrypted)
             {
-                return activeFile;
+                if (!File.Exists(activeFile.DecryptedPath))
+                {
+                    return activeFile;
+                }
+                activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted, activeFile.Process);
             }
 
             if (activeFile.Process != null && !IgnoreApplication)
             {
-                if (!activeFile.Process.HasExited)
+                if (activeFile.Process.HasExited)
                 {
-                    return activeFile;
+                    if (Logging.IsInfoEnabled)
+                    {
+                        Logging.Info("An active file process has exited for '{0}'".InvariantFormat(activeFile.DecryptedPath));
+                    }
+                    activeFile = new ActiveFile(activeFile, activeFile.Status & ~ActiveFileStatus.NotShareable, null);
                 }
-                if (Logging.IsInfoEnabled)
-                {
-                    Logging.Info("An active file process has exited for '{0}'".InvariantFormat(activeFile.DecryptedPath));
-                }
-                activeFile = new ActiveFile(activeFile, activeFile.Status, null);
             }
 
             FileInfo activeFileInfo = new FileInfo(activeFile.DecryptedPath);
@@ -139,7 +142,7 @@ namespace Axantum.AxCrypt
             FileStream activeFileStream = null;
             try
             {
-                if (activeFileInfo.LastWriteTimeUtc > activeFile.LastWriteTimeUtc)
+                if (activeFileInfo.LastWriteTimeUtc > activeFile.LastWriteTimeUtc && !activeFile.Status.HasFlag(ActiveFileStatus.NotShareable))
                 {
                     try
                     {
@@ -149,8 +152,9 @@ namespace Axantum.AxCrypt
                     {
                         if (Logging.IsWarningEnabled && !IgnoreApplication)
                         {
-                            Logging.Warning("Could not open modified '{0}' exclusively to update although application appears to have exited.".InvariantFormat(activeFileInfo.FullName));
+                            Logging.Warning("Could not open modified '{0}' exclusively to update.".InvariantFormat(activeFileInfo.FullName));
                         }
+                        activeFile = new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.NotShareable, activeFile.Process);
                         return activeFile;
                     }
                     WriteToFileWithBackup(activeFile.EncryptedPath, (Stream destination) => { activeFileStream.CopyTo(destination); });
@@ -158,7 +162,7 @@ namespace Axantum.AxCrypt
                     {
                         Logging.Info("Wrote back '{0}' to '{1}'".InvariantFormat(activeFile.DecryptedPath, activeFile.EncryptedPath));
                     }
-                    activeFile = new ActiveFile(activeFile.EncryptedPath, activeFile.DecryptedPath, ActiveFileStatus.Active, null);
+                    activeFile = new ActiveFile(activeFile.EncryptedPath, activeFile.DecryptedPath, ActiveFileStatus.AssumedOpenAndDecrypted, activeFile.Process);
                 }
             }
             finally
@@ -171,7 +175,7 @@ namespace Axantum.AxCrypt
 
             if (AxCryptEnvironment.Current.IsDesktopWindows)
             {
-                if (activeFile.Status == ActiveFileStatus.Active)
+                if (activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted) && !activeFile.Status.HasFlag(ActiveFileStatus.NotShareable))
                 {
                     activeFile = TryDelete(activeFile);
                 }
@@ -184,7 +188,7 @@ namespace Axantum.AxCrypt
         {
             ForEach(false, (ActiveFile activeFile) =>
             {
-                if (activeFile.Status == ActiveFileStatus.Active || activeFile.Status == ActiveFileStatus.PendingDelete)
+                if (activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted) || activeFile.Status.HasFlag(ActiveFileStatus.DecryptedIsPendingDelete))
                 {
                     activeFile = TryDelete(activeFile);
                 }
@@ -198,11 +202,19 @@ namespace Axantum.AxCrypt
 
             if (activeFileInfo.LastWriteTimeUtc > activeFile.LastWriteTimeUtc)
             {
+                if (Logging.IsInfoEnabled)
+                {
+                    Logging.Info("Tried to delete '{0}' but it is modified.".InvariantFormat(activeFile.DecryptedPath));
+                }
                 return activeFile;
             }
 
             try
             {
+                if (Logging.IsInfoEnabled)
+                {
+                    Logging.Info("Deleting '{0}'.".InvariantFormat(activeFile.DecryptedPath));
+                }
                 activeFileInfo.Delete();
             }
             catch (IOException)
@@ -211,11 +223,11 @@ namespace Axantum.AxCrypt
                 {
                     Logging.Error("Failed to delete '{0}'".InvariantFormat(activeFileInfo.FullName));
                 }
-                activeFile = new ActiveFile(activeFile, ActiveFileStatus.PendingDelete, null);
+                activeFile = new ActiveFile(activeFile, ActiveFileStatus.DecryptedIsPendingDelete, activeFile.Process);
                 return activeFile;
             }
 
-            activeFile = new ActiveFile(activeFile.EncryptedPath, activeFile.DecryptedPath, ActiveFileStatus.Deleted, null);
+            activeFile = new ActiveFile(activeFile.EncryptedPath, activeFile.DecryptedPath, ActiveFileStatus.NotDecrypted, null);
 
             if (Logging.IsInfoEnabled)
             {

@@ -142,7 +142,7 @@ namespace Axantum.AxCrypt
                 }
             }
 
-            destinationActiveFile = new ActiveFile(fileInfo.FullName, destinationPath, ActiveFileStatus.Active, process);
+            destinationActiveFile = new ActiveFile(fileInfo.FullName, destinationPath, ActiveFileStatus.AssumedOpenAndDecrypted, process);
             ActiveFileMonitor.AddActiveFile(destinationActiveFile);
 
             if (Logging.IsInfoEnabled)
