@@ -113,5 +113,10 @@ namespace Axantum.AxCrypt.Core.IO
 
             return new RuntimeFileInfo(encryptedNameFileInfo);
         }
+
+        public string FullName
+        {
+            get { return _file.FullName; }
+        }
     }
 }

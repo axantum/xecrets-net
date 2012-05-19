@@ -14,5 +14,6 @@ namespace Axantum.AxCrypt
         CannotWriteDestination,
         CannotStartApplication,
         InconsistentState,
+        InvalidKey,
     }
 }

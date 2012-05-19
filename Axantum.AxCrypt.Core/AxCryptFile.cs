@@ -69,6 +69,23 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
+        public static void Encrypt(IRuntimeFileInfo sourceFile, Stream destinationStream, AesKey key, AxCryptOptions options)
+        {
+            using (Stream sourceStream = sourceFile.OpenRead())
+            {
+                using (AxCryptDocument document = new AxCryptDocument())
+                {
+                    DocumentHeaders headers = new DocumentHeaders(key);
+                    headers.FileName = sourceFile.Name;
+                    headers.CreationTimeUtc = sourceFile.CreationTimeUtc;
+                    headers.LastAccessTimeUtc = sourceFile.LastAccessTimeUtc;
+                    headers.LastWriteTimeUtc = sourceFile.LastWriteTimeUtc;
+                    document.DocumentHeaders = headers;
+                    document.EncryptTo(headers, sourceStream, destinationStream, options);
+                }
+            }
+        }
+
         /// <summary>
         /// Decrypt a source file to a destination file, given a passphrase
         /// </summary>
@@ -76,9 +93,9 @@ namespace Axantum.AxCrypt.Core
         /// <param name="destinationFile">The destination file</param>
         /// <param name="passphrase">The passphrase</param>
         /// <returns>true if the passphrase was correct</returns>
-        public static bool Decrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, Passphrase passphrase, AxCryptOptions options)
+        public static bool Decrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, AesKey key, AxCryptOptions options)
         {
-            using (AxCryptDocument document = Document(sourceFile, passphrase))
+            using (AxCryptDocument document = Document(sourceFile, key))
             {
                 if (!document.PassphraseIsValid)
                 {
@@ -87,6 +104,29 @@ namespace Axantum.AxCrypt.Core
                 Decrypt(document, destinationFile, options);
             }
             return true;
+        }
+
+        /// <summary>
+        /// Decrypt a source file to a destination file, given a passphrase
+        /// </summary>
+        /// <param name="sourceFile">The source file</param>
+        /// <param name="destinationFile">The destination file</param>
+        /// <param name="passphrase">The passphrase</param>
+        /// <returns>true if the passphrase was correct</returns>
+        public static string Decrypt(IRuntimeFileInfo sourceFile, string destinationDirectory, AesKey key, AxCryptOptions options)
+        {
+            string destinationFileName = null;
+            using (AxCryptDocument document = Document(sourceFile, key))
+            {
+                if (!document.PassphraseIsValid)
+                {
+                    return destinationFileName;
+                }
+                destinationFileName = document.DocumentHeaders.FileName;
+                IRuntimeFileInfo destinationFullPath = AxCryptEnvironment.Current.FileInfo(Path.Combine(destinationDirectory, destinationFileName));
+                Decrypt(document, destinationFullPath, options);
+            }
+            return destinationFileName;
         }
 
         /// <summary>
@@ -113,10 +153,10 @@ namespace Axantum.AxCrypt.Core
         /// <param name="sourceFile">The source file</param>
         /// <param name="passphrase">The passphrase</param>
         /// <returns>An instance of AxCryptDocument. Use IsPassphraseValid property to determine validity.</returns>
-        public static AxCryptDocument Document(IRuntimeFileInfo sourceFile, Passphrase passphrase)
+        public static AxCryptDocument Document(IRuntimeFileInfo sourceFile, AesKey key)
         {
             AxCryptDocument document = new AxCryptDocument();
-            document.Load(sourceFile.OpenRead(), passphrase);
+            document.Load(sourceFile.OpenRead(), key);
             return document;
         }
     }

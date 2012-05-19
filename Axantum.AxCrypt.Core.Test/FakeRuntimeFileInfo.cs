@@ -192,5 +192,10 @@ namespace Axantum.AxCrypt.Core.Test
 
             return new FakeRuntimeFileInfo(encryptedNameFileInfo);
         }
+
+        public string FullName
+        {
+            get { return _file.FullName; }
+        }
     }
 }

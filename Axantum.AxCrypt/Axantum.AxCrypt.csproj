@@ -84,6 +84,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -101,6 +102,12 @@
     <Compile Include="AxCryptMainForm.Designer.cs">
       <DependentUpon>AxCryptMainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DecryptionPassphraseDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DecryptionPassphraseDialog.Designer.cs">
+      <DependentUpon>DecryptionPassphraseDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="EncryptedFileManager.cs" />
     <Compile Include="FileOperationStatus.cs" />
     <Compile Include="Logging.cs" />
@@ -114,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AxCryptMainForm.sv.resx">
       <DependentUpon>AxCryptMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DecryptionPassphraseDialog.resx">
+      <DependentUpon>DecryptionPassphraseDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -144,7 +154,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ActiveFile.ico" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

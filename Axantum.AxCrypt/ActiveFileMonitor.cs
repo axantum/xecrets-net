@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 using System.Security;
 using System.Text;
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.IO;
 
 namespace Axantum.AxCrypt
 {
@@ -142,7 +143,7 @@ namespace Axantum.AxCrypt
             FileStream activeFileStream = null;
             try
             {
-                if (activeFileInfo.LastWriteTimeUtc > activeFile.LastWriteTimeUtc && !activeFile.Status.HasFlag(ActiveFileStatus.NotShareable))
+                if (activeFile.Key != null && activeFileInfo.LastWriteTimeUtc > activeFile.LastWriteTimeUtc && !activeFile.Status.HasFlag(ActiveFileStatus.NotShareable))
                 {
                     try
                     {
@@ -157,12 +158,16 @@ namespace Axantum.AxCrypt
                         activeFile = new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.NotShareable, activeFile.Process);
                         return activeFile;
                     }
-                    WriteToFileWithBackup(activeFile.EncryptedPath, (Stream destination) => { activeFileStream.CopyTo(destination); });
+                    IRuntimeFileInfo sourceFileInfo = AxCryptEnvironment.Current.FileInfo(activeFile.DecryptedPath);
+                    WriteToFileWithBackup(activeFile.EncryptedPath, (Stream destination) =>
+                    {
+                        AxCryptFile.Encrypt(sourceFileInfo, destination, activeFile.Key, AxCryptOptions.EncryptWithCompression);
+                    });
                     if (Logging.IsInfoEnabled)
                     {
                         Logging.Info("Wrote back '{0}' to '{1}'".InvariantFormat(activeFile.DecryptedPath, activeFile.EncryptedPath));
                     }
-                    activeFile = new ActiveFile(activeFile.EncryptedPath, activeFile.DecryptedPath, ActiveFileStatus.AssumedOpenAndDecrypted, activeFile.Process);
+                    activeFile = new ActiveFile(activeFile.EncryptedPath, activeFile.DecryptedPath, activeFile.Key, ActiveFileStatus.AssumedOpenAndDecrypted, activeFile.Process);
                 }
             }
             finally
@@ -227,7 +232,7 @@ namespace Axantum.AxCrypt
                 return activeFile;
             }
 
-            activeFile = new ActiveFile(activeFile.EncryptedPath, activeFile.DecryptedPath, ActiveFileStatus.NotDecrypted, null);
+            activeFile = new ActiveFile(activeFile.EncryptedPath, activeFile.DecryptedPath, activeFile.Key, ActiveFileStatus.NotDecrypted, null);
 
             if (Logging.IsInfoEnabled)
             {

@@ -61,10 +61,10 @@ namespace Axantum.AxCrypt.Core
         /// </summary>
         /// <param name="stream">The stream to read from. Will be disposed when this instance is disposed.</param>
         /// <returns>True if the key was valid, false if it was wrong.</returns>
-        public bool Load(Stream stream, Passphrase passphrase)
+        public bool Load(Stream stream, AesKey key)
         {
             _reader = AxCryptReader.Create(stream);
-            DocumentHeaders documentHeaders = new DocumentHeaders(passphrase.DerivedPassphrase);
+            DocumentHeaders documentHeaders = new DocumentHeaders(key);
             PassphraseIsValid = documentHeaders.Load(_reader);
             if (PassphraseIsValid)
             {

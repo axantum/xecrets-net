@@ -47,6 +47,11 @@ namespace Axantum.AxCrypt.Core.IO
         /// </summary>
         string Name { get; }
 
+        /// <summary>
+        /// Get the full name including drive, directory and file name if any
+        /// </summary>
+        string FullName { get; }
+
         DateTime CreationTimeUtc { get; set; }
 
         DateTime LastAccessTimeUtc { get; set; }

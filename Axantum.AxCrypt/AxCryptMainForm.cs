@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Properties;
 
@@ -136,9 +137,25 @@ namespace Axantum.AxCrypt
 
         private void OpenEncrypted(string file)
         {
-            if (EncryptedFileManager.Open(file) != FileOperationStatus.Success)
+            if (EncryptedFileManager.Open(file, KnownKeys.Keys) == FileOperationStatus.InvalidKey)
             {
-                ShowMessageBox("Failed to decrypt and open {0}".InvariantFormat(file));
+                Passphrase passphrase;
+                FileOperationStatus status;
+                do
+                {
+                    DecryptionPassphraseDialog passphraseDialog = new DecryptionPassphraseDialog();
+                    DialogResult dialogResult = passphraseDialog.ShowDialog();
+                    if (dialogResult != DialogResult.OK)
+                    {
+                        return;
+                    }
+                    passphrase = new Passphrase(passphraseDialog.Passphrase.Text);
+                    status = EncryptedFileManager.Open(file, new AesKey[] { passphrase.DerivedPassphrase });
+                } while (status == FileOperationStatus.InvalidKey);
+                if (status != FileOperationStatus.Success)
+                {
+                    ShowMessageBox("Failed to decrypt and open {0}".InvariantFormat(file));
+                }
             }
         }
 

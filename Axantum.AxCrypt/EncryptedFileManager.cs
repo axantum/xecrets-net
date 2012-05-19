@@ -8,6 +8,9 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Threading;
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt
 {
@@ -37,11 +40,11 @@ namespace Axantum.AxCrypt
             ActiveFileMonitor.Changed += new EventHandler<EventArgs>(ActiveFileMonitor_Changed);
         }
 
-        public static FileOperationStatus Open(string file)
+        public static FileOperationStatus Open(string file, IEnumerable<AesKey> keys)
         {
             lock (_lock)
             {
-                return OpenInternal(file);
+                return OpenInternal(file, keys);
             }
         }
 
@@ -90,7 +93,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private static FileOperationStatus OpenInternal(string file)
+        private static FileOperationStatus OpenInternal(string file, IEnumerable<AesKey> keys)
         {
             FileInfo fileInfo = new FileInfo(file);
             if (!fileInfo.Exists)
@@ -100,23 +103,44 @@ namespace Axantum.AxCrypt
 
             ActiveFile destinationActiveFile = ActiveFileMonitor.FindActiveFile(fileInfo.FullName);
 
-            string destinationPath;
-            if (destinationActiveFile == null || String.IsNullOrEmpty(destinationActiveFile.DecryptedPath))
+            string destinationPath = null;
+            if (destinationActiveFile != null && !String.IsNullOrEmpty(destinationActiveFile.DecryptedPath))
             {
-                destinationPath = Path.Combine(ActiveFileMonitor.TemporaryFolderInfo.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()));
-                Directory.CreateDirectory(destinationPath);
-                destinationPath = Path.Combine(destinationPath, fileInfo.Name);
+                destinationPath = Path.GetDirectoryName(destinationActiveFile.DecryptedPath);
+                if (!File.Exists(destinationPath))
+                {
+                    destinationPath = null;
+                }
             }
-            else
-            {
-                destinationPath = destinationActiveFile.DecryptedPath;
-            }
+
+            AesKey usedKey = null;
 
             try
             {
-                if (!File.Exists(destinationPath))
+                if (destinationPath == null)
                 {
-                    fileInfo.CopyTo(destinationPath);
+                    string destinationFolder = Path.Combine(ActiveFileMonitor.TemporaryFolderInfo.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()));
+                    Directory.CreateDirectory(destinationFolder);
+
+                    IRuntimeFileInfo source = AxCryptEnvironment.Current.FileInfo(fileInfo);
+
+                    bool isDecrypted = false;
+                    foreach (AesKey key in keys)
+                    {
+                        string destinationName = AxCryptFile.Decrypt(source, destinationFolder, key, AxCryptOptions.None);
+                        if (!String.IsNullOrEmpty(destinationName))
+                        {
+                            destinationPath = Path.Combine(destinationFolder, destinationName);
+                            isDecrypted = true;
+                            KnownKeys.Add(key);
+                            usedKey = key;
+                            break;
+                        }
+                    }
+                    if (!isDecrypted)
+                    {
+                        return FileOperationStatus.InvalidKey;
+                    }
                 }
             }
             catch (IOException)
@@ -142,7 +166,7 @@ namespace Axantum.AxCrypt
                 }
             }
 
-            destinationActiveFile = new ActiveFile(fileInfo.FullName, destinationPath, ActiveFileStatus.AssumedOpenAndDecrypted, process);
+            destinationActiveFile = new ActiveFile(fileInfo.FullName, destinationPath, usedKey, ActiveFileStatus.AssumedOpenAndDecrypted, process);
             ActiveFileMonitor.AddActiveFile(destinationActiveFile);
 
             if (Logging.IsInfoEnabled)

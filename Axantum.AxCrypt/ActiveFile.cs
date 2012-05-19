@@ -8,6 +8,7 @@ using System.Runtime.Serialization;
 using System.Security.Cryptography;
 using System.Text;
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Crypto;
 
 namespace Axantum.AxCrypt
 {
@@ -20,13 +21,14 @@ namespace Axantum.AxCrypt
     [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
     public class ActiveFile : IDisposable
     {
-        public ActiveFile(string encryptedPath, string decryptedPath, ActiveFileStatus status, Process process)
+        public ActiveFile(string encryptedPath, string decryptedPath, AesKey key, ActiveFileStatus status, Process process)
         {
             EncryptedPath = Path.GetFullPath(encryptedPath);
             decryptedPath = Path.GetFullPath(decryptedPath);
             _decryptedFolder = Path.GetDirectoryName(decryptedPath);
             _protectedDecryptedName = Path.GetFileName(decryptedPath);
             FileInfo decryptedFileInfo = new FileInfo(decryptedPath);
+            Key = key;
             LastWriteTimeUtc = decryptedFileInfo.LastWriteTimeUtc;
             Status = status;
             LastAccessTimeUtc = DateTime.UtcNow;
@@ -38,6 +40,7 @@ namespace Axantum.AxCrypt
             EncryptedPath = activeFile.EncryptedPath;
             _decryptedFolder = activeFile._decryptedFolder;
             _protectedDecryptedName = activeFile._protectedDecryptedName;
+            Key = activeFile.Key;
             LastWriteTimeUtc = activeFile.LastWriteTimeUtc;
             Status = status;
             LastAccessTimeUtc = activeFile.LastAccessTimeUtc;
@@ -46,6 +49,12 @@ namespace Axantum.AxCrypt
             {
                 activeFile.Process = null;
             }
+        }
+
+        public ActiveFile(ActiveFile destinationActiveFile, AesKey key)
+            : this(destinationActiveFile, destinationActiveFile.Status, destinationActiveFile.Process)
+        {
+            Key = key;
         }
 
         public string DecryptedPath
@@ -100,6 +109,8 @@ namespace Axantum.AxCrypt
         public DateTime LastAccessTimeUtc { get; private set; }
 
         public Process Process { get; private set; }
+
+        public AesKey Key { get; private set; }
 
         #region IDisposable Members
 

@@ -154,7 +154,7 @@ namespace Axantum.AxCrypt.Core.Test
                     using (AxCryptDocument document = new AxCryptDocument())
                     {
                         Passphrase passphrase = new Passphrase("a");
-                        Assert.Throws<FileFormatException>(() => { document.Load(outputStream, passphrase); });
+                        Assert.Throws<FileFormatException>(() => { document.Load(outputStream, passphrase.DerivedPassphrase); });
                     }
                 }
             }
