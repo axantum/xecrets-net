@@ -23,30 +23,33 @@ namespace Axantum.AxCrypt
     [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
     public class ActiveFile : IDisposable
     {
-        public ActiveFile(string encryptedPath, string decryptedPath, AesKey key, ActiveFileStatus status, Process process)
+        public ActiveFile(string encryptedPath, string decryptedPath, DateTime lastWriteTimeUtc, AesKey key, ActiveFileStatus status, Process process)
         {
-            EncryptedPath = Path.GetFullPath(encryptedPath);
-            decryptedPath = Path.GetFullPath(decryptedPath);
+            _encryptedFileInfo = new FileInfo(encryptedPath);
+            EncryptedPath = _encryptedFileInfo.FullName;
+            _decryptedFileInfo = new FileInfo(decryptedPath);
+            decryptedPath = _decryptedFileInfo.FullName;
             _decryptedFolder = Path.GetDirectoryName(decryptedPath);
             _protectedDecryptedName = Path.GetFileName(decryptedPath);
-            FileInfo decryptedFileInfo = new FileInfo(decryptedPath);
             Key = key;
-            LastWriteTimeUtc = decryptedFileInfo.LastWriteTimeUtc;
             Status = status;
             LastAccessTimeUtc = DateTime.UtcNow;
             Process = process;
+            if (lastWriteTimeUtc == DateTime.MinValue)
+            {
+                lastWriteTimeUtc = _decryptedFileInfo.LastWriteTimeUtc;
+            }
+            LastWriteTimeUtc = lastWriteTimeUtc;
+        }
+
+        public ActiveFile(string encryptedPath, string decryptedPath, AesKey key, ActiveFileStatus status, Process process)
+            : this(encryptedPath, decryptedPath, DateTime.MinValue, key, status, process)
+        {
         }
 
         public ActiveFile(ActiveFile activeFile, ActiveFileStatus status, Process process)
+            : this(activeFile.EncryptedPath, activeFile.DecryptedPath, activeFile.LastWriteTimeUtc, activeFile.Key, status, process)
         {
-            EncryptedPath = activeFile.EncryptedPath;
-            _decryptedFolder = activeFile._decryptedFolder;
-            _protectedDecryptedName = activeFile._protectedDecryptedName;
-            Key = activeFile.Key;
-            LastWriteTimeUtc = activeFile.LastWriteTimeUtc;
-            Status = status;
-            LastAccessTimeUtc = activeFile.LastAccessTimeUtc;
-            Process = process;
             if (process != null && Object.ReferenceEquals(process, activeFile.Process))
             {
                 activeFile.Process = null;
@@ -57,6 +60,34 @@ namespace Axantum.AxCrypt
             : this(destinationActiveFile, destinationActiveFile.Status, destinationActiveFile.Process)
         {
             Key = key;
+        }
+
+        private FileInfo _decryptedFileInfo;
+
+        public FileInfo DecryptedFileInfo
+        {
+            get
+            {
+                if (_decryptedFileInfo == null)
+                {
+                    _decryptedFileInfo = new FileInfo(DecryptedPath);
+                }
+                return _decryptedFileInfo;
+            }
+        }
+
+        private FileInfo _encryptedFileInfo;
+
+        public FileInfo EncryptedFileInfo
+        {
+            get
+            {
+                if (_encryptedFileInfo == null)
+                {
+                    _encryptedFileInfo = new FileInfo(EncryptedPath);
+                }
+                return _encryptedFileInfo;
+            }
         }
 
         public string DecryptedPath
@@ -103,17 +134,29 @@ namespace Axantum.AxCrypt
         public string EncryptedPath { get; private set; }
 
         [DataMember]
-        public DateTime LastWriteTimeUtc { get; private set; }
-
-        [DataMember]
         public ActiveFileStatus Status { get; private set; }
 
         [DataMember]
         public DateTime LastAccessTimeUtc { get; private set; }
 
+        [DataMember]
+        public DateTime LastWriteTimeUtc { get; private set; }
+
         public Process Process { get; private set; }
 
         public AesKey Key { get; private set; }
+
+        public bool IsModified
+        {
+            get
+            {
+                if (!DecryptedFileInfo.Exists)
+                {
+                    return false;
+                }
+                return DecryptedFileInfo.LastWriteTimeUtc > LastWriteTimeUtc;
+            }
+        }
 
         #region IDisposable Members
 

@@ -21,9 +21,21 @@ namespace Axantum.AxCrypt
             InitializeComponent();
             _messageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
 
-            EncryptedFileManager.IgnoreApplication = !AxCryptEnvironment.Current.IsDesktopWindows;
-            EncryptedFileManager.Changed += new EventHandler<EventArgs>(ActiveFileState_Changed);
-            EncryptedFileManager.ForceActiveFilesStatus();
+            while (_fileOperationInProgress)
+            {
+                Application.DoEvents();
+            }
+            try
+            {
+                _fileOperationInProgress = true;
+                EncryptedFileManager.IgnoreApplication = !AxCryptEnvironment.Current.IsDesktopWindows;
+                EncryptedFileManager.Changed += new EventHandler<EventArgs>(ActiveFileState_Changed);
+                EncryptedFileManager.ForceActiveFilesStatus();
+            }
+            finally
+            {
+                _fileOperationInProgress = false;
+            }
             UserPreferences userPreferences = Settings.Default.UserPreferences;
             if (userPreferences == null)
             {
@@ -144,8 +156,18 @@ namespace Axantum.AxCrypt
 
         private void OpenEncrypted(string file)
         {
-            if (EncryptedFileManager.Open(file, KnownKeys.Keys) == FileOperationStatus.InvalidKey)
+            while (_fileOperationInProgress)
             {
+                Application.DoEvents();
+            }
+            try
+            {
+                _fileOperationInProgress = true;
+                if (EncryptedFileManager.Open(file, KnownKeys.Keys) != FileOperationStatus.InvalidKey)
+                {
+                    return;
+                }
+
                 Passphrase passphrase;
                 FileOperationStatus status;
                 do
@@ -163,6 +185,14 @@ namespace Axantum.AxCrypt
                 {
                     ShowMessageBox("Failed to decrypt and open {0}".InvariantFormat(file));
                 }
+                else
+                {
+                    KnownKeys.Add(passphrase.DerivedPassphrase);
+                }
+            }
+            finally
+            {
+                _fileOperationInProgress = false;
             }
         }
 
@@ -176,9 +206,23 @@ namespace Axantum.AxCrypt
             Application.Exit();
         }
 
+        private bool _fileOperationInProgress = false;
+
         private void ActiveFilePolling_Tick(object sender, EventArgs e)
         {
-            EncryptedFileManager.CheckActiveFilesStatus();
+            if (_fileOperationInProgress)
+            {
+                return;
+            }
+            try
+            {
+                _fileOperationInProgress = true;
+                EncryptedFileManager.CheckActiveFilesStatus();
+            }
+            finally
+            {
+                _fileOperationInProgress = false;
+            }
         }
 
         private void openEncryptedToolStripMenuItem_Click(object sender, EventArgs e)
@@ -211,9 +255,21 @@ namespace Axantum.AxCrypt
 
         private void AxCryptMainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            EncryptedFileManager.IgnoreApplication = true;
-            EncryptedFileManager.CheckActiveFilesStatus();
-            EncryptedFileManager.PurgeActiveFiles();
+            while (_fileOperationInProgress)
+            {
+                Application.DoEvents();
+            }
+            try
+            {
+                _fileOperationInProgress = true;
+                EncryptedFileManager.IgnoreApplication = true;
+                EncryptedFileManager.CheckActiveFilesStatus();
+                EncryptedFileManager.PurgeActiveFiles();
+            }
+            finally
+            {
+                _fileOperationInProgress = false;
+            }
         }
 
         private void OpenFilesListView_MouseDoubleClick(object sender, MouseEventArgs e)

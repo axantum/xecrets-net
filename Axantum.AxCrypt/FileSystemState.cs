@@ -28,7 +28,7 @@ namespace Axantum.AxCrypt
 
         private Dictionary<string, ActiveFile> _activeFilesByDecryptedPath = new Dictionary<string, ActiveFile>();
 
-        private static readonly object _lock = new object();
+        private object _lock = new object();
 
         public IEnumerable<ActiveFile> ActiveFiles
         {
@@ -45,9 +45,12 @@ namespace Axantum.AxCrypt
         public ActiveFile FindEncryptedPath(string encryptedPath)
         {
             ActiveFile activeFile;
-            if (_activeFilesByEncryptedPath.TryGetValue(encryptedPath, out activeFile))
+            lock (_lock)
             {
-                return activeFile;
+                if (_activeFilesByEncryptedPath.TryGetValue(encryptedPath, out activeFile))
+                {
+                    return activeFile;
+                }
             }
             return null;
         }
@@ -55,17 +58,23 @@ namespace Axantum.AxCrypt
         public ActiveFile FindDecryptedPath(string decryptedPath)
         {
             ActiveFile activeFile;
-            if (_activeFilesByDecryptedPath.TryGetValue(decryptedPath, out activeFile))
+            lock (_lock)
             {
-                return activeFile;
+                if (_activeFilesByDecryptedPath.TryGetValue(decryptedPath, out activeFile))
+                {
+                    return activeFile;
+                }
             }
             return null;
         }
 
         public void Add(ActiveFile activeFile)
         {
-            _activeFilesByEncryptedPath[activeFile.EncryptedPath] = activeFile;
-            _activeFilesByDecryptedPath[activeFile.DecryptedPath] = activeFile;
+            lock (_lock)
+            {
+                _activeFilesByEncryptedPath[activeFile.EncryptedPath] = activeFile;
+                _activeFilesByDecryptedPath[activeFile.DecryptedPath] = activeFile;
+            }
         }
 
         [DataMember(Name = "ActiveFiles")]
@@ -77,17 +86,21 @@ namespace Axantum.AxCrypt
             }
             set
             {
+                _lock = new object();
                 SetRange(value);
             }
         }
 
         private void SetRange(IEnumerable<ActiveFile> activeFiles)
         {
-            _activeFilesByDecryptedPath = new Dictionary<string, ActiveFile>();
-            _activeFilesByEncryptedPath = new Dictionary<string, ActiveFile>();
-            foreach (ActiveFile activeFile in activeFiles)
+            lock (_lock)
             {
-                Add(activeFile);
+                _activeFilesByDecryptedPath = new Dictionary<string, ActiveFile>();
+                _activeFilesByEncryptedPath = new Dictionary<string, ActiveFile>();
+                foreach (ActiveFile activeFile in activeFiles)
+                {
+                    Add(activeFile);
+                }
             }
         }
 
@@ -95,7 +108,7 @@ namespace Axantum.AxCrypt
 
         public static void Load(string path)
         {
-            lock (_lock)
+            lock (Current._lock)
             {
                 if (!File.Exists(path))
                 {

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading;
+using System.Windows.Forms;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
@@ -108,11 +109,21 @@ namespace Axantum.AxCrypt
             {
                 if (File.Exists(destinationActiveFile.DecryptedPath))
                 {
-                    destinationPath = destinationActiveFile.DecryptedPath;
+                    IRuntimeFileInfo source = AxCryptEnvironment.Current.FileInfo(destinationActiveFile.EncryptedPath);
+                    foreach (AesKey key in keys)
+                    {
+                        AxCryptDocument document = AxCryptFile.Document(source, key);
+                        if (document.PassphraseIsValid)
+                        {
+                            destinationActiveFile = new ActiveFile(destinationActiveFile, key);
+                            FileSystemState.Current.Add(destinationActiveFile);
+
+                            return LaunchApplicationForDocument(destinationActiveFile);
+                        }
+                    }
+                    return FileOperationStatus.InvalidKey;
                 }
             }
-
-            AesKey usedKey = null;
 
             try
             {
@@ -138,9 +149,8 @@ namespace Axantum.AxCrypt
                         if (!String.IsNullOrEmpty(destinationName))
                         {
                             destinationPath = Path.Combine(destinationFolder, destinationName);
+                            destinationActiveFile = new ActiveFile(fileInfo.FullName, destinationPath, key, ActiveFileStatus.AssumedOpenAndDecrypted, null);
                             isDecrypted = true;
-                            KnownKeys.Add(key);
-                            usedKey = key;
                             break;
                         }
                     }
@@ -155,10 +165,15 @@ namespace Axantum.AxCrypt
                 return FileOperationStatus.CannotWriteDestination;
             }
 
+            return LaunchApplicationForDocument(destinationActiveFile);
+        }
+
+        private static FileOperationStatus LaunchApplicationForDocument(ActiveFile destinationActiveFile)
+        {
             Process process;
             try
             {
-                process = Process.Start(destinationPath);
+                process = Process.Start(destinationActiveFile.DecryptedPath);
             }
             catch (Win32Exception)
             {
@@ -169,17 +184,17 @@ namespace Axantum.AxCrypt
             {
                 if (process.HasExited)
                 {
-                    Logging.Warning("The process seems to exit immediately for '{0}'".InvariantFormat(destinationPath));
+                    Logging.Warning("The process seems to exit immediately for '{0}'".InvariantFormat(destinationActiveFile.DecryptedPath));
                 }
             }
-
-            destinationActiveFile = new ActiveFile(fileInfo.FullName, destinationPath, usedKey, ActiveFileStatus.AssumedOpenAndDecrypted, process);
-            ActiveFileMonitor.AddActiveFile(destinationActiveFile);
 
             if (Logging.IsInfoEnabled)
             {
                 Logging.Info("Launched and opened '{0}'.".InvariantFormat(destinationActiveFile.DecryptedPath));
             }
+
+            destinationActiveFile = new ActiveFile(destinationActiveFile, ActiveFileStatus.AssumedOpenAndDecrypted, process);
+            ActiveFileMonitor.AddActiveFile(destinationActiveFile);
 
             return FileOperationStatus.Success;
         }
