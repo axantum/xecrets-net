@@ -7,14 +7,14 @@ using System.Text;
 namespace Axantum.AxCrypt
 {
     [CollectionDataContract(ItemName = "FileState", Namespace = "http://wwww.axantum.com/Serialization/")]
-    public class ActiveFileList : List<ActiveFile>
+    public class ActiveFileCollection : List<ActiveFile>
     {
-        public ActiveFileList()
+        public ActiveFileCollection()
             : base()
         {
         }
 
-        public ActiveFileList(IEnumerable<ActiveFile> collection)
+        public ActiveFileCollection(IEnumerable<ActiveFile> collection)
             : base(collection)
         {
         }

@@ -15,7 +15,7 @@ namespace Axantum.AxCrypt
     {
         private static string _fileSystemStateFullName = Path.Combine(TemporaryDirectoryInfo.FullName, "FileSystemState.xml");
 
-        private static FileSystemWatcher _TemporaryDirectoryWatcher = InitializeTemporaryDirectoryWatcher();
+        private static FileSystemWatcher _temporaryDirectoryWatcher = InitializeTemporaryDirectoryWatcher();
 
         private static FileSystemWatcher InitializeTemporaryDirectoryWatcher()
         {

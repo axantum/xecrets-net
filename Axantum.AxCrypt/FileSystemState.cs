@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -8,7 +9,7 @@ using System.Text;
 namespace Axantum.AxCrypt
 {
     [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
-    public class FileSystemState
+    public sealed class FileSystemState
     {
         private static FileSystemState _current = new FileSystemState();
 
@@ -78,11 +79,11 @@ namespace Axantum.AxCrypt
         }
 
         [DataMember(Name = "ActiveFiles")]
-        protected ActiveFileList ActiveFilesForSerialization
+        private ICollection<ActiveFile> ActiveFilesForSerialization
         {
             get
             {
-                return new ActiveFileList(_activeFilesByEncryptedPath.Values);
+                return new ActiveFileCollection(_activeFilesByEncryptedPath.Values);
             }
             set
             {
