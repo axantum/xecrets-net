@@ -12,6 +12,10 @@ namespace Axantum.AxCrypt.Core.UI
 
         public static void Add(AesKey key)
         {
+            if (_keys.Contains<AesKey>(key))
+            {
+                return;
+            }
             _keys.Add(key);
         }
 
@@ -20,6 +24,21 @@ namespace Axantum.AxCrypt.Core.UI
             get
             {
                 return _keys;
+            }
+        }
+
+        private static AesKey _defaultEncryptionKey;
+
+        public static AesKey DefaultEncryptionKey
+        {
+            get
+            {
+                return _defaultEncryptionKey;
+            }
+            set
+            {
+                _defaultEncryptionKey = value;
+                Add(value);
             }
         }
     }

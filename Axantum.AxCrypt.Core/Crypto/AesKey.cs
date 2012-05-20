@@ -36,7 +36,7 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// <summary>
     /// Hold a key for AES. Instances of this class are immutable.
     /// </summary>
-    public class AesKey
+    public class AesKey : IEquatable<AesKey>
     {
         private static ICollection<int> _validAesKeySizes = ValidAesKeySizes();
 
@@ -92,6 +92,15 @@ namespace Axantum.AxCrypt.Core.Crypto
                 }
             }
             return validAesKeySizes;
+        }
+
+        public bool Equals(AesKey other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            return _aesKey.IsEquivalentTo(other._aesKey);
         }
     }
 }
