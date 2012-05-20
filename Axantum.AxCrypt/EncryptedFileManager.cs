@@ -104,12 +104,11 @@ namespace Axantum.AxCrypt
             ActiveFile destinationActiveFile = ActiveFileMonitor.FindActiveFile(fileInfo.FullName);
 
             string destinationPath = null;
-            if (destinationActiveFile != null && !String.IsNullOrEmpty(destinationActiveFile.DecryptedPath))
+            if (destinationActiveFile != null)
             {
-                destinationPath = Path.GetDirectoryName(destinationActiveFile.DecryptedPath);
-                if (!File.Exists(destinationPath))
+                if (File.Exists(destinationActiveFile.DecryptedPath))
                 {
-                    destinationPath = null;
+                    destinationPath = destinationActiveFile.DecryptedPath;
                 }
             }
 
@@ -119,7 +118,15 @@ namespace Axantum.AxCrypt
             {
                 if (destinationPath == null)
                 {
-                    string destinationFolder = Path.Combine(ActiveFileMonitor.TemporaryFolderInfo.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()));
+                    string destinationFolder;
+                    if (destinationActiveFile != null)
+                    {
+                        destinationFolder = Path.GetDirectoryName(destinationActiveFile.DecryptedPath);
+                    }
+                    else
+                    {
+                        destinationFolder = Path.Combine(ActiveFileMonitor.TemporaryDirectoryInfo.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()));
+                    }
                     Directory.CreateDirectory(destinationFolder);
 
                     IRuntimeFileInfo source = AxCryptEnvironment.Current.FileInfo(fileInfo);

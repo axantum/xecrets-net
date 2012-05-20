@@ -15,7 +15,23 @@ namespace Axantum.AxCrypt
     {
         private static readonly object _lock = new object();
 
-        private static ActiveFileDictionary _activeFiles = Load();
+        private static string _fileSystemStateFullName = Path.Combine(TemporaryDirectoryInfo.FullName, "FileSystemState.xml");
+
+        private static FileSystemWatcher _TemporaryDirectoryWatcher = InitializeTemporaryDirectoryWatcher();
+
+        private static FileSystemWatcher InitializeTemporaryDirectoryWatcher()
+        {
+            FileSystemWatcher temporaryDirectoryWatcher = new FileSystemWatcher(TemporaryDirectoryInfo.FullName);
+            temporaryDirectoryWatcher.Changed += TemporaryDirectoryWatcher_Changed;
+            temporaryDirectoryWatcher.Created += TemporaryDirectoryWatcher_Changed;
+            temporaryDirectoryWatcher.Deleted += TemporaryDirectoryWatcher_Changed;
+            temporaryDirectoryWatcher.IncludeSubdirectories = true;
+            temporaryDirectoryWatcher.NotifyFilter = NotifyFilters.LastWrite;
+
+            FileSystemState.Load(_fileSystemStateFullName);
+
+            return temporaryDirectoryWatcher;
+        }
 
         public static event EventHandler<EventArgs> Changed;
 
@@ -23,8 +39,8 @@ namespace Axantum.AxCrypt
         {
             lock (_lock)
             {
-                _activeFiles[activeFile.EncryptedPath] = activeFile;
-                Save();
+                FileSystemState.Current.Add(activeFile);
+                FileSystemState.Current.Save();
             }
             OnChanged(new EventArgs());
         }
@@ -34,11 +50,11 @@ namespace Axantum.AxCrypt
             bool isChanged = forceChange;
             lock (_lock)
             {
-                ActiveFileDictionary activeFiles = new ActiveFileDictionary();
-                foreach (ActiveFile activeFile in _activeFiles.Values)
+                List<ActiveFile> activeFiles = new List<ActiveFile>();
+                foreach (ActiveFile activeFile in FileSystemState.Current.ActiveFiles)
                 {
                     ActiveFile updatedActiveFile = action(activeFile);
-                    activeFiles[updatedActiveFile.EncryptedPath] = updatedActiveFile;
+                    activeFiles.Add(updatedActiveFile);
                     if (updatedActiveFile != activeFile)
                     {
                         activeFile.Dispose();
@@ -47,23 +63,10 @@ namespace Axantum.AxCrypt
                 }
                 if (isChanged)
                 {
-                    _activeFiles = activeFiles;
-                    Save();
+                    FileSystemState.Current.ActiveFiles = activeFiles;
+                    FileSystemState.Current.Save();
                     OnChanged(new EventArgs());
                 }
-            }
-        }
-
-        public static ActiveFile FindActiveFile(string encryptedPath)
-        {
-            lock (_lock)
-            {
-                ActiveFile activeFile;
-                if (_activeFiles.TryGetValue(encryptedPath, out activeFile))
-                {
-                    return activeFile;
-                }
-                return null;
             }
         }
 
@@ -273,58 +276,38 @@ namespace Axantum.AxCrypt
             return alternatePath;
         }
 
-        private static DirectoryInfo _temporaryFolderInfo;
+        private static DirectoryInfo _temporaryDirectoryInfo;
 
-        public static DirectoryInfo TemporaryFolderInfo
+        public static DirectoryInfo TemporaryDirectoryInfo
         {
             get
             {
-                if (_temporaryFolderInfo == null)
+                if (_temporaryDirectoryInfo == null)
                 {
                     string temporaryFolderPath = Path.Combine(Path.GetTempPath(), "AxCrypt");
                     DirectoryInfo temporaryFolderInfo = new DirectoryInfo(temporaryFolderPath);
                     temporaryFolderInfo.Create();
-                    _temporaryFolderInfo = temporaryFolderInfo;
+                    _temporaryDirectoryInfo = temporaryFolderInfo;
                 }
 
-                return _temporaryFolderInfo;
+                return _temporaryDirectoryInfo;
             }
         }
 
-        private static ActiveFileDictionary Load()
+        public static void TemporaryDirectoryWatcher_Changed(object sender, FileSystemEventArgs e)
         {
-            DataContractSerializer serializer = CreateSerializer();
-            string path = Path.Combine(TemporaryFolderInfo.FullName, "ActiveFiles.xml");
-            if (!File.Exists(path))
+            ActiveFile changedFile = FileSystemState.Current.FindDecryptedPath(e.FullPath);
+            if (changedFile == null)
             {
-                return new ActiveFileDictionary();
-            }
-            using (FileStream activeFileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None))
-            {
-                lock (_lock)
-                {
-                    ActiveFileDictionary activeFiles = (ActiveFileDictionary)serializer.ReadObject(activeFileStream);
-                    return activeFiles;
-                }
+                return;
             }
         }
 
-        private static DataContractSerializer CreateSerializer()
+        public static ActiveFile FindActiveFile(string path)
         {
-            DataContractSerializer serializer = new DataContractSerializer(typeof(ActiveFileDictionary), "ActiveFiles", "http://www.axantum.com/Serialization/");
-            return serializer;
-        }
-
-        private static void Save()
-        {
-            DataContractSerializer serializer = CreateSerializer();
-            string path = Path.Combine(TemporaryFolderInfo.FullName, "ActiveFiles.xml");
-            using (FileStream activeFileStream = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
+            lock (_lock)
             {
-                lock (_lock)
-                {
-                    serializer.WriteObject(activeFileStream, _activeFiles);
-                }
+                return FileSystemState.Current.FindEncryptedPath(path);
             }
         }
     }

@@ -94,6 +94,7 @@
   <ItemGroup>
     <Compile Include="ActiveFile.cs" />
     <Compile Include="ActiveFileDictionary.cs" />
+    <Compile Include="ActiveFileList.cs" />
     <Compile Include="ActiveFileMonitor.cs" />
     <Compile Include="ActiveFileStatus.cs" />
     <Compile Include="AxCryptMainForm.cs">
@@ -110,6 +111,7 @@
     </Compile>
     <Compile Include="EncryptedFileManager.cs" />
     <Compile Include="FileOperationStatus.cs" />
+    <Compile Include="FileSystemState.cs" />
     <Compile Include="Logging.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
