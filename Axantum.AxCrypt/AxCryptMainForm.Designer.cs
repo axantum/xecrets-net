@@ -193,7 +193,6 @@
             this.RecentFilesListView.UseCompatibleStateImageBehavior = false;
             this.RecentFilesListView.View = System.Windows.Forms.View.Details;
             this.RecentFilesListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.RecentFilesListView_ColumnWidthChanged);
-            this.RecentFilesListView.SelectedIndexChanged += new System.EventHandler(this.RecentFilesListView_SelectedIndexChanged);
             this.RecentFilesListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.RecentFilesListView_MouseDoubleClick);
             // 
             // DecryptedFile
@@ -241,6 +240,7 @@
             this.OpenFilesListView.SmallImageList = this.ImageList16;
             this.OpenFilesListView.UseCompatibleStateImageBehavior = false;
             this.OpenFilesListView.View = System.Windows.Forms.View.Details;
+            this.OpenFilesListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.OpenFilesListView_MouseDoubleClick);
             // 
             // OpenFile
             // 

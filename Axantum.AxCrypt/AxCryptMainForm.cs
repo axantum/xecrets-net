@@ -73,7 +73,12 @@ namespace Axantum.AxCrypt
             if (activeFile.Status.HasFlag(ActiveFileStatus.DecryptedIsPendingDelete) || activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted))
             {
                 item = new ListViewItem(Path.GetFileName(activeFile.DecryptedPath), "ActiveFile");
-                item.SubItems.Add(activeFile.EncryptedPath);
+
+                ListViewItem.ListViewSubItem encryptedPathColumn = new ListViewItem.ListViewSubItem();
+                encryptedPathColumn.Name = "EncryptedPath";
+                encryptedPathColumn.Text = activeFile.EncryptedPath;
+                item.SubItems.Add(encryptedPathColumn);
+
                 OpenFilesListView.Items.Add(item);
             }
             return activeFile;
@@ -209,6 +214,12 @@ namespace Axantum.AxCrypt
             EncryptedFileManager.IgnoreApplication = true;
             EncryptedFileManager.CheckActiveFilesStatus();
             EncryptedFileManager.PurgeActiveFiles();
+        }
+
+        private void OpenFilesListView_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            string encryptedPath = OpenFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text;
+            OpenEncrypted(encryptedPath);
         }
     }
 }

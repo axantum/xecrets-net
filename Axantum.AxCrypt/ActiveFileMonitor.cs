@@ -146,8 +146,12 @@ namespace Axantum.AxCrypt
             FileStream activeFileStream = null;
             try
             {
-                if (activeFile.Key != null && activeFileInfo.LastWriteTimeUtc > activeFile.LastWriteTimeUtc && !activeFile.Status.HasFlag(ActiveFileStatus.NotShareable))
+                if (activeFileInfo.LastWriteTimeUtc > activeFile.LastWriteTimeUtc)
                 {
+                    if (activeFile.Key == null || activeFile.Status.HasFlag(ActiveFileStatus.NotShareable))
+                    {
+                        return activeFile;
+                    }
                     try
                     {
                         activeFileStream = activeFileInfo.Open(FileMode.Open, FileAccess.Read, FileShare.Read);
@@ -214,6 +218,7 @@ namespace Axantum.AxCrypt
                 {
                     Logging.Info("Tried delete '{0}' but it is modified.".InvariantFormat(activeFile.DecryptedPath));
                 }
+                activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted, activeFile.Process);
                 return activeFile;
             }
 
