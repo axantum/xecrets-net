@@ -197,5 +197,13 @@ namespace Axantum.AxCrypt.Core.Test
         {
             get { return _file.FullName; }
         }
+
+        public bool Exists
+        {
+            get
+            {
+                return _fakeFileSystem.ContainsKey(_file.FullName);
+            }
+        }
     }
 }

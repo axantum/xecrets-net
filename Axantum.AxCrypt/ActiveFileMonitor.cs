@@ -26,7 +26,7 @@ namespace Axantum.AxCrypt
             temporaryDirectoryWatcher.IncludeSubdirectories = true;
             temporaryDirectoryWatcher.NotifyFilter = NotifyFilters.LastWrite;
 
-            FileSystemState.Load(_fileSystemStateFullName);
+            FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(_fileSystemStateFullName));
 
             return temporaryDirectoryWatcher;
         }

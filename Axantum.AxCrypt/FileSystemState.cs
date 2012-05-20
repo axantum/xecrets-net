@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using Axantum.AxCrypt.Core.IO;
 
 namespace Axantum.AxCrypt
 {
@@ -25,11 +26,21 @@ namespace Axantum.AxCrypt
             }
         }
 
+        private FileSystemState()
+        {
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            _lock = new object();
+        }
+
         private Dictionary<string, ActiveFile> _activeFilesByEncryptedPath = new Dictionary<string, ActiveFile>();
 
         private Dictionary<string, ActiveFile> _activeFilesByDecryptedPath = new Dictionary<string, ActiveFile>();
 
-        private object _lock = new object();
+        private object _lock;
 
         public IEnumerable<ActiveFile> ActiveFiles
         {
@@ -39,7 +50,10 @@ namespace Axantum.AxCrypt
             }
             set
             {
-                SetRange(value);
+                lock (_lock)
+                {
+                    SetRangeInternal(value);
+                }
             }
         }
 
@@ -73,9 +87,14 @@ namespace Axantum.AxCrypt
         {
             lock (_lock)
             {
-                _activeFilesByEncryptedPath[activeFile.EncryptedPath] = activeFile;
-                _activeFilesByDecryptedPath[activeFile.DecryptedPath] = activeFile;
+                AddInternal(activeFile);
             }
+        }
+
+        private void AddInternal(ActiveFile activeFile)
+        {
+            _activeFilesByEncryptedPath[activeFile.EncryptedPath] = activeFile;
+            _activeFilesByDecryptedPath[activeFile.DecryptedPath] = activeFile;
         }
 
         [DataMember(Name = "ActiveFiles")]
@@ -87,44 +106,47 @@ namespace Axantum.AxCrypt
             }
             set
             {
-                _lock = new object();
-                SetRange(value);
+                SetRangeInternal(value);
             }
         }
 
-        private void SetRange(IEnumerable<ActiveFile> activeFiles)
+        private void SetRangeInternal(IEnumerable<ActiveFile> activeFiles)
         {
-            lock (_lock)
+            _activeFilesByDecryptedPath = new Dictionary<string, ActiveFile>();
+            _activeFilesByEncryptedPath = new Dictionary<string, ActiveFile>();
+            foreach (ActiveFile activeFile in activeFiles)
             {
-                _activeFilesByDecryptedPath = new Dictionary<string, ActiveFile>();
-                _activeFilesByEncryptedPath = new Dictionary<string, ActiveFile>();
-                foreach (ActiveFile activeFile in activeFiles)
-                {
-                    Add(activeFile);
-                }
+                AddInternal(activeFile);
             }
         }
 
         private string _path;
 
-        public static void Load(string path)
+        public static void Load(IRuntimeFileInfo path)
         {
             lock (Current._lock)
             {
-                if (!File.Exists(path))
+                if (!path.Exists)
                 {
                     Current = new FileSystemState();
-                    Current._path = path;
+                    Current._path = path.FullName;
                     return;
                 }
+
                 DataContractSerializer serializer = CreateSerializer();
-                using (FileStream fileSystemStateStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None))
+                using (FileStream fileSystemStateStream = new FileStream(path.FullName, FileMode.Open, FileAccess.Read, FileShare.None))
                 {
                     FileSystemState fileSystemState = (FileSystemState)serializer.ReadObject(fileSystemStateStream);
-                    fileSystemState._path = path;
+                    fileSystemState._path = path.FullName;
                     Current = fileSystemState;
                 }
             }
+        }
+
+        [OnDeserialized]
+        private void OnDeserialized(StreamingContext context)
+        {
+            Initialize();
         }
 
         public void Save()

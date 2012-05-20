@@ -118,5 +118,13 @@ namespace Axantum.AxCrypt.Core.IO
         {
             get { return _file.FullName; }
         }
+
+        public bool Exists
+        {
+            get
+            {
+                return _file.Exists;
+            }
+        }
     }
 }
