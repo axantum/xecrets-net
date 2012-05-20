@@ -48,12 +48,12 @@ namespace Axantum.AxCrypt.Core.IO
 
         public Stream OpenRead()
         {
-            return _file.OpenRead();
+            return _file.Open(FileMode.Open, FileAccess.Read, FileShare.Read);
         }
 
         public Stream OpenWrite()
         {
-            return _file.OpenWrite();
+            return _file.Open(FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
         }
 
         public string Name
@@ -125,6 +125,16 @@ namespace Axantum.AxCrypt.Core.IO
             {
                 return _file.Exists;
             }
+        }
+
+        public void MoveTo(string destFileName)
+        {
+            _file.MoveTo(destFileName);
+        }
+
+        public void Delete()
+        {
+            _file.Delete();
         }
     }
 }

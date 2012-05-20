@@ -49,6 +49,11 @@ namespace Axantum.AxCrypt
             }
         }
 
+        public static FileOperationStatus Encrypt(string file, AesKey key)
+        {
+            return FileOperationStatus.UnspecifiedError;
+        }
+
         public static void CheckActiveFilesStatus()
         {
             lock (_lock)

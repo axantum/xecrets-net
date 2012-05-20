@@ -205,5 +205,19 @@ namespace Axantum.AxCrypt.Core.Test
                 return _fakeFileSystem.ContainsKey(_file.FullName);
             }
         }
+
+        public void MoveTo(string destFileName)
+        {
+            FakeFileInfo source = _fakeFileSystem[_file.FullName];
+            _fakeFileSystem.Remove(_file.FullName);
+            AddFile(destFileName, source.CreationTimeUtc, source.LastAccessTimeUtc, source.LastWriteTimeUtc, source.Stream);
+            _file = new FileInfo(destFileName);
+        }
+
+        public void Delete()
+        {
+            FakeFileInfo source = _fakeFileSystem[_file.FullName];
+            _fakeFileSystem.Remove(_file.FullName);
+        }
     }
 }

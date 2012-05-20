@@ -158,7 +158,7 @@ namespace Axantum.AxCrypt
                 using (FileStream activeFileStream = File.Open(activeFile.DecryptedPath, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
                     IRuntimeFileInfo sourceFileInfo = AxCryptEnvironment.Current.FileInfo(activeFile.DecryptedPath);
-                    WriteToFileWithBackup(activeFile.EncryptedPath, (Stream destination) =>
+                    AxCryptFile.WriteToFileWithBackup(activeFile.EncryptedPath, (Stream destination) =>
                     {
                         AxCryptFile.Encrypt(sourceFileInfo, destination, activeFile.Key, AxCryptOptions.EncryptWithCompression);
                     });
@@ -251,37 +251,6 @@ namespace Axantum.AxCrypt
             }
 
             return activeFile;
-        }
-
-        private static void WriteToFileWithBackup(string destinationFilePath, Action<Stream> writeFileStreamTo)
-        {
-            FileInfo destinationFileInfo = new FileInfo(destinationFilePath);
-            string temporaryFilePath = MakeAlternatePath(destinationFileInfo, ".tmp");
-            FileInfo temporaryFileInfo = new FileInfo(temporaryFilePath);
-
-            using (FileStream temporaryStream = temporaryFileInfo.Open(FileMode.CreateNew, FileAccess.ReadWrite, FileShare.None))
-            {
-                writeFileStreamTo(temporaryStream);
-            }
-
-            string backupFilePath = MakeAlternatePath(destinationFileInfo, ".bak");
-            destinationFileInfo.MoveTo(backupFilePath);
-            temporaryFileInfo.MoveTo(destinationFilePath);
-            File.Delete(backupFilePath);
-        }
-
-        private static string MakeAlternatePath(FileInfo fileInfo, string extension)
-        {
-            string alternatePath;
-            int version = 0;
-            do
-            {
-                string alternateExtension = (version > 0 ? "." + version.ToString(CultureInfo.InvariantCulture) : String.Empty) + extension;
-                alternatePath = Path.Combine(fileInfo.DirectoryName, Path.GetFileNameWithoutExtension(fileInfo.Name) + alternateExtension);
-                ++version;
-            } while (File.Exists(alternatePath));
-
-            return alternatePath;
         }
 
         private static DirectoryInfo _temporaryDirectoryInfo;

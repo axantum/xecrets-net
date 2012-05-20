@@ -27,6 +27,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -158,6 +159,48 @@ namespace Axantum.AxCrypt.Core
             AxCryptDocument document = new AxCryptDocument();
             document.Load(sourceFile.OpenRead(), key);
             return document;
+        }
+
+        public static void WriteToFileWithBackup(string destinationFilePath, Action<Stream> writeFileStreamTo)
+        {
+            IRuntimeFileInfo destinationFileInfo = AxCryptEnvironment.Current.FileInfo(destinationFilePath);
+            string temporaryFilePath = MakeAlternatePath(destinationFileInfo, ".tmp");
+            IRuntimeFileInfo temporaryFileInfo = AxCryptEnvironment.Current.FileInfo(temporaryFilePath);
+
+            using (Stream temporaryStream = temporaryFileInfo.OpenWrite())
+            {
+                writeFileStreamTo(temporaryStream);
+            }
+
+            string backupFilePath = MakeAlternatePath(destinationFileInfo, ".bak");
+            destinationFileInfo.MoveTo(backupFilePath);
+            temporaryFileInfo.MoveTo(destinationFilePath);
+            IRuntimeFileInfo backupFileInfo = AxCryptEnvironment.Current.FileInfo(backupFilePath);
+            backupFileInfo.Delete();
+        }
+
+        private static string MakeAlternatePath(IRuntimeFileInfo fileInfo, string extension)
+        {
+            string alternatePath;
+            IRuntimeFileInfo alternateFileInfo;
+            int version = 0;
+            do
+            {
+                string alternateExtension = (version > 0 ? "." + version.ToString(CultureInfo.InvariantCulture) : String.Empty) + extension;
+                alternatePath = Path.Combine(Path.GetDirectoryName(fileInfo.FullName), Path.GetFileNameWithoutExtension(fileInfo.Name) + alternateExtension);
+                alternateFileInfo = AxCryptEnvironment.Current.FileInfo(alternatePath);
+                ++version;
+            } while (alternateFileInfo.Exists);
+
+            return alternatePath;
+        }
+
+        public static string MakeAxCryptFileName(IRuntimeFileInfo fileInfo)
+        {
+            string axCryptExtension = AxCryptEnvironment.Current.AxCryptExtension;
+            string axCryptFileName = Path.Combine(Path.GetDirectoryName(fileInfo.FullName), Path.GetFileNameWithoutExtension(fileInfo.Name) + "-" + Path.GetExtension(fileInfo.Name).Substring(1) + axCryptExtension);
+
+            return axCryptFileName;
         }
     }
 }

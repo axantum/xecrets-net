@@ -11,6 +11,7 @@ using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Properties;
+using Axantum.AxCrypt.Core.IO;
 
 namespace Axantum.AxCrypt
 {
@@ -104,7 +105,62 @@ namespace Axantum.AxCrypt
             {
                 ofd.Title = Resources.EncryptFileOpenDialogTitle;
                 ofd.Multiselect = true;
-                ofd.ShowDialog();
+                ofd.CheckFileExists = true;
+                ofd.CheckPathExists = true;
+                DialogResult result = ofd.ShowDialog();
+                if (result != DialogResult.OK)
+                {
+                    return;
+                }
+                foreach (string file in ofd.FileNames)
+                {
+                    EncryptFile(file);
+                }
+            }
+        }
+
+        private void EncryptFile(string file)
+        {
+            FileInfo fileInfo = new FileInfo(file);
+            if (String.Compare(fileInfo.Extension, AxCryptEnvironment.Current.AxCryptExtension) == 0)
+            {
+                return;
+            }
+            AesKey key = null;
+            if (KnownKeys.DefaultEncryptionKey == null)
+            {
+                DecryptionPassphraseDialog passphraseDialog = new DecryptionPassphraseDialog();
+                DialogResult dialogResult = passphraseDialog.ShowDialog();
+                if (dialogResult != DialogResult.OK)
+                {
+                    return;
+                }
+                Passphrase passphrase = new Passphrase(passphraseDialog.Passphrase.Text);
+                key = passphrase.DerivedPassphrase;
+            }
+            else
+            {
+                key = KnownKeys.DefaultEncryptionKey;
+            }
+
+            try
+            {
+                using (FileStream activeFileStream = File.Open(file, FileMode.Open, FileAccess.Read, FileShare.Read))
+                {
+                    IRuntimeFileInfo sourceFileInfo = AxCryptEnvironment.Current.FileInfo(file);
+                    string destinationPath = AxCryptFile.MakeAxCryptFileName(sourceFileInfo);
+                    AxCryptFile.WriteToFileWithBackup(destinationPath, (Stream destination) =>
+                    {
+                        AxCryptFile.Encrypt(sourceFileInfo, destination, key, AxCryptOptions.EncryptWithCompression);
+                    });
+                }
+            }
+            catch (IOException)
+            {
+            }
+            if (KnownKeys.DefaultEncryptionKey == null)
+            {
+                KnownKeys.DefaultEncryptionKey = key;
             }
         }
 
