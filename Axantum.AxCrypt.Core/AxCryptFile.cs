@@ -172,11 +172,18 @@ namespace Axantum.AxCrypt.Core
                 writeFileStreamTo(temporaryStream);
             }
 
-            string backupFilePath = MakeAlternatePath(destinationFileInfo, ".bak");
-            destinationFileInfo.MoveTo(backupFilePath);
-            temporaryFileInfo.MoveTo(destinationFilePath);
-            IRuntimeFileInfo backupFileInfo = AxCryptEnvironment.Current.FileInfo(backupFilePath);
-            backupFileInfo.Delete();
+            if (destinationFileInfo.Exists)
+            {
+                string backupFilePath = MakeAlternatePath(destinationFileInfo, ".bak");
+                IRuntimeFileInfo backupFileInfo = AxCryptEnvironment.Current.FileInfo(backupFilePath);
+                destinationFileInfo.MoveTo(backupFilePath);
+                temporaryFileInfo.MoveTo(destinationFilePath);
+                backupFileInfo.Delete();
+            }
+            else
+            {
+                temporaryFileInfo.MoveTo(destinationFilePath);
+            }
         }
 
         private static string MakeAlternatePath(IRuntimeFileInfo fileInfo, string extension)
@@ -201,6 +208,14 @@ namespace Axantum.AxCrypt.Core
             string axCryptFileName = Path.Combine(Path.GetDirectoryName(fileInfo.FullName), Path.GetFileNameWithoutExtension(fileInfo.Name) + "-" + Path.GetExtension(fileInfo.Name).Substring(1) + axCryptExtension);
 
             return axCryptFileName;
+        }
+
+        public static void Wipe(IRuntimeFileInfo fileInfo)
+        {
+            if (fileInfo.Exists)
+            {
+                fileInfo.Delete();
+            }
         }
     }
 }
