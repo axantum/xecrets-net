@@ -64,7 +64,7 @@ namespace Axantum.AxCrypt.Core.IO
 
         IRuntimeFileInfo CreateEncryptedName();
 
-        void MoveTo(string destFileName);
+        void MoveTo(string destinationFileName);
 
         void Delete();
     }

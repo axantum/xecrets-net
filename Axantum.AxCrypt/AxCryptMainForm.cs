@@ -9,9 +9,9 @@ using System.Text;
 using System.Windows.Forms;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Properties;
-using Axantum.AxCrypt.Core.IO;
 
 namespace Axantum.AxCrypt
 {
@@ -119,13 +119,38 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void EncryptFile(string file)
+        private static void EncryptFile(string file)
         {
             FileInfo fileInfo = new FileInfo(file);
-            if (String.Compare(fileInfo.Extension, AxCryptEnvironment.Current.AxCryptExtension) == 0)
+            if (String.Compare(fileInfo.Extension, AxCryptEnvironment.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return;
             }
+
+            IRuntimeFileInfo sourceFileInfo = AxCryptEnvironment.Current.FileInfo(file);
+            IRuntimeFileInfo destinationInfo = AxCryptEnvironment.Current.FileInfo(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
+            if (destinationInfo.Exists)
+            {
+                using (SaveFileDialog sfd = new SaveFileDialog())
+                {
+                    sfd.Title = Resources.EncryptFileSaveAsDialogTitle;
+                    sfd.AddExtension = true;
+                    sfd.ValidateNames = true;
+                    sfd.CheckPathExists = true;
+                    sfd.DefaultExt = AxCryptEnvironment.Current.AxCryptExtension;
+                    sfd.FileName = destinationInfo.FullName;
+                    sfd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat(AxCryptEnvironment.Current.AxCryptExtension);
+                    sfd.InitialDirectory = Path.GetDirectoryName(destinationInfo.FullName);
+                    sfd.ValidateNames = true;
+                    DialogResult saveAsResult = sfd.ShowDialog();
+                    if (saveAsResult != DialogResult.OK)
+                    {
+                        return;
+                    }
+                    destinationInfo = AxCryptEnvironment.Current.FileInfo(sfd.FileName);
+                }
+            }
+
             AesKey key = null;
             if (KnownKeys.DefaultEncryptionKey == null)
             {
@@ -145,15 +170,14 @@ namespace Axantum.AxCrypt
 
             try
             {
-                using (FileStream activeFileStream = File.Open(file, FileMode.Open, FileAccess.Read, FileShare.Read))
+                using (Stream activeFileStream = fileInfo.OpenRead())
                 {
-                    IRuntimeFileInfo sourceFileInfo = AxCryptEnvironment.Current.FileInfo(file);
-                    string destinationPath = AxCryptFile.MakeAxCryptFileName(sourceFileInfo);
-                    AxCryptFile.WriteToFileWithBackup(destinationPath, (Stream destination) =>
+                    AxCryptFile.WriteToFileWithBackup(destinationInfo.FullName, (Stream destination) =>
                     {
                         AxCryptFile.Encrypt(sourceFileInfo, destination, key, AxCryptOptions.EncryptWithCompression);
                     });
                 }
+                AxCryptFile.Wipe(sourceFileInfo);
             }
             catch (IOException)
             {

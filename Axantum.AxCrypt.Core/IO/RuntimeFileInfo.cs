@@ -127,9 +127,9 @@ namespace Axantum.AxCrypt.Core.IO
             }
         }
 
-        public void MoveTo(string destFileName)
+        public void MoveTo(string destinationFileName)
         {
-            _file.MoveTo(destFileName);
+            _file.MoveTo(destinationFileName);
         }
 
         public void Delete()

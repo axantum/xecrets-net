@@ -135,7 +135,11 @@
     <comment>The column header for the plaintext file name of an open and locked file</comment>
   </data>
   <data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
-    <value>AxCrypt Files({0})|{0}|All files (*.*)|*.*</value>
+    <value>AxCrypt Files (*{0})|*{0}|All files (*.*)|*.*</value>
     <comment>A filter for a FileDialog. {0} represents the pattern, like *.axx.</comment>
+  </data>
+  <data name="EncryptFileSaveAsDialogTitle" xml:space="preserve">
+    <value>File Exists, Save As</value>
+    <comment>When you attempt to encrypt a file and the target name already exists.</comment>
   </data>
 </root>

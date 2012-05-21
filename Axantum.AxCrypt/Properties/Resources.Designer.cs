@@ -70,7 +70,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Files({0})|{0}|All files (*.*)|*.*.
+        ///   Looks up a localized string similar to AxCrypt Files (*{0})|*{0}|All files (*.*)|*.*.
         /// </summary>
         internal static string EncryptedFileDialogFilterPattern {
             get {
@@ -93,6 +93,15 @@ namespace Axantum.AxCrypt.Properties {
         internal static string EncryptFileOpenDialogTitle {
             get {
                 return ResourceManager.GetString("EncryptFileOpenDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File Exists, Save As.
+        /// </summary>
+        internal static string EncryptFileSaveAsDialogTitle {
+            get {
+                return ResourceManager.GetString("EncryptFileSaveAsDialogTitle", resourceCulture);
             }
         }
         

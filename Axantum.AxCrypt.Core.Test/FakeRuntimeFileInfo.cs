@@ -206,17 +206,16 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        public void MoveTo(string destFileName)
+        public void MoveTo(string destinationFileName)
         {
             FakeFileInfo source = _fakeFileSystem[_file.FullName];
             _fakeFileSystem.Remove(_file.FullName);
-            AddFile(destFileName, source.CreationTimeUtc, source.LastAccessTimeUtc, source.LastWriteTimeUtc, source.Stream);
-            _file = new FileInfo(destFileName);
+            AddFile(destinationFileName, source.CreationTimeUtc, source.LastAccessTimeUtc, source.LastWriteTimeUtc, source.Stream);
+            _file = new FileInfo(destinationFileName);
         }
 
         public void Delete()
         {
-            FakeFileInfo source = _fakeFileSystem[_file.FullName];
             _fakeFileSystem.Remove(_file.FullName);
         }
     }
