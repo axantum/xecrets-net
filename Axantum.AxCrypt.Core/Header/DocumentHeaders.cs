@@ -138,6 +138,14 @@ namespace Axantum.AxCrypt.Core.Reader
             dataHeaderBlock.Write(hmacStream);
         }
 
+        public AesKey KeyEncryptingKey
+        {
+            get
+            {
+                return _keyEncryptingKey;
+            }
+        }
+
         private AesKey GetMasterKey()
         {
             KeyWrap1HeaderBlock keyHeaderBlock = FindHeaderBlock<KeyWrap1HeaderBlock>();

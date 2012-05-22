@@ -190,16 +190,107 @@ namespace Axantum.AxCrypt
 
         private void toolStripButtonDecrypt_Click(object sender, EventArgs e)
         {
+            string[] fileNames;
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
                 ofd.Title = Resources.DecryptFileOpenDialogTitle;
                 ofd.Multiselect = true;
-                ofd.ShowDialog();
+                ofd.CheckFileExists = true;
+                ofd.CheckPathExists = true;
+                ofd.DefaultExt = AxCryptEnvironment.Current.AxCryptExtension;
+                ofd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat("*{0}".InvariantFormat(AxCryptEnvironment.Current.AxCryptExtension));
+                ofd.Multiselect = true;
+                ofd.Title = Resources.DecryptFileOpenDialogTitle;
+                DialogResult result = ofd.ShowDialog();
+                if (result != DialogResult.OK)
+                {
+                    return;
+                }
+                fileNames = ofd.FileNames;
+            }
+            foreach (string file in fileNames)
+            {
+                if (!DecryptFile(file))
+                {
+                    return;
+                }
             }
         }
 
-        private void FormAxCryptMain_Load(object sender, EventArgs e)
+        private bool DecryptFile(string file)
         {
+            IRuntimeFileInfo source = AxCryptEnvironment.Current.FileInfo(file);
+            AxCryptDocument document = null;
+            try
+            {
+                if (!DecryptFileInternal(source, ref document))
+                {
+                    return false;
+                }
+            }
+            finally
+            {
+                if (document != null)
+                {
+                    document.Dispose();
+                }
+            }
+            AxCryptFile.Wipe(source);
+            return true;
+        }
+
+        private bool DecryptFileInternal(IRuntimeFileInfo source, ref AxCryptDocument document)
+        {
+            foreach (AesKey key in KnownKeys.Keys)
+            {
+                document = AxCryptFile.Document(source, key);
+                if (document.PassphraseIsValid)
+                {
+                    break;
+                }
+            }
+            if (document == null || !document.PassphraseIsValid)
+            {
+                Passphrase passphrase;
+                do
+                {
+                    DecryptPassphraseDialog passphraseDialog = new DecryptPassphraseDialog();
+                    DialogResult dialogResult = passphraseDialog.ShowDialog();
+                    if (dialogResult != DialogResult.OK)
+                    {
+                        return false;
+                    }
+                    passphrase = new Passphrase(passphraseDialog.Passphrase.Text);
+                    document = AxCryptFile.Document(source, passphrase.DerivedPassphrase);
+                } while (!document.PassphraseIsValid);
+            }
+
+            IRuntimeFileInfo destination = AxCryptEnvironment.Current.FileInfo(Path.Combine(Path.GetDirectoryName(source.FullName), document.DocumentHeaders.FileName));
+            if (destination.Exists)
+            {
+                string extension = Path.GetExtension(destination.FullName);
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.AddExtension = !String.IsNullOrEmpty(extension);
+                sfd.CheckPathExists = true;
+                sfd.DefaultExt = extension;
+                sfd.Filter = Resources.DecryptedSaveAsFileDialogFilterPattern.InvariantFormat(extension);
+                sfd.InitialDirectory = Path.GetDirectoryName(source.FullName);
+                sfd.OverwritePrompt = true;
+                sfd.RestoreDirectory = true;
+                sfd.Title = Resources.DecryptedSaveAsFileDialogTitle;
+                DialogResult result = sfd.ShowDialog();
+                if (result != DialogResult.OK)
+                {
+                    return false;
+                }
+                destination = AxCryptEnvironment.Current.FileInfo(sfd.FileName);
+            }
+
+            AxCryptFile.Decrypt(document, destination, AxCryptOptions.SetFileTimes);
+
+            KnownKeys.Add(document.DocumentHeaders.KeyEncryptingKey);
+
+            return true;
         }
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)

@@ -12,11 +12,21 @@ namespace Axantum.AxCrypt.Core.UI
 
         public static void Add(AesKey key)
         {
-            if (_keys.Contains<AesKey>(key))
+            lock (_keys)
             {
-                return;
+                int i = _keys.IndexOf(key);
+                if (i == 0)
+                {
+                    return;
+                }
+                if (i >= 0)
+                {
+                    _keys.RemoveAt(i);
+                    _keys.Insert(0, key);
+                    return;
+                }
+                _keys.Add(key);
             }
-            _keys.Add(key);
         }
 
         public static IEnumerable<AesKey> Keys

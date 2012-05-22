@@ -61,6 +61,24 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Documents (*{0})|*{0}|All files (*.*)|*.*.
+        /// </summary>
+        internal static string DecryptedSaveAsFileDialogFilterPattern {
+            get {
+                return ResourceManager.GetString("DecryptedSaveAsFileDialogFilterPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File exists, choose a new name to save as.
+        /// </summary>
+        internal static string DecryptedSaveAsFileDialogTitle {
+            get {
+                return ResourceManager.GetString("DecryptedSaveAsFileDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select files to decrypt.
         /// </summary>
         internal static string DecryptFileOpenDialogTitle {
