@@ -17,7 +17,7 @@ namespace Axantum.AxCrypt
 {
     public partial class AxCryptMainForm : Form
     {
-        public static MessageBoxOptions MessageBoxOptions;
+        public static MessageBoxOptions MessageBoxOptions { get; private set; }
 
         public AxCryptMainForm()
         {
@@ -198,7 +198,7 @@ namespace Axantum.AxCrypt
                 ofd.CheckFileExists = true;
                 ofd.CheckPathExists = true;
                 ofd.DefaultExt = AxCryptEnvironment.Current.AxCryptExtension;
-                ofd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat("*{0}".InvariantFormat(AxCryptEnvironment.Current.AxCryptExtension));
+                ofd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(AxCryptEnvironment.Current.AxCryptExtension));
                 ofd.Multiselect = true;
                 ofd.Title = Resources.DecryptFileOpenDialogTitle;
                 DialogResult result = ofd.ShowDialog();
@@ -217,7 +217,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private bool DecryptFile(string file)
+        private static bool DecryptFile(string file)
         {
             IRuntimeFileInfo source = AxCryptEnvironment.Current.FileInfo(file);
             AxCryptDocument document = null;
@@ -239,7 +239,7 @@ namespace Axantum.AxCrypt
             return true;
         }
 
-        private bool DecryptFileInternal(IRuntimeFileInfo source, ref AxCryptDocument document)
+        private static bool DecryptFileInternal(IRuntimeFileInfo source, ref AxCryptDocument document)
         {
             foreach (AesKey key in KnownKeys.Keys)
             {
@@ -311,7 +311,7 @@ namespace Axantum.AxCrypt
                 ofd.CheckFileExists = true;
                 ofd.CheckPathExists = true;
                 ofd.DefaultExt = AxCryptEnvironment.Current.AxCryptExtension;
-                ofd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat("*{0}".InvariantFormat(AxCryptEnvironment.Current.AxCryptExtension));
+                ofd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(AxCryptEnvironment.Current.AxCryptExtension));
                 DialogResult result = ofd.ShowDialog();
                 if (result != DialogResult.OK)
                 {

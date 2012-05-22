@@ -4,8 +4,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
+using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Properties;
 
 namespace Axantum.AxCrypt
@@ -15,6 +17,16 @@ namespace Axantum.AxCrypt
         public EncryptPassphraseDialog()
         {
             InitializeComponent();
+            SetAutoValidateViaReflectionToAvoidMoMaWarning();
+        }
+
+        private void SetAutoValidateViaReflectionToAvoidMoMaWarning()
+        {
+            if (AxCryptEnvironment.Current.IsDesktopWindows)
+            {
+                PropertyInfo propertyInfo = typeof(EncryptPassphraseDialog).GetProperty("AutoValidate");
+                propertyInfo.SetValue(this, AutoValidate.EnableAllowFocusChange, null);
+            }
         }
 
         private void VerifyPassphraseTextbox_Validating(object sender, CancelEventArgs e)
