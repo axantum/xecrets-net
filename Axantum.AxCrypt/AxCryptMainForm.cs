@@ -17,10 +17,12 @@ namespace Axantum.AxCrypt
 {
     public partial class AxCryptMainForm : Form
     {
+        public static MessageBoxOptions MessageBoxOptions;
+
         public AxCryptMainForm()
         {
             InitializeComponent();
-            _messageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
+            MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
 
             while (_fileOperationInProgress)
             {
@@ -97,8 +99,6 @@ namespace Axantum.AxCrypt
             return activeFile;
         }
 
-        private MessageBoxOptions _messageBoxOptions;
-
         private void toolStripButtonEncrypt_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
@@ -154,13 +154,13 @@ namespace Axantum.AxCrypt
             AesKey key = null;
             if (KnownKeys.DefaultEncryptionKey == null)
             {
-                DecryptionPassphraseDialog passphraseDialog = new DecryptionPassphraseDialog();
+                EncryptPassphraseDialog passphraseDialog = new EncryptPassphraseDialog();
                 DialogResult dialogResult = passphraseDialog.ShowDialog();
                 if (dialogResult != DialogResult.OK)
                 {
                     return;
                 }
-                Passphrase passphrase = new Passphrase(passphraseDialog.Passphrase.Text);
+                Passphrase passphrase = new Passphrase(passphraseDialog.PassphraseTextBox.Text);
                 key = passphrase.DerivedPassphrase;
             }
             else
@@ -252,7 +252,7 @@ namespace Axantum.AxCrypt
                 FileOperationStatus status;
                 do
                 {
-                    DecryptionPassphraseDialog passphraseDialog = new DecryptionPassphraseDialog();
+                    DecryptPassphraseDialog passphraseDialog = new DecryptPassphraseDialog();
                     DialogResult dialogResult = passphraseDialog.ShowDialog();
                     if (dialogResult != DialogResult.OK)
                     {
@@ -263,7 +263,7 @@ namespace Axantum.AxCrypt
                 } while (status == FileOperationStatus.InvalidKey);
                 if (status != FileOperationStatus.Success)
                 {
-                    ShowMessageBox("Failed to decrypt and open {0}".InvariantFormat(file));
+                    "Failed to decrypt and open {0}".InvariantFormat(file).ShowWarning();
                 }
                 else
                 {
@@ -274,11 +274,6 @@ namespace Axantum.AxCrypt
             {
                 _fileOperationInProgress = false;
             }
-        }
-
-        private void ShowMessageBox(string message)
-        {
-            MessageBox.Show(message, "AxCypt", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, _messageBoxOptions);
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

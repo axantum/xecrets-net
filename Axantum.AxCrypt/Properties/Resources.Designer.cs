@@ -122,5 +122,14 @@ namespace Axantum.AxCrypt.Properties {
                 return ResourceManager.GetString("OpenFileColumnHeader", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passphrases do not match.
+        /// </summary>
+        internal static string PassphraseVerificationMismatch {
+            get {
+                return ResourceManager.GetString("PassphraseVerificationMismatch", resourceCulture);
+            }
+        }
     }
 }

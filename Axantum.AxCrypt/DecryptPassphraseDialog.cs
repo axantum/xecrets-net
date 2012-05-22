@@ -9,11 +9,19 @@ using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
 {
-    public partial class DecryptionPassphraseDialog : Form
+    public partial class DecryptPassphraseDialog : Form
     {
-        public DecryptionPassphraseDialog()
+        public DecryptPassphraseDialog()
         {
             InitializeComponent();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
         }
     }
 }

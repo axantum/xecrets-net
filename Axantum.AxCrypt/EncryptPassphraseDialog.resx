@@ -117,33 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DecryptFileOpenDialogTitle" xml:space="preserve">
-    <value>Select files to decrypt</value>
-  </data>
-  <data name="EncryptedSourceColumnHeader" xml:space="preserve">
-    <value>Encrypted File</value>
-    <comment>The column header for the encrypted original encrypted file</comment>
-  </data>
-  <data name="EncryptFileOpenDialogTitle" xml:space="preserve">
-    <value>Select files to encrypt</value>
-  </data>
-  <data name="OpenEncryptedFileOpenDialogTitle" xml:space="preserve">
-    <value>Select file to decrypt and open</value>
-  </data>
-  <data name="OpenFileColumnHeader" xml:space="preserve">
-    <value>File</value>
-    <comment>The column header for the plaintext file name of an open and locked file</comment>
-  </data>
-  <data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
-    <value>AxCrypt Files (*{0})|*{0}|All files (*.*)|*.*</value>
-    <comment>A filter for a FileDialog. {0} represents the pattern, like *.axx.</comment>
-  </data>
-  <data name="EncryptFileSaveAsDialogTitle" xml:space="preserve">
-    <value>File Exists, Save As</value>
-    <comment>When you attempt to encrypt a file and the target name already exists.</comment>
-  </data>
-  <data name="PassphraseVerificationMismatch" xml:space="preserve">
-    <value>Passphrases do not match</value>
-    <comment>Warning message when encryption passphrase verification does not match.</comment>
-  </data>
+  <metadata name="errorProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>

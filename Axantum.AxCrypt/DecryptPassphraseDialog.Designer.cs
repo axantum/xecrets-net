@@ -1,6 +1,6 @@
 ﻿namespace Axantum.AxCrypt
 {
-    partial class DecryptionPassphraseDialog
+    partial class DecryptPassphraseDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -28,32 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DecryptionPassphraseDialog));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DecryptPassphraseDialog));
+            this.PassphraseGroupBox = new System.Windows.Forms.GroupBox();
             this.Passphrase = new System.Windows.Forms.TextBox();
-            this.buttonOk = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.buttonOk = new System.Windows.Forms.Button();
+            this.PassphraseGroupBox.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // PassphraseGroupBox
             // 
-            this.groupBox1.Controls.Add(this.Passphrase);
-            resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.TabStop = false;
+            resources.ApplyResources(this.PassphraseGroupBox, "PassphraseGroupBox");
+            this.PassphraseGroupBox.Controls.Add(this.Passphrase);
+            this.PassphraseGroupBox.Name = "PassphraseGroupBox";
+            this.PassphraseGroupBox.TabStop = false;
             // 
             // Passphrase
             // 
             resources.ApplyResources(this.Passphrase, "Passphrase");
             this.Passphrase.Name = "Passphrase";
             // 
-            // buttonOk
+            // panel1
             // 
-            this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            resources.ApplyResources(this.buttonOk, "buttonOk");
-            this.buttonOk.Name = "buttonOk";
-            this.buttonOk.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Controls.Add(this.buttonCancel);
+            this.panel1.Controls.Add(this.buttonOk);
+            this.panel1.Name = "panel1";
             // 
             // buttonCancel
             // 
@@ -62,27 +64,34 @@
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 
-            // DecryptionPassphraseDialog
+            // buttonOk
             // 
-            this.AcceptButton = this.buttonOk;
+            this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+            resources.ApplyResources(this.buttonOk, "buttonOk");
+            this.buttonOk.Name = "buttonOk";
+            this.buttonOk.UseVisualStyleBackColor = true;
+            // 
+            // DecryptPassphraseDialog
+            // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.buttonCancel;
-            this.Controls.Add(this.buttonCancel);
-            this.Controls.Add(this.buttonOk);
-            this.Controls.Add(this.groupBox1);
-            this.Name = "DecryptionPassphraseDialog";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.PassphraseGroupBox);
+            this.Name = "DecryptPassphraseDialog";
+            this.PassphraseGroupBox.ResumeLayout(false);
+            this.PassphraseGroupBox.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button buttonOk;
         internal System.Windows.Forms.TextBox Passphrase;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.Button buttonOk;
+        internal System.Windows.Forms.GroupBox PassphraseGroupBox;
     }
 }
