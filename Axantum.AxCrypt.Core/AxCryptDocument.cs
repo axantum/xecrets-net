@@ -194,7 +194,7 @@ namespace Axantum.AxCrypt.Core
                 outputDocumentHeaders.WriteWithHmac(hmacStreamOutput);
                 using (Stream encryptedDataStream = _reader.CreateEncryptedDataStream(DocumentHeaders.HmacSubkey.Key, DocumentHeaders.CipherTextLength))
                 {
-                    encryptedDataStream.CopyTo(hmacStreamOutput);
+                    encryptedDataStream.CopyTo(hmacStreamOutput, 65536);
 
                     if (_reader.Hmac != DocumentHeaders.Hmac)
                     {
@@ -245,7 +245,7 @@ namespace Axantum.AxCrypt.Core
                         {
                             using (Stream inflatedPlaintextStream = new ZInputStream(deflatedPlaintextStream))
                             {
-                                inflatedPlaintextStream.CopyTo(outputPlaintextStream);
+                                inflatedPlaintextStream.CopyTo(outputPlaintextStream, 65536);
                             }
                         }
                     }
@@ -253,7 +253,7 @@ namespace Axantum.AxCrypt.Core
                     {
                         using (Stream plainStream = new CryptoStream(encryptedDataStream, decryptor, CryptoStreamMode.Read))
                         {
-                            plainStream.CopyTo(outputPlaintextStream);
+                            plainStream.CopyTo(outputPlaintextStream, 65536);
                         }
                     }
                 }

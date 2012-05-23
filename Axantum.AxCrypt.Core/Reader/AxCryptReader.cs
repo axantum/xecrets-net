@@ -91,7 +91,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
             _hmacStream = new HmacStream(hmacKey);
             _hmacBufferStream.Position = 0;
-            _hmacBufferStream.CopyTo(_hmacStream);
+            _hmacBufferStream.CopyTo(_hmacStream, 65536);
 
             _expectedTotalHmacLength = _hmacBufferStream.Length + cipherTextLength;
 
