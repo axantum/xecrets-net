@@ -8,39 +8,66 @@ using System.Security;
 using System.Text;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt
 {
-    internal static class ActiveFileMonitor
+    internal class ActiveFileMonitor
     {
-        private static string _fileSystemStateFullName = Path.Combine(TemporaryDirectoryInfo.FullName, "FileSystemState.xml");
+        private string _fileSystemStateFullName;
 
-        private static FileSystemWatcher _temporaryDirectoryWatcher = InitializeTemporaryDirectoryWatcher();
+        private FileSystemWatcher _temporaryDirectoryWatcher;
 
-        private static FileSystemWatcher InitializeTemporaryDirectoryWatcher()
+        private ProgressManager _progressManager;
+
+        public ActiveFileMonitor(ProgressManager progressManager)
         {
-            FileSystemWatcher temporaryDirectoryWatcher = new FileSystemWatcher(TemporaryDirectoryInfo.FullName);
-            temporaryDirectoryWatcher.Changed += TemporaryDirectoryWatcher_Changed;
-            temporaryDirectoryWatcher.Created += TemporaryDirectoryWatcher_Changed;
-            temporaryDirectoryWatcher.Deleted += TemporaryDirectoryWatcher_Changed;
-            temporaryDirectoryWatcher.IncludeSubdirectories = true;
-            temporaryDirectoryWatcher.NotifyFilter = NotifyFilters.LastWrite;
+            _progressManager = progressManager;
+            _fileSystemStateFullName = Path.Combine(TemporaryDirectoryInfo.FullName, "FileSystemState.xml");
+
+            _temporaryDirectoryWatcher = new FileSystemWatcher(TemporaryDirectoryInfo.FullName);
+            _temporaryDirectoryWatcher.Changed += TemporaryDirectoryWatcher_Changed;
+            _temporaryDirectoryWatcher.Created += TemporaryDirectoryWatcher_Changed;
+            _temporaryDirectoryWatcher.Deleted += TemporaryDirectoryWatcher_Changed;
+            _temporaryDirectoryWatcher.IncludeSubdirectories = true;
+            _temporaryDirectoryWatcher.NotifyFilter = NotifyFilters.LastWrite;
 
             FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(_fileSystemStateFullName));
-
-            return temporaryDirectoryWatcher;
         }
 
-        public static event EventHandler<EventArgs> Changed;
+        public event EventHandler<EventArgs> Changed;
 
-        public static void AddActiveFile(ActiveFile activeFile)
+        public void AddActiveFile(ActiveFile activeFile)
         {
             FileSystemState.Current.Add(activeFile);
             FileSystemState.Current.Save();
             OnChanged(new EventArgs());
         }
 
-        public static void ForEach(bool forceChange, Func<ActiveFile, ActiveFile> action)
+        private bool _ignoreApplication;
+
+        public bool IgnoreApplication
+        {
+            get
+            {
+                return _ignoreApplication;
+            }
+            set
+            {
+                _ignoreApplication = value;
+            }
+        }
+
+        private void OnChanged(EventArgs eventArgs)
+        {
+            EventHandler<EventArgs> changed = Changed;
+            if (changed != null)
+            {
+                changed(null, eventArgs);
+            }
+        }
+
+        public void ForEach(bool forceChange, Func<ActiveFile, ActiveFile> action)
         {
             bool isChanged = forceChange;
             List<ActiveFile> activeFiles = new List<ActiveFile>();
@@ -62,40 +89,17 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private static bool _ignoreApplication;
-
-        public static bool IgnoreApplication
-        {
-            get
-            {
-                return _ignoreApplication;
-            }
-            set
-            {
-                _ignoreApplication = value;
-            }
-        }
-
-        private static void OnChanged(EventArgs eventArgs)
-        {
-            EventHandler<EventArgs> changed = Changed;
-            if (changed != null)
-            {
-                changed(null, eventArgs);
-            }
-        }
-
-        public static void CheckActiveFilesStatus()
+        public void CheckActiveFilesStatus()
         {
             CheckActiveFilesStatusInternal(false);
         }
 
-        public static void ForceActiveFilesStatus()
+        public void ForceActiveFilesStatus()
         {
             CheckActiveFilesStatusInternal(true);
         }
 
-        private static void CheckActiveFilesStatusInternal(bool forceChanged)
+        private void CheckActiveFilesStatusInternal(bool forceChanged)
         {
             ForEach(forceChanged, (ActiveFile activeFile) =>
             {
@@ -124,7 +128,7 @@ namespace Axantum.AxCrypt
             return activeFile;
         }
 
-        private static ActiveFile CheckIfProcessExited(ActiveFile activeFile)
+        private ActiveFile CheckIfProcessExited(ActiveFile activeFile)
         {
             if (activeFile.Process == null || IgnoreApplication || !activeFile.Process.HasExited)
             {
@@ -138,7 +142,7 @@ namespace Axantum.AxCrypt
             return activeFile;
         }
 
-        private static ActiveFile CheckIfTimeToUpdate(ActiveFile activeFile)
+        private ActiveFile CheckIfTimeToUpdate(ActiveFile activeFile)
         {
             if (activeFile.Status.HasFlag(ActiveFileStatus.NotShareable) || !activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted))
             {
@@ -160,7 +164,7 @@ namespace Axantum.AxCrypt
                     IRuntimeFileInfo sourceFileInfo = AxCryptEnvironment.Current.FileInfo(activeFile.DecryptedPath);
                     AxCryptFile.WriteToFileWithBackup(activeFile.EncryptedPath, (Stream destination) =>
                     {
-                        AxCryptFile.Encrypt(sourceFileInfo, destination, activeFile.Key, AxCryptOptions.EncryptWithCompression);
+                        AxCryptFile.Encrypt(sourceFileInfo, destination, activeFile.Key, AxCryptOptions.EncryptWithCompression, _progressManager.Create(Path.GetFileName(activeFile.DecryptedFileInfo.Name)));
                     });
                 }
             }
@@ -200,7 +204,7 @@ namespace Axantum.AxCrypt
             return activeFile;
         }
 
-        public static void PurgeActiveFiles()
+        public void PurgeActiveFiles()
         {
             ForEach(false, (ActiveFile activeFile) =>
             {
@@ -253,9 +257,9 @@ namespace Axantum.AxCrypt
             return activeFile;
         }
 
-        private static DirectoryInfo _temporaryDirectoryInfo;
+        private DirectoryInfo _temporaryDirectoryInfo;
 
-        public static DirectoryInfo TemporaryDirectoryInfo
+        public DirectoryInfo TemporaryDirectoryInfo
         {
             get
             {
@@ -271,7 +275,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        public static void TemporaryDirectoryWatcher_Changed(object sender, FileSystemEventArgs e)
+        public void TemporaryDirectoryWatcher_Changed(object sender, FileSystemEventArgs e)
         {
             ActiveFile changedFile = FileSystemState.Current.FindDecryptedPath(e.FullPath);
             if (changedFile == null)

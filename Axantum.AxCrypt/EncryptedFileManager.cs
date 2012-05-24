@@ -15,13 +15,24 @@ using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt
 {
-    public static class EncryptedFileManager
+    public class EncryptedFileManager
     {
-        private static readonly object _lock = InitializeGetLockObject();
+        private static readonly object _lock = new object();
 
-        public static event EventHandler<EventArgs> Changed;
+        public event EventHandler<EventArgs> Changed;
 
-        private static void ActiveFileMonitor_Changed(object sender, EventArgs e)
+        private ProgressManager _progressManager;
+
+        private ActiveFileMonitor _activeFileMonitor;
+
+        public EncryptedFileManager(ProgressManager progressManager)
+        {
+            _progressManager = progressManager;
+            _activeFileMonitor = new ActiveFileMonitor(progressManager);
+            _activeFileMonitor.Changed += new EventHandler<EventArgs>(ActiveFileMonitor_Changed);
+        }
+
+        private void ActiveFileMonitor_Changed(object sender, EventArgs e)
         {
             lock (_lock)
             {
@@ -29,19 +40,15 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private static object InitializeGetLockObject()
+        public void ForEach(bool forceChange, Func<ActiveFile, ActiveFile> action)
         {
-            Initialize();
-
-            return new object();
+            lock (_lock)
+            {
+                _activeFileMonitor.ForEach(forceChange, action);
+            }
         }
 
-        private static void Initialize()
-        {
-            ActiveFileMonitor.Changed += new EventHandler<EventArgs>(ActiveFileMonitor_Changed);
-        }
-
-        public static FileOperationStatus Open(string file, IEnumerable<AesKey> keys)
+        public FileOperationStatus Open(string file, IEnumerable<AesKey> keys)
         {
             lock (_lock)
             {
@@ -49,43 +56,43 @@ namespace Axantum.AxCrypt
             }
         }
 
-        public static void CheckActiveFilesStatus()
+        public void CheckActiveFilesStatus()
         {
             lock (_lock)
             {
-                ActiveFileMonitor.CheckActiveFilesStatus();
+                _activeFileMonitor.CheckActiveFilesStatus();
             }
         }
 
-        public static void ForceActiveFilesStatus()
+        public void ForceActiveFilesStatus()
         {
             lock (_lock)
             {
-                ActiveFileMonitor.ForceActiveFilesStatus();
+                _activeFileMonitor.ForceActiveFilesStatus();
             }
         }
 
-        public static void PurgeActiveFiles()
+        public void PurgeActiveFiles()
         {
             lock (_lock)
             {
-                ActiveFileMonitor.PurgeActiveFiles();
+                _activeFileMonitor.PurgeActiveFiles();
             }
         }
 
-        public static bool IgnoreApplication
+        public bool IgnoreApplication
         {
             get
             {
-                return ActiveFileMonitor.IgnoreApplication;
+                return _activeFileMonitor.IgnoreApplication;
             }
             set
             {
-                ActiveFileMonitor.IgnoreApplication = value;
+                _activeFileMonitor.IgnoreApplication = value;
             }
         }
 
-        private static void OnChanged(EventArgs eventArgs)
+        private void OnChanged(EventArgs eventArgs)
         {
             EventHandler<EventArgs> changed = Changed;
             if (changed != null)
@@ -94,7 +101,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private static FileOperationStatus OpenInternal(string file, IEnumerable<AesKey> keys)
+        private FileOperationStatus OpenInternal(string file, IEnumerable<AesKey> keys)
         {
             FileInfo fileInfo = new FileInfo(file);
             if (!fileInfo.Exists)
@@ -136,7 +143,7 @@ namespace Axantum.AxCrypt
                     }
                     else
                     {
-                        destinationFolder = Path.Combine(ActiveFileMonitor.TemporaryDirectoryInfo.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()));
+                        destinationFolder = Path.Combine(_activeFileMonitor.TemporaryDirectoryInfo.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()));
                     }
                     Directory.CreateDirectory(destinationFolder);
 
@@ -145,7 +152,7 @@ namespace Axantum.AxCrypt
                     bool isDecrypted = false;
                     foreach (AesKey key in keys)
                     {
-                        string destinationName = AxCryptFile.Decrypt(source, destinationFolder, key, AxCryptOptions.None);
+                        string destinationName = AxCryptFile.Decrypt(source, destinationFolder, key, AxCryptOptions.None, _progressManager.Create(Path.GetFileName(source.FullName)));
                         if (!String.IsNullOrEmpty(destinationName))
                         {
                             destinationPath = Path.Combine(destinationFolder, destinationName);
@@ -168,7 +175,7 @@ namespace Axantum.AxCrypt
             return LaunchApplicationForDocument(destinationActiveFile);
         }
 
-        private static FileOperationStatus LaunchApplicationForDocument(ActiveFile destinationActiveFile)
+        private FileOperationStatus LaunchApplicationForDocument(ActiveFile destinationActiveFile)
         {
             Process process;
             try
@@ -194,7 +201,7 @@ namespace Axantum.AxCrypt
             }
 
             destinationActiveFile = new ActiveFile(destinationActiveFile, ActiveFileStatus.AssumedOpenAndDecrypted, process);
-            ActiveFileMonitor.AddActiveFile(destinationActiveFile);
+            _activeFileMonitor.AddActiveFile(destinationActiveFile);
 
             return FileOperationStatus.Success;
         }

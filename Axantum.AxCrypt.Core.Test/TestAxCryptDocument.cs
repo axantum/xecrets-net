@@ -34,6 +34,7 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Test.Properties;
+using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -355,7 +356,7 @@ namespace Axantum.AxCrypt.Core.Test
                         headers.LastAccessTimeUtc = lastAccessTimeUtc;
                         headers.LastWriteTimeUtc = lastWriteTimeUtc;
                         document.DocumentHeaders = headers;
-                        document.EncryptTo(headers, inputStream, outputStream, AxCryptOptions.EncryptWithCompression);
+                        document.EncryptTo(headers, inputStream, outputStream, AxCryptOptions.EncryptWithCompression, new ProgressContext());
                     }
                     outputStream.Position = 0;
                     using (AxCryptDocument document = new AxCryptDocument())
@@ -397,7 +398,7 @@ namespace Axantum.AxCrypt.Core.Test
                         headers.LastAccessTimeUtc = lastAccessTimeUtc;
                         headers.LastWriteTimeUtc = lastWriteTimeUtc;
                         document.DocumentHeaders = headers;
-                        document.EncryptTo(headers, inputStream, outputStream, AxCryptOptions.EncryptWithoutCompression);
+                        document.EncryptTo(headers, inputStream, outputStream, AxCryptOptions.EncryptWithoutCompression, new ProgressContext());
                     }
                     outputStream.Position = 0;
                     using (AxCryptDocument document = new AxCryptDocument())
@@ -490,12 +491,12 @@ namespace Axantum.AxCrypt.Core.Test
                         Passphrase passphrase = new Passphrase("a");
                         DocumentHeaders headers = new DocumentHeaders(passphrase.DerivedPassphrase);
 
-                        Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(null, inputStream, outputStream, AxCryptOptions.EncryptWithCompression); });
-                        Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(headers, null, outputStream, AxCryptOptions.EncryptWithCompression); });
-                        Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(headers, inputStream, null, AxCryptOptions.EncryptWithCompression); });
-                        Assert.Throws<ArgumentException>(() => { document.EncryptTo(headers, inputStream, new NonSeekableStream(), AxCryptOptions.EncryptWithCompression); });
-                        Assert.Throws<ArgumentException>(() => { document.EncryptTo(headers, inputStream, outputStream, AxCryptOptions.EncryptWithCompression | AxCryptOptions.EncryptWithoutCompression); });
-                        Assert.Throws<ArgumentException>(() => { document.EncryptTo(headers, inputStream, outputStream, AxCryptOptions.None); });
+                        Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(null, inputStream, outputStream, AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
+                        Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(headers, null, outputStream, AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
+                        Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(headers, inputStream, null, AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
+                        Assert.Throws<ArgumentException>(() => { document.EncryptTo(headers, inputStream, new NonSeekableStream(), AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
+                        Assert.Throws<ArgumentException>(() => { document.EncryptTo(headers, inputStream, outputStream, AxCryptOptions.EncryptWithCompression | AxCryptOptions.EncryptWithoutCompression, new ProgressContext()); });
+                        Assert.Throws<ArgumentException>(() => { document.EncryptTo(headers, inputStream, outputStream, AxCryptOptions.None, new ProgressContext()); });
 
                         Assert.Throws<ArgumentNullException>(() => { document.CopyEncryptedTo(null, outputStream); });
                         Assert.Throws<ArgumentNullException>(() => { document.CopyEncryptedTo(headers, null); });

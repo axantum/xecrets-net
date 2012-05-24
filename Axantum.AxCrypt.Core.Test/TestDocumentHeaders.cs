@@ -33,6 +33,7 @@ using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Test.Properties;
+using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -148,7 +149,7 @@ namespace Axantum.AxCrypt.Core.Test
                         headers.LastWriteTimeUtc = lastWriteTimeUtc;
                         headers.SetNextFileVersionMajor();
                         document.DocumentHeaders = headers;
-                        document.EncryptTo(headers, inputStream, outputStream, AxCryptOptions.EncryptWithoutCompression);
+                        document.EncryptTo(headers, inputStream, outputStream, AxCryptOptions.EncryptWithoutCompression, new ProgressContext());
                     }
                     outputStream.Position = 0;
                     using (AxCryptDocument document = new AxCryptDocument())

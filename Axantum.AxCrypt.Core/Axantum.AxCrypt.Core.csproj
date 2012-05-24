@@ -123,6 +123,8 @@
     </Compile>
     <Compile Include="RuntimeEnvironment.cs" />
     <Compile Include="UI\KnownKeys.cs" />
+    <Compile Include="UI\ProgressContext.cs" />
+    <Compile Include="UI\ProgressEventArgs.cs" />
     <Compile Include="UI\UserPreferences.cs" />
   </ItemGroup>
   <ItemGroup>

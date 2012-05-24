@@ -120,6 +120,7 @@
     <Compile Include="FileSystemState.cs" />
     <Compile Include="Logging.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="ProgressManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AxCryptMainForm.resx">
       <DependentUpon>AxCryptMainForm.cs</DependentUpon>

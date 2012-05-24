@@ -34,6 +34,7 @@ using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
+using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -46,8 +47,25 @@ namespace Axantum.AxCrypt.Core
         /// <param name="destination">The destination file</param>
         /// <remarks>It is the callers responsibility to ensure that the source file exists, that the destination file
         /// does not exist and can be created etc.</remarks>
-        public static void Encrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, Passphrase passphrase, AxCryptOptions options)
+        public static void Encrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, Passphrase passphrase, AxCryptOptions options, ProgressContext progress)
         {
+            if (sourceFile == null)
+            {
+                throw new ArgumentNullException("sourceFile");
+            }
+            if (destinationFile == null)
+            {
+                throw new ArgumentNullException("destinationFile");
+            }
+            if (passphrase == null)
+            {
+                throw new ArgumentNullException("passphrase");
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
+
             using (Stream sourceStream = sourceFile.OpenRead())
             {
                 using (Stream destinationStream = destinationFile.OpenWrite())
@@ -60,7 +78,7 @@ namespace Axantum.AxCrypt.Core
                         headers.LastAccessTimeUtc = sourceFile.LastAccessTimeUtc;
                         headers.LastWriteTimeUtc = sourceFile.LastWriteTimeUtc;
                         document.DocumentHeaders = headers;
-                        document.EncryptTo(headers, sourceStream, destinationStream, options);
+                        document.EncryptTo(headers, sourceStream, destinationStream, options, progress);
                     }
                 }
                 if (options.HasFlag(AxCryptOptions.SetFileTimes))
@@ -70,8 +88,25 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        public static void Encrypt(IRuntimeFileInfo sourceFile, Stream destinationStream, AesKey key, AxCryptOptions options)
+        public static void Encrypt(IRuntimeFileInfo sourceFile, Stream destinationStream, AesKey key, AxCryptOptions options, ProgressContext progress)
         {
+            if (sourceFile == null)
+            {
+                throw new ArgumentNullException("sourceFile");
+            }
+            if (destinationStream == null)
+            {
+                throw new ArgumentNullException("destinationStream");
+            }
+            if (key == null)
+            {
+                throw new ArgumentNullException("key");
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
+
             using (Stream sourceStream = sourceFile.OpenRead())
             {
                 using (AxCryptDocument document = new AxCryptDocument())
@@ -82,7 +117,7 @@ namespace Axantum.AxCrypt.Core
                     headers.LastAccessTimeUtc = sourceFile.LastAccessTimeUtc;
                     headers.LastWriteTimeUtc = sourceFile.LastWriteTimeUtc;
                     document.DocumentHeaders = headers;
-                    document.EncryptTo(headers, sourceStream, destinationStream, options);
+                    document.EncryptTo(headers, sourceStream, destinationStream, options, progress);
                 }
             }
         }
@@ -94,7 +129,7 @@ namespace Axantum.AxCrypt.Core
         /// <param name="destinationFile">The destination file</param>
         /// <param name="passphrase">The passphrase</param>
         /// <returns>true if the passphrase was correct</returns>
-        public static bool Decrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, AesKey key, AxCryptOptions options)
+        public static bool Decrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, AesKey key, AxCryptOptions options, ProgressContext progress)
         {
             using (AxCryptDocument document = Document(sourceFile, key))
             {
@@ -102,7 +137,7 @@ namespace Axantum.AxCrypt.Core
                 {
                     return false;
                 }
-                Decrypt(document, destinationFile, options);
+                Decrypt(document, destinationFile, options, progress);
             }
             return true;
         }
@@ -114,7 +149,7 @@ namespace Axantum.AxCrypt.Core
         /// <param name="destinationFile">The destination file</param>
         /// <param name="passphrase">The passphrase</param>
         /// <returns>true if the passphrase was correct</returns>
-        public static string Decrypt(IRuntimeFileInfo sourceFile, string destinationDirectory, AesKey key, AxCryptOptions options)
+        public static string Decrypt(IRuntimeFileInfo sourceFile, string destinationDirectory, AesKey key, AxCryptOptions options, ProgressContext progress)
         {
             string destinationFileName = null;
             using (AxCryptDocument document = Document(sourceFile, key))
@@ -125,7 +160,7 @@ namespace Axantum.AxCrypt.Core
                 }
                 destinationFileName = document.DocumentHeaders.FileName;
                 IRuntimeFileInfo destinationFullPath = AxCryptEnvironment.Current.FileInfo(Path.Combine(destinationDirectory, destinationFileName));
-                Decrypt(document, destinationFullPath, options);
+                Decrypt(document, destinationFullPath, options, progress);
             }
             return destinationFileName;
         }
@@ -135,7 +170,7 @@ namespace Axantum.AxCrypt.Core
         /// </summary>
         /// <param name="document">The loaded AxCryptDocument</param>
         /// <param name="destinationFile">The destination file</param>
-        public static void Decrypt(AxCryptDocument document, IRuntimeFileInfo destinationFile, AxCryptOptions options)
+        public static void Decrypt(AxCryptDocument document, IRuntimeFileInfo destinationFile, AxCryptOptions options, ProgressContext progress)
         {
             using (Stream destinationStream = destinationFile.OpenWrite())
             {

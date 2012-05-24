@@ -10,7 +10,7 @@ using Axantum.AxCrypt.Core.IO;
 namespace Axantum.AxCrypt
 {
     [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
-    public sealed class FileSystemState
+    public class FileSystemState
     {
         private static FileSystemState _current = new FileSystemState();
 
@@ -41,6 +41,17 @@ namespace Axantum.AxCrypt
         private Dictionary<string, ActiveFile> _activeFilesByDecryptedPath = new Dictionary<string, ActiveFile>();
 
         private object _lock;
+
+        public event EventHandler<EventArgs> Changed;
+
+        protected virtual void OnChanged(EventArgs e)
+        {
+            EventHandler<EventArgs> handler = Changed;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
 
         public IEnumerable<ActiveFile> ActiveFiles
         {

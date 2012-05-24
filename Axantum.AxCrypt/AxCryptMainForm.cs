@@ -19,9 +19,16 @@ namespace Axantum.AxCrypt
     {
         public static MessageBoxOptions MessageBoxOptions { get; private set; }
 
+        private ProgressManager _progressManager;
+
+        private EncryptedFileManager _encryptedFileManager;
+
         public AxCryptMainForm()
         {
             InitializeComponent();
+            _progressManager = new ProgressManager();
+            _progressManager.Progress += new EventHandler<EventArgs>(ProgressManager_Progress);
+            _encryptedFileManager = new EncryptedFileManager(_progressManager);
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
 
             while (_fileOperationInProgress)
@@ -30,10 +37,11 @@ namespace Axantum.AxCrypt
             }
             try
             {
+                FileSystemState.Current.Changed += new EventHandler<EventArgs>(ActiveFileState_Changed);
                 _fileOperationInProgress = true;
-                EncryptedFileManager.IgnoreApplication = !AxCryptEnvironment.Current.IsDesktopWindows;
-                EncryptedFileManager.Changed += new EventHandler<EventArgs>(ActiveFileState_Changed);
-                EncryptedFileManager.ForceActiveFilesStatus();
+                _encryptedFileManager.IgnoreApplication = !AxCryptEnvironment.Current.IsDesktopWindows;
+                _encryptedFileManager.Changed += new EventHandler<EventArgs>(ActiveFileState_Changed);
+                _encryptedFileManager.ForceActiveFilesStatus();
             }
             finally
             {
@@ -51,11 +59,16 @@ namespace Axantum.AxCrypt
             RecentFilesListView.Columns[0].Width = userPreferences.RecentFilesDocumentWidth > 0 ? userPreferences.RecentFilesDocumentWidth : RecentFilesListView.Columns[0].Width;
         }
 
+        private void ProgressManager_Progress(object sender, EventArgs e)
+        {
+            Application.DoEvents();
+        }
+
         private void ActiveFileState_Changed(object sender, EventArgs e)
         {
             OpenFilesListView.Items.Clear();
             RecentFilesListView.Items.Clear();
-            ActiveFileMonitor.ForEach(false, (ActiveFile activeFile) => { return UpdateOpenFilesWith(activeFile); });
+            _encryptedFileManager.ForEach(false, (ActiveFile activeFile) => { return UpdateOpenFilesWith(activeFile); });
         }
 
         private ActiveFile UpdateOpenFilesWith(ActiveFile activeFile)
@@ -119,7 +132,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private static void EncryptFile(string file)
+        private void EncryptFile(string file)
         {
             FileInfo fileInfo = new FileInfo(file);
             if (String.Compare(fileInfo.Extension, AxCryptEnvironment.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
@@ -174,7 +187,7 @@ namespace Axantum.AxCrypt
                 {
                     AxCryptFile.WriteToFileWithBackup(destinationInfo.FullName, (Stream destination) =>
                     {
-                        AxCryptFile.Encrypt(sourceFileInfo, destination, key, AxCryptOptions.EncryptWithCompression);
+                        AxCryptFile.Encrypt(sourceFileInfo, destination, key, AxCryptOptions.EncryptWithCompression, _progressManager.Create(sourceFileInfo.FullName));
                     });
                 }
                 AxCryptFile.Wipe(sourceFileInfo);
@@ -217,7 +230,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private static bool DecryptFile(string file)
+        private bool DecryptFile(string file)
         {
             IRuntimeFileInfo source = AxCryptEnvironment.Current.FileInfo(file);
             AxCryptDocument document = null;
@@ -239,7 +252,7 @@ namespace Axantum.AxCrypt
             return true;
         }
 
-        private static bool DecryptFileInternal(IRuntimeFileInfo source, ref AxCryptDocument document)
+        private bool DecryptFileInternal(IRuntimeFileInfo source, ref AxCryptDocument document)
         {
             foreach (AesKey key in KnownKeys.Keys)
             {
@@ -286,7 +299,7 @@ namespace Axantum.AxCrypt
                 destination = AxCryptEnvironment.Current.FileInfo(sfd.FileName);
             }
 
-            AxCryptFile.Decrypt(document, destination, AxCryptOptions.SetFileTimes);
+            AxCryptFile.Decrypt(document, destination, AxCryptOptions.SetFileTimes, _progressManager.Create(Path.GetFileName(destination.FullName)));
 
             KnownKeys.Add(document.DocumentHeaders.KeyEncryptingKey);
 
@@ -334,7 +347,7 @@ namespace Axantum.AxCrypt
             try
             {
                 _fileOperationInProgress = true;
-                if (EncryptedFileManager.Open(file, KnownKeys.Keys) != FileOperationStatus.InvalidKey)
+                if (_encryptedFileManager.Open(file, KnownKeys.Keys) != FileOperationStatus.InvalidKey)
                 {
                     return;
                 }
@@ -350,7 +363,7 @@ namespace Axantum.AxCrypt
                         return;
                     }
                     passphrase = new Passphrase(passphraseDialog.Passphrase.Text);
-                    status = EncryptedFileManager.Open(file, new AesKey[] { passphrase.DerivedPassphrase });
+                    status = _encryptedFileManager.Open(file, new AesKey[] { passphrase.DerivedPassphrase });
                 } while (status == FileOperationStatus.InvalidKey);
                 if (status != FileOperationStatus.Success)
                 {
@@ -383,7 +396,7 @@ namespace Axantum.AxCrypt
             try
             {
                 _fileOperationInProgress = true;
-                EncryptedFileManager.CheckActiveFilesStatus();
+                _encryptedFileManager.CheckActiveFilesStatus();
             }
             finally
             {
@@ -428,9 +441,9 @@ namespace Axantum.AxCrypt
             try
             {
                 _fileOperationInProgress = true;
-                EncryptedFileManager.IgnoreApplication = true;
-                EncryptedFileManager.CheckActiveFilesStatus();
-                EncryptedFileManager.PurgeActiveFiles();
+                _encryptedFileManager.IgnoreApplication = true;
+                _encryptedFileManager.CheckActiveFilesStatus();
+                _encryptedFileManager.PurgeActiveFiles();
             }
             finally
             {
