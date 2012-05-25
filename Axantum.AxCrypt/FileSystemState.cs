@@ -12,19 +12,7 @@ namespace Axantum.AxCrypt
     [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
     public class FileSystemState
     {
-        private static FileSystemState _current = new FileSystemState();
-
-        public static FileSystemState Current
-        {
-            get
-            {
-                return _current;
-            }
-            set
-            {
-                _current = value;
-            }
-        }
+        private object _lock;
 
         private FileSystemState()
         {
@@ -39,8 +27,6 @@ namespace Axantum.AxCrypt
         private Dictionary<string, ActiveFile> _activeFilesByEncryptedPath = new Dictionary<string, ActiveFile>();
 
         private Dictionary<string, ActiveFile> _activeFilesByDecryptedPath = new Dictionary<string, ActiveFile>();
-
-        private object _lock;
 
         public event EventHandler<EventArgs> Changed;
 
@@ -133,24 +119,26 @@ namespace Axantum.AxCrypt
 
         private string _path;
 
-        public static void Load(IRuntimeFileInfo path)
+        public string DirectoryPath
         {
-            lock (Current._lock)
-            {
-                if (!path.Exists)
-                {
-                    Current = new FileSystemState();
-                    Current._path = path.FullName;
-                    return;
-                }
+            get { return _path; }
+        }
 
-                DataContractSerializer serializer = CreateSerializer();
-                using (FileStream fileSystemStateStream = new FileStream(path.FullName, FileMode.Open, FileAccess.Read, FileShare.None))
-                {
-                    FileSystemState fileSystemState = (FileSystemState)serializer.ReadObject(fileSystemStateStream);
-                    fileSystemState._path = path.FullName;
-                    Current = fileSystemState;
-                }
+        public static FileSystemState Load(IRuntimeFileInfo path)
+        {
+            if (!path.Exists)
+            {
+                FileSystemState state = new FileSystemState();
+                state._path = path.FullName;
+                return state;
+            }
+
+            DataContractSerializer serializer = CreateSerializer();
+            using (FileStream fileSystemStateStream = new FileStream(path.FullName, FileMode.Open, FileAccess.Read, FileShare.None))
+            {
+                FileSystemState fileSystemState = (FileSystemState)serializer.ReadObject(fileSystemStateStream);
+                fileSystemState._path = path.FullName;
+                return fileSystemState;
             }
         }
 
@@ -162,11 +150,11 @@ namespace Axantum.AxCrypt
 
         public void Save()
         {
-            DataContractSerializer serializer = CreateSerializer();
             using (FileStream fileSystemStateStream = new FileStream(_path, FileMode.Create, FileAccess.Write, FileShare.None))
             {
                 lock (_lock)
                 {
+                    DataContractSerializer serializer = CreateSerializer();
                     serializer.WriteObject(fileSystemStateStream, this);
                 }
             }

@@ -14,16 +14,19 @@ namespace Axantum.AxCrypt
 {
     internal class ActiveFileMonitor
     {
-        private string _fileSystemStateFullName;
-
         private FileSystemWatcher _temporaryDirectoryWatcher;
 
         private ProgressManager _progressManager;
 
+        private FileSystemState _fileSystemState;
+
         public ActiveFileMonitor(ProgressManager progressManager)
         {
             _progressManager = progressManager;
-            _fileSystemStateFullName = Path.Combine(TemporaryDirectoryInfo.FullName, "FileSystemState.xml");
+
+            string fileSystemStateFullName = Path.Combine(TemporaryDirectoryInfo.FullName, "FileSystemState.xml");
+            _fileSystemState = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(fileSystemStateFullName));
+            _fileSystemState.Changed += new EventHandler<EventArgs>(FileSystemState_Changed);
 
             _temporaryDirectoryWatcher = new FileSystemWatcher(TemporaryDirectoryInfo.FullName);
             _temporaryDirectoryWatcher.Changed += TemporaryDirectoryWatcher_Changed;
@@ -31,16 +34,19 @@ namespace Axantum.AxCrypt
             _temporaryDirectoryWatcher.Deleted += TemporaryDirectoryWatcher_Changed;
             _temporaryDirectoryWatcher.IncludeSubdirectories = true;
             _temporaryDirectoryWatcher.NotifyFilter = NotifyFilters.LastWrite;
-
-            FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(_fileSystemStateFullName));
         }
 
         public event EventHandler<EventArgs> Changed;
 
+        private void FileSystemState_Changed(object sender, EventArgs e)
+        {
+            OnChanged(e);
+        }
+
         public void AddActiveFile(ActiveFile activeFile)
         {
-            FileSystemState.Current.Add(activeFile);
-            FileSystemState.Current.Save();
+            _fileSystemState.Add(activeFile);
+            _fileSystemState.Save();
             OnChanged(new EventArgs());
         }
 
@@ -71,7 +77,7 @@ namespace Axantum.AxCrypt
         {
             bool isChanged = forceChange;
             List<ActiveFile> activeFiles = new List<ActiveFile>();
-            foreach (ActiveFile activeFile in FileSystemState.Current.ActiveFiles)
+            foreach (ActiveFile activeFile in _fileSystemState.ActiveFiles)
             {
                 ActiveFile updatedActiveFile = action(activeFile);
                 activeFiles.Add(updatedActiveFile);
@@ -83,8 +89,8 @@ namespace Axantum.AxCrypt
             }
             if (isChanged)
             {
-                FileSystemState.Current.ActiveFiles = activeFiles;
-                FileSystemState.Current.Save();
+                _fileSystemState.ActiveFiles = activeFiles;
+                _fileSystemState.Save();
                 OnChanged(new EventArgs());
             }
         }
@@ -257,6 +263,25 @@ namespace Axantum.AxCrypt
             return activeFile;
         }
 
+        public void TemporaryDirectoryWatcher_Changed(object sender, FileSystemEventArgs e)
+        {
+            ActiveFile changedFile = _fileSystemState.FindDecryptedPath(e.FullPath);
+            if (changedFile == null)
+            {
+                return;
+            }
+        }
+
+        public ActiveFile FindActiveFile(string path)
+        {
+            return _fileSystemState.FindEncryptedPath(path);
+        }
+
+        public void Add(ActiveFile activeFile)
+        {
+            _fileSystemState.Add(activeFile);
+        }
+
         private DirectoryInfo _temporaryDirectoryInfo;
 
         public DirectoryInfo TemporaryDirectoryInfo
@@ -273,20 +298,6 @@ namespace Axantum.AxCrypt
 
                 return _temporaryDirectoryInfo;
             }
-        }
-
-        public void TemporaryDirectoryWatcher_Changed(object sender, FileSystemEventArgs e)
-        {
-            ActiveFile changedFile = FileSystemState.Current.FindDecryptedPath(e.FullPath);
-            if (changedFile == null)
-            {
-                return;
-            }
-        }
-
-        public static ActiveFile FindActiveFile(string path)
-        {
-            return FileSystemState.Current.FindEncryptedPath(path);
         }
     }
 }

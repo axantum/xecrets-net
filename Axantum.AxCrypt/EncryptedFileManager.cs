@@ -28,7 +28,7 @@ namespace Axantum.AxCrypt
         public EncryptedFileManager(ProgressManager progressManager)
         {
             _progressManager = progressManager;
-            _activeFileMonitor = new ActiveFileMonitor(progressManager);
+            _activeFileMonitor = new ActiveFileMonitor(_progressManager);
             _activeFileMonitor.Changed += new EventHandler<EventArgs>(ActiveFileMonitor_Changed);
         }
 
@@ -109,7 +109,7 @@ namespace Axantum.AxCrypt
                 return FileOperationStatus.FileDoesNotExist;
             }
 
-            ActiveFile destinationActiveFile = ActiveFileMonitor.FindActiveFile(fileInfo.FullName);
+            ActiveFile destinationActiveFile = _activeFileMonitor.FindActiveFile(fileInfo.FullName);
 
             string destinationPath = null;
             if (destinationActiveFile != null)
@@ -123,7 +123,7 @@ namespace Axantum.AxCrypt
                         if (document.PassphraseIsValid)
                         {
                             destinationActiveFile = new ActiveFile(destinationActiveFile, key);
-                            FileSystemState.Current.Add(destinationActiveFile);
+                            _activeFileMonitor.Add(destinationActiveFile);
 
                             return LaunchApplicationForDocument(destinationActiveFile);
                         }

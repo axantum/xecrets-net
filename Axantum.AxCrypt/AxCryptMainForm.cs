@@ -37,7 +37,6 @@ namespace Axantum.AxCrypt
             }
             try
             {
-                FileSystemState.Current.Changed += new EventHandler<EventArgs>(ActiveFileState_Changed);
                 _fileOperationInProgress = true;
                 _encryptedFileManager.IgnoreApplication = !AxCryptEnvironment.Current.IsDesktopWindows;
                 _encryptedFileManager.Changed += new EventHandler<EventArgs>(ActiveFileState_Changed);
