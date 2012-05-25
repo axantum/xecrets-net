@@ -103,6 +103,7 @@
     <Compile Include="Header\PreambleHeaderBlock.cs" />
     <Compile Include="Header\UnicodeFileNameInfoHeaderBlock.cs" />
     <Compile Include="Header\UnrecognizedHeaderBlock.cs" />
+    <Compile Include="IO\ProgressStream.cs" />
     <Compile Include="IO\RuntimeFileInfo.cs" />
     <Compile Include="IRuntimeEnvironment.cs" />
     <Compile Include="InternalErrorException.cs" />

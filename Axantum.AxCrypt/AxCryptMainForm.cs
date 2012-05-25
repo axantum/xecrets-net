@@ -255,7 +255,7 @@ namespace Axantum.AxCrypt
         {
             foreach (AesKey key in KnownKeys.Keys)
             {
-                document = AxCryptFile.Document(source, key);
+                document = AxCryptFile.Document(source, key, _progressManager.Create(Path.GetFileName(source.FullName)));
                 if (document.PassphraseIsValid)
                 {
                     break;
@@ -273,7 +273,7 @@ namespace Axantum.AxCrypt
                         return false;
                     }
                     passphrase = new Passphrase(passphraseDialog.Passphrase.Text);
-                    document = AxCryptFile.Document(source, passphrase.DerivedPassphrase);
+                    document = AxCryptFile.Document(source, passphrase.DerivedPassphrase, _progressManager.Create(Path.GetFileName(source.FullName)));
                 } while (!document.PassphraseIsValid);
             }
 
@@ -298,7 +298,7 @@ namespace Axantum.AxCrypt
                 destination = AxCryptEnvironment.Current.FileInfo(sfd.FileName);
             }
 
-            AxCryptFile.Decrypt(document, destination, AxCryptOptions.SetFileTimes, _progressManager.Create(Path.GetFileName(destination.FullName)));
+            AxCryptFile.Decrypt(document, destination, AxCryptOptions.SetFileTimes);
 
             KnownKeys.Add(document.DocumentHeaders.KeyEncryptingKey);
 
@@ -346,7 +346,7 @@ namespace Axantum.AxCrypt
             try
             {
                 _fileOperationInProgress = true;
-                if (_encryptedFileManager.Open(file, KnownKeys.Keys) != FileOperationStatus.InvalidKey)
+                if (_encryptedFileManager.Open(file, KnownKeys.Keys, _progressManager.Create(Path.GetFileName(file))) != FileOperationStatus.InvalidKey)
                 {
                     return;
                 }
@@ -362,7 +362,7 @@ namespace Axantum.AxCrypt
                         return;
                     }
                     passphrase = new Passphrase(passphraseDialog.Passphrase.Text);
-                    status = _encryptedFileManager.Open(file, new AesKey[] { passphrase.DerivedPassphrase });
+                    status = _encryptedFileManager.Open(file, new AesKey[] { passphrase.DerivedPassphrase }, _progressManager.Create(Path.GetFileName(file)));
                 } while (status == FileOperationStatus.InvalidKey);
                 if (status != FileOperationStatus.Success)
                 {

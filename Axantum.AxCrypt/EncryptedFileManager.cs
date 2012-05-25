@@ -48,11 +48,11 @@ namespace Axantum.AxCrypt
             }
         }
 
-        public FileOperationStatus Open(string file, IEnumerable<AesKey> keys)
+        public FileOperationStatus Open(string file, IEnumerable<AesKey> keys, ProgressContext progress)
         {
             lock (_lock)
             {
-                return OpenInternal(file, keys);
+                return OpenInternal(file, keys, progress);
             }
         }
 
@@ -101,7 +101,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private FileOperationStatus OpenInternal(string file, IEnumerable<AesKey> keys)
+        private FileOperationStatus OpenInternal(string file, IEnumerable<AesKey> keys, ProgressContext progress)
         {
             FileInfo fileInfo = new FileInfo(file);
             if (!fileInfo.Exists)
@@ -119,7 +119,7 @@ namespace Axantum.AxCrypt
                     IRuntimeFileInfo source = AxCryptEnvironment.Current.FileInfo(destinationActiveFile.EncryptedPath);
                     foreach (AesKey key in keys)
                     {
-                        AxCryptDocument document = AxCryptFile.Document(source, key);
+                        AxCryptDocument document = AxCryptFile.Document(source, key, progress);
                         if (document.PassphraseIsValid)
                         {
                             destinationActiveFile = new ActiveFile(destinationActiveFile, key);

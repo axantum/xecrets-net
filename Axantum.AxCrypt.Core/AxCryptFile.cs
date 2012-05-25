@@ -131,13 +131,13 @@ namespace Axantum.AxCrypt.Core
         /// <returns>true if the passphrase was correct</returns>
         public static bool Decrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, AesKey key, AxCryptOptions options, ProgressContext progress)
         {
-            using (AxCryptDocument document = Document(sourceFile, key))
+            using (AxCryptDocument document = Document(sourceFile, key, progress))
             {
                 if (!document.PassphraseIsValid)
                 {
                     return false;
                 }
-                Decrypt(document, destinationFile, options, progress);
+                Decrypt(document, destinationFile, options);
             }
             return true;
         }
@@ -152,7 +152,7 @@ namespace Axantum.AxCrypt.Core
         public static string Decrypt(IRuntimeFileInfo sourceFile, string destinationDirectory, AesKey key, AxCryptOptions options, ProgressContext progress)
         {
             string destinationFileName = null;
-            using (AxCryptDocument document = Document(sourceFile, key))
+            using (AxCryptDocument document = Document(sourceFile, key, progress))
             {
                 if (!document.PassphraseIsValid)
                 {
@@ -160,7 +160,7 @@ namespace Axantum.AxCrypt.Core
                 }
                 destinationFileName = document.DocumentHeaders.FileName;
                 IRuntimeFileInfo destinationFullPath = AxCryptEnvironment.Current.FileInfo(Path.Combine(destinationDirectory, destinationFileName));
-                Decrypt(document, destinationFullPath, options, progress);
+                Decrypt(document, destinationFullPath, options);
             }
             return destinationFileName;
         }
@@ -170,7 +170,7 @@ namespace Axantum.AxCrypt.Core
         /// </summary>
         /// <param name="document">The loaded AxCryptDocument</param>
         /// <param name="destinationFile">The destination file</param>
-        public static void Decrypt(AxCryptDocument document, IRuntimeFileInfo destinationFile, AxCryptOptions options, ProgressContext progress)
+        public static void Decrypt(AxCryptDocument document, IRuntimeFileInfo destinationFile, AxCryptOptions options)
         {
             using (Stream destinationStream = destinationFile.OpenWrite())
             {
@@ -189,10 +189,10 @@ namespace Axantum.AxCrypt.Core
         /// <param name="sourceFile">The source file</param>
         /// <param name="passphrase">The passphrase</param>
         /// <returns>An instance of AxCryptDocument. Use IsPassphraseValid property to determine validity.</returns>
-        public static AxCryptDocument Document(IRuntimeFileInfo sourceFile, AesKey key)
+        public static AxCryptDocument Document(IRuntimeFileInfo sourceFile, AesKey key, ProgressContext progress)
         {
             AxCryptDocument document = new AxCryptDocument();
-            document.Load(sourceFile.OpenRead(), key);
+            document.Load(new ProgressStream(sourceFile.OpenRead(), progress), key);
             return document;
         }
 
