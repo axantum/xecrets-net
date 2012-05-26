@@ -185,7 +185,7 @@ namespace Axantum.AxCrypt.Core.IO
                 throw new ArgumentNullException("dataStream");
             }
             EnsureNotDisposed();
-            byte[] buffer = new byte[4096];
+            byte[] buffer = new byte[65536];
             int count;
             while ((count = dataStream.Read(buffer, 0, buffer.Length)) != 0)
             {

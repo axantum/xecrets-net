@@ -168,7 +168,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
         private void LookForMagicGuid()
         {
-            byte[] buffer = new byte[4096];
+            byte[] buffer = new byte[65536];
             while (true)
             {
                 int bytesRead = _inputStream.Read(buffer, 0, buffer.Length);

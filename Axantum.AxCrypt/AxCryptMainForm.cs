@@ -133,15 +133,14 @@ namespace Axantum.AxCrypt
 
         private void EncryptFile(string file)
         {
-            FileInfo fileInfo = new FileInfo(file);
-            if (String.Compare(fileInfo.Extension, AxCryptEnvironment.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
+            if (String.Compare(Path.GetExtension(file), AxCryptEnvironment.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return;
             }
 
             IRuntimeFileInfo sourceFileInfo = AxCryptEnvironment.Current.FileInfo(file);
-            IRuntimeFileInfo destinationInfo = AxCryptEnvironment.Current.FileInfo(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
-            if (destinationInfo.Exists)
+            IRuntimeFileInfo destinationFileInfo = AxCryptEnvironment.Current.FileInfo(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
+            if (destinationFileInfo.Exists)
             {
                 using (SaveFileDialog sfd = new SaveFileDialog())
                 {
@@ -150,16 +149,16 @@ namespace Axantum.AxCrypt
                     sfd.ValidateNames = true;
                     sfd.CheckPathExists = true;
                     sfd.DefaultExt = AxCryptEnvironment.Current.AxCryptExtension;
-                    sfd.FileName = destinationInfo.FullName;
+                    sfd.FileName = destinationFileInfo.FullName;
                     sfd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat(AxCryptEnvironment.Current.AxCryptExtension);
-                    sfd.InitialDirectory = Path.GetDirectoryName(destinationInfo.FullName);
+                    sfd.InitialDirectory = Path.GetDirectoryName(destinationFileInfo.FullName);
                     sfd.ValidateNames = true;
                     DialogResult saveAsResult = sfd.ShowDialog();
                     if (saveAsResult != DialogResult.OK)
                     {
                         return;
                     }
-                    destinationInfo = AxCryptEnvironment.Current.FileInfo(sfd.FileName);
+                    destinationFileInfo = AxCryptEnvironment.Current.FileInfo(sfd.FileName);
                 }
             }
 
@@ -180,24 +179,30 @@ namespace Axantum.AxCrypt
                 key = KnownKeys.DefaultEncryptionKey;
             }
 
-            try
-            {
-                using (Stream activeFileStream = fileInfo.OpenRead())
-                {
-                    AxCryptFile.WriteToFileWithBackup(destinationInfo.FullName, (Stream destination) =>
-                    {
-                        AxCryptFile.Encrypt(sourceFileInfo, destination, key, AxCryptOptions.EncryptWithCompression, _progressManager.Create(sourceFileInfo.FullName));
-                    });
-                }
-                AxCryptFile.Wipe(sourceFileInfo);
-            }
-            catch (IOException)
-            {
-            }
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(worker_RunWorkerCompleted);
+            worker.ProgressChanged += new ProgressChangedEventHandler(worker_ProgressChanged);
+            worker.DoWork += new DoWorkEventHandler(worker_DoWork);
+            worker.RunWorkerAsync(new WorkerArguments(sourceFileInfo, destinationFileInfo, key, _progressManager.Create(sourceFileInfo.FullName)));
+
             if (KnownKeys.DefaultEncryptionKey == null)
             {
                 KnownKeys.DefaultEncryptionKey = key;
             }
+        }
+
+        private void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            WorkerArguments arguments = (WorkerArguments)e.Argument;
+            _encryptedFileManager.EncryptFile(arguments.SourceFileInfo, arguments.DestinationFileInfo, arguments.Key, arguments.Progress);
+        }
+
+        private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+        }
+
+        private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
         }
 
         private void toolStripButtonDecrypt_Click(object sender, EventArgs e)

@@ -101,6 +101,24 @@ namespace Axantum.AxCrypt
             }
         }
 
+        public void EncryptFile(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFileInfo, AesKey key, ProgressContext progress)
+        {
+            try
+            {
+                using (Stream activeFileStream = sourceFileInfo.OpenRead())
+                {
+                    AxCryptFile.WriteToFileWithBackup(destinationFileInfo.FullName, (Stream destination) =>
+                    {
+                        AxCryptFile.Encrypt(sourceFileInfo, destination, key, AxCryptOptions.EncryptWithCompression, progress);
+                    });
+                }
+                AxCryptFile.Wipe(sourceFileInfo);
+            }
+            catch (IOException)
+            {
+            }
+        }
+
         private FileOperationStatus OpenInternal(string file, IEnumerable<AesKey> keys, ProgressContext progress)
         {
             FileInfo fileInfo = new FileInfo(file);

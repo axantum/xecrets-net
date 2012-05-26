@@ -164,7 +164,7 @@ namespace Axantum.AxCrypt.Core
                 progress.Max = inputStream.Length;
             }
 
-            byte[] buffer = new byte[4096];
+            byte[] buffer = new byte[65536];
             int count;
             long totalCount = 0;
             while ((count = inputStream.Read(buffer, 0, buffer.Length)) != 0)
