@@ -27,8 +27,6 @@ namespace Axantum.AxCrypt.Core.UI
 
         public long Max { get; set; }
 
-        private bool _done = false;
-
         private long _current = 0;
 
         public long Current
@@ -40,10 +38,6 @@ namespace Axantum.AxCrypt.Core.UI
             set
             {
                 _current = value;
-                if (_current == Max)
-                {
-                    _done = true;
-                }
                 ProgressEventArgs e;
                 e = new ProgressEventArgs(Percent, _context);
                 OnProgressing(e);
@@ -57,10 +51,6 @@ namespace Axantum.AxCrypt.Core.UI
 
         protected virtual void OnProgressing(ProgressEventArgs e)
         {
-            if (_done)
-            {
-                return;
-            }
             EventHandler<ProgressEventArgs> handler = Progressing;
             if (handler != null)
             {
@@ -72,10 +62,6 @@ namespace Axantum.AxCrypt.Core.UI
         {
             get
             {
-                if (_done)
-                {
-                    return 100;
-                }
                 if (Max >= 0)
                 {
                     long current100 = _current * 100;

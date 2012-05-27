@@ -370,7 +370,7 @@
     <value>0, 24</value>
   </data>
   <data name="toolStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>741, 50</value>
+    <value>824, 50</value>
   </data>
   <data name="toolStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -436,7 +436,7 @@
     <value>0, 0</value>
   </data>
   <data name="menuStripMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>741, 24</value>
+    <value>824, 24</value>
   </data>
   <data name="menuStripMain.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -456,6 +456,10 @@
   <data name="&gt;&gt;menuStripMain.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="StatusTabs.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
   <data name="DecryptedFile.Text" xml:space="preserve">
     <value>Document</value>
   </data>
@@ -474,7 +478,6 @@
   <data name="EncryptedPath.Width" type="System.Int32, mscorlib">
     <value>169</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="RecentFilesListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -1044,7 +1047,7 @@
     <value>3, 3</value>
   </data>
   <data name="RecentFilesListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>727, 157</value>
+    <value>810, 157</value>
   </data>
   <metadata name="ImageList16.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>398, 17</value>
@@ -1141,7 +1144,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="RecentFilesTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>733, 163</value>
+    <value>816, 163</value>
   </data>
   <data name="RecentFilesTab.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -1276,10 +1279,10 @@
     <value>2</value>
   </data>
   <data name="StatusTabs.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 68</value>
+    <value>0, 67</value>
   </data>
   <data name="StatusTabs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>741, 189</value>
+    <value>824, 189</value>
   </data>
   <data name="StatusTabs.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -1299,11 +1302,20 @@
   <metadata name="ActiveFilePolling.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>257, 17</value>
   </metadata>
+  <data name="ProgressPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
+  <data name="ProgressPanel.ColumnCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
   <data name="ProgressPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 259</value>
+    <value>0, 255</value>
+  </data>
+  <data name="ProgressPanel.RowCount" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
   <data name="ProgressPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>741, 21</value>
+    <value>824, 20</value>
   </data>
   <data name="ProgressPanel.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -1312,13 +1324,16 @@
     <value>ProgressPanel</value>
   </data>
   <data name="&gt;&gt;ProgressPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ProgressPanel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ProgressPanel.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="ProgressPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls /&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Percent,50,Percent,50" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1327,7 +1342,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>741, 280</value>
+    <value>824, 272</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

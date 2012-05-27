@@ -59,7 +59,7 @@
             this.WatchedFoldersTab = new System.Windows.Forms.TabPage();
             this.WatchedFoldersListView = new System.Windows.Forms.ListView();
             this.ActiveFilePolling = new System.Windows.Forms.Timer(this.components);
-            this.ProgressPanel = new System.Windows.Forms.Panel();
+            this.ProgressPanel = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.StatusTabs.SuspendLayout();
@@ -166,10 +166,10 @@
             // 
             // StatusTabs
             // 
+            resources.ApplyResources(this.StatusTabs, "StatusTabs");
             this.StatusTabs.Controls.Add(this.RecentFilesTab);
             this.StatusTabs.Controls.Add(this.OpenFilesTab);
             this.StatusTabs.Controls.Add(this.WatchedFoldersTab);
-            resources.ApplyResources(this.StatusTabs, "StatusTabs");
             this.StatusTabs.Name = "StatusTabs";
             this.StatusTabs.SelectedIndex = 0;
             // 
@@ -274,6 +274,7 @@
             // ProgressPanel
             // 
             resources.ApplyResources(this.ProgressPanel, "ProgressPanel");
+            this.ProgressPanel.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
             this.ProgressPanel.Name = "ProgressPanel";
             // 
             // AxCryptMainForm
@@ -331,7 +332,7 @@
         private System.Windows.Forms.ColumnHeader EncryptedPath;
         private System.Windows.Forms.ColumnHeader LastAccessTime;
         private System.Windows.Forms.ColumnHeader DecryptedFile;
-        private System.Windows.Forms.Panel ProgressPanel;
+        private System.Windows.Forms.TableLayoutPanel ProgressPanel;
     }
 }
 

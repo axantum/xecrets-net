@@ -212,8 +212,9 @@ namespace Axantum.AxCrypt
             ProgressBar progressBar = new ProgressBar();
             progressBar.Minimum = 0;
             progressBar.Maximum = 100;
+            ProgressPanel.Controls.Add(progressBar);
             progressBar.Dock = DockStyle.Fill;
-            progressBar.Parent = ProgressPanel;
+            progressBar.Margin = new Padding(0);
             _progressBars.Add(worker, progressBar);
             return worker;
         }
