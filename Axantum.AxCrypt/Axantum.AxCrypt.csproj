@@ -102,6 +102,7 @@
     <Compile Include="AxCryptMainForm.Designer.cs">
       <DependentUpon>AxCryptMainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DelegateTraceListener.cs" />
     <Compile Include="EncryptPassphraseDialog.cs">
       <SubType>Form</SubType>
     </Compile>

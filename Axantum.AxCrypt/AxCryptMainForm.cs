@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -28,6 +29,13 @@ namespace Axantum.AxCrypt
         public AxCryptMainForm()
         {
             InitializeComponent();
+
+            DelegateTraceListener traceListener = new DelegateTraceListener((string message) =>
+            {
+                LogOutput.AppendText(message);
+            });
+            Trace.Listeners.Add(traceListener);
+
             _progressManager = new ProgressManager();
             _progressManager.Progress += new EventHandler<ProgressEventArgs>(ProgressManager_Progress);
             _encryptedFileManager = new EncryptedFileManager(_progressManager);

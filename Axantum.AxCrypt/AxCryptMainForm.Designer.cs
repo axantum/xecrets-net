@@ -60,12 +60,15 @@
             this.WatchedFoldersListView = new System.Windows.Forms.ListView();
             this.ActiveFilePolling = new System.Windows.Forms.Timer(this.components);
             this.ProgressPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.LogTab = new System.Windows.Forms.TabPage();
+            this.LogOutput = new System.Windows.Forms.TextBox();
             this.toolStrip1.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.StatusTabs.SuspendLayout();
             this.RecentFilesTab.SuspendLayout();
             this.OpenFilesTab.SuspendLayout();
             this.WatchedFoldersTab.SuspendLayout();
+            this.LogTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -170,6 +173,7 @@
             this.StatusTabs.Controls.Add(this.RecentFilesTab);
             this.StatusTabs.Controls.Add(this.OpenFilesTab);
             this.StatusTabs.Controls.Add(this.WatchedFoldersTab);
+            this.StatusTabs.Controls.Add(this.LogTab);
             this.StatusTabs.Name = "StatusTabs";
             this.StatusTabs.SelectedIndex = 0;
             // 
@@ -277,6 +281,18 @@
             this.ProgressPanel.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
             this.ProgressPanel.Name = "ProgressPanel";
             // 
+            // LogTab
+            // 
+            this.LogTab.Controls.Add(this.LogOutput);
+            resources.ApplyResources(this.LogTab, "LogTab");
+            this.LogTab.Name = "LogTab";
+            this.LogTab.UseVisualStyleBackColor = true;
+            // 
+            // LogOutput
+            // 
+            resources.ApplyResources(this.LogOutput, "LogOutput");
+            this.LogOutput.Name = "LogOutput";
+            // 
             // AxCryptMainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -296,6 +312,8 @@
             this.RecentFilesTab.ResumeLayout(false);
             this.OpenFilesTab.ResumeLayout(false);
             this.WatchedFoldersTab.ResumeLayout(false);
+            this.LogTab.ResumeLayout(false);
+            this.LogTab.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -333,6 +351,8 @@
         private System.Windows.Forms.ColumnHeader LastAccessTime;
         private System.Windows.Forms.ColumnHeader DecryptedFile;
         private System.Windows.Forms.TableLayoutPanel ProgressPanel;
+        private System.Windows.Forms.TabPage LogTab;
+        private System.Windows.Forms.TextBox LogOutput;
     }
 }
 
