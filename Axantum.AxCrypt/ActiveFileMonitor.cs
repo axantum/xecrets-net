@@ -61,6 +61,10 @@ namespace Axantum.AxCrypt
             set
             {
                 _ignoreApplication = value;
+                if (Logging.IsInfoEnabled)
+                {
+                    Logging.Info("ActiveFileMonitor.IgnoreApplication='{0}'".InvariantFormat(value));
+                }
             }
         }
 
@@ -75,7 +79,7 @@ namespace Axantum.AxCrypt
 
         public void ForEach(bool forceChange, Func<ActiveFile, ActiveFile> action)
         {
-            bool isChanged = forceChange;
+            bool isModified = false;
             List<ActiveFile> activeFiles = new List<ActiveFile>();
             foreach (ActiveFile activeFile in _fileSystemState.ActiveFiles)
             {
@@ -85,12 +89,15 @@ namespace Axantum.AxCrypt
                 {
                     activeFile.Dispose();
                 }
-                isChanged |= updatedActiveFile != activeFile;
+                isModified |= updatedActiveFile != activeFile;
             }
-            if (isChanged)
+            if (isModified)
             {
                 _fileSystemState.ActiveFiles = activeFiles;
                 _fileSystemState.Save();
+            }
+            if (isModified || forceChange)
+            {
                 OnChanged(new EventArgs());
             }
         }
@@ -245,9 +252,9 @@ namespace Axantum.AxCrypt
             }
             catch (IOException)
             {
-                if (Logging.IsErrorEnabled)
+                if (Logging.IsWarningEnabled)
                 {
-                    Logging.Error("Delete failed for '{0}'".InvariantFormat(activeFileInfo.FullName));
+                    Logging.Warning("Delete failed for '{0}'".InvariantFormat(activeFileInfo.FullName));
                 }
                 activeFile = new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.NotShareable, activeFile.Process);
                 return activeFile;

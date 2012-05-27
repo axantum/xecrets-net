@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.IO;
 
 namespace Axantum.AxCrypt
@@ -130,6 +131,10 @@ namespace Axantum.AxCrypt
             {
                 FileSystemState state = new FileSystemState();
                 state._path = path.FullName;
+                if (Logging.IsInfoEnabled)
+                {
+                    Logging.Info("No existing FileSystemState. Save location is '{0}'.".InvariantFormat(state._path));
+                }
                 return state;
             }
 
@@ -138,6 +143,10 @@ namespace Axantum.AxCrypt
             {
                 FileSystemState fileSystemState = (FileSystemState)serializer.ReadObject(fileSystemStateStream);
                 fileSystemState._path = path.FullName;
+                if (Logging.IsInfoEnabled)
+                {
+                    Logging.Info("Loaded FileSystemState from '{0}'.".InvariantFormat(fileSystemState._path));
+                }
                 return fileSystemState;
             }
         }
@@ -157,6 +166,10 @@ namespace Axantum.AxCrypt
                     DataContractSerializer serializer = CreateSerializer();
                     serializer.WriteObject(fileSystemStateStream, this);
                 }
+            }
+            if (Logging.IsInfoEnabled)
+            {
+                Logging.Info("Wrote FileSystemState to '{0}'.".InvariantFormat(_path));
             }
         }
 

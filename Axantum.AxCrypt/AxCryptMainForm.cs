@@ -32,7 +32,11 @@ namespace Axantum.AxCrypt
 
             DelegateTraceListener traceListener = new DelegateTraceListener((string message) =>
             {
-                LogOutput.AppendText(message);
+                int skipIndex = message.IndexOf(" Information", StringComparison.Ordinal);
+                skipIndex = skipIndex < 0 ? message.IndexOf(" Warning", StringComparison.Ordinal) : skipIndex;
+                skipIndex = skipIndex < 0 ? message.IndexOf(" Debug", StringComparison.Ordinal) : skipIndex;
+                skipIndex = skipIndex < 0 ? message.IndexOf(" Error", StringComparison.Ordinal) : skipIndex;
+                LogOutput.AppendText(message.Substring(skipIndex + 1));
             });
             Trace.Listeners.Add(traceListener);
 

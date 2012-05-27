@@ -200,8 +200,12 @@ namespace Axantum.AxCrypt
             {
                 process = Process.Start(destinationActiveFile.DecryptedPath);
             }
-            catch (Win32Exception)
+            catch (Win32Exception w32ex)
             {
+                if (Logging.IsErrorEnabled)
+                {
+                    Logging.Error("Could not launch application for '{0}', Win32Exception was '{1}'.".InvariantFormat(destinationActiveFile.DecryptedPath, w32ex.Message));
+                }
                 return FileOperationStatus.CannotStartApplication;
             }
 
