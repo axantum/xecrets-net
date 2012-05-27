@@ -7,9 +7,12 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public class ProgressContext
     {
-        public ProgressContext(string displayText)
+        private object _context;
+
+        public ProgressContext(string displayText, object context)
             : this()
         {
+            _context = context;
             DisplayText = displayText;
         }
 
@@ -42,7 +45,7 @@ namespace Axantum.AxCrypt.Core.UI
                     _done = true;
                 }
                 ProgressEventArgs e;
-                e = new ProgressEventArgs(Percent);
+                e = new ProgressEventArgs(Percent, _context);
                 OnProgressing(e);
             }
         }

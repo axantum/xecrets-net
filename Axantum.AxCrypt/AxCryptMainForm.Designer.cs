@@ -59,6 +59,7 @@
             this.WatchedFoldersTab = new System.Windows.Forms.TabPage();
             this.WatchedFoldersListView = new System.Windows.Forms.ListView();
             this.ActiveFilePolling = new System.Windows.Forms.Timer(this.components);
+            this.ProgressPanel = new System.Windows.Forms.Panel();
             this.toolStrip1.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.StatusTabs.SuspendLayout();
@@ -270,10 +271,16 @@
             this.ActiveFilePolling.Interval = 1000;
             this.ActiveFilePolling.Tick += new System.EventHandler(this.ActiveFilePolling_Tick);
             // 
+            // ProgressPanel
+            // 
+            resources.ApplyResources(this.ProgressPanel, "ProgressPanel");
+            this.ProgressPanel.Name = "ProgressPanel";
+            // 
             // AxCryptMainForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ProgressPanel);
             this.Controls.Add(this.StatusTabs);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStripMain);
@@ -324,6 +331,7 @@
         private System.Windows.Forms.ColumnHeader EncryptedPath;
         private System.Windows.Forms.ColumnHeader LastAccessTime;
         private System.Windows.Forms.ColumnHeader DecryptedFile;
+        private System.Windows.Forms.Panel ProgressPanel;
     }
 }
 

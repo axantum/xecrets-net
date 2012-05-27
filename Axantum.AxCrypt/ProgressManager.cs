@@ -8,27 +8,32 @@ namespace Axantum.AxCrypt
 {
     public class ProgressManager
     {
-        public event EventHandler<EventArgs> Progress;
+        public event EventHandler<ProgressEventArgs> Progress;
 
-        public ProgressContext Create(string displayText)
+        public ProgressContext Create(string displayText, object context)
         {
-            ProgressContext progress = new ProgressContext(displayText);
+            ProgressContext progress = new ProgressContext(displayText, context);
             progress.Progressing += new EventHandler<ProgressEventArgs>(progress_Progressing);
 
             return progress;
         }
 
-        private void progress_Progressing(object sender, ProgressEventArgs e)
+        public ProgressContext Create(string displayText)
         {
-            OnProgress();
+            return Create(displayText, null);
         }
 
-        private void OnProgress()
+        private void progress_Progressing(object sender, ProgressEventArgs e)
         {
-            EventHandler<EventArgs> handler = Progress;
+            OnProgress(e);
+        }
+
+        protected virtual void OnProgress(ProgressEventArgs e)
+        {
+            EventHandler<ProgressEventArgs> handler = Progress;
             if (handler != null)
             {
-                handler(null, new EventArgs());
+                handler(null, e);
             }
         }
     }

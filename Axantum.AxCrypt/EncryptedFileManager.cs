@@ -101,7 +101,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        public void EncryptFile(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFileInfo, AesKey key, ProgressContext progress)
+        public static void EncryptFile(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFileInfo, AesKey key, ProgressContext progress)
         {
             try
             {

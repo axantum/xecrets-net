@@ -23,11 +23,13 @@ namespace Axantum.AxCrypt
 
         private EncryptedFileManager _encryptedFileManager;
 
+        private IDictionary<BackgroundWorker, ProgressBar> _progressBars = new Dictionary<BackgroundWorker, ProgressBar>();
+
         public AxCryptMainForm()
         {
             InitializeComponent();
             _progressManager = new ProgressManager();
-            _progressManager.Progress += new EventHandler<EventArgs>(ProgressManager_Progress);
+            _progressManager.Progress += new EventHandler<ProgressEventArgs>(ProgressManager_Progress);
             _encryptedFileManager = new EncryptedFileManager(_progressManager);
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
 
@@ -58,9 +60,15 @@ namespace Axantum.AxCrypt
             RecentFilesListView.Columns[0].Width = userPreferences.RecentFilesDocumentWidth > 0 ? userPreferences.RecentFilesDocumentWidth : RecentFilesListView.Columns[0].Width;
         }
 
-        private void ProgressManager_Progress(object sender, EventArgs e)
+        private void ProgressManager_Progress(object sender, ProgressEventArgs e)
         {
             Application.DoEvents();
+            BackgroundWorker worker = e.Context as BackgroundWorker;
+            if (worker == null)
+            {
+                return;
+            }
+            worker.ReportProgress(e.Percent, worker);
         }
 
         private void ActiveFileState_Changed(object sender, EventArgs e)
@@ -179,11 +187,13 @@ namespace Axantum.AxCrypt
                 key = KnownKeys.DefaultEncryptionKey;
             }
 
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(worker_RunWorkerCompleted);
-            worker.ProgressChanged += new ProgressChangedEventHandler(worker_ProgressChanged);
-            worker.DoWork += new DoWorkEventHandler(worker_DoWork);
-            worker.RunWorkerAsync(new WorkerArguments(sourceFileInfo, destinationFileInfo, key, _progressManager.Create(sourceFileInfo.FullName)));
+            BackgroundWorker worker = CreateWorker();
+            worker.DoWork += (object sender, DoWorkEventArgs e) =>
+            {
+                WorkerArguments arguments = (WorkerArguments)e.Argument;
+                EncryptedFileManager.EncryptFile(arguments.SourceFileInfo, arguments.DestinationFileInfo, arguments.Key, arguments.Progress);
+            };
+            worker.RunWorkerAsync(new WorkerArguments(sourceFileInfo, destinationFileInfo, key, _progressManager.Create(sourceFileInfo.FullName, worker)));
 
             if (KnownKeys.DefaultEncryptionKey == null)
             {
@@ -191,18 +201,37 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void worker_DoWork(object sender, DoWorkEventArgs e)
+        private BackgroundWorker CreateWorker()
         {
-            WorkerArguments arguments = (WorkerArguments)e.Argument;
-            _encryptedFileManager.EncryptFile(arguments.SourceFileInfo, arguments.DestinationFileInfo, arguments.Key, arguments.Progress);
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.WorkerReportsProgress = true;
+            worker.WorkerSupportsCancellation = true;
+            worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(worker_RunWorkerCompleted);
+            worker.ProgressChanged += new ProgressChangedEventHandler(worker_ProgressChanged);
+
+            ProgressBar progressBar = new ProgressBar();
+            progressBar.Minimum = 0;
+            progressBar.Maximum = 100;
+            progressBar.Dock = DockStyle.Fill;
+            progressBar.Parent = ProgressPanel;
+            _progressBars.Add(worker, progressBar);
+            return worker;
         }
 
         private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+            BackgroundWorker worker = (BackgroundWorker)e.UserState;
+            ProgressBar progressBar = _progressBars[worker];
+            progressBar.Value = e.ProgressPercentage;
         }
 
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            BackgroundWorker worker = (BackgroundWorker)sender;
+            ProgressBar progressBar = _progressBars[worker];
+            progressBar.Parent = null;
+            _progressBars.Remove(worker);
+            worker.Dispose();
         }
 
         private void toolStripButtonDecrypt_Click(object sender, EventArgs e)
