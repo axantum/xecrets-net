@@ -50,6 +50,13 @@ namespace Axantum.AxCrypt
             OnChanged(new EventArgs());
         }
 
+        public void RemoveActiveFile(ActiveFile activeFile)
+        {
+            _fileSystemState.Remove(activeFile);
+            _fileSystemState.Save();
+            OnChanged(new EventArgs());
+        }
+
         private bool _ignoreApplication;
 
         public bool IgnoreApplication
@@ -279,9 +286,9 @@ namespace Axantum.AxCrypt
             }
         }
 
-        public ActiveFile FindActiveFile(string path)
+        public ActiveFile FindActiveFile(string encryptedPath)
         {
-            return _fileSystemState.FindEncryptedPath(path);
+            return _fileSystemState.FindEncryptedPath(encryptedPath);
         }
 
         public void Add(ActiveFile activeFile)

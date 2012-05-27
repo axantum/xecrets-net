@@ -80,6 +80,15 @@ namespace Axantum.AxCrypt
             }
         }
 
+        public void RemoveRecentFile(string encryptedPath)
+        {
+            lock (_lock)
+            {
+                ActiveFile activeFile = _activeFileMonitor.FindActiveFile(encryptedPath);
+                _activeFileMonitor.RemoveActiveFile(activeFile);
+            }
+        }
+
         public bool IgnoreApplication
         {
             get

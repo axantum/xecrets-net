@@ -502,5 +502,21 @@ namespace Axantum.AxCrypt
             string encryptedPath = OpenFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text;
             OpenEncrypted(encryptedPath);
         }
+
+        private void removeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string encryptedPath = RecentFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text;
+            _encryptedFileManager.RemoveRecentFile(encryptedPath);
+        }
+
+        private void RecentFilesListView_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Right)
+            {
+                return;
+            }
+            ListView recentFiles = (ListView)sender;
+            RecentFilesContextMenu.Show(recentFiles, e.Location);
+        }
     }
 }

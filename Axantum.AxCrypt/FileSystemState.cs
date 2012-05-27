@@ -89,6 +89,15 @@ namespace Axantum.AxCrypt
             }
         }
 
+        public void Remove(ActiveFile activeFile)
+        {
+            lock (_lock)
+            {
+                _activeFilesByDecryptedPath.Remove(activeFile.DecryptedPath);
+                _activeFilesByEncryptedPath.Remove(activeFile.EncryptedPath);
+            }
+        }
+
         private void AddInternal(ActiveFile activeFile)
         {
             _activeFilesByEncryptedPath[activeFile.EncryptedPath] = activeFile;

@@ -62,6 +62,8 @@
             this.ProgressPanel = new System.Windows.Forms.TableLayoutPanel();
             this.LogTab = new System.Windows.Forms.TabPage();
             this.LogOutput = new System.Windows.Forms.TextBox();
+            this.RecentFilesContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.StatusTabs.SuspendLayout();
@@ -69,6 +71,7 @@
             this.OpenFilesTab.SuspendLayout();
             this.WatchedFoldersTab.SuspendLayout();
             this.LogTab.SuspendLayout();
+            this.RecentFilesContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -198,6 +201,7 @@
             this.RecentFilesListView.UseCompatibleStateImageBehavior = false;
             this.RecentFilesListView.View = System.Windows.Forms.View.Details;
             this.RecentFilesListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.RecentFilesListView_ColumnWidthChanged);
+            this.RecentFilesListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RecentFilesListView_MouseClick);
             this.RecentFilesListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.RecentFilesListView_MouseDoubleClick);
             // 
             // DecryptedFile
@@ -293,6 +297,19 @@
             resources.ApplyResources(this.LogOutput, "LogOutput");
             this.LogOutput.Name = "LogOutput";
             // 
+            // RecentFilesContextMenu
+            // 
+            this.RecentFilesContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.removeToolStripMenuItem});
+            this.RecentFilesContextMenu.Name = "RecentFilesContextMenu";
+            resources.ApplyResources(this.RecentFilesContextMenu, "RecentFilesContextMenu");
+            // 
+            // removeToolStripMenuItem
+            // 
+            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
+            resources.ApplyResources(this.removeToolStripMenuItem, "removeToolStripMenuItem");
+            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
+            // 
             // AxCryptMainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -314,6 +331,7 @@
             this.WatchedFoldersTab.ResumeLayout(false);
             this.LogTab.ResumeLayout(false);
             this.LogTab.PerformLayout();
+            this.RecentFilesContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -353,6 +371,8 @@
         private System.Windows.Forms.TableLayoutPanel ProgressPanel;
         private System.Windows.Forms.TabPage LogTab;
         private System.Windows.Forms.TextBox LogOutput;
+        private System.Windows.Forms.ContextMenuStrip RecentFilesContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
     }
 }
 
