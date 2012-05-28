@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt
             {
                 lock (_lock)
                 {
-                    SetRangeInternal(value);
+                    SetRangeInternal(value, ActiveFileStatus.None);
                 }
             }
         }
@@ -113,17 +113,22 @@ namespace Axantum.AxCrypt
             }
             set
             {
-                SetRangeInternal(value);
+                SetRangeInternal(value, ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable);
             }
         }
 
-        private void SetRangeInternal(IEnumerable<ActiveFile> activeFiles)
+        private void SetRangeInternal(IEnumerable<ActiveFile> activeFiles, ActiveFileStatus mask)
         {
             _activeFilesByDecryptedPath = new Dictionary<string, ActiveFile>();
             _activeFilesByEncryptedPath = new Dictionary<string, ActiveFile>();
             foreach (ActiveFile activeFile in activeFiles)
             {
-                AddInternal(activeFile);
+                ActiveFile thisActiveFile = activeFile;
+                if ((activeFile.Status & mask) != 0)
+                {
+                    thisActiveFile = new ActiveFile(activeFile, activeFile.Status & ~mask, null);
+                }
+                AddInternal(thisActiveFile);
             }
         }
 

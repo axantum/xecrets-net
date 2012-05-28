@@ -58,10 +58,10 @@
             this.EncryptedSource = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.WatchedFoldersTab = new System.Windows.Forms.TabPage();
             this.WatchedFoldersListView = new System.Windows.Forms.ListView();
-            this.ActiveFilePolling = new System.Windows.Forms.Timer(this.components);
-            this.ProgressPanel = new System.Windows.Forms.TableLayoutPanel();
             this.LogTab = new System.Windows.Forms.TabPage();
             this.LogOutput = new System.Windows.Forms.TextBox();
+            this.ActiveFilePolling = new System.Windows.Forms.Timer(this.components);
+            this.ProgressPanel = new System.Windows.Forms.TableLayoutPanel();
             this.RecentFilesContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
@@ -273,18 +273,6 @@
             this.WatchedFoldersListView.Name = "WatchedFoldersListView";
             this.WatchedFoldersListView.UseCompatibleStateImageBehavior = false;
             // 
-            // ActiveFilePolling
-            // 
-            this.ActiveFilePolling.Enabled = true;
-            this.ActiveFilePolling.Interval = 1000;
-            this.ActiveFilePolling.Tick += new System.EventHandler(this.ActiveFilePolling_Tick);
-            // 
-            // ProgressPanel
-            // 
-            resources.ApplyResources(this.ProgressPanel, "ProgressPanel");
-            this.ProgressPanel.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
-            this.ProgressPanel.Name = "ProgressPanel";
-            // 
             // LogTab
             // 
             this.LogTab.Controls.Add(this.LogOutput);
@@ -296,6 +284,18 @@
             // 
             resources.ApplyResources(this.LogOutput, "LogOutput");
             this.LogOutput.Name = "LogOutput";
+            this.LogOutput.ReadOnly = true;
+            // 
+            // ActiveFilePolling
+            // 
+            this.ActiveFilePolling.Interval = 1000;
+            this.ActiveFilePolling.Tick += new System.EventHandler(this.ActiveFilePolling_Tick);
+            // 
+            // ProgressPanel
+            // 
+            resources.ApplyResources(this.ProgressPanel, "ProgressPanel");
+            this.ProgressPanel.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
+            this.ProgressPanel.Name = "ProgressPanel";
             // 
             // RecentFilesContextMenu
             // 
@@ -321,6 +321,7 @@
             this.MainMenuStrip = this.menuStripMain;
             this.Name = "AxCryptMainForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AxCryptMainForm_FormClosing);
+            this.Load += new System.EventHandler(this.AxCryptMainForm_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.menuStripMain.ResumeLayout(false);

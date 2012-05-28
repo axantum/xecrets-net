@@ -26,18 +26,27 @@ namespace Axantum.AxCrypt
 
         private IDictionary<BackgroundWorker, ProgressBar> _progressBars = new Dictionary<BackgroundWorker, ProgressBar>();
 
+        private void FormatTraceMessage(string message)
+        {
+            int skipIndex = message.IndexOf(" Information", StringComparison.Ordinal);
+            skipIndex = skipIndex < 0 ? message.IndexOf(" Warning", StringComparison.Ordinal) : skipIndex;
+            skipIndex = skipIndex < 0 ? message.IndexOf(" Debug", StringComparison.Ordinal) : skipIndex;
+            skipIndex = skipIndex < 0 ? message.IndexOf(" Error", StringComparison.Ordinal) : skipIndex;
+            InvokeIfRequired(() =>
+            {
+                LogOutput.AppendText(message.Substring(skipIndex + 1));
+            });
+        }
+
         public AxCryptMainForm()
         {
             InitializeComponent();
+        }
 
-            DelegateTraceListener traceListener = new DelegateTraceListener((string message) =>
-            {
-                int skipIndex = message.IndexOf(" Information", StringComparison.Ordinal);
-                skipIndex = skipIndex < 0 ? message.IndexOf(" Warning", StringComparison.Ordinal) : skipIndex;
-                skipIndex = skipIndex < 0 ? message.IndexOf(" Debug", StringComparison.Ordinal) : skipIndex;
-                skipIndex = skipIndex < 0 ? message.IndexOf(" Error", StringComparison.Ordinal) : skipIndex;
-                LogOutput.AppendText(message.Substring(skipIndex + 1));
-            });
+        private void AxCryptMainForm_Load(object sender, EventArgs e)
+        {
+            DelegateTraceListener traceListener = new DelegateTraceListener(FormatTraceMessage);
+            traceListener.Name = "AxCryptMainFormListener";
             Trace.Listeners.Add(traceListener);
 
             _progressManager = new ProgressManager();
@@ -84,6 +93,23 @@ namespace Axantum.AxCrypt
         }
 
         private void ActiveFileState_Changed(object sender, EventArgs e)
+        {
+            InvokeIfRequired(UpdateActiveFileState);
+        }
+
+        private void InvokeIfRequired(Action action)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(action);
+            }
+            else
+            {
+                action();
+            }
+        }
+
+        private void UpdateActiveFileState()
         {
             OpenFilesListView.Items.Clear();
             RecentFilesListView.Items.Clear();
@@ -439,15 +465,15 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-            try
-            {
-                _fileOperationInProgress = true;
-                _encryptedFileManager.CheckActiveFilesStatus();
-            }
-            finally
-            {
-                _fileOperationInProgress = false;
-            }
+            //try
+            //{
+            //    _fileOperationInProgress = true;
+            //    _encryptedFileManager.CheckActiveFilesStatus();
+            //}
+            //finally
+            //{
+            //    _fileOperationInProgress = false;
+            //}
         }
 
         private void openEncryptedToolStripMenuItem_Click(object sender, EventArgs e)
@@ -495,6 +521,7 @@ namespace Axantum.AxCrypt
             {
                 _fileOperationInProgress = false;
             }
+            Trace.Listeners.Remove("AxCryptMainFormListener");
         }
 
         private void OpenFilesListView_MouseDoubleClick(object sender, MouseEventArgs e)

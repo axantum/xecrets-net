@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Security;
 using System.Text;
+using System.Threading;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.UI;
@@ -28,12 +29,20 @@ namespace Axantum.AxCrypt
             _fileSystemState = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(fileSystemStateFullName));
             _fileSystemState.Changed += new EventHandler<EventArgs>(FileSystemState_Changed);
 
+            Watcher();
+        }
+
+        private void Watcher()
+        {
             _temporaryDirectoryWatcher = new FileSystemWatcher(TemporaryDirectoryInfo.FullName);
             _temporaryDirectoryWatcher.Changed += TemporaryDirectoryWatcher_Changed;
             _temporaryDirectoryWatcher.Created += TemporaryDirectoryWatcher_Changed;
             _temporaryDirectoryWatcher.Deleted += TemporaryDirectoryWatcher_Changed;
+            _temporaryDirectoryWatcher.Renamed += new RenamedEventHandler(_temporaryDirectoryWatcher_Renamed);
             _temporaryDirectoryWatcher.IncludeSubdirectories = true;
-            _temporaryDirectoryWatcher.NotifyFilter = NotifyFilters.LastWrite;
+            _temporaryDirectoryWatcher.Filter = String.Empty;
+            _temporaryDirectoryWatcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.CreationTime;
+            _temporaryDirectoryWatcher.EnableRaisingEvents = true;
         }
 
         public event EventHandler<EventArgs> Changed;
@@ -125,13 +134,19 @@ namespace Axantum.AxCrypt
             {
                 if (DateTime.UtcNow - activeFile.LastAccessTimeUtc > new TimeSpan(0, 0, 5))
                 {
-                    activeFile = CheckIfCreated(activeFile);
-                    activeFile = CheckIfProcessExited(activeFile);
-                    activeFile = CheckIfTimeToUpdate(activeFile);
-                    activeFile = CheckIfTimeToDelete(activeFile);
+                    activeFile = CheckActiveFileActions(activeFile);
                 }
                 return activeFile;
             });
+        }
+
+        private ActiveFile CheckActiveFileActions(ActiveFile activeFile)
+        {
+            activeFile = CheckIfCreated(activeFile);
+            activeFile = CheckIfProcessExited(activeFile);
+            activeFile = CheckIfTimeToUpdate(activeFile);
+            activeFile = CheckIfTimeToDelete(activeFile);
+            return activeFile;
         }
 
         private static ActiveFile CheckIfCreated(ActiveFile activeFile)
@@ -190,7 +205,7 @@ namespace Axantum.AxCrypt
             }
             catch (IOException)
             {
-                if (Logging.IsWarningEnabled && !IgnoreApplication)
+                if (Logging.IsWarningEnabled)
                 {
                     Logging.Warning("Failed exclusive open modified for '{0}'.".InvariantFormat(activeFile.DecryptedPath));
                 }
@@ -238,6 +253,15 @@ namespace Axantum.AxCrypt
 
         private static ActiveFile TryDelete(ActiveFile activeFile)
         {
+            if (activeFile.Process != null && !activeFile.Process.HasExited)
+            {
+                if (Logging.IsInfoEnabled)
+                {
+                    Logging.Info("Not deleting '{0}' because it has an active process.".InvariantFormat(activeFile.DecryptedPath));
+                }
+                return activeFile;
+            }
+
             FileInfo activeFileInfo = new FileInfo(activeFile.DecryptedPath);
 
             if (activeFile.IsModified)
@@ -277,13 +301,50 @@ namespace Axantum.AxCrypt
             return activeFile;
         }
 
+        private void _temporaryDirectoryWatcher_Renamed(object sender, RenamedEventArgs e)
+        {
+            string decryptedPath = e.FullPath;
+            FileSystemChanged(decryptedPath);
+        }
+
         public void TemporaryDirectoryWatcher_Changed(object sender, FileSystemEventArgs e)
         {
-            ActiveFile changedFile = _fileSystemState.FindDecryptedPath(e.FullPath);
+            string decryptedPath = e.FullPath;
+            FileSystemChanged(decryptedPath);
+        }
+
+        private void FileSystemChanged(string decryptedPath)
+        {
+            ActiveFile changedFile = _fileSystemState.FindDecryptedPath(decryptedPath);
             if (changedFile == null)
             {
+                if (Logging.IsInfoEnabled)
+                {
+                    Logging.Info("Watcher detected '{0}' change, but it was not an active file.".InvariantFormat(decryptedPath));
+                }
                 return;
             }
+            if (changedFile.Status.HasFlag(ActiveFileStatus.IgnoreChange))
+            {
+                if (Logging.IsInfoEnabled)
+                {
+                    Logging.Info("Watcher detected '{0}' change, but changes are flagged to be ignored.".InvariantFormat(decryptedPath));
+                }
+                return;
+            }
+            ActiveFile updatedFile = CheckActiveFileActions(changedFile);
+            if (updatedFile == changedFile)
+            {
+                if (Logging.IsWarningEnabled)
+                {
+                    Logging.Warning("Watcher detected '{0}' change, but nothing happened.".InvariantFormat(decryptedPath));
+                }
+                return;
+            }
+            _fileSystemState.Remove(changedFile);
+            _fileSystemState.Add(updatedFile);
+            _fileSystemState.Save();
+            OnChanged(new EventArgs());
         }
 
         public ActiveFile FindActiveFile(string encryptedPath)

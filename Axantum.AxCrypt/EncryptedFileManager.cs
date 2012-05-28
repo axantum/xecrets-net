@@ -133,6 +133,10 @@ namespace Axantum.AxCrypt
             FileInfo fileInfo = new FileInfo(file);
             if (!fileInfo.Exists)
             {
+                if (Logging.IsWarningEnabled)
+                {
+                    Logging.Warning("Tried to open non-existing '{0}'.".InvariantFormat(fileInfo.FullName));
+                }
                 return FileOperationStatus.FileDoesNotExist;
             }
 
@@ -152,6 +156,10 @@ namespace Axantum.AxCrypt
                             destinationActiveFile = new ActiveFile(destinationActiveFile, key);
                             _activeFileMonitor.Add(destinationActiveFile);
 
+                            if (Logging.IsWarningEnabled)
+                            {
+                                Logging.Warning("File was already decrypted and now launching '{0}' to '{1}'".InvariantFormat(source.FullName, destinationActiveFile.DecryptedPath));
+                            }
                             return LaunchApplicationForDocument(destinationActiveFile);
                         }
                     }
@@ -179,12 +187,29 @@ namespace Axantum.AxCrypt
                     bool isDecrypted = false;
                     foreach (AesKey key in keys)
                     {
-                        string destinationName = AxCryptFile.Decrypt(source, destinationFolder, key, AxCryptOptions.None, _progressManager.Create(Path.GetFileName(source.FullName)));
-                        if (!String.IsNullOrEmpty(destinationName))
+                        if (Logging.IsInfoEnabled)
                         {
+                            Logging.Info("Decrypting '{0}'".InvariantFormat(source.FullName));
+                        }
+                        using (AxCryptDocument document = AxCryptFile.Document(source, key, progress))
+                        {
+                            if (!document.PassphraseIsValid)
+                            {
+                                continue;
+                            }
+
+                            string destinationName = document.DocumentHeaders.FileName;
                             destinationPath = Path.Combine(destinationFolder, destinationName);
-                            destinationActiveFile = new ActiveFile(fileInfo.FullName, destinationPath, key, ActiveFileStatus.AssumedOpenAndDecrypted, null);
+                            destinationActiveFile = new ActiveFile(fileInfo.FullName, destinationPath, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.IgnoreChange, null);
+                            _activeFileMonitor.AddActiveFile(destinationActiveFile);
+
+                            IRuntimeFileInfo destinationFileInfo = AxCryptEnvironment.Current.FileInfo(destinationActiveFile.DecryptedPath);
+                            AxCryptFile.Decrypt(document, destinationFileInfo, AxCryptOptions.SetFileTimes);
                             isDecrypted = true;
+                            if (Logging.IsInfoEnabled)
+                            {
+                                Logging.Info("File decrypted from '{0}' to '{1}'".InvariantFormat(source.FullName, destinationActiveFile.DecryptedPath));
+                            }
                             break;
                         }
                     }
@@ -207,6 +232,10 @@ namespace Axantum.AxCrypt
             Process process;
             try
             {
+                if (Logging.IsInfoEnabled)
+                {
+                    Logging.Info("Starting process for '{0}'".InvariantFormat(destinationActiveFile.DecryptedPath));
+                }
                 process = Process.Start(destinationActiveFile.DecryptedPath);
             }
             catch (Win32Exception w32ex)
