@@ -62,7 +62,7 @@ namespace Axantum.AxCrypt
             {
                 _fileOperationInProgress = true;
                 _encryptedFileManager.IgnoreApplication = !AxCryptEnvironment.Current.IsDesktopWindows;
-                _encryptedFileManager.Changed += new EventHandler<EventArgs>(ActiveFileState_Changed);
+                _encryptedFileManager.Changed += new EventHandler<EventArgs>(EncryptedFileManager_Changed);
                 _encryptedFileManager.ForceActiveFilesStatus();
             }
             finally
@@ -92,9 +92,9 @@ namespace Axantum.AxCrypt
             worker.ReportProgress(e.Percent, worker);
         }
 
-        private void ActiveFileState_Changed(object sender, EventArgs e)
+        private void EncryptedFileManager_Changed(object sender, EventArgs e)
         {
-            InvokeIfRequired(UpdateActiveFileState);
+            InvokeIfRequired(RestartTimer);
         }
 
         private void InvokeIfRequired(Action action)
@@ -107,6 +107,15 @@ namespace Axantum.AxCrypt
             {
                 action();
             }
+        }
+
+        private void RestartTimer()
+        {
+            ActiveFilePolling.Stop();
+            ActiveFilePolling.Enabled = false;
+            ActiveFilePolling.Interval = 1000;
+            ActiveFilePolling.Enabled = true;
+            ActiveFilePolling.Start();
         }
 
         private void UpdateActiveFileState()
@@ -465,15 +474,18 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-            //try
-            //{
-            //    _fileOperationInProgress = true;
-            //    _encryptedFileManager.CheckActiveFilesStatus();
-            //}
-            //finally
-            //{
-            //    _fileOperationInProgress = false;
-            //}
+            ActiveFilePolling.Stop();
+            ActiveFilePolling.Enabled = false;
+            try
+            {
+                _fileOperationInProgress = true;
+                _encryptedFileManager.CheckActiveFilesStatus();
+            }
+            finally
+            {
+                _fileOperationInProgress = false;
+            }
+            UpdateActiveFileState();
         }
 
         private void openEncryptedToolStripMenuItem_Click(object sender, EventArgs e)

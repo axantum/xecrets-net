@@ -237,6 +237,7 @@ namespace Axantum.AxCrypt
                     Logging.Info("Starting process for '{0}'".InvariantFormat(destinationActiveFile.DecryptedPath));
                 }
                 process = Process.Start(destinationActiveFile.DecryptedPath);
+                process.Exited += new EventHandler(process_Exited);
             }
             catch (Win32Exception w32ex)
             {
@@ -264,6 +265,16 @@ namespace Axantum.AxCrypt
             _activeFileMonitor.AddActiveFile(destinationActiveFile);
 
             return FileOperationStatus.Success;
+        }
+
+        private void process_Exited(object sender, EventArgs e)
+        {
+            if (Logging.IsInfoEnabled)
+            {
+                Logging.Info("Process exit event for '{0}'.".InvariantFormat(((Process)sender).StartInfo.FileName));
+            }
+
+            OnChanged(e);
         }
     }
 }

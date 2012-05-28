@@ -315,35 +315,35 @@ namespace Axantum.AxCrypt
 
         private void FileSystemChanged(string decryptedPath)
         {
-            ActiveFile changedFile = _fileSystemState.FindDecryptedPath(decryptedPath);
-            if (changedFile == null)
-            {
-                if (Logging.IsInfoEnabled)
-                {
-                    Logging.Info("Watcher detected '{0}' change, but it was not an active file.".InvariantFormat(decryptedPath));
-                }
-                return;
-            }
-            if (changedFile.Status.HasFlag(ActiveFileStatus.IgnoreChange))
-            {
-                if (Logging.IsInfoEnabled)
-                {
-                    Logging.Info("Watcher detected '{0}' change, but changes are flagged to be ignored.".InvariantFormat(decryptedPath));
-                }
-                return;
-            }
-            ActiveFile updatedFile = CheckActiveFileActions(changedFile);
-            if (updatedFile == changedFile)
-            {
-                if (Logging.IsWarningEnabled)
-                {
-                    Logging.Warning("Watcher detected '{0}' change, but nothing happened.".InvariantFormat(decryptedPath));
-                }
-                return;
-            }
-            _fileSystemState.Remove(changedFile);
-            _fileSystemState.Add(updatedFile);
-            _fileSystemState.Save();
+            //ActiveFile changedFile = _fileSystemState.FindDecryptedPath(decryptedPath);
+            //if (changedFile == null)
+            //{
+            //    if (Logging.IsInfoEnabled)
+            //    {
+            //        Logging.Info("Watcher detected '{0}' change, but it was not an active file.".InvariantFormat(decryptedPath));
+            //    }
+            //    return;
+            //}
+            //if (changedFile.Status.HasFlag(ActiveFileStatus.IgnoreChange))
+            //{
+            //    if (Logging.IsInfoEnabled)
+            //    {
+            //        Logging.Info("Watcher detected '{0}' change, but changes are flagged to be ignored.".InvariantFormat(decryptedPath));
+            //    }
+            //    return;
+            //}
+            //ActiveFile updatedFile = CheckActiveFileActions(changedFile);
+            //if (updatedFile == changedFile)
+            //{
+            //    if (Logging.IsWarningEnabled)
+            //    {
+            //        Logging.Warning("Watcher detected '{0}' change, but nothing happened.".InvariantFormat(decryptedPath));
+            //    }
+            //    return;
+            //}
+            //_fileSystemState.Remove(changedFile);
+            //_fileSystemState.Add(updatedFile);
+            //_fileSystemState.Save();
             OnChanged(new EventArgs());
         }
 
