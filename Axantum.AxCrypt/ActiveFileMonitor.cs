@@ -243,6 +243,14 @@ namespace Axantum.AxCrypt
         {
             ForEach(false, (ActiveFile activeFile) =>
             {
+                if (activeFile.IsModified)
+                {
+                    if (activeFile.Status.HasFlag(ActiveFileStatus.NotShareable))
+                    {
+                        activeFile = new ActiveFile(activeFile, activeFile.Status & ~ActiveFileStatus.NotShareable);
+                    }
+                    activeFile = CheckIfTimeToUpdate(activeFile);
+                }
                 if (activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted) && !activeFile.IsModified)
                 {
                     activeFile = TryDelete(activeFile);

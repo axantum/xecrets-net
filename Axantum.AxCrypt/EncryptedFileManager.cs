@@ -80,6 +80,20 @@ namespace Axantum.AxCrypt
             }
         }
 
+        public IList<ActiveFile> FindOpenFiles()
+        {
+            List<ActiveFile> activeFiles = new List<ActiveFile>();
+            ForEach(false, (ActiveFile activeFile) =>
+            {
+                if (activeFile.Status.HasFlag(ActiveFileStatus.DecryptedIsPendingDelete) || activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted))
+                {
+                    activeFiles.Add(activeFile);
+                }
+                return activeFile;
+            });
+            return activeFiles;
+        }
+
         public void RemoveRecentFile(string encryptedPath)
         {
             lock (_lock)

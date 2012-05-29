@@ -56,10 +56,17 @@ namespace Axantum.AxCrypt
             }
         }
 
-        public ActiveFile(ActiveFile destinationActiveFile, AesKey key)
-            : this(destinationActiveFile, destinationActiveFile.Status, destinationActiveFile.Process)
+        public ActiveFile(ActiveFile activeFile, ActiveFileStatus status)
+            : this(activeFile.EncryptedPath, activeFile.DecryptedPath, activeFile.LastWriteTimeUtc, activeFile.Key, status, activeFile.Process)
+        {
+            activeFile.Process = null;
+        }
+
+        public ActiveFile(ActiveFile activeFile, AesKey key)
+            : this(activeFile, activeFile.Status, activeFile.Process)
         {
             Key = key;
+            activeFile.Process = null;
         }
 
         private FileInfo _decryptedFileInfo;

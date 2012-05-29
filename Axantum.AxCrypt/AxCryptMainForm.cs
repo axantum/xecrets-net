@@ -518,6 +518,12 @@ namespace Axantum.AxCrypt
 
         private void AxCryptMainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            PurgeActiveFiles();
+            Trace.Listeners.Remove("AxCryptMainFormListener");
+        }
+
+        private void PurgeActiveFiles()
+        {
             while (_fileOperationInProgress)
             {
                 Application.DoEvents();
@@ -528,12 +534,22 @@ namespace Axantum.AxCrypt
                 _encryptedFileManager.IgnoreApplication = true;
                 _encryptedFileManager.CheckActiveFilesStatus();
                 _encryptedFileManager.PurgeActiveFiles();
+                IList<ActiveFile> openFiles = _encryptedFileManager.FindOpenFiles();
+                if (openFiles.Count == 0)
+                {
+                    return;
+                }
+                StringBuilder sb = new StringBuilder();
+                foreach (ActiveFile openFile in openFiles)
+                {
+                    sb.Append("{0}\n".InvariantFormat(Path.GetFileName(openFile.DecryptedPath)));
+                }
+                sb.ToString().ShowWarning();
             }
             finally
             {
                 _fileOperationInProgress = false;
             }
-            Trace.Listeners.Remove("AxCryptMainFormListener");
         }
 
         private void OpenFilesListView_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -556,6 +572,16 @@ namespace Axantum.AxCrypt
             }
             ListView recentFiles = (ListView)sender;
             RecentFilesContextMenu.Show(recentFiles, e.Location);
+        }
+
+        private void CloseStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PurgeActiveFiles();
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            PurgeActiveFiles();
         }
     }
 }
