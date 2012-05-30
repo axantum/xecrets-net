@@ -458,7 +458,7 @@ namespace Axantum.AxCrypt
             //worker.RunWorkerAsync(new WorkerArguments(sourceFileInfo, null, key, _progressManager.Create(sourceFileInfo.FullName, worker)));
         }
 
-        private Passphrase AskForDecryptPassphrase()
+        private static Passphrase AskForDecryptPassphrase()
         {
             DecryptPassphraseDialog passphraseDialog = new DecryptPassphraseDialog();
             DialogResult dialogResult = passphraseDialog.ShowDialog();
@@ -577,7 +577,7 @@ namespace Axantum.AxCrypt
             ShowContextMenu(RecentFilesContextMenu, sender, e);
         }
 
-        private void ShowContextMenu(ContextMenuStrip contextMenu, object sender, MouseEventArgs e)
+        private static void ShowContextMenu(ContextMenuStrip contextMenu, object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right)
             {

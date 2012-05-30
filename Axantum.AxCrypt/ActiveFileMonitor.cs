@@ -151,7 +151,7 @@ namespace Axantum.AxCrypt
             return activeFile;
         }
 
-        private ActiveFile CheckIfKeyIsKnown(ActiveFile activeFile)
+        private static ActiveFile CheckIfKeyIsKnown(ActiveFile activeFile)
         {
             if (!activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted) && !activeFile.Status.HasFlag(ActiveFileStatus.DecryptedIsPendingDelete))
             {
@@ -334,47 +334,16 @@ namespace Axantum.AxCrypt
 
         private void _temporaryDirectoryWatcher_Renamed(object sender, RenamedEventArgs e)
         {
-            string decryptedPath = e.FullPath;
-            FileSystemChanged(decryptedPath);
+            FileSystemChanged();
         }
 
         public void TemporaryDirectoryWatcher_Changed(object sender, FileSystemEventArgs e)
         {
-            string decryptedPath = e.FullPath;
-            FileSystemChanged(decryptedPath);
+            FileSystemChanged();
         }
 
-        private void FileSystemChanged(string decryptedPath)
+        private void FileSystemChanged()
         {
-            //ActiveFile changedFile = _fileSystemState.FindDecryptedPath(decryptedPath);
-            //if (changedFile == null)
-            //{
-            //    if (Logging.IsInfoEnabled)
-            //    {
-            //        Logging.Info("Watcher detected '{0}' change, but it was not an active file.".InvariantFormat(decryptedPath));
-            //    }
-            //    return;
-            //}
-            //if (changedFile.Status.HasFlag(ActiveFileStatus.IgnoreChange))
-            //{
-            //    if (Logging.IsInfoEnabled)
-            //    {
-            //        Logging.Info("Watcher detected '{0}' change, but changes are flagged to be ignored.".InvariantFormat(decryptedPath));
-            //    }
-            //    return;
-            //}
-            //ActiveFile updatedFile = CheckActiveFileActions(changedFile);
-            //if (updatedFile == changedFile)
-            //{
-            //    if (Logging.IsWarningEnabled)
-            //    {
-            //        Logging.Warning("Watcher detected '{0}' change, but nothing happened.".InvariantFormat(decryptedPath));
-            //    }
-            //    return;
-            //}
-            //_fileSystemState.Remove(changedFile);
-            //_fileSystemState.Add(updatedFile);
-            //_fileSystemState.Save();
             OnChanged(new EventArgs());
         }
 
