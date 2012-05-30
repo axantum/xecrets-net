@@ -68,6 +68,7 @@ namespace Axantum.AxCrypt.Core.IO
         {
             get
             {
+                _file.Refresh();
                 return _file.CreationTimeUtc;
             }
             set
@@ -80,6 +81,7 @@ namespace Axantum.AxCrypt.Core.IO
         {
             get
             {
+                _file.Refresh();
                 return _file.LastAccessTimeUtc;
             }
             set
@@ -92,6 +94,7 @@ namespace Axantum.AxCrypt.Core.IO
         {
             get
             {
+                _file.Refresh();
                 return _file.LastWriteTimeUtc;
             }
             set
@@ -123,6 +126,7 @@ namespace Axantum.AxCrypt.Core.IO
         {
             get
             {
+                _file.Refresh();
                 return _file.Exists;
             }
         }

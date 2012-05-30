@@ -11,6 +11,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
 
 namespace Axantum.AxCrypt
 {
@@ -27,9 +28,9 @@ namespace Axantum.AxCrypt
 
         public ActiveFile(string encryptedPath, string decryptedPath, DateTime lastWriteTimeUtc, AesKey key, ActiveFileStatus status, Process process)
         {
-            _encryptedFileInfo = new FileInfo(encryptedPath);
+            _encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(encryptedPath);
             EncryptedPath = _encryptedFileInfo.FullName;
-            _decryptedFileInfo = new FileInfo(decryptedPath);
+            _decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(decryptedPath);
             decryptedPath = _decryptedFileInfo.FullName;
             _decryptedFolder = Path.GetDirectoryName(decryptedPath);
             _protectedDecryptedName = Path.GetFileName(decryptedPath);
@@ -90,29 +91,29 @@ namespace Axantum.AxCrypt
         {
         }
 
-        private FileInfo _decryptedFileInfo;
+        private IRuntimeFileInfo _decryptedFileInfo;
 
-        public FileInfo DecryptedFileInfo
+        public IRuntimeFileInfo DecryptedFileInfo
         {
             get
             {
                 if (_decryptedFileInfo == null)
                 {
-                    _decryptedFileInfo = new FileInfo(DecryptedPath);
+                    _decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(DecryptedPath);
                 }
                 return _decryptedFileInfo;
             }
         }
 
-        private FileInfo _encryptedFileInfo;
+        private IRuntimeFileInfo _encryptedFileInfo;
 
-        public FileInfo EncryptedFileInfo
+        public IRuntimeFileInfo EncryptedFileInfo
         {
             get
             {
                 if (_encryptedFileInfo == null)
                 {
-                    _encryptedFileInfo = new FileInfo(EncryptedPath);
+                    _encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(EncryptedPath);
                 }
                 return _encryptedFileInfo;
             }
@@ -213,6 +214,11 @@ namespace Axantum.AxCrypt
                 if (!DecryptedFileInfo.Exists)
                 {
                     return false;
+                }
+                bool isModified = DecryptedFileInfo.LastWriteTimeUtc > LastWriteTimeUtc;
+                if (Logging.IsInfoEnabled)
+                {
+                    Logging.Info("IsModified returns '{0}' for file info last write time '{1}' and active file last write time '{2}'".InvariantFormat(isModified.ToString(), DecryptedFileInfo.LastWriteTimeUtc.ToString(), LastWriteTimeUtc.ToString()));
                 }
                 return DecryptedFileInfo.LastWriteTimeUtc > LastWriteTimeUtc;
             }

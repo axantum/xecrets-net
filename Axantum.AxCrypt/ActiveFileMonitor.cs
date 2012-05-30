@@ -334,16 +334,20 @@ namespace Axantum.AxCrypt
 
         private void _temporaryDirectoryWatcher_Renamed(object sender, RenamedEventArgs e)
         {
-            FileSystemChanged();
+            FileSystemChanged(e.FullPath);
         }
 
         public void TemporaryDirectoryWatcher_Changed(object sender, FileSystemEventArgs e)
         {
-            FileSystemChanged();
+            FileSystemChanged(e.FullPath);
         }
 
-        private void FileSystemChanged()
+        private void FileSystemChanged(string fullPath)
         {
+            if (Logging.IsInfoEnabled)
+            {
+                Logging.Info("Watcher says '{0}' changed.".InvariantFormat(fullPath));
+            }
             OnChanged(new EventArgs());
         }
 
