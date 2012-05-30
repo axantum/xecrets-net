@@ -10,11 +10,11 @@ namespace Axantum.AxCrypt
 {
     public class WorkerArguments
     {
-        public WorkerArguments(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFileInfo, AesKey key, ProgressContext progress)
+        public WorkerArguments(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFileInfo, IList<AesKey> keys, ProgressContext progress)
         {
             SourceFileInfo = sourceFileInfo;
             DestinationFileInfo = destinationFileInfo;
-            Key = key;
+            Keys = keys;
             Progress = progress;
         }
 
@@ -22,7 +22,7 @@ namespace Axantum.AxCrypt
 
         public IRuntimeFileInfo DestinationFileInfo { get; private set; }
 
-        public AesKey Key { get; private set; }
+        public IList<AesKey> Keys { get; private set; }
 
         public ProgressContext Progress { get; private set; }
     }

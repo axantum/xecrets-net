@@ -15,20 +15,20 @@ using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt
 {
+    /// <summary>
+    ///
+    /// </summary>
     public class EncryptedFileManager
     {
         private static readonly object _lock = new object();
 
         public event EventHandler<EventArgs> Changed;
 
-        private ProgressManager _progressManager;
-
         private ActiveFileMonitor _activeFileMonitor;
 
         public EncryptedFileManager(ProgressManager progressManager)
         {
-            _progressManager = progressManager;
-            _activeFileMonitor = new ActiveFileMonitor(_progressManager);
+            _activeFileMonitor = new ActiveFileMonitor(progressManager);
             _activeFileMonitor.Changed += new EventHandler<EventArgs>(ActiveFileMonitor_Changed);
         }
 
