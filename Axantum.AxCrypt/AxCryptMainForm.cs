@@ -16,6 +16,9 @@ using Axantum.AxCrypt.Properties;
 
 namespace Axantum.AxCrypt
 {
+    /// <summary>
+    /// All code here is guaranteed to execute on the GUI thread.
+    /// </summary>
     public partial class AxCryptMainForm : Form
     {
         public static MessageBoxOptions MessageBoxOptions { get; private set; }
@@ -26,26 +29,26 @@ namespace Axantum.AxCrypt
 
         private IDictionary<BackgroundWorker, ProgressBar> _progressBars = new Dictionary<BackgroundWorker, ProgressBar>();
 
-        private void FormatTraceMessage(string message)
+        public void FormatTraceMessage(string message)
         {
             int skipIndex = message.IndexOf(" Information", StringComparison.Ordinal);
             skipIndex = skipIndex < 0 ? message.IndexOf(" Warning", StringComparison.Ordinal) : skipIndex;
             skipIndex = skipIndex < 0 ? message.IndexOf(" Debug", StringComparison.Ordinal) : skipIndex;
             skipIndex = skipIndex < 0 ? message.IndexOf(" Error", StringComparison.Ordinal) : skipIndex;
-            InvokeIfRequired(() =>
-            {
-                LogOutput.AppendText(message.Substring(skipIndex + 1));
-            });
+            LogOutput.AppendText(message.Substring(skipIndex + 1));
         }
+
+        private MainFormThreadFacade _threadFacade;
 
         public AxCryptMainForm()
         {
             InitializeComponent();
+            _threadFacade = new MainFormThreadFacade(this);
         }
 
         private void AxCryptMainForm_Load(object sender, EventArgs e)
         {
-            DelegateTraceListener traceListener = new DelegateTraceListener(FormatTraceMessage);
+            DelegateTraceListener traceListener = new DelegateTraceListener(_threadFacade.FormatTraceMessage);
             traceListener.Name = "AxCryptMainFormListener";
             Trace.Listeners.Add(traceListener);
 
@@ -55,7 +58,7 @@ namespace Axantum.AxCrypt
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
 
             _encryptedFileManager.IgnoreApplication = !AxCryptEnvironment.Current.IsDesktopWindows;
-            _encryptedFileManager.Changed += new EventHandler<EventArgs>(EncryptedFileManager_Changed);
+            _encryptedFileManager.Changed += new EventHandler<EventArgs>(_threadFacade.EncryptedFileManager_Changed);
             _encryptedFileManager.ForceActiveFilesStatus();
 
             UserPreferences userPreferences = Settings.Default.UserPreferences;
@@ -80,24 +83,7 @@ namespace Axantum.AxCrypt
             worker.ReportProgress(e.Percent, worker);
         }
 
-        private void EncryptedFileManager_Changed(object sender, EventArgs e)
-        {
-            InvokeIfRequired(RestartTimer);
-        }
-
-        private void InvokeIfRequired(Action action)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(action);
-            }
-            else
-            {
-                action();
-            }
-        }
-
-        private void RestartTimer()
+        public void RestartTimer()
         {
             ActiveFilePolling.Enabled = false;
             ActiveFilePolling.Interval = 1000;
