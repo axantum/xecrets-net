@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt
             {
                 if (String.IsNullOrEmpty(activeFile.DecryptedPath))
                 {
-                    item = new ListViewItem(Path.GetFileName(activeFile.DecryptedPath), "InactiveFile");
+                    item = new ListViewItem(String.Empty, "InactiveFile");
                 }
                 else
                 {
@@ -154,8 +154,7 @@ namespace Axantum.AxCrypt
             }
             if (activeFile.Status.HasFlag(ActiveFileStatus.DecryptedIsPendingDelete) || activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted))
             {
-                item = new ListViewItem(Path.GetFileName(activeFile.DecryptedPath), "ActiveFile");
-
+                item = new ListViewItem(Path.GetFileName(activeFile.DecryptedPath), activeFile.Key != null ? "ActiveFile" : "Exclamation");
                 ListViewItem.ListViewSubItem encryptedPathColumn = new ListViewItem.ListViewSubItem();
                 encryptedPathColumn.Name = "EncryptedPath";
                 encryptedPathColumn.Text = activeFile.EncryptedPath;
@@ -382,9 +381,15 @@ namespace Axantum.AxCrypt
 
             AxCryptFile.Decrypt(document, destination, AxCryptOptions.SetFileTimes);
 
-            KnownKeys.Add(document.DocumentHeaders.KeyEncryptingKey);
+            AddKnownKey(document.DocumentHeaders.KeyEncryptingKey);
 
             return true;
+        }
+
+        private void AddKnownKey(AesKey key)
+        {
+            KnownKeys.Add(key);
+            _encryptedFileManager.CheckActiveFilesStatus();
         }
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
@@ -437,13 +442,11 @@ namespace Axantum.AxCrypt
                 FileOperationStatus status;
                 do
                 {
-                    DecryptPassphraseDialog passphraseDialog = new DecryptPassphraseDialog();
-                    DialogResult dialogResult = passphraseDialog.ShowDialog();
-                    if (dialogResult != DialogResult.OK)
+                    passphrase = AskForDecryptPassphrase();
+                    if (passphrase == null)
                     {
                         return;
                     }
-                    passphrase = new Passphrase(passphraseDialog.Passphrase.Text);
                     status = _encryptedFileManager.Open(file, new AesKey[] { passphrase.DerivedPassphrase }, _progressManager.Create(Path.GetFileName(file)));
                 } while (status == FileOperationStatus.InvalidKey);
                 if (status != FileOperationStatus.Success)
@@ -452,13 +455,25 @@ namespace Axantum.AxCrypt
                 }
                 else
                 {
-                    KnownKeys.Add(passphrase.DerivedPassphrase);
+                    AddKnownKey(passphrase.DerivedPassphrase);
                 }
             }
             finally
             {
                 _fileOperationInProgress = false;
             }
+        }
+
+        private Passphrase AskForDecryptPassphrase()
+        {
+            DecryptPassphraseDialog passphraseDialog = new DecryptPassphraseDialog();
+            DialogResult dialogResult = passphraseDialog.ShowDialog();
+            if (dialogResult != DialogResult.OK)
+            {
+                return null;
+            }
+            Passphrase passphrase = new Passphrase(passphraseDialog.Passphrase.Text);
+            return passphrase;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -566,12 +581,17 @@ namespace Axantum.AxCrypt
 
         private void RecentFilesListView_MouseClick(object sender, MouseEventArgs e)
         {
+            ShowContextMenu(RecentFilesContextMenu, sender, e);
+        }
+
+        private void ShowContextMenu(ContextMenuStrip contextMenu, object sender, MouseEventArgs e)
+        {
             if (e.Button != MouseButtons.Right)
             {
                 return;
             }
-            ListView recentFiles = (ListView)sender;
-            RecentFilesContextMenu.Show(recentFiles, e.Location);
+            ListView listView = (ListView)sender;
+            contextMenu.Show(listView, e.Location);
         }
 
         private void CloseStripMenuItem_Click(object sender, EventArgs e)
@@ -582,6 +602,30 @@ namespace Axantum.AxCrypt
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             PurgeActiveFiles();
+        }
+
+        private void OpenFilesListView_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Right)
+            {
+                return;
+            }
+            ListView recentFiles = (ListView)sender;
+            OpenFilesContextMenu.Show(recentFiles, e.Location);
+        }
+
+        private void EnterPassphraseMenuItem_Click(object sender, EventArgs e)
+        {
+            Passphrase passphrase = AskForDecryptPassphrase();
+            if (passphrase == null)
+            {
+                return;
+            }
+            bool keyMatch = _encryptedFileManager.UpdateActiveFileIfKeyMatchesThumbprint(passphrase.DerivedPassphrase);
+            if (keyMatch)
+            {
+                KnownKeys.Add(passphrase.DerivedPassphrase);
+            }
         }
     }
 }

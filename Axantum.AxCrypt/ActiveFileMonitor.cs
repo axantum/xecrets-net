@@ -8,6 +8,7 @@ using System.Security;
 using System.Text;
 using System.Threading;
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.UI;
 
@@ -142,10 +143,32 @@ namespace Axantum.AxCrypt
 
         private ActiveFile CheckActiveFileActions(ActiveFile activeFile)
         {
+            activeFile = CheckIfKeyIsKnown(activeFile);
             activeFile = CheckIfCreated(activeFile);
             activeFile = CheckIfProcessExited(activeFile);
             activeFile = CheckIfTimeToUpdate(activeFile);
             activeFile = CheckIfTimeToDelete(activeFile);
+            return activeFile;
+        }
+
+        private ActiveFile CheckIfKeyIsKnown(ActiveFile activeFile)
+        {
+            if (!activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted) && !activeFile.Status.HasFlag(ActiveFileStatus.DecryptedIsPendingDelete))
+            {
+                return activeFile;
+            }
+            if (activeFile.Key != null)
+            {
+                return activeFile;
+            }
+            foreach (AesKey key in KnownKeys.Keys)
+            {
+                if (activeFile.ThumbprintMatch(key))
+                {
+                    activeFile = new ActiveFile(activeFile, key);
+                }
+                return activeFile;
+            }
             return activeFile;
         }
 
@@ -216,7 +239,7 @@ namespace Axantum.AxCrypt
             {
                 Logging.Info("Wrote back '{0}' to '{1}'".InvariantFormat(activeFile.DecryptedPath, activeFile.EncryptedPath));
             }
-            activeFile = new ActiveFile(activeFile.EncryptedPath, activeFile.DecryptedPath, activeFile.Key, ActiveFileStatus.AssumedOpenAndDecrypted, activeFile.Process);
+            activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted);
             return activeFile;
         }
 

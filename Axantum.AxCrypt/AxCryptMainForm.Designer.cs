@@ -68,6 +68,8 @@
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.OpenFilesContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.EnterPassphraseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.StatusTabs.SuspendLayout();
@@ -76,6 +78,7 @@
             this.WatchedFoldersTab.SuspendLayout();
             this.LogTab.SuspendLayout();
             this.RecentFilesContextMenu.SuspendLayout();
+            this.OpenFilesContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -241,6 +244,7 @@
             this.ImageList48.TransparentColor = System.Drawing.Color.Transparent;
             this.ImageList48.Images.SetKeyName(0, "ActiveFile");
             this.ImageList48.Images.SetKeyName(1, "InactiveFile");
+            this.ImageList48.Images.SetKeyName(2, "Exclamation.png");
             // 
             // ImageList16
             // 
@@ -248,6 +252,7 @@
             this.ImageList16.TransparentColor = System.Drawing.Color.Transparent;
             this.ImageList16.Images.SetKeyName(0, "ActiveFile");
             this.ImageList16.Images.SetKeyName(1, "InactiveFile");
+            this.ImageList16.Images.SetKeyName(2, "Exclamation");
             // 
             // OpenFilesTab
             // 
@@ -268,6 +273,7 @@
             this.OpenFilesListView.SmallImageList = this.ImageList16;
             this.OpenFilesListView.UseCompatibleStateImageBehavior = false;
             this.OpenFilesListView.View = System.Windows.Forms.View.Details;
+            this.OpenFilesListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.OpenFilesListView_MouseClick);
             this.OpenFilesListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.OpenFilesListView_MouseDoubleClick);
             // 
             // OpenFile
@@ -341,6 +347,19 @@
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             resources.ApplyResources(this.toolStripSeparator4, "toolStripSeparator4");
             // 
+            // OpenFilesContextMenu
+            // 
+            this.OpenFilesContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.EnterPassphraseMenuItem});
+            this.OpenFilesContextMenu.Name = "OpenFilesContextMenu";
+            resources.ApplyResources(this.OpenFilesContextMenu, "OpenFilesContextMenu");
+            // 
+            // EnterPassphraseMenuItem
+            // 
+            this.EnterPassphraseMenuItem.Name = "EnterPassphraseMenuItem";
+            resources.ApplyResources(this.EnterPassphraseMenuItem, "EnterPassphraseMenuItem");
+            this.EnterPassphraseMenuItem.Click += new System.EventHandler(this.EnterPassphraseMenuItem_Click);
+            // 
             // AxCryptMainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -364,6 +383,7 @@
             this.LogTab.ResumeLayout(false);
             this.LogTab.PerformLayout();
             this.RecentFilesContextMenu.ResumeLayout(false);
+            this.OpenFilesContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -409,6 +429,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ContextMenuStrip OpenFilesContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem EnterPassphraseMenuItem;
     }
 }
 

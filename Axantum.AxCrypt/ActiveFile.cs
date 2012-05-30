@@ -23,6 +23,8 @@ namespace Axantum.AxCrypt
     [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
     public class ActiveFile : IDisposable
     {
+        private static readonly DateTime UnknownTimeMarker = new DateTime(1900, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
         public ActiveFile(string encryptedPath, string decryptedPath, DateTime lastWriteTimeUtc, AesKey key, ActiveFileStatus status, Process process)
         {
             _encryptedFileInfo = new FileInfo(encryptedPath);
@@ -32,10 +34,15 @@ namespace Axantum.AxCrypt
             _decryptedFolder = Path.GetDirectoryName(decryptedPath);
             _protectedDecryptedName = Path.GetFileName(decryptedPath);
             Key = key;
+            if (key != null)
+            {
+                AesKeyThumbprint thumbprint = new AesKeyThumbprint(key, KeyThumbprintSalt);
+                KeyThumbprintBytes = thumbprint.GetThumbprintBytes();
+            }
             Status = status;
             LastAccessTimeUtc = DateTime.UtcNow;
             Process = process;
-            if (lastWriteTimeUtc == DateTime.MinValue)
+            if (lastWriteTimeUtc < UnknownTimeMarker)
             {
                 lastWriteTimeUtc = _decryptedFileInfo.LastWriteTimeUtc;
             }
@@ -47,26 +54,30 @@ namespace Axantum.AxCrypt
         {
         }
 
-        public ActiveFile(ActiveFile activeFile, ActiveFileStatus status, Process process)
-            : this(activeFile.EncryptedPath, activeFile.DecryptedPath, activeFile.LastWriteTimeUtc, activeFile.Key, status, process)
+        public ActiveFile(ActiveFile activeFile, ActiveFileStatus status, AesKey key, Process process)
+            : this(activeFile.EncryptedPath, activeFile.DecryptedPath, activeFile.LastWriteTimeUtc, key, status, process)
         {
             if (process != null && Object.ReferenceEquals(process, activeFile.Process))
             {
                 activeFile.Process = null;
             }
+            _keyThumbprintBytes = activeFile._keyThumbprintBytes;
+            _keyThumbprintSalt = activeFile._keyThumbprintSalt;
+        }
+
+        public ActiveFile(ActiveFile activeFile, ActiveFileStatus status, Process process)
+            : this(activeFile, status, activeFile.Key, process)
+        {
         }
 
         public ActiveFile(ActiveFile activeFile, ActiveFileStatus status)
-            : this(activeFile.EncryptedPath, activeFile.DecryptedPath, activeFile.LastWriteTimeUtc, activeFile.Key, status, activeFile.Process)
+            : this(activeFile, status, activeFile.Process)
         {
-            activeFile.Process = null;
         }
 
         public ActiveFile(ActiveFile activeFile, AesKey key)
-            : this(activeFile, activeFile.Status, activeFile.Process)
+            : this(activeFile, activeFile.Status, key, activeFile.Process)
         {
-            Key = key;
-            activeFile.Process = null;
         }
 
         private FileInfo _decryptedFileInfo;
@@ -122,6 +133,26 @@ namespace Axantum.AxCrypt
             }
         }
 
+        private byte[] _keyThumbprintSalt = AxCryptEnvironment.Current.GetRandomBytes(32);
+
+        [DataMember]
+        [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "This is a protected method, only used for serialization where an array in this case is appropriate.")]
+        protected byte[] KeyThumbprintSalt
+        {
+            get { return _keyThumbprintSalt; }
+            set { _keyThumbprintSalt = value; }
+        }
+
+        private byte[] _keyThumbprintBytes;
+
+        [DataMember]
+        [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "This is a protected method, only used for serialization where an array in this case is appropriate.")]
+        protected byte[] KeyThumbprintBytes
+        {
+            get { return _keyThumbprintBytes; }
+            set { _keyThumbprintBytes = value; }
+        }
+
         string _decryptedFolder;
 
         [DataMember]
@@ -151,7 +182,19 @@ namespace Axantum.AxCrypt
 
         public Process Process { get; private set; }
 
-        public AesKey Key { get; private set; }
+        public AesKey Key
+        {
+            get;
+            set;
+        }
+
+        public bool ThumbprintMatch(AesKey key)
+        {
+            AesKeyThumbprint thumbprint = new AesKeyThumbprint(key, KeyThumbprintSalt);
+
+            bool match = thumbprint.GetThumbprintBytes().IsEquivalentTo(KeyThumbprintBytes);
+            return match;
+        }
 
         public bool IsModified
         {

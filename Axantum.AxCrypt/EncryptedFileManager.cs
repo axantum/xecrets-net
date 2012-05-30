@@ -94,6 +94,27 @@ namespace Axantum.AxCrypt
             return activeFiles;
         }
 
+        public bool UpdateActiveFileIfKeyMatchesThumbprint(AesKey key)
+        {
+            bool keyMatch = false;
+            ForEach(false, (ActiveFile activeFile) =>
+            {
+                if (activeFile.Key != null)
+                {
+                    return activeFile;
+                }
+                if (!activeFile.ThumbprintMatch(key))
+                {
+                    return activeFile;
+                }
+                keyMatch = true;
+
+                activeFile = new ActiveFile(activeFile, key);
+                return activeFile;
+            });
+            return keyMatch;
+        }
+
         public void RemoveRecentFile(string encryptedPath)
         {
             lock (_lock)
@@ -164,17 +185,19 @@ namespace Axantum.AxCrypt
                     IRuntimeFileInfo source = AxCryptEnvironment.Current.FileInfo(destinationActiveFile.EncryptedPath);
                     foreach (AesKey key in keys)
                     {
-                        AxCryptDocument document = AxCryptFile.Document(source, key, progress);
-                        if (document.PassphraseIsValid)
+                        using (AxCryptDocument document = AxCryptFile.Document(source, key, progress))
                         {
-                            destinationActiveFile = new ActiveFile(destinationActiveFile, key);
-                            _activeFileMonitor.Add(destinationActiveFile);
-
-                            if (Logging.IsWarningEnabled)
+                            if (document.PassphraseIsValid)
                             {
-                                Logging.Warning("File was already decrypted and now launching '{0}' to '{1}'".InvariantFormat(source.FullName, destinationActiveFile.DecryptedPath));
+                                destinationActiveFile = new ActiveFile(destinationActiveFile, key);
+                                _activeFileMonitor.Add(destinationActiveFile);
+
+                                if (Logging.IsWarningEnabled)
+                                {
+                                    Logging.Warning("File was already decrypted and now launching '{0}' to '{1}'".InvariantFormat(source.FullName, destinationActiveFile.DecryptedPath));
+                                }
+                                return LaunchApplicationForDocument(destinationActiveFile);
                             }
-                            return LaunchApplicationForDocument(destinationActiveFile);
                         }
                     }
                     return FileOperationStatus.InvalidKey;
