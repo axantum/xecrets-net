@@ -239,7 +239,7 @@ namespace Axantum.AxCrypt
             {
                 Logging.Info("Wrote back '{0}' to '{1}'".InvariantFormat(activeFile.DecryptedPath, activeFile.EncryptedPath));
             }
-            activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted);
+            activeFile = new ActiveFile(activeFile, DateTime.MinValue, ActiveFileStatus.AssumedOpenAndDecrypted);
             return activeFile;
         }
 

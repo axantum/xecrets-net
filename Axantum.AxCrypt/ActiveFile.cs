@@ -16,7 +16,7 @@ namespace Axantum.AxCrypt
 {
     /// <summary>
     /// This class represent an active source files' current known state. Instances of this class are
-    /// immutable. Instances of this class are considered equal on basis of equivalence of the
+    /// essentially immutable. Instances of this class are considered equal on basis of equivalence of the
     /// path of the encrypted source file.
     /// </summary>
     ///
@@ -54,8 +54,8 @@ namespace Axantum.AxCrypt
         {
         }
 
-        public ActiveFile(ActiveFile activeFile, ActiveFileStatus status, AesKey key, Process process)
-            : this(activeFile.EncryptedPath, activeFile.DecryptedPath, activeFile.LastWriteTimeUtc, key, status, process)
+        public ActiveFile(ActiveFile activeFile, DateTime lastWriteTimeUtc, AesKey key, ActiveFileStatus status, Process process)
+            : this(activeFile.EncryptedPath, activeFile.DecryptedPath, lastWriteTimeUtc, key, status, process)
         {
             if (process != null && Object.ReferenceEquals(process, activeFile.Process))
             {
@@ -65,8 +65,18 @@ namespace Axantum.AxCrypt
             _keyThumbprintSalt = activeFile._keyThumbprintSalt;
         }
 
+        public ActiveFile(ActiveFile activeFile, AesKey key, ActiveFileStatus status, Process process)
+            : this(activeFile, activeFile.LastWriteTimeUtc, key, status, process)
+        {
+        }
+
         public ActiveFile(ActiveFile activeFile, ActiveFileStatus status, Process process)
-            : this(activeFile, status, activeFile.Key, process)
+            : this(activeFile, activeFile.Key, status, process)
+        {
+        }
+
+        public ActiveFile(ActiveFile activeFile, DateTime lastWriteTimeUtc, ActiveFileStatus status)
+            : this(activeFile, lastWriteTimeUtc, activeFile.Key, status, activeFile.Process)
         {
         }
 
@@ -76,7 +86,7 @@ namespace Axantum.AxCrypt
         }
 
         public ActiveFile(ActiveFile activeFile, AesKey key)
-            : this(activeFile, activeFile.Status, key, activeFile.Process)
+            : this(activeFile, key, activeFile.Status, activeFile.Process)
         {
         }
 
