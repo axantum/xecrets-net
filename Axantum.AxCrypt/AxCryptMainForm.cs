@@ -36,7 +36,7 @@ namespace Axantum.AxCrypt
             skipIndex = skipIndex < 0 ? message.IndexOf(" Warning", StringComparison.Ordinal) : skipIndex;
             skipIndex = skipIndex < 0 ? message.IndexOf(" Debug", StringComparison.Ordinal) : skipIndex;
             skipIndex = skipIndex < 0 ? message.IndexOf(" Error", StringComparison.Ordinal) : skipIndex;
-            LogOutput.AppendText("{0} {1}".InvariantFormat(DateTime.UtcNow.ToString("o"), message.Substring(skipIndex + 1)));
+            LogOutput.AppendText("{0} {1}".InvariantFormat(DateTime.UtcNow.ToString("o", CultureInfo.InvariantCulture), message.Substring(skipIndex + 1)));
         }
 
         private MainFormThreadFacade _threadFacade;
