@@ -240,7 +240,9 @@ namespace Axantum.AxCrypt.Core
         public static string MakeAxCryptFileName(IRuntimeFileInfo fileInfo)
         {
             string axCryptExtension = AxCryptEnvironment.Current.AxCryptExtension;
-            string axCryptFileName = Path.Combine(Path.GetDirectoryName(fileInfo.FullName), Path.GetFileNameWithoutExtension(fileInfo.Name) + "-" + Path.GetExtension(fileInfo.Name).Substring(1) + axCryptExtension);
+            string originalExtension = Path.GetExtension(fileInfo.Name);
+            string modifiedExtension = originalExtension.Length == 0 ? String.Empty : "-" + originalExtension.Substring(1);
+            string axCryptFileName = Path.Combine(Path.GetDirectoryName(fileInfo.FullName), Path.GetFileNameWithoutExtension(fileInfo.Name) + modifiedExtension + axCryptExtension);
 
             return axCryptFileName;
         }
