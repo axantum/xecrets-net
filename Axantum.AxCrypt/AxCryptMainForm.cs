@@ -17,7 +17,8 @@ using Axantum.AxCrypt.Properties;
 namespace Axantum.AxCrypt
 {
     /// <summary>
-    /// All code here is guaranteed to execute on the GUI thread.
+    /// All code here is guaranteed to execute on the GUI thread. If code may be called on another thread, this call
+    /// should be made through MainFormThreadFacade .
     /// </summary>
     public partial class AxCryptMainForm : Form
     {
@@ -53,14 +54,20 @@ namespace Axantum.AxCrypt
             Trace.Listeners.Add(traceListener);
 
             _progressManager = new ProgressManager();
-            _progressManager.Progress += new EventHandler<ProgressEventArgs>(ProgressManager_Progress);
+            _progressManager.Progress += new EventHandler<ProgressEventArgs>(_threadFacade.ProgressManager_Progress);
             _encryptedFileManager = new EncryptedFileManager(_progressManager);
-            MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
 
             _encryptedFileManager.IgnoreApplication = !AxCryptEnvironment.Current.IsDesktopWindows;
             _encryptedFileManager.Changed += new EventHandler<EventArgs>(_threadFacade.EncryptedFileManager_Changed);
             _encryptedFileManager.ForceActiveFilesStatus();
 
+            RestoreUserPreferences();
+
+            MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
+        }
+
+        private void RestoreUserPreferences()
+        {
             UserPreferences userPreferences = Settings.Default.UserPreferences;
             if (userPreferences == null)
             {
@@ -71,16 +78,6 @@ namespace Axantum.AxCrypt
             }
             RecentFilesListView.Columns[0].Name = "DecryptedFile";
             RecentFilesListView.Columns[0].Width = userPreferences.RecentFilesDocumentWidth > 0 ? userPreferences.RecentFilesDocumentWidth : RecentFilesListView.Columns[0].Width;
-        }
-
-        private void ProgressManager_Progress(object sender, ProgressEventArgs e)
-        {
-            BackgroundWorker worker = e.Context as BackgroundWorker;
-            if (worker == null)
-            {
-                return;
-            }
-            worker.ReportProgress(e.Percent, worker);
         }
 
         public void RestartTimer()
@@ -211,18 +208,26 @@ namespace Axantum.AxCrypt
                 key = KnownKeys.DefaultEncryptionKey;
             }
 
-            BackgroundWorker worker = CreateWorker();
-            worker.DoWork += (object sender, DoWorkEventArgs e) =>
+            DoBackgroundWork(sourceFileInfo.FullName, (WorkerArguments arguments) =>
             {
-                WorkerArguments arguments = (WorkerArguments)e.Argument;
-                EncryptedFileManager.EncryptFile(arguments.SourceFileInfo, arguments.DestinationFileInfo, arguments.Keys[0], arguments.Progress);
-            };
-            worker.RunWorkerAsync(new WorkerArguments(sourceFileInfo, destinationFileInfo, new AesKey[] { key }, _progressManager.Create(sourceFileInfo.FullName, worker)));
+                EncryptedFileManager.EncryptFile(sourceFileInfo, destinationFileInfo, key, arguments.Progress);
+            });
 
             if (KnownKeys.DefaultEncryptionKey == null)
             {
                 KnownKeys.DefaultEncryptionKey = key;
             }
+        }
+
+        private void DoBackgroundWork(string displayText, Action<WorkerArguments> action)
+        {
+            BackgroundWorker worker = CreateWorker();
+            worker.DoWork += (object sender, DoWorkEventArgs e) =>
+            {
+                WorkerArguments arguments = (WorkerArguments)e.Argument;
+                action(arguments);
+            };
+            worker.RunWorkerAsync(new WorkerArguments(_progressManager.Create(displayText, worker)));
         }
 
         private BackgroundWorker CreateWorker()
@@ -440,22 +445,6 @@ namespace Axantum.AxCrypt
             {
                 _fileOperationInProgress = false;
             }
-        }
-
-        private FileOperationStatus OpenAndLaunchInBackground(IRuntimeFileInfo sourceFileInfo, IEnumerable<AesKey> keys)
-        {
-            BackgroundWorker worker = CreateWorker();
-            worker.DoWork += (object sender, DoWorkEventArgs e) =>
-            {
-                WorkerArguments arguments = (WorkerArguments)e.Argument;
-                EncryptedFileManager.EncryptFile(arguments.SourceFileInfo, arguments.DestinationFileInfo, arguments.Keys[0], arguments.Progress);
-            };
-            worker.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs e) =>
-            {
-                ;
-            };
-            return FileOperationStatus.UnspecifiedError;
-            //worker.RunWorkerAsync(new WorkerArguments(sourceFileInfo, null, key, _progressManager.Create(sourceFileInfo.FullName, worker)));
         }
 
         private static Passphrase AskForDecryptPassphrase()
