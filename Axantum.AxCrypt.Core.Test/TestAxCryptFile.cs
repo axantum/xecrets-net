@@ -76,7 +76,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(document.DocumentHeaders.LastAccessTimeUtc, Is.EqualTo(FakeRuntimeFileInfo.TestDate2Utc));
                 Assert.That(document.DocumentHeaders.LastWriteTimeUtc, Is.EqualTo(FakeRuntimeFileInfo.TestDate3Utc));
                 IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\decrypted test.txt");
-                AxCryptFile.Decrypt(document, decryptedFileInfo, AxCryptOptions.SetFileTimes);
+                AxCryptFile.Decrypt(document, decryptedFileInfo, AxCryptOptions.SetFileTimes, new ProgressContext());
                 using (Stream decryptedStream = decryptedFileInfo.OpenRead())
                 {
                     string decrypted = new StreamReader(decryptedStream, Encoding.UTF8).ReadToEnd();
@@ -149,7 +149,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 bool isOk = document.Load(sourceRuntimeFileInfo.OpenRead(), passphrase.DerivedPassphrase);
                 Assert.That(isOk, Is.True, "The document should load ok.");
-                AxCryptFile.Decrypt(document, destinationRuntimeFileInfo, AxCryptOptions.None);
+                AxCryptFile.Decrypt(document, destinationRuntimeFileInfo, AxCryptOptions.None, new ProgressContext());
                 Assert.That(document.DocumentHeaders.UncompressedLength, Is.EqualTo(0), "Since the data is not compressed, there should not be a CompressionInfo, but in 1.x there is, with value zero.");
             }
         }

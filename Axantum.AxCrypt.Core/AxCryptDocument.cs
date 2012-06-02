@@ -184,7 +184,7 @@ namespace Axantum.AxCrypt.Core
         /// and encryption key(s) etc.
         /// </summary>
         /// <param name="outputStream"></param>
-        public void CopyEncryptedTo(DocumentHeaders outputDocumentHeaders, Stream cipherStream)
+        public void CopyEncryptedTo(DocumentHeaders outputDocumentHeaders, Stream cipherStream, ProgressContext progress)
         {
             if (outputDocumentHeaders == null)
             {
@@ -206,7 +206,7 @@ namespace Axantum.AxCrypt.Core
             using (HmacStream hmacStreamOutput = new HmacStream(outputDocumentHeaders.HmacSubkey.Key, cipherStream))
             {
                 outputDocumentHeaders.WriteWithHmac(hmacStreamOutput);
-                using (Stream encryptedDataStream = _reader.CreateEncryptedDataStream(DocumentHeaders.HmacSubkey.Key, DocumentHeaders.CipherTextLength))
+                using (Stream encryptedDataStream = _reader.CreateEncryptedDataStream(DocumentHeaders.HmacSubkey.Key, DocumentHeaders.CipherTextLength, progress))
                 {
                     encryptedDataStream.CopyTo(hmacStreamOutput, 65536);
 
@@ -243,7 +243,7 @@ namespace Axantum.AxCrypt.Core
         /// Decrypts the encrypted data to the given stream
         /// </summary>
         /// <param name="outputPlaintextStream">The resulting plain text stream.</param>
-        public void DecryptTo(Stream outputPlaintextStream)
+        public void DecryptTo(Stream outputPlaintextStream, ProgressContext progress)
         {
             if (DocumentHeaders == null)
             {
@@ -251,7 +251,7 @@ namespace Axantum.AxCrypt.Core
             }
             using (ICryptoTransform decryptor = DataCrypto.CreateDecryptingTransform())
             {
-                using (Stream encryptedDataStream = _reader.CreateEncryptedDataStream(DocumentHeaders.HmacSubkey.Key, DocumentHeaders.CipherTextLength))
+                using (Stream encryptedDataStream = _reader.CreateEncryptedDataStream(DocumentHeaders.HmacSubkey.Key, DocumentHeaders.CipherTextLength, progress))
                 {
                     if (DocumentHeaders.IsCompressed)
                     {
@@ -272,6 +272,7 @@ namespace Axantum.AxCrypt.Core
                     }
                 }
             }
+
             if (_reader.Hmac != DocumentHeaders.Hmac)
             {
                 throw new InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);

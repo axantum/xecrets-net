@@ -31,6 +31,7 @@ using System.IO;
 using System.Security.Cryptography;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
@@ -72,11 +73,15 @@ namespace Axantum.AxCrypt.Core.Reader
 
         private HmacStream _hmacStream;
 
-        public Stream CreateEncryptedDataStream(AesKey hmacKey, long cipherTextLength)
+        public Stream CreateEncryptedDataStream(AesKey hmacKey, long cipherTextLength, ProgressContext progress)
         {
             if (hmacKey == null)
             {
                 throw new ArgumentNullException("hmacKey");
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
             }
             if (_disposed)
             {
@@ -95,7 +100,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
             _expectedTotalHmacLength = _hmacBufferStream.Length + cipherTextLength;
 
-            Stream encryptedDataStream = new AxCryptDataStream(_inputStream, _hmacStream, cipherTextLength);
+            Stream encryptedDataStream = new AxCryptDataStream(_inputStream, _hmacStream, cipherTextLength, progress);
 
             return encryptedDataStream;
         }

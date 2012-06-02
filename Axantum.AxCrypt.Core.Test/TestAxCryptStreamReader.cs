@@ -34,6 +34,7 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Test.Properties;
+using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -103,19 +104,19 @@ namespace Axantum.AxCrypt.Core.Test
                     Stream encryptedDataStream;
                     Assert.Throws<ArgumentNullException>(() =>
                     {
-                        encryptedDataStream = axCryptReader.CreateEncryptedDataStream(null, 0);
+                        encryptedDataStream = axCryptReader.CreateEncryptedDataStream(null, 0, new ProgressContext());
                     }, "A non-null HMAC key must be specified.");
 
                     Assert.Throws<InvalidOperationException>(() =>
                     {
-                        encryptedDataStream = axCryptReader.CreateEncryptedDataStream(new AesKey(), 0);
+                        encryptedDataStream = axCryptReader.CreateEncryptedDataStream(new AesKey(), 0, new ProgressContext());
                     }, "The reader is not positioned properly to read encrypted data.");
 
                     axCryptReader.Dispose();
 
                     Assert.Throws<ObjectDisposedException>(() =>
                     {
-                        encryptedDataStream = axCryptReader.CreateEncryptedDataStream(new AesKey(), 0);
+                        encryptedDataStream = axCryptReader.CreateEncryptedDataStream(new AesKey(), 0, new ProgressContext());
                     }, "The reader is disposed.");
                 }
             }
@@ -139,7 +140,7 @@ namespace Axantum.AxCrypt.Core.Test
                     bool keyIsOk = documentHeaders.Load(axCryptReader);
                     Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
 
-                    using (Stream encrypedDataStream = axCryptReader.CreateEncryptedDataStream(documentHeaders.HmacSubkey.Key, documentHeaders.CipherTextLength))
+                    using (Stream encrypedDataStream = axCryptReader.CreateEncryptedDataStream(documentHeaders.HmacSubkey.Key, documentHeaders.CipherTextLength, new ProgressContext()))
                     {
                         Assert.Throws<InvalidOperationException>(() =>
                         {

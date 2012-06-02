@@ -33,6 +33,7 @@ using System.Linq;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -53,19 +54,19 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     Assert.Throws<ArgumentNullException>(() =>
                     {
-                        using (AxCryptDataStream axCryptDataStream = new AxCryptDataStream(null, hmacStream, inputStream.Length)) { }
+                        using (AxCryptDataStream axCryptDataStream = new AxCryptDataStream(null, hmacStream, inputStream.Length, new ProgressContext())) { }
                     }, "An input stream must be given, it cannot be null.");
                     Assert.Throws<ArgumentNullException>(() =>
                     {
-                        using (AxCryptDataStream axCryptDataStream = new AxCryptDataStream(inputStream, null, inputStream.Length)) { }
+                        using (AxCryptDataStream axCryptDataStream = new AxCryptDataStream(inputStream, null, inputStream.Length, new ProgressContext())) { }
                     }, "An HmacStream must be given, it cannot be null.");
                     Assert.Throws<ArgumentOutOfRangeException>(() =>
                     {
-                        using (AxCryptDataStream axCryptDataStream = new AxCryptDataStream(inputStream, hmacStream, -inputStream.Length)) { }
+                        using (AxCryptDataStream axCryptDataStream = new AxCryptDataStream(inputStream, hmacStream, -inputStream.Length, new ProgressContext())) { }
                     }, "Negative length is not allowed.");
 
                     inputStream.Position = 0;
-                    using (AxCryptDataStream axCryptDataStream = new AxCryptDataStream(inputStream, hmacStream, inputStream.Length - 5))
+                    using (AxCryptDataStream axCryptDataStream = new AxCryptDataStream(inputStream, hmacStream, inputStream.Length - 5, new ProgressContext()))
                     {
                         Assert.Throws<NotSupportedException>(() =>
                         {

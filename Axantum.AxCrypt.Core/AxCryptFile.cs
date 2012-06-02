@@ -137,7 +137,7 @@ namespace Axantum.AxCrypt.Core
                 {
                     return false;
                 }
-                Decrypt(document, destinationFile, options);
+                Decrypt(document, destinationFile, options, progress);
             }
             return true;
         }
@@ -160,7 +160,7 @@ namespace Axantum.AxCrypt.Core
                 }
                 destinationFileName = document.DocumentHeaders.FileName;
                 IRuntimeFileInfo destinationFullPath = AxCryptEnvironment.Current.FileInfo(Path.Combine(destinationDirectory, destinationFileName));
-                Decrypt(document, destinationFullPath, options);
+                Decrypt(document, destinationFullPath, options, progress);
             }
             return destinationFileName;
         }
@@ -170,11 +170,11 @@ namespace Axantum.AxCrypt.Core
         /// </summary>
         /// <param name="document">The loaded AxCryptDocument</param>
         /// <param name="destinationFile">The destination file</param>
-        public static void Decrypt(AxCryptDocument document, IRuntimeFileInfo destinationFile, AxCryptOptions options)
+        public static void Decrypt(AxCryptDocument document, IRuntimeFileInfo destinationFile, AxCryptOptions options, ProgressContext progress)
         {
             using (Stream destinationStream = destinationFile.OpenWrite())
             {
-                document.DecryptTo(destinationStream);
+                document.DecryptTo(destinationStream, progress);
             }
             if (options.HasFlag(AxCryptOptions.SetFileTimes))
             {

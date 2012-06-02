@@ -241,7 +241,7 @@ namespace Axantum.AxCrypt
                             _activeFileMonitor.AddActiveFile(destinationActiveFile);
 
                             IRuntimeFileInfo destinationFileInfo = AxCryptEnvironment.Current.FileInfo(destinationActiveFile.DecryptedPath);
-                            AxCryptFile.Decrypt(document, destinationFileInfo, AxCryptOptions.SetFileTimes);
+                            AxCryptFile.Decrypt(document, destinationFileInfo, AxCryptOptions.SetFileTimes, progress);
                             isDecrypted = true;
                             if (Logging.IsInfoEnabled)
                             {

@@ -286,7 +286,7 @@ namespace Axantum.AxCrypt
             }
             foreach (string file in fileNames)
             {
-                if (!DecryptFile(file))
+                if (!DecryptFile2(AxCryptEnvironment.Current.FileInfo(file)))
                 {
                     return;
                 }
@@ -313,6 +313,86 @@ namespace Axantum.AxCrypt
             }
             AxCryptFile.Wipe(source);
             return true;
+        }
+
+        private bool DecryptFile2(IRuntimeFileInfo source)
+        {
+            AxCryptDocument document = GetDocumentToDecrypt(source);
+            if (document == null)
+            {
+                return false;
+            }
+            IRuntimeFileInfo destination = GetDestination(source, document.DocumentHeaders.FileName);
+            if (destination == null)
+            {
+                return false;
+            }
+            DoBackgroundWork(source.Name, (WorkerArguments arguments) =>
+            {
+                AxCryptFile.Decrypt(document, destination, AxCryptOptions.SetFileTimes, arguments.Progress);
+                document.Dispose();
+                AxCryptFile.Wipe(source);
+            });
+            return true;
+        }
+
+        private AxCryptDocument GetDocumentToDecrypt(IRuntimeFileInfo source)
+        {
+            AxCryptDocument document;
+            foreach (AesKey key in KnownKeys.Keys)
+            {
+                document = AxCryptFile.Document(source, key, _progressManager.Create(Path.GetFileName(source.FullName)));
+                if (document.PassphraseIsValid)
+                {
+                    return document;
+                }
+                document.Dispose();
+            }
+
+            Passphrase passphrase;
+            while (true)
+            {
+                DecryptPassphraseDialog passphraseDialog = new DecryptPassphraseDialog();
+                DialogResult dialogResult = passphraseDialog.ShowDialog();
+                if (dialogResult != DialogResult.OK)
+                {
+                    return null;
+                }
+                passphrase = new Passphrase(passphraseDialog.Passphrase.Text);
+                document = AxCryptFile.Document(source, passphrase.DerivedPassphrase, _progressManager.Create(Path.GetFileName(source.FullName)));
+                if (document.PassphraseIsValid)
+                {
+                    AddKnownKey(document.DocumentHeaders.KeyEncryptingKey);
+                    return document;
+                }
+                document.Dispose();
+            }
+        }
+
+        private static IRuntimeFileInfo GetDestination(IRuntimeFileInfo source, string fileName)
+        {
+            IRuntimeFileInfo destination = AxCryptEnvironment.Current.FileInfo(Path.Combine(Path.GetDirectoryName(source.FullName), fileName));
+            if (!destination.Exists)
+            {
+                return destination;
+            }
+            string extension = Path.GetExtension(destination.FullName);
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.AddExtension = !String.IsNullOrEmpty(extension);
+            sfd.CheckPathExists = true;
+            sfd.DefaultExt = extension;
+            sfd.Filter = Resources.DecryptedSaveAsFileDialogFilterPattern.InvariantFormat(extension);
+            sfd.InitialDirectory = Path.GetDirectoryName(source.FullName);
+            sfd.OverwritePrompt = true;
+            sfd.RestoreDirectory = true;
+            sfd.Title = Resources.DecryptedSaveAsFileDialogTitle;
+            DialogResult result = sfd.ShowDialog();
+            if (result != DialogResult.OK)
+            {
+                return null;
+            }
+            destination = AxCryptEnvironment.Current.FileInfo(sfd.FileName);
+            return destination;
         }
 
         private bool DecryptFileInternal(IRuntimeFileInfo source, ref AxCryptDocument document)
@@ -362,7 +442,7 @@ namespace Axantum.AxCrypt
                 destination = AxCryptEnvironment.Current.FileInfo(sfd.FileName);
             }
 
-            AxCryptFile.Decrypt(document, destination, AxCryptOptions.SetFileTimes);
+            AxCryptFile.Decrypt(document, destination, AxCryptOptions.SetFileTimes, _progressManager.Create(Path.GetFileName(source.FullName)));
 
             AddKnownKey(document.DocumentHeaders.KeyEncryptingKey);
 
