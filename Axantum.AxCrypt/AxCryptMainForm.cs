@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt
             Trace.Listeners.Add(traceListener);
 
             _progressManager = new ProgressManager();
-            _progressManager.Progress += new EventHandler<ProgressEventArgs>(_threadFacade.ProgressManager_Progress);
+            _progressManager.Progress += new EventHandler<ProgressEventArgs>(ProgressManager_Progress);
             _encryptedFileManager = new EncryptedFileManager(_progressManager);
 
             _encryptedFileManager.IgnoreApplication = !AxCryptEnvironment.Current.IsDesktopWindows;
@@ -78,6 +78,26 @@ namespace Axantum.AxCrypt
             }
             RecentFilesListView.Columns[0].Name = "DecryptedFile";
             RecentFilesListView.Columns[0].Width = userPreferences.RecentFilesDocumentWidth > 0 ? userPreferences.RecentFilesDocumentWidth : RecentFilesListView.Columns[0].Width;
+        }
+
+        public void ProgressManager_Progress(object sender, ProgressEventArgs e)
+        {
+            BackgroundWorker worker = e.Context as BackgroundWorker;
+            if (worker != null)
+            {
+                worker.ReportProgress(e.Percent, worker);
+            }
+            ProgressBar progressBar = e.Context as ProgressBar;
+            if (progressBar != null)
+            {
+                progressBar.Value = e.Percent;
+                if (progressBar.Value == 100)
+                {
+                    progressBar.Parent = null;
+                    progressBar.Dispose();
+                }
+            }
+            return;
         }
 
         public void RestartTimer()
@@ -238,14 +258,20 @@ namespace Axantum.AxCrypt
             worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(worker_RunWorkerCompleted);
             worker.ProgressChanged += new ProgressChangedEventHandler(worker_ProgressChanged);
 
+            ProgressBar progressBar = AddProgressBar();
+            _progressBars.Add(worker, progressBar);
+            return worker;
+        }
+
+        private ProgressBar AddProgressBar()
+        {
             ProgressBar progressBar = new ProgressBar();
             progressBar.Minimum = 0;
             progressBar.Maximum = 100;
             ProgressPanel.Controls.Add(progressBar);
             progressBar.Dock = DockStyle.Fill;
             progressBar.Margin = new Padding(0);
-            _progressBars.Add(worker, progressBar);
-            return worker;
+            return progressBar;
         }
 
         private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -261,6 +287,7 @@ namespace Axantum.AxCrypt
             ProgressBar progressBar = _progressBars[worker];
             progressBar.Parent = null;
             _progressBars.Remove(worker);
+            progressBar.Dispose();
             worker.Dispose();
         }
 
@@ -286,36 +313,14 @@ namespace Axantum.AxCrypt
             }
             foreach (string file in fileNames)
             {
-                if (!DecryptFile2(AxCryptEnvironment.Current.FileInfo(file)))
+                if (!DecryptFile(AxCryptEnvironment.Current.FileInfo(file)))
                 {
                     return;
                 }
             }
         }
 
-        private bool DecryptFile(string file)
-        {
-            IRuntimeFileInfo source = AxCryptEnvironment.Current.FileInfo(file);
-            AxCryptDocument document = null;
-            try
-            {
-                if (!DecryptFileInternal(source, ref document))
-                {
-                    return false;
-                }
-            }
-            finally
-            {
-                if (document != null)
-                {
-                    document.Dispose();
-                }
-            }
-            AxCryptFile.Wipe(source);
-            return true;
-        }
-
-        private bool DecryptFile2(IRuntimeFileInfo source)
+        private bool DecryptFile(IRuntimeFileInfo source)
         {
             AxCryptDocument document = GetDocumentToDecrypt(source);
             if (document == null)
@@ -338,34 +343,45 @@ namespace Axantum.AxCrypt
 
         private AxCryptDocument GetDocumentToDecrypt(IRuntimeFileInfo source)
         {
-            AxCryptDocument document;
-            foreach (AesKey key in KnownKeys.Keys)
+            AxCryptDocument document = null;
+            try
             {
-                document = AxCryptFile.Document(source, key, _progressManager.Create(Path.GetFileName(source.FullName)));
-                if (document.PassphraseIsValid)
+                foreach (AesKey key in KnownKeys.Keys)
                 {
-                    return document;
+                    document = AxCryptFile.Document(source, key, _progressManager.Create(Path.GetFileName(source.FullName)));
+                    if (document.PassphraseIsValid)
+                    {
+                        return document;
+                    }
+                    document.Dispose();
                 }
-                document.Dispose();
-            }
 
-            Passphrase passphrase;
-            while (true)
+                Passphrase passphrase;
+                while (true)
+                {
+                    DecryptPassphraseDialog passphraseDialog = new DecryptPassphraseDialog();
+                    DialogResult dialogResult = passphraseDialog.ShowDialog();
+                    if (dialogResult != DialogResult.OK)
+                    {
+                        return null;
+                    }
+                    passphrase = new Passphrase(passphraseDialog.Passphrase.Text);
+                    document = AxCryptFile.Document(source, passphrase.DerivedPassphrase, _progressManager.Create(Path.GetFileName(source.FullName)));
+                    if (document.PassphraseIsValid)
+                    {
+                        AddKnownKey(document.DocumentHeaders.KeyEncryptingKey);
+                        return document;
+                    }
+                    document.Dispose();
+                }
+            }
+            catch (Exception)
             {
-                DecryptPassphraseDialog passphraseDialog = new DecryptPassphraseDialog();
-                DialogResult dialogResult = passphraseDialog.ShowDialog();
-                if (dialogResult != DialogResult.OK)
+                if (document != null)
                 {
-                    return null;
+                    document.Dispose();
                 }
-                passphrase = new Passphrase(passphraseDialog.Passphrase.Text);
-                document = AxCryptFile.Document(source, passphrase.DerivedPassphrase, _progressManager.Create(Path.GetFileName(source.FullName)));
-                if (document.PassphraseIsValid)
-                {
-                    AddKnownKey(document.DocumentHeaders.KeyEncryptingKey);
-                    return document;
-                }
-                document.Dispose();
+                throw;
             }
         }
 
@@ -395,68 +411,10 @@ namespace Axantum.AxCrypt
             return destination;
         }
 
-        private bool DecryptFileInternal(IRuntimeFileInfo source, ref AxCryptDocument document)
-        {
-            foreach (AesKey key in KnownKeys.Keys)
-            {
-                document = AxCryptFile.Document(source, key, _progressManager.Create(Path.GetFileName(source.FullName)));
-                if (document.PassphraseIsValid)
-                {
-                    break;
-                }
-            }
-            if (document == null || !document.PassphraseIsValid)
-            {
-                Passphrase passphrase;
-                do
-                {
-                    DecryptPassphraseDialog passphraseDialog = new DecryptPassphraseDialog();
-                    DialogResult dialogResult = passphraseDialog.ShowDialog();
-                    if (dialogResult != DialogResult.OK)
-                    {
-                        return false;
-                    }
-                    passphrase = new Passphrase(passphraseDialog.Passphrase.Text);
-                    document = AxCryptFile.Document(source, passphrase.DerivedPassphrase, _progressManager.Create(Path.GetFileName(source.FullName)));
-                } while (!document.PassphraseIsValid);
-            }
-
-            IRuntimeFileInfo destination = AxCryptEnvironment.Current.FileInfo(Path.Combine(Path.GetDirectoryName(source.FullName), document.DocumentHeaders.FileName));
-            if (destination.Exists)
-            {
-                string extension = Path.GetExtension(destination.FullName);
-                SaveFileDialog sfd = new SaveFileDialog();
-                sfd.AddExtension = !String.IsNullOrEmpty(extension);
-                sfd.CheckPathExists = true;
-                sfd.DefaultExt = extension;
-                sfd.Filter = Resources.DecryptedSaveAsFileDialogFilterPattern.InvariantFormat(extension);
-                sfd.InitialDirectory = Path.GetDirectoryName(source.FullName);
-                sfd.OverwritePrompt = true;
-                sfd.RestoreDirectory = true;
-                sfd.Title = Resources.DecryptedSaveAsFileDialogTitle;
-                DialogResult result = sfd.ShowDialog();
-                if (result != DialogResult.OK)
-                {
-                    return false;
-                }
-                destination = AxCryptEnvironment.Current.FileInfo(sfd.FileName);
-            }
-
-            AxCryptFile.Decrypt(document, destination, AxCryptOptions.SetFileTimes, _progressManager.Create(Path.GetFileName(source.FullName)));
-
-            AddKnownKey(document.DocumentHeaders.KeyEncryptingKey);
-
-            return true;
-        }
-
         private void AddKnownKey(AesKey key)
         {
             KnownKeys.Add(key);
             _encryptedFileManager.CheckActiveFilesStatus();
-        }
-
-        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
-        {
         }
 
         private void toolStripButtonOpenEncrypted_Click(object sender, EventArgs e)
@@ -495,8 +453,9 @@ namespace Axantum.AxCrypt
             }
             try
             {
+                ProgressBar progressBar = AddProgressBar();
                 _fileOperationInProgress = false/*true*/;
-                if (_encryptedFileManager.Open(file, KnownKeys.Keys, _progressManager.Create(Path.GetFileName(file))) != FileOperationStatus.InvalidKey)
+                if (_encryptedFileManager.Open(file, KnownKeys.Keys, _progressManager.Create(Path.GetFileName(file), progressBar)) != FileOperationStatus.InvalidKey)
                 {
                     return;
                 }
@@ -510,8 +469,9 @@ namespace Axantum.AxCrypt
                     {
                         return;
                     }
-                    status = _encryptedFileManager.Open(file, new AesKey[] { passphrase.DerivedPassphrase }, _progressManager.Create(Path.GetFileName(file)));
+                    status = _encryptedFileManager.Open(file, new AesKey[] { passphrase.DerivedPassphrase }, _progressManager.Create(Path.GetFileName(file), progressBar));
                 } while (status == FileOperationStatus.InvalidKey);
+
                 if (status != FileOperationStatus.Success)
                 {
                     "Failed to decrypt and open {0}".InvariantFormat(file).ShowWarning();

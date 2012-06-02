@@ -33,16 +33,6 @@ namespace Axantum.AxCrypt
             InvokeIfRequired(_mainForm.RestartTimer);
         }
 
-        public void ProgressManager_Progress(object sender, ProgressEventArgs e)
-        {
-            BackgroundWorker worker = e.Context as BackgroundWorker;
-            if (worker == null)
-            {
-                return;
-            }
-            worker.ReportProgress(e.Percent, worker);
-        }
-
         private void InvokeIfRequired(Action action)
         {
             if (_mainForm.InvokeRequired)

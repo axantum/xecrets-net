@@ -274,6 +274,14 @@ namespace Axantum.AxCrypt
                     Logging.Info("Starting process for '{0}'".InvariantFormat(destinationActiveFile.DecryptedPath));
                 }
                 process = Process.Start(destinationActiveFile.DecryptedPath);
+                if (process == null)
+                {
+                    if (Logging.IsInfoEnabled)
+                    {
+                        Logging.Info("Starting process for '{0}' did not start a process, assumed handled by the shell.".InvariantFormat(destinationActiveFile.DecryptedPath));
+                    }
+                    return FileOperationStatus.Success;
+                }
                 process.Exited += new EventHandler(process_Exited);
             }
             catch (Win32Exception w32ex)
