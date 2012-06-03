@@ -117,6 +117,7 @@
     </Compile>
     <Compile Include="EncryptedFileManager.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="FileLock.cs" />
     <Compile Include="FileOperationStatus.cs" />
     <Compile Include="FileSystemState.cs" />
     <Compile Include="Logging.cs" />

@@ -133,10 +133,27 @@ namespace Axantum.AxCrypt
         {
             ForEach(forceChanged, (ActiveFile activeFile) =>
             {
-                if (DateTime.UtcNow - activeFile.LastAccessTimeUtc > new TimeSpan(0, 0, 5))
+                if (FileLock.IsLocked(activeFile.DecryptedPath))
                 {
-                    activeFile = CheckActiveFileActions(activeFile);
+                    if (Logging.IsInfoEnabled)
+                    {
+                        Logging.Info("Ignoring file '{0}' because it is marked locked.".InvariantFormat(activeFile.DecryptedPath));
+                    }
+                    return activeFile;
                 }
+                if (FileLock.IsLocked(activeFile.EncryptedPath))
+                {
+                    if (Logging.IsInfoEnabled)
+                    {
+                        Logging.Info("Ignoring file '{0}' because it is marked locked.".InvariantFormat(activeFile.EncryptedPath));
+                    }
+                    return activeFile;
+                }
+                if (DateTime.UtcNow - activeFile.LastAccessTimeUtc <= new TimeSpan(0, 0, 5))
+                {
+                    return activeFile;
+                }
+                activeFile = CheckActiveFileActions(activeFile);
                 return activeFile;
             });
         }
@@ -147,7 +164,6 @@ namespace Axantum.AxCrypt
             activeFile = CheckIfCreated(activeFile);
             activeFile = CheckIfProcessExited(activeFile);
             activeFile = CheckIfTimeToUpdate(activeFile);
-            activeFile = CheckIfTimeToDelete(activeFile);
             return activeFile;
         }
 
@@ -266,6 +282,13 @@ namespace Axantum.AxCrypt
         {
             ForEach(false, (ActiveFile activeFile) =>
             {
+                if (FileLock.IsLocked(activeFile.DecryptedPath))
+                {
+                    if (Logging.IsInfoEnabled)
+                    {
+                        Logging.Info("Not deleting '{0}' because it is marked as locked.".InvariantFormat(activeFile.DecryptedPath));
+                    }
+                }
                 if (activeFile.IsModified)
                 {
                     if (activeFile.Status.HasFlag(ActiveFileStatus.NotShareable))

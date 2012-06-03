@@ -1541,6 +1541,9 @@
         AACAAQAA8A8AAPw/AAA=
 </value>
   </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterParent</value>
+  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>AxCrypt</value>
   </data>

@@ -20,8 +20,6 @@ namespace Axantum.AxCrypt
     /// </summary>
     public class EncryptedFileManager
     {
-        private static readonly object _lock = new object();
-
         public event EventHandler<EventArgs> Changed;
 
         private ActiveFileMonitor _activeFileMonitor;
@@ -34,50 +32,32 @@ namespace Axantum.AxCrypt
 
         private void ActiveFileMonitor_Changed(object sender, EventArgs e)
         {
-            lock (_lock)
-            {
-                OnChanged(e);
-            }
+            OnChanged(e);
         }
 
         public void ForEach(bool forceChange, Func<ActiveFile, ActiveFile> action)
         {
-            lock (_lock)
-            {
-                _activeFileMonitor.ForEach(forceChange, action);
-            }
+            _activeFileMonitor.ForEach(forceChange, action);
         }
 
         public FileOperationStatus Open(string file, IEnumerable<AesKey> keys, ProgressContext progress)
         {
-            lock (_lock)
-            {
-                return OpenInternal(file, keys, progress);
-            }
+            return OpenInternal(file, keys, progress);
         }
 
         public void CheckActiveFilesStatus()
         {
-            lock (_lock)
-            {
-                _activeFileMonitor.CheckActiveFilesStatus();
-            }
+            _activeFileMonitor.CheckActiveFilesStatus();
         }
 
         public void ForceActiveFilesStatus()
         {
-            lock (_lock)
-            {
-                _activeFileMonitor.ForceActiveFilesStatus();
-            }
+            _activeFileMonitor.ForceActiveFilesStatus();
         }
 
         public void PurgeActiveFiles()
         {
-            lock (_lock)
-            {
-                _activeFileMonitor.PurgeActiveFiles();
-            }
+            _activeFileMonitor.PurgeActiveFiles();
         }
 
         public IList<ActiveFile> FindOpenFiles()
@@ -117,11 +97,8 @@ namespace Axantum.AxCrypt
 
         public void RemoveRecentFile(string encryptedPath)
         {
-            lock (_lock)
-            {
-                ActiveFile activeFile = _activeFileMonitor.FindActiveFile(encryptedPath);
-                _activeFileMonitor.RemoveActiveFile(activeFile);
-            }
+            ActiveFile activeFile = _activeFileMonitor.FindActiveFile(encryptedPath);
+            _activeFileMonitor.RemoveActiveFile(activeFile);
         }
 
         public bool IgnoreApplication
@@ -237,11 +214,14 @@ namespace Axantum.AxCrypt
 
                             string destinationName = document.DocumentHeaders.FileName;
                             destinationPath = Path.Combine(destinationFolder, destinationName);
-                            destinationActiveFile = new ActiveFile(fileInfo.FullName, destinationPath, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.IgnoreChange, null);
-                            _activeFileMonitor.AddActiveFile(destinationActiveFile);
 
-                            IRuntimeFileInfo destinationFileInfo = AxCryptEnvironment.Current.FileInfo(destinationActiveFile.DecryptedPath);
-                            AxCryptFile.Decrypt(document, destinationFileInfo, AxCryptOptions.SetFileTimes, progress);
+                            IRuntimeFileInfo destinationFileInfo = AxCryptEnvironment.Current.FileInfo(destinationPath);
+                            using (FileLock fileLock = FileLock.Lock(destinationFileInfo.FullName))
+                            {
+                                AxCryptFile.Decrypt(document, destinationFileInfo, AxCryptOptions.SetFileTimes, progress);
+                            }
+                            destinationActiveFile = new ActiveFile(fileInfo.FullName, destinationFileInfo.FullName, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.IgnoreChange, null);
+                            _activeFileMonitor.AddActiveFile(destinationActiveFile);
                             isDecrypted = true;
                             if (Logging.IsInfoEnabled)
                             {

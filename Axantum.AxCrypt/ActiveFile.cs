@@ -218,9 +218,9 @@ namespace Axantum.AxCrypt
                 bool isModified = DecryptedFileInfo.LastWriteTimeUtc > LastWriteTimeUtc;
                 if (Logging.IsInfoEnabled)
                 {
-                    Logging.Info("IsModified returns '{0}' for file info last write time '{1}' and active file last write time '{2}'".InvariantFormat(isModified.ToString(), DecryptedFileInfo.LastWriteTimeUtc.ToString(), LastWriteTimeUtc.ToString()));
+                    Logging.Info("IsModified == '{0}' for file '{3}' info last write time '{1}' and active file last write time '{2}'".InvariantFormat(isModified.ToString(), DecryptedFileInfo.LastWriteTimeUtc.ToString(), LastWriteTimeUtc.ToString(), DecryptedFileInfo.Name));
                 }
-                return DecryptedFileInfo.LastWriteTimeUtc > LastWriteTimeUtc;
+                return isModified;
             }
         }
 

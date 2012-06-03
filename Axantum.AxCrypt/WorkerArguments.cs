@@ -16,5 +16,7 @@ namespace Axantum.AxCrypt
         }
 
         public ProgressContext Progress { get; private set; }
+
+        public object Result { get; set; }
     }
 }
