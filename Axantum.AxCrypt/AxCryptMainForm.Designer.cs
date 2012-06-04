@@ -35,6 +35,8 @@
             this.toolStripButtonEncrypt = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonDecrypt = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,17 +49,17 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StatusTabs = new System.Windows.Forms.TabControl();
+            this.OpenFilesTab = new System.Windows.Forms.TabPage();
+            this.OpenFilesListView = new System.Windows.Forms.ListView();
+            this.OpenFile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.EncryptedSource = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ImageList48 = new System.Windows.Forms.ImageList(this.components);
+            this.ImageList16 = new System.Windows.Forms.ImageList(this.components);
             this.RecentFilesTab = new System.Windows.Forms.TabPage();
             this.RecentFilesListView = new System.Windows.Forms.ListView();
             this.DecryptedFile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LastAccessTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.EncryptedPath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ImageList48 = new System.Windows.Forms.ImageList(this.components);
-            this.ImageList16 = new System.Windows.Forms.ImageList(this.components);
-            this.OpenFilesTab = new System.Windows.Forms.TabPage();
-            this.OpenFilesListView = new System.Windows.Forms.ListView();
-            this.OpenFile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.EncryptedSource = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.WatchedFoldersTab = new System.Windows.Forms.TabPage();
             this.WatchedFoldersListView = new System.Windows.Forms.ListView();
             this.LogTab = new System.Windows.Forms.TabPage();
@@ -66,15 +68,14 @@
             this.ProgressPanel = new System.Windows.Forms.TableLayoutPanel();
             this.RecentFilesContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.OpenFilesContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.EnterPassphraseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EncryptedFileManager = new Axantum.AxCrypt.EncryptedFileManager();
             this.toolStrip1.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.StatusTabs.SuspendLayout();
-            this.RecentFilesTab.SuspendLayout();
             this.OpenFilesTab.SuspendLayout();
+            this.RecentFilesTab.SuspendLayout();
             this.WatchedFoldersTab.SuspendLayout();
             this.LogTab.SuspendLayout();
             this.RecentFilesContextMenu.SuspendLayout();
@@ -120,6 +121,18 @@
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.toolStripButton1, "toolStripButton1");
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            resources.ApplyResources(this.toolStripSeparator4, "toolStripSeparator4");
             // 
             // helpToolStripButton
             // 
@@ -201,6 +214,52 @@
             this.StatusTabs.Name = "StatusTabs";
             this.StatusTabs.SelectedIndex = 0;
             // 
+            // OpenFilesTab
+            // 
+            this.OpenFilesTab.Controls.Add(this.OpenFilesListView);
+            resources.ApplyResources(this.OpenFilesTab, "OpenFilesTab");
+            this.OpenFilesTab.Name = "OpenFilesTab";
+            this.OpenFilesTab.UseVisualStyleBackColor = true;
+            // 
+            // OpenFilesListView
+            // 
+            this.OpenFilesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.OpenFile,
+            this.EncryptedSource});
+            resources.ApplyResources(this.OpenFilesListView, "OpenFilesListView");
+            this.OpenFilesListView.FullRowSelect = true;
+            this.OpenFilesListView.LargeImageList = this.ImageList48;
+            this.OpenFilesListView.Name = "OpenFilesListView";
+            this.OpenFilesListView.SmallImageList = this.ImageList16;
+            this.OpenFilesListView.UseCompatibleStateImageBehavior = false;
+            this.OpenFilesListView.View = System.Windows.Forms.View.Details;
+            this.OpenFilesListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.OpenFilesListView_MouseClick);
+            this.OpenFilesListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.OpenFilesListView_MouseDoubleClick);
+            // 
+            // OpenFile
+            // 
+            resources.ApplyResources(this.OpenFile, "OpenFile");
+            // 
+            // EncryptedSource
+            // 
+            resources.ApplyResources(this.EncryptedSource, "EncryptedSource");
+            // 
+            // ImageList48
+            // 
+            this.ImageList48.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImageList48.ImageStream")));
+            this.ImageList48.TransparentColor = System.Drawing.Color.Transparent;
+            this.ImageList48.Images.SetKeyName(0, "ActiveFile");
+            this.ImageList48.Images.SetKeyName(1, "InactiveFile");
+            this.ImageList48.Images.SetKeyName(2, "Exclamation.png");
+            // 
+            // ImageList16
+            // 
+            this.ImageList16.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImageList16.ImageStream")));
+            this.ImageList16.TransparentColor = System.Drawing.Color.Transparent;
+            this.ImageList16.Images.SetKeyName(0, "ActiveFile");
+            this.ImageList16.Images.SetKeyName(1, "InactiveFile");
+            this.ImageList16.Images.SetKeyName(2, "Exclamation");
+            // 
             // RecentFilesTab
             // 
             this.RecentFilesTab.Controls.Add(this.RecentFilesListView);
@@ -236,52 +295,6 @@
             // EncryptedPath
             // 
             resources.ApplyResources(this.EncryptedPath, "EncryptedPath");
-            // 
-            // ImageList48
-            // 
-            this.ImageList48.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImageList48.ImageStream")));
-            this.ImageList48.TransparentColor = System.Drawing.Color.Transparent;
-            this.ImageList48.Images.SetKeyName(0, "ActiveFile");
-            this.ImageList48.Images.SetKeyName(1, "InactiveFile");
-            this.ImageList48.Images.SetKeyName(2, "Exclamation.png");
-            // 
-            // ImageList16
-            // 
-            this.ImageList16.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImageList16.ImageStream")));
-            this.ImageList16.TransparentColor = System.Drawing.Color.Transparent;
-            this.ImageList16.Images.SetKeyName(0, "ActiveFile");
-            this.ImageList16.Images.SetKeyName(1, "InactiveFile");
-            this.ImageList16.Images.SetKeyName(2, "Exclamation");
-            // 
-            // OpenFilesTab
-            // 
-            this.OpenFilesTab.Controls.Add(this.OpenFilesListView);
-            resources.ApplyResources(this.OpenFilesTab, "OpenFilesTab");
-            this.OpenFilesTab.Name = "OpenFilesTab";
-            this.OpenFilesTab.UseVisualStyleBackColor = true;
-            // 
-            // OpenFilesListView
-            // 
-            this.OpenFilesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.OpenFile,
-            this.EncryptedSource});
-            resources.ApplyResources(this.OpenFilesListView, "OpenFilesListView");
-            this.OpenFilesListView.FullRowSelect = true;
-            this.OpenFilesListView.LargeImageList = this.ImageList48;
-            this.OpenFilesListView.Name = "OpenFilesListView";
-            this.OpenFilesListView.SmallImageList = this.ImageList16;
-            this.OpenFilesListView.UseCompatibleStateImageBehavior = false;
-            this.OpenFilesListView.View = System.Windows.Forms.View.Details;
-            this.OpenFilesListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.OpenFilesListView_MouseClick);
-            this.OpenFilesListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.OpenFilesListView_MouseDoubleClick);
-            // 
-            // OpenFile
-            // 
-            resources.ApplyResources(this.OpenFile, "OpenFile");
-            // 
-            // EncryptedSource
-            // 
-            resources.ApplyResources(this.EncryptedSource, "EncryptedSource");
             // 
             // WatchedFoldersTab
             // 
@@ -334,18 +347,6 @@
             resources.ApplyResources(this.removeToolStripMenuItem, "removeToolStripMenuItem");
             this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
             // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.toolStripButton1, "toolStripButton1");
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            resources.ApplyResources(this.toolStripSeparator4, "toolStripSeparator4");
-            // 
             // OpenFilesContextMenu
             // 
             this.OpenFilesContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -358,6 +359,10 @@
             this.EnterPassphraseMenuItem.Name = "EnterPassphraseMenuItem";
             resources.ApplyResources(this.EnterPassphraseMenuItem, "EnterPassphraseMenuItem");
             this.EnterPassphraseMenuItem.Click += new System.EventHandler(this.EnterPassphraseMenuItem_Click);
+            // 
+            // EncryptedFileManager
+            // 
+            this.EncryptedFileManager.IgnoreApplication = false;
             // 
             // AxCryptMainForm
             // 
@@ -376,8 +381,8 @@
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
             this.StatusTabs.ResumeLayout(false);
-            this.RecentFilesTab.ResumeLayout(false);
             this.OpenFilesTab.ResumeLayout(false);
+            this.RecentFilesTab.ResumeLayout(false);
             this.WatchedFoldersTab.ResumeLayout(false);
             this.LogTab.ResumeLayout(false);
             this.LogTab.PerformLayout();
@@ -419,7 +424,6 @@
         private System.Windows.Forms.ColumnHeader EncryptedPath;
         private System.Windows.Forms.ColumnHeader LastAccessTime;
         private System.Windows.Forms.ColumnHeader DecryptedFile;
-        private System.Windows.Forms.TableLayoutPanel ProgressPanel;
         private System.Windows.Forms.TabPage LogTab;
         private System.Windows.Forms.TextBox LogOutput;
         private System.Windows.Forms.ContextMenuStrip RecentFilesContextMenu;
@@ -430,6 +434,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ContextMenuStrip OpenFilesContextMenu;
         private System.Windows.Forms.ToolStripMenuItem EnterPassphraseMenuItem;
+        internal System.Windows.Forms.TableLayoutPanel ProgressPanel;
+        private EncryptedFileManager EncryptedFileManager;
     }
 }
 

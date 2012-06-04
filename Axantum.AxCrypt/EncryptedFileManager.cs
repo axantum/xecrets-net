@@ -18,15 +18,17 @@ namespace Axantum.AxCrypt
     /// <summary>
     ///
     /// </summary>
-    public class EncryptedFileManager
+    internal class EncryptedFileManager : Component
     {
         public event EventHandler<EventArgs> Changed;
 
         private ActiveFileMonitor _activeFileMonitor;
 
-        public EncryptedFileManager(ProgressManager progressManager)
+        private bool _disposed = false;
+
+        public EncryptedFileManager()
         {
-            _activeFileMonitor = new ActiveFileMonitor(progressManager);
+            _activeFileMonitor = new ActiveFileMonitor();
             _activeFileMonitor.Changed += new EventHandler<EventArgs>(ActiveFileMonitor_Changed);
         }
 
@@ -303,6 +305,24 @@ namespace Axantum.AxCrypt
             }
 
             OnChanged(e);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (_disposed)
+            {
+                return;
+            }
+            if (disposing)
+            {
+                if (_activeFileMonitor != null)
+                {
+                    _activeFileMonitor.Dispose();
+                    _activeFileMonitor = null;
+                }
+            }
+            _disposed = true;
+            base.Dispose(disposing);
         }
     }
 }

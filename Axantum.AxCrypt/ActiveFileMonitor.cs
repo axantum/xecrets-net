@@ -14,18 +14,16 @@ using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt
 {
-    internal class ActiveFileMonitor
+    internal class ActiveFileMonitor : IDisposable
     {
         private FileSystemWatcher _temporaryDirectoryWatcher;
 
-        private ProgressManager _progressManager;
-
         private FileSystemState _fileSystemState;
 
-        public ActiveFileMonitor(ProgressManager progressManager)
-        {
-            _progressManager = progressManager;
+        private bool _disposed = false;
 
+        public ActiveFileMonitor()
+        {
             string fileSystemStateFullName = Path.Combine(TemporaryDirectoryInfo.FullName, "FileSystemState.xml");
             _fileSystemState = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(fileSystemStateFullName));
             _fileSystemState.Changed += new EventHandler<EventArgs>(FileSystemState_Changed);
@@ -204,7 +202,7 @@ namespace Axantum.AxCrypt
             return activeFile;
         }
 
-        private ActiveFile CheckIfTimeToUpdate(ActiveFile activeFile, ProgressContext progress)
+        private static ActiveFile CheckIfTimeToUpdate(ActiveFile activeFile, ProgressContext progress)
         {
             if (activeFile.Status.HasFlag(ActiveFileStatus.NotShareable) || !activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted))
             {
@@ -388,6 +386,29 @@ namespace Axantum.AxCrypt
 
                 return _temporaryDirectoryInfo;
             }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+            {
+                return;
+            }
+            if (disposing)
+            {
+                if (_temporaryDirectoryWatcher != null)
+                {
+                    _temporaryDirectoryWatcher.Dispose();
+                }
+                _temporaryDirectoryWatcher = null;
+            }
+            _disposed = true;
         }
     }
 }

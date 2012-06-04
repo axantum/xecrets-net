@@ -41,12 +41,12 @@ namespace Axantum.AxCrypt
 
         public static bool IsLocked(params string[] fullPaths)
         {
-            if (fullPaths == null)
-            {
-                throw new ArgumentNullException("fullPath");
-            }
             foreach (string fullPath in fullPaths)
             {
+                if (fullPath == null)
+                {
+                    throw new ArgumentNullException("fullPaths");
+                }
                 lock (_lockedFiles)
                 {
                     if (_lockedFiles.Contains(fullPath))
@@ -63,6 +63,12 @@ namespace Axantum.AxCrypt
         }
 
         public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
         {
             lock (_lockedFiles)
             {

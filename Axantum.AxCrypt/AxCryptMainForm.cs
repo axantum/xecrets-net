@@ -25,12 +25,6 @@ namespace Axantum.AxCrypt
     {
         public static MessageBoxOptions MessageBoxOptions { get; private set; }
 
-        private ProgressManager _progressManager;
-
-        private EncryptedFileManager _encryptedFileManager;
-
-        private IDictionary<BackgroundWorker, ProgressBar> _progressBars = new Dictionary<BackgroundWorker, ProgressBar>();
-
         public void FormatTraceMessage(string message)
         {
             int skipIndex = message.IndexOf(" Information", StringComparison.Ordinal);
@@ -40,27 +34,23 @@ namespace Axantum.AxCrypt
             LogOutput.AppendText("{0} {1}".InvariantFormat(DateTime.UtcNow.ToString("o", CultureInfo.InvariantCulture), message.Substring(skipIndex + 1)));
         }
 
-        private MainFormThreadFacade _threadFacade;
+        private MainFormThreadFacade ThreadFacade { get; set; }
 
         public AxCryptMainForm()
         {
             InitializeComponent();
-            _threadFacade = new MainFormThreadFacade(this);
+            ThreadFacade = new MainFormThreadFacade(this);
         }
 
         private void AxCryptMainForm_Load(object sender, EventArgs e)
         {
-            DelegateTraceListener traceListener = new DelegateTraceListener(_threadFacade.FormatTraceMessage);
+            DelegateTraceListener traceListener = new DelegateTraceListener(ThreadFacade.FormatTraceMessage);
             traceListener.Name = "AxCryptMainFormListener";
             Trace.Listeners.Add(traceListener);
 
-            _progressManager = new ProgressManager();
-            _progressManager.Progress += new EventHandler<ProgressEventArgs>(ProgressManager_Progress);
-            _encryptedFileManager = new EncryptedFileManager(_progressManager);
-
-            _encryptedFileManager.IgnoreApplication = !AxCryptEnvironment.Current.IsDesktopWindows;
-            _encryptedFileManager.Changed += new EventHandler<EventArgs>(_threadFacade.EncryptedFileManager_Changed);
-            _encryptedFileManager.ForceActiveFilesStatus(new ProgressContext());
+            EncryptedFileManager.IgnoreApplication = !AxCryptEnvironment.Current.IsDesktopWindows;
+            EncryptedFileManager.Changed += new EventHandler<EventArgs>(ThreadFacade.EncryptedFileManager_Changed);
+            EncryptedFileManager.ForceActiveFilesStatus(new ProgressContext());
 
             RestoreUserPreferences();
 
@@ -81,26 +71,6 @@ namespace Axantum.AxCrypt
             RecentFilesListView.Columns[0].Width = userPreferences.RecentFilesDocumentWidth > 0 ? userPreferences.RecentFilesDocumentWidth : RecentFilesListView.Columns[0].Width;
         }
 
-        private void ProgressManager_Progress(object sender, ProgressEventArgs e)
-        {
-            BackgroundWorker worker = e.Context as BackgroundWorker;
-            if (worker != null)
-            {
-                worker.ReportProgress(e.Percent, worker);
-            }
-            ProgressBar progressBar = e.Context as ProgressBar;
-            if (progressBar != null)
-            {
-                progressBar.Value = e.Percent;
-                if (progressBar.Value == 100)
-                {
-                    progressBar.Parent = null;
-                    progressBar.Dispose();
-                }
-            }
-            return;
-        }
-
         public void RestartTimer()
         {
             ActiveFilePolling.Enabled = false;
@@ -112,7 +82,7 @@ namespace Axantum.AxCrypt
         {
             OpenFilesListView.Items.Clear();
             RecentFilesListView.Items.Clear();
-            _encryptedFileManager.ForEach(false,
+            EncryptedFileManager.ForEach(false,
                 (ActiveFile activeFile) =>
                 {
                     return UpdateOpenFilesWith(activeFile);
@@ -229,7 +199,7 @@ namespace Axantum.AxCrypt
                 key = KnownKeys.DefaultEncryptionKey;
             }
 
-            DoBackgroundWork(sourceFileInfo.FullName, null, (WorkerArguments arguments) =>
+            ThreadFacade.DoBackgroundWork(sourceFileInfo.FullName, null, (WorkerArguments arguments) =>
             {
                 EncryptedFileManager.EncryptFile(sourceFileInfo, destinationFileInfo, key, arguments.Progress);
             });
@@ -238,69 +208,6 @@ namespace Axantum.AxCrypt
             {
                 KnownKeys.DefaultEncryptionKey = key;
             }
-        }
-
-        private void DoBackgroundWork(string displayText, RunWorkerCompletedEventHandler completedHandler, Action<WorkerArguments> action)
-        {
-            BackgroundWorker worker = CreateWorker(completedHandler);
-            worker.DoWork += (object sender, DoWorkEventArgs e) =>
-            {
-                WorkerArguments arguments = (WorkerArguments)e.Argument;
-                action(arguments);
-                e.Result = arguments.Result;
-            };
-            worker.RunWorkerAsync(new WorkerArguments(_progressManager.Create(displayText, worker)));
-        }
-
-        private BackgroundWorker CreateWorker(RunWorkerCompletedEventHandler completedHandler)
-        {
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.WorkerReportsProgress = true;
-            worker.WorkerSupportsCancellation = true;
-            ProgressBar progressBar = CreateProgressBar();
-            _progressBars.Add(worker, progressBar);
-            worker.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs e) =>
-            {
-                progressBar.Parent = null;
-                _progressBars.Remove(worker);
-                progressBar.Dispose();
-                if (completedHandler != null)
-                {
-                    BeginInvoke((Action)(() => { completedHandler(sender, e); }));
-                }
-                worker.Dispose();
-            };
-            worker.ProgressChanged += new ProgressChangedEventHandler(worker_ProgressChanged);
-
-            return worker;
-        }
-
-        private ProgressBar CreateProgressBar()
-        {
-            ProgressBar progressBar = new ProgressBar();
-            progressBar.Minimum = 0;
-            progressBar.Maximum = 100;
-            ProgressPanel.Controls.Add(progressBar);
-            progressBar.Dock = DockStyle.Fill;
-            progressBar.Margin = new Padding(0);
-            return progressBar;
-        }
-
-        private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            BackgroundWorker worker = (BackgroundWorker)e.UserState;
-            ProgressBar progressBar = _progressBars[worker];
-            progressBar.Value = e.ProgressPercentage;
-        }
-
-        private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            BackgroundWorker worker = (BackgroundWorker)sender;
-            ProgressBar progressBar = _progressBars[worker];
-            progressBar.Parent = null;
-            _progressBars.Remove(worker);
-            progressBar.Dispose();
-            worker.Dispose();
         }
 
         private void toolStripButtonDecrypt_Click(object sender, EventArgs e)
@@ -344,7 +251,7 @@ namespace Axantum.AxCrypt
             {
                 return false;
             }
-            DoBackgroundWork(source.Name, null, (WorkerArguments arguments) =>
+            ThreadFacade.DoBackgroundWork(source.Name, null, (WorkerArguments arguments) =>
             {
                 AxCryptFile.Decrypt(document, destination, AxCryptOptions.SetFileTimes, arguments.Progress);
                 document.Dispose();
@@ -360,7 +267,7 @@ namespace Axantum.AxCrypt
             {
                 foreach (AesKey key in KnownKeys.Keys)
                 {
-                    document = AxCryptFile.Document(source, key, _progressManager.Create(Path.GetFileName(source.FullName)));
+                    document = AxCryptFile.Document(source, key, new ProgressContext());
                     if (document.PassphraseIsValid)
                     {
                         return document;
@@ -378,7 +285,7 @@ namespace Axantum.AxCrypt
                         return null;
                     }
                     passphrase = new Passphrase(passphraseDialog.Passphrase.Text);
-                    document = AxCryptFile.Document(source, passphrase.DerivedPassphrase, _progressManager.Create(Path.GetFileName(source.FullName)));
+                    document = AxCryptFile.Document(source, passphrase.DerivedPassphrase, new ProgressContext());
                     if (document.PassphraseIsValid)
                     {
                         AddKnownKey(document.DocumentHeaders.KeyEncryptingKey);
@@ -426,7 +333,7 @@ namespace Axantum.AxCrypt
         private void AddKnownKey(AesKey key)
         {
             KnownKeys.Add(key);
-            _encryptedFileManager.CheckActiveFilesStatus(new ProgressContext());
+            EncryptedFileManager.CheckActiveFilesStatus(new ProgressContext());
         }
 
         private void toolStripButtonOpenEncrypted_Click(object sender, EventArgs e)
@@ -459,7 +366,7 @@ namespace Axantum.AxCrypt
 
         private void OpenEncrypted(string file)
         {
-            DoBackgroundWork(Path.GetFileName(file),
+            ThreadFacade.DoBackgroundWork(Path.GetFileName(file),
                 (object sender, RunWorkerCompletedEventArgs e) =>
                 {
                     FileOperationStatus status = (FileOperationStatus)e.Result;
@@ -471,7 +378,7 @@ namespace Axantum.AxCrypt
                 },
                 (WorkerArguments arguments) =>
                 {
-                    arguments.Result = _encryptedFileManager.Open(file, KnownKeys.Keys, arguments.Progress);
+                    arguments.Result = EncryptedFileManager.Open(file, KnownKeys.Keys, arguments.Progress);
                 });
         }
 
@@ -483,7 +390,7 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-            DoBackgroundWork(Path.GetFileName(file),
+            ThreadFacade.DoBackgroundWork(Path.GetFileName(file),
                 (object sender, RunWorkerCompletedEventArgs e) =>
                 {
                     FileOperationStatus status = (FileOperationStatus)e.Result;
@@ -501,7 +408,7 @@ namespace Axantum.AxCrypt
                 },
                 (WorkerArguments arguments) =>
                 {
-                    arguments.Result = _encryptedFileManager.Open(file, new AesKey[] { passphrase.DerivedPassphrase }, arguments.Progress);
+                    arguments.Result = EncryptedFileManager.Open(file, new AesKey[] { passphrase.DerivedPassphrase }, arguments.Progress);
                 });
         }
 
@@ -545,14 +452,14 @@ namespace Axantum.AxCrypt
             {
                 _fileOperationInProgress = false/*true*/;
                 _pollingInProgress = true;
-                DoBackgroundWork("Updating Status",
+                ThreadFacade.DoBackgroundWork("Updating Status",
                     (object sender1, RunWorkerCompletedEventArgs e1) =>
                     {
                         _pollingInProgress = false;
                     },
                     (WorkerArguments arguments) =>
                     {
-                        _encryptedFileManager.CheckActiveFilesStatus(arguments.Progress);
+                        EncryptedFileManager.CheckActiveFilesStatus(arguments.Progress);
                     });
             }
             finally
@@ -593,25 +500,19 @@ namespace Axantum.AxCrypt
 
         private void AxCryptMainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            while (_progressBars.Count > 0)
-            {
-                Application.DoEvents();
-            }
+            ThreadFacade.WaitForBackgroundIdle();
             PurgeActiveFiles();
-            while (_progressBars.Count > 0)
-            {
-                Application.DoEvents();
-            }
+            ThreadFacade.WaitForBackgroundIdle();
             Trace.Listeners.Remove("AxCryptMainFormListener");
         }
 
         private void PurgeActiveFiles()
         {
-            _encryptedFileManager.IgnoreApplication = true;
-            DoBackgroundWork("Purging Active Files",
+            EncryptedFileManager.IgnoreApplication = true;
+            ThreadFacade.DoBackgroundWork("Purging Active Files",
                 (object sender, RunWorkerCompletedEventArgs e) =>
                 {
-                    IList<ActiveFile> openFiles = _encryptedFileManager.FindOpenFiles();
+                    IList<ActiveFile> openFiles = EncryptedFileManager.FindOpenFiles();
                     if (openFiles.Count == 0)
                     {
                         return;
@@ -625,8 +526,8 @@ namespace Axantum.AxCrypt
                 },
                 (WorkerArguments arguments) =>
                 {
-                    _encryptedFileManager.CheckActiveFilesStatus(arguments.Progress);
-                    _encryptedFileManager.PurgeActiveFiles(arguments.Progress);
+                    EncryptedFileManager.CheckActiveFilesStatus(arguments.Progress);
+                    EncryptedFileManager.PurgeActiveFiles(arguments.Progress);
                 });
         }
 
@@ -639,7 +540,7 @@ namespace Axantum.AxCrypt
         private void removeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string encryptedPath = RecentFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text;
-            _encryptedFileManager.RemoveRecentFile(encryptedPath);
+            EncryptedFileManager.RemoveRecentFile(encryptedPath);
         }
 
         private void RecentFilesListView_MouseClick(object sender, MouseEventArgs e)
@@ -684,7 +585,7 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-            bool keyMatch = _encryptedFileManager.UpdateActiveFileIfKeyMatchesThumbprint(passphrase.DerivedPassphrase);
+            bool keyMatch = EncryptedFileManager.UpdateActiveFileIfKeyMatchesThumbprint(passphrase.DerivedPassphrase);
             if (keyMatch)
             {
                 KnownKeys.Add(passphrase.DerivedPassphrase);

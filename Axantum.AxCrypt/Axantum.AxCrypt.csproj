@@ -115,7 +115,9 @@
     <Compile Include="DecryptPassphraseDialog.Designer.cs">
       <DependentUpon>DecryptPassphraseDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="EncryptedFileManager.cs" />
+    <Compile Include="EncryptedFileManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Extensions.cs" />
     <Compile Include="FileLock.cs" />
     <Compile Include="FileOperationStatus.cs" />
