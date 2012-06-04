@@ -591,5 +591,20 @@ namespace Axantum.AxCrypt
                 KnownKeys.Add(passphrase.DerivedPassphrase);
             }
         }
+
+        public void ShowProgressContextMenu(ProgressBar progressBar, Point location)
+        {
+            ProgressContextMenu.Tag = progressBar;
+            ProgressContextMenu.Show(progressBar, location);
+        }
+
+        private void ProgressContextCancelMenu_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem menuItem = (ToolStripMenuItem)sender;
+            ContextMenuStrip menuStrip = (ContextMenuStrip)menuItem.GetCurrentParent();
+            ProgressBar progressBar = (ProgressBar)menuStrip.Tag;
+            BackgroundWorker worker = (BackgroundWorker)progressBar.Tag;
+            worker.CancelAsync();
+        }
     }
 }

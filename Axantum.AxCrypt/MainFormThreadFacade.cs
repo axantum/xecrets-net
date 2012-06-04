@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt
             BackgroundWorker worker = new BackgroundWorker();
             worker.WorkerReportsProgress = true;
             worker.WorkerSupportsCancellation = true;
-            ProgressBar progressBar = CreateProgressBar();
+            ProgressBar progressBar = CreateProgressBar(worker);
             _progressBars.Add(worker, progressBar);
             worker.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs e) =>
             {
@@ -76,7 +76,7 @@ namespace Axantum.AxCrypt
             return worker;
         }
 
-        private ProgressBar CreateProgressBar()
+        private ProgressBar CreateProgressBar(BackgroundWorker worker)
         {
             ProgressBar progressBar = new ProgressBar();
             progressBar.Minimum = 0;
@@ -84,7 +84,18 @@ namespace Axantum.AxCrypt
             MainForm.ProgressPanel.Controls.Add(progressBar);
             progressBar.Dock = DockStyle.Fill;
             progressBar.Margin = new Padding(0);
+            progressBar.MouseClick += new MouseEventHandler(progressBar_MouseClick);
+            progressBar.Tag = worker;
             return progressBar;
+        }
+
+        private void progressBar_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Right)
+            {
+                return;
+            }
+            MainForm.ShowProgressContextMenu((ProgressBar)sender, e.Location);
         }
 
         private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -92,6 +103,10 @@ namespace Axantum.AxCrypt
             BackgroundWorker worker = (BackgroundWorker)e.UserState;
             ProgressBar progressBar = _progressBars[worker];
             progressBar.Value = e.ProgressPercentage;
+            if (worker.CancellationPending)
+            {
+                throw new OperationCanceledException();
+            }
         }
 
         public void WaitForBackgroundIdle()

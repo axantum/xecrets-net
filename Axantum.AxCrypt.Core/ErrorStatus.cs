@@ -16,5 +16,6 @@ namespace Axantum.AxCrypt.Core
         FileFormatError,
         HmacValidationError,
         DataError,
+        Cancel,
     }
 }
