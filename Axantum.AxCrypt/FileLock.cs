@@ -39,16 +39,27 @@ namespace Axantum.AxCrypt
             }
         }
 
-        public static bool IsLocked(string fullPath)
+        public static bool IsLocked(params string[] fullPaths)
         {
-            if (fullPath == null)
+            if (fullPaths == null)
             {
                 throw new ArgumentNullException("fullPath");
             }
-            lock (_lockedFiles)
+            foreach (string fullPath in fullPaths)
             {
-                return _lockedFiles.Contains(fullPath);
+                lock (_lockedFiles)
+                {
+                    if (_lockedFiles.Contains(fullPath))
+                    {
+                        if (Logging.IsInfoEnabled)
+                        {
+                            Logging.Info("File '{0}' was found to be locked.".InvariantFormat(fullPath));
+                        }
+                        return true;
+                    }
+                }
             }
+            return false;
         }
 
         public void Dispose()

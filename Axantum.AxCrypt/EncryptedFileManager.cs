@@ -45,19 +45,19 @@ namespace Axantum.AxCrypt
             return OpenInternal(file, keys, progress);
         }
 
-        public void CheckActiveFilesStatus()
+        public void CheckActiveFilesStatus(ProgressContext progress)
         {
-            _activeFileMonitor.CheckActiveFilesStatus();
+            _activeFileMonitor.CheckActiveFilesStatus(progress);
         }
 
-        public void ForceActiveFilesStatus()
+        public void ForceActiveFilesStatus(ProgressContext progress)
         {
-            _activeFileMonitor.ForceActiveFilesStatus();
+            _activeFileMonitor.ForceActiveFilesStatus(progress);
         }
 
-        public void PurgeActiveFiles()
+        public void PurgeActiveFiles(ProgressContext progress)
         {
-            _activeFileMonitor.PurgeActiveFiles();
+            _activeFileMonitor.PurgeActiveFiles(progress);
         }
 
         public IList<ActiveFile> FindOpenFiles()
@@ -205,29 +205,32 @@ namespace Axantum.AxCrypt
                         {
                             Logging.Info("Decrypting '{0}'".InvariantFormat(source.FullName));
                         }
-                        using (AxCryptDocument document = AxCryptFile.Document(source, key, progress))
+                        using (FileLock sourceLock = FileLock.Lock(source.FullName))
                         {
-                            if (!document.PassphraseIsValid)
+                            using (AxCryptDocument document = AxCryptFile.Document(source, key, progress))
                             {
-                                continue;
-                            }
+                                if (!document.PassphraseIsValid)
+                                {
+                                    continue;
+                                }
 
-                            string destinationName = document.DocumentHeaders.FileName;
-                            destinationPath = Path.Combine(destinationFolder, destinationName);
+                                string destinationName = document.DocumentHeaders.FileName;
+                                destinationPath = Path.Combine(destinationFolder, destinationName);
 
-                            IRuntimeFileInfo destinationFileInfo = AxCryptEnvironment.Current.FileInfo(destinationPath);
-                            using (FileLock fileLock = FileLock.Lock(destinationFileInfo.FullName))
-                            {
-                                AxCryptFile.Decrypt(document, destinationFileInfo, AxCryptOptions.SetFileTimes, progress);
+                                IRuntimeFileInfo destinationFileInfo = AxCryptEnvironment.Current.FileInfo(destinationPath);
+                                using (FileLock fileLock = FileLock.Lock(destinationFileInfo.FullName))
+                                {
+                                    AxCryptFile.Decrypt(document, destinationFileInfo, AxCryptOptions.SetFileTimes, progress);
+                                }
+                                destinationActiveFile = new ActiveFile(fileInfo.FullName, destinationFileInfo.FullName, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.IgnoreChange, null);
+                                _activeFileMonitor.AddActiveFile(destinationActiveFile);
+                                isDecrypted = true;
+                                if (Logging.IsInfoEnabled)
+                                {
+                                    Logging.Info("File decrypted from '{0}' to '{1}'".InvariantFormat(source.FullName, destinationActiveFile.DecryptedPath));
+                                }
+                                break;
                             }
-                            destinationActiveFile = new ActiveFile(fileInfo.FullName, destinationFileInfo.FullName, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.IgnoreChange, null);
-                            _activeFileMonitor.AddActiveFile(destinationActiveFile);
-                            isDecrypted = true;
-                            if (Logging.IsInfoEnabled)
-                            {
-                                Logging.Info("File decrypted from '{0}' to '{1}'".InvariantFormat(source.FullName, destinationActiveFile.DecryptedPath));
-                            }
-                            break;
                         }
                     }
                     if (!isDecrypted)

@@ -7,6 +7,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
@@ -59,7 +60,7 @@ namespace Axantum.AxCrypt
 
             _encryptedFileManager.IgnoreApplication = !AxCryptEnvironment.Current.IsDesktopWindows;
             _encryptedFileManager.Changed += new EventHandler<EventArgs>(_threadFacade.EncryptedFileManager_Changed);
-            _encryptedFileManager.ForceActiveFilesStatus();
+            _encryptedFileManager.ForceActiveFilesStatus(new ProgressContext());
 
             RestoreUserPreferences();
 
@@ -425,7 +426,7 @@ namespace Axantum.AxCrypt
         private void AddKnownKey(AesKey key)
         {
             KnownKeys.Add(key);
-            _encryptedFileManager.CheckActiveFilesStatus();
+            _encryptedFileManager.CheckActiveFilesStatus(new ProgressContext());
         }
 
         private void toolStripButtonOpenEncrypted_Click(object sender, EventArgs e)
@@ -523,11 +524,17 @@ namespace Axantum.AxCrypt
 
         private bool _fileOperationInProgress = false;
 
+        private bool _pollingInProgress = false;
+
         private void ActiveFilePolling_Tick(object sender, EventArgs e)
         {
             if (Logging.IsInfoEnabled)
             {
                 Logging.Info("Tick");
+            }
+            if (_pollingInProgress)
+            {
+                return;
             }
             if (_fileOperationInProgress)
             {
@@ -537,7 +544,16 @@ namespace Axantum.AxCrypt
             try
             {
                 _fileOperationInProgress = false/*true*/;
-                _encryptedFileManager.CheckActiveFilesStatus();
+                _pollingInProgress = true;
+                DoBackgroundWork("Updating Status",
+                    (object sender1, RunWorkerCompletedEventArgs e1) =>
+                    {
+                        _pollingInProgress = false;
+                    },
+                    (WorkerArguments arguments) =>
+                    {
+                        _encryptedFileManager.CheckActiveFilesStatus(arguments.Progress);
+                    });
             }
             finally
             {
@@ -577,38 +593,41 @@ namespace Axantum.AxCrypt
 
         private void AxCryptMainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            while (_progressBars.Count > 0)
+            {
+                Application.DoEvents();
+            }
             PurgeActiveFiles();
+            while (_progressBars.Count > 0)
+            {
+                Application.DoEvents();
+            }
             Trace.Listeners.Remove("AxCryptMainFormListener");
         }
 
         private void PurgeActiveFiles()
         {
-            while (_fileOperationInProgress)
-            {
-                Application.DoEvents();
-            }
-            try
-            {
-                _fileOperationInProgress = false/*true*/;
-                _encryptedFileManager.IgnoreApplication = true;
-                _encryptedFileManager.CheckActiveFilesStatus();
-                _encryptedFileManager.PurgeActiveFiles();
-                IList<ActiveFile> openFiles = _encryptedFileManager.FindOpenFiles();
-                if (openFiles.Count == 0)
+            _encryptedFileManager.IgnoreApplication = true;
+            DoBackgroundWork("Purging Active Files",
+                (object sender, RunWorkerCompletedEventArgs e) =>
                 {
-                    return;
-                }
-                StringBuilder sb = new StringBuilder();
-                foreach (ActiveFile openFile in openFiles)
+                    IList<ActiveFile> openFiles = _encryptedFileManager.FindOpenFiles();
+                    if (openFiles.Count == 0)
+                    {
+                        return;
+                    }
+                    StringBuilder sb = new StringBuilder();
+                    foreach (ActiveFile openFile in openFiles)
+                    {
+                        sb.Append("{0}\n".InvariantFormat(Path.GetFileName(openFile.DecryptedPath)));
+                    }
+                    sb.ToString().ShowWarning();
+                },
+                (WorkerArguments arguments) =>
                 {
-                    sb.Append("{0}\n".InvariantFormat(Path.GetFileName(openFile.DecryptedPath)));
-                }
-                sb.ToString().ShowWarning();
-            }
-            finally
-            {
-                _fileOperationInProgress = false;
-            }
+                    _encryptedFileManager.CheckActiveFilesStatus(arguments.Progress);
+                    _encryptedFileManager.PurgeActiveFiles(arguments.Progress);
+                });
         }
 
         private void OpenFilesListView_MouseDoubleClick(object sender, MouseEventArgs e)

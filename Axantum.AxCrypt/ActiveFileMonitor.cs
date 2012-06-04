@@ -119,51 +119,39 @@ namespace Axantum.AxCrypt
             }
         }
 
-        public void CheckActiveFilesStatus()
+        public void CheckActiveFilesStatus(ProgressContext progress)
         {
-            CheckActiveFilesStatusInternal(false);
+            CheckActiveFilesStatusInternal(false, progress);
         }
 
-        public void ForceActiveFilesStatus()
+        public void ForceActiveFilesStatus(ProgressContext progress)
         {
-            CheckActiveFilesStatusInternal(true);
+            CheckActiveFilesStatusInternal(true, progress);
         }
 
-        private void CheckActiveFilesStatusInternal(bool forceChanged)
+        private void CheckActiveFilesStatusInternal(bool forceChanged, ProgressContext progress)
         {
             ForEach(forceChanged, (ActiveFile activeFile) =>
             {
-                if (FileLock.IsLocked(activeFile.DecryptedPath))
+                if (FileLock.IsLocked(activeFile.DecryptedPath, activeFile.EncryptedPath))
                 {
-                    if (Logging.IsInfoEnabled)
-                    {
-                        Logging.Info("Ignoring file '{0}' because it is marked locked.".InvariantFormat(activeFile.DecryptedPath));
-                    }
-                    return activeFile;
-                }
-                if (FileLock.IsLocked(activeFile.EncryptedPath))
-                {
-                    if (Logging.IsInfoEnabled)
-                    {
-                        Logging.Info("Ignoring file '{0}' because it is marked locked.".InvariantFormat(activeFile.EncryptedPath));
-                    }
                     return activeFile;
                 }
                 if (DateTime.UtcNow - activeFile.LastAccessTimeUtc <= new TimeSpan(0, 0, 5))
                 {
                     return activeFile;
                 }
-                activeFile = CheckActiveFileActions(activeFile);
+                activeFile = CheckActiveFileActions(activeFile, progress);
                 return activeFile;
             });
         }
 
-        private ActiveFile CheckActiveFileActions(ActiveFile activeFile)
+        private ActiveFile CheckActiveFileActions(ActiveFile activeFile, ProgressContext progress)
         {
             activeFile = CheckIfKeyIsKnown(activeFile);
             activeFile = CheckIfCreated(activeFile);
             activeFile = CheckIfProcessExited(activeFile);
-            activeFile = CheckIfTimeToUpdate(activeFile);
+            activeFile = CheckIfTimeToUpdate(activeFile, progress);
             return activeFile;
         }
 
@@ -216,7 +204,7 @@ namespace Axantum.AxCrypt
             return activeFile;
         }
 
-        private ActiveFile CheckIfTimeToUpdate(ActiveFile activeFile)
+        private ActiveFile CheckIfTimeToUpdate(ActiveFile activeFile, ProgressContext progress)
         {
             if (activeFile.Status.HasFlag(ActiveFileStatus.NotShareable) || !activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted))
             {
@@ -238,7 +226,7 @@ namespace Axantum.AxCrypt
                     IRuntimeFileInfo sourceFileInfo = AxCryptEnvironment.Current.FileInfo(activeFile.DecryptedPath);
                     AxCryptFile.WriteToFileWithBackup(activeFile.EncryptedPath, (Stream destination) =>
                     {
-                        AxCryptFile.Encrypt(sourceFileInfo, destination, activeFile.Key, AxCryptOptions.EncryptWithCompression, _progressManager.Create(Path.GetFileName(activeFile.DecryptedFileInfo.Name)));
+                        AxCryptFile.Encrypt(sourceFileInfo, destination, activeFile.Key, AxCryptOptions.EncryptWithCompression, progress);
                     });
                 }
             }
@@ -259,7 +247,7 @@ namespace Axantum.AxCrypt
             return activeFile;
         }
 
-        private static ActiveFile CheckIfTimeToDelete(ActiveFile activeFile)
+        private static ActiveFile CheckIfTimeToDelete(ActiveFile activeFile, ProgressContext progress)
         {
             if (!AxCryptEnvironment.Current.IsDesktopWindows)
             {
@@ -278,7 +266,7 @@ namespace Axantum.AxCrypt
             return activeFile;
         }
 
-        public void PurgeActiveFiles()
+        public void PurgeActiveFiles(ProgressContext progress)
         {
             ForEach(false, (ActiveFile activeFile) =>
             {
@@ -295,7 +283,7 @@ namespace Axantum.AxCrypt
                     {
                         activeFile = new ActiveFile(activeFile, activeFile.Status & ~ActiveFileStatus.NotShareable);
                     }
-                    activeFile = CheckIfTimeToUpdate(activeFile);
+                    activeFile = CheckIfTimeToUpdate(activeFile, progress);
                 }
                 if (activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted) && !activeFile.IsModified)
                 {

@@ -44,7 +44,10 @@ namespace Axantum.AxCrypt
         {
             get
             {
-                return _activeFilesByDecryptedPath.Values;
+                lock (_lock)
+                {
+                    return new List<ActiveFile>(_activeFilesByDecryptedPath.Values);
+                }
             }
             set
             {
