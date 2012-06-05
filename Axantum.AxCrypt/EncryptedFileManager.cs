@@ -161,25 +161,8 @@ namespace Axantum.AxCrypt
             {
                 if (File.Exists(destinationActiveFile.DecryptedPath))
                 {
-                    IRuntimeFileInfo source = AxCryptEnvironment.Current.FileInfo(destinationActiveFile.EncryptedPath);
-                    foreach (AesKey key in keys)
-                    {
-                        using (AxCryptDocument document = AxCryptFile.Document(source, key, progress))
-                        {
-                            if (document.PassphraseIsValid)
-                            {
-                                destinationActiveFile = new ActiveFile(destinationActiveFile, key);
-                                _activeFileMonitor.Add(destinationActiveFile);
-
-                                if (Logging.IsWarningEnabled)
-                                {
-                                    Logging.Warning("File was already decrypted and now launching '{0}' to '{1}'".InvariantFormat(source.FullName, destinationActiveFile.DecryptedPath));
-                                }
-                                return LaunchApplicationForDocument(destinationActiveFile);
-                            }
-                        }
-                    }
-                    return FileOperationStatus.InvalidKey;
+                    FileOperationStatus status = TryLaunchAlreadyDecryptedFile(keys, progress, destinationActiveFile);
+                    return status;
                 }
             }
 
@@ -187,55 +170,8 @@ namespace Axantum.AxCrypt
             {
                 if (destinationPath == null)
                 {
-                    string destinationFolder;
-                    if (destinationActiveFile != null)
-                    {
-                        destinationFolder = Path.GetDirectoryName(destinationActiveFile.DecryptedPath);
-                    }
-                    else
-                    {
-                        destinationFolder = Path.Combine(_activeFileMonitor.TemporaryDirectoryInfo.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()));
-                    }
-                    Directory.CreateDirectory(destinationFolder);
-
-                    IRuntimeFileInfo source = AxCryptEnvironment.Current.FileInfo(fileInfo);
-
-                    bool isDecrypted = false;
-                    foreach (AesKey key in keys)
-                    {
-                        if (Logging.IsInfoEnabled)
-                        {
-                            Logging.Info("Decrypting '{0}'".InvariantFormat(source.FullName));
-                        }
-                        using (FileLock sourceLock = FileLock.Lock(source.FullName))
-                        {
-                            using (AxCryptDocument document = AxCryptFile.Document(source, key, progress))
-                            {
-                                if (!document.PassphraseIsValid)
-                                {
-                                    continue;
-                                }
-
-                                string destinationName = document.DocumentHeaders.FileName;
-                                destinationPath = Path.Combine(destinationFolder, destinationName);
-
-                                IRuntimeFileInfo destinationFileInfo = AxCryptEnvironment.Current.FileInfo(destinationPath);
-                                using (FileLock fileLock = FileLock.Lock(destinationFileInfo.FullName))
-                                {
-                                    AxCryptFile.Decrypt(document, destinationFileInfo, AxCryptOptions.SetFileTimes, progress);
-                                }
-                                destinationActiveFile = new ActiveFile(fileInfo.FullName, destinationFileInfo.FullName, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.IgnoreChange, null);
-                                _activeFileMonitor.AddActiveFile(destinationActiveFile);
-                                isDecrypted = true;
-                                if (Logging.IsInfoEnabled)
-                                {
-                                    Logging.Info("File decrypted from '{0}' to '{1}'".InvariantFormat(source.FullName, destinationActiveFile.DecryptedPath));
-                                }
-                                break;
-                            }
-                        }
-                    }
-                    if (!isDecrypted)
+                    destinationActiveFile = TryDecrypt(keys, progress, fileInfo, destinationActiveFile, destinationPath);
+                    if (destinationActiveFile == null)
                     {
                         return FileOperationStatus.InvalidKey;
                     }
@@ -247,6 +183,81 @@ namespace Axantum.AxCrypt
             }
 
             return LaunchApplicationForDocument(destinationActiveFile);
+        }
+
+        private ActiveFile TryDecrypt(IEnumerable<AesKey> keys, ProgressContext progress, FileInfo fileInfo, ActiveFile destinationActiveFile, string destinationPath)
+        {
+            string destinationFolder;
+            if (destinationActiveFile != null)
+            {
+                destinationFolder = Path.GetDirectoryName(destinationActiveFile.DecryptedPath);
+            }
+            else
+            {
+                destinationFolder = Path.Combine(_activeFileMonitor.TemporaryDirectoryInfo.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()));
+            }
+            Directory.CreateDirectory(destinationFolder);
+
+            IRuntimeFileInfo source = AxCryptEnvironment.Current.FileInfo(fileInfo);
+
+            destinationActiveFile = null;
+            foreach (AesKey key in keys)
+            {
+                if (Logging.IsInfoEnabled)
+                {
+                    Logging.Info("Decrypting '{0}'".InvariantFormat(source.FullName));
+                }
+                using (FileLock sourceLock = FileLock.Lock(source.FullName))
+                {
+                    using (AxCryptDocument document = AxCryptFile.Document(source, key, progress))
+                    {
+                        if (!document.PassphraseIsValid)
+                        {
+                            continue;
+                        }
+
+                        string destinationName = document.DocumentHeaders.FileName;
+                        destinationPath = Path.Combine(destinationFolder, destinationName);
+
+                        IRuntimeFileInfo destinationFileInfo = AxCryptEnvironment.Current.FileInfo(destinationPath);
+                        using (FileLock fileLock = FileLock.Lock(destinationFileInfo.FullName))
+                        {
+                            AxCryptFile.Decrypt(document, destinationFileInfo, AxCryptOptions.SetFileTimes, progress);
+                        }
+                        destinationActiveFile = new ActiveFile(fileInfo.FullName, destinationFileInfo.FullName, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.IgnoreChange, null);
+                        _activeFileMonitor.AddActiveFile(destinationActiveFile);
+                        if (Logging.IsInfoEnabled)
+                        {
+                            Logging.Info("File decrypted from '{0}' to '{1}'".InvariantFormat(source.FullName, destinationActiveFile.DecryptedPath));
+                        }
+                        break;
+                    }
+                }
+            }
+            return destinationActiveFile;
+        }
+
+        private FileOperationStatus TryLaunchAlreadyDecryptedFile(IEnumerable<AesKey> keys, ProgressContext progress, ActiveFile destinationActiveFile)
+        {
+            IRuntimeFileInfo source = AxCryptEnvironment.Current.FileInfo(destinationActiveFile.EncryptedPath);
+            foreach (AesKey key in keys)
+            {
+                using (AxCryptDocument document = AxCryptFile.Document(source, key, progress))
+                {
+                    if (document.PassphraseIsValid)
+                    {
+                        destinationActiveFile = new ActiveFile(destinationActiveFile, key);
+                        _activeFileMonitor.Add(destinationActiveFile);
+
+                        if (Logging.IsWarningEnabled)
+                        {
+                            Logging.Warning("File was already decrypted and now launching '{0}' to '{1}'".InvariantFormat(source.FullName, destinationActiveFile.DecryptedPath));
+                        }
+                        return LaunchApplicationForDocument(destinationActiveFile);
+                    }
+                }
+            }
+            return FileOperationStatus.InvalidKey;
         }
 
         private FileOperationStatus LaunchApplicationForDocument(ActiveFile destinationActiveFile)
