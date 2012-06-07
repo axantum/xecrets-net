@@ -139,7 +139,10 @@ namespace Axantum.AxCrypt.Core.Reader
             AxCryptItemType before = CurrentItemType;
             bool readOk = ReadInternal();
             AxCryptItemType after = CurrentItemType;
-            Trace.TraceInformation("AxCryptReader.Read() from type {0} to type {1} : {2}.", before, after, CurrentHeaderBlock == null ? "(None)" : CurrentHeaderBlock.GetType().ToString());
+            if (Logging.IsDebugEnabled)
+            {
+                Logging.Verbose("AxCryptReader.Read() from type {0} to type {1} : {2}.".InvariantFormat(before, after, CurrentHeaderBlock == null ? "(None)" : CurrentHeaderBlock.GetType().ToString()));
+            }
             return readOk;
         }
 

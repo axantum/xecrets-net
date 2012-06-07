@@ -18,7 +18,7 @@ namespace Axantum.AxCrypt
     /// <summary>
     ///
     /// </summary>
-    internal class EncryptedFileManager : Component
+    internal class EncryptedFileManager : Component, ISupportInitialize
     {
         public event EventHandler<EventArgs> Changed;
 
@@ -28,8 +28,6 @@ namespace Axantum.AxCrypt
 
         public EncryptedFileManager()
         {
-            _activeFileMonitor = new ActiveFileMonitor();
-            _activeFileMonitor.Changed += new EventHandler<EventArgs>(ActiveFileMonitor_Changed);
         }
 
         private void ActiveFileMonitor_Changed(object sender, EventArgs e)
@@ -103,6 +101,10 @@ namespace Axantum.AxCrypt
             _activeFileMonitor.RemoveActiveFile(activeFile);
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Browsable(false)]
+        [DefaultValue(false)]
         public bool IgnoreApplication
         {
             get
@@ -321,6 +323,20 @@ namespace Axantum.AxCrypt
             }
             _disposed = true;
             base.Dispose(disposing);
+        }
+
+        public void BeginInit()
+        {
+        }
+
+        public void EndInit()
+        {
+            if (DesignMode)
+            {
+                return;
+            }
+            _activeFileMonitor = new ActiveFileMonitor();
+            _activeFileMonitor.Changed += new EventHandler<EventArgs>(ActiveFileMonitor_Changed);
         }
     }
 }

@@ -133,6 +133,11 @@ namespace Axantum.AxCrypt
 
         private void toolStripButtonEncrypt_Click(object sender, EventArgs e)
         {
+            EncryptFilesViaDialog();
+        }
+
+        private void EncryptFilesViaDialog()
+        {
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
                 ofd.Title = Resources.EncryptFileOpenDialogTitle;
@@ -199,10 +204,17 @@ namespace Axantum.AxCrypt
                 key = KnownKeys.DefaultEncryptionKey;
             }
 
-            ThreadFacade.DoBackgroundWork(sourceFileInfo.FullName, null, (WorkerArguments arguments) =>
-            {
-                EncryptedFileManager.EncryptFile(sourceFileInfo, destinationFileInfo, key, arguments.Progress);
-            });
+            ThreadFacade.DoBackgroundWork(sourceFileInfo.FullName,
+                (object sender, RunWorkerCompletedEventArgs e) =>
+                {
+                    FileOperationStatus status = (FileOperationStatus)e.Result;
+                    CheckStatusAndShowMessage(status, sourceFileInfo.Name);
+                },
+                (WorkerArguments arguments) =>
+                {
+                    EncryptedFileManager.EncryptFile(sourceFileInfo, destinationFileInfo, key, arguments.Progress);
+                    arguments.Result = FileOperationStatus.Success;
+                });
 
             if (KnownKeys.DefaultEncryptionKey == null)
             {
@@ -210,7 +222,48 @@ namespace Axantum.AxCrypt
             }
         }
 
+        private void CheckStatusAndShowMessage(FileOperationStatus status, string displayText)
+        {
+            switch (status)
+            {
+                case FileOperationStatus.Success:
+                    break;
+                case FileOperationStatus.UnspecifiedError:
+                    "Failed '{0}'.".InvariantFormat(displayText).ShowWarning();
+                    break;
+                case FileOperationStatus.FileAlreadyExists:
+                    "File '{0}' already exists.".InvariantFormat(displayText).ShowWarning();
+                    break;
+                case FileOperationStatus.FileDoesNotExist:
+                    "File '{0}' does not exist.".InvariantFormat(displayText).ShowWarning();
+                    break;
+                case FileOperationStatus.CannotWriteDestination:
+                    "Cannot write '{0}'.".InvariantFormat(displayText).ShowWarning();
+                    break;
+                case FileOperationStatus.CannotStartApplication:
+                    "Cannot start application for '{0}'.".InvariantFormat(displayText).ShowWarning();
+                    break;
+                case FileOperationStatus.InconsistentState:
+                    "Inconsistent state with '{0}'.".InvariantFormat(displayText).ShowWarning();
+                    break;
+                case FileOperationStatus.InvalidKey:
+                    "Invalid key for '{0}'.".InvariantFormat(displayText).ShowWarning();
+                    break;
+                case FileOperationStatus.Cancelled:
+                    "Cancelled '{0}'.".InvariantFormat(displayText).ShowWarning();
+                    break;
+                default:
+                    "Unrecognized error code failing with '{0}'.".InvariantFormat(displayText).ShowWarning();
+                    break;
+            }
+        }
+
         private void toolStripButtonDecrypt_Click(object sender, EventArgs e)
+        {
+            DecryptFilesViaDialog();
+        }
+
+        private void DecryptFilesViaDialog()
         {
             string[] fileNames;
             using (OpenFileDialog ofd = new OpenFileDialog())
@@ -251,7 +304,13 @@ namespace Axantum.AxCrypt
             {
                 return false;
             }
-            ThreadFacade.DoBackgroundWork(source.Name, null, (WorkerArguments arguments) =>
+            ThreadFacade.DoBackgroundWork(source.Name,
+                (object sender, RunWorkerCompletedEventArgs e) =>
+                {
+                    FileOperationStatus status = (FileOperationStatus)e.Result;
+                    CheckStatusAndShowMessage(status, source.Name);
+                },
+            (WorkerArguments arguments) =>
             {
                 try
                 {
@@ -262,6 +321,7 @@ namespace Axantum.AxCrypt
                     document.Dispose();
                 }
                 AxCryptFile.Wipe(source);
+                arguments.Result = FileOperationStatus.Success;
             });
             return true;
         }
@@ -379,8 +439,9 @@ namespace Axantum.AxCrypt
                     if (status == FileOperationStatus.InvalidKey)
                     {
                         AskForPassphraseAndOpenEncrypted(file);
+                        return;
                     }
-                    return;
+                    CheckStatusAndShowMessage(status, file);
                 },
                 (WorkerArguments arguments) =>
                 {
@@ -410,7 +471,7 @@ namespace Axantum.AxCrypt
                         AskForPassphraseAndOpenEncrypted(file);
                         return;
                     }
-                    "Failed to decrypt and open {0}".InvariantFormat(file).ShowWarning();
+                    CheckStatusAndShowMessage(status, file);
                 },
                 (WorkerArguments arguments) =>
                 {
@@ -611,6 +672,16 @@ namespace Axantum.AxCrypt
             ProgressBar progressBar = (ProgressBar)menuStrip.Tag;
             BackgroundWorker worker = (BackgroundWorker)progressBar.Tag;
             worker.CancelAsync();
+        }
+
+        private void encryptToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EncryptFilesViaDialog();
+        }
+
+        private void decryptToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DecryptFilesViaDialog();
         }
     }
 }

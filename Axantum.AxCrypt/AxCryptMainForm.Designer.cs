@@ -83,6 +83,7 @@
             this.RecentFilesContextMenu.SuspendLayout();
             this.OpenFilesContextMenu.SuspendLayout();
             this.ProgressContextMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.EncryptedFileManager)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -174,11 +175,13 @@
             // 
             resources.ApplyResources(this.encryptToolStripMenuItem, "encryptToolStripMenuItem");
             this.encryptToolStripMenuItem.Name = "encryptToolStripMenuItem";
+            this.encryptToolStripMenuItem.Click += new System.EventHandler(this.encryptToolStripMenuItem_Click);
             // 
             // decryptToolStripMenuItem
             // 
             resources.ApplyResources(this.decryptToolStripMenuItem, "decryptToolStripMenuItem");
             this.decryptToolStripMenuItem.Name = "decryptToolStripMenuItem";
+            this.decryptToolStripMenuItem.Click += new System.EventHandler(this.decryptToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -376,10 +379,6 @@
             resources.ApplyResources(this.ProgressContextCancelMenu, "ProgressContextCancelMenu");
             this.ProgressContextCancelMenu.Click += new System.EventHandler(this.ProgressContextCancelMenu_Click);
             // 
-            // EncryptedFileManager
-            // 
-            this.EncryptedFileManager.IgnoreApplication = false;
-            // 
             // AxCryptMainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -405,6 +404,7 @@
             this.RecentFilesContextMenu.ResumeLayout(false);
             this.OpenFilesContextMenu.ResumeLayout(false);
             this.ProgressContextMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.EncryptedFileManager)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -452,9 +452,9 @@
         private System.Windows.Forms.ContextMenuStrip OpenFilesContextMenu;
         private System.Windows.Forms.ToolStripMenuItem EnterPassphraseMenuItem;
         internal System.Windows.Forms.TableLayoutPanel ProgressPanel;
-        private EncryptedFileManager EncryptedFileManager;
         private System.Windows.Forms.ContextMenuStrip ProgressContextMenu;
         private System.Windows.Forms.ToolStripMenuItem ProgressContextCancelMenu;
+        internal EncryptedFileManager EncryptedFileManager;
     }
 }
 

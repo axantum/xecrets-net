@@ -122,7 +122,6 @@
     <Compile Include="FileLock.cs" />
     <Compile Include="FileOperationStatus.cs" />
     <Compile Include="FileSystemState.cs" />
-    <Compile Include="Logging.cs" />
     <Compile Include="MainFormThreadFacade.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgressManager.cs" />

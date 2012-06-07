@@ -213,9 +213,20 @@ namespace Axantum.AxCrypt.Core
             string temporaryFilePath = MakeAlternatePath(destinationFileInfo, ".tmp");
             IRuntimeFileInfo temporaryFileInfo = AxCryptEnvironment.Current.FileInfo(temporaryFilePath);
 
-            using (Stream temporaryStream = temporaryFileInfo.OpenWrite())
+            try
             {
-                writeFileStreamTo(temporaryStream);
+                using (Stream temporaryStream = temporaryFileInfo.OpenWrite())
+                {
+                    writeFileStreamTo(temporaryStream);
+                }
+            }
+            catch (OperationCanceledException)
+            {
+                if (temporaryFileInfo.Exists)
+                {
+                    temporaryFileInfo.Delete();
+                }
+                throw;
             }
 
             if (destinationFileInfo.Exists)
