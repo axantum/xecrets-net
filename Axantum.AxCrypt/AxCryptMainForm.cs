@@ -253,8 +253,14 @@ namespace Axantum.AxCrypt
             }
             ThreadFacade.DoBackgroundWork(source.Name, null, (WorkerArguments arguments) =>
             {
-                AxCryptFile.Decrypt(document, destination, AxCryptOptions.SetFileTimes, arguments.Progress);
-                document.Dispose();
+                try
+                {
+                    AxCryptFile.Decrypt(document, destination, AxCryptOptions.SetFileTimes, arguments.Progress);
+                }
+                finally
+                {
+                    document.Dispose();
+                }
                 AxCryptFile.Wipe(source);
             });
             return true;

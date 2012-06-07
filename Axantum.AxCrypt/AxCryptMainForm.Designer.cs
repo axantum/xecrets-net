@@ -70,9 +70,9 @@
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenFilesContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.EnterPassphraseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.EncryptedFileManager = new Axantum.AxCrypt.EncryptedFileManager();
             this.ProgressContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ProgressContextCancelMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.EncryptedFileManager = new Axantum.AxCrypt.EncryptedFileManager();
             this.toolStrip1.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.StatusTabs.SuspendLayout();
@@ -363,10 +363,6 @@
             resources.ApplyResources(this.EnterPassphraseMenuItem, "EnterPassphraseMenuItem");
             this.EnterPassphraseMenuItem.Click += new System.EventHandler(this.EnterPassphraseMenuItem_Click);
             // 
-            // EncryptedFileManager
-            // 
-            this.EncryptedFileManager.IgnoreApplication = false;
-            // 
             // ProgressContextMenu
             // 
             this.ProgressContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -379,6 +375,10 @@
             this.ProgressContextCancelMenu.Name = "ProgressContextCancelMenu";
             resources.ApplyResources(this.ProgressContextCancelMenu, "ProgressContextCancelMenu");
             this.ProgressContextCancelMenu.Click += new System.EventHandler(this.ProgressContextCancelMenu_Click);
+            // 
+            // EncryptedFileManager
+            // 
+            this.EncryptedFileManager.IgnoreApplication = false;
             // 
             // AxCryptMainForm
             // 

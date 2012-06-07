@@ -253,17 +253,7 @@ namespace Axantum.AxCrypt.Core
             {
                 using (Stream encryptedDataStream = _reader.CreateEncryptedDataStream(DocumentHeaders.HmacSubkey.Key, DocumentHeaders.CipherTextLength, progress))
                 {
-                    try
-                    {
-                        DecryptEncryptedDataStream(outputPlaintextStream, decryptor, encryptedDataStream);
-                    }
-                    catch (CryptographicException ce)
-                    {
-                        if (ce.InnerException.GetType() == typeof(OperationCanceledException))
-                        {
-                            throw ce.InnerException;
-                        }
-                    }
+                    DecryptEncryptedDataStream(outputPlaintextStream, decryptor, encryptedDataStream);
                 }
             }
 
