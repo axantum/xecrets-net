@@ -28,6 +28,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -86,18 +87,40 @@ namespace Axantum.AxCrypt.Core
 
         public static void Verbose(string message)
         {
-            Trace.Write(message);
+            Trace.WriteLine("{1} Debug: {0}".InvariantFormat(message, AppName));
+        }
+
+        public static TraceLevel Level
+        {
+            set
+            {
+                _switch.Level = value;
+            }
         }
 
         private static TraceSwitch InitializeTraceSwitch()
         {
             TraceSwitch traceSwitch = new TraceSwitch("axCryptSwitch", "Logging levels for AxCrypt");
 #if DEBUG
-            traceSwitch.Level = TraceLevel.Verbose;
+            traceSwitch.Level = TraceLevel.Info;
 #else
             traceSwitch.Level = TraceLevel.Error;
 #endif
             return traceSwitch;
+        }
+
+        private static string _appName;
+
+        private static string AppName
+        {
+            get
+            {
+                if (_appName == null)
+                {
+                    _appName = Path.GetFileName(Environment.GetCommandLineArgs()[0]);
+                }
+                return _appName;
+            }
         }
     }
 }
