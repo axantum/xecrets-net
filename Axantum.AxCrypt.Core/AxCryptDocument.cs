@@ -253,21 +253,15 @@ namespace Axantum.AxCrypt.Core
             {
                 using (Stream encryptedDataStream = _reader.CreateEncryptedDataStream(DocumentHeaders.HmacSubkey.Key, DocumentHeaders.CipherTextLength, progress))
                 {
-                    if (DocumentHeaders.IsCompressed)
+                    try
                     {
-                        using (Stream deflatedPlaintextStream = new CryptoStream(encryptedDataStream, decryptor, CryptoStreamMode.Read))
-                        {
-                            using (Stream inflatedPlaintextStream = new ZInputStream(deflatedPlaintextStream))
-                            {
-                                inflatedPlaintextStream.CopyTo(outputPlaintextStream, 65536);
-                            }
-                        }
+                        DecryptEncryptedDataStream(outputPlaintextStream, decryptor, encryptedDataStream);
                     }
-                    else
+                    catch (CryptographicException ce)
                     {
-                        using (Stream plainStream = new CryptoStream(encryptedDataStream, decryptor, CryptoStreamMode.Read))
+                        if (ce.InnerException.GetType() == typeof(OperationCanceledException))
                         {
-                            plainStream.CopyTo(outputPlaintextStream, 65536);
+                            throw ce.InnerException;
                         }
                     }
                 }
@@ -276,6 +270,56 @@ namespace Axantum.AxCrypt.Core
             if (_reader.Hmac != DocumentHeaders.Hmac)
             {
                 throw new InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
+            }
+        }
+
+        private void DecryptEncryptedDataStream(Stream outputPlaintextStream, ICryptoTransform decryptor, Stream encryptedDataStream)
+        {
+            Exception savedExceptionIfCloseCausesCryptographicException = null;
+            try
+            {
+                if (DocumentHeaders.IsCompressed)
+                {
+                    using (CryptoStream deflatedPlaintextStream = new CryptoStream(encryptedDataStream, decryptor, CryptoStreamMode.Read))
+                    {
+                        using (ZInputStream inflatedPlaintextStream = new ZInputStream(deflatedPlaintextStream))
+                        {
+                            try
+                            {
+                                inflatedPlaintextStream.CopyTo(outputPlaintextStream, 65536);
+                            }
+                            catch (Exception ex)
+                            {
+                                savedExceptionIfCloseCausesCryptographicException = ex;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    using (Stream plainStream = new CryptoStream(encryptedDataStream, decryptor, CryptoStreamMode.Read))
+                    {
+                        try
+                        {
+                            plainStream.CopyTo(outputPlaintextStream, 65536);
+                        }
+                        catch (Exception ex)
+                        {
+                            savedExceptionIfCloseCausesCryptographicException = ex;
+                        }
+                    }
+                }
+            }
+            catch (CryptographicException)
+            {
+                if (savedExceptionIfCloseCausesCryptographicException == null)
+                {
+                    throw;
+                }
+            }
+            if (savedExceptionIfCloseCausesCryptographicException != null)
+            {
+                throw savedExceptionIfCloseCausesCryptographicException;
             }
         }
 

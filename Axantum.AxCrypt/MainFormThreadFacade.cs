@@ -47,7 +47,15 @@ namespace Axantum.AxCrypt
             worker.DoWork += (object sender, DoWorkEventArgs e) =>
             {
                 WorkerArguments arguments = (WorkerArguments)e.Argument;
-                action(arguments);
+                try
+                {
+                    action(arguments);
+                }
+                catch (OperationCanceledException)
+                {
+                    e.Result = FileOperationStatus.Cancelled;
+                    return;
+                }
                 e.Result = arguments.Result;
             };
             worker.RunWorkerAsync(new WorkerArguments(ProgressManager.Create(displayText, worker)));
@@ -103,10 +111,6 @@ namespace Axantum.AxCrypt
             BackgroundWorker worker = (BackgroundWorker)e.UserState;
             ProgressBar progressBar = _progressBars[worker];
             progressBar.Value = e.ProgressPercentage;
-            if (worker.CancellationPending)
-            {
-                throw new OperationCanceledException();
-            }
         }
 
         public void WaitForBackgroundIdle()
@@ -122,6 +126,10 @@ namespace Axantum.AxCrypt
             BackgroundWorker worker = e.Context as BackgroundWorker;
             if (worker != null)
             {
+                if (worker.CancellationPending)
+                {
+                    throw new OperationCanceledException();
+                }
                 worker.ReportProgress(e.Percent, worker);
             }
             ProgressBar progressBar = e.Context as ProgressBar;

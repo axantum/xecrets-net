@@ -157,35 +157,26 @@ namespace Axantum.AxCrypt
             ActiveFile destinationActiveFile = _activeFileMonitor.FindActiveFile(fileInfo.FullName);
 
             string destinationPath = null;
-            if (destinationActiveFile != null)
+            if (destinationActiveFile == null || !File.Exists(destinationActiveFile.DecryptedPath))
             {
-                if (File.Exists(destinationActiveFile.DecryptedPath))
-                {
-                    FileOperationStatus status = TryLaunchAlreadyDecryptedFile(keys, progress, destinationActiveFile);
-                    return status;
-                }
+                destinationActiveFile = TryDecrypt(destinationActiveFile, keys, fileInfo, destinationPath, progress);
+            }
+            else
+            {
+                destinationActiveFile = CheckKeysForAlreadyDecryptedFile(destinationActiveFile, keys, progress);
             }
 
-            try
+            if (destinationActiveFile == null)
             {
-                if (destinationPath == null)
-                {
-                    destinationActiveFile = TryDecrypt(keys, progress, fileInfo, destinationActiveFile, destinationPath);
-                    if (destinationActiveFile == null)
-                    {
-                        return FileOperationStatus.InvalidKey;
-                    }
-                }
+                return FileOperationStatus.InvalidKey;
             }
-            catch (IOException)
-            {
-                return FileOperationStatus.CannotWriteDestination;
-            }
+
+            _activeFileMonitor.AddActiveFile(destinationActiveFile);
 
             return LaunchApplicationForDocument(destinationActiveFile);
         }
 
-        private ActiveFile TryDecrypt(IEnumerable<AesKey> keys, ProgressContext progress, FileInfo fileInfo, ActiveFile destinationActiveFile, string destinationPath)
+        private ActiveFile TryDecrypt(ActiveFile destinationActiveFile, IEnumerable<AesKey> keys, FileInfo fileInfo, string destinationPath, ProgressContext progress)
         {
             string destinationFolder;
             if (destinationActiveFile != null)
@@ -225,7 +216,6 @@ namespace Axantum.AxCrypt
                             AxCryptFile.Decrypt(document, destinationFileInfo, AxCryptOptions.SetFileTimes, progress);
                         }
                         destinationActiveFile = new ActiveFile(fileInfo.FullName, destinationFileInfo.FullName, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.IgnoreChange, null);
-                        _activeFileMonitor.AddActiveFile(destinationActiveFile);
                         if (Logging.IsInfoEnabled)
                         {
                             Logging.Info("File decrypted from '{0}' to '{1}'".InvariantFormat(source.FullName, destinationActiveFile.DecryptedPath));
@@ -237,7 +227,7 @@ namespace Axantum.AxCrypt
             return destinationActiveFile;
         }
 
-        private FileOperationStatus TryLaunchAlreadyDecryptedFile(IEnumerable<AesKey> keys, ProgressContext progress, ActiveFile destinationActiveFile)
+        private ActiveFile CheckKeysForAlreadyDecryptedFile(ActiveFile destinationActiveFile, IEnumerable<AesKey> keys, ProgressContext progress)
         {
             IRuntimeFileInfo source = AxCryptEnvironment.Current.FileInfo(destinationActiveFile.EncryptedPath);
             foreach (AesKey key in keys)
@@ -246,18 +236,15 @@ namespace Axantum.AxCrypt
                 {
                     if (document.PassphraseIsValid)
                     {
-                        destinationActiveFile = new ActiveFile(destinationActiveFile, key);
-                        _activeFileMonitor.Add(destinationActiveFile);
-
                         if (Logging.IsWarningEnabled)
                         {
-                            Logging.Warning("File was already decrypted and now launching '{0}' to '{1}'".InvariantFormat(source.FullName, destinationActiveFile.DecryptedPath));
+                            Logging.Warning("File was already decrypted and the key was known for '{0}' to '{1}'".InvariantFormat(source.FullName, destinationActiveFile.DecryptedPath));
                         }
-                        return LaunchApplicationForDocument(destinationActiveFile);
+                        return new ActiveFile(destinationActiveFile, key);
                     }
                 }
             }
-            return FileOperationStatus.InvalidKey;
+            return null;
         }
 
         private FileOperationStatus LaunchApplicationForDocument(ActiveFile destinationActiveFile)

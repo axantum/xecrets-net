@@ -365,11 +365,6 @@ namespace Axantum.AxCrypt
             return _fileSystemState.FindEncryptedPath(encryptedPath);
         }
 
-        public void Add(ActiveFile activeFile)
-        {
-            _fileSystemState.Add(activeFile);
-        }
-
         private DirectoryInfo _temporaryDirectoryInfo;
 
         public DirectoryInfo TemporaryDirectoryInfo

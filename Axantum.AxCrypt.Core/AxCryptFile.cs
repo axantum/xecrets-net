@@ -172,9 +172,20 @@ namespace Axantum.AxCrypt.Core
         /// <param name="destinationFile">The destination file</param>
         public static void Decrypt(AxCryptDocument document, IRuntimeFileInfo destinationFile, AxCryptOptions options, ProgressContext progress)
         {
-            using (Stream destinationStream = destinationFile.OpenWrite())
+            try
             {
-                document.DecryptTo(destinationStream, progress);
+                using (Stream destinationStream = destinationFile.OpenWrite())
+                {
+                    document.DecryptTo(destinationStream, progress);
+                }
+            }
+            catch (OperationCanceledException)
+            {
+                if (destinationFile.Exists)
+                {
+                    destinationFile.Delete();
+                }
+                throw;
             }
             if (options.HasFlag(AxCryptOptions.SetFileTimes))
             {
