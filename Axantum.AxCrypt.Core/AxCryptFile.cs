@@ -174,9 +174,19 @@ namespace Axantum.AxCrypt.Core
         {
             try
             {
+                if (Logging.IsInfoEnabled)
+                {
+                    Logging.Info("Decrypting to '{0}'.".InvariantFormat(destinationFile.Name));
+                }
+
                 using (Stream destinationStream = destinationFile.OpenWrite())
                 {
                     document.DecryptTo(destinationStream, progress);
+                }
+
+                if (Logging.IsInfoEnabled)
+                {
+                    Logging.Info("Decrypted to '{0}'.".InvariantFormat(destinationFile.Name));
                 }
             }
             catch (OperationCanceledException)
@@ -273,6 +283,10 @@ namespace Axantum.AxCrypt.Core
         {
             if (fileInfo.Exists)
             {
+                if (Logging.IsInfoEnabled)
+                {
+                    Logging.Info("Wiping '{0}'.".InvariantFormat(fileInfo.Name));
+                }
                 fileInfo.Delete();
             }
         }

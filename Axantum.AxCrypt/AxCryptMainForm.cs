@@ -310,19 +310,19 @@ namespace Axantum.AxCrypt
                     FileOperationStatus status = (FileOperationStatus)e.Result;
                     CheckStatusAndShowMessage(status, source.Name);
                 },
-            (WorkerArguments arguments) =>
-            {
-                try
+                (WorkerArguments arguments) =>
                 {
-                    AxCryptFile.Decrypt(document, destination, AxCryptOptions.SetFileTimes, arguments.Progress);
-                }
-                finally
-                {
-                    document.Dispose();
-                }
-                AxCryptFile.Wipe(source);
-                arguments.Result = FileOperationStatus.Success;
-            });
+                    try
+                    {
+                        AxCryptFile.Decrypt(document, destination, AxCryptOptions.SetFileTimes, arguments.Progress);
+                    }
+                    finally
+                    {
+                        document.Dispose();
+                    }
+                    AxCryptFile.Wipe(source);
+                    arguments.Result = FileOperationStatus.Success;
+                });
             return true;
         }
 

@@ -64,6 +64,10 @@ namespace Axantum.AxCrypt
 
         private BackgroundWorker CreateWorker(RunWorkerCompletedEventHandler completedHandler)
         {
+            if (Logging.IsInfoEnabled)
+            {
+                Logging.Info("Creating BackgroundWorker");
+            }
             BackgroundWorker worker = new BackgroundWorker();
             worker.WorkerReportsProgress = true;
             worker.WorkerSupportsCancellation = true;
@@ -76,9 +80,13 @@ namespace Axantum.AxCrypt
                 progressBar.Dispose();
                 if (completedHandler != null)
                 {
-                    MainForm.BeginInvoke((Action)(() => { completedHandler(sender, e); }));
+                    completedHandler(sender, e);
                 }
                 worker.Dispose();
+                if (Logging.IsInfoEnabled)
+                {
+                    Logging.Info("Disposing BackgroundWorker");
+                }
             };
             worker.ProgressChanged += new ProgressChangedEventHandler(worker_ProgressChanged);
 
@@ -132,7 +140,9 @@ namespace Axantum.AxCrypt
                     throw new OperationCanceledException();
                 }
                 worker.ReportProgress(e.Percent, worker);
+                return;
             }
+
             ProgressBar progressBar = e.Context as ProgressBar;
             if (progressBar != null)
             {
