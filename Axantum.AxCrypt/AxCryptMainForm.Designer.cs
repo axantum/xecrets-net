@@ -72,6 +72,7 @@
             this.EnterPassphraseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ProgressContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ProgressContextCancelMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.TrayNotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.EncryptedFileManager = new Axantum.AxCrypt.EncryptedFileManager();
             this.toolStrip1.SuspendLayout();
             this.menuStripMain.SuspendLayout();
@@ -379,6 +380,11 @@
             resources.ApplyResources(this.ProgressContextCancelMenu, "ProgressContextCancelMenu");
             this.ProgressContextCancelMenu.Click += new System.EventHandler(this.ProgressContextCancelMenu_Click);
             // 
+            // TrayNotifyIcon
+            // 
+            resources.ApplyResources(this.TrayNotifyIcon, "TrayNotifyIcon");
+            this.TrayNotifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.TrayNotifyIcon_MouseDoubleClick);
+            // 
             // AxCryptMainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -391,6 +397,7 @@
             this.Name = "AxCryptMainForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AxCryptMainForm_FormClosing);
             this.Load += new System.EventHandler(this.AxCryptMainForm_Load);
+            this.Resize += new System.EventHandler(this.AxCryptMainForm_Resize);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.menuStripMain.ResumeLayout(false);
@@ -455,6 +462,7 @@
         private System.Windows.Forms.ContextMenuStrip ProgressContextMenu;
         private System.Windows.Forms.ToolStripMenuItem ProgressContextCancelMenu;
         internal EncryptedFileManager EncryptedFileManager;
+        private System.Windows.Forms.NotifyIcon TrayNotifyIcon;
     }
 }
 

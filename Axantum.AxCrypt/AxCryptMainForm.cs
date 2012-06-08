@@ -721,5 +721,28 @@ namespace Axantum.AxCrypt
         {
             DecryptFilesViaDialog();
         }
+
+        private void AxCryptMainForm_Resize(object sender, EventArgs e)
+        {
+            TrayNotifyIcon.BalloonTipTitle = "AxCrypt File Encryption";
+            TrayNotifyIcon.BalloonTipText = "Double-click to restore the AxCrypt application window.";
+
+            if (FormWindowState.Minimized == this.WindowState)
+            {
+                TrayNotifyIcon.Visible = true;
+                TrayNotifyIcon.ShowBalloonTip(500);
+                this.Hide();
+            }
+            else if (FormWindowState.Normal == this.WindowState)
+            {
+                TrayNotifyIcon.Visible = false;
+            }
+        }
+
+        private void TrayNotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+        }
     }
 }
