@@ -27,6 +27,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -283,6 +284,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "The method does in fact rethrow the exception, but FxCop is not smart enough to realize it.")]
         private void DecryptEncryptedDataStream(Stream outputPlaintextStream, ICryptoTransform decryptor, AxCryptDataStream encryptedDataStream, ProgressContext progress)
         {
             Exception savedExceptionIfCloseCausesCryptographicException = null;

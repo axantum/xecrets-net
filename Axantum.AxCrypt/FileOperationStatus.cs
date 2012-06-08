@@ -15,6 +15,6 @@ namespace Axantum.AxCrypt
         CannotStartApplication,
         InconsistentState,
         InvalidKey,
-        Cancelled,
+        Canceled,
     }
 }

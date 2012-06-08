@@ -90,12 +90,9 @@ namespace Axantum.AxCrypt.Core
             Trace.WriteLine("{1} Debug: {0}".InvariantFormat(message, AppName));
         }
 
-        public static TraceLevel Level
+        public static void SetLevel(TraceLevel level)
         {
-            set
-            {
-                _switch.Level = value;
-            }
+            _switch.Level = level;
         }
 
         private static TraceSwitch InitializeTraceSwitch()

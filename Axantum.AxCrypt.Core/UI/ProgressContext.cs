@@ -12,7 +12,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private Stopwatch _stopwatch = Stopwatch.StartNew();
 
-        private long _nextElapsed = 1000;
+        private long _nextElapsed = 500;
 
         public ProgressContext(string displayText, object context)
             : this()

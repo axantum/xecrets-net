@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt
             traceListener.Name = "AxCryptMainFormListener";
             Trace.Listeners.Add(traceListener);
 
-            EncryptedFileManager.IgnoreApplication = !AxCryptEnvironment.Current.IsDesktopWindows;
+            EncryptedFileManager.SetProcessTracking(AxCryptEnvironment.Current.IsDesktopWindows);
             EncryptedFileManager.Changed += new EventHandler<EventArgs>(ThreadFacade.EncryptedFileManager_Changed);
             EncryptedFileManager.ForceActiveFilesStatus(new ProgressContext());
 
@@ -222,7 +222,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void CheckStatusAndShowMessage(FileOperationStatus status, string displayText)
+        private static void CheckStatusAndShowMessage(FileOperationStatus status, string displayText)
         {
             switch (status)
             {
@@ -249,7 +249,7 @@ namespace Axantum.AxCrypt
                 case FileOperationStatus.InvalidKey:
                     "Invalid key for '{0}'.".InvariantFormat(displayText).ShowWarning();
                     break;
-                case FileOperationStatus.Cancelled:
+                case FileOperationStatus.Canceled:
                     "Cancelled '{0}'.".InvariantFormat(displayText).ShowWarning();
                     break;
                 default:
@@ -575,7 +575,7 @@ namespace Axantum.AxCrypt
 
         private void PurgeActiveFiles()
         {
-            EncryptedFileManager.IgnoreApplication = true;
+            EncryptedFileManager.SetProcessTracking(false);
             ThreadFacade.DoBackgroundWork("Purging Active Files",
                 (object sender, RunWorkerCompletedEventArgs e) =>
                 {
@@ -659,10 +659,10 @@ namespace Axantum.AxCrypt
             }
         }
 
-        public void ShowProgressContextMenu(ProgressBar progressBar, Point location)
+        public void ShowProgressContextMenu(Control progressControl, Point location)
         {
-            ProgressContextMenu.Tag = progressBar;
-            ProgressContextMenu.Show(progressBar, location);
+            ProgressContextMenu.Tag = progressControl;
+            ProgressContextMenu.Show(progressControl, location);
         }
 
         private void ProgressContextCancelMenu_Click(object sender, EventArgs e)

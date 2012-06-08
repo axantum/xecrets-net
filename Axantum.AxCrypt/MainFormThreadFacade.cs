@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt
                 }
                 catch (OperationCanceledException)
                 {
-                    e.Result = FileOperationStatus.Cancelled;
+                    e.Result = FileOperationStatus.Canceled;
                     return;
                 }
                 e.Result = arguments.Result;

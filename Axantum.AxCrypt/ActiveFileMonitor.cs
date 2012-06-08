@@ -65,20 +65,20 @@ namespace Axantum.AxCrypt
             OnChanged(new EventArgs());
         }
 
-        private bool _ignoreApplication;
+        private bool _trackProcess;
 
-        public bool IgnoreApplication
+        public bool TrackProcess
         {
             get
             {
-                return _ignoreApplication;
+                return _trackProcess;
             }
             set
             {
-                _ignoreApplication = value;
+                _trackProcess = value;
                 if (Logging.IsInfoEnabled)
                 {
-                    Logging.Info("ActiveFileMonitor.IgnoreApplication='{0}'".InvariantFormat(value));
+                    Logging.Info("ActiveFileMonitor.TrackProcess='{0}'".InvariantFormat(value));
                 }
             }
         }
@@ -150,6 +150,7 @@ namespace Axantum.AxCrypt
             activeFile = CheckIfCreated(activeFile);
             activeFile = CheckIfProcessExited(activeFile);
             activeFile = CheckIfTimeToUpdate(activeFile, progress);
+            activeFile = CheckIfTimeToDelete(activeFile);
             return activeFile;
         }
 
@@ -190,7 +191,7 @@ namespace Axantum.AxCrypt
 
         private ActiveFile CheckIfProcessExited(ActiveFile activeFile)
         {
-            if (activeFile.Process == null || IgnoreApplication || !activeFile.Process.HasExited)
+            if (activeFile.Process == null || !TrackProcess || !activeFile.Process.HasExited)
             {
                 return activeFile;
             }
@@ -245,7 +246,7 @@ namespace Axantum.AxCrypt
             return activeFile;
         }
 
-        private static ActiveFile CheckIfTimeToDelete(ActiveFile activeFile, ProgressContext progress)
+        private static ActiveFile CheckIfTimeToDelete(ActiveFile activeFile)
         {
             if (!AxCryptEnvironment.Current.IsDesktopWindows)
             {

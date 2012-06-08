@@ -101,20 +101,9 @@ namespace Axantum.AxCrypt
             _activeFileMonitor.RemoveActiveFile(activeFile);
         }
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [Browsable(false)]
-        [DefaultValue(false)]
-        public bool IgnoreApplication
+        public void SetProcessTracking(bool processTrackingEnabled)
         {
-            get
-            {
-                return _activeFileMonitor.IgnoreApplication;
-            }
-            set
-            {
-                _activeFileMonitor.IgnoreApplication = value;
-            }
+            _activeFileMonitor.TrackProcess = processTrackingEnabled;
         }
 
         private void OnChanged(EventArgs eventArgs)
@@ -229,7 +218,7 @@ namespace Axantum.AxCrypt
             return destinationActiveFile;
         }
 
-        private ActiveFile CheckKeysForAlreadyDecryptedFile(ActiveFile destinationActiveFile, IEnumerable<AesKey> keys, ProgressContext progress)
+        private static ActiveFile CheckKeysForAlreadyDecryptedFile(ActiveFile destinationActiveFile, IEnumerable<AesKey> keys, ProgressContext progress)
         {
             IRuntimeFileInfo source = AxCryptEnvironment.Current.FileInfo(destinationActiveFile.EncryptedPath);
             foreach (AesKey key in keys)
