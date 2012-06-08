@@ -40,80 +40,97 @@ namespace Axantum.AxCrypt
     /// </summary>
     internal class MainFormThreadFacade
     {
-        private AxCryptMainForm MainForm { get; set; }
+        private AxCryptMainForm _mainForm;
 
         private IDictionary<BackgroundWorker, ProgressBar> _progressBars = new Dictionary<BackgroundWorker, ProgressBar>();
 
-        private ProgressManager ProgressManager { get; set; }
+        private ProgressManager _progressManager;
 
         public MainFormThreadFacade(AxCryptMainForm mainForm)
         {
-            MainForm = mainForm;
+            _mainForm = mainForm;
 
-            ProgressManager = new ProgressManager();
-            ProgressManager.Progress += new EventHandler<ProgressEventArgs>(ProgressManager_Progress);
+            _progressManager = new ProgressManager();
+            _progressManager.Progress += new EventHandler<ProgressEventArgs>(ProgressManager_Progress);
         }
 
         public void FormatTraceMessage(string message)
         {
             InvokeIfRequired(() =>
             {
-                MainForm.FormatTraceMessage(message);
+                _mainForm.FormatTraceMessage(message);
             });
         }
 
         public void EncryptedFileManager_Changed(object sender, EventArgs e)
         {
-            InvokeIfRequired(MainForm.RestartTimer);
+            InvokeIfRequired(_mainForm.RestartTimer);
         }
 
-        public void DoBackgroundWork(string displayText, RunWorkerCompletedEventHandler completedHandler, Action<WorkerArguments> action)
+        public void DoBackgroundWork(string displayText, Action<WorkerArguments> action, RunWorkerCompletedEventHandler completedHandler)
         {
-            BackgroundWorker worker = CreateWorker(completedHandler);
-            worker.DoWork += (object sender, DoWorkEventArgs e) =>
-            {
-                WorkerArguments arguments = (WorkerArguments)e.Argument;
-                try
+            BackgroundWorker worker = CreateWorker(
+                (object sender, DoWorkEventArgs e) =>
                 {
-                    action(arguments);
-                }
-                catch (OperationCanceledException)
-                {
-                    e.Result = FileOperationStatus.Canceled;
-                    return;
-                }
-                e.Result = arguments.Result;
-            };
-            worker.RunWorkerAsync(new WorkerArguments(ProgressManager.Create(displayText, worker)));
+                    WorkerArguments arguments = (WorkerArguments)e.Argument;
+                    try
+                    {
+                        action(arguments);
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        e.Result = FileOperationStatus.Canceled;
+                        return;
+                    }
+                    e.Result = arguments.Result;
+                },
+                completedHandler);
+            worker.RunWorkerAsync(new WorkerArguments(_progressManager.Create(displayText, worker)));
         }
 
-        private BackgroundWorker CreateWorker(RunWorkerCompletedEventHandler completedHandler)
+        private BackgroundWorker CreateWorker(DoWorkEventHandler doWorkHandler, RunWorkerCompletedEventHandler completedHandler)
         {
             if (Logging.IsInfoEnabled)
             {
                 Logging.Info("Creating BackgroundWorker");
             }
+
             BackgroundWorker worker = new BackgroundWorker();
             worker.WorkerReportsProgress = true;
             worker.WorkerSupportsCancellation = true;
+
             ProgressBar progressBar = CreateProgressBar(worker);
             _progressBars.Add(worker, progressBar);
-            worker.RunWorkerCompleted += (object sender, RunWorkerCompletedEventArgs e) =>
+
+            RunWorkerCompletedEventHandler completedHandlerWrapper = null;
+            completedHandlerWrapper = (object sender, RunWorkerCompletedEventArgs e) =>
             {
-                progressBar.Parent = null;
-                _progressBars.Remove(worker);
-                progressBar.Dispose();
-                if (completedHandler != null)
+                try
                 {
-                    completedHandler(sender, e);
+                    progressBar.Parent = null;
+                    _progressBars.Remove(worker);
+                    progressBar.Dispose();
+                    if (completedHandler != null)
+                    {
+                        completedHandler(sender, e);
+                    }
                 }
-                worker.Dispose();
+                finally
+                {
+                    worker.DoWork -= doWorkHandler;
+                    worker.RunWorkerCompleted -= completedHandlerWrapper;
+                    worker.ProgressChanged -= worker_ProgressChanged;
+                    worker.Dispose();
+                }
                 if (Logging.IsInfoEnabled)
                 {
                     Logging.Info("Disposing BackgroundWorker");
                 }
             };
-            worker.ProgressChanged += new ProgressChangedEventHandler(worker_ProgressChanged);
+
+            worker.DoWork += doWorkHandler;
+            worker.RunWorkerCompleted += completedHandlerWrapper;
+            worker.ProgressChanged += worker_ProgressChanged;
 
             return worker;
         }
@@ -123,7 +140,7 @@ namespace Axantum.AxCrypt
             ProgressBar progressBar = new ProgressBar();
             progressBar.Minimum = 0;
             progressBar.Maximum = 100;
-            MainForm.ProgressPanel.Controls.Add(progressBar);
+            _mainForm.ProgressPanel.Controls.Add(progressBar);
             progressBar.Dock = DockStyle.Fill;
             progressBar.Margin = new Padding(0);
             progressBar.MouseClick += new MouseEventHandler(progressBar_MouseClick);
@@ -137,7 +154,7 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-            MainForm.ShowProgressContextMenu((ProgressBar)sender, e.Location);
+            _mainForm.ShowProgressContextMenu((ProgressBar)sender, e.Location);
         }
 
         private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -183,9 +200,9 @@ namespace Axantum.AxCrypt
 
         private void InvokeIfRequired(Action action)
         {
-            if (MainForm.InvokeRequired)
+            if (_mainForm.InvokeRequired)
             {
-                MainForm.BeginInvoke(action);
+                _mainForm.BeginInvoke(action);
             }
             else
             {

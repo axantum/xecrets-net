@@ -65,11 +65,17 @@ namespace Axantum.AxCrypt
         public AxCryptMainForm()
         {
             InitializeComponent();
-            ThreadFacade = new MainFormThreadFacade(this);
         }
 
         private void AxCryptMainForm_Load(object sender, EventArgs e)
         {
+            if (DesignMode)
+            {
+                return;
+            }
+
+            ThreadFacade = new MainFormThreadFacade(this);
+
             DelegateTraceListener traceListener = new DelegateTraceListener(ThreadFacade.FormatTraceMessage);
             traceListener.Name = "AxCryptMainFormListener";
             Trace.Listeners.Add(traceListener);
@@ -81,6 +87,19 @@ namespace Axantum.AxCrypt
             RestoreUserPreferences();
 
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
+        }
+
+        private void AxCryptMainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (DesignMode)
+            {
+                return;
+            }
+
+            ThreadFacade.WaitForBackgroundIdle();
+            PurgeActiveFiles();
+            ThreadFacade.WaitForBackgroundIdle();
+            Trace.Listeners.Remove("AxCryptMainFormListener");
         }
 
         private void RestoreUserPreferences()
@@ -231,15 +250,15 @@ namespace Axantum.AxCrypt
             }
 
             ThreadFacade.DoBackgroundWork(sourceFileInfo.FullName,
-                (object sender, RunWorkerCompletedEventArgs e) =>
-                {
-                    FileOperationStatus status = (FileOperationStatus)e.Result;
-                    CheckStatusAndShowMessage(status, sourceFileInfo.Name);
-                },
                 (WorkerArguments arguments) =>
                 {
                     EncryptedFileManager.EncryptFile(sourceFileInfo, destinationFileInfo, key, arguments.Progress);
                     arguments.Result = FileOperationStatus.Success;
+                },
+                (object sender, RunWorkerCompletedEventArgs e) =>
+                {
+                    FileOperationStatus status = (FileOperationStatus)e.Result;
+                    CheckStatusAndShowMessage(status, sourceFileInfo.Name);
                 });
 
             if (KnownKeys.DefaultEncryptionKey == null)
@@ -331,11 +350,6 @@ namespace Axantum.AxCrypt
                 return false;
             }
             ThreadFacade.DoBackgroundWork(source.Name,
-                (object sender, RunWorkerCompletedEventArgs e) =>
-                {
-                    FileOperationStatus status = (FileOperationStatus)e.Result;
-                    CheckStatusAndShowMessage(status, source.Name);
-                },
                 (WorkerArguments arguments) =>
                 {
                     try
@@ -348,6 +362,11 @@ namespace Axantum.AxCrypt
                     }
                     AxCryptFile.Wipe(source);
                     arguments.Result = FileOperationStatus.Success;
+                },
+                (object sender, RunWorkerCompletedEventArgs e) =>
+                {
+                    FileOperationStatus status = (FileOperationStatus)e.Result;
+                    CheckStatusAndShowMessage(status, source.Name);
                 });
             return true;
         }
@@ -459,6 +478,10 @@ namespace Axantum.AxCrypt
         private void OpenEncrypted(string file)
         {
             ThreadFacade.DoBackgroundWork(Path.GetFileName(file),
+                (WorkerArguments arguments) =>
+                {
+                    arguments.Result = EncryptedFileManager.Open(file, KnownKeys.Keys, arguments.Progress);
+                },
                 (object sender, RunWorkerCompletedEventArgs e) =>
                 {
                     FileOperationStatus status = (FileOperationStatus)e.Result;
@@ -468,10 +491,6 @@ namespace Axantum.AxCrypt
                         return;
                     }
                     CheckStatusAndShowMessage(status, file);
-                },
-                (WorkerArguments arguments) =>
-                {
-                    arguments.Result = EncryptedFileManager.Open(file, KnownKeys.Keys, arguments.Progress);
                 });
         }
 
@@ -484,6 +503,10 @@ namespace Axantum.AxCrypt
                 return;
             }
             ThreadFacade.DoBackgroundWork(Path.GetFileName(file),
+                (WorkerArguments arguments) =>
+                {
+                    arguments.Result = EncryptedFileManager.Open(file, new AesKey[] { passphrase.DerivedPassphrase }, arguments.Progress);
+                },
                 (object sender, RunWorkerCompletedEventArgs e) =>
                 {
                     FileOperationStatus status = (FileOperationStatus)e.Result;
@@ -498,10 +521,6 @@ namespace Axantum.AxCrypt
                         return;
                     }
                     CheckStatusAndShowMessage(status, file);
-                },
-                (WorkerArguments arguments) =>
-                {
-                    arguments.Result = EncryptedFileManager.Open(file, new AesKey[] { passphrase.DerivedPassphrase }, arguments.Progress);
                 });
         }
 
@@ -546,13 +565,13 @@ namespace Axantum.AxCrypt
                 _fileOperationInProgress = false/*true*/;
                 _pollingInProgress = true;
                 ThreadFacade.DoBackgroundWork("Updating Status",
-                    (object sender1, RunWorkerCompletedEventArgs e1) =>
-                    {
-                        _pollingInProgress = false;
-                    },
                     (WorkerArguments arguments) =>
                     {
                         EncryptedFileManager.CheckActiveFilesStatus(arguments.Progress);
+                    },
+                    (object sender1, RunWorkerCompletedEventArgs e1) =>
+                    {
+                        _pollingInProgress = false;
                     });
             }
             finally
@@ -591,18 +610,15 @@ namespace Axantum.AxCrypt
             Settings.Default.Save();
         }
 
-        private void AxCryptMainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            ThreadFacade.WaitForBackgroundIdle();
-            PurgeActiveFiles();
-            ThreadFacade.WaitForBackgroundIdle();
-            Trace.Listeners.Remove("AxCryptMainFormListener");
-        }
-
         private void PurgeActiveFiles()
         {
             EncryptedFileManager.SetProcessTracking(false);
             ThreadFacade.DoBackgroundWork("Purging Active Files",
+                (WorkerArguments arguments) =>
+                {
+                    EncryptedFileManager.CheckActiveFilesStatus(arguments.Progress);
+                    EncryptedFileManager.PurgeActiveFiles(arguments.Progress);
+                },
                 (object sender, RunWorkerCompletedEventArgs e) =>
                 {
                     IList<ActiveFile> openFiles = EncryptedFileManager.FindOpenFiles();
@@ -616,11 +632,6 @@ namespace Axantum.AxCrypt
                         sb.Append("{0}\n".InvariantFormat(Path.GetFileName(openFile.DecryptedPath)));
                     }
                     sb.ToString().ShowWarning();
-                },
-                (WorkerArguments arguments) =>
-                {
-                    EncryptedFileManager.CheckActiveFilesStatus(arguments.Progress);
-                    EncryptedFileManager.PurgeActiveFiles(arguments.Progress);
                 });
         }
 

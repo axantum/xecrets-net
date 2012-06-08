@@ -53,6 +53,20 @@ namespace Axantum.AxCrypt
         {
         }
 
+        public void BeginInit()
+        {
+        }
+
+        public void EndInit()
+        {
+            if (DesignMode)
+            {
+                return;
+            }
+            _activeFileMonitor = new ActiveFileMonitor();
+            _activeFileMonitor.Changed += new EventHandler<EventArgs>(ActiveFileMonitor_Changed);
+        }
+
         private void ActiveFileMonitor_Changed(object sender, EventArgs e)
         {
             OnChanged(e);
@@ -335,20 +349,6 @@ namespace Axantum.AxCrypt
             }
             _disposed = true;
             base.Dispose(disposing);
-        }
-
-        public void BeginInit()
-        {
-        }
-
-        public void EndInit()
-        {
-            if (DesignMode)
-            {
-                return;
-            }
-            _activeFileMonitor = new ActiveFileMonitor();
-            _activeFileMonitor.Changed += new EventHandler<EventArgs>(ActiveFileMonitor_Changed);
         }
     }
 }
