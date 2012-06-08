@@ -28,7 +28,7 @@
 using System.IO;
 using Axantum.AxCrypt.Core.IO;
 
-namespace Axantum.AxCrypt.Core
+namespace Axantum.AxCrypt.Core.System
 {
     public interface IRuntimeEnvironment
     {

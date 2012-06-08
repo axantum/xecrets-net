@@ -30,6 +30,7 @@ using System.Collections.Generic;
 using System.IO;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.System;
 
 namespace Axantum.AxCrypt.Core.Reader
 {

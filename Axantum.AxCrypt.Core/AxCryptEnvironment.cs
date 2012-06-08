@@ -25,6 +25,8 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.System;
+
 namespace Axantum.AxCrypt.Core
 {
     public static class AxCryptEnvironment

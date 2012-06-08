@@ -28,6 +28,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
+using Axantum.AxCrypt.Core.System;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {

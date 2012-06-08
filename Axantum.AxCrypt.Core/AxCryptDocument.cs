@@ -32,6 +32,7 @@ using System.Security.Cryptography;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
+using Axantum.AxCrypt.Core.System;
 using Axantum.AxCrypt.Core.UI;
 using Org.BouncyCastle.Utilities.Zlib;
 
@@ -229,7 +230,7 @@ namespace Axantum.AxCrypt.Core
 
                     if (_reader.Hmac != DocumentHeaders.Hmac)
                     {
-                        throw new InvalidDataException("HMAC validation error in the input stream.", ErrorStatus.HmacValidationError);
+                        throw new Axantum.AxCrypt.Core.System.InvalidDataException("HMAC validation error in the input stream.", ErrorStatus.HmacValidationError);
                     }
                 }
 
@@ -276,7 +277,7 @@ namespace Axantum.AxCrypt.Core
 
             if (_reader.Hmac != DocumentHeaders.Hmac)
             {
-                throw new InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
+                throw new Axantum.AxCrypt.Core.System.InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
             }
         }
 

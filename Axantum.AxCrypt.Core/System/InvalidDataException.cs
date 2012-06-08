@@ -28,41 +28,39 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Axantum.AxCrypt.Core
+namespace Axantum.AxCrypt.Core.System
 {
     [Serializable]
-    public abstract class AxCryptException : Exception
+    public class InvalidDataException : AxCryptException
     {
-        public ErrorStatus ErrorStatus { get; set; }
-
-        protected AxCryptException()
+        public InvalidDataException()
             : base()
         {
-            ErrorStatus = ErrorStatus.Unknown;
         }
 
-        protected AxCryptException(string message, ErrorStatus errorStatus)
-            : base(message)
+        public InvalidDataException(string message)
+            : this(message, ErrorStatus.DataError)
         {
-            ErrorStatus = errorStatus;
         }
 
-        protected AxCryptException(SerializationInfo info, StreamingContext context)
+        public InvalidDataException(string message, ErrorStatus errorStatus)
+            : base(message, errorStatus)
+        {
+        }
+
+        protected InvalidDataException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
-            ErrorStatus = (ErrorStatus)info.GetInt32("ErrorStatus");
         }
 
-        protected AxCryptException(string message, ErrorStatus errorStatus, Exception innerException)
-            : base(message, innerException)
+        public InvalidDataException(string message, Exception innerException)
+            : this(message, ErrorStatus.DataError, innerException)
         {
-            ErrorStatus = errorStatus;
         }
 
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        public InvalidDataException(string message, ErrorStatus errorStatus, Exception innerException)
+            : base(message, errorStatus, innerException)
         {
-            base.GetObjectData(info, context);
-            info.AddValue("ErrorStatus", (int)ErrorStatus);
         }
     }
 }

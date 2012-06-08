@@ -30,7 +30,7 @@ using System.IO;
 using System.Security.Cryptography;
 using Axantum.AxCrypt.Core.IO;
 
-namespace Axantum.AxCrypt.Core
+namespace Axantum.AxCrypt.Core.System
 {
     public class RuntimeEnvironment : IRuntimeEnvironment
     {
@@ -86,7 +86,7 @@ namespace Axantum.AxCrypt.Core
         {
             get
             {
-                OperatingSystem os = System.Environment.OSVersion;
+                OperatingSystem os = global::System.Environment.OSVersion;
                 PlatformID pid = os.Platform;
                 switch (pid)
                 {

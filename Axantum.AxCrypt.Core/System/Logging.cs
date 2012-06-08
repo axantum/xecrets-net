@@ -29,7 +29,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 
-namespace Axantum.AxCrypt.Core
+namespace Axantum.AxCrypt.Core.System
 {
     public static class Logging
     {

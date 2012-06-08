@@ -27,6 +27,7 @@
 
 using System;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.System;
 using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test

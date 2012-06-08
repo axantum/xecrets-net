@@ -27,6 +27,7 @@
 
 using System;
 using System.Collections.Specialized;
+using Axantum.AxCrypt.Core.System;
 
 namespace Axantum.AxCrypt.Core.IO
 {

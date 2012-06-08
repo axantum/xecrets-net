@@ -34,6 +34,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.System;
 
 namespace Axantum.AxCrypt.Core.Session
 {

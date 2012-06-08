@@ -30,6 +30,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.System;
 using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt
