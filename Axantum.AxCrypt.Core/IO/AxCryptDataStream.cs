@@ -43,7 +43,6 @@ namespace Axantum.AxCrypt.Core.IO
     {
         private Stream _inputStream;
         private Stream _hmacStream;
-        private ProgressContext _progress;
         private long _length;
 
         private long _remaining;
@@ -55,7 +54,7 @@ namespace Axantum.AxCrypt.Core.IO
         /// <param name="inputStream">A stream positioned at the first byte of data</param>
         /// <param name="hmacStream">A stream where all data read is mirrored, presumably to calculate an HMAC. If null, ignored.</param>
         /// <param name="length">The exact number of bytes to expect and read from the input stream</param>
-        public AxCryptDataStream(Stream inputStream, Stream hmacStream, long length, ProgressContext progress)
+        public AxCryptDataStream(Stream inputStream, Stream hmacStream, long length)
         {
             if (inputStream == null)
             {
@@ -69,16 +68,10 @@ namespace Axantum.AxCrypt.Core.IO
             {
                 throw new ArgumentOutOfRangeException("length");
             }
-            if (progress == null)
-            {
-                throw new ArgumentNullException("progress");
-            }
             _inputStream = inputStream;
             _hmacStream = hmacStream;
             _length = length;
             _remaining = _length;
-            _progress = progress;
-            _progress.Max = _length;
         }
 
         public override bool CanRead
@@ -88,7 +81,7 @@ namespace Axantum.AxCrypt.Core.IO
 
         public override bool CanSeek
         {
-            get { return false; }
+            get { return true; }
         }
 
         public override bool CanWrite
@@ -130,8 +123,6 @@ namespace Axantum.AxCrypt.Core.IO
             _remaining -= bytesRead;
 
             _hmacStream.Write(buffer, 0, bytesRead);
-
-            _progress.Current = Position;
 
             return bytesRead;
         }

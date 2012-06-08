@@ -8,7 +8,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A5BC3358-6BF0-4AC3-9701-1CF32CDFA68C}"
 	ProjectSection(SolutionItems) = preProject
 		AxCrypt 2.0 Design.html = AxCrypt 2.0 Design.html
-		BouncyCastle.Crypto.dll = BouncyCastle.Crypto.dll
 		CustomDictionary.xml = CustomDictionary.xml
 		Solution.FxCop = Solution.FxCop
 	EndProjectSection

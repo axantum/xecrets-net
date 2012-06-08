@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -8,6 +9,10 @@ namespace Axantum.AxCrypt.Core.UI
     public class ProgressContext
     {
         private object _context;
+
+        private Stopwatch _stopwatch = Stopwatch.StartNew();
+
+        private long _nextElapsed = 1000;
 
         public ProgressContext(string displayText, object context)
             : this()
@@ -38,9 +43,14 @@ namespace Axantum.AxCrypt.Core.UI
             set
             {
                 _current = value;
+                if (_stopwatch.ElapsedMilliseconds < _nextElapsed)
+                {
+                    return;
+                }
                 ProgressEventArgs e;
                 e = new ProgressEventArgs(Percent, _context);
                 OnProgressing(e);
+                _nextElapsed = _stopwatch.ElapsedMilliseconds + 100;
             }
         }
 

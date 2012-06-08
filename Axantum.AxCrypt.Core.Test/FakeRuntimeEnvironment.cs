@@ -86,5 +86,10 @@ namespace Axantum.AxCrypt.Core.Test
         {
             get { return true; }
         }
+
+        public int StreamBufferSize
+        {
+            get { return 512; }
+        }
     }
 }

@@ -54,19 +54,19 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     Assert.Throws<ArgumentNullException>(() =>
                     {
-                        using (AxCryptDataStream axCryptDataStream = new AxCryptDataStream(null, hmacStream, inputStream.Length, new ProgressContext())) { }
+                        using (AxCryptDataStream axCryptDataStream = new AxCryptDataStream(null, hmacStream, inputStream.Length)) { }
                     }, "An input stream must be given, it cannot be null.");
                     Assert.Throws<ArgumentNullException>(() =>
                     {
-                        using (AxCryptDataStream axCryptDataStream = new AxCryptDataStream(inputStream, null, inputStream.Length, new ProgressContext())) { }
+                        using (AxCryptDataStream axCryptDataStream = new AxCryptDataStream(inputStream, null, inputStream.Length)) { }
                     }, "An HmacStream must be given, it cannot be null.");
                     Assert.Throws<ArgumentOutOfRangeException>(() =>
                     {
-                        using (AxCryptDataStream axCryptDataStream = new AxCryptDataStream(inputStream, hmacStream, -inputStream.Length, new ProgressContext())) { }
+                        using (AxCryptDataStream axCryptDataStream = new AxCryptDataStream(inputStream, hmacStream, -inputStream.Length)) { }
                     }, "Negative length is not allowed.");
 
                     inputStream.Position = 0;
-                    using (AxCryptDataStream axCryptDataStream = new AxCryptDataStream(inputStream, hmacStream, inputStream.Length - 5, new ProgressContext()))
+                    using (AxCryptDataStream axCryptDataStream = new AxCryptDataStream(inputStream, hmacStream, inputStream.Length - 5))
                     {
                         Assert.Throws<NotSupportedException>(() =>
                         {

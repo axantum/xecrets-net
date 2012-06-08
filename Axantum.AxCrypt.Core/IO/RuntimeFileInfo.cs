@@ -48,12 +48,12 @@ namespace Axantum.AxCrypt.Core.IO
 
         public Stream OpenRead()
         {
-            return _file.Open(FileMode.Open, FileAccess.Read, FileShare.Read);
+            return new FileStream(_file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read, AxCryptEnvironment.Current.StreamBufferSize);
         }
 
         public Stream OpenWrite()
         {
-            return _file.Open(FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
+            return new FileStream(_file.FullName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None, AxCryptEnvironment.Current.StreamBufferSize);
         }
 
         public string Name

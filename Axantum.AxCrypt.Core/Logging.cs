@@ -102,7 +102,7 @@ namespace Axantum.AxCrypt.Core
         {
             TraceSwitch traceSwitch = new TraceSwitch("axCryptSwitch", "Logging levels for AxCrypt");
 #if DEBUG
-            traceSwitch.Level = TraceLevel.Info;
+            traceSwitch.Level = TraceLevel.Verbose;
 #else
             traceSwitch.Level = TraceLevel.Error;
 #endif

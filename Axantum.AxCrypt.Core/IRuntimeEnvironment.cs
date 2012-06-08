@@ -47,5 +47,7 @@ namespace Axantum.AxCrypt.Core
         string AxCryptExtension { get; }
 
         bool IsDesktopWindows { get; }
+
+        int StreamBufferSize { get; }
     }
 }

@@ -159,23 +159,43 @@ namespace Axantum.AxCrypt.Core
 
         private static long CopyToWithCount(Stream inputStream, Stream outputStream, ProgressContext progress)
         {
-            if (inputStream.CanSeek)
+            return CopyToWithCount(inputStream, outputStream, inputStream, progress);
+        }
+
+        private static long CopyToWithCount(Stream inputStream, Stream outputStream, Stream realInputStream, ProgressContext progress)
+        {
+            if (realInputStream.CanSeek)
             {
-                progress.Max = inputStream.Length;
+                progress.Max = realInputStream.Length;
             }
 
-            byte[] buffer = new byte[65536];
-            int count;
             long totalCount = 0;
-            while ((count = inputStream.Read(buffer, 0, buffer.Length)) != 0)
+            byte[] buffer = new byte[AxCryptEnvironment.Current.StreamBufferSize];
+            int offset = 0;
+            int length = buffer.Length;
+            while (true)
             {
-                outputStream.Write(buffer, 0, count);
-                if (inputStream.CanSeek)
+                int count = inputStream.Read(buffer, offset, length);
+                offset += count;
+                length -= count;
+                if (length > 0 && count > 0)
                 {
-                    progress.Current = inputStream.Position;
+                    continue;
                 }
-                totalCount += count;
+                if (offset == 0)
+                {
+                    break;
+                }
+                outputStream.Write(buffer, 0, offset);
+                if (realInputStream.CanSeek)
+                {
+                    progress.Current = realInputStream.Position;
+                }
+                totalCount += offset;
+                offset = 0;
+                length = buffer.Length;
             }
+
             return totalCount;
         }
 
@@ -206,9 +226,9 @@ namespace Axantum.AxCrypt.Core
             using (HmacStream hmacStreamOutput = new HmacStream(outputDocumentHeaders.HmacSubkey.Key, cipherStream))
             {
                 outputDocumentHeaders.WriteWithHmac(hmacStreamOutput);
-                using (Stream encryptedDataStream = _reader.CreateEncryptedDataStream(DocumentHeaders.HmacSubkey.Key, DocumentHeaders.CipherTextLength, progress))
+                using (AxCryptDataStream encryptedDataStream = _reader.CreateEncryptedDataStream(DocumentHeaders.HmacSubkey.Key, DocumentHeaders.CipherTextLength, progress))
                 {
-                    encryptedDataStream.CopyTo(hmacStreamOutput, 65536);
+                    CopyToWithCount(encryptedDataStream, hmacStreamOutput, progress);
 
                     if (_reader.Hmac != DocumentHeaders.Hmac)
                     {
@@ -251,9 +271,9 @@ namespace Axantum.AxCrypt.Core
             }
             using (ICryptoTransform decryptor = DataCrypto.CreateDecryptingTransform())
             {
-                using (Stream encryptedDataStream = _reader.CreateEncryptedDataStream(DocumentHeaders.HmacSubkey.Key, DocumentHeaders.CipherTextLength, progress))
+                using (AxCryptDataStream encryptedDataStream = _reader.CreateEncryptedDataStream(DocumentHeaders.HmacSubkey.Key, DocumentHeaders.CipherTextLength, progress))
                 {
-                    DecryptEncryptedDataStream(outputPlaintextStream, decryptor, encryptedDataStream);
+                    DecryptEncryptedDataStream(outputPlaintextStream, decryptor, encryptedDataStream, progress);
                 }
             }
 
@@ -263,7 +283,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        private void DecryptEncryptedDataStream(Stream outputPlaintextStream, ICryptoTransform decryptor, Stream encryptedDataStream)
+        private void DecryptEncryptedDataStream(Stream outputPlaintextStream, ICryptoTransform decryptor, AxCryptDataStream encryptedDataStream, ProgressContext progress)
         {
             Exception savedExceptionIfCloseCausesCryptographicException = null;
             try
@@ -276,7 +296,7 @@ namespace Axantum.AxCrypt.Core
                         {
                             try
                             {
-                                inflatedPlaintextStream.CopyTo(outputPlaintextStream, 65536);
+                                CopyToWithCount(inflatedPlaintextStream, outputPlaintextStream, encryptedDataStream, progress);
                             }
                             catch (Exception ex)
                             {
@@ -291,7 +311,7 @@ namespace Axantum.AxCrypt.Core
                     {
                         try
                         {
-                            plainStream.CopyTo(outputPlaintextStream, 65536);
+                            CopyToWithCount(plainStream, outputPlaintextStream, encryptedDataStream, progress);
                         }
                         catch (Exception ex)
                         {

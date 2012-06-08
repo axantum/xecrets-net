@@ -106,5 +106,10 @@ namespace Axantum.AxCrypt.Core
                 }
             }
         }
+
+        public int StreamBufferSize
+        {
+            get { return 65536; }
+        }
     }
 }

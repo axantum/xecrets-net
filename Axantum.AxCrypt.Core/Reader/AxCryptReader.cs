@@ -73,7 +73,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
         private HmacStream _hmacStream;
 
-        public Stream CreateEncryptedDataStream(AesKey hmacKey, long cipherTextLength, ProgressContext progress)
+        public AxCryptDataStream CreateEncryptedDataStream(AesKey hmacKey, long cipherTextLength, ProgressContext progress)
         {
             if (hmacKey == null)
             {
@@ -96,11 +96,11 @@ namespace Axantum.AxCrypt.Core.Reader
 
             _hmacStream = new HmacStream(hmacKey);
             _hmacBufferStream.Position = 0;
-            _hmacBufferStream.CopyTo(_hmacStream, 65536);
+            _hmacBufferStream.CopyTo(_hmacStream, AxCryptEnvironment.Current.StreamBufferSize);
 
             _expectedTotalHmacLength = _hmacBufferStream.Length + cipherTextLength;
 
-            Stream encryptedDataStream = new AxCryptDataStream(_inputStream, _hmacStream, cipherTextLength, progress);
+            AxCryptDataStream encryptedDataStream = new AxCryptDataStream(_inputStream, _hmacStream, cipherTextLength);
 
             return encryptedDataStream;
         }
@@ -176,7 +176,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
         private void LookForMagicGuid()
         {
-            byte[] buffer = new byte[65536];
+            byte[] buffer = new byte[AxCryptEnvironment.Current.StreamBufferSize];
             while (true)
             {
                 int bytesRead = _inputStream.Read(buffer, 0, buffer.Length);
