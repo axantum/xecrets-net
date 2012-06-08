@@ -94,7 +94,7 @@ namespace Axantum.AxCrypt.Core.Test
                         }, "Flush is not supported, and not meaningful on a read-only stream.");
 
                         Assert.That(axCryptDataStream.CanRead, Is.True, "AxCryptDataStream can be read.");
-                        Assert.That(axCryptDataStream.CanSeek, Is.False, "AxCryptDataStream is a forward only reader stream, it does not support seeking.");
+                        Assert.That(axCryptDataStream.CanSeek, Is.True, "AxCryptDataStream is a forward only reader stream, but it does support Length and Position therefore it reports that it can Seek.");
                         Assert.That(axCryptDataStream.CanWrite, Is.False, "AxCryptDataStream is a forward only reader stream, it does not support writing.");
                         Assert.That(axCryptDataStream.Length, Is.EqualTo(inputStream.Length - 5), "The stream should report the length provided in the constructor.");
                         inputStream.Position = 5;
