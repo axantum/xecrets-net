@@ -367,7 +367,7 @@ namespace Axantum.AxCrypt.Core.Session
             FileSystemChanged(e.FullPath);
         }
 
-        public void TemporaryDirectoryWatcher_Changed(object sender, FileSystemEventArgs e)
+        private void TemporaryDirectoryWatcher_Changed(object sender, FileSystemEventArgs e)
         {
             FileSystemChanged(e.FullPath);
         }

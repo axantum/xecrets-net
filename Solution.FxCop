@@ -42,49 +42,5 @@
   <Groups />
   <Settings />
  </Rules>
- <FxCopReport Version="10.0">
-  <Namespaces>
-   <Namespace Name="Axantum.AxCrypt.Core.UI">
-    <Messages>
-     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2012-05-18 01:11:36Z">
-      <Issue>
-       <Item>Axantum.AxCrypt.Core.UI</Item>
-      </Issue>
-     </Message>
-    </Messages>
-   </Namespace>
-  </Namespaces>
-  <Targets>
-   <Target Name="$(ProjectDir)/Axantum.AxCrypt/bin/Debug/AxCrypt.exe">
-    <Modules>
-     <Module Name="axcrypt.exe">
-      <Namespaces>
-       <Namespace Name="Axantum.AxCrypt">
-        <Types>
-         <Type Name="ActiveFileMonitor">
-          <Messages>
-           <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Created="2012-05-27 18:21:53Z" FixCategory="NonBreaking">
-            <Issue Name="NonBreaking">
-             <Item>'ActiveFileMonitor'</Item>
-             <Item>'FileSystemWatcher'</Item>
-            </Issue>
-           </Message>
-          </Messages>
-         </Type>
-        </Types>
-       </Namespace>
-      </Namespaces>
-     </Module>
-    </Modules>
-   </Target>
-  </Targets>
-  <Rules>
-   <Rule TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020">
-    <Resolution Name="Default">Consider merging the types defined in '{0}' with another namespace.</Resolution>
-   </Rule>
-   <Rule TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001">
-    <Resolution Name="NonBreaking">Implement IDisposable on {0} because it creates members of the following IDisposable types: {1}.</Resolution>
-   </Rule>
-  </Rules>
- </FxCopReport>
+ <FxCopReport Version="10.0" />
 </FxCopProject>
