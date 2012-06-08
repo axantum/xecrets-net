@@ -133,6 +133,7 @@ namespace Axantum.AxCrypt
                 {
                     return UpdateOpenFilesWith(activeFile);
                 });
+            CloseAndRemoveOpenFilesButton.Enabled = OpenFilesListView.Items.Count > 0;
         }
 
         private ActiveFile UpdateOpenFilesWith(ActiveFile activeFile)

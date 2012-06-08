@@ -35,7 +35,7 @@
             this.toolStripButtonEncrypt = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonDecrypt = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.CloseAndRemoveOpenFilesButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
@@ -95,7 +95,7 @@
             this.toolStripButtonEncrypt,
             this.toolStripButtonDecrypt,
             this.toolStripSeparator1,
-            this.toolStripButton1,
+            this.CloseAndRemoveOpenFilesButton,
             this.toolStripSeparator4,
             this.helpToolStripButton});
             this.toolStrip1.Name = "toolStrip1";
@@ -126,12 +126,12 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             // 
-            // toolStripButton1
+            // CloseAndRemoveOpenFilesButton
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.toolStripButton1, "toolStripButton1");
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.CloseAndRemoveOpenFilesButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.CloseAndRemoveOpenFilesButton, "CloseAndRemoveOpenFilesButton");
+            this.CloseAndRemoveOpenFilesButton.Name = "CloseAndRemoveOpenFilesButton";
+            this.CloseAndRemoveOpenFilesButton.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripSeparator4
             // 
@@ -447,7 +447,7 @@
         private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CloseStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton CloseAndRemoveOpenFilesButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ContextMenuStrip OpenFilesContextMenu;
         private System.Windows.Forms.ToolStripMenuItem EnterPassphraseMenuItem;
