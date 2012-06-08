@@ -29,15 +29,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.UI;
 
-namespace Axantum.AxCrypt.Core.Crypto
+namespace Axantum.AxCrypt.Core.UI
 {
-    public enum HeaderSubkey
+    public class WorkerArguments
     {
-        None,
-        Hmac,
-        Validator,
-        Headers,
-        Data,
+        public WorkerArguments(ProgressContext progress)
+        {
+            Progress = progress;
+        }
+
+        public ProgressContext Progress { get; private set; }
+
+        public object Result { get; set; }
     }
 }

@@ -86,23 +86,15 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActiveFile.cs" />
-    <Compile Include="ActiveFileCollection.cs" />
-    <Compile Include="ActiveFileMonitor.cs" />
-    <Compile Include="ActiveFileStatus.cs" />
     <Compile Include="AxCryptMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AxCryptMainForm.Designer.cs">
       <DependentUpon>AxCryptMainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DelegateTraceListener.cs" />
     <Compile Include="EncryptPassphraseDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,14 +111,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Extensions.cs" />
-    <Compile Include="FileLock.cs" />
-    <Compile Include="FileOperationStatus.cs" />
-    <Compile Include="FileSystemState.cs" />
     <Compile Include="MainFormThreadFacade.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="ProgressManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WorkerArguments.cs" />
     <EmbeddedResource Include="AxCryptMainForm.resx">
       <DependentUpon>AxCryptMainForm.cs</DependentUpon>
     </EmbeddedResource>

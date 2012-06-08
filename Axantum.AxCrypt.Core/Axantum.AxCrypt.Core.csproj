@@ -67,6 +67,9 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AxCryptDocument.cs" />
@@ -86,6 +89,7 @@
     <Compile Include="Crypto\Passphrase.cs" />
     <Compile Include="Crypto\Subkey.cs" />
     <Compile Include="AxCryptEnvironment.cs" />
+    <Compile Include="DelegateTraceListener.cs" />
     <Compile Include="ErrorStatus.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="FileFormatException.cs" />
@@ -125,10 +129,19 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="RuntimeEnvironment.cs" />
+    <Compile Include="IO\FileLock.cs" />
+    <Compile Include="Session\ActiveFile.cs" />
+    <Compile Include="Session\ActiveFileCollection.cs" />
+    <Compile Include="Session\ActiveFileMonitor.cs" />
+    <Compile Include="Session\ActiveFileStatus.cs" />
+    <Compile Include="Session\FileSystemState.cs" />
+    <Compile Include="UI\FileOperationStatus.cs" />
     <Compile Include="UI\KnownKeys.cs" />
     <Compile Include="UI\ProgressContext.cs" />
     <Compile Include="UI\ProgressEventArgs.cs" />
+    <Compile Include="UI\ProgressManager.cs" />
     <Compile Include="UI\UserPreferences.cs" />
+    <Compile Include="UI\WorkerArguments.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />

@@ -30,14 +30,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Crypto
+namespace Axantum.AxCrypt.Core.UI
 {
-    public enum HeaderSubkey
+    public enum FileOperationStatus
     {
-        None,
-        Hmac,
-        Validator,
-        Headers,
-        Data,
+        Success,
+        UnspecifiedError,
+        FileAlreadyExists,
+        FileDoesNotExist,
+        CannotWriteDestination,
+        CannotStartApplication,
+        InconsistentState,
+        InvalidKey,
+        Canceled,
     }
 }

@@ -28,16 +28,22 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Crypto
+namespace Axantum.AxCrypt.Core.Session
 {
-    public enum HeaderSubkey
+    [CollectionDataContract(ItemName = "FileState", Namespace = "http://wwww.axantum.com/Serialization/")]
+    public class ActiveFileCollection : List<ActiveFile>
     {
-        None,
-        Hmac,
-        Validator,
-        Headers,
-        Data,
+        public ActiveFileCollection()
+            : base()
+        {
+        }
+
+        public ActiveFileCollection(IEnumerable<ActiveFile> collection)
+            : base(collection)
+        {
+        }
     }
 }
