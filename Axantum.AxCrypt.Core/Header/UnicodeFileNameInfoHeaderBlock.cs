@@ -27,7 +27,6 @@
 
 using System;
 using System.Text;
-using Axantum.AxCrypt.Core.Crypto;
 
 namespace Axantum.AxCrypt.Core.Reader
 {

@@ -26,9 +26,7 @@
 #endregion Coypright and License
 
 using System;
-using System.Diagnostics;
 using System.IO;
-using System.Security.Cryptography;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.UI;

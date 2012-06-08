@@ -25,8 +25,6 @@
 
 #endregion Coypright and License
 
-using System;
-
 namespace Axantum.AxCrypt.Core.Reader
 {
     public class DataHeaderBlock : HeaderBlock

@@ -29,8 +29,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
 using Axantum.AxCrypt.Core.IO;
 
 namespace Axantum.AxCrypt.Core.Test

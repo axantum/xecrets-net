@@ -26,12 +26,8 @@
 #endregion Coypright and License
 
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using NUnit.Framework;
 

@@ -26,11 +26,7 @@
 #endregion Coypright and License
 
 using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using Axantum.AxCrypt.Core;
 
 namespace Axantum.AxCrypt.Core.IO
 {
