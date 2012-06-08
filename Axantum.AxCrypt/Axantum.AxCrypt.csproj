@@ -116,17 +116,20 @@
     <EmbeddedResource Include="AxCryptMainForm.resx">
       <DependentUpon>AxCryptMainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AxCryptMainForm.sv-SE.resx">
-      <DependentUpon>AxCryptMainForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AxCryptMainForm.sv.resx">
       <DependentUpon>AxCryptMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DecryptPassphraseDialog.sv.resx">
+      <DependentUpon>DecryptPassphraseDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EncryptPassphraseDialog.resx">
       <DependentUpon>EncryptPassphraseDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DecryptPassphraseDialog.resx">
       <DependentUpon>DecryptPassphraseDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EncryptPassphraseDialog.sv.resx">
+      <DependentUpon>EncryptPassphraseDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -138,6 +141,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Properties\Resources.sv.resx">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="AxantumStrongName.pfx" />
     <None Include="Properties\Settings.settings">
@@ -158,6 +165,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Axantum.AxCrypt_ml.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

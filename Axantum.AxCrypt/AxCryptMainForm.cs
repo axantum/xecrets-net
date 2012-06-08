@@ -53,11 +53,11 @@ namespace Axantum.AxCrypt
 
         public void FormatTraceMessage(string message)
         {
-            int skipIndex = message.IndexOf(" Information", StringComparison.Ordinal);
-            skipIndex = skipIndex < 0 ? message.IndexOf(" Warning", StringComparison.Ordinal) : skipIndex;
-            skipIndex = skipIndex < 0 ? message.IndexOf(" Debug", StringComparison.Ordinal) : skipIndex;
-            skipIndex = skipIndex < 0 ? message.IndexOf(" Error", StringComparison.Ordinal) : skipIndex;
-            LogOutput.AppendText("{0} {1}".InvariantFormat(DateTime.UtcNow.ToString("o", CultureInfo.InvariantCulture), message.Substring(skipIndex + 1)));
+            int skipIndex = message.IndexOf(" Information", StringComparison.Ordinal); //MLHIDE
+            skipIndex = skipIndex < 0 ? message.IndexOf(" Warning", StringComparison.Ordinal) : skipIndex; //MLHIDE
+            skipIndex = skipIndex < 0 ? message.IndexOf(" Debug", StringComparison.Ordinal) : skipIndex; //MLHIDE
+            skipIndex = skipIndex < 0 ? message.IndexOf(" Error", StringComparison.Ordinal) : skipIndex; //MLHIDE
+            LogOutput.AppendText("{0} {1}".InvariantFormat(DateTime.UtcNow.ToString("o", CultureInfo.InvariantCulture), message.Substring(skipIndex + 1))); //MLHIDE
         }
 
         private MainFormThreadFacade ThreadFacade { get; set; }
@@ -77,7 +77,7 @@ namespace Axantum.AxCrypt
             ThreadFacade = new MainFormThreadFacade(this);
 
             DelegateTraceListener traceListener = new DelegateTraceListener(ThreadFacade.FormatTraceMessage);
-            traceListener.Name = "AxCryptMainFormListener";
+            traceListener.Name = "AxCryptMainFormListener";           //MLHIDE
             Trace.Listeners.Add(traceListener);
 
             EncryptedFileManager.SetProcessTracking(AxCryptEnvironment.Current.IsDesktopWindows);
@@ -99,7 +99,7 @@ namespace Axantum.AxCrypt
             ThreadFacade.WaitForBackgroundIdle();
             PurgeActiveFiles();
             ThreadFacade.WaitForBackgroundIdle();
-            Trace.Listeners.Remove("AxCryptMainFormListener");
+            Trace.Listeners.Remove("AxCryptMainFormListener");        //MLHIDE
         }
 
         private void RestoreUserPreferences()
@@ -112,7 +112,7 @@ namespace Axantum.AxCrypt
                 Settings.Default.Save();
                 return;
             }
-            RecentFilesListView.Columns[0].Name = "DecryptedFile";
+            RecentFilesListView.Columns[0].Name = "DecryptedFile";    //MLHIDE
             RecentFilesListView.Columns[0].Width = userPreferences.RecentFilesDocumentWidth > 0 ? userPreferences.RecentFilesDocumentWidth : RecentFilesListView.Columns[0].Width;
         }
 
@@ -141,21 +141,21 @@ namespace Axantum.AxCrypt
             {
                 if (String.IsNullOrEmpty(activeFile.DecryptedPath))
                 {
-                    item = new ListViewItem(String.Empty, "InactiveFile");
+                    item = new ListViewItem(String.Empty, "InactiveFile"); //MLHIDE
                 }
                 else
                 {
-                    item = new ListViewItem(Path.GetFileName(activeFile.DecryptedPath), "ActiveFile");
+                    item = new ListViewItem(Path.GetFileName(activeFile.DecryptedPath), "ActiveFile"); //MLHIDE
                 }
 
                 ListViewItem.ListViewSubItem dateColumn = new ListViewItem.ListViewSubItem();
                 dateColumn.Text = activeFile.LastAccessTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
                 dateColumn.Tag = activeFile.LastAccessTimeUtc;
-                dateColumn.Name = "Date";
+                dateColumn.Name = "Date";                             //MLHIDE
                 item.SubItems.Add(dateColumn);
 
                 ListViewItem.ListViewSubItem encryptedPathColumn = new ListViewItem.ListViewSubItem();
-                encryptedPathColumn.Name = "EncryptedPath";
+                encryptedPathColumn.Name = "EncryptedPath";           //MLHIDE
                 encryptedPathColumn.Text = activeFile.EncryptedPath;
                 item.SubItems.Add(encryptedPathColumn);
 
@@ -164,9 +164,9 @@ namespace Axantum.AxCrypt
 
             if (activeFile.Status.HasFlag(ActiveFileStatus.DecryptedIsPendingDelete) || activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted))
             {
-                item = new ListViewItem(Path.GetFileName(activeFile.DecryptedPath), activeFile.Key != null ? "ActiveFile" : "Exclamation");
+                item = new ListViewItem(Path.GetFileName(activeFile.DecryptedPath), activeFile.Key != null ? "ActiveFile" : "Exclamation"); //MLHIDE
                 ListViewItem.ListViewSubItem encryptedPathColumn = new ListViewItem.ListViewSubItem();
-                encryptedPathColumn.Name = "EncryptedPath";
+                encryptedPathColumn.Name = "EncryptedPath";           //MLHIDE
                 encryptedPathColumn.Text = activeFile.EncryptedPath;
                 item.SubItems.Add(encryptedPathColumn);
 
@@ -274,31 +274,31 @@ namespace Axantum.AxCrypt
                 case FileOperationStatus.Success:
                     break;
                 case FileOperationStatus.UnspecifiedError:
-                    "Failed '{0}'.".InvariantFormat(displayText).ShowWarning();
+                    Resources.FileOperationFailed.InvariantFormat(displayText).ShowWarning();
                     break;
                 case FileOperationStatus.FileAlreadyExists:
-                    "File '{0}' already exists.".InvariantFormat(displayText).ShowWarning();
+                    Resources.FileAlreadyExists.InvariantFormat(displayText).ShowWarning();
                     break;
                 case FileOperationStatus.FileDoesNotExist:
-                    "File '{0}' does not exist.".InvariantFormat(displayText).ShowWarning();
+                    Resources.FileDoesNotExist.InvariantFormat(displayText).ShowWarning();
                     break;
                 case FileOperationStatus.CannotWriteDestination:
-                    "Cannot write '{0}'.".InvariantFormat(displayText).ShowWarning();
+                    Resources.CannotWrite.InvariantFormat(displayText).ShowWarning();
                     break;
                 case FileOperationStatus.CannotStartApplication:
-                    "Cannot start application for '{0}'.".InvariantFormat(displayText).ShowWarning();
+                    Resources.CannotStartApplication.InvariantFormat(displayText).ShowWarning();
                     break;
                 case FileOperationStatus.InconsistentState:
-                    "Inconsistent state with '{0}'.".InvariantFormat(displayText).ShowWarning();
+                    Resources.InconsistentState.InvariantFormat(displayText).ShowWarning();
                     break;
                 case FileOperationStatus.InvalidKey:
-                    "Invalid key for '{0}'.".InvariantFormat(displayText).ShowWarning();
+                    Resources.InvalidKey.InvariantFormat(displayText).ShowWarning();
                     break;
                 case FileOperationStatus.Canceled:
-                    "Cancelled '{0}'.".InvariantFormat(displayText).ShowWarning();
+                    Resources.Canceled.InvariantFormat(displayText).ShowWarning();
                     break;
                 default:
-                    "Unrecognized error code failing with '{0}'.".InvariantFormat(displayText).ShowWarning();
+                    Resources.UnrecognizedError.InvariantFormat(displayText).ShowWarning();
                     break;
             }
         }
@@ -318,9 +318,8 @@ namespace Axantum.AxCrypt
                 ofd.CheckFileExists = true;
                 ofd.CheckPathExists = true;
                 ofd.DefaultExt = AxCryptEnvironment.Current.AxCryptExtension;
-                ofd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(AxCryptEnvironment.Current.AxCryptExtension));
+                ofd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(AxCryptEnvironment.Current.AxCryptExtension)); //MLHIDE
                 ofd.Multiselect = true;
-                ofd.Title = Resources.DecryptFileOpenDialogTitle;
                 DialogResult result = ofd.ShowDialog();
                 if (result != DialogResult.OK)
                 {
@@ -461,7 +460,7 @@ namespace Axantum.AxCrypt
                 ofd.CheckFileExists = true;
                 ofd.CheckPathExists = true;
                 ofd.DefaultExt = AxCryptEnvironment.Current.AxCryptExtension;
-                ofd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(AxCryptEnvironment.Current.AxCryptExtension));
+                ofd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(AxCryptEnvironment.Current.AxCryptExtension)); //MLHIDE
                 DialogResult result = ofd.ShowDialog();
                 if (result != DialogResult.OK)
                 {
@@ -549,7 +548,7 @@ namespace Axantum.AxCrypt
         {
             if (Logging.IsInfoEnabled)
             {
-                Logging.Info("Tick");
+                Logging.Info("Tick");                                 //MLHIDE
             }
             if (_pollingInProgress)
             {
@@ -564,7 +563,7 @@ namespace Axantum.AxCrypt
             {
                 _fileOperationInProgress = false/*true*/;
                 _pollingInProgress = true;
-                ThreadFacade.DoBackgroundWork("Updating Status",
+                ThreadFacade.DoBackgroundWork(Resources.UpdatingStatus,
                     (WorkerArguments arguments) =>
                     {
                         EncryptedFileManager.CheckActiveFilesStatus(arguments.Progress);
@@ -592,7 +591,7 @@ namespace Axantum.AxCrypt
 
         private void RecentFilesListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            string encryptedPath = RecentFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text;
+            string encryptedPath = RecentFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text; //MLHIDE
 
             OpenEncrypted(encryptedPath);
         }
@@ -603,7 +602,7 @@ namespace Axantum.AxCrypt
             string columnName = listView.Columns[e.ColumnIndex].Name;
             switch (columnName)
             {
-                case "DecryptedFile":
+                case "DecryptedFile":                                 //MLHIDE
                     Settings.Default.UserPreferences.RecentFilesDocumentWidth = listView.Columns[e.ColumnIndex].Width;
                     break;
             }
@@ -613,7 +612,7 @@ namespace Axantum.AxCrypt
         private void PurgeActiveFiles()
         {
             EncryptedFileManager.SetProcessTracking(false);
-            ThreadFacade.DoBackgroundWork("Purging Active Files",
+            ThreadFacade.DoBackgroundWork(Resources.PurgingActiveFiles,
                 (WorkerArguments arguments) =>
                 {
                     EncryptedFileManager.CheckActiveFilesStatus(arguments.Progress);
@@ -629,7 +628,7 @@ namespace Axantum.AxCrypt
                     StringBuilder sb = new StringBuilder();
                     foreach (ActiveFile openFile in openFiles)
                     {
-                        sb.Append("{0}\n".InvariantFormat(Path.GetFileName(openFile.DecryptedPath)));
+                        sb.Append("{0}\n".InvariantFormat(Path.GetFileName(openFile.DecryptedPath))); //MLHIDE
                     }
                     sb.ToString().ShowWarning();
                 });
@@ -637,13 +636,13 @@ namespace Axantum.AxCrypt
 
         private void OpenFilesListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            string encryptedPath = OpenFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text;
+            string encryptedPath = OpenFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text; //MLHIDE
             OpenEncrypted(encryptedPath);
         }
 
         private void removeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string encryptedPath = RecentFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text;
+            string encryptedPath = RecentFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text; //MLHIDE
             EncryptedFileManager.RemoveRecentFile(encryptedPath);
         }
 

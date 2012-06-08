@@ -92,7 +92,7 @@ namespace Axantum.AxCrypt
         {
             if (Logging.IsInfoEnabled)
             {
-                Logging.Info("Creating BackgroundWorker");
+                Logging.Info("Creating BackgroundWorker");            //MLHIDE
             }
 
             BackgroundWorker worker = new BackgroundWorker();
@@ -124,7 +124,7 @@ namespace Axantum.AxCrypt
                 }
                 if (Logging.IsInfoEnabled)
                 {
-                    Logging.Info("Disposing BackgroundWorker");
+                    Logging.Info("Disposing BackgroundWorker");       //MLHIDE
                 }
             };
 

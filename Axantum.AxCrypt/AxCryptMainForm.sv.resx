@@ -117,6 +117,90 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CloseStripMenuItem.Text" xml:space="preserve">
+    <value>Stäng</value>
+  </data>
+  <data name="DecryptedFile.Text" xml:space="preserve">
+    <value>Dokument</value>
+  </data>
+  <data name="decryptToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Dekryptera</value>
+  </data>
+  <data name="EncryptedPath.Text" xml:space="preserve">
+    <value>Krypterat</value>
+  </data>
+  <data name="EncryptedSource.Text" xml:space="preserve">
+    <value>Krypterat</value>
+  </data>
+  <data name="encryptToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Kryptera</value>
+  </data>
+  <data name="EnterPassphraseMenuItem.Text" xml:space="preserve">
+    <value>Ange &amp;Lösenord</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Avsluta</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Arkiv</value>
+  </data>
+  <data name="helpToolStripButton.Text" xml:space="preserve">
+    <value>&amp;Hjälp</value>
+  </data>
+  <data name="helpToolStripButton.ToolTipText" xml:space="preserve">
+    <value>Hjälp</value>
+  </data>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Hjälp</value>
+  </data>
+  <data name="LastAccessTime.Text" xml:space="preserve">
+    <value>Tid</value>
+  </data>
+  <data name="LogTab.Text" xml:space="preserve">
+    <value>Loggbok</value>
+  </data>
+  <data name="openEncryptedToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Öppna Krypterat</value>
+  </data>
+  <data name="OpenFile.Text" xml:space="preserve">
+    <value>Dokument</value>
+  </data>
+  <data name="OpenFilesTab.Text" xml:space="preserve">
+    <value>Öppna Dokument</value>
+  </data>
+  <data name="ProgressContextCancelMenu.Text" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="RecentFilesTab.Text" xml:space="preserve">
+    <value>Nyligen Öppnade</value>
+  </data>
+  <data name="removeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ta Bort</value>
+  </data>
+  <data name="toolStripButton1.ToolTipText" xml:space="preserve">
+    <value>Stäng och ta bort öppna dokument</value>
+  </data>
+  <data name="toolStripButtonDecrypt.Text" xml:space="preserve">
+    <value>Dekryptera</value>
+  </data>
+  <data name="toolStripButtonDecrypt.ToolTipText" xml:space="preserve">
+    <value>Klicka och välj eller dra och släpp dokument för att dekryptera permanent</value>
+  </data>
+  <data name="toolStripButtonEncrypt.Text" xml:space="preserve">
+    <value>Kryptera</value>
+  </data>
+  <data name="toolStripButtonEncrypt.ToolTipText" xml:space="preserve">
+    <value>Klicka eller dra och släpp filer här för att kryptera valda filer</value>
+  </data>
+  <data name="toolStripButtonOpenEncrypted.Text" xml:space="preserve">
+    <value>Öppna krypterat dokument</value>
+  </data>
+  <data name="toolStripButtonOpenEncrypted.ToolTipText" xml:space="preserve">
+    <value>Klicka eller dra och släpp filer här för att dekrypera och öppna i sin applikation</value>
+  </data>
+  <data name="WatchedFoldersTab.Text" xml:space="preserve">
+    <value>Krypterade Mappar</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="toolStripButtonOpenEncrypted.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -315,26 +399,14 @@
   <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>46, 20</value>
   </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Arkiv</value>
-  </data>
   <data name="openEncryptedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 22</value>
-  </data>
-  <data name="openEncryptedToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Öppna Krypterat</value>
   </data>
   <data name="encryptToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 22</value>
   </data>
-  <data name="encryptToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Kryptera</value>
-  </data>
   <data name="decryptToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 22</value>
-  </data>
-  <data name="decryptToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Dekryptera</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
     <value>158, 6</value>
@@ -342,23 +414,8 @@
   <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 22</value>
   </data>
-  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Avsluta</value>
-  </data>
   <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 20</value>
-  </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Hjälp</value>
-  </data>
-  <data name="OpenFilesTab.Text" xml:space="preserve">
-    <value>Öppna Dokument</value>
-  </data>
-  <data name="OpenFile.Text" xml:space="preserve">
-    <value>Dokument</value>
-  </data>
-  <data name="EncryptedSource.Text" xml:space="preserve">
-    <value>Krypterat</value>
   </data>
   <data name="ImageList48.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
@@ -988,12 +1045,6 @@
         AVQB3wFUAWkBVAHfAVQBaQFUAd8BVAFpAVQB3wFUAWkBVAHfAVkBWwFZAcOAAAFCAU0BPgcAAT4DAAEo
         AwABQAMAARADAAEBAQABAQUAAYAXAAP/gQAL
 </value>
-  </data>
-  <data name="RecentFilesTab.Text" xml:space="preserve">
-    <value>Nyligen Öppnade</value>
-  </data>
-  <data name="WatchedFoldersTab.Text" xml:space="preserve">
-    <value>Krypterade Mappar</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

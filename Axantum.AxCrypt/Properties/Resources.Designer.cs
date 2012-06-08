@@ -61,6 +61,33 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Canceled &apos;{0}&apos;..
+        /// </summary>
+        internal static string Canceled {
+            get {
+                return ResourceManager.GetString("Canceled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot start application for &apos;{0}&apos;..
+        /// </summary>
+        internal static string CannotStartApplication {
+            get {
+                return ResourceManager.GetString("CannotStartApplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot write &apos;{0}&apos;..
+        /// </summary>
+        internal static string CannotWrite {
+            get {
+                return ResourceManager.GetString("CannotWrite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Documents (*{0})|*{0}|All files (*.*)|*.*.
         /// </summary>
         internal static string DecryptedSaveAsFileDialogFilterPattern {
@@ -124,6 +151,51 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File &apos;{0}&apos; already exists..
+        /// </summary>
+        internal static string FileAlreadyExists {
+            get {
+                return ResourceManager.GetString("FileAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File &apos;{0}&apos; does not exist..
+        /// </summary>
+        internal static string FileDoesNotExist {
+            get {
+                return ResourceManager.GetString("FileDoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed &apos;{0}&apos;..
+        /// </summary>
+        internal static string FileOperationFailed {
+            get {
+                return ResourceManager.GetString("FileOperationFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inconsistent state with &apos;{0}&apos;..
+        /// </summary>
+        internal static string InconsistentState {
+            get {
+                return ResourceManager.GetString("InconsistentState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid key for &apos;{0}&apos;..
+        /// </summary>
+        internal static string InvalidKey {
+            get {
+                return ResourceManager.GetString("InvalidKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select file to decrypt and open.
         /// </summary>
         internal static string OpenEncryptedFileOpenDialogTitle {
@@ -147,6 +219,33 @@ namespace Axantum.AxCrypt.Properties {
         internal static string PassphraseVerificationMismatch {
             get {
                 return ResourceManager.GetString("PassphraseVerificationMismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purging Active Files.
+        /// </summary>
+        internal static string PurgingActiveFiles {
+            get {
+                return ResourceManager.GetString("PurgingActiveFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unrecognized error code failing with &apos;{0}&apos;..
+        /// </summary>
+        internal static string UnrecognizedError {
+            get {
+                return ResourceManager.GetString("UnrecognizedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updating Status.
+        /// </summary>
+        internal static string UpdatingStatus {
+            get {
+                return ResourceManager.GetString("UpdatingStatus", resourceCulture);
             }
         }
     }
