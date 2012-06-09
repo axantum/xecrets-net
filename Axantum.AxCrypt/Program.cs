@@ -50,16 +50,11 @@ namespace Axantum.AxCrypt
 
         private static void SetCulture()
         {
-            UserPreferences userPreferences = Settings.Default.UserPreferences;
-            if (userPreferences == null)
+            if (String.IsNullOrEmpty(Settings.Default.Language))
             {
                 return;
             }
-            if (String.IsNullOrEmpty(userPreferences.CultureName))
-            {
-                return;
-            }
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(userPreferences.CultureName);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Settings.Default.Language);
         }
     }
 }

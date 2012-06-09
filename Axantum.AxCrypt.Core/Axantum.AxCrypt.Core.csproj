@@ -140,7 +140,6 @@
     <Compile Include="UI\ProgressContext.cs" />
     <Compile Include="UI\ProgressEventArgs.cs" />
     <Compile Include="UI\ProgressManager.cs" />
-    <Compile Include="UI\UserPreferences.cs" />
     <Compile Include="UI\WorkerArguments.cs" />
   </ItemGroup>
   <ItemGroup>

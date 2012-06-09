@@ -28,6 +28,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
@@ -106,16 +107,8 @@ namespace Axantum.AxCrypt
 
         private void RestoreUserPreferences()
         {
-            UserPreferences userPreferences = Settings.Default.UserPreferences;
-            if (userPreferences == null)
-            {
-                userPreferences = new UserPreferences();
-                Settings.Default.UserPreferences = userPreferences;
-                Settings.Default.Save();
-                return;
-            }
             RecentFilesListView.Columns[0].Name = "DecryptedFile";    //MLHIDE
-            RecentFilesListView.Columns[0].Width = userPreferences.RecentFilesDocumentWidth > 0 ? userPreferences.RecentFilesDocumentWidth : RecentFilesListView.Columns[0].Width;
+            RecentFilesListView.Columns[0].Width = Settings.Default.RecentFilesDocumentWidth > 0 ? Settings.Default.RecentFilesDocumentWidth : RecentFilesListView.Columns[0].Width;
         }
 
         public void RestartTimer()
@@ -606,7 +599,7 @@ namespace Axantum.AxCrypt
             switch (columnName)
             {
                 case "DecryptedFile":                                 //MLHIDE
-                    Settings.Default.UserPreferences.RecentFilesDocumentWidth = listView.Columns[e.ColumnIndex].Width;
+                    Settings.Default.RecentFilesDocumentWidth = listView.Columns[e.ColumnIndex].Width;
                     break;
             }
             Settings.Default.Save();
@@ -763,8 +756,12 @@ namespace Axantum.AxCrypt
 
         private static void SetLanguage(string cultureName)
         {
-            Settings.Default.UserPreferences.CultureName = cultureName;
+            Settings.Default.Language = cultureName;
             Settings.Default.Save();
+            if (Logging.IsInfoEnabled)
+            {
+                Logging.Info("Set new UI language culture to '{0}'.".InvariantFormat(Settings.Default.Language)); //MLHIDE
+            }
             Resources.LanguageChangeRestartPrompt.ShowWarning();
         }
 

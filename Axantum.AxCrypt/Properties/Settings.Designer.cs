@@ -25,12 +25,25 @@ namespace Axantum.AxCrypt.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::Axantum.AxCrypt.Core.UI.UserPreferences UserPreferences {
+        [global::System.Configuration.DefaultSettingValueAttribute("en-US")]
+        public string Language {
             get {
-                return ((global::Axantum.AxCrypt.Core.UI.UserPreferences)(this["UserPreferences"]));
+                return ((string)(this["Language"]));
             }
             set {
-                this["UserPreferences"] = value;
+                this["Language"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int RecentFilesDocumentWidth {
+            get {
+                return ((int)(this["RecentFilesDocumentWidth"]));
+            }
+            set {
+                this["RecentFilesDocumentWidth"] = value;
             }
         }
     }
