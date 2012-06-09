@@ -729,8 +729,8 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            TrayNotifyIcon.BalloonTipTitle = "AxCrypt File Encryption";
-            TrayNotifyIcon.BalloonTipText = "Double-click to restore the AxCrypt application window.";
+            TrayNotifyIcon.BalloonTipTitle = Resources.AxCryptFileEncryption;
+            TrayNotifyIcon.BalloonTipText = Resources.TrayBalloonTooltip;
 
             if (FormWindowState.Minimized == this.WindowState)
             {
@@ -764,7 +764,7 @@ namespace Axantum.AxCrypt
         {
             Settings.Default.UserPreferences.CultureName = cultureName;
             Settings.Default.Save();
-            "You must restart AxCrypt in order for the language change to take effect.".ShowWarning();
+            Resources.LanguageChangeRestartPrompt.ShowWarning();
         }
     }
 }

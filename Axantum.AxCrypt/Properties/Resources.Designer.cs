@@ -61,6 +61,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AxCrypt File Encryption.
+        /// </summary>
+        internal static string AxCryptFileEncryption {
+            get {
+                return ResourceManager.GetString("AxCryptFileEncryption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Canceled &apos;{0}&apos;..
         /// </summary>
         internal static string Canceled {
@@ -196,6 +205,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must restart AxCrypt in order for the language change to take effect..
+        /// </summary>
+        internal static string LanguageChangeRestartPrompt {
+            get {
+                return ResourceManager.GetString("LanguageChangeRestartPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select file to decrypt and open.
         /// </summary>
         internal static string OpenEncryptedFileOpenDialogTitle {
@@ -228,6 +246,15 @@ namespace Axantum.AxCrypt.Properties {
         internal static string PurgingActiveFiles {
             get {
                 return ResourceManager.GetString("PurgingActiveFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Double-click to restore the AxCrypt application window..
+        /// </summary>
+        internal static string TrayBalloonTooltip {
+            get {
+                return ResourceManager.GetString("TrayBalloonTooltip", resourceCulture);
             }
         }
         

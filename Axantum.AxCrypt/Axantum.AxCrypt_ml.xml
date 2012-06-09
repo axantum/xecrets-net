@@ -32,7 +32,6 @@
   </GeneralIds>
   <GeneralIds>
     <StringID>11</StringID>
-    <Comment>Previous text: </Comment>
   </GeneralIds>
   <GeneralIds>
     <StringID>12</StringID>
@@ -201,12 +200,28 @@
   </GeneralIds>
   <GeneralIds>
     <StringID>67</StringID>
+    <Comment>The menu text for language selection.</Comment>
   </GeneralIds>
   <GeneralIds>
     <StringID>68</StringID>
   </GeneralIds>
   <GeneralIds>
     <StringID>69</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>70</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>71</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>72</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>73</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>74</StringID>
   </GeneralIds>
   <Languages>
     <LanguageID>29</LanguageID>
@@ -302,7 +317,7 @@
     <StringID>11</StringID>
     <LanguageID>29</LanguageID>
     <LanguageText>Hjälp</LanguageText>
-    <Status>7</Status>
+    <Status>2</Status>
   </GeneralTexts>
   <GeneralTexts>
     <StringID>30</StringID>
@@ -990,6 +1005,78 @@ the Open Files tab to see the list of files.</LanguageText>
     <LanguageText>AxCrypt File Encryption</LanguageText>
     <Status>0</Status>
   </GeneralTexts>
+  <GeneralTexts>
+    <StringID>69</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>AxCrypt Dokumentkryptering</LanguageText>
+    <Status>2</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>70</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Double-click to restore the AxCrypt application window.</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>70</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>Dubbelklicka ikonen för att öppa AxCrypt</LanguageText>
+    <Status>2</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>72</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>You must restart AxCrypt in order for the language change to take effect.</LanguageText>
+    <Status>0</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>72</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>AxCrypt måste startas om för att slutföra språkändringen.</LanguageText>
+    <Status>2</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>73</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>AxCrypt File Encryption</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>74</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Double-click to restore the AxCrypt application window.</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>71</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>AxCrypt File Encryption</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>73</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>AxCrypt Dokumentkryptering</LanguageText>
+    <Status>3</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>74</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>Dubbelklicka ikonen för att öppa AxCrypt</LanguageText>
+    <Status>3</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>71</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>AxCrypt Dokumentkryptering</LanguageText>
+    <Status>3</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>67</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>&amp;Språk</LanguageText>
+    <Status>2</Status>
+  </GeneralTexts>
   <Properties>
     <Component>AxCryptMainForm.cs</Component>
     <Name>AxCryptMainForm.Text</Name>
@@ -1606,6 +1693,46 @@ the Open Files tab to see the list of files.</LanguageText>
     <ResourceName>TrayNotifyIcon.Text</ResourceName>
     <Hidden>false</Hidden>
   </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Axantum.AxCrypt.Properties.Resources.AxCryptFileEncryption</Name>
+    <StringID>71</StringID>
+    <Selected>true</Selected>
+    <ResourceName>AxCryptFileEncryption</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Resources.AxCryptFileEncryption</Name>
+    <StringID>73</StringID>
+    <Selected>true</Selected>
+    <ResourceName>AxCryptFileEncryption</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Resources.TrayBalloonTooltip</Name>
+    <StringID>74</StringID>
+    <Selected>true</Selected>
+    <ResourceName>TrayBalloonTooltip</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Axantum.AxCrypt.Properties.Resources.TrayBalloonTooltip</Name>
+    <StringID>70</StringID>
+    <Selected>true</Selected>
+    <ResourceName>TrayBalloonTooltip</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Axantum.AxCrypt.Properties.Resources.LanguageChangeRestartPrompt</Name>
+    <StringID>72</StringID>
+    <Selected>true</Selected>
+    <ResourceName>LanguageChangeRestartPrompt</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
   <GeneralAttributes>
     <Name>StatusHash</Name>
     <TextValue>pbvrvfEcU3oio6natLg0mM60Qco=</TextValue>
@@ -1624,6 +1751,66 @@ the Open Files tab to see the list of files.</LanguageText>
   <GeneralAttributes>
     <Name>OriginalLanguageIetfTag</Name>
     <TextValue>en</TextValue>
+    <NumValue>0</NumValue>
+  </GeneralAttributes>
+  <GeneralAttributes>
+    <Name>GenerateMultilangResx</Name>
+    <TextValue>False</TextValue>
+    <NumValue>0</NumValue>
+  </GeneralAttributes>
+  <GeneralAttributes>
+    <Name>UseNamedResources</Name>
+    <TextValue>True</TextValue>
+    <NumValue>1</NumValue>
+  </GeneralAttributes>
+  <GeneralAttributes>
+    <Name>ResxForOriginalLang</Name>
+    <TextValue>False</TextValue>
+    <NumValue>0</NumValue>
+  </GeneralAttributes>
+  <GeneralAttributes>
+    <Name>MlHideCommentString</Name>
+    <TextValue>MLHIDE</TextValue>
+    <NumValue>0</NumValue>
+  </GeneralAttributes>
+  <GeneralAttributes>
+    <Name>AlwaysRescanSource</Name>
+    <TextValue>True</TextValue>
+    <NumValue>1</NumValue>
+  </GeneralAttributes>
+  <GeneralAttributes>
+    <Name>AlwaysRescanControls</Name>
+    <TextValue>True</TextValue>
+    <NumValue>1</NumValue>
+  </GeneralAttributes>
+  <GeneralAttributes>
+    <Name>ScanInitializeComponents</Name>
+    <TextValue>False</TextValue>
+    <NumValue>0</NumValue>
+  </GeneralAttributes>
+  <GeneralAttributes>
+    <Name>HandleCppCliAsManaged</Name>
+    <TextValue>True</TextValue>
+    <NumValue>1</NumValue>
+  </GeneralAttributes>
+  <GeneralAttributes>
+    <Name>MfcSatelliteDlls</Name>
+    <TextValue>False</TextValue>
+    <NumValue>0</NumValue>
+  </GeneralAttributes>
+  <GeneralAttributes>
+    <Name>MfcPerLanguageRcFile</Name>
+    <TextValue>False</TextValue>
+    <NumValue>0</NumValue>
+  </GeneralAttributes>
+  <GeneralAttributes>
+    <Name>MfcSatForOriginalLang</Name>
+    <TextValue>False</TextValue>
+    <NumValue>0</NumValue>
+  </GeneralAttributes>
+  <GeneralAttributes>
+    <Name>AlternativeSupport</Name>
+    <TextValue>False</TextValue>
     <NumValue>0</NumValue>
   </GeneralAttributes>
 </MdbTranslationStore>

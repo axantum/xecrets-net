@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AxCryptFileEncryption" xml:space="preserve">
+    <value>AxCrypt File Encryption</value>
+  </data>
   <data name="Canceled" xml:space="preserve">
     <value>Canceled '{0}'.</value>
   </data>
@@ -162,6 +165,9 @@
   <data name="InvalidKey" xml:space="preserve">
     <value>Invalid key for '{0}'.</value>
   </data>
+  <data name="LanguageChangeRestartPrompt" xml:space="preserve">
+    <value>You must restart AxCrypt in order for the language change to take effect.</value>
+  </data>
   <data name="OpenEncryptedFileOpenDialogTitle" xml:space="preserve">
     <value>Select file to decrypt and open</value>
   </data>
@@ -173,6 +179,9 @@
   </data>
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>Purging Active Files</value>
+  </data>
+  <data name="TrayBalloonTooltip" xml:space="preserve">
+    <value>Double-click to restore the AxCrypt application window.</value>
   </data>
   <data name="UnrecognizedError" xml:space="preserve">
     <value>Unrecognized error code failing with '{0}'.</value>
