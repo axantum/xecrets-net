@@ -32,6 +32,7 @@
   </GeneralIds>
   <GeneralIds>
     <StringID>11</StringID>
+    <Comment>Previous text: </Comment>
   </GeneralIds>
   <GeneralIds>
     <StringID>12</StringID>
@@ -189,6 +190,24 @@
   <GeneralIds>
     <StringID>63</StringID>
   </GeneralIds>
+  <GeneralIds>
+    <StringID>64</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>65</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>66</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>67</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>68</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>69</StringID>
+  </GeneralIds>
   <Languages>
     <LanguageID>29</LanguageID>
     <LanguageName>Swedish</LanguageName>
@@ -283,7 +302,7 @@
     <StringID>11</StringID>
     <LanguageID>29</LanguageID>
     <LanguageText>Hjälp</LanguageText>
-    <Status>2</Status>
+    <Status>7</Status>
   </GeneralTexts>
   <GeneralTexts>
     <StringID>30</StringID>
@@ -517,7 +536,7 @@
     <StringID>11</StringID>
     <LanguageID>9</LanguageID>
     <LanguageText>Help</LanguageText>
-    <Status>3</Status>
+    <Status>1</Status>
   </GeneralTexts>
   <GeneralTexts>
     <StringID>19</StringID>
@@ -926,6 +945,50 @@
     <LanguageID>9</LanguageID>
     <LanguageText>Updating Status</LanguageText>
     <Status>6</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>64</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Click to remove any open decrypted files left, but
+first ensure they are not used in an application. See
+the Open Files tab to see the list of files.</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>65</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>&amp;English</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>66</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>&amp;Svenska</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>67</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>&amp;Language</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>68</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>O&amp;ptions</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>68</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>Alternativ</LanguageText>
+    <Status>3</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>69</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>AxCrypt File Encryption</LanguageText>
+    <Status>0</Status>
   </GeneralTexts>
   <Properties>
     <Component>AxCryptMainForm.cs</Component>
@@ -1485,6 +1548,62 @@
     <StringID>63</StringID>
     <Selected>true</Selected>
     <ResourceName>PurgingActiveFiles</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AxCryptMainForm.cs</Component>
+    <Name>CloseAndRemoveOpenFilesButton.Text</Name>
+    <StringID>8</StringID>
+    <Selected>true</Selected>
+    <ResourceName>CloseAndRemoveOpenFilesButton.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AxCryptMainForm.cs</Component>
+    <Name>CloseAndRemoveOpenFilesButton.ToolTipText</Name>
+    <StringID>64</StringID>
+    <Selected>true</Selected>
+    <ResourceName>CloseAndRemoveOpenFilesButton.ToolTipText</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AxCryptMainForm.cs</Component>
+    <Name>EnglishMenuItem.Text</Name>
+    <StringID>65</StringID>
+    <Selected>true</Selected>
+    <ResourceName>EnglishMenuItem.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AxCryptMainForm.cs</Component>
+    <Name>SwedishMenuItem.Text</Name>
+    <StringID>66</StringID>
+    <Selected>true</Selected>
+    <ResourceName>SwedishMenuItem.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AxCryptMainForm.cs</Component>
+    <Name>LanguageMenuItem.Text</Name>
+    <StringID>67</StringID>
+    <Selected>true</Selected>
+    <ResourceName>LanguageMenuItem.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AxCryptMainForm.cs</Component>
+    <Name>OptionsMenuItem.Text</Name>
+    <StringID>68</StringID>
+    <Selected>true</Selected>
+    <ResourceName>OptionsMenuItem.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AxCryptMainForm.cs</Component>
+    <Name>TrayNotifyIcon.Text</Name>
+    <StringID>1</StringID>
+    <Selected>true</Selected>
+    <ResourceName>TrayNotifyIcon.Text</ResourceName>
     <Hidden>false</Hidden>
   </Properties>
   <GeneralAttributes>

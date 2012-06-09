@@ -33,5 +33,7 @@ namespace Axantum.AxCrypt.Core.UI
     public class UserPreferences
     {
         public int RecentFilesDocumentWidth { get; set; }
+
+        public string CultureName { get; set; }
     }
 }

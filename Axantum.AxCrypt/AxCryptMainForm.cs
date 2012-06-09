@@ -724,6 +724,11 @@ namespace Axantum.AxCrypt
 
         private void AxCryptMainForm_Resize(object sender, EventArgs e)
         {
+            if (!AxCryptEnvironment.Current.IsDesktopWindows)
+            {
+                return;
+            }
+
             TrayNotifyIcon.BalloonTipTitle = "AxCrypt File Encryption";
             TrayNotifyIcon.BalloonTipText = "Double-click to restore the AxCrypt application window.";
 
@@ -743,6 +748,23 @@ namespace Axantum.AxCrypt
         {
             this.Show();
             this.WindowState = FormWindowState.Normal;
+        }
+
+        private void EnglishMenuItem_Click(object sender, EventArgs e)
+        {
+            SetLanguage("en-US"); //MLHIDE
+        }
+
+        private void SwedishMenuItem_Click(object sender, EventArgs e)
+        {
+            SetLanguage("sv-SE"); //MLHIDE
+        }
+
+        private static void SetLanguage(string cultureName)
+        {
+            Settings.Default.UserPreferences.CultureName = cultureName;
+            Settings.Default.Save();
+            "You must restart AxCrypt in order for the language change to take effect.".ShowWarning();
         }
     }
 }
