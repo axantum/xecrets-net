@@ -33,6 +33,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
@@ -765,6 +766,30 @@ namespace Axantum.AxCrypt
             Settings.Default.UserPreferences.CultureName = cultureName;
             Settings.Default.Save();
             Resources.LanguageChangeRestartPrompt.ShowWarning();
+        }
+
+        private void LanguageMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            ToolStripMenuItem languageMenu = (ToolStripMenuItem)sender;
+            CultureInfo currentUICulture = Thread.CurrentThread.CurrentUICulture;
+            if (!currentUICulture.IsNeutralCulture)
+            {
+                currentUICulture = currentUICulture.Parent;
+            }
+            string currentLanguage = currentUICulture.Name;
+            foreach (ToolStripItem item in languageMenu.DropDownItems)
+            {
+                string languageName = item.Tag as string;
+                if (String.IsNullOrEmpty(languageName))
+                {
+                    continue;
+                }
+                if (languageName == currentLanguage)
+                {
+                    ((ToolStripMenuItem)item).Checked = true;
+                    break;
+                }
+            }
         }
     }
 }
