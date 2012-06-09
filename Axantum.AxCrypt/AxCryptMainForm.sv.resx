@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CloseAndRemoveOpenFilesButton.ToolTipText" xml:space="preserve">
+    <value>Det finns öppna, dekrypterade filer. Klicka här för att stänga och ta brot de, men säkerställ först att de inte används. Fliken 'Öppna Dokument' visar vilka det gäller.</value>
+  </data>
   <data name="CloseStripMenuItem.Text" xml:space="preserve">
     <value>Stäng</value>
   </data>
@@ -155,6 +158,7 @@
   </data>
   <data name="LanguageMenuItem.Text" xml:space="preserve">
     <value>&amp;Språk</value>
+    <comment>The menu text for language selection.</comment>
   </data>
   <data name="LastAccessTime.Text" xml:space="preserve">
     <value>Tid</value>

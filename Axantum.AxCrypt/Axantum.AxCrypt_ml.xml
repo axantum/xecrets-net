@@ -1077,6 +1077,12 @@ the Open Files tab to see the list of files.</LanguageText>
     <LanguageText>&amp;Språk</LanguageText>
     <Status>2</Status>
   </GeneralTexts>
+  <GeneralTexts>
+    <StringID>64</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>Det finns öppna, dekrypterade filer. Klicka här för att stänga och ta brot de, men säkerställ först att de inte används. Fliken 'Öppna Dokument' visar vilka det gäller.</LanguageText>
+    <Status>2</Status>
+  </GeneralTexts>
   <Properties>
     <Component>AxCryptMainForm.cs</Component>
     <Name>AxCryptMainForm.Text</Name>
@@ -1168,10 +1174,9 @@ the Open Files tab to see the list of files.</LanguageText>
   <Properties>
     <Component>AxCryptMainForm.cs</Component>
     <Name>toolStrip1.Text</Name>
-    <StringID>12</StringID>
-    <Selected>true</Selected>
+    <Selected>false</Selected>
     <ResourceName>toolStrip1.Text</ResourceName>
-    <Hidden>false</Hidden>
+    <Hidden>true</Hidden>
   </Properties>
   <Properties>
     <Component>AxCryptMainForm.cs</Component>
@@ -1232,10 +1237,9 @@ the Open Files tab to see the list of files.</LanguageText>
   <Properties>
     <Component>AxCryptMainForm.cs</Component>
     <Name>menuStripMain.Text</Name>
-    <StringID>20</StringID>
-    <Selected>true</Selected>
+    <Selected>false</Selected>
     <ResourceName>menuStripMain.Text</ResourceName>
-    <Hidden>false</Hidden>
+    <Hidden>true</Hidden>
   </Properties>
   <Properties>
     <Component>AxCryptMainForm.cs</Component>
@@ -1368,10 +1372,9 @@ the Open Files tab to see the list of files.</LanguageText>
   <Properties>
     <Component>EncryptPassphraseDialog.cs</Component>
     <Name>EncryptPassphraseDialog.Text</Name>
-    <StringID>33</StringID>
-    <Selected>true</Selected>
+    <Selected>false</Selected>
     <ResourceName>$this.Text</ResourceName>
-    <Hidden>false</Hidden>
+    <Hidden>true</Hidden>
   </Properties>
   <Properties>
     <Component>EncryptPassphraseDialog.cs</Component>
@@ -1640,10 +1643,9 @@ the Open Files tab to see the list of files.</LanguageText>
   <Properties>
     <Component>AxCryptMainForm.cs</Component>
     <Name>CloseAndRemoveOpenFilesButton.Text</Name>
-    <StringID>8</StringID>
-    <Selected>true</Selected>
+    <Selected>false</Selected>
     <ResourceName>CloseAndRemoveOpenFilesButton.Text</ResourceName>
-    <Hidden>false</Hidden>
+    <Hidden>true</Hidden>
   </Properties>
   <Properties>
     <Component>AxCryptMainForm.cs</Component>
