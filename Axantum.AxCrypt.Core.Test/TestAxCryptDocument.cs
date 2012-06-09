@@ -162,6 +162,27 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        public static void TestDecryptWithCancel()
+        {
+            using (AxCryptDocument document = new AxCryptDocument())
+            {
+                Passphrase passphrase = new Passphrase("a");
+                bool keyIsOk = document.Load(new MemoryStream(Resources.HelloWorld_Key_a_txt), passphrase.DerivedPassphrase);
+                Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+                using (MemoryStream plaintextStream = new MemoryStream())
+                {
+                    ProgressContext progress = new ProgressContext(0);
+                    progress.Progressing += (object sender, ProgressEventArgs e) =>
+                    {
+                        throw new OperationCanceledException();
+                    };
+
+                    Assert.Throws<OperationCanceledException>(() => { document.DecryptTo(plaintextStream, progress); });
+                }
+            }
+        }
+
+        [Test]
         public static void TestDecryptCompressedFromLegacy0B6()
         {
             using (AxCryptDocument document = new AxCryptDocument())
@@ -494,6 +515,7 @@ namespace Axantum.AxCrypt.Core.Test
                         Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(null, inputStream, outputStream, AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
                         Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(headers, null, outputStream, AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
                         Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(headers, inputStream, null, AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
+                        Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(headers, inputStream, outputStream, AxCryptOptions.EncryptWithCompression, null); });
                         Assert.Throws<ArgumentException>(() => { document.EncryptTo(headers, inputStream, new NonSeekableStream(), AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
                         Assert.Throws<ArgumentException>(() => { document.EncryptTo(headers, inputStream, outputStream, AxCryptOptions.EncryptWithCompression | AxCryptOptions.EncryptWithoutCompression, new ProgressContext()); });
                         Assert.Throws<ArgumentException>(() => { document.EncryptTo(headers, inputStream, outputStream, AxCryptOptions.None, new ProgressContext()); });

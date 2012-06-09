@@ -50,6 +50,12 @@ namespace Axantum.AxCrypt.Core.UI
             Max = -1;
         }
 
+        public ProgressContext(long firstElapsed)
+            : this()
+        {
+            _nextElapsed = 0;
+        }
+
         public event EventHandler<ProgressEventArgs> Progressing;
 
         public string DisplayText { get; set; }
