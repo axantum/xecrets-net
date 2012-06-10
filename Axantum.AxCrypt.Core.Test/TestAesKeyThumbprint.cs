@@ -42,12 +42,13 @@ namespace Axantum.AxCrypt.Core.Test
         {
             AesKey nullKey = null;
             Byte[] nullArray = null;
-            Assert.Throws<ArgumentNullException>(() => { new AesKeyThumbprint(nullKey, new byte[] { }); });
-            Assert.Throws<ArgumentNullException>(() => { new AesKeyThumbprint(new AesKey(), nullArray); });
+            AesKeyThumbprint thumbprint;
+            Assert.Throws<ArgumentNullException>(() => { thumbprint = new AesKeyThumbprint(nullKey, new byte[] { }); });
+            Assert.Throws<ArgumentNullException>(() => { thumbprint = new AesKeyThumbprint(new AesKey(), nullArray); });
         }
 
         [Test]
-        public static void TestAesKeyThumprint()
+        public static void TestAesKeyThumbprintMethods()
         {
             AesKey key1 = new AesKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
             AesKey key2 = new AesKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
