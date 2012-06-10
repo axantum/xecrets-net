@@ -320,13 +320,9 @@ namespace Axantum.AxCrypt.Core
                     }
                 }
             }
-            catch (Exception)
+            catch (CryptographicException)
             {
-                if (savedExceptionIfCloseCausesCryptographicException != null)
-                {
-                    throw savedExceptionIfCloseCausesCryptographicException;
-                }
-                throw;
+                throw savedExceptionIfCloseCausesCryptographicException;
             }
         }
 
