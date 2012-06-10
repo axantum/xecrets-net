@@ -76,5 +76,17 @@ namespace Axantum.AxCrypt.Core.Test
             AesKey specifiedKey = new AesKey(key.GetBytes());
             Assert.That(specifiedKey.GetBytes(), Is.EquivalentTo(key.GetBytes()), "The specified key should contain the bits given to it.");
         }
+
+        [Test]
+        public static void TestEquals()
+        {
+            AesKey key1 = new AesKey(new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 });
+            AesKey key2 = new AesKey(new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 });
+            AesKey key3 = new AesKey();
+
+            Assert.That(!key1.Equals(null), "A key is never equal to a null reference.");
+            Assert.That(key1.Equals(key2), "Two different, but equivalent keys should compare equal.");
+            Assert.That(!key1.Equals(key3), "Two really different keys should not compare equal.");
+        }
     }
 }

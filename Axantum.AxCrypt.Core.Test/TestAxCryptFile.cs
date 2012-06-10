@@ -329,5 +329,18 @@ namespace Axantum.AxCrypt.Core.Test
             string madeName = AxCryptFile.MakeAxCryptFileName(AxCryptEnvironment.Current.FileInfo(testFile));
             Assert.That(madeName, Is.EqualTo(axxFile), "The AxCrypt version of the name is unexpected.");
         }
+
+        [Test]
+        public static void TestWipe()
+        {
+            string testFile = @"c:\Folder\file-to-be-wiped.txt";
+            IRuntimeFileInfo fileInfo = AxCryptEnvironment.Current.FileInfo(testFile);
+            using (Stream writeStream = fileInfo.OpenWrite())
+            {
+            }
+            Assert.That(fileInfo.Exists, "Now it should exist.");
+            AxCryptFile.Wipe(fileInfo);
+            Assert.That(!fileInfo.Exists, "And now it should not exist after wiping.");
+        }
     }
 }
