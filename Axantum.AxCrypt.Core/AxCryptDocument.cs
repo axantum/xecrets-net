@@ -281,7 +281,6 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "The method does in fact rethrow the exception, but FxCop is not smart enough to realize it.")]
         private void DecryptEncryptedDataStream(Stream outputPlaintextStream, ICryptoTransform decryptor, AxCryptDataStream encryptedDataStream, ProgressContext progress)
         {
             Exception savedExceptionIfCloseCausesCryptographicException = null;
@@ -300,6 +299,7 @@ namespace Axantum.AxCrypt.Core
                             catch (Exception ex)
                             {
                                 savedExceptionIfCloseCausesCryptographicException = ex;
+                                throw;
                             }
                         }
                     }
@@ -315,20 +315,18 @@ namespace Axantum.AxCrypt.Core
                         catch (Exception ex)
                         {
                             savedExceptionIfCloseCausesCryptographicException = ex;
+                            throw;
                         }
                     }
                 }
             }
-            catch (CryptographicException)
+            catch (Exception)
             {
-                if (savedExceptionIfCloseCausesCryptographicException == null)
+                if (savedExceptionIfCloseCausesCryptographicException != null)
                 {
-                    throw;
+                    throw savedExceptionIfCloseCausesCryptographicException;
                 }
-            }
-            if (savedExceptionIfCloseCausesCryptographicException != null)
-            {
-                throw savedExceptionIfCloseCausesCryptographicException;
+                throw;
             }
         }
 

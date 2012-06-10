@@ -50,10 +50,10 @@ namespace Axantum.AxCrypt.Core.UI
             Max = -1;
         }
 
-        public ProgressContext(long firstElapsed)
+        public ProgressContext(TimeSpan firstElapsed)
             : this()
         {
-            _nextElapsed = 0;
+            _nextElapsed = (long)firstElapsed.TotalMilliseconds;
         }
 
         public event EventHandler<ProgressEventArgs> Progressing;

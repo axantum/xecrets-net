@@ -29,6 +29,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
+using System.Security.Cryptography;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Reader;
@@ -162,7 +163,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptWithCancel()
+        public static void TestDecryptUncompressedWithCancel()
         {
             using (AxCryptDocument document = new AxCryptDocument())
             {
@@ -171,7 +172,72 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 using (MemoryStream plaintextStream = new MemoryStream())
                 {
-                    ProgressContext progress = new ProgressContext(0);
+                    ProgressContext progress = new ProgressContext(TimeSpan.Zero);
+                    progress.Progressing += (object sender, ProgressEventArgs e) =>
+                    {
+                        throw new OperationCanceledException();
+                    };
+
+                    Assert.Throws<OperationCanceledException>(() => { document.DecryptTo(plaintextStream, progress); });
+                }
+            }
+        }
+
+        [Test]
+        public static void TestDecryptUncompressedWithPaddingError()
+        {
+            using (AxCryptDocument document = new AxCryptDocument())
+            {
+                Passphrase passphrase = new Passphrase("a");
+                using (MemoryStream encryptedFile = new MemoryStream(Resources.HelloWorld_Key_a_txt))
+                {
+                    encryptedFile.Seek(-1, SeekOrigin.End);
+                    byte lastByte = (byte)encryptedFile.ReadByte();
+                    ++lastByte;
+                    encryptedFile.Seek(-1, SeekOrigin.End);
+                    encryptedFile.WriteByte(lastByte);
+                    encryptedFile.Position = 0;
+                    bool keyIsOk = document.Load(encryptedFile, passphrase.DerivedPassphrase);
+                    Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+                    using (MemoryStream plaintextStream = new MemoryStream())
+                    {
+                        Assert.Throws<CryptographicException>(() => { document.DecryptTo(plaintextStream, new ProgressContext()); });
+                    }
+                }
+            }
+        }
+
+        [Test]
+        public static void TestDecryptCompressedWithTruncatedFile()
+        {
+            using (AxCryptDocument document = new AxCryptDocument())
+            {
+                Passphrase passphrase = new Passphrase("Å ä Ö");
+                using (MemoryStream encryptedFile = new MemoryStream(Resources.David_Copperfield_Key_Å_ä_Ö_txt))
+                {
+                    encryptedFile.SetLength(encryptedFile.Length / 2);
+                    encryptedFile.Position = 0;
+                    bool keyIsOk = document.Load(encryptedFile, passphrase.DerivedPassphrase);
+                    Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+                    using (MemoryStream plaintextStream = new MemoryStream())
+                    {
+                        Assert.Throws<CryptographicException>(() => { document.DecryptTo(plaintextStream, new ProgressContext()); });
+                    }
+                }
+            }
+        }
+
+        [Test]
+        public static void TestDecryptCompressedWithCancel()
+        {
+            using (AxCryptDocument document = new AxCryptDocument())
+            {
+                Passphrase passphrase = new Passphrase("Å ä Ö");
+                bool keyIsOk = document.Load(new MemoryStream(Resources.David_Copperfield_Key_Å_ä_Ö_txt), passphrase.DerivedPassphrase);
+                Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+                using (MemoryStream plaintextStream = new MemoryStream())
+                {
+                    ProgressContext progress = new ProgressContext(TimeSpan.Zero);
                     progress.Progressing += (object sender, ProgressEventArgs e) =>
                     {
                         throw new OperationCanceledException();
