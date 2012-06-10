@@ -284,6 +284,19 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        public static void TestWriteToFileWithBackupWithCancel()
+        {
+            string destinationFilePath = @"c:\Written\File.txt";
+            using (MemoryStream inputStream = new MemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
+            {
+                Assert.Throws<OperationCanceledException>(() => { AxCryptFile.WriteToFileWithBackup(destinationFilePath, (Stream stream) => { throw new OperationCanceledException(); }); });
+                string tempFilePath = @"c:\Written\File.bak";
+                IRuntimeFileInfo tempFileInfo = AxCryptEnvironment.Current.FileInfo(tempFilePath);
+                Assert.That(tempFileInfo.Exists, Is.False, "The .bak file should be removed.");
+            }
+        }
+
+        [Test]
         public static void TestWriteToFileWithBackupWhenDestinationExists()
         {
             string destinationFilePath = @"c:\Written\AnExistingFile.txt";
@@ -306,6 +319,15 @@ namespace Axantum.AxCrypt.Core.Test
                 }
             }
             Assert.That(bakFileInfo.Exists, Is.False, "The file should not exist afterwards either.");
+        }
+
+        [Test]
+        public static void TestMakeAxCryptFileName()
+        {
+            string testFile = @"c:\Directory\file.txt";
+            string axxFile = @"c:\Directory\file-txt.axx";
+            string madeName = AxCryptFile.MakeAxCryptFileName(AxCryptEnvironment.Current.FileInfo(testFile));
+            Assert.That(madeName, Is.EqualTo(axxFile), "The AxCrypt version of the name is unexpected.");
         }
     }
 }
