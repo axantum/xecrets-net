@@ -266,5 +266,46 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(document.DocumentHeaders.UncompressedLength, Is.EqualTo(0), "Since the data is not compressed, there should not be a CompressionInfo, but in 1.x there is, with value zero.");
             }
         }
+
+        [Test]
+        public static void TestWriteToFileWithBackup()
+        {
+            string destinationFilePath = @"c:\Written\File.txt";
+            using (MemoryStream inputStream = new MemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
+            {
+                AxCryptFile.WriteToFileWithBackup(destinationFilePath, (Stream stream) => { inputStream.CopyTo(stream); });
+                IRuntimeFileInfo destinationFileInfo = AxCryptEnvironment.Current.FileInfo(destinationFilePath);
+                using (TextReader read = new StreamReader(destinationFileInfo.OpenRead()))
+                {
+                    string readString = read.ReadToEnd();
+                    Assert.That(readString, Is.EqualTo("A string with some text"), "Where expecting the same string to be read back.");
+                }
+            }
+        }
+
+        [Test]
+        public static void TestWriteToFileWithBackupWhenDestinationExists()
+        {
+            string destinationFilePath = @"c:\Written\AnExistingFile.txt";
+            IRuntimeFileInfo bakFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\Written\AnExistingFile.bak");
+            Assert.That(bakFileInfo.Exists, Is.False, "The file should not exist to start with.");
+            using (Stream writeStream = AxCryptEnvironment.Current.FileInfo(destinationFilePath).OpenWrite())
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes("A string");
+                writeStream.Write(bytes, 0, bytes.Length);
+            }
+
+            using (MemoryStream inputStream = new MemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
+            {
+                AxCryptFile.WriteToFileWithBackup(destinationFilePath, (Stream stream) => { inputStream.CopyTo(stream); });
+                IRuntimeFileInfo destinationFileInfo = AxCryptEnvironment.Current.FileInfo(destinationFilePath);
+                using (TextReader read = new StreamReader(destinationFileInfo.OpenRead()))
+                {
+                    string readString = read.ReadToEnd();
+                    Assert.That(readString, Is.EqualTo("A string with some text"), "Where expecting the same string to be read back.");
+                }
+            }
+            Assert.That(bakFileInfo.Exists, Is.False, "The file should not exist afterwards either.");
+        }
     }
 }
