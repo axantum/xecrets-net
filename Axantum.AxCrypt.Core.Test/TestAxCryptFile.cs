@@ -51,6 +51,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(@"c:\test.txt", FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate3Utc, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
             FakeRuntimeFileInfo.AddFile(@"c:\Users\AxCrypt\David Copperfield.txt", FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate5Utc, FakeRuntimeFileInfo.TestDate6Utc, new MemoryStream(Resources.David_Copperfield));
             FakeRuntimeFileInfo.AddFile(@"c:\Documents\Uncompressed.axx", new MemoryStream(Resources.Uncompressable_zip));
+            FakeRuntimeFileInfo.AddFile(@"c:\Documents\HelloWorld.axx", new MemoryStream(Resources.HelloWorld_Key_a_txt));
         }
 
         [TestFixtureTearDownAttribute]
@@ -136,6 +137,67 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(decryptedFileInfo.CreationTimeUtc, Is.EqualTo(document.DocumentHeaders.CreationTimeUtc), "We're expecting file times to be set as the original from the headers.");
                 Assert.That(decryptedFileInfo.LastAccessTimeUtc, Is.EqualTo(document.DocumentHeaders.LastAccessTimeUtc), "We're expecting file times to be set as the original from the headers.");
                 Assert.That(decryptedFileInfo.LastWriteTimeUtc, Is.EqualTo(document.DocumentHeaders.LastWriteTimeUtc), "We're expecting file times to be set as the original from the headers.");
+            }
+        }
+
+        [Test]
+        public static void TestEncryptToStream()
+        {
+            IRuntimeFileInfo sourceFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\test.txt");
+            IRuntimeFileInfo destinationFileInfo = sourceFileInfo.CreateEncryptedName();
+            Assert.That(destinationFileInfo.Name, Is.EqualTo("test-txt.axx"), "Wrong encrypted file name based on the plain text file name.");
+            using (Stream destinationStream = destinationFileInfo.OpenWrite())
+            {
+                AxCryptFile.Encrypt(sourceFileInfo, destinationStream, new Passphrase("axcrypt").DerivedPassphrase, AxCryptOptions.EncryptWithCompression, new ProgressContext());
+            }
+
+            using (AxCryptDocument document = AxCryptFile.Document(destinationFileInfo, new Passphrase("axcrypt").DerivedPassphrase, new ProgressContext()))
+            {
+                Assert.That(document.PassphraseIsValid, Is.True, "The passphrase should be ok.");
+            }
+        }
+
+        [Test]
+        public static void TestDecryptToDestinationDirectory()
+        {
+            IRuntimeFileInfo sourceFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\Documents\HelloWorld.axx");
+            string destinationDirectory = @"c:\Encrypted";
+
+            string destinationFileName = AxCryptFile.Decrypt(sourceFileInfo, destinationDirectory, new Passphrase("a").DerivedPassphrase, AxCryptOptions.None, new ProgressContext());
+            Assert.That(destinationFileName, Is.EqualTo("HelloWorld-Key-a.txt"), "The correct filename should be returned from decryption.");
+        }
+
+        [Test]
+        public static void TestDecryptToDestinationDirectoryWithWrongPassphrase()
+        {
+            IRuntimeFileInfo sourceFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\Documents\HelloWorld.axx");
+            string destinationDirectory = @"c:\Encrypted";
+
+            string destinationFileName = AxCryptFile.Decrypt(sourceFileInfo, destinationDirectory, new Passphrase("Wrong Passphrase").DerivedPassphrase, AxCryptOptions.None, new ProgressContext());
+            Assert.That(destinationFileName, Is.Null, "When the wrong passphrase is given, the returned file name should be null to signal this.");
+        }
+
+        [Test]
+        public static void TestDecryptWithCancel()
+        {
+            IRuntimeFileInfo sourceFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\Documents\HelloWorld.axx");
+            using (AxCryptDocument document = new AxCryptDocument())
+            {
+                Passphrase passphrase = new Passphrase("a");
+                using (Stream sourceStream = sourceFileInfo.OpenRead())
+                {
+                    bool keyIsOk = document.Load(sourceStream, passphrase.DerivedPassphrase);
+                    Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+                    IRuntimeFileInfo destinationInfo = AxCryptEnvironment.Current.FileInfo(@"c:\Destination\Decrypted.txt");
+
+                    ProgressContext progress = new ProgressContext(TimeSpan.Zero);
+                    progress.Progressing += (object sender, ProgressEventArgs e) =>
+                    {
+                        throw new OperationCanceledException();
+                    };
+
+                    Assert.Throws<OperationCanceledException>(() => { AxCryptFile.Decrypt(document, destinationInfo, AxCryptOptions.None, progress); });
+                }
             }
         }
 
