@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using System;
 using System.IO;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
@@ -57,6 +58,58 @@ namespace Axantum.AxCrypt.Core.Test
         {
             AxCryptEnvironment.Current = _environment;
             FakeRuntimeFileInfo.ClearFiles();
+        }
+
+        [Test]
+        public static void TestInvalidArguments()
+        {
+            IRuntimeFileInfo sourceFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\test.txt");
+            IRuntimeFileInfo destinationFileInfo = sourceFileInfo.CreateEncryptedName();
+            AxCryptDocument document = new AxCryptDocument();
+            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\decrypted test.txt");
+
+            AxCryptDocument nullDocument = null;
+            IRuntimeFileInfo nullFileInfo = null;
+            AesKey nullKey = null;
+            ProgressContext nullProgress = null;
+            Passphrase nullPassphrase = null;
+            Stream nullStream = null;
+            string nullString = null;
+            Action<Stream> nullStreamAction = null;
+
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(nullFileInfo, destinationFileInfo, new Passphrase("axcrypt"), AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(sourceFileInfo, nullFileInfo, new Passphrase("axcrypt"), AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(sourceFileInfo, destinationFileInfo, nullPassphrase, AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(sourceFileInfo, destinationFileInfo, new Passphrase("axcrypt"), AxCryptOptions.EncryptWithCompression, nullProgress); });
+
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(nullFileInfo, new MemoryStream(), new AesKey(), AxCryptOptions.None, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(sourceFileInfo, nullStream, new AesKey(), AxCryptOptions.None, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(sourceFileInfo, new MemoryStream(), nullKey, AxCryptOptions.None, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(sourceFileInfo, new MemoryStream(), new AesKey(), AxCryptOptions.None, nullProgress); });
+
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Decrypt(nullDocument, decryptedFileInfo, AxCryptOptions.SetFileTimes, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Decrypt(document, nullFileInfo, AxCryptOptions.SetFileTimes, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Decrypt(document, decryptedFileInfo, AxCryptOptions.SetFileTimes, nullProgress); });
+
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Decrypt(nullFileInfo, decryptedFileInfo, new AesKey(), AxCryptOptions.SetFileTimes, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Decrypt(sourceFileInfo, nullFileInfo, new AesKey(), AxCryptOptions.SetFileTimes, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Decrypt(sourceFileInfo, decryptedFileInfo, nullKey, AxCryptOptions.SetFileTimes, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Decrypt(sourceFileInfo, decryptedFileInfo, new AesKey(), AxCryptOptions.SetFileTimes, nullProgress); });
+
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Decrypt(nullFileInfo, @"c:\Directory", new AesKey(), AxCryptOptions.SetFileTimes, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Decrypt(sourceFileInfo, nullString, new AesKey(), AxCryptOptions.SetFileTimes, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Decrypt(sourceFileInfo, @"c:\Directory", nullKey, AxCryptOptions.SetFileTimes, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Decrypt(sourceFileInfo, @"c:\Directory", new AesKey(), AxCryptOptions.SetFileTimes, nullProgress); });
+
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Document(nullFileInfo, new AesKey(), new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Document(sourceFileInfo, nullKey, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Document(sourceFileInfo, new AesKey(), nullProgress); });
+
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.WriteToFileWithBackup(null, (Stream stream) => { }); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.WriteToFileWithBackup(@"c:\test.txt", nullStreamAction); });
+
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.MakeAxCryptFileName(nullFileInfo); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Wipe(nullFileInfo); });
         }
 
         [Test]

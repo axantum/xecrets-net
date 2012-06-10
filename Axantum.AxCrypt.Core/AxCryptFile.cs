@@ -129,6 +129,22 @@ namespace Axantum.AxCrypt.Core
         /// <returns>true if the passphrase was correct</returns>
         public static bool Decrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, AesKey key, AxCryptOptions options, ProgressContext progress)
         {
+            if (sourceFile == null)
+            {
+                throw new ArgumentNullException("sourceFile");
+            }
+            if (destinationFile == null)
+            {
+                throw new ArgumentNullException("destinationFile");
+            }
+            if (key == null)
+            {
+                throw new ArgumentNullException("key");
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
             using (AxCryptDocument document = Document(sourceFile, key, progress))
             {
                 if (!document.PassphraseIsValid)
@@ -149,6 +165,22 @@ namespace Axantum.AxCrypt.Core
         /// <returns>true if the passphrase was correct</returns>
         public static string Decrypt(IRuntimeFileInfo sourceFile, string destinationDirectory, AesKey key, AxCryptOptions options, ProgressContext progress)
         {
+            if (sourceFile == null)
+            {
+                throw new ArgumentNullException("sourceFile");
+            }
+            if (destinationDirectory == null)
+            {
+                throw new ArgumentNullException("destinationDirectory");
+            }
+            if (key == null)
+            {
+                throw new ArgumentNullException("key");
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
             string destinationFileName = null;
             using (AxCryptDocument document = Document(sourceFile, key, progress))
             {
@@ -170,6 +202,18 @@ namespace Axantum.AxCrypt.Core
         /// <param name="destinationFile">The destination file</param>
         public static void Decrypt(AxCryptDocument document, IRuntimeFileInfo destinationFile, AxCryptOptions options, ProgressContext progress)
         {
+            if (document == null)
+            {
+                throw new ArgumentNullException("document");
+            }
+            if (destinationFile == null)
+            {
+                throw new ArgumentNullException("destinationFile");
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
             try
             {
                 if (Logging.IsInfoEnabled)
@@ -210,6 +254,19 @@ namespace Axantum.AxCrypt.Core
         /// <returns>An instance of AxCryptDocument. Use IsPassphraseValid property to determine validity.</returns>
         public static AxCryptDocument Document(IRuntimeFileInfo sourceFile, AesKey key, ProgressContext progress)
         {
+            if (sourceFile == null)
+            {
+                throw new ArgumentNullException("sourceFile");
+            }
+            if (key == null)
+            {
+                throw new ArgumentNullException("key");
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
+
             AxCryptDocument document = new AxCryptDocument();
             document.Load(new ProgressStream(sourceFile.OpenRead(), progress), key);
             return document;
@@ -217,6 +274,15 @@ namespace Axantum.AxCrypt.Core
 
         public static void WriteToFileWithBackup(string destinationFilePath, Action<Stream> writeFileStreamTo)
         {
+            if (destinationFilePath == null)
+            {
+                throw new ArgumentNullException("destinationFilePath");
+            }
+            if (writeFileStreamTo == null)
+            {
+                throw new ArgumentNullException("writeFileStreamTo");
+            }
+
             IRuntimeFileInfo destinationFileInfo = AxCryptEnvironment.Current.FileInfo(destinationFilePath);
             string temporaryFilePath = MakeAlternatePath(destinationFileInfo, ".tmp");
             IRuntimeFileInfo temporaryFileInfo = AxCryptEnvironment.Current.FileInfo(temporaryFilePath);
@@ -269,6 +335,10 @@ namespace Axantum.AxCrypt.Core
 
         public static string MakeAxCryptFileName(IRuntimeFileInfo fileInfo)
         {
+            if (fileInfo == null)
+            {
+                throw new ArgumentNullException("fileInfo");
+            }
             string axCryptExtension = AxCryptEnvironment.Current.AxCryptExtension;
             string originalExtension = Path.GetExtension(fileInfo.Name);
             string modifiedExtension = originalExtension.Length == 0 ? String.Empty : "-" + originalExtension.Substring(1);
@@ -279,6 +349,10 @@ namespace Axantum.AxCrypt.Core
 
         public static void Wipe(IRuntimeFileInfo fileInfo)
         {
+            if (fileInfo == null)
+            {
+                throw new ArgumentNullException("fileInfo");
+            }
             if (fileInfo.Exists)
             {
                 if (Logging.IsInfoEnabled)
