@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using System;
 using System.IO;
 using Axantum.AxCrypt.Core.UI;
 
@@ -38,6 +39,14 @@ namespace Axantum.AxCrypt.Core.IO
 
         public ProgressStream(Stream stream, ProgressContext progress)
         {
+            if (stream == null)
+            {
+                throw new ArgumentNullException("stream");
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
             _stream = stream;
             _progress = progress;
 
@@ -83,6 +92,10 @@ namespace Axantum.AxCrypt.Core.IO
 
         public override int Read(byte[] buffer, int offset, int count)
         {
+            if (buffer == null)
+            {
+                throw new ArgumentNullException("buffer");
+            }
             int bytes = _stream.Read(buffer, offset, count);
 
             _progress.Current = _stream.CanSeek ? _stream.Position : -1;
@@ -101,6 +114,10 @@ namespace Axantum.AxCrypt.Core.IO
 
         public override void Write(byte[] buffer, int offset, int count)
         {
+            if (buffer == null)
+            {
+                throw new ArgumentNullException("buffer");
+            }
             _stream.Write(buffer, offset, count);
 
             _progress.Current = _stream.CanSeek ? _stream.Position : -1;

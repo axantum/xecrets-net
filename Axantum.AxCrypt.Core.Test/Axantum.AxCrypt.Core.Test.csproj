@@ -106,6 +106,7 @@
     <Compile Include="TestKeyWrapSalt.cs" />
     <Compile Include="TestPassphrase.cs" />
     <Compile Include="TestPreambleHeaderBlock.cs" />
+    <Compile Include="TestProgressStream.cs" />
     <Compile Include="TestRuntimeEnvironment.cs" />
     <Compile Include="TestRuntimeFileInfo.cs" />
     <Compile Include="TestSubkey.cs" />

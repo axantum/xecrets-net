@@ -60,6 +60,24 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        public static void TestFileLockWhenLocked()
+        {
+            string file1 = @"c:\dir\file.ext";
+            Assert.That(FileLock.IsLocked(file1), Is.False, "There should be no lock for this file to start with.");
+            using (FileLock lock1 = FileLock.Lock(file1))
+            {
+                Assert.That(FileLock.IsLocked(file1), Is.True, "There should be a lock for this file.");
+                using (FileLock lock1a = FileLock.Lock(file1))
+                {
+                    Assert.That(lock1a, Is.Null, "When trying to get a lock for a locked file, this should return null.");
+                    Assert.That(FileLock.IsLocked(file1), Is.True, "There should still be a lock for this file.");
+                }
+                Assert.That(FileLock.IsLocked(file1), Is.True, "There should still be a lock for this file.");
+            }
+            Assert.That(FileLock.IsLocked(file1), Is.False, "There should be no lock for this file now.");
+        }
+
+        [Test]
         public static void TestFileLockCaseSensitivity()
         {
             string file1 = @"c:\dir\file.ext";
