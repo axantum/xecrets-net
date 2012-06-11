@@ -37,7 +37,7 @@ using NUnit.Framework;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public static class TestProgressStream
+    public static class TestProgressStreamTest
     {
         [Test]
         public static void TestInvalidArguments()
