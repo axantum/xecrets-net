@@ -54,5 +54,24 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<ArgumentNullException>(() => { progressStream.Write(nullBuffer, 0, 0); });
             Assert.Throws<ArgumentNullException>(() => { progressStream.Read(nullBuffer, 0, 0); });
         }
+
+        [Test]
+        public static void TestProperties()
+        {
+            using (MemoryStream memoryStream = new MemoryStream(new byte[] { 0, 1, 2, 3, 5, 6, 7, 8, 9 }))
+            {
+                string kilroy = String.Empty;
+                using (TestStream testStream = new TestStream(memoryStream, (string wasHere) => { kilroy = wasHere; }))
+                {
+                    using (ProgressStream progressStream = new ProgressStream(testStream, new ProgressContext()))
+                    {
+                        Assert.That(progressStream.CanRead, Is.True, "The underlying stream is readable.");
+                        Assert.That(kilroy, Is.EqualTo("CanRead"), "ProgressStream should delegate to the underlying stream.");
+                        Assert.That(progressStream.CanWrite, Is.True, "The underlying stream is writable.");
+                        Assert.That(kilroy, Is.EqualTo("CanWrite"), "ProgressStream should delegate to the underlying stream.");
+                    }
+                }
+            }
+        }
     }
 }

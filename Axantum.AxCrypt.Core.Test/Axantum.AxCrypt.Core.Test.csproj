@@ -109,6 +109,7 @@
     <Compile Include="TestProgressStream.cs" />
     <Compile Include="TestRuntimeEnvironment.cs" />
     <Compile Include="TestRuntimeFileInfo.cs" />
+    <Compile Include="TestStream.cs" />
     <Compile Include="TestSubkey.cs" />
     <Compile Include="TestUnicodeFileNameInfoHeaderBlock .cs" />
     <Compile Include="TestUnrecognizedHeaderBlock .cs" />
