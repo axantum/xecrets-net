@@ -92,5 +92,17 @@ namespace Axantum.AxCrypt.Core.Test
             }
             Assert.That(FileLock.IsLocked(file1), Is.False, "There should be no lock for this file again.");
         }
+
+        [Test]
+        public static void TestFileLockDoubleDispose()
+        {
+            Assert.DoesNotThrow(() =>
+            {
+                using (FileLock aLock = FileLock.Lock(@"c:\A dir\A file.ext"))
+                {
+                    aLock.Dispose();
+                }
+            });
+        }
     }
 }
