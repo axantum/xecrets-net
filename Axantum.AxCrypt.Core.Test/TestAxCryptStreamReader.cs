@@ -105,6 +105,11 @@ namespace Axantum.AxCrypt.Core.Test
                         encryptedDataStream = axCryptReader.CreateEncryptedDataStream(null, 0, new ProgressContext());
                     }, "A non-null HMAC key must be specified.");
 
+                    Assert.Throws<ArgumentNullException>(() =>
+                    {
+                        encryptedDataStream = axCryptReader.CreateEncryptedDataStream(new AesKey(), 0, null);
+                    }, "A non-null ProgresContext must be specified.");
+
                     Assert.Throws<InvalidOperationException>(() =>
                     {
                         encryptedDataStream = axCryptReader.CreateEncryptedDataStream(new AesKey(), 0, new ProgressContext());
