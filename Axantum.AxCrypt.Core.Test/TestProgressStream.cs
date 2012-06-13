@@ -56,21 +56,65 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestProperties()
+        public static void TestPropertiesAndMethods()
         {
-            using (MemoryStream memoryStream = new MemoryStream(new byte[] { 0, 1, 2, 3, 5, 6, 7, 8, 9 }))
+            using (MemoryStream memoryStream = new MemoryStream(new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }))
             {
                 string kilroy = String.Empty;
-                using (TestStream testStream = new TestStream(memoryStream, (string wasHere) => { kilroy = wasHere; }))
+                using (TestStream testStream = new TestStream(memoryStream, (string wasHere) => { kilroy += wasHere; }))
                 {
                     using (ProgressStream progressStream = new ProgressStream(testStream, new ProgressContext()))
                     {
+                        kilroy = String.Empty;
                         Assert.That(progressStream.CanRead, Is.True, "The underlying stream is readable.");
                         Assert.That(kilroy, Is.EqualTo("CanRead"), "ProgressStream should delegate to the underlying stream.");
+                        kilroy = String.Empty;
                         Assert.That(progressStream.CanWrite, Is.True, "The underlying stream is writable.");
                         Assert.That(kilroy, Is.EqualTo("CanWrite"), "ProgressStream should delegate to the underlying stream.");
+                        kilroy = String.Empty;
+                        progressStream.Flush();
+                        Assert.That(kilroy, Is.EqualTo("Flush"), "ProgressStream should delegate to the underlying stream.");
+                        kilroy = String.Empty;
+                        Assert.That(progressStream.Length, Is.EqualTo(10), "There are 10 bytes  in the underlying stream.");
+                        Assert.That(kilroy, Is.EqualTo("Length"), "ProgressStream should delegate to the underlying stream.");
+                        kilroy = String.Empty;
+                        Assert.That(progressStream.Seek(-4, SeekOrigin.End), Is.EqualTo(6), "4 bytes from the end of 10 should be 6.");
+                        Assert.That(kilroy, Is.EqualTo("Seek"), "ProgressStream should delegate to the underlying stream.");
+                        kilroy = String.Empty;
+                        Assert.That(progressStream.Position, Is.EqualTo(6), "The position should still be at 6.");
+                        Assert.That(kilroy, Is.EqualTo("getPosition"), "ProgressStream should delegate to the underlying stream.");
+                        kilroy = String.Empty;
+                        progressStream.Position = 0;
+                        Assert.That(kilroy, Is.EqualTo("setPosition"), "ProgressStream should delegate to the underlying stream.");
+                        kilroy = String.Empty;
+                        progressStream.Write(new byte[] { 13 }, 0, 1);
+                        Assert.That(kilroy.Contains("Write"), Is.True, "ProgressStream should delegate to the underlying stream.");
+                        kilroy = String.Empty;
+                        progressStream.Position = 0;
+                        byte[] firstByte = new byte[1];
+                        progressStream.Read(firstByte, 0, 1);
+                        Assert.That(kilroy.Contains("Read"), Is.True, "ProgressStream should delegate to the underlying stream.");
+                        kilroy = String.Empty;
+                        Assert.That(firstByte[0], Is.EqualTo(13), "13 was just written to the first position.");
+                        progressStream.SetLength(5);
+                        Assert.That(kilroy, Is.EqualTo("SetLength"), "ProgressStream should delegate to the underlying stream.");
                     }
                 }
+            }
+        }
+
+        [Test]
+        public static void TestDoubleDispose()
+        {
+            using (Stream stream = Stream.Null)
+            {
+                Assert.DoesNotThrow(() =>
+                {
+                    using (ProgressStream progressStream = new ProgressStream(stream, new ProgressContext()))
+                    {
+                        progressStream.Dispose();
+                    }
+                });
             }
         }
     }
