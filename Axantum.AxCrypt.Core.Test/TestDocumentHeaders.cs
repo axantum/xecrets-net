@@ -96,6 +96,14 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        public static void TestKeyEncryptingKey()
+        {
+            AesKey keyEncryptingKey = new AesKey();
+            DocumentHeaders headers = new DocumentHeaders(keyEncryptingKey);
+            Assert.That(headers.KeyEncryptingKey, Is.EqualTo(keyEncryptingKey), "Unexpected key encrypting key retrieved.");
+        }
+
+        [Test]
         public static void TestBadKey()
         {
             using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
