@@ -72,6 +72,9 @@ namespace Axantum.AxCrypt.Core.Test
                         Assert.That(progressStream.CanWrite, Is.True, "The underlying stream is writable.");
                         Assert.That(kilroy, Is.EqualTo("CanWrite"), "ProgressStream should delegate to the underlying stream.");
                         kilroy = String.Empty;
+                        Assert.That(progressStream.CanSeek, Is.True, "The underlying stream is seekable.");
+                        Assert.That(kilroy, Is.EqualTo("CanSeek"), "ProgressStream should delegate to the underlying stream.");
+                        kilroy = String.Empty;
                         progressStream.Flush();
                         Assert.That(kilroy, Is.EqualTo("Flush"), "ProgressStream should delegate to the underlying stream.");
                         kilroy = String.Empty;
