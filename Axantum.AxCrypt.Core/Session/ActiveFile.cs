@@ -51,6 +51,15 @@ namespace Axantum.AxCrypt.Core.Session
 
         public ActiveFile(string encryptedPath, string decryptedPath, DateTime lastWriteTimeUtc, AesKey key, ActiveFileStatus status, Process process)
         {
+            if (encryptedPath == null)
+            {
+                throw new ArgumentNullException("encryptedPath");
+            }
+            if (decryptedPath == null)
+            {
+                throw new ArgumentNullException("decryptedPath");
+            }
+
             _encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(encryptedPath);
             EncryptedPath = _encryptedFileInfo.FullName;
             _decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(decryptedPath);

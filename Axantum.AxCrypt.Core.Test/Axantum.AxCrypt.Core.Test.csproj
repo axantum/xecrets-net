@@ -77,6 +77,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="TestActiveFile.cs" />
     <Compile Include="TestAesCrypto.cs" />
     <Compile Include="TestAesIV.cs" />
     <Compile Include="TestAesKey.cs" />

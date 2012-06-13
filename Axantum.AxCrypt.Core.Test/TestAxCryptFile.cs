@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(@"c:\Documents\HelloWorld.axx", new MemoryStream(Resources.HelloWorld_Key_a_txt));
         }
 
-        [TestFixtureTearDownAttribute]
+        [TestFixtureTearDown]
         public static void TeardownFixture()
         {
             AxCryptEnvironment.Current = _environment;
