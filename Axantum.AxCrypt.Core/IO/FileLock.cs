@@ -63,6 +63,22 @@ namespace Axantum.AxCrypt.Core.IO
             }
         }
 
+        public static bool IsLocked(params IRuntimeFileInfo[] fileInfos)
+        {
+            foreach (IRuntimeFileInfo fileInfo in fileInfos)
+            {
+                if (fileInfo == null)
+                {
+                    throw new ArgumentNullException("fileInfo");
+                }
+                if (IsLocked(fileInfo.FullName))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static bool IsLocked(params string[] fullPaths)
         {
             foreach (string fullPath in fullPaths)

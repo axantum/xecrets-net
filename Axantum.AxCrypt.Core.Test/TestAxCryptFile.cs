@@ -107,7 +107,8 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Document(sourceFileInfo, new AesKey(), nullProgress); });
 
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.WriteToFileWithBackup(null, (Stream stream) => { }); });
-            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.WriteToFileWithBackup(@"c:\test.txt", nullStreamAction); });
+            IRuntimeFileInfo fileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\test.txt");
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.WriteToFileWithBackup(fileInfo, nullStreamAction); });
 
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.MakeAxCryptFileName(nullFileInfo); });
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Wipe(nullFileInfo); });
@@ -273,8 +274,8 @@ namespace Axantum.AxCrypt.Core.Test
             string destinationFilePath = @"c:\Written\File.txt";
             using (MemoryStream inputStream = new MemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
             {
-                AxCryptFile.WriteToFileWithBackup(destinationFilePath, (Stream stream) => { inputStream.CopyTo(stream); });
                 IRuntimeFileInfo destinationFileInfo = AxCryptEnvironment.Current.FileInfo(destinationFilePath);
+                AxCryptFile.WriteToFileWithBackup(destinationFileInfo, (Stream stream) => { inputStream.CopyTo(stream); });
                 using (TextReader read = new StreamReader(destinationFileInfo.OpenRead()))
                 {
                     string readString = read.ReadToEnd();
@@ -286,10 +287,10 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestWriteToFileWithBackupWithCancel()
         {
-            string destinationFilePath = @"c:\Written\File.txt";
+            IRuntimeFileInfo destinationFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\Written\File.txt");
             using (MemoryStream inputStream = new MemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
             {
-                Assert.Throws<OperationCanceledException>(() => { AxCryptFile.WriteToFileWithBackup(destinationFilePath, (Stream stream) => { throw new OperationCanceledException(); }); });
+                Assert.Throws<OperationCanceledException>(() => { AxCryptFile.WriteToFileWithBackup(destinationFileInfo, (Stream stream) => { throw new OperationCanceledException(); }); });
                 string tempFilePath = @"c:\Written\File.bak";
                 IRuntimeFileInfo tempFileInfo = AxCryptEnvironment.Current.FileInfo(tempFilePath);
                 Assert.That(tempFileInfo.Exists, Is.False, "The .bak file should be removed.");
@@ -300,9 +301,10 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestWriteToFileWithBackupWhenDestinationExists()
         {
             string destinationFilePath = @"c:\Written\AnExistingFile.txt";
+            IRuntimeFileInfo destinationFileInfo = AxCryptEnvironment.Current.FileInfo(destinationFilePath);
             IRuntimeFileInfo bakFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\Written\AnExistingFile.bak");
             Assert.That(bakFileInfo.Exists, Is.False, "The file should not exist to start with.");
-            using (Stream writeStream = AxCryptEnvironment.Current.FileInfo(destinationFilePath).OpenWrite())
+            using (Stream writeStream = destinationFileInfo.OpenWrite())
             {
                 byte[] bytes = Encoding.UTF8.GetBytes("A string");
                 writeStream.Write(bytes, 0, bytes.Length);
@@ -310,8 +312,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             using (MemoryStream inputStream = new MemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
             {
-                AxCryptFile.WriteToFileWithBackup(destinationFilePath, (Stream stream) => { inputStream.CopyTo(stream); });
-                IRuntimeFileInfo destinationFileInfo = AxCryptEnvironment.Current.FileInfo(destinationFilePath);
+                AxCryptFile.WriteToFileWithBackup(destinationFileInfo, (Stream stream) => { inputStream.CopyTo(stream); });
                 using (TextReader read = new StreamReader(destinationFileInfo.OpenRead()))
                 {
                     string readString = read.ReadToEnd();

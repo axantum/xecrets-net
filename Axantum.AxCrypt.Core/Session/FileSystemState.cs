@@ -120,15 +120,15 @@ namespace Axantum.AxCrypt.Core.Session
         {
             lock (_lock)
             {
-                _activeFilesByDecryptedPath.Remove(activeFile.DecryptedPath);
-                _activeFilesByEncryptedPath.Remove(activeFile.EncryptedPath);
+                _activeFilesByDecryptedPath.Remove(activeFile.DecryptedFileInfo.FullName);
+                _activeFilesByEncryptedPath.Remove(activeFile.EncryptedFileInfo.FullName);
             }
         }
 
         private void AddInternal(ActiveFile activeFile)
         {
-            _activeFilesByEncryptedPath[activeFile.EncryptedPath] = activeFile;
-            _activeFilesByDecryptedPath[activeFile.DecryptedPath] = activeFile;
+            _activeFilesByEncryptedPath[activeFile.EncryptedFileInfo.FullName] = activeFile;
+            _activeFilesByDecryptedPath[activeFile.DecryptedFileInfo.FullName] = activeFile;
         }
 
         [DataMember(Name = "ActiveFiles")]

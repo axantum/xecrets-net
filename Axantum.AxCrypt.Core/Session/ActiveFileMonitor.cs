@@ -152,7 +152,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             ForEach(forceChanged, (ActiveFile activeFile) =>
             {
-                if (FileLock.IsLocked(activeFile.DecryptedPath, activeFile.EncryptedPath))
+                if (FileLock.IsLocked(activeFile.DecryptedFileInfo, activeFile.EncryptedFileInfo))
                 {
                     return activeFile;
                 }
@@ -244,7 +244,7 @@ namespace Axantum.AxCrypt.Core.Session
                 using (FileStream activeFileStream = File.Open(activeFile.DecryptedPath, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
                     IRuntimeFileInfo sourceFileInfo = AxCryptEnvironment.Current.FileInfo(activeFile.DecryptedPath);
-                    AxCryptFile.WriteToFileWithBackup(activeFile.EncryptedPath, (Stream destination) =>
+                    AxCryptFile.WriteToFileWithBackup(activeFile.EncryptedFileInfo, (Stream destination) =>
                     {
                         AxCryptFile.Encrypt(sourceFileInfo, destination, activeFile.Key, AxCryptOptions.EncryptWithCompression, progress);
                     });
@@ -261,7 +261,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
             if (Logging.IsInfoEnabled)
             {
-                Logging.Info("Wrote back '{0}' to '{1}'".InvariantFormat(activeFile.DecryptedPath, activeFile.EncryptedPath));
+                Logging.Info("Wrote back '{0}' to '{1}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
             }
             activeFile = new ActiveFile(activeFile, DateTime.MinValue, ActiveFileStatus.AssumedOpenAndDecrypted);
             return activeFile;
@@ -301,7 +301,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     if (activeFile.Status.HasFlag(ActiveFileStatus.NotShareable))
                     {
-                        activeFile = new ActiveFile(activeFile, activeFile.Status & ~ActiveFileStatus.NotShareable);
+                        activeFile = new ActiveFile(activeFile, activeFile.LastWriteTimeUtc, activeFile.Status & ~ActiveFileStatus.NotShareable);
                     }
                     activeFile = CheckIfTimeToUpdate(activeFile, progress);
                 }
@@ -357,7 +357,7 @@ namespace Axantum.AxCrypt.Core.Session
 
             if (Logging.IsInfoEnabled)
             {
-                Logging.Info("Deleted '{0}' from '{1}'.".InvariantFormat(activeFile.DecryptedPath, activeFile.EncryptedPath));
+                Logging.Info("Deleted '{0}' from '{1}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
             }
 
             return activeFile;

@@ -67,10 +67,12 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestInvalidArguments()
         {
-            string nullString = null;
+            IRuntimeFileInfo nullFileInfo = null;
             Process nullProcess = null;
-            Assert.Throws<ArgumentNullException>(() => { new ActiveFile(nullString, @"c:\dir\file.exe", new AesKey(), ActiveFileStatus.None, nullProcess); });
-            Assert.Throws<ArgumentNullException>(() => { new ActiveFile(@"c:\dir\file.exe", nullString, new AesKey(), ActiveFileStatus.None, nullProcess); });
+            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\dir\file.exe");
+            IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\dir\file.axx");
+            Assert.Throws<ArgumentNullException>(() => { new ActiveFile(nullFileInfo, decryptedFileInfo, new AesKey(), ActiveFileStatus.None, nullProcess); });
+            Assert.Throws<ArgumentNullException>(() => { new ActiveFile(encryptedFileInfo, nullFileInfo, new AesKey(), ActiveFileStatus.None, nullProcess); });
         }
 
         [Test]
@@ -78,11 +80,14 @@ namespace Axantum.AxCrypt.Core.Test
         {
             AesKey key = new AesKey();
             Process process = new Process();
-            ActiveFile activeFile = new ActiveFile(@"c:\Documents\HelloWorld.axx", @"c:\test.txt", key, ActiveFileStatus.None, process);
+            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\test.txt");
+            IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\Documents\HelloWorld.axx");
+            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, process);
 
-            IRuntimeFileInfo decryptedFileInfo = activeFile.DecryptedFileInfo;
+            decryptedFileInfo = activeFile.DecryptedFileInfo;
             Assert.That(decryptedFileInfo.Exists, Is.True, "The file should exist in the fake file system.");
             Assert.That(decryptedFileInfo.FullName, Is.EqualTo(@"c:\test.txt"), "The file should be named as it was in the constructor");
+            Assert.That(decryptedFileInfo.LastWriteTimeUtc, Is.EqualTo(decryptedFileInfo.LastWriteTimeUtc), "When a LastWriteTime is not specified, the decrypted file should be used to determine the value.");
         }
     }
 }

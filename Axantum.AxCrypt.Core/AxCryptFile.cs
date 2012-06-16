@@ -272,18 +272,17 @@ namespace Axantum.AxCrypt.Core
             return document;
         }
 
-        public static void WriteToFileWithBackup(string destinationFilePath, Action<Stream> writeFileStreamTo)
+        public static void WriteToFileWithBackup(IRuntimeFileInfo destinationFileInfo, Action<Stream> writeFileStreamTo)
         {
-            if (destinationFilePath == null)
+            if (destinationFileInfo == null)
             {
-                throw new ArgumentNullException("destinationFilePath");
+                throw new ArgumentNullException("destinationFileInfo");
             }
             if (writeFileStreamTo == null)
             {
                 throw new ArgumentNullException("writeFileStreamTo");
             }
 
-            IRuntimeFileInfo destinationFileInfo = AxCryptEnvironment.Current.FileInfo(destinationFilePath);
             string temporaryFilePath = MakeAlternatePath(destinationFileInfo, ".tmp");
             IRuntimeFileInfo temporaryFileInfo = AxCryptEnvironment.Current.FileInfo(temporaryFilePath);
 
@@ -306,14 +305,15 @@ namespace Axantum.AxCrypt.Core
             if (destinationFileInfo.Exists)
             {
                 string backupFilePath = MakeAlternatePath(destinationFileInfo, ".bak");
-                IRuntimeFileInfo backupFileInfo = AxCryptEnvironment.Current.FileInfo(backupFilePath);
-                destinationFileInfo.MoveTo(backupFilePath);
-                temporaryFileInfo.MoveTo(destinationFilePath);
+                IRuntimeFileInfo backupFileInfo = AxCryptEnvironment.Current.FileInfo(destinationFileInfo.FullName);
+
+                backupFileInfo.MoveTo(backupFilePath);
+                temporaryFileInfo.MoveTo(destinationFileInfo.FullName);
                 backupFileInfo.Delete();
             }
             else
             {
-                temporaryFileInfo.MoveTo(destinationFilePath);
+                temporaryFileInfo.MoveTo(destinationFileInfo.FullName);
             }
         }
 

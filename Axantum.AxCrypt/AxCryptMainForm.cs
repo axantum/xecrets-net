@@ -152,7 +152,7 @@ namespace Axantum.AxCrypt
 
                 ListViewItem.ListViewSubItem encryptedPathColumn = new ListViewItem.ListViewSubItem();
                 encryptedPathColumn.Name = "EncryptedPath";           //MLHIDE
-                encryptedPathColumn.Text = activeFile.EncryptedPath;
+                encryptedPathColumn.Text = activeFile.EncryptedFileInfo.FullName;
                 item.SubItems.Add(encryptedPathColumn);
 
                 RecentFilesListView.Items.Add(item);
@@ -163,7 +163,7 @@ namespace Axantum.AxCrypt
                 item = new ListViewItem(Path.GetFileName(activeFile.DecryptedPath), activeFile.Key != null ? "ActiveFile" : "Exclamation"); //MLHIDE
                 ListViewItem.ListViewSubItem encryptedPathColumn = new ListViewItem.ListViewSubItem();
                 encryptedPathColumn.Name = "EncryptedPath";           //MLHIDE
-                encryptedPathColumn.Text = activeFile.EncryptedPath;
+                encryptedPathColumn.Text = activeFile.EncryptedFileInfo.FullName;
                 item.SubItems.Add(encryptedPathColumn);
 
                 OpenFilesListView.Items.Add(item);
