@@ -135,13 +135,13 @@ namespace Axantum.AxCrypt
             ListViewItem item;
             if (activeFile.Status.HasFlag(ActiveFileStatus.NotDecrypted))
             {
-                if (String.IsNullOrEmpty(activeFile.DecryptedPath))
+                if (String.IsNullOrEmpty(activeFile.DecryptedFileInfo.FullName))
                 {
                     item = new ListViewItem(String.Empty, "InactiveFile"); //MLHIDE
                 }
                 else
                 {
-                    item = new ListViewItem(Path.GetFileName(activeFile.DecryptedPath), "ActiveFile"); //MLHIDE
+                    item = new ListViewItem(Path.GetFileName(activeFile.DecryptedFileInfo.FullName), "ActiveFile"); //MLHIDE
                 }
 
                 ListViewItem.ListViewSubItem dateColumn = new ListViewItem.ListViewSubItem();
@@ -160,7 +160,7 @@ namespace Axantum.AxCrypt
 
             if (activeFile.Status.HasFlag(ActiveFileStatus.DecryptedIsPendingDelete) || activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted))
             {
-                item = new ListViewItem(Path.GetFileName(activeFile.DecryptedPath), activeFile.Key != null ? "ActiveFile" : "Exclamation"); //MLHIDE
+                item = new ListViewItem(Path.GetFileName(activeFile.DecryptedFileInfo.FullName), activeFile.Key != null ? "ActiveFile" : "Exclamation"); //MLHIDE
                 ListViewItem.ListViewSubItem encryptedPathColumn = new ListViewItem.ListViewSubItem();
                 encryptedPathColumn.Name = "EncryptedPath";           //MLHIDE
                 encryptedPathColumn.Text = activeFile.EncryptedFileInfo.FullName;
@@ -624,7 +624,7 @@ namespace Axantum.AxCrypt
                     StringBuilder sb = new StringBuilder();
                     foreach (ActiveFile openFile in openFiles)
                     {
-                        sb.Append("{0}\n".InvariantFormat(Path.GetFileName(openFile.DecryptedPath))); //MLHIDE
+                        sb.Append("{0}\n".InvariantFormat(Path.GetFileName(openFile.DecryptedFileInfo.FullName))); //MLHIDE
                     }
                     sb.ToString().ShowWarning();
                 });

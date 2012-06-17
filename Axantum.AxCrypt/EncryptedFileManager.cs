@@ -186,7 +186,7 @@ namespace Axantum.AxCrypt
             ActiveFile destinationActiveFile = _activeFileMonitor.FindActiveFile(fileInfo.FullName);
 
             string destinationPath = null;
-            if (destinationActiveFile == null || !File.Exists(destinationActiveFile.DecryptedPath))
+            if (destinationActiveFile == null || !destinationActiveFile.DecryptedFileInfo.Exists)
             {
                 destinationActiveFile = TryDecrypt(destinationActiveFile, keys, fileInfo, destinationPath, progress);
             }
@@ -210,7 +210,7 @@ namespace Axantum.AxCrypt
             string destinationFolder;
             if (destinationActiveFile != null)
             {
-                destinationFolder = Path.GetDirectoryName(destinationActiveFile.DecryptedPath);
+                destinationFolder = Path.GetDirectoryName(destinationActiveFile.DecryptedFileInfo.FullName);
             }
             else
             {
@@ -245,7 +245,7 @@ namespace Axantum.AxCrypt
                         destinationActiveFile = new ActiveFile(sourceFileInfo, destinationFileInfo, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.IgnoreChange, null);
                         if (Logging.IsInfoEnabled)
                         {
-                            Logging.Info("File decrypted from '{0}' to '{1}'".InvariantFormat(sourceFileInfo.FullName, destinationActiveFile.DecryptedPath)); //MLHIDE
+                            Logging.Info("File decrypted from '{0}' to '{1}'".InvariantFormat(sourceFileInfo.FullName, destinationActiveFile.DecryptedFileInfo.FullName)); //MLHIDE
                         }
                         break;
                     }
@@ -264,7 +264,7 @@ namespace Axantum.AxCrypt
                     {
                         if (Logging.IsWarningEnabled)
                         {
-                            Logging.Warning("File was already decrypted and the key was known for '{0}' to '{1}'".InvariantFormat(destinationActiveFile.EncryptedFileInfo.FullName, destinationActiveFile.DecryptedPath)); //MLHIDE
+                            Logging.Warning("File was already decrypted and the key was known for '{0}' to '{1}'".InvariantFormat(destinationActiveFile.EncryptedFileInfo.FullName, destinationActiveFile.DecryptedFileInfo.FullName)); //MLHIDE
                         }
                         return new ActiveFile(destinationActiveFile, key);
                     }
@@ -280,14 +280,14 @@ namespace Axantum.AxCrypt
             {
                 if (Logging.IsInfoEnabled)
                 {
-                    Logging.Info("Starting process for '{0}'".InvariantFormat(destinationActiveFile.DecryptedPath)); //MLHIDE
+                    Logging.Info("Starting process for '{0}'".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName)); //MLHIDE
                 }
-                process = Process.Start(destinationActiveFile.DecryptedPath);
+                process = Process.Start(destinationActiveFile.DecryptedFileInfo.FullName);
                 if (process == null)
                 {
                     if (Logging.IsInfoEnabled)
                     {
-                        Logging.Info("Starting process for '{0}' did not start a process, assumed handled by the shell.".InvariantFormat(destinationActiveFile.DecryptedPath)); //MLHIDE
+                        Logging.Info("Starting process for '{0}' did not start a process, assumed handled by the shell.".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName)); //MLHIDE
                     }
                     return FileOperationStatus.Success;
                 }
@@ -297,7 +297,7 @@ namespace Axantum.AxCrypt
             {
                 if (Logging.IsErrorEnabled)
                 {
-                    Logging.Error("Could not launch application for '{0}', Win32Exception was '{1}'.".InvariantFormat(destinationActiveFile.DecryptedPath, w32ex.Message)); //MLHIDE
+                    Logging.Error("Could not launch application for '{0}', Win32Exception was '{1}'.".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName, w32ex.Message)); //MLHIDE
                 }
                 return FileOperationStatus.CannotStartApplication;
             }
@@ -306,13 +306,13 @@ namespace Axantum.AxCrypt
             {
                 if (process.HasExited)
                 {
-                    Logging.Warning("The process seems to exit immediately for '{0}'".InvariantFormat(destinationActiveFile.DecryptedPath)); //MLHIDE
+                    Logging.Warning("The process seems to exit immediately for '{0}'".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName)); //MLHIDE
                 }
             }
 
             if (Logging.IsInfoEnabled)
             {
-                Logging.Info("Launched and opened '{0}'.".InvariantFormat(destinationActiveFile.DecryptedPath)); //MLHIDE
+                Logging.Info("Launched and opened '{0}'.".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName)); //MLHIDE
             }
 
             destinationActiveFile = new ActiveFile(destinationActiveFile, ActiveFileStatus.AssumedOpenAndDecrypted, process);

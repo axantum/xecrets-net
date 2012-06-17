@@ -200,7 +200,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             if (activeFile.Status == ActiveFileStatus.NotDecrypted)
             {
-                if (!File.Exists(activeFile.DecryptedPath))
+                if (!activeFile.DecryptedFileInfo.Exists)
                 {
                     return activeFile;
                 }
@@ -218,7 +218,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
             if (Logging.IsInfoEnabled)
             {
-                Logging.Info("Process exit for '{0}'".InvariantFormat(activeFile.DecryptedPath));
+                Logging.Info("Process exit for '{0}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
             }
             activeFile = new ActiveFile(activeFile, activeFile.Status & ~ActiveFileStatus.NotShareable, null);
             return activeFile;
@@ -241,12 +241,11 @@ namespace Axantum.AxCrypt.Core.Session
 
             try
             {
-                using (FileStream activeFileStream = File.Open(activeFile.DecryptedPath, FileMode.Open, FileAccess.Read, FileShare.Read))
+                using (Stream activeFileStream = activeFile.DecryptedFileInfo.OpenRead())
                 {
-                    IRuntimeFileInfo sourceFileInfo = AxCryptEnvironment.Current.FileInfo(activeFile.DecryptedPath);
                     AxCryptFile.WriteToFileWithBackup(activeFile.EncryptedFileInfo, (Stream destination) =>
                     {
-                        AxCryptFile.Encrypt(sourceFileInfo, destination, activeFile.Key, AxCryptOptions.EncryptWithCompression, progress);
+                        AxCryptFile.Encrypt(activeFile.DecryptedFileInfo, destination, activeFile.Key, AxCryptOptions.EncryptWithCompression, progress);
                     });
                 }
             }
@@ -254,7 +253,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 if (Logging.IsWarningEnabled)
                 {
-                    Logging.Warning("Failed exclusive open modified for '{0}'.".InvariantFormat(activeFile.DecryptedPath));
+                    Logging.Warning("Failed exclusive open modified for '{0}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                 }
                 activeFile = new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.NotShareable, activeFile.Process);
                 return activeFile;
@@ -290,11 +289,11 @@ namespace Axantum.AxCrypt.Core.Session
         {
             ForEach(false, (ActiveFile activeFile) =>
             {
-                if (FileLock.IsLocked(activeFile.DecryptedPath))
+                if (FileLock.IsLocked(activeFile.DecryptedFileInfo))
                 {
                     if (Logging.IsInfoEnabled)
                     {
-                        Logging.Info("Not deleting '{0}' because it is marked as locked.".InvariantFormat(activeFile.DecryptedPath));
+                        Logging.Info("Not deleting '{0}' because it is marked as locked.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                     }
                 }
                 if (activeFile.IsModified)
@@ -319,18 +318,16 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 if (Logging.IsInfoEnabled)
                 {
-                    Logging.Info("Not deleting '{0}' because it has an active process.".InvariantFormat(activeFile.DecryptedPath));
+                    Logging.Info("Not deleting '{0}' because it has an active process.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                 }
                 return activeFile;
             }
-
-            FileInfo activeFileInfo = new FileInfo(activeFile.DecryptedPath);
 
             if (activeFile.IsModified)
             {
                 if (Logging.IsInfoEnabled)
                 {
-                    Logging.Info("Tried delete '{0}' but it is modified.".InvariantFormat(activeFile.DecryptedPath));
+                    Logging.Info("Tried delete '{0}' but it is modified.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                 }
                 return activeFile;
             }
@@ -339,15 +336,15 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 if (Logging.IsInfoEnabled)
                 {
-                    Logging.Info("Deleting '{0}'.".InvariantFormat(activeFile.DecryptedPath));
+                    Logging.Info("Deleting '{0}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                 }
-                activeFileInfo.Delete();
+                activeFile.DecryptedFileInfo.Delete();
             }
             catch (IOException)
             {
                 if (Logging.IsWarningEnabled)
                 {
-                    Logging.Warning("Delete failed for '{0}'".InvariantFormat(activeFileInfo.FullName));
+                    Logging.Warning("Delete failed for '{0}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                 }
                 activeFile = new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.NotShareable, activeFile.Process);
                 return activeFile;

@@ -96,10 +96,8 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("decryptedFileInfo");
             }
 
-            _encryptedFileInfo = encryptedFileInfo;
-            _decryptedFileInfo = decryptedFileInfo;
-            _decryptedFolder = Path.GetDirectoryName(_decryptedFileInfo.FullName);
-            _protectedDecryptedName = Path.GetFileName(_decryptedFileInfo.FullName);
+            EncryptedFileInfo = encryptedFileInfo;
+            DecryptedFileInfo = decryptedFileInfo;
             Key = key;
             if (key != null)
             {
@@ -111,62 +109,21 @@ namespace Axantum.AxCrypt.Core.Session
             Process = process;
             if (lastWriteTimeUtc < UnknownTimeMarker)
             {
-                lastWriteTimeUtc = _decryptedFileInfo.LastWriteTimeUtc;
+                lastWriteTimeUtc = DecryptedFileInfo.LastWriteTimeUtc;
             }
             LastWriteTimeUtc = lastWriteTimeUtc;
         }
 
-        private IRuntimeFileInfo _decryptedFileInfo;
-
         public IRuntimeFileInfo DecryptedFileInfo
         {
-            get
-            {
-                if (_decryptedFileInfo == null)
-                {
-                    _decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(DecryptedPath);
-                }
-                return _decryptedFileInfo;
-            }
+            get;
+            protected set;
         }
-
-        private IRuntimeFileInfo _encryptedFileInfo;
 
         public IRuntimeFileInfo EncryptedFileInfo
         {
-            get
-            {
-                if (_encryptedFileInfo == null)
-                {
-                    _encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(EncryptedPath);
-                }
-                return _encryptedFileInfo;
-            }
-        }
-
-        public string DecryptedPath
-        {
-            get
-            {
-                return Path.Combine(_decryptedFolder, _protectedDecryptedName);
-            }
-        }
-
-        string _protectedDecryptedName;
-
-        [DataMember]
-        [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "This is a protected method, only used for serialization where an array in this case is appropriate.")]
-        protected byte[] ProtectedDecryptedName
-        {
-            get
-            {
-                return ProtectedData.Protect(Encoding.UTF8.GetBytes(Path.GetFileName(DecryptedPath)), null, DataProtectionScope.CurrentUser);
-            }
-            set
-            {
-                byte[] bytes = ProtectedData.Unprotect(value, null, DataProtectionScope.CurrentUser);
-                _protectedDecryptedName = Encoding.UTF8.GetString(bytes);
-            }
+            get;
+            protected set;
         }
 
         private byte[] _keyThumbprintSalt = AxCryptEnvironment.Current.GetRandomBytes(32);
@@ -196,7 +153,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                return Path.GetDirectoryName(DecryptedPath);
+                return Path.GetDirectoryName(DecryptedFileInfo.FullName);
             }
             set
             {
@@ -204,16 +161,33 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
+        string _decryptedName;
+
         [DataMember]
-        public string EncryptedPath
+        [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "This is a protected method, only used for serialization where an array in this case is appropriate.")]
+        protected byte[] ProtectedDecryptedName
         {
             get
             {
-                return _encryptedFileInfo.FullName;
+                return ProtectedData.Protect(Encoding.UTF8.GetBytes(Path.GetFileName(DecryptedFileInfo.FullName)), null, DataProtectionScope.CurrentUser);
+            }
+            set
+            {
+                byte[] bytes = ProtectedData.Unprotect(value, null, DataProtectionScope.CurrentUser);
+                _decryptedName = Encoding.UTF8.GetString(bytes);
+            }
+        }
+
+        [DataMember]
+        protected string EncryptedPath
+        {
+            get
+            {
+                return EncryptedFileInfo.FullName;
             }
             private set
             {
-                _encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(value);
+                EncryptedFileInfo = AxCryptEnvironment.Current.FileInfo(value);
             }
         }
 
@@ -229,12 +203,7 @@ namespace Axantum.AxCrypt.Core.Session
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context)
         {
-            Initialize();
-        }
-
-        private void Initialize()
-        {
-            _decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(Path.Combine(_decryptedFolder, _protectedDecryptedName));
+            DecryptedFileInfo = AxCryptEnvironment.Current.FileInfo(Path.Combine(_decryptedFolder, _decryptedName));
         }
 
         public Process Process { get; private set; }
