@@ -45,38 +45,30 @@ namespace Axantum.AxCrypt.Core.Session
     /// </summary>
     ///
     [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
-    public class ActiveFile : IDisposable
+    public sealed class ActiveFile : IDisposable
     {
-        private static readonly DateTime UnknownTimeMarker = new DateTime(1900, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-
         public ActiveFile(ActiveFile activeFile, AesKey key)
-            : this(activeFile, key, activeFile.Status, activeFile.Process)
         {
+            if (activeFile == null)
+            {
+                throw new ArgumentNullException("activeFile");
+            }
+            if (key == null)
+            {
+                throw new ArgumentNullException("key");
+            }
+            Initialize(activeFile.EncryptedFileInfo, activeFile.DecryptedFileInfo, activeFile.LastWriteTimeUtc, key, activeFile.Status, activeFile.Process);
+            _keyThumbprintBytes = activeFile._keyThumbprintBytes;
+            _keyThumbprintSalt = activeFile._keyThumbprintSalt;
         }
 
         public ActiveFile(ActiveFile activeFile, ActiveFileStatus status, Process process)
-            : this(activeFile, activeFile.Key, status, process)
         {
-        }
-
-        private ActiveFile(ActiveFile activeFile, AesKey key, ActiveFileStatus status, Process process)
-            : this(activeFile, activeFile.LastWriteTimeUtc, key, status, process)
-        {
-        }
-
-        public ActiveFile(ActiveFile activeFile, DateTime lastWriteTimeUtc, ActiveFileStatus status)
-            : this(activeFile, lastWriteTimeUtc, activeFile.Key, status, activeFile.Process)
-        {
-        }
-
-        public ActiveFile(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, AesKey key, ActiveFileStatus status, Process process)
-            : this(encryptedFileInfo, decryptedFileInfo, DateTime.MinValue, key, status, process)
-        {
-        }
-
-        public ActiveFile(ActiveFile activeFile, DateTime lastWriteTimeUtc, AesKey key, ActiveFileStatus status, Process process)
-            : this(activeFile.EncryptedFileInfo, activeFile.DecryptedFileInfo, lastWriteTimeUtc, key, status, process)
-        {
+            if (activeFile == null)
+            {
+                throw new ArgumentNullException("activeFile");
+            }
+            Initialize(activeFile.EncryptedFileInfo, activeFile.DecryptedFileInfo, activeFile.LastWriteTimeUtc, activeFile.Key, status, process);
             if (process != null && Object.ReferenceEquals(process, activeFile.Process))
             {
                 activeFile.Process = null;
@@ -85,7 +77,29 @@ namespace Axantum.AxCrypt.Core.Session
             _keyThumbprintSalt = activeFile._keyThumbprintSalt;
         }
 
-        private ActiveFile(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, DateTime lastWriteTimeUtc, AesKey key, ActiveFileStatus status, Process process)
+        public ActiveFile(ActiveFile activeFile, ActiveFileStatus status)
+        {
+            if (activeFile == null)
+            {
+                throw new ArgumentNullException("activeFile");
+            }
+            Initialize(activeFile.EncryptedFileInfo, activeFile.DecryptedFileInfo, activeFile.LastWriteTimeUtc, activeFile.Key, status, activeFile.Process);
+            _keyThumbprintBytes = activeFile._keyThumbprintBytes;
+            _keyThumbprintSalt = activeFile._keyThumbprintSalt;
+        }
+
+        public ActiveFile(ActiveFile activeFile, DateTime lastWriteTimeUtc, ActiveFileStatus status)
+        {
+            if (activeFile == null)
+            {
+                throw new ArgumentNullException("activeFile");
+            }
+            Initialize(activeFile.EncryptedFileInfo, activeFile.DecryptedFileInfo, lastWriteTimeUtc, activeFile.Key, status, activeFile.Process);
+            _keyThumbprintBytes = activeFile._keyThumbprintBytes;
+            _keyThumbprintSalt = activeFile._keyThumbprintSalt;
+        }
+
+        public ActiveFile(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, AesKey key, ActiveFileStatus status, Process process)
         {
             if (encryptedFileInfo == null)
             {
@@ -95,7 +109,15 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 throw new ArgumentNullException("decryptedFileInfo");
             }
+            if (key == null)
+            {
+                throw new ArgumentNullException("key");
+            }
+            Initialize(encryptedFileInfo, decryptedFileInfo, decryptedFileInfo.LastWriteTimeUtc, key, status, process);
+        }
 
+        private void Initialize(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, DateTime lastWriteTimeUtc, AesKey key, ActiveFileStatus status, Process process)
+        {
             EncryptedFileInfo = encryptedFileInfo;
             DecryptedFileInfo = decryptedFileInfo;
             Key = key;
@@ -107,30 +129,26 @@ namespace Axantum.AxCrypt.Core.Session
             Status = status;
             LastAccessTimeUtc = DateTime.UtcNow;
             Process = process;
-            if (lastWriteTimeUtc < UnknownTimeMarker)
-            {
-                lastWriteTimeUtc = DecryptedFileInfo.LastWriteTimeUtc;
-            }
             LastWriteTimeUtc = lastWriteTimeUtc;
         }
 
         public IRuntimeFileInfo DecryptedFileInfo
         {
             get;
-            protected set;
+            private set;
         }
 
         public IRuntimeFileInfo EncryptedFileInfo
         {
             get;
-            protected set;
+            private set;
         }
 
         private byte[] _keyThumbprintSalt = AxCryptEnvironment.Current.GetRandomBytes(32);
 
         [DataMember]
-        [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "This is a protected method, only used for serialization where an array in this case is appropriate.")]
-        protected byte[] KeyThumbprintSalt
+        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "This is a private method used for serialization.")]
+        private byte[] KeyThumbprintSalt
         {
             get { return _keyThumbprintSalt; }
             set { _keyThumbprintSalt = value; }
@@ -139,8 +157,7 @@ namespace Axantum.AxCrypt.Core.Session
         private byte[] _keyThumbprintBytes;
 
         [DataMember]
-        [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "This is a protected method, only used for serialization where an array in this case is appropriate.")]
-        protected byte[] KeyThumbprintBytes
+        private byte[] KeyThumbprintBytes
         {
             get { return _keyThumbprintBytes; }
             set { _keyThumbprintBytes = value; }
@@ -149,7 +166,8 @@ namespace Axantum.AxCrypt.Core.Session
         string _decryptedFolder;
 
         [DataMember]
-        protected string DecryptedFolder
+        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "This is a private method used for serialization.")]
+        private string DecryptedFolder
         {
             get
             {
@@ -164,8 +182,8 @@ namespace Axantum.AxCrypt.Core.Session
         string _decryptedName;
 
         [DataMember]
-        [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "This is a protected method, only used for serialization where an array in this case is appropriate.")]
-        protected byte[] ProtectedDecryptedName
+        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "This is a private method used for serialization.")]
+        private byte[] ProtectedDecryptedName
         {
             get
             {
@@ -179,13 +197,14 @@ namespace Axantum.AxCrypt.Core.Session
         }
 
         [DataMember]
-        protected string EncryptedPath
+        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "This is a private method used for serialization.")]
+        private string EncryptedPath
         {
             get
             {
                 return EncryptedFileInfo.FullName;
             }
-            private set
+            set
             {
                 EncryptedFileInfo = AxCryptEnvironment.Current.FileInfo(value);
             }

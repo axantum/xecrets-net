@@ -262,7 +262,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 Logging.Info("Wrote back '{0}' to '{1}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
             }
-            activeFile = new ActiveFile(activeFile, DateTime.MinValue, ActiveFileStatus.AssumedOpenAndDecrypted);
+            activeFile = new ActiveFile(activeFile, activeFile.DecryptedFileInfo.LastWriteTimeUtc, ActiveFileStatus.AssumedOpenAndDecrypted);
             return activeFile;
         }
 
@@ -300,7 +300,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     if (activeFile.Status.HasFlag(ActiveFileStatus.NotShareable))
                     {
-                        activeFile = new ActiveFile(activeFile, activeFile.LastWriteTimeUtc, activeFile.Status & ~ActiveFileStatus.NotShareable);
+                        activeFile = new ActiveFile(activeFile, activeFile.Status & ~ActiveFileStatus.NotShareable);
                     }
                     activeFile = CheckIfTimeToUpdate(activeFile, progress);
                 }

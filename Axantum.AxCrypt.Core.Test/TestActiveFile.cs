@@ -71,8 +71,9 @@ namespace Axantum.AxCrypt.Core.Test
             Process nullProcess = null;
             IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\dir\file.exe");
             IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\dir\file.axx");
-            Assert.Throws<ArgumentNullException>(() => { new ActiveFile(nullFileInfo, decryptedFileInfo, new AesKey(), ActiveFileStatus.None, nullProcess); });
-            Assert.Throws<ArgumentNullException>(() => { new ActiveFile(encryptedFileInfo, nullFileInfo, new AesKey(), ActiveFileStatus.None, nullProcess); });
+            ActiveFile activeFile;
+            Assert.Throws<ArgumentNullException>(() => { activeFile = new ActiveFile(nullFileInfo, decryptedFileInfo, new AesKey(), ActiveFileStatus.None, nullProcess); });
+            Assert.Throws<ArgumentNullException>(() => { activeFile = new ActiveFile(encryptedFileInfo, nullFileInfo, new AesKey(), ActiveFileStatus.None, nullProcess); });
         }
 
         [Test]
