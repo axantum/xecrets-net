@@ -40,8 +40,9 @@ namespace Axantum.AxCrypt.Core.Session
 {
     /// <summary>
     /// This class represent an active source files' current known state. Instances of this class are
-    /// essentially immutable. Instances of this class are considered equal on basis of equivalence of the
-    /// path of the encrypted source file.
+    /// essentially immutable. Essentially comes from the fact that the Process property can only
+    /// be owned by one instance at a time, when a new instance is made from an existing instance,
+    /// the existing Process property is set to null.
     /// </summary>
     ///
     [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
@@ -89,7 +90,7 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("activeFile");
             }
             Initialize(activeFile);
-            LastWriteTimeUtc = lastWriteTimeUtc;
+            LastEncryptionWriteTimeUtc = lastWriteTimeUtc;
             Status = status;
         }
 
@@ -112,7 +113,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void Initialize(ActiveFile other)
         {
-            Initialize(other.EncryptedFileInfo, other.DecryptedFileInfo, other.LastWriteTimeUtc, other.Key, other.Status, other.Process);
+            Initialize(other.EncryptedFileInfo, other.DecryptedFileInfo, other.LastEncryptionWriteTimeUtc, other.Key, other.Status, other.Process);
             if (other.Process != null)
             {
                 other.Process = null;
@@ -127,7 +128,7 @@ namespace Axantum.AxCrypt.Core.Session
             Status = status;
             LastAccessTimeUtc = DateTime.UtcNow;
             Process = process;
-            LastWriteTimeUtc = lastWriteTimeUtc;
+            LastEncryptionWriteTimeUtc = lastWriteTimeUtc;
         }
 
         public IRuntimeFileInfo DecryptedFileInfo
@@ -173,7 +174,7 @@ namespace Axantum.AxCrypt.Core.Session
         string _decryptedFolder;
 
         [DataMember]
-        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "This is a private method used for serialization.")]
+        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "This is a private property used for serialization.")]
         private string DecryptedFolder
         {
             get
@@ -189,7 +190,7 @@ namespace Axantum.AxCrypt.Core.Session
         string _decryptedName;
 
         [DataMember]
-        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "This is a private method used for serialization.")]
+        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "This is a private property used for serialization.")]
         private byte[] ProtectedDecryptedName
         {
             get
@@ -204,7 +205,7 @@ namespace Axantum.AxCrypt.Core.Session
         }
 
         [DataMember]
-        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "This is a private method used for serialization.")]
+        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "This is a private property used for serialization.")]
         private string EncryptedPath
         {
             get
@@ -223,8 +224,11 @@ namespace Axantum.AxCrypt.Core.Session
         [DataMember]
         public DateTime LastAccessTimeUtc { get; private set; }
 
+        /// <summary>
+        /// Records the Last Write Time that was valid at the most recent encryption update of the encrypted file.
+        /// </summary>
         [DataMember]
-        public DateTime LastWriteTimeUtc { get; private set; }
+        private DateTime LastEncryptionWriteTimeUtc { get; set; }
 
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context)
@@ -252,6 +256,11 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
+        /// <summary>
+        /// Check if a provided key matches the thumbprint of this instance.
+        /// </summary>
+        /// <param name="key">A key to check against this instances thumbprint.</param>
+        /// <returns>true if the thumbprint matches the provided key.</returns>
         public bool ThumbprintMatch(AesKey key)
         {
             AesKeyThumbprint thumbprint = new AesKeyThumbprint(key, KeyThumbprintSalt);
@@ -268,10 +277,10 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     return false;
                 }
-                bool isModified = DecryptedFileInfo.LastWriteTimeUtc > LastWriteTimeUtc;
+                bool isModified = DecryptedFileInfo.LastWriteTimeUtc > LastEncryptionWriteTimeUtc;
                 if (Logging.IsInfoEnabled)
                 {
-                    Logging.Info("IsModified == '{0}' for file '{3}' info last write time '{1}' and active file last write time '{2}'".InvariantFormat(isModified.ToString(), DecryptedFileInfo.LastWriteTimeUtc.ToString(), LastWriteTimeUtc.ToString(), DecryptedFileInfo.Name));
+                    Logging.Info("IsModified == '{0}' for file '{3}' info last write time '{1}' and active file last write time '{2}'".InvariantFormat(isModified.ToString(), DecryptedFileInfo.LastWriteTimeUtc.ToString(), LastEncryptionWriteTimeUtc.ToString(), DecryptedFileInfo.Name));
                 }
                 return isModified;
             }
@@ -285,7 +294,6 @@ namespace Axantum.AxCrypt.Core.Session
             GC.SuppressFinalize(this);
         }
 
-        [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", Justification = "Even if we're not using the parameter, it is part of the IDisposable pattern.")]
         private void Dispose(bool disposing)
         {
             if (!disposing)
