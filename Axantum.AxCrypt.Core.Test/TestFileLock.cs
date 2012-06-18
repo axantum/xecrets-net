@@ -27,6 +27,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Axantum.AxCrypt.Core.IO;
@@ -40,57 +41,57 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileLockInvalidArguments()
         {
-            string nullString = null;
-            Assert.Throws<ArgumentNullException>(() => { FileLock.Lock(nullString); });
-            Assert.Throws<ArgumentNullException>(() => { FileLock.IsLocked(nullString); });
-            Assert.Throws<ArgumentNullException>(() => { FileLock.IsLocked(@"\\server\path\file.ext", nullString); });
+            IRuntimeFileInfo nullInfo = null;
+            Assert.Throws<ArgumentNullException>(() => { FileLock.Lock(nullInfo); });
+            Assert.Throws<ArgumentNullException>(() => { FileLock.IsLocked(nullInfo); });
+            Assert.Throws<ArgumentNullException>(() => { FileLock.IsLocked(AxCryptEnvironment.Current.FileInfo(@"\\server\path\file.ext"), nullInfo); });
         }
 
         [Test]
         public static void TestFileLockMethods()
         {
-            string file1 = @"c:\dir\file.ext";
+            IRuntimeFileInfo fileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\dir\file.ext");
 
-            Assert.That(FileLock.IsLocked(file1), Is.False, "There should be no lock for this file yet.");
-            using (FileLock lock1 = FileLock.Lock(file1))
+            Assert.That(FileLock.IsLocked(fileInfo), Is.False, "There should be no lock for this file yet.");
+            using (FileLock lock1 = FileLock.Lock(fileInfo))
             {
-                Assert.That(FileLock.IsLocked(file1), Is.True, "There should be now be a lock for this file.");
+                Assert.That(FileLock.IsLocked(fileInfo), Is.True, "There should be now be a lock for this file.");
             }
-            Assert.That(FileLock.IsLocked(file1), Is.False, "There should be no lock for this file again.");
+            Assert.That(FileLock.IsLocked(fileInfo), Is.False, "There should be no lock for this file again.");
         }
 
         [Test]
         public static void TestFileLockWhenLocked()
         {
-            string file1 = @"c:\dir\file.ext";
-            Assert.That(FileLock.IsLocked(file1), Is.False, "There should be no lock for this file to start with.");
-            using (FileLock lock1 = FileLock.Lock(file1))
+            IRuntimeFileInfo fileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\dir\file.ext");
+            Assert.That(FileLock.IsLocked(fileInfo), Is.False, "There should be no lock for this file to start with.");
+            using (FileLock lock1 = FileLock.Lock(fileInfo))
             {
-                Assert.That(FileLock.IsLocked(file1), Is.True, "There should be a lock for this file.");
-                using (FileLock lock1a = FileLock.Lock(file1))
+                Assert.That(FileLock.IsLocked(fileInfo), Is.True, "There should be a lock for this file.");
+                using (FileLock lock1a = FileLock.Lock(fileInfo))
                 {
                     Assert.That(lock1a, Is.Null, "When trying to get a lock for a locked file, this should return null.");
-                    Assert.That(FileLock.IsLocked(file1), Is.True, "There should still be a lock for this file.");
+                    Assert.That(FileLock.IsLocked(fileInfo), Is.True, "There should still be a lock for this file.");
                 }
-                Assert.That(FileLock.IsLocked(file1), Is.True, "There should still be a lock for this file.");
+                Assert.That(FileLock.IsLocked(fileInfo), Is.True, "There should still be a lock for this file.");
             }
-            Assert.That(FileLock.IsLocked(file1), Is.False, "There should be no lock for this file now.");
+            Assert.That(FileLock.IsLocked(fileInfo), Is.False, "There should be no lock for this file now.");
         }
 
         [Test]
         public static void TestFileLockCaseSensitivity()
         {
-            string file1 = @"c:\dir\file.ext";
-            string file2 = @"C:\dir\file.ext";
+            IRuntimeFileInfo fileInfo1 = AxCryptEnvironment.Current.FileInfo(@"c:\dir\file.ext");
+            IRuntimeFileInfo fileInfo2 = AxCryptEnvironment.Current.FileInfo(@"C:\dir\file.ext");
 
-            Assert.That(FileLock.IsLocked(file1), Is.False, "There should be no lock for this file yet.");
-            Assert.That(FileLock.IsLocked(file2), Is.False, "There should be no lock for this file yet.");
-            using (FileLock lock1 = FileLock.Lock(file1))
+            Assert.That(FileLock.IsLocked(fileInfo1), Is.False, "There should be no lock for this file yet.");
+            Assert.That(FileLock.IsLocked(fileInfo2), Is.False, "There should be no lock for this file yet.");
+            using (FileLock lock1 = FileLock.Lock(fileInfo1))
             {
-                Assert.That(FileLock.IsLocked(file1), Is.True, "There should be now be a lock for this file.");
-                Assert.That(FileLock.IsLocked(file2), Is.False, "There should be no lock for this file still.");
+                Assert.That(FileLock.IsLocked(fileInfo1), Is.True, "There should be now be a lock for this file.");
+                Assert.That(FileLock.IsLocked(fileInfo2), Is.False, "There should be no lock for this file still.");
             }
-            Assert.That(FileLock.IsLocked(file1), Is.False, "There should be no lock for this file again.");
+            Assert.That(FileLock.IsLocked(fileInfo1), Is.False, "There should be no lock for this file again.");
         }
 
         [Test]
@@ -98,7 +99,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Assert.DoesNotThrow(() =>
             {
-                using (FileLock aLock = FileLock.Lock(@"c:\A dir\A file.ext"))
+                using (FileLock aLock = FileLock.Lock(AxCryptEnvironment.Current.FileInfo(@"c:\A dir\A file.ext")))
                 {
                     aLock.Dispose();
                 }

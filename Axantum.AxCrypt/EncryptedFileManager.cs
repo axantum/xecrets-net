@@ -225,7 +225,7 @@ namespace Axantum.AxCrypt
                 {
                     Logging.Info("Decrypting '{0}'".InvariantFormat(sourceFileInfo.FullName)); //MLHIDE
                 }
-                using (FileLock sourceLock = FileLock.Lock(sourceFileInfo.FullName))
+                using (FileLock sourceLock = FileLock.Lock(sourceFileInfo))
                 {
                     using (AxCryptDocument document = AxCryptFile.Document(sourceFileInfo, key, progress))
                     {
@@ -238,7 +238,7 @@ namespace Axantum.AxCrypt
                         destinationPath = Path.Combine(destinationFolder, destinationName);
 
                         IRuntimeFileInfo destinationFileInfo = AxCryptEnvironment.Current.FileInfo(destinationPath);
-                        using (FileLock fileLock = FileLock.Lock(destinationFileInfo.FullName))
+                        using (FileLock fileLock = FileLock.Lock(destinationFileInfo))
                         {
                             AxCryptFile.Decrypt(document, destinationFileInfo, AxCryptOptions.SetFileTimes, progress);
                         }

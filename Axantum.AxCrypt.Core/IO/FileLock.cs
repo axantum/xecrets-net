@@ -42,24 +42,24 @@ namespace Axantum.AxCrypt.Core.IO
             _fullPath = fullPath;
         }
 
-        public static FileLock Lock(string fullPath)
+        public static FileLock Lock(IRuntimeFileInfo fileInfo)
         {
-            if (fullPath == null)
+            if (fileInfo == null)
             {
-                throw new ArgumentNullException("fullPath");
+                throw new ArgumentNullException("fileInfo");
             }
             lock (_lockedFiles)
             {
-                if (IsLocked(fullPath))
+                if (IsLocked(fileInfo))
                 {
                     return null;
                 }
-                _lockedFiles.Add(fullPath);
+                _lockedFiles.Add(fileInfo.FullName);
                 if (Logging.IsInfoEnabled)
                 {
-                    Logging.Info("Locking file '{0}'.".InvariantFormat(fullPath));
+                    Logging.Info("Locking file '{0}'.".InvariantFormat(fileInfo.FullName));
                 }
-                return new FileLock(fullPath);
+                return new FileLock(fileInfo.FullName);
             }
         }
 
@@ -71,29 +71,13 @@ namespace Axantum.AxCrypt.Core.IO
                 {
                     throw new ArgumentNullException("fileInfoParameters");
                 }
-                if (IsLocked(fileInfo.FullName))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public static bool IsLocked(params string[] fullPaths)
-        {
-            foreach (string fullPath in fullPaths)
-            {
-                if (fullPath == null)
-                {
-                    throw new ArgumentNullException("fullPaths");
-                }
                 lock (_lockedFiles)
                 {
-                    if (_lockedFiles.Contains(fullPath))
+                    if (_lockedFiles.Contains(fileInfo.FullName))
                     {
                         if (Logging.IsInfoEnabled)
                         {
-                            Logging.Info("File '{0}' was found to be locked.".InvariantFormat(fullPath));
+                            Logging.Info("File '{0}' was found to be locked.".InvariantFormat(fileInfo.FullName));
                         }
                         return true;
                     }
