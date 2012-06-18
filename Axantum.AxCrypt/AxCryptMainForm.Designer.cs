@@ -44,7 +44,7 @@
             this.encryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.decryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.CloseStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CloseOpenFilesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.OptionsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LanguageMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,7 +71,7 @@
             this.ActiveFilePolling = new System.Windows.Forms.Timer(this.components);
             this.ProgressPanel = new System.Windows.Forms.TableLayoutPanel();
             this.RecentFilesContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RemoveRecentFileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenFilesContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.EnterPassphraseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ProgressContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -136,7 +136,7 @@
             this.CloseAndRemoveOpenFilesButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             resources.ApplyResources(this.CloseAndRemoveOpenFilesButton, "CloseAndRemoveOpenFilesButton");
             this.CloseAndRemoveOpenFilesButton.Name = "CloseAndRemoveOpenFilesButton";
-            this.CloseAndRemoveOpenFilesButton.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.CloseAndRemoveOpenFilesButton.Click += new System.EventHandler(this.CloseOpenFilesButton_Click);
             // 
             // toolStripSeparator4
             // 
@@ -164,7 +164,7 @@
             this.encryptToolStripMenuItem,
             this.decryptToolStripMenuItem,
             this.toolStripSeparator2,
-            this.CloseStripMenuItem,
+            this.CloseOpenFilesMenuItem,
             this.toolStripSeparator3,
             this.OptionsMenuItem,
             this.exitToolStripMenuItem});
@@ -196,9 +196,9 @@
             // 
             // CloseStripMenuItem
             // 
-            resources.ApplyResources(this.CloseStripMenuItem, "CloseStripMenuItem");
-            this.CloseStripMenuItem.Name = "CloseStripMenuItem";
-            this.CloseStripMenuItem.Click += new System.EventHandler(this.CloseStripMenuItem_Click);
+            resources.ApplyResources(this.CloseOpenFilesMenuItem, "CloseStripMenuItem");
+            this.CloseOpenFilesMenuItem.Name = "CloseStripMenuItem";
+            this.CloseOpenFilesMenuItem.Click += new System.EventHandler(this.CloseOpenFilesMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -379,15 +379,15 @@
             // RecentFilesContextMenu
             // 
             this.RecentFilesContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.removeToolStripMenuItem});
+            this.RemoveRecentFileMenuItem});
             this.RecentFilesContextMenu.Name = "RecentFilesContextMenu";
             resources.ApplyResources(this.RecentFilesContextMenu, "RecentFilesContextMenu");
             // 
             // removeToolStripMenuItem
             // 
-            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            resources.ApplyResources(this.removeToolStripMenuItem, "removeToolStripMenuItem");
-            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
+            this.RemoveRecentFileMenuItem.Name = "removeToolStripMenuItem";
+            resources.ApplyResources(this.RemoveRecentFileMenuItem, "removeToolStripMenuItem");
+            this.RemoveRecentFileMenuItem.Click += new System.EventHandler(this.RemoveRecentFileMenuItem_Click);
             // 
             // OpenFilesContextMenu
             // 
@@ -486,8 +486,8 @@
         private System.Windows.Forms.TabPage LogTab;
         private System.Windows.Forms.TextBox LogOutput;
         private System.Windows.Forms.ContextMenuStrip RecentFilesContextMenu;
-        private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem CloseStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RemoveRecentFileMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem CloseOpenFilesMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton CloseAndRemoveOpenFilesButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;

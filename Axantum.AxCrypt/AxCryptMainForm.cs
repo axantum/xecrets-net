@@ -100,6 +100,7 @@ namespace Axantum.AxCrypt
             }
 
             ThreadFacade.WaitForBackgroundIdle();
+            EncryptedFileManager.SetProcessTracking(false);
             PurgeActiveFiles();
             ThreadFacade.WaitForBackgroundIdle();
             Trace.Listeners.Remove("AxCryptMainFormListener");        //MLHIDE
@@ -607,7 +608,6 @@ namespace Axantum.AxCrypt
 
         private void PurgeActiveFiles()
         {
-            EncryptedFileManager.SetProcessTracking(false);
             ThreadFacade.DoBackgroundWork(Resources.PurgingActiveFiles,
                 (WorkerArguments arguments) =>
                 {
@@ -636,7 +636,7 @@ namespace Axantum.AxCrypt
             OpenEncrypted(encryptedPath);
         }
 
-        private void removeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RemoveRecentFileMenuItem_Click(object sender, EventArgs e)
         {
             string encryptedPath = RecentFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text; //MLHIDE
             EncryptedFileManager.RemoveRecentFile(encryptedPath);
@@ -657,12 +657,12 @@ namespace Axantum.AxCrypt
             contextMenu.Show(listView, e.Location);
         }
 
-        private void CloseStripMenuItem_Click(object sender, EventArgs e)
+        private void CloseOpenFilesMenuItem_Click(object sender, EventArgs e)
         {
             PurgeActiveFiles();
         }
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        private void CloseOpenFilesButton_Click(object sender, EventArgs e)
         {
             PurgeActiveFiles();
         }
