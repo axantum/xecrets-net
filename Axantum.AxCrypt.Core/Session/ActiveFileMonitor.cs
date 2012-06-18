@@ -204,7 +204,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     return activeFile;
                 }
-                activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted, activeFile.Process);
+                activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted);
             }
 
             return activeFile;
@@ -255,7 +255,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     Logging.Warning("Failed exclusive open modified for '{0}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                 }
-                activeFile = new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.NotShareable, activeFile.Process);
+                activeFile = new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.NotShareable);
                 return activeFile;
             }
             if (Logging.IsInfoEnabled)
@@ -346,7 +346,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     Logging.Warning("Delete failed for '{0}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                 }
-                activeFile = new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.NotShareable, activeFile.Process);
+                activeFile = new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.NotShareable);
                 return activeFile;
             }
 

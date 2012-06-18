@@ -57,9 +57,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 throw new ArgumentNullException("key");
             }
-            Initialize(activeFile.EncryptedFileInfo, activeFile.DecryptedFileInfo, activeFile.LastWriteTimeUtc, key, activeFile.Status, activeFile.Process);
-            _keyThumbprintBytes = activeFile._keyThumbprintBytes;
-            _keyThumbprintSalt = activeFile._keyThumbprintSalt;
+            Initialize(activeFile);
         }
 
         public ActiveFile(ActiveFile activeFile, ActiveFileStatus status, Process process)
@@ -68,13 +66,9 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 throw new ArgumentNullException("activeFile");
             }
-            Initialize(activeFile.EncryptedFileInfo, activeFile.DecryptedFileInfo, activeFile.LastWriteTimeUtc, activeFile.Key, status, process);
-            if (process != null && Object.ReferenceEquals(process, activeFile.Process))
-            {
-                activeFile.Process = null;
-            }
-            _keyThumbprintBytes = activeFile._keyThumbprintBytes;
-            _keyThumbprintSalt = activeFile._keyThumbprintSalt;
+            Initialize(activeFile);
+            Status = status;
+            Process = process;
         }
 
         public ActiveFile(ActiveFile activeFile, ActiveFileStatus status)
@@ -83,9 +77,8 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 throw new ArgumentNullException("activeFile");
             }
-            Initialize(activeFile.EncryptedFileInfo, activeFile.DecryptedFileInfo, activeFile.LastWriteTimeUtc, activeFile.Key, status, activeFile.Process);
-            _keyThumbprintBytes = activeFile._keyThumbprintBytes;
-            _keyThumbprintSalt = activeFile._keyThumbprintSalt;
+            Initialize(activeFile);
+            Status = status;
         }
 
         public ActiveFile(ActiveFile activeFile, DateTime lastWriteTimeUtc, ActiveFileStatus status)
@@ -94,9 +87,9 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 throw new ArgumentNullException("activeFile");
             }
-            Initialize(activeFile.EncryptedFileInfo, activeFile.DecryptedFileInfo, lastWriteTimeUtc, activeFile.Key, status, activeFile.Process);
-            _keyThumbprintBytes = activeFile._keyThumbprintBytes;
-            _keyThumbprintSalt = activeFile._keyThumbprintSalt;
+            Initialize(activeFile);
+            LastWriteTimeUtc = lastWriteTimeUtc;
+            Status = status;
         }
 
         public ActiveFile(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, AesKey key, ActiveFileStatus status, Process process)
@@ -114,6 +107,15 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("key");
             }
             Initialize(encryptedFileInfo, decryptedFileInfo, decryptedFileInfo.LastWriteTimeUtc, key, status, process);
+        }
+
+        private void Initialize(ActiveFile other)
+        {
+            Initialize(other.EncryptedFileInfo, other.DecryptedFileInfo, other.LastWriteTimeUtc, other.Key, other.Status, other.Process);
+            if (other.Process != null)
+            {
+                other.Process = null;
+            }
         }
 
         private void Initialize(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, DateTime lastWriteTimeUtc, AesKey key, ActiveFileStatus status, Process process)
