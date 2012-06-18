@@ -58,6 +58,7 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("key");
             }
             Initialize(activeFile);
+            Key = key;
         }
 
         public ActiveFile(ActiveFile activeFile, ActiveFileStatus status, Process process)
@@ -123,11 +124,6 @@ namespace Axantum.AxCrypt.Core.Session
             EncryptedFileInfo = encryptedFileInfo;
             DecryptedFileInfo = decryptedFileInfo;
             Key = key;
-            if (key != null)
-            {
-                AesKeyThumbprint thumbprint = new AesKeyThumbprint(key, KeyThumbprintSalt);
-                KeyThumbprintBytes = thumbprint.GetThumbprintBytes();
-            }
             Status = status;
             LastAccessTimeUtc = DateTime.UtcNow;
             Process = process;
@@ -161,7 +157,16 @@ namespace Axantum.AxCrypt.Core.Session
         [DataMember]
         private byte[] KeyThumbprintBytes
         {
-            get { return _keyThumbprintBytes; }
+            get
+            {
+                if (_keyThumbprintBytes == null)
+                {
+                    AesKeyThumbprint thumbprint = new AesKeyThumbprint(Key, KeyThumbprintSalt);
+                    _keyThumbprintBytes = thumbprint.GetThumbprintBytes();
+                }
+
+                return _keyThumbprintBytes;
+            }
             set { _keyThumbprintBytes = value; }
         }
 
@@ -229,10 +234,22 @@ namespace Axantum.AxCrypt.Core.Session
 
         public Process Process { get; private set; }
 
+        private AesKey _key;
+
         public AesKey Key
         {
-            get;
-            set;
+            get
+            {
+                return _key;
+            }
+            set
+            {
+                if (_key != null && !_key.Equals(value))
+                {
+                    KeyThumbprintBytes = null;
+                }
+                _key = value;
+            }
         }
 
         public bool ThumbprintMatch(AesKey key)
