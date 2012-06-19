@@ -30,6 +30,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
@@ -51,7 +52,7 @@ namespace Axantum.AxCrypt.Core.Test
             _environment = AxCryptEnvironment.Current;
             AxCryptEnvironment.Current = new FakeRuntimeEnvironment();
 
-            FakeRuntimeFileInfo.AddFile(@"c:\test.txt", FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate3Utc, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
+            FakeRuntimeFileInfo.AddFile(@"c:\test.txt", FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate1Utc, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
             FakeRuntimeFileInfo.AddFile(@"c:\Users\AxCrypt\David Copperfield.txt", FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate5Utc, FakeRuntimeFileInfo.TestDate6Utc, new MemoryStream(Resources.David_Copperfield));
             FakeRuntimeFileInfo.AddFile(@"c:\Documents\Uncompressed.axx", new MemoryStream(Resources.Uncompressable_zip));
             FakeRuntimeFileInfo.AddFile(@"c:\Documents\HelloWorld.axx", new MemoryStream(Resources.HelloWorld_Key_a_txt));
@@ -95,16 +96,61 @@ namespace Axantum.AxCrypt.Core.Test
             Process process = new Process();
             IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\test.txt");
             IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\Documents\HelloWorld.axx");
-            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, process);
+            using (ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, process))
+            {
+                decryptedFileInfo = activeFile.DecryptedFileInfo;
+                Assert.That(decryptedFileInfo.Exists, Is.True, "The file should exist in the fake file system.");
+                Assert.That(decryptedFileInfo.FullName, Is.EqualTo(@"c:\test.txt"), "The file should be named as it was in the constructor");
+                Assert.That(decryptedFileInfo.LastWriteTimeUtc, Is.EqualTo(decryptedFileInfo.LastWriteTimeUtc), "When a LastWriteTime is not specified, the decrypted file should be used to determine the value.");
+                Assert.That(activeFile.Process, Is.EqualTo(process), "The process should be set from the constructor.");
 
-            decryptedFileInfo = activeFile.DecryptedFileInfo;
-            Assert.That(decryptedFileInfo.Exists, Is.True, "The file should exist in the fake file system.");
-            Assert.That(decryptedFileInfo.FullName, Is.EqualTo(@"c:\test.txt"), "The file should be named as it was in the constructor");
-            Assert.That(decryptedFileInfo.LastWriteTimeUtc, Is.EqualTo(decryptedFileInfo.LastWriteTimeUtc), "When a LastWriteTime is not specified, the decrypted file should be used to determine the value.");
+                using (ActiveFile otherFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted))
+                {
+                    Assert.That(otherFile.Status, Is.EqualTo(ActiveFileStatus.AssumedOpenAndDecrypted), "The status should be as given in the constructor.");
+                    Assert.That(otherFile.DecryptedFileInfo.FullName, Is.EqualTo(activeFile.DecryptedFileInfo.FullName), "This should be copied from the original instance.");
+                    Assert.That(otherFile.EncryptedFileInfo.FullName, Is.EqualTo(activeFile.EncryptedFileInfo.FullName), "This should be copied from the original instance.");
+                    Assert.That(otherFile.Key, Is.EqualTo(activeFile.Key), "This should be copied from the original instance.");
+                    Assert.That(otherFile.LastAccessTimeUtc, Is.GreaterThan(activeFile.LastAccessTimeUtc), "This should not be copied from the original instance, but should be a later time.");
+                    Assert.That(otherFile.Process, Is.EqualTo(process), "This should be copied from the original instance.");
+                    Assert.That(activeFile.Process, Is.Null, "The process should only be owned by one instance at a time.");
+                    Assert.That(otherFile.ThumbprintMatch(activeFile.Key), Is.True, "The thumbprints should match.");
+                }
 
-            ActiveFile otherFile;
-            otherFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted);
-            Assert.That(otherFile.Status, Is.EqualTo(ActiveFileStatus.AssumedOpenAndDecrypted), "The status should be as given in the constructor.");
+                using (ActiveFile otherFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted, process))
+                {
+                    Assert.That(otherFile.Process, Is.EqualTo(process), "This should be copied from the instance provided in the constructor.");
+                }
+
+                activeFile.DecryptedFileInfo.LastWriteTimeUtc = activeFile.DecryptedFileInfo.LastWriteTimeUtc.AddDays(1);
+                using (ActiveFile otherFile = new ActiveFile(activeFile, DateTime.UtcNow, ActiveFileStatus.AssumedOpenAndDecrypted))
+                {
+                    Assert.That(activeFile.IsModified, Is.True, "The original instance has not been encrypted since the last change.");
+                    Assert.That(otherFile.IsModified, Is.False, "The copy indicates that it has been encrypted and thus is not modified.");
+                }
+            }
+        }
+
+        [Test]
+        public static void TestThumbprint()
+        {
+            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\test.txt");
+            IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\Documents\HelloWorld.axx");
+            Process process = new Process();
+
+            AesKey key = new AesKey();
+
+            using (MemoryStream stream = new MemoryStream())
+            {
+                DataContractSerializer serializer = new DataContractSerializer(typeof(ActiveFile));
+                using (ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, process))
+                {
+                    serializer.WriteObject(stream, activeFile);
+                }
+                stream.Position = 0;
+                ActiveFile deserializedActiveFile = (ActiveFile)serializer.ReadObject(stream);
+
+                Assert.That(deserializedActiveFile.ThumbprintMatch(key), Is.True, "The deserialized object should match the thumbprint with the key.");
+            }
         }
     }
 }

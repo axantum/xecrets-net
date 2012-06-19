@@ -52,7 +52,6 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestMethods()
         {
             string tempFileName = Path.GetTempFileName();
-            FileInfo tempFileInfo = new FileInfo(tempFileName);
             IRuntimeFileInfo runtimeFileInfo = new RuntimeFileInfo(tempFileName);
             try
             {
