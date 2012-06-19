@@ -122,7 +122,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void Initialize(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, DateTime lastWriteTimeUtc, AesKey key, ActiveFileStatus status, Process process)
         {
-            EncryptedFileInfo = encryptedFileInfo;
+            EncryptedFileInfo = AxCryptEnvironment.Current.FileInfo(encryptedFileInfo.FullName); ;
             DecryptedFileInfo = decryptedFileInfo;
             Key = key;
             Status = status;

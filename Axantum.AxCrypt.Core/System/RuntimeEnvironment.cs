@@ -66,14 +66,9 @@ namespace Axantum.AxCrypt.Core.System
             return data;
         }
 
-        public IRuntimeFileInfo FileInfo(FileInfo file)
-        {
-            return new RuntimeFileInfo(file);
-        }
-
         public IRuntimeFileInfo FileInfo(string path)
         {
-            return FileInfo(new FileInfo(path));
+            return new RuntimeFileInfo(path);
         }
 
         public string AxCryptExtension

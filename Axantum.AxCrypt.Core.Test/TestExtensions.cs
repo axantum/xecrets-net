@@ -258,26 +258,26 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestCreateEncryptedName()
         {
-            FileInfo fileInfo = new FileInfo(@"C:\Users\Axantum\My Documents\My Document.docx");
-            FileInfo encryptedFileInfo = fileInfo.CreateEncryptedName();
-            Assert.That(encryptedFileInfo.FullName, Is.EqualTo(@"C:\Users\Axantum\My Documents\My Document-docx.axx"), "Standard conversion of file name to encrypted form.");
+            string fileName = @"C:\Users\Axantum\My Documents\My Document.docx";
+            string encryptedFileName = fileName.CreateEncryptedName();
+            Assert.That(encryptedFileName, Is.EqualTo(@"C:\Users\Axantum\My Documents\My Document-docx.axx"), "Standard conversion of file name to encrypted form.");
 
             Assert.Throws<InternalErrorException>(() =>
                  {
-                     FileInfo encryptedEncryptedFileInfo = encryptedFileInfo.CreateEncryptedName();
+                     string encryptedEncryptedFileName = encryptedFileName.CreateEncryptedName();
                      // Use the instance to avoid FxCop errors.
-                     Object.Equals(encryptedEncryptedFileInfo, null);
+                     Object.Equals(encryptedEncryptedFileName, null);
                  });
 
-            fileInfo = new FileInfo(@"C:\Users\Axantum\My Documents\My Extensionless File");
-            encryptedFileInfo = fileInfo.CreateEncryptedName();
-            Assert.That(encryptedFileInfo.FullName, Is.EqualTo(@"C:\Users\Axantum\My Documents\My Extensionless File.axx"), "Conversion of file name without extension to encrypted form.");
+            fileName = @"C:\Users\Axantum\My Documents\My Extensionless File";
+            encryptedFileName = fileName.CreateEncryptedName();
+            Assert.That(encryptedFileName, Is.EqualTo(@"C:\Users\Axantum\My Documents\My Extensionless File.axx"), "Conversion of file name without extension to encrypted form.");
 
             Assert.Throws<InternalErrorException>(() =>
             {
-                FileInfo encryptedEncryptedFileInfo = encryptedFileInfo.CreateEncryptedName();
+                string encryptedEncryptedFileName = encryptedFileName.CreateEncryptedName();
                 // Use the instance to avoid FxCop errors.
-                Object.Equals(encryptedEncryptedFileInfo, null);
+                Object.Equals(encryptedEncryptedFileName, null);
             });
         }
     }

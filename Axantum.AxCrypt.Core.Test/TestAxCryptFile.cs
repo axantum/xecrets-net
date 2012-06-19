@@ -206,9 +206,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestLargeEncryptDecrypt()
         {
             DirectoryInfo sourceDirectory = new DirectoryInfo(@"C:\Users\AxCrypt");
-            FileInfo sourceFileInfo = new FileInfo(Path.Combine(sourceDirectory.FullName, "David Copperfield.txt"));
+            string sourceFullName = Path.Combine(sourceDirectory.FullName, "David Copperfield.txt");
 
-            IRuntimeFileInfo sourceRuntimeFileInfo = AxCryptEnvironment.Current.FileInfo(sourceFileInfo);
+            IRuntimeFileInfo sourceRuntimeFileInfo = AxCryptEnvironment.Current.FileInfo(sourceFullName);
             IRuntimeFileInfo destinationRuntimeFileInfo = sourceRuntimeFileInfo.CreateEncryptedName();
             Passphrase passphrase = new Passphrase("laDabled@tAmeopot33");
 
@@ -219,8 +219,8 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(destinationRuntimeFileInfo.LastWriteTimeUtc, Is.EqualTo(sourceRuntimeFileInfo.LastWriteTimeUtc), "We're expecting file times to be set as the original from the headers.");
 
             DirectoryInfo decryptedDirectoryInfo = new DirectoryInfo(@"C:\Users\AxCrypt\Decrypted");
-            FileInfo decryptedFileInfo = new FileInfo(Path.Combine(decryptedDirectoryInfo.FullName, "David Copperfield.txt"));
-            IRuntimeFileInfo decryptedRuntimeFileInfo = AxCryptEnvironment.Current.FileInfo(decryptedFileInfo);
+            string decryptedFullName = Path.Combine(decryptedDirectoryInfo.FullName, "David Copperfield.txt");
+            IRuntimeFileInfo decryptedRuntimeFileInfo = AxCryptEnvironment.Current.FileInfo(decryptedFullName);
 
             AxCryptFile.Decrypt(destinationRuntimeFileInfo, decryptedRuntimeFileInfo, passphrase.DerivedPassphrase, AxCryptOptions.SetFileTimes, new ProgressContext());
 

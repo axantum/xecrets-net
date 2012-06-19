@@ -293,26 +293,25 @@ namespace Axantum.AxCrypt.Core
         }
 
         /// <summary>
-        /// Create a FileInfo based on an existing, but convert the file name to the pattern used by
+        /// Create a file name based on an existing, but convert the file name to the pattern used by
         /// AxCrypt for encrypted files. The original must not already be in that form.
         /// </summary>
-        /// <param name="fileInfo">A FileInfo representing a file that is not encrypted</param>
-        /// <returns>A corresponding FileInfo representing the encrypted version of the original</returns>
+        /// <param name="fileInfo">A file name representing a file that is not encrypted</param>
+        /// <returns>A corresponding file name representing the encrypted version of the original</returns>
         /// <exception cref="InternalErrorException">Can't get encrypted name for a file that already has the encrypted extension.</exception>
-        public static FileInfo CreateEncryptedName(this FileSystemInfo fileInfo)
+        public static string CreateEncryptedName(this string fullName)
         {
-            string extension = Path.GetExtension(fileInfo.FullName);
+            string extension = Path.GetExtension(fullName);
             if (String.Compare(extension, AxCryptEnvironment.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 throw new InternalErrorException("Can't get encrypted name for a file that already has the encrypted extension.");
             }
-            string encryptedName = fileInfo.FullName;
+            string encryptedName = fullName;
             encryptedName = encryptedName.Substring(0, encryptedName.Length - extension.Length);
             encryptedName += extension.Replace('.', '-');
             encryptedName += AxCryptEnvironment.Current.AxCryptExtension;
 
-            FileInfo encryptedNameFileInfo = new FileInfo(encryptedName);
-            return encryptedNameFileInfo;
+            return encryptedName;
         }
     }
 }

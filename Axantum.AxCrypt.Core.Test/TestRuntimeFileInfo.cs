@@ -53,7 +53,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             string tempFileName = Path.GetTempFileName();
             FileInfo tempFileInfo = new FileInfo(tempFileName);
-            IRuntimeFileInfo runtimeFileInfo = new RuntimeFileInfo(tempFileInfo);
+            IRuntimeFileInfo runtimeFileInfo = new RuntimeFileInfo(tempFileName);
             try
             {
                 using (Stream writeStream = runtimeFileInfo.OpenWrite())
@@ -79,11 +79,10 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(runtimeFileInfo.LastAccessTimeUtc, Is.EqualTo(dateTime + new TimeSpan(1, 0, 0)), "The last access time should be as set.");
                 Assert.That(runtimeFileInfo.LastWriteTimeUtc, Is.EqualTo(dateTime + new TimeSpan(2, 0, 0)), "The last write time should be as set.");
 
-                Assert.That(runtimeFileInfo.FullName, Is.EqualTo(tempFileInfo.FullName), "The FullName should be the same as the underlying FileInfo.FullName.");
+                Assert.That(runtimeFileInfo.FullName, Is.EqualTo(tempFileName), "The FullName should be the same as the underlying FileInfo.FullName.");
 
                 string otherTempFileName = runtimeFileInfo.FullName + ".copy";
-                FileInfo otherTempFileInfo = new FileInfo(otherTempFileName);
-                IRuntimeFileInfo otherTempRuntimeFileInfo = new RuntimeFileInfo(otherTempFileInfo);
+                IRuntimeFileInfo otherTempRuntimeFileInfo = new RuntimeFileInfo(otherTempFileName);
                 Assert.That(otherTempRuntimeFileInfo.Exists, Is.False, "The new temp file should not exist.");
                 Assert.That(runtimeFileInfo.Exists, Is.True, "The old temp file should exist.");
                 runtimeFileInfo.MoveTo(otherTempRuntimeFileInfo.FullName);
@@ -96,8 +95,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
             Assert.That(runtimeFileInfo.Exists, Is.False, "The file should have been deleted now.");
 
-            FileInfo notEncryptedFileInfo = new FileInfo("file.txt");
-            IRuntimeFileInfo notEncryptedRuntimeFileInfo = new RuntimeFileInfo(notEncryptedFileInfo);
+            IRuntimeFileInfo notEncryptedRuntimeFileInfo = new RuntimeFileInfo("file.txt");
             IRuntimeFileInfo encryptedRuntimeFileInfo = notEncryptedRuntimeFileInfo.CreateEncryptedName();
             Assert.That(encryptedRuntimeFileInfo.Name, Is.EqualTo("file-txt.axx"), "The encrypted name should be as expected.");
         }

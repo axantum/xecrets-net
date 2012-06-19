@@ -80,8 +80,12 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile;
             Assert.Throws<ArgumentNullException>(() => { activeFile = new ActiveFile(nullActiveFile, key); });
             Assert.Throws<ArgumentNullException>(() => { activeFile = new ActiveFile(originalActiveFile, nullKey); });
+            Assert.Throws<ArgumentNullException>(() => { activeFile = new ActiveFile(nullActiveFile, ActiveFileStatus.None, nullProcess); });
+            Assert.Throws<ArgumentNullException>(() => { activeFile = new ActiveFile(nullActiveFile, ActiveFileStatus.None); });
+            Assert.Throws<ArgumentNullException>(() => { activeFile = new ActiveFile(nullActiveFile, DateTime.MinValue, ActiveFileStatus.None); });
             Assert.Throws<ArgumentNullException>(() => { activeFile = new ActiveFile(nullFileInfo, decryptedFileInfo, new AesKey(), ActiveFileStatus.None, nullProcess); });
             Assert.Throws<ArgumentNullException>(() => { activeFile = new ActiveFile(encryptedFileInfo, nullFileInfo, new AesKey(), ActiveFileStatus.None, nullProcess); });
+            Assert.Throws<ArgumentNullException>(() => { activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, nullKey, ActiveFileStatus.None, nullProcess); });
         }
 
         [Test]
@@ -97,6 +101,10 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(decryptedFileInfo.Exists, Is.True, "The file should exist in the fake file system.");
             Assert.That(decryptedFileInfo.FullName, Is.EqualTo(@"c:\test.txt"), "The file should be named as it was in the constructor");
             Assert.That(decryptedFileInfo.LastWriteTimeUtc, Is.EqualTo(decryptedFileInfo.LastWriteTimeUtc), "When a LastWriteTime is not specified, the decrypted file should be used to determine the value.");
+
+            ActiveFile otherFile;
+            otherFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted);
+            Assert.That(otherFile.Status, Is.EqualTo(ActiveFileStatus.AssumedOpenAndDecrypted), "The status should be as given in the constructor.");
         }
     }
 }

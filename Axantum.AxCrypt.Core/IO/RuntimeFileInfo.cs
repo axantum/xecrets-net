@@ -34,13 +34,13 @@ namespace Axantum.AxCrypt.Core.IO
     {
         private FileInfo _file;
 
-        public RuntimeFileInfo(FileInfo file)
+        public RuntimeFileInfo(string fullName)
         {
-            if (file == null)
+            if (fullName == null)
             {
-                throw new ArgumentNullException("file");
+                throw new ArgumentNullException("fullName");
             }
-            _file = new FileInfo(file.FullName);
+            _file = new FileInfo(fullName);
         }
 
         public Stream OpenRead()
@@ -109,9 +109,9 @@ namespace Axantum.AxCrypt.Core.IO
 
         public IRuntimeFileInfo CreateEncryptedName()
         {
-            FileInfo encryptedNameFileInfo = _file.CreateEncryptedName();
+            string encryptedName = _file.FullName.CreateEncryptedName();
 
-            return new RuntimeFileInfo(encryptedNameFileInfo);
+            return new RuntimeFileInfo(encryptedName);
         }
 
         public string FullName

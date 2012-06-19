@@ -64,14 +64,9 @@ namespace Axantum.AxCrypt.Core.Test
             return bytes;
         }
 
-        public IRuntimeFileInfo FileInfo(FileInfo file)
-        {
-            return new FakeRuntimeFileInfo(file);
-        }
-
         public IRuntimeFileInfo FileInfo(string path)
         {
-            return FileInfo(new FileInfo(path));
+            return new FakeRuntimeFileInfo(path);
         }
 
         public string AxCryptExtension

@@ -70,9 +70,9 @@ namespace Axantum.AxCrypt.Core.Test
 
         private FileInfo _file;
 
-        public FakeRuntimeFileInfo(FileInfo file)
+        public FakeRuntimeFileInfo(string fullName)
         {
-            _file = new FileInfo(file.FullName);
+            _file = new FileInfo(fullName);
         }
 
         private FakeFileInfo FindFileInfo()
@@ -186,9 +186,9 @@ namespace Axantum.AxCrypt.Core.Test
 
         public IRuntimeFileInfo CreateEncryptedName()
         {
-            FileInfo encryptedNameFileInfo = _file.CreateEncryptedName();
+            string encryptedName = _file.FullName.CreateEncryptedName();
 
-            return new FakeRuntimeFileInfo(encryptedNameFileInfo);
+            return new FakeRuntimeFileInfo(encryptedName);
         }
 
         public string FullName
