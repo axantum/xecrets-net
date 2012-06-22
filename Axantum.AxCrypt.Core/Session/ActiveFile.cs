@@ -296,16 +296,15 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void Dispose(bool disposing)
         {
-            if (!disposing)
+            if (disposing)
             {
-                return;
+                if (Process == null)
+                {
+                    return;
+                }
+                Process.Dispose();
+                Process = null;
             }
-            if (Process == null)
-            {
-                return;
-            }
-            Process.Dispose();
-            Process = null;
         }
 
         #endregion IDisposable Members

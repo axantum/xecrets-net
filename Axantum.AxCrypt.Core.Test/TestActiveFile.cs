@@ -32,6 +32,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Threading;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
@@ -103,7 +104,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(decryptedFileInfo.FullName, Is.EqualTo(@"c:\test.txt"), "The file should be named as it was in the constructor");
                 Assert.That(decryptedFileInfo.LastWriteTimeUtc, Is.EqualTo(decryptedFileInfo.LastWriteTimeUtc), "When a LastWriteTime is not specified, the decrypted file should be used to determine the value.");
                 Assert.That(activeFile.Process, Is.EqualTo(process), "The process should be set from the constructor.");
-
+                Thread.Sleep(200);
                 using (ActiveFile otherFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted))
                 {
                     Assert.That(otherFile.Status, Is.EqualTo(ActiveFileStatus.AssumedOpenAndDecrypted), "The status should be as given in the constructor.");
@@ -168,6 +169,17 @@ namespace Axantum.AxCrypt.Core.Test
                 ActiveFile deserializedActiveFile = (ActiveFile)serializer.ReadObject(stream);
 
                 Assert.That(deserializedActiveFile.ThumbprintMatch(key), Is.True, "The deserialized object should match the thumbprint with the key.");
+            }
+        }
+
+        [Test]
+        public static void TestIsModified()
+        {
+            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\doesnotexist.txt");
+            IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\Documents\HelloWorld.axx");
+            using (ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new AesKey(), ActiveFileStatus.None, null))
+            {
+                Assert.That(activeFile.IsModified, Is.False, "A non-existing decrypted file should not be treated as modified.");
             }
         }
     }

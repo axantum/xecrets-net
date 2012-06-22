@@ -140,6 +140,10 @@ namespace Axantum.AxCrypt.Core.Test
             get
             {
                 FakeFileInfo fakeFileInfo = FindFileInfo();
+                if (fakeFileInfo == null)
+                {
+                    return DateTime.MinValue;
+                }
                 return fakeFileInfo.CreationTimeUtc;
             }
             set
@@ -154,6 +158,10 @@ namespace Axantum.AxCrypt.Core.Test
             get
             {
                 FakeFileInfo fakeFileInfo = FindFileInfo();
+                if (fakeFileInfo == null)
+                {
+                    return DateTime.MinValue;
+                }
                 return fakeFileInfo.LastAccessTimeUtc;
             }
             set
@@ -168,6 +176,10 @@ namespace Axantum.AxCrypt.Core.Test
             get
             {
                 FakeFileInfo fakeFileInfo = FindFileInfo();
+                if (fakeFileInfo == null)
+                {
+                    return DateTime.MinValue;
+                }
                 return fakeFileInfo.LastWriteTimeUtc;
             }
             set
