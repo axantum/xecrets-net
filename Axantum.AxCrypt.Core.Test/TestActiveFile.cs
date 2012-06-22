@@ -131,6 +131,24 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        public static void TestCopyConstructorWithKey()
+        {
+            Process process = new Process();
+            AesKey key = new AesKey();
+            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\test.txt");
+            IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\Documents\HelloWorld.axx");
+            using (ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, process))
+            {
+                AesKey newKey = new AesKey();
+                using (ActiveFile newActiveFile = new ActiveFile(activeFile, newKey))
+                {
+                    Assert.That(activeFile.Key, Is.Not.EqualTo(newKey), "Ensure that it's really a different key.");
+                    Assert.That(newActiveFile.Key, Is.EqualTo(newKey), "The constructor should assign the new key to the new ActiveFile instance.");
+                }
+            }
+        }
+
+        [Test]
         public static void TestThumbprint()
         {
             IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\test.txt");

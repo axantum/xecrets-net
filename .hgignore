@@ -4,3 +4,5 @@ syntax: glob
 bin
 obj
 ml_temp_*.xml
+_ReSharper.*
+*.user
