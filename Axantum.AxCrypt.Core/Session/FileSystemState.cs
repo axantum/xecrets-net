@@ -164,11 +164,6 @@ namespace Axantum.AxCrypt.Core.Session
 
         private string _path;
 
-        public string DirectoryPath
-        {
-            get { return _path; }
-        }
-
         public static FileSystemState Load(IRuntimeFileInfo path)
         {
             if (!path.Exists)

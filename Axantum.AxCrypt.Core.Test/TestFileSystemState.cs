@@ -56,9 +56,67 @@ namespace Axantum.AxCrypt.Core.Test
             state.Save();
 
             FileSystemState reloadedState = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(@"c:\mytemp\mystate.xml"));
-            Assert.That(state, Is.Not.Null, "An instance should always be instantiated.");
-            Assert.That(state.ActiveFiles.Count(), Is.EqualTo(1), "The reloaded state should have one active file.");
-            Assert.That(state.ActiveFiles.First().ThumbprintMatch(activeFile.Key), Is.True, "The reloaded thumbprint should  match the key.");
+            Assert.That(reloadedState, Is.Not.Null, "An instance should always be instantiated.");
+            Assert.That(reloadedState.ActiveFiles.Count(), Is.EqualTo(1), "The reloaded state should have one active file.");
+            Assert.That(reloadedState.ActiveFiles.First().ThumbprintMatch(activeFile.Key), Is.True, "The reloaded thumbprint should  match the key.");
+        }
+
+        [Test]
+        public static void TestChangedEvent()
+        {
+            FileSystemState state = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(@"c:\mytemp\mystate.xml"));
+            bool wasHere;
+            state.Changed += new EventHandler<EventArgs>((object sender, EventArgs e) => { wasHere = true; });
+            ActiveFile activeFile = new ActiveFile(AxCryptEnvironment.Current.FileInfo(@"C:\Encrypted-txt.axx"), AxCryptEnvironment.Current.FileInfo(@"C:\Decrypted.txt"), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted, null);
+
+            wasHere = false;
+            state.Add(activeFile);
+            Assert.That(state.ActiveFiles.Count(), Is.EqualTo(1), "After the Add() the state should have one active file.");
+            Assert.That(wasHere, Is.True, "After the Add(), the changed event should have been raised.");
+
+            wasHere = false;
+            state.Remove(activeFile);
+            Assert.That(wasHere, Is.True, "After the Remove(), the changed event should have been raised.");
+            Assert.That(state.ActiveFiles.Count(), Is.EqualTo(0), "After the Remove() the state should have no active files.");
+
+            wasHere = false;
+            state.ActiveFiles = new ActiveFile[] { activeFile };
+            Assert.That(state.ActiveFiles.Count(), Is.EqualTo(1), "After the assignment to ActiveFiles the state should have one active file.");
+            Assert.That(wasHere, Is.True, "After the assignment to ActiveFiles, the changed event should have been raised.");
+        }
+
+        [Test]
+        public static void TestStatusMaskAtLoad()
+        {
+            FileSystemState state = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(@"c:\mytemp\mystate.xml"));
+            ActiveFile activeFile = new ActiveFile(AxCryptEnvironment.Current.FileInfo(@"C:\Encrypted-txt.axx"), AxCryptEnvironment.Current.FileInfo(@"C:\Decrypted.txt"), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, null);
+            state.Add(activeFile);
+            state.Save();
+
+            FileSystemState reloadedState = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(@"c:\mytemp\mystate.xml"));
+            Assert.That(reloadedState, Is.Not.Null, "An instance should always be instantiated.");
+            Assert.That(reloadedState.ActiveFiles.Count(), Is.EqualTo(1), "The reloaded state should have one active file.");
+            Assert.That(reloadedState.ActiveFiles.First().Status, Is.EqualTo(ActiveFileStatus.AssumedOpenAndDecrypted), "When reloading saved state, some statuses should be masked away.");
+        }
+
+        [Test]
+        public static void TestFindEncryptedAndDecryptedPath()
+        {
+            FileSystemState state = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(@"c:\mytemp\mystate.xml"));
+            ActiveFile activeFile = new ActiveFile(AxCryptEnvironment.Current.FileInfo(@"C:\Encrypted-txt.axx"), AxCryptEnvironment.Current.FileInfo(@"C:\Decrypted.txt"), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, null);
+            state.Add(activeFile);
+
+            ActiveFile byDecryptedPath = state.FindDecryptedPath(@"C:\Decrypted.txt");
+            Assert.That(byDecryptedPath, Is.EqualTo(activeFile), "The search should return the same instance.");
+
+            ActiveFile byEncryptedPath = state.FindEncryptedPath(@"C:\Encrypted-txt.axx");
+            Assert.That(byEncryptedPath, Is.EqualTo(byDecryptedPath), "The search should return the same instance.");
+
+            ActiveFile notFoundEncrypted = state.FindEncryptedPath(@"C:\notfoundfile.txt");
+            Assert.That(notFoundEncrypted, Is.Null, "A search that does not succeed should return null.");
+
+            ActiveFile notFoundDecrypted = state.FindDecryptedPath(@"C:\notfoundfile.txt");
+            Assert.That(notFoundDecrypted, Is.Null, "A search that does not succeed should return null.");
         }
     }
 }
