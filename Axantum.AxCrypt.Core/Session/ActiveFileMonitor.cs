@@ -76,14 +76,12 @@ namespace Axantum.AxCrypt.Core.Session
         {
             _fileSystemState.Add(activeFile);
             _fileSystemState.Save();
-            OnChanged(new EventArgs());
         }
 
         public void RemoveActiveFile(ActiveFile activeFile)
         {
             _fileSystemState.Remove(activeFile);
             _fileSystemState.Save();
-            OnChanged(new EventArgs());
         }
 
         private bool _trackProcess;
@@ -132,7 +130,7 @@ namespace Axantum.AxCrypt.Core.Session
                 _fileSystemState.ActiveFiles = activeFiles;
                 _fileSystemState.Save();
             }
-            if (isModified || forceChange)
+            if (!isModified && forceChange)
             {
                 OnChanged(new EventArgs());
             }

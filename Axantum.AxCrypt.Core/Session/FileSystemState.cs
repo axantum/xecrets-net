@@ -79,6 +79,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     SetRangeInternal(value, ActiveFileStatus.None);
                 }
+                OnChanged(new EventArgs());
             }
         }
 
@@ -114,6 +115,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 AddInternal(activeFile);
             }
+            OnChanged(new EventArgs());
         }
 
         public void Remove(ActiveFile activeFile)
@@ -123,6 +125,7 @@ namespace Axantum.AxCrypt.Core.Session
                 _activeFilesByDecryptedPath.Remove(activeFile.DecryptedFileInfo.FullName);
                 _activeFilesByEncryptedPath.Remove(activeFile.EncryptedFileInfo.FullName);
             }
+            OnChanged(new EventArgs());
         }
 
         private void AddInternal(ActiveFile activeFile)
@@ -180,7 +183,9 @@ namespace Axantum.AxCrypt.Core.Session
             }
 
             DataContractSerializer serializer = CreateSerializer();
-            using (FileStream fileSystemStateStream = new FileStream(path.FullName, FileMode.Open, FileAccess.Read, FileShare.None))
+            IRuntimeFileInfo loadInfo = AxCryptEnvironment.Current.FileInfo(path.FullName);
+
+            using (Stream fileSystemStateStream = loadInfo.OpenRead())
             {
                 FileSystemState fileSystemState = (FileSystemState)serializer.ReadObject(fileSystemStateStream);
                 fileSystemState._path = path.FullName;
@@ -200,7 +205,8 @@ namespace Axantum.AxCrypt.Core.Session
 
         public void Save()
         {
-            using (FileStream fileSystemStateStream = new FileStream(_path, FileMode.Create, FileAccess.Write, FileShare.None))
+            IRuntimeFileInfo saveInfo = AxCryptEnvironment.Current.FileInfo(_path);
+            using (Stream fileSystemStateStream = saveInfo.OpenWrite())
             {
                 lock (_lock)
                 {
