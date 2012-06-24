@@ -104,6 +104,24 @@ namespace Axantum.AxCrypt.Core.Test
             return fileWatcher;
         }
 
+        private IRuntimeFileInfo _temporaryDirectoryInfo;
+
+        public IRuntimeFileInfo TemporaryDirectoryInfo
+        {
+            get
+            {
+                if (_temporaryDirectoryInfo == null)
+                {
+                    string temporaryFolderPath = Path.Combine(@"C:\FakeTemp\AxCrypt\");
+                    IRuntimeFileInfo temporaryFolderInfo = FileInfo(temporaryFolderPath);
+                    temporaryFolderInfo.CreateDirectory();
+                    _temporaryDirectoryInfo = temporaryFolderInfo;
+                }
+
+                return _temporaryDirectoryInfo;
+            }
+        }
+
         #endregion IRuntimeEnvironment Members
 
         internal void FileCreated(string path)

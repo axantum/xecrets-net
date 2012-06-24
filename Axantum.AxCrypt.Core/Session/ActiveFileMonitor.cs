@@ -45,11 +45,11 @@ namespace Axantum.AxCrypt.Core.Session
 
         public ActiveFileMonitor()
         {
-            string fileSystemStateFullName = Path.Combine(TemporaryDirectoryInfo.FullName, "FileSystemState.xml");
+            string fileSystemStateFullName = Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, "FileSystemState.xml");
             _fileSystemState = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(fileSystemStateFullName));
             _fileSystemState.Changed += new EventHandler<EventArgs>(FileSystemState_Changed);
 
-            _fileWatcher = AxCryptEnvironment.Current.FileWatcher(TemporaryDirectoryInfo.FullName);
+            _fileWatcher = AxCryptEnvironment.Current.FileWatcher(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName);
             _fileWatcher.FileChanged += new EventHandler<FileWatcherEventArgs>(_fileWatcher_FileChanged);
         }
 
@@ -354,24 +354,6 @@ namespace Axantum.AxCrypt.Core.Session
         public ActiveFile FindActiveFile(string encryptedPath)
         {
             return _fileSystemState.FindEncryptedPath(encryptedPath);
-        }
-
-        private IRuntimeFileInfo _temporaryDirectoryInfo;
-
-        public IRuntimeFileInfo TemporaryDirectoryInfo
-        {
-            get
-            {
-                if (_temporaryDirectoryInfo == null)
-                {
-                    string temporaryFolderPath = Path.Combine(Path.GetTempPath(), @"AxCrypt\");
-                    IRuntimeFileInfo temporaryFolderInfo = AxCryptEnvironment.Current.FileInfo(temporaryFolderPath);
-                    temporaryFolderInfo.CreateDirectory();
-                    _temporaryDirectoryInfo = temporaryFolderInfo;
-                }
-
-                return _temporaryDirectoryInfo;
-            }
         }
 
         public void Dispose()

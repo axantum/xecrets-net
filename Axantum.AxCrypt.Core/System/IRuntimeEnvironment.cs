@@ -45,5 +45,7 @@ namespace Axantum.AxCrypt.Core.System
         int StreamBufferSize { get; }
 
         IFileWatcher FileWatcher(string path);
+
+        IRuntimeFileInfo TemporaryDirectoryInfo { get; }
     }
 }

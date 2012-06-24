@@ -108,5 +108,23 @@ namespace Axantum.AxCrypt.Core.System
         {
             return new FileWatcher(path);
         }
+
+        private IRuntimeFileInfo _temporaryDirectoryInfo;
+
+        public IRuntimeFileInfo TemporaryDirectoryInfo
+        {
+            get
+            {
+                if (_temporaryDirectoryInfo == null)
+                {
+                    string temporaryFolderPath = Path.Combine(Path.GetTempPath(), @"AxCrypt\");
+                    IRuntimeFileInfo temporaryFolderInfo = FileInfo(temporaryFolderPath);
+                    temporaryFolderInfo.CreateDirectory();
+                    _temporaryDirectoryInfo = temporaryFolderInfo;
+                }
+
+                return _temporaryDirectoryInfo;
+            }
+        }
     }
 }
