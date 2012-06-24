@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Endian.cs" />
+    <Compile Include="FakeFileWatcher.cs" />
     <Compile Include="FakeRuntimeEnvironment.cs" />
     <Compile Include="FakeRuntimeFileInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

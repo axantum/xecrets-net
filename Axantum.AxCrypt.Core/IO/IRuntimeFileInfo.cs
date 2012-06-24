@@ -39,6 +39,8 @@ namespace Axantum.AxCrypt.Core.IO
 
         Stream OpenWrite();
 
+        void CreateDirectory();
+
         /// <summary>
         /// Get the Name part without the folder part of the path.
         /// </summary>

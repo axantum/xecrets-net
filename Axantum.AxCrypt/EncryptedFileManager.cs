@@ -185,10 +185,10 @@ namespace Axantum.AxCrypt
 
             ActiveFile destinationActiveFile = _activeFileMonitor.FindActiveFile(fileInfo.FullName);
 
-            string destinationPath = null;
             if (destinationActiveFile == null || !destinationActiveFile.DecryptedFileInfo.Exists)
             {
-                destinationActiveFile = TryDecrypt(destinationActiveFile, keys, fileInfo, destinationPath, progress);
+                IRuntimeFileInfo destinationFolderInfo = GetDestinationFolder(destinationActiveFile);
+                destinationActiveFile = TryDecrypt(destinationFolderInfo, keys, fileInfo, progress);
             }
             else
             {
@@ -205,20 +205,9 @@ namespace Axantum.AxCrypt
             return LaunchApplicationForDocument(destinationActiveFile);
         }
 
-        private ActiveFile TryDecrypt(ActiveFile destinationActiveFile, IEnumerable<AesKey> keys, IRuntimeFileInfo sourceFileInfo, string destinationPath, ProgressContext progress)
+        private ActiveFile TryDecrypt(IRuntimeFileInfo destinationFolderInfo, IEnumerable<AesKey> keys, IRuntimeFileInfo sourceFileInfo, ProgressContext progress)
         {
-            string destinationFolder;
-            if (destinationActiveFile != null)
-            {
-                destinationFolder = Path.GetDirectoryName(destinationActiveFile.DecryptedFileInfo.FullName);
-            }
-            else
-            {
-                destinationFolder = Path.Combine(_activeFileMonitor.TemporaryDirectoryInfo.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()));
-            }
-            Directory.CreateDirectory(destinationFolder);
-
-            destinationActiveFile = null;
+            ActiveFile destinationActiveFile = null;
             foreach (AesKey key in keys)
             {
                 if (Logging.IsInfoEnabled)
@@ -235,7 +224,7 @@ namespace Axantum.AxCrypt
                         }
 
                         string destinationName = document.DocumentHeaders.FileName;
-                        destinationPath = Path.Combine(destinationFolder, destinationName);
+                        string destinationPath = Path.Combine(destinationFolderInfo.FullName, destinationName);
 
                         IRuntimeFileInfo destinationFileInfo = AxCryptEnvironment.Current.FileInfo(destinationPath);
                         using (FileLock fileLock = FileLock.Lock(destinationFileInfo))
@@ -252,6 +241,22 @@ namespace Axantum.AxCrypt
                 }
             }
             return destinationActiveFile;
+        }
+
+        private IRuntimeFileInfo GetDestinationFolder(ActiveFile destinationActiveFile)
+        {
+            string destinationFolder;
+            if (destinationActiveFile != null)
+            {
+                destinationFolder = Path.GetDirectoryName(destinationActiveFile.DecryptedFileInfo.FullName);
+            }
+            else
+            {
+                destinationFolder = Path.Combine(_activeFileMonitor.TemporaryDirectoryInfo.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + @"\");
+            }
+            IRuntimeFileInfo destinationFolderInfo = AxCryptEnvironment.Current.FileInfo(destinationFolder);
+            destinationFolderInfo.CreateDirectory();
+            return destinationFolderInfo;
         }
 
         private static ActiveFile CheckKeysForAlreadyDecryptedFile(ActiveFile destinationActiveFile, IEnumerable<AesKey> keys, ProgressContext progress)

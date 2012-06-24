@@ -56,6 +56,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             FakeFileInfo fileInfo = new FakeFileInfo { CreationTimeUtc = creationTimeUtc, LastAccessTimeUtc = lastAccessTimeUtc, LastWriteTimeUtc = lastWriteTimeUtc, Stream = stream };
             _fakeFileSystem.Add(path, fileInfo);
+            ((FakeRuntimeEnvironment)AxCryptEnvironment.Current).FileCreated(path);
         }
 
         public static void AddFile(string path, Stream stream)
@@ -227,6 +228,18 @@ namespace Axantum.AxCrypt.Core.Test
         public void Delete()
         {
             _fakeFileSystem.Remove(_file.FullName);
+            ((FakeRuntimeEnvironment)AxCryptEnvironment.Current).FileDeleted(_file.FullName);
         }
+
+        #region IRuntimeFileInfo Members
+
+        public void CreateDirectory()
+        {
+            string directory = Path.GetDirectoryName(_file.FullName);
+            DateTime utcNow = DateTime.UtcNow;
+            AddFile(directory, utcNow, utcNow, utcNow, Stream.Null);
+        }
+
+        #endregion IRuntimeFileInfo Members
     }
 }

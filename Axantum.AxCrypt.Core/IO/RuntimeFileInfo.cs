@@ -137,5 +137,14 @@ namespace Axantum.AxCrypt.Core.IO
         {
             _file.Delete();
         }
+
+        #region IRuntimeFileInfo Members
+
+        public void CreateDirectory()
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(_file.FullName));
+        }
+
+        #endregion IRuntimeFileInfo Members
     }
 }

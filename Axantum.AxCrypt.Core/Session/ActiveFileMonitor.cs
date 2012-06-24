@@ -356,17 +356,17 @@ namespace Axantum.AxCrypt.Core.Session
             return _fileSystemState.FindEncryptedPath(encryptedPath);
         }
 
-        private DirectoryInfo _temporaryDirectoryInfo;
+        private IRuntimeFileInfo _temporaryDirectoryInfo;
 
-        public DirectoryInfo TemporaryDirectoryInfo
+        public IRuntimeFileInfo TemporaryDirectoryInfo
         {
             get
             {
                 if (_temporaryDirectoryInfo == null)
                 {
-                    string temporaryFolderPath = Path.Combine(Path.GetTempPath(), "AxCrypt");
-                    DirectoryInfo temporaryFolderInfo = new DirectoryInfo(temporaryFolderPath);
-                    temporaryFolderInfo.Create();
+                    string temporaryFolderPath = Path.Combine(Path.GetTempPath(), @"AxCrypt\");
+                    IRuntimeFileInfo temporaryFolderInfo = AxCryptEnvironment.Current.FileInfo(temporaryFolderPath);
+                    temporaryFolderInfo.CreateDirectory();
                     _temporaryDirectoryInfo = temporaryFolderInfo;
                 }
 

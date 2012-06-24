@@ -26,6 +26,8 @@
 #endregion Coypright and License
 
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.System;
@@ -37,6 +39,8 @@ namespace Axantum.AxCrypt.Core.Test
         private byte _randomForTest = 0;
 
         private bool _isLittleEndian = BitConverter.IsLittleEndian;
+
+        private Dictionary<string, FakeFileWatcher> _fileWatchers = new Dictionary<string, FakeFileWatcher>();
 
         public FakeRuntimeEnvironment()
         {
@@ -89,9 +93,43 @@ namespace Axantum.AxCrypt.Core.Test
 
         public IFileWatcher FileWatcher(string path)
         {
-            throw new NotImplementedException();
+            FakeFileWatcher fileWatcher;
+            if (_fileWatchers.TryGetValue(path, out fileWatcher))
+            {
+                return fileWatcher;
+            }
+
+            fileWatcher = new FakeFileWatcher(path);
+            _fileWatchers.Add(path, fileWatcher);
+            return fileWatcher;
         }
 
         #endregion IRuntimeEnvironment Members
+
+        internal void FileCreated(string path)
+        {
+            FileChanged(path);
+        }
+
+        internal void FileDeleted(string path)
+        {
+            FileChanged(path);
+        }
+
+        internal void FileMoved(string path)
+        {
+            FileChanged(path);
+        }
+
+        private void FileChanged(string path)
+        {
+            foreach (FakeFileWatcher fileWatcher in _fileWatchers.Values)
+            {
+                if (Path.GetDirectoryName(path).StartsWith(fileWatcher.Path))
+                {
+                    fileWatcher.OnChanged(new FileWatcherEventArgs(path));
+                }
+            }
+        }
     }
 }
