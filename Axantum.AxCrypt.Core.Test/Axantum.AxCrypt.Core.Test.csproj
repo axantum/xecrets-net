@@ -81,6 +81,7 @@
     </Compile>
     <Compile Include="TestActiveFile.cs" />
     <Compile Include="TestActiveFileCollectionTests.cs" />
+    <Compile Include="TestActiveFileMonitor.cs" />
     <Compile Include="TestAesCrypto.cs" />
     <Compile Include="TestAesIV.cs" />
     <Compile Include="TestAesKey.cs" />

@@ -103,5 +103,10 @@ namespace Axantum.AxCrypt.Core.System
         {
             get { return 65536; }
         }
+
+        public IFileWatcher FileWatcher(string path)
+        {
+            return new FileWatcher(path);
+        }
     }
 }

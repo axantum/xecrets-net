@@ -84,5 +84,14 @@ namespace Axantum.AxCrypt.Core.Test
         {
             get { return 512; }
         }
+
+        #region IRuntimeEnvironment Members
+
+        public IFileWatcher FileWatcher(string path)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion IRuntimeEnvironment Members
     }
 }

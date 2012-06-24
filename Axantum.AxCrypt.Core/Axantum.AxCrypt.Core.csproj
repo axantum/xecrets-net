@@ -73,6 +73,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AxCryptDocument.cs" />
+    <Compile Include="IO\FileWatcher.cs" />
+    <Compile Include="IO\FileWatcherEventArgs.cs" />
+    <Compile Include="IO\IFileWatcher.cs" />
     <Compile Include="System\AxCryptException.cs" />
     <Compile Include="AxCryptFile.cs" />
     <Compile Include="AxCryptOptions.cs" />

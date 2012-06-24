@@ -43,5 +43,7 @@ namespace Axantum.AxCrypt.Core.System
         bool IsDesktopWindows { get; }
 
         int StreamBufferSize { get; }
+
+        IFileWatcher FileWatcher(string path);
     }
 }

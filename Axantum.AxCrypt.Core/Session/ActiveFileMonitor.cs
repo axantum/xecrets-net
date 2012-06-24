@@ -37,9 +37,9 @@ namespace Axantum.AxCrypt.Core.Session
 {
     public class ActiveFileMonitor : IDisposable
     {
-        private FileSystemWatcher _temporaryDirectoryWatcher;
-
         private FileSystemState _fileSystemState;
+
+        private IFileWatcher _fileWatcher;
 
         private bool _disposed = false;
 
@@ -49,23 +49,16 @@ namespace Axantum.AxCrypt.Core.Session
             _fileSystemState = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(fileSystemStateFullName));
             _fileSystemState.Changed += new EventHandler<EventArgs>(FileSystemState_Changed);
 
-            Watcher();
-        }
-
-        private void Watcher()
-        {
-            _temporaryDirectoryWatcher = new FileSystemWatcher(TemporaryDirectoryInfo.FullName);
-            _temporaryDirectoryWatcher.Changed += TemporaryDirectoryWatcher_Changed;
-            _temporaryDirectoryWatcher.Created += TemporaryDirectoryWatcher_Changed;
-            _temporaryDirectoryWatcher.Deleted += TemporaryDirectoryWatcher_Changed;
-            _temporaryDirectoryWatcher.Renamed += new RenamedEventHandler(_temporaryDirectoryWatcher_Renamed);
-            _temporaryDirectoryWatcher.IncludeSubdirectories = true;
-            _temporaryDirectoryWatcher.Filter = String.Empty;
-            _temporaryDirectoryWatcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.CreationTime;
-            _temporaryDirectoryWatcher.EnableRaisingEvents = true;
+            _fileWatcher = AxCryptEnvironment.Current.FileWatcher(TemporaryDirectoryInfo.FullName);
+            _fileWatcher.FileChanged += new EventHandler<FileWatcherEventArgs>(_fileWatcher_FileChanged);
         }
 
         public event EventHandler<EventArgs> Changed;
+
+        private void _fileWatcher_FileChanged(object sender, FileWatcherEventArgs e)
+        {
+            OnChanged(new EventArgs());
+        }
 
         private void FileSystemState_Changed(object sender, EventArgs e)
         {
@@ -358,25 +351,6 @@ namespace Axantum.AxCrypt.Core.Session
             return activeFile;
         }
 
-        private void _temporaryDirectoryWatcher_Renamed(object sender, RenamedEventArgs e)
-        {
-            FileSystemChanged(e.FullPath);
-        }
-
-        private void TemporaryDirectoryWatcher_Changed(object sender, FileSystemEventArgs e)
-        {
-            FileSystemChanged(e.FullPath);
-        }
-
-        private void FileSystemChanged(string fullPath)
-        {
-            if (Logging.IsInfoEnabled)
-            {
-                Logging.Info("Watcher says '{0}' changed.".InvariantFormat(fullPath));
-            }
-            OnChanged(new EventArgs());
-        }
-
         public ActiveFile FindActiveFile(string encryptedPath)
         {
             return _fileSystemState.FindEncryptedPath(encryptedPath);
@@ -414,11 +388,11 @@ namespace Axantum.AxCrypt.Core.Session
             }
             if (disposing)
             {
-                if (_temporaryDirectoryWatcher != null)
+                if (_fileWatcher != null)
                 {
-                    _temporaryDirectoryWatcher.Dispose();
+                    _fileWatcher.Dispose();
                 }
-                _temporaryDirectoryWatcher = null;
+                _fileWatcher = null;
             }
             _disposed = true;
         }
