@@ -104,6 +104,7 @@
     <Compile Include="TestFileLock.cs" />
     <Compile Include="TestFileNameInfoHeaderBlock.cs" />
     <Compile Include="TestFileSystemState.cs" />
+    <Compile Include="TestFileWatcher.cs" />
     <Compile Include="TestIdTagHeaderBlock.cs" />
     <Compile Include="TestIOStreams.cs" />
     <Compile Include="TestKeyWrap.cs" />

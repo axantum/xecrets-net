@@ -203,6 +203,7 @@ namespace Axantum.AxCrypt.Core.Session
             IRuntimeFileInfo saveInfo = AxCryptEnvironment.Current.FileInfo(_path);
             using (Stream fileSystemStateStream = saveInfo.OpenWrite())
             {
+                fileSystemStateStream.SetLength(0);
                 lock (_lock)
                 {
                     DataContractSerializer serializer = CreateSerializer();
