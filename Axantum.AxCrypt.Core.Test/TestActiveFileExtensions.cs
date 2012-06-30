@@ -12,7 +12,7 @@ using NUnit.Framework;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public static class TestActiveFileMonitor
+    public static class TestActiveFileExtensions
     {
         private static IRuntimeEnvironment _environment;
 
