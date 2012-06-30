@@ -46,6 +46,8 @@ namespace Axantum.AxCrypt
     {
         public event EventHandler<EventArgs> Changed;
 
+        public FileSystemState FileSystemState { get; private set; }
+
         private ActiveFileMonitor _activeFileMonitor;
 
         private bool _disposed = false;
@@ -64,18 +66,18 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-            _activeFileMonitor = new ActiveFileMonitor();
-            _activeFileMonitor.Changed += new EventHandler<EventArgs>(ActiveFileMonitor_Changed);
+
+            string fileSystemStateFullName = Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, "FileSystemState.xml");
+            FileSystemState = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(fileSystemStateFullName));
+            FileSystemState.Changed += new EventHandler<EventArgs>(File_Changed);
+
+            _activeFileMonitor = new ActiveFileMonitor(FileSystemState);
+            _activeFileMonitor.Changed += new EventHandler<EventArgs>(File_Changed);
         }
 
-        private void ActiveFileMonitor_Changed(object sender, EventArgs e)
+        private void File_Changed(object sender, EventArgs e)
         {
             OnChanged(e);
-        }
-
-        public void ForEach(bool forceChange, Func<ActiveFile, ActiveFile> action)
-        {
-            _activeFileMonitor.ForEach(forceChange, action);
         }
 
         public FileOperationStatus Open(string file, IEnumerable<AesKey> keys, ProgressContext progress)
@@ -101,7 +103,7 @@ namespace Axantum.AxCrypt
         public IList<ActiveFile> FindOpenFiles()
         {
             List<ActiveFile> activeFiles = new List<ActiveFile>();
-            ForEach(false, (ActiveFile activeFile) =>
+            FileSystemState.ForEach(false, (ActiveFile activeFile) =>
             {
                 if (activeFile.Status.HasFlag(ActiveFileStatus.DecryptedIsPendingDelete) || activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted))
                 {
@@ -115,7 +117,7 @@ namespace Axantum.AxCrypt
         public bool UpdateActiveFileIfKeyMatchesThumbprint(AesKey key)
         {
             bool keyMatch = false;
-            ForEach(false, (ActiveFile activeFile) =>
+            FileSystemState.ForEach(false, (ActiveFile activeFile) =>
             {
                 if (activeFile.Key != null)
                 {
@@ -135,8 +137,9 @@ namespace Axantum.AxCrypt
 
         public void RemoveRecentFile(string encryptedPath)
         {
-            ActiveFile activeFile = _activeFileMonitor.FindActiveFile(encryptedPath);
-            _activeFileMonitor.RemoveActiveFile(activeFile);
+            ActiveFile activeFile = FileSystemState.FindEncryptedPath(encryptedPath);
+            FileSystemState.Remove(activeFile);
+            FileSystemState.Save();
         }
 
         public void SetProcessTracking(bool processTrackingEnabled)
@@ -183,7 +186,7 @@ namespace Axantum.AxCrypt
                 return FileOperationStatus.FileDoesNotExist;
             }
 
-            ActiveFile destinationActiveFile = _activeFileMonitor.FindActiveFile(fileInfo.FullName);
+            ActiveFile destinationActiveFile = FileSystemState.FindEncryptedPath(fileInfo.FullName);
 
             if (destinationActiveFile == null || !destinationActiveFile.DecryptedFileInfo.Exists)
             {
@@ -200,12 +203,13 @@ namespace Axantum.AxCrypt
                 return FileOperationStatus.InvalidKey;
             }
 
-            _activeFileMonitor.AddActiveFile(destinationActiveFile);
+            FileSystemState.Add(destinationActiveFile);
+            FileSystemState.Save();
 
             return LaunchApplicationForDocument(destinationActiveFile);
         }
 
-        private ActiveFile TryDecrypt(IRuntimeFileInfo destinationFolderInfo, IEnumerable<AesKey> keys, IRuntimeFileInfo sourceFileInfo, ProgressContext progress)
+        private static ActiveFile TryDecrypt(IRuntimeFileInfo destinationFolderInfo, IEnumerable<AesKey> keys, IRuntimeFileInfo sourceFileInfo, ProgressContext progress)
         {
             ActiveFile destinationActiveFile = null;
             foreach (AesKey key in keys)
@@ -243,7 +247,7 @@ namespace Axantum.AxCrypt
             return destinationActiveFile;
         }
 
-        private IRuntimeFileInfo GetDestinationFolder(ActiveFile destinationActiveFile)
+        private static IRuntimeFileInfo GetDestinationFolder(ActiveFile destinationActiveFile)
         {
             string destinationFolder;
             if (destinationActiveFile != null)
@@ -321,7 +325,8 @@ namespace Axantum.AxCrypt
             }
 
             destinationActiveFile = new ActiveFile(destinationActiveFile, ActiveFileStatus.AssumedOpenAndDecrypted, process);
-            _activeFileMonitor.AddActiveFile(destinationActiveFile);
+            FileSystemState.Add(destinationActiveFile);
+            FileSystemState.Save();
 
             return FileOperationStatus.Success;
         }

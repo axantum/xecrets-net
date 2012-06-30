@@ -36,17 +36,14 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [SetUp]
-        public static void SetUp()
+        public static void Setup()
         {
-            IRuntimeFileInfo fileInfoDecrypted;
-
-            fileInfoDecrypted = AxCryptEnvironment.Current.FileInfo(@"c:\test.txt");
         }
 
         [Test]
         public static void TestConstructor()
         {
-            using (ActiveFileMonitor monitor = new ActiveFileMonitor())
+            using (ActiveFileMonitor monitor = new ActiveFileMonitor(FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(@"C:\FileSystemState.xml"))))
             {
             }
         }

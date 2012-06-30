@@ -162,6 +162,31 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
+        public void ForEach(bool forceChange, Func<ActiveFile, ActiveFile> action)
+        {
+            bool isModified = false;
+            List<ActiveFile> activeFiles = new List<ActiveFile>();
+            foreach (ActiveFile activeFile in ActiveFiles)
+            {
+                ActiveFile updatedActiveFile = action(activeFile);
+                activeFiles.Add(updatedActiveFile);
+                if (updatedActiveFile != activeFile)
+                {
+                    activeFile.Dispose();
+                }
+                isModified |= updatedActiveFile != activeFile;
+            }
+            if (isModified)
+            {
+                ActiveFiles = activeFiles;
+                Save();
+            }
+            if (!isModified && forceChange)
+            {
+                OnChanged(new EventArgs());
+            }
+        }
+
         private string _path;
 
         public static FileSystemState Load(IRuntimeFileInfo path)

@@ -15,14 +15,14 @@ namespace Axantum.AxCrypt.Core.Test
         private static string _tempPath;
 
         [SetUp]
-        public static void SetUp()
+        public static void Setup()
         {
             _tempPath = Path.Combine(Path.GetTempPath(), "Axantum.AxCrypt.Core.Test.TestFileWatcher");
             Directory.CreateDirectory(_tempPath);
         }
 
         [TearDown]
-        public static void TearDown()
+        public static void Teardown()
         {
             Directory.Delete(_tempPath, true);
         }

@@ -123,7 +123,7 @@ namespace Axantum.AxCrypt
         {
             OpenFilesListView.Items.Clear();
             RecentFilesListView.Items.Clear();
-            EncryptedFileManager.ForEach(false,
+            EncryptedFileManager.FileSystemState.ForEach(false,
                 (ActiveFile activeFile) =>
                 {
                     return UpdateOpenFilesWith(activeFile);

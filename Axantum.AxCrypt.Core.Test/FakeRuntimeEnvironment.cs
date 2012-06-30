@@ -143,7 +143,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             foreach (FakeFileWatcher fileWatcher in _fileWatchers.Values)
             {
-                if (Path.GetDirectoryName(path).StartsWith(fileWatcher.Path))
+                if (Path.GetDirectoryName(path).StartsWith(fileWatcher.Path, StringComparison.Ordinal))
                 {
                     fileWatcher.OnChanged(new FileWatcherEventArgs(path));
                 }

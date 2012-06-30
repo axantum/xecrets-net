@@ -43,11 +43,9 @@ namespace Axantum.AxCrypt.Core.Session
 
         private bool _disposed = false;
 
-        public ActiveFileMonitor()
+        public ActiveFileMonitor(FileSystemState fileSystemState)
         {
-            string fileSystemStateFullName = Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, "FileSystemState.xml");
-            _fileSystemState = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(fileSystemStateFullName));
-            _fileSystemState.Changed += new EventHandler<EventArgs>(FileSystemState_Changed);
+            _fileSystemState = fileSystemState;
 
             _fileWatcher = AxCryptEnvironment.Current.FileWatcher(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName);
             _fileWatcher.FileChanged += new EventHandler<FileWatcherEventArgs>(_fileWatcher_FileChanged);
@@ -58,23 +56,6 @@ namespace Axantum.AxCrypt.Core.Session
         private void _fileWatcher_FileChanged(object sender, FileWatcherEventArgs e)
         {
             OnChanged(new EventArgs());
-        }
-
-        private void FileSystemState_Changed(object sender, EventArgs e)
-        {
-            OnChanged(e);
-        }
-
-        public void AddActiveFile(ActiveFile activeFile)
-        {
-            _fileSystemState.Add(activeFile);
-            _fileSystemState.Save();
-        }
-
-        public void RemoveActiveFile(ActiveFile activeFile)
-        {
-            _fileSystemState.Remove(activeFile);
-            _fileSystemState.Save();
         }
 
         private bool _trackProcess;
@@ -104,31 +85,6 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public void ForEach(bool forceChange, Func<ActiveFile, ActiveFile> action)
-        {
-            bool isModified = false;
-            List<ActiveFile> activeFiles = new List<ActiveFile>();
-            foreach (ActiveFile activeFile in _fileSystemState.ActiveFiles)
-            {
-                ActiveFile updatedActiveFile = action(activeFile);
-                activeFiles.Add(updatedActiveFile);
-                if (updatedActiveFile != activeFile)
-                {
-                    activeFile.Dispose();
-                }
-                isModified |= updatedActiveFile != activeFile;
-            }
-            if (isModified)
-            {
-                _fileSystemState.ActiveFiles = activeFiles;
-                _fileSystemState.Save();
-            }
-            if (!isModified && forceChange)
-            {
-                OnChanged(new EventArgs());
-            }
-        }
-
         public void CheckActiveFilesStatus(ProgressContext progress)
         {
             CheckActiveFilesStatusInternal(false, progress);
@@ -141,7 +97,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void CheckActiveFilesStatusInternal(bool forceChanged, ProgressContext progress)
         {
-            ForEach(forceChanged, (ActiveFile activeFile) =>
+            _fileSystemState.ForEach(forceChanged, (ActiveFile activeFile) =>
             {
                 if (FileLock.IsLocked(activeFile.DecryptedFileInfo, activeFile.EncryptedFileInfo))
                 {
@@ -278,7 +234,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         public void PurgeActiveFiles(ProgressContext progress)
         {
-            ForEach(false, (ActiveFile activeFile) =>
+            _fileSystemState.ForEach(false, (ActiveFile activeFile) =>
             {
                 if (FileLock.IsLocked(activeFile.DecryptedFileInfo))
                 {
@@ -349,11 +305,6 @@ namespace Axantum.AxCrypt.Core.Session
             }
 
             return activeFile;
-        }
-
-        public ActiveFile FindActiveFile(string encryptedPath)
-        {
-            return _fileSystemState.FindEncryptedPath(encryptedPath);
         }
 
         public void Dispose()

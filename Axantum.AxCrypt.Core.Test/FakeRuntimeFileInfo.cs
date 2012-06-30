@@ -221,8 +221,12 @@ namespace Axantum.AxCrypt.Core.Test
         {
             FakeFileInfo source = _fakeFileSystem[_file.FullName];
             _fakeFileSystem.Remove(_file.FullName);
-            AddFile(destinationFileName, source.CreationTimeUtc, source.LastAccessTimeUtc, source.LastWriteTimeUtc, source.Stream);
+
+            FakeFileInfo fileInfo = new FakeFileInfo { CreationTimeUtc = source.CreationTimeUtc, LastAccessTimeUtc = source.LastAccessTimeUtc, LastWriteTimeUtc = source.LastWriteTimeUtc, Stream = source.Stream };
+            _fakeFileSystem.Add(destinationFileName, fileInfo);
+
             _file = new FileInfo(destinationFileName);
+            ((FakeRuntimeEnvironment)AxCryptEnvironment.Current).FileMoved(destinationFileName);
         }
 
         public void Delete()
