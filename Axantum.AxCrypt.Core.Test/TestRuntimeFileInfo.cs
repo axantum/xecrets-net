@@ -49,6 +49,25 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        public static void TestCreateDirectory()
+        {
+            string tempFolder = Path.GetTempPath();
+            string testTempFolder = Path.Combine(Path.GetTempPath(), "AxantumTestCreateDirectory" + Path.DirectorySeparatorChar);
+            if (Directory.Exists(testTempFolder))
+            {
+                Directory.Delete(testTempFolder, true);
+            }
+            Assert.That(Directory.Exists(testTempFolder), Is.False, "The test folder should not exist now.");
+            IRuntimeFileInfo directoryInfo = new RuntimeFileInfo(testTempFolder);
+            directoryInfo.CreateDirectory();
+            Assert.That(Directory.Exists(testTempFolder), Is.True, "The test folder should exist now.");
+            if (Directory.Exists(testTempFolder))
+            {
+                Directory.Delete(testTempFolder, true);
+            }
+        }
+
+        [Test]
         public static void TestMethods()
         {
             string tempFileName = Path.GetTempFileName();
