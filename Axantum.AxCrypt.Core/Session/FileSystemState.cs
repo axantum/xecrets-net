@@ -162,7 +162,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public void ForEach(bool forceChange, Func<ActiveFile, ActiveFile> action)
+        public void ForEach(ChangedEventMode mode, Func<ActiveFile, ActiveFile> action)
         {
             bool isModified = false;
             List<ActiveFile> activeFiles = new List<ActiveFile>();
@@ -181,7 +181,7 @@ namespace Axantum.AxCrypt.Core.Session
                 ActiveFiles = activeFiles;
                 Save();
             }
-            if (!isModified && forceChange)
+            if (!isModified && mode == ChangedEventMode.RaiseAlways)
             {
                 OnChanged(new EventArgs());
             }

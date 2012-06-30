@@ -39,13 +39,5 @@ namespace Axantum.AxCrypt.Core.Test
         public static void Setup()
         {
         }
-
-        [Test]
-        public static void TestConstructor()
-        {
-            using (ActiveFileMonitor monitor = new ActiveFileMonitor(FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(@"C:\FileSystemState.xml"))))
-            {
-            }
-        }
     }
 }

@@ -35,69 +35,48 @@ using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core.Session
 {
-    public class ActiveFileMonitor : IDisposable
+    public static class ActiveFileExtensions
     {
-        private FileSystemState _fileSystemState;
-
-        private IFileWatcher _fileWatcher;
-
-        private bool _disposed = false;
-
-        public ActiveFileMonitor(FileSystemState fileSystemState)
+        public static void CheckActiveFilesStatus(this FileSystemState fileSystemState, bool trackProcess, ProgressContext progress)
         {
-            _fileSystemState = fileSystemState;
-
-            _fileWatcher = AxCryptEnvironment.Current.FileWatcher(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName);
-            _fileWatcher.FileChanged += new EventHandler<FileWatcherEventArgs>(_fileWatcher_FileChanged);
+            CheckActiveFilesStatusInternal(fileSystemState, ChangedEventMode.RaiseOnlyOnModified, trackProcess, progress);
         }
 
-        public event EventHandler<EventArgs> Changed;
-
-        private void _fileWatcher_FileChanged(object sender, FileWatcherEventArgs e)
+        public static void ForceActiveFilesStatus(this FileSystemState fileSystemState, bool trackProcess, ProgressContext progress)
         {
-            OnChanged(new EventArgs());
+            CheckActiveFilesStatusInternal(fileSystemState, ChangedEventMode.RaiseAlways, trackProcess, progress);
         }
 
-        private bool _trackProcess;
-
-        public bool TrackProcess
+        public static void PurgeActiveFiles(this FileSystemState fileSystemState, ProgressContext progress)
         {
-            get
+            fileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFile) =>
             {
-                return _trackProcess;
-            }
-            set
-            {
-                _trackProcess = value;
-                if (Logging.IsInfoEnabled)
+                if (FileLock.IsLocked(activeFile.DecryptedFileInfo))
                 {
-                    Logging.Info("ActiveFileMonitor.TrackProcess='{0}'".InvariantFormat(value));
+                    if (Logging.IsInfoEnabled)
+                    {
+                        Logging.Info("Not deleting '{0}' because it is marked as locked.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
+                    }
                 }
-            }
+                if (activeFile.IsModified)
+                {
+                    if (activeFile.Status.HasFlag(ActiveFileStatus.NotShareable))
+                    {
+                        activeFile = new ActiveFile(activeFile, activeFile.Status & ~ActiveFileStatus.NotShareable);
+                    }
+                    activeFile = CheckIfTimeToUpdate(activeFile, progress);
+                }
+                if (activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted) && !activeFile.IsModified)
+                {
+                    activeFile = TryDelete(activeFile);
+                }
+                return activeFile;
+            });
         }
 
-        private void OnChanged(EventArgs eventArgs)
+        private static void CheckActiveFilesStatusInternal(FileSystemState fileSystemState, ChangedEventMode mode, bool trackProcess, ProgressContext progress)
         {
-            EventHandler<EventArgs> changed = Changed;
-            if (changed != null)
-            {
-                changed(null, eventArgs);
-            }
-        }
-
-        public void CheckActiveFilesStatus(ProgressContext progress)
-        {
-            CheckActiveFilesStatusInternal(false, progress);
-        }
-
-        public void ForceActiveFilesStatus(ProgressContext progress)
-        {
-            CheckActiveFilesStatusInternal(true, progress);
-        }
-
-        private void CheckActiveFilesStatusInternal(bool forceChanged, ProgressContext progress)
-        {
-            _fileSystemState.ForEach(forceChanged, (ActiveFile activeFile) =>
+            fileSystemState.ForEach(mode, (ActiveFile activeFile) =>
             {
                 if (FileLock.IsLocked(activeFile.DecryptedFileInfo, activeFile.EncryptedFileInfo))
                 {
@@ -107,16 +86,16 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     return activeFile;
                 }
-                activeFile = CheckActiveFileActions(activeFile, progress);
+                activeFile = CheckActiveFileActions(activeFile, trackProcess, progress);
                 return activeFile;
             });
         }
 
-        private ActiveFile CheckActiveFileActions(ActiveFile activeFile, ProgressContext progress)
+        private static ActiveFile CheckActiveFileActions(ActiveFile activeFile, bool trackProcess, ProgressContext progress)
         {
             activeFile = CheckIfKeyIsKnown(activeFile);
             activeFile = CheckIfCreated(activeFile);
-            activeFile = CheckIfProcessExited(activeFile);
+            activeFile = CheckIfProcessExited(activeFile, trackProcess);
             activeFile = CheckIfTimeToUpdate(activeFile, progress);
             activeFile = CheckIfTimeToDelete(activeFile);
             return activeFile;
@@ -157,9 +136,9 @@ namespace Axantum.AxCrypt.Core.Session
             return activeFile;
         }
 
-        private ActiveFile CheckIfProcessExited(ActiveFile activeFile)
+        private static ActiveFile CheckIfProcessExited(ActiveFile activeFile, bool trackProcess)
         {
-            if (activeFile.Process == null || !TrackProcess || !activeFile.Process.HasExited)
+            if (activeFile.Process == null || !trackProcess || !activeFile.Process.HasExited)
             {
                 return activeFile;
             }
@@ -232,33 +211,6 @@ namespace Axantum.AxCrypt.Core.Session
             return activeFile;
         }
 
-        public void PurgeActiveFiles(ProgressContext progress)
-        {
-            _fileSystemState.ForEach(false, (ActiveFile activeFile) =>
-            {
-                if (FileLock.IsLocked(activeFile.DecryptedFileInfo))
-                {
-                    if (Logging.IsInfoEnabled)
-                    {
-                        Logging.Info("Not deleting '{0}' because it is marked as locked.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
-                    }
-                }
-                if (activeFile.IsModified)
-                {
-                    if (activeFile.Status.HasFlag(ActiveFileStatus.NotShareable))
-                    {
-                        activeFile = new ActiveFile(activeFile, activeFile.Status & ~ActiveFileStatus.NotShareable);
-                    }
-                    activeFile = CheckIfTimeToUpdate(activeFile, progress);
-                }
-                if (activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted) && !activeFile.IsModified)
-                {
-                    activeFile = TryDelete(activeFile);
-                }
-                return activeFile;
-            });
-        }
-
         private static ActiveFile TryDelete(ActiveFile activeFile)
         {
             if (activeFile.Process != null && !activeFile.Process.HasExited)
@@ -305,29 +257,6 @@ namespace Axantum.AxCrypt.Core.Session
             }
 
             return activeFile;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (_disposed)
-            {
-                return;
-            }
-            if (disposing)
-            {
-                if (_fileWatcher != null)
-                {
-                    _fileWatcher.Dispose();
-                }
-                _fileWatcher = null;
-            }
-            _disposed = true;
         }
     }
 }

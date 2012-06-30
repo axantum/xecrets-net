@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt
 
         public FileSystemState FileSystemState { get; private set; }
 
-        private ActiveFileMonitor _activeFileMonitor;
+        private IFileWatcher _fileWatcher;
 
         private bool _disposed = false;
 
@@ -71,13 +71,31 @@ namespace Axantum.AxCrypt
             FileSystemState = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(fileSystemStateFullName));
             FileSystemState.Changed += new EventHandler<EventArgs>(File_Changed);
 
-            _activeFileMonitor = new ActiveFileMonitor(FileSystemState);
-            _activeFileMonitor.Changed += new EventHandler<EventArgs>(File_Changed);
+            _fileWatcher = AxCryptEnvironment.Current.FileWatcher(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName);
+            _fileWatcher.FileChanged += new EventHandler<FileWatcherEventArgs>(File_Changed);
         }
 
         private void File_Changed(object sender, EventArgs e)
         {
             OnChanged(e);
+        }
+
+        private bool _trackProcess;
+
+        public bool TrackProcess
+        {
+            get
+            {
+                return _trackProcess;
+            }
+            set
+            {
+                _trackProcess = value;
+                if (Logging.IsInfoEnabled)
+                {
+                    Logging.Info("ActiveFileMonitor.TrackProcess='{0}'".InvariantFormat(value));
+                }
+            }
         }
 
         public FileOperationStatus Open(string file, IEnumerable<AesKey> keys, ProgressContext progress)
@@ -87,23 +105,23 @@ namespace Axantum.AxCrypt
 
         public void CheckActiveFilesStatus(ProgressContext progress)
         {
-            _activeFileMonitor.CheckActiveFilesStatus(progress);
+            FileSystemState.CheckActiveFilesStatus(TrackProcess, progress);
         }
 
         public void ForceActiveFilesStatus(ProgressContext progress)
         {
-            _activeFileMonitor.ForceActiveFilesStatus(progress);
+            FileSystemState.ForceActiveFilesStatus(TrackProcess, progress);
         }
 
         public void PurgeActiveFiles(ProgressContext progress)
         {
-            _activeFileMonitor.PurgeActiveFiles(progress);
+            FileSystemState.PurgeActiveFiles(progress);
         }
 
         public IList<ActiveFile> FindOpenFiles()
         {
             List<ActiveFile> activeFiles = new List<ActiveFile>();
-            FileSystemState.ForEach(false, (ActiveFile activeFile) =>
+            FileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFile) =>
             {
                 if (activeFile.Status.HasFlag(ActiveFileStatus.DecryptedIsPendingDelete) || activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted))
                 {
@@ -117,7 +135,7 @@ namespace Axantum.AxCrypt
         public bool UpdateActiveFileIfKeyMatchesThumbprint(AesKey key)
         {
             bool keyMatch = false;
-            FileSystemState.ForEach(false, (ActiveFile activeFile) =>
+            FileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFile) =>
             {
                 if (activeFile.Key != null)
                 {
@@ -144,7 +162,7 @@ namespace Axantum.AxCrypt
 
         public void SetProcessTracking(bool processTrackingEnabled)
         {
-            _activeFileMonitor.TrackProcess = processTrackingEnabled;
+            TrackProcess = processTrackingEnabled;
         }
 
         private void OnChanged(EventArgs eventArgs)
@@ -349,10 +367,10 @@ namespace Axantum.AxCrypt
             }
             if (disposing)
             {
-                if (_activeFileMonitor != null)
+                if (_fileWatcher != null)
                 {
-                    _activeFileMonitor.Dispose();
-                    _activeFileMonitor = null;
+                    _fileWatcher.Dispose();
+                    _fileWatcher = null;
                 }
             }
             _disposed = true;

@@ -76,6 +76,7 @@
     <Compile Include="IO\FileWatcher.cs" />
     <Compile Include="IO\FileWatcherEventArgs.cs" />
     <Compile Include="IO\IFileWatcher.cs" />
+    <Compile Include="Session\ChangedEventMode.cs" />
     <Compile Include="System\AxCryptException.cs" />
     <Compile Include="AxCryptFile.cs" />
     <Compile Include="AxCryptOptions.cs" />
@@ -135,7 +136,7 @@
     <Compile Include="IO\FileLock.cs" />
     <Compile Include="Session\ActiveFile.cs" />
     <Compile Include="Session\ActiveFileCollection.cs" />
-    <Compile Include="Session\ActiveFileMonitor.cs" />
+    <Compile Include="Session\ActiveFileExtensions.cs" />
     <Compile Include="Session\ActiveFileStatus.cs" />
     <Compile Include="Session\FileSystemState.cs" />
     <Compile Include="UI\FileOperationStatus.cs" />
