@@ -39,6 +39,7 @@ namespace Axantum.AxCrypt.Core.Test
             AxCryptEnvironment.Current = _environment;
             _environment = null;
             _fileSystemState = null;
+            FakeRuntimeFileInfo.ClearFiles();
         }
 
         [Test]
@@ -52,13 +53,41 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile = new ActiveFile(AxCryptEnvironment.Current.FileInfo(_encryptedFile1), AxCryptEnvironment.Current.FileInfo(_decryptedFile1), new AesKey(), ActiveFileStatus.NotDecrypted, null);
             _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(10); });
             bool changedWasRaised = false;
+            _fileSystemState.Add(activeFile);
             _fileSystemState.Changed += ((object sender, EventArgs e) =>
             {
                 changedWasRaised = true;
             });
-            _fileSystemState.Add(activeFile);
             _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, false, new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "The file should be detected as decrypted being created.");
+        }
+
+        [Test]
+        public static void TestCheckActiveFilesIsLocked()
+        {
+            DateTime utcNow = AxCryptEnvironment.Current.UtcNow;
+            DateTime utcYesterday = utcNow.AddDays(-1);
+            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
+            FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcYesterday, utcYesterday, utcYesterday, new MemoryStream(Resources.HelloWorld_Key_a_txt));
+
+            ActiveFile activeFile = new ActiveFile(AxCryptEnvironment.Current.FileInfo(_encryptedFile1), AxCryptEnvironment.Current.FileInfo(_decryptedFile1), new AesKey(), ActiveFileStatus.NotDecrypted, null);
+            _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(10); });
+            bool changedWasRaised = false;
+            _fileSystemState.Add(activeFile);
+            _fileSystemState.Changed += ((object sender, EventArgs e) =>
+            {
+                changedWasRaised = true;
+            });
+            using (FileLock fileLock = FileLock.Lock(activeFile.EncryptedFileInfo))
+            {
+                _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, false, new ProgressContext());
+            }
+            Assert.That(changedWasRaised, Is.False, "The file should be not be detected as decrypted being created because the encrypted file is locked.");
+            using (FileLock fileLock = FileLock.Lock(activeFile.DecryptedFileInfo))
+            {
+                _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, false, new ProgressContext());
+            }
+            Assert.That(changedWasRaised, Is.False, "The file should be not be detected as decrypted being created because the decrypted file is locked.");
         }
     }
 }
