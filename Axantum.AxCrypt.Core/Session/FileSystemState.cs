@@ -172,9 +172,9 @@ namespace Axantum.AxCrypt.Core.Session
                 activeFiles.Add(updatedActiveFile);
                 if (updatedActiveFile != activeFile)
                 {
+                    isModified = true;
                     activeFile.Dispose();
                 }
-                isModified |= updatedActiveFile != activeFile;
             }
             if (isModified)
             {

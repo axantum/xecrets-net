@@ -126,5 +126,10 @@ namespace Axantum.AxCrypt.Core.System
                 return _temporaryDirectoryInfo;
             }
         }
+
+        public DateTime UtcNow
+        {
+            get { return DateTime.UtcNow; }
+        }
     }
 }

@@ -136,7 +136,7 @@
     <Compile Include="IO\FileLock.cs" />
     <Compile Include="Session\ActiveFile.cs" />
     <Compile Include="Session\ActiveFileCollection.cs" />
-    <Compile Include="Session\ActiveFileExtensions.cs" />
+    <Compile Include="Session\FileSystemStateExtensions.cs" />
     <Compile Include="Session\ActiveFileStatus.cs" />
     <Compile Include="Session\FileSystemState.cs" />
     <Compile Include="UI\FileOperationStatus.cs" />

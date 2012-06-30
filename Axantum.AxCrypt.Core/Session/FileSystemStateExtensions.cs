@@ -35,7 +35,7 @@ using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core.Session
 {
-    public static class ActiveFileExtensions
+    public static class FileSystemStateExtensions
     {
         public static void PurgeActiveFiles(this FileSystemState fileSystemState, ProgressContext progress)
         {
@@ -72,7 +72,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     return activeFile;
                 }
-                if (DateTime.UtcNow - activeFile.LastAccessTimeUtc <= new TimeSpan(0, 0, 5))
+                if (AxCryptEnvironment.Current.UtcNow - activeFile.LastAccessTimeUtc <= new TimeSpan(0, 0, 5))
                 {
                     return activeFile;
                 }

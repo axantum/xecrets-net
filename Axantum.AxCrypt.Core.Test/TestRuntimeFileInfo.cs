@@ -51,7 +51,6 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestCreateDirectory()
         {
-            string tempFolder = Path.GetTempPath();
             string testTempFolder = Path.Combine(Path.GetTempPath(), "AxantumTestCreateDirectory" + Path.DirectorySeparatorChar);
             if (Directory.Exists(testTempFolder))
             {

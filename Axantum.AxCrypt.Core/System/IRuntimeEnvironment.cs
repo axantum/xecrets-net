@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using System;
 using System.IO;
 using Axantum.AxCrypt.Core.IO;
 
@@ -47,5 +48,7 @@ namespace Axantum.AxCrypt.Core.System
         IFileWatcher FileWatcher(string path);
 
         IRuntimeFileInfo TemporaryDirectoryInfo { get; }
+
+        DateTime UtcNow { get; }
     }
 }

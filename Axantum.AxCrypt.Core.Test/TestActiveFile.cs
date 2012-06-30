@@ -123,7 +123,7 @@ namespace Axantum.AxCrypt.Core.Test
                 }
 
                 activeFile.DecryptedFileInfo.LastWriteTimeUtc = activeFile.DecryptedFileInfo.LastWriteTimeUtc.AddDays(1);
-                using (ActiveFile otherFile = new ActiveFile(activeFile, DateTime.UtcNow, ActiveFileStatus.AssumedOpenAndDecrypted))
+                using (ActiveFile otherFile = new ActiveFile(activeFile, AxCryptEnvironment.Current.UtcNow, ActiveFileStatus.AssumedOpenAndDecrypted))
                 {
                     Assert.That(activeFile.IsModified, Is.True, "The original instance has not been encrypted since the last change.");
                     Assert.That(otherFile.IsModified, Is.False, "The copy indicates that it has been encrypted and thus is not modified.");

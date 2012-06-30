@@ -126,7 +126,7 @@ namespace Axantum.AxCrypt.Core.Session
             DecryptedFileInfo = AxCryptEnvironment.Current.FileInfo(decryptedFileInfo.FullName);
             Key = key;
             Status = status;
-            LastAccessTimeUtc = DateTime.UtcNow;
+            LastAccessTimeUtc = AxCryptEnvironment.Current.UtcNow;
             Process = process;
             LastEncryptionWriteTimeUtc = lastWriteTimeUtc;
         }

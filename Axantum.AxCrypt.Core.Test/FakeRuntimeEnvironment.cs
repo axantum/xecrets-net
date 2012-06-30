@@ -42,15 +42,23 @@ namespace Axantum.AxCrypt.Core.Test
 
         private Dictionary<string, FakeFileWatcher> _fileWatchers = new Dictionary<string, FakeFileWatcher>();
 
+        public Func<DateTime> TimeFunction { get; set; }
+
         public FakeRuntimeEnvironment()
         {
             AxCryptExtension = ".axx";
+            TimeFunction = StandardTimeFunction;
         }
 
         public FakeRuntimeEnvironment(Endian endianness)
             : this()
         {
             _isLittleEndian = endianness == Endian.Reverse ? !_isLittleEndian : _isLittleEndian;
+        }
+
+        private static DateTime StandardTimeFunction()
+        {
+            return DateTime.UtcNow;
         }
 
         public bool IsLittleEndian
@@ -148,6 +156,11 @@ namespace Axantum.AxCrypt.Core.Test
                     fileWatcher.OnChanged(new FileWatcherEventArgs(path));
                 }
             }
+        }
+
+        public DateTime UtcNow
+        {
+            get { return TimeFunction(); }
         }
     }
 }

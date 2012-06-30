@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileInfoHeaderBlock fileInfoHeaderBlock = new FileInfoHeaderBlock();
             fileInfoHeaderBlock.HeaderCrypto = new AesCrypto(new AesKey());
 
-            DateTime utcNow = DateTime.UtcNow;
+            DateTime utcNow = AxCryptEnvironment.Current.UtcNow;
             DateTime localNow = utcNow.ToLocalTime();
 
             fileInfoHeaderBlock.CreationTimeUtc = localNow;
