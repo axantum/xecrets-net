@@ -118,5 +118,55 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile notFoundDecrypted = state.FindDecryptedPath(@"C:\notfoundfile.txt");
             Assert.That(notFoundDecrypted, Is.Null, "A search that does not succeed should return null.");
         }
+
+        [Test]
+        public static void TestForEach()
+        {
+            bool changedEventWasRaised = false;
+            FileSystemState state = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(@"c:\mytemp\mystate.xml"));
+            state.Changed += ((object sender, EventArgs e) =>
+            {
+                changedEventWasRaised = true;
+            });
+
+            ActiveFile activeFile;
+            activeFile = new ActiveFile(AxCryptEnvironment.Current.FileInfo(@"C:\Encrypted1-txt.axx"), AxCryptEnvironment.Current.FileInfo(@"C:\Decrypted1.txt"), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, null);
+            state.Add(activeFile);
+            activeFile = new ActiveFile(AxCryptEnvironment.Current.FileInfo(@"C:\Encrypted2-txt.axx"), AxCryptEnvironment.Current.FileInfo(@"C:\Decrypted2.txt"), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, null);
+            state.Add(activeFile);
+            activeFile = new ActiveFile(AxCryptEnvironment.Current.FileInfo(@"C:\Encrypted3-txt.axx"), AxCryptEnvironment.Current.FileInfo(@"C:\Decrypted3.txt"), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, null);
+            state.Add(activeFile);
+            Assert.That(changedEventWasRaised, Is.True, "The change event should have been raised by the adding of active files.");
+
+            changedEventWasRaised = false;
+            Assert.That(state.ActiveFiles.Count(), Is.EqualTo(3), "There should be three.");
+            int i = 0;
+            state.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFileArgument) =>
+            {
+                ++i;
+                return activeFileArgument;
+            });
+            Assert.That(i, Is.EqualTo(3), "The iteration should have visited three active files.");
+            Assert.That(changedEventWasRaised, Is.False, "No change event should have been raised.");
+
+            i = 0;
+            state.ForEach(ChangedEventMode.RaiseAlways, (ActiveFile activeFileArgument) =>
+            {
+                ++i;
+                return activeFileArgument;
+            });
+            Assert.That(i, Is.EqualTo(3), "The iteration should have visited three active files.");
+            Assert.That(changedEventWasRaised, Is.True, "The change event should have been raised.");
+
+            changedEventWasRaised = false;
+            i = 0;
+            state.ForEach(ChangedEventMode.RaiseAlways, (ActiveFile activeFileArgument) =>
+            {
+                ++i;
+                return new ActiveFile(activeFileArgument, activeFile.Status | ActiveFileStatus.Error);
+            });
+            Assert.That(i, Is.EqualTo(3), "The iteration should have visited three active files.");
+            Assert.That(changedEventWasRaised, Is.True, "The change event should have been raised.");
+        }
     }
 }
