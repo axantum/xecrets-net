@@ -83,14 +83,14 @@ namespace Axantum.AxCrypt.Core.Session
             Status = status;
         }
 
-        public ActiveFile(ActiveFile activeFile, DateTime lastWriteTimeUtc, ActiveFileStatus status)
+        public ActiveFile(ActiveFile activeFile, DateTime lastEncryptionWriteTimeUtc, ActiveFileStatus status)
         {
             if (activeFile == null)
             {
                 throw new ArgumentNullException("activeFile");
             }
             Initialize(activeFile);
-            LastEncryptionWriteTimeUtc = lastWriteTimeUtc;
+            LastEncryptionWriteTimeUtc = lastEncryptionWriteTimeUtc;
             Status = status;
         }
 

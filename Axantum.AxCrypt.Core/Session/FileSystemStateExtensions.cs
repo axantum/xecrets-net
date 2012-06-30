@@ -203,7 +203,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private static ActiveFile TryDelete(ActiveFile activeFile)
         {
-            if (activeFile.Process != null && !activeFile.Process.HasExited)
+            if (activeFile.Process != null && activeFile.Process.Handle != null && !activeFile.Process.HasExited)
             {
                 if (Logging.IsInfoEnabled)
                 {

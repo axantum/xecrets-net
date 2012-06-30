@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -47,8 +48,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             DateTime utcNow = AxCryptEnvironment.Current.UtcNow;
             DateTime utcYesterday = utcNow.AddDays(-1);
-            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
-            FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcYesterday, utcYesterday, utcYesterday, new MemoryStream(Resources.HelloWorld_Key_a_txt));
+            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, new MemoryStream(Resources.HelloWorld_Key_a_txt));
+            FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcYesterday, utcYesterday, utcYesterday, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
 
             ActiveFile activeFile = new ActiveFile(AxCryptEnvironment.Current.FileInfo(_encryptedFile1), AxCryptEnvironment.Current.FileInfo(_decryptedFile1), new AesKey(), ActiveFileStatus.NotDecrypted, null);
             _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(10); });
@@ -67,8 +68,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             DateTime utcNow = AxCryptEnvironment.Current.UtcNow;
             DateTime utcYesterday = utcNow.AddDays(-1);
-            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
-            FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcYesterday, utcYesterday, utcYesterday, new MemoryStream(Resources.HelloWorld_Key_a_txt));
+            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, new MemoryStream(Resources.HelloWorld_Key_a_txt));
+            FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcYesterday, utcYesterday, utcYesterday, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
 
             ActiveFile activeFile = new ActiveFile(AxCryptEnvironment.Current.FileInfo(_encryptedFile1), AxCryptEnvironment.Current.FileInfo(_decryptedFile1), new AesKey(), ActiveFileStatus.NotDecrypted, null);
             _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(10); });
@@ -95,8 +96,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             DateTime utcNow = AxCryptEnvironment.Current.UtcNow;
             DateTime utcYesterday = utcNow.AddDays(-1);
-            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
-            FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcYesterday, utcYesterday, utcYesterday, new MemoryStream(Resources.HelloWorld_Key_a_txt));
+            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, new MemoryStream(Resources.HelloWorld_Key_a_txt));
+            FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcYesterday, utcYesterday, utcYesterday, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
 
             ActiveFile activeFile = new ActiveFile(AxCryptEnvironment.Current.FileInfo(_encryptedFile1), AxCryptEnvironment.Current.FileInfo(_decryptedFile1), new AesKey(), ActiveFileStatus.NotDecrypted, null);
             _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddSeconds(1); });
@@ -108,6 +109,35 @@ namespace Axantum.AxCrypt.Core.Test
             });
             _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, false, new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "The file should not be detected as decrypted being created, because the current time is too close to LastAccessTimeUtc.");
+        }
+
+        [Test]
+        public static void TestCheckActiveFilesKeyIsSet()
+        {
+            DateTime utcNow = AxCryptEnvironment.Current.UtcNow;
+            DateTime utcJustNow = utcNow.AddMinutes(-1);
+            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, new MemoryStream(Resources.HelloWorld_Key_a_txt));
+            FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcJustNow, utcJustNow, utcJustNow, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
+
+            ActiveFile activeFile;
+            activeFile = new ActiveFile(AxCryptEnvironment.Current.FileInfo(_encryptedFile1), AxCryptEnvironment.Current.FileInfo(_decryptedFile1), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted, null);
+            _fileSystemState.Add(activeFile);
+
+            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(_decryptedFile1);
+            decryptedFileInfo.SetFileTimes(utcNow, utcNow, utcNow);
+
+            _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
+            bool changedWasRaised = false;
+            _fileSystemState.Changed += ((object sender, EventArgs e) =>
+            {
+                changedWasRaised = true;
+            });
+            _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, false, new ProgressContext());
+            Assert.That(changedWasRaised, Is.True, "The file should be detected as modified, because it is considered open and decrypted, has a proper key, is modified, no running process so it should be re-encrypted and deleted.");
+            activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
+            Assert.That(activeFile, Is.Not.Null, "The encrypted file should be found.");
+            Assert.That(activeFile.IsModified, Is.False, "The file should no longer be flagged as modified.");
+            Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.NotDecrypted), Is.True, "The file should no longer be decrypted, since it was re-encrypted and deleted.");
         }
     }
 }
