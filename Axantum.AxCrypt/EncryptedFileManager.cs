@@ -80,42 +80,9 @@ namespace Axantum.AxCrypt
             OnChanged(e);
         }
 
-        private bool _trackProcess;
-
-        public bool TrackProcess
-        {
-            get
-            {
-                return _trackProcess;
-            }
-            set
-            {
-                _trackProcess = value;
-                if (Logging.IsInfoEnabled)
-                {
-                    Logging.Info("ActiveFileMonitor.TrackProcess='{0}'".InvariantFormat(value));
-                }
-            }
-        }
-
         public FileOperationStatus Open(string file, IEnumerable<AesKey> keys, ProgressContext progress)
         {
             return OpenInternal(file, keys, progress);
-        }
-
-        public void CheckActiveFilesStatus(ProgressContext progress)
-        {
-            FileSystemState.CheckActiveFilesStatus(TrackProcess, progress);
-        }
-
-        public void ForceActiveFilesStatus(ProgressContext progress)
-        {
-            FileSystemState.ForceActiveFilesStatus(TrackProcess, progress);
-        }
-
-        public void PurgeActiveFiles(ProgressContext progress)
-        {
-            FileSystemState.PurgeActiveFiles(progress);
         }
 
         public IList<ActiveFile> FindOpenFiles()
@@ -158,11 +125,6 @@ namespace Axantum.AxCrypt
             ActiveFile activeFile = FileSystemState.FindEncryptedPath(encryptedPath);
             FileSystemState.Remove(activeFile);
             FileSystemState.Save();
-        }
-
-        public void SetProcessTracking(bool processTrackingEnabled)
-        {
-            TrackProcess = processTrackingEnabled;
         }
 
         private void OnChanged(EventArgs eventArgs)

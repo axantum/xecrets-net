@@ -83,9 +83,9 @@ namespace Axantum.AxCrypt
             traceListener.Name = "AxCryptMainFormListener";           //MLHIDE
             Trace.Listeners.Add(traceListener);
 
-            EncryptedFileManager.SetProcessTracking(AxCryptEnvironment.Current.IsDesktopWindows);
+            TrackProcess = AxCryptEnvironment.Current.IsDesktopWindows;
             EncryptedFileManager.Changed += new EventHandler<EventArgs>(ThreadFacade.EncryptedFileManager_Changed);
-            EncryptedFileManager.ForceActiveFilesStatus(new ProgressContext());
+            EncryptedFileManager.FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseAlways, TrackProcess, new ProgressContext());
 
             RestoreUserPreferences();
 
@@ -100,10 +100,28 @@ namespace Axantum.AxCrypt
             }
 
             ThreadFacade.WaitForBackgroundIdle();
-            EncryptedFileManager.SetProcessTracking(false);
+            TrackProcess = false;
             PurgeActiveFiles();
             ThreadFacade.WaitForBackgroundIdle();
             Trace.Listeners.Remove("AxCryptMainFormListener");        //MLHIDE
+        }
+
+        private bool _trackProcess;
+
+        public bool TrackProcess
+        {
+            get
+            {
+                return _trackProcess;
+            }
+            set
+            {
+                _trackProcess = value;
+                if (Logging.IsInfoEnabled)
+                {
+                    Logging.Info("ActiveFileMonitor.TrackProcess='{0}'".InvariantFormat(value));
+                }
+            }
         }
 
         private void RestoreUserPreferences()
@@ -380,6 +398,7 @@ namespace Axantum.AxCrypt
                         return document;
                     }
                     document.Dispose();
+                    document = null;
                 }
 
                 Passphrase passphrase;
@@ -399,6 +418,7 @@ namespace Axantum.AxCrypt
                         return document;
                     }
                     document.Dispose();
+                    document = null;
                 }
             }
             catch (Exception)
@@ -440,7 +460,7 @@ namespace Axantum.AxCrypt
         private void AddKnownKey(AesKey key)
         {
             KnownKeys.Add(key);
-            EncryptedFileManager.CheckActiveFilesStatus(new ProgressContext());
+            EncryptedFileManager.FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, new ProgressContext());
         }
 
         private void toolStripButtonOpenEncrypted_Click(object sender, EventArgs e)
@@ -563,7 +583,7 @@ namespace Axantum.AxCrypt
                 ThreadFacade.DoBackgroundWork(Resources.UpdatingStatus,
                     (WorkerArguments arguments) =>
                     {
-                        EncryptedFileManager.CheckActiveFilesStatus(arguments.Progress);
+                        EncryptedFileManager.FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, arguments.Progress);
                     },
                     (object sender1, RunWorkerCompletedEventArgs e1) =>
                     {
@@ -611,8 +631,8 @@ namespace Axantum.AxCrypt
             ThreadFacade.DoBackgroundWork(Resources.PurgingActiveFiles,
                 (WorkerArguments arguments) =>
                 {
-                    EncryptedFileManager.CheckActiveFilesStatus(arguments.Progress);
-                    EncryptedFileManager.PurgeActiveFiles(arguments.Progress);
+                    EncryptedFileManager.FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, arguments.Progress);
+                    EncryptedFileManager.FileSystemState.PurgeActiveFiles(arguments.Progress);
                 },
                 (object sender, RunWorkerCompletedEventArgs e) =>
                 {

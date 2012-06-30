@@ -37,16 +37,6 @@ namespace Axantum.AxCrypt.Core.Session
 {
     public static class ActiveFileExtensions
     {
-        public static void CheckActiveFilesStatus(this FileSystemState fileSystemState, bool trackProcess, ProgressContext progress)
-        {
-            CheckActiveFilesStatusInternal(fileSystemState, ChangedEventMode.RaiseOnlyOnModified, trackProcess, progress);
-        }
-
-        public static void ForceActiveFilesStatus(this FileSystemState fileSystemState, bool trackProcess, ProgressContext progress)
-        {
-            CheckActiveFilesStatusInternal(fileSystemState, ChangedEventMode.RaiseAlways, trackProcess, progress);
-        }
-
         public static void PurgeActiveFiles(this FileSystemState fileSystemState, ProgressContext progress)
         {
             fileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFile) =>
@@ -74,7 +64,7 @@ namespace Axantum.AxCrypt.Core.Session
             });
         }
 
-        private static void CheckActiveFilesStatusInternal(FileSystemState fileSystemState, ChangedEventMode mode, bool trackProcess, ProgressContext progress)
+        public static void CheckActiveFiles(this FileSystemState fileSystemState, ChangedEventMode mode, bool trackProcess, ProgressContext progress)
         {
             fileSystemState.ForEach(mode, (ActiveFile activeFile) =>
             {
