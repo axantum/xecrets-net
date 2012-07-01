@@ -37,6 +37,7 @@ namespace Axantum.AxCrypt.Core.Test
     {
         private class FakeFileInfo
         {
+            public string FullName;
             public DateTime CreationTimeUtc;
             public DateTime LastAccessTimeUtc;
             public DateTime LastWriteTimeUtc;
@@ -52,9 +53,15 @@ namespace Axantum.AxCrypt.Core.Test
 
         private static Dictionary<string, FakeFileInfo> _fakeFileSystem = new Dictionary<string, FakeFileInfo>(StringComparer.OrdinalIgnoreCase);
 
+        private FakeFileInfo _file;
+
+        public static event EventHandler OpeningForRead;
+
+        public static event EventHandler OpeningForWrite;
+
         public static void AddFile(string path, DateTime creationTimeUtc, DateTime lastAccessTimeUtc, DateTime lastWriteTimeUtc, Stream stream)
         {
-            FakeFileInfo fileInfo = new FakeFileInfo { CreationTimeUtc = creationTimeUtc, LastAccessTimeUtc = lastAccessTimeUtc, LastWriteTimeUtc = lastWriteTimeUtc, Stream = stream };
+            FakeFileInfo fileInfo = new FakeFileInfo { FullName = path, CreationTimeUtc = creationTimeUtc, LastAccessTimeUtc = lastAccessTimeUtc, LastWriteTimeUtc = lastWriteTimeUtc, Stream = stream };
             _fakeFileSystem.Add(path, fileInfo);
             ((FakeRuntimeEnvironment)AxCryptEnvironment.Current).FileCreated(path);
         }
@@ -69,11 +76,28 @@ namespace Axantum.AxCrypt.Core.Test
             _fakeFileSystem.Clear();
         }
 
-        private FileInfo _file;
-
         public FakeRuntimeFileInfo(string fullName)
         {
-            _file = new FileInfo(fullName);
+            DateTime utcNow = AxCryptEnvironment.Current.UtcNow;
+            _file = new FakeFileInfo { FullName = fullName, CreationTimeUtc = utcNow, LastAccessTimeUtc = utcNow, LastWriteTimeUtc = utcNow, Stream = Stream.Null };
+        }
+
+        protected virtual void OnOpeningForRead()
+        {
+            EventHandler handler = OpeningForRead;
+            if (handler != null)
+            {
+                handler(this, new EventArgs());
+            }
+        }
+
+        protected virtual void OnOpeningForWrite()
+        {
+            EventHandler handler = OpeningForWrite;
+            if (handler != null)
+            {
+                handler(this, new EventArgs());
+            }
         }
 
         private FakeFileInfo FindFileInfo()
@@ -108,8 +132,9 @@ namespace Axantum.AxCrypt.Core.Test
             FakeFileInfo fakeFileInfo = FindFileInfo();
             if (fakeFileInfo == null)
             {
-                throw new FileNotFoundException("Can't find '{0}'.".InvariantFormat(_file.Name));
+                throw new FileNotFoundException("Can't find '{0}'.".InvariantFormat(_file.FullName));
             }
+            OnOpeningForRead();
             fakeFileInfo.Stream.Position = 0;
             EnsureDateTimes(fakeFileInfo);
             return new NonClosingStream(fakeFileInfo.Stream);
@@ -121,8 +146,9 @@ namespace Axantum.AxCrypt.Core.Test
             if (fakeFileInfo == null)
             {
                 AddFile(_file.FullName, new MemoryStream());
-                fakeFileInfo = FindFileInfo();
+                _file = fakeFileInfo = FindFileInfo();
             }
+            OnOpeningForWrite();
             fakeFileInfo.Stream.Position = 0;
             EnsureDateTimes(fakeFileInfo);
             return new NonClosingStream(fakeFileInfo.Stream);
@@ -132,7 +158,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             get
             {
-                return _file.Name;
+                return Path.GetFileName(_file.FullName);
             }
         }
 
@@ -222,10 +248,9 @@ namespace Axantum.AxCrypt.Core.Test
             FakeFileInfo source = _fakeFileSystem[_file.FullName];
             _fakeFileSystem.Remove(_file.FullName);
 
-            FakeFileInfo fileInfo = new FakeFileInfo { CreationTimeUtc = source.CreationTimeUtc, LastAccessTimeUtc = source.LastAccessTimeUtc, LastWriteTimeUtc = source.LastWriteTimeUtc, Stream = source.Stream };
-            _fakeFileSystem.Add(destinationFileName, fileInfo);
+            _file = new FakeFileInfo { FullName = destinationFileName, CreationTimeUtc = source.CreationTimeUtc, LastAccessTimeUtc = source.LastAccessTimeUtc, LastWriteTimeUtc = source.LastWriteTimeUtc, Stream = source.Stream };
+            _fakeFileSystem.Add(destinationFileName, _file);
 
-            _file = new FileInfo(destinationFileName);
             ((FakeRuntimeEnvironment)AxCryptEnvironment.Current).FileMoved(destinationFileName);
         }
 
