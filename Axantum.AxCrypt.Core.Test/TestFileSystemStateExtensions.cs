@@ -25,13 +25,14 @@ namespace Axantum.AxCrypt.Core.Test
         private const string _decryptedFile2 = @"c:\Documents\David Copperfield.txt";
         private const string _encryptedFile1 = @"c:\Documents\Uncompressed.axx";
         private const string _encryptedFile2 = @"c:\Documents\HelloWorld.axx";
+        private const string _fileSystemStateFilePath = @"C:\Temp\DummyFileSystemState.xml";
 
         [SetUp]
         public static void Setup()
         {
             _environment = AxCryptEnvironment.Current;
             AxCryptEnvironment.Current = _fakeRuntimeEnvironment = new FakeRuntimeEnvironment();
-            _fileSystemState = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(@"C:\Temp\DummyFileSystemState.xml"));
+            _fileSystemState = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(_fileSystemStateFilePath));
         }
 
         [TearDown]
@@ -138,6 +139,38 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(activeFile, Is.Not.Null, "The encrypted file should be found.");
             Assert.That(activeFile.IsModified, Is.False, "The file should no longer be flagged as modified.");
             Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.NotDecrypted), Is.True, "The file should no longer be decrypted, since it was re-encrypted and deleted.");
+        }
+
+        [Test]
+        public static void TestCheckActiveFilesKeyIsNotSetWithKnownKey()
+        {
+            DateTime utcNow = AxCryptEnvironment.Current.UtcNow;
+            DateTime utcYesterday = utcNow.AddDays(-1);
+            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, new MemoryStream(Resources.HelloWorld_Key_a_txt));
+            Passphrase passphrase = new Passphrase("a");
+            AxCryptFile.Decrypt(AxCryptEnvironment.Current.FileInfo(_encryptedFile1), AxCryptEnvironment.Current.FileInfo(_decryptedFile1), passphrase.DerivedPassphrase, AxCryptOptions.None, new ProgressContext());
+
+            ActiveFile activeFile = new ActiveFile(AxCryptEnvironment.Current.FileInfo(_encryptedFile1), AxCryptEnvironment.Current.FileInfo(_decryptedFile1), passphrase.DerivedPassphrase, ActiveFileStatus.AssumedOpenAndDecrypted, null);
+            _fileSystemState.Add(activeFile);
+            _fileSystemState.Save();
+            _fileSystemState = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(_fileSystemStateFilePath));
+
+            _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
+            bool changedWasRaised = false;
+            _fileSystemState.Changed += ((object sender, EventArgs e) =>
+            {
+                changedWasRaised = true;
+            });
+
+            activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
+            Assert.That(activeFile.Key, Is.Null, "The key should be null after loading of new FileSystemState");
+
+            KnownKeys.Add(passphrase.DerivedPassphrase);
+            _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, false, new ProgressContext());
+            Assert.That(changedWasRaised, Is.True, "The ActiveFile should be modified because there is now a known key.");
+
+            activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
+            Assert.That(activeFile.Key, Is.Not.Null, "The key should not be null after the checking of active files.");
         }
     }
 }
