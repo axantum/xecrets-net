@@ -209,5 +209,29 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "The file should still be there.");
             Assert.That(activeFile.ThumbprintMatch(passphrase.DerivedPassphrase), Is.True, "The active file should still be known to be decryptable with the original passphrase.");
         }
+
+        [Test]
+        public static void TestCheckActiveFilesNotDecryptedAndDoesNotExist()
+        {
+            DateTime utcNow = AxCryptEnvironment.Current.UtcNow;
+            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
+            FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
+
+            ActiveFile activeFile = new ActiveFile(AxCryptEnvironment.Current.FileInfo(_encryptedFile1), AxCryptEnvironment.Current.FileInfo(_decryptedFile1), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted, null);
+            AxCryptEnvironment.Current.FileInfo(_decryptedFile1).Delete();
+            activeFile = new ActiveFile(activeFile, ActiveFileStatus.NotDecrypted, null);
+            _fileSystemState.Add(activeFile);
+
+            bool changedWasRaised = false;
+            _fileSystemState.Changed += ((object sender, EventArgs e) =>
+            {
+                changedWasRaised = true;
+            });
+
+            _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
+            _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, false, new ProgressContext());
+
+            Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because it's already deleted.");
+        }
     }
 }
