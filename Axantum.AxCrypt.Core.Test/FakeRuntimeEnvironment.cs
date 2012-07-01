@@ -48,6 +48,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             AxCryptExtension = ".axx";
             TimeFunction = StandardTimeFunction;
+            IsDesktopWindows = true;
         }
 
         public FakeRuntimeEnvironment(Endian endianness)
@@ -89,7 +90,8 @@ namespace Axantum.AxCrypt.Core.Test
 
         public bool IsDesktopWindows
         {
-            get { return true; }
+            get;
+            set;
         }
 
         public int StreamBufferSize
