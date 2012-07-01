@@ -164,5 +164,10 @@ namespace Axantum.AxCrypt.Core.Test
         {
             get { return TimeFunction(); }
         }
+
+        public ILauncher Launch(string path)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

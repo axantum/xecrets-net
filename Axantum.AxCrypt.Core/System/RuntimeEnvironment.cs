@@ -131,5 +131,10 @@ namespace Axantum.AxCrypt.Core.System
         {
             get { return DateTime.UtcNow; }
         }
+
+        public ILauncher Launch(string path)
+        {
+            return new Launcher(path);
+        }
     }
 }

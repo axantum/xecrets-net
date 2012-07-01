@@ -50,5 +50,7 @@ namespace Axantum.AxCrypt.Core.System
         IRuntimeFileInfo TemporaryDirectoryInfo { get; }
 
         DateTime UtcNow { get; }
+
+        ILauncher Launch(string path);
     }
 }

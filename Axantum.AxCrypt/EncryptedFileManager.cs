@@ -264,15 +264,15 @@ namespace Axantum.AxCrypt
 
         private FileOperationStatus LaunchApplicationForDocument(ActiveFile destinationActiveFile)
         {
-            Process process;
+            ILauncher process;
             try
             {
                 if (Logging.IsInfoEnabled)
                 {
                     Logging.Info("Starting process for '{0}'".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName)); //MLHIDE
                 }
-                process = Process.Start(destinationActiveFile.DecryptedFileInfo.FullName);
-                if (process == null)
+                process = AxCryptEnvironment.Current.Launch(destinationActiveFile.DecryptedFileInfo.FullName);
+                if (!process.WasStarted)
                 {
                     if (Logging.IsInfoEnabled)
                     {
@@ -315,7 +315,7 @@ namespace Axantum.AxCrypt
         {
             if (Logging.IsInfoEnabled)
             {
-                Logging.Info("Process exit event for '{0}'.".InvariantFormat(((Process)sender).StartInfo.FileName)); //MLHIDE
+                Logging.Info("Process exit event for '{0}'.".InvariantFormat(((ILauncher)sender).Path)); //MLHIDE
             }
 
             OnChanged(e);

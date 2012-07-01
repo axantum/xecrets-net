@@ -72,12 +72,12 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestInvalidArguments()
         {
             IRuntimeFileInfo nullFileInfo = null;
-            Process nullProcess = null;
+            ILauncher nullProcess = null;
             IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\test.txt");
             IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\Documents\HelloWorld.axx");
             AesKey key = new AesKey();
             AesKey nullKey = null;
-            Process process = new Process();
+            ILauncher process = new FakeLauncher(String.Empty);
             ActiveFile nullActiveFile = null;
 
             ActiveFile originalActiveFile = new ActiveFile(decryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, process);
@@ -96,7 +96,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestConstructor()
         {
             AesKey key = new AesKey();
-            Process process = new Process();
+            ILauncher process = new FakeLauncher(String.Empty);
             IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\test.txt");
             IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\Documents\HelloWorld.axx");
             using (ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, process))
@@ -136,7 +136,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestCopyConstructorWithKey()
         {
-            Process process = new Process();
+            ILauncher process = new FakeLauncher(String.Empty);
             AesKey key = new AesKey();
             IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\test.txt");
             IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\Documents\HelloWorld.axx");
@@ -156,7 +156,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\test.txt");
             IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\Documents\HelloWorld.axx");
-            Process process = new Process();
+            ILauncher process = new FakeLauncher(String.Empty);
 
             AesKey key = new AesKey();
 

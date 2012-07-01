@@ -62,7 +62,7 @@ namespace Axantum.AxCrypt.Core.Session
             Key = key;
         }
 
-        public ActiveFile(ActiveFile activeFile, ActiveFileStatus status, Process process)
+        public ActiveFile(ActiveFile activeFile, ActiveFileStatus status, ILauncher process)
         {
             if (activeFile == null)
             {
@@ -94,7 +94,7 @@ namespace Axantum.AxCrypt.Core.Session
             Status = status;
         }
 
-        public ActiveFile(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, AesKey key, ActiveFileStatus status, Process process)
+        public ActiveFile(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, AesKey key, ActiveFileStatus status, ILauncher process)
         {
             if (encryptedFileInfo == null)
             {
@@ -126,7 +126,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private void Initialize(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, DateTime lastWriteTimeUtc, AesKey key, ActiveFileStatus status, Process process)
+        private void Initialize(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, DateTime lastWriteTimeUtc, AesKey key, ActiveFileStatus status, ILauncher process)
         {
             EncryptedFileInfo = AxCryptEnvironment.Current.FileInfo(encryptedFileInfo.FullName);
             DecryptedFileInfo = AxCryptEnvironment.Current.FileInfo(decryptedFileInfo.FullName);
@@ -242,7 +242,7 @@ namespace Axantum.AxCrypt.Core.Session
             DecryptedFileInfo = AxCryptEnvironment.Current.FileInfo(Path.Combine(_decryptedFolder, _decryptedName));
         }
 
-        public Process Process { get; private set; }
+        public ILauncher Process { get; private set; }
 
         private AesKey _key;
 

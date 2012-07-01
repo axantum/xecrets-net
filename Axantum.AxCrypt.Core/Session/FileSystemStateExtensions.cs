@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Core.Session
                     }
                     activeFile = CheckIfTimeToUpdate(activeFile, progress);
                 }
-                if (activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted) && !activeFile.IsModified)
+                if (activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted))
                 {
                     activeFile = TryDelete(activeFile);
                 }
@@ -192,10 +192,6 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return activeFile;
             }
-            if (activeFile.IsModified)
-            {
-                return activeFile;
-            }
 
             activeFile = TryDelete(activeFile);
             return activeFile;
@@ -203,7 +199,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private static ActiveFile TryDelete(ActiveFile activeFile)
         {
-            if (activeFile.Process != null && activeFile.Process.Handle != null && !activeFile.Process.HasExited)
+            if (activeFile.Process != null && !activeFile.Process.HasExited)
             {
                 if (Logging.IsInfoEnabled)
                 {

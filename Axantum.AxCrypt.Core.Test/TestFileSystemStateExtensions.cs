@@ -261,5 +261,51 @@ namespace Axantum.AxCrypt.Core.Test
             activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
             Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.NotDecrypted), Is.True, "The file should be deleted and marked as Not Decrypted when running as Desktop Windows.");
         }
+
+        [Test]
+        public static void TestCheckActiveFilesUpdateButWithTargetLockedForSharing()
+        {
+            DateTime utcNow = AxCryptEnvironment.Current.UtcNow;
+            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, new MemoryStream(Resources.HelloWorld_Key_a_txt));
+            Passphrase passphrase = new Passphrase("a");
+            AxCryptFile.Decrypt(AxCryptEnvironment.Current.FileInfo(_encryptedFile1), AxCryptEnvironment.Current.FileInfo(_decryptedFile1), passphrase.DerivedPassphrase, AxCryptOptions.None, new ProgressContext());
+
+            ActiveFile activeFile = new ActiveFile(AxCryptEnvironment.Current.FileInfo(_encryptedFile1), AxCryptEnvironment.Current.FileInfo(_decryptedFile1), passphrase.DerivedPassphrase, ActiveFileStatus.AssumedOpenAndDecrypted, null);
+            _fileSystemState.Add(activeFile);
+
+            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(_decryptedFile1);
+            decryptedFileInfo.SetFileTimes(utcNow.AddSeconds(30), utcNow.AddSeconds(30), utcNow.AddSeconds(30));
+
+            _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
+            bool changedWasRaised = false;
+            _fileSystemState.Changed += ((object sender, EventArgs e) =>
+            {
+                changedWasRaised = true;
+            });
+
+            KnownKeys.Add(passphrase.DerivedPassphrase);
+
+            EventHandler eventHandler = ((object sender, EventArgs e) =>
+            {
+                FakeRuntimeFileInfo fileInfo = (FakeRuntimeFileInfo)sender;
+                if (fileInfo.FullName == _decryptedFile1)
+                {
+                    throw new IOException("Faked sharing violation.");
+                }
+            });
+            FakeRuntimeFileInfo.OpeningForRead += eventHandler;
+            try
+            {
+                _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, false, new ProgressContext());
+            }
+            finally
+            {
+                FakeRuntimeFileInfo.OpeningForRead -= eventHandler;
+            }
+
+            Assert.That(changedWasRaised, Is.True, "The ActiveFile should be modified because it should now be marked as not shareable.");
+            activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
+            Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.NotShareable), Is.True, "The ActiveFile should be marked as not shareable after the checking of active files.");
+        }
     }
 }
