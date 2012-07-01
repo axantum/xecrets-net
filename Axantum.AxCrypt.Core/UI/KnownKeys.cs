@@ -53,6 +53,14 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
+        public static void Clear()
+        {
+            lock (_keys)
+            {
+                _keys.Clear();
+            }
+        }
+
         public static IEnumerable<AesKey> Keys
         {
             get

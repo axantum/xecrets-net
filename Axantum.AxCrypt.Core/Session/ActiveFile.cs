@@ -113,6 +113,12 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void Initialize(ActiveFile other)
         {
+            if (other.Key == null && other._keyThumbprintBytes != null)
+            {
+                _keyThumbprintBytes = other._keyThumbprintBytes;
+                _keyThumbprintSalt = other._keyThumbprintSalt;
+            }
+
             Initialize(other.EncryptedFileInfo, other.DecryptedFileInfo, other.LastEncryptionWriteTimeUtc, other.Key, other.Status, other.Process);
             if (other.Process != null)
             {
@@ -263,6 +269,10 @@ namespace Axantum.AxCrypt.Core.Session
         /// <returns>true if the thumbprint matches the provided key.</returns>
         public bool ThumbprintMatch(AesKey key)
         {
+            if (key == null)
+            {
+                throw new ArgumentNullException("key");
+            }
             AesKeyThumbprint thumbprint = new AesKeyThumbprint(key, KeyThumbprintSalt);
 
             bool match = thumbprint.GetThumbprintBytes().IsEquivalentTo(KeyThumbprintBytes);

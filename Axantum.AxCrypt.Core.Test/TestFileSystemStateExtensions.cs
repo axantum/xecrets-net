@@ -40,8 +40,10 @@ namespace Axantum.AxCrypt.Core.Test
         {
             AxCryptEnvironment.Current = _environment;
             _environment = null;
+            _fakeRuntimeEnvironment = null;
             _fileSystemState = null;
             FakeRuntimeFileInfo.ClearFiles();
+            KnownKeys.Clear();
         }
 
         [Test]
@@ -171,6 +173,41 @@ namespace Axantum.AxCrypt.Core.Test
 
             activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
             Assert.That(activeFile.Key, Is.Not.Null, "The key should not be null after the checking of active files.");
+        }
+
+        [Test]
+        public static void TestCheckActiveFilesKeyIsNotSetWithoutKnownKey()
+        {
+            DateTime utcNow = AxCryptEnvironment.Current.UtcNow;
+            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, new MemoryStream(Resources.HelloWorld_Key_a_txt));
+            Passphrase passphrase = new Passphrase("a");
+            AxCryptFile.Decrypt(AxCryptEnvironment.Current.FileInfo(_encryptedFile1), AxCryptEnvironment.Current.FileInfo(_decryptedFile1), passphrase.DerivedPassphrase, AxCryptOptions.None, new ProgressContext());
+
+            ActiveFile activeFile = new ActiveFile(AxCryptEnvironment.Current.FileInfo(_encryptedFile1), AxCryptEnvironment.Current.FileInfo(_decryptedFile1), passphrase.DerivedPassphrase, ActiveFileStatus.AssumedOpenAndDecrypted, null);
+            _fileSystemState.Add(activeFile);
+            _fileSystemState.Save();
+            _fileSystemState = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(_fileSystemStateFilePath));
+
+            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(_decryptedFile1);
+            decryptedFileInfo.SetFileTimes(utcNow.AddSeconds(30), utcNow.AddSeconds(30), utcNow.AddSeconds(30));
+
+            _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
+            bool changedWasRaised = false;
+            _fileSystemState.Changed += ((object sender, EventArgs e) =>
+            {
+                changedWasRaised = true;
+            });
+
+            activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
+            Assert.That(activeFile.Key, Is.Null, "The key should be null after loading of new FileSystemState");
+
+            _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, false, new ProgressContext());
+            Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because the file was modified as well and thus cannot be deleted.");
+
+            activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
+            Assert.That(activeFile.Key, Is.Null, "The key should still be null after the checking of active files.");
+            Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "The file should still be there.");
+            Assert.That(activeFile.ThumbprintMatch(passphrase.DerivedPassphrase), Is.True, "The active file should still be known to be decryptable with the original passphrase.");
         }
     }
 }
