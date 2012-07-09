@@ -401,5 +401,31 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "The ActiveFile plain text should still be there after the checking of active files because the file is NotShareable.");
             Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.NotShareable), Is.True, "The ActiveFile plain text should be NotShareable after the checking of active files because the file could not be deleted.");
         }
+
+        [Test]
+        public static void TestPurgeActiveFilesWhenFileIsLocked()
+        {
+            DateTime utcNow = AxCryptEnvironment.Current.UtcNow;
+            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
+            FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
+
+            IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(_encryptedFile1);
+            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(_decryptedFile1);
+            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted, null);
+            _fileSystemState.Add(activeFile);
+
+            bool changedWasRaised = false;
+            _fileSystemState.Changed += ((object sender, EventArgs e) =>
+            {
+                changedWasRaised = true;
+            });
+
+            using (FileLock fileLock = FileLock.Lock(decryptedFileInfo))
+            {
+                _fileSystemState.PurgeActiveFiles(new ProgressContext());
+            }
+
+            Assert.That(changedWasRaised, Is.False, "A changed event should not be raised because the decrypted file is locked.");
+        }
     }
 }

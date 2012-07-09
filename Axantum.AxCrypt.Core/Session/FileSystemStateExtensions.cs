@@ -47,6 +47,7 @@ namespace Axantum.AxCrypt.Core.Session
                     {
                         Logging.Info("Not deleting '{0}' because it is marked as locked.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                     }
+                    return activeFile;
                 }
                 if (activeFile.IsModified)
                 {
