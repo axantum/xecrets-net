@@ -59,6 +59,8 @@ namespace Axantum.AxCrypt.Core.Test
 
         public static event EventHandler OpeningForWrite;
 
+        public static event EventHandler Deleting;
+
         public static void AddFile(string path, DateTime creationTimeUtc, DateTime lastAccessTimeUtc, DateTime lastWriteTimeUtc, Stream stream)
         {
             FakeFileInfo fileInfo = new FakeFileInfo { FullName = path, CreationTimeUtc = creationTimeUtc, LastAccessTimeUtc = lastAccessTimeUtc, LastWriteTimeUtc = lastWriteTimeUtc, Stream = stream };
@@ -94,6 +96,15 @@ namespace Axantum.AxCrypt.Core.Test
         protected virtual void OnOpeningForWrite()
         {
             EventHandler handler = OpeningForWrite;
+            if (handler != null)
+            {
+                handler(this, new EventArgs());
+            }
+        }
+
+        protected virtual void OnDeleting()
+        {
+            EventHandler handler = Deleting;
             if (handler != null)
             {
                 handler(this, new EventArgs());
@@ -256,6 +267,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         public void Delete()
         {
+            OnDeleting();
             _fakeFileSystem.Remove(_file.FullName);
             ((FakeRuntimeEnvironment)AxCryptEnvironment.Current).FileDeleted(_file.FullName);
         }

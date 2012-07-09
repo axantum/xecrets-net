@@ -307,5 +307,99 @@ namespace Axantum.AxCrypt.Core.Test
             activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
             Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.NotShareable), Is.True, "The ActiveFile should be marked as not shareable after the checking of active files.");
         }
+
+        [Test]
+        public static void TestTryDeleteButProcessHasNotExited()
+        {
+            DateTime utcNow = AxCryptEnvironment.Current.UtcNow;
+            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
+            FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
+
+            FakeLauncher fakeLauncher = new FakeLauncher(_decryptedFile1);
+            ActiveFile activeFile = new ActiveFile(AxCryptEnvironment.Current.FileInfo(_encryptedFile1), AxCryptEnvironment.Current.FileInfo(_decryptedFile1), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted, fakeLauncher);
+            _fileSystemState.Add(activeFile);
+
+            _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
+            bool changedWasRaised = false;
+            _fileSystemState.Changed += ((object sender, EventArgs e) =>
+            {
+                changedWasRaised = true;
+            });
+            _fakeRuntimeEnvironment.IsDesktopWindows = true;
+            _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, true, new ProgressContext());
+
+            activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
+            Assert.That(changedWasRaised, Is.False, "No changed event should be raised because no change should occur since the process is active.");
+            Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "The ActiveFile plain text should not be deleted after the checking of active files because the launcher is active.");
+        }
+
+        [Test]
+        public static void TestCheckProcessExitedWhenExited()
+        {
+            DateTime utcNow = AxCryptEnvironment.Current.UtcNow;
+            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
+            FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
+
+            FakeLauncher fakeLauncher = new FakeLauncher(_decryptedFile1);
+            ActiveFile activeFile = new ActiveFile(AxCryptEnvironment.Current.FileInfo(_encryptedFile1), AxCryptEnvironment.Current.FileInfo(_decryptedFile1), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable, fakeLauncher);
+            _fileSystemState.Add(activeFile);
+
+            _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
+            bool changedWasRaised = false;
+            _fileSystemState.Changed += ((object sender, EventArgs e) =>
+            {
+                changedWasRaised = true;
+            });
+            _fakeRuntimeEnvironment.IsDesktopWindows = true;
+            fakeLauncher.HasExited = true;
+            _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, true, new ProgressContext());
+
+            activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
+            Assert.That(changedWasRaised, Is.True, "A changed event should be raised because the process has exited.");
+            Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.NotDecrypted), Is.True, "The ActiveFile plain text should be deleted after the checking of active files because the launcher is no longer active.");
+            Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.NotShareable), Is.False, "The file should be shareable after checking of active files because the launcher is no longer active.");
+        }
+
+        [Test]
+        public static void TestTryDeleteButDecryptedSharingLocked()
+        {
+            DateTime utcNow = AxCryptEnvironment.Current.UtcNow;
+            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
+            FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
+
+            ActiveFile activeFile = new ActiveFile(AxCryptEnvironment.Current.FileInfo(_encryptedFile1), AxCryptEnvironment.Current.FileInfo(_decryptedFile1), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted, null);
+            _fileSystemState.Add(activeFile);
+
+            _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
+            bool changedWasRaised = false;
+            _fileSystemState.Changed += ((object sender, EventArgs e) =>
+            {
+                changedWasRaised = true;
+            });
+            _fakeRuntimeEnvironment.IsDesktopWindows = true;
+
+            EventHandler eventHandler = ((object sender, EventArgs e) =>
+            {
+                FakeRuntimeFileInfo fileInfo = (FakeRuntimeFileInfo)sender;
+                if (fileInfo.FullName == _decryptedFile1)
+                {
+                    throw new IOException("Faked sharing violation.");
+                }
+            });
+            FakeRuntimeFileInfo.Deleting += eventHandler;
+            try
+            {
+                _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, false, new ProgressContext());
+            }
+            finally
+            {
+                FakeRuntimeFileInfo.Deleting -= eventHandler;
+            }
+
+            activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
+            Assert.That(changedWasRaised, Is.True, "A changed event should be raised because it should now be NotShareable.");
+            Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "The ActiveFile plain text should still be there after the checking of active files because the file is NotShareable.");
+            Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.NotShareable), Is.True, "The ActiveFile plain text should be NotShareable after the checking of active files because the file could not be deleted.");
+        }
     }
 }

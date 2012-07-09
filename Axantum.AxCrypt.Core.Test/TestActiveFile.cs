@@ -175,6 +175,27 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        public static void TestThumbprintNullKey()
+        {
+            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\test.txt");
+            IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\Documents\HelloWorld.axx");
+            ILauncher process = new FakeLauncher(String.Empty);
+
+            AesKey key = new AesKey();
+            using (MemoryStream stream = new MemoryStream())
+            {
+                using (ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, process))
+                {
+                    Assert.Throws<ArgumentNullException>(() =>
+                    {
+                        AesKey nullKey = null;
+                        activeFile.ThumbprintMatch(nullKey);
+                    });
+                }
+            }
+        }
+
+        [Test]
         public static void TestMethodIsModified()
         {
             IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\doesnotexist.txt");

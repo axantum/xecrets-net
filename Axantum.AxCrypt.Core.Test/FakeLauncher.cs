@@ -13,6 +13,8 @@ namespace Axantum.AxCrypt.Core.Test
         public FakeLauncher(string path)
         {
             _path = path;
+            HasExited = false;
+            WasStarted = true;
         }
 
         protected virtual void OnExited(EventArgs e)
@@ -28,15 +30,9 @@ namespace Axantum.AxCrypt.Core.Test
 
         public event EventHandler Exited;
 
-        public bool HasExited
-        {
-            get { return true; }
-        }
+        public bool HasExited { get; set; }
 
-        public bool WasStarted
-        {
-            get { return true; }
-        }
+        public bool WasStarted { get; set; }
 
         public string Path
         {
