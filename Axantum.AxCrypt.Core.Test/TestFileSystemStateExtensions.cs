@@ -427,5 +427,35 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(changedWasRaised, Is.False, "A changed event should not be raised because the decrypted file is locked.");
         }
+
+        [Test]
+        public static void TestPurgeActiveFilesWhenFileIsModified()
+        {
+            DateTime utcNow = AxCryptEnvironment.Current.UtcNow;
+            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
+            FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
+
+            IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(_encryptedFile1);
+            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(_decryptedFile1);
+            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable, null);
+            _fileSystemState.Add(activeFile);
+
+            _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
+            DateTime utcLater = AxCryptEnvironment.Current.UtcNow;
+
+            decryptedFileInfo.SetFileTimes(utcLater, utcLater, utcLater);
+
+            bool changedWasRaised = false;
+            _fileSystemState.Changed += ((object sender, EventArgs e) =>
+            {
+                changedWasRaised = true;
+            });
+
+            _fileSystemState.PurgeActiveFiles(new ProgressContext());
+
+            activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
+            Assert.That(changedWasRaised, Is.True, "A changed event should be raised because the decrypted file is modified.");
+            Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.NotDecrypted), Is.True, "The NotShareable not withstanding, the purge should have updated the file and removed the decrypted file.");
+        }
     }
 }
