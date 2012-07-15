@@ -69,22 +69,34 @@ namespace Axantum.AxCrypt.Core.System
 
         public static void Warning(string message)
         {
-            Trace.TraceWarning(message);
+            if (IsWarningEnabled)
+            {
+                Trace.TraceWarning(message);
+            }
         }
 
         public static void Error(string message)
         {
-            Trace.TraceError(message);
+            if (IsErrorEnabled)
+            {
+                Trace.TraceError(message);
+            }
         }
 
         public static void Info(string message)
         {
-            Trace.TraceInformation(message);
+            if (IsInfoEnabled)
+            {
+                Trace.TraceInformation(message);
+            }
         }
 
         public static void Verbose(string message)
         {
-            Trace.WriteLine("{1} Debug: {0}".InvariantFormat(message, AppName));
+            if (IsDebugEnabled)
+            {
+                Trace.WriteLine("{1} Debug: {0}".InvariantFormat(message, AppName));
+            }
         }
 
         public static void SetLevel(TraceLevel level)
