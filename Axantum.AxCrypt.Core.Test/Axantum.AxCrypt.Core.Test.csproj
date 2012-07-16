@@ -116,6 +116,7 @@
     <Compile Include="TestLogging.cs" />
     <Compile Include="TestPassphrase.cs" />
     <Compile Include="TestPreambleHeaderBlock.cs" />
+    <Compile Include="TestProgressEventArgs.cs" />
     <Compile Include="TestProgressStream.cs" />
     <Compile Include="TestRuntimeEnvironment.cs" />
     <Compile Include="TestRuntimeFileInfo.cs" />
