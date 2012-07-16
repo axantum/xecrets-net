@@ -49,6 +49,7 @@ namespace Axantum.AxCrypt.Core.Test
             AxCryptExtension = ".axx";
             TimeFunction = StandardTimeFunction;
             IsDesktopWindows = true;
+            CurrentTiming = new FakeTiming();
         }
 
         public FakeRuntimeEnvironment(Endian endianness)
@@ -169,5 +170,12 @@ namespace Axantum.AxCrypt.Core.Test
         {
             throw new NotImplementedException();
         }
+
+        public ITiming StartTiming()
+        {
+            return CurrentTiming;
+        }
+
+        public FakeTiming CurrentTiming { get; set; }
     }
 }

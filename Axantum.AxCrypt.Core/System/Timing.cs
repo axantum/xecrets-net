@@ -26,33 +26,24 @@
 #endregion Coypright and License
 
 using System;
-using System.IO;
-using Axantum.AxCrypt.Core.IO;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
 
 namespace Axantum.AxCrypt.Core.System
 {
-    public interface IRuntimeEnvironment
+    public class Timing : ITiming
     {
-        bool IsLittleEndian { get; }
+        private Stopwatch _stopwatch = Stopwatch.StartNew();
 
-        byte[] GetRandomBytes(int count);
+        #region ITiming Members
 
-        IRuntimeFileInfo FileInfo(string path);
+        public TimeSpan Elapsed
+        {
+            get { return _stopwatch.Elapsed; }
+        }
 
-        string AxCryptExtension { get; }
-
-        bool IsDesktopWindows { get; }
-
-        int StreamBufferSize { get; }
-
-        IFileWatcher FileWatcher(string path);
-
-        IRuntimeFileInfo TemporaryDirectoryInfo { get; }
-
-        DateTime UtcNow { get; }
-
-        ILauncher Launch(string path);
-
-        ITiming StartTiming();
+        #endregion ITiming Members
     }
 }

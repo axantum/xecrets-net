@@ -126,6 +126,7 @@
     <Compile Include="Header\HeaderBlock.cs" />
     <Compile Include="Header\HeaderBlockType.cs" />
     <Compile Include="Header\VersionHeaderBlock.cs" />
+    <Compile Include="System\ITiming.cs" />
     <Compile Include="System\Launcher.cs" />
     <Compile Include="System\Logging.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -141,6 +142,7 @@
     <Compile Include="Session\FileSystemStateExtensions.cs" />
     <Compile Include="Session\ActiveFileStatus.cs" />
     <Compile Include="Session\FileSystemState.cs" />
+    <Compile Include="System\Timing.cs" />
     <Compile Include="UI\FileOperationStatus.cs" />
     <Compile Include="UI\KnownKeys.cs" />
     <Compile Include="UI\ProgressContext.cs" />

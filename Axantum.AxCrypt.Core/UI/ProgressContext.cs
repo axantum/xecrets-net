@@ -27,33 +27,42 @@
 
 using System;
 using System.Diagnostics;
+using Axantum.AxCrypt.Core.System;
 
 namespace Axantum.AxCrypt.Core.UI
 {
     public class ProgressContext
     {
+        private static readonly TimeSpan DefaultFirstDelay = TimeSpan.FromMilliseconds(500);
+        private static readonly TimeSpan DefaultInterval = TimeSpan.FromMilliseconds(100);
+
         private object _context;
 
-        private Stopwatch _stopwatch = Stopwatch.StartNew();
+        private ITiming _stopwatch = AxCryptEnvironment.Current.StartTiming();
 
-        private long _nextElapsed = 500;
-
-        public ProgressContext(string displayText, object context)
-            : this()
-        {
-            _context = context;
-            DisplayText = displayText;
-        }
+        private TimeSpan _nextElapsed;
 
         public ProgressContext()
+            : this(DefaultFirstDelay)
         {
-            Max = -1;
+        }
+
+        public ProgressContext(string displayText, object context)
+            : this(displayText, context, DefaultFirstDelay)
+        {
         }
 
         public ProgressContext(TimeSpan firstElapsed)
-            : this()
+            : this(String.Empty, null, firstElapsed)
         {
-            _nextElapsed = (long)firstElapsed.TotalMilliseconds;
+        }
+
+        public ProgressContext(string displayText, object context, TimeSpan firstElapsed)
+        {
+            _context = context;
+            DisplayText = displayText;
+            _nextElapsed = firstElapsed;
+            Max = -1;
         }
 
         public event EventHandler<ProgressEventArgs> Progressing;
@@ -73,14 +82,14 @@ namespace Axantum.AxCrypt.Core.UI
             set
             {
                 _current = value;
-                if (_stopwatch.ElapsedMilliseconds < _nextElapsed)
+                if (_stopwatch.Elapsed < _nextElapsed)
                 {
                     return;
                 }
                 ProgressEventArgs e;
                 e = new ProgressEventArgs(Percent, _context);
                 OnProgressing(e);
-                _nextElapsed = _stopwatch.ElapsedMilliseconds + 100;
+                _nextElapsed = _stopwatch.Elapsed.Add(DefaultInterval);
             }
         }
 

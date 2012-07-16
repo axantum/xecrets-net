@@ -139,5 +139,10 @@ namespace Axantum.AxCrypt.Core.System
         {
             return new Launcher(path);
         }
+
+        public ITiming StartTiming()
+        {
+            return new Timing();
+        }
     }
 }
