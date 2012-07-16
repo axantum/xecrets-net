@@ -39,17 +39,11 @@ namespace Axantum.AxCrypt.Core.UI
             lock (_keys)
             {
                 int i = _keys.IndexOf(key);
-                if (i == 0)
-                {
-                    return;
-                }
                 if (i >= 0)
                 {
-                    _keys.RemoveAt(i);
-                    _keys.Insert(0, key);
                     return;
                 }
-                _keys.Add(key);
+                _keys.Insert(0, key);
             }
         }
 
