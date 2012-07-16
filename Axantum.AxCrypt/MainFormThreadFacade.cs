@@ -45,14 +45,9 @@ namespace Axantum.AxCrypt
 
         private IDictionary<BackgroundWorker, ProgressBar> _progressBars = new Dictionary<BackgroundWorker, ProgressBar>();
 
-        private ProgressManager _progressManager;
-
         public MainFormThreadFacade(AxCryptMainForm mainForm)
         {
             _mainForm = mainForm;
-
-            _progressManager = new ProgressManager();
-            _progressManager.Progress += new EventHandler<ProgressEventArgs>(ProgressManager_Progress);
         }
 
         public void FormatTraceMessage(string message)
@@ -86,7 +81,9 @@ namespace Axantum.AxCrypt
                     e.Result = arguments.Result;
                 },
                 completedHandler);
-            worker.RunWorkerAsync(new WorkerArguments(_progressManager.Create(displayText, worker)));
+            ProgressContext progressContext = new ProgressContext(displayText, worker);
+            progressContext.Progressing += BackgroundWorker_Progress;
+            worker.RunWorkerAsync(new WorkerArguments(progressContext));
         }
 
         private BackgroundWorker CreateWorker(DoWorkEventHandler doWorkHandler, RunWorkerCompletedEventHandler completedHandler)
@@ -173,7 +170,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void ProgressManager_Progress(object sender, ProgressEventArgs e)
+        private void BackgroundWorker_Progress(object sender, ProgressEventArgs e)
         {
             BackgroundWorker worker = e.Context as BackgroundWorker;
             if (worker != null)
