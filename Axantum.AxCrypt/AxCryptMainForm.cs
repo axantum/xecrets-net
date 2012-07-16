@@ -248,7 +248,7 @@ namespace Axantum.AxCrypt
             }
 
             AesKey key = null;
-            if (KnownKeys.DefaultEncryptionKey == null)
+            if (EncryptedFileManager.FileSystemState.KnownKeys.DefaultEncryptionKey == null)
             {
                 EncryptPassphraseDialog passphraseDialog = new EncryptPassphraseDialog();
                 DialogResult dialogResult = passphraseDialog.ShowDialog();
@@ -261,7 +261,7 @@ namespace Axantum.AxCrypt
             }
             else
             {
-                key = KnownKeys.DefaultEncryptionKey;
+                key = EncryptedFileManager.FileSystemState.KnownKeys.DefaultEncryptionKey;
             }
 
             ThreadFacade.DoBackgroundWork(sourceFileInfo.FullName,
@@ -276,9 +276,9 @@ namespace Axantum.AxCrypt
                     CheckStatusAndShowMessage(status, sourceFileInfo.Name);
                 });
 
-            if (KnownKeys.DefaultEncryptionKey == null)
+            if (EncryptedFileManager.FileSystemState.KnownKeys.DefaultEncryptionKey == null)
             {
-                KnownKeys.DefaultEncryptionKey = key;
+                EncryptedFileManager.FileSystemState.KnownKeys.DefaultEncryptionKey = key;
             }
         }
 
@@ -390,7 +390,7 @@ namespace Axantum.AxCrypt
             AxCryptDocument document = null;
             try
             {
-                foreach (AesKey key in KnownKeys.Keys)
+                foreach (AesKey key in EncryptedFileManager.FileSystemState.KnownKeys.Keys)
                 {
                     document = AxCryptFile.Document(source, key, new ProgressContext());
                     if (document.PassphraseIsValid)
@@ -459,7 +459,7 @@ namespace Axantum.AxCrypt
 
         private void AddKnownKey(AesKey key)
         {
-            KnownKeys.Add(key);
+            EncryptedFileManager.FileSystemState.KnownKeys.Add(key);
             EncryptedFileManager.FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, new ProgressContext());
         }
 
@@ -496,7 +496,7 @@ namespace Axantum.AxCrypt
             ThreadFacade.DoBackgroundWork(Path.GetFileName(file),
                 (WorkerArguments arguments) =>
                 {
-                    arguments.Result = EncryptedFileManager.Open(file, KnownKeys.Keys, arguments.Progress);
+                    arguments.Result = EncryptedFileManager.Open(file, EncryptedFileManager.FileSystemState.KnownKeys.Keys, arguments.Progress);
                 },
                 (object sender, RunWorkerCompletedEventArgs e) =>
                 {
@@ -707,7 +707,7 @@ namespace Axantum.AxCrypt
             bool keyMatch = EncryptedFileManager.UpdateActiveFileIfKeyMatchesThumbprint(passphrase.DerivedPassphrase);
             if (keyMatch)
             {
-                KnownKeys.Add(passphrase.DerivedPassphrase);
+                EncryptedFileManager.FileSystemState.KnownKeys.Add(passphrase.DerivedPassphrase);
             }
         }
 

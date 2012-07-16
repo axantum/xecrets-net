@@ -30,11 +30,11 @@ using Axantum.AxCrypt.Core.Crypto;
 
 namespace Axantum.AxCrypt.Core.UI
 {
-    public static class KnownKeys
+    public class KnownKeys
     {
-        private static List<AesKey> _keys = new List<AesKey>();
+        private List<AesKey> _keys = new List<AesKey>();
 
-        public static void Add(AesKey key)
+        public void Add(AesKey key)
         {
             lock (_keys)
             {
@@ -53,7 +53,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public static void Clear()
+        public void Clear()
         {
             lock (_keys)
             {
@@ -61,7 +61,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public static IEnumerable<AesKey> Keys
+        public IEnumerable<AesKey> Keys
         {
             get
             {
@@ -69,9 +69,9 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        private static AesKey _defaultEncryptionKey;
+        private AesKey _defaultEncryptionKey;
 
-        public static AesKey DefaultEncryptionKey
+        public AesKey DefaultEncryptionKey
         {
             get
             {

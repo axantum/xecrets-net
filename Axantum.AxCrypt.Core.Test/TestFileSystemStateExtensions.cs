@@ -68,7 +68,6 @@ namespace Axantum.AxCrypt.Core.Test
             _fakeRuntimeEnvironment = null;
             _fileSystemState = null;
             FakeRuntimeFileInfo.ClearFiles();
-            KnownKeys.Clear();
         }
 
         [Test]
@@ -191,7 +190,7 @@ namespace Axantum.AxCrypt.Core.Test
             activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
             Assert.That(activeFile.Key, Is.Null, "The key should be null after loading of new FileSystemState");
 
-            KnownKeys.Add(passphrase.DerivedPassphrase);
+            _fileSystemState.KnownKeys.Add(passphrase.DerivedPassphrase);
             _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, false, new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "The ActiveFile should be modified because there is now a known key.");
 
@@ -310,7 +309,7 @@ namespace Axantum.AxCrypt.Core.Test
                 changedWasRaised = true;
             });
 
-            KnownKeys.Add(passphrase.DerivedPassphrase);
+            _fileSystemState.KnownKeys.Add(passphrase.DerivedPassphrase);
 
             EventHandler eventHandler = ((object sender, EventArgs e) =>
             {

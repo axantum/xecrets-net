@@ -77,14 +77,14 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     return activeFile;
                 }
-                activeFile = CheckActiveFileActions(activeFile, trackProcess, progress);
+                activeFile = CheckActiveFileActions(fileSystemState, activeFile, trackProcess, progress);
                 return activeFile;
             });
         }
 
-        private static ActiveFile CheckActiveFileActions(ActiveFile activeFile, bool trackProcess, ProgressContext progress)
+        private static ActiveFile CheckActiveFileActions(FileSystemState fileSystemState, ActiveFile activeFile, bool trackProcess, ProgressContext progress)
         {
-            activeFile = CheckIfKeyIsKnown(activeFile);
+            activeFile = CheckIfKeyIsKnown(fileSystemState, activeFile);
             activeFile = CheckIfCreated(activeFile);
             activeFile = CheckIfProcessExited(activeFile, trackProcess);
             activeFile = CheckIfTimeToUpdate(activeFile, progress);
@@ -92,7 +92,7 @@ namespace Axantum.AxCrypt.Core.Session
             return activeFile;
         }
 
-        private static ActiveFile CheckIfKeyIsKnown(ActiveFile activeFile)
+        private static ActiveFile CheckIfKeyIsKnown(FileSystemState fileSystemState, ActiveFile activeFile)
         {
             if (!activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted) && !activeFile.Status.HasFlag(ActiveFileStatus.DecryptedIsPendingDelete))
             {
@@ -102,7 +102,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return activeFile;
             }
-            foreach (AesKey key in KnownKeys.Keys)
+            foreach (AesKey key in fileSystemState.KnownKeys.Keys)
             {
                 if (activeFile.ThumbprintMatch(key))
                 {

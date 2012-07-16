@@ -31,6 +31,7 @@ using System.IO;
 using System.Runtime.Serialization;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core.Session
 {
@@ -47,11 +48,14 @@ namespace Axantum.AxCrypt.Core.Session
         private void Initialize()
         {
             _lock = new object();
+            KnownKeys = new KnownKeys();
         }
 
         private Dictionary<string, ActiveFile> _activeFilesByEncryptedPath = new Dictionary<string, ActiveFile>();
 
         private Dictionary<string, ActiveFile> _activeFilesByDecryptedPath = new Dictionary<string, ActiveFile>();
+
+        public KnownKeys KnownKeys { get; private set; }
 
         public event EventHandler<EventArgs> Changed;
 
