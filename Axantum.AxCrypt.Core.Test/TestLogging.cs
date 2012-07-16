@@ -83,7 +83,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestLoggingListener()
+        public static void TestLoggingListenerAndLevels()
         {
             string listenerMessage = null;
 
