@@ -64,7 +64,14 @@ namespace Axantum.AxCrypt.Core.Test
                 using (Stream stream = File.Create(Path.Combine(_tempPath, "CreatedFile.txt")))
                 {
                 }
-                Thread.Sleep(100);
+                for (int i = 0; i < 20; ++i)
+                {
+                    if (fileName.Length > 0)
+                    {
+                        break;
+                    }
+                    Thread.Sleep(100);
+                }
                 Assert.That(fileName, Is.EqualTo("CreatedFile.txt"), "The watcher should detect the newly created file.");
             }
         }
