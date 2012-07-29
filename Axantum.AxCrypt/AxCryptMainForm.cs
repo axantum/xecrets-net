@@ -636,7 +636,7 @@ namespace Axantum.AxCrypt
                 },
                 (object sender, RunWorkerCompletedEventArgs e) =>
                 {
-                    IList<ActiveFile> openFiles = EncryptedFileManager.FindOpenFiles();
+                    IList<ActiveFile> openFiles = EncryptedFileManager.FileSystemState.DecryptedActiveFiles;
                     if (openFiles.Count == 0)
                     {
                         return;

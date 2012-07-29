@@ -87,6 +87,22 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
+        public IList<ActiveFile> DecryptedActiveFiles
+        {
+            get
+            {
+                List<ActiveFile> activeFiles = new List<ActiveFile>();
+                foreach (ActiveFile activeFile in ActiveFiles)
+                {
+                    if (activeFile.Status.HasFlag(ActiveFileStatus.DecryptedIsPendingDelete) || activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted))
+                    {
+                        activeFiles.Add(activeFile);
+                    }
+                }
+                return activeFiles;
+            }
+        }
+
         public ActiveFile FindEncryptedPath(string encryptedPath)
         {
             ActiveFile activeFile;

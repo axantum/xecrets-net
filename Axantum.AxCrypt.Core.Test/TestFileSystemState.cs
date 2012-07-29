@@ -195,5 +195,29 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(i, Is.EqualTo(3), "The iteration should have visited three active files.");
             Assert.That(changedEventWasRaised, Is.True, "The change event should have been raised.");
         }
+
+        [Test]
+        public static void TestDecryptedActiveFiles()
+        {
+            FileSystemState state = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(@"c:\mytemp\mystate.xml"));
+
+            ActiveFile decryptedFile1 = new ActiveFile(AxCryptEnvironment.Current.FileInfo(@"C:\Encrypted-txt.axx"), AxCryptEnvironment.Current.FileInfo(@"C:\Decrypted.txt"), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted, null);
+            state.Add(decryptedFile1);
+
+            ActiveFile decryptedFile2 = new ActiveFile(AxCryptEnvironment.Current.FileInfo(@"C:\Encrypted2-txt.axx"), AxCryptEnvironment.Current.FileInfo(@"C:\Decrypted2.txt"), new AesKey(), ActiveFileStatus.DecryptedIsPendingDelete, null);
+            state.Add(decryptedFile2);
+
+            ActiveFile notDecryptedFile = new ActiveFile(AxCryptEnvironment.Current.FileInfo(@"C:\Encrypted3-txt.axx"), AxCryptEnvironment.Current.FileInfo(@"C:\Decrypted3.txt"), new AesKey(), ActiveFileStatus.NotDecrypted, null);
+            state.Add(notDecryptedFile);
+
+            ActiveFile errorFile = new ActiveFile(AxCryptEnvironment.Current.FileInfo(@"C:\Encrypted4-txt.axx"), AxCryptEnvironment.Current.FileInfo(@"C:\Decrypted4.txt"), new AesKey(), ActiveFileStatus.Error, null);
+            state.Add(errorFile);
+
+            IList<ActiveFile> decryptedFiles = state.DecryptedActiveFiles;
+            Assert.That(decryptedFiles.Count, Is.EqualTo(2), "There should be two decrypted files.");
+            Assert.That(decryptedFiles.Contains(decryptedFile1), "A file marked as AssumedOpenAndDecrypted should be found.");
+            Assert.That(decryptedFiles.Contains(decryptedFile2), "A file marked as DecryptedIsPendingDelete should be found.");
+            Assert.That(decryptedFiles.Contains(notDecryptedFile), Is.Not.True, "A file marked as NotDecrypted should not be found.");
+        }
     }
 }

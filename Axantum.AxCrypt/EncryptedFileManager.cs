@@ -85,20 +85,6 @@ namespace Axantum.AxCrypt
             return OpenInternal(file, keys, progress);
         }
 
-        public IList<ActiveFile> FindOpenFiles()
-        {
-            List<ActiveFile> activeFiles = new List<ActiveFile>();
-            FileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFile) =>
-            {
-                if (activeFile.Status.HasFlag(ActiveFileStatus.DecryptedIsPendingDelete) || activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted))
-                {
-                    activeFiles.Add(activeFile);
-                }
-                return activeFile;
-            });
-            return activeFiles;
-        }
-
         public bool UpdateActiveFileIfKeyMatchesThumbprint(AesKey key)
         {
             bool keyMatch = false;
