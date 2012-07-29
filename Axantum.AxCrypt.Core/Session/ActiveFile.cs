@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Core.Session
             DecryptedFileInfo = AxCryptEnvironment.Current.FileInfo(decryptedFileInfo.FullName);
             Key = key;
             Status = status;
-            LastAccessTimeUtc = AxCryptEnvironment.Current.UtcNow;
+            LastActivityTimeUtc = AxCryptEnvironment.Current.UtcNow;
             Process = process;
             LastEncryptionWriteTimeUtc = lastWriteTimeUtc;
         }
@@ -228,7 +228,7 @@ namespace Axantum.AxCrypt.Core.Session
         public ActiveFileStatus Status { get; private set; }
 
         [DataMember]
-        public DateTime LastAccessTimeUtc { get; private set; }
+        public DateTime LastActivityTimeUtc { get; private set; }
 
         /// <summary>
         /// Records the Last Write Time that was valid at the most recent encryption update of the encrypted file.

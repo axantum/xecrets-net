@@ -46,6 +46,7 @@ namespace Axantum.AxCrypt.Core.System
             {
                 return;
             }
+            _process.EnableRaisingEvents = true;
             _process.Exited += new EventHandler(Process_Exited);
         }
 

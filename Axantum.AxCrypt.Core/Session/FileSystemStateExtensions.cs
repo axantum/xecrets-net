@@ -73,7 +73,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     return activeFile;
                 }
-                if (AxCryptEnvironment.Current.UtcNow - activeFile.LastAccessTimeUtc <= new TimeSpan(0, 0, 5))
+                if (AxCryptEnvironment.Current.UtcNow - activeFile.LastActivityTimeUtc <= new TimeSpan(0, 0, 5))
                 {
                     return activeFile;
                 }

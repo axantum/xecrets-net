@@ -164,8 +164,8 @@ namespace Axantum.AxCrypt
                 }
 
                 ListViewItem.ListViewSubItem dateColumn = new ListViewItem.ListViewSubItem();
-                dateColumn.Text = activeFile.LastAccessTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
-                dateColumn.Tag = activeFile.LastAccessTimeUtc;
+                dateColumn.Text = activeFile.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
+                dateColumn.Tag = activeFile.LastActivityTimeUtc;
                 dateColumn.Name = "Date";                             //MLHIDE
                 item.SubItems.Add(dateColumn);
 

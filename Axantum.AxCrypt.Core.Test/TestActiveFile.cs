@@ -113,7 +113,7 @@ namespace Axantum.AxCrypt.Core.Test
                     Assert.That(otherFile.DecryptedFileInfo.FullName, Is.EqualTo(activeFile.DecryptedFileInfo.FullName), "This should be copied from the original instance.");
                     Assert.That(otherFile.EncryptedFileInfo.FullName, Is.EqualTo(activeFile.EncryptedFileInfo.FullName), "This should be copied from the original instance.");
                     Assert.That(otherFile.Key, Is.EqualTo(activeFile.Key), "This should be copied from the original instance.");
-                    Assert.That(otherFile.LastAccessTimeUtc, Is.GreaterThan(activeFile.LastAccessTimeUtc), "This should not be copied from the original instance, but should be a later time.");
+                    Assert.That(otherFile.LastActivityTimeUtc, Is.GreaterThan(activeFile.LastActivityTimeUtc), "This should not be copied from the original instance, but should be a later time.");
                     Assert.That(otherFile.Process, Is.EqualTo(process), "This should be copied from the original instance.");
                     Assert.That(activeFile.Process, Is.Null, "The process should only be owned by one instance at a time.");
                     Assert.That(otherFile.ThumbprintMatch(activeFile.Key), Is.True, "The thumbprints should match.");
