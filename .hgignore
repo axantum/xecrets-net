@@ -6,3 +6,4 @@ obj
 ml_temp_*.xml
 _ReSharper.*
 *.user
+Axantum.AxCrypt/Properties/AssemblyInfo.cs
