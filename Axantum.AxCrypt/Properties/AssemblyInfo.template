@@ -6,8 +6,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AxCrypt")]
-[assembly: AssemblyDescription("AxCrypt File Encryption")]
+[assembly: AssemblyTitle("AxCrypt.NET")]
+[assembly: AssemblyDescription("AxCrypt File Encryption for .NET and Mono")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Axantum Software AB")]
 [assembly: AssemblyProduct("AxCrypt")]

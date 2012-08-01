@@ -81,6 +81,9 @@
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>..\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
@@ -173,13 +176,28 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
   -->
   <UsingTask TaskName="HgVersionFile" AssemblyFile="..\MSBuildVersioning.dll" />
-  <Target Name="BeforeBuild">
+  <Target Name="_AxFixupVersion" Inputs="Properties\AssemblyInfo.template;$(MSBuildProjectFullPath)" Outputs="Properties\AssemblyInfo.cs">
     <HgVersionFile TemplateFile="Properties\AssemblyInfo.template" DestinationFile="Properties\AssemblyInfo.cs" IgnoreToolNotFound="true" />
   </Target>
+  <Target Name="BeforeBuild" DependsOnTargets="_AxFixupVersion">
+  </Target>
+  <Target Name="_AxFindIlMergeAssemblies">
+    <CreateItem Include="@(ReferencePath)" Condition="'%(CopyLocal)'=='true'">
+      <Output TaskParameter="Include" ItemName="IlmergeAssemblies" />
+    </CreateItem>
+    <PropertyGroup>
+      <_AxFlagFile>@(MainAssembly)</_AxFlagFile>
+      <_AxFlagFile>$(_AxFlagFile).flag</_AxFlagFile>
+    </PropertyGroup>
+  </Target>
+  <Target Name="_AxIlMerge" Inputs="$(MSBuildProjectFullPath);@(IntermediateAssembly);@(IlmergeAssemblies)" Outputs="$(_AxFlagFile)" DependsOnTargets="_AxFindIlMergeAssemblies">
+    <Exec Command="&quot;..\Ilmerge.exe&quot; /targetplatform:v4,&quot;$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client&quot; /out:@(MainAssembly) &quot;@(IntermediateAssembly)&quot; @(IlmergeAssemblies->'&quot;%(FullPath)&quot;', ' ')" />
+    <Touch AlwaysCreate="true" Files="$(_AxFlagFile)" />
+    <!--Delete Files="@(ReferenceCopyLocalPaths->'$(OutDir)%(DestinationSubDirectory)%(Filename)%(Extension)')"/-->
+  </Target>
+  <Target Name="AfterBuild" DependsOnTargets="_AxIlMerge">
+  </Target>
+  <Target Name="_CopyFilesMarkedCopyLocal" />
 </Project>
