@@ -27,6 +27,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
 namespace Axantum.AxCrypt.Core.System
@@ -99,6 +100,7 @@ namespace Axantum.AxCrypt.Core.System
             }
         }
 
+        [SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands", Justification = "The code has full trust anyway.")]
         public static void SetLevel(TraceLevel level)
         {
             _switch.Level = level;

@@ -27,8 +27,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using System.Security;
+using System.Security.Permissions;
 using System.Text;
 using Axantum.AxCrypt.Core.System;
 
@@ -38,6 +41,7 @@ namespace Axantum.AxCrypt.Core.IO
     {
         private FileSystemWatcher _temporaryDirectoryWatcher;
 
+        [SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands", Justification = "The code has full trust anyway.")]
         public FileWatcher(string path)
         {
             _temporaryDirectoryWatcher = new FileSystemWatcher(path);

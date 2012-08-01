@@ -77,6 +77,7 @@
     <Compile Include="FakeRuntimeEnvironment.cs" />
     <Compile Include="FakeRuntimeFileInfo.cs" />
     <Compile Include="FakeTiming.cs" />
+    <Compile Include="FakeWebCaller.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -119,7 +120,7 @@
     <Compile Include="TestPassphrase.cs" />
     <Compile Include="TestPreambleHeaderBlock.cs" />
     <Compile Include="TestProgressContext.cs" />
-    <Compile Include="TestProgressEventArgs.cs" />
+    <Compile Include="TestProgressEventArgsTest.cs" />
     <Compile Include="TestProgressStream.cs" />
     <Compile Include="TestRuntimeEnvironment.cs" />
     <Compile Include="TestRuntimeFileInfo.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="TestSubkey.cs" />
     <Compile Include="TestUnicodeFileNameInfoHeaderBlock .cs" />
     <Compile Include="TestUnrecognizedHeaderBlock .cs" />
+    <Compile Include="TestUpdateCheck.cs" />
     <Compile Include="TestVersionHeaderBlock .cs" />
     <Compile Include="TestWorkerArguments.cs" />
   </ItemGroup>

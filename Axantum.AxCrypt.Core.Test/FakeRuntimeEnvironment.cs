@@ -177,5 +177,12 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         public FakeTiming CurrentTiming { get; set; }
+
+        public Func<IWebCaller> WebCallerCreator { get; set; }
+
+        public IWebCaller CreateWebCaller()
+        {
+            return WebCallerCreator();
+        }
     }
 }

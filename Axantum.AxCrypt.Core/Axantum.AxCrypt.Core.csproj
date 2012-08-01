@@ -76,6 +76,8 @@
     <Compile Include="IO\FileWatcher.cs" />
     <Compile Include="IO\FileWatcherEventArgs.cs" />
     <Compile Include="IO\IFileWatcher.cs" />
+    <Compile Include="IO\IWebCaller.cs" />
+    <Compile Include="IO\WebCaller.cs" />
     <Compile Include="Session\ChangedEventMode.cs" />
     <Compile Include="System\AxCryptException.cs" />
     <Compile Include="AxCryptFile.cs" />
@@ -148,6 +150,9 @@
     <Compile Include="UI\KnownKeys.cs" />
     <Compile Include="UI\ProgressContext.cs" />
     <Compile Include="UI\ProgressEventArgs.cs" />
+    <Compile Include="UI\UpdateCheck.cs" />
+    <Compile Include="UI\VersionEventArgs.cs" />
+    <Compile Include="UI\VersionResponse.cs" />
     <Compile Include="UI\WorkerArguments.cs" />
   </ItemGroup>
   <ItemGroup>

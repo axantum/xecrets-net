@@ -39,6 +39,7 @@ namespace Axantum.AxCrypt.Core.System
     {
         private Process _process;
 
+        [SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands", Justification = "The code has full trust anyway.")]
         public Launcher(string path)
         {
             _process = Process.Start(path);
@@ -59,6 +60,7 @@ namespace Axantum.AxCrypt.Core.System
 
         public event EventHandler Exited;
 
+        [SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands", Justification = "The code has full trust anyway.")]
         public bool HasExited
         {
             get { return _process.HasExited; }
@@ -97,6 +99,7 @@ namespace Axantum.AxCrypt.Core.System
             _process = null;
         }
 
+        [SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands", Justification = "The code has full trust anyway.")]
         public string Path
         {
             get { return _process.StartInfo.FileName; }

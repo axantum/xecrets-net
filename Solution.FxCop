@@ -22,9 +22,13 @@
   <TargetFrameworkVersion>3.5</TargetFrameworkVersion>
  </ProjectOptions>
  <Targets>
+  <AssemblyReferenceDirectories>
+   <Directory>$(ProjectDir)/Axantum.AxCrypt.Core/bin/Debug/</Directory>
+   <Directory>$(ProjectDir)/Axantum.AxCrypt.Core/bin/Debug/</Directory>
+  </AssemblyReferenceDirectories>
   <Target Name="$(ProjectDir)/Axantum.AxCrypt.Core.Test/bin/Debug/Axantum.AxCrypt.Core.Test.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/Axantum.AxCrypt.Core/bin/Debug/Axantum.AxCrypt.Core.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/Axantum.AxCrypt/bin/Debug/AxCrypt.exe" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/Axantum.AxCrypt/bin/Debug/Axantum.AxCrypt.Core.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/Axantum.AxCrypt/bin/Debug/Axantum.AxCrypt.exe" Analyze="True" AnalyzeAllChildren="True" />
  </Targets>
  <Rules>
   <RuleFiles>

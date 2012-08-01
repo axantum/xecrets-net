@@ -35,7 +35,7 @@ using NUnit.Framework;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public static class TestProgressEventArgs
+    public static class TestProgressEventArgsTest
     {
         [Test]
         public static void TestArgumentOutOfRange()

@@ -44,7 +44,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestIsLittleEndian()
+        public static void TestIfIsLittleEndian()
         {
             Assert.That(AxCryptEnvironment.Current.IsLittleEndian, Is.EqualTo(BitConverter.IsLittleEndian), "Checking endianess.");
         }

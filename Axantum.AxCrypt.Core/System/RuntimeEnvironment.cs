@@ -144,5 +144,11 @@ namespace Axantum.AxCrypt.Core.System
         {
             return new Timing();
         }
+
+        [ExcludeFromCodeCoverage]
+        public IWebCaller CreateWebCaller()
+        {
+            return new WebCaller();
+        }
     }
 }

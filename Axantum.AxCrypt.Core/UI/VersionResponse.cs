@@ -26,35 +26,46 @@
 #endregion Coypright and License
 
 using System;
-using System.IO;
-using Axantum.AxCrypt.Core.IO;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Net;
+using System.Runtime.Serialization;
+using System.Text;
 
-namespace Axantum.AxCrypt.Core.System
+namespace Axantum.AxCrypt.Core.UI
 {
-    public interface IRuntimeEnvironment
+    [DataContract]
+    public class VersionResponse
     {
-        bool IsLittleEndian { get; }
+        /// <summary>
+        /// Status
+        /// </summary>
+        [DataMember(Name = "S")]
+        public int Status { get; set; }
 
-        byte[] GetRandomBytes(int count);
+        /// <summary>
+        /// Message
+        /// </summary>
+        [DataMember(Name = "M")]
+        public string Message { get; set; }
 
-        IRuntimeFileInfo FileInfo(string path);
+        /// <summary>
+        /// Url where new version may be found
+        /// </summary>
+        [DataMember(Name = "U")]
+        public string WebReference { get; set; }
 
-        string AxCryptExtension { get; }
+        /// <summary>
+        /// String serialization of the full version
+        /// </summary>
+        [DataMember(Name = "V")]
+        public string Version { get; set; }
 
-        bool IsDesktopWindows { get; }
-
-        int StreamBufferSize { get; }
-
-        IFileWatcher FileWatcher(string path);
-
-        IRuntimeFileInfo TemporaryDirectoryInfo { get; }
-
-        DateTime UtcNow { get; }
-
-        ILauncher Launch(string path);
-
-        ITiming StartTiming();
-
-        IWebCaller CreateWebCaller();
+        /// <summary>
+        /// The revision only
+        /// </summary>
+        [DataMember(Name = "R")]
+        public int Revision { get; set; }
     }
 }
