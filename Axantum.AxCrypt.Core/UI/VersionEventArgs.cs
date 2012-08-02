@@ -34,20 +34,17 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public class VersionEventArgs : EventArgs
     {
-        public VersionEventArgs(bool newerWasFound, Version version, Uri url, DateTime lastCheckUtc)
+        public VersionEventArgs(Version version, Uri updateWebPageUrl, VersionUpdateStatus versionUpdateStatus)
         {
-            NewerWasFound = newerWasFound;
             Version = version;
-            Url = url;
-            LastCheckUtc = lastCheckUtc;
+            UpdateWebPageUrl = updateWebPageUrl;
+            VersionUpdateStatus = versionUpdateStatus;
         }
-
-        public bool NewerWasFound { get; private set; }
 
         public Version Version { get; private set; }
 
-        public DateTime LastCheckUtc { get; private set; }
+        public Uri UpdateWebPageUrl { get; private set; }
 
-        public Uri Url { get; private set; }
+        public VersionUpdateStatus VersionUpdateStatus { get; private set; }
     }
 }

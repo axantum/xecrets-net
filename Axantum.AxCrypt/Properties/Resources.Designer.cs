@@ -249,6 +249,20 @@ namespace Axantum.AxCrypt.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap RefreshGreen {
+            get {
+                object obj = ResourceManager.GetObject("RefreshGreen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap RefreshRed {
+            get {
+                object obj = ResourceManager.GetObject("RefreshRed", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Double-click to restore the AxCrypt application window..
         /// </summary>

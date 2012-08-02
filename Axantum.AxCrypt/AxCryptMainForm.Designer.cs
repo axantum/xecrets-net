@@ -37,6 +37,8 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.CloseAndRemoveOpenFilesButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.UpdateToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -102,6 +104,8 @@
             this.toolStripSeparator1,
             this.CloseAndRemoveOpenFilesButton,
             this.toolStripSeparator4,
+            this.UpdateToolStripButton,
+            this.toolStripSeparator5,
             this.helpToolStripButton});
             this.toolStrip1.Name = "toolStrip1";
             // 
@@ -142,6 +146,19 @@
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             resources.ApplyResources(this.toolStripSeparator4, "toolStripSeparator4");
+            // 
+            // UpdateToolStripButton
+            // 
+            this.UpdateToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.UpdateToolStripButton, "UpdateToolStripButton");
+            this.UpdateToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.RefreshGreen;
+            this.UpdateToolStripButton.Name = "UpdateToolStripButton";
+            this.UpdateToolStripButton.Click += new System.EventHandler(this.UpdateToolStripButton_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            resources.ApplyResources(this.toolStripSeparator5, "toolStripSeparator5");
             // 
             // helpToolStripButton
             // 
@@ -194,10 +211,10 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
             // 
-            // CloseStripMenuItem
+            // CloseOpenFilesMenuItem
             // 
-            resources.ApplyResources(this.CloseOpenFilesMenuItem, "CloseStripMenuItem");
-            this.CloseOpenFilesMenuItem.Name = "CloseStripMenuItem";
+            resources.ApplyResources(this.CloseOpenFilesMenuItem, "CloseOpenFilesMenuItem");
+            this.CloseOpenFilesMenuItem.Name = "CloseOpenFilesMenuItem";
             this.CloseOpenFilesMenuItem.Click += new System.EventHandler(this.CloseOpenFilesMenuItem_Click);
             // 
             // toolStripSeparator3
@@ -383,10 +400,10 @@
             this.RecentFilesContextMenu.Name = "RecentFilesContextMenu";
             resources.ApplyResources(this.RecentFilesContextMenu, "RecentFilesContextMenu");
             // 
-            // removeToolStripMenuItem
+            // RemoveRecentFileMenuItem
             // 
-            this.RemoveRecentFileMenuItem.Name = "removeToolStripMenuItem";
-            resources.ApplyResources(this.RemoveRecentFileMenuItem, "removeToolStripMenuItem");
+            this.RemoveRecentFileMenuItem.Name = "RemoveRecentFileMenuItem";
+            resources.ApplyResources(this.RemoveRecentFileMenuItem, "RemoveRecentFileMenuItem");
             this.RemoveRecentFileMenuItem.Click += new System.EventHandler(this.RemoveRecentFileMenuItem_Click);
             // 
             // OpenFilesContextMenu
@@ -502,6 +519,8 @@
         private System.Windows.Forms.ToolStripMenuItem LanguageMenuItem;
         private System.Windows.Forms.ToolStripMenuItem EnglishMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SwedishMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripButton UpdateToolStripButton;
     }
 }
 

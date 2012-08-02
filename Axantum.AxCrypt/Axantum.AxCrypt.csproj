@@ -171,12 +171,12 @@
       <Name>Axantum.AxCrypt.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Axantum.AxCrypt_ml.xml" />
     <Content Include="AxCrypt.ico" />
+    <Content Include="Resources\RefreshRed.png" />
+    <None Include="Resources\RefreshGreen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

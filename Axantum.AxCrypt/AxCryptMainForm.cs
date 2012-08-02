@@ -52,6 +52,8 @@ namespace Axantum.AxCrypt
     /// </summary>
     public partial class AxCryptMainForm : Form
     {
+        private Uri _updateUrl = Settings.Default.UpdateUrl;
+
         public static MessageBoxOptions MessageBoxOptions { get; private set; }
 
         public void FormatTraceMessage(string message)
@@ -84,12 +86,43 @@ namespace Axantum.AxCrypt
             Trace.Listeners.Add(traceListener);
 
             TrackProcess = AxCryptEnvironment.Current.IsDesktopWindows;
-            EncryptedFileManager.Changed += new EventHandler<EventArgs>(ThreadFacade.EncryptedFileManager_Changed);
-            EncryptedFileManager.FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseAlways, TrackProcess, new ProgressContext());
 
             RestoreUserPreferences();
 
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
+
+            EncryptedFileManager.Changed += new EventHandler<EventArgs>(ThreadFacade.EncryptedFileManager_Changed);
+            EncryptedFileManager.FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseAlways, TrackProcess, new ProgressContext());
+
+            EncryptedFileManager.VersionChecked += new EventHandler<VersionEventArgs>(ThreadFacade.EncryptedFileManager_VersionChecked);
+            EncryptedFileManager.VersionCheckInBackground();
+        }
+
+        public void UpdateVersionStatus(VersionUpdateStatus status, Uri url, Version version)
+        {
+            _updateUrl = url;
+            switch (status)
+            {
+                case VersionUpdateStatus.IsUpToDateOrRecentlyChecked:
+                    UpdateToolStripButton.ToolTipText = "No need to check for updates.";
+                    UpdateToolStripButton.Enabled = false;
+                    break;
+                case VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck:
+                    UpdateToolStripButton.ToolTipText = "Your version is old. Please click to check for a newer version.";
+                    UpdateToolStripButton.Image = Resources.RefreshRed;
+                    UpdateToolStripButton.Enabled = true;
+                    break;
+                case VersionUpdateStatus.NewerVersionIsAvailable:
+                    UpdateToolStripButton.ToolTipText = "Version {0} is available! Click to download.".InvariantFormat(version);
+                    UpdateToolStripButton.Image = Resources.RefreshRed;
+                    UpdateToolStripButton.Enabled = true;
+                    break;
+                case VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck:
+                    UpdateToolStripButton.ToolTipText = "Click to check for a newer version.";
+                    UpdateToolStripButton.Image = Resources.RefreshGreen;
+                    UpdateToolStripButton.Enabled = true;
+                    break;
+            }
         }
 
         private void AxCryptMainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -807,6 +840,14 @@ namespace Axantum.AxCrypt
                     break;
                 }
             }
+        }
+
+        private void UpdateToolStripButton_Click(object sender, EventArgs e)
+        {
+            EncryptedFileManager.FileSystemState.LastVersionCheckUtc = AxCryptEnvironment.Current.UtcNow;
+            EncryptedFileManager.FileSystemState.Save();
+            UpdateVersionStatus(VersionUpdateStatus.IsUpToDateOrRecentlyChecked, _updateUrl, new Version());
+            Process.Start(_updateUrl.ToString());
         }
     }
 }

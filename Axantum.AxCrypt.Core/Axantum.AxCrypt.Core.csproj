@@ -153,6 +153,7 @@
     <Compile Include="UI\UpdateCheck.cs" />
     <Compile Include="UI\VersionEventArgs.cs" />
     <Compile Include="UI\VersionResponse.cs" />
+    <Compile Include="UI\VersionUpdateStatus.cs" />
     <Compile Include="UI\WorkerArguments.cs" />
   </ItemGroup>
   <ItemGroup>

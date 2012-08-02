@@ -34,57 +34,141 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.System;
 
 namespace Axantum.AxCrypt.Core.UI
 {
     public class UpdateCheck : IDisposable
     {
+        public static readonly Version VersionUnknown = new Version();
+
         private Version _currentVersion;
 
-        private Uri _url;
+        private Uri _webServiceUrl;
 
-        public UpdateCheck(Version currentVersion, Uri url)
+        private Uri _updateWebPageUrl;
+
+        private DateTime _lastCheckUtc;
+
+        public UpdateCheck(Version currentVersion, Uri webServiceUrl, Uri updateWebPageUrl, DateTime lastCheckUtc)
         {
             _currentVersion = currentVersion;
-            _url = url;
+            _webServiceUrl = webServiceUrl;
+            _updateWebPageUrl = updateWebPageUrl;
+            _lastCheckUtc = lastCheckUtc;
         }
 
         public event EventHandler<VersionEventArgs> VersionUpdate;
 
-        private ManualResetEvent _done = new ManualResetEvent(false);
+        private ManualResetEvent _done = new ManualResetEvent(true);
 
-        public void Check()
+        /// <summary>
+        /// Perform a background version check. The VersionUpdate event is guaranteed to be
+        /// raised, regardless of response and result. If a check is already in progress, the
+        /// later call is ignored and only one check is performed.
+        /// </summary>
+        public void CheckInBackground()
         {
-            _done.Reset();
+            if (_done == null)
+            {
+                throw new ObjectDisposedException("_done");
+            }
+            if (_lastCheckUtc.AddDays(1) >= AxCryptEnvironment.Current.UtcNow)
+            {
+                OnVersionUpdate(new VersionEventArgs(_currentVersion, _updateWebPageUrl, CalculateStatus(_currentVersion)));
+                return;
+            }
+
+            lock (_done)
+            {
+                if (!_done.WaitOne(TimeSpan.Zero))
+                {
+                    return;
+                }
+                _done.Reset();
+            }
             ThreadPool.QueueUserWorkItem((object state) =>
             {
+                try
+                {
+                    Version newVersion = CheckWebForNewVersion();
+                    OnVersionUpdate(new VersionEventArgs(newVersion, _updateWebPageUrl, CalculateStatus(newVersion)));
+                    if (newVersion != VersionUnknown)
+                    {
+                        _lastCheckUtc = AxCryptEnvironment.Current.UtcNow;
+                    }
+                }
+                finally
+                {
+                    _done.Set();
+                }
+            });
+        }
+
+        private Version CheckWebForNewVersion()
+        {
+            Version newVersion = VersionUnknown;
+            try
+            {
                 IWebCaller webCaller = AxCryptEnvironment.Current.CreateWebCaller();
-                string result = webCaller.Go(_url);
+                string result = webCaller.Go(_webServiceUrl);
                 DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(VersionResponse));
                 VersionResponse versionResponse;
                 using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(result)))
                 {
                     versionResponse = (VersionResponse)serializer.ReadObject(stream);
                 }
-                CheckVersion(versionResponse);
-                _done.Set();
-            });
+                newVersion = ParseVersion(versionResponse);
+                _updateWebPageUrl = new Uri(versionResponse.WebReference);
+            }
+            catch (Exception ex)
+            {
+                if (Logging.IsWarningEnabled)
+                {
+                    Logging.Warning("Failed call to check for new version with exception {0}.".InvariantFormat(ex.Message));
+                }
+            }
+            return newVersion;
         }
 
-        public void Wait()
+        /// <summary>
+        /// Wait for the background check (if any) to be complete. When this method returns, the
+        /// VersionUpdate event has already been raised.
+        /// </summary>
+        public void WaitForBackgroundCheckComplete()
         {
+            if (_done == null)
+            {
+                throw new ObjectDisposedException("_done");
+            }
             _done.WaitOne();
         }
 
-        private void CheckVersion(VersionResponse versionResponse)
+        private Version ParseVersion(VersionResponse versionResponse)
         {
             Version version;
             if (!Version.TryParse(versionResponse.Version, out version))
             {
-                return;
+                version = VersionUnknown;
             }
+            return version;
+        }
 
-            OnVersionUpdate(new VersionEventArgs(version > _currentVersion, version, new Uri(versionResponse.WebReference), AxCryptEnvironment.Current.UtcNow));
+        private VersionUpdateStatus CalculateStatus(Version version)
+        {
+            if (version > _currentVersion)
+            {
+                return VersionUpdateStatus.NewerVersionIsAvailable;
+            }
+            if (version != VersionUnknown)
+            {
+                return VersionUpdateStatus.IsUpToDateOrRecentlyChecked;
+            }
+            if (_lastCheckUtc.AddDays(30) >= AxCryptEnvironment.Current.UtcNow)
+            {
+                return VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck;
+            }
+            return VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck;
         }
 
         protected virtual void OnVersionUpdate(VersionEventArgs e)
@@ -98,16 +182,15 @@ namespace Axantum.AxCrypt.Core.UI
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposing)
-            {
-                return;
-            }
             if (_done == null)
             {
                 return;
             }
-            _done.Dispose();
-            _done = null;
+            if (disposing)
+            {
+                _done.Dispose();
+                _done = null;
+            }
         }
 
         #region IDisposable Members

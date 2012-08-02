@@ -30,12 +30,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.System;
 using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Properties;
 
 namespace Axantum.AxCrypt
 {
@@ -46,9 +48,13 @@ namespace Axantum.AxCrypt
     {
         public event EventHandler<EventArgs> Changed;
 
+        public event EventHandler<VersionEventArgs> VersionChecked;
+
         public FileSystemState FileSystemState { get; private set; }
 
         private IFileWatcher _fileWatcher;
+
+        private UpdateCheck _updateCheck;
 
         private bool _disposed = false;
 
@@ -73,6 +79,24 @@ namespace Axantum.AxCrypt
 
             _fileWatcher = AxCryptEnvironment.Current.FileWatcher(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName);
             _fileWatcher.FileChanged += new EventHandler<FileWatcherEventArgs>(File_Changed);
+
+            Version myVersion = Assembly.GetExecutingAssembly().GetName().Version;
+            _updateCheck = new UpdateCheck(myVersion, Settings.Default.AxCrypt2VersionCheckUrl, Settings.Default.UpdateUrl, FileSystemState.LastVersionCheckUtc);
+            _updateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(UpdateCheck_VersionUpdate);
+        }
+
+        private void UpdateCheck_VersionUpdate(object sender, VersionEventArgs e)
+        {
+            EventHandler<VersionEventArgs> handler = VersionChecked;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        public void VersionCheckInBackground()
+        {
+            _updateCheck.CheckInBackground();
         }
 
         private void File_Changed(object sender, EventArgs e)
@@ -319,6 +343,11 @@ namespace Axantum.AxCrypt
                 {
                     _fileWatcher.Dispose();
                     _fileWatcher = null;
+                }
+                if (_updateCheck != null)
+                {
+                    _updateCheck.Dispose();
+                    _updateCheck = null;
                 }
             }
             _disposed = true;

@@ -29,38 +29,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Axantum.AxCrypt.Core.IO;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Core.UI
 {
-    internal class FakeWebCaller : IWebCaller
+    public enum VersionUpdateStatus
     {
-        private string _result;
-
-        public event EventHandler<EventArgs> Calling;
-
-        public FakeWebCaller(string result)
-        {
-            _result = result;
-        }
-
-        #region IWebCaller Members
-
-        public string Go(Uri url)
-        {
-            OnCalling();
-            return _result;
-        }
-
-        #endregion IWebCaller Members
-
-        private void OnCalling()
-        {
-            EventHandler<EventArgs> handler = Calling;
-            if (handler != null)
-            {
-                handler(this, new EventArgs());
-            }
-        }
+        IsUpToDateOrRecentlyChecked,
+        NewerVersionIsAvailable,
+        ShortTimeSinceLastSuccessfulCheck,
+        LongTimeSinceLastSuccessfulCheck,
     }
 }

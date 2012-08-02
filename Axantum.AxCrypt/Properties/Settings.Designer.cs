@@ -46,5 +46,23 @@ namespace Axantum.AxCrypt.Properties {
                 this["RecentFilesDocumentWidth"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.axantum.com/Xecrets/RestApi.ashx/axcrypt2version")]
+        public global::System.Uri AxCrypt2VersionCheckUrl {
+            get {
+                return ((global::System.Uri)(this["AxCrypt2VersionCheckUrl"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.axantum.com/")]
+        public global::System.Uri UpdateUrl {
+            get {
+                return ((global::System.Uri)(this["UpdateUrl"]));
+            }
+        }
     }
 }

@@ -63,6 +63,13 @@ namespace Axantum.AxCrypt
             InvokeIfRequired(_mainForm.RestartTimer);
         }
 
+        public void EncryptedFileManager_VersionChecked(object sender, VersionEventArgs e)
+        {
+            _mainForm.EncryptedFileManager.FileSystemState.LastVersionCheckUtc = AxCryptEnvironment.Current.UtcNow;
+            _mainForm.EncryptedFileManager.FileSystemState.Save();
+            InvokeIfRequired(() => { _mainForm.UpdateVersionStatus(e.VersionUpdateStatus, e.UpdateWebPageUrl, e.Version); });
+        }
+
         public void DoBackgroundWork(string displayText, Action<WorkerArguments> action, RunWorkerCompletedEventHandler completedHandler)
         {
             BackgroundWorker worker = CreateWorker(
