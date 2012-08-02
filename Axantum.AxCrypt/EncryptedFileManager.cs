@@ -73,7 +73,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            string fileSystemStateFullName = Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, "FileSystemState.xml");
+            string fileSystemStateFullName = Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, "FileSystemState.xml"); //MLHIDE
             FileSystemState = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(fileSystemStateFullName));
             FileSystemState.Changed += new EventHandler<EventArgs>(File_Changed);
 
@@ -246,7 +246,7 @@ namespace Axantum.AxCrypt
             }
             else
             {
-                destinationFolder = Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + @"\");
+                destinationFolder = Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + @"\"); //MLHIDE
             }
             IRuntimeFileInfo destinationFolderInfo = AxCryptEnvironment.Current.FileInfo(destinationFolder);
             destinationFolderInfo.CreateDirectory();

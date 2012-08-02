@@ -120,7 +120,7 @@
   <data name="CloseAndRemoveOpenFilesButton.ToolTipText" xml:space="preserve">
     <value>Det finns öppna, dekrypterade filer. Klicka här för att stänga och ta brot de, men säkerställ först att de inte används. Fliken 'Öppna Dokument' visar vilka det gäller.</value>
   </data>
-  <data name="CloseStripMenuItem.Text" xml:space="preserve">
+  <data name="CloseOpenFilesMenuItem.Text" xml:space="preserve">
     <value>Stäng</value>
   </data>
   <data name="DecryptedFile.Text" xml:space="preserve">
@@ -149,9 +149,6 @@
   </data>
   <data name="helpToolStripButton.Text" xml:space="preserve">
     <value>&amp;Hjälp</value>
-  </data>
-  <data name="helpToolStripButton.ToolTipText" xml:space="preserve">
-    <value>Hjälp</value>
   </data>
   <data name="helpToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Hjälp</value>
@@ -184,7 +181,7 @@
   <data name="RecentFilesTab.Text" xml:space="preserve">
     <value>Nyligen Öppnade</value>
   </data>
-  <data name="removeToolStripMenuItem.Text" xml:space="preserve">
+  <data name="RemoveRecentFileMenuItem.Text" xml:space="preserve">
     <value>Ta Bort</value>
   </data>
   <data name="toolStripButtonDecrypt.Text" xml:space="preserve">
@@ -204,6 +201,9 @@
   </data>
   <data name="toolStripButtonOpenEncrypted.ToolTipText" xml:space="preserve">
     <value>Klicka eller dra och släpp filer här för att dekrypera och öppna i sin applikation</value>
+  </data>
+  <data name="UpdateToolStripButton.Text" xml:space="preserve">
+    <value>Uppdatera</value>
   </data>
   <data name="WatchedFoldersTab.Text" xml:space="preserve">
     <value>Krypterade Mappar</value>

@@ -223,6 +223,33 @@
   <GeneralIds>
     <StringID>74</StringID>
   </GeneralIds>
+  <GeneralIds>
+    <StringID>75</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>76</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>77</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>78</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>79</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>80</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>81</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>82</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>83</StringID>
+  </GeneralIds>
   <Languages>
     <LanguageID>29</LanguageID>
     <LanguageName>Swedish</LanguageName>
@@ -874,8 +901,8 @@
   <GeneralTexts>
     <StringID>8</StringID>
     <LanguageID>9</LanguageID>
-    <LanguageText>toolStripButton1</LanguageText>
-    <Status>1</Status>
+    <LanguageText>Update</LanguageText>
+    <Status>2</Status>
   </GeneralTexts>
   <GeneralTexts>
     <StringID>9</StringID>
@@ -1082,6 +1109,108 @@ the Open Files tab to see the list of files.</LanguageText>
     <LanguageID>29</LanguageID>
     <LanguageText>Det finns öppna, dekrypterade filer. Klicka här för att stänga och ta brot de, men säkerställ först att de inte används. Fliken 'Öppna Dokument' visar vilka det gäller.</LanguageText>
     <Status>2</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>75</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>en</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>76</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>sv</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>77</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>No need to check for updates.</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>77</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>Inget uppdateringsbehov.</LanguageText>
+    <Status>2</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>78</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Your version is old. Please click to check for a newer version.</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>78</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>Du har en gammal version. Klicka för att kontrollera om det finns en nyare.</LanguageText>
+    <Status>2</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>79</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Version {0} is available! Click to download.</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>79</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>Version {0} finns tillgänglig! Klicka för att komma till nedladdningssidan.</LanguageText>
+    <Status>2</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>80</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Click to check for a newer version.</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>80</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>Klicka för att kontrollera om det finns en ny version.</LanguageText>
+    <Status>2</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>8</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>Uppdatera</LanguageText>
+    <Status>2</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>81</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>No need to check for updates.</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>82</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Your version is old. Please click to check for a newer version.</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>83</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Click to check for a newer version.</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>81</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>Inget uppdateringsbehov.</LanguageText>
+    <Status>3</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>82</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>Du har en gammal version. Klicka för att kontrollera om det finns en nyare.</LanguageText>
+    <Status>3</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>83</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>Klicka för att kontrollera om det finns en ny version.</LanguageText>
+    <Status>3</Status>
   </GeneralTexts>
   <Properties>
     <Component>AxCryptMainForm.cs</Component>
@@ -1733,6 +1862,78 @@ the Open Files tab to see the list of files.</LanguageText>
     <StringID>72</StringID>
     <Selected>true</Selected>
     <ResourceName>LanguageChangeRestartPrompt</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AxCryptMainForm.cs</Component>
+    <Name>EnglishMenuItem.Tag</Name>
+    <StringID>75</StringID>
+    <Selected>true</Selected>
+    <ResourceName>EnglishMenuItem.Tag</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AxCryptMainForm.cs</Component>
+    <Name>SwedishMenuItem.Tag</Name>
+    <StringID>76</StringID>
+    <Selected>true</Selected>
+    <ResourceName>SwedishMenuItem.Tag</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AxCryptMainForm.cs</Component>
+    <Name>UpdateToolStripButton.Text</Name>
+    <StringID>8</StringID>
+    <Selected>true</Selected>
+    <ResourceName>UpdateToolStripButton.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AxCryptMainForm.cs</Component>
+    <Name>CloseOpenFilesMenuItem.Text</Name>
+    <StringID>16</StringID>
+    <Selected>true</Selected>
+    <ResourceName>CloseOpenFilesMenuItem.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AxCryptMainForm.cs</Component>
+    <Name>RemoveRecentFileMenuItem.Text</Name>
+    <StringID>28</StringID>
+    <Selected>true</Selected>
+    <ResourceName>RemoveRecentFileMenuItem.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Axantum.AxCrypt.Properties.Resources.NoNeedToCheckForUpdatesTooltip</Name>
+    <StringID>81</StringID>
+    <Selected>true</Selected>
+    <ResourceName>NoNeedToCheckForUpdatesTooltip</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Axantum.AxCrypt.Properties.Resources.OldVersionTooltip</Name>
+    <StringID>82</StringID>
+    <Selected>true</Selected>
+    <ResourceName>OldVersionTooltip</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Axantum.AxCrypt.Properties.Resources.ClickToCheckForNewerVersionTooltip</Name>
+    <StringID>83</StringID>
+    <Selected>true</Selected>
+    <ResourceName>ClickToCheckForNewerVersionTooltip</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Axantum.AxCrypt.Properties.Resources.NewVersionIsAvailableTooltip</Name>
+    <StringID>79</StringID>
+    <Selected>true</Selected>
+    <ResourceName>NewVersionIsAvailableTooltip</ResourceName>
     <Hidden>false</Hidden>
   </Properties>
   <GeneralAttributes>

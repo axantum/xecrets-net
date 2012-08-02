@@ -129,6 +129,9 @@
   <data name="CannotWrite" xml:space="preserve">
     <value>Kan inte skriva till '{0}'.</value>
   </data>
+  <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
+    <value>Klicka för att kontrollera om det finns en ny version.</value>
+  </data>
   <data name="DecryptedSaveAsFileDialogFilterPattern" xml:space="preserve">
     <value>Dokument (*{0})|*{0}|Alla dokument (*.*)|*.*</value>
   </data>
@@ -167,6 +170,15 @@
   </data>
   <data name="LanguageChangeRestartPrompt" xml:space="preserve">
     <value>AxCrypt måste startas om för att slutföra språkändringen.</value>
+  </data>
+  <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
+    <value>Version {0} finns tillgänglig! Klicka för att komma till nedladdningssidan.</value>
+  </data>
+  <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
+    <value>Inget uppdateringsbehov.</value>
+  </data>
+  <data name="OldVersionTooltip" xml:space="preserve">
+    <value>Du har en gammal version. Klicka för att kontrollera om det finns en nyare.</value>
   </data>
   <data name="OpenEncryptedFileOpenDialogTitle" xml:space="preserve">
     <value>Välj dokument att dekryptera och öppna</value>

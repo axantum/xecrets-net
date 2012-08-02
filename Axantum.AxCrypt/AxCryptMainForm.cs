@@ -104,21 +104,21 @@ namespace Axantum.AxCrypt
             switch (status)
             {
                 case VersionUpdateStatus.IsUpToDateOrRecentlyChecked:
-                    UpdateToolStripButton.ToolTipText = "No need to check for updates.";
+                    UpdateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.NoNeedToCheckForUpdatesTooltip;
                     UpdateToolStripButton.Enabled = false;
                     break;
                 case VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck:
-                    UpdateToolStripButton.ToolTipText = "Your version is old. Please click to check for a newer version.";
+                    UpdateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.OldVersionTooltip;
                     UpdateToolStripButton.Image = Resources.RefreshRed;
                     UpdateToolStripButton.Enabled = true;
                     break;
                 case VersionUpdateStatus.NewerVersionIsAvailable:
-                    UpdateToolStripButton.ToolTipText = "Version {0} is available! Click to download.".InvariantFormat(version);
+                    UpdateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.NewVersionIsAvailableTooltip.InvariantFormat(version);
                     UpdateToolStripButton.Image = Resources.RefreshRed;
                     UpdateToolStripButton.Enabled = true;
                     break;
                 case VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck:
-                    UpdateToolStripButton.ToolTipText = "Click to check for a newer version.";
+                    UpdateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.ClickToCheckForNewerVersionTooltip;
                     UpdateToolStripButton.Image = Resources.RefreshGreen;
                     UpdateToolStripButton.Enabled = true;
                     break;
@@ -152,7 +152,7 @@ namespace Axantum.AxCrypt
                 _trackProcess = value;
                 if (Logging.IsInfoEnabled)
                 {
-                    Logging.Info("ActiveFileMonitor.TrackProcess='{0}'".InvariantFormat(value));
+                    Logging.Info("ActiveFileMonitor.TrackProcess='{0}'".InvariantFormat(value)); //MLHIDE
                 }
             }
         }

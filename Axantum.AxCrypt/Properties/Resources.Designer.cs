@@ -97,6 +97,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click to check for a newer version..
+        /// </summary>
+        internal static string ClickToCheckForNewerVersionTooltip {
+            get {
+                return ResourceManager.GetString("ClickToCheckForNewerVersionTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Documents (*{0})|*{0}|All files (*.*)|*.*.
         /// </summary>
         internal static string DecryptedSaveAsFileDialogFilterPattern {
@@ -210,6 +219,33 @@ namespace Axantum.AxCrypt.Properties {
         internal static string LanguageChangeRestartPrompt {
             get {
                 return ResourceManager.GetString("LanguageChangeRestartPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version {0} is available! Click to download..
+        /// </summary>
+        internal static string NewVersionIsAvailableTooltip {
+            get {
+                return ResourceManager.GetString("NewVersionIsAvailableTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No need to check for updates..
+        /// </summary>
+        internal static string NoNeedToCheckForUpdatesTooltip {
+            get {
+                return ResourceManager.GetString("NoNeedToCheckForUpdatesTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your version is old. Please click to check for a newer version..
+        /// </summary>
+        internal static string OldVersionTooltip {
+            get {
+                return ResourceManager.GetString("OldVersionTooltip", resourceCulture);
             }
         }
         

@@ -129,6 +129,9 @@
   <data name="CannotWrite" xml:space="preserve">
     <value>Cannot write '{0}'.</value>
   </data>
+  <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
+    <value>Click to check for a newer version.</value>
+  </data>
   <data name="DecryptedSaveAsFileDialogFilterPattern" xml:space="preserve">
     <value>Documents (*{0})|*{0}|All files (*.*)|*.*</value>
   </data>
@@ -167,6 +170,15 @@
   </data>
   <data name="LanguageChangeRestartPrompt" xml:space="preserve">
     <value>You must restart AxCrypt in order for the language change to take effect.</value>
+  </data>
+  <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
+    <value>Version {0} is available! Click to download.</value>
+  </data>
+  <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
+    <value>No need to check for updates.</value>
+  </data>
+  <data name="OldVersionTooltip" xml:space="preserve">
+    <value>Your version is old. Please click to check for a newer version.</value>
   </data>
   <data name="OpenEncryptedFileOpenDialogTitle" xml:space="preserve">
     <value>Select file to decrypt and open</value>
