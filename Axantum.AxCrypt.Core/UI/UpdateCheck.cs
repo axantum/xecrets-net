@@ -27,6 +27,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Resources;
@@ -46,15 +47,15 @@ namespace Axantum.AxCrypt.Core.UI
 
         private Uri _webServiceUrl;
 
-        private Uri _updateWebPageUrl;
+        private Uri _updateWebpageUrl;
 
         private DateTime _lastCheckUtc;
 
-        public UpdateCheck(Version currentVersion, Uri webServiceUrl, Uri updateWebPageUrl, DateTime lastCheckUtc)
+        public UpdateCheck(Version currentVersion, Uri webServiceUrl, Uri updateWebpageUrl, DateTime lastCheckUtc)
         {
             _currentVersion = currentVersion;
             _webServiceUrl = webServiceUrl;
-            _updateWebPageUrl = updateWebPageUrl;
+            _updateWebpageUrl = updateWebpageUrl;
             _lastCheckUtc = lastCheckUtc;
         }
 
@@ -75,13 +76,13 @@ namespace Axantum.AxCrypt.Core.UI
             }
             if (_lastCheckUtc.AddDays(1) >= AxCryptEnvironment.Current.UtcNow)
             {
-                OnVersionUpdate(new VersionEventArgs(_currentVersion, _updateWebPageUrl, CalculateStatus(_currentVersion)));
+                OnVersionUpdate(new VersionEventArgs(_currentVersion, _updateWebpageUrl, CalculateStatus(_currentVersion)));
                 return;
             }
 
             lock (_done)
             {
-                if (!_done.WaitOne(TimeSpan.Zero))
+                if (!_done.WaitOne(TimeSpan.Zero, false))
                 {
                     return;
                 }
@@ -92,7 +93,7 @@ namespace Axantum.AxCrypt.Core.UI
                 try
                 {
                     Version newVersion = CheckWebForNewVersion();
-                    OnVersionUpdate(new VersionEventArgs(newVersion, _updateWebPageUrl, CalculateStatus(newVersion)));
+                    OnVersionUpdate(new VersionEventArgs(newVersion, _updateWebpageUrl, CalculateStatus(newVersion)));
                     if (newVersion != VersionUnknown)
                     {
                         _lastCheckUtc = AxCryptEnvironment.Current.UtcNow;
@@ -105,6 +106,7 @@ namespace Axantum.AxCrypt.Core.UI
             });
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is one case where anything could go wrong and it is still required to continue.")]
         private Version CheckWebForNewVersion()
         {
             Version newVersion = VersionUnknown;
@@ -119,7 +121,7 @@ namespace Axantum.AxCrypt.Core.UI
                     versionResponse = (VersionResponse)serializer.ReadObject(stream);
                 }
                 newVersion = ParseVersion(versionResponse);
-                _updateWebPageUrl = new Uri(versionResponse.WebReference);
+                _updateWebpageUrl = new Uri(versionResponse.WebReference);
             }
             catch (Exception ex)
             {
@@ -144,7 +146,7 @@ namespace Axantum.AxCrypt.Core.UI
             _done.WaitOne();
         }
 
-        private Version ParseVersion(VersionResponse versionResponse)
+        private static Version ParseVersion(VersionResponse versionResponse)
         {
             Version version;
             if (!Version.TryParse(versionResponse.Version, out version))

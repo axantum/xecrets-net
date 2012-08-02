@@ -34,16 +34,16 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public class VersionEventArgs : EventArgs
     {
-        public VersionEventArgs(Version version, Uri updateWebPageUrl, VersionUpdateStatus versionUpdateStatus)
+        public VersionEventArgs(Version version, Uri updateWebpageUrl, VersionUpdateStatus versionUpdateStatus)
         {
             Version = version;
-            UpdateWebPageUrl = updateWebPageUrl;
+            UpdateWebpageUrl = updateWebpageUrl;
             VersionUpdateStatus = versionUpdateStatus;
         }
 
         public Version Version { get; private set; }
 
-        public Uri UpdateWebPageUrl { get; private set; }
+        public Uri UpdateWebpageUrl { get; private set; }
 
         public VersionUpdateStatus VersionUpdateStatus { get; private set; }
     }

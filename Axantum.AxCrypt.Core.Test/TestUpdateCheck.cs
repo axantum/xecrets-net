@@ -85,7 +85,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(eventArgs, Is.Not.Null, "The VersionUpdate event should be called with non-null VersionEventArgs.");
             Assert.That(eventArgs.VersionUpdateStatus, Is.EqualTo(VersionUpdateStatus.NewerVersionIsAvailable), "The new version was newer.");
-            Assert.That(eventArgs.UpdateWebPageUrl, Is.EqualTo(new Uri("http://localhost/AxCrypt/Downloads.html")), "The right URL should be passed in the event args.");
+            Assert.That(eventArgs.UpdateWebpageUrl, Is.EqualTo(new Uri("http://localhost/AxCrypt/Downloads.html")), "The right URL should be passed in the event args.");
             Assert.That(eventArgs.Version, Is.EqualTo(newVersion), "The new version should be passed back.");
         }
 
@@ -120,7 +120,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(eventArgs, Is.Not.Null, "The VersionUpdate event should be called with non-null VersionEventArgs.");
             Assert.That(eventArgs.VersionUpdateStatus, Is.EqualTo(VersionUpdateStatus.NewerVersionIsAvailable), "The new version was newer.");
-            Assert.That(eventArgs.UpdateWebPageUrl, Is.EqualTo(new Uri("http://localhost/AxCrypt/Downloads.html")), "The right URL should be passed in the event args.");
+            Assert.That(eventArgs.UpdateWebpageUrl, Is.EqualTo(new Uri("http://localhost/AxCrypt/Downloads.html")), "The right URL should be passed in the event args.");
             Assert.That(eventArgs.Version, Is.EqualTo(newVersion), "The new version should be passed back.");
         }
 
@@ -152,7 +152,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(eventArgs, Is.Not.Null, "The VersionUpdate event should be called with non-null VersionEventArgs.");
             Assert.That(eventArgs.VersionUpdateStatus, Is.EqualTo(VersionUpdateStatus.IsUpToDateOrRecentlyChecked), "The new version was older, so this version is up to date.");
-            Assert.That(eventArgs.UpdateWebPageUrl, Is.EqualTo(new Uri("http://localhost/AxCrypt/Downloads.html")), "The right URL should be passed in the event args.");
+            Assert.That(eventArgs.UpdateWebpageUrl, Is.EqualTo(new Uri("http://localhost/AxCrypt/Downloads.html")), "The right URL should be passed in the event args.");
             Assert.That(eventArgs.Version, Is.EqualTo(newVersion), "The new version should be passed back.");
         }
 
@@ -184,7 +184,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(eventArgs, Is.Not.Null, "The VersionUpdate event should be called with non-null VersionEventArgs.");
             Assert.That(eventArgs.VersionUpdateStatus, Is.EqualTo(VersionUpdateStatus.IsUpToDateOrRecentlyChecked), "The new version was the same and we checked recently.");
-            Assert.That(eventArgs.UpdateWebPageUrl, Is.EqualTo(new Uri("http://localhost/AxCrypt/Downloads.html")), "The right URL should be passed in the event args.");
+            Assert.That(eventArgs.UpdateWebpageUrl, Is.EqualTo(new Uri("http://localhost/AxCrypt/Downloads.html")), "The right URL should be passed in the event args.");
             Assert.That(eventArgs.Version, Is.EqualTo(newVersion), "The new version should be passed back.");
         }
 
@@ -203,7 +203,6 @@ namespace Axantum.AxCrypt.Core.Test
             _fakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
 
             Version thisVersion = new Version(2, 0, 300, 0);
-            Version newVersion = new Version(2, 0, 400, 0);
             Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
@@ -219,7 +218,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(eventArgs, Is.Not.Null, "The VersionUpdate event should be called with non-null VersionEventArgs.");
             Assert.That(eventArgs.VersionUpdateStatus, Is.EqualTo(VersionUpdateStatus.IsUpToDateOrRecentlyChecked), "No check should be made, and it is assumed this version is up to date.");
-            Assert.That(eventArgs.UpdateWebPageUrl, Is.EqualTo(updateWebPageUrl), "The original URL should be passed in the event args since no call is made.");
+            Assert.That(eventArgs.UpdateWebpageUrl, Is.EqualTo(updateWebPageUrl), "The original URL should be passed in the event args since no call is made.");
             Assert.That(wasCalled, Is.False, "The web caller should never be called.");
             Assert.That(eventArgs.Version, Is.EqualTo(thisVersion), "The new version should not be passed back, since no call should be made.");
         }
@@ -258,7 +257,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(eventArgs, Is.Not.Null, "The VersionUpdate event should be called with non-null VersionEventArgs.");
             Assert.That(eventArgs.VersionUpdateStatus, Is.EqualTo(VersionUpdateStatus.NewerVersionIsAvailable), "One check should be made, indicating a newer version is available.");
-            Assert.That(eventArgs.UpdateWebPageUrl, Is.EqualTo(new Uri("http://localhost/AxCrypt/Downloads.html")), "The new URL should be passed since a call is made.");
+            Assert.That(eventArgs.UpdateWebpageUrl, Is.EqualTo(new Uri("http://localhost/AxCrypt/Downloads.html")), "The new URL should be passed since a call is made.");
             Assert.That(calls, Is.EqualTo(1), "The web caller should only be called once.");
             Assert.That(eventArgs.Version, Is.EqualTo(newVersion), "The new version should be passed back, since one call should be made.");
         }
@@ -277,7 +276,6 @@ namespace Axantum.AxCrypt.Core.Test
             _fakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
 
             Version thisVersion = new Version(2, 0, 300, 0);
-            Version newVersion = new Version(2, 0, 400, 0);
             Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
@@ -293,7 +291,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(eventArgs, Is.Not.Null, "The VersionUpdate event should be called with non-null VersionEventArgs.");
             Assert.That(eventArgs.VersionUpdateStatus, Is.EqualTo(VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck), "No check could be made, and it was a long time since a check was made.");
-            Assert.That(eventArgs.UpdateWebPageUrl, Is.EqualTo(updateWebPageUrl), "The original URL should be passed since the call failed.");
+            Assert.That(eventArgs.UpdateWebpageUrl, Is.EqualTo(updateWebPageUrl), "The original URL should be passed since the call failed.");
             Assert.That(eventArgs.Version, Is.EqualTo(UpdateCheck.VersionUnknown), "An unknown version should be returned, since the call failed.");
         }
 
@@ -311,7 +309,6 @@ namespace Axantum.AxCrypt.Core.Test
             _fakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
 
             Version thisVersion = new Version(2, 0, 300, 0);
-            Version newVersion = new Version(2, 0, 400, 0);
             Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
@@ -327,7 +324,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(eventArgs, Is.Not.Null, "The VersionUpdate event should be called with non-null VersionEventArgs.");
             Assert.That(eventArgs.VersionUpdateStatus, Is.EqualTo(VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck), "Although the check failed, a check was recently made a short time ago.");
-            Assert.That(eventArgs.UpdateWebPageUrl, Is.EqualTo(updateWebPageUrl), "The original URL should be passed since the call failed.");
+            Assert.That(eventArgs.UpdateWebpageUrl, Is.EqualTo(updateWebPageUrl), "The original URL should be passed since the call failed.");
             Assert.That(eventArgs.Version, Is.EqualTo(UpdateCheck.VersionUnknown), "An unknown version should be returned, since the call failed.");
         }
 
@@ -358,7 +355,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(eventArgs, Is.Not.Null, "The VersionUpdate event should be called even when an invalid version is returned.");
             Assert.That(eventArgs.VersionUpdateStatus, Is.EqualTo(VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck), "No check has been performed previously and no new version is known.");
-            Assert.That(eventArgs.UpdateWebPageUrl, Is.EqualTo(new Uri("http://localhost/AxCrypt/Downloads.html")), "The right URL should be passed in the event args.");
+            Assert.That(eventArgs.UpdateWebpageUrl, Is.EqualTo(new Uri("http://localhost/AxCrypt/Downloads.html")), "The right URL should be passed in the event args.");
             Assert.That(eventArgs.Version, Is.EqualTo(UpdateCheck.VersionUnknown), "The version is not known since it could not be parsed.");
         }
     }

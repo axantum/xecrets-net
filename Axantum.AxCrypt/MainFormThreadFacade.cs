@@ -67,7 +67,7 @@ namespace Axantum.AxCrypt
         {
             _mainForm.EncryptedFileManager.FileSystemState.LastVersionCheckUtc = AxCryptEnvironment.Current.UtcNow;
             _mainForm.EncryptedFileManager.FileSystemState.Save();
-            InvokeIfRequired(() => { _mainForm.UpdateVersionStatus(e.VersionUpdateStatus, e.UpdateWebPageUrl, e.Version); });
+            InvokeIfRequired(() => { _mainForm.UpdateVersionStatus(e.VersionUpdateStatus, e.UpdateWebpageUrl, e.Version); });
         }
 
         public void DoBackgroundWork(string displayText, Action<WorkerArguments> action, RunWorkerCompletedEventHandler completedHandler)
