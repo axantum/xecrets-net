@@ -917,5 +917,15 @@ namespace Axantum.AxCrypt
                 aboutBox.ShowDialog();
             }
         }
+
+        private void helpButton_Click(object sender, EventArgs e)
+        {
+            Process.Start(Settings.Default.AxCrypt2HelpUrl.ToString());
+        }
+
+        private void viewHelpMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(Settings.Default.AxCrypt2HelpUrl.ToString());
+        }
     }
 }

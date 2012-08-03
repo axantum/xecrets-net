@@ -307,7 +307,7 @@ the Open Files tab to see the list of files.</value>
   <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
     <value>6, 50</value>
   </data>
-  <data name="helpToolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="helpButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAARqSURBVFhHvVbLT1R3GOW/ce5j4iwwxoX/gLpxxdZlm8jG
@@ -332,13 +332,13 @@ the Open Files tab to see the list of files.</value>
         Mw6UAFgtXi+e8EbYdHBT+X8tjHPgoR++ZwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="helpToolStripButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+  <data name="helpButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
-  <data name="helpToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="helpButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 47</value>
   </data>
-  <data name="helpToolStripButton.Text" xml:space="preserve">
+  <data name="helpButton.Text" xml:space="preserve">
     <value>He&amp;lp</value>
   </data>
   <data name="toolStrip1.Location" type="System.Drawing.Point, System.Drawing">
@@ -538,6 +538,12 @@ the Open Files tab to see the list of files.</value>
   </data>
   <data name="DebugToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Debug</value>
+  </data>
+  <data name="viewHelpMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="viewHelpMenuItem.Text" xml:space="preserve">
+    <value>&amp;View Help</value>
   </data>
   <data name="about.Size" type="System.Drawing.Size, System.Drawing">
     <value>152, 22</value>
@@ -4530,10 +4536,10 @@ the Open Files tab to see the list of files.</value>
   <data name="&gt;&gt;toolStripSeparator5.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;helpToolStripButton.Name" xml:space="preserve">
-    <value>helpToolStripButton</value>
+  <data name="&gt;&gt;helpButton.Name" xml:space="preserve">
+    <value>helpButton</value>
   </data>
-  <data name="&gt;&gt;helpToolStripButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;helpButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;fileToolStripMenuItem.Name" xml:space="preserve">
@@ -4720,6 +4726,12 @@ the Open Files tab to see the list of files.</value>
     <value>about</value>
   </data>
   <data name="&gt;&gt;about.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;viewHelpMenuItem.Name" xml:space="preserve">
+    <value>viewHelpMenuItem</value>
+  </data>
+  <data name="&gt;&gt;viewHelpMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

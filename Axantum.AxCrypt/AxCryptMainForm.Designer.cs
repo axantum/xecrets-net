@@ -39,7 +39,7 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.UpdateToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.helpButton = new System.Windows.Forms.ToolStripButton();
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openEncryptedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,6 +85,7 @@
             this.checkVersionNow = new System.Windows.Forms.ToolStripMenuItem();
             this.EncryptedFileManager = new Axantum.AxCrypt.EncryptedFileManager();
             this.about = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.StatusTabs.SuspendLayout();
@@ -111,7 +112,7 @@
             this.toolStripSeparator4,
             this.UpdateToolStripButton,
             this.toolStripSeparator5,
-            this.helpToolStripButton});
+            this.helpButton});
             this.toolStrip1.Name = "toolStrip1";
             // 
             // toolStripButtonOpenEncrypted
@@ -165,11 +166,12 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             resources.ApplyResources(this.toolStripSeparator5, "toolStripSeparator5");
             // 
-            // helpToolStripButton
+            // helpButton
             // 
-            this.helpToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.helpToolStripButton, "helpToolStripButton");
-            this.helpToolStripButton.Name = "helpToolStripButton";
+            this.helpButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.helpButton, "helpButton");
+            this.helpButton.Name = "helpButton";
+            this.helpButton.Click += new System.EventHandler(this.helpButton_Click);
             // 
             // menuStripMain
             // 
@@ -288,6 +290,7 @@
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.viewHelpMenuItem,
             this.about});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
@@ -478,6 +481,12 @@
             resources.ApplyResources(this.about, "about");
             this.about.Click += new System.EventHandler(this.about_Click);
             // 
+            // viewHelpMenuItem
+            // 
+            this.viewHelpMenuItem.Name = "viewHelpMenuItem";
+            resources.ApplyResources(this.viewHelpMenuItem, "viewHelpMenuItem");
+            this.viewHelpMenuItem.Click += new System.EventHandler(this.viewHelpMenuItem_Click);
+            // 
             // AxCryptMainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -514,7 +523,7 @@
 
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton helpToolStripButton;
+        private System.Windows.Forms.ToolStripButton helpButton;
         private System.Windows.Forms.ToolStripButton toolStripButtonEncrypt;
         private System.Windows.Forms.ToolStripButton toolStripButtonDecrypt;
         private System.Windows.Forms.MenuStrip menuStripMain;
@@ -567,6 +576,7 @@
         private System.Windows.Forms.ToolStripMenuItem debugToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem checkVersionNow;
         private System.Windows.Forms.ToolStripMenuItem about;
+        private System.Windows.Forms.ToolStripMenuItem viewHelpMenuItem;
     }
 }
 

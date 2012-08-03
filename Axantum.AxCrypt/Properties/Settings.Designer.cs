@@ -70,6 +70,7 @@ namespace Axantum.AxCrypt.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2000-01-01")]
         public global::System.DateTime LastUpdateCheckUtc {
             get {
                 return ((global::System.DateTime)(this["LastUpdateCheckUtc"]));
@@ -100,6 +101,15 @@ namespace Axantum.AxCrypt.Properties {
             }
             set {
                 this["Debug"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.axantum.com/AxCrypt/AxCryptNetHelp.html")]
+        public global::System.Uri AxCrypt2HelpUrl {
+            get {
+                return ((global::System.Uri)(this["AxCrypt2HelpUrl"]));
             }
         }
     }
