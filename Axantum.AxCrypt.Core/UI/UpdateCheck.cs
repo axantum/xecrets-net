@@ -51,8 +51,6 @@ namespace Axantum.AxCrypt.Core.UI
 
         private Uri _updateWebpageUrl;
 
-        private DateTime _lastCheckUtc;
-
         public UpdateCheck(Version currentVersion, Version newestVersion, Uri webServiceUrl, Uri updateWebpageUrl)
         {
             _currentVersion = currentVersion;
@@ -82,7 +80,7 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     Logging.Info("Attempt to check for new version was ignored because it is too soon. Returning version {0}.".InvariantFormat(_newestVersion));
                 }
-                OnVersionUpdate(new VersionEventArgs(_newestVersion, _updateWebpageUrl, CalculateStatus(_newestVersion)));
+                OnVersionUpdate(new VersionEventArgs(_newestVersion, _updateWebpageUrl, CalculateStatus(_newestVersion, lastCheckTimeutc)));
                 return;
             }
 
@@ -99,11 +97,7 @@ namespace Axantum.AxCrypt.Core.UI
                 try
                 {
                     Version newVersion = CheckWebForNewVersion();
-                    OnVersionUpdate(new VersionEventArgs(newVersion, _updateWebpageUrl, CalculateStatus(newVersion)));
-                    if (newVersion != VersionUnknown)
-                    {
-                        _lastCheckUtc = AxCryptEnvironment.Current.UtcNow;
-                    }
+                    OnVersionUpdate(new VersionEventArgs(newVersion, _updateWebpageUrl, CalculateStatus(newVersion, lastCheckTimeutc)));
                 }
                 finally
                 {
@@ -170,7 +164,7 @@ namespace Axantum.AxCrypt.Core.UI
             return version;
         }
 
-        private VersionUpdateStatus CalculateStatus(Version version)
+        private VersionUpdateStatus CalculateStatus(Version version, DateTime lastCheckTimeutc)
         {
             if (version > _currentVersion)
             {
@@ -180,7 +174,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 return VersionUpdateStatus.IsUpToDateOrRecentlyChecked;
             }
-            if (_lastCheckUtc.AddDays(30) >= AxCryptEnvironment.Current.UtcNow)
+            if (lastCheckTimeutc.AddDays(30) >= AxCryptEnvironment.Current.UtcNow)
             {
                 return VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck;
             }
