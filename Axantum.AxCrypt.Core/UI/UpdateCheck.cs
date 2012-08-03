@@ -53,13 +53,12 @@ namespace Axantum.AxCrypt.Core.UI
 
         private DateTime _lastCheckUtc;
 
-        public UpdateCheck(Version currentVersion, Version newestVersion, Uri webServiceUrl, Uri updateWebpageUrl, DateTime lastCheckUtc)
+        public UpdateCheck(Version currentVersion, Version newestVersion, Uri webServiceUrl, Uri updateWebpageUrl)
         {
             _currentVersion = currentVersion;
             _newestVersion = newestVersion;
             _webServiceUrl = webServiceUrl;
             _updateWebpageUrl = updateWebpageUrl;
-            _lastCheckUtc = lastCheckUtc;
         }
 
         public event EventHandler<VersionEventArgs> VersionUpdate;
@@ -71,14 +70,18 @@ namespace Axantum.AxCrypt.Core.UI
         /// raised, regardless of response and result. If a check is already in progress, the
         /// later call is ignored and only one check is performed.
         /// </summary>
-        public void CheckInBackground()
+        public void CheckInBackground(DateTime lastCheckTimeutc)
         {
             if (_done == null)
             {
                 throw new ObjectDisposedException("_done");
             }
-            if (_lastCheckUtc.AddDays(1) >= AxCryptEnvironment.Current.UtcNow)
+            if (lastCheckTimeutc.AddDays(1) >= AxCryptEnvironment.Current.UtcNow)
             {
+                if (Logging.IsInfoEnabled)
+                {
+                    Logging.Info("Attempt to check for new version was ignored because it is too soon. Returning version {0}.".InvariantFormat(_newestVersion));
+                }
                 OnVersionUpdate(new VersionEventArgs(_newestVersion, _updateWebpageUrl, CalculateStatus(_newestVersion)));
                 return;
             }
@@ -125,6 +128,10 @@ namespace Axantum.AxCrypt.Core.UI
                 }
                 newVersion = ParseVersion(versionResponse);
                 _updateWebpageUrl = new Uri(versionResponse.WebReference);
+                if (Logging.IsInfoEnabled)
+                {
+                    Logging.Info("Update check reports most recent version {0} at web page {1}".InvariantFormat(newVersion, _updateWebpageUrl));
+                }
             }
             catch (Exception ex)
             {
@@ -153,6 +160,10 @@ namespace Axantum.AxCrypt.Core.UI
         {
             Version version;
             if (!Version.TryParse(versionResponse.Version, out version))
+            {
+                version = VersionUnknown;
+            }
+            if (version.Major == 0 && version.Minor == 0)
             {
                 version = VersionUnknown;
             }

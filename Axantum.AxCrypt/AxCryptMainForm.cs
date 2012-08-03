@@ -33,6 +33,10 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Net;
+using System.Net.Security;
+using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -89,13 +93,15 @@ namespace Axantum.AxCrypt
 
             RestoreUserPreferences();
 
+            Text = "{0} {1}".InvariantFormat(Application.ProductName, Application.ProductVersion);
+
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
 
             EncryptedFileManager.Changed += new EventHandler<EventArgs>(ThreadFacade.EncryptedFileManager_Changed);
             EncryptedFileManager.FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseAlways, TrackProcess, new ProgressContext());
 
             EncryptedFileManager.VersionChecked += new EventHandler<VersionEventArgs>(ThreadFacade.EncryptedFileManager_VersionChecked);
-            EncryptedFileManager.VersionCheckInBackground();
+            EncryptedFileManager.VersionCheckInBackground(Settings.Default.LastUpdateCheckUtc);
         }
 
         public void UpdateVersionStatus(VersionUpdateStatus status, Uri url, Version version)
@@ -161,6 +167,8 @@ namespace Axantum.AxCrypt
         {
             RecentFilesListView.Columns[0].Name = "DecryptedFile";    //MLHIDE
             RecentFilesListView.Columns[0].Width = Settings.Default.RecentFilesDocumentWidth > 0 ? Settings.Default.RecentFilesDocumentWidth : RecentFilesListView.Columns[0].Width;
+
+            UpdateDebugMode();
         }
 
         public void RestartTimer()
@@ -847,6 +855,67 @@ namespace Axantum.AxCrypt
             Settings.Default.LastUpdateCheckUtc = AxCryptEnvironment.Current.UtcNow;
             Settings.Default.Save();
             Process.Start(_updateUrl.ToString());
+        }
+
+        private void debugToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Settings.Default.Debug = !Settings.Default.Debug;
+            Settings.Default.Save();
+            UpdateDebugMode();
+        }
+
+        private TabPage _logTabPage = null;
+
+        private void UpdateDebugMode()
+        {
+            debugToolStripMenuItem1.Checked = Settings.Default.Debug;
+            DebugToolStripMenuItem.Visible = Settings.Default.Debug;
+            if (Settings.Default.Debug)
+            {
+                Logging.SetLevel(TraceLevel.Verbose);
+                if (_logTabPage != null)
+                {
+                    StatusTabs.TabPages.Add(_logTabPage);
+                }
+                ServicePointManager.ServerCertificateValidationCallback = (object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) =>
+                {
+                    return true;
+                };
+            }
+            else
+            {
+                ServicePointManager.ServerCertificateValidationCallback = null;
+                Logging.SetLevel(TraceLevel.Error);
+                _logTabPage = StatusTabs.TabPages["LogTab"];
+                StatusTabs.TabPages.Remove(_logTabPage);
+            }
+        }
+
+        private void setUpdateCheckUrlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (DebugOptionsDialog dialog = new DebugOptionsDialog())
+            {
+                dialog.UpdateCheckServiceUrl.Text = Settings.Default.AxCrypt2VersionCheckUrl.ToString();
+                DialogResult result = dialog.ShowDialog();
+                if (result != DialogResult.OK)
+                {
+                    return;
+                }
+                Settings.Default.AxCrypt2VersionCheckUrl = new Uri(dialog.UpdateCheckServiceUrl.Text);
+            }
+        }
+
+        private void checkVersionNow_Click(object sender, EventArgs e)
+        {
+            EncryptedFileManager.VersionCheckInBackground(DateTime.MinValue);
+        }
+
+        private void about_Click(object sender, EventArgs e)
+        {
+            using (AboutBox aboutBox = new AboutBox())
+            {
+                aboutBox.ShowDialog();
+            }
         }
     }
 }

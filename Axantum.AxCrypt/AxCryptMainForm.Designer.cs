@@ -52,7 +52,10 @@
             this.LanguageMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EnglishMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SwedishMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.debugToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DebugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setUpdateCheckUrlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StatusTabs = new System.Windows.Forms.TabControl();
             this.OpenFilesTab = new System.Windows.Forms.TabPage();
@@ -79,7 +82,9 @@
             this.ProgressContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ProgressContextCancelMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.TrayNotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.checkVersionNow = new System.Windows.Forms.ToolStripMenuItem();
             this.EncryptedFileManager = new Axantum.AxCrypt.EncryptedFileManager();
+            this.about = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.StatusTabs.SuspendLayout();
@@ -170,6 +175,7 @@
             // 
             this.menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.DebugToolStripMenuItem,
             this.helpToolStripMenuItem});
             resources.ApplyResources(this.menuStripMain, "menuStripMain");
             this.menuStripMain.Name = "menuStripMain";
@@ -225,7 +231,8 @@
             // OptionsMenuItem
             // 
             this.OptionsMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.LanguageMenuItem});
+            this.LanguageMenuItem,
+            this.debugToolStripMenuItem1});
             resources.ApplyResources(this.OptionsMenuItem, "OptionsMenuItem");
             this.OptionsMenuItem.Name = "OptionsMenuItem";
             // 
@@ -252,14 +259,36 @@
             this.SwedishMenuItem.Tag = "sv";
             this.SwedishMenuItem.Click += new System.EventHandler(this.SwedishMenuItem_Click);
             // 
+            // debugToolStripMenuItem1
+            // 
+            this.debugToolStripMenuItem1.Name = "debugToolStripMenuItem1";
+            resources.ApplyResources(this.debugToolStripMenuItem1, "debugToolStripMenuItem1");
+            this.debugToolStripMenuItem1.Click += new System.EventHandler(this.debugToolStripMenuItem1_Click);
+            // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             resources.ApplyResources(this.exitToolStripMenuItem, "exitToolStripMenuItem");
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // DebugToolStripMenuItem
+            // 
+            this.DebugToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.checkVersionNow,
+            this.setUpdateCheckUrlToolStripMenuItem});
+            this.DebugToolStripMenuItem.Name = "DebugToolStripMenuItem";
+            resources.ApplyResources(this.DebugToolStripMenuItem, "DebugToolStripMenuItem");
+            // 
+            // setUpdateCheckUrlToolStripMenuItem
+            // 
+            this.setUpdateCheckUrlToolStripMenuItem.Name = "setUpdateCheckUrlToolStripMenuItem";
+            resources.ApplyResources(this.setUpdateCheckUrlToolStripMenuItem, "setUpdateCheckUrlToolStripMenuItem");
+            this.setUpdateCheckUrlToolStripMenuItem.Click += new System.EventHandler(this.setUpdateCheckUrlToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.about});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
             // 
@@ -437,6 +466,18 @@
             resources.ApplyResources(this.TrayNotifyIcon, "TrayNotifyIcon");
             this.TrayNotifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.TrayNotifyIcon_MouseDoubleClick);
             // 
+            // checkVersionNow
+            // 
+            this.checkVersionNow.Name = "checkVersionNow";
+            resources.ApplyResources(this.checkVersionNow, "checkVersionNow");
+            this.checkVersionNow.Click += new System.EventHandler(this.checkVersionNow_Click);
+            // 
+            // about
+            // 
+            this.about.Name = "about";
+            resources.ApplyResources(this.about, "about");
+            this.about.Click += new System.EventHandler(this.about_Click);
+            // 
             // AxCryptMainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -521,6 +562,11 @@
         private System.Windows.Forms.ToolStripMenuItem SwedishMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripButton UpdateToolStripButton;
+        private System.Windows.Forms.ToolStripMenuItem DebugToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setUpdateCheckUrlToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem debugToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem checkVersionNow;
+        private System.Windows.Forms.ToolStripMenuItem about;
     }
 }
 

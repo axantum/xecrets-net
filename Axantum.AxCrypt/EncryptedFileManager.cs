@@ -86,7 +86,7 @@ namespace Axantum.AxCrypt
             {
                 newestVersion = UpdateCheck.VersionUnknown;
             }
-            _updateCheck = new UpdateCheck(myVersion, newestVersion, Settings.Default.AxCrypt2VersionCheckUrl, Settings.Default.UpdateUrl, Settings.Default.LastUpdateCheckUtc);
+            _updateCheck = new UpdateCheck(myVersion, newestVersion, Settings.Default.AxCrypt2VersionCheckUrl, Settings.Default.UpdateUrl);
             _updateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(UpdateCheck_VersionUpdate);
         }
 
@@ -99,9 +99,9 @@ namespace Axantum.AxCrypt
             }
         }
 
-        public void VersionCheckInBackground()
+        public void VersionCheckInBackground(DateTime lastUpdateCheckUtc)
         {
-            _updateCheck.CheckInBackground();
+            _updateCheck.CheckInBackground(lastUpdateCheckUtc);
         }
 
         private void File_Changed(object sender, EventArgs e)
