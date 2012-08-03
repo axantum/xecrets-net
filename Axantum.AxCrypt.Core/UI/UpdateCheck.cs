@@ -45,15 +45,18 @@ namespace Axantum.AxCrypt.Core.UI
 
         private Version _currentVersion;
 
+        private Version _newestVersion;
+
         private Uri _webServiceUrl;
 
         private Uri _updateWebpageUrl;
 
         private DateTime _lastCheckUtc;
 
-        public UpdateCheck(Version currentVersion, Uri webServiceUrl, Uri updateWebpageUrl, DateTime lastCheckUtc)
+        public UpdateCheck(Version currentVersion, Version newestVersion, Uri webServiceUrl, Uri updateWebpageUrl, DateTime lastCheckUtc)
         {
             _currentVersion = currentVersion;
+            _newestVersion = newestVersion;
             _webServiceUrl = webServiceUrl;
             _updateWebpageUrl = updateWebpageUrl;
             _lastCheckUtc = lastCheckUtc;
@@ -76,7 +79,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
             if (_lastCheckUtc.AddDays(1) >= AxCryptEnvironment.Current.UtcNow)
             {
-                OnVersionUpdate(new VersionEventArgs(_currentVersion, _updateWebpageUrl, CalculateStatus(_currentVersion)));
+                OnVersionUpdate(new VersionEventArgs(_newestVersion, _updateWebpageUrl, CalculateStatus(_newestVersion)));
                 return;
             }
 

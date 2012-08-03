@@ -32,6 +32,7 @@ using System.Windows.Forms;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.System;
 using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Properties;
 
 namespace Axantum.AxCrypt
 {
@@ -65,8 +66,9 @@ namespace Axantum.AxCrypt
 
         public void EncryptedFileManager_VersionChecked(object sender, VersionEventArgs e)
         {
-            _mainForm.EncryptedFileManager.FileSystemState.LastVersionCheckUtc = AxCryptEnvironment.Current.UtcNow;
-            _mainForm.EncryptedFileManager.FileSystemState.Save();
+            Settings.Default.LastUpdateCheckUtc = AxCryptEnvironment.Current.UtcNow;
+            Settings.Default.NewestKnownVersion = e.Version.ToString();
+            Settings.Default.Save();
             InvokeIfRequired(() => { _mainForm.UpdateVersionStatus(e.VersionUpdateStatus, e.UpdateWebpageUrl, e.Version); });
         }
 

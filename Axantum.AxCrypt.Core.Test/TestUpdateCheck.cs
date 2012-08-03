@@ -73,7 +73,7 @@ namespace Axantum.AxCrypt.Core.Test
             Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion, restApiUrl, updateWebPageUrl, DateTime.MinValue))
+            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion, UpdateCheck.VersionUnknown, restApiUrl, updateWebPageUrl, DateTime.MinValue))
             {
                 updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
                 {
@@ -105,7 +105,7 @@ namespace Axantum.AxCrypt.Core.Test
             Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            UpdateCheck updateCheck = new UpdateCheck(thisVersion, restApiUrl, updateWebPageUrl, DateTime.MinValue);
+            UpdateCheck updateCheck = new UpdateCheck(thisVersion, UpdateCheck.VersionUnknown, restApiUrl, updateWebPageUrl, DateTime.MinValue);
             updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
             {
                 eventArgs = e;
@@ -140,7 +140,7 @@ namespace Axantum.AxCrypt.Core.Test
             Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion, restApiUrl, updateWebPageUrl, DateTime.MinValue))
+            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion, UpdateCheck.VersionUnknown, restApiUrl, updateWebPageUrl, DateTime.MinValue))
             {
                 updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
                 {
@@ -172,7 +172,7 @@ namespace Axantum.AxCrypt.Core.Test
             Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion, restApiUrl, updateWebPageUrl, utcNow.AddDays(-2)))
+            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion, UpdateCheck.VersionUnknown, restApiUrl, updateWebPageUrl, utcNow.AddDays(-2)))
             {
                 updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
                 {
@@ -206,7 +206,7 @@ namespace Axantum.AxCrypt.Core.Test
             Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion, restApiUrl, updateWebPageUrl, utcNow.AddHours(-1)))
+            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion, thisVersion, restApiUrl, updateWebPageUrl, utcNow.AddHours(-1)))
             {
                 updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
                 {
@@ -243,7 +243,7 @@ namespace Axantum.AxCrypt.Core.Test
             Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion, restApiUrl, updateWebPageUrl, DateTime.MinValue))
+            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion, UpdateCheck.VersionUnknown, restApiUrl, updateWebPageUrl, DateTime.MinValue))
             {
                 updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
                 {
@@ -279,7 +279,7 @@ namespace Axantum.AxCrypt.Core.Test
             Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion, restApiUrl, updateWebPageUrl, DateTime.MinValue))
+            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion, UpdateCheck.VersionUnknown, restApiUrl, updateWebPageUrl, DateTime.MinValue))
             {
                 updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
                 {
@@ -312,7 +312,7 @@ namespace Axantum.AxCrypt.Core.Test
             Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion, restApiUrl, updateWebPageUrl, utcNow.AddDays(-2)))
+            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion, UpdateCheck.VersionUnknown, restApiUrl, updateWebPageUrl, utcNow.AddDays(-2)))
             {
                 updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
                 {
@@ -343,7 +343,7 @@ namespace Axantum.AxCrypt.Core.Test
             Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion, restApiUrl, updateWebPageUrl, DateTime.MinValue))
+            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion, UpdateCheck.VersionUnknown, restApiUrl, updateWebPageUrl, DateTime.MinValue))
             {
                 updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
                 {

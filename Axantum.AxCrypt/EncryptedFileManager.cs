@@ -81,7 +81,12 @@ namespace Axantum.AxCrypt
             _fileWatcher.FileChanged += new EventHandler<FileWatcherEventArgs>(File_Changed);
 
             Version myVersion = Assembly.GetExecutingAssembly().GetName().Version;
-            _updateCheck = new UpdateCheck(myVersion, Settings.Default.AxCrypt2VersionCheckUrl, Settings.Default.UpdateUrl, FileSystemState.LastVersionCheckUtc);
+            Version newestVersion;
+            if (!Version.TryParse(Settings.Default.NewestKnownVersion, out newestVersion))
+            {
+                newestVersion = UpdateCheck.VersionUnknown;
+            }
+            _updateCheck = new UpdateCheck(myVersion, newestVersion, Settings.Default.AxCrypt2VersionCheckUrl, Settings.Default.UpdateUrl, Settings.Default.LastUpdateCheckUtc);
             _updateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(UpdateCheck_VersionUpdate);
         }
 

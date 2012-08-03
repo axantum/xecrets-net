@@ -154,9 +154,6 @@ namespace Axantum.AxCrypt.Core.Session
             _activeFilesByDecryptedPath[activeFile.DecryptedFileInfo.FullName] = activeFile;
         }
 
-        [DataMember(Name = "LastVersionCheckUtc")]
-        public DateTime LastVersionCheckUtc { get; set; }
-
         [DataMember(Name = "ActiveFiles")]
         private ICollection<ActiveFile> ActiveFilesForSerialization
         {

@@ -844,9 +844,8 @@ namespace Axantum.AxCrypt
 
         private void UpdateToolStripButton_Click(object sender, EventArgs e)
         {
-            EncryptedFileManager.FileSystemState.LastVersionCheckUtc = AxCryptEnvironment.Current.UtcNow;
-            EncryptedFileManager.FileSystemState.Save();
-            UpdateVersionStatus(VersionUpdateStatus.IsUpToDateOrRecentlyChecked, _updateUrl, new Version());
+            Settings.Default.LastUpdateCheckUtc = AxCryptEnvironment.Current.UtcNow;
+            Settings.Default.Save();
             Process.Start(_updateUrl.ToString());
         }
     }
