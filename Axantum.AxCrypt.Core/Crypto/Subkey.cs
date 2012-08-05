@@ -37,6 +37,12 @@ namespace Axantum.AxCrypt.Core.Crypto
     {
         private AesKey _subKey;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Subkey"/> class. Different data is encrypted using
+        /// different variants of the master encryption key.
+        /// </summary>
+        /// <param name="masterKey">The master key.</param>
+        /// <param name="headerSubkey">The header subkey.</param>
         public Subkey(AesKey masterKey, HeaderSubkey headerSubkey)
         {
             if (masterKey == null)
@@ -71,6 +77,9 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
         }
 
+        /// <summary>
+        /// Gets the sub key.
+        /// </summary>
         public AesKey Key
         {
             get

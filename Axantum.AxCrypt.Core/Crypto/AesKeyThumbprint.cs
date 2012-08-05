@@ -30,11 +30,19 @@ using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
+    /// <summary>
+    /// Represent a salted thumbprint for a AES key. Instances of this class are immutable.
+    /// </summary>
     public class AesKeyThumbprint
     {
         private byte[] _salt;
         private AesKey _key;
 
+        /// <summary>
+        /// Instantiate a thumbprint
+        /// </summary>
+        /// <param name="key">The key to thumbprint.</param>
+        /// <param name="salt">The salt to use.</param>
         public AesKeyThumbprint(AesKey key, byte[] salt)
         {
             if (key == null)
@@ -49,6 +57,10 @@ namespace Axantum.AxCrypt.Core.Crypto
             _salt = salt;
         }
 
+        /// <summary>
+        /// Get the thumbprint.
+        /// </summary>
+        /// <returns>Calculate and return the thumbprint.</returns>
         public byte[] GetThumbprintBytes()
         {
             HashAlgorithm hash = HashAlgorithm.Create("SHA256");

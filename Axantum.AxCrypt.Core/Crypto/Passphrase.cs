@@ -32,12 +32,16 @@ using System.Text;
 namespace Axantum.AxCrypt.Core.Crypto
 {
     /// <summary>
-    /// Derive a AesKey from a string passphrase representation. Instances of this class are immutable.
+    /// Derive a AesKey from a string passphrase representation for AxCrypt. Instances of this class are immutable.
     /// </summary>
     public class Passphrase
     {
         private readonly AesKey _derivedPassphrase;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Passphrase"/> class.
+        /// </summary>
+        /// <param name="passphrase">The passphrase.</param>
         public Passphrase(string passphrase)
         {
             if (passphrase == null)
@@ -54,6 +58,9 @@ namespace Axantum.AxCrypt.Core.Crypto
             _derivedPassphrase = new AesKey(derivedPassphrase);
         }
 
+        /// <summary>
+        /// Gets the derived passphrase AesKey instance.
+        /// </summary>
         public AesKey DerivedPassphrase
         {
             get

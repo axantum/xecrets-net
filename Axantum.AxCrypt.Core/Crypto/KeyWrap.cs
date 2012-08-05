@@ -220,6 +220,9 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         #region IDisposable Members
 
+        /// <summary>
+        /// Performs required tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

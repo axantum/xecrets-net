@@ -27,6 +27,9 @@
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
+    /// <summary>
+    /// Enumeration of the various sub keys used in an AxCrypt header.
+    /// </summary>
     public enum HeaderSubkey
     {
         None,

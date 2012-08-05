@@ -48,6 +48,11 @@ namespace Axantum.AxCrypt.Core.Crypto
             // idea in a constructor.
         }
 
+        /// <summary>
+        /// Initializes a new instance of the AxCryptHMACSHA1 class
+        /// with a provided key.
+        /// </summary>
+        /// <param name="key">The key</param>
         public static HMAC Create(AesKey key)
         {
             if (key == null)

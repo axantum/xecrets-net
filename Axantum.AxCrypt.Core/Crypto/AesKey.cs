@@ -41,10 +41,18 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private byte[] _aesKey;
 
+        /// <summary>
+        /// Instantiate a random key.
+        /// </summary>
         public AesKey()
         {
             _aesKey = AxCryptEnvironment.Current.GetRandomBytes(16);
         }
+
+        /// <summary>
+        /// Instantiate a key.
+        /// </summary>
+        /// <param name="key">The key to use. The length can be any that is valid for the algorithm.</param>
 
         public AesKey(byte[] key)
         {
@@ -59,11 +67,20 @@ namespace Axantum.AxCrypt.Core.Crypto
             _aesKey = (byte[])key.Clone();
         }
 
+        /// <summary>
+        /// Get the actual key bytes.
+        /// </summary>
+        /// <returns></returns>
         public byte[] GetBytes()
         {
             return (byte[])_aesKey.Clone();
         }
 
+        /// <summary>
+        /// Check if a key length is valid for AES
+        /// </summary>
+        /// <param name="length">The length in bytes</param>
+        /// <returns>true if the length in bytes is a valid key length for AES</returns>
         public static bool IsValidKeyLength(int length)
         {
             return _validAesKeySizes.Contains(length);
@@ -93,6 +110,13 @@ namespace Axantum.AxCrypt.Core.Crypto
             return validAesKeySizes;
         }
 
+        #region IEquatable<AesKey> Members
+
+        /// <summary>
+        /// Check if one instance is equivalent to another.
+        /// </summary>
+        /// <param name="other">The instance to compare to</param>
+        /// <returns>true if the keys are equivalent</returns>
         public bool Equals(AesKey other)
         {
             if (other == null)
@@ -101,5 +125,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
             return _aesKey.IsEquivalentTo(other._aesKey);
         }
+
+        #endregion IEquatable<AesKey> Members
     }
 }

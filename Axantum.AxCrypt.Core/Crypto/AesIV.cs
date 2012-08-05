@@ -31,21 +31,28 @@ using Axantum.AxCrypt.Core.System;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
+    /// <summary>
+    /// An Initial Vector for CBC chaining with AES. Instances of this class are immutable.
+    /// </summary>
     public class AesIV
     {
-        /// <summary>
-        /// An Initial Vector for CBC chaining with AES. Instances of this class are immutable.
-        /// </summary>
         private byte[] _iv;
 
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "The reference type 'AesIV' is, in fact, immutable.")]
         public static readonly AesIV Zero = new AesIV(new byte[16]);
 
+        /// <summary>
+        /// Instantiate a new random IV
+        /// </summary>
         public AesIV()
         {
             _iv = AxCryptEnvironment.Current.GetRandomBytes(16);
         }
 
+        /// <summary>
+        /// Instantiate a new IV
+        /// </summary>
+        /// <param name="iv">The Initial Vector to use</param>
         public AesIV(byte[] iv)
         {
             if (iv == null)
@@ -59,6 +66,10 @@ namespace Axantum.AxCrypt.Core.Crypto
             _iv = (byte[])iv.Clone();
         }
 
+        /// <summary>
+        /// Get the actual IV bytes
+        /// </summary>
+        /// <returns></returns>
         public byte[] GetBytes()
         {
             return (byte[])_iv.Clone();

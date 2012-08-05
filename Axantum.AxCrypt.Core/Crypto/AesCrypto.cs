@@ -30,13 +30,30 @@ using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
+    /// <summary>
+    /// Wrap an AES implementation with key and parameters. Instances of this class are immutable.
+    /// </summary>
     public class AesCrypto : IDisposable
     {
         private AesManaged _aes = null;
 
+        /// <summary>
+        /// The default key size, in bits
+        /// </summary>
         public static readonly int KeyBits = 128;
+
+        /// <summary>
+        /// The default key size in bytes
+        /// </summary>
         public static readonly int KeyBytes = KeyBits / 8;
 
+        /// <summary>
+        /// Instantiate a transformation
+        /// </summary>
+        /// <param name="key">The key</param>
+        /// <param name="iv">Initial Vector</param>
+        /// <param name="cipherMode">Mode of operation, typically CBC</param>
+        /// <param name="paddingMode">Padding mode, typically PCS7</param>
         public AesCrypto(AesKey key, AesIV iv, CipherMode cipherMode, PaddingMode paddingMode)
         {
             if (key == null)
@@ -54,11 +71,20 @@ namespace Axantum.AxCrypt.Core.Crypto
             _aes.Padding = paddingMode;
         }
 
+        /// <summary>
+        /// Instantiate an AES transform with zero IV, CBC and no padding.
+        /// </summary>
+        /// <param name="key">The key</param>
         public AesCrypto(AesKey key)
             : this(key, AesIV.Zero, CipherMode.CBC, PaddingMode.None)
         {
         }
 
+        /// <summary>
+        /// Decrypt in one operation.
+        /// </summary>
+        /// <param name="cipherText">The complete cipher text</param>
+        /// <returns>The decrypted result minus any padding</returns>
         public byte[] Decrypt(byte[] cipherText)
         {
             if (_aes == null)
@@ -72,6 +98,11 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
         }
 
+        /// <summary>
+        /// Encrypt
+        /// </summary>
+        /// <param name="plaintext">The complete plaintext bytes</param>
+        /// <returns>The cipher text, complete with any padding</returns>
         public byte[] Encrypt(byte[] plaintext)
         {
             if (_aes == null)
@@ -85,6 +116,10 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
         }
 
+        /// <summary>
+        /// Using this instances parameters, create a decryptor
+        /// </summary>
+        /// <returns>A new decrypting transformation instance</returns>
         public ICryptoTransform CreateDecryptingTransform()
         {
             if (_aes == null)
@@ -94,6 +129,10 @@ namespace Axantum.AxCrypt.Core.Crypto
             return _aes.CreateDecryptor();
         }
 
+        /// <summary>
+        /// Using this instances parameters, create an encryptor
+        /// </summary>
+        /// <returns>A new encrypting transformation instance</returns>
         public ICryptoTransform CreateEncryptingTransform()
         {
             if (_aes == null)
@@ -103,6 +142,9 @@ namespace Axantum.AxCrypt.Core.Crypto
             return _aes.CreateEncryptor();
         }
 
+        /// <summary>
+        /// Dispose this instances resources
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

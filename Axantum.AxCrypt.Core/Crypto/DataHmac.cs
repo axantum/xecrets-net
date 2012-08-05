@@ -31,12 +31,16 @@ using Axantum.AxCrypt.Core.System;
 namespace Axantum.AxCrypt.Core.Crypto
 {
     /// <summary>
-    /// The HMAC of the encrypted data. Instances of this class are immutable.
+    /// The HMAC of AxCrypt encrypted data. Instances of this class are immutable.
     /// </summary>
     public class DataHmac
     {
         private byte[] _hmac;
 
+        /// <summary>
+        /// Initializes an instance of DataHmac with the provided bytes.
+        /// </summary>
+        /// <param name="hmac">The bytes of the DataHmac</param>
         public DataHmac(byte[] hmac)
         {
             if (hmac == null)
@@ -50,6 +54,9 @@ namespace Axantum.AxCrypt.Core.Crypto
             _hmac = (byte[])hmac.Clone();
         }
 
+        /// <summary>
+        /// Gets the length of the hash.
+        /// </summary>
         public int Length
         {
             get
@@ -58,11 +65,22 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
         }
 
+        /// <summary>
+        /// Gets the hash bytes.
+        /// </summary>
+        /// <returns>The hash bytes</returns>
         public byte[] GetBytes()
         {
             return (byte[])_hmac.Clone();
         }
 
+        /// <summary>
+        /// Determines whether the specified <see cref="System.Object"/> is equal to this instance.
+        /// </summary>
+        /// <param name="obj">The <see cref="System.Object"/> to compare with this instance.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified <see cref="System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+        /// </returns>
         public override bool Equals(object obj)
         {
             if (obj == null || !GetType().Equals(obj.GetType()))
@@ -73,6 +91,12 @@ namespace Axantum.AxCrypt.Core.Crypto
             return this == right;
         }
 
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
+        /// </returns>
         public override int GetHashCode()
         {
             int hashCode = 0;
@@ -83,6 +107,14 @@ namespace Axantum.AxCrypt.Core.Crypto
             return hashCode;
         }
 
+        /// <summary>
+        /// Implements the operator == for DataHmac
+        /// </summary>
+        /// <param name="left">The left instance to compare</param>
+        /// <param name="right">The right instance to compare</param>
+        /// <returns>
+        /// True if the two instances compare as equivalent, false otherwise.
+        /// </returns>
         public static bool operator ==(DataHmac left, DataHmac right)
         {
             if (Object.ReferenceEquals(left, right))
@@ -96,6 +128,14 @@ namespace Axantum.AxCrypt.Core.Crypto
             return left._hmac.IsEquivalentTo(right._hmac);
         }
 
+        /// <summary>
+        /// Implements the operator !=.
+        /// </summary>
+        /// <param name="left">The left instance to compare</param>
+        /// <param name="right">The right instance to compare</param>
+        /// <returns>
+        /// True if the two instances do not compare as equivalent, false otherwise.
+        /// </returns>
         public static bool operator !=(DataHmac left, DataHmac right)
         {
             return !(left == right);

@@ -38,9 +38,16 @@ namespace Axantum.AxCrypt.Core.Crypto
     {
         private readonly byte[] _salt;
 
+        /// <summary>
+        /// An instance of KeyWrapSalt with all zeroes.
+        /// </summary>
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "The reference type 'AesIV' is, in fact, immutable.")]
         public static readonly KeyWrapSalt Zero = new KeyWrapSalt(new byte[0]);
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="KeyWrapSalt"/> class.
+        /// </summary>
+        /// <param name="length">The length of the salt in bytes. It must be a valid AES key length.</param>
         public KeyWrapSalt(int length)
         {
             if (!AesKey.IsValidKeyLength(length))
@@ -50,6 +57,10 @@ namespace Axantum.AxCrypt.Core.Crypto
             _salt = AxCryptEnvironment.Current.GetRandomBytes(length);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="KeyWrapSalt"/> class.
+        /// </summary>
+        /// <param name="length">The salt. It must be a valid AES key length.</param>
         public KeyWrapSalt(byte[] salt)
         {
             if (salt == null)
@@ -63,6 +74,9 @@ namespace Axantum.AxCrypt.Core.Crypto
             _salt = (byte[])salt.Clone();
         }
 
+        /// <summary>
+        /// Gets the length of the salt.
+        /// </summary>
         public int Length
         {
             get
@@ -71,6 +85,10 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
         }
 
+        /// <summary>
+        /// Gets the bytes of the salt.
+        /// </summary>
+        /// <returns>Returns the bytes of the salt.</returns>
         public byte[] GetBytes()
         {
             return (byte[])_salt.Clone();
