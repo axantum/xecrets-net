@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+ * AxCrypt - Copyright 2012, Svante Seleborg, All Rights Reserved
+ *
+ * This file is part of AxCrypt.
+ *
+ * AxCrypt is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * AxCrypt is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with AxCrypt.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * The source is maintained at http://bitbucket.org/axantum/axcrypt-net please visit for
+ * updates, contributions and contact with the author. You may also visit
+ * http://www.axantum.com for more information about the author.
+ */
+-->
+
+<!--
+    When this file is modified, close and re-open the solution to have Visual Studio recognize the change.
+-->
+<Project ToolsVersion="4.0"
+         DefaultTargets="Build"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>
+
+        <_AxSignToolPath>..\SolutionItems\signtool.exe</_AxSignToolPath>
+        <_AxIsAxantumBuild>true</_AxIsAxantumBuild>
+        <_AxBuildserverDistinguishingPath>C:\Build</_AxBuildserverDistinguishingPath>
+        <_AxIsBuildServerBuild>false</_AxIsBuildServerBuild>
+        <_AxIsBuildServerBuild Condition=" Exists('$(_AxBuildserverDistinguishingPath)') ">true</_AxIsBuildServerBuild>
+        <_AxTimeStampUrl>http://timestamp.comodoca.com/authenticode</_AxTimeStampUrl>
+        <_AxCertificateThumbprint>f19b4539765c80c0a1e56586132b06d5a96a2400</_AxCertificateThumbprint>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(_AxIsBuildServerBuild)' == 'true' ">
+        <_AxIgnoreSignToolErrors>false</_AxIgnoreSignToolErrors>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(_AxIsBuildServerBuild)' == 'false' ">
+        <_AxIgnoreSignToolErrors>true</_AxIgnoreSignToolErrors>
+    </PropertyGroup>
+
+    <!-- Use the parameter AxAuthenticodeFile to determine the file name. -->
+    <Target Name="AxAuthenticodeSignOneFile">
+        <Exec Command="&quot;$(_AxSignToolPath)&quot; sign /sha1 $(_AxCertificateThumbprint) /sm /v /t &quot;$(_AxTimeStampUrl)&quot; &quot;$(AxAuthenticodeFile)&quot; &gt;nul"
+              Condition=" '$(Configuration)' == 'Release' And Exists('$(_AxSignToolPath)') "
+              ContinueOnError="true">
+            <Output TaskParameter="ExitCode"
+                    PropertyName="_AxExitCode" />
+        </Exec>
+        <!-- Retry once if there's an error we're not ignoring errors-->
+        <Exec Command="&quot;$(_AxSignToolPath)&quot; sign /sha1 $(_AxCertificateThumbprint) /sm /v /t &quot;$(_AxTimeStampUrl)&quot; &quot;$(AxAuthenticodeFile)&quot; &gt;nul"
+              Condition=" '$(Configuration)' == 'Release' And Exists('$(_AxSignToolPath)') And '$(_AxExitCode)' != '0' And '$(_AxIgnoreSignToolErrors)' == 'false' "
+              ContinueOnError="true">
+            <Output TaskParameter="ExitCode"
+                    PropertyName="_AxExitCode" />
+        </Exec>
+        <!-- Retry again if there's an error we're not ignoring errors-->
+        <Exec Command="&quot;$(_AxSignToolPath)&quot; sign /sha1 $(_AxCertificateThumbprint) /sm /v /t &quot;$(_AxTimeStampUrl)&quot; &quot;$(AxAuthenticodeFile)&quot; &gt;nul"
+              Condition=" '$(Configuration)' == 'Release' And Exists('$(_AxSignToolPath)') And '$(_AxExitCode)' != '0' And '$(_AxIgnoreSignToolErrors)' == 'false' "
+              ContinueOnError="true">
+            <Output TaskParameter="ExitCode"
+                    PropertyName="_AxExitCode" />
+        </Exec>
+        <!-- Really fail if we're still in error, and we're not ignoring errors. -->
+        <Error Text="Authenticode signing failed even after three retries."
+               Condition=" '$(_AxExitCode)' != 0 And '$(_AxIgnoreSignToolErrors)' == 'false' " />
+        <Message Text="$(MSBuildProjectName) -> Authenticode signed $(AxAuthenticodeFile)"
+                 Importance="high" />
+    </Target>
+
+    <UsingTask TaskName="HgVersionFile"
+               AssemblyFile="..\SolutionItems\MSBuildVersioning.dll" />
+
+    <Target Name="_AxMergeAndSign"
+            Inputs="$(MSBuildProjectFullPath);@(MainAssembly);@(IlmergeAssemblies)"
+            Outputs="$(OutputPath)AxCrypt.exe"
+            Condition=" '$(Configuration)' == 'Release' And '$(OutputType)' == 'Winexe' ">
+        <Exec Command="&quot;..\SolutionItems\Ilmerge.exe&quot; /attr:&quot;@(MainAssembly)&quot; /targetplatform:v4,&quot;$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client&quot; /out:$(OutputPath)AxCrypt.exe &quot;@(MainAssembly)&quot; @(IlmergeAssemblies->'&quot;%(FullPath)&quot;', ' ')" />
+        <MSBuild Projects="$(MSBuildProjectFullPath)"
+                 Targets="AxAuthenticodeSignOneFile"
+                 Properties="AxAuthenticodeFile=$(OutputPath)AxCrypt.exe"/>
+    </Target>
+
+    <Target Name="_AxFindIlMergeAssemblies">
+        <CreateItem Include="@(ReferencePath)"
+                    Condition="'%(CopyLocal)'=='true'">
+            <Output TaskParameter="Include"
+                    ItemName="IlmergeAssemblies" />
+        </CreateItem>
+    </Target>
+
+    <Target Name="_AxFixupVersion"
+            Inputs="Properties\AssemblyInfo.template;$(MSBuildProjectFullPath)"
+            Outputs="Properties\AssemblyInfo.cs">
+        <HgVersionFile TemplateFile="Properties\AssemblyInfo.template"
+                       DestinationFile="Properties\AssemblyInfo.cs"
+                       IgnoreToolNotFound="true" />
+    </Target>
+
+    <Target Name="_AxBeforeBuild"
+            DependsOnTargets="_AxFixupVersion">
+    </Target>
+
+    <Target Name="_AxAfterBuild"
+            DependsOnTargets="_AxFindIlMergeAssemblies;_AxMergeAndSign">
+    </Target>
+
+    <PropertyGroup>
+        <BuildDependsOn>
+            _AxBeforeBuild;
+            $(BuildDependsOn);
+            _AxAfterBuild
+        </BuildDependsOn>
+    </PropertyGroup>
+</Project>
