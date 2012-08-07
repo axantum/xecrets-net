@@ -16,7 +16,7 @@ namespace Axantum.AxCrypt
             InitializeComponent();
             this.Text = "About {0}".InvariantFormat(AssemblyTitle);
             this.ProductNameText.Text = AssemblyProduct;
-            this.VersionText.Text = Application.ProductVersion;
+            this.VersionText.Text = AssemblyVersion;
             this.CopyrightText.Text = AssemblyCopyright;
             this.CompanyNameText.Text = AssemblyCompany;
             this.Description.Text = AssemblyDescription;
@@ -24,7 +24,7 @@ namespace Axantum.AxCrypt
 
         #region Assembly Attribute Accessors
 
-        public string AssemblyTitle
+        public static string AssemblyTitle
         {
             get
             {
@@ -32,7 +32,7 @@ namespace Axantum.AxCrypt
                 if (attributes.Length > 0)
                 {
                     AssemblyTitleAttribute titleAttribute = (AssemblyTitleAttribute)attributes[0];
-                    if (titleAttribute.Title != "")
+                    if (!String.IsNullOrEmpty(titleAttribute.Title))
                     {
                         return titleAttribute.Title;
                     }
@@ -41,15 +41,15 @@ namespace Axantum.AxCrypt
             }
         }
 
-        public string AssemblyVersion
+        public static string AssemblyVersion
         {
             get
             {
-                return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                return Application.ProductVersion;
             }
         }
 
-        public string AssemblyDescription
+        public static string AssemblyDescription
         {
             get
             {
@@ -62,7 +62,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        public string AssemblyProduct
+        public static string AssemblyProduct
         {
             get
             {
@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        public string AssemblyCopyright
+        public static string AssemblyCopyright
         {
             get
             {
@@ -88,7 +88,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        public string AssemblyCompany
+        public static string AssemblyCompany
         {
             get
             {

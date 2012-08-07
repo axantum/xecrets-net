@@ -85,6 +85,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="..\Solution.FxCop" />
+    <None Include="AxantumStrongName.pub" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AxCrypt 2.0 Design.html" />
@@ -94,6 +95,7 @@
     <Content Include="MSBuildVersioning.dll" />
     <Content Include="ReadMe.txt" />
     <Content Include="signtool.exe" />
+    <Content Include="sn.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

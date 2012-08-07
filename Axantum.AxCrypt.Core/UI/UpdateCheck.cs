@@ -68,19 +68,19 @@ namespace Axantum.AxCrypt.Core.UI
         /// raised, regardless of response and result. If a check is already in progress, the
         /// later call is ignored and only one check is performed.
         /// </summary>
-        public void CheckInBackground(DateTime lastCheckTimeutc)
+        public void CheckInBackground(DateTime lastCheckTimeUtc)
         {
             if (_done == null)
             {
                 throw new ObjectDisposedException("_done");
             }
-            if (lastCheckTimeutc.AddDays(1) >= AxCryptEnvironment.Current.UtcNow)
+            if (lastCheckTimeUtc.AddDays(1) >= AxCryptEnvironment.Current.UtcNow)
             {
                 if (Logging.IsInfoEnabled)
                 {
                     Logging.Info("Attempt to check for new version was ignored because it is too soon. Returning version {0}.".InvariantFormat(_newestVersion));
                 }
-                OnVersionUpdate(new VersionEventArgs(_newestVersion, _updateWebpageUrl, CalculateStatus(_newestVersion, lastCheckTimeutc)));
+                OnVersionUpdate(new VersionEventArgs(_newestVersion, _updateWebpageUrl, CalculateStatus(_newestVersion, lastCheckTimeUtc)));
                 return;
             }
 
@@ -97,7 +97,7 @@ namespace Axantum.AxCrypt.Core.UI
                 try
                 {
                     Version newVersion = CheckWebForNewVersion();
-                    OnVersionUpdate(new VersionEventArgs(newVersion, _updateWebpageUrl, CalculateStatus(newVersion, lastCheckTimeutc)));
+                    OnVersionUpdate(new VersionEventArgs(newVersion, _updateWebpageUrl, CalculateStatus(newVersion, lastCheckTimeUtc)));
                 }
                 finally
                 {

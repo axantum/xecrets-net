@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
@@ -35,6 +36,7 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("2.0.$REVNUM$.$DIRTY$")]
 [assembly: AssemblyFileVersion("2.0.$REVNUM$.$DIRTY$")]
+
 [assembly: AssemblyInformationalVersion("2.0.$REVNUM$.$DIRTY$ Beta")]
 [assembly: NeutralResourcesLanguageAttribute("en-US")]
 [assembly: CLSCompliant(true)]
