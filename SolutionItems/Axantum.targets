@@ -26,6 +26,11 @@
 
 <!--
     When this file is modified, close and re-open the solution to have Visual Studio recognize the change.
+
+    The encrypted private key file is part of the distribution, but is protected with a private password.
+    In Axantum build environment, the private key is loaded into a key-container, defined by Visual Studio
+    to be named VS_KEY_xxxxxxxxx, and resolved by $(KeyContainerName) . For a private build, you may need
+    to create your own key pair, or disable assembly strong naming.
 -->
 <Project ToolsVersion="4.0"
          DefaultTargets="Build"
@@ -85,7 +90,7 @@
     <Target Name="_AxMergeAndSign"
             Inputs="$(MSBuildProjectFullPath);@(MainAssembly);@(IlmergeAssemblies)"
             Outputs="$(OutputPath)AxCrypt.exe"
-            Condition=" '$(Configuration)' == 'Release' And '$(OutputType)' == 'Winexe' And '$(KeyContainerName)' != '' ">
+            Condition=" '$(Configuration)' == 'Release' And '$(OutputType)' == 'Winexe' And '$(KeyContainerName)' != '' And '$(SignAssembly)' == 'true' ">
         <Exec Command="&quot;..\SolutionItems\Ilmerge.exe&quot; /delaysign /keyfile:..\SolutionItems\AxantumStrongName.pub /attr:&quot;@(MainAssembly)&quot; /targetplatform:v4,&quot;$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client&quot; /out:&quot;$(OutputPath)AxCrypt.exe&quot; &quot;@(MainAssembly)&quot; @(IlmergeAssemblies->'&quot;%(FullPath)&quot;', ' ')" />
         <Exec Command="&quot;..\SolutionItems\sn.exe&quot; -Rca &quot;$(OutputPath)AxCrypt.exe&quot; $(KeyContainerName)" />
         <MSBuild Projects="$(MSBuildProjectFullPath)"
@@ -103,10 +108,19 @@
 
     <Target Name="_AxFixupVersion"
             Inputs="Properties\AssemblyInfo.template;$(MSBuildProjectFullPath)"
-            Outputs="Properties\AssemblyInfo.cs">
+            Outputs="Properties\AssemblyInfo.cs"
+            Condition=" Exists('Properties\AssemblyInfo.template') ">
         <HgVersionFile TemplateFile="Properties\AssemblyInfo.template"
                        DestinationFile="Properties\AssemblyInfo.cs"
                        IgnoreToolNotFound="true" />
+    </Target>
+
+    <Target Name="_AxFixupAssemblyStrongNaming"
+            Condition=" '$(KeyContainerName)' == '' And '$(KeyOriginatorFile)' == 'AxantumStrongName.pfx' ">
+        <PropertyGroup>
+            <KeyOriginatorFile></KeyOriginatorFile>
+            <SignAssembly>false</SignAssembly>
+        </PropertyGroup>
     </Target>
 
     <Target Name="_AxBeforeBuild"
@@ -124,4 +138,8 @@
             _AxAfterBuild
         </BuildDependsOn>
     </PropertyGroup>
+
+    <Target Name="BeforeCompile"
+            DependsOnTargets="_AxFixupAssemblyStrongNaming">
+    </Target>
 </Project>
