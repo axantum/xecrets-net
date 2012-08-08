@@ -26,16 +26,10 @@
 #endregion Coypright and License
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.IO;
 using System.Reflection;
 using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Session;
-using Axantum.AxCrypt.Core.System;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Properties;
 
@@ -70,7 +64,6 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-
             _fileWatcher = AxCryptEnvironment.Current.FileWatcher(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName);
             _fileWatcher.FileChanged += new EventHandler<FileWatcherEventArgs>(File_Changed);
 
