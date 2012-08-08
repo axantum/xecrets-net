@@ -103,6 +103,13 @@ namespace Axantum.AxCrypt.Core.Session
             return keyMatch;
         }
 
+        public static void RemoveRecentFile(this FileSystemState fileSystemState, string encryptedPath)
+        {
+            ActiveFile activeFile = fileSystemState.FindEncryptedPath(encryptedPath);
+            fileSystemState.Remove(activeFile);
+            fileSystemState.Save();
+        }
+
         private static ActiveFile CheckActiveFileActions(FileSystemState fileSystemState, ActiveFile activeFile, bool trackProcess, ProgressContext progress)
         {
             activeFile = CheckIfKeyIsKnown(fileSystemState, activeFile);

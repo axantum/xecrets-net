@@ -59,7 +59,7 @@ namespace Axantum.AxCrypt
             });
         }
 
-        public void EncryptedFileManager_Changed(object sender, EventArgs e)
+        public void FileSystemOrStateChanged(object sender, EventArgs e)
         {
             InvokeIfRequired(_mainForm.RestartTimer);
         }

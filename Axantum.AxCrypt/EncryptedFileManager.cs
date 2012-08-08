@@ -48,11 +48,7 @@ namespace Axantum.AxCrypt
     /// </summary>
     internal class EncryptedFileManager : Component, ISupportInitialize
     {
-        public event EventHandler<EventArgs> Changed;
-
         public event EventHandler<VersionEventArgs> VersionChecked;
-
-        public FileSystemState FileSystemState { get; private set; }
 
         private IFileWatcher _fileWatcher;
 
@@ -75,10 +71,6 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            string fileSystemStateFullName = Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, "FileSystemState.xml"); //MLHIDE
-            FileSystemState = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(fileSystemStateFullName));
-            FileSystemState.Changed += new EventHandler<EventArgs>(File_Changed);
-
             _fileWatcher = AxCryptEnvironment.Current.FileWatcher(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName);
             _fileWatcher.FileChanged += new EventHandler<FileWatcherEventArgs>(File_Changed);
 
@@ -90,8 +82,6 @@ namespace Axantum.AxCrypt
             }
             _updateCheck = new UpdateCheck(myVersion, newestVersion, Settings.Default.AxCrypt2VersionCheckUrl, Settings.Default.UpdateUrl);
             _updateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(UpdateCheck_VersionUpdate);
-
-            AxCryptEnvironment.Current.Changed += new EventHandler<EventArgs>(File_Changed);
         }
 
         private void UpdateCheck_VersionUpdate(object sender, VersionEventArgs e)
@@ -110,28 +100,7 @@ namespace Axantum.AxCrypt
 
         private void File_Changed(object sender, EventArgs e)
         {
-            OnChanged(e);
-        }
-
-        public FileOperationStatus Open(string file, IEnumerable<AesKey> keys, ProgressContext progress)
-        {
-            return FileSystemState.OpenAndLaunchApplication(file, keys, progress);
-        }
-
-        public void RemoveRecentFile(string encryptedPath)
-        {
-            ActiveFile activeFile = FileSystemState.FindEncryptedPath(encryptedPath);
-            FileSystemState.Remove(activeFile);
-            FileSystemState.Save();
-        }
-
-        private void OnChanged(EventArgs eventArgs)
-        {
-            EventHandler<EventArgs> changed = Changed;
-            if (changed != null)
-            {
-                changed(null, eventArgs);
-            }
+            AxCryptEnvironment.Current.RaiseChanged();
         }
 
         protected override void Dispose(bool disposing)

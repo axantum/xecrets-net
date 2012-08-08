@@ -71,6 +71,8 @@ namespace Axantum.AxCrypt
 
         private MainFormThreadFacade ThreadFacade { get; set; }
 
+        private FileSystemState FileSystemState { get; set; }
+
         public AxCryptMainForm()
         {
             InitializeComponent();
@@ -97,8 +99,12 @@ namespace Axantum.AxCrypt
 
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
 
-            EncryptedFileManager.Changed += new EventHandler<EventArgs>(ThreadFacade.EncryptedFileManager_Changed);
-            EncryptedFileManager.FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseAlways, TrackProcess, new ProgressContext());
+            AxCryptEnvironment.Current.Changed += new EventHandler<EventArgs>(ThreadFacade.FileSystemOrStateChanged);
+
+            string fileSystemStateFullName = Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, "FileSystemState.xml"); //MLHIDE
+            FileSystemState = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(fileSystemStateFullName));
+            FileSystemState.Changed += new EventHandler<EventArgs>(ThreadFacade.FileSystemOrStateChanged);
+            FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseAlways, TrackProcess, new ProgressContext());
 
             EncryptedFileManager.VersionChecked += new EventHandler<VersionEventArgs>(ThreadFacade.EncryptedFileManager_VersionChecked);
             EncryptedFileManager.VersionCheckInBackground(Settings.Default.LastUpdateCheckUtc);
@@ -182,7 +188,7 @@ namespace Axantum.AxCrypt
         {
             OpenFilesListView.Items.Clear();
             RecentFilesListView.Items.Clear();
-            EncryptedFileManager.FileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified,
+            FileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified,
                 (ActiveFile activeFile) =>
                 {
                     return UpdateOpenFilesWith(activeFile);
@@ -289,7 +295,7 @@ namespace Axantum.AxCrypt
             }
 
             AesKey key = null;
-            if (EncryptedFileManager.FileSystemState.KnownKeys.DefaultEncryptionKey == null)
+            if (FileSystemState.KnownKeys.DefaultEncryptionKey == null)
             {
                 EncryptPassphraseDialog passphraseDialog = new EncryptPassphraseDialog();
                 DialogResult dialogResult = passphraseDialog.ShowDialog();
@@ -302,7 +308,7 @@ namespace Axantum.AxCrypt
             }
             else
             {
-                key = EncryptedFileManager.FileSystemState.KnownKeys.DefaultEncryptionKey;
+                key = FileSystemState.KnownKeys.DefaultEncryptionKey;
             }
 
             ThreadFacade.DoBackgroundWork(sourceFileInfo.FullName,
@@ -317,9 +323,9 @@ namespace Axantum.AxCrypt
                     CheckStatusAndShowMessage(status, sourceFileInfo.Name);
                 });
 
-            if (EncryptedFileManager.FileSystemState.KnownKeys.DefaultEncryptionKey == null)
+            if (FileSystemState.KnownKeys.DefaultEncryptionKey == null)
             {
-                EncryptedFileManager.FileSystemState.KnownKeys.DefaultEncryptionKey = key;
+                FileSystemState.KnownKeys.DefaultEncryptionKey = key;
             }
         }
 
@@ -431,7 +437,7 @@ namespace Axantum.AxCrypt
             AxCryptDocument document = null;
             try
             {
-                foreach (AesKey key in EncryptedFileManager.FileSystemState.KnownKeys.Keys)
+                foreach (AesKey key in FileSystemState.KnownKeys.Keys)
                 {
                     document = AxCryptFile.Document(source, key, new ProgressContext());
                     if (document.PassphraseIsValid)
@@ -500,8 +506,8 @@ namespace Axantum.AxCrypt
 
         private void AddKnownKey(AesKey key)
         {
-            EncryptedFileManager.FileSystemState.KnownKeys.Add(key);
-            EncryptedFileManager.FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, new ProgressContext());
+            FileSystemState.KnownKeys.Add(key);
+            FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, new ProgressContext());
         }
 
         private void toolStripButtonOpenEncrypted_Click(object sender, EventArgs e)
@@ -537,7 +543,7 @@ namespace Axantum.AxCrypt
             ThreadFacade.DoBackgroundWork(Path.GetFileName(file),
                 (WorkerArguments arguments) =>
                 {
-                    arguments.Result = EncryptedFileManager.Open(file, EncryptedFileManager.FileSystemState.KnownKeys.Keys, arguments.Progress);
+                    arguments.Result = FileSystemState.OpenAndLaunchApplication(file, FileSystemState.KnownKeys.Keys, arguments.Progress);
                 },
                 (object sender, RunWorkerCompletedEventArgs e) =>
                 {
@@ -562,7 +568,7 @@ namespace Axantum.AxCrypt
             ThreadFacade.DoBackgroundWork(Path.GetFileName(file),
                 (WorkerArguments arguments) =>
                 {
-                    arguments.Result = EncryptedFileManager.Open(file, new AesKey[] { passphrase.DerivedPassphrase }, arguments.Progress);
+                    arguments.Result = FileSystemState.OpenAndLaunchApplication(file, new AesKey[] { passphrase.DerivedPassphrase }, arguments.Progress);
                 },
                 (object sender, RunWorkerCompletedEventArgs e) =>
                 {
@@ -624,7 +630,7 @@ namespace Axantum.AxCrypt
                 ThreadFacade.DoBackgroundWork(Resources.UpdatingStatus,
                     (WorkerArguments arguments) =>
                     {
-                        EncryptedFileManager.FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, arguments.Progress);
+                        FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, arguments.Progress);
                     },
                     (object sender1, RunWorkerCompletedEventArgs e1) =>
                     {
@@ -672,12 +678,12 @@ namespace Axantum.AxCrypt
             ThreadFacade.DoBackgroundWork(Resources.PurgingActiveFiles,
                 (WorkerArguments arguments) =>
                 {
-                    EncryptedFileManager.FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, arguments.Progress);
-                    EncryptedFileManager.FileSystemState.PurgeActiveFiles(arguments.Progress);
+                    FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, arguments.Progress);
+                    FileSystemState.PurgeActiveFiles(arguments.Progress);
                 },
                 (object sender, RunWorkerCompletedEventArgs e) =>
                 {
-                    IList<ActiveFile> openFiles = EncryptedFileManager.FileSystemState.DecryptedActiveFiles;
+                    IList<ActiveFile> openFiles = FileSystemState.DecryptedActiveFiles;
                     if (openFiles.Count == 0)
                     {
                         return;
@@ -700,7 +706,7 @@ namespace Axantum.AxCrypt
         private void RemoveRecentFileMenuItem_Click(object sender, EventArgs e)
         {
             string encryptedPath = RecentFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text; //MLHIDE
-            EncryptedFileManager.RemoveRecentFile(encryptedPath);
+            FileSystemState.RemoveRecentFile(encryptedPath);
         }
 
         private void RecentFilesListView_MouseClick(object sender, MouseEventArgs e)
@@ -745,10 +751,10 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-            bool keyMatch = EncryptedFileManager.FileSystemState.UpdateActiveFileWithKeyIfKeyMatchesThumbprint(passphrase.DerivedPassphrase);
+            bool keyMatch = FileSystemState.UpdateActiveFileWithKeyIfKeyMatchesThumbprint(passphrase.DerivedPassphrase);
             if (keyMatch)
             {
-                EncryptedFileManager.FileSystemState.KnownKeys.Add(passphrase.DerivedPassphrase);
+                FileSystemState.KnownKeys.Add(passphrase.DerivedPassphrase);
             }
         }
 
