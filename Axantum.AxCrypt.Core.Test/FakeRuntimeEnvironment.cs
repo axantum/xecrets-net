@@ -184,5 +184,21 @@ namespace Axantum.AxCrypt.Core.Test
         {
             return WebCallerCreator();
         }
+
+        public void RaiseChanged()
+        {
+            OnChanged();
+        }
+
+        protected virtual void OnChanged()
+        {
+            EventHandler<EventArgs> handler = Changed;
+            if (handler != null)
+            {
+                handler(this, new EventArgs());
+            }
+        }
+
+        public event EventHandler<EventArgs> Changed;
     }
 }

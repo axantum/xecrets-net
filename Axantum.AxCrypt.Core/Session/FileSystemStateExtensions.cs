@@ -82,6 +82,27 @@ namespace Axantum.AxCrypt.Core.Session
             });
         }
 
+        public static bool UpdateActiveFileWithKeyIfKeyMatchesThumbprint(this FileSystemState fileSystemState, AesKey key)
+        {
+            bool keyMatch = false;
+            fileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFile) =>
+            {
+                if (activeFile.Key != null)
+                {
+                    return activeFile;
+                }
+                if (!activeFile.ThumbprintMatch(key))
+                {
+                    return activeFile;
+                }
+                keyMatch = true;
+
+                activeFile = new ActiveFile(activeFile, key);
+                return activeFile;
+            });
+            return keyMatch;
+        }
+
         private static ActiveFile CheckActiveFileActions(FileSystemState fileSystemState, ActiveFile activeFile, bool trackProcess, ProgressContext progress)
         {
             activeFile = CheckIfKeyIsKnown(fileSystemState, activeFile);

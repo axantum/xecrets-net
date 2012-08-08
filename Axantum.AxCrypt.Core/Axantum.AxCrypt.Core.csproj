@@ -149,6 +149,7 @@
     <Compile Include="Session\ActiveFileStatus.cs" />
     <Compile Include="Session\FileSystemState.cs" />
     <Compile Include="System\Timing.cs" />
+    <Compile Include="UI\FileOperation.cs" />
     <Compile Include="UI\FileOperationStatus.cs" />
     <Compile Include="UI\KnownKeys.cs" />
     <Compile Include="UI\ProgressContext.cs" />
@@ -163,8 +164,8 @@
     <None Include="AxantumStrongName.pfx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-    <Import Project="..\SolutionItems\Axantum.targets" />
-    <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+  <Import Project="..\SolutionItems\Axantum.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

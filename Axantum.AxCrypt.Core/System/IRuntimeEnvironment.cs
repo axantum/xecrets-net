@@ -33,6 +33,10 @@ namespace Axantum.AxCrypt.Core.System
 {
     public interface IRuntimeEnvironment
     {
+        event EventHandler<EventArgs> Changed;
+
+        void RaiseChanged();
+
         bool IsLittleEndian { get; }
 
         byte[] GetRandomBytes(int count);

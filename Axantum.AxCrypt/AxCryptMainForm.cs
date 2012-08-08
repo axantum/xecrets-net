@@ -308,7 +308,7 @@ namespace Axantum.AxCrypt
             ThreadFacade.DoBackgroundWork(sourceFileInfo.FullName,
                 (WorkerArguments arguments) =>
                 {
-                    EncryptedFileManager.EncryptFile(sourceFileInfo, destinationFileInfo, key, arguments.Progress);
+                    AxCryptFile.EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, key, arguments.Progress);
                     arguments.Result = FileOperationStatus.Success;
                 },
                 (object sender, RunWorkerCompletedEventArgs e) =>
@@ -745,7 +745,7 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-            bool keyMatch = EncryptedFileManager.UpdateActiveFileIfKeyMatchesThumbprint(passphrase.DerivedPassphrase);
+            bool keyMatch = EncryptedFileManager.FileSystemState.UpdateActiveFileWithKeyIfKeyMatchesThumbprint(passphrase.DerivedPassphrase);
             if (keyMatch)
             {
                 EncryptedFileManager.FileSystemState.KnownKeys.Add(passphrase.DerivedPassphrase);

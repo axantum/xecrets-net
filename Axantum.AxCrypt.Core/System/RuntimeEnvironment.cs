@@ -150,5 +150,21 @@ namespace Axantum.AxCrypt.Core.System
         {
             return new WebCaller();
         }
+
+        public void RaiseChanged()
+        {
+            OnChanged();
+        }
+
+        protected virtual void OnChanged()
+        {
+            EventHandler<EventArgs> handler = Changed;
+            if (handler != null)
+            {
+                handler(this, new EventArgs());
+            }
+        }
+
+        public event EventHandler<EventArgs> Changed;
     }
 }

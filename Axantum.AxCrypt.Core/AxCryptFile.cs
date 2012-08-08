@@ -120,6 +120,24 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
+        public static void EncryptFileWithBackupAndWipe(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFileInfo, AesKey key, ProgressContext progress)
+        {
+            try
+            {
+                using (Stream activeFileStream = sourceFileInfo.OpenRead())
+                {
+                    AxCryptFile.WriteToFileWithBackup(destinationFileInfo, (Stream destination) =>
+                    {
+                        AxCryptFile.Encrypt(sourceFileInfo, destination, key, AxCryptOptions.EncryptWithCompression, progress);
+                    });
+                }
+                AxCryptFile.Wipe(sourceFileInfo);
+            }
+            catch (IOException)
+            {
+            }
+        }
+
         /// <summary>
         /// Decrypt a source file to a destination file, given a passphrase
         /// </summary>
