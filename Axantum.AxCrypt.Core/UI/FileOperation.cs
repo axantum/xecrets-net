@@ -42,6 +42,23 @@ namespace Axantum.AxCrypt.Core.UI
     {
         public static FileOperationStatus OpenAndLaunchApplication(this FileSystemState fileSystemState, string file, IEnumerable<AesKey> keys, ProgressContext progress)
         {
+            if (fileSystemState == null)
+            {
+                throw new ArgumentNullException("fileSystemState");
+            }
+            if (file == null)
+            {
+                throw new ArgumentNullException("file");
+            }
+            if (keys == null)
+            {
+                throw new ArgumentNullException("keys");
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
+
             IRuntimeFileInfo fileInfo = AxCryptEnvironment.Current.FileInfo(file);
             if (!fileInfo.Exists)
             {
