@@ -100,8 +100,6 @@ namespace Axantum.AxCrypt.Core.Test
             get { return 512; }
         }
 
-        #region IRuntimeEnvironment Members
-
         public IFileWatcher FileWatcher(string path)
         {
             FakeFileWatcher fileWatcher;
@@ -132,8 +130,6 @@ namespace Axantum.AxCrypt.Core.Test
                 return _temporaryDirectoryInfo;
             }
         }
-
-        #endregion IRuntimeEnvironment Members
 
         internal void FileCreated(string path)
         {
@@ -166,9 +162,15 @@ namespace Axantum.AxCrypt.Core.Test
             get { return TimeFunction(); }
         }
 
+        public Func<string, ILauncher> Launcher { get; set; }
+
         public ILauncher Launch(string path)
         {
-            throw new NotImplementedException();
+            if (Launcher != null)
+            {
+                return Launcher(path);
+            }
+            return new FakeLauncher(path);
         }
 
         public ITiming StartTiming()

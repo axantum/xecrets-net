@@ -125,5 +125,15 @@ namespace Axantum.AxCrypt.Core.Test
             }
             Assert.That(wasHere, "The FileWatcher should have noticed the creation and deletion of a file.");
         }
+
+        [Test]
+        public static void TestChangedEvent()
+        {
+            bool wasHere = false;
+            AxCryptEnvironment.Current.Changed += (object sender, EventArgs e) => { wasHere = true; };
+            AxCryptEnvironment.Current.RaiseChanged();
+
+            Assert.That(wasHere, Is.True, "The RaiseChanged() method should raise the event.");
+        }
     }
 }

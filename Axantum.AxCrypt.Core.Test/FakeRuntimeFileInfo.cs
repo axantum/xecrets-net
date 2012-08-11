@@ -278,6 +278,11 @@ namespace Axantum.AxCrypt.Core.Test
         {
             string directory = Path.GetDirectoryName(_file.FullName);
             DateTime utcNow = DateTime.UtcNow;
+
+            if (_fakeFileSystem.ContainsKey(directory))
+            {
+                return;
+            }
             AddFile(directory, utcNow, utcNow, utcNow, Stream.Null);
         }
 

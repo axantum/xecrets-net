@@ -27,58 +27,25 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using Axantum.AxCrypt.Core.System;
+using NUnit.Framework;
 
-namespace Axantum.AxCrypt.Core.Test
+[SetUpFixture]
+public class SetupAssembly
 {
-    internal class FakeLauncher : ILauncher
+    [SetUp]
+    public static void AssemblySetup()
     {
-        private string _path;
-
-        public FakeLauncher(string path)
-        {
-            _path = path;
-            HasExited = false;
-            WasStarted = true;
-        }
-
-        protected virtual void OnExited(EventArgs e)
-        {
-            EventHandler handler = Exited;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
-        }
-
-        public void RaiseExited()
-        {
-            OnExited(new EventArgs());
-        }
-
-        #region ILauncher Members
-
-        public event EventHandler Exited;
-
-        public bool HasExited { get; set; }
-
-        public bool WasStarted { get; set; }
-
-        public string Path
-        {
-            get { return _path; }
-        }
-
-        #endregion ILauncher Members
-
-        #region IDisposable Members
-
-        public void Dispose()
-        {
-        }
-
-        #endregion IDisposable Members
+        Logging.SetLevel(TraceLevel.Verbose);
     }
+
+    [TearDown]
+    public static void AssemblyTeardown()
+    {
+    }
+
+    public SetupAssembly() { }
 }

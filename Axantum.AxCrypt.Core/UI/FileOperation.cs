@@ -89,7 +89,8 @@ namespace Axantum.AxCrypt.Core.UI
             fileSystemState.Add(destinationActiveFile);
             fileSystemState.Save();
 
-            return LaunchApplicationForDocument(fileSystemState, destinationActiveFile);
+            FileOperationStatus status = LaunchApplicationForDocument(fileSystemState, destinationActiveFile);
+            return status;
         }
 
         private static FileOperationStatus LaunchApplicationForDocument(FileSystemState fileSystemState, ActiveFile destinationActiveFile)
@@ -102,15 +103,17 @@ namespace Axantum.AxCrypt.Core.UI
                     Logging.Info("Starting process for '{0}'".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName)); //MLHIDE
                 }
                 process = AxCryptEnvironment.Current.Launch(destinationActiveFile.DecryptedFileInfo.FullName);
-                if (!process.WasStarted)
+                if (process.WasStarted)
+                {
+                    process.Exited += new EventHandler(process_Exited);
+                }
+                else
                 {
                     if (Logging.IsInfoEnabled)
                     {
                         Logging.Info("Starting process for '{0}' did not start a process, assumed handled by the shell.".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName)); //MLHIDE
                     }
-                    return FileOperationStatus.Success;
                 }
-                process.Exited += new EventHandler(process_Exited);
             }
             catch (Win32Exception w32ex)
             {
