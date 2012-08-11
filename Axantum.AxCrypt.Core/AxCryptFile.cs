@@ -122,20 +122,30 @@ namespace Axantum.AxCrypt.Core
 
         public static void EncryptFileWithBackupAndWipe(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFileInfo, AesKey key, ProgressContext progress)
         {
-            try
+            if (sourceFileInfo == null)
             {
-                using (Stream activeFileStream = sourceFileInfo.OpenRead())
+                throw new ArgumentNullException("sourceFileInfo");
+            }
+            if (destinationFileInfo == null)
+            {
+                throw new ArgumentNullException("destinationFileInfo");
+            }
+            if (key == null)
+            {
+                throw new ArgumentNullException("key");
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
+            using (Stream activeFileStream = sourceFileInfo.OpenRead())
+            {
+                WriteToFileWithBackup(destinationFileInfo, (Stream destination) =>
                 {
-                    AxCryptFile.WriteToFileWithBackup(destinationFileInfo, (Stream destination) =>
-                    {
-                        AxCryptFile.Encrypt(sourceFileInfo, destination, key, AxCryptOptions.EncryptWithCompression, progress);
-                    });
-                }
-                AxCryptFile.Wipe(sourceFileInfo);
+                    Encrypt(sourceFileInfo, destination, key, AxCryptOptions.EncryptWithCompression, progress);
+                });
             }
-            catch (IOException)
-            {
-            }
+            Wipe(sourceFileInfo);
         }
 
         /// <summary>
