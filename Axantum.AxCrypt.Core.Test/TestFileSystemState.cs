@@ -219,5 +219,18 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(decryptedFiles.Contains(decryptedFile2), "A file marked as DecryptedIsPendingDelete should be found.");
             Assert.That(decryptedFiles.Contains(notDecryptedFile), Is.Not.True, "A file marked as NotDecrypted should not be found.");
         }
+
+        [Test]
+        public static void TestRaiseChanged()
+        {
+            FileSystemState state = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(@"c:\mytemp\mystate.xml"));
+
+            bool wasHere = false;
+            state.Changed += (object sender, EventArgs e) => { wasHere = true; };
+
+            state.RaiseChanged();
+
+            Assert.That(wasHere, Is.True, "After the call, the event should have been raised.");
+        }
     }
 }

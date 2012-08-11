@@ -483,5 +483,70 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(changedWasRaised, Is.True, "A changed event should be raised because the decrypted file is modified.");
             Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.NotDecrypted), Is.True, "The NotShareable not withstanding, the purge should have updated the file and removed the decrypted file.");
         }
+
+        [Test]
+        public static void TestUpdateActiveFileWithKeyIfKeyMatchesThumbprintWithKnownKey()
+        {
+            IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(_encryptedFile1);
+            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(_decryptedFile1);
+            AesKey key = new AesKey();
+            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable, null);
+            _fileSystemState.Add(activeFile);
+
+            bool updateWasMade = _fileSystemState.UpdateActiveFileWithKeyIfKeyMatchesThumbprint(key);
+            Assert.That(updateWasMade, Is.False, "Since there are only ActiveFiles with known keys in the list, no update should be made.");
+        }
+
+        [Test]
+        public static void TestUpdateActiveFileWithKeyIfKeyMatchesThumbprintWithWrongThumbprint()
+        {
+            IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(_encryptedFile1);
+            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(_decryptedFile1);
+            AesKey key = new AesKey();
+            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable, null);
+            _fileSystemState.Add(activeFile);
+            _fileSystemState.Save();
+
+            _fileSystemState = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(_fileSystemStateFilePath));
+
+            AesKey wrongKey = new AesKey();
+            bool updateWasMade = _fileSystemState.UpdateActiveFileWithKeyIfKeyMatchesThumbprint(wrongKey);
+            Assert.That(updateWasMade, Is.False, "Since there are only ActiveFiles with wrong keys in the list, no update should be made.");
+        }
+
+        [Test]
+        public static void TestUpdateActiveFileWithKeyIfKeyMatchesThumbprintWithMatchingThumbprint()
+        {
+            IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(_encryptedFile1);
+            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(_decryptedFile1);
+            AesKey key = new AesKey();
+            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable, null);
+            _fileSystemState.Add(activeFile);
+            _fileSystemState.Save();
+
+            _fileSystemState = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(_fileSystemStateFilePath));
+
+            bool updateWasMade = _fileSystemState.UpdateActiveFileWithKeyIfKeyMatchesThumbprint(key);
+            Assert.That(updateWasMade, Is.True, "Since there is an ActiveFile with the right thumbprint in the list, an update should be made.");
+        }
+
+        [Test]
+        public static void TestRemoveRecentFile()
+        {
+            IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(_encryptedFile1);
+            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(_decryptedFile1);
+            AesKey key = new AesKey();
+            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable, null);
+            _fileSystemState.Add(activeFile);
+            _fileSystemState.Save();
+
+            ActiveFile beforeRemoval = _fileSystemState.FindEncryptedPath(encryptedFileInfo.FullName);
+            Assert.That(beforeRemoval, Is.Not.Null, "Before being removed, the ActiveFile should be possible to find.");
+
+            _fileSystemState.RemoveRecentFile(encryptedFileInfo.FullName);
+
+            ActiveFile afterRemoval = _fileSystemState.FindEncryptedPath(encryptedFileInfo.FullName);
+            Assert.That(afterRemoval, Is.Null, "After being removed, the ActiveFile should not be possible to find.");
+        }
     }
 }
