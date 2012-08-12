@@ -42,6 +42,17 @@ namespace Axantum.AxCrypt
             SetAutoValidateViaReflectionToAvoidMoMaWarning();
         }
 
+        private void EncryptPassphraseDialog_Load(object sender, EventArgs e)
+        {
+            ShowHidePasshrase();
+        }
+
+        private void ShowHidePasshrase()
+        {
+            PassphraseTextBox.UseSystemPasswordChar = !ShowPassphraseCheckBox.Checked;
+            VerifyPassphraseTextbox.UseSystemPasswordChar = !ShowPassphraseCheckBox.Checked;
+        }
+
         private void SetAutoValidateViaReflectionToAvoidMoMaWarning()
         {
             if (AxCryptEnvironment.Current.IsDesktopWindows)
@@ -71,6 +82,11 @@ namespace Axantum.AxCrypt
         private void VerifyPassphraseTextbox_Validated(object sender, EventArgs e)
         {
             errorProvider1.Clear();
+        }
+
+        private void ShowPassphraseCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowHidePasshrase();
         }
     }
 }

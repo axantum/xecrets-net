@@ -117,27 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="buttonCancel.Text" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="buttonOk.Text" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>EncryptPassphraseDialog</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Verify Passphrase</value>
-  </data>
-  <data name="PassphraseGroupBox.Text" xml:space="preserve">
-    <value>Enter Passphrase</value>
-  </data>
-  <metadata name="errorProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="panel1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -155,6 +134,9 @@
   </data>
   <data name="buttonCancel.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
+  </data>
+  <data name="buttonCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
   </data>
   <data name="&gt;&gt;buttonCancel.Name" xml:space="preserve">
     <value>buttonCancel</value>
@@ -180,6 +162,9 @@
   <data name="buttonOk.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
+  <data name="buttonOk.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
   <data name="&gt;&gt;buttonOk.Name" xml:space="preserve">
     <value>buttonOk</value>
   </data>
@@ -193,7 +178,7 @@
     <value>1</value>
   </data>
   <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>52, 116</value>
+    <value>52, 140</value>
   </data>
   <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 37</value>
@@ -216,6 +201,78 @@
   <data name="PassphraseGroupBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="&gt;&gt;ShowPassphraseCheckBox.Name" xml:space="preserve">
+    <value>ShowPassphraseCheckBox</value>
+  </data>
+  <data name="&gt;&gt;ShowPassphraseCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ShowPassphraseCheckBox.Parent" xml:space="preserve">
+    <value>PassphraseGroupBox</value>
+  </data>
+  <data name="&gt;&gt;ShowPassphraseCheckBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;VerifyPassphraseTextbox.Name" xml:space="preserve">
+    <value>VerifyPassphraseTextbox</value>
+  </data>
+  <data name="&gt;&gt;VerifyPassphraseTextbox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;VerifyPassphraseTextbox.Parent" xml:space="preserve">
+    <value>PassphraseGroupBox</value>
+  </data>
+  <data name="&gt;&gt;VerifyPassphraseTextbox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>PassphraseGroupBox</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;PassphraseTextBox.Name" xml:space="preserve">
+    <value>PassphraseTextBox</value>
+  </data>
+  <data name="&gt;&gt;PassphraseTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;PassphraseTextBox.Parent" xml:space="preserve">
+    <value>PassphraseGroupBox</value>
+  </data>
+  <data name="&gt;&gt;PassphraseTextBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="PassphraseGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="PassphraseGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>280, 125</value>
+  </data>
+  <data name="PassphraseGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="PassphraseGroupBox.Text" xml:space="preserve">
+    <value>Enter Passphrase</value>
+  </data>
+  <data name="&gt;&gt;PassphraseGroupBox.Name" xml:space="preserve">
+    <value>PassphraseGroupBox</value>
+  </data>
+  <data name="&gt;&gt;PassphraseGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;PassphraseGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;PassphraseGroupBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="VerifyPassphraseTextbox.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 59</value>
   </data>
@@ -235,7 +292,7 @@
     <value>PassphraseGroupBox</value>
   </data>
   <data name="&gt;&gt;VerifyPassphraseTextbox.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -252,6 +309,9 @@
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Verify Passphrase</value>
+  </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
   </data>
@@ -262,7 +322,7 @@
     <value>PassphraseGroupBox</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="PassphraseTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 20</value>
@@ -283,34 +343,22 @@
     <value>PassphraseGroupBox</value>
   </data>
   <data name="&gt;&gt;PassphraseTextBox.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
-  <data name="PassphraseGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
-  </data>
-  <data name="PassphraseGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>280, 98</value>
-  </data>
-  <data name="PassphraseGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;PassphraseGroupBox.Name" xml:space="preserve">
-    <value>PassphraseGroupBox</value>
-  </data>
-  <data name="&gt;&gt;PassphraseGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;PassphraseGroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;PassphraseGroupBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
+  <metadata name="errorProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>305, 165</value>
+    <value>305, 182</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>AxCrypt Encrypt</value>
   </data>
   <data name="&gt;&gt;errorProvider1.Name" xml:space="preserve">
     <value>errorProvider1</value>
@@ -323,5 +371,32 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ShowPassphraseCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ShowPassphraseCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 89</value>
+  </data>
+  <data name="ShowPassphraseCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 17</value>
+  </data>
+  <data name="ShowPassphraseCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="ShowPassphraseCheckBox.Text" xml:space="preserve">
+    <value>Show Passphrase</value>
+  </data>
+  <data name="&gt;&gt;ShowPassphraseCheckBox.Name" xml:space="preserve">
+    <value>ShowPassphraseCheckBox</value>
+  </data>
+  <data name="&gt;&gt;ShowPassphraseCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ShowPassphraseCheckBox.Parent" xml:space="preserve">
+    <value>PassphraseGroupBox</value>
+  </data>
+  <data name="&gt;&gt;ShowPassphraseCheckBox.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
 </root>

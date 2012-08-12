@@ -112,5 +112,29 @@ namespace Axantum.AxCrypt.Properties {
                 return ((global::System.Uri)(this["AxCrypt2HelpUrl"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowEncryptPasshrase {
+            get {
+                return ((bool)(this["ShowEncryptPasshrase"]));
+            }
+            set {
+                this["ShowEncryptPasshrase"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ShowDecryptPassphrase {
+            get {
+                return ((bool)(this["ShowDecryptPassphrase"]));
+            }
+            set {
+                this["ShowDecryptPassphrase"] = value;
+            }
+        }
     }
 }

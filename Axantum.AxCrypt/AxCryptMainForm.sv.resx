@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="about.Text" xml:space="preserve">
+    <value>&amp;Om</value>
+  </data>
+  <data name="checkVersionNow.Text" xml:space="preserve">
+    <value>&amp;Sök Uppdatering</value>
+  </data>
   <data name="CloseAndRemoveOpenFilesButton.ToolTipText" xml:space="preserve">
     <value>Det finns öppna, dekrypterade filer. Klicka här för att stänga och ta brot de, men säkerställ först att de inte används. Fliken 'Öppna Dokument' visar vilka det gäller.</value>
   </data>
@@ -147,8 +153,11 @@
   <data name="fileToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Arkiv</value>
   </data>
-  <data name="helpToolStripButton.Text" xml:space="preserve">
+  <data name="helpButton.Text" xml:space="preserve">
     <value>&amp;Hjälp</value>
+  </data>
+  <data name="helpButton.ToolTipText" xml:space="preserve">
+    <value>Hjälp</value>
   </data>
   <data name="helpToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Hjälp</value>
@@ -159,9 +168,6 @@
   </data>
   <data name="LastAccessTime.Text" xml:space="preserve">
     <value>Tid</value>
-  </data>
-  <data name="LogTab.Text" xml:space="preserve">
-    <value>Loggbok</value>
   </data>
   <data name="openEncryptedToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Öppna Krypterat</value>
@@ -184,6 +190,9 @@
   <data name="RemoveRecentFileMenuItem.Text" xml:space="preserve">
     <value>Ta Bort</value>
   </data>
+  <data name="setUpdateCheckUrlToolStripMenuItem.Text" xml:space="preserve">
+    <value>Alternativ</value>
+  </data>
   <data name="toolStripButtonDecrypt.Text" xml:space="preserve">
     <value>Dekryptera</value>
   </data>
@@ -204,6 +213,12 @@
   </data>
   <data name="UpdateToolStripButton.Text" xml:space="preserve">
     <value>Uppdatera</value>
+  </data>
+  <data name="UpdateToolStripButton.ToolTipText" xml:space="preserve">
+    <value>Uppdatera</value>
+  </data>
+  <data name="viewHelpMenuItem.Text" xml:space="preserve">
+    <value>&amp;Visa Hjälp</value>
   </data>
   <data name="WatchedFoldersTab.Text" xml:space="preserve">
     <value>Krypterade Mappar</value>

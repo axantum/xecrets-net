@@ -140,6 +140,9 @@
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AboutBox.sv.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AxCryptMainForm.resx">
       <DependentUpon>AxCryptMainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -147,6 +150,9 @@
       <DependentUpon>AxCryptMainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DebugOptionsDialog.resx">
+      <DependentUpon>DebugOptionsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DebugOptionsDialog.sv.resx">
       <DependentUpon>DebugOptionsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DecryptPassphraseDialog.sv.resx">

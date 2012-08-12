@@ -38,6 +38,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.PassphraseTextBox = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ShowPassphraseCheckBox = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.PassphraseGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -70,6 +71,7 @@
             // PassphraseGroupBox
             // 
             resources.ApplyResources(this.PassphraseGroupBox, "PassphraseGroupBox");
+            this.PassphraseGroupBox.Controls.Add(this.ShowPassphraseCheckBox);
             this.PassphraseGroupBox.Controls.Add(this.VerifyPassphraseTextbox);
             this.PassphraseGroupBox.Controls.Add(this.label1);
             this.PassphraseGroupBox.Controls.Add(this.PassphraseTextBox);
@@ -98,6 +100,13 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // ShowPassphraseCheckBox
+            // 
+            resources.ApplyResources(this.ShowPassphraseCheckBox, "ShowPassphraseCheckBox");
+            this.ShowPassphraseCheckBox.Name = "ShowPassphraseCheckBox";
+            this.ShowPassphraseCheckBox.UseVisualStyleBackColor = true;
+            this.ShowPassphraseCheckBox.CheckedChanged += new System.EventHandler(this.ShowPassphraseCheckBox_CheckedChanged);
+            // 
             // EncryptPassphraseDialog
             // 
             this.AcceptButton = this.buttonOk;
@@ -108,6 +117,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.PassphraseGroupBox);
             this.Name = "EncryptPassphraseDialog";
+            this.Load += new System.EventHandler(this.EncryptPassphraseDialog_Load);
             this.panel1.ResumeLayout(false);
             this.PassphraseGroupBox.ResumeLayout(false);
             this.PassphraseGroupBox.PerformLayout();
@@ -127,5 +137,6 @@
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox VerifyPassphraseTextbox;
+        internal System.Windows.Forms.CheckBox ShowPassphraseCheckBox;
     }
 }

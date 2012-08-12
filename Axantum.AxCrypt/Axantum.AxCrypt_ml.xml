@@ -250,6 +250,52 @@
   <GeneralIds>
     <StringID>83</StringID>
   </GeneralIds>
+  <GeneralIds>
+    <StringID>84</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>85</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>86</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>87</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>88</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>89</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>90</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>91</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>92</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>93</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>94</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>95</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>96</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>97</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>98</StringID>
+    <Comment />
+  </GeneralIds>
   <Languages>
     <LanguageID>29</LanguageID>
     <LanguageName>Swedish</LanguageName>
@@ -403,7 +449,7 @@
   <GeneralTexts>
     <StringID>27</StringID>
     <LanguageID>29</LanguageID>
-    <LanguageText>Loggbok</LanguageText>
+    <LanguageText>Log Output</LanguageText>
     <Status>2</Status>
   </GeneralTexts>
   <GeneralTexts>
@@ -1212,6 +1258,138 @@ the Open Files tab to see the list of files.</LanguageText>
     <LanguageText>Klicka för att kontrollera om det finns en ny version.</LanguageText>
     <Status>3</Status>
   </GeneralTexts>
+  <GeneralTexts>
+    <StringID>84</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>AboutBox</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>85</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Version</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>86</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Copyright 2012 Axantum Software AB</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>87</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Axantum Software AB</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>88</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Description</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>89</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>&amp;OK</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>90</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>&amp;Debug</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>91</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>&amp;Check Version Now</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>92</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>&amp;Options</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>93</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>&amp;View Help</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>94</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>&amp;About</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>95</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Debugging Options</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>96</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Update Check Service Url</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>97</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Show Passphrase</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>89</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>&amp;OK</LanguageText>
+    <Status>2</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>94</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>&amp;Om</LanguageText>
+    <Status>2</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>92</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>Alternativ</LanguageText>
+    <Status>3</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>91</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>&amp;Sök Uppdatering</LanguageText>
+    <Status>2</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>97</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>Visa Lösenord</LanguageText>
+    <Status>2</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>93</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>&amp;Visa Hjälp</LanguageText>
+    <Status>2</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>98</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Cancel</LanguageText>
+    <Status>3</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>98</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>Cancel</LanguageText>
+    <Status>2</Status>
+  </GeneralTexts>
   <Properties>
     <Component>AxCryptMainForm.cs</Component>
     <Name>AxCryptMainForm.Text</Name>
@@ -1437,8 +1615,7 @@ the Open Files tab to see the list of files.</LanguageText>
   <Properties>
     <Component>AxCryptMainForm.cs</Component>
     <Name>LogTab.Text</Name>
-    <StringID>27</StringID>
-    <Selected>true</Selected>
+    <Selected>false</Selected>
     <ResourceName>LogTab.Text</ResourceName>
     <Hidden>false</Hidden>
   </Properties>
@@ -1787,8 +1964,7 @@ the Open Files tab to see the list of files.</LanguageText>
   <Properties>
     <Component>AxCryptMainForm.cs</Component>
     <Name>EnglishMenuItem.Text</Name>
-    <StringID>65</StringID>
-    <Selected>true</Selected>
+    <Selected>false</Selected>
     <ResourceName>EnglishMenuItem.Text</ResourceName>
     <Hidden>false</Hidden>
   </Properties>
@@ -1934,6 +2110,170 @@ the Open Files tab to see the list of files.</LanguageText>
     <StringID>79</StringID>
     <Selected>true</Selected>
     <ResourceName>NewVersionIsAvailableTooltip</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AboutBox.cs</Component>
+    <Name>AboutBox.Text</Name>
+    <Selected>false</Selected>
+    <ResourceName>$this.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AboutBox.cs</Component>
+    <Name>ProductNameText.Text</Name>
+    <StringID>69</StringID>
+    <Selected>true</Selected>
+    <ResourceName>ProductNameText.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AboutBox.cs</Component>
+    <Name>VersionText.Text</Name>
+    <Selected>false</Selected>
+    <ResourceName>VersionText.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AboutBox.cs</Component>
+    <Name>CopyrightText.Text</Name>
+    <Selected>false</Selected>
+    <ResourceName>CopyrightText.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AboutBox.cs</Component>
+    <Name>CompanyNameText.Text</Name>
+    <Selected>false</Selected>
+    <ResourceName>CompanyNameText.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AboutBox.cs</Component>
+    <Name>Description.Text</Name>
+    <Selected>false</Selected>
+    <ResourceName>Description.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AboutBox.cs</Component>
+    <Name>Description.Lines[0]</Name>
+    <Selected>false</Selected>
+    <ResourceName>Description.Lines[0]</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AboutBox.cs</Component>
+    <Name>okButton.Text</Name>
+    <StringID>89</StringID>
+    <Selected>true</Selected>
+    <ResourceName>okButton.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AxCryptMainForm.cs</Component>
+    <Name>UpdateToolStripButton.ToolTipText</Name>
+    <StringID>8</StringID>
+    <Selected>true</Selected>
+    <ResourceName>UpdateToolStripButton.ToolTipText</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AxCryptMainForm.cs</Component>
+    <Name>helpButton.Text</Name>
+    <StringID>10</StringID>
+    <Selected>true</Selected>
+    <ResourceName>helpButton.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AxCryptMainForm.cs</Component>
+    <Name>helpButton.ToolTipText</Name>
+    <StringID>11</StringID>
+    <Selected>true</Selected>
+    <ResourceName>helpButton.ToolTipText</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AxCryptMainForm.cs</Component>
+    <Name>debugToolStripMenuItem1.Text</Name>
+    <Selected>false</Selected>
+    <ResourceName>debugToolStripMenuItem1.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AxCryptMainForm.cs</Component>
+    <Name>checkVersionNow.Text</Name>
+    <StringID>91</StringID>
+    <Selected>true</Selected>
+    <ResourceName>checkVersionNow.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AxCryptMainForm.cs</Component>
+    <Name>setUpdateCheckUrlToolStripMenuItem.Text</Name>
+    <StringID>92</StringID>
+    <Selected>true</Selected>
+    <ResourceName>setUpdateCheckUrlToolStripMenuItem.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AxCryptMainForm.cs</Component>
+    <Name>DebugToolStripMenuItem.Text</Name>
+    <Selected>false</Selected>
+    <ResourceName>DebugToolStripMenuItem.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AxCryptMainForm.cs</Component>
+    <Name>viewHelpMenuItem.Text</Name>
+    <StringID>93</StringID>
+    <Selected>true</Selected>
+    <ResourceName>viewHelpMenuItem.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AxCryptMainForm.cs</Component>
+    <Name>about.Text</Name>
+    <StringID>94</StringID>
+    <Selected>true</Selected>
+    <ResourceName>about.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>DebugOptionsDialog.cs</Component>
+    <Name>DebugOptionsDialog.Text</Name>
+    <Selected>false</Selected>
+    <ResourceName>$this.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>DebugOptionsDialog.cs</Component>
+    <Name>label1.Text</Name>
+    <Selected>false</Selected>
+    <ResourceName>label1.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>DebugOptionsDialog.cs</Component>
+    <Name>okButton.Text</Name>
+    <Selected>false</Selected>
+    <ResourceName>okButton.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>DebugOptionsDialog.cs</Component>
+    <Name>cancelButton.Text</Name>
+    <Selected>false</Selected>
+    <ResourceName>cancelButton.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>EncryptPassphraseDialog.cs</Component>
+    <Name>ShowPassphraseCheckBox.Text</Name>
+    <StringID>97</StringID>
+    <Selected>true</Selected>
+    <ResourceName>ShowPassphraseCheckBox.Text</ResourceName>
     <Hidden>false</Hidden>
   </Properties>
   <GeneralAttributes>

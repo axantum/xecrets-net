@@ -298,10 +298,16 @@ namespace Axantum.AxCrypt
             if (FileSystemState.KnownKeys.DefaultEncryptionKey == null)
             {
                 EncryptPassphraseDialog passphraseDialog = new EncryptPassphraseDialog();
+                passphraseDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowEncryptPasshrase;
                 DialogResult dialogResult = passphraseDialog.ShowDialog();
                 if (dialogResult != DialogResult.OK)
                 {
                     return;
+                }
+                if (passphraseDialog.ShowPassphraseCheckBox.Checked != Settings.Default.ShowEncryptPasshrase)
+                {
+                    Settings.Default.ShowEncryptPasshrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
+                    Settings.Default.Save();
                 }
                 Passphrase passphrase = new Passphrase(passphraseDialog.PassphraseTextBox.Text);
                 key = passphrase.DerivedPassphrase;
