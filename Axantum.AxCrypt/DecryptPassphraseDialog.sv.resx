@@ -126,4 +126,7 @@
   <data name="PassphraseGroupBox.Text" xml:space="preserve">
     <value>Ange Lösenord</value>
   </data>
+  <data name="ShowPassphraseCheckBox.Text" xml:space="preserve">
+    <value>Visa Lösenord</value>
+  </data>
 </root>

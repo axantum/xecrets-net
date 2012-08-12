@@ -35,5 +35,20 @@ namespace Axantum.AxCrypt
         {
             InitializeComponent();
         }
+
+        private void DecryptPassphraseDialog_Load(object sender, System.EventArgs e)
+        {
+            ShowHidePassphrase();
+        }
+
+        private void ShowHidePassphrase()
+        {
+            Passphrase.UseSystemPasswordChar = !ShowPassphraseCheckBox.Checked;
+        }
+
+        private void ShowPassphraseCheckBox_CheckedChanged(object sender, System.EventArgs e)
+        {
+            ShowHidePassphrase();
+        }
     }
 }

@@ -34,6 +34,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonOk = new System.Windows.Forms.Button();
+            this.ShowPassphraseCheckBox = new System.Windows.Forms.CheckBox();
             this.PassphraseGroupBox.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -41,6 +42,7 @@
             // PassphraseGroupBox
             // 
             resources.ApplyResources(this.PassphraseGroupBox, "PassphraseGroupBox");
+            this.PassphraseGroupBox.Controls.Add(this.ShowPassphraseCheckBox);
             this.PassphraseGroupBox.Controls.Add(this.Passphrase);
             this.PassphraseGroupBox.Name = "PassphraseGroupBox";
             this.PassphraseGroupBox.TabStop = false;
@@ -71,6 +73,13 @@
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.UseVisualStyleBackColor = true;
             // 
+            // ShowPassphraseCheckBox
+            // 
+            resources.ApplyResources(this.ShowPassphraseCheckBox, "ShowPassphraseCheckBox");
+            this.ShowPassphraseCheckBox.Name = "ShowPassphraseCheckBox";
+            this.ShowPassphraseCheckBox.UseVisualStyleBackColor = true;
+            this.ShowPassphraseCheckBox.CheckedChanged += new System.EventHandler(this.ShowPassphraseCheckBox_CheckedChanged);
+            // 
             // DecryptPassphraseDialog
             // 
             this.AcceptButton = this.buttonOk;
@@ -80,6 +89,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.PassphraseGroupBox);
             this.Name = "DecryptPassphraseDialog";
+            this.Load += new System.EventHandler(this.DecryptPassphraseDialog_Load);
             this.PassphraseGroupBox.ResumeLayout(false);
             this.PassphraseGroupBox.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -95,5 +105,6 @@
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonOk;
         internal System.Windows.Forms.GroupBox PassphraseGroupBox;
+        internal System.Windows.Forms.CheckBox ShowPassphraseCheckBox;
     }
 }

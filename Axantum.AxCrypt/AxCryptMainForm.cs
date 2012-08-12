@@ -457,13 +457,11 @@ namespace Axantum.AxCrypt
                 Passphrase passphrase;
                 while (true)
                 {
-                    DecryptPassphraseDialog passphraseDialog = new DecryptPassphraseDialog();
-                    DialogResult dialogResult = passphraseDialog.ShowDialog();
-                    if (dialogResult != DialogResult.OK)
+                    passphrase = AskForDecryptPassphrase();
+                    if (passphrase == null)
                     {
                         return null;
                     }
-                    passphrase = new Passphrase(passphraseDialog.Passphrase.Text);
                     document = AxCryptFile.Document(source, passphrase.DerivedPassphrase, new ProgressContext());
                     if (document.PassphraseIsValid)
                     {
@@ -596,10 +594,16 @@ namespace Axantum.AxCrypt
         private Passphrase AskForDecryptPassphrase()
         {
             DecryptPassphraseDialog passphraseDialog = new DecryptPassphraseDialog();
+            passphraseDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowDecryptPassphrase;
             DialogResult dialogResult = passphraseDialog.ShowDialog(this);
             if (dialogResult != DialogResult.OK)
             {
                 return null;
+            }
+            if (passphraseDialog.ShowPassphraseCheckBox.Checked != Settings.Default.ShowDecryptPassphrase)
+            {
+                Settings.Default.ShowDecryptPassphrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
+                Settings.Default.Save();
             }
             Passphrase passphrase = new Passphrase(passphraseDialog.Passphrase.Text);
             return passphrase;

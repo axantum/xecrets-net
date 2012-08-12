@@ -2276,6 +2276,14 @@ the Open Files tab to see the list of files.</LanguageText>
     <ResourceName>ShowPassphraseCheckBox.Text</ResourceName>
     <Hidden>false</Hidden>
   </Properties>
+  <Properties>
+    <Component>DecryptPassphraseDialog.cs</Component>
+    <Name>ShowPassphraseCheckBox.Text</Name>
+    <StringID>97</StringID>
+    <Selected>true</Selected>
+    <ResourceName>ShowPassphraseCheckBox.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
   <GeneralAttributes>
     <Name>StatusHash</Name>
     <TextValue>pbvrvfEcU3oio6natLg0mM60Qco=</TextValue>

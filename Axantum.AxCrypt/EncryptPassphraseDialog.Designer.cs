@@ -34,11 +34,11 @@
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonOk = new System.Windows.Forms.Button();
             this.PassphraseGroupBox = new System.Windows.Forms.GroupBox();
+            this.ShowPassphraseCheckBox = new System.Windows.Forms.CheckBox();
             this.VerifyPassphraseTextbox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.PassphraseTextBox = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.ShowPassphraseCheckBox = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.PassphraseGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -78,6 +78,13 @@
             this.PassphraseGroupBox.Name = "PassphraseGroupBox";
             this.PassphraseGroupBox.TabStop = false;
             // 
+            // ShowPassphraseCheckBox
+            // 
+            resources.ApplyResources(this.ShowPassphraseCheckBox, "ShowPassphraseCheckBox");
+            this.ShowPassphraseCheckBox.Name = "ShowPassphraseCheckBox";
+            this.ShowPassphraseCheckBox.UseVisualStyleBackColor = true;
+            this.ShowPassphraseCheckBox.CheckedChanged += new System.EventHandler(this.ShowPassphraseCheckBox_CheckedChanged);
+            // 
             // VerifyPassphraseTextbox
             // 
             resources.ApplyResources(this.VerifyPassphraseTextbox, "VerifyPassphraseTextbox");
@@ -99,13 +106,6 @@
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
-            // 
-            // ShowPassphraseCheckBox
-            // 
-            resources.ApplyResources(this.ShowPassphraseCheckBox, "ShowPassphraseCheckBox");
-            this.ShowPassphraseCheckBox.Name = "ShowPassphraseCheckBox";
-            this.ShowPassphraseCheckBox.UseVisualStyleBackColor = true;
-            this.ShowPassphraseCheckBox.CheckedChanged += new System.EventHandler(this.ShowPassphraseCheckBox_CheckedChanged);
             // 
             // EncryptPassphraseDialog
             // 
