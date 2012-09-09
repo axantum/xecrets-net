@@ -35,7 +35,7 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// </summary>
     public class AesCrypto : IDisposable
     {
-        private AesManaged _aes = null;
+        private Aes _aes = null;
 
         /// <summary>
         /// The default key size, in bits
@@ -64,7 +64,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new ArgumentNullException("iv");
             }
-            _aes = new AesManaged();
+            _aes = new AesCryptoServiceProvider();
             _aes.Key = key.GetBytes();
             _aes.Mode = cipherMode;
             _aes.IV = iv.GetBytes();
