@@ -268,7 +268,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestFileInActiveFilesButNotDecrypted()
+        public static void TestFileContainedByActiveFilesButNotDecrypted()
         {
             IEnumerable<AesKey> keys = new AesKey[] { new Passphrase("a").DerivedPassphrase };
 

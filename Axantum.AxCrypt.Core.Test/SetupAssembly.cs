@@ -28,24 +28,27 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using Axantum.AxCrypt.Core.System;
 using NUnit.Framework;
 
-[SetUpFixture]
-public class SetupAssembly
+namespace Axantum.AxCrypt.Core.Test
 {
-    [SetUp]
-    public static void AssemblySetup()
+    [SuppressMessage("Microsoft.Design", "CA1053:StaticHolderTypesShouldNotHaveConstructors", Justification = "NUnit requires there to be a parameterless constructor.")]
+    [SetUpFixture]
+    public class SetupAssembly
     {
-        Logging.SetLevel(TraceLevel.Verbose);
-    }
+        [SetUp]
+        public static void AssemblySetup()
+        {
+            Logging.SetLevel(TraceLevel.Verbose);
+        }
 
-    [TearDown]
-    public static void AssemblyTeardown()
-    {
+        [TearDown]
+        public static void AssemblyTeardown()
+        {
+        }
     }
-
-    public SetupAssembly() { }
 }

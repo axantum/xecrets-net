@@ -68,11 +68,6 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public void RaiseChanged()
-        {
-            OnChanged(new EventArgs());
-        }
-
         public IEnumerable<ActiveFile> ActiveFiles
         {
             get
