@@ -8,6 +8,7 @@
         <Recognized>
             <Word>Axantum</Word>
             <Word>Svenska</Word>
+            <Word>bouncycastle</Word>
         </Recognized>
         <Deprecated>
             <Term PreferredAlternate=""></Term>
