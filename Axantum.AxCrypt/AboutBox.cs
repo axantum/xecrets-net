@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Properties;
 
 namespace Axantum.AxCrypt
 {
@@ -14,12 +15,12 @@ namespace Axantum.AxCrypt
         public AboutBox()
         {
             InitializeComponent();
-            this.Text = "About {0}".InvariantFormat(AssemblyTitle);
+            this.Text = Resources.About.InvariantFormat(AssemblyProduct);
             this.ProductNameText.Text = AssemblyProduct;
-            this.VersionText.Text = AssemblyVersion;
+            this.VersionText.Text = AssemblyVersion + (String.IsNullOrEmpty(AssemblyDescription) ? String.Empty : " " + AssemblyDescription);
             this.CopyrightText.Text = AssemblyCopyright;
             this.CompanyNameText.Text = AssemblyCompany;
-            this.Description.Text = AssemblyDescription;
+            this.Description.Text = Resources.AxCryptAboutDescription;
         }
 
         #region Assembly Attribute Accessors

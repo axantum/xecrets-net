@@ -61,6 +61,26 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About {0}.
+        /// </summary>
+        internal static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Source File Encryption for Windows
+        ///
+        ///Includes software from http://www.bouncycastle.org/ ..
+        /// </summary>
+        internal static string AxCryptAboutDescription {
+            get {
+                return ResourceManager.GetString("AxCryptAboutDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt File Encryption.
         /// </summary>
         internal static string AxCryptFileEncryption {

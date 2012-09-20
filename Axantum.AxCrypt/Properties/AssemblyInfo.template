@@ -7,8 +7,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AxCrypt.NET")]
-[assembly: AssemblyDescription("AxCrypt File Encryption for .NET and Mono")]
+[assembly: AssemblyTitle("File Encryption for .NET and Mono")]
+[assembly: AssemblyDescription("Beta")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Axantum Software AB")]
 [assembly: AssemblyProduct("AxCrypt")]
@@ -37,6 +37,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("2.0.$REVNUM$.$DIRTY$")]
 [assembly: AssemblyFileVersion("2.0.$REVNUM$.$DIRTY$")]
 
-[assembly: AssemblyInformationalVersion("2.0.$REVNUM$.$DIRTY$ Beta")]
+[assembly: AssemblyInformationalVersion("2.0.$REVNUM$.$DIRTY$")]
 [assembly: NeutralResourcesLanguageAttribute("en-US")]
 [assembly: CLSCompliant(true)]

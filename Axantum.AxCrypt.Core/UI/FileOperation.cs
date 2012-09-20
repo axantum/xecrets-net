@@ -151,7 +151,7 @@ namespace Axantum.AxCrypt.Core.UI
                 Logging.Info("Process exit event for '{0}'.".InvariantFormat(((ILauncher)sender).Path)); //MLHIDE
             }
 
-            AxCryptEnvironment.Current.RaiseChanged();
+            AxCryptEnvironment.Current.NotifyFileChanged();
         }
 
         private static ActiveFile TryDecrypt(IRuntimeFileInfo destinationFolderInfo, IEnumerable<AesKey> keys, IRuntimeFileInfo sourceFileInfo, ProgressContext progress)

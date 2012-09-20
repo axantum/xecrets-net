@@ -133,20 +133,20 @@ namespace Axantum.AxCrypt.Core.Test
 
         internal void FileCreated(string path)
         {
-            FileChanged(path);
+            HandleFileChanged(path);
         }
 
         internal void FileDeleted(string path)
         {
-            FileChanged(path);
+            HandleFileChanged(path);
         }
 
         internal void FileMoved(string path)
         {
-            FileChanged(path);
+            HandleFileChanged(path);
         }
 
-        private void FileChanged(string path)
+        private void HandleFileChanged(string path)
         {
             foreach (FakeFileWatcher fileWatcher in _fileWatchers.Values)
             {
@@ -187,20 +187,20 @@ namespace Axantum.AxCrypt.Core.Test
             return WebCallerCreator();
         }
 
-        public void RaiseChanged()
+        public void NotifyFileChanged()
         {
             OnChanged();
         }
 
         protected virtual void OnChanged()
         {
-            EventHandler<EventArgs> handler = Changed;
+            EventHandler<EventArgs> handler = FileChanged;
             if (handler != null)
             {
                 handler(this, new EventArgs());
             }
         }
 
-        public event EventHandler<EventArgs> Changed;
+        public event EventHandler<EventArgs> FileChanged;
     }
 }

@@ -93,7 +93,7 @@ namespace Axantum.AxCrypt
 
         private void File_Changed(object sender, EventArgs e)
         {
-            AxCryptEnvironment.Current.RaiseChanged();
+            AxCryptEnvironment.Current.NotifyFileChanged();
         }
 
         protected override void Dispose(bool disposing)

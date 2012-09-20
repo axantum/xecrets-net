@@ -130,8 +130,8 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestChangedEvent()
         {
             bool wasHere = false;
-            AxCryptEnvironment.Current.Changed += (object sender, EventArgs e) => { wasHere = true; };
-            AxCryptEnvironment.Current.RaiseChanged();
+            AxCryptEnvironment.Current.FileChanged += (object sender, EventArgs e) => { wasHere = true; };
+            AxCryptEnvironment.Current.NotifyFileChanged();
 
             Assert.That(wasHere, Is.True, "The RaiseChanged() method should raise the event.");
         }

@@ -33,9 +33,9 @@ namespace Axantum.AxCrypt.Core.System
 {
     public interface IRuntimeEnvironment
     {
-        event EventHandler<EventArgs> Changed;
+        event EventHandler<EventArgs> FileChanged;
 
-        void RaiseChanged();
+        void NotifyFileChanged();
 
         bool IsLittleEndian { get; }
 

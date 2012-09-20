@@ -95,11 +95,11 @@ namespace Axantum.AxCrypt
 
             RestoreUserPreferences();
 
-            Text = "{0} {1}".InvariantFormat(Application.ProductName, Application.ProductVersion);
+            Text = "{0} {1}{2}".InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription);
 
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
 
-            AxCryptEnvironment.Current.Changed += new EventHandler<EventArgs>(ThreadFacade.FileSystemOrStateChanged);
+            AxCryptEnvironment.Current.FileChanged += new EventHandler<EventArgs>(ThreadFacade.FileSystemOrStateChanged);
 
             string fileSystemStateFullName = Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, "FileSystemState.xml"); //MLHIDE
             FileSystemState = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(fileSystemStateFullName));

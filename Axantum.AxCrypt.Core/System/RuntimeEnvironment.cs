@@ -151,20 +151,20 @@ namespace Axantum.AxCrypt.Core.System
             return new WebCaller();
         }
 
-        public void RaiseChanged()
+        public void NotifyFileChanged()
         {
             OnChanged();
         }
 
         protected virtual void OnChanged()
         {
-            EventHandler<EventArgs> handler = Changed;
+            EventHandler<EventArgs> handler = FileChanged;
             if (handler != null)
             {
                 handler(this, new EventArgs());
             }
         }
 
-        public event EventHandler<EventArgs> Changed;
+        public event EventHandler<EventArgs> FileChanged;
     }
 }
