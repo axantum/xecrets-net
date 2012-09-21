@@ -51,27 +51,6 @@ namespace Axantum.AxCrypt
             _mainForm = mainForm;
         }
 
-        public void FormatTraceMessage(string message)
-        {
-            InvokeIfRequired(() =>
-            {
-                _mainForm.FormatTraceMessage(message);
-            });
-        }
-
-        public void FileSystemOrStateChanged(object sender, EventArgs e)
-        {
-            InvokeIfRequired(_mainForm.RestartTimer);
-        }
-
-        public void EncryptedFileManager_VersionChecked(object sender, VersionEventArgs e)
-        {
-            Settings.Default.LastUpdateCheckUtc = AxCryptEnvironment.Current.UtcNow;
-            Settings.Default.NewestKnownVersion = e.Version.ToString();
-            Settings.Default.Save();
-            InvokeIfRequired(() => { _mainForm.UpdateVersionStatus(e.VersionUpdateStatus, e.UpdateWebpageUrl, e.Version); });
-        }
-
         public void DoBackgroundWork(string displayText, Action<WorkerArguments> action, RunWorkerCompletedEventHandler completedHandler)
         {
             BackgroundWorker worker = CreateWorker(
@@ -205,7 +184,7 @@ namespace Axantum.AxCrypt
             return;
         }
 
-        private void InvokeIfRequired(Action action)
+        internal void SafeUi(Action action)
         {
             if (_mainForm.InvokeRequired)
             {

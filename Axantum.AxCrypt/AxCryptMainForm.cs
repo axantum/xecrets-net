@@ -62,11 +62,14 @@ namespace Axantum.AxCrypt
 
         public void FormatTraceMessage(string message)
         {
-            int skipIndex = message.IndexOf(" Information", StringComparison.Ordinal); //MLHIDE
-            skipIndex = skipIndex < 0 ? message.IndexOf(" Warning", StringComparison.Ordinal) : skipIndex; //MLHIDE
-            skipIndex = skipIndex < 0 ? message.IndexOf(" Debug", StringComparison.Ordinal) : skipIndex; //MLHIDE
-            skipIndex = skipIndex < 0 ? message.IndexOf(" Error", StringComparison.Ordinal) : skipIndex; //MLHIDE
-            LogOutput.AppendText("{0} {1}".InvariantFormat(AxCryptEnvironment.Current.UtcNow.ToString("o", CultureInfo.InvariantCulture), message.Substring(skipIndex + 1))); //MLHIDE
+            ThreadFacade.SafeUi(() =>
+            {
+                int skipIndex = message.IndexOf(" Information", StringComparison.Ordinal); //MLHIDE
+                skipIndex = skipIndex < 0 ? message.IndexOf(" Warning", StringComparison.Ordinal) : skipIndex; //MLHIDE
+                skipIndex = skipIndex < 0 ? message.IndexOf(" Debug", StringComparison.Ordinal) : skipIndex; //MLHIDE
+                skipIndex = skipIndex < 0 ? message.IndexOf(" Error", StringComparison.Ordinal) : skipIndex; //MLHIDE
+                LogOutput.AppendText("{0} {1}".InvariantFormat(AxCryptEnvironment.Current.UtcNow.ToString("o", CultureInfo.InvariantCulture), message.Substring(skipIndex + 1))); //MLHIDE
+            });
         }
 
         private MainFormThreadFacade ThreadFacade { get; set; }
@@ -87,7 +90,7 @@ namespace Axantum.AxCrypt
 
             ThreadFacade = new MainFormThreadFacade(this);
 
-            DelegateTraceListener traceListener = new DelegateTraceListener(ThreadFacade.FormatTraceMessage);
+            DelegateTraceListener traceListener = new DelegateTraceListener(FormatTraceMessage);
             traceListener.Name = "AxCryptMainFormListener";           //MLHIDE
             Trace.Listeners.Add(traceListener);
 
@@ -99,42 +102,58 @@ namespace Axantum.AxCrypt
 
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
 
-            AxCryptEnvironment.Current.FileChanged += new EventHandler<EventArgs>(ThreadFacade.FileSystemOrStateChanged);
+            AxCryptEnvironment.Current.FileChanged += new EventHandler<EventArgs>(FileSystemOrStateChanged);
 
             string fileSystemStateFullName = Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, "FileSystemState.xml"); //MLHIDE
             FileSystemState = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(fileSystemStateFullName));
-            FileSystemState.Changed += new EventHandler<EventArgs>(ThreadFacade.FileSystemOrStateChanged);
+            FileSystemState.Changed += new EventHandler<EventArgs>(FileSystemOrStateChanged);
             FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseAlways, TrackProcess, new ProgressContext());
 
-            EncryptedFileManager.VersionChecked += new EventHandler<VersionEventArgs>(ThreadFacade.EncryptedFileManager_VersionChecked);
+            EncryptedFileManager.VersionChecked += new EventHandler<VersionEventArgs>(EncryptedFileManager_VersionChecked);
             EncryptedFileManager.VersionCheckInBackground(Settings.Default.LastUpdateCheckUtc);
         }
 
-        public void UpdateVersionStatus(VersionUpdateStatus status, Uri url, Version version)
+        private void UpdateVersionStatus(VersionUpdateStatus status, Version version)
         {
-            _updateUrl = url;
             switch (status)
             {
                 case VersionUpdateStatus.IsUpToDateOrRecentlyChecked:
                     UpdateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.NoNeedToCheckForUpdatesTooltip;
                     UpdateToolStripButton.Enabled = false;
                     break;
+
                 case VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck:
                     UpdateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.OldVersionTooltip;
                     UpdateToolStripButton.Image = Resources.RefreshRed;
                     UpdateToolStripButton.Enabled = true;
                     break;
+
                 case VersionUpdateStatus.NewerVersionIsAvailable:
                     UpdateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.NewVersionIsAvailableTooltip.InvariantFormat(version);
                     UpdateToolStripButton.Image = Resources.RefreshRed;
                     UpdateToolStripButton.Enabled = true;
                     break;
+
                 case VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck:
                     UpdateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.ClickToCheckForNewerVersionTooltip;
                     UpdateToolStripButton.Image = Resources.RefreshGreen;
                     UpdateToolStripButton.Enabled = true;
                     break;
             }
+        }
+
+        private void EncryptedFileManager_VersionChecked(object sender, VersionEventArgs e)
+        {
+            Settings.Default.LastUpdateCheckUtc = AxCryptEnvironment.Current.UtcNow;
+            Settings.Default.NewestKnownVersion = e.Version.ToString();
+            Settings.Default.Save();
+            _updateUrl = e.UpdateWebpageUrl;
+            ThreadFacade.SafeUi(() => { UpdateVersionStatus(e.VersionUpdateStatus, e.Version); });
+        }
+
+        private void FileSystemOrStateChanged(object sender, EventArgs e)
+        {
+            ThreadFacade.SafeUi(RestartTimer);
         }
 
         private void AxCryptMainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -341,27 +360,35 @@ namespace Axantum.AxCrypt
             {
                 case FileOperationStatus.Success:
                     break;
+
                 case FileOperationStatus.UnspecifiedError:
                     Resources.FileOperationFailed.InvariantFormat(displayText).ShowWarning();
                     break;
+
                 case FileOperationStatus.FileAlreadyExists:
                     Resources.FileAlreadyExists.InvariantFormat(displayText).ShowWarning();
                     break;
+
                 case FileOperationStatus.FileDoesNotExist:
                     Resources.FileDoesNotExist.InvariantFormat(displayText).ShowWarning();
                     break;
+
                 case FileOperationStatus.CannotWriteDestination:
                     Resources.CannotWrite.InvariantFormat(displayText).ShowWarning();
                     break;
+
                 case FileOperationStatus.CannotStartApplication:
                     Resources.CannotStartApplication.InvariantFormat(displayText).ShowWarning();
                     break;
+
                 case FileOperationStatus.InconsistentState:
                     Resources.InconsistentState.InvariantFormat(displayText).ShowWarning();
                     break;
+
                 case FileOperationStatus.InvalidKey:
                     Resources.InvalidKey.InvariantFormat(displayText).ShowWarning();
                     break;
+
                 case FileOperationStatus.Canceled:
                     Resources.Canceled.InvariantFormat(displayText).ShowWarning();
                     break;

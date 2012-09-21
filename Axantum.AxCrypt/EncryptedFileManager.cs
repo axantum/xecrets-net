@@ -37,8 +37,7 @@ namespace Axantum.AxCrypt
 {
     /// <summary>
     /// Wrap IDisposable background processing resources in a Component and support ISupportInitialize, thus
-    /// serving as wrapper for those resources and allowing them to work well with
-    /// the designer.
+    /// serving as wrapper for those resources and allowing them to work well with the designer.
     /// </summary>
     internal class EncryptedFileManager : Component, ISupportInitialize
     {
