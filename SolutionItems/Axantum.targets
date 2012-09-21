@@ -31,10 +31,18 @@
     In Axantum build environment, the private key is loaded into a key-container, defined by Visual Studio
     to be named VS_KEY_xxxxxxxxx, and resolved by $(KeyContainerName) . For a private build, you may need
     to create your own key pair, or disable assembly strong naming.
+
+    The Microsoft build files are typically found at:
+    C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.CSharp.targets
+    C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.Common.targets
 -->
 <Project ToolsVersion="4.0"
          DefaultTargets="Build"
          xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <_AxCryptMajor>2</_AxCryptMajor>
+        <_AxCryptMinor>0</_AxCryptMinor>
+    </PropertyGroup>
     <PropertyGroup>
         <UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>
 
@@ -86,16 +94,51 @@
 
     <UsingTask TaskName="HgVersionFile"
                AssemblyFile="..\SolutionItems\MSBuildVersioning.dll" />
+    <UsingTask TaskName="HgVersionInformation"
+               AssemblyFile="..\SolutionItems\MSBuildVersioning.dll" />
 
     <Target Name="_AxMergeAndSign"
             Inputs="$(MSBuildProjectFullPath);@(MainAssembly);@(IlmergeAssemblies)"
-            Outputs="$(OutputPath)AxCrypt.exe"
+            Outputs="$(OutputPath)AxCrypt.exe;$(OutputPath)AxCrypt.pdb"
             Condition=" '$(Configuration)' == 'Release' And '$(OutputType)' == 'Winexe' And '$(KeyContainerName)' != '' And '$(SignAssembly)' == 'true' ">
         <Exec Command="&quot;..\SolutionItems\Ilmerge.exe&quot; /delaysign /keyfile:..\SolutionItems\AxantumStrongName.pub /attr:&quot;@(MainAssembly)&quot; /targetplatform:v4,&quot;$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client&quot; /out:&quot;$(OutputPath)AxCrypt.exe&quot; &quot;@(MainAssembly)&quot; @(IlmergeAssemblies->'&quot;%(FullPath)&quot;', ' ')" />
         <Exec Command="&quot;..\SolutionItems\sn.exe&quot; -Rca &quot;$(OutputPath)AxCrypt.exe&quot; $(KeyContainerName)" />
         <MSBuild Projects="$(MSBuildProjectFullPath)"
                  Targets="AxAuthenticodeSignOneFile"
                  Properties="AxAuthenticodeFile=$(OutputPath)AxCrypt.exe"/>
+        <ItemGroup>
+            <FileWrites Include="$(OutputPath)AxCrypt.exe" />
+            <FileWrites Include="$(OutputPath)AxCrypt.pdb" />
+        </ItemGroup>
+    </Target>
+
+    <Target Name="_AxSetRevisionFromSourceControl">
+        <HgVersionInformation IgnoreToolNotFound="true">
+            <Output TaskParameter="Revision"
+                    PropertyName="_AxSourceControlRevision" />
+            <Output TaskParameter="Dirty"
+                    PropertyName="_AxSourceControlDirty" />
+        </HgVersionInformation>
+        <PropertyGroup Condition=" '$(_AxSourceControlRevision)' != '' ">
+            <_AxVersionedFileName>AxCrypt-$(_AxCryptMajor).$(_AxCryptMinor).$(_AxSourceControlRevision).$(_AxSourceControlDirty).exe</_AxVersionedFileName>
+        </PropertyGroup>
+    </Target>
+
+    <Target Name="_AxCopyToVersionedFileName"
+            Inputs="$(OutputPath)AxCrypt.exe"
+            Outputs="$(OutputPath)$(_AxVersionedFileName)"
+            Condition=" '$(_AxVersionedFileName)' != '' ">
+        <Copy SourceFiles="$(OutputPath)AxCrypt.exe"
+              DestinationFiles="$(OutputPath)$(_AxVersionedFileName)"
+              SkipUnchangedFiles="true" />
+        <ItemGroup>
+            <FileWrites Include="$(OutputPath)$(_AxVersionedFileName)" />
+        </ItemGroup>
+    </Target>
+
+    <Target Name="_AxSetRevisionAndCopyToVersionedFileName"
+            DependsOnTargets="_AxSetRevisionFromSourceControl;_AxCopyToVersionedFileName"
+            Condition=" '$(Configuration)' == 'Release' And '$(OutputType)' == 'Winexe' And '$(KeyContainerName)' != '' And '$(SignAssembly)' == 'true' ">
     </Target>
 
     <Target Name="_AxFindIlMergeAssemblies">
@@ -127,8 +170,11 @@
             DependsOnTargets="_AxFixupVersion">
     </Target>
 
-    <Target Name="_AxAfterBuild"
-            DependsOnTargets="_AxFindIlMergeAssemblies;_AxMergeAndSign">
+    <Target Name="_AxAfterBuild">
+    </Target>
+
+    <Target Name="_AxPrepareForRun"
+            DependsOnTargets="_AxFindIlMergeAssemblies;_AxMergeAndSign;_AxSetRevisionAndCopyToVersionedFileName">
     </Target>
 
     <PropertyGroup>
@@ -137,6 +183,10 @@
             $(BuildDependsOn);
             _AxAfterBuild
         </BuildDependsOn>
+        <PrepareForRunDependsOn>
+            $(PrepareForRunDependsOn);
+            _AxPrepareForRun
+        </PrepareForRunDependsOn>
     </PropertyGroup>
 
     <Target Name="BeforeCompile"
