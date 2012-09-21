@@ -15,6 +15,10 @@ namespace Axantum.AxCrypt
         public AboutBox()
         {
             InitializeComponent();
+        }
+
+        private void AboutBox_Load(object sender, EventArgs e)
+        {
             this.Text = Resources.About.InvariantFormat(AssemblyProduct);
             this.ProductNameText.Text = AssemblyProduct;
             this.VersionText.Text = AssemblyVersion + (String.IsNullOrEmpty(AssemblyDescription) ? String.Empty : " " + AssemblyDescription);

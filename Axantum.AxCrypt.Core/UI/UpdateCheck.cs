@@ -113,7 +113,7 @@ namespace Axantum.AxCrypt.Core.UI
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is one case where anything could go wrong and it is still required to continue.")]
-        private Tuple<Version, Uri> CheckWebForNewVersion(Uri webServiceUrl, Uri updateWebpageUrl)
+        private static Tuple<Version, Uri> CheckWebForNewVersion(Uri webServiceUrl, Uri updateWebpageUrl)
         {
             Version newVersion = VersionUnknown;
             try
