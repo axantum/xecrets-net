@@ -45,18 +45,9 @@ namespace Axantum.AxCrypt.Core.UI
 
         private Version _currentVersion;
 
-        private Version _newestVersion;
-
-        private Uri _webServiceUrl;
-
-        private Uri _updateWebpageUrl;
-
-        public UpdateCheck(Version currentVersion, Version newestVersion, Uri webServiceUrl, Uri updateWebpageUrl)
+        public UpdateCheck(Version currentVersion)
         {
             _currentVersion = currentVersion;
-            _newestVersion = newestVersion;
-            _webServiceUrl = webServiceUrl;
-            _updateWebpageUrl = updateWebpageUrl;
         }
 
         public event EventHandler<VersionEventArgs> VersionUpdate;
@@ -68,8 +59,23 @@ namespace Axantum.AxCrypt.Core.UI
         /// raised, regardless of response and result. If a check is already in progress, the
         /// later call is ignored and only one check is performed.
         /// </summary>
-        public void CheckInBackground(DateTime lastCheckTimeUtc)
+        public void CheckInBackground(DateTime lastCheckTimeUtc, string newestKnownVersion, Uri webServiceUrl, Uri updateWebpageUrl)
         {
+            if (newestKnownVersion == null)
+            {
+                throw new ArgumentNullException("newestKnownVersion");
+            }
+            if (webServiceUrl == null)
+            {
+                throw new ArgumentNullException("webServiceUrl");
+            }
+            if (updateWebpageUrl == null)
+            {
+                throw new ArgumentNullException("updateWebpageUrl");
+            }
+
+            Version newestKnownVersionValue = ParseVersion(newestKnownVersion);
+
             if (_done == null)
             {
                 throw new ObjectDisposedException("_done");
@@ -78,9 +84,9 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 if (Logging.IsInfoEnabled)
                 {
-                    Logging.Info("Attempt to check for new version was ignored because it is too soon. Returning version {0}.".InvariantFormat(_newestVersion));
+                    Logging.Info("Attempt to check for new version was ignored because it is too soon. Returning version {0}.".InvariantFormat(newestKnownVersionValue));
                 }
-                OnVersionUpdate(new VersionEventArgs(_newestVersion, _updateWebpageUrl, CalculateStatus(_newestVersion, lastCheckTimeUtc)));
+                OnVersionUpdate(new VersionEventArgs(newestKnownVersionValue, updateWebpageUrl, CalculateStatus(newestKnownVersionValue, lastCheckTimeUtc)));
                 return;
             }
 
@@ -96,8 +102,8 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 try
                 {
-                    Version newVersion = CheckWebForNewVersion();
-                    OnVersionUpdate(new VersionEventArgs(newVersion, _updateWebpageUrl, CalculateStatus(newVersion, lastCheckTimeUtc)));
+                    Tuple<Version, Uri> newVersion = CheckWebForNewVersion(webServiceUrl, updateWebpageUrl);
+                    OnVersionUpdate(new VersionEventArgs(newVersion.Item1, newVersion.Item2, CalculateStatus(newVersion.Item1, lastCheckTimeUtc)));
                 }
                 finally
                 {
@@ -107,34 +113,34 @@ namespace Axantum.AxCrypt.Core.UI
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is one case where anything could go wrong and it is still required to continue.")]
-        private Version CheckWebForNewVersion()
+        private Tuple<Version, Uri> CheckWebForNewVersion(Uri webServiceUrl, Uri updateWebpageUrl)
         {
             Version newVersion = VersionUnknown;
             try
             {
                 IWebCaller webCaller = AxCryptEnvironment.Current.CreateWebCaller();
-                string result = webCaller.Go(_webServiceUrl);
+                string result = webCaller.Go(webServiceUrl);
                 DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(VersionResponse));
                 VersionResponse versionResponse;
                 using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(result)))
                 {
                     versionResponse = (VersionResponse)serializer.ReadObject(stream);
                 }
-                newVersion = ParseVersion(versionResponse);
-                _updateWebpageUrl = new Uri(versionResponse.WebReference);
+                newVersion = ParseVersion(versionResponse.Version);
+                updateWebpageUrl = new Uri(versionResponse.WebReference);
                 if (Logging.IsInfoEnabled)
                 {
-                    Logging.Info("Update check reports most recent version {0} at web page {1}".InvariantFormat(newVersion, _updateWebpageUrl));
+                    Logging.Info("Update check reports most recent version {0} at web page {1}".InvariantFormat(newVersion, updateWebpageUrl));
                 }
             }
             catch (Exception ex)
             {
                 if (Logging.IsWarningEnabled)
                 {
-                    Logging.Warning("Failed call to check for new version with exception {0}.".InvariantFormat(ex.Message));
+                    Logging.Warning("Failed call to check for new version with exception {0}.".InvariantFormat(ex));
                 }
             }
-            return newVersion;
+            return new Tuple<Version, Uri>(newVersion, updateWebpageUrl);
         }
 
         /// <summary>
@@ -150,10 +156,10 @@ namespace Axantum.AxCrypt.Core.UI
             _done.WaitOne();
         }
 
-        private static Version ParseVersion(VersionResponse versionResponse)
+        private static Version ParseVersion(string versionString)
         {
             Version version;
-            if (!Version.TryParse(versionResponse.Version, out version))
+            if (!Version.TryParse(versionString, out version))
             {
                 version = VersionUnknown;
             }

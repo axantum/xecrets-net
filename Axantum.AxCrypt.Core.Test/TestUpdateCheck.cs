@@ -73,13 +73,13 @@ namespace Axantum.AxCrypt.Core.Test
             Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion, UpdateCheck.VersionUnknown, restApiUrl, updateWebPageUrl))
+            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion))
             {
                 updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(DateTime.MinValue);
+                updateCheck.CheckInBackground(DateTime.MinValue, UpdateCheck.VersionUnknown.ToString(), restApiUrl, updateWebPageUrl);
                 updateCheck.WaitForBackgroundCheckComplete();
             }
 
@@ -87,6 +87,25 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(eventArgs.VersionUpdateStatus, Is.EqualTo(VersionUpdateStatus.NewerVersionIsAvailable), "The new version was newer.");
             Assert.That(eventArgs.UpdateWebpageUrl, Is.EqualTo(new Uri("http://localhost/AxCrypt/Downloads.html")), "The right URL should be passed in the event args.");
             Assert.That(eventArgs.Version, Is.EqualTo(newVersion), "The new version should be passed back.");
+        }
+
+        [Test]
+        public static void TestArgumentNullException()
+        {
+            string nullVersion = null;
+            Uri nullUrl = null;
+            Version thisVersion = new Version(2, 0, 300, 0);
+            Version newVersion = new Version(2, 0, 307, 0);
+            Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
+            Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
+            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion))
+            {
+                Assert.Throws<ArgumentNullException>(() => { updateCheck.CheckInBackground(DateTime.MinValue, nullVersion, restApiUrl, updateWebPageUrl); }, "Null argument should throw.");
+                Assert.Throws<ArgumentNullException>(() => { updateCheck.CheckInBackground(DateTime.MinValue, newVersion.ToString(), nullUrl, updateWebPageUrl); }, "Null argument should throw.");
+                Assert.Throws<ArgumentNullException>(() => { updateCheck.CheckInBackground(DateTime.MinValue, newVersion.ToString(), restApiUrl, nullUrl); }, "Null argument should throw.");
+
+                updateCheck.WaitForBackgroundCheckComplete();
+            }
         }
 
         [Test]
@@ -105,17 +124,17 @@ namespace Axantum.AxCrypt.Core.Test
             Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            UpdateCheck updateCheck = new UpdateCheck(thisVersion, UpdateCheck.VersionUnknown, restApiUrl, updateWebPageUrl);
+            UpdateCheck updateCheck = new UpdateCheck(thisVersion);
             updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
             {
                 eventArgs = e;
             };
-            updateCheck.CheckInBackground(DateTime.MinValue);
+            updateCheck.CheckInBackground(DateTime.MinValue, UpdateCheck.VersionUnknown.ToString(), restApiUrl, updateWebPageUrl);
             updateCheck.WaitForBackgroundCheckComplete();
             updateCheck.Dispose();
 
             Assert.DoesNotThrow(updateCheck.Dispose);
-            Assert.Throws<ObjectDisposedException>(() => { updateCheck.CheckInBackground(DateTime.MinValue); });
+            Assert.Throws<ObjectDisposedException>(() => { updateCheck.CheckInBackground(DateTime.MinValue, UpdateCheck.VersionUnknown.ToString(), restApiUrl, updateWebPageUrl); });
             Assert.Throws<ObjectDisposedException>(updateCheck.WaitForBackgroundCheckComplete);
 
             Assert.That(eventArgs, Is.Not.Null, "The VersionUpdate event should be called with non-null VersionEventArgs.");
@@ -140,13 +159,13 @@ namespace Axantum.AxCrypt.Core.Test
             Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion, UpdateCheck.VersionUnknown, restApiUrl, updateWebPageUrl))
+            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion))
             {
                 updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(DateTime.MinValue);
+                updateCheck.CheckInBackground(DateTime.MinValue, UpdateCheck.VersionUnknown.ToString(), restApiUrl, updateWebPageUrl);
                 updateCheck.WaitForBackgroundCheckComplete();
             }
 
@@ -172,13 +191,13 @@ namespace Axantum.AxCrypt.Core.Test
             Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion, UpdateCheck.VersionUnknown, restApiUrl, updateWebPageUrl))
+            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion))
             {
                 updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(utcNow.AddDays(-2));
+                updateCheck.CheckInBackground(utcNow.AddDays(-2), UpdateCheck.VersionUnknown.ToString(), restApiUrl, updateWebPageUrl);
                 updateCheck.WaitForBackgroundCheckComplete();
             }
 
@@ -206,13 +225,13 @@ namespace Axantum.AxCrypt.Core.Test
             Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion, thisVersion, restApiUrl, updateWebPageUrl))
+            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion))
             {
                 updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(utcNow.AddHours(-1));
+                updateCheck.CheckInBackground(utcNow.AddHours(-1), thisVersion.ToString(), restApiUrl, updateWebPageUrl);
                 updateCheck.WaitForBackgroundCheckComplete();
             }
 
@@ -243,14 +262,14 @@ namespace Axantum.AxCrypt.Core.Test
             Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion, UpdateCheck.VersionUnknown, restApiUrl, updateWebPageUrl))
+            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion))
             {
                 updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(DateTime.MinValue);
-                updateCheck.CheckInBackground(DateTime.MinValue);
+                updateCheck.CheckInBackground(DateTime.MinValue, UpdateCheck.VersionUnknown.ToString(), restApiUrl, updateWebPageUrl);
+                updateCheck.CheckInBackground(DateTime.MinValue, UpdateCheck.VersionUnknown.ToString(), restApiUrl, updateWebPageUrl);
                 wait.Set();
                 updateCheck.WaitForBackgroundCheckComplete();
             }
@@ -279,13 +298,13 @@ namespace Axantum.AxCrypt.Core.Test
             Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion, UpdateCheck.VersionUnknown, restApiUrl, updateWebPageUrl))
+            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion))
             {
                 updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(DateTime.MinValue);
+                updateCheck.CheckInBackground(DateTime.MinValue, UpdateCheck.VersionUnknown.ToString(), restApiUrl, updateWebPageUrl);
                 updateCheck.WaitForBackgroundCheckComplete();
             }
 
@@ -312,13 +331,13 @@ namespace Axantum.AxCrypt.Core.Test
             Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion, UpdateCheck.VersionUnknown, restApiUrl, updateWebPageUrl))
+            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion))
             {
                 updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(utcNow.AddDays(-2));
+                updateCheck.CheckInBackground(utcNow.AddDays(-2), UpdateCheck.VersionUnknown.ToString(), restApiUrl, updateWebPageUrl);
                 updateCheck.WaitForBackgroundCheckComplete();
             }
 
@@ -343,13 +362,13 @@ namespace Axantum.AxCrypt.Core.Test
             Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
             Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
             VersionEventArgs eventArgs = null;
-            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion, UpdateCheck.VersionUnknown, restApiUrl, updateWebPageUrl))
+            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion))
             {
                 updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
                 {
                     eventArgs = e;
                 };
-                updateCheck.CheckInBackground(DateTime.MinValue);
+                updateCheck.CheckInBackground(DateTime.MinValue, UpdateCheck.VersionUnknown.ToString(), restApiUrl, updateWebPageUrl);
                 updateCheck.WaitForBackgroundCheckComplete();
             }
 
