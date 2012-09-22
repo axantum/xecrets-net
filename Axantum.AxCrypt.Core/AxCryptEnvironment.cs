@@ -31,11 +31,6 @@ namespace Axantum.AxCrypt.Core
 {
     public static class AxCryptEnvironment
     {
-        static AxCryptEnvironment()
-        {
-            Current = new RuntimeEnvironment();
-        }
-
         public static IRuntimeEnvironment Current { get; set; }
     }
 }

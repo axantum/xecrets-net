@@ -32,6 +32,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.System;
 using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -41,9 +42,13 @@ namespace Axantum.AxCrypt.Core.Test
     {
         private static string _tempPath;
 
+        private static IRuntimeEnvironment _previousEnvironment;
+
         [SetUp]
         public static void Setup()
         {
+            _previousEnvironment = AxCryptEnvironment.Current;
+            AxCryptEnvironment.Current = new RuntimeEnvironment();
             _tempPath = Path.Combine(Path.GetTempPath(), "Axantum.AxCrypt.Core.Test.TestFileWatcher");
             Directory.CreateDirectory(_tempPath);
         }
@@ -52,6 +57,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void Teardown()
         {
             Directory.Delete(_tempPath, true);
+            AxCryptEnvironment.Current = _previousEnvironment;
         }
 
         [Test]

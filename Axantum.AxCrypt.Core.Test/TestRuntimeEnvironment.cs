@@ -30,6 +30,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.System;
 using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -37,6 +38,21 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestRuntimeEnvironment
     {
+        private static IRuntimeEnvironment _previousEnvironment;
+
+        [SetUp]
+        public static void Setup()
+        {
+            _previousEnvironment = AxCryptEnvironment.Current;
+            AxCryptEnvironment.Current = new RuntimeEnvironment();
+        }
+
+        [TearDown]
+        public static void Teardown()
+        {
+            AxCryptEnvironment.Current = _previousEnvironment;
+        }
+
         [Test]
         public static void TestAxCryptExtension()
         {
