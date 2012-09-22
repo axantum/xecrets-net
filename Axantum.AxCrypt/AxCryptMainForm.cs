@@ -94,7 +94,7 @@ namespace Axantum.AxCrypt
             traceListener.Name = "AxCryptMainFormListener";           //MLHIDE
             Trace.Listeners.Add(traceListener);
 
-            TrackProcess = AxCryptEnvironment.Current.IsDesktopWindows;
+            TrackProcess = AxCryptEnvironment.Current.Platform == Platform.WindowsDesktop;
 
             RestoreUserPreferences();
 
@@ -822,7 +822,7 @@ namespace Axantum.AxCrypt
 
         private void AxCryptMainForm_Resize(object sender, EventArgs e)
         {
-            if (!AxCryptEnvironment.Current.IsDesktopWindows)
+            if (AxCryptEnvironment.Current.Platform != Platform.WindowsDesktop)
             {
                 return;
             }

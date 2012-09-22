@@ -141,6 +141,7 @@
     <Compile Include="Reader\AxCryptStreamReader.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="System\Platform.cs" />
     <Compile Include="System\RuntimeEnvironment.cs" />
     <Compile Include="IO\FileLock.cs" />
     <Compile Include="Session\ActiveFile.cs" />

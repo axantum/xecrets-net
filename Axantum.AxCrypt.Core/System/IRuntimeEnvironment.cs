@@ -45,7 +45,7 @@ namespace Axantum.AxCrypt.Core.System
 
         string AxCryptExtension { get; }
 
-        bool IsDesktopWindows { get; }
+        Platform Platform { get; }
 
         int StreamBufferSize { get; }
 

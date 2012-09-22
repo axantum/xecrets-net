@@ -274,13 +274,13 @@ namespace Axantum.AxCrypt.Core.Test
                 changedWasRaised = true;
             });
 
-            _fakeRuntimeEnvironment.IsDesktopWindows = false;
+            _fakeRuntimeEnvironment.Platform = Platform.Unknown;
             _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, false, new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "No change should be raised when the file is not modified and not Desktop Windows.");
             activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
             Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "Nothing should happen with the file when not running as Desktop Windows.");
 
-            _fakeRuntimeEnvironment.IsDesktopWindows = true;
+            _fakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
             changedWasRaised = false;
             _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, false, new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "Since the file should be deleted because running as Desktop Windows the changed event should be raised.");
@@ -351,7 +351,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 changedWasRaised = true;
             });
-            _fakeRuntimeEnvironment.IsDesktopWindows = true;
+            _fakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
             _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, true, new ProgressContext());
 
             activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
@@ -376,7 +376,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 changedWasRaised = true;
             });
-            _fakeRuntimeEnvironment.IsDesktopWindows = true;
+            _fakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
             fakeLauncher.HasExited = true;
             _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, true, new ProgressContext());
 
@@ -402,7 +402,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 changedWasRaised = true;
             });
-            _fakeRuntimeEnvironment.IsDesktopWindows = true;
+            _fakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
 
             EventHandler eventHandler = ((object sender, EventArgs e) =>
             {

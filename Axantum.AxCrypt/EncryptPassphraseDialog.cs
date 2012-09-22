@@ -30,6 +30,7 @@ using System.ComponentModel;
 using System.Reflection;
 using System.Windows.Forms;
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.System;
 using Axantum.AxCrypt.Properties;
 
 namespace Axantum.AxCrypt
@@ -55,7 +56,7 @@ namespace Axantum.AxCrypt
 
         private void SetAutoValidateViaReflectionToAvoidMoMaWarning()
         {
-            if (AxCryptEnvironment.Current.IsDesktopWindows)
+            if (AxCryptEnvironment.Current.Platform == Platform.WindowsDesktop)
             {
                 PropertyInfo propertyInfo = typeof(EncryptPassphraseDialog).GetProperty("AutoValidate"); //MLHIDE
                 propertyInfo.SetValue(this, AutoValidate.EnableAllowFocusChange, null);

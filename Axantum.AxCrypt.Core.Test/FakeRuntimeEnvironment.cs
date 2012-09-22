@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             AxCryptExtension = ".axx";
             TimeFunction = StandardTimeFunction;
-            IsDesktopWindows = true;
+            Platform = Platform.WindowsDesktop;
             CurrentTiming = new FakeTiming();
         }
 
@@ -89,7 +89,7 @@ namespace Axantum.AxCrypt.Core.Test
             set;
         }
 
-        public bool IsDesktopWindows
+        public Platform Platform
         {
             get;
             set;

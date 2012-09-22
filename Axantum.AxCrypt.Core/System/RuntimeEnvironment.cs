@@ -78,7 +78,7 @@ namespace Axantum.AxCrypt.Core.System
             set;
         }
 
-        public bool IsDesktopWindows
+        public Platform Platform
         {
             [ExcludeFromCodeCoverage]
             get
@@ -90,13 +90,17 @@ namespace Axantum.AxCrypt.Core.System
                     case PlatformID.Win32NT:
                     case PlatformID.Win32S:
                     case PlatformID.Win32Windows:
-                        return true;
+                        return Platform.WindowsDesktop;
                     case PlatformID.MacOSX:
+                        return Platform.MacOSX;
                     case PlatformID.Unix:
+                        return Platform.Linux;
                     case PlatformID.WinCE:
+                        return Platform.WindowsMobile;
                     case PlatformID.Xbox:
+                        return Platform.Xbox;
                     default:
-                        return false;
+                        return Platform.Unknown;
                 }
             }
         }

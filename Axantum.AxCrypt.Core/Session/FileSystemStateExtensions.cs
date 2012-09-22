@@ -213,7 +213,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private static ActiveFile CheckIfTimeToDelete(ActiveFile activeFile)
         {
-            if (!AxCryptEnvironment.Current.IsDesktopWindows)
+            if (AxCryptEnvironment.Current.Platform != Platform.WindowsDesktop)
             {
                 return activeFile;
             }
