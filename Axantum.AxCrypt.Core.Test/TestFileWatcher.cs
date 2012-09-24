@@ -70,12 +70,8 @@ namespace Axantum.AxCrypt.Core.Test
                 using (Stream stream = File.Create(Path.Combine(_tempPath, "CreatedFile.txt")))
                 {
                 }
-                for (int i = 0; i < 20; ++i)
+                for (int i = 0; String.IsNullOrEmpty(fileName) && i < 20; ++i)
                 {
-                    if (fileName.Length > 0)
-                    {
-                        break;
-                    }
                     Thread.Sleep(100);
                 }
                 Assert.That(fileName, Is.EqualTo("CreatedFile.txt"), "The watcher should detect the newly created file.");
@@ -92,10 +88,16 @@ namespace Axantum.AxCrypt.Core.Test
                 using (Stream stream = File.Create(Path.Combine(_tempPath, "NewFile.txt")))
                 {
                 }
-                Thread.Sleep(100);
+                for (int i = 0; String.IsNullOrEmpty(fileName) && i < 20; ++i)
+                {
+                    Thread.Sleep(100);
+                }
                 fileName = String.Empty;
                 File.Move(Path.Combine(_tempPath, "NewFile.txt"), Path.Combine(_tempPath, "MovedFile.txt"));
-                Thread.Sleep(100);
+                for (int i = 0; String.IsNullOrEmpty(fileName) && i < 20; ++i)
+                {
+                    Thread.Sleep(100);
+                }
                 Assert.That(fileName, Is.EqualTo("MovedFile.txt"), "The watcher should detect the newly created file.");
             }
         }

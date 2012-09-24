@@ -132,14 +132,22 @@ namespace Axantum.AxCrypt.Core.Test
                     using (Stream stream = tempFileInfo.OpenWrite())
                     {
                     }
+                    for (int i = 0; !wasHere && i < 20; ++i)
+                    {
+                        Thread.Sleep(100);
+                    }
+                    Assert.That(wasHere, "The FileWatcher should have noticed the creation of a file.");
                 }
                 finally
                 {
                     tempFileInfo.Delete();
                 }
-                Thread.Sleep(100);
+                for (int i = 0; !wasHere && i < 20; ++i)
+                {
+                    Thread.Sleep(100);
+                }
+                Assert.That(wasHere, "The FileWatcher should have noticed the deletion of a file.");
             }
-            Assert.That(wasHere, "The FileWatcher should have noticed the creation and deletion of a file.");
         }
 
         [Test]
