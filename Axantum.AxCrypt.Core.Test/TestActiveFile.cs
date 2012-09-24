@@ -49,16 +49,22 @@ namespace Axantum.AxCrypt.Core.Test
 
         private static FakeRuntimeEnvironment _fakeRuntimeEnvironment;
 
+        private static readonly string _rootPath = Path.GetPathRoot(Environment.SystemDirectory);
+        private static readonly string _testTextPath = Path.Combine(_rootPath, "test.txt");
+        private static readonly string _davidCopperfieldTxtPath = Path.Combine(_rootPath, "Users", "AxCrypt", "David Copperfield.txt");
+        private static readonly string _uncompressedAxxPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Uncompressed.axx");
+        private static readonly string _helloWorldAxxPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "HelloWorld.axx");
+
         [TestFixtureSetUp]
         public static void SetupFixture()
         {
             _environment = AxCryptEnvironment.Current;
             AxCryptEnvironment.Current = _fakeRuntimeEnvironment = new FakeRuntimeEnvironment();
 
-            FakeRuntimeFileInfo.AddFile(@"c:\test.txt", FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate1Utc, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
-            FakeRuntimeFileInfo.AddFile(@"c:\Users\AxCrypt\David Copperfield.txt", FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate5Utc, FakeRuntimeFileInfo.TestDate6Utc, new MemoryStream(Resources.David_Copperfield));
-            FakeRuntimeFileInfo.AddFile(@"c:\Documents\Uncompressed.axx", new MemoryStream(Resources.Uncompressable_zip));
-            FakeRuntimeFileInfo.AddFile(@"c:\Documents\HelloWorld.axx", new MemoryStream(Resources.HelloWorld_Key_a_txt));
+            FakeRuntimeFileInfo.AddFile(_testTextPath, FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate1Utc, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
+            FakeRuntimeFileInfo.AddFile(_davidCopperfieldTxtPath, FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate5Utc, FakeRuntimeFileInfo.TestDate6Utc, new MemoryStream(Resources.David_Copperfield));
+            FakeRuntimeFileInfo.AddFile(_uncompressedAxxPath, new MemoryStream(Resources.Uncompressable_zip));
+            FakeRuntimeFileInfo.AddFile(_helloWorldAxxPath, new MemoryStream(Resources.HelloWorld_Key_a_txt));
         }
 
         [TestFixtureTearDown]
@@ -73,8 +79,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IRuntimeFileInfo nullFileInfo = null;
             ILauncher nullProcess = null;
-            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\test.txt");
-            IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\Documents\HelloWorld.axx");
+            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(_testTextPath);
+            IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(_helloWorldAxxPath);
             AesKey key = new AesKey();
             AesKey nullKey = null;
             ILauncher process = new FakeLauncher(String.Empty);
@@ -97,13 +103,13 @@ namespace Axantum.AxCrypt.Core.Test
         {
             AesKey key = new AesKey();
             ILauncher process = new FakeLauncher(String.Empty);
-            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\test.txt");
-            IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\Documents\HelloWorld.axx");
+            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(_testTextPath);
+            IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(_helloWorldAxxPath);
             using (ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, process))
             {
                 decryptedFileInfo = activeFile.DecryptedFileInfo;
                 Assert.That(decryptedFileInfo.Exists, Is.True, "The file should exist in the fake file system.");
-                Assert.That(decryptedFileInfo.FullName, Is.EqualTo(@"c:\test.txt"), "The file should be named as it was in the constructor");
+                Assert.That(decryptedFileInfo.FullName, Is.EqualTo(_testTextPath), "The file should be named as it was in the constructor");
                 Assert.That(decryptedFileInfo.LastWriteTimeUtc, Is.EqualTo(decryptedFileInfo.LastWriteTimeUtc), "When a LastWriteTime is not specified, the decrypted file should be used to determine the value.");
                 Assert.That(activeFile.Process, Is.EqualTo(process), "The process should be set from the constructor.");
                 _fakeRuntimeEnvironment.TimeFunction = (() => { return DateTime.UtcNow.AddMinutes(1); });
@@ -138,8 +144,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             ILauncher process = new FakeLauncher(String.Empty);
             AesKey key = new AesKey();
-            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\test.txt");
-            IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\Documents\HelloWorld.axx");
+            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(_testTextPath);
+            IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(_helloWorldAxxPath);
             using (ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, process))
             {
                 AesKey newKey = new AesKey();
@@ -154,8 +160,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestThumbprint()
         {
-            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\test.txt");
-            IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\Documents\HelloWorld.axx");
+            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(_testTextPath);
+            IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(_helloWorldAxxPath);
             ILauncher process = new FakeLauncher(String.Empty);
 
             AesKey key = new AesKey();
@@ -177,8 +183,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestThumbprintNullKey()
         {
-            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\test.txt");
-            IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\Documents\HelloWorld.axx");
+            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(_testTextPath);
+            IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(_helloWorldAxxPath);
             ILauncher process = new FakeLauncher(String.Empty);
 
             AesKey key = new AesKey();
@@ -198,8 +204,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestMethodIsModified()
         {
-            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\doesnotexist.txt");
-            IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\Documents\HelloWorld.axx");
+            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(Path.Combine(_rootPath, "doesnotexist.txt"));
+            IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(_helloWorldAxxPath);
             using (ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new AesKey(), ActiveFileStatus.None, null))
             {
                 Assert.That(activeFile.IsModified, Is.False, "A non-existing decrypted file should not be treated as modified.");

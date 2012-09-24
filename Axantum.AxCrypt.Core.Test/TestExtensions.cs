@@ -258,24 +258,27 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestCreateEncryptedName()
         {
-            string fileName = @"C:\Users\Axantum\My Documents\My Document.docx";
+            string rootPath = Path.GetPathRoot(Environment.SystemDirectory);
+            string fileName = Path.Combine(rootPath, "Users", "Axantum", "A Documents Folder", "My Document.docx");
             string encryptedFileName = fileName.CreateEncryptedName();
-            Assert.That(encryptedFileName, Is.EqualTo(@"C:\Users\Axantum\My Documents\My Document-docx.axx"), "Standard conversion of file name to encrypted form.");
+            Assert.That(encryptedFileName, Is.EqualTo(Path.Combine(rootPath, "Users", "Axantum", "A Documents Folder", "My Document-docx.axx")), "Standard conversion of file name to encrypted form.");
 
             Assert.Throws<InternalErrorException>(() =>
                  {
                      string encryptedEncryptedFileName = encryptedFileName.CreateEncryptedName();
+
                      // Use the instance to avoid FxCop errors.
                      Object.Equals(encryptedEncryptedFileName, null);
                  });
 
-            fileName = @"C:\Users\Axantum\My Documents\My Extensionless File";
+            fileName = Path.Combine(rootPath, "Users", "Axantum", "A Documents Folder", "My Extensionless File");
             encryptedFileName = fileName.CreateEncryptedName();
-            Assert.That(encryptedFileName, Is.EqualTo(@"C:\Users\Axantum\My Documents\My Extensionless File.axx"), "Conversion of file name without extension to encrypted form.");
+            Assert.That(encryptedFileName, Is.EqualTo(Path.Combine(rootPath, "Users", "Axantum", "A Documents Folder", "My Extensionless File.axx")), "Conversion of file name without extension to encrypted form.");
 
             Assert.Throws<InternalErrorException>(() =>
             {
                 string encryptedEncryptedFileName = encryptedFileName.CreateEncryptedName();
+
                 // Use the instance to avoid FxCop errors.
                 Object.Equals(encryptedEncryptedFileName, null);
             });

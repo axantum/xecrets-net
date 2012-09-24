@@ -27,6 +27,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -38,19 +39,21 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestFileLock
     {
+        private static readonly string _fileExtPath = Path.Combine(Path.GetPathRoot(Environment.SystemDirectory), "file.ext");
+
         [Test]
         public static void TestFileLockInvalidArguments()
         {
             IRuntimeFileInfo nullInfo = null;
             Assert.Throws<ArgumentNullException>(() => { FileLock.Lock(nullInfo); });
             Assert.Throws<ArgumentNullException>(() => { FileLock.IsLocked(nullInfo); });
-            Assert.Throws<ArgumentNullException>(() => { FileLock.IsLocked(AxCryptEnvironment.Current.FileInfo(@"\\server\path\file.ext"), nullInfo); });
+            Assert.Throws<ArgumentNullException>(() => { FileLock.IsLocked(AxCryptEnvironment.Current.FileInfo(_fileExtPath), nullInfo); });
         }
 
         [Test]
         public static void TestFileLockMethods()
         {
-            IRuntimeFileInfo fileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\dir\file.ext");
+            IRuntimeFileInfo fileInfo = AxCryptEnvironment.Current.FileInfo(_fileExtPath);
 
             Assert.That(FileLock.IsLocked(fileInfo), Is.False, "There should be no lock for this file yet.");
             using (FileLock lock1 = FileLock.Lock(fileInfo))
@@ -63,7 +66,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileLockWhenLocked()
         {
-            IRuntimeFileInfo fileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\dir\file.ext");
+            IRuntimeFileInfo fileInfo = AxCryptEnvironment.Current.FileInfo(_fileExtPath);
             Assert.That(FileLock.IsLocked(fileInfo), Is.False, "There should be no lock for this file to start with.");
             using (FileLock lock1 = FileLock.Lock(fileInfo))
             {
@@ -81,8 +84,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileLockCaseSensitivity()
         {
-            IRuntimeFileInfo fileInfo1 = AxCryptEnvironment.Current.FileInfo(@"c:\dir\file.ext");
-            IRuntimeFileInfo fileInfo2 = AxCryptEnvironment.Current.FileInfo(@"C:\dir\file.ext");
+            IRuntimeFileInfo fileInfo1 = AxCryptEnvironment.Current.FileInfo(_fileExtPath);
+            IRuntimeFileInfo fileInfo2 = AxCryptEnvironment.Current.FileInfo(_fileExtPath.ToUpper(CultureInfo.InvariantCulture));
 
             Assert.That(FileLock.IsLocked(fileInfo1), Is.False, "There should be no lock for this file yet.");
             Assert.That(FileLock.IsLocked(fileInfo2), Is.False, "There should be no lock for this file yet.");
@@ -99,7 +102,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Assert.DoesNotThrow(() =>
             {
-                using (FileLock aLock = FileLock.Lock(AxCryptEnvironment.Current.FileInfo(@"c:\A dir\A file.ext")))
+                using (FileLock aLock = FileLock.Lock(AxCryptEnvironment.Current.FileInfo(_fileExtPath)))
                 {
                     aLock.Dispose();
                 }

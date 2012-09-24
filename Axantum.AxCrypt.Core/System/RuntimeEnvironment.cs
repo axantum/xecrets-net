@@ -92,7 +92,7 @@ namespace Axantum.AxCrypt.Core.System
                     case PlatformID.Win32Windows:
                         return Platform.WindowsDesktop;
                     case PlatformID.MacOSX:
-                        return Platform.MacOSX;
+                        return Platform.MacOsx;
                     case PlatformID.Unix:
                         return Platform.Linux;
                     case PlatformID.WinCE:

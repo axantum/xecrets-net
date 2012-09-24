@@ -80,10 +80,10 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestRuntimeFileInfo()
         {
-            IRuntimeFileInfo runtimeFileInfo = AxCryptEnvironment.Current.FileInfo(@"C:\Temp\A File.txt");
+            IRuntimeFileInfo runtimeFileInfo = AxCryptEnvironment.Current.FileInfo(Path.Combine(Path.GetTempPath(), "A File.txt"));
             Assert.That(runtimeFileInfo is RuntimeFileInfo, "The instance returned should be of type RuntimeFileInfo");
             Assert.That(runtimeFileInfo.Name, Is.EqualTo("A File.txt"));
-            runtimeFileInfo = AxCryptEnvironment.Current.FileInfo(@"C:\Temp\A File.txt");
+            runtimeFileInfo = AxCryptEnvironment.Current.FileInfo(Path.Combine(Path.GetTempPath(), "A File.txt"));
             Assert.That(runtimeFileInfo.Name, Is.EqualTo("A File.txt"));
         }
 
