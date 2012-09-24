@@ -189,7 +189,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (AxCryptDocument document = new AxCryptDocument())
             {
                 Passphrase passphrase = new Passphrase("a");
-                using (MemoryStream encryptedFile = new MemoryStream(Resources.HelloWorld_Key_a_txt))
+                using (MemoryStream encryptedFile = new MemoryStream((byte[])Resources.HelloWorld_Key_a_txt.Clone()))
                 {
                     encryptedFile.Seek(-1, SeekOrigin.End);
                     byte lastByte = (byte)encryptedFile.ReadByte();
