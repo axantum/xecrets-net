@@ -112,25 +112,25 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="David_Copperfield" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\David Copperfield.txt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\resources\david copperfield.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="David_Copperfield_Key_Å_ä_Ö_txt" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\David Copperfield-Key-Å ä Ö-txt.axx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="David_Copperfield_Key__AA_ae_OE__txt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\david copperfield-key-'aa ae oe'-txt.axx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="HelloWorld_Key_a_txt" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HelloWorld-Key-a-txt.axx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\resources\helloworld-key-a-txt.axx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Tst_0_0b6___Key__åäö____Medium____html__" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Tst 0.0b6 - Key 'åäö' - Medium - .html - .axx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Tst_0_0b6___Key__aaaeoe____Medium____html__" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\tst 0.0b6 - key 'aaaeoe' - medium - .html - .axx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Uncompressable_zip" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Uncompressable-zip.axx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\resources\uncompressable-zip.axx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

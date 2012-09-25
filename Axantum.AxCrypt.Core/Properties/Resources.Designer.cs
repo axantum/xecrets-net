@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Axantum.AxCrypt.Core.Test.Properties {
+namespace Axantum.AxCrypt.Core.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Axantum.AxCrypt.Core.Test.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Axantum.AxCrypt.Core.Test.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Axantum.AxCrypt.Core.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,61 +57,6 @@ namespace Axantum.AxCrypt.Core.Test.Properties {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The Project Gutenberg EBook of David Copperfield, by Charles Dickens
-        ///
-        ///This eBook is for the use of anyone anywhere at no cost and with
-        ///almost no restrictions whatsoever.  You may copy it, give it away or
-        ///re-use it under the terms of the Project Gutenberg License included
-        ///with this eBook or online at www.gutenberg.org
-        ///
-        ///
-        ///Title: David Copperfield
-        ///
-        ///Author: Charles Dickens
-        ///
-        ///Release Date: December, 1996  [Etext #766]
-        ///Posting Date: November 24, 2009
-        ///
-        ///Language: English
-        ///
-        ///
-        ///*** START OF THIS PROJECT G [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string David_Copperfield {
-            get {
-                return ResourceManager.GetString("David_Copperfield", resourceCulture);
-            }
-        }
-        
-        internal static byte[] David_Copperfield_Key__AA_ae_OE__txt {
-            get {
-                object obj = ResourceManager.GetObject("David_Copperfield_Key__AA_ae_OE__txt", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        internal static byte[] HelloWorld_Key_a_txt {
-            get {
-                object obj = ResourceManager.GetObject("HelloWorld_Key_a_txt", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        internal static byte[] Tst_0_0b6___Key__aaaeoe____Medium____html__ {
-            get {
-                object obj = ResourceManager.GetObject("Tst_0_0b6___Key__aaaeoe____Medium____html__", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        internal static byte[] Uncompressable_zip {
-            get {
-                object obj = ResourceManager.GetObject("Uncompressable_zip", resourceCulture);
-                return ((byte[])(obj));
             }
         }
     }

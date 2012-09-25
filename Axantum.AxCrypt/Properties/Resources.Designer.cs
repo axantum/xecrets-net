@@ -89,9 +89,9 @@ namespace Axantum.AxCrypt.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap AxCryptIcon128 {
+        internal static System.Drawing.Bitmap axcrypticon128 {
             get {
-                object obj = ResourceManager.GetObject("AxCryptIcon128", resourceCulture);
+                object obj = ResourceManager.GetObject("axcrypticon128", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -312,16 +312,16 @@ namespace Axantum.AxCrypt.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap RefreshGreen {
+        internal static System.Drawing.Bitmap refreshgreen {
             get {
-                object obj = ResourceManager.GetObject("RefreshGreen", resourceCulture);
+                object obj = ResourceManager.GetObject("refreshgreen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap RefreshRed {
+        internal static System.Drawing.Bitmap refreshred {
             get {
-                object obj = ResourceManager.GetObject("RefreshRed", resourceCulture);
+                object obj = ResourceManager.GetObject("refreshred", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

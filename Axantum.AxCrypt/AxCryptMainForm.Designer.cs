@@ -157,7 +157,7 @@
             // 
             this.UpdateToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             resources.ApplyResources(this.UpdateToolStripButton, "UpdateToolStripButton");
-            this.UpdateToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.RefreshGreen;
+            this.UpdateToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.refreshgreen;
             this.UpdateToolStripButton.Name = "UpdateToolStripButton";
             this.UpdateToolStripButton.Click += new System.EventHandler(this.UpdateToolStripButton_Click);
             // 

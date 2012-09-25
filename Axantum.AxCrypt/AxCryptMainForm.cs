@@ -126,19 +126,19 @@ namespace Axantum.AxCrypt
 
                 case VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck:
                     UpdateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.OldVersionTooltip;
-                    UpdateToolStripButton.Image = Resources.RefreshRed;
+                    UpdateToolStripButton.Image = Resources.refreshred;
                     UpdateToolStripButton.Enabled = true;
                     break;
 
                 case VersionUpdateStatus.NewerVersionIsAvailable:
                     UpdateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.NewVersionIsAvailableTooltip.InvariantFormat(version);
-                    UpdateToolStripButton.Image = Resources.RefreshRed;
+                    UpdateToolStripButton.Image = Resources.refreshred;
                     UpdateToolStripButton.Enabled = true;
                     break;
 
                 case VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck:
                     UpdateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.ClickToCheckForNewerVersionTooltip;
-                    UpdateToolStripButton.Image = Resources.RefreshGreen;
+                    UpdateToolStripButton.Image = Resources.refreshgreen;
                     UpdateToolStripButton.Enabled = true;
                     break;
             }

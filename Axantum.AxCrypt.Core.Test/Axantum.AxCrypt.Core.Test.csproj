@@ -137,9 +137,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />
-    <None Include="Resources\David Copperfield-Key-Å ä Ö-txt.axx" />
+    <None Include="Resources\David Copperfield-Key-%27AA ae OE%27-txt.axx" />
     <None Include="Resources\HelloWorld-Key-a-txt.axx" />
-    <None Include="Resources\Tst 0.0b6 - Key %27åäö%27 - Medium - .html - .axx" />
+    <None Include="Resources\Tst 0.0b6 - Key %27aaaeoe%27 - Medium - .html - .axx" />
     <None Include="Resources\Uncompressable-zip.axx" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +152,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
