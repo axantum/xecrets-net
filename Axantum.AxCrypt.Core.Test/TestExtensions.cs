@@ -258,7 +258,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestCreateEncryptedName()
         {
-            string rootPath = Path.GetPathRoot(Environment.SystemDirectory);
+            string rootPath = Path.GetPathRoot(Environment.CurrentDirectory);
             string fileName = rootPath.PathCombine("Users", "Axantum", "A Documents Folder", "My Document.docx");
             string encryptedFileName = fileName.CreateEncryptedName();
             Assert.That(encryptedFileName, Is.EqualTo(rootPath.PathCombine("Users", "Axantum", "A Documents Folder", "My Document-docx.axx")), "Standard conversion of file name to encrypted form.");

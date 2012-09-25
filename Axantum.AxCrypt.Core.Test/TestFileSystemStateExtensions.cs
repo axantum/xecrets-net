@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Core.Test
         private static FileSystemState _fileSystemState;
         private static FakeRuntimeEnvironment _fakeRuntimeEnvironment;
 
-        private static readonly string _pathRoot = Path.GetPathRoot(Environment.SystemDirectory);
+        private static readonly string _pathRoot = Path.GetPathRoot(Environment.CurrentDirectory);
         private static readonly string _decryptedFile1 = _pathRoot.PathCombine("Documents", "test.txt");
         private static readonly string _encryptedFile1 = _pathRoot.PathCombine("Documents", "Uncompressed.axx");
         private static readonly string _fileSystemStateFilePath = Path.Combine(Path.GetTempPath(), "DummyFileSystemState.xml");

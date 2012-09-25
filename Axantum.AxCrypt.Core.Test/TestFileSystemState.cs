@@ -42,7 +42,7 @@ namespace Axantum.AxCrypt.Core.Test
     {
         private static IRuntimeEnvironment _environment;
 
-        private static readonly string _rootPath = Path.GetPathRoot(Environment.SystemDirectory);
+        private static readonly string _rootPath = Path.GetPathRoot(Environment.CurrentDirectory);
         private static readonly string _mystateXmlPath = _rootPath.PathCombine("mytemp", "mystate.txt");
         private static readonly string _encryptedAxxPath = Path.Combine(_rootPath, "Encrypted-txt.axx");
         private static readonly string _encrypted1AxxPath = Path.Combine(_rootPath, "Encrypted1-txt.axx");

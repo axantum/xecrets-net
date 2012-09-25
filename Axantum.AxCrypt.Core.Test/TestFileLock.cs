@@ -39,7 +39,7 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestFileLock
     {
-        private static readonly string _fileExtPath = Path.Combine(Path.GetPathRoot(Environment.SystemDirectory), "file.ext");
+        private static readonly string _fileExtPath = Path.Combine(Path.GetPathRoot(Environment.CurrentDirectory), "file.ext");
 
         [Test]
         public static void TestFileLockInvalidArguments()
