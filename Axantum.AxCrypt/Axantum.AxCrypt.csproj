@@ -210,15 +210,16 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="AboutThisProgram.txt" />
     <Content Include="Axantum.AxCrypt_ml.xml" />
     <Content Include="AxCrypt.ico" />
-    <Content Include="Resources\refreshred.png" />
-    <Content Include="Resources\axcrypticon128.png" />
+    <Content Include="resources\refreshred.png" />
+    <Content Include="resources\axcrypticon128.png" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Resources\refreshgreen.png" />
+    <None Include="resources\refreshgreen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\SolutionItems\Axantum.targets" />
