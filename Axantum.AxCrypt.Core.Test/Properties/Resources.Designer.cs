@@ -87,30 +87,30 @@ namespace Axantum.AxCrypt.Core.Test.Properties {
             }
         }
         
-        internal static byte[] David_Copperfield_Key__AA_ae_OE__txt {
+        internal static byte[] david_copperfield_key__aa_ae_oe__ulu_txt {
             get {
-                object obj = ResourceManager.GetObject("David_Copperfield_Key__AA_ae_OE__txt", resourceCulture);
+                object obj = ResourceManager.GetObject("david_copperfield_key__aa_ae_oe__ulu_txt", resourceCulture);
                 return ((byte[])(obj));
             }
         }
         
-        internal static byte[] HelloWorld_Key_a_txt {
+        internal static byte[] helloworld_key_a_txt {
             get {
-                object obj = ResourceManager.GetObject("HelloWorld_Key_a_txt", resourceCulture);
+                object obj = ResourceManager.GetObject("helloworld_key_a_txt", resourceCulture);
                 return ((byte[])(obj));
             }
         }
         
-        internal static byte[] Tst_0_0b6___Key__aaaeoe____Medium____html__ {
+        internal static byte[] tst_0_0b6_key__aaaeoe__medium_html {
             get {
-                object obj = ResourceManager.GetObject("Tst_0_0b6___Key__aaaeoe____Medium____html__", resourceCulture);
+                object obj = ResourceManager.GetObject("tst_0_0b6_key__aaaeoe__medium_html", resourceCulture);
                 return ((byte[])(obj));
             }
         }
         
-        internal static byte[] Uncompressable_zip {
+        internal static byte[] uncompressable_zip {
             get {
-                object obj = ResourceManager.GetObject("Uncompressable_zip", resourceCulture);
+                object obj = ResourceManager.GetObject("uncompressable_zip", resourceCulture);
                 return ((byte[])(obj));
             }
         }

@@ -137,10 +137,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />
-    <None Include="resources\David Copperfield-Key-%27AA ae OE%27-txt.axx" />
-    <None Include="resources\HelloWorld-Key-a-txt.axx" />
-    <None Include="resources\Tst 0.0b6 - Key %27aaaeoe%27 - Medium - .html - .axx" />
-    <None Include="resources\Uncompressable-zip.axx" />
+    <None Include="resources\david copperfield-key-%27aa ae oe%27-ulu-txt.axx" />
+    <None Include="resources\helloworld-key-a-txt.axx" />
+    <None Include="resources\tst-0.0b6-key-%27aaaeoe%27-medium-html.axx" />
+    <None Include="resources\uncompressable-zip.axx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Axantum.AxCrypt.Core\Axantum.AxCrypt.Core.csproj">
@@ -156,7 +156,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="resources\david copperfield.txt" />
+    <None Include="resources\david-copperfield.txt" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AboutThisAssembly.txt" />

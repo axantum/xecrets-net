@@ -129,7 +129,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestHmac()
         {
-            using (Stream inputStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
+            using (Stream inputStream = new MemoryStream(Resources.helloworld_key_a_txt))
             {
                 using (AxCryptReader axCryptReader = new AxCryptStreamReader(inputStream))
                 {
@@ -171,7 +171,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestObjectDisposed()
         {
-            using (Stream inputStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
+            using (Stream inputStream = new MemoryStream(Resources.helloworld_key_a_txt))
             {
                 using (AxCryptReader axCryptReader = new AxCryptStreamReader(inputStream))
                 {

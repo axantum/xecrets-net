@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestBadKey()
         {
-            using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
+            using (Stream testStream = new MemoryStream(Resources.helloworld_key_a_txt))
             {
                 using (AxCryptReader reader = AxCryptReader.Create(testStream))
                 {

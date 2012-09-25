@@ -172,7 +172,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestCheckActiveFilesKeyIsNotSetWithKnownKey()
         {
             DateTime utcNow = AxCryptEnvironment.Current.UtcNow;
-            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, new MemoryStream(Resources.HelloWorld_Key_a_txt));
+            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, new MemoryStream(Resources.helloworld_key_a_txt));
             Passphrase passphrase = new Passphrase("a");
             AxCryptFile.Decrypt(AxCryptEnvironment.Current.FileInfo(_encryptedFile1), AxCryptEnvironment.Current.FileInfo(_decryptedFile1), passphrase.DerivedPassphrase, AxCryptOptions.None, new ProgressContext());
 
@@ -203,7 +203,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestCheckActiveFilesKeyIsNotSetWithoutKnownKey()
         {
             DateTime utcNow = AxCryptEnvironment.Current.UtcNow;
-            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, new MemoryStream(Resources.HelloWorld_Key_a_txt));
+            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, new MemoryStream(Resources.helloworld_key_a_txt));
             Passphrase passphrase = new Passphrase("a");
             AxCryptFile.Decrypt(AxCryptEnvironment.Current.FileInfo(_encryptedFile1), AxCryptEnvironment.Current.FileInfo(_decryptedFile1), passphrase.DerivedPassphrase, AxCryptOptions.None, new ProgressContext());
 
@@ -293,7 +293,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestCheckActiveFilesUpdateButWithTargetLockedForSharing()
         {
             DateTime utcNow = AxCryptEnvironment.Current.UtcNow;
-            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, new MemoryStream(Resources.HelloWorld_Key_a_txt));
+            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, new MemoryStream(Resources.helloworld_key_a_txt));
             Passphrase passphrase = new Passphrase("a");
             AxCryptFile.Decrypt(AxCryptEnvironment.Current.FileInfo(_encryptedFile1), AxCryptEnvironment.Current.FileInfo(_decryptedFile1), passphrase.DerivedPassphrase, AxCryptOptions.None, new ProgressContext());
 
