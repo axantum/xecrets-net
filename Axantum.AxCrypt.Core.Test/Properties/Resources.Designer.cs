@@ -81,9 +81,9 @@ namespace Axantum.AxCrypt.Core.Test.Properties {
         ///
         ///*** START OF THIS PROJECT G [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string David_Copperfield {
+        internal static string david_copperfield {
             get {
-                return ResourceManager.GetString("David_Copperfield", resourceCulture);
+                return ResourceManager.GetString("david_copperfield", resourceCulture);
             }
         }
         

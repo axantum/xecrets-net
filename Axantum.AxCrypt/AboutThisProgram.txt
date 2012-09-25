@@ -23,3 +23,6 @@ Comments and findings on Mono compatiblity, rationales etc.
   build in Visual Studio 2010 (Express) and MonoDevelop out of the box with no changes.
 - Non-7-bit characters should be avoided in file names due to file system differences
   causing build problems.
+- Upercase characters should be avoided in files used as resources due to designer quirk
+  causing the names to be lowercased in the resx-file, causing problems on file systems
+  which are case-sensitive.

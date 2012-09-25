@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Core.Test
             AxCryptEnvironment.Current = new FakeRuntimeEnvironment();
 
             FakeRuntimeFileInfo.AddFile(_testTextPath, FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate3Utc, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
-            FakeRuntimeFileInfo.AddFile(_davidCopperfieldTxtPath, FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate5Utc, FakeRuntimeFileInfo.TestDate6Utc, new MemoryStream(Encoding.GetEncoding(1252).GetBytes(Resources.David_Copperfield)));
+            FakeRuntimeFileInfo.AddFile(_davidCopperfieldTxtPath, FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate5Utc, FakeRuntimeFileInfo.TestDate6Utc, new MemoryStream(Encoding.GetEncoding(1252).GetBytes(Resources.david_copperfield)));
             FakeRuntimeFileInfo.AddFile(_uncompressedAxxPath, new MemoryStream(Resources.Uncompressable_zip));
             FakeRuntimeFileInfo.AddFile(_helloWorldAxxPath, new MemoryStream(Resources.HelloWorld_Key_a_txt));
         }

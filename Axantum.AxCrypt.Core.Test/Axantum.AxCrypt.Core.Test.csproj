@@ -156,7 +156,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="resources\David Copperfield.txt" />
+    <None Include="resources\david copperfield.txt" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AboutThisAssembly.txt" />
