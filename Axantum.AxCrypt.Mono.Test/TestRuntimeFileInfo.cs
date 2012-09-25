@@ -28,14 +28,31 @@
 using System;
 using System.Globalization;
 using System.IO;
+using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.System;
 using NUnit.Framework;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Mono.Test
 {
     [TestFixture]
     public static class TestRuntimeFileInfo
     {
+        private static IRuntimeEnvironment _previousEnvironment;
+
+        [SetUp]
+        public static void Setup()
+        {
+            _previousEnvironment = AxCryptEnvironment.Current;
+            AxCryptEnvironment.Current = new RuntimeEnvironment();
+        }
+
+        [TearDown]
+        public static void Teardown()
+        {
+            AxCryptEnvironment.Current = _previousEnvironment;
+        }
+
         [Test]
         public static void TestBadArguments()
         {

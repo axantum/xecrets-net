@@ -45,7 +45,7 @@ namespace Axantum.AxCrypt.Mono.Test
         public static void Setup()
         {
             _previousEnvironment = AxCryptEnvironment.Current;
-            AxCryptEnvironment.Current = new MonoRuntimeEnvironment();
+            AxCryptEnvironment.Current = new RuntimeEnvironment();
         }
 
         [TearDown]

@@ -79,7 +79,7 @@ namespace Axantum.AxCrypt
 
         public AxCryptMainForm()
         {
-            AxCryptEnvironment.Current = new MonoRuntimeEnvironment();
+            AxCryptEnvironment.Current = new RuntimeEnvironment();
             InitializeComponent();
         }
 

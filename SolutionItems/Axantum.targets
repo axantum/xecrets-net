@@ -171,13 +171,9 @@
 
     <Target Name="_AxBeforeBuild"
             DependsOnTargets="_AxFixupVersion">
-        <Message Text="KeyContainerName = '$(KeyContainerName)' KeyOriginatorFile = '$(KeyOriginatorFile)', SignAssembly = '$(SignAssembly)'"
-                 Importance="high" />
     </Target>
 
     <Target Name="_AxAfterBuild">
-        <Message Text="KeyContainerName = '$(KeyContainerName)' KeyOriginatorFile = '$(KeyOriginatorFile)', SignAssembly = '$(SignAssembly)'"
-                 Importance="high" />
     </Target>
 
     <Target Name="_AxPrepareForRun"
@@ -190,8 +186,6 @@
             <KeyOriginatorFile>AxantumStrongName.pfx</KeyOriginatorFile>
             <SignAssembly>true</SignAssembly>
         </PropertyGroup>
-        <Message Text="KeyContainerName = '$(KeyContainerName)' KeyOriginatorFile = '$(KeyOriginatorFile)', SignAssembly = '$(SignAssembly)'"
-                 Importance="high" />
     </Target>
 
     <Target Name="_AxCheckBuildEnvironment">
@@ -200,6 +194,11 @@
             <_AxIsAxantumDeveloper Condition=" '$(USERNAME)' == 'Svante' ">true</_AxIsAxantumDeveloper>
             <_AxIsAxantumBuildServer>false</_AxIsAxantumBuildServer>
             <_AxIsAxantumBuildServer Condition=" '$(COMPUTERNAME)' == 'HARLAN' ">true</_AxIsAxantumBuildServer>
+            <_AxIsAxantum>false</_AxIsAxantum>
+            <_AxIsAxantum Condition=" '$(_AxIsAxantumDeveloper)' == 'true' Or '$(_AxIsAxantumBuildServer)' == 'true' ">true</_AxIsAxantum>
+        </PropertyGroup>
+        <PropertyGroup>
+            <DefineConstants Condition=" '$(_AxIsAxantum)' == 'true' ">$(DefineConstants);AXANTUM</DefineConstants>
         </PropertyGroup>
     </Target>
 

@@ -34,14 +34,14 @@ using Axantum.AxCrypt.Core.System;
 
 namespace Axantum.AxCrypt.Mono
 {
-    public class MonoRuntimeEnvironment : IRuntimeEnvironment
+    public class RuntimeEnvironment : IRuntimeEnvironment
     {
-        public MonoRuntimeEnvironment()
+        public RuntimeEnvironment()
             : this(".axx")
         {
         }
 
-        public MonoRuntimeEnvironment(string extension)
+        public RuntimeEnvironment(string extension)
         {
             AxCryptExtension = extension;
         }

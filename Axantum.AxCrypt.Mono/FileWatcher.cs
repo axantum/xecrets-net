@@ -33,11 +33,13 @@ using System.Linq;
 using System.Security;
 using System.Security.Permissions;
 using System.Text;
+using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.System;
 
-namespace Axantum.AxCrypt.Core.IO
+namespace Axantum.AxCrypt.Mono
 {
-    public class FileWatcher : IFileWatcher
+    internal class FileWatcher : IFileWatcher
     {
         private FileSystemWatcher _temporaryDirectoryWatcher;
 

@@ -27,10 +27,12 @@
 
 using System;
 using System.IO;
+using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.IO;
 
-namespace Axantum.AxCrypt.Core.IO
+namespace Axantum.AxCrypt.Mono
 {
-    public class RuntimeFileInfo : IRuntimeFileInfo
+    internal class RuntimeFileInfo : IRuntimeFileInfo
     {
         private FileInfo _file;
 

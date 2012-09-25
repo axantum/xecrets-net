@@ -30,10 +30,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using Axantum.AxCrypt.Core.System;
 
-namespace Axantum.AxCrypt.Core.System
+namespace Axantum.AxCrypt.Mono
 {
-    public class Timing : ITiming
+    internal class Timing : ITiming
     {
         private Stopwatch _stopwatch = Stopwatch.StartNew();
 

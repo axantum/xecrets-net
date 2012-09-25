@@ -124,7 +124,6 @@
     <Compile Include="TestProgressContext.cs" />
     <Compile Include="TestProgressEventArgsTest.cs" />
     <Compile Include="TestProgressStream.cs" />
-    <Compile Include="TestRuntimeFileInfo.cs" />
     <Compile Include="TestStream.cs" />
     <Compile Include="TestSubkey.cs" />
     <Compile Include="TestUnicodeFileNameInfoHeaderBlock .cs" />
@@ -154,6 +153,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\David Copperfield.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AboutThisAssembly.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\SolutionItems\Axantum.targets" />

@@ -47,5 +47,92 @@
   <Groups />
   <Settings />
  </Rules>
- <FxCopReport Version="10.0" />
+ <FxCopReport Version="10.0">
+  <Namespaces>
+   <Namespace Name="Axantum.AxCrypt.Mono">
+    <Messages>
+     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2012-09-25 11:06:34Z">
+      <Issue>
+       <Item>Axantum.AxCrypt.Mono</Item>
+      </Issue>
+     </Message>
+    </Messages>
+   </Namespace>
+  </Namespaces>
+  <Targets>
+   <Target Name="$(ProjectDir)/Axantum.AxCrypt.Core.Test/bin/Debug/Axantum.AxCrypt.Core.Test.dll">
+    <Modules>
+     <Module Name="axantum.axcrypt.core.test.dll">
+      <Messages>
+       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2012-09-25 11:06:34Z">
+        <Issue Name="NoStrongName">
+         <Item>'Axantum.AxCrypt.Core.Test.dll'</Item>
+        </Issue>
+       </Message>
+      </Messages>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/Axantum.AxCrypt.Mono.Test/bin/Debug/Axantum.AxCrypt.Mono.Test.dll">
+    <Modules>
+     <Module Name="axantum.axcrypt.mono.test.dll">
+      <Messages>
+       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2012-09-25 11:06:34Z">
+        <Issue Name="NoStrongName">
+         <Item>'Axantum.AxCrypt.Mono.Test.dll'</Item>
+        </Issue>
+       </Message>
+      </Messages>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/Axantum.AxCrypt.Mono/bin/Debug/Axantum.AxCrypt.Mono.dll">
+    <Modules>
+     <Module Name="axantum.axcrypt.mono.dll">
+      <Messages>
+       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2012-09-25 11:06:34Z">
+        <Issue Name="NoStrongName">
+         <Item>'Axantum.AxCrypt.Mono.dll'</Item>
+        </Issue>
+       </Message>
+      </Messages>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/Axantum.AxCrypt/bin/Debug/Axantum.AxCrypt.Core.dll">
+    <Modules>
+     <Module Name="axantum.axcrypt.core.dll">
+      <Messages>
+       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2012-09-25 11:06:34Z">
+        <Issue Name="NoStrongName">
+         <Item>'Axantum.AxCrypt.Core.dll'</Item>
+        </Issue>
+       </Message>
+      </Messages>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/Axantum.AxCrypt/bin/Debug/Axantum.AxCrypt.exe">
+    <Modules>
+     <Module Name="axantum.axcrypt.exe">
+      <Messages>
+       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2012-09-25 11:06:34Z">
+        <Issue Name="NoStrongName">
+         <Item>'Axantum.AxCrypt.exe'</Item>
+        </Issue>
+       </Message>
+      </Messages>
+     </Module>
+    </Modules>
+   </Target>
+  </Targets>
+  <Rules>
+   <Rule TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210">
+    <Resolution Name="NoStrongName">Sign {0} with a strong name key.</Resolution>
+   </Rule>
+   <Rule TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020">
+    <Resolution Name="Default">Consider merging the types defined in '{0}' with another namespace.</Resolution>
+   </Rule>
+  </Rules>
+ </FxCopReport>
 </FxCopProject>

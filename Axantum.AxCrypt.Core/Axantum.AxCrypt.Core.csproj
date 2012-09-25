@@ -73,11 +73,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AxCryptDocument.cs" />
-    <Compile Include="IO\FileWatcher.cs" />
     <Compile Include="IO\FileWatcherEventArgs.cs" />
     <Compile Include="IO\IFileWatcher.cs" />
     <Compile Include="IO\IWebCaller.cs" />
-    <Compile Include="IO\WebCaller.cs" />
     <Compile Include="Session\ChangedEventMode.cs" />
     <Compile Include="System\AxCryptException.cs" />
     <Compile Include="AxCryptFile.cs" />
@@ -115,7 +113,6 @@
     <Compile Include="Header\UnicodeFileNameInfoHeaderBlock.cs" />
     <Compile Include="Header\UnrecognizedHeaderBlock.cs" />
     <Compile Include="IO\ProgressStream.cs" />
-    <Compile Include="IO\RuntimeFileInfo.cs" />
     <Compile Include="System\ILauncher.cs" />
     <Compile Include="System\IRuntimeEnvironment.cs" />
     <Compile Include="System\InternalErrorException.cs" />
@@ -129,7 +126,6 @@
     <Compile Include="Header\HeaderBlockType.cs" />
     <Compile Include="Header\VersionHeaderBlock.cs" />
     <Compile Include="System\ITiming.cs" />
-    <Compile Include="System\Launcher.cs" />
     <Compile Include="System\Logging.cs" />
     <None Include="Properties\AssemblyInfo.template" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -145,7 +141,6 @@
     <Compile Include="Session\FileSystemStateExtensions.cs" />
     <Compile Include="Session\ActiveFileStatus.cs" />
     <Compile Include="Session\FileSystemState.cs" />
-    <Compile Include="System\Timing.cs" />
     <Compile Include="UI\FileOperation.cs" />
     <Compile Include="UI\FileOperationStatus.cs" />
     <Compile Include="UI\KnownKeys.cs" />
@@ -159,6 +154,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AboutThisAssembly.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\SolutionItems\Axantum.targets" />

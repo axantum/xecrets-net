@@ -5,10 +5,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Cache;
 using System.Text;
+using Axantum.AxCrypt.Core.IO;
 
-namespace Axantum.AxCrypt.Core.IO
+namespace Axantum.AxCrypt.Mono
 {
-    public class WebCaller : IWebCaller
+    internal class WebCaller : IWebCaller
     {
         public WebCaller()
         {

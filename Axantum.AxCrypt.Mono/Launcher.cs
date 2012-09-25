@@ -31,10 +31,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
+using Axantum.AxCrypt.Core.System;
 
-namespace Axantum.AxCrypt.Core.System
+namespace Axantum.AxCrypt.Mono
 {
-    public class Launcher : ILauncher
+    internal class Launcher : ILauncher
     {
         private Process _process;
 
