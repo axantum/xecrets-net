@@ -30,17 +30,18 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Security.Cryptography;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.System;
 
-namespace Axantum.AxCrypt.Core.System
+namespace Axantum.AxCrypt.Mono
 {
-    public class RuntimeEnvironment : IRuntimeEnvironment
+    public class MonoRuntimeEnvironment : IRuntimeEnvironment
     {
-        public RuntimeEnvironment()
+        public MonoRuntimeEnvironment()
             : this(".axx")
         {
         }
 
-        public RuntimeEnvironment(string extension)
+        public MonoRuntimeEnvironment(string extension)
         {
             AxCryptExtension = extension;
         }

@@ -30,11 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DecryptPassphraseDialog));
             this.PassphraseGroupBox = new System.Windows.Forms.GroupBox();
+            this.ShowPassphraseCheckBox = new System.Windows.Forms.CheckBox();
             this.Passphrase = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonOk = new System.Windows.Forms.Button();
-            this.ShowPassphraseCheckBox = new System.Windows.Forms.CheckBox();
             this.PassphraseGroupBox.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -46,6 +46,13 @@
             this.PassphraseGroupBox.Controls.Add(this.Passphrase);
             this.PassphraseGroupBox.Name = "PassphraseGroupBox";
             this.PassphraseGroupBox.TabStop = false;
+            // 
+            // ShowPassphraseCheckBox
+            // 
+            resources.ApplyResources(this.ShowPassphraseCheckBox, "ShowPassphraseCheckBox");
+            this.ShowPassphraseCheckBox.Name = "ShowPassphraseCheckBox";
+            this.ShowPassphraseCheckBox.UseVisualStyleBackColor = true;
+            this.ShowPassphraseCheckBox.CheckedChanged += new System.EventHandler(this.ShowPassphraseCheckBox_CheckedChanged);
             // 
             // Passphrase
             // 
@@ -72,13 +79,6 @@
             resources.ApplyResources(this.buttonOk, "buttonOk");
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.UseVisualStyleBackColor = true;
-            // 
-            // ShowPassphraseCheckBox
-            // 
-            resources.ApplyResources(this.ShowPassphraseCheckBox, "ShowPassphraseCheckBox");
-            this.ShowPassphraseCheckBox.Name = "ShowPassphraseCheckBox";
-            this.ShowPassphraseCheckBox.UseVisualStyleBackColor = true;
-            this.ShowPassphraseCheckBox.CheckedChanged += new System.EventHandler(this.ShowPassphraseCheckBox_CheckedChanged);
             // 
             // DecryptPassphraseDialog
             // 

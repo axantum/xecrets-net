@@ -31,11 +31,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.System;
 using NUnit.Framework;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Mono.Test
 {
     [TestFixture]
     public static class TestFileWatcher
@@ -48,7 +49,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void Setup()
         {
             _previousEnvironment = AxCryptEnvironment.Current;
-            AxCryptEnvironment.Current = new RuntimeEnvironment();
+            AxCryptEnvironment.Current = new MonoRuntimeEnvironment();
             _tempPath = Path.Combine(Path.GetTempPath(), "Axantum.AxCrypt.Core.Test.TestFileWatcher");
             Directory.CreateDirectory(_tempPath);
         }

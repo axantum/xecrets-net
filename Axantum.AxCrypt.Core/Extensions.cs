@@ -315,14 +315,14 @@ namespace Axantum.AxCrypt.Core
             return encryptedName;
         }
 
-        public static bool FlagSet(this AxCryptOptions options, AxCryptOptions flag)
+        public static bool HasMask(this AxCryptOptions options, AxCryptOptions mask)
         {
-            return (options & flag) == flag;
+            return (options & mask) == mask;
         }
 
-        public static bool FlagSet(this ActiveFileStatus status, ActiveFileStatus flag)
+        public static bool HasMask(this ActiveFileStatus status, ActiveFileStatus mask)
         {
-            return (status & flag) == flag;
+            return (status & mask) == mask;
         }
 
         public static void CopyTo(this Stream source, Stream destination, int bufferSize)

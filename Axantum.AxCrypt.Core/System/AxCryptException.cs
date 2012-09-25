@@ -27,6 +27,7 @@
 
 using System;
 using System.Runtime.Serialization;
+using System.Security.Permissions;
 
 namespace Axantum.AxCrypt.Core.System
 {
@@ -59,6 +60,7 @@ namespace Axantum.AxCrypt.Core.System
             ErrorStatus = errorStatus;
         }
 
+        [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             base.GetObjectData(info, context);

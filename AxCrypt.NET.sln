@@ -6,8 +6,15 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Core.Test", "Axantum.AxCrypt.Core.Test\Axantum.AxCrypt.Core.Test.csproj", "{2689B1EF-29AF-4F3E-A7EC-C87FF66DC403}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt", "Axantum.AxCrypt\Axantum.AxCrypt.csproj", "{0998224C-F45E-4EBF-A944-7FFBCB2DB134}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47} = {CE9E8614-8DC5-4757-9384-3C416AB61A47}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionItems", "SolutionItems\SolutionItems.csproj", "{A60D139A-7DBC-4BC5-976A-D89C32C913AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Mono", "Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.csproj", "{CE9E8614-8DC5-4757-9384-3C416AB61A47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Mono.Test", "Axantum.AxCrypt.Mono.Test\Axantum.AxCrypt.Mono.Test.csproj", "{79C4901A-BCAA-49AA-A789-6A8F97ACC881}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,6 +67,22 @@ Global
 		{A60D139A-7DBC-4BC5-976A-D89C32C913AD}.Release|x64.Build.0 = Release|x64
 		{A60D139A-7DBC-4BC5-976A-D89C32C913AD}.Release|x86.ActiveCfg = Release|x86
 		{A60D139A-7DBC-4BC5-976A-D89C32C913AD}.Release|x86.Build.0 = Release|x86
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Release|x64.ActiveCfg = Release|Any CPU
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Release|x86.ActiveCfg = Release|Any CPU
+		{79C4901A-BCAA-49AA-A789-6A8F97ACC881}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79C4901A-BCAA-49AA-A789-6A8F97ACC881}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79C4901A-BCAA-49AA-A789-6A8F97ACC881}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{79C4901A-BCAA-49AA-A789-6A8F97ACC881}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{79C4901A-BCAA-49AA-A789-6A8F97ACC881}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79C4901A-BCAA-49AA-A789-6A8F97ACC881}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79C4901A-BCAA-49AA-A789-6A8F97ACC881}.Release|x64.ActiveCfg = Release|Any CPU
+		{79C4901A-BCAA-49AA-A789-6A8F97ACC881}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

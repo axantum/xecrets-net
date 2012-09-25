@@ -94,7 +94,7 @@ namespace Axantum.AxCrypt.Core.Session
                 List<ActiveFile> activeFiles = new List<ActiveFile>();
                 foreach (ActiveFile activeFile in ActiveFiles)
                 {
-                    if (activeFile.Status.FlagSet(ActiveFileStatus.DecryptedIsPendingDelete) || activeFile.Status.FlagSet(ActiveFileStatus.AssumedOpenAndDecrypted))
+                    if (activeFile.Status.HasMask(ActiveFileStatus.DecryptedIsPendingDelete) || activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
                     {
                         activeFiles.Add(activeFile);
                     }

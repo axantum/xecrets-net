@@ -55,8 +55,11 @@
             this.debugToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DebugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkVersionNow = new System.Windows.Forms.ToolStripMenuItem();
             this.setUpdateCheckUrlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.about = new System.Windows.Forms.ToolStripMenuItem();
             this.StatusTabs = new System.Windows.Forms.TabControl();
             this.OpenFilesTab = new System.Windows.Forms.TabPage();
             this.OpenFilesListView = new System.Windows.Forms.ListView();
@@ -82,10 +85,7 @@
             this.ProgressContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ProgressContextCancelMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.TrayNotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.checkVersionNow = new System.Windows.Forms.ToolStripMenuItem();
             this.EncryptedFileManager = new Axantum.AxCrypt.EncryptedFileManager();
-            this.about = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.StatusTabs.SuspendLayout();
@@ -281,6 +281,12 @@
             this.DebugToolStripMenuItem.Name = "DebugToolStripMenuItem";
             resources.ApplyResources(this.DebugToolStripMenuItem, "DebugToolStripMenuItem");
             // 
+            // checkVersionNow
+            // 
+            this.checkVersionNow.Name = "checkVersionNow";
+            resources.ApplyResources(this.checkVersionNow, "checkVersionNow");
+            this.checkVersionNow.Click += new System.EventHandler(this.checkVersionNow_Click);
+            // 
             // setUpdateCheckUrlToolStripMenuItem
             // 
             this.setUpdateCheckUrlToolStripMenuItem.Name = "setUpdateCheckUrlToolStripMenuItem";
@@ -294,6 +300,18 @@
             this.about});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
+            // 
+            // viewHelpMenuItem
+            // 
+            this.viewHelpMenuItem.Name = "viewHelpMenuItem";
+            resources.ApplyResources(this.viewHelpMenuItem, "viewHelpMenuItem");
+            this.viewHelpMenuItem.Click += new System.EventHandler(this.viewHelpMenuItem_Click);
+            // 
+            // about
+            // 
+            this.about.Name = "about";
+            resources.ApplyResources(this.about, "about");
+            this.about.Click += new System.EventHandler(this.about_Click);
             // 
             // StatusTabs
             // 
@@ -468,24 +486,6 @@
             // 
             resources.ApplyResources(this.TrayNotifyIcon, "TrayNotifyIcon");
             this.TrayNotifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.TrayNotifyIcon_MouseDoubleClick);
-            // 
-            // checkVersionNow
-            // 
-            this.checkVersionNow.Name = "checkVersionNow";
-            resources.ApplyResources(this.checkVersionNow, "checkVersionNow");
-            this.checkVersionNow.Click += new System.EventHandler(this.checkVersionNow_Click);
-            // 
-            // about
-            // 
-            this.about.Name = "about";
-            resources.ApplyResources(this.about, "about");
-            this.about.Click += new System.EventHandler(this.about_Click);
-            // 
-            // viewHelpMenuItem
-            // 
-            this.viewHelpMenuItem.Name = "viewHelpMenuItem";
-            resources.ApplyResources(this.viewHelpMenuItem, "viewHelpMenuItem");
-            this.viewHelpMenuItem.Click += new System.EventHandler(this.viewHelpMenuItem_Click);
             // 
             // AxCryptMainForm
             // 

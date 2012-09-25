@@ -79,7 +79,7 @@ namespace Axantum.AxCrypt.Core
                         document.EncryptTo(headers, sourceStream, destinationStream, options, progress);
                     }
                 }
-                if (options.FlagSet(AxCryptOptions.SetFileTimes))
+                if (options.HasMask(AxCryptOptions.SetFileTimes))
                 {
                     destinationFile.SetFileTimes(sourceFile.CreationTimeUtc, sourceFile.LastAccessTimeUtc, sourceFile.LastWriteTimeUtc);
                 }
@@ -267,7 +267,7 @@ namespace Axantum.AxCrypt.Core
                 }
                 throw;
             }
-            if (options.FlagSet(AxCryptOptions.SetFileTimes))
+            if (options.HasMask(AxCryptOptions.SetFileTimes))
             {
                 DocumentHeaders headers = document.DocumentHeaders;
                 destinationFile.SetFileTimes(headers.CreationTimeUtc, headers.LastAccessTimeUtc, headers.LastWriteTimeUtc);
