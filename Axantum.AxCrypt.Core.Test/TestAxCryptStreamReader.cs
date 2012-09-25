@@ -63,6 +63,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 AxCrypt1Guid.Write(inputStream);
                 inputStream.Position = 0;
+
                 // The stream reader supports both externally supplied LookAheadStream or will wrap it if it is not.
                 using (AxCryptReader axCryptReader = new AxCryptStreamReader(new LookAheadStream(inputStream)))
                 {
@@ -152,7 +153,7 @@ namespace Axantum.AxCrypt.Core.Test
 
                         Assert.That(axCryptReader.Read(), Is.False, "The reader should be at end of stream now, and Read() should return false.");
 
-                        encrypedDataStream.CopyTo(Stream.Null);
+                        encrypedDataStream.CopyTo(Stream.Null, 4096);
                         Assert.That(documentHeaders.Hmac, Is.EqualTo(axCryptReader.Hmac), "The HMAC should be correct.");
 
                         axCryptReader.Dispose();

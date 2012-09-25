@@ -53,7 +53,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         private static readonly string _rootPath = Path.GetPathRoot(Environment.SystemDirectory);
         private static readonly string _testTextPath = Path.Combine(_rootPath, "test.txt");
-        private static readonly string _davidCopperfieldTxtPath = Path.Combine(_rootPath, "Users", "AxCrypt", "David Copperfield.txt");
+        private static readonly string _davidCopperfieldTxtPath = _rootPath.PathCombine("Users", "AxCrypt", "David Copperfield.txt");
         private static readonly string _uncompressedAxxPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Uncompressed.axx");
         private static readonly string _helloWorldAxxPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "HelloWorld.axx");
 
@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IEnumerable<AesKey> keys = new AesKey[] { new Passphrase("a").DerivedPassphrase };
 
-            FileOperationStatus status = _fileSystemState.OpenAndLaunchApplication(Path.Combine(_rootPath, "Documents", "HelloWorld-NotThere.axx"), keys, new ProgressContext());
+            FileOperationStatus status = _fileSystemState.OpenAndLaunchApplication(_rootPath.PathCombine("Documents", "HelloWorld-NotThere.axx"), keys, new ProgressContext());
             Assert.That(status, Is.EqualTo(FileOperationStatus.FileDoesNotExist), "The launch should fail with status FileDoesNotExist.");
         }
 

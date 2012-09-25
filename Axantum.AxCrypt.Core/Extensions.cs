@@ -28,6 +28,7 @@
 using System;
 using System.Globalization;
 using System.IO;
+using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.System;
 
 namespace Axantum.AxCrypt.Core
@@ -312,6 +313,48 @@ namespace Axantum.AxCrypt.Core
             encryptedName += AxCryptEnvironment.Current.AxCryptExtension;
 
             return encryptedName;
+        }
+
+        public static bool FlagSet(this AxCryptOptions options, AxCryptOptions flag)
+        {
+            return (options & flag) == flag;
+        }
+
+        public static bool FlagSet(this ActiveFileStatus status, ActiveFileStatus flag)
+        {
+            return (status & flag) == flag;
+        }
+
+        public static void CopyTo(this Stream source, Stream destination, int bufferSize)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException("destination");
+            }
+            if (destination == null)
+            {
+                throw new ArgumentNullException("destination");
+            }
+            if (bufferSize <= 0)
+            {
+                throw new ArgumentOutOfRangeException("bufferSize", "Buffer size must be greater than zero.");
+            }
+
+            byte[] buffer = new byte[bufferSize];
+            int read;
+            while ((read = source.Read(buffer, 0, buffer.Length)) != 0)
+            {
+                destination.Write(buffer, 0, read);
+            }
+        }
+
+        public static string PathCombine(this string path, params string[] parts)
+        {
+            foreach (string part in parts)
+            {
+                path = Path.Combine(path, part);
+            }
+            return path;
         }
     }
 }

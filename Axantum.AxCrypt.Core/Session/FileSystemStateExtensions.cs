@@ -51,13 +51,13 @@ namespace Axantum.AxCrypt.Core.Session
                 }
                 if (activeFile.IsModified)
                 {
-                    if (activeFile.Status.HasFlag(ActiveFileStatus.NotShareable))
+                    if (activeFile.Status.FlagSet(ActiveFileStatus.NotShareable))
                     {
                         activeFile = new ActiveFile(activeFile, activeFile.Status & ~ActiveFileStatus.NotShareable);
                     }
                     activeFile = CheckIfTimeToUpdate(activeFile, progress);
                 }
-                if (activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted))
+                if (activeFile.Status.FlagSet(ActiveFileStatus.AssumedOpenAndDecrypted))
                 {
                     activeFile = TryDelete(activeFile);
                 }
@@ -122,7 +122,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private static ActiveFile CheckIfKeyIsKnown(FileSystemState fileSystemState, ActiveFile activeFile)
         {
-            if (!activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted) && !activeFile.Status.HasFlag(ActiveFileStatus.DecryptedIsPendingDelete))
+            if (!activeFile.Status.FlagSet(ActiveFileStatus.AssumedOpenAndDecrypted) && !activeFile.Status.FlagSet(ActiveFileStatus.DecryptedIsPendingDelete))
             {
                 return activeFile;
             }
@@ -171,7 +171,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private static ActiveFile CheckIfTimeToUpdate(ActiveFile activeFile, ProgressContext progress)
         {
-            if (activeFile.Status.HasFlag(ActiveFileStatus.NotShareable) || !activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted))
+            if (activeFile.Status.FlagSet(ActiveFileStatus.NotShareable) || !activeFile.Status.FlagSet(ActiveFileStatus.AssumedOpenAndDecrypted))
             {
                 return activeFile;
             }
@@ -217,7 +217,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return activeFile;
             }
-            if (!activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted) || activeFile.Status.HasFlag(ActiveFileStatus.NotShareable))
+            if (!activeFile.Status.FlagSet(ActiveFileStatus.AssumedOpenAndDecrypted) || activeFile.Status.FlagSet(ActiveFileStatus.NotShareable))
             {
                 return activeFile;
             }

@@ -259,9 +259,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestCreateEncryptedName()
         {
             string rootPath = Path.GetPathRoot(Environment.SystemDirectory);
-            string fileName = Path.Combine(rootPath, "Users", "Axantum", "A Documents Folder", "My Document.docx");
+            string fileName = rootPath.PathCombine("Users", "Axantum", "A Documents Folder", "My Document.docx");
             string encryptedFileName = fileName.CreateEncryptedName();
-            Assert.That(encryptedFileName, Is.EqualTo(Path.Combine(rootPath, "Users", "Axantum", "A Documents Folder", "My Document-docx.axx")), "Standard conversion of file name to encrypted form.");
+            Assert.That(encryptedFileName, Is.EqualTo(rootPath.PathCombine("Users", "Axantum", "A Documents Folder", "My Document-docx.axx")), "Standard conversion of file name to encrypted form.");
 
             Assert.Throws<InternalErrorException>(() =>
                  {
@@ -271,9 +271,9 @@ namespace Axantum.AxCrypt.Core.Test
                      Object.Equals(encryptedEncryptedFileName, null);
                  });
 
-            fileName = Path.Combine(rootPath, "Users", "Axantum", "A Documents Folder", "My Extensionless File");
+            fileName = rootPath.PathCombine("Users", "Axantum", "A Documents Folder", "My Extensionless File");
             encryptedFileName = fileName.CreateEncryptedName();
-            Assert.That(encryptedFileName, Is.EqualTo(Path.Combine(rootPath, "Users", "Axantum", "A Documents Folder", "My Extensionless File.axx")), "Conversion of file name without extension to encrypted form.");
+            Assert.That(encryptedFileName, Is.EqualTo(rootPath.PathCombine("Users", "Axantum", "A Documents Folder", "My Extensionless File.axx")), "Conversion of file name without extension to encrypted form.");
 
             Assert.Throws<InternalErrorException>(() =>
             {

@@ -50,10 +50,10 @@ namespace Axantum.AxCrypt.Core.Test
         private static FakeRuntimeEnvironment _fakeRuntimeEnvironment;
 
         private static readonly string _rootPath = Path.GetPathRoot(Environment.SystemDirectory);
-        private static readonly string _testTextPath = Path.Combine(_rootPath, "test.txt");
-        private static readonly string _davidCopperfieldTxtPath = Path.Combine(_rootPath, "Users", "AxCrypt", "David Copperfield.txt");
-        private static readonly string _uncompressedAxxPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Uncompressed.axx");
-        private static readonly string _helloWorldAxxPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "HelloWorld.axx");
+        private static readonly string _testTextPath = _rootPath.PathCombine("test.txt");
+        private static readonly string _davidCopperfieldTxtPath = _rootPath.PathCombine("Users", "AxCrypt", "David Copperfield.txt");
+        private static readonly string _uncompressedAxxPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).PathCombine("Uncompressed.axx");
+        private static readonly string _helloWorldAxxPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).PathCombine("HelloWorld.axx");
 
         [TestFixtureSetUp]
         public static void SetupFixture()

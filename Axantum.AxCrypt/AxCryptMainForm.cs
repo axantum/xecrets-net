@@ -219,7 +219,7 @@ namespace Axantum.AxCrypt
         private ActiveFile UpdateOpenFilesWith(ActiveFile activeFile)
         {
             ListViewItem item;
-            if (activeFile.Status.HasFlag(ActiveFileStatus.NotDecrypted))
+            if (activeFile.Status.FlagSet(ActiveFileStatus.NotDecrypted))
             {
                 if (String.IsNullOrEmpty(activeFile.DecryptedFileInfo.FullName))
                 {
@@ -244,7 +244,7 @@ namespace Axantum.AxCrypt
                 RecentFilesListView.Items.Add(item);
             }
 
-            if (activeFile.Status.HasFlag(ActiveFileStatus.DecryptedIsPendingDelete) || activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted))
+            if (activeFile.Status.FlagSet(ActiveFileStatus.DecryptedIsPendingDelete) || activeFile.Status.FlagSet(ActiveFileStatus.AssumedOpenAndDecrypted))
             {
                 item = new ListViewItem(Path.GetFileName(activeFile.DecryptedFileInfo.FullName), activeFile.Key != null ? "ActiveFile" : "Exclamation"); //MLHIDE
                 ListViewItem.ListViewSubItem encryptedPathColumn = new ListViewItem.ListViewSubItem();

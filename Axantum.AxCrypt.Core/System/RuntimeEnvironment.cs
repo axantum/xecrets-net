@@ -80,7 +80,6 @@ namespace Axantum.AxCrypt.Core.System
 
         public Platform Platform
         {
-            [ExcludeFromCodeCoverage]
             get
             {
                 OperatingSystem os = global::System.Environment.OSVersion;
@@ -138,7 +137,6 @@ namespace Axantum.AxCrypt.Core.System
             get { return DateTime.UtcNow; }
         }
 
-        [ExcludeFromCodeCoverage]
         public ILauncher Launch(string path)
         {
             return new Launcher(path);
@@ -149,7 +147,6 @@ namespace Axantum.AxCrypt.Core.System
             return new Timing();
         }
 
-        [ExcludeFromCodeCoverage]
         public IWebCaller CreateWebCaller()
         {
             return new WebCaller();

@@ -101,15 +101,15 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentException("The output stream must support seek in order to back-track and write the HMAC.");
             }
-            if (options.HasFlag(AxCryptOptions.EncryptWithCompression) && options.HasFlag(AxCryptOptions.EncryptWithoutCompression))
+            if (options.FlagSet(AxCryptOptions.EncryptWithCompression) && options.FlagSet(AxCryptOptions.EncryptWithoutCompression))
             {
                 throw new ArgumentException("Invalid options, cannot specify both with and without compression.");
             }
-            if (!options.HasFlag(AxCryptOptions.EncryptWithCompression) && !options.HasFlag(AxCryptOptions.EncryptWithoutCompression))
+            if (!options.FlagSet(AxCryptOptions.EncryptWithCompression) && !options.FlagSet(AxCryptOptions.EncryptWithoutCompression))
             {
                 throw new ArgumentException("Invalid options, must specify either with or without compression.");
             }
-            bool isCompressed = options.HasFlag(AxCryptOptions.EncryptWithCompression);
+            bool isCompressed = options.FlagSet(AxCryptOptions.EncryptWithCompression);
             outputDocumentHeaders.IsCompressed = isCompressed;
             outputDocumentHeaders.WriteWithoutHmac(outputStream);
             using (ICryptoTransform encryptor = DataCrypto.CreateEncryptingTransform())

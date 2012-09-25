@@ -49,7 +49,7 @@ namespace Axantum.AxCrypt.Core.System
             {
                 _buffer.Append(message.Substring(0, i + Environment.NewLine.Length));
                 _trace(_buffer.ToString());
-                _buffer.Clear();
+                _buffer.Length = 0;
                 message = message.Substring(i + Environment.NewLine.Length);
             }
             _buffer.Append(message);

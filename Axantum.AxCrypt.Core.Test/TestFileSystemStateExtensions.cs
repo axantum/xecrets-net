@@ -49,8 +49,8 @@ namespace Axantum.AxCrypt.Core.Test
         private static FakeRuntimeEnvironment _fakeRuntimeEnvironment;
 
         private static readonly string _pathRoot = Path.GetPathRoot(Environment.SystemDirectory);
-        private static readonly string _decryptedFile1 = Path.Combine(_pathRoot, "Documents", "test.txt");
-        private static readonly string _encryptedFile1 = Path.Combine(_pathRoot, "Documents", "Uncompressed.axx");
+        private static readonly string _decryptedFile1 = _pathRoot.PathCombine("Documents", "test.txt");
+        private static readonly string _encryptedFile1 = _pathRoot.PathCombine("Documents", "Uncompressed.axx");
         private static readonly string _fileSystemStateFilePath = Path.Combine(Path.GetTempPath(), "DummyFileSystemState.xml");
 
         [SetUp]
@@ -165,7 +165,7 @@ namespace Axantum.AxCrypt.Core.Test
             activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
             Assert.That(activeFile, Is.Not.Null, "The encrypted file should be found.");
             Assert.That(activeFile.IsModified, Is.False, "The file should no longer be flagged as modified.");
-            Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.NotDecrypted), Is.True, "The file should no longer be decrypted, since it was re-encrypted and deleted.");
+            Assert.That(activeFile.Status.FlagSet(ActiveFileStatus.NotDecrypted), Is.True, "The file should no longer be decrypted, since it was re-encrypted and deleted.");
         }
 
         [Test]
@@ -230,7 +230,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
             Assert.That(activeFile.Key, Is.Null, "The key should still be null after the checking of active files.");
-            Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "The file should still be there.");
+            Assert.That(activeFile.Status.FlagSet(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "The file should still be there.");
             Assert.That(activeFile.ThumbprintMatch(passphrase.DerivedPassphrase), Is.True, "The active file should still be known to be decryptable with the original passphrase.");
         }
 
@@ -279,14 +279,14 @@ namespace Axantum.AxCrypt.Core.Test
             _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, false, new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "No change should be raised when the file is not modified and not Desktop Windows.");
             activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
-            Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "Nothing should happen with the file when not running as Desktop Windows.");
+            Assert.That(activeFile.Status.FlagSet(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "Nothing should happen with the file when not running as Desktop Windows.");
 
             _fakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
             changedWasRaised = false;
             _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, false, new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "Since the file should be deleted because running as Desktop Windows the changed event should be raised.");
             activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
-            Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.NotDecrypted), Is.True, "The file should be deleted and marked as Not Decrypted when running as Desktop Windows.");
+            Assert.That(activeFile.Status.FlagSet(ActiveFileStatus.NotDecrypted), Is.True, "The file should be deleted and marked as Not Decrypted when running as Desktop Windows.");
         }
 
         [Test]
@@ -332,7 +332,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(changedWasRaised, Is.True, "The ActiveFile should be modified because it should now be marked as not shareable.");
             activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
-            Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.NotShareable), Is.True, "The ActiveFile should be marked as not shareable after the checking of active files.");
+            Assert.That(activeFile.Status.FlagSet(ActiveFileStatus.NotShareable), Is.True, "The ActiveFile should be marked as not shareable after the checking of active files.");
         }
 
         [Test]
@@ -357,7 +357,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
             Assert.That(changedWasRaised, Is.False, "No changed event should be raised because no change should occur since the process is active.");
-            Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "The ActiveFile plain text should not be deleted after the checking of active files because the launcher is active.");
+            Assert.That(activeFile.Status.FlagSet(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "The ActiveFile plain text should not be deleted after the checking of active files because the launcher is active.");
         }
 
         [Test]
@@ -383,8 +383,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
             Assert.That(changedWasRaised, Is.True, "A changed event should be raised because the process has exited.");
-            Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.NotDecrypted), Is.True, "The ActiveFile plain text should be deleted after the checking of active files because the launcher is no longer active.");
-            Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.NotShareable), Is.False, "The file should be shareable after checking of active files because the launcher is no longer active.");
+            Assert.That(activeFile.Status.FlagSet(ActiveFileStatus.NotDecrypted), Is.True, "The ActiveFile plain text should be deleted after the checking of active files because the launcher is no longer active.");
+            Assert.That(activeFile.Status.FlagSet(ActiveFileStatus.NotShareable), Is.False, "The file should be shareable after checking of active files because the launcher is no longer active.");
         }
 
         [Test]
@@ -425,8 +425,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
             Assert.That(changedWasRaised, Is.True, "A changed event should be raised because it should now be NotShareable.");
-            Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "The ActiveFile plain text should still be there after the checking of active files because the file is NotShareable.");
-            Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.NotShareable), Is.True, "The ActiveFile plain text should be NotShareable after the checking of active files because the file could not be deleted.");
+            Assert.That(activeFile.Status.FlagSet(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "The ActiveFile plain text should still be there after the checking of active files because the file is NotShareable.");
+            Assert.That(activeFile.Status.FlagSet(ActiveFileStatus.NotShareable), Is.True, "The ActiveFile plain text should be NotShareable after the checking of active files because the file could not be deleted.");
         }
 
         [Test]
@@ -482,7 +482,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
             Assert.That(changedWasRaised, Is.True, "A changed event should be raised because the decrypted file is modified.");
-            Assert.That(activeFile.Status.HasFlag(ActiveFileStatus.NotDecrypted), Is.True, "The NotShareable not withstanding, the purge should have updated the file and removed the decrypted file.");
+            Assert.That(activeFile.Status.FlagSet(ActiveFileStatus.NotDecrypted), Is.True, "The NotShareable not withstanding, the purge should have updated the file and removed the decrypted file.");
         }
 
         [Test]

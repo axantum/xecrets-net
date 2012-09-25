@@ -8,7 +8,6 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.IO
 {
-    [ExcludeFromCodeCoverage]
     public class WebCaller : IWebCaller
     {
         public WebCaller()
