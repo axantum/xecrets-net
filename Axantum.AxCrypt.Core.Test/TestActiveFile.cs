@@ -87,15 +87,14 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile nullActiveFile = null;
 
             ActiveFile originalActiveFile = new ActiveFile(decryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, process);
-            ActiveFile activeFile;
-            Assert.Throws<ArgumentNullException>(() => { activeFile = new ActiveFile(nullActiveFile, key); });
-            Assert.Throws<ArgumentNullException>(() => { activeFile = new ActiveFile(originalActiveFile, nullKey); });
-            Assert.Throws<ArgumentNullException>(() => { activeFile = new ActiveFile(nullActiveFile, ActiveFileStatus.None, nullProcess); });
-            Assert.Throws<ArgumentNullException>(() => { activeFile = new ActiveFile(nullActiveFile, ActiveFileStatus.None); });
-            Assert.Throws<ArgumentNullException>(() => { activeFile = new ActiveFile(nullActiveFile, DateTime.MinValue, ActiveFileStatus.None); });
-            Assert.Throws<ArgumentNullException>(() => { activeFile = new ActiveFile(nullFileInfo, decryptedFileInfo, new AesKey(), ActiveFileStatus.None, nullProcess); });
-            Assert.Throws<ArgumentNullException>(() => { activeFile = new ActiveFile(encryptedFileInfo, nullFileInfo, new AesKey(), ActiveFileStatus.None, nullProcess); });
-            Assert.Throws<ArgumentNullException>(() => { activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, nullKey, ActiveFileStatus.None, nullProcess); });
+            Assert.Throws<ArgumentNullException>(() => { new ActiveFile(nullActiveFile, key); });
+            Assert.Throws<ArgumentNullException>(() => { new ActiveFile(originalActiveFile, nullKey); });
+            Assert.Throws<ArgumentNullException>(() => { new ActiveFile(nullActiveFile, ActiveFileStatus.None, nullProcess); });
+            Assert.Throws<ArgumentNullException>(() => { new ActiveFile(nullActiveFile, ActiveFileStatus.None); });
+            Assert.Throws<ArgumentNullException>(() => { new ActiveFile(nullActiveFile, DateTime.MinValue, ActiveFileStatus.None); });
+            Assert.Throws<ArgumentNullException>(() => { new ActiveFile(nullFileInfo, decryptedFileInfo, new AesKey(), ActiveFileStatus.None, nullProcess); });
+            Assert.Throws<ArgumentNullException>(() => { new ActiveFile(encryptedFileInfo, nullFileInfo, new AesKey(), ActiveFileStatus.None, nullProcess); });
+            Assert.Throws<ArgumentNullException>(() => { new ActiveFile(encryptedFileInfo, decryptedFileInfo, nullKey, ActiveFileStatus.None, nullProcess); });
         }
 
         [Test]
