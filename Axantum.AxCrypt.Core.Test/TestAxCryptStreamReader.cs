@@ -100,27 +100,26 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 using (AxCryptReader axCryptReader = new AxCryptStreamReader(inputStream))
                 {
-                    Stream encryptedDataStream;
                     Assert.Throws<ArgumentNullException>(() =>
                     {
-                        encryptedDataStream = axCryptReader.CreateEncryptedDataStream(null, 0, new ProgressContext());
+                        axCryptReader.CreateEncryptedDataStream(null, 0, new ProgressContext());
                     }, "A non-null HMAC key must be specified.");
 
                     Assert.Throws<ArgumentNullException>(() =>
                     {
-                        encryptedDataStream = axCryptReader.CreateEncryptedDataStream(new AesKey(), 0, null);
+                        axCryptReader.CreateEncryptedDataStream(new AesKey(), 0, null);
                     }, "A non-null ProgresContext must be specified.");
 
                     Assert.Throws<InvalidOperationException>(() =>
                     {
-                        encryptedDataStream = axCryptReader.CreateEncryptedDataStream(new AesKey(), 0, new ProgressContext());
+                        axCryptReader.CreateEncryptedDataStream(new AesKey(), 0, new ProgressContext());
                     }, "The reader is not positioned properly to read encrypted data.");
 
                     axCryptReader.Dispose();
 
                     Assert.Throws<ObjectDisposedException>(() =>
                     {
-                        encryptedDataStream = axCryptReader.CreateEncryptedDataStream(new AesKey(), 0, new ProgressContext());
+                        axCryptReader.CreateEncryptedDataStream(new AesKey(), 0, new ProgressContext());
                     }, "The reader is disposed.");
                 }
             }

@@ -40,24 +40,26 @@ namespace Axantum.AxCrypt.Core.Test
         {
             AesKey key = new AesKey();
             AesIV iv = new AesIV();
-            AesCrypto crypto;
 
             Assert.Throws<ArgumentNullException>(() =>
             {
-                crypto = new AesCrypto(null);
+                new AesCrypto(null);
             });
 
             Assert.Throws<ArgumentNullException>(() =>
             {
-                crypto = new AesCrypto(null, iv, CipherMode.CBC, PaddingMode.None);
+                new AesCrypto(null, iv, CipherMode.CBC, PaddingMode.None);
             });
 
             Assert.Throws<ArgumentNullException>(() =>
             {
-                crypto = new AesCrypto(key, null, CipherMode.CBC, PaddingMode.None);
+                new AesCrypto(key, null, CipherMode.CBC, PaddingMode.None);
             });
 
-            crypto = new AesCrypto(key, iv, CipherMode.CBC, PaddingMode.None);
+            Assert.DoesNotThrow(() =>
+			{
+				new AesCrypto(key, iv, CipherMode.CBC, PaddingMode.None);
+			});
         }
 
         [Test]
@@ -65,18 +67,17 @@ namespace Axantum.AxCrypt.Core.Test
         {
             AesKey key = new AesKey();
             AesIV iv = new AesIV();
-            ICryptoTransform transform;
 
             AesCrypto crypto = new AesCrypto(key, iv, CipherMode.CBC, PaddingMode.None);
             crypto.Dispose();
             Assert.Throws<ObjectDisposedException>(() =>
             {
-                transform = crypto.CreateDecryptingTransform();
+                crypto.CreateDecryptingTransform();
             });
             crypto.Dispose();
             Assert.Throws<ObjectDisposedException>(() =>
             {
-                transform = crypto.CreateDecryptingTransform();
+                crypto.CreateDecryptingTransform();
             });
         }
 
