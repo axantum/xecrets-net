@@ -1,0 +1,11 @@
+﻿About SolutionItems.dll
+
+The project 'SolutionItems' is a dummy project to bridge the missing feature of a generic MSBuild project
+and also to compensate for Visual Studio Express not supporting the 'Solution Items' feature of the
+non-Express editions of Visual Studio.
+
+How To Build
+
+Windows: Visual Studio 2010 (Any version including Express) or MonoDevelop. Load the solution and hit 'Build'.
+
+Linux: (Tested on Ubuntu) MonoDevelop. If earlier than 2.11, also need 'mono-gmcs' to compile against 3.5 profile.

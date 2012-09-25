@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />
+    <None Include="Properties\AssemblyInfo.template" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AboutThisAssembly.txt" />

@@ -99,7 +99,7 @@
     </Content>
     <Content Include="ILMerge.exe" />
     <Content Include="MSBuildVersioning.dll" />
-    <Content Include="AboutThisAssembly.txt" />
+    <Content Include="HowToBuild.txt" />
     <Content Include="nunit.framework.dll" />
     <Content Include="signtool.exe" />
     <Content Include="sn.exe" />
