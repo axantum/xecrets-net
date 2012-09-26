@@ -26,43 +26,29 @@
 #endregion Coypright and License
 
 using System;
-using System.IO;
-using Axantum.AxCrypt.Core.IO;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using Axantum.AxCrypt.Core.System;
 
-namespace Axantum.AxCrypt.Core.System
+namespace Axantum.AxCrypt.Mono
 {
-    public interface IRuntimeEnvironment
+    internal class DataProtection : IDataProtection
     {
-        event EventHandler<EventArgs> FileChanged;
+        #region IDataProtection Members
 
-        void NotifyFileChanged();
+        public byte[] Protect(byte[] unprotectedData)
+        {
+            return ProtectedData.Protect(unprotectedData, null, DataProtectionScope.CurrentUser);
+        }
 
-        bool IsLittleEndian { get; }
+        public byte[] Unprotect(byte[] protectedData)
+        {
+            byte[] bytes = ProtectedData.Unprotect(protectedData, null, DataProtectionScope.CurrentUser);
+            return bytes;
+        }
 
-        byte[] GetRandomBytes(int count);
-
-        IRuntimeFileInfo FileInfo(string path);
-
-        string AxCryptExtension { get; }
-
-        Platform Platform { get; }
-
-        int StreamBufferSize { get; }
-
-        IFileWatcher FileWatcher(string path);
-
-        IRuntimeFileInfo TemporaryDirectoryInfo { get; }
-
-        DateTime UtcNow { get; }
-
-        ILauncher Launch(string path);
-
-        ITiming StartTiming();
-
-        IWebCaller CreateWebCaller();
-
-        ILogging Log { get; }
-
-        IDataProtection DataProtection { get; }
+        #endregion IDataProtection Members
     }
 }

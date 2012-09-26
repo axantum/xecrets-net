@@ -201,11 +201,11 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                return ProtectedData.Protect(Encoding.UTF8.GetBytes(Path.GetFileName(DecryptedFileInfo.FullName)), null, DataProtectionScope.CurrentUser);
+                return Os.Current.DataProtection.Protect(Encoding.UTF8.GetBytes(Path.GetFileName(DecryptedFileInfo.FullName)));
             }
             set
             {
-                byte[] bytes = ProtectedData.Unprotect(value, null, DataProtectionScope.CurrentUser);
+                byte[] bytes = Os.Current.DataProtection.Unprotect(value);
                 _decryptedName = Encoding.UTF8.GetString(bytes);
             }
         }

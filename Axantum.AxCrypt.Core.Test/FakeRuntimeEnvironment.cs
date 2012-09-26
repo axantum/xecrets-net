@@ -210,6 +210,11 @@ namespace Axantum.AxCrypt.Core.Test
             get { return new FakeLogging(); }
         }
 
+        public IDataProtection DataProtection
+        {
+            get { return new FakeDataProtection(); }
+        }
+
         #endregion IRuntimeEnvironment Members
     }
 }

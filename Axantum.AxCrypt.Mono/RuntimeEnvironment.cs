@@ -182,5 +182,10 @@ namespace Axantum.AxCrypt.Mono
         }
 
         public event EventHandler<EventArgs> FileChanged;
+
+        public IDataProtection DataProtection
+        {
+            get { return new DataProtection(); }
+        }
     }
 }
