@@ -163,6 +163,7 @@
             Inputs="Properties\AssemblyInfo.template;$(MSBuildProjectFullPath)"
             Outputs="$(IntermediateOutputPath)\AssemblyInfo.cs"
             Condition=" Exists('Properties\AssemblyInfo.template') ">
+        <MakeDir Directories="$(IntermediateOutputPath)" />
         <HgVersionFile TemplateFile="Properties\AssemblyInfo.template"
                        DestinationFile="$(IntermediateOutputPath)\AssemblyInfo.cs"
                        IgnoreToolNotFound="true" />
