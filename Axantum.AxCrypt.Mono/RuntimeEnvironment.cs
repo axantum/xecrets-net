@@ -153,6 +153,20 @@ namespace Axantum.AxCrypt.Mono
             return new WebCaller();
         }
 
+        private Logging _logging = null;
+
+        public ILogging Log
+        {
+            get
+            {
+                if (_logging == null)
+                {
+                    _logging = new Logging();
+                }
+                return _logging;
+            }
+        }
+
         public void NotifyFileChanged()
         {
             OnChanged();

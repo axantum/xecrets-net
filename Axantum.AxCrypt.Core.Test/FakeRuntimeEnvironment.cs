@@ -202,5 +202,14 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         public event EventHandler<EventArgs> FileChanged;
+
+        #region IRuntimeEnvironment Members
+
+        public ILogging Log
+        {
+            get { return new FakeLogging(); }
+        }
+
+        #endregion IRuntimeEnvironment Members
     }
 }

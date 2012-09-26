@@ -32,5 +32,7 @@ namespace Axantum.AxCrypt.Core
     public static class Os
     {
         public static IRuntimeEnvironment Current { get; set; }
+
+        public static ILogging Log { get { return Current.Log; } }
     }
 }

@@ -76,9 +76,9 @@ namespace Axantum.AxCrypt
 
         private BackgroundWorker CreateWorker(DoWorkEventHandler doWorkHandler, RunWorkerCompletedEventHandler completedHandler)
         {
-            if (Logging.IsInfoEnabled)
+            if (Os.Log.IsInfoEnabled)
             {
-                Logging.Info("Creating BackgroundWorker");            //MLHIDE
+                Os.Log.Info("Creating BackgroundWorker");            //MLHIDE
             }
 
             BackgroundWorker worker = new BackgroundWorker();
@@ -108,9 +108,9 @@ namespace Axantum.AxCrypt
                     worker.ProgressChanged -= worker_ProgressChanged;
                     worker.Dispose();
                 }
-                if (Logging.IsInfoEnabled)
+                if (Os.Log.IsInfoEnabled)
                 {
-                    Logging.Info("Disposing BackgroundWorker");       //MLHIDE
+                    Os.Log.Info("Disposing BackgroundWorker");       //MLHIDE
                 }
             };
 

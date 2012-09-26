@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="FileWatcher.cs" />
     <Compile Include="Launcher.cs" />
+    <Compile Include="Logging.cs" />
     <Compile Include="RuntimeEnvironment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RuntimeFileInfo.cs" />

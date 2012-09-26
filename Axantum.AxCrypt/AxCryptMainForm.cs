@@ -183,9 +183,9 @@ namespace Axantum.AxCrypt
             set
             {
                 _trackProcess = value;
-                if (Logging.IsInfoEnabled)
+                if (Os.Log.IsInfoEnabled)
                 {
-                    Logging.Info("ActiveFileMonitor.TrackProcess='{0}'".InvariantFormat(value)); //MLHIDE
+                    Os.Log.Info("ActiveFileMonitor.TrackProcess='{0}'".InvariantFormat(value)); //MLHIDE
                 }
             }
         }
@@ -649,9 +649,9 @@ namespace Axantum.AxCrypt
 
         private void ActiveFilePolling_Tick(object sender, EventArgs e)
         {
-            if (Logging.IsInfoEnabled)
+            if (Os.Log.IsInfoEnabled)
             {
-                Logging.Info("Tick");                                 //MLHIDE
+                Os.Log.Info("Tick");                                 //MLHIDE
             }
             if (_pollingInProgress)
             {
@@ -864,9 +864,9 @@ namespace Axantum.AxCrypt
         {
             Settings.Default.Language = cultureName;
             Settings.Default.Save();
-            if (Logging.IsInfoEnabled)
+            if (Os.Log.IsInfoEnabled)
             {
-                Logging.Info("Set new UI language culture to '{0}'.".InvariantFormat(Settings.Default.Language)); //MLHIDE
+                Os.Log.Info("Set new UI language culture to '{0}'.".InvariantFormat(Settings.Default.Language)); //MLHIDE
             }
             Resources.LanguageChangeRestartPrompt.ShowWarning();
         }
@@ -917,7 +917,7 @@ namespace Axantum.AxCrypt
             DebugToolStripMenuItem.Visible = Settings.Default.Debug;
             if (Settings.Default.Debug)
             {
-                Logging.SetLevel(TraceLevel.Verbose);
+                Os.Log.SetLevel(LogLevel.Debug);
                 if (_logTabPage != null)
                 {
                     StatusTabs.TabPages.Add(_logTabPage);
@@ -930,7 +930,7 @@ namespace Axantum.AxCrypt
             else
             {
                 ServicePointManager.ServerCertificateValidationCallback = null;
-                Logging.SetLevel(TraceLevel.Error);
+                Os.Log.SetLevel(LogLevel.Error);
                 _logTabPage = StatusTabs.TabPages["LogTab"];
                 StatusTabs.TabPages.Remove(_logTabPage);
             }

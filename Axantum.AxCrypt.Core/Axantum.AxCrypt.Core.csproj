@@ -133,7 +133,6 @@
     <Compile Include="Header\HeaderBlockType.cs" />
     <Compile Include="Header\VersionHeaderBlock.cs" />
     <Compile Include="System\ITiming.cs" />
-    <Compile Include="System\Logging.cs" />
     <None Include="Properties\AssemblyInfo.template" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reader\AxCryptReader.cs" />
@@ -141,6 +140,7 @@
     <Compile Include="Reader\AxCryptStreamReader.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="System\LogLevel.cs" />
     <Compile Include="System\Platform.cs" />
     <Compile Include="IO\FileLock.cs" />
     <Compile Include="Session\ActiveFile.cs" />

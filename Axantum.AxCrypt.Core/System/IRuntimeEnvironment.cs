@@ -60,5 +60,7 @@ namespace Axantum.AxCrypt.Core.System
         ITiming StartTiming();
 
         IWebCaller CreateWebCaller();
+
+        ILogging Log { get; }
     }
 }

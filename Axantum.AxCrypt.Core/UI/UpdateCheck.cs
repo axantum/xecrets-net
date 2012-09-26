@@ -96,9 +96,9 @@ namespace Axantum.AxCrypt.Core.UI
             }
             if (lastCheckTimeUtc.AddDays(1) >= Os.Current.UtcNow)
             {
-                if (Logging.IsInfoEnabled)
+                if (Os.Log.IsInfoEnabled)
                 {
-                    Logging.Info("Attempt to check for new version was ignored because it is too soon. Returning version {0}.".InvariantFormat(newestKnownVersionValue));
+                    Os.Log.Info("Attempt to check for new version was ignored because it is too soon. Returning version {0}.".InvariantFormat(newestKnownVersionValue));
                 }
                 OnVersionUpdate(new VersionEventArgs(newestKnownVersionValue, updateWebpageUrl, CalculateStatus(newestKnownVersionValue, lastCheckTimeUtc)));
                 return;
@@ -142,16 +142,16 @@ namespace Axantum.AxCrypt.Core.UI
                 }
                 newVersion = ParseVersion(versionResponse.Version);
                 updateWebpageUrl = new Uri(versionResponse.WebReference);
-                if (Logging.IsInfoEnabled)
+                if (Os.Log.IsInfoEnabled)
                 {
-                    Logging.Info("Update check reports most recent version {0} at web page {1}".InvariantFormat(newVersion, updateWebpageUrl));
+                    Os.Log.Info("Update check reports most recent version {0} at web page {1}".InvariantFormat(newVersion, updateWebpageUrl));
                 }
             }
             catch (Exception ex)
             {
-                if (Logging.IsWarningEnabled)
+                if (Os.Log.IsWarningEnabled)
                 {
-                    Logging.Warning("Failed call to check for new version with exception {0}.".InvariantFormat(ex));
+                    Os.Log.Warning("Failed call to check for new version with exception {0}.".InvariantFormat(ex));
                 }
             }
             return new Pair<Version, Uri>(newVersion, updateWebpageUrl);

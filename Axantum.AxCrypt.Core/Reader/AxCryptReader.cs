@@ -138,9 +138,9 @@ namespace Axantum.AxCrypt.Core.Reader
             AxCryptItemType before = CurrentItemType;
             bool readOk = ReadInternal();
             AxCryptItemType after = CurrentItemType;
-            if (Logging.IsDebugEnabled)
+            if (Os.Log.IsDebugEnabled)
             {
-                Logging.Verbose("AxCryptReader.Read() from type {0} to type {1} : {2}.".InvariantFormat(before, after, CurrentHeaderBlock == null ? "(None)" : CurrentHeaderBlock.GetType().ToString()));
+                Os.Log.Debug("AxCryptReader.Read() from type {0} to type {1} : {2}.".InvariantFormat(before, after, CurrentHeaderBlock == null ? "(None)" : CurrentHeaderBlock.GetType().ToString()));
             }
             return readOk;
         }
@@ -265,36 +265,47 @@ namespace Axantum.AxCrypt.Core.Reader
                 case HeaderBlockType.Version:
                     CurrentHeaderBlock = new VersionHeaderBlock(dataBlock);
                     break;
+
                 case HeaderBlockType.KeyWrap1:
                     CurrentHeaderBlock = new KeyWrap1HeaderBlock(dataBlock);
                     break;
+
                 case HeaderBlockType.KeyWrap2:
                     CurrentHeaderBlock = new KeyWrap2HeaderBlock(dataBlock);
                     break;
+
                 case HeaderBlockType.IdTag:
                     CurrentHeaderBlock = new IdTagHeaderBlock(dataBlock);
                     break;
+
                 case HeaderBlockType.Data:
                     CurrentHeaderBlock = new DataHeaderBlock(dataBlock);
                     break;
+
                 case HeaderBlockType.FileNameInfo:
                     CurrentHeaderBlock = new FileNameInfoHeaderBlock(dataBlock);
                     break;
+
                 case HeaderBlockType.EncryptionInfo:
                     CurrentHeaderBlock = new EncryptionInfoHeaderBlock(dataBlock);
                     break;
+
                 case HeaderBlockType.CompressionInfo:
                     CurrentHeaderBlock = new CompressionInfoHeaderBlock(dataBlock);
                     break;
+
                 case HeaderBlockType.FileInfo:
                     CurrentHeaderBlock = new FileInfoHeaderBlock(dataBlock);
                     break;
+
                 case HeaderBlockType.Compression:
                     CurrentHeaderBlock = new CompressionHeaderBlock(dataBlock);
                     break;
+
                 case HeaderBlockType.UnicodeFileNameInfo:
                     CurrentHeaderBlock = new UnicodeFileNameInfoHeaderBlock(dataBlock);
                     break;
+
                 case HeaderBlockType.Encrypted:
                 case HeaderBlockType.None:
                 case HeaderBlockType.Any:

@@ -177,7 +177,7 @@ namespace Axantum.AxCrypt.Core.Session
             set { _keyThumbprintBytes = value; }
         }
 
-        string _decryptedFolder;
+        private string _decryptedFolder;
 
         [DataMember]
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "This is a private property used for serialization.")]
@@ -193,7 +193,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        string _decryptedName;
+        private string _decryptedName;
 
         [DataMember]
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "This is a private property used for serialization.")]
@@ -288,9 +288,9 @@ namespace Axantum.AxCrypt.Core.Session
                     return false;
                 }
                 bool isModified = DecryptedFileInfo.LastWriteTimeUtc > LastEncryptionWriteTimeUtc;
-                if (Logging.IsInfoEnabled)
+                if (Os.Log.IsInfoEnabled)
                 {
-                    Logging.Info("IsModified == '{0}' for file '{3}' info last write time '{1}' and active file last write time '{2}'".InvariantFormat(isModified.ToString(), DecryptedFileInfo.LastWriteTimeUtc.ToString(), LastEncryptionWriteTimeUtc.ToString(), DecryptedFileInfo.Name));
+                    Os.Log.Info("IsModified == '{0}' for file '{3}' info last write time '{1}' and active file last write time '{2}'".InvariantFormat(isModified.ToString(), DecryptedFileInfo.LastWriteTimeUtc.ToString(), LastEncryptionWriteTimeUtc.ToString(), DecryptedFileInfo.Name));
                 }
                 return isModified;
             }

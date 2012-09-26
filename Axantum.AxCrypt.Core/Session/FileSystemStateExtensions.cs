@@ -43,9 +43,9 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 if (FileLock.IsLocked(activeFile.DecryptedFileInfo))
                 {
-                    if (Logging.IsInfoEnabled)
+                    if (Os.Log.IsInfoEnabled)
                     {
-                        Logging.Info("Not deleting '{0}' because it is marked as locked.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
+                        Os.Log.Info("Not deleting '{0}' because it is marked as locked.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                     }
                     return activeFile;
                 }
@@ -161,9 +161,9 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return activeFile;
             }
-            if (Logging.IsInfoEnabled)
+            if (Os.Log.IsInfoEnabled)
             {
-                Logging.Info("Process exit for '{0}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
+                Os.Log.Info("Process exit for '{0}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
             }
             activeFile = new ActiveFile(activeFile, activeFile.Status & ~ActiveFileStatus.NotShareable, null);
             return activeFile;
@@ -196,16 +196,16 @@ namespace Axantum.AxCrypt.Core.Session
             }
             catch (IOException)
             {
-                if (Logging.IsWarningEnabled)
+                if (Os.Log.IsWarningEnabled)
                 {
-                    Logging.Warning("Failed exclusive open modified for '{0}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
+                    Os.Log.Warning("Failed exclusive open modified for '{0}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                 }
                 activeFile = new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.NotShareable);
                 return activeFile;
             }
-            if (Logging.IsInfoEnabled)
+            if (Os.Log.IsInfoEnabled)
             {
-                Logging.Info("Wrote back '{0}' to '{1}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
+                Os.Log.Info("Wrote back '{0}' to '{1}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
             }
             activeFile = new ActiveFile(activeFile, activeFile.DecryptedFileInfo.LastWriteTimeUtc, ActiveFileStatus.AssumedOpenAndDecrypted);
             return activeFile;
@@ -230,35 +230,35 @@ namespace Axantum.AxCrypt.Core.Session
         {
             if (activeFile.Process != null && !activeFile.Process.HasExited)
             {
-                if (Logging.IsInfoEnabled)
+                if (Os.Log.IsInfoEnabled)
                 {
-                    Logging.Info("Not deleting '{0}' because it has an active process.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
+                    Os.Log.Info("Not deleting '{0}' because it has an active process.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                 }
                 return activeFile;
             }
 
             if (activeFile.IsModified)
             {
-                if (Logging.IsInfoEnabled)
+                if (Os.Log.IsInfoEnabled)
                 {
-                    Logging.Info("Tried delete '{0}' but it is modified.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
+                    Os.Log.Info("Tried delete '{0}' but it is modified.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                 }
                 return activeFile;
             }
 
             try
             {
-                if (Logging.IsInfoEnabled)
+                if (Os.Log.IsInfoEnabled)
                 {
-                    Logging.Info("Deleting '{0}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
+                    Os.Log.Info("Deleting '{0}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                 }
                 activeFile.DecryptedFileInfo.Delete();
             }
             catch (IOException)
             {
-                if (Logging.IsWarningEnabled)
+                if (Os.Log.IsWarningEnabled)
                 {
-                    Logging.Warning("Delete failed for '{0}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
+                    Os.Log.Warning("Delete failed for '{0}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                 }
                 activeFile = new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.NotShareable);
                 return activeFile;
@@ -266,9 +266,9 @@ namespace Axantum.AxCrypt.Core.Session
 
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.NotDecrypted, null);
 
-            if (Logging.IsInfoEnabled)
+            if (Os.Log.IsInfoEnabled)
             {
-                Logging.Info("Deleted '{0}' from '{1}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
+                Os.Log.Info("Deleted '{0}' from '{1}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
             }
 
             return activeFile;

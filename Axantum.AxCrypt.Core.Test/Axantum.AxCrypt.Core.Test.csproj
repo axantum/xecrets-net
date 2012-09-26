@@ -82,6 +82,7 @@
     <Compile Include="Endian.cs" />
     <Compile Include="FakeFileWatcher.cs" />
     <Compile Include="FakeLauncher.cs" />
+    <Compile Include="FakeLogging.cs" />
     <Compile Include="FakeRuntimeEnvironment.cs" />
     <Compile Include="FakeRuntimeFileInfo.cs" />
     <Compile Include="FakeTiming.cs" />
@@ -125,7 +126,6 @@
     <Compile Include="TestKeyWrap2HeaderBlock.cs" />
     <Compile Include="TestKeyWrapSalt.cs" />
     <Compile Include="TestKnownKeys.cs" />
-    <Compile Include="TestLogging.cs" />
     <Compile Include="TestPassphrase.cs" />
     <Compile Include="TestPreambleHeaderBlock.cs" />
     <Compile Include="TestProgressContext.cs" />

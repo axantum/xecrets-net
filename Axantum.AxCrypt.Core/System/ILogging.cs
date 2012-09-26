@@ -34,5 +34,26 @@ namespace Axantum.AxCrypt.Core.System
 {
     public interface ILogging
     {
+        void SetLevel(LogLevel level);
+
+        bool IsFatalEnabled { get; }
+
+        bool IsErrorEnabled { get; }
+
+        bool IsWarningEnabled { get; }
+
+        bool IsInfoEnabled { get; }
+
+        bool IsDebugEnabled { get; }
+
+        void Fatal(string message);
+
+        void Error(string message);
+
+        void Warning(string message);
+
+        void Info(string message);
+
+        void Debug(string message);
     }
 }

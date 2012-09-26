@@ -215,9 +215,9 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 FileSystemState state = new FileSystemState();
                 state._path = path.FullName;
-                if (Logging.IsInfoEnabled)
+                if (Os.Log.IsInfoEnabled)
                 {
-                    Logging.Info("No existing FileSystemState. Save location is '{0}'.".InvariantFormat(state._path));
+                    Os.Log.Info("No existing FileSystemState. Save location is '{0}'.".InvariantFormat(state._path));
                 }
                 return state;
             }
@@ -229,9 +229,9 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 FileSystemState fileSystemState = (FileSystemState)serializer.ReadObject(fileSystemStateStream);
                 fileSystemState._path = path.FullName;
-                if (Logging.IsInfoEnabled)
+                if (Os.Log.IsInfoEnabled)
                 {
-                    Logging.Info("Loaded FileSystemState from '{0}'.".InvariantFormat(fileSystemState._path));
+                    Os.Log.Info("Loaded FileSystemState from '{0}'.".InvariantFormat(fileSystemState._path));
                 }
                 return fileSystemState;
             }
@@ -255,9 +255,9 @@ namespace Axantum.AxCrypt.Core.Session
                     serializer.WriteObject(fileSystemStateStream, this);
                 }
             }
-            if (Logging.IsInfoEnabled)
+            if (Os.Log.IsInfoEnabled)
             {
-                Logging.Info("Wrote FileSystemState to '{0}'.".InvariantFormat(_path));
+                Os.Log.Info("Wrote FileSystemState to '{0}'.".InvariantFormat(_path));
             }
         }
 
