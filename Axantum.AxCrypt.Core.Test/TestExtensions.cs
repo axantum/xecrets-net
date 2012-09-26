@@ -209,8 +209,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEndianOptimization()
         {
-            IRuntimeEnvironment currentEnvironment = AxCryptEnvironment.Current;
-            AxCryptEnvironment.Current = new FakeRuntimeEnvironment(Endian.Reverse);
+            IRuntimeEnvironment currentEnvironment = Os.Current;
+            Os.Current = new FakeRuntimeEnvironment(Endian.Reverse);
             try
             {
                 if (BitConverter.IsLittleEndian)
@@ -238,7 +238,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
             finally
             {
-                AxCryptEnvironment.Current = currentEnvironment;
+                Os.Current = currentEnvironment;
             }
         }
 

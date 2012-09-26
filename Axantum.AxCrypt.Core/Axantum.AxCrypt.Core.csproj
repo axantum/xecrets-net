@@ -98,7 +98,7 @@
     <Compile Include="Crypto\KeyWrapSalt.cs" />
     <Compile Include="Crypto\Passphrase.cs" />
     <Compile Include="Crypto\Subkey.cs" />
-    <Compile Include="AxCryptEnvironment.cs" />
+    <Compile Include="Os.cs" />
     <Compile Include="System\DelegateTraceListener.cs" />
     <Compile Include="ErrorStatus.cs" />
     <Compile Include="Extensions.cs" />
@@ -120,6 +120,7 @@
     <Compile Include="Header\UnrecognizedHeaderBlock.cs" />
     <Compile Include="IO\ProgressStream.cs" />
     <Compile Include="System\ILauncher.cs" />
+    <Compile Include="System\ILogging.cs" />
     <Compile Include="System\IRuntimeEnvironment.cs" />
     <Compile Include="System\InternalErrorException.cs" />
     <Compile Include="System\InvalidDataException.cs" />

@@ -95,7 +95,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
             _hmacStream = new HmacStream(hmacKey);
             _hmacBufferStream.Position = 0;
-            _hmacBufferStream.CopyTo(_hmacStream, AxCryptEnvironment.Current.StreamBufferSize);
+            _hmacBufferStream.CopyTo(_hmacStream, Os.Current.StreamBufferSize);
 
             _expectedTotalHmacLength = _hmacBufferStream.Length + cipherTextLength;
 
@@ -175,7 +175,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
         private void LookForMagicGuid()
         {
-            byte[] buffer = new byte[AxCryptEnvironment.Current.StreamBufferSize];
+            byte[] buffer = new byte[Os.Current.StreamBufferSize];
             while (true)
             {
                 int bytesRead = _inputStream.Read(buffer, 0, buffer.Length);

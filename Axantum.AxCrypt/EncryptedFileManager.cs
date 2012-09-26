@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-            _fileWatcher = AxCryptEnvironment.Current.FileWatcher(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName);
+            _fileWatcher = Os.Current.FileWatcher(Os.Current.TemporaryDirectoryInfo.FullName);
             _fileWatcher.FileChanged += new EventHandler<FileWatcherEventArgs>(File_Changed);
 
             Version myVersion = Assembly.GetExecutingAssembly().GetName().Version;
@@ -87,7 +87,7 @@ namespace Axantum.AxCrypt
 
         private void File_Changed(object sender, EventArgs e)
         {
-            AxCryptEnvironment.Current.NotifyFileChanged();
+            Os.Current.NotifyFileChanged();
         }
 
         protected override void Dispose(bool disposing)

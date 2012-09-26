@@ -51,14 +51,14 @@ namespace Axantum.AxCrypt.Core.Test
         {
             AesKey key1 = new AesKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
             AesKey key2 = new AesKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
-            byte[] salt1 = AxCryptEnvironment.Current.GetRandomBytes(32);
+            byte[] salt1 = Os.Current.GetRandomBytes(32);
             byte[] salt2 = (byte[])salt1.Clone();
 
             byte[] thumbprint1 = new AesKeyThumbprint(key1, salt1).GetThumbprintBytes();
             byte[] thumbprint2 = new AesKeyThumbprint(key2, salt2).GetThumbprintBytes();
 
             Assert.That(thumbprint1.IsEquivalentTo(thumbprint2), "Two thumbprints made from the same key and salt bytes, although different AesKey instances should be equivalent.");
-            Assert.That(!thumbprint2.IsEquivalentTo(new AesKeyThumbprint(new AesKey(), AxCryptEnvironment.Current.GetRandomBytes(16)).GetThumbprintBytes()), "To very different keys and salts should not be equivalent.");
+            Assert.That(!thumbprint2.IsEquivalentTo(new AesKeyThumbprint(new AesKey(), Os.Current.GetRandomBytes(16)).GetThumbprintBytes()), "To very different keys and salts should not be equivalent.");
         }
     }
 }

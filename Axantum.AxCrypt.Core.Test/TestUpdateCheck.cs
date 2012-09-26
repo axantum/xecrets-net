@@ -46,14 +46,14 @@ namespace Axantum.AxCrypt.Core.Test
         [TestFixtureSetUp]
         public static void SetupFixture()
         {
-            _environment = AxCryptEnvironment.Current;
-            AxCryptEnvironment.Current = _fakeRuntimeEnvironment = new FakeRuntimeEnvironment();
+            _environment = Os.Current;
+            Os.Current = _fakeRuntimeEnvironment = new FakeRuntimeEnvironment();
         }
 
         [TestFixtureTearDown]
         public static void TeardownFixture()
         {
-            AxCryptEnvironment.Current = _environment;
+            Os.Current = _environment;
             FakeRuntimeFileInfo.ClearFiles();
         }
 

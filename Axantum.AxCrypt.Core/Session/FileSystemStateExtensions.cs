@@ -73,7 +73,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     return activeFile;
                 }
-                if (AxCryptEnvironment.Current.UtcNow - activeFile.LastActivityTimeUtc <= new TimeSpan(0, 0, 5))
+                if (Os.Current.UtcNow - activeFile.LastActivityTimeUtc <= new TimeSpan(0, 0, 5))
                 {
                     return activeFile;
                 }
@@ -213,7 +213,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private static ActiveFile CheckIfTimeToDelete(ActiveFile activeFile)
         {
-            if (AxCryptEnvironment.Current.Platform != Platform.WindowsDesktop)
+            if (Os.Current.Platform != Platform.WindowsDesktop)
             {
                 return activeFile;
             }

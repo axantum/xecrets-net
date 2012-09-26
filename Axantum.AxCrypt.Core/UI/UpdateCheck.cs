@@ -94,7 +94,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 throw new ObjectDisposedException("_done");
             }
-            if (lastCheckTimeUtc.AddDays(1) >= AxCryptEnvironment.Current.UtcNow)
+            if (lastCheckTimeUtc.AddDays(1) >= Os.Current.UtcNow)
             {
                 if (Logging.IsInfoEnabled)
                 {
@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Core.UI
             Version newVersion = VersionUnknown;
             try
             {
-                IWebCaller webCaller = AxCryptEnvironment.Current.CreateWebCaller();
+                IWebCaller webCaller = Os.Current.CreateWebCaller();
                 string result = webCaller.Go(webServiceUrl);
                 DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(VersionResponse));
                 VersionResponse versionResponse;
@@ -220,7 +220,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 return VersionUpdateStatus.IsUpToDateOrRecentlyChecked;
             }
-            if (lastCheckTimeutc.AddDays(30) >= AxCryptEnvironment.Current.UtcNow)
+            if (lastCheckTimeutc.AddDays(30) >= Os.Current.UtcNow)
             {
                 return VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck;
             }

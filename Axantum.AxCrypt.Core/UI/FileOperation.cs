@@ -59,7 +59,7 @@ namespace Axantum.AxCrypt.Core.UI
                 throw new ArgumentNullException("progress");
             }
 
-            IRuntimeFileInfo fileInfo = AxCryptEnvironment.Current.FileInfo(file);
+            IRuntimeFileInfo fileInfo = Os.Current.FileInfo(file);
             if (!fileInfo.Exists)
             {
                 if (Logging.IsWarningEnabled)
@@ -102,7 +102,7 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     Logging.Info("Starting process for '{0}'".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName)); //MLHIDE
                 }
-                process = AxCryptEnvironment.Current.Launch(destinationActiveFile.DecryptedFileInfo.FullName);
+                process = Os.Current.Launch(destinationActiveFile.DecryptedFileInfo.FullName);
                 if (process.WasStarted)
                 {
                     process.Exited += new EventHandler(process_Exited);
@@ -151,7 +151,7 @@ namespace Axantum.AxCrypt.Core.UI
                 Logging.Info("Process exit event for '{0}'.".InvariantFormat(((ILauncher)sender).Path)); //MLHIDE
             }
 
-            AxCryptEnvironment.Current.NotifyFileChanged();
+            Os.Current.NotifyFileChanged();
         }
 
         private static ActiveFile TryDecrypt(IRuntimeFileInfo destinationFolderInfo, IEnumerable<AesKey> keys, IRuntimeFileInfo sourceFileInfo, ProgressContext progress)
@@ -175,7 +175,7 @@ namespace Axantum.AxCrypt.Core.UI
                         string destinationName = document.DocumentHeaders.FileName;
                         string destinationPath = Path.Combine(destinationFolderInfo.FullName, destinationName);
 
-                        IRuntimeFileInfo destinationFileInfo = AxCryptEnvironment.Current.FileInfo(destinationPath);
+                        IRuntimeFileInfo destinationFileInfo = Os.Current.FileInfo(destinationPath);
                         using (FileLock fileLock = FileLock.Lock(destinationFileInfo))
                         {
                             AxCryptFile.Decrypt(document, destinationFileInfo, AxCryptOptions.SetFileTimes, progress);
@@ -201,9 +201,9 @@ namespace Axantum.AxCrypt.Core.UI
             }
             else
             {
-                destinationFolder = Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + Path.DirectorySeparatorChar); //MLHIDE
+                destinationFolder = Path.Combine(Os.Current.TemporaryDirectoryInfo.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + Path.DirectorySeparatorChar); //MLHIDE
             }
-            IRuntimeFileInfo destinationFolderInfo = AxCryptEnvironment.Current.FileInfo(destinationFolder);
+            IRuntimeFileInfo destinationFolderInfo = Os.Current.FileInfo(destinationFolder);
             destinationFolderInfo.CreateDirectory();
             return destinationFolderInfo;
         }

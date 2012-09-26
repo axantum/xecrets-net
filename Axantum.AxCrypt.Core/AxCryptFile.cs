@@ -217,7 +217,7 @@ namespace Axantum.AxCrypt.Core
                     return destinationFileName;
                 }
                 destinationFileName = document.DocumentHeaders.FileName;
-                IRuntimeFileInfo destinationFullPath = AxCryptEnvironment.Current.FileInfo(Path.Combine(destinationDirectory, destinationFileName));
+                IRuntimeFileInfo destinationFullPath = Os.Current.FileInfo(Path.Combine(destinationDirectory, destinationFileName));
                 Decrypt(document, destinationFullPath, options, progress);
             }
             return destinationFileName;
@@ -312,7 +312,7 @@ namespace Axantum.AxCrypt.Core
             }
 
             string temporaryFilePath = MakeAlternatePath(destinationFileInfo, ".tmp");
-            IRuntimeFileInfo temporaryFileInfo = AxCryptEnvironment.Current.FileInfo(temporaryFilePath);
+            IRuntimeFileInfo temporaryFileInfo = Os.Current.FileInfo(temporaryFilePath);
 
             try
             {
@@ -333,7 +333,7 @@ namespace Axantum.AxCrypt.Core
             if (destinationFileInfo.Exists)
             {
                 string backupFilePath = MakeAlternatePath(destinationFileInfo, ".bak");
-                IRuntimeFileInfo backupFileInfo = AxCryptEnvironment.Current.FileInfo(destinationFileInfo.FullName);
+                IRuntimeFileInfo backupFileInfo = Os.Current.FileInfo(destinationFileInfo.FullName);
 
                 backupFileInfo.MoveTo(backupFilePath);
                 temporaryFileInfo.MoveTo(destinationFileInfo.FullName);
@@ -354,7 +354,7 @@ namespace Axantum.AxCrypt.Core
             {
                 string alternateExtension = (version > 0 ? "." + version.ToString(CultureInfo.InvariantCulture) : String.Empty) + extension;
                 alternatePath = Path.Combine(Path.GetDirectoryName(fileInfo.FullName), Path.GetFileNameWithoutExtension(fileInfo.Name) + alternateExtension);
-                alternateFileInfo = AxCryptEnvironment.Current.FileInfo(alternatePath);
+                alternateFileInfo = Os.Current.FileInfo(alternatePath);
                 ++version;
             } while (alternateFileInfo.Exists);
 
@@ -367,7 +367,7 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("fileInfo");
             }
-            string axCryptExtension = AxCryptEnvironment.Current.AxCryptExtension;
+            string axCryptExtension = Os.Current.AxCryptExtension;
             string originalExtension = Path.GetExtension(fileInfo.Name);
             string modifiedExtension = originalExtension.Length == 0 ? String.Empty : "-" + originalExtension.Substring(1);
             string axCryptFileName = Path.Combine(Path.GetDirectoryName(fileInfo.FullName), Path.GetFileNameWithoutExtension(fileInfo.Name) + modifiedExtension + axCryptExtension);

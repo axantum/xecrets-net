@@ -128,11 +128,11 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void Initialize(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, DateTime lastWriteTimeUtc, AesKey key, ActiveFileStatus status, ILauncher process)
         {
-            EncryptedFileInfo = AxCryptEnvironment.Current.FileInfo(encryptedFileInfo.FullName);
-            DecryptedFileInfo = AxCryptEnvironment.Current.FileInfo(decryptedFileInfo.FullName);
+            EncryptedFileInfo = Os.Current.FileInfo(encryptedFileInfo.FullName);
+            DecryptedFileInfo = Os.Current.FileInfo(decryptedFileInfo.FullName);
             Key = key;
             Status = status;
-            LastActivityTimeUtc = AxCryptEnvironment.Current.UtcNow;
+            LastActivityTimeUtc = Os.Current.UtcNow;
             Process = process;
             LastEncryptionWriteTimeUtc = lastWriteTimeUtc;
         }
@@ -149,7 +149,7 @@ namespace Axantum.AxCrypt.Core.Session
             private set;
         }
 
-        private byte[] _keyThumbprintSalt = AxCryptEnvironment.Current.GetRandomBytes(32);
+        private byte[] _keyThumbprintSalt = Os.Current.GetRandomBytes(32);
 
         [DataMember]
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "This is a private method used for serialization.")]
@@ -220,7 +220,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
             set
             {
-                EncryptedFileInfo = AxCryptEnvironment.Current.FileInfo(value);
+                EncryptedFileInfo = Os.Current.FileInfo(value);
             }
         }
 
@@ -239,7 +239,7 @@ namespace Axantum.AxCrypt.Core.Session
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context)
         {
-            DecryptedFileInfo = AxCryptEnvironment.Current.FileInfo(Path.Combine(_decryptedFolder, _decryptedName));
+            DecryptedFileInfo = Os.Current.FileInfo(Path.Combine(_decryptedFolder, _decryptedName));
         }
 
         public ILauncher Process { get; private set; }

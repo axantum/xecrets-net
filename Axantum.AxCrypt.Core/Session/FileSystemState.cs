@@ -223,7 +223,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
 
             DataContractSerializer serializer = CreateSerializer();
-            IRuntimeFileInfo loadInfo = AxCryptEnvironment.Current.FileInfo(path.FullName);
+            IRuntimeFileInfo loadInfo = Os.Current.FileInfo(path.FullName);
 
             using (Stream fileSystemStateStream = loadInfo.OpenRead())
             {
@@ -245,7 +245,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         public void Save()
         {
-            IRuntimeFileInfo saveInfo = AxCryptEnvironment.Current.FileInfo(_path);
+            IRuntimeFileInfo saveInfo = Os.Current.FileInfo(_path);
             using (Stream fileSystemStateStream = saveInfo.OpenWrite())
             {
                 fileSystemStateStream.SetLength(0);

@@ -37,7 +37,7 @@ namespace Axantum.AxCrypt.Core.Reader
         }
 
         public CompressionInfoHeaderBlock()
-            : this(AxCryptEnvironment.Current.GetRandomBytes(16))
+            : this(Os.Current.GetRandomBytes(16))
         {
         }
 

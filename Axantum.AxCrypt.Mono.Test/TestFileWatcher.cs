@@ -48,8 +48,8 @@ namespace Axantum.AxCrypt.Mono.Test
         [SetUp]
         public static void Setup()
         {
-            _previousEnvironment = AxCryptEnvironment.Current;
-            AxCryptEnvironment.Current = new RuntimeEnvironment();
+            _previousEnvironment = Os.Current;
+            Os.Current = new RuntimeEnvironment();
             _tempPath = Path.Combine(Path.GetTempPath(), "Axantum.AxCrypt.Core.Test.TestFileWatcher");
             Directory.CreateDirectory(_tempPath);
         }
@@ -58,13 +58,13 @@ namespace Axantum.AxCrypt.Mono.Test
         public static void Teardown()
         {
             Directory.Delete(_tempPath, true);
-            AxCryptEnvironment.Current = _previousEnvironment;
+            Os.Current = _previousEnvironment;
         }
 
         [Test]
         public static void TestCreated()
         {
-            using (IFileWatcher fileWatcher = AxCryptEnvironment.Current.FileWatcher(_tempPath))
+            using (IFileWatcher fileWatcher = Os.Current.FileWatcher(_tempPath))
             {
                 string fileName = String.Empty;
                 fileWatcher.FileChanged += (object sender, FileWatcherEventArgs e) => { fileName = Path.GetFileName(e.FullName); };
@@ -82,7 +82,7 @@ namespace Axantum.AxCrypt.Mono.Test
         [Test]
         public static void TestMoved()
         {
-            using (IFileWatcher fileWatcher = AxCryptEnvironment.Current.FileWatcher(_tempPath))
+            using (IFileWatcher fileWatcher = Os.Current.FileWatcher(_tempPath))
             {
                 string fileName = String.Empty;
                 fileWatcher.FileChanged += (object sender, FileWatcherEventArgs e) => { fileName = Path.GetFileName(e.FullName); };
@@ -108,7 +108,7 @@ namespace Axantum.AxCrypt.Mono.Test
         {
             Assert.DoesNotThrow(() =>
             {
-                using (IFileWatcher fileWatcher = AxCryptEnvironment.Current.FileWatcher(_tempPath))
+                using (IFileWatcher fileWatcher = Os.Current.FileWatcher(_tempPath))
                 {
                     fileWatcher.Dispose();
                 }

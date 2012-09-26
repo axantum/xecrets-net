@@ -168,7 +168,7 @@ namespace Axantum.AxCrypt.Core
             }
 
             long totalCount = 0;
-            byte[] buffer = new byte[AxCryptEnvironment.Current.StreamBufferSize];
+            byte[] buffer = new byte[Os.Current.StreamBufferSize];
             int offset = 0;
             int length = buffer.Length;
             while (true)

@@ -46,7 +46,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         public AesIV()
         {
-            _iv = AxCryptEnvironment.Current.GetRandomBytes(16);
+            _iv = Os.Current.GetRandomBytes(16);
         }
 
         /// <summary>

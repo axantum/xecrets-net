@@ -52,7 +52,7 @@ namespace Axantum.AxCrypt.Core.Reader
             {
                 return;
             }
-            byte[] timeBytes = GetTimeStampBytes(AxCryptEnvironment.Current.UtcNow);
+            byte[] timeBytes = GetTimeStampBytes(Os.Current.UtcNow);
 
             byte[] rawData = new byte[32];
             Array.Copy(timeBytes, 0, rawData, CreationTimeOffset, timeBytes.Length);

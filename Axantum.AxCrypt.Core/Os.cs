@@ -29,7 +29,7 @@ using Axantum.AxCrypt.Core.System;
 
 namespace Axantum.AxCrypt.Core
 {
-    public static class AxCryptEnvironment
+    public static class Os
     {
         public static IRuntimeEnvironment Current { get; set; }
     }
