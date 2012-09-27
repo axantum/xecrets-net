@@ -16,27 +16,27 @@ namespace Axantum.AxCrypt.Core.Test
 
         public bool IsFatalEnabled
         {
-            get { return false; }
+            get { return true; }
         }
 
         public bool IsErrorEnabled
         {
-            get { return false; }
+            get { return true; }
         }
 
         public bool IsWarningEnabled
         {
-            get { return false; }
+            get { return true; }
         }
 
         public bool IsInfoEnabled
         {
-            get { return false; }
+            get { return true; }
         }
 
         public bool IsDebugEnabled
         {
-            get { return false; }
+            get { return true; }
         }
 
         public void Fatal(string message)
