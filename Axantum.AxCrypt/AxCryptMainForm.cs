@@ -112,8 +112,13 @@ namespace Axantum.AxCrypt
             string fileSystemStateFullName = Path.Combine(Os.Current.TemporaryDirectoryInfo.FullName, "FileSystemState.xml"); //MLHIDE
             FileSystemState.Load(Os.Current.FileInfo(fileSystemStateFullName));
 
-            EncryptedFileManager.VersionChecked += new EventHandler<VersionEventArgs>(EncryptedFileManager_VersionChecked);
-            EncryptedFileManager.VersionCheckInBackground(Settings.Default.LastUpdateCheckUtc);
+            EncryptedFileManager.UpdateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(EncryptedFileManager_VersionChecked);
+            UpdateCheck(Settings.Default.LastUpdateCheckUtc);
+        }
+
+        private void UpdateCheck(DateTime lastCheckUtc)
+        {
+            EncryptedFileManager.UpdateCheck.CheckInBackground(lastCheckUtc, Settings.Default.NewestKnownVersion, Settings.Default.AxCrypt2VersionCheckUrl, Settings.Default.UpdateUrl);
         }
 
         private void UpdateVersionStatus(VersionUpdateStatus status, Version version)
@@ -962,7 +967,7 @@ namespace Axantum.AxCrypt
 
         private void checkVersionNow_Click(object sender, EventArgs e)
         {
-            EncryptedFileManager.VersionCheckInBackground(DateTime.MinValue);
+            UpdateCheck(DateTime.MinValue);
         }
 
         private void about_Click(object sender, EventArgs e)

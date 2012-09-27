@@ -203,7 +203,7 @@
     <Compile Include="DecryptPassphraseDialog.Designer.cs">
       <DependentUpon>DecryptPassphraseDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="EncryptedFileManager.cs">
+    <Compile Include="Background.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Extensions.cs" />

@@ -39,17 +39,15 @@ namespace Axantum.AxCrypt
     /// Wrap IDisposable background processing resources in a Component and support ISupportInitialize, thus
     /// serving as wrapper for those resources and allowing them to work well with the designer.
     /// </summary>
-    internal class EncryptedFileManager : Component, ISupportInitialize
+    internal class Background : Component, ISupportInitialize
     {
-        public event EventHandler<VersionEventArgs> VersionChecked;
-
         private IFileWatcher _fileWatcher;
 
-        private UpdateCheck _updateCheck;
+        public UpdateCheck UpdateCheck { get; private set; }
 
         private bool _disposed = false;
 
-        public EncryptedFileManager()
+        public Background()
         {
         }
 
@@ -67,22 +65,7 @@ namespace Axantum.AxCrypt
             _fileWatcher.FileChanged += new EventHandler<FileWatcherEventArgs>(File_Changed);
 
             Version myVersion = Assembly.GetExecutingAssembly().GetName().Version;
-            _updateCheck = new UpdateCheck(myVersion);
-            _updateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(UpdateCheck_VersionUpdate);
-        }
-
-        private void UpdateCheck_VersionUpdate(object sender, VersionEventArgs e)
-        {
-            EventHandler<VersionEventArgs> handler = VersionChecked;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
-        }
-
-        public void VersionCheckInBackground(DateTime lastUpdateCheckUtc)
-        {
-            _updateCheck.CheckInBackground(lastUpdateCheckUtc, Settings.Default.NewestKnownVersion, Settings.Default.AxCrypt2VersionCheckUrl, Settings.Default.UpdateUrl);
+            UpdateCheck = new UpdateCheck(myVersion);
         }
 
         private void File_Changed(object sender, EventArgs e)
@@ -103,10 +86,10 @@ namespace Axantum.AxCrypt
                     _fileWatcher.Dispose();
                     _fileWatcher = null;
                 }
-                if (_updateCheck != null)
+                if (UpdateCheck != null)
                 {
-                    _updateCheck.Dispose();
-                    _updateCheck = null;
+                    UpdateCheck.Dispose();
+                    UpdateCheck = null;
                 }
             }
             _disposed = true;

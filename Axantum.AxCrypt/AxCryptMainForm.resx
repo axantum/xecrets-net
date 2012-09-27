@@ -122,11 +122,14 @@
     <value>3, 3, 3, 3</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 22</value>
+  </data>
   <data name="ProgressContextMenu.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 26</value>
   </data>
-  <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 6</value>
+  <data name="&gt;&gt;ProgressContextCancelMenu.Name" xml:space="preserve">
+    <value>ProgressContextCancelMenu</value>
   </data>
   <data name="ProgressPanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 255</value>
@@ -138,20 +141,45 @@
   <data name="&gt;&gt;OpenFilesContextMenu.Name" xml:space="preserve">
     <value>OpenFilesContextMenu</value>
   </data>
-  <data name="LogTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>816, 163</value>
+  <data name="OptionsMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAKDSURBVDhPdZJrTxNBGIX5OTuzu1DakJCQ/gG+EtKGb/wGSEq9X1BRvFRQtBQLYis3rSK3KhgJ
+        jd8MIdFExZAJn0gDCjRtoC1yPLNbqiY6yZOdbOacM+/7To29aGeIqvKGe02aLJA5Mmsr65WlrJfkOZki
+        E5Yyn5qZmooQ/IJC2K9JmsyTORvWjAVrmrwgz8ikBXPchJkkT0zlGmjhiXjBFTIVwZUgAssBWCkKp8gE
+        xWMUJshjMqwN9HX/SPXMe9C40OikbuY3sVfcc1KbUk3wjnt1KswREjchY5IGbq1Oat1sHdZ+rGHncAfR
+        L1EcHx9Dr+HPw8gVc1jNrsIesWEOUTwoIR9og3mnUU6tvhkftg+2HdG/1u7BLrxxL+RDigdIPw0o1B0G
+        Owx2GH2f+hxttpBF+H0Y4UzY2euV+JhAbbQW8h7FfRLijqDBNA3Y4ZalFhTKhWpwx0qHW+sjE6F3oer/
+        QqmA1rFWiNsColcbuHNFcDGI4lGxerBzuZO1Mikq0fW2q/q/WC6ifbId4gYNerTBJB9EZa6epAepbynn
+        8FZ+C51LHQgthZDNuyWkv6Zh37IhrlN8TcDoNlQNX5M6mat/zI98Kf/fJpaPymgebIa4QoPLNLioDUZp
+        UKm1Pl6P9e/r2D/cR+xDrGqUXE0id5jDxs4GGnobYFwyYFwg57RB3FSyUivnCl/UB3/MDztioXRUQvln
+        GbJHoinCh9Tj1akwzpOz5AwN+CCUM9f7zlwhIxyP22EERgNoG22D6OZ1f6e64tPklDYYoIGe611nrhA3
+        ie4wm+TWyoN/p2ohjLADDfplRkSEYqrSc2WHlbhKuoViqmKtStfKVMVUpVO1sELmFwzIYtyshnHsAAAA
+        AElFTkSuQmCC
+</value>
   </data>
   <data name="&gt;&gt;LogOutput.Name" xml:space="preserve">
     <value>LogOutput</value>
   </data>
-  <data name="toolStripButtonOpenEncrypted.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
+  <data name="openEncryptedToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Open Encrypted</value>
   </data>
-  <data name="&gt;&gt;RemoveRecentFileMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkVersionNow.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="CloseOpenFilesMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAKKSURBVDhPXZLLTxNRGMX5czp3ZkpJCV2QLgg7QncsYMeSPSvfL1ARHyAjtpWXgLxFWwsdHkaS
+        hkQ3GESJjYsrMSESC2l4iWByPPcOxWqTXzqZueecOd83JfaCnSHyjHleK1ySJjMkZUsraUnrJXlOJsm4
+        Jc0RM1NyKgT/QSHsOeKSWTJjw3plwUqQF2SKTFgwx0yYz8iQKT0DJSyI056w5k0Nckc5jX/aD6aCqTBH
+        KRwmT0m/MlCv+19q07smRF5HUPiVTpaiebm5kApzgOI+E+KJoIHXVaf6U35MbUzh4OQAkfkig7FS7ZWW
+        afgH/DB7KI4LiMfKYFYPSndt/9iuD67vrCPi/jWwh22s/VjTz6IrUYgoxd2kiwYUqgkjkAhg52hHp1cn
+        qxGZKTIYsBEeDmP31y72j/cRjAUhHgoYDwwaJGjACdct1umExW+LumttovZsBnaPrVOT2aS+1zDeAOO+
+        AaNdGXh7Rf1CvX7ofnX1hCtHKhF/H0dsJaa6QjgCox9G9ZnGiUYYd2hwWxlM8IPgXsvHy3F4coj8UR4V
+        gxVqwl7XR7orAk4Am7ubOP59jFBnCMYtA74Wnyzh1yQLex36NKQTljaWUNFLE6aKToGgE4SbdfWz6dVp
+        GK1Mv0GDa8pgkAZqr718i/5yrH5f1QfzP/OY+zKH1OcUtg+29b3sVhaheyH4rvvgu0ouK4M+U4oeJsX0
+        XlEWLYPz1sHW3tbZEHP7OcSX4wi2BVUqfFfIJXKRBvwgZHFX0cH1eBNG2AmjyqmCaBXFqZ74AjmvDLpp
+        cNqVe4Vxl6gJc0heVx78N1UJ4TunoUGXyBgdhmSqVHs12shN0mJIdpXsKlVXpkqmSpWqhKdk/gDO+Vec
+        5vYkqwAAAABJRU5ErkJggg==
+</value>
   </data>
   <data name="&gt;&gt;EncryptedSource.Name" xml:space="preserve">
     <value>EncryptedSource</value>
@@ -159,17 +187,17 @@
   <data name="LogOutput.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
     <value>Vertical</value>
   </data>
+  <data name="&gt;&gt;LogOutput.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="toolStripButtonEncrypt.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
-  </data>
-  <data name="&gt;&gt;OptionsMenuItem.Name" xml:space="preserve">
-    <value>OptionsMenuItem</value>
   </data>
   <data name="WatchedFoldersTab.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;LastAccessTime.Name" xml:space="preserve">
-    <value>LastAccessTime</value>
+  <data name="OptionsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 22</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator2.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -193,14 +221,17 @@
         9xmkFAAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="&gt;&gt;LogTab.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;toolStripSeparator4.Name" xml:space="preserve">
+    <value>toolStripSeparator4</value>
+  </data>
+  <data name="&gt;&gt;OpenFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;EnterPassphraseMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="LastAccessTime.Text" xml:space="preserve">
-    <value>Time</value>
+  <data name="LogTab.Size" type="System.Drawing.Size, System.Drawing">
+    <value>816, 163</value>
   </data>
   <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 20</value>
@@ -208,20 +239,20 @@
   <data name="&gt;&gt;ProgressPanel.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;helpButton.Name" xml:space="preserve">
-    <value>helpButton</value>
-  </data>
-  <data name="&gt;&gt;EnglishMenuItem.Name" xml:space="preserve">
-    <value>EnglishMenuItem</value>
-  </data>
   <data name="&gt;&gt;fileToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="RemoveRecentFileMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 22</value>
   </data>
-  <data name="&gt;&gt;OpenFilesTab.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="encryptToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 22</value>
+  </data>
+  <data name="&gt;&gt;RecentFilesTab.Parent" xml:space="preserve">
+    <value>StatusTabs</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.Name" xml:space="preserve">
+    <value>toolStrip1</value>
   </data>
   <data name="StatusTabs.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -229,17 +260,20 @@
   <data name="&gt;&gt;menuStripMain.Type" xml:space="preserve">
     <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;helpButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="StatusTabs.Size" type="System.Drawing.Size, System.Drawing">
+    <value>824, 189</value>
+  </data>
   <data name="OpenFilesListView.Size" type="System.Drawing.Size, System.Drawing">
     <value>810, 157</value>
   </data>
-  <data name="EnterPassphraseMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 22</value>
+  <data name="OpenFilesTab.Size" type="System.Drawing.Size, System.Drawing">
+    <value>816, 163</value>
   </data>
-  <data name="&gt;&gt;checkVersionNow.Name" xml:space="preserve">
-    <value>checkVersionNow</value>
-  </data>
-  <data name="viewHelpMenuItem.Text" xml:space="preserve">
-    <value>&amp;View Help</value>
+  <data name="&gt;&gt;encryptToolStripMenuItem.Name" xml:space="preserve">
+    <value>encryptToolStripMenuItem</value>
   </data>
   <data name="toolStripButtonDecrypt.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
@@ -253,11 +287,14 @@
   <data name="&gt;&gt;toolStripSeparator3.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="menuStripMain.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
   <data name="CloseOpenFilesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>159, 22</value>
   </data>
-  <data name="menuStripMain.Text" xml:space="preserve">
-    <value>menuStrip1</value>
+  <data name="&gt;&gt;ProgressPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStrip1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -271,9 +308,6 @@
   <data name="&gt;&gt;EnglishMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;CloseAndRemoveOpenFilesButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="debugToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 22</value>
   </data>
@@ -283,58 +317,28 @@
   <data name="&gt;&gt;ActiveFilePolling.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="RecentFilesListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+  <data name="ProgressPanel.RowCount" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="UpdateToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 47</value>
   </data>
-  <data name="&gt;&gt;RecentFilesTab.Parent" xml:space="preserve">
-    <value>StatusTabs</value>
-  </data>
-  <data name="RecentFilesContextMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 26</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>AxCrypt</value>
   </data>
   <data name="menuStripMain.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="toolStripButtonDecrypt.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAATNSURBVFhHvVZbT1RnFOXfOOcyMfKg8cLBByMxER78AWp8
-        KTzoky+2pVSq1BbKoFzk2gEKDMNcGFDKRZqxJk0aS2xsYkkzRJMGEtIGzEBbUqqzu/Y55zvnm8PMGUhq
-        SVbOBA6z1trft9feZfojPRScD6YPjDn8z4wHD4NpfUp3kcLnhI04nlEJ43pajaihMpP4UZB8sYC/M+aB
-        ORuzeH4NzAAPbTwIkj6tE0SQngKSQAKIAzFgAogCEZ20MY2UUSXtL0AmFuRM7CX3Ek96yAXxuEuujUDA
-        kJ+Ad+RaG9WIybXhYgLesWvtK4tcG4KAAW8F9uMa5a5arKL6H+upfbmdQi9CdPX7q3R06mjRs5ZdM7E2
-        CIRlAft0fe6bc5ReT1MulyPvz/buNnW96KIjsSOke87acW0Ta19CwAAE9IgKlLrhcH3pu0u0tbu1h9j7
-        i2e/PaNjsWNUzDUTa/1AnyygxA3nkmd3sw4XV2Dp9yUazYxS8mWS1v5Yy9PxePUxFXPNxGqvSmqPSkon
-        V4ADhXu7QGsFp62+XlhbcAi41Fe+vZLX14ejhyn8czhPxLX0Neus7XIL10ysdgP3hQBOMw4UOVSkvj49
-        d5re5N44X96w1OAGijhru7UWf12krb+3aHNnk/qe91nkdrmFayZWu4BOCLjLFbDi1EozEJuuRZIhUK4/
-        ve6Q7/yzQ+Xx8rw0K3jWsutelFxyzcRqB9AuC7DJ82LUTrPmn5odASvZFfeGi0ARfS3fcNm1XW7hmonV
-        e8BdCPgCFeDh4XUtZ3jL8xZHwPLmspnhpV1bl0ycteyaidU2ICQJkEvukGN4nJ05S4O/DDoCXmVfUc2D
-        GqqZBqaAFDAJJIEEEAdiNVQ9UU3V40Ckms4MnzHLLVwzsdqqsHtSWrgCPDK9wwPkJ1MnCwZOySDwvMAt
-        e7znuOyaiUlpBj5jATyvxdiURmZlqvKgXEXfN3oNUlzXpHxukpNyRwiQ57XdWpXJ/1BANwQI14L8Uwi4
-        zQJ4S/HOa9xwI2H4ViCzkaHz0fPmWa9srvi+a9yHANc1KUzeJAuQhwe3F1rLiPkLaHzS6ARK05MmfwGd
-        EMAld4lJuaVQ4GYgXcZrkbkiefraiPoLmM3MOoEyn5n3F9ABATL5JxDTKAkwyaVFgTPciPgLYMaqoSq6
-        MHah5GU17kHAbZDCteKSU+BjrsCIkjbJpUWBM9wY8xfwNveWyjvLqaKnorSANgjIJ6ZAQ4AC9SwAi6FD
-        LmW4MeIvYDW7KtKMXv/12v8IQhBglZxdW+QfCQGDEID1yDu5jGF/Aevb6zTwwwD1P+2njT83fAVUtFa4
-        xC45BT7kCmAxFFuKMzIxQE6FT5Us7X5fONF8QnbNxBZusIB+CBBbijy5MDIvJy9T3XQd1U0BKWCyjmqT
-        tVSbsBHHMwZMAFEb43hGgDHGe3QxfNEqt1Vyi/gDG6YALIbO5LIXBXNe2yPTnFyt5uTKT7M7e/vaumj4
-        8r1n7bpm8vdtmAK6IUBsKfaiYJKLkSkynIdHoTTb21puub2uXWIuv30EWAydef3/uBbktoAOCBDzej+u
-        CwfKQVznC0C5Q7wcKm0AViQTWBR4VpvAyOSp5eAWPt9U0pzjJpBmHCgO0FrcXnzDS+HQjUOhfwFglaSF
-        VZjsLAAAAABJRU5ErkJggg==
-</value>
+  <data name="LastAccessTime.Text" xml:space="preserve">
+    <value>Time</value>
   </data>
-  <data name="OpenFile.Text" xml:space="preserve">
-    <value>Document</value>
-  </data>
-  <data name="&gt;&gt;TrayNotifyIcon.Name" xml:space="preserve">
-    <value>TrayNotifyIcon</value>
+  <data name="ProgressPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
   </data>
   <data name="helpButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAARqSURBVFhHvVbLT1R3GOW/ce5j4iwwxoX/gLpxxdZlm8jG
+        YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAARqSURBVFhHvVbLT1R3GOW/ce5j4iwwxoX/gLpxxdZlm8jG
         uNDWttCKylBnQB6+rVoVRKBUhAoKE9NGjQQ1RrslWktLujBqQoLCfD3f73HvN/cxc1noJCdAJuSc8z3O
         92vy7/jl/HS+smHcxv9MRnArX/F/9UOM4/dRgxH8vC4w5FfcQbfcpIjv5KkuZvA9Yxq4bfAbfk4Bk8At
         g4k8+Td9ggjyx4ExYBQYAW4Aw8B1YNAn75pHzlWnUl+AJLbkTBwljxL/EiG3xEMhuXcFAi7VE/CJXHtX
@@ -356,8 +360,8 @@
         Mw6UAFgtXi+e8EbYdHBT+X8tjHPgoR++ZwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="TrayNotifyIcon.Text" xml:space="preserve">
-    <value>AxCrypt</value>
+  <data name="CloseAndRemoveOpenFilesButton.Text" xml:space="preserve">
+    <value>toolStripButton1</value>
   </data>
   <data name="&gt;&gt;menuStripMain.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -365,17 +369,37 @@
   <data name="toolStripButtonEncrypt.ToolTipText" xml:space="preserve">
     <value>Click and select or drag and drop files to encrypt</value>
   </data>
-  <data name="RecentFilesTab.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="&gt;&gt;SwedishMenuItem.Name" xml:space="preserve">
-    <value>SwedishMenuItem</value>
-  </data>
   <data name="OpenFile.Width" type="System.Int32, mscorlib">
     <value>91</value>
   </data>
-  <data name="&gt;&gt;debugToolStripMenuItem1.Name" xml:space="preserve">
-    <value>debugToolStripMenuItem1</value>
+  <data name="CloseAndRemoveOpenFilesButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        AElFTkSuQmCC
+</value>
   </data>
   <data name="&gt;&gt;RecentFilesTab.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -392,7 +416,7 @@
   <data name="toolStripButtonEncrypt.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAATkSURBVFhHvVbdTxR3FOW/cWdmN0YSY/xgMMZITHQf9F2N
+        YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAATkSURBVFhHvVbdTxR3FOW/cWdmN0YSY/xgMMZITHQf9F2N
         PhQe8EkfbEupVKktlEX5ECjf5WtddtldpXzYZi1JbbTEpk2UNEvqCyQkBs1KWw1Fbs+dmd/Mb4bdWUhq
         SU52A8Occ+7vd8+9JcH7wUhoJpTZMabxP5Me3AtlgqmggyS+xy2M4zMqYSyYUUfVSIlBfD9EvpjF3xkz
         wLSFKXx+C0wC9yzcDVEwHSSIoGASSABxYByIAXeAKDAaJG1EI2VYyfgLkIkFORN7yb3EEx5yQTzmkGtD
@@ -416,8 +440,8 @@
         AaQZB4oNtBa3F9/wYth1ZVfkX4fEvzXX3JGHAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="&gt;&gt;DecryptedFile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="checkVersionNow.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
   </data>
   <data name="openEncryptedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>159, 22</value>
@@ -813,9 +837,6 @@
   <data name="EncryptedSource.Text" xml:space="preserve">
     <value>Encrypted</value>
   </data>
-  <data name="&gt;&gt;ProgressContextCancelMenu.Name" xml:space="preserve">
-    <value>ProgressContextCancelMenu</value>
-  </data>
   <data name="&gt;&gt;toolStripButtonDecrypt.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -825,8 +846,8 @@
   <data name="decryptToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>159, 22</value>
   </data>
-  <data name="ProgressPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left, Right</value>
+  <data name="RecentFilesListView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>810, 157</value>
   </data>
   <data name="OpenFilesTab.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -837,14 +858,14 @@
   <data name="WatchedFoldersListView.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
-  <data name="&gt;&gt;exitToolStripMenuItem.Name" xml:space="preserve">
-    <value>exitToolStripMenuItem</value>
-  </data>
   <data name="WatchedFoldersListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="RecentFilesListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="RecentFilesTab.Text" xml:space="preserve">
+    <value>Recent Files</value>
+  </data>
+  <data name="LogOutput.Size" type="System.Drawing.Size, System.Drawing">
+    <value>810, 157</value>
   </data>
   <data name="SwedishMenuItem.Text" xml:space="preserve">
     <value>&amp;Svenska</value>
@@ -857,9 +878,6 @@
   </data>
   <data name="WatchedFoldersListView.Size" type="System.Drawing.Size, System.Drawing">
     <value>810, 157</value>
-  </data>
-  <data name="&gt;&gt;openEncryptedToolStripMenuItem.Name" xml:space="preserve">
-    <value>openEncryptedToolStripMenuItem</value>
   </data>
   <data name="toolStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -879,11 +897,14 @@
   <data name="&gt;&gt;toolStripButtonDecrypt.Name" xml:space="preserve">
     <value>toolStripButtonDecrypt</value>
   </data>
+  <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>6, 50</value>
+  </data>
   <data name="LogOutput.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="&gt;&gt;StatusTabs.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="&gt;&gt;exitToolStripMenuItem.Name" xml:space="preserve">
+    <value>exitToolStripMenuItem</value>
   </data>
   <data name="toolStripButtonEncrypt.Text" xml:space="preserve">
     <value>Encrypt</value>
@@ -891,41 +912,38 @@
   <data name="WatchedFoldersTab.Text" xml:space="preserve">
     <value>Encrypted Folders</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator1.Name" xml:space="preserve">
-    <value>toolStripSeparator1</value>
-  </data>
-  <data name="&gt;&gt;toolStrip1.Name" xml:space="preserve">
-    <value>toolStrip1</value>
-  </data>
-  <data name="&gt;&gt;ImageList16.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;helpButton.Name" xml:space="preserve">
+    <value>helpButton</value>
   </data>
   <data name="ProgressPanel.ColumnCount" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;ProgressPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="viewHelpMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>127, 22</value>
   </data>
-  <data name="&gt;&gt;encryptToolStripMenuItem.Name" xml:space="preserve">
-    <value>encryptToolStripMenuItem</value>
+  <data name="CloseAndRemoveOpenFilesButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="toolStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>824, 50</value>
+  <data name="&gt;&gt;DebugToolStripMenuItem.Name" xml:space="preserve">
+    <value>DebugToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;SwedishMenuItem.Name" xml:space="preserve">
+    <value>SwedishMenuItem</value>
+  </data>
+  <data name="&gt;&gt;CloseOpenFilesMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="LastAccessTime.Width" type="System.Int32, mscorlib">
     <value>180</value>
   </data>
-  <data name="ProgressPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="&gt;&gt;RecentFilesContextMenu.Name" xml:space="preserve">
+    <value>RecentFilesContextMenu</value>
   </data>
-  <data name="&gt;&gt;decryptToolStripMenuItem.Name" xml:space="preserve">
-    <value>decryptToolStripMenuItem</value>
+  <data name="toolStrip1.Text" xml:space="preserve">
+    <value>toolStrip1</value>
   </data>
-  <data name="LogOutput.Size" type="System.Drawing.Size, System.Drawing">
-    <value>810, 157</value>
+  <data name="EnterPassphraseMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 22</value>
   </data>
   <data name="&gt;&gt;ImageList48.Type" xml:space="preserve">
     <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -939,81 +957,70 @@
   <data name="RecentFilesTab.Size" type="System.Drawing.Size, System.Drawing">
     <value>816, 163</value>
   </data>
+  <data name="openEncryptedToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAIVSURBVDhPbZJNTxNRFIb7c2bunaGZBsKK8Lv8/kJFxwBSQJFCFQEtCIrypS67NXHD/iZl60Kd
+        BSrV43PubWurTvKkTdr3fc95z5TS92kTXI93fFeO4BD2YS91yevEJa9gG7agkTi7YZuljlD4FISSvoUj
+        OID9VJI3iSS78BJewGYi9rkVuw5PrQsGKuyKD4OQVCFVSJVkB7aggfgZwjV4AnU10HH7UouzQv5+2r/a
+        kn/Mu6liHyNesWKWDAZh116qikf3RgdSx3bG5PjTseQfMKkjriF+ZMQ8UIMDX1RvVzX4z64y3hiX9s+2
+        pop5CAtQxYCStOGw63bip9ddT4oTOT07ldbXVifV+N9IFTMHs0bi6RiDXQz6GtY/acPl9bJU1ipSrpd7
+        qd6gingG8VQsca4G4a6h4Q3rU7RhTdYJ/BRfWj5VH1Ilvgd3YVINNnkhundd7RgsM8EyE9Qqki1mMjQ/
+        5FO9QY7wDtyOJZqIXIlU13fXsOei8al+gh9M8LnlU73BJOKbcAODa2qwioHelVRtWJ+RpRGfms1lks1m
+        kk6lMjw9HAwmEF6PJLoKl9VgxTpToxhSteHi+78vklfyFN8KTZXoClyCixjwQjh/13l/1/6Gw663YDA1
+        iC/AeTVYwEDvet/f9U/DlBR25Y+DqSqU6JwHg6ppxjOx465O70qqI9WR6tjVsavTXUl1pDpNVWGH5m+L
+        1zyliBZZ+gAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="ProgressContextCancelMenu.Text" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="LogOutput.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="SwedishMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 22</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>AxCryptMainForm</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator2.Name" xml:space="preserve">
     <value>toolStripSeparator2</value>
   </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;File</value>
+  <data name="&gt;&gt;ProgressContextMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="LogOutput.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="OpenFilesListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="OpenFile.Text" xml:space="preserve">
+    <value>Document</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>E&amp;xit</value>
   </data>
-  <data name="&gt;&gt;StatusTabs.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;ImageList16.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;LogTab.Name" xml:space="preserve">
-    <value>LogTab</value>
+  <data name="&gt;&gt;ImageList16.Name" xml:space="preserve">
+    <value>ImageList16</value>
   </data>
-  <data name="&gt;&gt;debugToolStripMenuItem1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="CloseOpenFilesMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAKKSURBVDhPXZLLTxNRGMX5czp3ZkpJCV2QLgg7QncsYMeSPSvfL1ARHyAjtpWXgLxFWwsdHkaS
-        hkQ3GESJjYsrMSESC2l4iWByPPcOxWqTXzqZueecOd83JfaCnSHyjHleK1ySJjMkZUsraUnrJXlOJsm4
-        Jc0RM1NyKgT/QSHsOeKSWTJjw3plwUqQF2SKTFgwx0yYz8iQKT0DJSyI056w5k0Nckc5jX/aD6aCqTBH
-        KRwmT0m/MlCv+19q07smRF5HUPiVTpaiebm5kApzgOI+E+KJoIHXVaf6U35MbUzh4OQAkfkig7FS7ZWW
-        afgH/DB7KI4LiMfKYFYPSndt/9iuD67vrCPi/jWwh22s/VjTz6IrUYgoxd2kiwYUqgkjkAhg52hHp1cn
-        qxGZKTIYsBEeDmP31y72j/cRjAUhHgoYDwwaJGjACdct1umExW+LumttovZsBnaPrVOT2aS+1zDeAOO+
-        AaNdGXh7Rf1CvX7ofnX1hCtHKhF/H0dsJaa6QjgCox9G9ZnGiUYYd2hwWxlM8IPgXsvHy3F4coj8UR4V
-        gxVqwl7XR7orAk4Am7ubOP59jFBnCMYtA74Wnyzh1yQLex36NKQTljaWUNFLE6aKToGgE4SbdfWz6dVp
-        GK1Mv0GDa8pgkAZqr718i/5yrH5f1QfzP/OY+zKH1OcUtg+29b3sVhaheyH4rvvgu0ouK4M+U4oeJsX0
-        XlEWLYPz1sHW3tbZEHP7OcSX4wi2BVUqfFfIJXKRBvwgZHFX0cH1eBNG2AmjyqmCaBXFqZ74AjmvDLpp
-        cNqVe4Vxl6gJc0heVx78N1UJ4TunoUGXyBgdhmSqVHs12shN0mJIdpXsKlVXpkqmSpWqhKdk/gDO+Vec
-        5vYkqwAAAABJRU5ErkJggg==
-</value>
+  <data name="LogOutput.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;ProgressPanel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;fileToolStripMenuItem.Name" xml:space="preserve">
-    <value>fileToolStripMenuItem</value>
-  </data>
   <data name="&gt;&gt;ActiveFilePolling.Name" xml:space="preserve">
     <value>ActiveFilePolling</value>
   </data>
-  <data name="&gt;&gt;LogOutput.Parent" xml:space="preserve">
-    <value>LogTab</value>
+  <data name="&gt;&gt;DecryptedFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>AxCrypt</value>
+  <data name="&gt;&gt;setUpdateCheckUrlToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripButtonEncrypt.Name" xml:space="preserve">
+    <value>toolStripButtonEncrypt</value>
   </data>
   <data name="CloseAndRemoveOpenFilesButton.ToolTipText" xml:space="preserve">
     <value>Click to remove any open decrypted files left, but
 first ensure they are not used in an application. See
 the Open Files tab to see the list of files.</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>AxCryptMainForm</value>
-  </data>
-  <data name="openEncryptedToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Open Encrypted</value>
-  </data>
-  <data name="&gt;&gt;TrayNotifyIcon.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NotifyIcon, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;WatchedFoldersTab.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -1033,14 +1040,14 @@ the Open Files tab to see the list of files.</value>
   <data name="TrayNotifyIcon.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;SwedishMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;decryptToolStripMenuItem.Name" xml:space="preserve">
+    <value>decryptToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;RecentFilesContextMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;toolStripSeparator3.Name" xml:space="preserve">
+    <value>toolStripSeparator3</value>
   </data>
-  <data name="RecentFilesTab.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
+  <data name="&gt;&gt;StatusTabs.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="&gt;&gt;LastAccessTime.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1069,47 +1076,35 @@ the Open Files tab to see the list of files.</value>
   <data name="&gt;&gt;WatchedFoldersListView.Type" xml:space="preserve">
     <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="openEncryptedToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAIVSURBVDhPbZJNTxNRFIb7c2bunaGZBsKK8Lv8/kJFxwBSQJFCFQEtCIrypS67NXHD/iZl60Kd
-        BSrV43PubWurTvKkTdr3fc95z5TS92kTXI93fFeO4BD2YS91yevEJa9gG7agkTi7YZuljlD4FISSvoUj
-        OID9VJI3iSS78BJewGYi9rkVuw5PrQsGKuyKD4OQVCFVSJVkB7aggfgZwjV4AnU10HH7UouzQv5+2r/a
-        kn/Mu6liHyNesWKWDAZh116qikf3RgdSx3bG5PjTseQfMKkjriF+ZMQ8UIMDX1RvVzX4z64y3hiX9s+2
-        pop5CAtQxYCStOGw63bip9ddT4oTOT07ldbXVifV+N9IFTMHs0bi6RiDXQz6GtY/acPl9bJU1ipSrpd7
-        qd6gingG8VQsca4G4a6h4Q3rU7RhTdYJ/BRfWj5VH1Ilvgd3YVINNnkhundd7RgsM8EyE9Qqki1mMjQ/
-        5FO9QY7wDtyOJZqIXIlU13fXsOei8al+gh9M8LnlU73BJOKbcAODa2qwioHelVRtWJ+RpRGfms1lks1m
-        kk6lMjw9HAwmEF6PJLoKl9VgxTpToxhSteHi+78vklfyFN8KTZXoClyCixjwQjh/13l/1/6Gw663YDA1
-        iC/AeTVYwEDvet/f9U/DlBR25Y+DqSqU6JwHg6ppxjOx465O70qqI9WR6tjVsavTXUl1pDpNVWGH5m+L
-        1zyliBZZ+gAAAABJRU5ErkJggg==
-</value>
+  <data name="RecentFilesTab.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
   </data>
   <data name="&gt;&gt;encryptToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="OpenFilesListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="&gt;&gt;LogTab.Name" xml:space="preserve">
+    <value>LogTab</value>
   </data>
-  <data name="toolStrip1.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="viewHelpMenuItem.Text" xml:space="preserve">
+    <value>&amp;View Help</value>
   </data>
   <data name="checkVersionNow.Text" xml:space="preserve">
     <value>&amp;Check Version Now</value>
   </data>
-  <data name="RecentFilesListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>810, 157</value>
+  <data name="&gt;&gt;openEncryptedToolStripMenuItem.Name" xml:space="preserve">
+    <value>openEncryptedToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;LogTab.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;debugToolStripMenuItem1.Name" xml:space="preserve">
+    <value>debugToolStripMenuItem1</value>
   </data>
-  <data name="ProgressContextCancelMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 22</value>
+  <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>156, 6</value>
   </data>
   <data name="&gt;&gt;RemoveRecentFileMenuItem.Name" xml:space="preserve">
     <value>RemoveRecentFileMenuItem</value>
   </data>
-  <data name="&gt;&gt;toolStrip1.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="ProgressPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
   <data name="&gt;&gt;menuStripMain.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1123,14 +1118,11 @@ the Open Files tab to see the list of files.</value>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator4.Name" xml:space="preserve">
-    <value>toolStripSeparator4</value>
+  <data name="&gt;&gt;OpenFilesTab.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="&gt;&gt;EncryptedFileManager.Name" xml:space="preserve">
-    <value>EncryptedFileManager</value>
-  </data>
-  <data name="&gt;&gt;OpenFilesContextMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;EnglishMenuItem.Name" xml:space="preserve">
+    <value>EnglishMenuItem</value>
   </data>
   <data name="&gt;&gt;CloseOpenFilesMenuItem.Name" xml:space="preserve">
     <value>CloseOpenFilesMenuItem</value>
@@ -1151,14 +1143,20 @@ the Open Files tab to see the list of files.</value>
         VBlskPsL1GtvqomE2mkAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="toolStripButtonOpenEncrypted.Text" xml:space="preserve">
+    <value>Open Encrypted</value>
+  </data>
   <data name="toolStripButtonDecrypt.ToolTipText" xml:space="preserve">
     <value>Click and select or drag and drop files to decrypt permanently</value>
   </data>
   <data name="&gt;&gt;EncryptedFileManager.Type" xml:space="preserve">
-    <value>Axantum.AxCrypt.EncryptedFileManager, Axantum.AxCrypt, Version=2.0.370.1, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
+    <value>Axantum.AxCrypt.EncryptedFileManager, Axantum.AxCrypt, Version=2.0.380.1, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
   </data>
   <data name="&gt;&gt;UpdateToolStripButton.Name" xml:space="preserve">
     <value>UpdateToolStripButton</value>
+  </data>
+  <data name="&gt;&gt;RecentFilesTab.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="OpenFilesTab.Text" xml:space="preserve">
     <value>Open Files</value>
@@ -1166,13 +1164,10 @@ the Open Files tab to see the list of files.</value>
   <data name="UpdateToolStripButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
-  <data name="&gt;&gt;LanguageMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="toolStripButtonOpenEncrypted.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAARjSURBVFhHtVZNc1RVEM2/Yd7XD5j5JaA7/gErQI2KIoIJ
+        YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAARjSURBVFhHtVZNc1RVEM2/Yd7XD5j5JaA7/gErQI2KIoIJ
         DGgSSAj5khCCQRFBwSym6kWr3FjDelhYKqULP7JKTImV9vR93f3uuzPvOS4yVadmJpmZc7r73NN3It1O
         u9nTrPe/8QTfeRzgUdZLP09LPMDr+4ItPG96uJv24o24O+GItzNqxNf4P+Mp8ETwFZ6/BB4DjwRfZJQ+
         TAkiKH0AfArcB7aAT4B7wCawkVJyJ6FoPeo1C/CJlZyJQ/KQ+LOAXInvluTJbQhYbRJwRFUn6wkxebJW
@@ -1194,17 +1189,20 @@ the Open Files tab to see the list of files.</value>
         scH+C8fOHuv+C5AD8t04PP+qAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="checkVersionNow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
+  <data name="&gt;&gt;toolStripSeparator4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;StatusTabs.Name" xml:space="preserve">
-    <value>StatusTabs</value>
+  <data name="&gt;&gt;OptionsMenuItem.Name" xml:space="preserve">
+    <value>OptionsMenuItem</value>
   </data>
-  <data name="&gt;&gt;WatchedFoldersListView.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;TrayNotifyIcon.Name" xml:space="preserve">
+    <value>TrayNotifyIcon</value>
   </data>
-  <data name="helpButton.Text" xml:space="preserve">
-    <value>He&amp;lp</value>
+  <data name="&gt;&gt;LogTab.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RecentFilesTab.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
   </data>
   <data name="&gt;&gt;StatusTabs.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1221,11 +1219,11 @@ the Open Files tab to see the list of files.</value>
   <data name="&gt;&gt;setUpdateCheckUrlToolStripMenuItem.Name" xml:space="preserve">
     <value>setUpdateCheckUrlToolStripMenuItem</value>
   </data>
-  <data name="setUpdateCheckUrlToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Options</value>
+  <data name="toolStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>824, 50</value>
   </data>
-  <data name="toolStripButtonDecrypt.Text" xml:space="preserve">
-    <value>Decrypt</value>
+  <data name="RecentFilesContextMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 26</value>
   </data>
   <data name="helpButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 47</value>
@@ -1233,17 +1231,14 @@ the Open Files tab to see the list of files.</value>
   <data name="&gt;&gt;toolStripSeparator5.Name" xml:space="preserve">
     <value>toolStripSeparator5</value>
   </data>
-  <data name="menuStripMain.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
+  <data name="&gt;&gt;LogOutput.Parent" xml:space="preserve">
+    <value>LogTab</value>
   </data>
   <data name="&gt;&gt;toolStripButtonOpenEncrypted.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;WatchedFoldersTab.Name" xml:space="preserve">
     <value>WatchedFoldersTab</value>
-  </data>
-  <data name="&gt;&gt;helpToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ImageList48.Name" xml:space="preserve">
     <value>ImageList48</value>
@@ -1260,35 +1255,56 @@ the Open Files tab to see the list of files.</value>
   <data name="helpButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
-  <data name="&gt;&gt;CloseOpenFilesMenuItem.Type" xml:space="preserve">
+  <data name="helpButton.Text" xml:space="preserve">
+    <value>He&amp;lp</value>
+  </data>
+  <data name="&gt;&gt;checkVersionNow.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="OptionsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 22</value>
-  </data>
-  <data name="ProgressPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls /&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Percent,50,Percent,50" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="DecryptedFile.Text" xml:space="preserve">
-    <value>Document</value>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;File</value>
   </data>
   <data name="&gt;&gt;OptionsMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="toolStrip1.Text" xml:space="preserve">
-    <value>toolStrip1</value>
+  <data name="TrayNotifyIcon.Text" xml:space="preserve">
+    <value>AxCrypt</value>
   </data>
-  <data name="&gt;&gt;toolStripButtonEncrypt.Name" xml:space="preserve">
-    <value>toolStripButtonEncrypt</value>
+  <data name="toolStripButtonDecrypt.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAATNSURBVFhHvVZbT1RnFOXfOOcyMfKg8cLBByMxER78AWp8
+        KTzoky+2pVSq1BbKoFzk2gEKDMNcGFDKRZqxJk0aS2xsYkkzRJMGEtIGzEBbUqqzu/Y55zvnm8PMGUhq
+        SVbOBA6z1trft9feZfojPRScD6YPjDn8z4wHD4NpfUp3kcLnhI04nlEJ43pajaihMpP4UZB8sYC/M+aB
+        ORuzeH4NzAAPbTwIkj6tE0SQngKSQAKIAzFgAogCEZ20MY2UUSXtL0AmFuRM7CX3Ek96yAXxuEuujUDA
+        kJ+Ad+RaG9WIybXhYgLesWvtK4tcG4KAAW8F9uMa5a5arKL6H+upfbmdQi9CdPX7q3R06mjRs5ZdM7E2
+        CIRlAft0fe6bc5ReT1MulyPvz/buNnW96KIjsSOke87acW0Ta19CwAAE9IgKlLrhcH3pu0u0tbu1h9j7
+        i2e/PaNjsWNUzDUTa/1AnyygxA3nkmd3sw4XV2Dp9yUazYxS8mWS1v5Yy9PxePUxFXPNxGqvSmqPSkon
+        V4ADhXu7QGsFp62+XlhbcAi41Fe+vZLX14ejhyn8czhPxLX0Neus7XIL10ysdgP3hQBOMw4UOVSkvj49
+        d5re5N44X96w1OAGijhru7UWf12krb+3aHNnk/qe91nkdrmFayZWu4BOCLjLFbDi1EozEJuuRZIhUK4/
+        ve6Q7/yzQ+Xx8rw0K3jWsutelFxyzcRqB9AuC7DJ82LUTrPmn5odASvZFfeGi0ARfS3fcNm1XW7hmonV
+        e8BdCPgCFeDh4XUtZ3jL8xZHwPLmspnhpV1bl0ycteyaidU2ICQJkEvukGN4nJ05S4O/DDoCXmVfUc2D
+        GqqZBqaAFDAJJIEEEAdiNVQ9UU3V40Ckms4MnzHLLVwzsdqqsHtSWrgCPDK9wwPkJ1MnCwZOySDwvMAt
+        e7znuOyaiUlpBj5jATyvxdiURmZlqvKgXEXfN3oNUlzXpHxukpNyRwiQ57XdWpXJ/1BANwQI14L8Uwi4
+        zQJ4S/HOa9xwI2H4ViCzkaHz0fPmWa9srvi+a9yHANc1KUzeJAuQhwe3F1rLiPkLaHzS6ARK05MmfwGd
+        EMAld4lJuaVQ4GYgXcZrkbkiefraiPoLmM3MOoEyn5n3F9ABATL5JxDTKAkwyaVFgTPciPgLYMaqoSq6
+        MHah5GU17kHAbZDCteKSU+BjrsCIkjbJpUWBM9wY8xfwNveWyjvLqaKnorSANgjIJ6ZAQ4AC9SwAi6FD
+        LmW4MeIvYDW7KtKMXv/12v8IQhBglZxdW+QfCQGDEID1yDu5jGF/Aevb6zTwwwD1P+2njT83fAVUtFa4
+        xC45BT7kCmAxFFuKMzIxQE6FT5Us7X5fONF8QnbNxBZusIB+CBBbijy5MDIvJy9T3XQd1U0BKWCyjmqT
+        tVSbsBHHMwZMAFEb43hGgDHGe3QxfNEqt1Vyi/gDG6YALIbO5LIXBXNe2yPTnFyt5uTKT7M7e/vaumj4
+        8r1n7bpm8vdtmAK6IUBsKfaiYJKLkSkynIdHoTTb21puub2uXWIuv30EWAydef3/uBbktoAOCBDzej+u
+        CwfKQVznC0C5Q7wcKm0AViQTWBR4VpvAyOSp5eAWPt9U0pzjJpBmHCgO0FrcXnzDS+HQjUOhfwFglaSF
+        VZjsLAAAAABJRU5ErkJggg==
+</value>
   </data>
-  <data name="toolStripButtonEncrypt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 47</value>
+  <data name="SwedishMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 22</value>
   </data>
   <data name="&gt;&gt;LogOutput.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="OpenFilesTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>816, 163</value>
+  <data name="&gt;&gt;toolStrip1.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="LanguageMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 22</value>
@@ -1302,8 +1318,8 @@ the Open Files tab to see the list of files.</value>
   <data name="&gt;&gt;OpenFilesListView.Type" xml:space="preserve">
     <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;UpdateToolStripButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="LanguageMenuItem.Text" xml:space="preserve">
     <value>&amp;Language</value>
@@ -1314,11 +1330,14 @@ the Open Files tab to see the list of files.</value>
   <data name="ProgressPanel.Size" type="System.Drawing.Size, System.Drawing">
     <value>824, 20</value>
   </data>
+  <data name="debugToolStripMenuItem1.Text" xml:space="preserve">
+    <value>&amp;Debug</value>
+  </data>
   <data name="decryptToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Decrypt</value>
   </data>
-  <data name="OpenFilesTab.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="ProgressContextCancelMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 22</value>
   </data>
   <data name="&gt;&gt;about.Name" xml:space="preserve">
     <value>about</value>
@@ -1329,8 +1348,8 @@ the Open Files tab to see the list of files.</value>
   <data name="LogTab.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;RecentFilesTab.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;OpenFilesContextMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;menuStripMain.Name" xml:space="preserve">
     <value>menuStripMain</value>
@@ -1340,7 +1359,7 @@ the Open Files tab to see the list of files.</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAABO
-        FgAAAk1TRnQBSQFMAgEBAwEAAbQBAgG4AQIBEAEAARABAAT/ASEBEAj/AUIBTQE2BwABNgMAASgDAAFA
+        FgAAAk1TRnQBSQFMAgEBAwEAAbQBAgG8AQIBEAEAARABAAT/ASEBEAj/AUIBTQE2BwABNgMAASgDAAFA
         AwABEAMAAQEBAAEgBgABEBIAAVkBWwFZAcMBVwFcAVcB3wFXAVwBVwHfAVcBXAFXAd8BVwFcAVcB3wFX
         AVwBVwHfAVcBXAFXAd8BVwFcAVcB3wFXAVwBVwHfAVcBXAFXAd8BVwFcAVcB3wFXAVwBVwHfAVcBXAFX
         Ad8BVwFcAVcB3wFXAVwBVwHfAVkBWwFZAcMBWQFbAVkBwwFXAVwBVwHfAVcBXAFXAd8BVwFcAVcB3wFX
@@ -1441,29 +1460,41 @@ the Open Files tab to see the list of files.</value>
   <data name="menuStripMain.Size" type="System.Drawing.Size, System.Drawing">
     <value>824, 24</value>
   </data>
-  <data name="RecentFilesTab.Text" xml:space="preserve">
-    <value>Recent Files</value>
+  <data name="RecentFilesListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
   </data>
   <data name="WatchedFoldersTab.Size" type="System.Drawing.Size, System.Drawing">
     <value>816, 163</value>
   </data>
+  <data name="LogOutput.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;OpenFilesListView.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="toolStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 24</value>
   </data>
-  <data name="&gt;&gt;setUpdateCheckUrlToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="DecryptedFile.Text" xml:space="preserve">
+    <value>Document</value>
   </data>
-  <data name="&gt;&gt;EncryptedPath.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="setUpdateCheckUrlToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Options</value>
   </data>
   <data name="OpenFilesListView.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
+  <data name="&gt;&gt;RecentFilesListView.Name" xml:space="preserve">
+    <value>RecentFilesListView</value>
+  </data>
+  <data name="StatusTabs.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 67</value>
+  </data>
   <data name="&gt;&gt;RecentFilesTab.Name" xml:space="preserve">
     <value>RecentFilesTab</value>
   </data>
-  <data name="OptionsMenuItem.Text" xml:space="preserve">
-    <value>O&amp;ptions</value>
+  <data name="RecentFilesListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator5.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1477,32 +1508,32 @@ the Open Files tab to see the list of files.</value>
   <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
     <value>6, 50</value>
   </data>
-  <data name="toolStripButtonOpenEncrypted.Text" xml:space="preserve">
-    <value>Open Encrypted</value>
+  <data name="toolStripButtonOpenEncrypted.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
   </data>
-  <data name="&gt;&gt;OpenFilesListView.Name" xml:space="preserve">
-    <value>OpenFilesListView</value>
+  <data name="&gt;&gt;helpToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="CloseAndRemoveOpenFilesButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
-  <data name="&gt;&gt;helpButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;debugToolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ProgressPanel.RowCount" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="&gt;&gt;EncryptedFileManager.Name" xml:space="preserve">
+    <value>EncryptedFileManager</value>
   </data>
   <data name="&gt;&gt;EncryptedSource.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;OpenFilesListView.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;EncryptedPath.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="StatusTabs.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 67</value>
+  <data name="&gt;&gt;LanguageMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;ProgressContextMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;toolStripSeparator1.Name" xml:space="preserve">
+    <value>toolStripSeparator1</value>
   </data>
   <data name="&gt;&gt;ProgressContextCancelMenu.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1510,8 +1541,8 @@ the Open Files tab to see the list of files.</value>
   <data name="&gt;&gt;OpenFile.Name" xml:space="preserve">
     <value>OpenFile</value>
   </data>
-  <data name="&gt;&gt;DebugToolStripMenuItem.Name" xml:space="preserve">
-    <value>DebugToolStripMenuItem</value>
+  <data name="&gt;&gt;checkVersionNow.Name" xml:space="preserve">
+    <value>checkVersionNow</value>
   </data>
   <data name="&gt;&gt;helpToolStripMenuItem.Name" xml:space="preserve">
     <value>helpToolStripMenuItem</value>
@@ -1519,43 +1550,26 @@ the Open Files tab to see the list of files.</value>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>824, 272</value>
   </data>
-  <data name="StatusTabs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>824, 189</value>
+  <data name="&gt;&gt;LastAccessTime.Name" xml:space="preserve">
+    <value>LastAccessTime</value>
   </data>
-  <data name="OptionsMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAKDSURBVDhPdZJrTxNBGIX5OTuzu1DakJCQ/gG+EtKGb/wGSEq9X1BRvFRQtBQLYis3rSK3KhgJ
-        jd8MIdFExZAJn0gDCjRtoC1yPLNbqiY6yZOdbOacM+/7To29aGeIqvKGe02aLJA5Mmsr65WlrJfkOZki
-        E5Yyn5qZmooQ/IJC2K9JmsyTORvWjAVrmrwgz8ikBXPchJkkT0zlGmjhiXjBFTIVwZUgAssBWCkKp8gE
-        xWMUJshjMqwN9HX/SPXMe9C40OikbuY3sVfcc1KbUk3wjnt1KswREjchY5IGbq1Oat1sHdZ+rGHncAfR
-        L1EcHx9Dr+HPw8gVc1jNrsIesWEOUTwoIR9og3mnUU6tvhkftg+2HdG/1u7BLrxxL+RDigdIPw0o1B0G
-        Owx2GH2f+hxttpBF+H0Y4UzY2euV+JhAbbQW8h7FfRLijqDBNA3Y4ZalFhTKhWpwx0qHW+sjE6F3oer/
-        QqmA1rFWiNsColcbuHNFcDGI4lGxerBzuZO1Mikq0fW2q/q/WC6ifbId4gYNerTBJB9EZa6epAepbynn
-        8FZ+C51LHQgthZDNuyWkv6Zh37IhrlN8TcDoNlQNX5M6mat/zI98Kf/fJpaPymgebIa4QoPLNLioDUZp
-        UKm1Pl6P9e/r2D/cR+xDrGqUXE0id5jDxs4GGnobYFwyYFwg57RB3FSyUivnCl/UB3/MDztioXRUQvln
-        GbJHoinCh9Tj1akwzpOz5AwN+CCUM9f7zlwhIxyP22EERgNoG22D6OZ1f6e64tPklDYYoIGe611nrhA3
-        ie4wm+TWyoN/p2ohjLADDfplRkSEYqrSc2WHlbhKuoViqmKtStfKVMVUpVO1sELmFwzIYtyshnHsAAAA
-        AElFTkSuQmCC
-</value>
+  <data name="&gt;&gt;LogTab.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
-  <data name="CloseAndRemoveOpenFilesButton.Text" xml:space="preserve">
-    <value>toolStripButton1</value>
+  <data name="&gt;&gt;CloseAndRemoveOpenFilesButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="EnterPassphraseMenuItem.Text" xml:space="preserve">
     <value>Enter &amp;Passphrase</value>
   </data>
-  <data name="UpdateToolStripButton.Text" xml:space="preserve">
-    <value>Update</value>
-  </data>
   <data name="about.Size" type="System.Drawing.Size, System.Drawing">
     <value>127, 22</value>
   </data>
-  <data name="debugToolStripMenuItem1.Text" xml:space="preserve">
-    <value>&amp;Debug</value>
+  <data name="OptionsMenuItem.Text" xml:space="preserve">
+    <value>O&amp;ptions</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;SwedishMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;OpenFilesTab.Parent" xml:space="preserve">
     <value>StatusTabs</value>
@@ -1566,43 +1580,17 @@ the Open Files tab to see the list of files.</value>
   <data name="RecentFilesListView.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;viewHelpMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="toolStripButtonEncrypt.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 47</value>
   </data>
-  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 22</value>
+  <data name="UpdateToolStripButton.Text" xml:space="preserve">
+    <value>Update</value>
   </data>
-  <data name="CloseAndRemoveOpenFilesButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        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
-        AElFTkSuQmCC
-</value>
+  <data name="&gt;&gt;StatusTabs.Name" xml:space="preserve">
+    <value>StatusTabs</value>
   </data>
-  <data name="encryptToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 22</value>
+  <data name="ProgressPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls /&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Percent,50,Percent,50" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="toolStripButtonDecrypt.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 47</value>
@@ -1986,11 +1974,11 @@ the Open Files tab to see the list of files.</value>
         AADAAwAAgAEAAIABAACAAQAAgAEAAIABAACAAQAAgAEAAIABAADwDwAA/D8AAA==
 </value>
   </data>
-  <data name="&gt;&gt;RecentFilesListView.Name" xml:space="preserve">
-    <value>RecentFilesListView</value>
+  <data name="&gt;&gt;OpenFilesListView.Name" xml:space="preserve">
+    <value>OpenFilesListView</value>
   </data>
-  <data name="&gt;&gt;LogOutput.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;RemoveRecentFileMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;OpenFilesTab.Name" xml:space="preserve">
     <value>OpenFilesTab</value>
@@ -2000,7 +1988,7 @@ the Open Files tab to see the list of files.</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAAS
-        wwAAAk1TRnQBSQFMAgEBAwEAAbQBAgG4AQIBMAEAATABAAT/ASEBEAj/AUIBTQE2BwABNgMAASgDAAHA
+        wwAAAk1TRnQBSQFMAgEBAwEAAbQBAgG8AQIBMAEAATABAAT/ASEBEAj/AUIBTQE2BwABNgMAASgDAAHA
         AwABMAMAAQEBAAEgBgABkBIAAzsBYwFQAVEBUAGfAVABUQFQAZ8BUAFRAVABnwFQAVEBUAGfAVABUQFQ
         AZ8BUAFRAVABnwFQAVEBUAGfAVABUQFQAZ8BUAFRAVABnwFQAVEBUAGfAVABUQFQAZ8BUAFRAVABnwFQ
         AVEBUAGfAVABUQFQAZ8BUAFRAVABnwFQAVEBUAGfAVABUQFQAZ8BUAFRAVABnwFQAVEBUAGfAVABUQFQ
@@ -2835,17 +2823,17 @@ the Open Files tab to see the list of files.</value>
         AQEFAAGAAQQWAAP//wD/AP8A/wCbAAs=
 </value>
   </data>
-  <data name="CloseAndRemoveOpenFilesButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="&gt;&gt;RecentFilesContextMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="EncryptedPath.Text" xml:space="preserve">
-    <value>Encrypted</value>
+  <data name="&gt;&gt;fileToolStripMenuItem.Name" xml:space="preserve">
+    <value>fileToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;DecryptedFile.Name" xml:space="preserve">
     <value>DecryptedFile</value>
   </data>
-  <data name="UpdateToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 47</value>
+  <data name="&gt;&gt;StatusTabs.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="DebugToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Debug</value>
@@ -2853,29 +2841,41 @@ the Open Files tab to see the list of files.</value>
   <data name="UpdateToolStripButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="&gt;&gt;OpenFile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="toolStripButtonDecrypt.Text" xml:space="preserve">
+    <value>Decrypt</value>
   </data>
   <data name="&gt;&gt;EnterPassphraseMenuItem.Name" xml:space="preserve">
     <value>EnterPassphraseMenuItem</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator3.Name" xml:space="preserve">
-    <value>toolStripSeparator3</value>
+  <data name="EncryptedPath.Text" xml:space="preserve">
+    <value>Encrypted</value>
   </data>
-  <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 50</value>
+  <data name="OpenFilesTab.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;viewHelpMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="toolStrip1.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="menuStripMain.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
   </data>
   <data name="&gt;&gt;openEncryptedToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;ImageList16.Name" xml:space="preserve">
-    <value>ImageList16</value>
+  <data name="&gt;&gt;UpdateToolStripButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ProgressContextMenu.Name" xml:space="preserve">
     <value>ProgressContextMenu</value>
   </data>
-  <data name="&gt;&gt;RecentFilesContextMenu.Name" xml:space="preserve">
-    <value>RecentFilesContextMenu</value>
+  <data name="LogTab.Text" xml:space="preserve">
+    <value>Log Output</value>
+  </data>
+  <data name="&gt;&gt;TrayNotifyIcon.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NotifyIcon, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="StatusTabs.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -2883,8 +2883,8 @@ the Open Files tab to see the list of files.</value>
   <data name="&gt;&gt;LogTab.Parent" xml:space="preserve">
     <value>StatusTabs</value>
   </data>
-  <data name="LogTab.Text" xml:space="preserve">
-    <value>Log Output</value>
+  <data name="&gt;&gt;WatchedFoldersListView.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="menuStripMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>122, 17</value>
@@ -2894,9 +2894,6 @@ the Open Files tab to see the list of files.</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>121</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>sv</value>
   </metadata>
   <metadata name="RecentFilesContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>632, 17</value>

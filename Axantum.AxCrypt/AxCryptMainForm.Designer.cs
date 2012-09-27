@@ -85,7 +85,7 @@
             this.ProgressContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ProgressContextCancelMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.TrayNotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.EncryptedFileManager = new Axantum.AxCrypt.EncryptedFileManager();
+            this.EncryptedFileManager = new Axantum.AxCrypt.Background();
             this.toolStrip1.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.StatusTabs.SuspendLayout();
@@ -563,7 +563,7 @@
         internal System.Windows.Forms.TableLayoutPanel ProgressPanel;
         private System.Windows.Forms.ContextMenuStrip ProgressContextMenu;
         private System.Windows.Forms.ToolStripMenuItem ProgressContextCancelMenu;
-        internal EncryptedFileManager EncryptedFileManager;
+        internal Background EncryptedFileManager;
         private System.Windows.Forms.NotifyIcon TrayNotifyIcon;
         private System.Windows.Forms.ToolStripMenuItem OptionsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem LanguageMenuItem;
