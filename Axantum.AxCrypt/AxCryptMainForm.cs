@@ -106,10 +106,11 @@ namespace Axantum.AxCrypt
 
             Os.Current.FileChanged += new EventHandler<EventArgs>(FileSystemOrStateChanged);
 
-            string fileSystemStateFullName = Path.Combine(Os.Current.TemporaryDirectoryInfo.FullName, "FileSystemState.xml"); //MLHIDE
-            FileSystemState = FileSystemState.Load(Os.Current.FileInfo(fileSystemStateFullName));
+            FileSystemState = new FileSystemState();
             FileSystemState.Changed += new EventHandler<ActiveFileChangedEventArgs>(ActiveFileChanged);
-            FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseAlways, TrackProcess, new ProgressContext());
+
+            string fileSystemStateFullName = Path.Combine(Os.Current.TemporaryDirectoryInfo.FullName, "FileSystemState.xml"); //MLHIDE
+            FileSystemState.Load(Os.Current.FileInfo(fileSystemStateFullName));
 
             EncryptedFileManager.VersionChecked += new EventHandler<VersionEventArgs>(EncryptedFileManager_VersionChecked);
             EncryptedFileManager.VersionCheckInBackground(Settings.Default.LastUpdateCheckUtc);
@@ -660,8 +661,6 @@ namespace Axantum.AxCrypt
             Application.Exit();
         }
 
-        private bool _fileOperationInProgress = false;
-
         private bool _pollingInProgress = false;
 
         private void ActiveFilePolling_Tick(object sender, EventArgs e)
@@ -674,14 +673,9 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-            if (_fileOperationInProgress)
-            {
-                return;
-            }
             ActiveFilePolling.Enabled = false;
             try
             {
-                _fileOperationInProgress = false/*true*/;
                 _pollingInProgress = true;
                 ThreadFacade.DoBackgroundWork(Resources.UpdatingStatus,
                     (WorkerArguments arguments) =>
@@ -691,12 +685,11 @@ namespace Axantum.AxCrypt
                     (object sender1, RunWorkerCompletedEventArgs e1) =>
                     {
                         CloseAndRemoveOpenFilesButton.Enabled = OpenFilesListView.Items.Count > 0;
-                        _pollingInProgress = false;
                     });
             }
             finally
             {
-                _fileOperationInProgress = false;
+                _pollingInProgress = false;
             }
         }
 

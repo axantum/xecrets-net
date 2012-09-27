@@ -40,7 +40,7 @@ namespace Axantum.AxCrypt.Core.Session
     {
         private object _lock;
 
-        private FileSystemState()
+        public FileSystemState()
         {
             Initialize();
         }
@@ -200,26 +200,30 @@ namespace Axantum.AxCrypt.Core.Session
             }
             if (!isModified && mode == ChangedEventMode.RaiseAlways)
             {
-                foreach (ActiveFile activeFile in activeFiles)
-                {
-                    OnChanged(new ActiveFileChangedEventArgs(activeFile));
-                }
+                RaiseChangedForAll(activeFiles);
+            }
+        }
+
+        private void RaiseChangedForAll(List<ActiveFile> activeFiles)
+        {
+            foreach (ActiveFile activeFile in activeFiles)
+            {
+                OnChanged(new ActiveFileChangedEventArgs(activeFile));
             }
         }
 
         private string _path;
 
-        public static FileSystemState Load(IRuntimeFileInfo path)
+        public void Load(IRuntimeFileInfo path)
         {
             if (!path.Exists)
             {
-                FileSystemState state = new FileSystemState();
-                state._path = path.FullName;
+                _path = path.FullName;
                 if (Os.Log.IsInfoEnabled)
                 {
-                    Os.Log.Info("No existing FileSystemState. Save location is '{0}'.".InvariantFormat(state._path));
+                    Os.Log.Info("No existing FileSystemState. Save location is '{0}'.".InvariantFormat(_path));
                 }
-                return state;
+                return;
             }
 
             DataContractSerializer serializer = CreateSerializer();
@@ -228,12 +232,15 @@ namespace Axantum.AxCrypt.Core.Session
             using (Stream fileSystemStateStream = loadInfo.OpenRead())
             {
                 FileSystemState fileSystemState = (FileSystemState)serializer.ReadObject(fileSystemStateStream);
-                fileSystemState._path = path.FullName;
+                _path = path.FullName;
+                foreach (ActiveFile activeFile in fileSystemState.ActiveFiles)
+                {
+                    Add(activeFile);
+                }
                 if (Os.Log.IsInfoEnabled)
                 {
                     Os.Log.Info("Loaded FileSystemState from '{0}'.".InvariantFormat(fileSystemState._path));
                 }
-                return fileSystemState;
             }
         }
 
