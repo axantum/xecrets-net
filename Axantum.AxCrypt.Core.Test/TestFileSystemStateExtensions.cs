@@ -83,7 +83,7 @@ namespace Axantum.AxCrypt.Core.Test
             _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(10); });
             bool changedWasRaised = false;
             _fileSystemState.Add(activeFile);
-            _fileSystemState.Changed += ((object sender, EventArgs e) =>
+            _fileSystemState.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
             {
                 changedWasRaised = true;
             });
@@ -103,7 +103,7 @@ namespace Axantum.AxCrypt.Core.Test
             _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(10); });
             bool changedWasRaised = false;
             _fileSystemState.Add(activeFile);
-            _fileSystemState.Changed += ((object sender, EventArgs e) =>
+            _fileSystemState.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
             {
                 changedWasRaised = true;
             });
@@ -131,7 +131,7 @@ namespace Axantum.AxCrypt.Core.Test
             _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddSeconds(1); });
             bool changedWasRaised = false;
             _fileSystemState.Add(activeFile);
-            _fileSystemState.Changed += ((object sender, EventArgs e) =>
+            _fileSystemState.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
             {
                 changedWasRaised = true;
             });
@@ -156,7 +156,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
-            _fileSystemState.Changed += ((object sender, EventArgs e) =>
+            _fileSystemState.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
             {
                 changedWasRaised = true;
             });
@@ -183,7 +183,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
-            _fileSystemState.Changed += ((object sender, EventArgs e) =>
+            _fileSystemState.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
             {
                 changedWasRaised = true;
             });
@@ -217,7 +217,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
-            _fileSystemState.Changed += ((object sender, EventArgs e) =>
+            _fileSystemState.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
             {
                 changedWasRaised = true;
             });
@@ -247,7 +247,7 @@ namespace Axantum.AxCrypt.Core.Test
             _fileSystemState.Add(activeFile);
 
             bool changedWasRaised = false;
-            _fileSystemState.Changed += ((object sender, EventArgs e) =>
+            _fileSystemState.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
             {
                 changedWasRaised = true;
             });
@@ -270,7 +270,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
-            _fileSystemState.Changed += ((object sender, EventArgs e) =>
+            _fileSystemState.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
             {
                 changedWasRaised = true;
             });
@@ -305,7 +305,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
-            _fileSystemState.Changed += ((object sender, EventArgs e) =>
+            _fileSystemState.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
             {
                 changedWasRaised = true;
             });
@@ -348,7 +348,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
-            _fileSystemState.Changed += ((object sender, EventArgs e) =>
+            _fileSystemState.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
             {
                 changedWasRaised = true;
             });
@@ -373,7 +373,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
-            _fileSystemState.Changed += ((object sender, EventArgs e) =>
+            _fileSystemState.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
             {
                 changedWasRaised = true;
             });
@@ -399,7 +399,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
-            _fileSystemState.Changed += ((object sender, EventArgs e) =>
+            _fileSystemState.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
             {
                 changedWasRaised = true;
             });
@@ -442,7 +442,7 @@ namespace Axantum.AxCrypt.Core.Test
             _fileSystemState.Add(activeFile);
 
             bool changedWasRaised = false;
-            _fileSystemState.Changed += ((object sender, EventArgs e) =>
+            _fileSystemState.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
             {
                 changedWasRaised = true;
             });
@@ -473,7 +473,7 @@ namespace Axantum.AxCrypt.Core.Test
             decryptedFileInfo.SetFileTimes(utcLater, utcLater, utcLater);
 
             bool changedWasRaised = false;
-            _fileSystemState.Changed += ((object sender, EventArgs e) =>
+            _fileSystemState.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
             {
                 changedWasRaised = true;
             });

@@ -108,7 +108,7 @@ namespace Axantum.AxCrypt
 
             string fileSystemStateFullName = Path.Combine(Os.Current.TemporaryDirectoryInfo.FullName, "FileSystemState.xml"); //MLHIDE
             FileSystemState = FileSystemState.Load(Os.Current.FileInfo(fileSystemStateFullName));
-            FileSystemState.Changed += new EventHandler<EventArgs>(FileSystemOrStateChanged);
+            FileSystemState.Changed += new EventHandler<ActiveFileChangedEventArgs>(ActiveFileChanged);
             FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseAlways, TrackProcess, new ProgressContext());
 
             EncryptedFileManager.VersionChecked += new EventHandler<VersionEventArgs>(EncryptedFileManager_VersionChecked);
@@ -158,6 +158,11 @@ namespace Axantum.AxCrypt
             ThreadFacade.SafeUi(RestartTimer);
         }
 
+        private void ActiveFileChanged(object sender, ActiveFileChangedEventArgs e)
+        {
+            ThreadFacade.SafeUi(() => { UpdateActiveFilesViews(e.ActiveFile); });
+        }
+
         private void AxCryptMainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (DesignMode)
@@ -205,58 +210,70 @@ namespace Axantum.AxCrypt
             ActiveFilePolling.Enabled = true;
         }
 
-        private void UpdateActiveFileState()
+        private void UpdateActiveFilesViews(ActiveFile activeFile)
         {
-            OpenFilesListView.Items.Clear();
-            RecentFilesListView.Items.Clear();
-            FileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified,
-                (ActiveFile activeFile) =>
-                {
-                    return UpdateOpenFilesWith(activeFile);
-                });
-            CloseAndRemoveOpenFilesButton.Enabled = OpenFilesListView.Items.Count > 0;
-        }
+            if (activeFile.Status.HasMask(ActiveFileStatus.NoLongerActive))
+            {
+                OpenFilesListView.Items.RemoveByKey(activeFile.EncryptedFileInfo.FullName);
+                RecentFilesListView.Items.RemoveByKey(activeFile.EncryptedFileInfo.FullName);
+                return;
+            }
 
-        private ActiveFile UpdateOpenFilesWith(ActiveFile activeFile)
-        {
-            ListViewItem item;
             if (activeFile.Status.HasMask(ActiveFileStatus.NotDecrypted))
             {
-                if (String.IsNullOrEmpty(activeFile.DecryptedFileInfo.FullName))
-                {
-                    item = new ListViewItem(String.Empty, "InactiveFile"); //MLHIDE
-                }
-                else
-                {
-                    item = new ListViewItem(Path.GetFileName(activeFile.DecryptedFileInfo.FullName), "ActiveFile"); //MLHIDE
-                }
-
-                ListViewItem.ListViewSubItem dateColumn = new ListViewItem.ListViewSubItem();
-                dateColumn.Text = activeFile.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
-                dateColumn.Tag = activeFile.LastActivityTimeUtc;
-                dateColumn.Name = "Date";                             //MLHIDE
-                item.SubItems.Add(dateColumn);
-
-                ListViewItem.ListViewSubItem encryptedPathColumn = new ListViewItem.ListViewSubItem();
-                encryptedPathColumn.Name = "EncryptedPath";           //MLHIDE
-                encryptedPathColumn.Text = activeFile.EncryptedFileInfo.FullName;
-                item.SubItems.Add(encryptedPathColumn);
-
-                RecentFilesListView.Items.Add(item);
+                UpdateRecentFilesListView(activeFile);
+                return;
             }
 
             if (activeFile.Status.HasMask(ActiveFileStatus.DecryptedIsPendingDelete) || activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
             {
-                item = new ListViewItem(Path.GetFileName(activeFile.DecryptedFileInfo.FullName), activeFile.Key != null ? "ActiveFile" : "Exclamation"); //MLHIDE
-                ListViewItem.ListViewSubItem encryptedPathColumn = new ListViewItem.ListViewSubItem();
-                encryptedPathColumn.Name = "EncryptedPath";           //MLHIDE
-                encryptedPathColumn.Text = activeFile.EncryptedFileInfo.FullName;
-                item.SubItems.Add(encryptedPathColumn);
+                UpdateOpenFilesListView(activeFile);
+                return;
+            }
+        }
 
-                OpenFilesListView.Items.Add(item);
+        private void UpdateOpenFilesListView(ActiveFile activeFile)
+        {
+            ListViewItem item;
+            item = new ListViewItem(Path.GetFileName(activeFile.DecryptedFileInfo.FullName), activeFile.Key != null ? "ActiveFile" : "Exclamation"); //MLHIDE
+            ListViewItem.ListViewSubItem encryptedPathColumn = new ListViewItem.ListViewSubItem();
+            encryptedPathColumn.Name = "EncryptedPath";           //MLHIDE
+            encryptedPathColumn.Text = activeFile.EncryptedFileInfo.FullName;
+            item.SubItems.Add(encryptedPathColumn);
+
+            item.Name = activeFile.EncryptedFileInfo.FullName;
+            OpenFilesListView.Items.RemoveByKey(item.Name);
+            OpenFilesListView.Items.Add(item);
+            RecentFilesListView.Items.RemoveByKey(item.Name);
+        }
+
+        private void UpdateRecentFilesListView(ActiveFile activeFile)
+        {
+            ListViewItem item;
+            if (String.IsNullOrEmpty(activeFile.DecryptedFileInfo.FullName))
+            {
+                item = new ListViewItem(String.Empty, "InactiveFile"); //MLHIDE
+            }
+            else
+            {
+                item = new ListViewItem(Path.GetFileName(activeFile.DecryptedFileInfo.FullName), "ActiveFile"); //MLHIDE
             }
 
-            return activeFile;
+            ListViewItem.ListViewSubItem dateColumn = new ListViewItem.ListViewSubItem();
+            dateColumn.Text = activeFile.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
+            dateColumn.Tag = activeFile.LastActivityTimeUtc;
+            dateColumn.Name = "Date";                             //MLHIDE
+            item.SubItems.Add(dateColumn);
+
+            ListViewItem.ListViewSubItem encryptedPathColumn = new ListViewItem.ListViewSubItem();
+            encryptedPathColumn.Name = "EncryptedPath";           //MLHIDE
+            encryptedPathColumn.Text = activeFile.EncryptedFileInfo.FullName;
+            item.SubItems.Add(encryptedPathColumn);
+
+            item.Name = activeFile.EncryptedFileInfo.FullName;
+            RecentFilesListView.Items.RemoveByKey(item.Name);
+            RecentFilesListView.Items.Add(item);
+            OpenFilesListView.Items.RemoveByKey(item.Name);
         }
 
         private void toolStripButtonEncrypt_Click(object sender, EventArgs e)
@@ -673,6 +690,7 @@ namespace Axantum.AxCrypt
                     },
                     (object sender1, RunWorkerCompletedEventArgs e1) =>
                     {
+                        CloseAndRemoveOpenFilesButton.Enabled = OpenFilesListView.Items.Count > 0;
                         _pollingInProgress = false;
                     });
             }
@@ -680,7 +698,6 @@ namespace Axantum.AxCrypt
             {
                 _fileOperationInProgress = false;
             }
-            UpdateActiveFileState();
         }
 
         private void openEncryptedToolStripMenuItem_Click(object sender, EventArgs e)

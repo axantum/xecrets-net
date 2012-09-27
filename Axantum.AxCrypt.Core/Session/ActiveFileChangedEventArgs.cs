@@ -26,19 +26,19 @@
 #endregion Coypright and License
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace Axantum.AxCrypt.Core.Session
 {
-    [Flags]
-    public enum ActiveFileStatus
+    public class ActiveFileChangedEventArgs : EventArgs
     {
-        None = 0,
-        AssumedOpenAndDecrypted = 1,
-        NotDecrypted = 2,
-        Error = 4,
-        DecryptedIsPendingDelete = 8,
-        NotShareable = 16,
-        IgnoreChange = 32,
-        NoLongerActive = 64,
+        public ActiveFileChangedEventArgs(ActiveFile activeFile)
+        {
+            ActiveFile = activeFile;
+        }
+
+        public ActiveFile ActiveFile { get; set; }
     }
 }

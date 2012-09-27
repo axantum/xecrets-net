@@ -227,6 +227,9 @@
     <Compile Include="..\Axantum.AxCrypt.Core\Session\ActiveFile.cs">
       <Link>Session\ActiveFile.cs</Link>
     </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Session\ActiveFileChangedEventArgs.cs">
+      <Link>Session\ActiveFileChangedEventArgs.cs</Link>
+    </Compile>
     <Compile Include="..\Axantum.AxCrypt.Core\Session\ActiveFileCollection.cs">
       <Link>Session\ActiveFileCollection.cs</Link>
     </Compile>

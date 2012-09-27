@@ -57,11 +57,11 @@ namespace Axantum.AxCrypt.Core.Session
 
         public KnownKeys KnownKeys { get; private set; }
 
-        public event EventHandler<EventArgs> Changed;
+        public event EventHandler<ActiveFileChangedEventArgs> Changed;
 
-        protected virtual void OnChanged(EventArgs e)
+        protected virtual void OnChanged(ActiveFileChangedEventArgs e)
         {
-            EventHandler<EventArgs> handler = Changed;
+            EventHandler<ActiveFileChangedEventArgs> handler = Changed;
             if (handler != null)
             {
                 handler(this, e);
@@ -76,14 +76,6 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     return new List<ActiveFile>(_activeFilesByDecryptedPath.Values);
                 }
-            }
-            set
-            {
-                lock (_lock)
-                {
-                    SetRangeInternal(value, ActiveFileStatus.None);
-                }
-                OnChanged(new EventArgs());
             }
         }
 
@@ -135,7 +127,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 AddInternal(activeFile);
             }
-            OnChanged(new EventArgs());
+            OnChanged(new ActiveFileChangedEventArgs(activeFile));
         }
 
         public void Remove(ActiveFile activeFile)
@@ -145,7 +137,8 @@ namespace Axantum.AxCrypt.Core.Session
                 _activeFilesByDecryptedPath.Remove(activeFile.DecryptedFileInfo.FullName);
                 _activeFilesByEncryptedPath.Remove(activeFile.EncryptedFileInfo.FullName);
             }
-            OnChanged(new EventArgs());
+            activeFile = new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.NoLongerActive);
+            OnChanged(new ActiveFileChangedEventArgs(activeFile));
         }
 
         private void AddInternal(ActiveFile activeFile)
@@ -193,17 +186,24 @@ namespace Axantum.AxCrypt.Core.Session
                 if (updatedActiveFile != activeFile)
                 {
                     isModified = true;
+                    OnChanged(new ActiveFileChangedEventArgs(updatedActiveFile));
                     activeFile.Dispose();
                 }
             }
             if (isModified)
             {
-                ActiveFiles = activeFiles;
+                lock (_lock)
+                {
+                    SetRangeInternal(activeFiles, ActiveFileStatus.None);
+                }
                 Save();
             }
             if (!isModified && mode == ChangedEventMode.RaiseAlways)
             {
-                OnChanged(new EventArgs());
+                foreach (ActiveFile activeFile in activeFiles)
+                {
+                    OnChanged(new ActiveFileChangedEventArgs(activeFile));
+                }
             }
         }
 

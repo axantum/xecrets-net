@@ -124,6 +124,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Session\ActiveFileChangedEventArgs.cs" />
     <Compile Include="Session\ChangedEventMode.cs" />
     <Compile Include="System\AxCryptException.cs" />
     <Compile Include="AxCryptFile.cs" />

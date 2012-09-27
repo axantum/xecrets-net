@@ -107,7 +107,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             FileSystemState state = FileSystemState.Load(Os.Current.FileInfo(_mystateXmlPath));
             bool wasHere;
-            state.Changed += new EventHandler<EventArgs>((object sender, EventArgs e) => { wasHere = true; });
+            state.Changed += new EventHandler<ActiveFileChangedEventArgs>((object sender, ActiveFileChangedEventArgs e) => { wasHere = true; });
             ActiveFile activeFile = new ActiveFile(Os.Current.FileInfo(_encryptedAxxPath), Os.Current.FileInfo(_decryptedTxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted, null);
 
             wasHere = false;
@@ -119,11 +119,6 @@ namespace Axantum.AxCrypt.Core.Test
             state.Remove(activeFile);
             Assert.That(wasHere, Is.True, "After the Remove(), the changed event should have been raised.");
             Assert.That(state.ActiveFiles.Count(), Is.EqualTo(0), "After the Remove() the state should have no active files.");
-
-            wasHere = false;
-            state.ActiveFiles = new ActiveFile[] { activeFile };
-            Assert.That(state.ActiveFiles.Count(), Is.EqualTo(1), "After the assignment to ActiveFiles the state should have one active file.");
-            Assert.That(wasHere, Is.True, "After the assignment to ActiveFiles, the changed event should have been raised.");
         }
 
         [Test]
@@ -165,7 +160,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             bool changedEventWasRaised = false;
             FileSystemState state = FileSystemState.Load(Os.Current.FileInfo(_mystateXmlPath));
-            state.Changed += ((object sender, EventArgs e) =>
+            state.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
             {
                 changedEventWasRaised = true;
             });
