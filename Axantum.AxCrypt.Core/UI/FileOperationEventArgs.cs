@@ -26,39 +26,21 @@
 #endregion Coypright and License
 
 using System;
-using System.Diagnostics;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using Axantum.AxCrypt.Core.Crypto;
 
-namespace Axantum.AxCrypt.Core.System
+namespace Axantum.AxCrypt.Core.UI
 {
-    public class DelegateTraceListener : TraceListener
+    public class FileOperationEventArgs : EventArgs
     {
-        private Action<string> _trace;
+        public bool Cancel { get; set; }
 
-        private StringBuilder _buffer = new StringBuilder();
+        public string FileName { get; set; }
 
-        public DelegateTraceListener(string name, Action<string> trace)
-            : base(name)
-        {
-            _trace = trace;
-        }
+        public string Passphrase { get; set; }
 
-        public override void Write(string message)
-        {
-            int i;
-            while ((i = message.IndexOf(Environment.NewLine, StringComparison.Ordinal)) >= 0)
-            {
-                _buffer.Append(message.Substring(0, i + Environment.NewLine.Length));
-                _trace(_buffer.ToString());
-                _buffer.Length = 0;
-                message = message.Substring(i + Environment.NewLine.Length);
-            }
-            _buffer.Append(message);
-        }
-
-        public override void WriteLine(string message)
-        {
-            Write(message + Environment.NewLine);
-        }
+        public AesKey Key { get; set; }
     }
 }

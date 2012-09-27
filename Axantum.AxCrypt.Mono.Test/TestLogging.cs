@@ -93,12 +93,11 @@ namespace Axantum.AxCrypt.Mono.Test
         {
             string listenerMessage = null;
 
-            DelegateTraceListener traceListener = new DelegateTraceListener((string message) =>
+            DelegateTraceListener traceListener = new DelegateTraceListener("AxCryptTestListener", (string message) =>
             {
                 listenerMessage = (listenerMessage ?? String.Empty) + message;
             });
 
-            traceListener.Name = "AxCryptTestListener";
             Trace.Listeners.Add(traceListener);
             try
             {

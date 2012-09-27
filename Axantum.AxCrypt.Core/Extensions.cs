@@ -356,5 +356,25 @@ namespace Axantum.AxCrypt.Core
             }
             return path;
         }
+
+        /// <summary>
+        /// Trim a log message from extra information in front, specifically text preceding the
+        /// log level text such as Information, Warning etc.
+        /// </summary>
+        /// <param name="message">A log message</param>
+        /// <returns>A possible trimmed message</returns>
+        /// <remarks>
+        /// This is primarily intended to facilitate more compact logging in a GUI
+        /// </remarks>
+        public static string TrimLogMessage(this string message)
+        {
+            int skipIndex = message.IndexOf(" Information", StringComparison.Ordinal); //MLHIDE
+            skipIndex = skipIndex < 0 ? message.IndexOf(" Warning", StringComparison.Ordinal) : skipIndex; //MLHIDE
+            skipIndex = skipIndex < 0 ? message.IndexOf(" Debug", StringComparison.Ordinal) : skipIndex; //MLHIDE
+            skipIndex = skipIndex < 0 ? message.IndexOf(" Error", StringComparison.Ordinal) : skipIndex; //MLHIDE
+            skipIndex = skipIndex < 0 ? message.IndexOf(" Fatal", StringComparison.Ordinal) : skipIndex; //MLHIDE
+
+            return message.Substring(skipIndex + 1);
+        }
     }
 }

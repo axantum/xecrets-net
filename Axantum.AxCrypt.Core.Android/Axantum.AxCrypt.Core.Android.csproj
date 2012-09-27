@@ -284,6 +284,12 @@
     <Compile Include="..\Axantum.AxCrypt.Core\UI\FileOperation.cs">
       <Link>UI\FileOperation.cs</Link>
     </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\UI\FileOperationEventArgs.cs">
+      <Link>UI\FileOperationEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\UI\FileOperationsController.cs">
+      <Link>UI\FileOperationsController.cs</Link>
+    </Compile>
     <Compile Include="..\Axantum.AxCrypt.Core\UI\FileOperationStatus.cs">
       <Link>UI\FileOperationStatus.cs</Link>
     </Compile>

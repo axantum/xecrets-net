@@ -193,6 +193,8 @@
     <Compile Include="Session\ActiveFileStatus.cs" />
     <Compile Include="Session\FileSystemState.cs" />
     <Compile Include="UI\FileOperation.cs" />
+    <Compile Include="UI\FileOperationEventArgs.cs" />
+    <Compile Include="UI\FileOperationsController.cs" />
     <Compile Include="UI\FileOperationStatus.cs" />
     <Compile Include="UI\KnownKeys.cs" />
     <Compile Include="UI\ProgressContext.cs" />

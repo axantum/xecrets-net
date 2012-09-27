@@ -65,11 +65,8 @@ namespace Axantum.AxCrypt
         {
             ThreadFacade.SafeUi(() =>
             {
-                int skipIndex = message.IndexOf(" Information", StringComparison.Ordinal); //MLHIDE
-                skipIndex = skipIndex < 0 ? message.IndexOf(" Warning", StringComparison.Ordinal) : skipIndex; //MLHIDE
-                skipIndex = skipIndex < 0 ? message.IndexOf(" Debug", StringComparison.Ordinal) : skipIndex; //MLHIDE
-                skipIndex = skipIndex < 0 ? message.IndexOf(" Error", StringComparison.Ordinal) : skipIndex; //MLHIDE
-                LogOutput.AppendText("{0} {1}".InvariantFormat(Os.Current.UtcNow.ToString("o", CultureInfo.InvariantCulture), message.Substring(skipIndex + 1))); //MLHIDE
+                string formatted = "{0} {1}".InvariantFormat(Os.Current.UtcNow.ToString("o", CultureInfo.InvariantCulture), message.TrimLogMessage()); //MLHIDE
+                LogOutput.AppendText(formatted);
             });
         }
 
@@ -92,9 +89,7 @@ namespace Axantum.AxCrypt
 
             ThreadFacade = new MainFormThreadFacade(this);
 
-            DelegateTraceListener traceListener = new DelegateTraceListener(FormatTraceMessage);
-            traceListener.Name = "AxCryptMainFormListener";           //MLHIDE
-            Trace.Listeners.Add(traceListener);
+            Trace.Listeners.Add(new DelegateTraceListener("AxCryptMainFormListener", FormatTraceMessage)); //MLHIDE
 
             TrackProcess = Os.Current.Platform == Platform.WindowsDesktop;
 
@@ -112,7 +107,7 @@ namespace Axantum.AxCrypt
             string fileSystemStateFullName = Path.Combine(Os.Current.TemporaryDirectoryInfo.FullName, "FileSystemState.xml"); //MLHIDE
             FileSystemState.Load(Os.Current.FileInfo(fileSystemStateFullName));
 
-            EncryptedFileManager.UpdateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(EncryptedFileManager_VersionChecked);
+            EncryptedFileManager.UpdateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(VersionUpdated);
             UpdateCheck(Settings.Default.LastUpdateCheckUtc);
         }
 
@@ -150,7 +145,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void EncryptedFileManager_VersionChecked(object sender, VersionEventArgs e)
+        private void VersionUpdated(object sender, VersionEventArgs e)
         {
             Settings.Default.LastUpdateCheckUtc = Os.Current.UtcNow;
             Settings.Default.NewestKnownVersion = e.Version.ToString();
@@ -309,14 +304,9 @@ namespace Axantum.AxCrypt
 
         private void EncryptFile(string file)
         {
-            if (String.Compare(Path.GetExtension(file), Os.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
-            {
-                return;
-            }
+            FileOperationsController operationsController = new FileOperationsController(FileSystemState);
 
-            IRuntimeFileInfo sourceFileInfo = Os.Current.FileInfo(file);
-            IRuntimeFileInfo destinationFileInfo = Os.Current.FileInfo(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
-            if (destinationFileInfo.Exists)
+            operationsController.SaveFileRequest += (object sender, FileOperationEventArgs e) =>
             {
                 using (SaveFileDialog sfd = new SaveFileDialog())
                 {
@@ -325,27 +315,28 @@ namespace Axantum.AxCrypt
                     sfd.ValidateNames = true;
                     sfd.CheckPathExists = true;
                     sfd.DefaultExt = Os.Current.AxCryptExtension;
-                    sfd.FileName = destinationFileInfo.FullName;
+                    sfd.FileName = e.FileName;
                     sfd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat(Os.Current.AxCryptExtension);
-                    sfd.InitialDirectory = Path.GetDirectoryName(destinationFileInfo.FullName);
+                    sfd.InitialDirectory = Path.GetDirectoryName(e.FileName);
                     sfd.ValidateNames = true;
                     DialogResult saveAsResult = sfd.ShowDialog();
                     if (saveAsResult != DialogResult.OK)
                     {
+                        e.Cancel = true;
                         return;
                     }
-                    destinationFileInfo = Os.Current.FileInfo(sfd.FileName);
+                    e.FileName = sfd.FileName;
                 }
-            }
+            };
 
-            AesKey key = null;
-            if (FileSystemState.KnownKeys.DefaultEncryptionKey == null)
+            operationsController.EncryptionPassphraseRequest += (object sender, FileOperationEventArgs e) =>
             {
                 EncryptPassphraseDialog passphraseDialog = new EncryptPassphraseDialog();
                 passphraseDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowEncryptPasshrase;
                 DialogResult dialogResult = passphraseDialog.ShowDialog();
                 if (dialogResult != DialogResult.OK)
                 {
+                    e.Cancel = true;
                     return;
                 }
                 if (passphraseDialog.ShowPassphraseCheckBox.Checked != Settings.Default.ShowEncryptPasshrase)
@@ -353,30 +344,36 @@ namespace Axantum.AxCrypt
                     Settings.Default.ShowEncryptPasshrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
                     Settings.Default.Save();
                 }
-                Passphrase passphrase = new Passphrase(passphraseDialog.PassphraseTextBox.Text);
-                key = passphrase.DerivedPassphrase;
-            }
-            else
-            {
-                key = FileSystemState.KnownKeys.DefaultEncryptionKey;
-            }
+                e.Passphrase = passphraseDialog.PassphraseTextBox.Text;
+            };
 
-            ThreadFacade.DoBackgroundWork(sourceFileInfo.FullName,
-                (WorkerArguments arguments) =>
-                {
-                    AxCryptFile.EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, key, arguments.Progress);
-                    arguments.Result = FileOperationStatus.Success;
-                },
-                (object sender, RunWorkerCompletedEventArgs e) =>
-                {
-                    FileOperationStatus status = (FileOperationStatus)e.Result;
-                    CheckStatusAndShowMessage(status, sourceFileInfo.Name);
-                });
-
-            if (FileSystemState.KnownKeys.DefaultEncryptionKey == null)
+            operationsController.DoOperation += (object sender, FileOperationEventArgs e) =>
             {
-                FileSystemState.KnownKeys.DefaultEncryptionKey = key;
-            }
+                ThreadFacade.DoBackgroundWork(file,
+                    (WorkerArguments arguments) =>
+                    {
+                        try
+                        {
+                            AxCryptFile.EncryptFileWithBackupAndWipe(file, e.FileName, e.Key, arguments.Progress);
+                            arguments.Result = FileOperationStatus.Success;
+                        }
+                        catch (Exception ex)
+                        {
+                            if (Os.Log.IsWarningEnabled)
+                            {
+                                Os.Log.Warning("Exception during encryption '{0}'".InvariantFormat(ex.Message));
+                            }
+                            arguments.Result = FileOperationStatus.Exception;
+                        }
+                    },
+                    (object senderCompleted, RunWorkerCompletedEventArgs eCompleted) =>
+                    {
+                        FileOperationStatus status = (FileOperationStatus)eCompleted.Result;
+                        CheckStatusAndShowMessage(status, file);
+                    });
+            };
+
+            operationsController.EncryptFile(file);
         }
 
         private static void CheckStatusAndShowMessage(FileOperationStatus status, string displayText)
@@ -416,6 +413,10 @@ namespace Axantum.AxCrypt
 
                 case FileOperationStatus.Canceled:
                     Resources.Canceled.InvariantFormat(displayText).ShowWarning();
+                    break;
+
+                case FileOperationStatus.Exception:
+                    Resources.Exception.InvariantFormat(displayText).ShowWarning();
                     break;
                 default:
                     Resources.UnrecognizedError.InvariantFormat(displayText).ShowWarning();

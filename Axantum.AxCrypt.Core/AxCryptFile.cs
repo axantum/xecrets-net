@@ -120,6 +120,13 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
+        public static void EncryptFileWithBackupAndWipe(string sourceFile, string destinationFile, AesKey key, ProgressContext progress)
+        {
+            IRuntimeFileInfo sourceFileInfo = Os.Current.FileInfo(sourceFile);
+            IRuntimeFileInfo destinationFileInfo = Os.Current.FileInfo(destinationFile);
+            EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, key, progress);
+        }
+
         public static void EncryptFileWithBackupAndWipe(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFileInfo, AesKey key, ProgressContext progress)
         {
             if (sourceFileInfo == null)
