@@ -62,7 +62,6 @@
         <_AxCertificateThumbprint>f19b4539765c80c0a1e56586132b06d5a96a2400</_AxCertificateThumbprint>
     </PropertyGroup>
     <PropertyGroup>
-        <DefineConstants Condition=" '$(_AxIsAxantum)' == 'true' ">$(DefineConstants);AXANTUM</DefineConstants>
         <UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(_AxIsBuildServerBuild)' == 'true' ">
@@ -183,9 +182,16 @@
 
     <Target Name="_AxBeforeBuild"
             DependsOnTargets="_AxFixupVersion">
+        <PropertyGroup Condition=" '$(_AxIsAxantum)' == 'true' ">
+            <_AxPreviousDefineConstants>$(DefineConstants)</_AxPreviousDefineConstants>
+            <DefineConstants>$(DefineConstants);AXANTUM</DefineConstants>
+        </PropertyGroup>
     </Target>
 
     <Target Name="_AxAfterBuild">
+        <PropertyGroup Condition=" '$(_AxIsAxantum)' == 'true' ">
+            <DefineConstants>$(_AxPreviousDefineConstants)</DefineConstants>
+        </PropertyGroup>
     </Target>
 
     <Target Name="_AxPrepareForRun"
