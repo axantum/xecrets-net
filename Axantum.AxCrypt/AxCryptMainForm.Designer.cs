@@ -85,7 +85,7 @@
             this.ProgressContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ProgressContextCancelMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.TrayNotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.Background = new Axantum.AxCrypt.Background();
+            this.BackgroundMonitor = new Axantum.AxCrypt.BackgroundMonitor();
             this.progressBackgroundWorker = new Axantum.AxCrypt.ProgressBackgroundWorker();
             this.toolStrip1.SuspendLayout();
             this.menuStripMain.SuspendLayout();
@@ -97,7 +97,7 @@
             this.RecentFilesContextMenu.SuspendLayout();
             this.OpenFilesContextMenu.SuspendLayout();
             this.ProgressContextMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Background)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BackgroundMonitor)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -519,7 +519,7 @@
             this.RecentFilesContextMenu.ResumeLayout(false);
             this.OpenFilesContextMenu.ResumeLayout(false);
             this.ProgressContextMenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Background)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BackgroundMonitor)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -569,7 +569,7 @@
         internal System.Windows.Forms.TableLayoutPanel ProgressPanel;
         private System.Windows.Forms.ContextMenuStrip ProgressContextMenu;
         private System.Windows.Forms.ToolStripMenuItem ProgressContextCancelMenu;
-        internal Background Background;
+        internal BackgroundMonitor BackgroundMonitor;
         private System.Windows.Forms.NotifyIcon TrayNotifyIcon;
         private System.Windows.Forms.ToolStripMenuItem OptionsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem LanguageMenuItem;

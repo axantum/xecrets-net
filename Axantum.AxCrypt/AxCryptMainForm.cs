@@ -103,7 +103,7 @@ namespace Axantum.AxCrypt
             string fileSystemStateFullName = Path.Combine(OS.Current.TemporaryDirectoryInfo.FullName, "FileSystemState.xml"); //MLHIDE
             FileSystemState.Load(OS.Current.FileInfo(fileSystemStateFullName));
 
-            Background.UpdateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(VersionUpdated);
+            BackgroundMonitor.UpdateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(VersionUpdated);
             UpdateCheck(Settings.Default.LastUpdateCheckUtc);
         }
 
@@ -121,7 +121,7 @@ namespace Axantum.AxCrypt
 
         private void UpdateCheck(DateTime lastCheckUtc)
         {
-            Background.UpdateCheck.CheckInBackground(lastCheckUtc, Settings.Default.NewestKnownVersion, Settings.Default.AxCrypt2VersionCheckUrl, Settings.Default.UpdateUrl);
+            BackgroundMonitor.UpdateCheck.CheckInBackground(lastCheckUtc, Settings.Default.NewestKnownVersion, Settings.Default.AxCrypt2VersionCheckUrl, Settings.Default.UpdateUrl);
         }
 
         private void UpdateVersionStatus(VersionUpdateStatus status, Version version)

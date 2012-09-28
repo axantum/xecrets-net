@@ -39,7 +39,7 @@ namespace Axantum.AxCrypt
     /// Wrap IDisposable background processing resources in a Component and support ISupportInitialize, thus
     /// serving as wrapper for those resources and allowing them to work well with the designer.
     /// </summary>
-    internal class Background : Component, ISupportInitialize
+    internal class BackgroundMonitor : Component, ISupportInitialize
     {
         private IFileWatcher _fileWatcher;
 
@@ -47,7 +47,7 @@ namespace Axantum.AxCrypt
 
         private bool _disposed = false;
 
-        public Background()
+        public BackgroundMonitor()
         {
         }
 
