@@ -315,9 +315,9 @@ namespace Axantum.AxCrypt
                     sfd.ValidateNames = true;
                     sfd.CheckPathExists = true;
                     sfd.DefaultExt = Os.Current.AxCryptExtension;
-                    sfd.FileName = e.FileName;
+                    sfd.FileName = e.SaveFileName;
                     sfd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat(Os.Current.AxCryptExtension);
-                    sfd.InitialDirectory = Path.GetDirectoryName(e.FileName);
+                    sfd.InitialDirectory = Path.GetDirectoryName(e.SaveFileName);
                     sfd.ValidateNames = true;
                     DialogResult saveAsResult = sfd.ShowDialog();
                     if (saveAsResult != DialogResult.OK)
@@ -325,7 +325,7 @@ namespace Axantum.AxCrypt
                         e.Cancel = true;
                         return;
                     }
-                    e.FileName = sfd.FileName;
+                    e.SaveFileName = sfd.FileName;
                 }
             };
 
@@ -347,24 +347,13 @@ namespace Axantum.AxCrypt
                 e.Passphrase = passphraseDialog.PassphraseTextBox.Text;
             };
 
-            operationsController.DoOperation += (object sender, FileOperationEventArgs e) =>
+            operationsController.FileOperationRequest += (object sender, FileOperationEventArgs e) =>
             {
                 ThreadFacade.DoBackgroundWork(file,
                     (WorkerArguments arguments) =>
                     {
-                        try
-                        {
-                            AxCryptFile.EncryptFileWithBackupAndWipe(file, e.FileName, e.Key, arguments.Progress);
-                            arguments.Result = FileOperationStatus.Success;
-                        }
-                        catch (Exception ex)
-                        {
-                            if (Os.Log.IsWarningEnabled)
-                            {
-                                Os.Log.Warning("Exception during encryption '{0}'".InvariantFormat(ex.Message));
-                            }
-                            arguments.Result = FileOperationStatus.Exception;
-                        }
+                        e.Progress = arguments.Progress;
+                        arguments.Result = operationsController.DoOperation(e);
                     },
                     (object senderCompleted, RunWorkerCompletedEventArgs eCompleted) =>
                     {

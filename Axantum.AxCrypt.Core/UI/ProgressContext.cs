@@ -73,6 +73,8 @@ namespace Axantum.AxCrypt.Core.UI
 
         private long _current = 0;
 
+        private bool _finished = false;
+
         public long Current
         {
             get
@@ -81,14 +83,23 @@ namespace Axantum.AxCrypt.Core.UI
             }
             set
             {
+                if (_finished)
+                {
+                    return;
+                }
                 _current = value;
-                if (_stopwatch.Elapsed < _nextElapsed)
+                if (_stopwatch.Elapsed < _nextElapsed && Percent != 100)
                 {
                     return;
                 }
                 ProgressEventArgs e;
                 e = new ProgressEventArgs(Percent, _context);
                 OnProgressing(e);
+                if (Percent == 100)
+                {
+                    _finished = true;
+                    return;
+                }
                 _nextElapsed = _stopwatch.Elapsed.Add(DefaultInterval);
             }
         }
@@ -111,6 +122,10 @@ namespace Axantum.AxCrypt.Core.UI
         {
             get
             {
+                if (Current == Max)
+                {
+                    return 100;
+                }
                 if (Max >= 0)
                 {
                     long current100 = _current * 100;

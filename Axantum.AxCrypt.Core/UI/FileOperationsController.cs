@@ -67,16 +67,18 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public event EventHandler<FileOperationEventArgs> DoOperation;
+        public event EventHandler<FileOperationEventArgs> FileOperationRequest;
 
-        protected virtual void OnDoOperation(FileOperationEventArgs e)
+        protected virtual void OnFileOperationRequest(FileOperationEventArgs e)
         {
-            EventHandler<FileOperationEventArgs> handler = DoOperation;
+            EventHandler<FileOperationEventArgs> handler = FileOperationRequest;
             if (handler != null)
             {
                 handler(this, e);
             }
         }
+
+        public Func<FileOperationEventArgs, FileOperationStatus> DoOperation { get; private set; }
 
         public bool EncryptFile(string file)
         {
@@ -87,7 +89,8 @@ namespace Axantum.AxCrypt.Core.UI
             IRuntimeFileInfo sourceFileInfo = Os.Current.FileInfo(file);
             IRuntimeFileInfo destinationFileInfo = Os.Current.FileInfo(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
             FileOperationEventArgs e = new FileOperationEventArgs();
-            e.FileName = destinationFileInfo.FullName;
+            e.SaveFileName = destinationFileInfo.FullName;
+            e.OpenFileName = file;
             if (destinationFileInfo.Exists)
             {
                 OnSaveFileRequest(e);
@@ -109,8 +112,26 @@ namespace Axantum.AxCrypt.Core.UI
             }
 
             e.Key = _fileSystemState.KnownKeys.DefaultEncryptionKey;
-            OnDoOperation(e);
+            DoOperation = EncryptFileOperation;
+            OnFileOperationRequest(e);
             return true;
+        }
+
+        private static FileOperationStatus EncryptFileOperation(FileOperationEventArgs e)
+        {
+            try
+            {
+                AxCryptFile.EncryptFileWithBackupAndWipe(e.OpenFileName, e.SaveFileName, e.Key, e.Progress);
+                return FileOperationStatus.Success;
+            }
+            catch (Exception ex)
+            {
+                if (Os.Log.IsWarningEnabled)
+                {
+                    Os.Log.Warning("Exception during encryption '{0}'".InvariantFormat(ex.Message));
+                }
+                return FileOperationStatus.Exception;
+            }
         }
     }
 }

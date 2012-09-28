@@ -37,10 +37,14 @@ namespace Axantum.AxCrypt.Core.UI
     {
         public bool Cancel { get; set; }
 
-        public string FileName { get; set; }
+        public string SaveFileName { get; set; }
+
+        public string OpenFileName { get; set; }
 
         public string Passphrase { get; set; }
 
         public AesKey Key { get; set; }
+
+        public ProgressContext Progress { get; set; }
     }
 }

@@ -193,7 +193,7 @@ namespace Axantum.AxCrypt.Core
                 offset = 0;
                 length = buffer.Length;
             }
-
+            progress.Finished();
             return totalCount;
         }
 
