@@ -40,11 +40,11 @@ namespace Axantum.AxCrypt.Core.System
 
         private ProgressContext _progress;
 
-        private Func<WorkerArguments, FileOperationStatus> _work;
+        private Func<ProgressContext, FileOperationStatus> _work;
 
         private Action<FileOperationStatus> _complete;
 
-        public ThreadWorker(string displayText, Func<WorkerArguments, FileOperationStatus> work, Action<FileOperationStatus> complete)
+        public ThreadWorker(string displayText, Func<ProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
         {
             _work = work;
             _complete = complete;
@@ -68,16 +68,15 @@ namespace Axantum.AxCrypt.Core.System
 
         public void Run()
         {
-            ThreadWorkerEventArgs threadWorkerEventArgs = new ThreadWorkerEventArgs(_worker);
-            OnPrepare(threadWorkerEventArgs);
-            _worker.RunWorkerAsync(new WorkerArguments(_progress));
+            OnPrepare(new ThreadWorkerEventArgs(_worker));
+            _worker.RunWorkerAsync(_progress);
         }
 
         private void _worker_DoWork(object sender, DoWorkEventArgs e)
         {
             try
             {
-                e.Result = _work((WorkerArguments)e.Argument);
+                e.Result = _work((ProgressContext)e.Argument);
             }
             catch (OperationCanceledException)
             {
@@ -96,9 +95,7 @@ namespace Axantum.AxCrypt.Core.System
 
         private void _worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            ThreadWorkerEventArgs threadWorkerEventArgs = new ThreadWorkerEventArgs(_worker);
-            threadWorkerEventArgs.ProgressPercentage = e.ProgressPercentage;
-            OnProgress(threadWorkerEventArgs);
+            OnProgress(new ThreadWorkerEventArgs(_worker, e.ProgressPercentage));
         }
 
         private void _worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -106,10 +103,7 @@ namespace Axantum.AxCrypt.Core.System
             try
             {
                 _complete((FileOperationStatus)e.Result);
-                ThreadWorkerEventArgs threadWorkerEventArgs = new ThreadWorkerEventArgs(_worker);
-                threadWorkerEventArgs.Cancelled = e.Cancelled;
-                threadWorkerEventArgs.Result = (FileOperationStatus)e.Result;
-                OnCompleted(threadWorkerEventArgs);
+                OnCompleted(new ThreadWorkerEventArgs(_worker));
             }
             finally
             {

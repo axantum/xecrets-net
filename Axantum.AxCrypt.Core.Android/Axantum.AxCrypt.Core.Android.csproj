@@ -320,9 +320,6 @@
     <Compile Include="..\Axantum.AxCrypt.Core\UI\VersionUpdateStatus.cs">
       <Link>UI\VersionUpdateStatus.cs</Link>
     </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Core\UI\WorkerArguments.cs">
-      <Link>UI\WorkerArguments.cs</Link>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

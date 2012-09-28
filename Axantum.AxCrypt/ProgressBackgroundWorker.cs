@@ -28,6 +28,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.System;
@@ -50,7 +51,7 @@ namespace Axantum.AxCrypt
             _mainForm = mainForm;
         }
 
-        public void BackgroundWorkWithProgress(string displayText, Func<WorkerArguments, FileOperationStatus> work, Action<FileOperationStatus> complete)
+        public void BackgroundWorkWithProgress(string displayText, Func<ProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
         {
             ThreadWorker worker = new ThreadWorker(displayText, work, complete);
             worker.Prepare += (object sender, ThreadWorkerEventArgs e) =>

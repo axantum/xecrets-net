@@ -362,9 +362,9 @@ namespace Axantum.AxCrypt
             operationsController.FileOperationRequest += (object sender, FileOperationEventArgs e) =>
             {
                 ProgressBackgroundWorker.BackgroundWorkWithProgress(file,
-                    (WorkerArguments arguments) =>
+                    (ProgressContext progressContext) =>
                     {
-                        e.Progress = arguments.Progress;
+                        e.Progress = progressContext;
                         return operationsController.DoOperation(e);
                     },
                     (FileOperationStatus status) =>
@@ -470,11 +470,11 @@ namespace Axantum.AxCrypt
                 return false;
             }
             ProgressBackgroundWorker.BackgroundWorkWithProgress(source.Name,
-                (WorkerArguments arguments) =>
+                (ProgressContext progress) =>
                 {
                     try
                     {
-                        AxCryptFile.Decrypt(document, destination, AxCryptOptions.SetFileTimes, arguments.Progress);
+                        AxCryptFile.Decrypt(document, destination, AxCryptOptions.SetFileTimes, progress);
                     }
                     finally
                     {
@@ -597,9 +597,9 @@ namespace Axantum.AxCrypt
         private void OpenEncrypted(string file)
         {
             ProgressBackgroundWorker.BackgroundWorkWithProgress(Path.GetFileName(file),
-                (WorkerArguments arguments) =>
+                (ProgressContext progress) =>
                 {
-                    return FileSystemState.OpenAndLaunchApplication(file, FileSystemState.KnownKeys.Keys, arguments.Progress);
+                    return FileSystemState.OpenAndLaunchApplication(file, FileSystemState.KnownKeys.Keys, progress);
                 },
                 (FileOperationStatus status) =>
                 {
@@ -621,9 +621,9 @@ namespace Axantum.AxCrypt
                 return;
             }
             ProgressBackgroundWorker.BackgroundWorkWithProgress(Path.GetFileName(file),
-                (WorkerArguments arguments) =>
+                (ProgressContext progress) =>
                 {
-                    return FileSystemState.OpenAndLaunchApplication(file, new AesKey[] { passphrase.DerivedPassphrase }, arguments.Progress);
+                    return FileSystemState.OpenAndLaunchApplication(file, new AesKey[] { passphrase.DerivedPassphrase }, progress);
                 },
                 (FileOperationStatus status) =>
                 {
@@ -681,9 +681,9 @@ namespace Axantum.AxCrypt
             {
                 _pollingInProgress = true;
                 ProgressBackgroundWorker.BackgroundWorkWithProgress(Resources.UpdatingStatus,
-                    (WorkerArguments arguments) =>
+                    (ProgressContext progress) =>
                     {
-                        FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, arguments.Progress);
+                        FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, progress);
                         return FileOperationStatus.Success;
                     },
                     (FileOperationStatus status) =>
@@ -729,10 +729,10 @@ namespace Axantum.AxCrypt
         private void PurgeActiveFiles()
         {
             ProgressBackgroundWorker.BackgroundWorkWithProgress(Resources.PurgingActiveFiles,
-                (WorkerArguments arguments) =>
+                (ProgressContext progress) =>
                 {
-                    FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, arguments.Progress);
-                    FileSystemState.PurgeActiveFiles(arguments.Progress);
+                    FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, progress);
+                    FileSystemState.PurgeActiveFiles(progress);
                     return FileOperationStatus.Success;
                 },
                 (FileOperationStatus status) =>
