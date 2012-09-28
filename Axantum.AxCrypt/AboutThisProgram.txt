@@ -10,6 +10,11 @@ Windows GUI'n are built.
 A GUI implementation should only need Axantum.AxCrypt.Core.dll, Axantum.AxCrypt.[Platform].dll
 and BouncyCastle.Crypto.dll as binary dependencies.
 
+No code coverage or Unit Tests are expected to be run against Axantum.AxCrypt.exe, since it is
+intended to be pure GUI-related.
+
+FxCop should pass without complaint.
+
 ---
 
 Comments and findings on Mono compatiblity, rationales etc.

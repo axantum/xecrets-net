@@ -10,3 +10,5 @@ interfaces exposed by methods and properties in that interface. This is currentl
 IFileWatcher, ILauncher, IRuntimeFileInfo, ITiming and IWebCaller.
 
 Code coverage is not required to be 100% here, but what reasonable can be tested should be.
+
+FxCop should pass without complaint.
