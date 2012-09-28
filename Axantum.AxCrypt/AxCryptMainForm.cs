@@ -70,8 +70,6 @@ namespace Axantum.AxCrypt
             });
         }
 
-        private ProgressBackgroundWorker ProgressBackgroundWorker { get; set; }
-
         private FileSystemState FileSystemState { get; set; }
 
         public AxCryptMainForm()
@@ -86,8 +84,6 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-
-            ProgressBackgroundWorker = new ProgressBackgroundWorker(this);
 
             Trace.Listeners.Add(new DelegateTraceListener("AxCryptMainFormListener", FormatTraceMessage)); //MLHIDE
 
@@ -107,7 +103,7 @@ namespace Axantum.AxCrypt
             string fileSystemStateFullName = Path.Combine(Os.Current.TemporaryDirectoryInfo.FullName, "FileSystemState.xml"); //MLHIDE
             FileSystemState.Load(Os.Current.FileInfo(fileSystemStateFullName));
 
-            EncryptedFileManager.UpdateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(VersionUpdated);
+            Background.UpdateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(VersionUpdated);
             UpdateCheck(Settings.Default.LastUpdateCheckUtc);
         }
 
@@ -125,7 +121,7 @@ namespace Axantum.AxCrypt
 
         private void UpdateCheck(DateTime lastCheckUtc)
         {
-            EncryptedFileManager.UpdateCheck.CheckInBackground(lastCheckUtc, Settings.Default.NewestKnownVersion, Settings.Default.AxCrypt2VersionCheckUrl, Settings.Default.UpdateUrl);
+            Background.UpdateCheck.CheckInBackground(lastCheckUtc, Settings.Default.NewestKnownVersion, Settings.Default.AxCrypt2VersionCheckUrl, Settings.Default.UpdateUrl);
         }
 
         private void UpdateVersionStatus(VersionUpdateStatus status, Version version)
@@ -183,10 +179,10 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            ProgressBackgroundWorker.WaitForBackgroundIdle();
+            progressBackgroundWorker.WaitForBackgroundIdle();
             TrackProcess = false;
             PurgeActiveFiles();
-            ProgressBackgroundWorker.WaitForBackgroundIdle();
+            progressBackgroundWorker.WaitForBackgroundIdle();
             Trace.Listeners.Remove("AxCryptMainFormListener");        //MLHIDE
         }
 
@@ -361,7 +357,7 @@ namespace Axantum.AxCrypt
 
             operationsController.FileOperationRequest += (object sender, FileOperationEventArgs e) =>
             {
-                ProgressBackgroundWorker.BackgroundWorkWithProgress(file,
+                progressBackgroundWorker.BackgroundWorkWithProgress(file,
                     (ProgressContext progressContext) =>
                     {
                         e.Progress = progressContext;
@@ -469,7 +465,7 @@ namespace Axantum.AxCrypt
             {
                 return false;
             }
-            ProgressBackgroundWorker.BackgroundWorkWithProgress(source.Name,
+            progressBackgroundWorker.BackgroundWorkWithProgress(source.Name,
                 (ProgressContext progress) =>
                 {
                     try
@@ -596,7 +592,7 @@ namespace Axantum.AxCrypt
 
         private void OpenEncrypted(string file)
         {
-            ProgressBackgroundWorker.BackgroundWorkWithProgress(Path.GetFileName(file),
+            progressBackgroundWorker.BackgroundWorkWithProgress(Path.GetFileName(file),
                 (ProgressContext progress) =>
                 {
                     return FileSystemState.OpenAndLaunchApplication(file, FileSystemState.KnownKeys.Keys, progress);
@@ -620,7 +616,7 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-            ProgressBackgroundWorker.BackgroundWorkWithProgress(Path.GetFileName(file),
+            progressBackgroundWorker.BackgroundWorkWithProgress(Path.GetFileName(file),
                 (ProgressContext progress) =>
                 {
                     return FileSystemState.OpenAndLaunchApplication(file, new AesKey[] { passphrase.DerivedPassphrase }, progress);
@@ -680,7 +676,7 @@ namespace Axantum.AxCrypt
             try
             {
                 _pollingInProgress = true;
-                ProgressBackgroundWorker.BackgroundWorkWithProgress(Resources.UpdatingStatus,
+                progressBackgroundWorker.BackgroundWorkWithProgress(Resources.UpdatingStatus,
                     (ProgressContext progress) =>
                     {
                         FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, progress);
@@ -728,7 +724,7 @@ namespace Axantum.AxCrypt
 
         private void PurgeActiveFiles()
         {
-            ProgressBackgroundWorker.BackgroundWorkWithProgress(Resources.PurgingActiveFiles,
+            progressBackgroundWorker.BackgroundWorkWithProgress(Resources.PurgingActiveFiles,
                 (ProgressContext progress) =>
                 {
                     FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, progress);
@@ -817,10 +813,19 @@ namespace Axantum.AxCrypt
             }
         }
 
-        public void ShowProgressContextMenu(Control progressControl, Point location)
+        private void progressBackgroundWorker_ProgressBarClicked(object sender, MouseEventArgs e)
         {
-            ProgressContextMenu.Tag = progressControl;
-            ProgressContextMenu.Show(progressControl, location);
+            if (e.Button != MouseButtons.Right)
+            {
+                return;
+            }
+            ProgressContextMenu.Tag = sender;
+            ProgressContextMenu.Show((Control)sender, e.Location);
+        }
+
+        private void progressBackgroundWorker_ProgressBarCreated(object sender, ControlEventArgs e)
+        {
+            ProgressPanel.Controls.Add(e.Control);
         }
 
         private void ProgressContextCancelMenu_Click(object sender, EventArgs e)

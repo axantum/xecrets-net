@@ -34,6 +34,9 @@ using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core.System
 {
+    /// <summary>
+    /// Perform work on a separate thread with support for progress and cancellation.
+    /// </summary>
     public class ThreadWorker
     {
         private BackgroundWorker _worker;
@@ -44,6 +47,12 @@ namespace Axantum.AxCrypt.Core.System
 
         private Action<FileOperationStatus> _complete;
 
+        /// <summary>
+        /// Create a thread worker.
+        /// </summary>
+        /// <param name="displayText">A text that may be used in messages as a reference for users.</param>
+        /// <param name="work">A 'work' delegate. Executed on a separate thread, not the GUI thread.</param>
+        /// <param name="complete">A 'complete' delegate. Executed on the original thread, typically the GUI thread.</param>
         public ThreadWorker(string displayText, Func<ProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
         {
             _work = work;
@@ -66,6 +75,9 @@ namespace Axantum.AxCrypt.Core.System
             };
         }
 
+        /// <summary>
+        /// Start the asynchronous execution of the work.
+        /// </summary>
         public void Run()
         {
             OnPrepare(new ThreadWorkerEventArgs(_worker));
@@ -122,6 +134,10 @@ namespace Axantum.AxCrypt.Core.System
             }
         }
 
+        /// <summary>
+        /// Raised just before asynchronous execution starts. Runs on the
+        /// original thread, typically the GUI thread.
+        /// </summary>
         public event EventHandler<ThreadWorkerEventArgs> Prepare;
 
         protected virtual void OnPrepare(ThreadWorkerEventArgs e)
@@ -133,6 +149,10 @@ namespace Axantum.AxCrypt.Core.System
             }
         }
 
+        /// <summary>
+        /// Raised when progress is reported. Runs on the original thread,
+        /// typically the GUI thread.
+        /// </summary>
         public event EventHandler<ThreadWorkerEventArgs> Progress;
 
         protected virtual void OnProgress(ThreadWorkerEventArgs e)
@@ -144,6 +164,10 @@ namespace Axantum.AxCrypt.Core.System
             }
         }
 
+        /// <summary>
+        /// Raised when all is done. Runs on the original thread, typically
+        /// the GUI thread.
+        /// </summary>
         public event EventHandler<ThreadWorkerEventArgs> Completed;
 
         protected virtual void OnCompleted(ThreadWorkerEventArgs e)

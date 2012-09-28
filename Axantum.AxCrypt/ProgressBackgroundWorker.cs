@@ -40,17 +40,52 @@ namespace Axantum.AxCrypt
     /// <summary>
     /// Background thread operations with progress bar support
     /// </summary>
-    internal class ProgressBackgroundWorker
+    internal class ProgressBackgroundWorker : Component
     {
-        private AxCryptMainForm _mainForm;
-
         private IDictionary<BackgroundWorker, ProgressBar> _progressBars = new Dictionary<BackgroundWorker, ProgressBar>();
 
-        public ProgressBackgroundWorker(AxCryptMainForm mainForm)
+        public ProgressBackgroundWorker()
         {
-            _mainForm = mainForm;
         }
 
+        /// <summary>
+        /// Raised when a new progress bar has been created. This is typically a good time
+        /// to add it to a container control. This is raised on the original thread, typically
+        /// the GUI thread.
+        /// </summary>
+        public event EventHandler<ControlEventArgs> ProgressBarCreated;
+
+        protected virtual void OnProgressBarCreated(ControlEventArgs e)
+        {
+            EventHandler<ControlEventArgs> handler = ProgressBarCreated;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        /// <summary>
+        /// Raised when a progress bar is clicked. Use to display a context menu
+        /// or other information. This is raised on the original thread, typically the
+        /// GUI thread.
+        /// </summary>
+        public event EventHandler<MouseEventArgs> ProgressBarClicked;
+
+        protected virtual void OnProgressBarClicked(object sender, MouseEventArgs e)
+        {
+            EventHandler<MouseEventArgs> handler = ProgressBarClicked;
+            if (handler != null)
+            {
+                handler(sender, e);
+            }
+        }
+
+        /// <summary>
+        /// Perform a background operation with support for progress bars and cancel.
+        /// </summary>
+        /// <param name="displayText">A text that may be used as a reference in various messages.</param>
+        /// <param name="work">A 'work' delegate, taking a ProgressContext and return a FileOperationStatus. Executed on a background thread. Not the GUI thread.</param>
+        /// <param name="complete">A 'complete' delegate, taking the final status. Executed on the original caller thread, typically the GUI thread.</param>
         public void BackgroundWorkWithProgress(string displayText, Func<ProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
         {
             ThreadWorker worker = new ThreadWorker(displayText, work, complete);
@@ -58,6 +93,7 @@ namespace Axantum.AxCrypt
             {
                 ProgressBar progressBar = CreateProgressBar(e.Worker);
                 _progressBars.Add(e.Worker, progressBar);
+                OnProgressBarCreated(new ControlEventArgs(progressBar));
             };
             worker.Completed += (object sender, ThreadWorkerEventArgs e) =>
             {
@@ -80,23 +116,22 @@ namespace Axantum.AxCrypt
             ProgressBar progressBar = new ProgressBar();
             progressBar.Minimum = 0;
             progressBar.Maximum = 100;
-            _mainForm.ProgressPanel.Controls.Add(progressBar);
             progressBar.Dock = DockStyle.Fill;
             progressBar.Margin = new Padding(0);
             progressBar.MouseClick += new MouseEventHandler(progressBar_MouseClick);
             progressBar.Tag = worker;
+
             return progressBar;
         }
 
         private void progressBar_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button != MouseButtons.Right)
-            {
-                return;
-            }
-            _mainForm.ShowProgressContextMenu((ProgressBar)sender, e.Location);
+            OnProgressBarClicked(sender, e);
         }
 
+        /// <summary>
+        /// Wait for all operations to complete.
+        /// </summary>
         public void WaitForBackgroundIdle()
         {
             while (_progressBars.Count > 0)
