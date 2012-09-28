@@ -39,23 +39,23 @@ namespace Axantum.AxCrypt.Core.Test
             get { return true; }
         }
 
-        public void Fatal(string message)
+        public void LogFatal(string message)
         {
         }
 
-        public void Error(string message)
+        public void LogError(string message)
         {
         }
 
-        public void Warning(string message)
+        public void LogWarning(string message)
         {
         }
 
-        public void Info(string message)
+        public void LogInfo(string message)
         {
         }
 
-        public void Debug(string message)
+        public void LogDebug(string message)
         {
         }
 

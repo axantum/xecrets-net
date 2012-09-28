@@ -101,6 +101,7 @@ namespace Axantum.AxCrypt
                 progressBar.Parent = null;
                 _progressBars.Remove(e.Worker);
                 progressBar.Dispose();
+                e.Worker.Dispose();
             };
             worker.Progress += (object sender, ThreadWorkerEventArgs e) =>
             {

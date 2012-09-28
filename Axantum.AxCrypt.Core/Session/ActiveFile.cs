@@ -128,11 +128,11 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void Initialize(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, DateTime lastWriteTimeUtc, AesKey key, ActiveFileStatus status, ILauncher process)
         {
-            EncryptedFileInfo = Os.Current.FileInfo(encryptedFileInfo.FullName);
-            DecryptedFileInfo = Os.Current.FileInfo(decryptedFileInfo.FullName);
+            EncryptedFileInfo = OS.Current.FileInfo(encryptedFileInfo.FullName);
+            DecryptedFileInfo = OS.Current.FileInfo(decryptedFileInfo.FullName);
             Key = key;
             Status = status;
-            LastActivityTimeUtc = Os.Current.UtcNow;
+            LastActivityTimeUtc = OS.Current.UtcNow;
             Process = process;
             LastEncryptionWriteTimeUtc = lastWriteTimeUtc;
         }
@@ -149,7 +149,7 @@ namespace Axantum.AxCrypt.Core.Session
             private set;
         }
 
-        private byte[] _keyThumbprintSalt = Os.Current.GetRandomBytes(32);
+        private byte[] _keyThumbprintSalt = OS.Current.GetRandomBytes(32);
 
         [DataMember]
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "This is a private method used for serialization.")]
@@ -201,11 +201,11 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                return Os.Current.DataProtection.Protect(Encoding.UTF8.GetBytes(Path.GetFileName(DecryptedFileInfo.FullName)));
+                return OS.Current.DataProtection.Protect(Encoding.UTF8.GetBytes(Path.GetFileName(DecryptedFileInfo.FullName)));
             }
             set
             {
-                byte[] bytes = Os.Current.DataProtection.Unprotect(value);
+                byte[] bytes = OS.Current.DataProtection.Unprotect(value);
                 _decryptedName = Encoding.UTF8.GetString(bytes);
             }
         }
@@ -220,7 +220,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
             set
             {
-                EncryptedFileInfo = Os.Current.FileInfo(value);
+                EncryptedFileInfo = OS.Current.FileInfo(value);
             }
         }
 
@@ -239,7 +239,7 @@ namespace Axantum.AxCrypt.Core.Session
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context)
         {
-            DecryptedFileInfo = Os.Current.FileInfo(Path.Combine(_decryptedFolder, _decryptedName));
+            DecryptedFileInfo = OS.Current.FileInfo(Path.Combine(_decryptedFolder, _decryptedName));
         }
 
         public ILauncher Process { get; private set; }
@@ -288,9 +288,9 @@ namespace Axantum.AxCrypt.Core.Session
                     return false;
                 }
                 bool isModified = DecryptedFileInfo.LastWriteTimeUtc > LastEncryptionWriteTimeUtc;
-                if (Os.Log.IsInfoEnabled)
+                if (OS.Log.IsInfoEnabled)
                 {
-                    Os.Log.Info("IsModified == '{0}' for file '{3}' info last write time '{1}' and active file last write time '{2}'".InvariantFormat(isModified.ToString(), DecryptedFileInfo.LastWriteTimeUtc.ToString(), LastEncryptionWriteTimeUtc.ToString(), DecryptedFileInfo.Name));
+                    OS.Log.LogInfo("IsModified == '{0}' for file '{3}' info last write time '{1}' and active file last write time '{2}'".InvariantFormat(isModified.ToString(), DecryptedFileInfo.LastWriteTimeUtc.ToString(), LastEncryptionWriteTimeUtc.ToString(), DecryptedFileInfo.Name));
                 }
                 return isModified;
             }

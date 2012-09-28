@@ -219,15 +219,15 @@ namespace Axantum.AxCrypt.Core.Session
             if (!path.Exists)
             {
                 _path = path.FullName;
-                if (Os.Log.IsInfoEnabled)
+                if (OS.Log.IsInfoEnabled)
                 {
-                    Os.Log.Info("No existing FileSystemState. Save location is '{0}'.".InvariantFormat(_path));
+                    OS.Log.LogInfo("No existing FileSystemState. Save location is '{0}'.".InvariantFormat(_path));
                 }
                 return;
             }
 
             DataContractSerializer serializer = CreateSerializer();
-            IRuntimeFileInfo loadInfo = Os.Current.FileInfo(path.FullName);
+            IRuntimeFileInfo loadInfo = OS.Current.FileInfo(path.FullName);
 
             using (Stream fileSystemStateStream = loadInfo.OpenRead())
             {
@@ -237,9 +237,9 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     Add(activeFile);
                 }
-                if (Os.Log.IsInfoEnabled)
+                if (OS.Log.IsInfoEnabled)
                 {
-                    Os.Log.Info("Loaded FileSystemState from '{0}'.".InvariantFormat(fileSystemState._path));
+                    OS.Log.LogInfo("Loaded FileSystemState from '{0}'.".InvariantFormat(fileSystemState._path));
                 }
             }
         }
@@ -252,7 +252,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         public void Save()
         {
-            IRuntimeFileInfo saveInfo = Os.Current.FileInfo(_path);
+            IRuntimeFileInfo saveInfo = OS.Current.FileInfo(_path);
             using (Stream fileSystemStateStream = saveInfo.OpenWrite())
             {
                 fileSystemStateStream.SetLength(0);
@@ -262,9 +262,9 @@ namespace Axantum.AxCrypt.Core.Session
                     serializer.WriteObject(fileSystemStateStream, this);
                 }
             }
-            if (Os.Log.IsInfoEnabled)
+            if (OS.Log.IsInfoEnabled)
             {
-                Os.Log.Info("Wrote FileSystemState to '{0}'.".InvariantFormat(_path));
+                OS.Log.LogInfo("Wrote FileSystemState to '{0}'.".InvariantFormat(_path));
             }
         }
 

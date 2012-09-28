@@ -70,8 +70,8 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
-            _environment = Os.Current;
-            Os.Current = _fakeRuntimeEnvironment = new FakeRuntimeEnvironment();
+            _environment = OS.Current;
+            OS.Current = _fakeRuntimeEnvironment = new FakeRuntimeEnvironment();
 
             FakeRuntimeFileInfo.AddFile(_testTextPath, FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate1Utc, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
             FakeRuntimeFileInfo.AddFile(_davidCopperfieldTxtPath, FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate5Utc, FakeRuntimeFileInfo.TestDate6Utc, new MemoryStream(Encoding.GetEncoding(1252).GetBytes(Resources.david_copperfield)));
@@ -79,13 +79,13 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(_helloWorldAxxPath, new MemoryStream(Resources.helloworld_key_a_txt));
 
             _fileSystemState = new FileSystemState();
-            _fileSystemState.Load(Os.Current.FileInfo(Path.Combine(Path.GetTempPath(), "FileSystemState.xml")));
+            _fileSystemState.Load(OS.Current.FileInfo(Path.Combine(Path.GetTempPath(), "FileSystemState.xml")));
         }
 
         [TearDown]
         public static void Teardown()
         {
-            Os.Current = _environment;
+            OS.Current = _environment;
             FakeRuntimeFileInfo.ClearFiles();
         }
 
@@ -148,7 +148,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
 
-            IRuntimeFileInfo fileInfo = Os.Current.FileInfo(_helloWorldAxxPath);
+            IRuntimeFileInfo fileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
             ActiveFile destinationActiveFile = _fileSystemState.FindEncryptedPath(fileInfo.FullName);
             Assert.That(destinationActiveFile.DecryptedFileInfo.LastWriteTimeUtc, Is.Not.EqualTo(utcNow), "The decryption should restore the time stamp of the original file, and this is not now.");
             destinationActiveFile.DecryptedFileInfo.SetFileTimes(utcNow, utcNow, utcNow);
@@ -169,7 +169,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
 
-            IRuntimeFileInfo fileInfo = Os.Current.FileInfo(_helloWorldAxxPath);
+            IRuntimeFileInfo fileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
             ActiveFile destinationActiveFile = _fileSystemState.FindEncryptedPath(fileInfo.FullName);
             Assert.That(destinationActiveFile.DecryptedFileInfo.LastWriteTimeUtc, Is.Not.EqualTo(utcNow), "The decryption should restore the time stamp of the original file, and this is not now.");
             destinationActiveFile.DecryptedFileInfo.SetFileTimes(utcNow, utcNow, utcNow);
@@ -267,7 +267,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
 
             bool changedWasRaised = false;
-            Os.Current.FileChanged += (object sender, EventArgs e) => { changedWasRaised = true; };
+            OS.Current.FileChanged += (object sender, EventArgs e) => { changedWasRaised = true; };
             Assert.That(changedWasRaised, Is.False, "The global changed event should not have been raised yet.");
 
             launcher.RaiseExited();
@@ -283,7 +283,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
 
-            IRuntimeFileInfo fileInfo = Os.Current.FileInfo(_helloWorldAxxPath);
+            IRuntimeFileInfo fileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
             ActiveFile destinationActiveFile = _fileSystemState.FindEncryptedPath(fileInfo.FullName);
             destinationActiveFile.DecryptedFileInfo.Delete();
             destinationActiveFile = new ActiveFile(destinationActiveFile, ActiveFileStatus.NotDecrypted);

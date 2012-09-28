@@ -53,8 +53,8 @@ namespace Axantum.AxCrypt.Core.Test
         [TestFixtureSetUp]
         public static void SetupFixture()
         {
-            _environment = Os.Current;
-            Os.Current = new FakeRuntimeEnvironment();
+            _environment = OS.Current;
+            OS.Current = new FakeRuntimeEnvironment();
 
             FakeRuntimeFileInfo.AddFile(_testTextPath, FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate1Utc, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
             FakeRuntimeFileInfo.AddFile(_davidCopperfieldTxtPath, FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate5Utc, FakeRuntimeFileInfo.TestDate6Utc, new MemoryStream(Encoding.GetEncoding(1252).GetBytes(Resources.david_copperfield)));
@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Test
         [TestFixtureTearDown]
         public static void TeardownFixture()
         {
-            Os.Current = _environment;
+            OS.Current = _environment;
             FakeRuntimeFileInfo.ClearFiles();
         }
 
@@ -74,8 +74,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             ActiveFileCollection collection = new ActiveFileCollection();
 
-            IRuntimeFileInfo decryptedFileInfo = Os.Current.FileInfo(_testTextPath);
-            IRuntimeFileInfo encryptedFileInfo = Os.Current.FileInfo(_helloWorldAxxPath);
+            IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(_testTextPath);
+            IRuntimeFileInfo encryptedFileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new AesKey(), ActiveFileStatus.None, null);
 
             collection.Add(activeFile);
@@ -91,10 +91,10 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestActiveFileCollectionEnumerationConstructor()
         {
-            IRuntimeFileInfo decryptedFileInfo1 = Os.Current.FileInfo(Path.Combine(_rootPath, "test1.txt"));
-            IRuntimeFileInfo encryptedFileInfo1 = Os.Current.FileInfo(Path.Combine(_rootPath, "test1-txt.axx"));
-            IRuntimeFileInfo decryptedFileInfo2 = Os.Current.FileInfo(Path.Combine(_rootPath, "test2.txt"));
-            IRuntimeFileInfo encryptedFileInfo2 = Os.Current.FileInfo(Path.Combine(_rootPath, "test2-text.axx"));
+            IRuntimeFileInfo decryptedFileInfo1 = OS.Current.FileInfo(Path.Combine(_rootPath, "test1.txt"));
+            IRuntimeFileInfo encryptedFileInfo1 = OS.Current.FileInfo(Path.Combine(_rootPath, "test1-txt.axx"));
+            IRuntimeFileInfo decryptedFileInfo2 = OS.Current.FileInfo(Path.Combine(_rootPath, "test2.txt"));
+            IRuntimeFileInfo encryptedFileInfo2 = OS.Current.FileInfo(Path.Combine(_rootPath, "test2-text.axx"));
             ActiveFile activeFile1 = new ActiveFile(encryptedFileInfo1, decryptedFileInfo1, new AesKey(), ActiveFileStatus.None, null);
             ActiveFile activeFile2 = new ActiveFile(encryptedFileInfo2, decryptedFileInfo2, new AesKey(), ActiveFileStatus.None, null);
 

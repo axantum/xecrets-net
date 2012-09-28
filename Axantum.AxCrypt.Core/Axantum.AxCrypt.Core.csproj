@@ -141,7 +141,7 @@
     <Compile Include="Crypto\KeyWrapSalt.cs" />
     <Compile Include="Crypto\Passphrase.cs" />
     <Compile Include="Crypto\Subkey.cs" />
-    <Compile Include="Os.cs" />
+    <Compile Include="OS.cs" />
     <Compile Include="System\DelegateTraceListener.cs" />
     <Compile Include="ErrorStatus.cs" />
     <Compile Include="Extensions.cs" />

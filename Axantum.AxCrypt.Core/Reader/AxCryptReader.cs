@@ -95,7 +95,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
             _hmacStream = new HmacStream(hmacKey);
             _hmacBufferStream.Position = 0;
-            _hmacBufferStream.CopyTo(_hmacStream, Os.Current.StreamBufferSize);
+            _hmacBufferStream.CopyTo(_hmacStream, OS.Current.StreamBufferSize);
 
             _expectedTotalHmacLength = _hmacBufferStream.Length + cipherTextLength;
 
@@ -138,9 +138,9 @@ namespace Axantum.AxCrypt.Core.Reader
             AxCryptItemType before = CurrentItemType;
             bool readOk = ReadInternal();
             AxCryptItemType after = CurrentItemType;
-            if (Os.Log.IsDebugEnabled)
+            if (OS.Log.IsDebugEnabled)
             {
-                Os.Log.Debug("AxCryptReader.Read() from type {0} to type {1} : {2}.".InvariantFormat(before, after, CurrentHeaderBlock == null ? "(None)" : CurrentHeaderBlock.GetType().ToString()));
+                OS.Log.LogDebug("AxCryptReader.Read() from type {0} to type {1} : {2}.".InvariantFormat(before, after, CurrentHeaderBlock == null ? "(None)" : CurrentHeaderBlock.GetType().ToString()));
             }
             return readOk;
         }
@@ -175,7 +175,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
         private void LookForMagicGuid()
         {
-            byte[] buffer = new byte[Os.Current.StreamBufferSize];
+            byte[] buffer = new byte[OS.Current.StreamBufferSize];
             while (true)
             {
                 int bytesRead = _inputStream.Read(buffer, 0, buffer.Length);

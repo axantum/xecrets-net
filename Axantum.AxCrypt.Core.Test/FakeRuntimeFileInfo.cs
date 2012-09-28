@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             FakeFileInfo fileInfo = new FakeFileInfo { FullName = path, CreationTimeUtc = creationTimeUtc, LastAccessTimeUtc = lastAccessTimeUtc, LastWriteTimeUtc = lastWriteTimeUtc, Stream = stream };
             _fakeFileSystem.Add(path, fileInfo);
-            ((FakeRuntimeEnvironment)Os.Current).FileCreated(path);
+            ((FakeRuntimeEnvironment)OS.Current).FileCreated(path);
         }
 
         public static void AddFile(string path, Stream stream)
@@ -80,7 +80,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         public FakeRuntimeFileInfo(string fullName)
         {
-            DateTime utcNow = Os.Current.UtcNow;
+            DateTime utcNow = OS.Current.UtcNow;
             _file = new FakeFileInfo { FullName = fullName, CreationTimeUtc = utcNow, LastAccessTimeUtc = utcNow, LastWriteTimeUtc = utcNow, Stream = Stream.Null };
         }
 
@@ -262,14 +262,14 @@ namespace Axantum.AxCrypt.Core.Test
             _file = new FakeFileInfo { FullName = destinationFileName, CreationTimeUtc = source.CreationTimeUtc, LastAccessTimeUtc = source.LastAccessTimeUtc, LastWriteTimeUtc = source.LastWriteTimeUtc, Stream = source.Stream };
             _fakeFileSystem.Add(destinationFileName, _file);
 
-            ((FakeRuntimeEnvironment)Os.Current).FileMoved(destinationFileName);
+            ((FakeRuntimeEnvironment)OS.Current).FileMoved(destinationFileName);
         }
 
         public void Delete()
         {
             OnDeleting();
             _fakeFileSystem.Remove(_file.FullName);
-            ((FakeRuntimeEnvironment)Os.Current).FileDeleted(_file.FullName);
+            ((FakeRuntimeEnvironment)OS.Current).FileDeleted(_file.FullName);
         }
 
         #region IRuntimeFileInfo Members

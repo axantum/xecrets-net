@@ -43,8 +43,8 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void AssemblySetup()
         {
-            Os.Current = new FakeRuntimeEnvironment();
-            Os.Log.SetLevel(LogLevel.Debug);
+            OS.Current = new FakeRuntimeEnvironment();
+            OS.Log.SetLevel(LogLevel.Debug);
         }
 
         [TearDown]

@@ -44,48 +44,48 @@ namespace Axantum.AxCrypt.Mono.Test
         [SetUp]
         public static void Setup()
         {
-            _previousEnvironment = Os.Current;
-            Os.Current = new RuntimeEnvironment();
+            _previousEnvironment = OS.Current;
+            OS.Current = new RuntimeEnvironment();
         }
 
         [TearDown]
         public static void Teardown()
         {
-            Os.Current = _previousEnvironment;
+            OS.Current = _previousEnvironment;
         }
 
         [Test]
         public static void TestLoggingLevels()
         {
-            Os.Log.SetLevel(LogLevel.Fatal);
-            Assert.That(Os.Log.IsDebugEnabled, Is.False, "When logging is off, Debug should be off.");
-            Assert.That(Os.Log.IsInfoEnabled, Is.False, "When logging is off, Info should be off.");
-            Assert.That(Os.Log.IsWarningEnabled, Is.False, "When logging is off, Warning should be off.");
-            Assert.That(Os.Log.IsErrorEnabled, Is.False, "When logging is off, Error should be off.");
+            OS.Log.SetLevel(LogLevel.Fatal);
+            Assert.That(OS.Log.IsDebugEnabled, Is.False, "When logging is off, Debug should be off.");
+            Assert.That(OS.Log.IsInfoEnabled, Is.False, "When logging is off, Info should be off.");
+            Assert.That(OS.Log.IsWarningEnabled, Is.False, "When logging is off, Warning should be off.");
+            Assert.That(OS.Log.IsErrorEnabled, Is.False, "When logging is off, Error should be off.");
 
-            Os.Log.SetLevel(LogLevel.Error);
-            Assert.That(Os.Log.IsDebugEnabled, Is.False, "When Error is enabled, Debug should be off.");
-            Assert.That(Os.Log.IsInfoEnabled, Is.False, "When Error is enabled, Info should be off.");
-            Assert.That(Os.Log.IsWarningEnabled, Is.False, "When Error is enabled, Warning should be off.");
-            Assert.That(Os.Log.IsErrorEnabled, Is.True, "When Error is enabled, Error should be on.");
+            OS.Log.SetLevel(LogLevel.Error);
+            Assert.That(OS.Log.IsDebugEnabled, Is.False, "When Error is enabled, Debug should be off.");
+            Assert.That(OS.Log.IsInfoEnabled, Is.False, "When Error is enabled, Info should be off.");
+            Assert.That(OS.Log.IsWarningEnabled, Is.False, "When Error is enabled, Warning should be off.");
+            Assert.That(OS.Log.IsErrorEnabled, Is.True, "When Error is enabled, Error should be on.");
 
-            Os.Log.SetLevel(LogLevel.Warning);
-            Assert.That(Os.Log.IsDebugEnabled, Is.False, "When Warning is enabled, Debug should be off.");
-            Assert.That(Os.Log.IsInfoEnabled, Is.False, "When Warning is enabled, Info should be off.");
-            Assert.That(Os.Log.IsWarningEnabled, Is.True, "When Warning is enabled, Warning should be on.");
-            Assert.That(Os.Log.IsErrorEnabled, Is.True, "When Warning is enabled, Error should be on.");
+            OS.Log.SetLevel(LogLevel.Warning);
+            Assert.That(OS.Log.IsDebugEnabled, Is.False, "When Warning is enabled, Debug should be off.");
+            Assert.That(OS.Log.IsInfoEnabled, Is.False, "When Warning is enabled, Info should be off.");
+            Assert.That(OS.Log.IsWarningEnabled, Is.True, "When Warning is enabled, Warning should be on.");
+            Assert.That(OS.Log.IsErrorEnabled, Is.True, "When Warning is enabled, Error should be on.");
 
-            Os.Log.SetLevel(LogLevel.Info);
-            Assert.That(Os.Log.IsDebugEnabled, Is.False, "When Info is enabled, Debug should be off.");
-            Assert.That(Os.Log.IsInfoEnabled, Is.True, "When Info is enabled, Info should be on.");
-            Assert.That(Os.Log.IsWarningEnabled, Is.True, "When Info is enabled, Warning should be on.");
-            Assert.That(Os.Log.IsErrorEnabled, Is.True, "When Info is enabled, Error should be on.");
+            OS.Log.SetLevel(LogLevel.Info);
+            Assert.That(OS.Log.IsDebugEnabled, Is.False, "When Info is enabled, Debug should be off.");
+            Assert.That(OS.Log.IsInfoEnabled, Is.True, "When Info is enabled, Info should be on.");
+            Assert.That(OS.Log.IsWarningEnabled, Is.True, "When Info is enabled, Warning should be on.");
+            Assert.That(OS.Log.IsErrorEnabled, Is.True, "When Info is enabled, Error should be on.");
 
-            Os.Log.SetLevel(LogLevel.Debug);
-            Assert.That(Os.Log.IsDebugEnabled, Is.True, "When Verbose is enabled, Debug should be on.");
-            Assert.That(Os.Log.IsInfoEnabled, Is.True, "When Verbose is enabled, Info should be on.");
-            Assert.That(Os.Log.IsWarningEnabled, Is.True, "When Verbose is enabled, Warning should be on.");
-            Assert.That(Os.Log.IsErrorEnabled, Is.True, "When Verbose is enabled, Error should be on.");
+            OS.Log.SetLevel(LogLevel.Debug);
+            Assert.That(OS.Log.IsDebugEnabled, Is.True, "When Verbose is enabled, Debug should be on.");
+            Assert.That(OS.Log.IsInfoEnabled, Is.True, "When Verbose is enabled, Info should be on.");
+            Assert.That(OS.Log.IsWarningEnabled, Is.True, "When Verbose is enabled, Warning should be on.");
+            Assert.That(OS.Log.IsErrorEnabled, Is.True, "When Verbose is enabled, Error should be on.");
         }
 
         [Test]
@@ -101,94 +101,94 @@ namespace Axantum.AxCrypt.Mono.Test
             Trace.Listeners.Add(traceListener);
             try
             {
-                Os.Log.SetLevel(LogLevel.Fatal);
+                OS.Log.SetLevel(LogLevel.Fatal);
 
                 listenerMessage = null;
-                Os.Log.Debug("Verbose" + Environment.NewLine);
+                OS.Log.LogDebug("Verbose" + Environment.NewLine);
                 Assert.That(listenerMessage, Is.EqualTo(null), "When logging is off, Verbose logging should not generate a message.");
 
                 listenerMessage = null;
-                Os.Log.Info("Info" + Environment.NewLine);
+                OS.Log.LogInfo("Info" + Environment.NewLine);
                 Assert.That(listenerMessage, Is.EqualTo(null), "When logging is off, Info logging should not generate a message.");
 
                 listenerMessage = null;
-                Os.Log.Warning("Warning" + Environment.NewLine);
+                OS.Log.LogWarning("Warning" + Environment.NewLine);
                 Assert.That(listenerMessage, Is.EqualTo(null), "When logging is off, Warning logging should not generate a message.");
 
                 listenerMessage = null;
-                Os.Log.Error("Error" + Environment.NewLine);
+                OS.Log.LogError("Error" + Environment.NewLine);
                 Assert.That(listenerMessage, Is.EqualTo(null), "When logging is off, Error logging should not generate a message.");
 
-                Os.Log.SetLevel(LogLevel.Error);
+                OS.Log.SetLevel(LogLevel.Error);
 
                 listenerMessage = null;
-                Os.Log.Debug("Verbose" + Environment.NewLine);
+                OS.Log.LogDebug("Verbose" + Environment.NewLine);
                 Assert.That(listenerMessage, Is.EqualTo(null), "When logging is Error, Verbose logging should not generate a message.");
 
                 listenerMessage = null;
-                Os.Log.Info("Info" + Environment.NewLine);
+                OS.Log.LogInfo("Info" + Environment.NewLine);
                 Assert.That(listenerMessage, Is.EqualTo(null), "When logging is Error, Info logging should not generate a message.");
 
                 listenerMessage = null;
-                Os.Log.Warning("Warning" + Environment.NewLine);
+                OS.Log.LogWarning("Warning" + Environment.NewLine);
                 Assert.That(listenerMessage, Is.EqualTo(null), "When logging is Error, Warning logging should not generate a message.");
 
                 listenerMessage = null;
-                Os.Log.Error("Error" + Environment.NewLine);
+                OS.Log.LogError("Error" + Environment.NewLine);
                 Assert.That(listenerMessage.Contains("Error"), "When logging is Error, Error logging should generate a message.");
 
-                Os.Log.SetLevel(LogLevel.Warning);
+                OS.Log.SetLevel(LogLevel.Warning);
 
                 listenerMessage = null;
-                Os.Log.Debug("Verbose" + Environment.NewLine);
+                OS.Log.LogDebug("Verbose" + Environment.NewLine);
                 Assert.That(listenerMessage, Is.EqualTo(null), "When logging is Warning, Verbose logging should not generate a message.");
 
                 listenerMessage = null;
-                Os.Log.Info("Info" + Environment.NewLine);
+                OS.Log.LogInfo("Info" + Environment.NewLine);
                 Assert.That(listenerMessage, Is.EqualTo(null), "When logging is Warning, Info logging should not generate a message.");
 
                 listenerMessage = null;
-                Os.Log.Warning("Warning" + Environment.NewLine);
+                OS.Log.LogWarning("Warning" + Environment.NewLine);
                 Assert.That(listenerMessage.Contains("Warning"), "When logging is Warning, Warning logging should generate a message.");
 
                 listenerMessage = null;
-                Os.Log.Error("Error" + Environment.NewLine);
+                OS.Log.LogError("Error" + Environment.NewLine);
                 Assert.That(listenerMessage.Contains("Error"), "When logging is Warning, Error logging should generate a message.");
 
-                Os.Log.SetLevel(LogLevel.Info);
+                OS.Log.SetLevel(LogLevel.Info);
 
                 listenerMessage = null;
-                Os.Log.Debug("Verbose" + Environment.NewLine);
+                OS.Log.LogDebug("Verbose" + Environment.NewLine);
                 Assert.That(listenerMessage, Is.EqualTo(null), "When logging is Info, Verbose logging should not generate a message.");
 
                 listenerMessage = null;
-                Os.Log.Info("Info" + Environment.NewLine);
+                OS.Log.LogInfo("Info" + Environment.NewLine);
                 Assert.That(listenerMessage.Contains("Info"), "When logging is Info, Info logging should generate a message.");
 
                 listenerMessage = null;
-                Os.Log.Warning("Warning" + Environment.NewLine);
+                OS.Log.LogWarning("Warning" + Environment.NewLine);
                 Assert.That(listenerMessage.Contains("Warning"), "When logging is Info, Warning logging should generate a message.");
 
                 listenerMessage = null;
-                Os.Log.Error("Error" + Environment.NewLine);
+                OS.Log.LogError("Error" + Environment.NewLine);
                 Assert.That(listenerMessage.Contains("Error"), "When logging is Info, Error logging should generate a message.");
 
-                Os.Log.SetLevel(LogLevel.Debug);
+                OS.Log.SetLevel(LogLevel.Debug);
 
                 listenerMessage = null;
-                Os.Log.Debug("Verbose" + Environment.NewLine);
+                OS.Log.LogDebug("Verbose" + Environment.NewLine);
                 Assert.That(listenerMessage.Contains("Verbose"), "When logging is Verbose, Verbose logging should generate a message.");
 
                 listenerMessage = null;
-                Os.Log.Info("Info" + Environment.NewLine);
+                OS.Log.LogInfo("Info" + Environment.NewLine);
                 Assert.That(listenerMessage.Contains("Info"), "When logging is Verbose, Info logging should generate a message.");
 
                 listenerMessage = null;
-                Os.Log.Warning("Warning" + Environment.NewLine);
+                OS.Log.LogWarning("Warning" + Environment.NewLine);
                 Assert.That(listenerMessage.Contains("Warning"), "When logging is Verbose, Warning logging should generate a message.");
 
                 listenerMessage = null;
-                Os.Log.Error("Error" + Environment.NewLine);
+                OS.Log.LogError("Error" + Environment.NewLine);
                 Assert.That(listenerMessage.Contains("Error"), "When logging is Verbose, Error logging should generate a message.");
             }
             finally

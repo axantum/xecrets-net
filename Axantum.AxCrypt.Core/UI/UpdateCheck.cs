@@ -94,11 +94,11 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 throw new ObjectDisposedException("_done");
             }
-            if (lastCheckTimeUtc.AddDays(1) >= Os.Current.UtcNow)
+            if (lastCheckTimeUtc.AddDays(1) >= OS.Current.UtcNow)
             {
-                if (Os.Log.IsInfoEnabled)
+                if (OS.Log.IsInfoEnabled)
                 {
-                    Os.Log.Info("Attempt to check for new version was ignored because it is too soon. Returning version {0}.".InvariantFormat(newestKnownVersionValue));
+                    OS.Log.LogInfo("Attempt to check for new version was ignored because it is too soon. Returning version {0}.".InvariantFormat(newestKnownVersionValue));
                 }
                 OnVersionUpdate(new VersionEventArgs(newestKnownVersionValue, updateWebpageUrl, CalculateStatus(newestKnownVersionValue, lastCheckTimeUtc)));
                 return;
@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Core.UI
             Version newVersion = VersionUnknown;
             try
             {
-                IWebCaller webCaller = Os.Current.CreateWebCaller();
+                IWebCaller webCaller = OS.Current.CreateWebCaller();
                 string result = webCaller.Go(webServiceUrl);
                 DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(VersionResponse));
                 VersionResponse versionResponse;
@@ -142,16 +142,16 @@ namespace Axantum.AxCrypt.Core.UI
                 }
                 newVersion = ParseVersion(versionResponse.Version);
                 updateWebpageUrl = new Uri(versionResponse.WebReference);
-                if (Os.Log.IsInfoEnabled)
+                if (OS.Log.IsInfoEnabled)
                 {
-                    Os.Log.Info("Update check reports most recent version {0} at web page {1}".InvariantFormat(newVersion, updateWebpageUrl));
+                    OS.Log.LogInfo("Update check reports most recent version {0} at web page {1}".InvariantFormat(newVersion, updateWebpageUrl));
                 }
             }
             catch (Exception ex)
             {
-                if (Os.Log.IsWarningEnabled)
+                if (OS.Log.IsWarningEnabled)
                 {
-                    Os.Log.Warning("Failed call to check for new version with exception {0}.".InvariantFormat(ex));
+                    OS.Log.LogWarning("Failed call to check for new version with exception {0}.".InvariantFormat(ex));
                 }
             }
             return new Pair<Version, Uri>(newVersion, updateWebpageUrl);
@@ -220,7 +220,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 return VersionUpdateStatus.IsUpToDateOrRecentlyChecked;
             }
-            if (lastCheckTimeutc.AddDays(30) >= Os.Current.UtcNow)
+            if (lastCheckTimeutc.AddDays(30) >= OS.Current.UtcNow)
             {
                 return VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck;
             }

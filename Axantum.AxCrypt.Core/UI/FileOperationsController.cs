@@ -82,12 +82,12 @@ namespace Axantum.AxCrypt.Core.UI
 
         public bool EncryptFile(string file)
         {
-            if (String.Compare(Path.GetExtension(file), Os.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
+            if (String.Compare(Path.GetExtension(file), OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return false;
             }
-            IRuntimeFileInfo sourceFileInfo = Os.Current.FileInfo(file);
-            IRuntimeFileInfo destinationFileInfo = Os.Current.FileInfo(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
+            IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(file);
+            IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
             FileOperationEventArgs e = new FileOperationEventArgs();
             e.SaveFileName = destinationFileInfo.FullName;
             e.OpenFileName = file;

@@ -28,6 +28,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using Axantum.AxCrypt.Core.UI;
@@ -37,7 +38,7 @@ namespace Axantum.AxCrypt.Core.System
     /// <summary>
     /// Perform work on a separate thread with support for progress and cancellation.
     /// </summary>
-    public class ThreadWorker
+    public class ThreadWorker : IDisposable
     {
         private BackgroundWorker _worker;
 
@@ -80,12 +81,21 @@ namespace Axantum.AxCrypt.Core.System
         /// </summary>
         public void Run()
         {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException("ThreadWorker");
+            }
             OnPrepare(new ThreadWorkerEventArgs(_worker));
             _worker.RunWorkerAsync(_progress);
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Here we really do want to catch everything, and report to the user.")]
         private void _worker_DoWork(object sender, DoWorkEventArgs e)
         {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException("ThreadWorker");
+            }
             try
             {
                 e.Result = _work((ProgressContext)e.Argument);
@@ -96,9 +106,9 @@ namespace Axantum.AxCrypt.Core.System
             }
             catch (Exception ex)
             {
-                if (Os.Log.IsWarningEnabled)
+                if (OS.Log.IsWarningEnabled)
                 {
-                    Os.Log.Warning("Exception during encryption '{0}'".InvariantFormat(ex.Message));
+                    OS.Log.LogWarning("Exception during encryption '{0}'".InvariantFormat(ex.Message));
                 }
                 e.Result = FileOperationStatus.Exception;
             }
@@ -107,11 +117,19 @@ namespace Axantum.AxCrypt.Core.System
 
         private void _worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException("ThreadWorker");
+            }
             OnProgress(new ThreadWorkerEventArgs(_worker, e.ProgressPercentage));
         }
 
         private void _worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException("ThreadWorker");
+            }
             try
             {
                 _complete((FileOperationStatus)e.Result);
@@ -122,15 +140,11 @@ namespace Axantum.AxCrypt.Core.System
                 _worker.DoWork -= _worker_DoWork;
                 _worker.RunWorkerCompleted -= _worker_RunWorkerCompleted;
                 _worker.ProgressChanged -= _worker_ProgressChanged;
-                IDisposable workerAsDisposibleWhichIsPlatformDependent = _worker as IDisposable;
-                if (workerAsDisposibleWhichIsPlatformDependent != null)
-                {
-                    workerAsDisposibleWhichIsPlatformDependent.Dispose();
-                }
+                Dispose();
             }
-            if (Os.Log.IsInfoEnabled)
+            if (OS.Log.IsInfoEnabled)
             {
-                Os.Log.Info("Disposing BackgroundWorker");
+                OS.Log.LogInfo("BackgroundWorker Disposed.");
             }
         }
 
@@ -177,6 +191,41 @@ namespace Axantum.AxCrypt.Core.System
             {
                 handler(this, e);
             }
+        }
+
+        #region IDisposable Members
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        #endregion IDisposable Members
+
+        private bool _disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                if (_worker != null)
+                {
+                    IDisposable workerAsDisposibleWhichIsPlatformDependent = _worker as IDisposable;
+                    if (workerAsDisposibleWhichIsPlatformDependent != null)
+                    {
+                        workerAsDisposibleWhichIsPlatformDependent.Dispose();
+                    }
+                    _worker = null;
+                }
+            }
+
+            _disposed = true;
         }
     }
 }

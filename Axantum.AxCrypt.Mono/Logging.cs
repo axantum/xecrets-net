@@ -39,7 +39,7 @@ namespace Axantum.AxCrypt.Mono
                     _switch.Level = TraceLevel.Verbose;
                     break;
                 default:
-                    throw new ArgumentException("level");
+                    throw new ArgumentException("level must be a value form the LogLevel enumeration.");
             }
         }
 
@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Mono
             get { return _switch.Level >= TraceLevel.Verbose; }
         }
 
-        public void Fatal(string message)
+        public void LogFatal(string message)
         {
             if (IsFatalEnabled)
             {
@@ -76,7 +76,7 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        public void Error(string message)
+        public void LogError(string message)
         {
             if (IsErrorEnabled)
             {
@@ -84,7 +84,7 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        public void Warning(string message)
+        public void LogWarning(string message)
         {
             if (IsWarningEnabled)
             {
@@ -92,7 +92,7 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        public void Info(string message)
+        public void LogInfo(string message)
         {
             if (IsInfoEnabled)
             {
@@ -100,7 +100,7 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        public void Debug(string message)
+        public void LogDebug(string message)
         {
             if (IsDebugEnabled)
             {

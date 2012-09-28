@@ -43,14 +43,14 @@ namespace Axantum.AxCrypt.Mono.Test
         [SetUp]
         public static void Setup()
         {
-            _previousEnvironment = Os.Current;
-            Os.Current = new RuntimeEnvironment();
+            _previousEnvironment = OS.Current;
+            OS.Current = new RuntimeEnvironment();
         }
 
         [TearDown]
         public static void Teardown()
         {
-            Os.Current = _previousEnvironment;
+            OS.Current = _previousEnvironment;
         }
 
         [Test]
@@ -109,7 +109,7 @@ namespace Axantum.AxCrypt.Mono.Test
 
                 DateTime dateTime = DateTime.Parse("2012-02-29 12:00:00", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
                 runtimeFileInfo.SetFileTimes(dateTime, dateTime + new TimeSpan(3, 0, 0), dateTime + new TimeSpan(5, 0, 0));
-                if (Os.Current.Platform == Platform.WindowsDesktop)
+                if (OS.Current.Platform == Platform.WindowsDesktop)
                 {
                     Assert.That(runtimeFileInfo.CreationTimeUtc, Is.EqualTo(dateTime), "The creation time should be as set.");
                 }

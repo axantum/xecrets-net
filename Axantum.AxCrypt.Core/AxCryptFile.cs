@@ -122,8 +122,8 @@ namespace Axantum.AxCrypt.Core
 
         public static void EncryptFileWithBackupAndWipe(string sourceFile, string destinationFile, AesKey key, ProgressContext progress)
         {
-            IRuntimeFileInfo sourceFileInfo = Os.Current.FileInfo(sourceFile);
-            IRuntimeFileInfo destinationFileInfo = Os.Current.FileInfo(destinationFile);
+            IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(sourceFile);
+            IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(destinationFile);
             EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, key, progress);
         }
 
@@ -224,7 +224,7 @@ namespace Axantum.AxCrypt.Core
                     return destinationFileName;
                 }
                 destinationFileName = document.DocumentHeaders.FileName;
-                IRuntimeFileInfo destinationFullPath = Os.Current.FileInfo(Path.Combine(destinationDirectory, destinationFileName));
+                IRuntimeFileInfo destinationFullPath = OS.Current.FileInfo(Path.Combine(destinationDirectory, destinationFileName));
                 Decrypt(document, destinationFullPath, options, progress);
             }
             return destinationFileName;
@@ -251,9 +251,9 @@ namespace Axantum.AxCrypt.Core
             }
             try
             {
-                if (Os.Log.IsInfoEnabled)
+                if (OS.Log.IsInfoEnabled)
                 {
-                    Os.Log.Info("Decrypting to '{0}'.".InvariantFormat(destinationFile.Name));
+                    OS.Log.LogInfo("Decrypting to '{0}'.".InvariantFormat(destinationFile.Name));
                 }
 
                 using (Stream destinationStream = destinationFile.OpenWrite())
@@ -261,9 +261,9 @@ namespace Axantum.AxCrypt.Core
                     document.DecryptTo(destinationStream, progress);
                 }
 
-                if (Os.Log.IsInfoEnabled)
+                if (OS.Log.IsInfoEnabled)
                 {
-                    Os.Log.Info("Decrypted to '{0}'.".InvariantFormat(destinationFile.Name));
+                    OS.Log.LogInfo("Decrypted to '{0}'.".InvariantFormat(destinationFile.Name));
                 }
             }
             catch (OperationCanceledException)
@@ -319,7 +319,7 @@ namespace Axantum.AxCrypt.Core
             }
 
             string temporaryFilePath = MakeAlternatePath(destinationFileInfo, ".tmp");
-            IRuntimeFileInfo temporaryFileInfo = Os.Current.FileInfo(temporaryFilePath);
+            IRuntimeFileInfo temporaryFileInfo = OS.Current.FileInfo(temporaryFilePath);
 
             try
             {
@@ -340,7 +340,7 @@ namespace Axantum.AxCrypt.Core
             if (destinationFileInfo.Exists)
             {
                 string backupFilePath = MakeAlternatePath(destinationFileInfo, ".bak");
-                IRuntimeFileInfo backupFileInfo = Os.Current.FileInfo(destinationFileInfo.FullName);
+                IRuntimeFileInfo backupFileInfo = OS.Current.FileInfo(destinationFileInfo.FullName);
 
                 backupFileInfo.MoveTo(backupFilePath);
                 temporaryFileInfo.MoveTo(destinationFileInfo.FullName);
@@ -361,7 +361,7 @@ namespace Axantum.AxCrypt.Core
             {
                 string alternateExtension = (version > 0 ? "." + version.ToString(CultureInfo.InvariantCulture) : String.Empty) + extension;
                 alternatePath = Path.Combine(Path.GetDirectoryName(fileInfo.FullName), Path.GetFileNameWithoutExtension(fileInfo.Name) + alternateExtension);
-                alternateFileInfo = Os.Current.FileInfo(alternatePath);
+                alternateFileInfo = OS.Current.FileInfo(alternatePath);
                 ++version;
             } while (alternateFileInfo.Exists);
 
@@ -374,7 +374,7 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("fileInfo");
             }
-            string axCryptExtension = Os.Current.AxCryptExtension;
+            string axCryptExtension = OS.Current.AxCryptExtension;
             string originalExtension = Path.GetExtension(fileInfo.Name);
             string modifiedExtension = originalExtension.Length == 0 ? String.Empty : "-" + originalExtension.Substring(1);
             string axCryptFileName = Path.Combine(Path.GetDirectoryName(fileInfo.FullName), Path.GetFileNameWithoutExtension(fileInfo.Name) + modifiedExtension + axCryptExtension);
@@ -390,9 +390,9 @@ namespace Axantum.AxCrypt.Core
             }
             if (fileInfo.Exists)
             {
-                if (Os.Log.IsInfoEnabled)
+                if (OS.Log.IsInfoEnabled)
                 {
-                    Os.Log.Info("Wiping '{0}'.".InvariantFormat(fileInfo.Name));
+                    OS.Log.LogInfo("Wiping '{0}'.".InvariantFormat(fileInfo.Name));
                 }
                 fileInfo.Delete();
             }

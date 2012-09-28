@@ -78,9 +78,9 @@ namespace Axantum.AxCrypt.Mono
 
         private void FileSystemChanged(string fullPath)
         {
-            if (Os.Log.IsInfoEnabled)
+            if (OS.Log.IsInfoEnabled)
             {
-                Os.Log.Info("Watcher says '{0}' changed.".InvariantFormat(fullPath));
+                OS.Log.LogInfo("Watcher says '{0}' changed.".InvariantFormat(fullPath));
             }
             OnChanged(new FileWatcherEventArgs(fullPath));
         }

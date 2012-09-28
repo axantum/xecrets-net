@@ -44,36 +44,36 @@ namespace Axantum.AxCrypt.Mono.Test
         [SetUp]
         public static void Setup()
         {
-            _previousEnvironment = Os.Current;
-            Os.Current = new RuntimeEnvironment();
+            _previousEnvironment = OS.Current;
+            OS.Current = new RuntimeEnvironment();
         }
 
         [TearDown]
         public static void Teardown()
         {
-            Os.Current = _previousEnvironment;
+            OS.Current = _previousEnvironment;
         }
 
         [Test]
         public static void TestAxCryptExtension()
         {
-            Assert.That(Os.Current.AxCryptExtension, Is.EqualTo(".axx"), "Checking the standard AxCrypt extension.");
+            Assert.That(OS.Current.AxCryptExtension, Is.EqualTo(".axx"), "Checking the standard AxCrypt extension.");
         }
 
         [Test]
         public static void TestIfIsLittleEndian()
         {
-            Assert.That(Os.Current.IsLittleEndian, Is.EqualTo(BitConverter.IsLittleEndian), "Checking endianess.");
+            Assert.That(OS.Current.IsLittleEndian, Is.EqualTo(BitConverter.IsLittleEndian), "Checking endianess.");
         }
 
         [Test]
         public static void TestRandomBytes()
         {
-            byte[] randomBytes = Os.Current.GetRandomBytes(100);
+            byte[] randomBytes = OS.Current.GetRandomBytes(100);
             Assert.That(randomBytes.Length, Is.EqualTo(100), "Ensuring we really got the right number of bytes.");
             Assert.That(randomBytes, Is.Not.EquivalentTo(new byte[100]), "It is not in practice possible that all zero bytes are returned by GetRandomBytes().");
 
-            randomBytes = Os.Current.GetRandomBytes(1000);
+            randomBytes = OS.Current.GetRandomBytes(1000);
             double average = randomBytes.Average(b => b);
             Assert.That(average >= 120 && average <= 135, "Unscientific, but the sample sequence should not vary much from a mean of 127.5, but was {0}".InvariantFormat(average));
         }
@@ -81,19 +81,19 @@ namespace Axantum.AxCrypt.Mono.Test
         [Test]
         public static void TestRuntimeFileInfo()
         {
-            IRuntimeFileInfo runtimeFileInfo = Os.Current.FileInfo(Path.Combine(Path.GetTempPath(), "A File.txt"));
+            IRuntimeFileInfo runtimeFileInfo = OS.Current.FileInfo(Path.Combine(Path.GetTempPath(), "A File.txt"));
             Assert.That(runtimeFileInfo is RuntimeFileInfo, "The instance returned should be of type RuntimeFileInfo");
             Assert.That(runtimeFileInfo.Name, Is.EqualTo("A File.txt"));
-            runtimeFileInfo = Os.Current.FileInfo(Path.Combine(Path.GetTempPath(), "A File.txt"));
+            runtimeFileInfo = OS.Current.FileInfo(Path.Combine(Path.GetTempPath(), "A File.txt"));
             Assert.That(runtimeFileInfo.Name, Is.EqualTo("A File.txt"));
         }
 
         [Test]
         public static void TestTemporaryDirectoryInfo()
         {
-            IRuntimeFileInfo tempInfo = Os.Current.TemporaryDirectoryInfo;
+            IRuntimeFileInfo tempInfo = OS.Current.TemporaryDirectoryInfo;
             Assert.That(tempInfo is RuntimeFileInfo, "The instance returned should be of type RuntimeFileInfo");
-            IRuntimeFileInfo tempFileInfo = Os.Current.FileInfo(Path.Combine(tempInfo.FullName, "AxCryptTestTemp.tmp"));
+            IRuntimeFileInfo tempFileInfo = OS.Current.FileInfo(Path.Combine(tempInfo.FullName, "AxCryptTestTemp.tmp"));
             Assert.DoesNotThrow(() =>
             {
                 try
@@ -113,7 +113,7 @@ namespace Axantum.AxCrypt.Mono.Test
         public static void TestUtcNow()
         {
             DateTime utcNow = DateTime.UtcNow;
-            DateTime utcNowAgain = Os.Current.UtcNow;
+            DateTime utcNowAgain = OS.Current.UtcNow;
             Assert.That(utcNowAgain - utcNow < new TimeSpan(0, 0, 1), "The difference should not be greater than one second, that's not reasonable.");
         }
 
@@ -121,13 +121,13 @@ namespace Axantum.AxCrypt.Mono.Test
         public static void TestFileWatcher()
         {
             bool wasHere = false;
-            using (IFileWatcher fileWatcher = Os.Current.FileWatcher(Os.Current.TemporaryDirectoryInfo.FullName))
+            using (IFileWatcher fileWatcher = OS.Current.FileWatcher(OS.Current.TemporaryDirectoryInfo.FullName))
             {
                 fileWatcher.FileChanged += (object sender, FileWatcherEventArgs e) =>
                 {
                     wasHere = true;
                 };
-                IRuntimeFileInfo tempFileInfo = Os.Current.FileInfo(Path.Combine(Os.Current.TemporaryDirectoryInfo.FullName, "AxCryptTestTemp.tmp"));
+                IRuntimeFileInfo tempFileInfo = OS.Current.FileInfo(Path.Combine(OS.Current.TemporaryDirectoryInfo.FullName, "AxCryptTestTemp.tmp"));
                 try
                 {
                     using (Stream stream = tempFileInfo.OpenWrite())
@@ -155,8 +155,8 @@ namespace Axantum.AxCrypt.Mono.Test
         public static void TestChangedEvent()
         {
             bool wasHere = false;
-            Os.Current.FileChanged += (object sender, EventArgs e) => { wasHere = true; };
-            Os.Current.NotifyFileChanged();
+            OS.Current.FileChanged += (object sender, EventArgs e) => { wasHere = true; };
+            OS.Current.NotifyFileChanged();
 
             Assert.That(wasHere, Is.True, "The RaiseChanged() method should raise the event.");
         }

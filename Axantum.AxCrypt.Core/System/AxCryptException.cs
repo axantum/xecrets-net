@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 using System.Security.Permissions;
 
@@ -60,6 +61,7 @@ namespace Axantum.AxCrypt.Core.System
             ErrorStatus = errorStatus;
         }
 
+        [SuppressMessage("Microsoft.Security", "CA2123:OverrideLinkDemandsShouldBeIdenticalToBase", Justification = "CAS is obsoleted by some target platforms.")]
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             base.GetObjectData(info, context);

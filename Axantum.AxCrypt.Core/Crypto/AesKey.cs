@@ -46,7 +46,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         public AesKey()
         {
-            _aesKey = Os.Current.GetRandomBytes(16);
+            _aesKey = OS.Current.GetRandomBytes(16);
         }
 
         /// <summary>

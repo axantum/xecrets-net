@@ -47,12 +47,12 @@ namespace Axantum.AxCrypt.Mono
 
         public Stream OpenRead()
         {
-            return new FileStream(_file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read, Os.Current.StreamBufferSize);
+            return new FileStream(_file.FullName, FileMode.Open, FileAccess.Read, FileShare.Read, OS.Current.StreamBufferSize);
         }
 
         public Stream OpenWrite()
         {
-            return new FileStream(_file.FullName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None, Os.Current.StreamBufferSize);
+            return new FileStream(_file.FullName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None, OS.Current.StreamBufferSize);
         }
 
         public string Name

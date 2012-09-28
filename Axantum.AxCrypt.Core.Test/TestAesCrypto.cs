@@ -43,23 +43,23 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.Throws<ArgumentNullException>(() =>
             {
-                new AesCrypto(null);
+                if (new AesCrypto(null) == null) { }
             });
 
             Assert.Throws<ArgumentNullException>(() =>
             {
-                new AesCrypto(null, iv, CipherMode.CBC, PaddingMode.None);
+                if (new AesCrypto(null, iv, CipherMode.CBC, PaddingMode.None) == null) { }
             });
 
             Assert.Throws<ArgumentNullException>(() =>
             {
-                new AesCrypto(key, null, CipherMode.CBC, PaddingMode.None);
+                if (new AesCrypto(key, null, CipherMode.CBC, PaddingMode.None) == null) { }
             });
 
             Assert.DoesNotThrow(() =>
-			{
-				new AesCrypto(key, iv, CipherMode.CBC, PaddingMode.None);
-			});
+            {
+                if (new AesCrypto(key, iv, CipherMode.CBC, PaddingMode.None) == null) { }
+            });
         }
 
         [Test]

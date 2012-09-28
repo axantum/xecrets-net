@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private object _context;
 
-        private ITiming _stopwatch = Os.Current.StartTiming();
+        private ITiming _stopwatch = OS.Current.StartTiming();
 
         private TimeSpan _nextElapsed;
 

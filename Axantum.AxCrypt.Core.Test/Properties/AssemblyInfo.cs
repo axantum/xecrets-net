@@ -32,6 +32,7 @@ using System.Resources;
 using System.Runtime.InteropServices;
 
 [assembly: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "Axantum.AxCrypt.Core.Test", Justification = "This will pass...")]
+[module: SuppressMessage("Microsoft.Naming", "CA1703:ResourceStringsShouldBeSpelledCorrectly", Scope = "resource", Target = "Axantum.AxCrypt.Core.Test.Properties.Resources.resources")]
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
