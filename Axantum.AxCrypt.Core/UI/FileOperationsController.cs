@@ -119,19 +119,8 @@ namespace Axantum.AxCrypt.Core.UI
 
         private static FileOperationStatus EncryptFileOperation(FileOperationEventArgs e)
         {
-            try
-            {
-                AxCryptFile.EncryptFileWithBackupAndWipe(e.OpenFileName, e.SaveFileName, e.Key, e.Progress);
-                return FileOperationStatus.Success;
-            }
-            catch (Exception ex)
-            {
-                if (Os.Log.IsWarningEnabled)
-                {
-                    Os.Log.Warning("Exception during encryption '{0}'".InvariantFormat(ex.Message));
-                }
-                return FileOperationStatus.Exception;
-            }
+            AxCryptFile.EncryptFileWithBackupAndWipe(e.OpenFileName, e.SaveFileName, e.Key, e.Progress);
+            return FileOperationStatus.Success;
         }
     }
 }

@@ -63,14 +63,14 @@ namespace Axantum.AxCrypt
 
         public void FormatTraceMessage(string message)
         {
-            ThreadFacade.SafeUi(() =>
+            ThreadSafeUi(() =>
             {
                 string formatted = "{0} {1}".InvariantFormat(Os.Current.UtcNow.ToString("o", CultureInfo.InvariantCulture), message.TrimLogMessage()); //MLHIDE
                 LogOutput.AppendText(formatted);
             });
         }
 
-        private MainFormThreadFacade ThreadFacade { get; set; }
+        private ProgressBackgroundWorker ProgressBackgroundWorker { get; set; }
 
         private FileSystemState FileSystemState { get; set; }
 
@@ -87,7 +87,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            ThreadFacade = new MainFormThreadFacade(this);
+            ProgressBackgroundWorker = new ProgressBackgroundWorker(this);
 
             Trace.Listeners.Add(new DelegateTraceListener("AxCryptMainFormListener", FormatTraceMessage)); //MLHIDE
 
@@ -109,6 +109,18 @@ namespace Axantum.AxCrypt
 
             EncryptedFileManager.UpdateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(VersionUpdated);
             UpdateCheck(Settings.Default.LastUpdateCheckUtc);
+        }
+
+        private void ThreadSafeUi(Action action)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(action);
+            }
+            else
+            {
+                action();
+            }
         }
 
         private void UpdateCheck(DateTime lastCheckUtc)
@@ -151,17 +163,17 @@ namespace Axantum.AxCrypt
             Settings.Default.NewestKnownVersion = e.Version.ToString();
             Settings.Default.Save();
             _updateUrl = e.UpdateWebpageUrl;
-            ThreadFacade.SafeUi(() => { UpdateVersionStatus(e.VersionUpdateStatus, e.Version); });
+            ThreadSafeUi(() => { UpdateVersionStatus(e.VersionUpdateStatus, e.Version); });
         }
 
         private void FileSystemOrStateChanged(object sender, EventArgs e)
         {
-            ThreadFacade.SafeUi(RestartTimer);
+            ThreadSafeUi(RestartTimer);
         }
 
         private void ActiveFileChanged(object sender, ActiveFileChangedEventArgs e)
         {
-            ThreadFacade.SafeUi(() => { UpdateActiveFilesViews(e.ActiveFile); });
+            ThreadSafeUi(() => { UpdateActiveFilesViews(e.ActiveFile); });
         }
 
         private void AxCryptMainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -171,10 +183,10 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            ThreadFacade.WaitForBackgroundIdle();
+            ProgressBackgroundWorker.WaitForBackgroundIdle();
             TrackProcess = false;
             PurgeActiveFiles();
-            ThreadFacade.WaitForBackgroundIdle();
+            ProgressBackgroundWorker.WaitForBackgroundIdle();
             Trace.Listeners.Remove("AxCryptMainFormListener");        //MLHIDE
         }
 
@@ -349,15 +361,14 @@ namespace Axantum.AxCrypt
 
             operationsController.FileOperationRequest += (object sender, FileOperationEventArgs e) =>
             {
-                ThreadFacade.DoBackgroundWork(file,
+                ProgressBackgroundWorker.BackgroundWorkWithProgress(file,
                     (WorkerArguments arguments) =>
                     {
                         e.Progress = arguments.Progress;
-                        arguments.Result = operationsController.DoOperation(e);
+                        return operationsController.DoOperation(e);
                     },
-                    (object senderCompleted, RunWorkerCompletedEventArgs eCompleted) =>
+                    (FileOperationStatus status) =>
                     {
-                        FileOperationStatus status = (FileOperationStatus)eCompleted.Result;
                         CheckStatusAndShowMessage(status, file);
                     });
             };
@@ -458,7 +469,7 @@ namespace Axantum.AxCrypt
             {
                 return false;
             }
-            ThreadFacade.DoBackgroundWork(source.Name,
+            ProgressBackgroundWorker.BackgroundWorkWithProgress(source.Name,
                 (WorkerArguments arguments) =>
                 {
                     try
@@ -470,11 +481,10 @@ namespace Axantum.AxCrypt
                         document.Dispose();
                     }
                     AxCryptFile.Wipe(source);
-                    arguments.Result = FileOperationStatus.Success;
+                    return FileOperationStatus.Success;
                 },
-                (object sender, RunWorkerCompletedEventArgs e) =>
+                (FileOperationStatus status) =>
                 {
-                    FileOperationStatus status = (FileOperationStatus)e.Result;
                     CheckStatusAndShowMessage(status, source.Name);
                 });
             return true;
@@ -586,14 +596,13 @@ namespace Axantum.AxCrypt
 
         private void OpenEncrypted(string file)
         {
-            ThreadFacade.DoBackgroundWork(Path.GetFileName(file),
+            ProgressBackgroundWorker.BackgroundWorkWithProgress(Path.GetFileName(file),
                 (WorkerArguments arguments) =>
                 {
-                    arguments.Result = FileSystemState.OpenAndLaunchApplication(file, FileSystemState.KnownKeys.Keys, arguments.Progress);
+                    return FileSystemState.OpenAndLaunchApplication(file, FileSystemState.KnownKeys.Keys, arguments.Progress);
                 },
-                (object sender, RunWorkerCompletedEventArgs e) =>
+                (FileOperationStatus status) =>
                 {
-                    FileOperationStatus status = (FileOperationStatus)e.Result;
                     if (status == FileOperationStatus.InvalidKey)
                     {
                         AskForPassphraseAndOpenEncrypted(file);
@@ -611,14 +620,13 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-            ThreadFacade.DoBackgroundWork(Path.GetFileName(file),
+            ProgressBackgroundWorker.BackgroundWorkWithProgress(Path.GetFileName(file),
                 (WorkerArguments arguments) =>
                 {
-                    arguments.Result = FileSystemState.OpenAndLaunchApplication(file, new AesKey[] { passphrase.DerivedPassphrase }, arguments.Progress);
+                    return FileSystemState.OpenAndLaunchApplication(file, new AesKey[] { passphrase.DerivedPassphrase }, arguments.Progress);
                 },
-                (object sender, RunWorkerCompletedEventArgs e) =>
+                (FileOperationStatus status) =>
                 {
-                    FileOperationStatus status = (FileOperationStatus)e.Result;
                     if (status == FileOperationStatus.Success)
                     {
                         AddKnownKey(passphrase.DerivedPassphrase);
@@ -672,12 +680,13 @@ namespace Axantum.AxCrypt
             try
             {
                 _pollingInProgress = true;
-                ThreadFacade.DoBackgroundWork(Resources.UpdatingStatus,
+                ProgressBackgroundWorker.BackgroundWorkWithProgress(Resources.UpdatingStatus,
                     (WorkerArguments arguments) =>
                     {
                         FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, arguments.Progress);
+                        return FileOperationStatus.Success;
                     },
-                    (object sender1, RunWorkerCompletedEventArgs e1) =>
+                    (FileOperationStatus status) =>
                     {
                         CloseAndRemoveOpenFilesButton.Enabled = OpenFilesListView.Items.Count > 0;
                     });
@@ -719,14 +728,20 @@ namespace Axantum.AxCrypt
 
         private void PurgeActiveFiles()
         {
-            ThreadFacade.DoBackgroundWork(Resources.PurgingActiveFiles,
+            ProgressBackgroundWorker.BackgroundWorkWithProgress(Resources.PurgingActiveFiles,
                 (WorkerArguments arguments) =>
                 {
                     FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, arguments.Progress);
                     FileSystemState.PurgeActiveFiles(arguments.Progress);
+                    return FileOperationStatus.Success;
                 },
-                (object sender, RunWorkerCompletedEventArgs e) =>
+                (FileOperationStatus status) =>
                 {
+                    if (status != FileOperationStatus.Success)
+                    {
+                        CheckStatusAndShowMessage(status, Resources.PurgingActiveFiles);
+                        return;
+                    }
                     IList<ActiveFile> openFiles = FileSystemState.DecryptedActiveFiles;
                     if (openFiles.Count == 0)
                     {

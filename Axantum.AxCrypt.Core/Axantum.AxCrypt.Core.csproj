@@ -192,6 +192,8 @@
     <Compile Include="Session\FileSystemStateExtensions.cs" />
     <Compile Include="Session\ActiveFileStatus.cs" />
     <Compile Include="Session\FileSystemState.cs" />
+    <Compile Include="System\ThreadWorker.cs" />
+    <Compile Include="System\ThreadWorkerEventArgs.cs" />
     <Compile Include="UI\FileOperation.cs" />
     <Compile Include="UI\FileOperationEventArgs.cs" />
     <Compile Include="UI\FileOperationsController.cs" />

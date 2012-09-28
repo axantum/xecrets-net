@@ -47,6 +47,11 @@ namespace Axantum.AxCrypt.Core.UI
         {
         }
 
+        public ProgressContext(string displayText)
+            : this(displayText, null)
+        {
+        }
+
         public ProgressContext(string displayText, object context)
             : this(displayText, context, DefaultFirstDelay)
         {
