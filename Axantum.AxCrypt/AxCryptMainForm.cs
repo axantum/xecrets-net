@@ -353,6 +353,7 @@ namespace Axantum.AxCrypt
                     Settings.Default.Save();
                 }
                 e.Passphrase = passphraseDialog.PassphraseTextBox.Text;
+                FileSystemState.KnownKeys.DefaultEncryptionKey = new Passphrase(e.Passphrase).DerivedPassphrase;
             };
 
             operationsController.FileOperationRequest += (object sender, FileOperationEventArgs e) =>
@@ -455,105 +456,52 @@ namespace Axantum.AxCrypt
 
         private bool DecryptFile(IRuntimeFileInfo source)
         {
-            AxCryptDocument document = GetDocumentToDecrypt(source);
-            if (document == null)
-            {
-                return false;
-            }
-            IRuntimeFileInfo destination = GetDestination(source, document.DocumentHeaders.FileName);
-            if (destination == null)
-            {
-                return false;
-            }
-            progressBackgroundWorker.BackgroundWorkWithProgress(source.Name,
-                (ProgressContext progress) =>
-                {
-                    try
-                    {
-                        AxCryptFile.Decrypt(document, destination, AxCryptOptions.SetFileTimes, progress);
-                    }
-                    finally
-                    {
-                        document.Dispose();
-                    }
-                    AxCryptFile.Wipe(source);
-                    return FileOperationStatus.Success;
-                },
-                (FileOperationStatus status) =>
-                {
-                    CheckStatusAndShowMessage(status, source.Name);
-                });
-            return true;
-        }
+            FileOperationsController operationsController = new FileOperationsController(FileSystemState);
 
-        private AxCryptDocument GetDocumentToDecrypt(IRuntimeFileInfo source)
-        {
-            AxCryptDocument document = null;
-            try
-            {
-                foreach (AesKey key in FileSystemState.KnownKeys.Keys)
-                {
-                    document = AxCryptFile.Document(source, key, new ProgressContext());
-                    if (document.PassphraseIsValid)
-                    {
-                        return document;
-                    }
-                    document.Dispose();
-                    document = null;
-                }
+            operationsController.DecryptionPassphraseRequest += HandleDecryptionPassphraseRequest;
 
-                Passphrase passphrase;
-                while (true)
-                {
-                    passphrase = AskForDecryptPassphrase();
-                    if (passphrase == null)
-                    {
-                        return null;
-                    }
-                    document = AxCryptFile.Document(source, passphrase.DerivedPassphrase, new ProgressContext());
-                    if (document.PassphraseIsValid)
-                    {
-                        AddKnownKey(document.DocumentHeaders.KeyEncryptingKey);
-                        return document;
-                    }
-                    document.Dispose();
-                    document = null;
-                }
-            }
-            catch (Exception)
+            operationsController.SaveFileRequest += (object sender, FileOperationEventArgs e) =>
             {
-                if (document != null)
+                string extension = Path.GetExtension(e.SaveFileName);
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.AddExtension = !String.IsNullOrEmpty(extension);
+                sfd.CheckPathExists = true;
+                sfd.DefaultExt = extension;
+                sfd.Filter = Resources.DecryptedSaveAsFileDialogFilterPattern.InvariantFormat(extension);
+                sfd.InitialDirectory = Path.GetDirectoryName(source.FullName);
+                sfd.OverwritePrompt = true;
+                sfd.RestoreDirectory = true;
+                sfd.Title = Resources.DecryptedSaveAsFileDialogTitle;
+                DialogResult result = sfd.ShowDialog();
+                if (result != DialogResult.OK)
                 {
-                    document.Dispose();
+                    e.Cancel = true;
+                    return;
                 }
-                throw;
-            }
-        }
+                e.SaveFileName = sfd.FileName;
+                return;
+            };
 
-        private static IRuntimeFileInfo GetDestination(IRuntimeFileInfo source, string fileName)
-        {
-            IRuntimeFileInfo destination = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(source.FullName), fileName));
-            if (!destination.Exists)
+            operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
             {
-                return destination;
-            }
-            string extension = Path.GetExtension(destination.FullName);
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.AddExtension = !String.IsNullOrEmpty(extension);
-            sfd.CheckPathExists = true;
-            sfd.DefaultExt = extension;
-            sfd.Filter = Resources.DecryptedSaveAsFileDialogFilterPattern.InvariantFormat(extension);
-            sfd.InitialDirectory = Path.GetDirectoryName(source.FullName);
-            sfd.OverwritePrompt = true;
-            sfd.RestoreDirectory = true;
-            sfd.Title = Resources.DecryptedSaveAsFileDialogTitle;
-            DialogResult result = sfd.ShowDialog();
-            if (result != DialogResult.OK)
+                AddKnownKey(e.Key);
+            };
+
+            operationsController.FileOperationRequest += (object sender, FileOperationEventArgs e) =>
             {
-                return null;
-            }
-            destination = OS.Current.FileInfo(sfd.FileName);
-            return destination;
+                progressBackgroundWorker.BackgroundWorkWithProgress(source.Name,
+                    (ProgressContext progressContext) =>
+                    {
+                        e.Progress = progressContext;
+                        return operationsController.DoOperation(e);
+                    },
+                    (FileOperationStatus status) =>
+                    {
+                        CheckStatusAndShowMessage(status, source.Name);
+                    });
+            };
+
+            return operationsController.DecryptFile(source.FullName);
         }
 
         private void AddKnownKey(AesKey key)
@@ -635,6 +583,24 @@ namespace Axantum.AxCrypt
                     }
                     CheckStatusAndShowMessage(status, file);
                 });
+        }
+
+        private void HandleDecryptionPassphraseRequest(object sender, FileOperationEventArgs e)
+        {
+            DecryptPassphraseDialog passphraseDialog = new DecryptPassphraseDialog();
+            passphraseDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowDecryptPassphrase;
+            DialogResult dialogResult = passphraseDialog.ShowDialog(this);
+            if (dialogResult != DialogResult.OK)
+            {
+                e.Cancel = true;
+                return;
+            }
+            if (passphraseDialog.ShowPassphraseCheckBox.Checked != Settings.Default.ShowDecryptPassphrase)
+            {
+                Settings.Default.ShowDecryptPassphrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
+                Settings.Default.Save();
+            }
+            e.Passphrase = passphraseDialog.Passphrase.Text;
         }
 
         private Passphrase AskForDecryptPassphrase()

@@ -56,6 +56,17 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
+        public event EventHandler<FileOperationEventArgs> DecryptionPassphraseRequest;
+
+        protected virtual void OnDecryptionPassphraseRequest(FileOperationEventArgs e)
+        {
+            EventHandler<FileOperationEventArgs> handler = DecryptionPassphraseRequest;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
         public event EventHandler<FileOperationEventArgs> EncryptionPassphraseRequest;
 
         protected virtual void OnEncryptionPassphraseRequest(FileOperationEventArgs e)
@@ -72,6 +83,28 @@ namespace Axantum.AxCrypt.Core.UI
         protected virtual void OnFileOperationRequest(FileOperationEventArgs e)
         {
             EventHandler<FileOperationEventArgs> handler = FileOperationRequest;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        public event EventHandler<FileOperationEventArgs> KnownKeyAdded;
+
+        protected virtual void OnKnownKeyAdded(FileOperationEventArgs e)
+        {
+            EventHandler<FileOperationEventArgs> handler = KnownKeyAdded;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        public event EventHandler<FileOperationEventArgs> DefaultEncryptionKeySet;
+
+        protected virtual void OnDefaultEncryptionKeySet(FileOperationEventArgs e)
+        {
+            EventHandler<FileOperationEventArgs> handler = DefaultEncryptionKeySet;
             if (handler != null)
             {
                 handler(this, e);
@@ -108,13 +141,95 @@ namespace Axantum.AxCrypt.Core.UI
                     return false;
                 }
                 Passphrase passphrase = new Passphrase(e.Passphrase);
-                _fileSystemState.KnownKeys.DefaultEncryptionKey = passphrase.DerivedPassphrase;
+                e.Key = passphrase.DerivedPassphrase;
             }
-
-            e.Key = _fileSystemState.KnownKeys.DefaultEncryptionKey;
+            else
+            {
+                e.Key = _fileSystemState.KnownKeys.DefaultEncryptionKey;
+            }
             DoOperation = EncryptFileOperation;
             OnFileOperationRequest(e);
             return true;
+        }
+
+        public bool DecryptFile(string file)
+        {
+            FileOperationEventArgs e = new FileOperationEventArgs();
+
+            e.AxCryptDocument = null;
+            try
+            {
+                IRuntimeFileInfo source = OS.Current.FileInfo(file);
+                e.OpenFileName = source.FullName;
+                foreach (AesKey key in _fileSystemState.KnownKeys.Keys)
+                {
+                    e.AxCryptDocument = AxCryptFile.Document(source, key, new ProgressContext());
+                    if (e.AxCryptDocument.PassphraseIsValid)
+                    {
+                        break;
+                    }
+                    e.AxCryptDocument.Dispose();
+                    e.AxCryptDocument = null;
+                }
+
+                Passphrase passphrase;
+                while (e.AxCryptDocument == null)
+                {
+                    OnDecryptionPassphraseRequest(e);
+                    if (e.Cancel)
+                    {
+                        return false;
+                    }
+                    passphrase = new Passphrase(e.Passphrase);
+                    e.AxCryptDocument = AxCryptFile.Document(source, passphrase.DerivedPassphrase, new ProgressContext());
+                    if (!e.AxCryptDocument.PassphraseIsValid)
+                    {
+                        e.AxCryptDocument.Dispose();
+                        e.AxCryptDocument = null;
+                        continue;
+                    }
+                    e.Key = passphrase.DerivedPassphrase;
+                    OnKnownKeyAdded(e);
+                }
+            }
+            catch (Exception)
+            {
+                if (e.AxCryptDocument != null)
+                {
+                    e.AxCryptDocument.Dispose();
+                }
+                throw;
+            }
+
+            IRuntimeFileInfo destination = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(file), e.AxCryptDocument.DocumentHeaders.FileName));
+            if (destination.Exists)
+            {
+                OnSaveFileRequest(e);
+                if (e.Cancel)
+                {
+                    return false;
+                }
+            }
+            e.SaveFileName = destination.FullName;
+
+            DoOperation = DecryptFileOperation;
+            OnFileOperationRequest(e);
+            return true;
+        }
+
+        private static FileOperationStatus DecryptFileOperation(FileOperationEventArgs e)
+        {
+            try
+            {
+                AxCryptFile.Decrypt(e.AxCryptDocument, OS.Current.FileInfo(e.SaveFileName), AxCryptOptions.SetFileTimes, e.Progress);
+            }
+            finally
+            {
+                e.AxCryptDocument.Dispose();
+                e.AxCryptDocument = null;
+            }
+            AxCryptFile.Wipe(OS.Current.FileInfo(e.OpenFileName));
+            return FileOperationStatus.Success;
         }
 
         private static FileOperationStatus EncryptFileOperation(FileOperationEventArgs e)

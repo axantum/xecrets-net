@@ -46,5 +46,7 @@ namespace Axantum.AxCrypt.Core.UI
         public AesKey Key { get; set; }
 
         public ProgressContext Progress { get; set; }
+
+        public AxCryptDocument AxCryptDocument { get; set; }
     }
 }
