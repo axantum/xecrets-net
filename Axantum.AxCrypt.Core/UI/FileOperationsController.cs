@@ -113,17 +113,17 @@ namespace Axantum.AxCrypt.Core.UI
 
         public Func<FileOperationEventArgs, FileOperationStatus> DoOperation { get; private set; }
 
-        public bool EncryptFile(string file)
+        public bool EncryptFile(string sourceFile)
         {
-            if (String.Compare(Path.GetExtension(file), OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
+            if (String.Compare(Path.GetExtension(sourceFile), OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return false;
             }
-            IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(file);
+            IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(sourceFile);
             IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
             FileOperationEventArgs e = new FileOperationEventArgs();
             e.SaveFileName = destinationFileInfo.FullName;
-            e.OpenFileName = file;
+            e.OpenFileName = sourceFile;
             if (destinationFileInfo.Exists)
             {
                 OnSaveFileRequest(e);
@@ -152,14 +152,49 @@ namespace Axantum.AxCrypt.Core.UI
             return true;
         }
 
-        public bool DecryptFile(string file)
+        public bool DecryptFile(string sourceFile)
         {
             FileOperationEventArgs e = new FileOperationEventArgs();
 
+            if (!OpenAxCryptDocument(sourceFile, e))
+            {
+                return false;
+            }
+
+            IRuntimeFileInfo destination = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(sourceFile), e.AxCryptDocument.DocumentHeaders.FileName));
+            if (destination.Exists)
+            {
+                OnSaveFileRequest(e);
+                if (e.Cancel)
+                {
+                    return false;
+                }
+            }
+            e.SaveFileName = destination.FullName;
+
+            DoOperation = DecryptFileOperation;
+            OnFileOperationRequest(e);
+            return true;
+        }
+
+        public bool DecryptAndLaunch(string sourceFile)
+        {
+            FileOperationEventArgs e = new FileOperationEventArgs();
+            if (!OpenAxCryptDocument(sourceFile, e))
+            {
+                return false;
+            }
+            DoOperation = DecryptAndLaunchFileOperation;
+            OnFileOperationRequest(e);
+            return false;
+        }
+
+        private bool OpenAxCryptDocument(string sourceFile, FileOperationEventArgs e)
+        {
             e.AxCryptDocument = null;
             try
             {
-                IRuntimeFileInfo source = OS.Current.FileInfo(file);
+                IRuntimeFileInfo source = OS.Current.FileInfo(sourceFile);
                 e.OpenFileName = source.FullName;
                 foreach (AesKey key in _fileSystemState.KnownKeys.Keys)
                 {
@@ -200,21 +235,20 @@ namespace Axantum.AxCrypt.Core.UI
                 }
                 throw;
             }
-
-            IRuntimeFileInfo destination = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(file), e.AxCryptDocument.DocumentHeaders.FileName));
-            if (destination.Exists)
-            {
-                OnSaveFileRequest(e);
-                if (e.Cancel)
-                {
-                    return false;
-                }
-            }
-            e.SaveFileName = destination.FullName;
-
-            DoOperation = DecryptFileOperation;
-            OnFileOperationRequest(e);
             return true;
+        }
+
+        private FileOperationStatus DecryptAndLaunchFileOperation(FileOperationEventArgs e)
+        {
+            try
+            {
+                return _fileSystemState.OpenAndLaunchApplication(e.OpenFileName, e.AxCryptDocument, e.Progress);
+            }
+            finally
+            {
+                e.AxCryptDocument.Dispose();
+                e.AxCryptDocument = null;
+            }
         }
 
         private static FileOperationStatus DecryptFileOperation(FileOperationEventArgs e)

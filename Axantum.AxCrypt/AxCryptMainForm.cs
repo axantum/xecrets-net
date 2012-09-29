@@ -533,77 +533,54 @@ namespace Axantum.AxCrypt
 
                 foreach (string file in ofd.FileNames)
                 {
-                    OpenEncrypted(file);
+                    if (!OpenEncrypted(file))
+                    {
+                        return;
+                    }
                 }
             }
         }
 
-        private void OpenEncrypted(string file)
+        private bool OpenEncrypted(string file)
         {
-            progressBackgroundWorker.BackgroundWorkWithProgress(Path.GetFileName(file),
-                (ProgressContext progress) =>
-                {
-                    return FileSystemState.OpenAndLaunchApplication(file, FileSystemState.KnownKeys.Keys, progress);
-                },
-                (FileOperationStatus status) =>
-                {
-                    if (status == FileOperationStatus.InvalidKey)
-                    {
-                        AskForPassphraseAndOpenEncrypted(file);
-                        return;
-                    }
-                    CheckStatusAndShowMessage(status, file);
-                });
-        }
+            FileOperationsController operationsController = new FileOperationsController(FileSystemState);
 
-        private void AskForPassphraseAndOpenEncrypted(string file)
-        {
-            Passphrase passphrase;
-            passphrase = AskForDecryptPassphrase();
-            if (passphrase == null)
+            operationsController.DecryptionPassphraseRequest += HandleDecryptionPassphraseRequest;
+
+            operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
             {
-                return;
-            }
-            progressBackgroundWorker.BackgroundWorkWithProgress(Path.GetFileName(file),
-                (ProgressContext progress) =>
-                {
-                    return FileSystemState.OpenAndLaunchApplication(file, new AesKey[] { passphrase.DerivedPassphrase }, progress);
-                },
-                (FileOperationStatus status) =>
-                {
-                    if (status == FileOperationStatus.Success)
+                AddKnownKey(e.Key);
+            };
+
+            operationsController.FileOperationRequest += (object sender, FileOperationEventArgs e) =>
+            {
+                progressBackgroundWorker.BackgroundWorkWithProgress(file,
+                    (ProgressContext progressContext) =>
                     {
-                        AddKnownKey(passphrase.DerivedPassphrase);
-                        return;
-                    }
-                    if (status == FileOperationStatus.InvalidKey)
+                        e.Progress = progressContext;
+                        return operationsController.DoOperation(e);
+                    },
+                    (FileOperationStatus status) =>
                     {
-                        AskForPassphraseAndOpenEncrypted(file);
-                        return;
-                    }
-                    CheckStatusAndShowMessage(status, file);
-                });
+                        CheckStatusAndShowMessage(status, file);
+                    });
+            };
+
+            return operationsController.DecryptAndLaunch(file);
         }
 
         private void HandleDecryptionPassphraseRequest(object sender, FileOperationEventArgs e)
         {
-            DecryptPassphraseDialog passphraseDialog = new DecryptPassphraseDialog();
-            passphraseDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowDecryptPassphrase;
-            DialogResult dialogResult = passphraseDialog.ShowDialog(this);
-            if (dialogResult != DialogResult.OK)
+            string passphraseText = AskForDecryptPassphrase();
+            if (passphraseText == null)
             {
                 e.Cancel = true;
                 return;
             }
-            if (passphraseDialog.ShowPassphraseCheckBox.Checked != Settings.Default.ShowDecryptPassphrase)
-            {
-                Settings.Default.ShowDecryptPassphrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
-                Settings.Default.Save();
-            }
-            e.Passphrase = passphraseDialog.Passphrase.Text;
+            e.Passphrase = passphraseText;
         }
 
-        private Passphrase AskForDecryptPassphrase()
+        private string AskForDecryptPassphrase()
         {
             DecryptPassphraseDialog passphraseDialog = new DecryptPassphraseDialog();
             passphraseDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowDecryptPassphrase;
@@ -617,8 +594,7 @@ namespace Axantum.AxCrypt
                 Settings.Default.ShowDecryptPassphrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
                 Settings.Default.Save();
             }
-            Passphrase passphrase = new Passphrase(passphraseDialog.Passphrase.Text);
-            return passphrase;
+            return passphraseDialog.Passphrase.Text;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -767,11 +743,12 @@ namespace Axantum.AxCrypt
 
         private void EnterPassphraseMenuItem_Click(object sender, EventArgs e)
         {
-            Passphrase passphrase = AskForDecryptPassphrase();
-            if (passphrase == null)
+            string passphraseText = AskForDecryptPassphrase();
+            if (passphraseText == null)
             {
                 return;
             }
+            Passphrase passphrase = new Passphrase(passphraseText);
             bool keyMatch = FileSystemState.UpdateActiveFileWithKeyIfKeyMatchesThumbprint(passphrase.DerivedPassphrase);
             if (keyMatch)
             {

@@ -253,11 +253,11 @@ namespace Axantum.AxCrypt.Core.Session
         public void Save()
         {
             IRuntimeFileInfo saveInfo = OS.Current.FileInfo(_path);
-            using (Stream fileSystemStateStream = saveInfo.OpenWrite())
+            lock (_lock)
             {
-                fileSystemStateStream.SetLength(0);
-                lock (_lock)
+                using (Stream fileSystemStateStream = saveInfo.OpenWrite())
                 {
+                    fileSystemStateStream.SetLength(0);
                     DataContractSerializer serializer = CreateSerializer();
                     serializer.WriteObject(fileSystemStateStream, this);
                 }
