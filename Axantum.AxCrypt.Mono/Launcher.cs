@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Mono
         [SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands", Justification = "The code has full trust anyway.")]
         public bool HasExited
         {
-            get { return _process.HasExited; }
+            get { return WasStarted && _process.HasExited; }
         }
 
         public bool WasStarted

@@ -40,49 +40,52 @@ namespace Axantum.AxCrypt.Core.UI
     {
         private FileSystemState _fileSystemState;
 
-        public FileOperationsController(FileSystemState fileSystemState)
+        private FileOperationEventArgs _eventArgs;
+
+        public FileOperationsController(FileSystemState fileSystemState, string displayContext)
         {
+            _eventArgs = new FileOperationEventArgs(displayContext);
             _fileSystemState = fileSystemState;
         }
 
-        public event EventHandler<FileOperationEventArgs> SaveFileRequest;
+        public event EventHandler<FileOperationEventArgs> QuerySaveFileAs;
 
-        protected virtual void OnSaveFileRequest(FileOperationEventArgs e)
+        protected virtual void OnQuerySaveFileAs(FileOperationEventArgs e)
         {
-            EventHandler<FileOperationEventArgs> handler = SaveFileRequest;
+            EventHandler<FileOperationEventArgs> handler = QuerySaveFileAs;
             if (handler != null)
             {
                 handler(this, e);
             }
         }
 
-        public event EventHandler<FileOperationEventArgs> DecryptionPassphraseRequest;
+        public event EventHandler<FileOperationEventArgs> QueryDecryptionPassphrase;
 
-        protected virtual void OnDecryptionPassphraseRequest(FileOperationEventArgs e)
+        protected virtual void OnQueryDecryptionPassphrase(FileOperationEventArgs e)
         {
-            EventHandler<FileOperationEventArgs> handler = DecryptionPassphraseRequest;
+            EventHandler<FileOperationEventArgs> handler = QueryDecryptionPassphrase;
             if (handler != null)
             {
                 handler(this, e);
             }
         }
 
-        public event EventHandler<FileOperationEventArgs> EncryptionPassphraseRequest;
+        public event EventHandler<FileOperationEventArgs> QueryEncryptionPassphrase;
 
-        protected virtual void OnEncryptionPassphraseRequest(FileOperationEventArgs e)
+        protected virtual void OnQueryEncryptionPassphrase(FileOperationEventArgs e)
         {
-            EventHandler<FileOperationEventArgs> handler = EncryptionPassphraseRequest;
+            EventHandler<FileOperationEventArgs> handler = QueryEncryptionPassphrase;
             if (handler != null)
             {
                 handler(this, e);
             }
         }
 
-        public event EventHandler<FileOperationEventArgs> FileOperationRequest;
+        public event EventHandler<FileOperationEventArgs> ProcessFile;
 
-        protected virtual void OnFileOperationRequest(FileOperationEventArgs e)
+        protected virtual void OnProcessFile(FileOperationEventArgs e)
         {
-            EventHandler<FileOperationEventArgs> handler = FileOperationRequest;
+            EventHandler<FileOperationEventArgs> handler = ProcessFile;
             if (handler != null)
             {
                 handler(this, e);
@@ -100,18 +103,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public event EventHandler<FileOperationEventArgs> DefaultEncryptionKeySet;
-
-        protected virtual void OnDefaultEncryptionKeySet(FileOperationEventArgs e)
-        {
-            EventHandler<FileOperationEventArgs> handler = DefaultEncryptionKeySet;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
-        }
-
-        public Func<FileOperationEventArgs, FileOperationStatus> DoOperation { get; private set; }
+        public Func<FileOperationEventArgs, FileOperationStatus> DoProcessFile { get; private set; }
 
         public bool EncryptFile(string sourceFile)
         {
@@ -121,13 +113,12 @@ namespace Axantum.AxCrypt.Core.UI
             }
             IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(sourceFile);
             IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
-            FileOperationEventArgs e = new FileOperationEventArgs();
-            e.SaveFileName = destinationFileInfo.FullName;
-            e.OpenFileName = sourceFile;
+            _eventArgs.SaveFileName = destinationFileInfo.FullName;
+            _eventArgs.OpenFileName = sourceFile;
             if (destinationFileInfo.Exists)
             {
-                OnSaveFileRequest(e);
-                if (e.Cancel)
+                OnQuerySaveFileAs(_eventArgs);
+                if (_eventArgs.Cancel)
                 {
                     return false;
                 }
@@ -135,57 +126,54 @@ namespace Axantum.AxCrypt.Core.UI
 
             if (_fileSystemState.KnownKeys.DefaultEncryptionKey == null)
             {
-                OnEncryptionPassphraseRequest(e);
-                if (e.Cancel)
+                OnQueryEncryptionPassphrase(_eventArgs);
+                if (_eventArgs.Cancel)
                 {
                     return false;
                 }
-                Passphrase passphrase = new Passphrase(e.Passphrase);
-                e.Key = passphrase.DerivedPassphrase;
+                Passphrase passphrase = new Passphrase(_eventArgs.Passphrase);
+                _eventArgs.Key = passphrase.DerivedPassphrase;
             }
             else
             {
-                e.Key = _fileSystemState.KnownKeys.DefaultEncryptionKey;
+                _eventArgs.Key = _fileSystemState.KnownKeys.DefaultEncryptionKey;
             }
-            DoOperation = EncryptFileOperation;
-            OnFileOperationRequest(e);
+            DoProcessFile = EncryptFileOperation;
+            OnProcessFile(_eventArgs);
             return true;
         }
 
         public bool DecryptFile(string sourceFile)
         {
-            FileOperationEventArgs e = new FileOperationEventArgs();
-
-            if (!OpenAxCryptDocument(sourceFile, e))
+            if (!OpenAxCryptDocument(sourceFile, _eventArgs))
             {
                 return false;
             }
 
-            IRuntimeFileInfo destination = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(sourceFile), e.AxCryptDocument.DocumentHeaders.FileName));
+            IRuntimeFileInfo destination = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(sourceFile), _eventArgs.AxCryptDocument.DocumentHeaders.FileName));
             if (destination.Exists)
             {
-                OnSaveFileRequest(e);
-                if (e.Cancel)
+                OnQuerySaveFileAs(_eventArgs);
+                if (_eventArgs.Cancel)
                 {
                     return false;
                 }
             }
-            e.SaveFileName = destination.FullName;
+            _eventArgs.SaveFileName = destination.FullName;
 
-            DoOperation = DecryptFileOperation;
-            OnFileOperationRequest(e);
+            DoProcessFile = DecryptFileOperation;
+            OnProcessFile(_eventArgs);
             return true;
         }
 
         public bool DecryptAndLaunch(string sourceFile)
         {
-            FileOperationEventArgs e = new FileOperationEventArgs();
-            if (!OpenAxCryptDocument(sourceFile, e))
+            if (!OpenAxCryptDocument(sourceFile, _eventArgs))
             {
                 return false;
             }
-            DoOperation = DecryptAndLaunchFileOperation;
-            OnFileOperationRequest(e);
+            DoProcessFile = DecryptAndLaunchFileOperation;
+            OnProcessFile(_eventArgs);
             return false;
         }
 
@@ -210,7 +198,7 @@ namespace Axantum.AxCrypt.Core.UI
                 Passphrase passphrase;
                 while (e.AxCryptDocument == null)
                 {
-                    OnDecryptionPassphraseRequest(e);
+                    OnQueryDecryptionPassphrase(e);
                     if (e.Cancel)
                     {
                         return false;

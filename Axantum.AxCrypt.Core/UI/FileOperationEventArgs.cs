@@ -35,6 +35,13 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public class FileOperationEventArgs : EventArgs
     {
+        public FileOperationEventArgs(string displayContext)
+        {
+            DisplayContext = displayContext;
+        }
+
+        public string DisplayContext { get; set; }
+
         public bool Cancel { get; set; }
 
         public string SaveFileName { get; set; }

@@ -312,9 +312,9 @@ namespace Axantum.AxCrypt
 
         private void EncryptFile(string file)
         {
-            FileOperationsController operationsController = new FileOperationsController(FileSystemState);
+            FileOperationsController operationsController = new FileOperationsController(FileSystemState, file);
 
-            operationsController.SaveFileRequest += (object sender, FileOperationEventArgs e) =>
+            operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
             {
                 using (SaveFileDialog sfd = new SaveFileDialog())
                 {
@@ -337,43 +337,47 @@ namespace Axantum.AxCrypt
                 }
             };
 
-            operationsController.EncryptionPassphraseRequest += (object sender, FileOperationEventArgs e) =>
+            operationsController.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
             {
-                EncryptPassphraseDialog passphraseDialog = new EncryptPassphraseDialog();
-                passphraseDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowEncryptPasshrase;
-                DialogResult dialogResult = passphraseDialog.ShowDialog();
-                if (dialogResult != DialogResult.OK)
+                using (EncryptPassphraseDialog passphraseDialog = new EncryptPassphraseDialog())
                 {
-                    e.Cancel = true;
-                    return;
+                    passphraseDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowEncryptPasshrase;
+                    DialogResult dialogResult = passphraseDialog.ShowDialog();
+                    if (dialogResult != DialogResult.OK)
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                    if (passphraseDialog.ShowPassphraseCheckBox.Checked != Settings.Default.ShowEncryptPasshrase)
+                    {
+                        Settings.Default.ShowEncryptPasshrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
+                        Settings.Default.Save();
+                    }
+                    e.Passphrase = passphraseDialog.PassphraseTextBox.Text;
                 }
-                if (passphraseDialog.ShowPassphraseCheckBox.Checked != Settings.Default.ShowEncryptPasshrase)
-                {
-                    Settings.Default.ShowEncryptPasshrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
-                    Settings.Default.Save();
-                }
-                e.Passphrase = passphraseDialog.PassphraseTextBox.Text;
                 FileSystemState.KnownKeys.DefaultEncryptionKey = new Passphrase(e.Passphrase).DerivedPassphrase;
             };
 
-            operationsController.FileOperationRequest += (object sender, FileOperationEventArgs e) =>
-            {
-                progressBackgroundWorker.BackgroundWorkWithProgress(file,
-                    (ProgressContext progressContext) =>
-                    {
-                        e.Progress = progressContext;
-                        return operationsController.DoOperation(e);
-                    },
-                    (FileOperationStatus status) =>
-                    {
-                        CheckStatusAndShowMessage(status, file);
-                    });
-            };
+            operationsController.ProcessFile += ProcessFileHandler;
 
             operationsController.EncryptFile(file);
         }
 
-        private static void CheckStatusAndShowMessage(FileOperationStatus status, string displayText)
+        private void ProcessFileHandler(object sender, FileOperationEventArgs e)
+        {
+            progressBackgroundWorker.BackgroundWorkWithProgress(e.DisplayContext,
+                (ProgressContext progressContext) =>
+                {
+                    e.Progress = progressContext;
+                    return ((FileOperationsController)sender).DoProcessFile(e);
+                },
+                (FileOperationStatus status) =>
+                {
+                    CheckStatusAndShowMessage(status, e.DisplayContext);
+                });
+        }
+
+        private static void CheckStatusAndShowMessage(FileOperationStatus status, string displayContext)
         {
             switch (status)
             {
@@ -381,42 +385,42 @@ namespace Axantum.AxCrypt
                     break;
 
                 case FileOperationStatus.UnspecifiedError:
-                    Resources.FileOperationFailed.InvariantFormat(displayText).ShowWarning();
+                    Resources.FileOperationFailed.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case FileOperationStatus.FileAlreadyExists:
-                    Resources.FileAlreadyExists.InvariantFormat(displayText).ShowWarning();
+                    Resources.FileAlreadyExists.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case FileOperationStatus.FileDoesNotExist:
-                    Resources.FileDoesNotExist.InvariantFormat(displayText).ShowWarning();
+                    Resources.FileDoesNotExist.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case FileOperationStatus.CannotWriteDestination:
-                    Resources.CannotWrite.InvariantFormat(displayText).ShowWarning();
+                    Resources.CannotWrite.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case FileOperationStatus.CannotStartApplication:
-                    Resources.CannotStartApplication.InvariantFormat(displayText).ShowWarning();
+                    Resources.CannotStartApplication.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case FileOperationStatus.InconsistentState:
-                    Resources.InconsistentState.InvariantFormat(displayText).ShowWarning();
+                    Resources.InconsistentState.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case FileOperationStatus.InvalidKey:
-                    Resources.InvalidKey.InvariantFormat(displayText).ShowWarning();
+                    Resources.InvalidKey.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case FileOperationStatus.Canceled:
-                    Resources.Canceled.InvariantFormat(displayText).ShowWarning();
+                    Resources.Canceled.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case FileOperationStatus.Exception:
-                    Resources.Exception.InvariantFormat(displayText).ShowWarning();
+                    Resources.Exception.InvariantFormat(displayContext).ShowWarning();
                     break;
                 default:
-                    Resources.UnrecognizedError.InvariantFormat(displayText).ShowWarning();
+                    Resources.UnrecognizedError.InvariantFormat(displayContext).ShowWarning();
                     break;
             }
         }
@@ -456,29 +460,31 @@ namespace Axantum.AxCrypt
 
         private bool DecryptFile(IRuntimeFileInfo source)
         {
-            FileOperationsController operationsController = new FileOperationsController(FileSystemState);
+            FileOperationsController operationsController = new FileOperationsController(FileSystemState, source.Name);
 
-            operationsController.DecryptionPassphraseRequest += HandleDecryptionPassphraseRequest;
+            operationsController.QueryDecryptionPassphrase += HandleDecryptionPassphraseRequest;
 
-            operationsController.SaveFileRequest += (object sender, FileOperationEventArgs e) =>
+            operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
             {
                 string extension = Path.GetExtension(e.SaveFileName);
-                SaveFileDialog sfd = new SaveFileDialog();
-                sfd.AddExtension = !String.IsNullOrEmpty(extension);
-                sfd.CheckPathExists = true;
-                sfd.DefaultExt = extension;
-                sfd.Filter = Resources.DecryptedSaveAsFileDialogFilterPattern.InvariantFormat(extension);
-                sfd.InitialDirectory = Path.GetDirectoryName(source.FullName);
-                sfd.OverwritePrompt = true;
-                sfd.RestoreDirectory = true;
-                sfd.Title = Resources.DecryptedSaveAsFileDialogTitle;
-                DialogResult result = sfd.ShowDialog();
-                if (result != DialogResult.OK)
+                using (SaveFileDialog sfd = new SaveFileDialog())
                 {
-                    e.Cancel = true;
-                    return;
+                    sfd.AddExtension = !String.IsNullOrEmpty(extension);
+                    sfd.CheckPathExists = true;
+                    sfd.DefaultExt = extension;
+                    sfd.Filter = Resources.DecryptedSaveAsFileDialogFilterPattern.InvariantFormat(extension);
+                    sfd.InitialDirectory = Path.GetDirectoryName(source.FullName);
+                    sfd.OverwritePrompt = true;
+                    sfd.RestoreDirectory = true;
+                    sfd.Title = Resources.DecryptedSaveAsFileDialogTitle;
+                    DialogResult result = sfd.ShowDialog();
+                    if (result != DialogResult.OK)
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                    e.SaveFileName = sfd.FileName;
                 }
-                e.SaveFileName = sfd.FileName;
                 return;
             };
 
@@ -487,19 +493,7 @@ namespace Axantum.AxCrypt
                 AddKnownKey(e.Key);
             };
 
-            operationsController.FileOperationRequest += (object sender, FileOperationEventArgs e) =>
-            {
-                progressBackgroundWorker.BackgroundWorkWithProgress(source.Name,
-                    (ProgressContext progressContext) =>
-                    {
-                        e.Progress = progressContext;
-                        return operationsController.DoOperation(e);
-                    },
-                    (FileOperationStatus status) =>
-                    {
-                        CheckStatusAndShowMessage(status, source.Name);
-                    });
-            };
+            operationsController.ProcessFile += ProcessFileHandler;
 
             return operationsController.DecryptFile(source.FullName);
         }
@@ -543,28 +537,16 @@ namespace Axantum.AxCrypt
 
         private bool OpenEncrypted(string file)
         {
-            FileOperationsController operationsController = new FileOperationsController(FileSystemState);
+            FileOperationsController operationsController = new FileOperationsController(FileSystemState, file);
 
-            operationsController.DecryptionPassphraseRequest += HandleDecryptionPassphraseRequest;
+            operationsController.QueryDecryptionPassphrase += HandleDecryptionPassphraseRequest;
 
             operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
             {
                 AddKnownKey(e.Key);
             };
 
-            operationsController.FileOperationRequest += (object sender, FileOperationEventArgs e) =>
-            {
-                progressBackgroundWorker.BackgroundWorkWithProgress(file,
-                    (ProgressContext progressContext) =>
-                    {
-                        e.Progress = progressContext;
-                        return operationsController.DoOperation(e);
-                    },
-                    (FileOperationStatus status) =>
-                    {
-                        CheckStatusAndShowMessage(status, file);
-                    });
-            };
+            operationsController.ProcessFile += ProcessFileHandler;
 
             return operationsController.DecryptAndLaunch(file);
         }
@@ -582,19 +564,21 @@ namespace Axantum.AxCrypt
 
         private string AskForDecryptPassphrase()
         {
-            DecryptPassphraseDialog passphraseDialog = new DecryptPassphraseDialog();
-            passphraseDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowDecryptPassphrase;
-            DialogResult dialogResult = passphraseDialog.ShowDialog(this);
-            if (dialogResult != DialogResult.OK)
+            using (DecryptPassphraseDialog passphraseDialog = new DecryptPassphraseDialog())
             {
-                return null;
+                passphraseDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowDecryptPassphrase;
+                DialogResult dialogResult = passphraseDialog.ShowDialog(this);
+                if (dialogResult != DialogResult.OK)
+                {
+                    return null;
+                }
+                if (passphraseDialog.ShowPassphraseCheckBox.Checked != Settings.Default.ShowDecryptPassphrase)
+                {
+                    Settings.Default.ShowDecryptPassphrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
+                    Settings.Default.Save();
+                }
+                return passphraseDialog.Passphrase.Text;
             }
-            if (passphraseDialog.ShowPassphraseCheckBox.Checked != Settings.Default.ShowDecryptPassphrase)
-            {
-                Settings.Default.ShowDecryptPassphrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
-                Settings.Default.Save();
-            }
-            return passphraseDialog.Passphrase.Text;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
