@@ -174,8 +174,8 @@
 								<bool key="EncodedWithXMLCoder">YES</bool>
 								<object class="NSMenuItem" id="686298756">
 									<reference key="NSMenu" ref="720053764"/>
-									<string key="NSTitle">View</string>
-									<string key="NSKeyEquiv">v</string>
+									<string key="NSTitle">Open</string>
+									<string key="NSKeyEquiv">o</string>
 									<int key="NSKeyEquivModMask">1048576</int>
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="35465992"/>

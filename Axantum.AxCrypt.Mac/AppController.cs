@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Threading;
 using Axantum.AxCrypt.Mono;
+using Axantum.AxCrypt.Core.System;
 
 namespace Axantum.AxCrypt.Mac
 {
@@ -136,15 +137,18 @@ namespace Axantum.AxCrypt.Mac
 			GetSourceFile((file, passphrase) => {
 				string filePath = Path.GetTempPath();
 				string fileName;
+				AesKey key = passphrase.DerivedPassphrase;
 
-				if (!TryDecrypt(file, filePath, passphrase.DerivedPassphrase, progress, out fileName))
+				if (!TryDecrypt(file, filePath, key, progress, out fileName))
 					return;
 
 				IRuntimeFileInfo target = Os.Current.FileInfo(Path.Combine(filePath, fileName));
-				
-				Process viewer = Process.Start(target.FullName);
-				viewer.WaitForExit();
-				AxCryptFile.Wipe(target);
+
+				ILauncher launcher = Os.Current.Launch(target.FullName);
+				launcher.Exited += delegate {
+					AxCryptFile.EncryptFileWithBackupAndWipe(target, file, key, progress);
+					launcher.Dispose();
+				};
 			});
 		}
 

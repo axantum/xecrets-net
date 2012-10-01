@@ -43,7 +43,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <EnablePackageSigning>False</EnablePackageSigning>
-    <IncludeMonoRuntime>True</IncludeMonoRuntime>
+    <IncludeMonoRuntime>False</IncludeMonoRuntime>
     <ConsolePause>False</ConsolePause>
     <EnableCodeSigning>False</EnableCodeSigning>
     <CreatePackage>False</CreatePackage>
@@ -119,6 +119,7 @@
     <Content Include="logo_axantum.png" />
     <Content Include="tretton37.png" />
     <Content Include="AxCryptIcon128.icns" />
+    <Content Include="logo_axcrypt.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\axcrypt-prod\Axantum.AxCrypt.Core\Axantum.AxCrypt.Core.csproj">

@@ -74,6 +74,17 @@ namespace Axantum.AxCrypt.Mac
 		{
 			AppController.DecryptAndOpenFile(new ProgressContext());
 		}
+
+		public override bool OpenFile (NSApplication sender, string filename)
+		{
+			if (!filename.EndsWith(".axx"))
+				return false;
+
+			NSAlert.WithMessage("Enter password", "OK", null, null, "Ah, you'd like to open " + filename + "!")
+				.RunModal();
+					
+			return true;
+		}
 	}
 }
 
