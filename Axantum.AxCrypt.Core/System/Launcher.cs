@@ -34,7 +34,7 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.System
 {
-    [ExcludeFromCodeCoverage]
+    
     public class Launcher : ILauncher
     {
         private Process _process;

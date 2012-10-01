@@ -58,6 +58,8 @@ namespace Axantum.AxCrypt.Core.Test
             });
 
             crypto = new AesCrypto(key, iv, CipherMode.CBC, PaddingMode.None);
+
+			Assert.IsNotNull(crypto);
         }
 
         [Test]

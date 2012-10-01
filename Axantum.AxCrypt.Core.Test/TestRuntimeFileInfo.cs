@@ -91,7 +91,10 @@ namespace Axantum.AxCrypt.Core.Test
                 }
 
                 DateTime dateTime = DateTime.Parse("2012-02-29 12:00:00", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
-                runtimeFileInfo.SetFileTimes(dateTime, dateTime + new TimeSpan(1, 0, 0), dateTime + new TimeSpan(2, 0, 0));
+                runtimeFileInfo.SetFileTimes(
+					creationTimeUtc: dateTime, 
+					lastAccessTimeUtc: dateTime + new TimeSpan(1, 0, 0),
+					lastWriteTimeUtc: dateTime + new TimeSpan(2, 0, 0));
                 Assert.That(runtimeFileInfo.CreationTimeUtc, Is.EqualTo(dateTime), "The creation time should be as set.");
                 Assert.That(runtimeFileInfo.LastAccessTimeUtc, Is.EqualTo(dateTime + new TimeSpan(1, 0, 0)), "The last access time should be as set.");
                 Assert.That(runtimeFileInfo.LastWriteTimeUtc, Is.EqualTo(dateTime + new TimeSpan(2, 0, 0)), "The last write time should be as set.");

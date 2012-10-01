@@ -88,14 +88,16 @@ namespace Axantum.AxCrypt.Core.Test
             using (IFileWatcher fileWatcher = AxCryptEnvironment.Current.FileWatcher(_tempPath))
             {
                 string fileName = String.Empty;
-                fileWatcher.FileChanged += (object sender, FileWatcherEventArgs e) => { fileName = Path.GetFileName(e.FullName); };
                 using (Stream stream = File.Create(Path.Combine(_tempPath, "NewFile.txt")))
                 {
                 }
-                Thread.Sleep(100);
-                fileName = String.Empty;
+				fileWatcher.FileChanged += (object sender, FileWatcherEventArgs e) => { fileName = Path.GetFileName(e.FullName); };
+				fileName = String.Empty;
                 File.Move(Path.Combine(_tempPath, "NewFile.txt"), Path.Combine(_tempPath, "MovedFile.txt"));
-                Thread.Sleep(100);
+				for (int i = 0; String.IsNullOrEmpty(fileName) && i < 20; ++i)
+				{
+                	Thread.Sleep(100);
+				}
                 Assert.That(fileName, Is.EqualTo("MovedFile.txt"), "The watcher should detect the newly created file.");
             }
         }

@@ -80,11 +80,13 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestRuntimeFileInfo()
         {
-            IRuntimeFileInfo runtimeFileInfo = AxCryptEnvironment.Current.FileInfo(@"C:\Temp\A File.txt");
+			string fileName = "A File.txt";
+			string sourcePath = Path.Combine (Path.GetTempPath(), fileName);
+            IRuntimeFileInfo runtimeFileInfo = AxCryptEnvironment.Current.FileInfo(sourcePath);
             Assert.That(runtimeFileInfo is RuntimeFileInfo, "The instance returned should be of type RuntimeFileInfo");
-            Assert.That(runtimeFileInfo.Name, Is.EqualTo("A File.txt"));
-            runtimeFileInfo = AxCryptEnvironment.Current.FileInfo(@"C:\Temp\A File.txt");
-            Assert.That(runtimeFileInfo.Name, Is.EqualTo("A File.txt"));
+            Assert.That(runtimeFileInfo.Name, Is.EqualTo(fileName));
+            runtimeFileInfo = AxCryptEnvironment.Current.FileInfo(sourcePath);
+            Assert.That(runtimeFileInfo.Name, Is.EqualTo(fileName));
         }
 
         [Test]
@@ -126,20 +128,29 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     wasHere = true;
                 };
-                IRuntimeFileInfo tempFileInfo = AxCryptEnvironment.Current.FileInfo(Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, "AxCryptTestTemp.tmp"));
+				IRuntimeFileInfo tempFileInfo = AxCryptEnvironment.Current.FileInfo(Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, "AxCryptTestTemp.tmp"));
                 try
                 {
                     using (Stream stream = tempFileInfo.OpenWrite())
                     {
                     }
-                }
+					for (int i = 0; !wasHere && i < 20; ++i)
+					{
+						Thread.Sleep(100);
+					}
+					Assert.That(wasHere, "The FileWatcher should have noticed the creation of a file.");
+				}
                 finally
                 {
+					wasHere = false;
                     tempFileInfo.Delete();
                 }
-                Thread.Sleep(100);
-            }
-            Assert.That(wasHere, "The FileWatcher should have noticed the creation and deletion of a file.");
+				for (int i = 0; !wasHere && i < 20; ++i)
+				{
+					Thread.Sleep(100);
+				}
+				Assert.That(wasHere, "The FileWatcher should have noticed the deletion of a file.");
+			}
         }
 
         [Test]

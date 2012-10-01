@@ -43,7 +43,24 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestAxCryptDocument
     {
-        [Test]
+
+		[Test]
+		public static void TestFailedHmacCalculationFromSimpleFile()
+		{
+			using (AxCryptDocument document = new AxCryptDocument())
+			{
+				Passphrase passphrase = new Passphrase("a");
+				bool keyIsOk = document.Load(new MemoryStream(Resources.HelloWorld_Key_a_txt), passphrase.DerivedPassphrase);
+				Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+				document.DocumentHeaders.Hmac = new DataHmac(new byte[document.DocumentHeaders.Hmac.Length]);
+				Assert.Throws<Axantum.AxCrypt.Core.System.InvalidDataException>(() =>
+				                                                                {
+					document.DecryptTo(Stream.Null, new ProgressContext());
+				});
+			}
+		}
+
+		[Test]
         public static void TestAnsiFileNameFromSimpleFile()
         {
             using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
@@ -189,7 +206,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (AxCryptDocument document = new AxCryptDocument())
             {
                 Passphrase passphrase = new Passphrase("a");
-                using (MemoryStream encryptedFile = new MemoryStream(Resources.HelloWorld_Key_a_txt))
+                using (MemoryStream encryptedFile = new MemoryStream((byte[])Resources.HelloWorld_Key_a_txt.Clone()))
                 {
                     encryptedFile.Seek(-1, SeekOrigin.End);
                     byte lastByte = (byte)encryptedFile.ReadByte();
@@ -330,21 +347,6 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
-        public static void TestFailedHmacCalculationFromSimpleFile()
-        {
-            using (AxCryptDocument document = new AxCryptDocument())
-            {
-                Passphrase passphrase = new Passphrase("a");
-                bool keyIsOk = document.Load(new MemoryStream(Resources.HelloWorld_Key_a_txt), passphrase.DerivedPassphrase);
-                Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                document.DocumentHeaders.Hmac = new DataHmac(new byte[document.DocumentHeaders.Hmac.Length]);
-                Assert.Throws<Axantum.AxCrypt.Core.System.InvalidDataException>(() =>
-                {
-                    document.DecryptTo(Stream.Null, new ProgressContext());
-                });
-            }
-        }
 
         [Test]
         public static void TestNoMagicGuidFound()

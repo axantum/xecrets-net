@@ -89,7 +89,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             DelegateTraceListener traceListener = new DelegateTraceListener((string message) =>
             {
-                listenerMessage = message;
+                listenerMessage = (listenerMessage ?? String.Empty) + message;
             });
 
             traceListener.Name = "AxCryptTestListener";
@@ -99,91 +99,91 @@ namespace Axantum.AxCrypt.Core.Test
                 Logging.SetLevel(TraceLevel.Off);
 
                 listenerMessage = null;
-                Logging.Verbose("Verbose\n");
+                Logging.Verbose("Verbose" + Environment.NewLine );
                 Assert.That(listenerMessage, Is.EqualTo(null), "When logging is off, Verbose logging should not generate a message.");
 
                 listenerMessage = null;
-                Logging.Info("Info\n");
+                Logging.Info("Info" + Environment.NewLine );
                 Assert.That(listenerMessage, Is.EqualTo(null), "When logging is off, Info logging should not generate a message.");
 
                 listenerMessage = null;
-                Logging.Warning("Warning\n");
+                Logging.Warning("Warning" + Environment.NewLine );
                 Assert.That(listenerMessage, Is.EqualTo(null), "When logging is off, Warning logging should not generate a message.");
 
                 listenerMessage = null;
-                Logging.Error("Error\n");
+                Logging.Error("Error" + Environment.NewLine );
                 Assert.That(listenerMessage, Is.EqualTo(null), "When logging is off, Error logging should not generate a message.");
 
                 Logging.SetLevel(TraceLevel.Error);
 
                 listenerMessage = null;
-                Logging.Verbose("Verbose\n");
+                Logging.Verbose("Verbose" + Environment.NewLine );
                 Assert.That(listenerMessage, Is.EqualTo(null), "When logging is Error, Verbose logging should not generate a message.");
 
                 listenerMessage = null;
-                Logging.Info("Info\n");
+                Logging.Info("Info" + Environment.NewLine );
                 Assert.That(listenerMessage, Is.EqualTo(null), "When logging is Error, Info logging should not generate a message.");
 
                 listenerMessage = null;
-                Logging.Warning("Warning\n");
+                Logging.Warning("Warning" + Environment.NewLine );
                 Assert.That(listenerMessage, Is.EqualTo(null), "When logging is Error, Warning logging should not generate a message.");
 
                 listenerMessage = null;
-                Logging.Error("Error\n");
+                Logging.Error("Error" + Environment.NewLine );
                 Assert.That(listenerMessage.Contains("Error"), "When logging is Error, Error logging should generate a message.");
 
                 Logging.SetLevel(TraceLevel.Warning);
 
                 listenerMessage = null;
-                Logging.Verbose("Verbose\n");
+                Logging.Verbose("Verbose" + Environment.NewLine );
                 Assert.That(listenerMessage, Is.EqualTo(null), "When logging is Warning, Verbose logging should not generate a message.");
 
                 listenerMessage = null;
-                Logging.Info("Info\n");
+                Logging.Info("Info" + Environment.NewLine );
                 Assert.That(listenerMessage, Is.EqualTo(null), "When logging is Warning, Info logging should not generate a message.");
 
                 listenerMessage = null;
-                Logging.Warning("Warning\n");
+                Logging.Warning("Warning" + Environment.NewLine );
                 Assert.That(listenerMessage.Contains("Warning"), "When logging is Warning, Warning logging should generate a message.");
 
                 listenerMessage = null;
-                Logging.Error("Error\n");
+                Logging.Error("Error" + Environment.NewLine );
                 Assert.That(listenerMessage.Contains("Error"), "When logging is Warning, Error logging should generate a message.");
 
                 Logging.SetLevel(TraceLevel.Info);
 
                 listenerMessage = null;
-                Logging.Verbose("Verbose\n");
+                Logging.Verbose("Verbose" + Environment.NewLine );
                 Assert.That(listenerMessage, Is.EqualTo(null), "When logging is Info, Verbose logging should not generate a message.");
 
                 listenerMessage = null;
-                Logging.Info("Info\n");
+                Logging.Info("Info" + Environment.NewLine );
                 Assert.That(listenerMessage.Contains("Info"), "When logging is Info, Info logging should generate a message.");
 
                 listenerMessage = null;
-                Logging.Warning("Warning\n");
+                Logging.Warning("Warning" + Environment.NewLine );
                 Assert.That(listenerMessage.Contains("Warning"), "When logging is Info, Warning logging should generate a message.");
 
                 listenerMessage = null;
-                Logging.Error("Error\n");
+                Logging.Error("Error" + Environment.NewLine );
                 Assert.That(listenerMessage.Contains("Error"), "When logging is Info, Error logging should generate a message.");
 
                 Logging.SetLevel(TraceLevel.Verbose);
 
                 listenerMessage = null;
-                Logging.Verbose("Verbose\n");
+                Logging.Verbose("Verbose" + Environment.NewLine );
                 Assert.That(listenerMessage.Contains("Verbose"), "When logging is Verbose, Verbose logging should generate a message.");
 
                 listenerMessage = null;
-                Logging.Info("Info\n");
+                Logging.Info("Info" + Environment.NewLine );
                 Assert.That(listenerMessage.Contains("Info"), "When logging is Verbose, Info logging should generate a message.");
 
                 listenerMessage = null;
-                Logging.Warning("Warning\n");
+                Logging.Warning("Warning" + Environment.NewLine );
                 Assert.That(listenerMessage.Contains("Warning"), "When logging is Verbose, Warning logging should generate a message.");
 
                 listenerMessage = null;
-                Logging.Error("Error\n");
+                Logging.Error("Error" + Environment.NewLine );
                 Assert.That(listenerMessage.Contains("Error"), "When logging is Verbose, Error logging should generate a message.");
             }
             finally

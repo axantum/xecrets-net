@@ -42,9 +42,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             AesKey nullKey = null;
             Byte[] nullArray = null;
-            AesKeyThumbprint thumbprint;
-            Assert.Throws<ArgumentNullException>(() => { thumbprint = new AesKeyThumbprint(nullKey, new byte[] { }); });
-            Assert.Throws<ArgumentNullException>(() => { thumbprint = new AesKeyThumbprint(new AesKey(), nullArray); });
+            Assert.Throws<ArgumentNullException>(() => { new AesKeyThumbprint(nullKey, new byte[] { }); });
+            Assert.Throws<ArgumentNullException>(() => { new AesKeyThumbprint(new AesKey(), nullArray); });
         }
 
         [Test]

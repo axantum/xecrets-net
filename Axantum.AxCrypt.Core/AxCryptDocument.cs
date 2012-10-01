@@ -248,10 +248,7 @@ namespace Axantum.AxCrypt.Core
         {
             get
             {
-                if (_dataCrypto == null)
-                {
-                    _dataCrypto = new AesCrypto(DocumentHeaders.DataSubkey.Key, DocumentHeaders.IV, CipherMode.CBC, PaddingMode.PKCS7);
-                }
+                _dataCrypto = new AesCrypto(DocumentHeaders.DataSubkey.Key, DocumentHeaders.IV, CipherMode.CBC, PaddingMode.PKCS7);
 
                 return _dataCrypto;
             }

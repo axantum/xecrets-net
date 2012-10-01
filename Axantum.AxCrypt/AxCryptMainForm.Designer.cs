@@ -81,7 +81,6 @@
             this.EnterPassphraseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ProgressContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ProgressContextCancelMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.TrayNotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.checkVersionNow = new System.Windows.Forms.ToolStripMenuItem();
             this.EncryptedFileManager = new Axantum.AxCrypt.EncryptedFileManager();
             this.about = new System.Windows.Forms.ToolStripMenuItem();
@@ -464,11 +463,6 @@
             resources.ApplyResources(this.ProgressContextCancelMenu, "ProgressContextCancelMenu");
             this.ProgressContextCancelMenu.Click += new System.EventHandler(this.ProgressContextCancelMenu_Click);
             // 
-            // TrayNotifyIcon
-            // 
-            resources.ApplyResources(this.TrayNotifyIcon, "TrayNotifyIcon");
-            this.TrayNotifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.TrayNotifyIcon_MouseDoubleClick);
-            // 
             // checkVersionNow
             // 
             this.checkVersionNow.Name = "checkVersionNow";
@@ -489,7 +483,7 @@
             // 
             // AxCryptMainForm
             // 
-            resources.ApplyResources(this, "$this");
+            //resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.ProgressPanel);
             this.Controls.Add(this.StatusTabs);
@@ -564,7 +558,6 @@
         private System.Windows.Forms.ContextMenuStrip ProgressContextMenu;
         private System.Windows.Forms.ToolStripMenuItem ProgressContextCancelMenu;
         internal EncryptedFileManager EncryptedFileManager;
-        private System.Windows.Forms.NotifyIcon TrayNotifyIcon;
         private System.Windows.Forms.ToolStripMenuItem OptionsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem LanguageMenuItem;
         private System.Windows.Forms.ToolStripMenuItem EnglishMenuItem;

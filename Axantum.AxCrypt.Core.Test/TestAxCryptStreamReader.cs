@@ -99,7 +99,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 using (AxCryptReader axCryptReader = new AxCryptStreamReader(inputStream))
                 {
-                    Stream encryptedDataStream;
+					Stream encryptedDataStream = null;
                     Assert.Throws<ArgumentNullException>(() =>
                     {
                         encryptedDataStream = axCryptReader.CreateEncryptedDataStream(null, 0, new ProgressContext());

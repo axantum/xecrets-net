@@ -827,20 +827,6 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-
-            TrayNotifyIcon.BalloonTipTitle = Resources.AxCryptFileEncryption;
-            TrayNotifyIcon.BalloonTipText = Resources.TrayBalloonTooltip;
-
-            if (FormWindowState.Minimized == this.WindowState)
-            {
-                TrayNotifyIcon.Visible = true;
-                TrayNotifyIcon.ShowBalloonTip(500);
-                this.Hide();
-            }
-            else if (FormWindowState.Normal == this.WindowState)
-            {
-                TrayNotifyIcon.Visible = false;
-            }
         }
 
         private void TrayNotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)

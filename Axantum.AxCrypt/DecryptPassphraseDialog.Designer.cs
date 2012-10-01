@@ -83,7 +83,7 @@
             // DecryptPassphraseDialog
             // 
             this.AcceptButton = this.buttonOk;
-            resources.ApplyResources(this, "$this");
+            //resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancel;
             this.Controls.Add(this.panel1);

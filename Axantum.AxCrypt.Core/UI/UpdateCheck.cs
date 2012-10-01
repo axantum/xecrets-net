@@ -22,6 +22,7 @@
  * updates, contributions and contact with the author. You may also visit
  * http://www.axantum.com for more information about the author.
 */
+using System.Runtime.Serialization.Json;
 
 #endregion Coypright and License
 
@@ -31,7 +32,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Resources;
-using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading;
 using Axantum.AxCrypt.Core.IO;
