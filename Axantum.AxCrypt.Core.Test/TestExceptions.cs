@@ -105,7 +105,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             try
             {
-                int i = (int)new object();
+                if ((int)new object() == 0) { }
             }
             catch (InvalidCastException ice)
             {
@@ -123,7 +123,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             try
             {
-                int i = (int)new object();
+                if ((int)new object() == 0) { }
             }
             catch (InvalidCastException ice)
             {

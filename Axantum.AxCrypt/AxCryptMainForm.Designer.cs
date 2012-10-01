@@ -30,156 +30,163 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AxCryptMainForm));
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButtonOpenEncrypted = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonEncrypt = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonDecrypt = new System.Windows.Forms.ToolStripButton();
+            this.mainToolStrip = new System.Windows.Forms.ToolStrip();
+            this.openEncryptedToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.encryptToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.decryptToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.CloseAndRemoveOpenFilesButton = new System.Windows.Forms.ToolStripButton();
+            this.closeAndRemoveOpenFilesToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.UpdateToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.updateToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.helpButton = new System.Windows.Forms.ToolStripButton();
-            this.menuStripMain = new System.Windows.Forms.MenuStrip();
+            this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openEncryptedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.encryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.decryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.CloseOpenFilesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeOpenFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.OptionsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.LanguageMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.EnglishMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SwedishMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.debugToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.englishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.swedishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.debugOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DebugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkVersionNowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setUpdateCheckUrlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.StatusTabs = new System.Windows.Forms.TabControl();
-            this.OpenFilesTab = new System.Windows.Forms.TabPage();
-            this.OpenFilesListView = new System.Windows.Forms.ListView();
-            this.OpenFile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.EncryptedSource = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ImageList48 = new System.Windows.Forms.ImageList(this.components);
-            this.ImageList16 = new System.Windows.Forms.ImageList(this.components);
-            this.RecentFilesTab = new System.Windows.Forms.TabPage();
-            this.RecentFilesListView = new System.Windows.Forms.ListView();
-            this.DecryptedFile = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.LastAccessTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.EncryptedPath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.WatchedFoldersTab = new System.Windows.Forms.TabPage();
-            this.WatchedFoldersListView = new System.Windows.Forms.ListView();
-            this.LogTab = new System.Windows.Forms.TabPage();
-            this.LogOutput = new System.Windows.Forms.TextBox();
-            this.ActiveFilePolling = new System.Windows.Forms.Timer(this.components);
-            this.ProgressPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.RecentFilesContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.RemoveRecentFileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpenFilesContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.EnterPassphraseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ProgressContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ProgressContextCancelMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkVersionNow = new System.Windows.Forms.ToolStripMenuItem();
-            this.EncryptedFileManager = new Axantum.AxCrypt.EncryptedFileManager();
-            this.about = new System.Windows.Forms.ToolStripMenuItem();
             this.viewHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStrip1.SuspendLayout();
-            this.menuStripMain.SuspendLayout();
-            this.StatusTabs.SuspendLayout();
-            this.OpenFilesTab.SuspendLayout();
-            this.RecentFilesTab.SuspendLayout();
-            this.WatchedFoldersTab.SuspendLayout();
-            this.LogTab.SuspendLayout();
-            this.RecentFilesContextMenu.SuspendLayout();
-            this.OpenFilesContextMenu.SuspendLayout();
-            this.ProgressContextMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.EncryptedFileManager)).BeginInit();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusTabControl = new System.Windows.Forms.TabControl();
+            this.openFilesTabPage = new System.Windows.Forms.TabPage();
+            this.openFilesListView = new System.Windows.Forms.ListView();
+            this.openFileColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.encryptedSourceColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.largeImageList = new System.Windows.Forms.ImageList(this.components);
+            this.smallImageList = new System.Windows.Forms.ImageList(this.components);
+            this.recentFilesTabPage = new System.Windows.Forms.TabPage();
+            this.recentFilesListView = new System.Windows.Forms.ListView();
+            this.decryptedFileColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lastAccessTimeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.encryptedPathColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.watchedFoldersTabPage = new System.Windows.Forms.TabPage();
+            this.watchedFoldersListView = new System.Windows.Forms.ListView();
+            this.logTabPage = new System.Windows.Forms.TabPage();
+            this.logOutputTextBox = new System.Windows.Forms.TextBox();
+            this.activeFilePollingTimer = new System.Windows.Forms.Timer(this.components);
+            this.progressTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.recentFilesContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.removeRecentFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFilesContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.enterPassphraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.progressContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.progressContextCancelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.trayNotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.backgroundMonitor = new Axantum.AxCrypt.BackgroundMonitor();
+            this.progressBackgroundWorker = new Axantum.AxCrypt.ProgressBackgroundWorker();
+            this.mainToolStrip.SuspendLayout();
+            this.mainMenuStrip.SuspendLayout();
+            this.statusTabControl.SuspendLayout();
+            this.openFilesTabPage.SuspendLayout();
+            this.recentFilesTabPage.SuspendLayout();
+            this.watchedFoldersTabPage.SuspendLayout();
+            this.logTabPage.SuspendLayout();
+            this.recentFilesContextMenuStrip.SuspendLayout();
+            this.openFilesContextMenuStrip.SuspendLayout();
+            this.progressContextMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundMonitor)).BeginInit();
             this.SuspendLayout();
             // 
-            // toolStrip1
+            // mainToolStrip
             // 
-            resources.ApplyResources(this.toolStrip1, "toolStrip1");
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButtonOpenEncrypted,
-            this.toolStripButtonEncrypt,
-            this.toolStripButtonDecrypt,
+            this.mainToolStrip.AllowMerge = false;
+            resources.ApplyResources(this.mainToolStrip, "mainToolStrip");
+            this.mainToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.mainToolStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.mainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openEncryptedToolStripButton,
+            this.encryptToolStripButton,
+            this.decryptToolStripButton,
             this.toolStripSeparator1,
-            this.CloseAndRemoveOpenFilesButton,
+            this.closeAndRemoveOpenFilesToolStripButton,
             this.toolStripSeparator4,
-            this.UpdateToolStripButton,
+            this.updateToolStripButton,
             this.toolStripSeparator5,
-            this.helpButton});
-            this.toolStrip1.Name = "toolStrip1";
+            this.helpToolStripButton});
+            this.mainToolStrip.Name = "mainToolStrip";
             // 
-            // toolStripButtonOpenEncrypted
+            // openEncryptedToolStripButton
             // 
-            this.toolStripButtonOpenEncrypted.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.toolStripButtonOpenEncrypted, "toolStripButtonOpenEncrypted");
-            this.toolStripButtonOpenEncrypted.Name = "toolStripButtonOpenEncrypted";
-            this.toolStripButtonOpenEncrypted.Click += new System.EventHandler(this.toolStripButtonOpenEncrypted_Click);
+            resources.ApplyResources(this.openEncryptedToolStripButton, "openEncryptedToolStripButton");
+            this.openEncryptedToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.openEncryptedToolStripButton.Name = "openEncryptedToolStripButton";
+            this.openEncryptedToolStripButton.Click += new System.EventHandler(this.openEncryptedToolStripButton_Click);
             // 
-            // toolStripButtonEncrypt
+            // encryptToolStripButton
             // 
-            this.toolStripButtonEncrypt.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.toolStripButtonEncrypt, "toolStripButtonEncrypt");
-            this.toolStripButtonEncrypt.Name = "toolStripButtonEncrypt";
-            this.toolStripButtonEncrypt.Click += new System.EventHandler(this.toolStripButtonEncrypt_Click);
+            resources.ApplyResources(this.encryptToolStripButton, "encryptToolStripButton");
+            this.encryptToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.encryptToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.encryptlock32;
+            this.encryptToolStripButton.Name = "encryptToolStripButton";
+            this.encryptToolStripButton.Click += new System.EventHandler(this.toolStripButtonEncrypt_Click);
             // 
-            // toolStripButtonDecrypt
+            // decryptToolStripButton
             // 
-            this.toolStripButtonDecrypt.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.toolStripButtonDecrypt, "toolStripButtonDecrypt");
-            this.toolStripButtonDecrypt.Name = "toolStripButtonDecrypt";
-            this.toolStripButtonDecrypt.Click += new System.EventHandler(this.toolStripButtonDecrypt_Click);
+            resources.ApplyResources(this.decryptToolStripButton, "decryptToolStripButton");
+            this.decryptToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.decryptToolStripButton.Name = "decryptToolStripButton";
+            this.decryptToolStripButton.Click += new System.EventHandler(this.decryptToolStripButton_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             // 
-            // CloseAndRemoveOpenFilesButton
+            // closeAndRemoveOpenFilesToolStripButton
             // 
-            this.CloseAndRemoveOpenFilesButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.CloseAndRemoveOpenFilesButton, "CloseAndRemoveOpenFilesButton");
-            this.CloseAndRemoveOpenFilesButton.Name = "CloseAndRemoveOpenFilesButton";
-            this.CloseAndRemoveOpenFilesButton.Click += new System.EventHandler(this.CloseOpenFilesButton_Click);
+            resources.ApplyResources(this.closeAndRemoveOpenFilesToolStripButton, "closeAndRemoveOpenFilesToolStripButton");
+            this.closeAndRemoveOpenFilesToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.closeAndRemoveOpenFilesToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.closeremovestandbyred32;
+            this.closeAndRemoveOpenFilesToolStripButton.Name = "closeAndRemoveOpenFilesToolStripButton";
+            this.closeAndRemoveOpenFilesToolStripButton.Click += new System.EventHandler(this.closeAndRemoveOpenFilesToolStripButton_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             resources.ApplyResources(this.toolStripSeparator4, "toolStripSeparator4");
             // 
-            // UpdateToolStripButton
+            // updateToolStripButton
             // 
-            this.UpdateToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.UpdateToolStripButton, "UpdateToolStripButton");
-            this.UpdateToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.RefreshGreen;
-            this.UpdateToolStripButton.Name = "UpdateToolStripButton";
-            this.UpdateToolStripButton.Click += new System.EventHandler(this.UpdateToolStripButton_Click);
+            resources.ApplyResources(this.updateToolStripButton, "updateToolStripButton");
+            this.updateToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.updateToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.refreshgreen;
+            this.updateToolStripButton.Name = "updateToolStripButton";
+            this.updateToolStripButton.Click += new System.EventHandler(this.updateToolStripButton_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             resources.ApplyResources(this.toolStripSeparator5, "toolStripSeparator5");
             // 
-            // helpButton
+            // helpToolStripButton
             // 
-            this.helpButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.helpButton, "helpButton");
-            this.helpButton.Name = "helpButton";
-            this.helpButton.Click += new System.EventHandler(this.helpButton_Click);
+            this.helpToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.helpToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.helpquestiongreen32;
+            resources.ApplyResources(this.helpToolStripButton, "helpToolStripButton");
+            this.helpToolStripButton.Name = "helpToolStripButton";
+            this.helpToolStripButton.Click += new System.EventHandler(this.helpToolStripButton_Click);
             // 
-            // menuStripMain
+            // mainMenuStrip
             // 
-            this.menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.DebugToolStripMenuItem,
+            this.debugToolStripMenuItem,
             this.helpToolStripMenuItem});
-            resources.ApplyResources(this.menuStripMain, "menuStripMain");
-            this.menuStripMain.Name = "menuStripMain";
+            resources.ApplyResources(this.mainMenuStrip, "mainMenuStrip");
+            this.mainMenuStrip.Name = "mainMenuStrip";
             // 
             // fileToolStripMenuItem
             // 
@@ -188,9 +195,9 @@
             this.encryptToolStripMenuItem,
             this.decryptToolStripMenuItem,
             this.toolStripSeparator2,
-            this.CloseOpenFilesMenuItem,
+            this.closeOpenFilesToolStripMenuItem,
             this.toolStripSeparator3,
-            this.OptionsMenuItem,
+            this.optionsToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
@@ -218,53 +225,53 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
             // 
-            // CloseOpenFilesMenuItem
+            // closeOpenFilesToolStripMenuItem
             // 
-            resources.ApplyResources(this.CloseOpenFilesMenuItem, "CloseOpenFilesMenuItem");
-            this.CloseOpenFilesMenuItem.Name = "CloseOpenFilesMenuItem";
-            this.CloseOpenFilesMenuItem.Click += new System.EventHandler(this.CloseOpenFilesMenuItem_Click);
+            resources.ApplyResources(this.closeOpenFilesToolStripMenuItem, "closeOpenFilesToolStripMenuItem");
+            this.closeOpenFilesToolStripMenuItem.Name = "closeOpenFilesToolStripMenuItem";
+            this.closeOpenFilesToolStripMenuItem.Click += new System.EventHandler(this.closeOpenFilesToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
             // 
-            // OptionsMenuItem
+            // optionsToolStripMenuItem
             // 
-            this.OptionsMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.LanguageMenuItem,
-            this.debugToolStripMenuItem1});
-            resources.ApplyResources(this.OptionsMenuItem, "OptionsMenuItem");
-            this.OptionsMenuItem.Name = "OptionsMenuItem";
+            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.languageToolStripMenuItem,
+            this.debugOptionsToolStripMenuItem});
+            resources.ApplyResources(this.optionsToolStripMenuItem, "optionsToolStripMenuItem");
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             // 
-            // LanguageMenuItem
+            // languageToolStripMenuItem
             // 
-            this.LanguageMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.EnglishMenuItem,
-            this.SwedishMenuItem});
-            this.LanguageMenuItem.Name = "LanguageMenuItem";
-            resources.ApplyResources(this.LanguageMenuItem, "LanguageMenuItem");
-            this.LanguageMenuItem.DropDownOpening += new System.EventHandler(this.LanguageMenuItem_DropDownOpening);
+            this.languageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.englishLanguageToolStripMenuItem,
+            this.swedishLanguageToolStripMenuItem});
+            this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
+            resources.ApplyResources(this.languageToolStripMenuItem, "languageToolStripMenuItem");
+            this.languageToolStripMenuItem.DropDownOpening += new System.EventHandler(this.languageToolStripMenuItem_DropDownOpening);
             // 
-            // EnglishMenuItem
+            // englishLanguageToolStripMenuItem
             // 
-            this.EnglishMenuItem.Name = "EnglishMenuItem";
-            resources.ApplyResources(this.EnglishMenuItem, "EnglishMenuItem");
-            this.EnglishMenuItem.Tag = "en";
-            this.EnglishMenuItem.Click += new System.EventHandler(this.EnglishMenuItem_Click);
+            this.englishLanguageToolStripMenuItem.Name = "englishLanguageToolStripMenuItem";
+            resources.ApplyResources(this.englishLanguageToolStripMenuItem, "englishLanguageToolStripMenuItem");
+            this.englishLanguageToolStripMenuItem.Tag = "en";
+            this.englishLanguageToolStripMenuItem.Click += new System.EventHandler(this.englishLanguageToolStripMenuItem_Click);
             // 
-            // SwedishMenuItem
+            // swedishLanguageToolStripMenuItem
             // 
-            this.SwedishMenuItem.Name = "SwedishMenuItem";
-            resources.ApplyResources(this.SwedishMenuItem, "SwedishMenuItem");
-            this.SwedishMenuItem.Tag = "sv";
-            this.SwedishMenuItem.Click += new System.EventHandler(this.SwedishMenuItem_Click);
+            this.swedishLanguageToolStripMenuItem.Name = "swedishLanguageToolStripMenuItem";
+            resources.ApplyResources(this.swedishLanguageToolStripMenuItem, "swedishLanguageToolStripMenuItem");
+            this.swedishLanguageToolStripMenuItem.Tag = "sv";
+            this.swedishLanguageToolStripMenuItem.Click += new System.EventHandler(this.swedishLanguageToolStripMenuItem_Click);
             // 
-            // debugToolStripMenuItem1
+            // debugOptionsToolStripMenuItem
             // 
-            this.debugToolStripMenuItem1.Name = "debugToolStripMenuItem1";
-            resources.ApplyResources(this.debugToolStripMenuItem1, "debugToolStripMenuItem1");
-            this.debugToolStripMenuItem1.Click += new System.EventHandler(this.debugToolStripMenuItem1_Click);
+            this.debugOptionsToolStripMenuItem.Name = "debugOptionsToolStripMenuItem";
+            resources.ApplyResources(this.debugOptionsToolStripMenuItem, "debugOptionsToolStripMenuItem");
+            this.debugOptionsToolStripMenuItem.Click += new System.EventHandler(this.debugOptionsToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -272,13 +279,19 @@
             resources.ApplyResources(this.exitToolStripMenuItem, "exitToolStripMenuItem");
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // DebugToolStripMenuItem
+            // debugToolStripMenuItem
             // 
-            this.DebugToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.checkVersionNow,
+            this.debugToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.checkVersionNowToolStripMenuItem,
             this.setUpdateCheckUrlToolStripMenuItem});
-            this.DebugToolStripMenuItem.Name = "DebugToolStripMenuItem";
-            resources.ApplyResources(this.DebugToolStripMenuItem, "DebugToolStripMenuItem");
+            this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
+            resources.ApplyResources(this.debugToolStripMenuItem, "debugToolStripMenuItem");
+            // 
+            // checkVersionNowToolStripMenuItem
+            // 
+            this.checkVersionNowToolStripMenuItem.Name = "checkVersionNowToolStripMenuItem";
+            resources.ApplyResources(this.checkVersionNowToolStripMenuItem, "checkVersionNowToolStripMenuItem");
+            this.checkVersionNowToolStripMenuItem.Click += new System.EventHandler(this.checkVersionNowToolStripMenuItem_Click);
             // 
             // setUpdateCheckUrlToolStripMenuItem
             // 
@@ -290,190 +303,9 @@
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.viewHelpMenuItem,
-            this.about});
+            this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
-            // 
-            // StatusTabs
-            // 
-            resources.ApplyResources(this.StatusTabs, "StatusTabs");
-            this.StatusTabs.Controls.Add(this.OpenFilesTab);
-            this.StatusTabs.Controls.Add(this.RecentFilesTab);
-            this.StatusTabs.Controls.Add(this.WatchedFoldersTab);
-            this.StatusTabs.Controls.Add(this.LogTab);
-            this.StatusTabs.Name = "StatusTabs";
-            this.StatusTabs.SelectedIndex = 0;
-            // 
-            // OpenFilesTab
-            // 
-            this.OpenFilesTab.Controls.Add(this.OpenFilesListView);
-            resources.ApplyResources(this.OpenFilesTab, "OpenFilesTab");
-            this.OpenFilesTab.Name = "OpenFilesTab";
-            this.OpenFilesTab.UseVisualStyleBackColor = true;
-            // 
-            // OpenFilesListView
-            // 
-            this.OpenFilesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.OpenFile,
-            this.EncryptedSource});
-            resources.ApplyResources(this.OpenFilesListView, "OpenFilesListView");
-            this.OpenFilesListView.FullRowSelect = true;
-            this.OpenFilesListView.LargeImageList = this.ImageList48;
-            this.OpenFilesListView.Name = "OpenFilesListView";
-            this.OpenFilesListView.SmallImageList = this.ImageList16;
-            this.OpenFilesListView.UseCompatibleStateImageBehavior = false;
-            this.OpenFilesListView.View = System.Windows.Forms.View.Details;
-            this.OpenFilesListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.OpenFilesListView_MouseClick);
-            this.OpenFilesListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.OpenFilesListView_MouseDoubleClick);
-            // 
-            // OpenFile
-            // 
-            resources.ApplyResources(this.OpenFile, "OpenFile");
-            // 
-            // EncryptedSource
-            // 
-            resources.ApplyResources(this.EncryptedSource, "EncryptedSource");
-            // 
-            // ImageList48
-            // 
-            this.ImageList48.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImageList48.ImageStream")));
-            this.ImageList48.TransparentColor = System.Drawing.Color.Transparent;
-            this.ImageList48.Images.SetKeyName(0, "ActiveFile");
-            this.ImageList48.Images.SetKeyName(1, "InactiveFile");
-            this.ImageList48.Images.SetKeyName(2, "Exclamation");
-            // 
-            // ImageList16
-            // 
-            this.ImageList16.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImageList16.ImageStream")));
-            this.ImageList16.TransparentColor = System.Drawing.Color.Transparent;
-            this.ImageList16.Images.SetKeyName(0, "ActiveFile");
-            this.ImageList16.Images.SetKeyName(1, "InactiveFile");
-            this.ImageList16.Images.SetKeyName(2, "Exclamation");
-            // 
-            // RecentFilesTab
-            // 
-            this.RecentFilesTab.Controls.Add(this.RecentFilesListView);
-            resources.ApplyResources(this.RecentFilesTab, "RecentFilesTab");
-            this.RecentFilesTab.Name = "RecentFilesTab";
-            this.RecentFilesTab.UseVisualStyleBackColor = true;
-            // 
-            // RecentFilesListView
-            // 
-            this.RecentFilesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.DecryptedFile,
-            this.LastAccessTime,
-            this.EncryptedPath});
-            resources.ApplyResources(this.RecentFilesListView, "RecentFilesListView");
-            this.RecentFilesListView.FullRowSelect = true;
-            this.RecentFilesListView.LargeImageList = this.ImageList48;
-            this.RecentFilesListView.Name = "RecentFilesListView";
-            this.RecentFilesListView.SmallImageList = this.ImageList16;
-            this.RecentFilesListView.UseCompatibleStateImageBehavior = false;
-            this.RecentFilesListView.View = System.Windows.Forms.View.Details;
-            this.RecentFilesListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.RecentFilesListView_ColumnWidthChanged);
-            this.RecentFilesListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RecentFilesListView_MouseClick);
-            this.RecentFilesListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.RecentFilesListView_MouseDoubleClick);
-            // 
-            // DecryptedFile
-            // 
-            resources.ApplyResources(this.DecryptedFile, "DecryptedFile");
-            // 
-            // LastAccessTime
-            // 
-            resources.ApplyResources(this.LastAccessTime, "LastAccessTime");
-            // 
-            // EncryptedPath
-            // 
-            resources.ApplyResources(this.EncryptedPath, "EncryptedPath");
-            // 
-            // WatchedFoldersTab
-            // 
-            this.WatchedFoldersTab.Controls.Add(this.WatchedFoldersListView);
-            resources.ApplyResources(this.WatchedFoldersTab, "WatchedFoldersTab");
-            this.WatchedFoldersTab.Name = "WatchedFoldersTab";
-            this.WatchedFoldersTab.UseVisualStyleBackColor = true;
-            // 
-            // WatchedFoldersListView
-            // 
-            resources.ApplyResources(this.WatchedFoldersListView, "WatchedFoldersListView");
-            this.WatchedFoldersListView.FullRowSelect = true;
-            this.WatchedFoldersListView.Name = "WatchedFoldersListView";
-            this.WatchedFoldersListView.UseCompatibleStateImageBehavior = false;
-            // 
-            // LogTab
-            // 
-            this.LogTab.Controls.Add(this.LogOutput);
-            resources.ApplyResources(this.LogTab, "LogTab");
-            this.LogTab.Name = "LogTab";
-            this.LogTab.UseVisualStyleBackColor = true;
-            // 
-            // LogOutput
-            // 
-            resources.ApplyResources(this.LogOutput, "LogOutput");
-            this.LogOutput.Name = "LogOutput";
-            this.LogOutput.ReadOnly = true;
-            // 
-            // ActiveFilePolling
-            // 
-            this.ActiveFilePolling.Interval = 1000;
-            this.ActiveFilePolling.Tick += new System.EventHandler(this.ActiveFilePolling_Tick);
-            // 
-            // ProgressPanel
-            // 
-            resources.ApplyResources(this.ProgressPanel, "ProgressPanel");
-            this.ProgressPanel.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
-            this.ProgressPanel.Name = "ProgressPanel";
-            // 
-            // RecentFilesContextMenu
-            // 
-            this.RecentFilesContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.RemoveRecentFileMenuItem});
-            this.RecentFilesContextMenu.Name = "RecentFilesContextMenu";
-            resources.ApplyResources(this.RecentFilesContextMenu, "RecentFilesContextMenu");
-            // 
-            // RemoveRecentFileMenuItem
-            // 
-            this.RemoveRecentFileMenuItem.Name = "RemoveRecentFileMenuItem";
-            resources.ApplyResources(this.RemoveRecentFileMenuItem, "RemoveRecentFileMenuItem");
-            this.RemoveRecentFileMenuItem.Click += new System.EventHandler(this.RemoveRecentFileMenuItem_Click);
-            // 
-            // OpenFilesContextMenu
-            // 
-            this.OpenFilesContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.EnterPassphraseMenuItem});
-            this.OpenFilesContextMenu.Name = "OpenFilesContextMenu";
-            resources.ApplyResources(this.OpenFilesContextMenu, "OpenFilesContextMenu");
-            // 
-            // EnterPassphraseMenuItem
-            // 
-            this.EnterPassphraseMenuItem.Name = "EnterPassphraseMenuItem";
-            resources.ApplyResources(this.EnterPassphraseMenuItem, "EnterPassphraseMenuItem");
-            this.EnterPassphraseMenuItem.Click += new System.EventHandler(this.EnterPassphraseMenuItem_Click);
-            // 
-            // ProgressContextMenu
-            // 
-            this.ProgressContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ProgressContextCancelMenu});
-            this.ProgressContextMenu.Name = "ProgressContextMenu";
-            resources.ApplyResources(this.ProgressContextMenu, "ProgressContextMenu");
-            // 
-            // ProgressContextCancelMenu
-            // 
-            this.ProgressContextCancelMenu.Name = "ProgressContextCancelMenu";
-            resources.ApplyResources(this.ProgressContextCancelMenu, "ProgressContextCancelMenu");
-            this.ProgressContextCancelMenu.Click += new System.EventHandler(this.ProgressContextCancelMenu_Click);
-            // 
-            // checkVersionNow
-            // 
-            this.checkVersionNow.Name = "checkVersionNow";
-            resources.ApplyResources(this.checkVersionNow, "checkVersionNow");
-            this.checkVersionNow.Click += new System.EventHandler(this.checkVersionNow_Click);
-            // 
-            // about
-            // 
-            this.about.Name = "about";
-            resources.ApplyResources(this.about, "about");
-            this.about.Click += new System.EventHandler(this.about_Click);
             // 
             // viewHelpMenuItem
             // 
@@ -481,33 +313,218 @@
             resources.ApplyResources(this.viewHelpMenuItem, "viewHelpMenuItem");
             this.viewHelpMenuItem.Click += new System.EventHandler(this.viewHelpMenuItem_Click);
             // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // statusTabControl
+            // 
+            resources.ApplyResources(this.statusTabControl, "statusTabControl");
+            this.statusTabControl.Controls.Add(this.openFilesTabPage);
+            this.statusTabControl.Controls.Add(this.recentFilesTabPage);
+            this.statusTabControl.Controls.Add(this.watchedFoldersTabPage);
+            this.statusTabControl.Controls.Add(this.logTabPage);
+            this.statusTabControl.Name = "statusTabControl";
+            this.statusTabControl.SelectedIndex = 0;
+            // 
+            // openFilesTabPage
+            // 
+            this.openFilesTabPage.Controls.Add(this.openFilesListView);
+            resources.ApplyResources(this.openFilesTabPage, "openFilesTabPage");
+            this.openFilesTabPage.Name = "openFilesTabPage";
+            this.openFilesTabPage.UseVisualStyleBackColor = true;
+            // 
+            // openFilesListView
+            // 
+            this.openFilesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.openFileColumnHeader,
+            this.encryptedSourceColumnHeader});
+            resources.ApplyResources(this.openFilesListView, "openFilesListView");
+            this.openFilesListView.FullRowSelect = true;
+            this.openFilesListView.LargeImageList = this.largeImageList;
+            this.openFilesListView.Name = "openFilesListView";
+            this.openFilesListView.SmallImageList = this.smallImageList;
+            this.openFilesListView.UseCompatibleStateImageBehavior = false;
+            this.openFilesListView.View = System.Windows.Forms.View.Details;
+            this.openFilesListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.openFilesListView_MouseClick);
+            this.openFilesListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.openFilesListView_MouseDoubleClick);
+            // 
+            // openFileColumnHeader
+            // 
+            resources.ApplyResources(this.openFileColumnHeader, "openFileColumnHeader");
+            // 
+            // encryptedSourceColumnHeader
+            // 
+            resources.ApplyResources(this.encryptedSourceColumnHeader, "encryptedSourceColumnHeader");
+            // 
+            // largeImageList
+            // 
+            this.largeImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("largeImageList.ImageStream")));
+            this.largeImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.largeImageList.Images.SetKeyName(0, "ActiveFile");
+            this.largeImageList.Images.SetKeyName(1, "InactiveFile");
+            this.largeImageList.Images.SetKeyName(2, "Exclamation");
+            // 
+            // smallImageList
+            // 
+            this.smallImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("smallImageList.ImageStream")));
+            this.smallImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.smallImageList.Images.SetKeyName(0, "ActiveFile");
+            this.smallImageList.Images.SetKeyName(1, "InactiveFile");
+            this.smallImageList.Images.SetKeyName(2, "Exclamation");
+            // 
+            // recentFilesTabPage
+            // 
+            this.recentFilesTabPage.Controls.Add(this.recentFilesListView);
+            resources.ApplyResources(this.recentFilesTabPage, "recentFilesTabPage");
+            this.recentFilesTabPage.Name = "recentFilesTabPage";
+            this.recentFilesTabPage.UseVisualStyleBackColor = true;
+            // 
+            // recentFilesListView
+            // 
+            this.recentFilesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.decryptedFileColumnHeader,
+            this.lastAccessTimeColumnHeader,
+            this.encryptedPathColumnHeader});
+            resources.ApplyResources(this.recentFilesListView, "recentFilesListView");
+            this.recentFilesListView.FullRowSelect = true;
+            this.recentFilesListView.LargeImageList = this.largeImageList;
+            this.recentFilesListView.Name = "recentFilesListView";
+            this.recentFilesListView.SmallImageList = this.smallImageList;
+            this.recentFilesListView.UseCompatibleStateImageBehavior = false;
+            this.recentFilesListView.View = System.Windows.Forms.View.Details;
+            this.recentFilesListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.recentFilesListView_ColumnWidthChanged);
+            this.recentFilesListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.recentFilesListView_MouseClick);
+            this.recentFilesListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.recentFilesListView_MouseDoubleClick);
+            // 
+            // decryptedFileColumnHeader
+            // 
+            resources.ApplyResources(this.decryptedFileColumnHeader, "decryptedFileColumnHeader");
+            // 
+            // lastAccessTimeColumnHeader
+            // 
+            resources.ApplyResources(this.lastAccessTimeColumnHeader, "lastAccessTimeColumnHeader");
+            // 
+            // encryptedPathColumnHeader
+            // 
+            resources.ApplyResources(this.encryptedPathColumnHeader, "encryptedPathColumnHeader");
+            // 
+            // watchedFoldersTabPage
+            // 
+            this.watchedFoldersTabPage.Controls.Add(this.watchedFoldersListView);
+            resources.ApplyResources(this.watchedFoldersTabPage, "watchedFoldersTabPage");
+            this.watchedFoldersTabPage.Name = "watchedFoldersTabPage";
+            this.watchedFoldersTabPage.UseVisualStyleBackColor = true;
+            // 
+            // watchedFoldersListView
+            // 
+            resources.ApplyResources(this.watchedFoldersListView, "watchedFoldersListView");
+            this.watchedFoldersListView.FullRowSelect = true;
+            this.watchedFoldersListView.Name = "watchedFoldersListView";
+            this.watchedFoldersListView.UseCompatibleStateImageBehavior = false;
+            // 
+            // logTabPage
+            // 
+            this.logTabPage.Controls.Add(this.logOutputTextBox);
+            resources.ApplyResources(this.logTabPage, "logTabPage");
+            this.logTabPage.Name = "logTabPage";
+            this.logTabPage.UseVisualStyleBackColor = true;
+            // 
+            // logOutputTextBox
+            // 
+            resources.ApplyResources(this.logOutputTextBox, "logOutputTextBox");
+            this.logOutputTextBox.Name = "logOutputTextBox";
+            this.logOutputTextBox.ReadOnly = true;
+            // 
+            // activeFilePollingTimer
+            // 
+            this.activeFilePollingTimer.Interval = 1000;
+            this.activeFilePollingTimer.Tick += new System.EventHandler(this.activeFilePollingTimer_Tick);
+            // 
+            // progressTableLayoutPanel
+            // 
+            resources.ApplyResources(this.progressTableLayoutPanel, "progressTableLayoutPanel");
+            this.progressTableLayoutPanel.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
+            this.progressTableLayoutPanel.Name = "progressTableLayoutPanel";
+            // 
+            // recentFilesContextMenuStrip
+            // 
+            this.recentFilesContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.removeRecentFileToolStripMenuItem});
+            this.recentFilesContextMenuStrip.Name = "RecentFilesContextMenu";
+            resources.ApplyResources(this.recentFilesContextMenuStrip, "recentFilesContextMenuStrip");
+            // 
+            // removeRecentFileToolStripMenuItem
+            // 
+            this.removeRecentFileToolStripMenuItem.Name = "removeRecentFileToolStripMenuItem";
+            resources.ApplyResources(this.removeRecentFileToolStripMenuItem, "removeRecentFileToolStripMenuItem");
+            this.removeRecentFileToolStripMenuItem.Click += new System.EventHandler(this.removeRecentFileToolStripMenuItem_Click);
+            // 
+            // openFilesContextMenuStrip
+            // 
+            this.openFilesContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.enterPassphraseToolStripMenuItem});
+            this.openFilesContextMenuStrip.Name = "OpenFilesContextMenu";
+            resources.ApplyResources(this.openFilesContextMenuStrip, "openFilesContextMenuStrip");
+            // 
+            // enterPassphraseToolStripMenuItem
+            // 
+            this.enterPassphraseToolStripMenuItem.Name = "enterPassphraseToolStripMenuItem";
+            resources.ApplyResources(this.enterPassphraseToolStripMenuItem, "enterPassphraseToolStripMenuItem");
+            this.enterPassphraseToolStripMenuItem.Click += new System.EventHandler(this.enterPassphraseToolStripMenuItem_Click);
+            // 
+            // progressContextMenuStrip
+            // 
+            this.progressContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.progressContextCancelToolStripMenuItem});
+            this.progressContextMenuStrip.Name = "ProgressContextMenu";
+            resources.ApplyResources(this.progressContextMenuStrip, "progressContextMenuStrip");
+            // 
+            // progressContextCancelToolStripMenuItem
+            // 
+            this.progressContextCancelToolStripMenuItem.Name = "progressContextCancelToolStripMenuItem";
+            resources.ApplyResources(this.progressContextCancelToolStripMenuItem, "progressContextCancelToolStripMenuItem");
+            this.progressContextCancelToolStripMenuItem.Click += new System.EventHandler(this.progressContextCancelToolStripMenuItem_Click);
+            // 
+            // trayNotifyIcon
+            // 
+            resources.ApplyResources(this.trayNotifyIcon, "trayNotifyIcon");
+            this.trayNotifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.trayNotifyIcon_MouseDoubleClick);
+            // 
+            // progressBackgroundWorker
+            // 
+            this.progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.progressBackgroundWorker_ProgressBarCreated);
+            this.progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.progressBackgroundWorker_ProgressBarClicked);
+            // 
             // AxCryptMainForm
             // 
-            //resources.ApplyResources(this, "$this");
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.ProgressPanel);
-            this.Controls.Add(this.StatusTabs);
-            this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.menuStripMain);
-            this.MainMenuStrip = this.menuStripMain;
+            this.Controls.Add(this.progressTableLayoutPanel);
+            this.Controls.Add(this.statusTabControl);
+            this.Controls.Add(this.mainToolStrip);
+            this.Controls.Add(this.mainMenuStrip);
+            this.MainMenuStrip = this.mainMenuStrip;
             this.Name = "AxCryptMainForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AxCryptMainForm_FormClosing);
             this.Load += new System.EventHandler(this.AxCryptMainForm_Load);
             this.Resize += new System.EventHandler(this.AxCryptMainForm_Resize);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
-            this.menuStripMain.ResumeLayout(false);
-            this.menuStripMain.PerformLayout();
-            this.StatusTabs.ResumeLayout(false);
-            this.OpenFilesTab.ResumeLayout(false);
-            this.RecentFilesTab.ResumeLayout(false);
-            this.WatchedFoldersTab.ResumeLayout(false);
-            this.LogTab.ResumeLayout(false);
-            this.LogTab.PerformLayout();
-            this.RecentFilesContextMenu.ResumeLayout(false);
-            this.OpenFilesContextMenu.ResumeLayout(false);
-            this.ProgressContextMenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.EncryptedFileManager)).EndInit();
+            this.mainToolStrip.ResumeLayout(false);
+            this.mainToolStrip.PerformLayout();
+            this.mainMenuStrip.ResumeLayout(false);
+            this.mainMenuStrip.PerformLayout();
+            this.statusTabControl.ResumeLayout(false);
+            this.openFilesTabPage.ResumeLayout(false);
+            this.recentFilesTabPage.ResumeLayout(false);
+            this.watchedFoldersTabPage.ResumeLayout(false);
+            this.logTabPage.ResumeLayout(false);
+            this.logTabPage.PerformLayout();
+            this.recentFilesContextMenuStrip.ResumeLayout(false);
+            this.openFilesContextMenuStrip.ResumeLayout(false);
+            this.progressContextMenuStrip.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundMonitor)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -515,61 +532,63 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip mainToolStrip;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton helpButton;
-        private System.Windows.Forms.ToolStripButton toolStripButtonEncrypt;
-        private System.Windows.Forms.ToolStripButton toolStripButtonDecrypt;
-        private System.Windows.Forms.MenuStrip menuStripMain;
+        private System.Windows.Forms.ToolStripButton helpToolStripButton;
+        private System.Windows.Forms.ToolStripButton encryptToolStripButton;
+        private System.Windows.Forms.ToolStripButton decryptToolStripButton;
+        private System.Windows.Forms.MenuStrip mainMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem encryptToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem decryptToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripButton toolStripButtonOpenEncrypted;
+        private System.Windows.Forms.ToolStripButton openEncryptedToolStripButton;
         private System.Windows.Forms.ToolStripMenuItem openEncryptedToolStripMenuItem;
-        private System.Windows.Forms.TabControl StatusTabs;
-        private System.Windows.Forms.TabPage OpenFilesTab;
-        private System.Windows.Forms.ListView OpenFilesListView;
-        private System.Windows.Forms.TabPage WatchedFoldersTab;
-        private System.Windows.Forms.ListView WatchedFoldersListView;
+        private System.Windows.Forms.TabControl statusTabControl;
+        private System.Windows.Forms.TabPage openFilesTabPage;
+        private System.Windows.Forms.ListView openFilesListView;
+        private System.Windows.Forms.TabPage watchedFoldersTabPage;
+        private System.Windows.Forms.ListView watchedFoldersListView;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.Timer ActiveFilePolling;
-        private System.Windows.Forms.ImageList ImageList48;
-        private System.Windows.Forms.ImageList ImageList16;
-        private System.Windows.Forms.TabPage RecentFilesTab;
-        private System.Windows.Forms.ListView RecentFilesListView;
-        private System.Windows.Forms.ColumnHeader OpenFile;
-        private System.Windows.Forms.ColumnHeader EncryptedSource;
-        private System.Windows.Forms.ColumnHeader EncryptedPath;
-        private System.Windows.Forms.ColumnHeader LastAccessTime;
-        private System.Windows.Forms.ColumnHeader DecryptedFile;
-        private System.Windows.Forms.TabPage LogTab;
-        private System.Windows.Forms.TextBox LogOutput;
-        private System.Windows.Forms.ContextMenuStrip RecentFilesContextMenu;
-        private System.Windows.Forms.ToolStripMenuItem RemoveRecentFileMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem CloseOpenFilesMenuItem;
+        private System.Windows.Forms.Timer activeFilePollingTimer;
+        private System.Windows.Forms.ImageList largeImageList;
+        private System.Windows.Forms.ImageList smallImageList;
+        private System.Windows.Forms.TabPage recentFilesTabPage;
+        private System.Windows.Forms.ListView recentFilesListView;
+        private System.Windows.Forms.ColumnHeader openFileColumnHeader;
+        private System.Windows.Forms.ColumnHeader encryptedSourceColumnHeader;
+        private System.Windows.Forms.ColumnHeader encryptedPathColumnHeader;
+        private System.Windows.Forms.ColumnHeader lastAccessTimeColumnHeader;
+        private System.Windows.Forms.ColumnHeader decryptedFileColumnHeader;
+        private System.Windows.Forms.TabPage logTabPage;
+        private System.Windows.Forms.TextBox logOutputTextBox;
+        private System.Windows.Forms.ContextMenuStrip recentFilesContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem removeRecentFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closeOpenFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripButton CloseAndRemoveOpenFilesButton;
+        private System.Windows.Forms.ToolStripButton closeAndRemoveOpenFilesToolStripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ContextMenuStrip OpenFilesContextMenu;
-        private System.Windows.Forms.ToolStripMenuItem EnterPassphraseMenuItem;
-        internal System.Windows.Forms.TableLayoutPanel ProgressPanel;
-        private System.Windows.Forms.ContextMenuStrip ProgressContextMenu;
-        private System.Windows.Forms.ToolStripMenuItem ProgressContextCancelMenu;
-        internal EncryptedFileManager EncryptedFileManager;
-        private System.Windows.Forms.ToolStripMenuItem OptionsMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem LanguageMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem EnglishMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem SwedishMenuItem;
+        private System.Windows.Forms.ContextMenuStrip openFilesContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem enterPassphraseToolStripMenuItem;
+        internal System.Windows.Forms.TableLayoutPanel progressTableLayoutPanel;
+        private System.Windows.Forms.ContextMenuStrip progressContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem progressContextCancelToolStripMenuItem;
+        internal BackgroundMonitor backgroundMonitor;
+        private System.Windows.Forms.NotifyIcon trayNotifyIcon;
+        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem languageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem englishLanguageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem swedishLanguageToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.ToolStripButton UpdateToolStripButton;
-        private System.Windows.Forms.ToolStripMenuItem DebugToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton updateToolStripButton;
+        private System.Windows.Forms.ToolStripMenuItem debugToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setUpdateCheckUrlToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem debugToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem checkVersionNow;
-        private System.Windows.Forms.ToolStripMenuItem about;
+        private System.Windows.Forms.ToolStripMenuItem debugOptionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem checkVersionNowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewHelpMenuItem;
+        private ProgressBackgroundWorker progressBackgroundWorker;
     }
 }
 

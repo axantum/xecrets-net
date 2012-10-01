@@ -1,0 +1,14 @@
+﻿About Axantum.AxCrypt.Mono
+
+This assembly contains platform specific implementations for desktop Mono / desktop Windows.
+
+At this time, Mono and Windows are treated to be compatible and use the same implementation.
+
+A platform specific implementation assembly should implement IRuntimeEnvironment, and the
+interfaces exposed by methods and properties in that interface. This is currently:
+
+IFileWatcher, ILauncher, IRuntimeFileInfo, ITiming and IWebCaller.
+
+Code coverage is not required to be 100% here, but what reasonable can be tested should be.
+
+FxCop should pass without complaint.

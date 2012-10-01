@@ -121,7 +121,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 if (_temporaryDirectoryInfo == null)
                 {
-                    string temporaryFolderPath = Path.Combine(Path.GetTempPath(), "AxCrypt" + Path.DirectorySeparatorChar);
+                    string temporaryFolderPath = Path.Combine(Path.GetTempPath(), "AxCrypt");
                     IRuntimeFileInfo temporaryFolderInfo = FileInfo(temporaryFolderPath);
                     temporaryFolderInfo.CreateDirectory();
                     _temporaryDirectoryInfo = temporaryFolderInfo;
@@ -202,5 +202,19 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         public event EventHandler<EventArgs> FileChanged;
+
+        #region IRuntimeEnvironment Members
+
+        public ILogging Log
+        {
+            get { return new FakeLogging(); }
+        }
+
+        public IDataProtection DataProtection
+        {
+            get { return new FakeDataProtection(); }
+        }
+
+        #endregion IRuntimeEnvironment Members
     }
 }

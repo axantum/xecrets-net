@@ -1,0 +1,9 @@
+﻿About Axantum.AxCrypt.Core.Test
+
+This assembly should contain tests enough to cover Axantum.AxCrypt.Core to 100% .
+
+FxCop should pass without complaint.
+
+It must only depend on testing framework, Axantum.AxCrypt.Core and it's dependencies.
+
+In particular it must not depend on any implementation specific assembly.

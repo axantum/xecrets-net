@@ -64,7 +64,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new ArgumentNullException("iv");
             }
-			_aes = new AesManaged();
+            _aes = new AesManaged();
             _aes.Key = key.GetBytes();
             _aes.Mode = cipherMode;
             _aes.IV = iv.GetBytes();

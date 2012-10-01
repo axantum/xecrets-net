@@ -55,9 +55,9 @@ namespace Axantum.AxCrypt.Core.IO
                     return null;
                 }
                 _lockedFiles.Add(fileInfo.FullName);
-                if (Logging.IsInfoEnabled)
+                if (OS.Log.IsInfoEnabled)
                 {
-                    Logging.Info("Locking file '{0}'.".InvariantFormat(fileInfo.FullName));
+                    OS.Log.LogInfo("Locking file '{0}'.".InvariantFormat(fileInfo.FullName));
                 }
                 return new FileLock(fileInfo.FullName);
             }
@@ -75,9 +75,9 @@ namespace Axantum.AxCrypt.Core.IO
                 {
                     if (_lockedFiles.Contains(fileInfo.FullName))
                     {
-                        if (Logging.IsInfoEnabled)
+                        if (OS.Log.IsInfoEnabled)
                         {
-                            Logging.Info("File '{0}' was found to be locked.".InvariantFormat(fileInfo.FullName));
+                            OS.Log.LogInfo("File '{0}' was found to be locked.".InvariantFormat(fileInfo.FullName));
                         }
                         return true;
                     }
@@ -101,9 +101,9 @@ namespace Axantum.AxCrypt.Core.IO
                     return;
                 }
                 _lockedFiles.Remove(_fullPath);
-                if (Logging.IsInfoEnabled)
+                if (OS.Log.IsInfoEnabled)
                 {
-                    Logging.Info("Unlocking file '{0}'.".InvariantFormat(_fullPath));
+                    OS.Log.LogInfo("Unlocking file '{0}'.".InvariantFormat(_fullPath));
                 }
                 _fullPath = null;
             }

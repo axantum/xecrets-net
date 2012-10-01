@@ -40,7 +40,7 @@ namespace Axantum.AxCrypt.Core.System
         WindowsPhone,
         Linux,
         AppleIos,
-        MacOSX,
+        MacOsx,
         Android,
         Xbox,
     }

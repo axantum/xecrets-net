@@ -46,130 +46,24 @@ using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.System;
 using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Mono;
 using Axantum.AxCrypt.Properties;
 
 namespace Axantum.AxCrypt
 {
     /// <summary>
-    /// All code here is guaranteed to execute on the GUI thread. If code may be called on another thread, this call
-    /// should be made through MainFormThreadFacade .
+    /// All code here is expected to execute on the GUI thread. If code may be called on another thread, this call
+    /// must be made through ThreadSafeUi() .
     /// </summary>
     public partial class AxCryptMainForm : Form
     {
         private Uri _updateUrl = Settings.Default.UpdateUrl;
 
-        public static MessageBoxOptions MessageBoxOptions { get; private set; }
-
-        public void FormatTraceMessage(string message)
-        {
-            ThreadFacade.SafeUi(() =>
-            {
-                int skipIndex = message.IndexOf(" Information", StringComparison.Ordinal); //MLHIDE
-                skipIndex = skipIndex < 0 ? message.IndexOf(" Warning", StringComparison.Ordinal) : skipIndex; //MLHIDE
-                skipIndex = skipIndex < 0 ? message.IndexOf(" Debug", StringComparison.Ordinal) : skipIndex; //MLHIDE
-                skipIndex = skipIndex < 0 ? message.IndexOf(" Error", StringComparison.Ordinal) : skipIndex; //MLHIDE
-                LogOutput.AppendText("{0} {1}".InvariantFormat(AxCryptEnvironment.Current.UtcNow.ToString("o", CultureInfo.InvariantCulture), message.Substring(skipIndex + 1))); //MLHIDE
-            });
-        }
-
-        private MainFormThreadFacade ThreadFacade { get; set; }
+        private TabPage _logTabPage = null;
 
         private FileSystemState FileSystemState { get; set; }
 
-        public AxCryptMainForm()
-        {
-            AxCryptEnvironment.Current = new RuntimeEnvironment();
-            InitializeComponent();
-        }
-
-        private void AxCryptMainForm_Load(object sender, EventArgs e)
-        {
-            if (DesignMode)
-            {
-                return;
-            }
-
-            ThreadFacade = new MainFormThreadFacade(this);
-
-            DelegateTraceListener traceListener = new DelegateTraceListener(FormatTraceMessage);
-            traceListener.Name = "AxCryptMainFormListener";           //MLHIDE
-            Trace.Listeners.Add(traceListener);
-
-            TrackProcess = AxCryptEnvironment.Current.Platform == Platform.WindowsDesktop;
-
-            RestoreUserPreferences();
-
-            Text = "{0} {1}{2}".InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription);
-
-            MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
-
-            AxCryptEnvironment.Current.FileChanged += new EventHandler<EventArgs>(FileSystemOrStateChanged);
-
-            string fileSystemStateFullName = Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, "FileSystemState.xml"); //MLHIDE
-            FileSystemState = FileSystemState.Load(AxCryptEnvironment.Current.FileInfo(fileSystemStateFullName));
-            FileSystemState.Changed += new EventHandler<EventArgs>(FileSystemOrStateChanged);
-            FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseAlways, TrackProcess, new ProgressContext());
-
-            EncryptedFileManager.VersionChecked += new EventHandler<VersionEventArgs>(EncryptedFileManager_VersionChecked);
-            EncryptedFileManager.VersionCheckInBackground(Settings.Default.LastUpdateCheckUtc);
-        }
-
-        private void UpdateVersionStatus(VersionUpdateStatus status, Version version)
-        {
-            switch (status)
-            {
-                case VersionUpdateStatus.IsUpToDateOrRecentlyChecked:
-                    UpdateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.NoNeedToCheckForUpdatesTooltip;
-                    UpdateToolStripButton.Enabled = false;
-                    break;
-
-                case VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck:
-                    UpdateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.OldVersionTooltip;
-                    UpdateToolStripButton.Image = Resources.RefreshRed;
-                    UpdateToolStripButton.Enabled = true;
-                    break;
-
-                case VersionUpdateStatus.NewerVersionIsAvailable:
-                    UpdateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.NewVersionIsAvailableTooltip.InvariantFormat(version);
-                    UpdateToolStripButton.Image = Resources.RefreshRed;
-                    UpdateToolStripButton.Enabled = true;
-                    break;
-
-                case VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck:
-                    UpdateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.ClickToCheckForNewerVersionTooltip;
-                    UpdateToolStripButton.Image = Resources.RefreshGreen;
-                    UpdateToolStripButton.Enabled = true;
-                    break;
-            }
-        }
-
-        private void EncryptedFileManager_VersionChecked(object sender, VersionEventArgs e)
-        {
-            Settings.Default.LastUpdateCheckUtc = AxCryptEnvironment.Current.UtcNow;
-            Settings.Default.NewestKnownVersion = e.Version.ToString();
-            Settings.Default.Save();
-            _updateUrl = e.UpdateWebpageUrl;
-            ThreadFacade.SafeUi(() => { UpdateVersionStatus(e.VersionUpdateStatus, e.Version); });
-        }
-
-        private void FileSystemOrStateChanged(object sender, EventArgs e)
-        {
-            ThreadFacade.SafeUi(RestartTimer);
-        }
-
-        private void AxCryptMainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (DesignMode)
-            {
-                return;
-            }
-
-            ThreadFacade.WaitForBackgroundIdle();
-            TrackProcess = false;
-            PurgeActiveFiles();
-            ThreadFacade.WaitForBackgroundIdle();
-            Trace.Listeners.Remove("AxCryptMainFormListener");        //MLHIDE
-        }
+        public static MessageBoxOptions MessageBoxOptions { get; private set; }
 
         private bool _trackProcess;
 
@@ -182,80 +76,214 @@ namespace Axantum.AxCrypt
             set
             {
                 _trackProcess = value;
-                if (Logging.IsInfoEnabled)
+                if (OS.Log.IsInfoEnabled)
                 {
-                    Logging.Info("ActiveFileMonitor.TrackProcess='{0}'".InvariantFormat(value)); //MLHIDE
+                    OS.Log.LogInfo("ActiveFileMonitor.TrackProcess='{0}'".InvariantFormat(value)); //MLHIDE
                 }
             }
+        }
+
+        public AxCryptMainForm()
+        {
+            OS.Current = new RuntimeEnvironment();
+            InitializeComponent();
+        }
+
+        private void AxCryptMainForm_Load(object sender, EventArgs e)
+        {
+            if (DesignMode)
+            {
+                return;
+            }
+
+            Trace.Listeners.Add(new DelegateTraceListener("AxCryptMainFormListener", FormatTraceMessage)); //MLHIDE
+
+            TrackProcess = OS.Current.Platform == Platform.WindowsDesktop;
+
+            RestoreUserPreferences();
+
+            Text = "{0} {1}{2}".InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription); //MLHIDE
+
+            MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
+
+            OS.Current.FileChanged += new EventHandler<EventArgs>(HandleFileChangedEvent);
+
+            FileSystemState = new FileSystemState();
+            FileSystemState.Changed += new EventHandler<ActiveFileChangedEventArgs>(HandleFileSystemStateChangedEvent);
+
+            string fileSystemStateFullName = Path.Combine(OS.Current.TemporaryDirectoryInfo.FullName, "FileSystemState.xml"); //MLHIDE
+            FileSystemState.Load(OS.Current.FileInfo(fileSystemStateFullName));
+
+            backgroundMonitor.UpdateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(HandleVersionUpdateEvent);
+            UpdateCheck(Settings.Default.LastUpdateCheckUtc);
+        }
+
+        private void FormatTraceMessage(string message)
+        {
+            ThreadSafeUi(() =>
+            {
+                string formatted = "{0} {1}".InvariantFormat(OS.Current.UtcNow.ToString("o", CultureInfo.InvariantCulture), message.TrimLogMessage()); //MLHIDE
+                logOutputTextBox.AppendText(formatted);
+            });
+        }
+
+        private void ThreadSafeUi(Action action)
+        {
+            if (InvokeRequired)
+            {
+                BeginInvoke(action);
+            }
+            else
+            {
+                action();
+            }
+        }
+
+        private void UpdateCheck(DateTime lastCheckUtc)
+        {
+            backgroundMonitor.UpdateCheck.CheckInBackground(lastCheckUtc, Settings.Default.NewestKnownVersion, Settings.Default.AxCrypt2VersionCheckUrl, Settings.Default.UpdateUrl);
+        }
+
+        private void UpdateVersionStatus(VersionUpdateStatus status, Version version)
+        {
+            switch (status)
+            {
+                case VersionUpdateStatus.IsUpToDateOrRecentlyChecked:
+                    updateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.NoNeedToCheckForUpdatesTooltip;
+                    updateToolStripButton.Enabled = false;
+                    break;
+
+                case VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck:
+                    updateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.OldVersionTooltip;
+                    updateToolStripButton.Image = Resources.refreshred;
+                    updateToolStripButton.Enabled = true;
+                    break;
+
+                case VersionUpdateStatus.NewerVersionIsAvailable:
+                    updateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.NewVersionIsAvailableTooltip.InvariantFormat(version);
+                    updateToolStripButton.Image = Resources.refreshred;
+                    updateToolStripButton.Enabled = true;
+                    break;
+
+                case VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck:
+                    updateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.ClickToCheckForNewerVersionTooltip;
+                    updateToolStripButton.Image = Resources.refreshgreen;
+                    updateToolStripButton.Enabled = true;
+                    break;
+            }
+        }
+
+        private void HandleVersionUpdateEvent(object sender, VersionEventArgs e)
+        {
+            Settings.Default.LastUpdateCheckUtc = OS.Current.UtcNow;
+            Settings.Default.NewestKnownVersion = e.Version.ToString();
+            Settings.Default.Save();
+            _updateUrl = e.UpdateWebpageUrl;
+            ThreadSafeUi(() =>
+            {
+                UpdateVersionStatus(e.VersionUpdateStatus, e.Version);
+            });
+        }
+
+        private void HandleFileChangedEvent(object sender, EventArgs e)
+        {
+            ThreadSafeUi(RestartTimer);
+        }
+
+        private void HandleFileSystemStateChangedEvent(object sender, ActiveFileChangedEventArgs e)
+        {
+            ThreadSafeUi(() =>
+            {
+                UpdateActiveFilesViews(e.ActiveFile);
+            });
+        }
+
+        private void AxCryptMainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (DesignMode)
+            {
+                return;
+            }
+
+            progressBackgroundWorker.WaitForBackgroundIdle();
+            TrackProcess = false;
+            PurgeActiveFiles();
+            progressBackgroundWorker.WaitForBackgroundIdle();
+            Trace.Listeners.Remove("AxCryptMainFormListener");        //MLHIDE
         }
 
         private void RestoreUserPreferences()
         {
-            RecentFilesListView.Columns[0].Name = "DecryptedFile";    //MLHIDE
-            RecentFilesListView.Columns[0].Width = Settings.Default.RecentFilesDocumentWidth > 0 ? Settings.Default.RecentFilesDocumentWidth : RecentFilesListView.Columns[0].Width;
+            recentFilesListView.Columns[0].Name = "DecryptedFile";    //MLHIDE
+            recentFilesListView.Columns[0].Width = Settings.Default.RecentFilesDocumentWidth > 0 ? Settings.Default.RecentFilesDocumentWidth : recentFilesListView.Columns[0].Width;
 
             UpdateDebugMode();
         }
 
-        public void RestartTimer()
+        private void UpdateActiveFilesViews(ActiveFile activeFile)
         {
-            ActiveFilePolling.Enabled = false;
-            ActiveFilePolling.Interval = 1000;
-            ActiveFilePolling.Enabled = true;
+            if (activeFile.Status.HasMask(ActiveFileStatus.NoLongerActive))
+            {
+                openFilesListView.Items.RemoveByKey(activeFile.EncryptedFileInfo.FullName);
+                recentFilesListView.Items.RemoveByKey(activeFile.EncryptedFileInfo.FullName);
+                return;
+            }
+
+            if (activeFile.Status.HasMask(ActiveFileStatus.NotDecrypted))
+            {
+                UpdateRecentFilesListView(activeFile);
+                return;
+            }
+
+            if (activeFile.Status.HasMask(ActiveFileStatus.DecryptedIsPendingDelete) || activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
+            {
+                UpdateOpenFilesListView(activeFile);
+                return;
+            }
         }
 
-        private void UpdateActiveFileState()
-        {
-            OpenFilesListView.Items.Clear();
-            RecentFilesListView.Items.Clear();
-            FileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified,
-                (ActiveFile activeFile) =>
-                {
-                    return UpdateOpenFilesWith(activeFile);
-                });
-            CloseAndRemoveOpenFilesButton.Enabled = OpenFilesListView.Items.Count > 0;
-        }
-
-        private ActiveFile UpdateOpenFilesWith(ActiveFile activeFile)
+        private void UpdateOpenFilesListView(ActiveFile activeFile)
         {
             ListViewItem item;
-            if (activeFile.Status.HasFlag(ActiveFileStatus.NotDecrypted))
+            item = new ListViewItem(Path.GetFileName(activeFile.DecryptedFileInfo.FullName), activeFile.Key != null ? "ActiveFile" : "Exclamation"); //MLHIDE
+            ListViewItem.ListViewSubItem encryptedPathColumn = new ListViewItem.ListViewSubItem();
+            encryptedPathColumn.Name = "EncryptedPath";           //MLHIDE
+            encryptedPathColumn.Text = activeFile.EncryptedFileInfo.FullName;
+            item.SubItems.Add(encryptedPathColumn);
+
+            item.Name = activeFile.EncryptedFileInfo.FullName;
+            openFilesListView.Items.RemoveByKey(item.Name);
+            openFilesListView.Items.Add(item);
+            recentFilesListView.Items.RemoveByKey(item.Name);
+        }
+
+        private void UpdateRecentFilesListView(ActiveFile activeFile)
+        {
+            ListViewItem item;
+            if (String.IsNullOrEmpty(activeFile.DecryptedFileInfo.FullName))
             {
-                if (String.IsNullOrEmpty(activeFile.DecryptedFileInfo.FullName))
-                {
-                    item = new ListViewItem(String.Empty, "InactiveFile"); //MLHIDE
-                }
-                else
-                {
-                    item = new ListViewItem(Path.GetFileName(activeFile.DecryptedFileInfo.FullName), "ActiveFile"); //MLHIDE
-                }
-
-                ListViewItem.ListViewSubItem dateColumn = new ListViewItem.ListViewSubItem();
-                dateColumn.Text = activeFile.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
-                dateColumn.Tag = activeFile.LastActivityTimeUtc;
-                dateColumn.Name = "Date";                             //MLHIDE
-                item.SubItems.Add(dateColumn);
-
-                ListViewItem.ListViewSubItem encryptedPathColumn = new ListViewItem.ListViewSubItem();
-                encryptedPathColumn.Name = "EncryptedPath";           //MLHIDE
-                encryptedPathColumn.Text = activeFile.EncryptedFileInfo.FullName;
-                item.SubItems.Add(encryptedPathColumn);
-
-                RecentFilesListView.Items.Add(item);
+                item = new ListViewItem(String.Empty, "InactiveFile"); //MLHIDE
+            }
+            else
+            {
+                item = new ListViewItem(Path.GetFileName(activeFile.DecryptedFileInfo.FullName), "ActiveFile"); //MLHIDE
             }
 
-            if (activeFile.Status.HasFlag(ActiveFileStatus.DecryptedIsPendingDelete) || activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted))
-            {
-                item = new ListViewItem(Path.GetFileName(activeFile.DecryptedFileInfo.FullName), activeFile.Key != null ? "ActiveFile" : "Exclamation"); //MLHIDE
-                ListViewItem.ListViewSubItem encryptedPathColumn = new ListViewItem.ListViewSubItem();
-                encryptedPathColumn.Name = "EncryptedPath";           //MLHIDE
-                encryptedPathColumn.Text = activeFile.EncryptedFileInfo.FullName;
-                item.SubItems.Add(encryptedPathColumn);
+            ListViewItem.ListViewSubItem dateColumn = new ListViewItem.ListViewSubItem();
+            dateColumn.Text = activeFile.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
+            dateColumn.Tag = activeFile.LastActivityTimeUtc;
+            dateColumn.Name = "Date";                             //MLHIDE
+            item.SubItems.Add(dateColumn);
 
-                OpenFilesListView.Items.Add(item);
-            }
+            ListViewItem.ListViewSubItem encryptedPathColumn = new ListViewItem.ListViewSubItem();
+            encryptedPathColumn.Name = "EncryptedPath";           //MLHIDE
+            encryptedPathColumn.Text = activeFile.EncryptedFileInfo.FullName;
+            item.SubItems.Add(encryptedPathColumn);
 
-            return activeFile;
+            item.Name = activeFile.EncryptedFileInfo.FullName;
+            recentFilesListView.Items.RemoveByKey(item.Name);
+            recentFilesListView.Items.Add(item);
+            openFilesListView.Items.RemoveByKey(item.Name);
         }
 
         private void toolStripButtonEncrypt_Click(object sender, EventArgs e)
@@ -285,14 +313,9 @@ namespace Axantum.AxCrypt
 
         private void EncryptFile(string file)
         {
-            if (String.Compare(Path.GetExtension(file), AxCryptEnvironment.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
-            {
-                return;
-            }
+            FileOperationsController operationsController = new FileOperationsController(FileSystemState, file);
 
-            IRuntimeFileInfo sourceFileInfo = AxCryptEnvironment.Current.FileInfo(file);
-            IRuntimeFileInfo destinationFileInfo = AxCryptEnvironment.Current.FileInfo(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
-            if (destinationFileInfo.Exists)
+            operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
             {
                 using (SaveFileDialog sfd = new SaveFileDialog())
                 {
@@ -300,62 +323,62 @@ namespace Axantum.AxCrypt
                     sfd.AddExtension = true;
                     sfd.ValidateNames = true;
                     sfd.CheckPathExists = true;
-                    sfd.DefaultExt = AxCryptEnvironment.Current.AxCryptExtension;
-                    sfd.FileName = destinationFileInfo.FullName;
-                    sfd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat(AxCryptEnvironment.Current.AxCryptExtension);
-                    sfd.InitialDirectory = Path.GetDirectoryName(destinationFileInfo.FullName);
+                    sfd.DefaultExt = OS.Current.AxCryptExtension;
+                    sfd.FileName = e.SaveFileName;
+                    sfd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat(OS.Current.AxCryptExtension);
+                    sfd.InitialDirectory = Path.GetDirectoryName(e.SaveFileName);
                     sfd.ValidateNames = true;
                     DialogResult saveAsResult = sfd.ShowDialog();
                     if (saveAsResult != DialogResult.OK)
                     {
+                        e.Cancel = true;
                         return;
                     }
-                    destinationFileInfo = AxCryptEnvironment.Current.FileInfo(sfd.FileName);
+                    e.SaveFileName = sfd.FileName;
                 }
-            }
+            };
 
-            AesKey key = null;
-            if (FileSystemState.KnownKeys.DefaultEncryptionKey == null)
+            operationsController.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
             {
-                EncryptPassphraseDialog passphraseDialog = new EncryptPassphraseDialog();
-                passphraseDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowEncryptPasshrase;
-                DialogResult dialogResult = passphraseDialog.ShowDialog();
-                if (dialogResult != DialogResult.OK)
+                using (EncryptPassphraseDialog passphraseDialog = new EncryptPassphraseDialog())
                 {
-                    return;
+                    passphraseDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowEncryptPasshrase;
+                    DialogResult dialogResult = passphraseDialog.ShowDialog();
+                    if (dialogResult != DialogResult.OK)
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                    if (passphraseDialog.ShowPassphraseCheckBox.Checked != Settings.Default.ShowEncryptPasshrase)
+                    {
+                        Settings.Default.ShowEncryptPasshrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
+                        Settings.Default.Save();
+                    }
+                    e.Passphrase = passphraseDialog.PassphraseTextBox.Text;
                 }
-                if (passphraseDialog.ShowPassphraseCheckBox.Checked != Settings.Default.ShowEncryptPasshrase)
-                {
-                    Settings.Default.ShowEncryptPasshrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
-                    Settings.Default.Save();
-                }
-                Passphrase passphrase = new Passphrase(passphraseDialog.PassphraseTextBox.Text);
-                key = passphrase.DerivedPassphrase;
-            }
-            else
-            {
-                key = FileSystemState.KnownKeys.DefaultEncryptionKey;
-            }
+                FileSystemState.KnownKeys.DefaultEncryptionKey = new Passphrase(e.Passphrase).DerivedPassphrase;
+            };
 
-            ThreadFacade.DoBackgroundWork(sourceFileInfo.FullName,
-                (WorkerArguments arguments) =>
-                {
-                    AxCryptFile.EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, key, arguments.Progress);
-                    arguments.Result = FileOperationStatus.Success;
-                },
-                (object sender, RunWorkerCompletedEventArgs e) =>
-                {
-                    FileOperationStatus status = (FileOperationStatus)e.Result;
-                    CheckStatusAndShowMessage(status, sourceFileInfo.Name);
-                });
+            operationsController.ProcessFile += HandleProcessFileEvent;
 
-            if (FileSystemState.KnownKeys.DefaultEncryptionKey == null)
-            {
-                FileSystemState.KnownKeys.DefaultEncryptionKey = key;
-            }
+            operationsController.EncryptFile(file);
         }
 
-        private static void CheckStatusAndShowMessage(FileOperationStatus status, string displayText)
+        private void HandleProcessFileEvent(object sender, FileOperationEventArgs e)
+        {
+            progressBackgroundWorker.BackgroundWorkWithProgress(e.DisplayContext,
+                (ProgressContext progressContext) =>
+                {
+                    e.Progress = progressContext;
+                    return ((FileOperationsController)sender).DoProcessFile(e);
+                },
+                (FileOperationStatus status) =>
+                {
+                    CheckStatusAndShowMessage(status, e.DisplayContext);
+                });
+        }
+
+        private static void CheckStatusAndShowMessage(FileOperationStatus status, string displayContext)
         {
             switch (status)
             {
@@ -363,43 +386,47 @@ namespace Axantum.AxCrypt
                     break;
 
                 case FileOperationStatus.UnspecifiedError:
-                    Resources.FileOperationFailed.InvariantFormat(displayText).ShowWarning();
+                    Resources.FileOperationFailed.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case FileOperationStatus.FileAlreadyExists:
-                    Resources.FileAlreadyExists.InvariantFormat(displayText).ShowWarning();
+                    Resources.FileAlreadyExists.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case FileOperationStatus.FileDoesNotExist:
-                    Resources.FileDoesNotExist.InvariantFormat(displayText).ShowWarning();
+                    Resources.FileDoesNotExist.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case FileOperationStatus.CannotWriteDestination:
-                    Resources.CannotWrite.InvariantFormat(displayText).ShowWarning();
+                    Resources.CannotWrite.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case FileOperationStatus.CannotStartApplication:
-                    Resources.CannotStartApplication.InvariantFormat(displayText).ShowWarning();
+                    Resources.CannotStartApplication.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case FileOperationStatus.InconsistentState:
-                    Resources.InconsistentState.InvariantFormat(displayText).ShowWarning();
+                    Resources.InconsistentState.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case FileOperationStatus.InvalidKey:
-                    Resources.InvalidKey.InvariantFormat(displayText).ShowWarning();
+                    Resources.InvalidKey.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case FileOperationStatus.Canceled:
-                    Resources.Canceled.InvariantFormat(displayText).ShowWarning();
+                    Resources.Canceled.InvariantFormat(displayContext).ShowWarning();
+                    break;
+
+                case FileOperationStatus.Exception:
+                    Resources.Exception.InvariantFormat(displayContext).ShowWarning();
                     break;
                 default:
-                    Resources.UnrecognizedError.InvariantFormat(displayText).ShowWarning();
+                    Resources.UnrecognizedError.InvariantFormat(displayContext).ShowWarning();
                     break;
             }
         }
 
-        private void toolStripButtonDecrypt_Click(object sender, EventArgs e)
+        private void decryptToolStripButton_Click(object sender, EventArgs e)
         {
             DecryptFilesViaDialog();
         }
@@ -413,8 +440,8 @@ namespace Axantum.AxCrypt
                 ofd.Multiselect = true;
                 ofd.CheckFileExists = true;
                 ofd.CheckPathExists = true;
-                ofd.DefaultExt = AxCryptEnvironment.Current.AxCryptExtension;
-                ofd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(AxCryptEnvironment.Current.AxCryptExtension)); //MLHIDE
+                ofd.DefaultExt = OS.Current.AxCryptExtension;
+                ofd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(OS.Current.AxCryptExtension)); //MLHIDE
                 ofd.Multiselect = true;
                 DialogResult result = ofd.ShowDialog();
                 if (result != DialogResult.OK)
@@ -425,7 +452,7 @@ namespace Axantum.AxCrypt
             }
             foreach (string file in fileNames)
             {
-                if (!DecryptFile(AxCryptEnvironment.Current.FileInfo(file)))
+                if (!DecryptFile(OS.Current.FileInfo(file)))
                 {
                     return;
                 }
@@ -434,106 +461,42 @@ namespace Axantum.AxCrypt
 
         private bool DecryptFile(IRuntimeFileInfo source)
         {
-            AxCryptDocument document = GetDocumentToDecrypt(source);
-            if (document == null)
-            {
-                return false;
-            }
-            IRuntimeFileInfo destination = GetDestination(source, document.DocumentHeaders.FileName);
-            if (destination == null)
-            {
-                return false;
-            }
-            ThreadFacade.DoBackgroundWork(source.Name,
-                (WorkerArguments arguments) =>
-                {
-                    try
-                    {
-                        AxCryptFile.Decrypt(document, destination, AxCryptOptions.SetFileTimes, arguments.Progress);
-                    }
-                    finally
-                    {
-                        document.Dispose();
-                    }
-                    AxCryptFile.Wipe(source);
-                    arguments.Result = FileOperationStatus.Success;
-                },
-                (object sender, RunWorkerCompletedEventArgs e) =>
-                {
-                    FileOperationStatus status = (FileOperationStatus)e.Result;
-                    CheckStatusAndShowMessage(status, source.Name);
-                });
-            return true;
-        }
+            FileOperationsController operationsController = new FileOperationsController(FileSystemState, source.Name);
 
-        private AxCryptDocument GetDocumentToDecrypt(IRuntimeFileInfo source)
-        {
-            AxCryptDocument document = null;
-            try
-            {
-                foreach (AesKey key in FileSystemState.KnownKeys.Keys)
-                {
-                    document = AxCryptFile.Document(source, key, new ProgressContext());
-                    if (document.PassphraseIsValid)
-                    {
-                        return document;
-                    }
-                    document.Dispose();
-                    document = null;
-                }
+            operationsController.QueryDecryptionPassphrase += HandleQueryDecryptionPassphraseEvent;
 
-                Passphrase passphrase;
-                while (true)
-                {
-                    passphrase = AskForDecryptPassphrase();
-                    if (passphrase == null)
-                    {
-                        return null;
-                    }
-                    document = AxCryptFile.Document(source, passphrase.DerivedPassphrase, new ProgressContext());
-                    if (document.PassphraseIsValid)
-                    {
-                        AddKnownKey(document.DocumentHeaders.KeyEncryptingKey);
-                        return document;
-                    }
-                    document.Dispose();
-                    document = null;
-                }
-            }
-            catch (Exception)
+            operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
             {
-                if (document != null)
+                string extension = Path.GetExtension(e.SaveFileName);
+                using (SaveFileDialog sfd = new SaveFileDialog())
                 {
-                    document.Dispose();
+                    sfd.AddExtension = !String.IsNullOrEmpty(extension);
+                    sfd.CheckPathExists = true;
+                    sfd.DefaultExt = extension;
+                    sfd.Filter = Resources.DecryptedSaveAsFileDialogFilterPattern.InvariantFormat(extension);
+                    sfd.InitialDirectory = Path.GetDirectoryName(source.FullName);
+                    sfd.OverwritePrompt = true;
+                    sfd.RestoreDirectory = true;
+                    sfd.Title = Resources.DecryptedSaveAsFileDialogTitle;
+                    DialogResult result = sfd.ShowDialog();
+                    if (result != DialogResult.OK)
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+                    e.SaveFileName = sfd.FileName;
                 }
-                throw;
-            }
-        }
+                return;
+            };
 
-        private static IRuntimeFileInfo GetDestination(IRuntimeFileInfo source, string fileName)
-        {
-            IRuntimeFileInfo destination = AxCryptEnvironment.Current.FileInfo(Path.Combine(Path.GetDirectoryName(source.FullName), fileName));
-            if (!destination.Exists)
+            operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
             {
-                return destination;
-            }
-            string extension = Path.GetExtension(destination.FullName);
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.AddExtension = !String.IsNullOrEmpty(extension);
-            sfd.CheckPathExists = true;
-            sfd.DefaultExt = extension;
-            sfd.Filter = Resources.DecryptedSaveAsFileDialogFilterPattern.InvariantFormat(extension);
-            sfd.InitialDirectory = Path.GetDirectoryName(source.FullName);
-            sfd.OverwritePrompt = true;
-            sfd.RestoreDirectory = true;
-            sfd.Title = Resources.DecryptedSaveAsFileDialogTitle;
-            DialogResult result = sfd.ShowDialog();
-            if (result != DialogResult.OK)
-            {
-                return null;
-            }
-            destination = AxCryptEnvironment.Current.FileInfo(sfd.FileName);
-            return destination;
+                AddKnownKey(e.Key);
+            };
+
+            operationsController.ProcessFile += HandleProcessFileEvent;
+
+            return operationsController.DecryptFile(source.FullName);
         }
 
         private void AddKnownKey(AesKey key)
@@ -542,7 +505,7 @@ namespace Axantum.AxCrypt
             FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, new ProgressContext());
         }
 
-        private void toolStripButtonOpenEncrypted_Click(object sender, EventArgs e)
+        private void openEncryptedToolStripButton_Click(object sender, EventArgs e)
         {
             OpenDialog();
         }
@@ -555,8 +518,8 @@ namespace Axantum.AxCrypt
                 ofd.Multiselect = false;
                 ofd.CheckFileExists = true;
                 ofd.CheckPathExists = true;
-                ofd.DefaultExt = AxCryptEnvironment.Current.AxCryptExtension;
-                ofd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(AxCryptEnvironment.Current.AxCryptExtension)); //MLHIDE
+                ofd.DefaultExt = OS.Current.AxCryptExtension;
+                ofd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(OS.Current.AxCryptExtension)); //MLHIDE
                 DialogResult result = ofd.ShowDialog();
                 if (result != DialogResult.OK)
                 {
@@ -565,76 +528,58 @@ namespace Axantum.AxCrypt
 
                 foreach (string file in ofd.FileNames)
                 {
-                    OpenEncrypted(file);
+                    if (!OpenEncrypted(file))
+                    {
+                        return;
+                    }
                 }
             }
         }
 
-        private void OpenEncrypted(string file)
+        private bool OpenEncrypted(string file)
         {
-            ThreadFacade.DoBackgroundWork(Path.GetFileName(file),
-                (WorkerArguments arguments) =>
-                {
-                    arguments.Result = FileSystemState.OpenAndLaunchApplication(file, FileSystemState.KnownKeys.Keys, arguments.Progress);
-                },
-                (object sender, RunWorkerCompletedEventArgs e) =>
-                {
-                    FileOperationStatus status = (FileOperationStatus)e.Result;
-                    if (status == FileOperationStatus.InvalidKey)
-                    {
-                        AskForPassphraseAndOpenEncrypted(file);
-                        return;
-                    }
-                    CheckStatusAndShowMessage(status, file);
-                });
+            FileOperationsController operationsController = new FileOperationsController(FileSystemState, file);
+
+            operationsController.QueryDecryptionPassphrase += HandleQueryDecryptionPassphraseEvent;
+
+            operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
+            {
+                AddKnownKey(e.Key);
+            };
+
+            operationsController.ProcessFile += HandleProcessFileEvent;
+
+            return operationsController.DecryptAndLaunch(file);
         }
 
-        private void AskForPassphraseAndOpenEncrypted(string file)
+        private void HandleQueryDecryptionPassphraseEvent(object sender, FileOperationEventArgs e)
         {
-            Passphrase passphrase;
-            passphrase = AskForDecryptPassphrase();
-            if (passphrase == null)
+            string passphraseText = AskForDecryptPassphrase();
+            if (passphraseText == null)
             {
+                e.Cancel = true;
                 return;
             }
-            ThreadFacade.DoBackgroundWork(Path.GetFileName(file),
-                (WorkerArguments arguments) =>
-                {
-                    arguments.Result = FileSystemState.OpenAndLaunchApplication(file, new AesKey[] { passphrase.DerivedPassphrase }, arguments.Progress);
-                },
-                (object sender, RunWorkerCompletedEventArgs e) =>
-                {
-                    FileOperationStatus status = (FileOperationStatus)e.Result;
-                    if (status == FileOperationStatus.Success)
-                    {
-                        AddKnownKey(passphrase.DerivedPassphrase);
-                        return;
-                    }
-                    if (status == FileOperationStatus.InvalidKey)
-                    {
-                        AskForPassphraseAndOpenEncrypted(file);
-                        return;
-                    }
-                    CheckStatusAndShowMessage(status, file);
-                });
+            e.Passphrase = passphraseText;
         }
 
-        private Passphrase AskForDecryptPassphrase()
+        private string AskForDecryptPassphrase()
         {
-            DecryptPassphraseDialog passphraseDialog = new DecryptPassphraseDialog();
-            passphraseDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowDecryptPassphrase;
-            DialogResult dialogResult = passphraseDialog.ShowDialog(this);
-            if (dialogResult != DialogResult.OK)
+            using (DecryptPassphraseDialog passphraseDialog = new DecryptPassphraseDialog())
             {
-                return null;
+                passphraseDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowDecryptPassphrase;
+                DialogResult dialogResult = passphraseDialog.ShowDialog(this);
+                if (dialogResult != DialogResult.OK)
+                {
+                    return null;
+                }
+                if (passphraseDialog.ShowPassphraseCheckBox.Checked != Settings.Default.ShowDecryptPassphrase)
+                {
+                    Settings.Default.ShowDecryptPassphrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
+                    Settings.Default.Save();
+                }
+                return passphraseDialog.Passphrase.Text;
             }
-            if (passphraseDialog.ShowPassphraseCheckBox.Checked != Settings.Default.ShowDecryptPassphrase)
-            {
-                Settings.Default.ShowDecryptPassphrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
-                Settings.Default.Save();
-            }
-            Passphrase passphrase = new Passphrase(passphraseDialog.Passphrase.Text);
-            return passphrase;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -642,44 +587,44 @@ namespace Axantum.AxCrypt
             Application.Exit();
         }
 
-        private bool _fileOperationInProgress = false;
+        public void RestartTimer()
+        {
+            activeFilePollingTimer.Enabled = false;
+            activeFilePollingTimer.Interval = 1000;
+            activeFilePollingTimer.Enabled = true;
+        }
 
         private bool _pollingInProgress = false;
 
-        private void ActiveFilePolling_Tick(object sender, EventArgs e)
+        private void activeFilePollingTimer_Tick(object sender, EventArgs e)
         {
-            if (Logging.IsInfoEnabled)
+            if (OS.Log.IsInfoEnabled)
             {
-                Logging.Info("Tick");                                 //MLHIDE
+                OS.Log.LogInfo("Tick");                                 //MLHIDE
             }
             if (_pollingInProgress)
             {
                 return;
             }
-            if (_fileOperationInProgress)
-            {
-                return;
-            }
-            ActiveFilePolling.Enabled = false;
+            activeFilePollingTimer.Enabled = false;
             try
             {
-                _fileOperationInProgress = false/*true*/;
                 _pollingInProgress = true;
-                ThreadFacade.DoBackgroundWork(Resources.UpdatingStatus,
-                    (WorkerArguments arguments) =>
+                progressBackgroundWorker.BackgroundWorkWithProgress(Resources.UpdatingStatus,
+                    (ProgressContext progress) =>
                     {
-                        FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, arguments.Progress);
+                        FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, progress);
+                        return FileOperationStatus.Success;
                     },
-                    (object sender1, RunWorkerCompletedEventArgs e1) =>
+                    (FileOperationStatus status) =>
                     {
-                        _pollingInProgress = false;
+                        closeAndRemoveOpenFilesToolStripButton.Enabled = openFilesListView.Items.Count > 0;
                     });
             }
             finally
             {
-                _fileOperationInProgress = false;
+                _pollingInProgress = false;
             }
-            UpdateActiveFileState();
         }
 
         private void openEncryptedToolStripMenuItem_Click(object sender, EventArgs e)
@@ -687,18 +632,14 @@ namespace Axantum.AxCrypt
             OpenDialog();
         }
 
-        private void RecentFilesListView_SelectedIndexChanged(object sender, EventArgs e)
+        private void recentFilesListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-        }
-
-        private void RecentFilesListView_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            string encryptedPath = RecentFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text; //MLHIDE
+            string encryptedPath = recentFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text; //MLHIDE
 
             OpenEncrypted(encryptedPath);
         }
 
-        private void RecentFilesListView_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
+        private void recentFilesListView_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
         {
             ListView listView = (ListView)sender;
             string columnName = listView.Columns[e.ColumnIndex].Name;
@@ -713,14 +654,20 @@ namespace Axantum.AxCrypt
 
         private void PurgeActiveFiles()
         {
-            ThreadFacade.DoBackgroundWork(Resources.PurgingActiveFiles,
-                (WorkerArguments arguments) =>
+            progressBackgroundWorker.BackgroundWorkWithProgress(Resources.PurgingActiveFiles,
+                (ProgressContext progress) =>
                 {
-                    FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, arguments.Progress);
-                    FileSystemState.PurgeActiveFiles(arguments.Progress);
+                    FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, progress);
+                    FileSystemState.PurgeActiveFiles(progress);
+                    return FileOperationStatus.Success;
                 },
-                (object sender, RunWorkerCompletedEventArgs e) =>
+                (FileOperationStatus status) =>
                 {
+                    if (status != FileOperationStatus.Success)
+                    {
+                        CheckStatusAndShowMessage(status, Resources.PurgingActiveFiles);
+                        return;
+                    }
                     IList<ActiveFile> openFiles = FileSystemState.DecryptedActiveFiles;
                     if (openFiles.Count == 0)
                     {
@@ -735,21 +682,21 @@ namespace Axantum.AxCrypt
                 });
         }
 
-        private void OpenFilesListView_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void openFilesListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            string encryptedPath = OpenFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text; //MLHIDE
+            string encryptedPath = openFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text; //MLHIDE
             OpenEncrypted(encryptedPath);
         }
 
-        private void RemoveRecentFileMenuItem_Click(object sender, EventArgs e)
+        private void removeRecentFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string encryptedPath = RecentFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text; //MLHIDE
+            string encryptedPath = recentFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text; //MLHIDE
             FileSystemState.RemoveRecentFile(encryptedPath);
         }
 
-        private void RecentFilesListView_MouseClick(object sender, MouseEventArgs e)
+        private void recentFilesListView_MouseClick(object sender, MouseEventArgs e)
         {
-            ShowContextMenu(RecentFilesContextMenu, sender, e);
+            ShowContextMenu(recentFilesContextMenuStrip, sender, e);
         }
 
         private static void ShowContextMenu(ContextMenuStrip contextMenu, object sender, MouseEventArgs e)
@@ -762,33 +709,34 @@ namespace Axantum.AxCrypt
             contextMenu.Show(listView, e.Location);
         }
 
-        private void CloseOpenFilesMenuItem_Click(object sender, EventArgs e)
+        private void closeOpenFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PurgeActiveFiles();
         }
 
-        private void CloseOpenFilesButton_Click(object sender, EventArgs e)
+        private void closeAndRemoveOpenFilesToolStripButton_Click(object sender, EventArgs e)
         {
             PurgeActiveFiles();
         }
 
-        private void OpenFilesListView_MouseClick(object sender, MouseEventArgs e)
+        private void openFilesListView_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right)
             {
                 return;
             }
             ListView recentFiles = (ListView)sender;
-            OpenFilesContextMenu.Show(recentFiles, e.Location);
+            openFilesContextMenuStrip.Show(recentFiles, e.Location);
         }
 
-        private void EnterPassphraseMenuItem_Click(object sender, EventArgs e)
+        private void enterPassphraseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Passphrase passphrase = AskForDecryptPassphrase();
-            if (passphrase == null)
+            string passphraseText = AskForDecryptPassphrase();
+            if (passphraseText == null)
             {
                 return;
             }
+            Passphrase passphrase = new Passphrase(passphraseText);
             bool keyMatch = FileSystemState.UpdateActiveFileWithKeyIfKeyMatchesThumbprint(passphrase.DerivedPassphrase);
             if (keyMatch)
             {
@@ -796,13 +744,22 @@ namespace Axantum.AxCrypt
             }
         }
 
-        public void ShowProgressContextMenu(Control progressControl, Point location)
+        private void progressBackgroundWorker_ProgressBarClicked(object sender, MouseEventArgs e)
         {
-            ProgressContextMenu.Tag = progressControl;
-            ProgressContextMenu.Show(progressControl, location);
+            if (e.Button != MouseButtons.Right)
+            {
+                return;
+            }
+            progressContextMenuStrip.Tag = sender;
+            progressContextMenuStrip.Show((Control)sender, e.Location);
         }
 
-        private void ProgressContextCancelMenu_Click(object sender, EventArgs e)
+        private void progressBackgroundWorker_ProgressBarCreated(object sender, ControlEventArgs e)
+        {
+            progressTableLayoutPanel.Controls.Add(e.Control);
+        }
+
+        private void progressContextCancelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem menuItem = (ToolStripMenuItem)sender;
             ContextMenuStrip menuStrip = (ContextMenuStrip)menuItem.GetCurrentParent();
@@ -823,24 +780,38 @@ namespace Axantum.AxCrypt
 
         private void AxCryptMainForm_Resize(object sender, EventArgs e)
         {
-            if (AxCryptEnvironment.Current.Platform != Platform.WindowsDesktop)
+            if (OS.Current.Platform != Platform.WindowsDesktop)
             {
                 return;
             }
+
+            trayNotifyIcon.BalloonTipTitle = Resources.AxCryptFileEncryption;
+            trayNotifyIcon.BalloonTipText = Resources.TrayBalloonTooltip;
+
+            if (FormWindowState.Minimized == this.WindowState)
+            {
+                trayNotifyIcon.Visible = true;
+                trayNotifyIcon.ShowBalloonTip(500);
+                this.Hide();
+            }
+            else if (FormWindowState.Normal == this.WindowState)
+            {
+                trayNotifyIcon.Visible = false;
+            }
         }
 
-        private void TrayNotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void trayNotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             this.Show();
             this.WindowState = FormWindowState.Normal;
         }
 
-        private void EnglishMenuItem_Click(object sender, EventArgs e)
+        private void englishLanguageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SetLanguage("en-US"); //MLHIDE
         }
 
-        private void SwedishMenuItem_Click(object sender, EventArgs e)
+        private void swedishLanguageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SetLanguage("sv-SE"); //MLHIDE
         }
@@ -849,14 +820,14 @@ namespace Axantum.AxCrypt
         {
             Settings.Default.Language = cultureName;
             Settings.Default.Save();
-            if (Logging.IsInfoEnabled)
+            if (OS.Log.IsInfoEnabled)
             {
-                Logging.Info("Set new UI language culture to '{0}'.".InvariantFormat(Settings.Default.Language)); //MLHIDE
+                OS.Log.LogInfo("Set new UI language culture to '{0}'.".InvariantFormat(Settings.Default.Language)); //MLHIDE
             }
             Resources.LanguageChangeRestartPrompt.ShowWarning();
         }
 
-        private void LanguageMenuItem_DropDownOpening(object sender, EventArgs e)
+        private void languageToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
             ToolStripMenuItem languageMenu = (ToolStripMenuItem)sender;
             CultureInfo currentUICulture = Thread.CurrentThread.CurrentUICulture;
@@ -880,32 +851,30 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void UpdateToolStripButton_Click(object sender, EventArgs e)
+        private void updateToolStripButton_Click(object sender, EventArgs e)
         {
-            Settings.Default.LastUpdateCheckUtc = AxCryptEnvironment.Current.UtcNow;
+            Settings.Default.LastUpdateCheckUtc = OS.Current.UtcNow;
             Settings.Default.Save();
             Process.Start(_updateUrl.ToString());
         }
 
-        private void debugToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void debugOptionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Settings.Default.Debug = !Settings.Default.Debug;
             Settings.Default.Save();
             UpdateDebugMode();
         }
 
-        private TabPage _logTabPage = null;
-
         private void UpdateDebugMode()
         {
-            debugToolStripMenuItem1.Checked = Settings.Default.Debug;
-            DebugToolStripMenuItem.Visible = Settings.Default.Debug;
+            debugOptionsToolStripMenuItem.Checked = Settings.Default.Debug;
+            debugToolStripMenuItem.Visible = Settings.Default.Debug;
             if (Settings.Default.Debug)
             {
-                Logging.SetLevel(TraceLevel.Verbose);
+                OS.Log.SetLevel(LogLevel.Debug);
                 if (_logTabPage != null)
                 {
-                    StatusTabs.TabPages.Add(_logTabPage);
+                    statusTabControl.TabPages.Add(_logTabPage);
                 }
                 ServicePointManager.ServerCertificateValidationCallback = (object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) =>
                 {
@@ -915,9 +884,9 @@ namespace Axantum.AxCrypt
             else
             {
                 ServicePointManager.ServerCertificateValidationCallback = null;
-                Logging.SetLevel(TraceLevel.Error);
-                _logTabPage = StatusTabs.TabPages["LogTab"];
-                StatusTabs.TabPages.Remove(_logTabPage);
+                OS.Log.SetLevel(LogLevel.Error);
+                _logTabPage = statusTabControl.TabPages["LogTabPage"]; //MLHIDE
+                statusTabControl.TabPages.Remove(_logTabPage);
             }
         }
 
@@ -935,12 +904,12 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void checkVersionNow_Click(object sender, EventArgs e)
+        private void checkVersionNowToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            EncryptedFileManager.VersionCheckInBackground(DateTime.MinValue);
+            UpdateCheck(DateTime.MinValue);
         }
 
-        private void about_Click(object sender, EventArgs e)
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (AboutBox aboutBox = new AboutBox())
             {
@@ -948,7 +917,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void helpButton_Click(object sender, EventArgs e)
+        private void helpToolStripButton_Click(object sender, EventArgs e)
         {
             Process.Start(Settings.Default.AxCrypt2HelpUrl.ToString());
         }

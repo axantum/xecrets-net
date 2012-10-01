@@ -1,0 +1,10 @@
+﻿About Axantum.AxCrypt.Mono.Test
+
+This assembly contains best-effort tests for Axantum.AxCrypt.Mono . By the very
+nature of things, since these are the implementations that interact directly with
+the platform, it is not always practical to actually design tests. But when this
+is feasible, it should be done.
+
+Code coverage is not required to be 100% .
+
+FxCop should pass without complaint.

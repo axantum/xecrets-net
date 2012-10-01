@@ -22,16 +22,17 @@
  * updates, contributions and contact with the author. You may also visit
  * http://www.axantum.com for more information about the author.
 */
-using System.Runtime.Serialization.Json;
 
 #endregion Coypright and License
 
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Resources;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading;
 using Axantum.AxCrypt.Core.IO;
@@ -41,6 +42,19 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public class UpdateCheck : IDisposable
     {
+        private class Pair<T, U>
+        {
+            public T First { get; set; }
+
+            public U Second { get; set; }
+
+            public Pair(T first, U second)
+            {
+                First = first;
+                Second = second;
+            }
+        }
+
         public static readonly Version VersionUnknown = new Version();
 
         private Version _currentVersion;
@@ -80,11 +94,11 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 throw new ObjectDisposedException("_done");
             }
-            if (lastCheckTimeUtc.AddDays(1) >= AxCryptEnvironment.Current.UtcNow)
+            if (lastCheckTimeUtc.AddDays(1) >= OS.Current.UtcNow)
             {
-                if (Logging.IsInfoEnabled)
+                if (OS.Log.IsInfoEnabled)
                 {
-                    Logging.Info("Attempt to check for new version was ignored because it is too soon. Returning version {0}.".InvariantFormat(newestKnownVersionValue));
+                    OS.Log.LogInfo("Attempt to check for new version was ignored because it is too soon. Returning version {0}.".InvariantFormat(newestKnownVersionValue));
                 }
                 OnVersionUpdate(new VersionEventArgs(newestKnownVersionValue, updateWebpageUrl, CalculateStatus(newestKnownVersionValue, lastCheckTimeUtc)));
                 return;
@@ -102,8 +116,8 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 try
                 {
-                    Tuple<Version, Uri> newVersion = CheckWebForNewVersion(webServiceUrl, updateWebpageUrl);
-                    OnVersionUpdate(new VersionEventArgs(newVersion.Item1, newVersion.Item2, CalculateStatus(newVersion.Item1, lastCheckTimeUtc)));
+                    Pair<Version, Uri> newVersion = CheckWebForNewVersion(webServiceUrl, updateWebpageUrl);
+                    OnVersionUpdate(new VersionEventArgs(newVersion.First, newVersion.Second, CalculateStatus(newVersion.First, lastCheckTimeUtc)));
                 }
                 finally
                 {
@@ -113,12 +127,12 @@ namespace Axantum.AxCrypt.Core.UI
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is one case where anything could go wrong and it is still required to continue.")]
-        private static Tuple<Version, Uri> CheckWebForNewVersion(Uri webServiceUrl, Uri updateWebpageUrl)
+        private static Pair<Version, Uri> CheckWebForNewVersion(Uri webServiceUrl, Uri updateWebpageUrl)
         {
             Version newVersion = VersionUnknown;
             try
             {
-                IWebCaller webCaller = AxCryptEnvironment.Current.CreateWebCaller();
+                IWebCaller webCaller = OS.Current.CreateWebCaller();
                 string result = webCaller.Go(webServiceUrl);
                 DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(VersionResponse));
                 VersionResponse versionResponse;
@@ -128,19 +142,19 @@ namespace Axantum.AxCrypt.Core.UI
                 }
                 newVersion = ParseVersion(versionResponse.Version);
                 updateWebpageUrl = new Uri(versionResponse.WebReference);
-                if (Logging.IsInfoEnabled)
+                if (OS.Log.IsInfoEnabled)
                 {
-                    Logging.Info("Update check reports most recent version {0} at web page {1}".InvariantFormat(newVersion, updateWebpageUrl));
+                    OS.Log.LogInfo("Update check reports most recent version {0} at web page {1}".InvariantFormat(newVersion, updateWebpageUrl));
                 }
             }
             catch (Exception ex)
             {
-                if (Logging.IsWarningEnabled)
+                if (OS.Log.IsWarningEnabled)
                 {
-                    Logging.Warning("Failed call to check for new version with exception {0}.".InvariantFormat(ex));
+                    OS.Log.LogWarning("Failed call to check for new version with exception {0}.".InvariantFormat(ex));
                 }
             }
-            return new Tuple<Version, Uri>(newVersion, updateWebpageUrl);
+            return new Pair<Version, Uri>(newVersion, updateWebpageUrl);
         }
 
         /// <summary>
@@ -156,16 +170,42 @@ namespace Axantum.AxCrypt.Core.UI
             _done.WaitOne();
         }
 
+        private static bool TryParseVersion(string versionString, out Version version)
+        {
+            version = VersionUnknown;
+            if (String.IsNullOrEmpty(versionString))
+            {
+                return false;
+            }
+            string[] parts = versionString.Split('.');
+            if (parts.Length > 4)
+            {
+                return false;
+            }
+            int[] numbers = new int[4];
+            for (int i = 0; i < parts.Length; ++i)
+            {
+                int number;
+                if (!Int32.TryParse(parts[i], NumberStyles.None, CultureInfo.InvariantCulture, out number))
+                {
+                    return false;
+                }
+                numbers[i] = number;
+            }
+            version = new Version(numbers[0], numbers[1], numbers[2], numbers[3]);
+            return true;
+        }
+
         private static Version ParseVersion(string versionString)
         {
             Version version;
-            if (!Version.TryParse(versionString, out version))
+            if (!TryParseVersion(versionString, out version))
             {
-                version = VersionUnknown;
+                return VersionUnknown;
             }
             if (version.Major == 0 && version.Minor == 0)
             {
-                version = VersionUnknown;
+                return VersionUnknown;
             }
             return version;
         }
@@ -180,7 +220,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 return VersionUpdateStatus.IsUpToDateOrRecentlyChecked;
             }
-            if (lastCheckTimeutc.AddDays(30) >= AxCryptEnvironment.Current.UtcNow)
+            if (lastCheckTimeutc.AddDays(30) >= OS.Current.UtcNow)
             {
                 return VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck;
             }
@@ -204,7 +244,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
             if (disposing)
             {
-                _done.Dispose();
+                _done.Close();
                 _done = null;
             }
         }

@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B81CB4AF-7DC9-4699-B0EF-089452C6F1D5}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Axantum.AxCrypt.Core.Android</RootNamespace>
+    <AssemblyName>Axantum.AxCrypt.Core.Android</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>AxantumStrongName.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugAndroid|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DebugAndroid\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>true</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseAndroid|AnyCPU'">
+    <OutputPath>bin\ReleaseAndroid\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>true</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>..\SolutionItems\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Axantum.AxCrypt.Core\AxCryptDocument.cs">
+      <Link>AxCryptDocument.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\AxCryptFile.cs">
+      <Link>AxCryptFile.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\AxCryptOptions.cs">
+      <Link>AxCryptOptions.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Crypto\AesCrypto.cs">
+      <Link>Crypto\AesCrypto.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Crypto\AesIV.cs">
+      <Link>Crypto\AesIV.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Crypto\AesKey.cs">
+      <Link>Crypto\AesKey.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Crypto\AesKeyThumbprint.cs">
+      <Link>Crypto\AesKeyThumbprint.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Crypto\AxCryptHMACSHA1.cs">
+      <Link>Crypto\AxCryptHMACSHA1.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Crypto\DataHmac.cs">
+      <Link>Crypto\DataHmac.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Crypto\HeaderSubkey.cs">
+      <Link>Crypto\HeaderSubkey.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Crypto\KeyWrap.cs">
+      <Link>Crypto\KeyWrap.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Crypto\KeyWrapMode.cs">
+      <Link>Crypto\KeyWrapMode.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Crypto\KeyWrapSalt.cs">
+      <Link>Crypto\KeyWrapSalt.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Crypto\Passphrase.cs">
+      <Link>Crypto\Passphrase.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Crypto\Subkey.cs">
+      <Link>Crypto\Subkey.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\ErrorStatus.cs">
+      <Link>ErrorStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Extensions.cs">
+      <Link>Extensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Header\AxCrypt1Guid.cs">
+      <Link>Header\AxCrypt1Guid.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Header\CompressionHeaderBlock.cs">
+      <Link>Header\CompressionHeaderBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Header\CompressionInfoHeaderBlock.cs">
+      <Link>Header\CompressionInfoHeaderBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Header\DataHeaderBlock.cs">
+      <Link>Header\DataHeaderBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Header\DocumentHeaders.cs">
+      <Link>Header\DocumentHeaders.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Header\EncryptedHeaderBlock.cs">
+      <Link>Header\EncryptedHeaderBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Header\EncryptionInfoHeaderBlock.cs">
+      <Link>Header\EncryptionInfoHeaderBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Header\FileInfoHeaderBlock.cs">
+      <Link>Header\FileInfoHeaderBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Header\FileNameInfoHeaderBlock.cs">
+      <Link>Header\FileNameInfoHeaderBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Header\HeaderBlock.cs">
+      <Link>Header\HeaderBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Header\HeaderBlockType.cs">
+      <Link>Header\HeaderBlockType.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Header\IdTagHeaderBlock.cs">
+      <Link>Header\IdTagHeaderBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Header\KeyWrap1HeaderBlock.cs">
+      <Link>Header\KeyWrap1HeaderBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Header\KeyWrap2HeaderBlock.cs">
+      <Link>Header\KeyWrap2HeaderBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Header\PreambleHeaderBlock.cs">
+      <Link>Header\PreambleHeaderBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Header\UnicodeFileNameInfoHeaderBlock.cs">
+      <Link>Header\UnicodeFileNameInfoHeaderBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Header\UnrecognizedHeaderBlock.cs">
+      <Link>Header\UnrecognizedHeaderBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Header\VersionHeaderBlock.cs">
+      <Link>Header\VersionHeaderBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\IO\AxCryptDataStream.cs">
+      <Link>IO\AxCryptDataStream.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\IO\FileLock.cs">
+      <Link>IO\FileLock.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\IO\FileWatcherEventArgs.cs">
+      <Link>IO\FileWatcherEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\IO\HmacStream.cs">
+      <Link>IO\HmacStream.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\IO\IFileWatcher.cs">
+      <Link>IO\IFileWatcher.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\IO\IRuntimeFileInfo.cs">
+      <Link>IO\IRuntimeFileInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\IO\IWebCaller.cs">
+      <Link>IO\IWebCaller.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\IO\LookAheadStream.cs">
+      <Link>IO\LookAheadStream.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\IO\NonClosingStream.cs">
+      <Link>IO\NonClosingStream.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\IO\ProgressStream.cs">
+      <Link>IO\ProgressStream.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Os.cs">
+      <Link>Os.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Reader\AxCryptItemType.cs">
+      <Link>Reader\AxCryptItemType.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Reader\AxCryptReader.cs">
+      <Link>Reader\AxCryptReader.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Reader\AxCryptStreamReader.cs">
+      <Link>Reader\AxCryptStreamReader.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Session\ActiveFile.cs">
+      <Link>Session\ActiveFile.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Session\ActiveFileChangedEventArgs.cs">
+      <Link>Session\ActiveFileChangedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Session\ActiveFileCollection.cs">
+      <Link>Session\ActiveFileCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Session\ActiveFileStatus.cs">
+      <Link>Session\ActiveFileStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Session\ChangedEventMode.cs">
+      <Link>Session\ChangedEventMode.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Session\FileSystemState.cs">
+      <Link>Session\FileSystemState.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Session\FileSystemStateExtensions.cs">
+      <Link>Session\FileSystemStateExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\System\AxCryptException.cs">
+      <Link>System\AxCryptException.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\System\DelegateTraceListener.cs">
+      <Link>System\DelegateTraceListener.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\System\FileFormatException.cs">
+      <Link>System\FileFormatException.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\System\IDataProtection.cs">
+      <Link>System\IDataProtection.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\System\ILauncher.cs">
+      <Link>System\ILauncher.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\System\ILogging.cs">
+      <Link>System\ILogging.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\System\InternalErrorException.cs">
+      <Link>System\InternalErrorException.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\System\InvalidDataException.cs">
+      <Link>System\InvalidDataException.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\System\IRuntimeEnvironment.cs">
+      <Link>System\IRuntimeEnvironment.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\System\ITiming.cs">
+      <Link>System\ITiming.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\System\LogLevel.cs">
+      <Link>System\LogLevel.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\System\Platform.cs">
+      <Link>System\Platform.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\System\ThreadWorker.cs">
+      <Link>System\ThreadWorker.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\System\ThreadWorkerEventArgs.cs">
+      <Link>System\ThreadWorkerEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\UI\FileOperation.cs">
+      <Link>UI\FileOperation.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\UI\FileOperationEventArgs.cs">
+      <Link>UI\FileOperationEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\UI\FileOperationsController.cs">
+      <Link>UI\FileOperationsController.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\UI\FileOperationStatus.cs">
+      <Link>UI\FileOperationStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\UI\KnownKeys.cs">
+      <Link>UI\KnownKeys.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\UI\ProgressContext.cs">
+      <Link>UI\ProgressContext.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\UI\ProgressEventArgs.cs">
+      <Link>UI\ProgressEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\UI\UpdateCheck.cs">
+      <Link>UI\UpdateCheck.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\UI\VersionEventArgs.cs">
+      <Link>UI\VersionEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\UI\VersionResponse.cs">
+      <Link>UI\VersionResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\UI\VersionUpdateStatus.cs">
+      <Link>UI\VersionUpdateStatus.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AxantumStrongName.pfx" />
+    <None Include="Properties\AssemblyInfo.template" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <Import Project="..\SolutionItems\Axantum.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

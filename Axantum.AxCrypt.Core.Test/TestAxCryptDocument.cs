@@ -43,27 +43,10 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestAxCryptDocument
     {
-
-		[Test]
-		public static void TestFailedHmacCalculationFromSimpleFile()
-		{
-			using (AxCryptDocument document = new AxCryptDocument())
-			{
-				Passphrase passphrase = new Passphrase("a");
-				bool keyIsOk = document.Load(new MemoryStream(Resources.HelloWorld_Key_a_txt), passphrase.DerivedPassphrase);
-				Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-				document.DocumentHeaders.Hmac = new DataHmac(new byte[document.DocumentHeaders.Hmac.Length]);
-				Assert.Throws<Axantum.AxCrypt.Core.System.InvalidDataException>(() =>
-				                                                                {
-					document.DecryptTo(Stream.Null, new ProgressContext());
-				});
-			}
-		}
-
-		[Test]
+        [Test]
         public static void TestAnsiFileNameFromSimpleFile()
         {
-            using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
+            using (Stream testStream = new MemoryStream(Resources.helloworld_key_a_txt))
             {
                 using (AxCryptDocument document = new AxCryptDocument())
                 {
@@ -79,7 +62,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestUnicodeFileNameFromSimpleFile()
         {
-            using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
+            using (Stream testStream = new MemoryStream(Resources.helloworld_key_a_txt))
             {
                 using (AxCryptDocument document = new AxCryptDocument())
                 {
@@ -95,7 +78,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileNameFromSimpleFileWithUnicode()
         {
-            using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
+            using (Stream testStream = new MemoryStream(Resources.helloworld_key_a_txt))
             {
                 using (AxCryptDocument document = new AxCryptDocument())
                 {
@@ -115,7 +98,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (AxCryptDocument document = new AxCryptDocument())
             {
                 Passphrase passphrase = new Passphrase("a");
-                bool keyIsOk = document.Load(new MemoryStream(Resources.HelloWorld_Key_a_txt), passphrase.DerivedPassphrase);
+                bool keyIsOk = document.Load(new MemoryStream(Resources.helloworld_key_a_txt), passphrase.DerivedPassphrase);
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 DataHmac hmac = document.DocumentHeaders.Hmac;
                 Assert.That(hmac.GetBytes(), Is.EqualTo(expectedHmac.GetBytes()), "Wrong HMAC");
@@ -129,7 +112,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (AxCryptDocument document = new AxCryptDocument())
             {
                 Passphrase passphrase = new Passphrase("a");
-                bool keyIsOk = document.Load(new MemoryStream(Resources.HelloWorld_Key_a_txt), passphrase.DerivedPassphrase);
+                bool keyIsOk = document.Load(new MemoryStream(Resources.helloworld_key_a_txt), passphrase.DerivedPassphrase);
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 bool isCompressed = document.DocumentHeaders.IsCompressed;
                 Assert.That(isCompressed, Is.False, "This file should not be compressed.");
@@ -143,7 +126,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (AxCryptDocument document = new AxCryptDocument())
             {
                 Passphrase passphrase = new Passphrase("b");
-                bool keyIsOk = document.Load(new MemoryStream(Resources.HelloWorld_Key_a_txt), passphrase.DerivedPassphrase);
+                bool keyIsOk = document.Load(new MemoryStream(Resources.helloworld_key_a_txt), passphrase.DerivedPassphrase);
                 Assert.That(keyIsOk, Is.False, "The passphrase provided is wrong!");
             }
         }
@@ -155,7 +138,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (AxCryptDocument document = new AxCryptDocument())
             {
                 Passphrase passphrase = new Passphrase("Å ä Ö");
-                bool keyIsOk = document.Load(new MemoryStream(Resources.David_Copperfield_Key_Å_ä_Ö_txt), passphrase.DerivedPassphrase);
+                bool keyIsOk = document.Load(new MemoryStream(Resources.david_copperfield_key__aa_ae_oe__ulu_txt), passphrase.DerivedPassphrase);
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 bool isCompressed = document.DocumentHeaders.IsCompressed;
                 Assert.That(isCompressed, Is.True, "This file should be compressed.");
@@ -168,7 +151,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (AxCryptDocument document = new AxCryptDocument())
             {
                 Passphrase passphrase = new Passphrase("a");
-                bool keyIsOk = document.Load(new MemoryStream(Resources.HelloWorld_Key_a_txt), passphrase.DerivedPassphrase);
+                bool keyIsOk = document.Load(new MemoryStream(Resources.helloworld_key_a_txt), passphrase.DerivedPassphrase);
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 using (MemoryStream plaintextStream = new MemoryStream())
                 {
@@ -185,7 +168,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (AxCryptDocument document = new AxCryptDocument())
             {
                 Passphrase passphrase = new Passphrase("a");
-                bool keyIsOk = document.Load(new MemoryStream(Resources.HelloWorld_Key_a_txt), passphrase.DerivedPassphrase);
+                bool keyIsOk = document.Load(new MemoryStream(Resources.helloworld_key_a_txt), passphrase.DerivedPassphrase);
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 using (MemoryStream plaintextStream = new MemoryStream())
                 {
@@ -206,7 +189,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (AxCryptDocument document = new AxCryptDocument())
             {
                 Passphrase passphrase = new Passphrase("a");
-                using (MemoryStream encryptedFile = new MemoryStream((byte[])Resources.HelloWorld_Key_a_txt.Clone()))
+                using (MemoryStream encryptedFile = new MemoryStream((byte[])Resources.helloworld_key_a_txt.Clone()))
                 {
                     encryptedFile.Seek(-1, SeekOrigin.End);
                     byte lastByte = (byte)encryptedFile.ReadByte();
@@ -230,7 +213,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (AxCryptDocument document = new AxCryptDocument())
             {
                 Passphrase passphrase = new Passphrase("Å ä Ö");
-                using (MemoryStream encryptedFile = new MemoryStream(Resources.David_Copperfield_Key_Å_ä_Ö_txt))
+                using (MemoryStream encryptedFile = new MemoryStream(Resources.david_copperfield_key__aa_ae_oe__ulu_txt))
                 {
                     encryptedFile.SetLength(encryptedFile.Length / 2);
                     encryptedFile.Position = 0;
@@ -250,7 +233,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (AxCryptDocument document = new AxCryptDocument())
             {
                 Passphrase passphrase = new Passphrase("Å ä Ö");
-                bool keyIsOk = document.Load(new MemoryStream(Resources.David_Copperfield_Key_Å_ä_Ö_txt), passphrase.DerivedPassphrase);
+                bool keyIsOk = document.Load(new MemoryStream(Resources.david_copperfield_key__aa_ae_oe__ulu_txt), passphrase.DerivedPassphrase);
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 using (MemoryStream plaintextStream = new MemoryStream())
                 {
@@ -271,7 +254,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (AxCryptDocument document = new AxCryptDocument())
             {
                 Passphrase passphrase = new Passphrase("åäö");
-                bool keyIsOk = document.Load(new MemoryStream(Resources.Tst_0_0b6___Key__åäö____Medium____html__), passphrase.DerivedPassphrase);
+                bool keyIsOk = document.Load(new MemoryStream(Resources.tst_0_0b6_key__aaaeoe__medium_html), passphrase.DerivedPassphrase);
                 Assert.That(keyIsOk, Is.True, "A correct passphrase was provided, but it was not accepted.");
                 Assert.That(document.DocumentHeaders.IsCompressed, Is.True, "The file is compressed.");
                 Assert.That(document.DocumentHeaders.FileName, Is.EqualTo("readme.html"), "The file name should be 'readme.html'.");
@@ -321,7 +304,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (AxCryptDocument document = new AxCryptDocument())
             {
                 Passphrase passphrase = new Passphrase("Å ä Ö");
-                bool keyIsOk = document.Load(new MemoryStream(Resources.David_Copperfield_Key_Å_ä_Ö_txt), passphrase.DerivedPassphrase);
+                bool keyIsOk = document.Load(new MemoryStream(Resources.david_copperfield_key__aa_ae_oe__ulu_txt), passphrase.DerivedPassphrase);
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 using (MemoryStream plaintextStream = new MemoryStream())
                 {
@@ -341,12 +324,27 @@ namespace Axantum.AxCrypt.Core.Test
             using (AxCryptDocument document = new AxCryptDocument())
             {
                 Passphrase passphrase = new Passphrase("a");
-                bool keyIsOk = document.Load(new MemoryStream(Resources.HelloWorld_Key_a_txt), passphrase.DerivedPassphrase);
+                bool keyIsOk = document.Load(new MemoryStream(Resources.helloworld_key_a_txt), passphrase.DerivedPassphrase);
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 document.DecryptTo(Stream.Null, new ProgressContext());
             }
         }
 
+        [Test]
+        public static void TestFailedHmacCalculationFromSimpleFile()
+        {
+            using (AxCryptDocument document = new AxCryptDocument())
+            {
+                Passphrase passphrase = new Passphrase("a");
+                bool keyIsOk = document.Load(new MemoryStream(Resources.helloworld_key_a_txt), passphrase.DerivedPassphrase);
+                Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+                document.DocumentHeaders.Hmac = new DataHmac(new byte[document.DocumentHeaders.Hmac.Length]);
+                Assert.Throws<Axantum.AxCrypt.Core.System.InvalidDataException>(() =>
+                {
+                    document.DecryptTo(Stream.Null, new ProgressContext());
+                });
+            }
+        }
 
         [Test]
         public static void TestNoMagicGuidFound()
@@ -380,7 +378,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (AxCryptDocument document = new AxCryptDocument())
             {
                 Passphrase passphrase = new Passphrase("a");
-                bool keyIsOk = document.Load(new MemoryStream(Resources.HelloWorld_Key_a_txt), passphrase.DerivedPassphrase);
+                bool keyIsOk = document.Load(new MemoryStream(Resources.helloworld_key_a_txt), passphrase.DerivedPassphrase);
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
 
                 string creationTime = document.DocumentHeaders.CreationTimeUtc.ToString(CultureInfo.InvariantCulture);
@@ -398,7 +396,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (AxCryptDocument document = new AxCryptDocument())
             {
                 Passphrase passphrase = new Passphrase("a");
-                bool keyIsOk = document.Load(new MemoryStream(Resources.HelloWorld_Key_a_txt), passphrase.DerivedPassphrase);
+                bool keyIsOk = document.Load(new MemoryStream(Resources.helloworld_key_a_txt), passphrase.DerivedPassphrase);
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct and should work!");
 
                 Passphrase newPassphrase = new Passphrase("b");
@@ -611,7 +609,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (AxCryptDocument document = new AxCryptDocument())
             {
                 Passphrase passphrase = new Passphrase("a");
-                bool keyIsOk = document.Load(new MemoryStream(Resources.HelloWorld_Key_a_txt), passphrase.DerivedPassphrase);
+                bool keyIsOk = document.Load(new MemoryStream(Resources.helloworld_key_a_txt), passphrase.DerivedPassphrase);
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct and should work!");
 
                 Passphrase newPassphrase = new Passphrase("b");

@@ -49,21 +49,30 @@
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Controls.Add(this.buttonCancel);
             this.panel1.Controls.Add(this.buttonOk);
+            this.errorProvider1.SetError(this.panel1, resources.GetString("panel1.Error"));
+            this.errorProvider1.SetIconAlignment(this.panel1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("panel1.IconAlignment"))));
+            this.errorProvider1.SetIconPadding(this.panel1, ((int)(resources.GetObject("panel1.IconPadding"))));
             this.panel1.Name = "panel1";
             // 
             // buttonCancel
             // 
+            resources.ApplyResources(this.buttonCancel, "buttonCancel");
             this.buttonCancel.CausesValidation = false;
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            resources.ApplyResources(this.buttonCancel, "buttonCancel");
+            this.errorProvider1.SetError(this.buttonCancel, resources.GetString("buttonCancel.Error"));
+            this.errorProvider1.SetIconAlignment(this.buttonCancel, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("buttonCancel.IconAlignment"))));
+            this.errorProvider1.SetIconPadding(this.buttonCancel, ((int)(resources.GetObject("buttonCancel.IconPadding"))));
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 
             // buttonOk
             // 
+            resources.ApplyResources(this.buttonOk, "buttonOk");
             this.buttonOk.CausesValidation = false;
             this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            resources.ApplyResources(this.buttonOk, "buttonOk");
+            this.errorProvider1.SetError(this.buttonOk, resources.GetString("buttonOk.Error"));
+            this.errorProvider1.SetIconAlignment(this.buttonOk, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("buttonOk.IconAlignment"))));
+            this.errorProvider1.SetIconPadding(this.buttonOk, ((int)(resources.GetObject("buttonOk.IconPadding"))));
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
@@ -75,12 +84,18 @@
             this.PassphraseGroupBox.Controls.Add(this.VerifyPassphraseTextbox);
             this.PassphraseGroupBox.Controls.Add(this.label1);
             this.PassphraseGroupBox.Controls.Add(this.PassphraseTextBox);
+            this.errorProvider1.SetError(this.PassphraseGroupBox, resources.GetString("PassphraseGroupBox.Error"));
+            this.errorProvider1.SetIconAlignment(this.PassphraseGroupBox, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("PassphraseGroupBox.IconAlignment"))));
+            this.errorProvider1.SetIconPadding(this.PassphraseGroupBox, ((int)(resources.GetObject("PassphraseGroupBox.IconPadding"))));
             this.PassphraseGroupBox.Name = "PassphraseGroupBox";
             this.PassphraseGroupBox.TabStop = false;
             // 
             // ShowPassphraseCheckBox
             // 
             resources.ApplyResources(this.ShowPassphraseCheckBox, "ShowPassphraseCheckBox");
+            this.errorProvider1.SetError(this.ShowPassphraseCheckBox, resources.GetString("ShowPassphraseCheckBox.Error"));
+            this.errorProvider1.SetIconAlignment(this.ShowPassphraseCheckBox, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("ShowPassphraseCheckBox.IconAlignment"))));
+            this.errorProvider1.SetIconPadding(this.ShowPassphraseCheckBox, ((int)(resources.GetObject("ShowPassphraseCheckBox.IconPadding"))));
             this.ShowPassphraseCheckBox.Name = "ShowPassphraseCheckBox";
             this.ShowPassphraseCheckBox.UseVisualStyleBackColor = true;
             this.ShowPassphraseCheckBox.CheckedChanged += new System.EventHandler(this.ShowPassphraseCheckBox_CheckedChanged);
@@ -88,6 +103,9 @@
             // VerifyPassphraseTextbox
             // 
             resources.ApplyResources(this.VerifyPassphraseTextbox, "VerifyPassphraseTextbox");
+            this.errorProvider1.SetError(this.VerifyPassphraseTextbox, resources.GetString("VerifyPassphraseTextbox.Error"));
+            this.errorProvider1.SetIconAlignment(this.VerifyPassphraseTextbox, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("VerifyPassphraseTextbox.IconAlignment"))));
+            this.errorProvider1.SetIconPadding(this.VerifyPassphraseTextbox, ((int)(resources.GetObject("VerifyPassphraseTextbox.IconPadding"))));
             this.VerifyPassphraseTextbox.Name = "VerifyPassphraseTextbox";
             this.VerifyPassphraseTextbox.Validating += new System.ComponentModel.CancelEventHandler(this.VerifyPassphraseTextbox_Validating);
             this.VerifyPassphraseTextbox.Validated += new System.EventHandler(this.VerifyPassphraseTextbox_Validated);
@@ -95,17 +113,24 @@
             // label1
             // 
             resources.ApplyResources(this.label1, "label1");
+            this.errorProvider1.SetError(this.label1, resources.GetString("label1.Error"));
+            this.errorProvider1.SetIconAlignment(this.label1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("label1.IconAlignment"))));
+            this.errorProvider1.SetIconPadding(this.label1, ((int)(resources.GetObject("label1.IconPadding"))));
             this.label1.Name = "label1";
             // 
             // PassphraseTextBox
             // 
-            this.PassphraseTextBox.CausesValidation = false;
             resources.ApplyResources(this.PassphraseTextBox, "PassphraseTextBox");
+            this.PassphraseTextBox.CausesValidation = false;
+            this.errorProvider1.SetError(this.PassphraseTextBox, resources.GetString("PassphraseTextBox.Error"));
+            this.errorProvider1.SetIconAlignment(this.PassphraseTextBox, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("PassphraseTextBox.IconAlignment"))));
+            this.errorProvider1.SetIconPadding(this.PassphraseTextBox, ((int)(resources.GetObject("PassphraseTextBox.IconPadding"))));
             this.PassphraseTextBox.Name = "PassphraseTextBox";
             // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
+            resources.ApplyResources(this.errorProvider1, "errorProvider1");
             // 
             // EncryptPassphraseDialog
             // 

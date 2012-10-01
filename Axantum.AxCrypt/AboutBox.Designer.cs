@@ -40,7 +40,7 @@
             // 
             // logoPictureBox
             // 
-            this.logoPictureBox.Image = global::Axantum.AxCrypt.Properties.Resources.AxCryptIcon128;
+            this.logoPictureBox.Image = global::Axantum.AxCrypt.Properties.Resources.axcrypticon128;
             resources.ApplyResources(this.logoPictureBox, "logoPictureBox");
             this.logoPictureBox.Name = "logoPictureBox";
             this.logoPictureBox.TabStop = false;

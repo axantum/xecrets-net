@@ -40,7 +40,7 @@ namespace Axantum.AxCrypt.Core.Session
     {
         private object _lock;
 
-        private FileSystemState()
+        public FileSystemState()
         {
             Initialize();
         }
@@ -57,11 +57,11 @@ namespace Axantum.AxCrypt.Core.Session
 
         public KnownKeys KnownKeys { get; private set; }
 
-        public event EventHandler<EventArgs> Changed;
+        public event EventHandler<ActiveFileChangedEventArgs> Changed;
 
-        protected virtual void OnChanged(EventArgs e)
+        protected virtual void OnChanged(ActiveFileChangedEventArgs e)
         {
-            EventHandler<EventArgs> handler = Changed;
+            EventHandler<ActiveFileChangedEventArgs> handler = Changed;
             if (handler != null)
             {
                 handler(this, e);
@@ -77,14 +77,6 @@ namespace Axantum.AxCrypt.Core.Session
                     return new List<ActiveFile>(_activeFilesByDecryptedPath.Values);
                 }
             }
-            set
-            {
-                lock (_lock)
-                {
-                    SetRangeInternal(value, ActiveFileStatus.None);
-                }
-                OnChanged(new EventArgs());
-            }
         }
 
         public IList<ActiveFile> DecryptedActiveFiles
@@ -94,7 +86,7 @@ namespace Axantum.AxCrypt.Core.Session
                 List<ActiveFile> activeFiles = new List<ActiveFile>();
                 foreach (ActiveFile activeFile in ActiveFiles)
                 {
-                    if (activeFile.Status.HasFlag(ActiveFileStatus.DecryptedIsPendingDelete) || activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted))
+                    if (activeFile.Status.HasMask(ActiveFileStatus.DecryptedIsPendingDelete) || activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
                     {
                         activeFiles.Add(activeFile);
                     }
@@ -135,7 +127,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 AddInternal(activeFile);
             }
-            OnChanged(new EventArgs());
+            OnChanged(new ActiveFileChangedEventArgs(activeFile));
         }
 
         public void Remove(ActiveFile activeFile)
@@ -145,7 +137,8 @@ namespace Axantum.AxCrypt.Core.Session
                 _activeFilesByDecryptedPath.Remove(activeFile.DecryptedFileInfo.FullName);
                 _activeFilesByEncryptedPath.Remove(activeFile.EncryptedFileInfo.FullName);
             }
-            OnChanged(new EventArgs());
+            activeFile = new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.NoLongerActive);
+            OnChanged(new ActiveFileChangedEventArgs(activeFile));
         }
 
         private void AddInternal(ActiveFile activeFile)
@@ -193,47 +186,61 @@ namespace Axantum.AxCrypt.Core.Session
                 if (updatedActiveFile != activeFile)
                 {
                     isModified = true;
+                    OnChanged(new ActiveFileChangedEventArgs(updatedActiveFile));
                     activeFile.Dispose();
                 }
             }
             if (isModified)
             {
-                ActiveFiles = activeFiles;
+                lock (_lock)
+                {
+                    SetRangeInternal(activeFiles, ActiveFileStatus.None);
+                }
                 Save();
             }
             if (!isModified && mode == ChangedEventMode.RaiseAlways)
             {
-                OnChanged(new EventArgs());
+                RaiseChangedForAll(activeFiles);
+            }
+        }
+
+        private void RaiseChangedForAll(List<ActiveFile> activeFiles)
+        {
+            foreach (ActiveFile activeFile in activeFiles)
+            {
+                OnChanged(new ActiveFileChangedEventArgs(activeFile));
             }
         }
 
         private string _path;
 
-        public static FileSystemState Load(IRuntimeFileInfo path)
+        public void Load(IRuntimeFileInfo path)
         {
             if (!path.Exists)
             {
-                FileSystemState state = new FileSystemState();
-                state._path = path.FullName;
-                if (Logging.IsInfoEnabled)
+                _path = path.FullName;
+                if (OS.Log.IsInfoEnabled)
                 {
-                    Logging.Info("No existing FileSystemState. Save location is '{0}'.".InvariantFormat(state._path));
+                    OS.Log.LogInfo("No existing FileSystemState. Save location is '{0}'.".InvariantFormat(_path));
                 }
-                return state;
+                return;
             }
 
             DataContractSerializer serializer = CreateSerializer();
-            IRuntimeFileInfo loadInfo = AxCryptEnvironment.Current.FileInfo(path.FullName);
+            IRuntimeFileInfo loadInfo = OS.Current.FileInfo(path.FullName);
 
             using (Stream fileSystemStateStream = loadInfo.OpenRead())
             {
                 FileSystemState fileSystemState = (FileSystemState)serializer.ReadObject(fileSystemStateStream);
-                fileSystemState._path = path.FullName;
-                if (Logging.IsInfoEnabled)
+                _path = path.FullName;
+                foreach (ActiveFile activeFile in fileSystemState.ActiveFiles)
                 {
-                    Logging.Info("Loaded FileSystemState from '{0}'.".InvariantFormat(fileSystemState._path));
+                    Add(activeFile);
                 }
-                return fileSystemState;
+                if (OS.Log.IsInfoEnabled)
+                {
+                    OS.Log.LogInfo("Loaded FileSystemState from '{0}'.".InvariantFormat(fileSystemState._path));
+                }
             }
         }
 
@@ -245,19 +252,19 @@ namespace Axantum.AxCrypt.Core.Session
 
         public void Save()
         {
-            IRuntimeFileInfo saveInfo = AxCryptEnvironment.Current.FileInfo(_path);
-            using (Stream fileSystemStateStream = saveInfo.OpenWrite())
+            IRuntimeFileInfo saveInfo = OS.Current.FileInfo(_path);
+            lock (_lock)
             {
-                fileSystemStateStream.SetLength(0);
-                lock (_lock)
+                using (Stream fileSystemStateStream = saveInfo.OpenWrite())
                 {
+                    fileSystemStateStream.SetLength(0);
                     DataContractSerializer serializer = CreateSerializer();
                     serializer.WriteObject(fileSystemStateStream, this);
                 }
             }
-            if (Logging.IsInfoEnabled)
+            if (OS.Log.IsInfoEnabled)
             {
-                Logging.Info("Wrote FileSystemState to '{0}'.".InvariantFormat(_path));
+                OS.Log.LogInfo("Wrote FileSystemState to '{0}'.".InvariantFormat(_path));
             }
         }
 

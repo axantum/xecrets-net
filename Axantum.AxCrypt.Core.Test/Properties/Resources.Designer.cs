@@ -60,37 +60,57 @@ namespace Axantum.AxCrypt.Core.Test.Properties {
             }
         }
         
-        internal static byte[] David_Copperfield {
+        /// <summary>
+        ///   Looks up a localized string similar to The Project Gutenberg EBook of David Copperfield, by Charles Dickens
+        ///
+        ///This eBook is for the use of anyone anywhere at no cost and with
+        ///almost no restrictions whatsoever.  You may copy it, give it away or
+        ///re-use it under the terms of the Project Gutenberg License included
+        ///with this eBook or online at www.gutenberg.org
+        ///
+        ///
+        ///Title: David Copperfield
+        ///
+        ///Author: Charles Dickens
+        ///
+        ///Release Date: December, 1996  [Etext #766]
+        ///Posting Date: November 24, 2009
+        ///
+        ///Language: English
+        ///
+        ///
+        ///*** START OF THIS PROJECT G [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string david_copperfield {
             get {
-                object obj = ResourceManager.GetObject("David_Copperfield", resourceCulture);
+                return ResourceManager.GetString("david_copperfield", resourceCulture);
+            }
+        }
+        
+        internal static byte[] david_copperfield_key__aa_ae_oe__ulu_txt {
+            get {
+                object obj = ResourceManager.GetObject("david_copperfield_key__aa_ae_oe__ulu_txt", resourceCulture);
                 return ((byte[])(obj));
             }
         }
         
-        internal static byte[] David_Copperfield_Key_Å_ä_Ö_txt {
+        internal static byte[] helloworld_key_a_txt {
             get {
-                object obj = ResourceManager.GetObject("David_Copperfield_Key_Å_ä_Ö_txt", resourceCulture);
+                object obj = ResourceManager.GetObject("helloworld_key_a_txt", resourceCulture);
                 return ((byte[])(obj));
             }
         }
         
-        internal static byte[] HelloWorld_Key_a_txt {
+        internal static byte[] tst_0_0b6_key__aaaeoe__medium_html {
             get {
-                object obj = ResourceManager.GetObject("HelloWorld_Key_a_txt", resourceCulture);
+                object obj = ResourceManager.GetObject("tst_0_0b6_key__aaaeoe__medium_html", resourceCulture);
                 return ((byte[])(obj));
             }
         }
         
-        internal static byte[] Tst_0_0b6___Key__åäö____Medium____html__ {
+        internal static byte[] uncompressable_zip {
             get {
-                object obj = ResourceManager.GetObject("Tst_0_0b6___Key__åäö____Medium____html__", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        internal static byte[] Uncompressable_zip {
-            get {
-                object obj = ResourceManager.GetObject("Uncompressable_zip", resourceCulture);
+                object obj = ResourceManager.GetObject("uncompressable_zip", resourceCulture);
                 return ((byte[])(obj));
             }
         }

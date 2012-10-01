@@ -1,0 +1,33 @@
+﻿About Axantum.AxCrypt.exe
+
+This is the reference code GUI for AxCrypt. It is intended to be portable between pure
+Mono desktop platforms such as Linux and Windows. Mac OS X appears to be tougher.
+
+In general a platform-specific GUI should be designed in each case, being as native as
+possible. This GUI may become purely a reference GUI if/when specialized Linux and
+Windows GUI'n are built.
+
+A GUI implementation should only need Axantum.AxCrypt.Core.dll, Axantum.AxCrypt.[Platform].dll
+and BouncyCastle.Crypto.dll as binary dependencies.
+
+No code coverage or Unit Tests are expected to be run against Axantum.AxCrypt.exe, since it is
+intended to be pure GUI-related.
+
+FxCop should pass without complaint.
+
+---
+
+Comments and findings on Mono compatiblity, rationales etc.
+
+- .NET 3.5 is used because for example MonoTouch does not support 4.0
+- The 'resources' folder is all lower case because the designer forces lower case
+  and this blows up on case-sensitive file systems.
+- The build system is extended via 'Axantum.targets' which includes functionality
+  for versioning the assemblies, signing them etc. The intention is for this to be
+  ignored when not building at Axantum or when building in MonoDevelop etc. It should
+  build in Visual Studio 2010 (Express) and MonoDevelop out of the box with no changes.
+- Non-7-bit characters should be avoided in file names due to file system differences
+  causing build problems.
+- Upper case characters should be avoided in files used as resources due to designer quirks
+  causing the names to be lowercased in the resx-file, causing problems on file systems
+  which are case-sensitive.

@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFindVersionHeaderBlockFromSimpleFile()
         {
-            using (Stream testStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
+            using (Stream testStream = new MemoryStream(Resources.helloworld_key_a_txt))
             {
                 using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
                 {
@@ -50,8 +50,10 @@ namespace Axantum.AxCrypt.Core.Test
                         {
                             case AxCryptItemType.None:
                                 break;
+
                             case AxCryptItemType.MagicGuid:
                                 break;
+
                             case AxCryptItemType.HeaderBlock:
                                 if (axCryptReader.CurrentHeaderBlock.HeaderBlockType == HeaderBlockType.Version)
                                 {
@@ -60,8 +62,10 @@ namespace Axantum.AxCrypt.Core.Test
                                 }
                                 ++headers;
                                 break;
+
                             case AxCryptItemType.Data:
                                 break;
+
                             case AxCryptItemType.EndOfStream:
                                 break;
                             default:

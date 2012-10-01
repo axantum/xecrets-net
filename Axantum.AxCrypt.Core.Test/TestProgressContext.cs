@@ -93,9 +93,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFirstDelay()
         {
-            IRuntimeEnvironment environment = AxCryptEnvironment.Current;
+            IRuntimeEnvironment environment = OS.Current;
             FakeRuntimeEnvironment fakeEnvironment = new FakeRuntimeEnvironment();
-            AxCryptEnvironment.Current = fakeEnvironment;
+            OS.Current = fakeEnvironment;
             try
             {
                 ProgressContext progressContext = new ProgressContext(TimeSpan.FromMilliseconds(13));
@@ -118,7 +118,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
             finally
             {
-                AxCryptEnvironment.Current = environment;
+                OS.Current = environment;
             }
         }
     }

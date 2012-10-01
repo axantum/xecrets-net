@@ -10,7 +10,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Axantum.AxCrypt.Core.Test</RootNamespace>
     <AssemblyName>Axantum.AxCrypt.Core.Test</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -20,6 +23,7 @@
     <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,9 +33,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>AxantumStrongName.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <DelaySign>false</DelaySign>
@@ -47,9 +48,9 @@
     <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <SignAssembly>False</SignAssembly>
     <WarningLevel>4</WarningLevel>
     <Optimize>False</Optimize>
-    <SignAssembly>True</SignAssembly>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
@@ -60,23 +61,77 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <SignAssembly>False</SignAssembly>
+    <WarningLevel>4</WarningLevel>
+    <AssemblyOriginatorKeyFile>AxantumStrongName.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugAndroid|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DebugAndroid\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugAndroid|x64'">
+    <DebugSymbols>True</DebugSymbols>
+    <OutputPath>bin\x64\DebugAndroid\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>False</Optimize>
+    <SignAssembly>True</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseAndroid|AnyCPU'">
+    <OutputPath>bin\ReleaseAndroid\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>True</Optimize>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
     <WarningLevel>4</WarningLevel>
     <SignAssembly>True</SignAssembly>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseAndroid|x64'">
+    <OutputPath>bin\x64\ReleaseAndroid\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+    <Reference Include="nunit.framework, Version=2.6.1.12217, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SolutionItems\nunit.framework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Endian.cs" />
+    <Compile Include="FakeDataProtection.cs" />
     <Compile Include="FakeFileWatcher.cs" />
     <Compile Include="FakeLauncher.cs" />
+    <Compile Include="FakeLogging.cs" />
     <Compile Include="FakeRuntimeEnvironment.cs" />
     <Compile Include="FakeRuntimeFileInfo.cs" />
     <Compile Include="FakeTiming.cs" />
@@ -113,7 +168,6 @@
     <Compile Include="TestFileLock.cs" />
     <Compile Include="TestFileNameInfoHeaderBlock.cs" />
     <Compile Include="TestFileSystemState.cs" />
-    <Compile Include="TestFileWatcher.cs" />
     <Compile Include="TestIdTagHeaderBlock.cs" />
     <Compile Include="TestIOStreams.cs" />
     <Compile Include="TestKeyWrap.cs" />
@@ -121,27 +175,24 @@
     <Compile Include="TestKeyWrap2HeaderBlock.cs" />
     <Compile Include="TestKeyWrapSalt.cs" />
     <Compile Include="TestKnownKeys.cs" />
-    <Compile Include="TestLogging.cs" />
     <Compile Include="TestPassphrase.cs" />
     <Compile Include="TestPreambleHeaderBlock.cs" />
     <Compile Include="TestProgressContext.cs" />
     <Compile Include="TestProgressEventArgsTest.cs" />
     <Compile Include="TestProgressStream.cs" />
-    <Compile Include="TestRuntimeEnvironment.cs" />
-    <Compile Include="TestRuntimeFileInfo.cs" />
     <Compile Include="TestStream.cs" />
     <Compile Include="TestSubkey.cs" />
     <Compile Include="TestUnicodeFileNameInfoHeaderBlock .cs" />
     <Compile Include="TestUnrecognizedHeaderBlock .cs" />
     <Compile Include="TestUpdateCheck.cs" />
     <Compile Include="TestVersionHeaderBlock .cs" />
-    <Compile Include="TestWorkerArguments.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />
-    <None Include="Resources\HelloWorld-Key-a-txt.axx" />
-    <None Include="Resources\Tst 0.0b6 - Key %27åäö%27 - Medium - .html - .axx" />
-    <None Include="Resources\Uncompressable-zip.axx" />
+    <None Include="resources\david copperfield-key-%27aa ae oe%27-ulu-txt.axx" />
+    <None Include="resources\helloworld-key-a-txt.axx" />
+    <None Include="resources\tst-0.0b6-key-%27aaaeoe%27-medium-html.axx" />
+    <None Include="resources\uncompressable-zip.axx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Axantum.AxCrypt.Core\Axantum.AxCrypt.Core.csproj">
@@ -153,14 +204,18 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\David Copperfield.txt" />
+    <None Include="resources\david-copperfield.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AboutThisAssembly.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\SolutionItems\Axantum.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

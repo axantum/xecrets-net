@@ -38,5 +38,6 @@ namespace Axantum.AxCrypt.Core.UI
         InconsistentState,
         InvalidKey,
         Canceled,
+        Exception,
     }
 }

@@ -89,9 +89,9 @@ namespace Axantum.AxCrypt.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap AxCryptIcon128 {
+        internal static System.Drawing.Bitmap axcrypticon128 {
             get {
-                object obj = ResourceManager.GetObject("AxCryptIcon128", resourceCulture);
+                object obj = ResourceManager.GetObject("axcrypticon128", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -132,6 +132,20 @@ namespace Axantum.AxCrypt.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap closeremovestandbygreen32 {
+            get {
+                object obj = ResourceManager.GetObject("closeremovestandbygreen32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap closeremovestandbyred32 {
+            get {
+                object obj = ResourceManager.GetObject("closeremovestandbyred32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Documents (*{0})|*{0}|All files (*.*)|*.*.
         /// </summary>
@@ -156,6 +170,13 @@ namespace Axantum.AxCrypt.Properties {
         internal static string DecryptFileOpenDialogTitle {
             get {
                 return ResourceManager.GetString("DecryptFileOpenDialogTitle", resourceCulture);
+            }
+        }
+        
+        internal static System.Drawing.Bitmap decryptlockopen32 {
+            get {
+                object obj = ResourceManager.GetObject("decryptlockopen32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -195,6 +216,22 @@ namespace Axantum.AxCrypt.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap encryptlock32 {
+            get {
+                object obj = ResourceManager.GetObject("encryptlock32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exception during processing of &apos;{0}&apos;..
+        /// </summary>
+        internal static string Exception {
+            get {
+                return ResourceManager.GetString("Exception", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to File &apos;{0}&apos; already exists..
         /// </summary>
@@ -222,12 +259,28 @@ namespace Axantum.AxCrypt.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap helpquestiongreen32 {
+            get {
+                object obj = ResourceManager.GetObject("helpquestiongreen32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Inconsistent state with &apos;{0}&apos;..
         /// </summary>
         internal static string InconsistentState {
             get {
                 return ResourceManager.GetString("InconsistentState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid URL..
+        /// </summary>
+        internal static string Invalid_URL {
+            get {
+                return ResourceManager.GetString("Invalid_URL", resourceCulture);
             }
         }
         
@@ -276,6 +329,13 @@ namespace Axantum.AxCrypt.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap opendocument32 {
+            get {
+                object obj = ResourceManager.GetObject("opendocument32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Select file to decrypt and open.
         /// </summary>
@@ -312,16 +372,16 @@ namespace Axantum.AxCrypt.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap RefreshGreen {
+        internal static System.Drawing.Bitmap refreshgreen {
             get {
-                object obj = ResourceManager.GetObject("RefreshGreen", resourceCulture);
+                object obj = ResourceManager.GetObject("refreshgreen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap RefreshRed {
+        internal static System.Drawing.Bitmap refreshred {
             get {
-                object obj = ResourceManager.GetObject("RefreshRed", resourceCulture);
+                object obj = ResourceManager.GetObject("refreshred", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

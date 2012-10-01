@@ -1,0 +1,11 @@
+﻿About Axantum.AxCrypt.Core.dll
+
+This assembly contains all core platform-independent functionality.
+
+It must only depend on Mono-compatible assemblies for .NET 3.5 / 2.0.
+
+It must not depend on any other Axantum.AxCrypt.* assembly.
+
+Code coverage should be 100% by unit tests in Axantum.AxCrypt.Core.Test .
+
+FxCop should pass without complaint.

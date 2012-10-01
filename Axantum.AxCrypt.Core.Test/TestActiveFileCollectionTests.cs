@@ -44,22 +44,28 @@ namespace Axantum.AxCrypt.Core.Test
     {
         private static IRuntimeEnvironment _environment;
 
+        private static readonly string _rootPath = Path.GetPathRoot(Environment.CurrentDirectory);
+        private static readonly string _testTextPath = Path.Combine(_rootPath, "test.txt");
+        private static readonly string _davidCopperfieldTxtPath = _rootPath.PathCombine("Users", "AxCrypt", "David Copperfield.txt");
+        private static readonly string _uncompressedAxxPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Uncompressed.axx");
+        private static readonly string _helloWorldAxxPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "HelloWorld.axx");
+
         [TestFixtureSetUp]
         public static void SetupFixture()
         {
-            _environment = AxCryptEnvironment.Current;
-            AxCryptEnvironment.Current = new FakeRuntimeEnvironment();
+            _environment = OS.Current;
+            OS.Current = new FakeRuntimeEnvironment();
 
-            FakeRuntimeFileInfo.AddFile(@"c:\test.txt", FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate1Utc, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
-            FakeRuntimeFileInfo.AddFile(@"c:\Users\AxCrypt\David Copperfield.txt", FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate5Utc, FakeRuntimeFileInfo.TestDate6Utc, new MemoryStream(Resources.David_Copperfield));
-            FakeRuntimeFileInfo.AddFile(@"c:\Documents\Uncompressed.axx", new MemoryStream(Resources.Uncompressable_zip));
-            FakeRuntimeFileInfo.AddFile(@"c:\Documents\HelloWorld.axx", new MemoryStream(Resources.HelloWorld_Key_a_txt));
+            FakeRuntimeFileInfo.AddFile(_testTextPath, FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate1Utc, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
+            FakeRuntimeFileInfo.AddFile(_davidCopperfieldTxtPath, FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate5Utc, FakeRuntimeFileInfo.TestDate6Utc, new MemoryStream(Encoding.GetEncoding(1252).GetBytes(Resources.david_copperfield)));
+            FakeRuntimeFileInfo.AddFile(_uncompressedAxxPath, new MemoryStream(Resources.uncompressable_zip));
+            FakeRuntimeFileInfo.AddFile(_helloWorldAxxPath, new MemoryStream(Resources.helloworld_key_a_txt));
         }
 
         [TestFixtureTearDown]
         public static void TeardownFixture()
         {
-            AxCryptEnvironment.Current = _environment;
+            OS.Current = _environment;
             FakeRuntimeFileInfo.ClearFiles();
         }
 
@@ -68,8 +74,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             ActiveFileCollection collection = new ActiveFileCollection();
 
-            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\test.txt");
-            IRuntimeFileInfo encryptedFileInfo = AxCryptEnvironment.Current.FileInfo(@"c:\Documents\HelloWorld.axx");
+            IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(_testTextPath);
+            IRuntimeFileInfo encryptedFileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new AesKey(), ActiveFileStatus.None, null);
 
             collection.Add(activeFile);
@@ -85,10 +91,10 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestActiveFileCollectionEnumerationConstructor()
         {
-            IRuntimeFileInfo decryptedFileInfo1 = AxCryptEnvironment.Current.FileInfo(@"c:\test1.txt");
-            IRuntimeFileInfo encryptedFileInfo1 = AxCryptEnvironment.Current.FileInfo(@"c:\test1-txt.axx");
-            IRuntimeFileInfo decryptedFileInfo2 = AxCryptEnvironment.Current.FileInfo(@"c:\test2.txt");
-            IRuntimeFileInfo encryptedFileInfo2 = AxCryptEnvironment.Current.FileInfo(@"c:\test2-text.axx");
+            IRuntimeFileInfo decryptedFileInfo1 = OS.Current.FileInfo(Path.Combine(_rootPath, "test1.txt"));
+            IRuntimeFileInfo encryptedFileInfo1 = OS.Current.FileInfo(Path.Combine(_rootPath, "test1-txt.axx"));
+            IRuntimeFileInfo decryptedFileInfo2 = OS.Current.FileInfo(Path.Combine(_rootPath, "test2.txt"));
+            IRuntimeFileInfo encryptedFileInfo2 = OS.Current.FileInfo(Path.Combine(_rootPath, "test2-text.axx"));
             ActiveFile activeFile1 = new ActiveFile(encryptedFileInfo1, decryptedFileInfo1, new AesKey(), ActiveFileStatus.None, null);
             ActiveFile activeFile2 = new ActiveFile(encryptedFileInfo2, decryptedFileInfo2, new AesKey(), ActiveFileStatus.None, null);
 

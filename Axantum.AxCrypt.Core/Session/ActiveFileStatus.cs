@@ -39,5 +39,6 @@ namespace Axantum.AxCrypt.Core.Session
         DecryptedIsPendingDelete = 8,
         NotShareable = 16,
         IgnoreChange = 32,
+        NoLongerActive = 64,
     }
 }

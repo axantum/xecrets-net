@@ -28,6 +28,7 @@
 using System;
 using System.Globalization;
 using System.IO;
+using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.System;
 
 namespace Axantum.AxCrypt.Core
@@ -243,7 +244,7 @@ namespace Axantum.AxCrypt.Core
 
         public static byte[] GetLittleEndianBytes(this long value)
         {
-            if (AxCryptEnvironment.Current.IsLittleEndian)
+            if (OS.Current.IsLittleEndian)
             {
                 return BitConverter.GetBytes(value);
             }
@@ -260,7 +261,7 @@ namespace Axantum.AxCrypt.Core
 
         public static byte[] GetLittleEndianBytes(this int value)
         {
-            if (AxCryptEnvironment.Current.IsLittleEndian)
+            if (OS.Current.IsLittleEndian)
             {
                 return BitConverter.GetBytes(value);
             }
@@ -277,7 +278,7 @@ namespace Axantum.AxCrypt.Core
 
         public static byte[] GetBigEndianBytes(this long value)
         {
-            if (!AxCryptEnvironment.Current.IsLittleEndian)
+            if (!OS.Current.IsLittleEndian)
             {
                 return BitConverter.GetBytes(value);
             }
@@ -302,16 +303,78 @@ namespace Axantum.AxCrypt.Core
         public static string CreateEncryptedName(this string fullName)
         {
             string extension = Path.GetExtension(fullName);
-            if (String.Compare(extension, AxCryptEnvironment.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
+            if (String.Compare(extension, OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 throw new InternalErrorException("Can't get encrypted name for a file that already has the encrypted extension.");
             }
             string encryptedName = fullName;
             encryptedName = encryptedName.Substring(0, encryptedName.Length - extension.Length);
             encryptedName += extension.Replace('.', '-');
-            encryptedName += AxCryptEnvironment.Current.AxCryptExtension;
+            encryptedName += OS.Current.AxCryptExtension;
 
             return encryptedName;
+        }
+
+        public static bool HasMask(this AxCryptOptions options, AxCryptOptions mask)
+        {
+            return (options & mask) == mask;
+        }
+
+        public static bool HasMask(this ActiveFileStatus status, ActiveFileStatus mask)
+        {
+            return (status & mask) == mask;
+        }
+
+        public static void CopyTo(this Stream source, Stream destination, int bufferSize)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException("destination");
+            }
+            if (destination == null)
+            {
+                throw new ArgumentNullException("destination");
+            }
+            if (bufferSize <= 0)
+            {
+                throw new ArgumentOutOfRangeException("bufferSize", "Buffer size must be greater than zero.");
+            }
+
+            byte[] buffer = new byte[bufferSize];
+            int read;
+            while ((read = source.Read(buffer, 0, buffer.Length)) != 0)
+            {
+                destination.Write(buffer, 0, read);
+            }
+        }
+
+        public static string PathCombine(this string path, params string[] parts)
+        {
+            foreach (string part in parts)
+            {
+                path = Path.Combine(path, part);
+            }
+            return path;
+        }
+
+        /// <summary>
+        /// Trim a log message from extra information in front, specifically text preceding the
+        /// log level text such as Information, Warning etc.
+        /// </summary>
+        /// <param name="message">A log message</param>
+        /// <returns>A possible trimmed message</returns>
+        /// <remarks>
+        /// This is primarily intended to facilitate more compact logging in a GUI
+        /// </remarks>
+        public static string TrimLogMessage(this string message)
+        {
+            int skipIndex = message.IndexOf(" Information", StringComparison.Ordinal);
+            skipIndex = skipIndex < 0 ? message.IndexOf(" Warning", StringComparison.Ordinal) : skipIndex;
+            skipIndex = skipIndex < 0 ? message.IndexOf(" Debug", StringComparison.Ordinal) : skipIndex;
+            skipIndex = skipIndex < 0 ? message.IndexOf(" Error", StringComparison.Ordinal) : skipIndex;
+            skipIndex = skipIndex < 0 ? message.IndexOf(" Fatal", StringComparison.Ordinal) : skipIndex;
+
+            return message.Substring(skipIndex + 1);
         }
     }
 }

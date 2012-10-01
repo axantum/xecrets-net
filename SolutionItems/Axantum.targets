@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with AxCrypt.  If not, see <http://www.gnu.org/licenses/>.
+ * along with AxCrypt.  If not, see <http://www.gnu.org/licenses />.
  *
  * The source is maintained at http://bitbucket.org/axantum/axcrypt-net please visit for
  * updates, contributions and contact with the author. You may also visit
@@ -30,7 +30,10 @@
     The encrypted private key file is part of the distribution, but is protected with a private password.
     In Axantum build environment, the private key is loaded into a key-container, defined by Visual Studio
     to be named VS_KEY_xxxxxxxxx, and resolved by $(KeyContainerName) . For a private build, you may need
-    to create your own key pair, or disable assembly strong naming.
+    to create your own key pair, or disable assembly strong naming. Also, for Visual Studio to handle the
+    key-container, you need to have KeyOriginatorFile set before loading Microsoft.CSharp.targets. An easy
+    way to achieve this is to use properties, enable Signing, select AxantumStrongName.pfx, then disable
+    signing. The KeyOriginatorFile property remains set, shown by being grey in the GUI. Go figure.
 
     The Microsoft build files are typically found at:
     C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.CSharp.targets
@@ -44,8 +47,12 @@
         <_AxCryptMinor>0</_AxCryptMinor>
     </PropertyGroup>
     <PropertyGroup>
-        <UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>
-
+        <_AxIsAxantumDeveloper>false</_AxIsAxantumDeveloper>
+        <_AxIsAxantumDeveloper Condition=" '$(USERNAME)' == 'Svante' ">true</_AxIsAxantumDeveloper>
+        <_AxIsAxantumBuildServer>false</_AxIsAxantumBuildServer>
+        <_AxIsAxantumBuildServer Condition=" '$(COMPUTERNAME)' == 'HARLAN' ">true</_AxIsAxantumBuildServer>
+        <_AxIsAxantum>false</_AxIsAxantum>
+        <_AxIsAxantum Condition=" '$(_AxIsAxantumDeveloper)' == 'true' Or '$(_AxIsAxantumBuildServer)' == 'true' ">true</_AxIsAxantum>
         <_AxSignToolPath>..\SolutionItems\signtool.exe</_AxSignToolPath>
         <_AxIsAxantumBuild>true</_AxIsAxantumBuild>
         <_AxBuildserverDistinguishingPath>C:\Build</_AxBuildserverDistinguishingPath>
@@ -54,7 +61,9 @@
         <_AxTimeStampUrl>http://timestamp.comodoca.com/authenticode</_AxTimeStampUrl>
         <_AxCertificateThumbprint>f19b4539765c80c0a1e56586132b06d5a96a2400</_AxCertificateThumbprint>
     </PropertyGroup>
-
+    <PropertyGroup>
+        <UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>
+    </PropertyGroup>
     <PropertyGroup Condition=" '$(_AxIsBuildServerBuild)' == 'true' ">
         <_AxIgnoreSignToolErrors>false</_AxIgnoreSignToolErrors>
     </PropertyGroup>
@@ -105,7 +114,7 @@
         <Exec Command="&quot;..\SolutionItems\sn.exe&quot; -Rca &quot;$(OutputPath)AxCrypt.exe&quot; $(KeyContainerName)" />
         <MSBuild Projects="$(MSBuildProjectFullPath)"
                  Targets="AxAuthenticodeSignOneFile"
-                 Properties="AxAuthenticodeFile=$(OutputPath)AxCrypt.exe"/>
+                 Properties="AxAuthenticodeFile=$(OutputPath)AxCrypt.exe" />
         <ItemGroup>
             <FileWrites Include="$(OutputPath)AxCrypt.exe" />
             <FileWrites Include="$(OutputPath)AxCrypt.pdb" />
@@ -151,11 +160,16 @@
 
     <Target Name="_AxFixupVersion"
             Inputs="Properties\AssemblyInfo.template;$(MSBuildProjectFullPath)"
-            Outputs="Properties\AssemblyInfo.cs"
+            Outputs="$(IntermediateOutputPath)\AssemblyInfo.cs"
             Condition=" Exists('Properties\AssemblyInfo.template') ">
+        <MakeDir Directories="$(IntermediateOutputPath)" />
         <HgVersionFile TemplateFile="Properties\AssemblyInfo.template"
-                       DestinationFile="Properties\AssemblyInfo.cs"
+                       DestinationFile="$(IntermediateOutputPath)\AssemblyInfo.cs"
                        IgnoreToolNotFound="true" />
+        <ItemGroup>
+            <Compile Include="$(IntermediateOutputPath)\AssemblyInfo.cs" />
+            <FileWrites Include="$(IntermediateOutputPath)\AssemblyInfo.cs" />
+        </ItemGroup>
     </Target>
 
     <Target Name="_AxFixupAssemblyStrongNaming"
@@ -168,16 +182,39 @@
 
     <Target Name="_AxBeforeBuild"
             DependsOnTargets="_AxFixupVersion">
+        <PropertyGroup Condition=" '$(_AxIsAxantum)' == 'true' ">
+            <_AxPreviousDefineConstants>$(DefineConstants)</_AxPreviousDefineConstants>
+            <DefineConstants>$(DefineConstants);AXANTUM</DefineConstants>
+        </PropertyGroup>
     </Target>
 
     <Target Name="_AxAfterBuild">
+        <PropertyGroup Condition=" '$(_AxIsAxantum)' == 'true' ">
+            <DefineConstants>$(_AxPreviousDefineConstants)</DefineConstants>
+        </PropertyGroup>
     </Target>
 
     <Target Name="_AxPrepareForRun"
             DependsOnTargets="_AxFindIlMergeAssemblies;_AxMergeAndSign;_AxSetRevisionAndCopyToVersionedFileName">
     </Target>
 
-    <PropertyGroup>
+    <Target Name="_AxSetupStrongNaming"
+            Condition=" '$(_AxIsAxantum)' == 'true' ">
+        <PropertyGroup>
+            <KeyOriginatorFile>AxantumStrongName.pfx</KeyOriginatorFile>
+            <SignAssembly>true</SignAssembly>
+        </PropertyGroup>
+    </Target>
+
+    <Target Name="_AxCheckBuildEnvironment">
+    </Target>
+
+    <PropertyGroup Condition=" '$(_AxIsAxantum)' == 'true' ">
+        <CoreBuildDependsOn>
+            _AxCheckBuildEnvironment;
+            _AxSetupStrongNaming;
+            $(CoreBuildDependsOn)
+        </CoreBuildDependsOn>
         <BuildDependsOn>
             _AxBeforeBuild;
             $(BuildDependsOn);

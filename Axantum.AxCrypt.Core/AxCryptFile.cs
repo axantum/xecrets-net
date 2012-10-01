@@ -79,7 +79,7 @@ namespace Axantum.AxCrypt.Core
                         document.EncryptTo(headers, sourceStream, destinationStream, options, progress);
                     }
                 }
-                if (options.HasFlag(AxCryptOptions.SetFileTimes))
+                if (options.HasMask(AxCryptOptions.SetFileTimes))
                 {
                     destinationFile.SetFileTimes(sourceFile.CreationTimeUtc, sourceFile.LastAccessTimeUtc, sourceFile.LastWriteTimeUtc);
                 }
@@ -118,6 +118,13 @@ namespace Axantum.AxCrypt.Core
                     document.EncryptTo(headers, sourceStream, destinationStream, options, progress);
                 }
             }
+        }
+
+        public static void EncryptFileWithBackupAndWipe(string sourceFile, string destinationFile, AesKey key, ProgressContext progress)
+        {
+            IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(sourceFile);
+            IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(destinationFile);
+            EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, key, progress);
         }
 
         public static void EncryptFileWithBackupAndWipe(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFileInfo, AesKey key, ProgressContext progress)
@@ -217,7 +224,7 @@ namespace Axantum.AxCrypt.Core
                     return destinationFileName;
                 }
                 destinationFileName = document.DocumentHeaders.FileName;
-                IRuntimeFileInfo destinationFullPath = AxCryptEnvironment.Current.FileInfo(Path.Combine(destinationDirectory, destinationFileName));
+                IRuntimeFileInfo destinationFullPath = OS.Current.FileInfo(Path.Combine(destinationDirectory, destinationFileName));
                 Decrypt(document, destinationFullPath, options, progress);
             }
             return destinationFileName;
@@ -244,9 +251,9 @@ namespace Axantum.AxCrypt.Core
             }
             try
             {
-                if (Logging.IsInfoEnabled)
+                if (OS.Log.IsInfoEnabled)
                 {
-                    Logging.Info("Decrypting to '{0}'.".InvariantFormat(destinationFile.Name));
+                    OS.Log.LogInfo("Decrypting to '{0}'.".InvariantFormat(destinationFile.Name));
                 }
 
                 using (Stream destinationStream = destinationFile.OpenWrite())
@@ -254,9 +261,9 @@ namespace Axantum.AxCrypt.Core
                     document.DecryptTo(destinationStream, progress);
                 }
 
-                if (Logging.IsInfoEnabled)
+                if (OS.Log.IsInfoEnabled)
                 {
-                    Logging.Info("Decrypted to '{0}'.".InvariantFormat(destinationFile.Name));
+                    OS.Log.LogInfo("Decrypted to '{0}'.".InvariantFormat(destinationFile.Name));
                 }
             }
             catch (OperationCanceledException)
@@ -267,7 +274,7 @@ namespace Axantum.AxCrypt.Core
                 }
                 throw;
             }
-            if (options.HasFlag(AxCryptOptions.SetFileTimes))
+            if (options.HasMask(AxCryptOptions.SetFileTimes))
             {
                 DocumentHeaders headers = document.DocumentHeaders;
                 destinationFile.SetFileTimes(headers.CreationTimeUtc, headers.LastAccessTimeUtc, headers.LastWriteTimeUtc);
@@ -312,7 +319,7 @@ namespace Axantum.AxCrypt.Core
             }
 
             string temporaryFilePath = MakeAlternatePath(destinationFileInfo, ".tmp");
-            IRuntimeFileInfo temporaryFileInfo = AxCryptEnvironment.Current.FileInfo(temporaryFilePath);
+            IRuntimeFileInfo temporaryFileInfo = OS.Current.FileInfo(temporaryFilePath);
 
             try
             {
@@ -333,7 +340,7 @@ namespace Axantum.AxCrypt.Core
             if (destinationFileInfo.Exists)
             {
                 string backupFilePath = MakeAlternatePath(destinationFileInfo, ".bak");
-                IRuntimeFileInfo backupFileInfo = AxCryptEnvironment.Current.FileInfo(destinationFileInfo.FullName);
+                IRuntimeFileInfo backupFileInfo = OS.Current.FileInfo(destinationFileInfo.FullName);
 
                 backupFileInfo.MoveTo(backupFilePath);
                 temporaryFileInfo.MoveTo(destinationFileInfo.FullName);
@@ -354,7 +361,7 @@ namespace Axantum.AxCrypt.Core
             {
                 string alternateExtension = (version > 0 ? "." + version.ToString(CultureInfo.InvariantCulture) : String.Empty) + extension;
                 alternatePath = Path.Combine(Path.GetDirectoryName(fileInfo.FullName), Path.GetFileNameWithoutExtension(fileInfo.Name) + alternateExtension);
-                alternateFileInfo = AxCryptEnvironment.Current.FileInfo(alternatePath);
+                alternateFileInfo = OS.Current.FileInfo(alternatePath);
                 ++version;
             } while (alternateFileInfo.Exists);
 
@@ -367,7 +374,7 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("fileInfo");
             }
-            string axCryptExtension = AxCryptEnvironment.Current.AxCryptExtension;
+            string axCryptExtension = OS.Current.AxCryptExtension;
             string originalExtension = Path.GetExtension(fileInfo.Name);
             string modifiedExtension = originalExtension.Length == 0 ? String.Empty : "-" + originalExtension.Substring(1);
             string axCryptFileName = Path.Combine(Path.GetDirectoryName(fileInfo.FullName), Path.GetFileNameWithoutExtension(fileInfo.Name) + modifiedExtension + axCryptExtension);
@@ -383,9 +390,9 @@ namespace Axantum.AxCrypt.Core
             }
             if (fileInfo.Exists)
             {
-                if (Logging.IsInfoEnabled)
+                if (OS.Log.IsInfoEnabled)
                 {
-                    Logging.Info("Wiping '{0}'.".InvariantFormat(fileInfo.Name));
+                    OS.Log.LogInfo("Wiping '{0}'.".InvariantFormat(fileInfo.Name));
                 }
                 fileInfo.Delete();
             }

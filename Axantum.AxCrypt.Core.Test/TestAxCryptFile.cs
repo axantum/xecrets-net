@@ -42,32 +42,38 @@ namespace Axantum.AxCrypt.Core.Test
     {
         private static IRuntimeEnvironment _environment;
 
+        private static readonly string _rootPath = Path.GetPathRoot(Environment.CurrentDirectory);
+        private static readonly string _testTextPath = Path.Combine(_rootPath, "test.txt");
+        private static readonly string _davidCopperfieldTxtPath = _rootPath.PathCombine("Users", "AxCrypt", "David Copperfield.txt");
+        private static readonly string _uncompressedAxxPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Uncompressed.axx");
+        private static readonly string _helloWorldAxxPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "HelloWorld.axx");
+
         [SetUp]
         public static void Setup()
         {
-            _environment = AxCryptEnvironment.Current;
-            AxCryptEnvironment.Current = new FakeRuntimeEnvironment();
+            _environment = OS.Current;
+            OS.Current = new FakeRuntimeEnvironment();
 
-            FakeRuntimeFileInfo.AddFile(Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"test.txt"), FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate3Utc, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
-            FakeRuntimeFileInfo.AddFile(Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"Users", "AxCrypt", "David Copperfield.txt"), FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate5Utc, FakeRuntimeFileInfo.TestDate6Utc, new MemoryStream(Resources.David_Copperfield));
-            FakeRuntimeFileInfo.AddFile(Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"Documents", "Uncompressed.axx"), new MemoryStream(Resources.Uncompressable_zip));
-            FakeRuntimeFileInfo.AddFile(Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"Documents", "HelloWorld.axx"), new MemoryStream(Resources.HelloWorld_Key_a_txt));
+            FakeRuntimeFileInfo.AddFile(_testTextPath, FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate3Utc, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
+            FakeRuntimeFileInfo.AddFile(_davidCopperfieldTxtPath, FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate5Utc, FakeRuntimeFileInfo.TestDate6Utc, new MemoryStream(Encoding.GetEncoding(1252).GetBytes(Resources.david_copperfield)));
+            FakeRuntimeFileInfo.AddFile(_uncompressedAxxPath, new MemoryStream(Resources.uncompressable_zip));
+            FakeRuntimeFileInfo.AddFile(_helloWorldAxxPath, new MemoryStream(Resources.helloworld_key_a_txt));
         }
 
         [TearDown]
         public static void Teardown()
         {
-            AxCryptEnvironment.Current = _environment;
+            OS.Current = _environment;
             FakeRuntimeFileInfo.ClearFiles();
         }
 
         [Test]
         public static void TestInvalidArguments()
         {
-            IRuntimeFileInfo sourceFileInfo = AxCryptEnvironment.Current.FileInfo(Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"test.txt"));
+            IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(_testTextPath);
             IRuntimeFileInfo destinationFileInfo = sourceFileInfo.CreateEncryptedName();
             AxCryptDocument document = new AxCryptDocument();
-            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"decrypted test.txt"));
+            IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(Path.Combine(_rootPath, "decrypted test.txt"));
 
             AxCryptDocument nullDocument = null;
             IRuntimeFileInfo nullFileInfo = null;
@@ -97,17 +103,17 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Decrypt(sourceFileInfo, decryptedFileInfo, nullKey, AxCryptOptions.SetFileTimes, new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Decrypt(sourceFileInfo, decryptedFileInfo, new AesKey(), AxCryptOptions.SetFileTimes, nullProgress); });
 
-            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Decrypt(nullFileInfo, Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"Directory"), new AesKey(), AxCryptOptions.SetFileTimes, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Decrypt(nullFileInfo, Path.Combine(_rootPath, "Directory"), new AesKey(), AxCryptOptions.SetFileTimes, new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Decrypt(sourceFileInfo, nullString, new AesKey(), AxCryptOptions.SetFileTimes, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Decrypt(sourceFileInfo, Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"Directory"), nullKey, AxCryptOptions.SetFileTimes, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Decrypt(sourceFileInfo, Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"Directory"), new AesKey(), AxCryptOptions.SetFileTimes, nullProgress); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Decrypt(sourceFileInfo, Path.Combine(_rootPath, "Directory"), nullKey, AxCryptOptions.SetFileTimes, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Decrypt(sourceFileInfo, Path.Combine(_rootPath, "Directory"), new AesKey(), AxCryptOptions.SetFileTimes, nullProgress); });
 
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Document(nullFileInfo, new AesKey(), new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Document(sourceFileInfo, nullKey, new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Document(sourceFileInfo, new AesKey(), nullProgress); });
 
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.WriteToFileWithBackup(null, (Stream stream) => { }); });
-            IRuntimeFileInfo fileInfo = AxCryptEnvironment.Current.FileInfo(Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"test.txt"));
+            IRuntimeFileInfo fileInfo = OS.Current.FileInfo(_testTextPath);
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.WriteToFileWithBackup(fileInfo, nullStreamAction); });
 
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.MakeAxCryptFileName(nullFileInfo); });
@@ -117,7 +123,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSmallEncryptDecrypt()
         {
-            IRuntimeFileInfo sourceFileInfo = AxCryptEnvironment.Current.FileInfo(Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"test.txt"));
+            IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(_testTextPath);
             IRuntimeFileInfo destinationFileInfo = sourceFileInfo.CreateEncryptedName();
             Assert.That(destinationFileInfo.Name, Is.EqualTo("test-txt.axx"), "Wrong encrypted file name based on the plain text file name.");
             AxCryptFile.Encrypt(sourceFileInfo, destinationFileInfo, new Passphrase("axcrypt"), AxCryptOptions.EncryptWithCompression, new ProgressContext());
@@ -128,7 +134,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(document.DocumentHeaders.CreationTimeUtc, Is.EqualTo(FakeRuntimeFileInfo.TestDate1Utc));
                 Assert.That(document.DocumentHeaders.LastAccessTimeUtc, Is.EqualTo(FakeRuntimeFileInfo.TestDate2Utc));
                 Assert.That(document.DocumentHeaders.LastWriteTimeUtc, Is.EqualTo(FakeRuntimeFileInfo.TestDate3Utc));
-                IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"decrypted test.txt"));
+                IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(Path.Combine(_rootPath, "decrypted test.txt"));
                 AxCryptFile.Decrypt(document, decryptedFileInfo, AxCryptOptions.SetFileTimes, new ProgressContext());
                 using (Stream decryptedStream = decryptedFileInfo.OpenRead())
                 {
@@ -144,7 +150,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptToStream()
         {
-            IRuntimeFileInfo sourceFileInfo = AxCryptEnvironment.Current.FileInfo(Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"test.txt"));
+            IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(_testTextPath);
             IRuntimeFileInfo destinationFileInfo = sourceFileInfo.CreateEncryptedName();
             Assert.That(destinationFileInfo.Name, Is.EqualTo("test-txt.axx"), "Wrong encrypted file name based on the plain text file name.");
             using (Stream destinationStream = destinationFileInfo.OpenWrite())
@@ -161,8 +167,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptToDestinationDirectory()
         {
-            IRuntimeFileInfo sourceFileInfo = AxCryptEnvironment.Current.FileInfo(Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"Documents", "HelloWorld.axx"));
-            string destinationDirectory = Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"Encrypted");
+            IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
+            string destinationDirectory = Path.Combine(_rootPath, "Encrypted");
 
             string destinationFileName = AxCryptFile.Decrypt(sourceFileInfo, destinationDirectory, new Passphrase("a").DerivedPassphrase, AxCryptOptions.None, new ProgressContext());
             Assert.That(destinationFileName, Is.EqualTo("HelloWorld-Key-a.txt"), "The correct filename should be returned from decryption.");
@@ -171,8 +177,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptToDestinationDirectoryWithWrongPassphrase()
         {
-            IRuntimeFileInfo sourceFileInfo = AxCryptEnvironment.Current.FileInfo(Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"Documents", "HelloWorld.axx"));
-            string destinationDirectory = Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"Encrypted");
+            IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
+            string destinationDirectory = Path.Combine(_rootPath, "Encrypted");
 
             string destinationFileName = AxCryptFile.Decrypt(sourceFileInfo, destinationDirectory, new Passphrase("Wrong Passphrase").DerivedPassphrase, AxCryptOptions.None, new ProgressContext());
             Assert.That(destinationFileName, Is.Null, "When the wrong passphrase is given, the returned file name should be null to signal this.");
@@ -181,7 +187,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptWithCancel()
         {
-            IRuntimeFileInfo sourceFileInfo = AxCryptEnvironment.Current.FileInfo(Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"Documents", "HelloWorld.axx"));
+            IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
             using (AxCryptDocument document = new AxCryptDocument())
             {
                 Passphrase passphrase = new Passphrase("a");
@@ -189,7 +195,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     bool keyIsOk = document.Load(sourceStream, passphrase.DerivedPassphrase);
                     Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                    IRuntimeFileInfo destinationInfo = AxCryptEnvironment.Current.FileInfo(Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"Destination\Decrypted.txt"));
+                    IRuntimeFileInfo destinationInfo = OS.Current.FileInfo(_rootPath.PathCombine("Destination", "Decrypted.txt"));
 
                     ProgressContext progress = new ProgressContext(TimeSpan.Zero);
                     progress.Progressing += (object sender, ProgressEventArgs e) =>
@@ -205,10 +211,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestLargeEncryptDecrypt()
         {
-			DirectoryInfo sourceDirectory = new DirectoryInfo(Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, "Users", "AxCrypt"));
-            string sourceFullName = Path.Combine(sourceDirectory.FullName, "David Copperfield.txt");
+            string sourceFullName = _davidCopperfieldTxtPath;
 
-            IRuntimeFileInfo sourceRuntimeFileInfo = AxCryptEnvironment.Current.FileInfo(sourceFullName);
+            IRuntimeFileInfo sourceRuntimeFileInfo = OS.Current.FileInfo(sourceFullName);
             IRuntimeFileInfo destinationRuntimeFileInfo = sourceRuntimeFileInfo.CreateEncryptedName();
             Passphrase passphrase = new Passphrase("laDabled@tAmeopot33");
 
@@ -218,9 +223,9 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(destinationRuntimeFileInfo.LastAccessTimeUtc, Is.EqualTo(sourceRuntimeFileInfo.LastAccessTimeUtc), "We're expecting file times to be set as the original from the headers.");
             Assert.That(destinationRuntimeFileInfo.LastWriteTimeUtc, Is.EqualTo(sourceRuntimeFileInfo.LastWriteTimeUtc), "We're expecting file times to be set as the original from the headers.");
 
-            DirectoryInfo decryptedDirectoryInfo = new DirectoryInfo(@"C:\Users\AxCrypt\Decrypted");
+            DirectoryInfo decryptedDirectoryInfo = new DirectoryInfo(_rootPath.PathCombine("Destination", "Decrypted.txt"));
             string decryptedFullName = Path.Combine(decryptedDirectoryInfo.FullName, "David Copperfield.txt");
-            IRuntimeFileInfo decryptedRuntimeFileInfo = AxCryptEnvironment.Current.FileInfo(decryptedFullName);
+            IRuntimeFileInfo decryptedRuntimeFileInfo = OS.Current.FileInfo(decryptedFullName);
 
             AxCryptFile.Decrypt(destinationRuntimeFileInfo, decryptedRuntimeFileInfo, passphrase.DerivedPassphrase, AxCryptOptions.SetFileTimes, new ProgressContext());
 
@@ -243,12 +248,12 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestInvalidPassphrase()
         {
-            IRuntimeFileInfo sourceFileInfo = AxCryptEnvironment.Current.FileInfo(Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"test.txt"));
+            IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(_testTextPath);
             IRuntimeFileInfo encryptedFileInfo = sourceFileInfo.CreateEncryptedName();
             Assert.That(encryptedFileInfo.Name, Is.EqualTo("test-txt.axx"), "Wrong encrypted file name based on the plain text file name.");
             AxCryptFile.Encrypt(sourceFileInfo, encryptedFileInfo, new Passphrase("axcrypt"), AxCryptOptions.EncryptWithCompression, new ProgressContext());
 
-            IRuntimeFileInfo decryptedFileInfo = AxCryptEnvironment.Current.FileInfo(Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"decrypted.txt"));
+            IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(Path.Combine(_rootPath, "decrypted.txt"));
             bool isPassphraseOk = AxCryptFile.Decrypt(encryptedFileInfo, decryptedFileInfo, new Passphrase("wrong").DerivedPassphrase, AxCryptOptions.None, new ProgressContext());
             Assert.That(isPassphraseOk, Is.False, "The passphrase is wrong and should be wrong!");
         }
@@ -256,8 +261,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestUncompressedEncryptedDecryptAxCrypt17()
         {
-            IRuntimeFileInfo sourceRuntimeFileInfo = AxCryptEnvironment.Current.FileInfo(Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"Documents", "Uncompressed.axx"));
-            IRuntimeFileInfo destinationRuntimeFileInfo = AxCryptEnvironment.Current.FileInfo(Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"Documents", "Uncompressed.zip"));
+            IRuntimeFileInfo sourceRuntimeFileInfo = OS.Current.FileInfo(_uncompressedAxxPath);
+            IRuntimeFileInfo destinationRuntimeFileInfo = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(_uncompressedAxxPath), "Uncompressed.zip"));
             Passphrase passphrase = new Passphrase("Uncompressable");
             using (AxCryptDocument document = new AxCryptDocument())
             {
@@ -271,11 +276,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestWriteToFileWithBackup()
         {
-            string destinationFilePath = Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"Written\File.txt");
+            string destinationFilePath = _rootPath.PathCombine("Written", "File.txt");
             using (MemoryStream inputStream = new MemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
             {
-                IRuntimeFileInfo destinationFileInfo = AxCryptEnvironment.Current.FileInfo(destinationFilePath);
-                AxCryptFile.WriteToFileWithBackup(destinationFileInfo, (Stream stream) => { inputStream.CopyTo(stream); });
+                IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(destinationFilePath);
+                AxCryptFile.WriteToFileWithBackup(destinationFileInfo, (Stream stream) => { inputStream.CopyTo(stream, 4096); });
                 using (TextReader read = new StreamReader(destinationFileInfo.OpenRead()))
                 {
                     string readString = read.ReadToEnd();
@@ -287,12 +292,12 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestWriteToFileWithBackupWithCancel()
         {
-            IRuntimeFileInfo destinationFileInfo = AxCryptEnvironment.Current.FileInfo(Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"Written\File.txt"));
+            IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(_rootPath.PathCombine("Written", "File.txt"));
             using (MemoryStream inputStream = new MemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
             {
                 Assert.Throws<OperationCanceledException>(() => { AxCryptFile.WriteToFileWithBackup(destinationFileInfo, (Stream stream) => { throw new OperationCanceledException(); }); });
-                string tempFilePath = Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"Written\File.bak");
-                IRuntimeFileInfo tempFileInfo = AxCryptEnvironment.Current.FileInfo(tempFilePath);
+                string tempFilePath = _rootPath.PathCombine("Written", "File.bak");
+                IRuntimeFileInfo tempFileInfo = OS.Current.FileInfo(tempFilePath);
                 Assert.That(tempFileInfo.Exists, Is.False, "The .bak file should be removed.");
             }
         }
@@ -300,9 +305,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestWriteToFileWithBackupWhenDestinationExists()
         {
-            string destinationFilePath = Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"Written\AnExistingFile.txt");
-            IRuntimeFileInfo destinationFileInfo = AxCryptEnvironment.Current.FileInfo(destinationFilePath);
-            IRuntimeFileInfo bakFileInfo = AxCryptEnvironment.Current.FileInfo(Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"Written\AnExistingFile.bak"));
+            string destinationFilePath = _rootPath.PathCombine("Written", "AnExistingFile.txt");
+            IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(destinationFilePath);
+            IRuntimeFileInfo bakFileInfo = OS.Current.FileInfo(_rootPath.PathCombine("Written", "AnExistingFile.bak"));
             Assert.That(bakFileInfo.Exists, Is.False, "The file should not exist to start with.");
             using (Stream writeStream = destinationFileInfo.OpenWrite())
             {
@@ -312,7 +317,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             using (MemoryStream inputStream = new MemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
             {
-                AxCryptFile.WriteToFileWithBackup(destinationFileInfo, (Stream stream) => { inputStream.CopyTo(stream); });
+                AxCryptFile.WriteToFileWithBackup(destinationFileInfo, (Stream stream) => { inputStream.CopyTo(stream, 4096); });
                 using (TextReader read = new StreamReader(destinationFileInfo.OpenRead()))
                 {
                     string readString = read.ReadToEnd();
@@ -325,17 +330,17 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestMakeAxCryptFileName()
         {
-            string testFile = Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"Directory\file.txt");
-            string axxFile = Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"Directory\file-txt.axx");
-            string madeName = AxCryptFile.MakeAxCryptFileName(AxCryptEnvironment.Current.FileInfo(testFile));
+            string testFile = _rootPath.PathCombine("Directory", "file.txt");
+            string axxFile = _rootPath.PathCombine("Directory", "file-txt.axx");
+            string madeName = AxCryptFile.MakeAxCryptFileName(OS.Current.FileInfo(testFile));
             Assert.That(madeName, Is.EqualTo(axxFile), "The AxCrypt version of the name is unexpected.");
         }
 
         [Test]
         public static void TestWipe()
         {
-            string testFile = Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"Folder\file-to-be-wiped.txt");
-            IRuntimeFileInfo fileInfo = AxCryptEnvironment.Current.FileInfo(testFile);
+            string testFile = _rootPath.PathCombine("Folder", "file-to-be-wiped.txt");
+            IRuntimeFileInfo fileInfo = OS.Current.FileInfo(testFile);
             using (Stream writeStream = fileInfo.OpenWrite())
             {
             }
@@ -347,11 +352,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptFileWithBackupAndWipeNullArguments()
         {
-            string sourceFilePath = Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"Users\AxCrypt\David Copperfield.txt");
-            string destinationFilePath = Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"Users\AxCrypt\David Copperfield-txt.axx");
+            string sourceFilePath = _davidCopperfieldTxtPath;
+            string destinationFilePath = Path.Combine(Path.GetDirectoryName(sourceFilePath), "David Copperfield-txt.axx");
 
-            IRuntimeFileInfo sourceFileInfo = AxCryptEnvironment.Current.FileInfo(sourceFilePath);
-            IRuntimeFileInfo destinationFileInfo = AxCryptEnvironment.Current.FileInfo(destinationFilePath);
+            IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(sourceFilePath);
+            IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(destinationFilePath);
             IRuntimeFileInfo nullFileInfo = null;
 
             AesKey key = new AesKey();
@@ -369,11 +374,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptFileWithBackupAndWipe()
         {
-            string sourceFilePath = Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"Users", "AxCrypt", "David Copperfield.txt");
-            string destinationFilePath = Path.Combine(AxCryptEnvironment.Current.TemporaryDirectoryInfo.FullName, @"Users", "AxCrypt", "David Copperfield-txt.axx");
+            string sourceFilePath = _davidCopperfieldTxtPath;
+            string destinationFilePath = Path.Combine(Path.GetDirectoryName(sourceFilePath), "David Copperfield-txt.axx");
 
-            IRuntimeFileInfo sourceFileInfo = AxCryptEnvironment.Current.FileInfo(sourceFilePath);
-            IRuntimeFileInfo destinationFileInfo = AxCryptEnvironment.Current.FileInfo(destinationFilePath);
+            IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(sourceFilePath);
+            IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(destinationFilePath);
 
             AesKey key = new AesKey();
 

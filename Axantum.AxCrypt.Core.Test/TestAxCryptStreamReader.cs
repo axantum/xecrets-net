@@ -63,6 +63,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 AxCrypt1Guid.Write(inputStream);
                 inputStream.Position = 0;
+
                 // The stream reader supports both externally supplied LookAheadStream or will wrap it if it is not.
                 using (AxCryptReader axCryptReader = new AxCryptStreamReader(new LookAheadStream(inputStream)))
                 {
@@ -99,27 +100,26 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 using (AxCryptReader axCryptReader = new AxCryptStreamReader(inputStream))
                 {
-					Stream encryptedDataStream = null;
                     Assert.Throws<ArgumentNullException>(() =>
                     {
-                        encryptedDataStream = axCryptReader.CreateEncryptedDataStream(null, 0, new ProgressContext());
+                        axCryptReader.CreateEncryptedDataStream(null, 0, new ProgressContext());
                     }, "A non-null HMAC key must be specified.");
 
                     Assert.Throws<ArgumentNullException>(() =>
                     {
-                        encryptedDataStream = axCryptReader.CreateEncryptedDataStream(new AesKey(), 0, null);
+                        axCryptReader.CreateEncryptedDataStream(new AesKey(), 0, null);
                     }, "A non-null ProgresContext must be specified.");
 
                     Assert.Throws<InvalidOperationException>(() =>
                     {
-                        encryptedDataStream = axCryptReader.CreateEncryptedDataStream(new AesKey(), 0, new ProgressContext());
+                        axCryptReader.CreateEncryptedDataStream(new AesKey(), 0, new ProgressContext());
                     }, "The reader is not positioned properly to read encrypted data.");
 
                     axCryptReader.Dispose();
 
                     Assert.Throws<ObjectDisposedException>(() =>
                     {
-                        encryptedDataStream = axCryptReader.CreateEncryptedDataStream(new AesKey(), 0, new ProgressContext());
+                        axCryptReader.CreateEncryptedDataStream(new AesKey(), 0, new ProgressContext());
                     }, "The reader is disposed.");
                 }
             }
@@ -128,14 +128,13 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestHmac()
         {
-            using (Stream inputStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
+            using (Stream inputStream = new MemoryStream(Resources.helloworld_key_a_txt))
             {
                 using (AxCryptReader axCryptReader = new AxCryptStreamReader(inputStream))
                 {
-                    DataHmac hmac;
                     Assert.Throws<InvalidOperationException>(() =>
                     {
-                        hmac = axCryptReader.Hmac;
+                        if (axCryptReader.Hmac == null) {}
                     }, "The reader is not positioned properly to get the HMAC.");
 
                     Passphrase passphrase = new Passphrase("a");
@@ -147,12 +146,12 @@ namespace Axantum.AxCrypt.Core.Test
                     {
                         Assert.Throws<InvalidOperationException>(() =>
                         {
-                            hmac = axCryptReader.Hmac;
+                            if (axCryptReader.Hmac == null) {}
                         }, "We have not read the encrypted data yet.");
 
                         Assert.That(axCryptReader.Read(), Is.False, "The reader should be at end of stream now, and Read() should return false.");
 
-                        encrypedDataStream.CopyTo(Stream.Null);
+                        encrypedDataStream.CopyTo(Stream.Null, 4096);
                         Assert.That(documentHeaders.Hmac, Is.EqualTo(axCryptReader.Hmac), "The HMAC should be correct.");
 
                         axCryptReader.Dispose();
@@ -170,7 +169,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestObjectDisposed()
         {
-            using (Stream inputStream = new MemoryStream(Resources.HelloWorld_Key_a_txt))
+            using (Stream inputStream = new MemoryStream(Resources.helloworld_key_a_txt))
             {
                 using (AxCryptReader axCryptReader = new AxCryptStreamReader(inputStream))
                 {
