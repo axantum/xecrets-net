@@ -22,7 +22,7 @@ namespace Axantum.AxCrypt
             {
                 e.Cancel = true;
                 UpdateCheckServiceUrl.SelectAll();
-                errorProvider1.SetError(UpdateCheckServiceUrl, "Invalid URL.");
+                errorProvider1.SetError(UpdateCheckServiceUrl, Axantum.AxCrypt.Properties.Resources.Invalid_URL);
             }
         }
 

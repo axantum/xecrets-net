@@ -117,35 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AxCryptFileEncryption" xml:space="preserve">
-    <value>AxCrypt File Encryption</value>
-  </data>
   <data name="Canceled" xml:space="preserve">
     <value>Canceled '{0}'.</value>
+  </data>
+  <data name="OpenEncryptedFileOpenDialogTitle" xml:space="preserve">
+    <value>Select file to decrypt and open</value>
   </data>
   <data name="CannotStartApplication" xml:space="preserve">
     <value>Cannot start application for '{0}'.</value>
   </data>
+  <data name="Invalid_URL" xml:space="preserve">
+    <value>Invalid URL.</value>
+  </data>
+  <data name="PurgingActiveFiles" xml:space="preserve">
+    <value>Purging Active Files</value>
+  </data>
   <data name="CannotWrite" xml:space="preserve">
     <value>Cannot write '{0}'.</value>
   </data>
-  <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
-    <value>Click to check for a newer version.</value>
+  <data name="UpdatingStatus" xml:space="preserve">
+    <value>Updating Status</value>
   </data>
-  <data name="DecryptedSaveAsFileDialogFilterPattern" xml:space="preserve">
-    <value>Documents (*{0})|*{0}|All files (*.*)|*.*</value>
-  </data>
-  <data name="DecryptedSaveAsFileDialogTitle" xml:space="preserve">
-    <value>File exists, choose a new name to save as</value>
-  </data>
-  <data name="DecryptFileOpenDialogTitle" xml:space="preserve">
-    <value>Select files to decrypt</value>
-  </data>
-  <data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
-    <value>AxCrypt Files (*{0})|*{0}|All files (*.*)|*.*</value>
-  </data>
-  <data name="EncryptedSourceColumnHeader" xml:space="preserve">
-    <value>Encrypted File</value>
+  <data name="FileAlreadyExists" xml:space="preserve">
+    <value>File '{0}' already exists.</value>
   </data>
   <data name="EncryptFileOpenDialogTitle" xml:space="preserve">
     <value>Select files to encrypt</value>
@@ -153,14 +147,14 @@
   <data name="EncryptFileSaveAsDialogTitle" xml:space="preserve">
     <value>File Exists, Save As</value>
   </data>
-  <data name="FileAlreadyExists" xml:space="preserve">
-    <value>File '{0}' already exists.</value>
+  <data name="Exception" xml:space="preserve">
+    <value>Exception during processing of '{0}'.</value>
   </data>
-  <data name="FileDoesNotExist" xml:space="preserve">
-    <value>File '{0}' does not exist.</value>
+  <data name="DecryptedSaveAsFileDialogFilterPattern" xml:space="preserve">
+    <value>Documents (*{0})|*{0}|All files (*.*)|*.*</value>
   </data>
-  <data name="FileOperationFailed" xml:space="preserve">
-    <value>Failed '{0}'.</value>
+  <data name="DecryptFileOpenDialogTitle" xml:space="preserve">
+    <value>Select files to decrypt</value>
   </data>
   <data name="InconsistentState" xml:space="preserve">
     <value>Inconsistent state with '{0}'.</value>
@@ -168,58 +162,86 @@
   <data name="InvalidKey" xml:space="preserve">
     <value>Invalid key for '{0}'.</value>
   </data>
-  <data name="LanguageChangeRestartPrompt" xml:space="preserve">
-    <value>You must restart AxCrypt in order for the language change to take effect.</value>
-  </data>
-  <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
-    <value>Version {0} is available! Click to download.</value>
-  </data>
-  <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
-    <value>No need to check for updates.</value>
-  </data>
-  <data name="OldVersionTooltip" xml:space="preserve">
-    <value>Your version is old. Please click to check for a newer version.</value>
-  </data>
-  <data name="OpenEncryptedFileOpenDialogTitle" xml:space="preserve">
-    <value>Select file to decrypt and open</value>
-  </data>
-  <data name="OpenFileColumnHeader" xml:space="preserve">
-    <value>File</value>
-  </data>
-  <data name="PassphraseVerificationMismatch" xml:space="preserve">
-    <value>Passphrases do not match</value>
-  </data>
-  <data name="PurgingActiveFiles" xml:space="preserve">
-    <value>Purging Active Files</value>
-  </data>
-  <data name="TrayBalloonTooltip" xml:space="preserve">
-    <value>Double-click to restore the AxCrypt application window.</value>
-  </data>
-  <data name="UnrecognizedError" xml:space="preserve">
-    <value>Unrecognized error code failing with '{0}'.</value>
-  </data>
-  <data name="UpdatingStatus" xml:space="preserve">
-    <value>Updating Status</value>
-  </data>
-  <data name="About" xml:space="preserve">
-    <value>About {0}</value>
+  <data name="FileDoesNotExist" xml:space="preserve">
+    <value>File '{0}' does not exist.</value>
   </data>
   <data name="AxCryptAboutDescription" xml:space="preserve">
     <value>Open Source File Encryption for Windows
 
 Includes software from http://www.bouncycastle.org/ .</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="axcrypticon128" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\axcrypticon128.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="OpenFileColumnHeader" xml:space="preserve">
+    <value>File</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="refreshgreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\refreshgreen.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="UnrecognizedError" xml:space="preserve">
+    <value>Unrecognized error code failing with '{0}'.</value>
+  </data>
+  <data name="DecryptedSaveAsFileDialogTitle" xml:space="preserve">
+    <value>File exists, choose a new name to save as</value>
+  </data>
+  <data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
+    <value>AxCrypt Files (*{0})|*{0}|All files (*.*)|*.*</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>About {0}</value>
   </data>
   <data name="refreshred" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\refreshred.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Exception" xml:space="preserve">
-    <value>Exception during processing of '{0}'.</value>
+  <data name="TrayBalloonTooltip" xml:space="preserve">
+    <value>Double-click to restore the AxCrypt application window.</value>
+  </data>
+  <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
+    <value>Version {0} is available! Click to download.</value>
+  </data>
+  <data name="LanguageChangeRestartPrompt" xml:space="preserve">
+    <value>You must restart AxCrypt in order for the language change to take effect.</value>
+  </data>
+  <data name="PassphraseVerificationMismatch" xml:space="preserve">
+    <value>Passphrases do not match</value>
+  </data>
+  <data name="OldVersionTooltip" xml:space="preserve">
+    <value>Your version is old. Please click to check for a newer version.</value>
+  </data>
+  <data name="AxCryptFileEncryption" xml:space="preserve">
+    <value>AxCrypt File Encryption</value>
+  </data>
+  <data name="FileOperationFailed" xml:space="preserve">
+    <value>Failed '{0}'.</value>
+  </data>
+  <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
+    <value>No need to check for updates.</value>
+  </data>
+  <data name="EncryptedSourceColumnHeader" xml:space="preserve">
+    <value>Encrypted File</value>
+  </data>
+  <data name="axcrypticon128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\axcrypticon128.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
+    <value>Click to check for a newer version.</value>
+  </data>
+  <data name="decryptlockopen32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\decryptlockopen32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="encryptlock32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\encryptlock32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="opendocument32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\opendocument32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="closeremovestandbygreen32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\closeremovestandbygreen32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="closeremovestandbyred32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\closeremovestandbyred32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="helpquestiongreen32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\helpquestiongreen32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

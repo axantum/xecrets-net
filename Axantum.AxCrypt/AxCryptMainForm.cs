@@ -52,25 +52,36 @@ using Axantum.AxCrypt.Properties;
 namespace Axantum.AxCrypt
 {
     /// <summary>
-    /// All code here is guaranteed to execute on the GUI thread. If code may be called on another thread, this call
-    /// should be made through MainFormThreadFacade .
+    /// All code here is expected to execute on the GUI thread. If code may be called on another thread, this call
+    /// must be made through ThreadSafeUi() .
     /// </summary>
     public partial class AxCryptMainForm : Form
     {
         private Uri _updateUrl = Settings.Default.UpdateUrl;
 
-        public static MessageBoxOptions MessageBoxOptions { get; private set; }
-
-        public void FormatTraceMessage(string message)
-        {
-            ThreadSafeUi(() =>
-            {
-                string formatted = "{0} {1}".InvariantFormat(OS.Current.UtcNow.ToString("o", CultureInfo.InvariantCulture), message.TrimLogMessage()); //MLHIDE
-                LogOutput.AppendText(formatted);
-            });
-        }
+        private TabPage _logTabPage = null;
 
         private FileSystemState FileSystemState { get; set; }
+
+        public static MessageBoxOptions MessageBoxOptions { get; private set; }
+
+        private bool _trackProcess;
+
+        public bool TrackProcess
+        {
+            get
+            {
+                return _trackProcess;
+            }
+            set
+            {
+                _trackProcess = value;
+                if (OS.Log.IsInfoEnabled)
+                {
+                    OS.Log.LogInfo("ActiveFileMonitor.TrackProcess='{0}'".InvariantFormat(value)); //MLHIDE
+                }
+            }
+        }
 
         public AxCryptMainForm()
         {
@@ -91,20 +102,29 @@ namespace Axantum.AxCrypt
 
             RestoreUserPreferences();
 
-            Text = "{0} {1}{2}".InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription);
+            Text = "{0} {1}{2}".InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription); //MLHIDE
 
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
 
-            OS.Current.FileChanged += new EventHandler<EventArgs>(FileSystemOrStateChanged);
+            OS.Current.FileChanged += new EventHandler<EventArgs>(HandleFileChangedEvent);
 
             FileSystemState = new FileSystemState();
-            FileSystemState.Changed += new EventHandler<ActiveFileChangedEventArgs>(ActiveFileChanged);
+            FileSystemState.Changed += new EventHandler<ActiveFileChangedEventArgs>(HandleFileSystemStateChangedEvent);
 
             string fileSystemStateFullName = Path.Combine(OS.Current.TemporaryDirectoryInfo.FullName, "FileSystemState.xml"); //MLHIDE
             FileSystemState.Load(OS.Current.FileInfo(fileSystemStateFullName));
 
-            BackgroundMonitor.UpdateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(VersionUpdated);
+            backgroundMonitor.UpdateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(HandleVersionUpdateEvent);
             UpdateCheck(Settings.Default.LastUpdateCheckUtc);
+        }
+
+        private void FormatTraceMessage(string message)
+        {
+            ThreadSafeUi(() =>
+            {
+                string formatted = "{0} {1}".InvariantFormat(OS.Current.UtcNow.ToString("o", CultureInfo.InvariantCulture), message.TrimLogMessage()); //MLHIDE
+                logOutputTextBox.AppendText(formatted);
+            });
         }
 
         private void ThreadSafeUi(Action action)
@@ -121,7 +141,7 @@ namespace Axantum.AxCrypt
 
         private void UpdateCheck(DateTime lastCheckUtc)
         {
-            BackgroundMonitor.UpdateCheck.CheckInBackground(lastCheckUtc, Settings.Default.NewestKnownVersion, Settings.Default.AxCrypt2VersionCheckUrl, Settings.Default.UpdateUrl);
+            backgroundMonitor.UpdateCheck.CheckInBackground(lastCheckUtc, Settings.Default.NewestKnownVersion, Settings.Default.AxCrypt2VersionCheckUrl, Settings.Default.UpdateUrl);
         }
 
         private void UpdateVersionStatus(VersionUpdateStatus status, Version version)
@@ -129,47 +149,53 @@ namespace Axantum.AxCrypt
             switch (status)
             {
                 case VersionUpdateStatus.IsUpToDateOrRecentlyChecked:
-                    UpdateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.NoNeedToCheckForUpdatesTooltip;
-                    UpdateToolStripButton.Enabled = false;
+                    updateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.NoNeedToCheckForUpdatesTooltip;
+                    updateToolStripButton.Enabled = false;
                     break;
 
                 case VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck:
-                    UpdateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.OldVersionTooltip;
-                    UpdateToolStripButton.Image = Resources.refreshred;
-                    UpdateToolStripButton.Enabled = true;
+                    updateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.OldVersionTooltip;
+                    updateToolStripButton.Image = Resources.refreshred;
+                    updateToolStripButton.Enabled = true;
                     break;
 
                 case VersionUpdateStatus.NewerVersionIsAvailable:
-                    UpdateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.NewVersionIsAvailableTooltip.InvariantFormat(version);
-                    UpdateToolStripButton.Image = Resources.refreshred;
-                    UpdateToolStripButton.Enabled = true;
+                    updateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.NewVersionIsAvailableTooltip.InvariantFormat(version);
+                    updateToolStripButton.Image = Resources.refreshred;
+                    updateToolStripButton.Enabled = true;
                     break;
 
                 case VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck:
-                    UpdateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.ClickToCheckForNewerVersionTooltip;
-                    UpdateToolStripButton.Image = Resources.refreshgreen;
-                    UpdateToolStripButton.Enabled = true;
+                    updateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.ClickToCheckForNewerVersionTooltip;
+                    updateToolStripButton.Image = Resources.refreshgreen;
+                    updateToolStripButton.Enabled = true;
                     break;
             }
         }
 
-        private void VersionUpdated(object sender, VersionEventArgs e)
+        private void HandleVersionUpdateEvent(object sender, VersionEventArgs e)
         {
             Settings.Default.LastUpdateCheckUtc = OS.Current.UtcNow;
             Settings.Default.NewestKnownVersion = e.Version.ToString();
             Settings.Default.Save();
             _updateUrl = e.UpdateWebpageUrl;
-            ThreadSafeUi(() => { UpdateVersionStatus(e.VersionUpdateStatus, e.Version); });
+            ThreadSafeUi(() =>
+            {
+                UpdateVersionStatus(e.VersionUpdateStatus, e.Version);
+            });
         }
 
-        private void FileSystemOrStateChanged(object sender, EventArgs e)
+        private void HandleFileChangedEvent(object sender, EventArgs e)
         {
             ThreadSafeUi(RestartTimer);
         }
 
-        private void ActiveFileChanged(object sender, ActiveFileChangedEventArgs e)
+        private void HandleFileSystemStateChangedEvent(object sender, ActiveFileChangedEventArgs e)
         {
-            ThreadSafeUi(() => { UpdateActiveFilesViews(e.ActiveFile); });
+            ThreadSafeUi(() =>
+            {
+                UpdateActiveFilesViews(e.ActiveFile);
+            });
         }
 
         private void AxCryptMainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -186,45 +212,20 @@ namespace Axantum.AxCrypt
             Trace.Listeners.Remove("AxCryptMainFormListener");        //MLHIDE
         }
 
-        private bool _trackProcess;
-
-        public bool TrackProcess
-        {
-            get
-            {
-                return _trackProcess;
-            }
-            set
-            {
-                _trackProcess = value;
-                if (OS.Log.IsInfoEnabled)
-                {
-                    OS.Log.LogInfo("ActiveFileMonitor.TrackProcess='{0}'".InvariantFormat(value)); //MLHIDE
-                }
-            }
-        }
-
         private void RestoreUserPreferences()
         {
-            RecentFilesListView.Columns[0].Name = "DecryptedFile";    //MLHIDE
-            RecentFilesListView.Columns[0].Width = Settings.Default.RecentFilesDocumentWidth > 0 ? Settings.Default.RecentFilesDocumentWidth : RecentFilesListView.Columns[0].Width;
+            recentFilesListView.Columns[0].Name = "DecryptedFile";    //MLHIDE
+            recentFilesListView.Columns[0].Width = Settings.Default.RecentFilesDocumentWidth > 0 ? Settings.Default.RecentFilesDocumentWidth : recentFilesListView.Columns[0].Width;
 
             UpdateDebugMode();
-        }
-
-        public void RestartTimer()
-        {
-            ActiveFilePolling.Enabled = false;
-            ActiveFilePolling.Interval = 1000;
-            ActiveFilePolling.Enabled = true;
         }
 
         private void UpdateActiveFilesViews(ActiveFile activeFile)
         {
             if (activeFile.Status.HasMask(ActiveFileStatus.NoLongerActive))
             {
-                OpenFilesListView.Items.RemoveByKey(activeFile.EncryptedFileInfo.FullName);
-                RecentFilesListView.Items.RemoveByKey(activeFile.EncryptedFileInfo.FullName);
+                openFilesListView.Items.RemoveByKey(activeFile.EncryptedFileInfo.FullName);
+                recentFilesListView.Items.RemoveByKey(activeFile.EncryptedFileInfo.FullName);
                 return;
             }
 
@@ -251,9 +252,9 @@ namespace Axantum.AxCrypt
             item.SubItems.Add(encryptedPathColumn);
 
             item.Name = activeFile.EncryptedFileInfo.FullName;
-            OpenFilesListView.Items.RemoveByKey(item.Name);
-            OpenFilesListView.Items.Add(item);
-            RecentFilesListView.Items.RemoveByKey(item.Name);
+            openFilesListView.Items.RemoveByKey(item.Name);
+            openFilesListView.Items.Add(item);
+            recentFilesListView.Items.RemoveByKey(item.Name);
         }
 
         private void UpdateRecentFilesListView(ActiveFile activeFile)
@@ -280,9 +281,9 @@ namespace Axantum.AxCrypt
             item.SubItems.Add(encryptedPathColumn);
 
             item.Name = activeFile.EncryptedFileInfo.FullName;
-            RecentFilesListView.Items.RemoveByKey(item.Name);
-            RecentFilesListView.Items.Add(item);
-            OpenFilesListView.Items.RemoveByKey(item.Name);
+            recentFilesListView.Items.RemoveByKey(item.Name);
+            recentFilesListView.Items.Add(item);
+            openFilesListView.Items.RemoveByKey(item.Name);
         }
 
         private void toolStripButtonEncrypt_Click(object sender, EventArgs e)
@@ -358,12 +359,12 @@ namespace Axantum.AxCrypt
                 FileSystemState.KnownKeys.DefaultEncryptionKey = new Passphrase(e.Passphrase).DerivedPassphrase;
             };
 
-            operationsController.ProcessFile += ProcessFileHandler;
+            operationsController.ProcessFile += HandleProcessFileEvent;
 
             operationsController.EncryptFile(file);
         }
 
-        private void ProcessFileHandler(object sender, FileOperationEventArgs e)
+        private void HandleProcessFileEvent(object sender, FileOperationEventArgs e)
         {
             progressBackgroundWorker.BackgroundWorkWithProgress(e.DisplayContext,
                 (ProgressContext progressContext) =>
@@ -425,7 +426,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void toolStripButtonDecrypt_Click(object sender, EventArgs e)
+        private void decryptToolStripButton_Click(object sender, EventArgs e)
         {
             DecryptFilesViaDialog();
         }
@@ -462,7 +463,7 @@ namespace Axantum.AxCrypt
         {
             FileOperationsController operationsController = new FileOperationsController(FileSystemState, source.Name);
 
-            operationsController.QueryDecryptionPassphrase += HandleDecryptionPassphraseRequest;
+            operationsController.QueryDecryptionPassphrase += HandleQueryDecryptionPassphraseEvent;
 
             operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
             {
@@ -493,7 +494,7 @@ namespace Axantum.AxCrypt
                 AddKnownKey(e.Key);
             };
 
-            operationsController.ProcessFile += ProcessFileHandler;
+            operationsController.ProcessFile += HandleProcessFileEvent;
 
             return operationsController.DecryptFile(source.FullName);
         }
@@ -504,7 +505,7 @@ namespace Axantum.AxCrypt
             FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, new ProgressContext());
         }
 
-        private void toolStripButtonOpenEncrypted_Click(object sender, EventArgs e)
+        private void openEncryptedToolStripButton_Click(object sender, EventArgs e)
         {
             OpenDialog();
         }
@@ -539,19 +540,19 @@ namespace Axantum.AxCrypt
         {
             FileOperationsController operationsController = new FileOperationsController(FileSystemState, file);
 
-            operationsController.QueryDecryptionPassphrase += HandleDecryptionPassphraseRequest;
+            operationsController.QueryDecryptionPassphrase += HandleQueryDecryptionPassphraseEvent;
 
             operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
             {
                 AddKnownKey(e.Key);
             };
 
-            operationsController.ProcessFile += ProcessFileHandler;
+            operationsController.ProcessFile += HandleProcessFileEvent;
 
             return operationsController.DecryptAndLaunch(file);
         }
 
-        private void HandleDecryptionPassphraseRequest(object sender, FileOperationEventArgs e)
+        private void HandleQueryDecryptionPassphraseEvent(object sender, FileOperationEventArgs e)
         {
             string passphraseText = AskForDecryptPassphrase();
             if (passphraseText == null)
@@ -586,9 +587,16 @@ namespace Axantum.AxCrypt
             Application.Exit();
         }
 
+        public void RestartTimer()
+        {
+            activeFilePollingTimer.Enabled = false;
+            activeFilePollingTimer.Interval = 1000;
+            activeFilePollingTimer.Enabled = true;
+        }
+
         private bool _pollingInProgress = false;
 
-        private void ActiveFilePolling_Tick(object sender, EventArgs e)
+        private void activeFilePollingTimer_Tick(object sender, EventArgs e)
         {
             if (OS.Log.IsInfoEnabled)
             {
@@ -598,7 +606,7 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-            ActiveFilePolling.Enabled = false;
+            activeFilePollingTimer.Enabled = false;
             try
             {
                 _pollingInProgress = true;
@@ -610,7 +618,7 @@ namespace Axantum.AxCrypt
                     },
                     (FileOperationStatus status) =>
                     {
-                        CloseAndRemoveOpenFilesButton.Enabled = OpenFilesListView.Items.Count > 0;
+                        closeAndRemoveOpenFilesToolStripButton.Enabled = openFilesListView.Items.Count > 0;
                     });
             }
             finally
@@ -624,18 +632,14 @@ namespace Axantum.AxCrypt
             OpenDialog();
         }
 
-        private void RecentFilesListView_SelectedIndexChanged(object sender, EventArgs e)
+        private void recentFilesListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-        }
-
-        private void RecentFilesListView_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            string encryptedPath = RecentFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text; //MLHIDE
+            string encryptedPath = recentFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text; //MLHIDE
 
             OpenEncrypted(encryptedPath);
         }
 
-        private void RecentFilesListView_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
+        private void recentFilesListView_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
         {
             ListView listView = (ListView)sender;
             string columnName = listView.Columns[e.ColumnIndex].Name;
@@ -678,21 +682,21 @@ namespace Axantum.AxCrypt
                 });
         }
 
-        private void OpenFilesListView_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void openFilesListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            string encryptedPath = OpenFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text; //MLHIDE
+            string encryptedPath = openFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text; //MLHIDE
             OpenEncrypted(encryptedPath);
         }
 
-        private void RemoveRecentFileMenuItem_Click(object sender, EventArgs e)
+        private void removeRecentFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string encryptedPath = RecentFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text; //MLHIDE
+            string encryptedPath = recentFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text; //MLHIDE
             FileSystemState.RemoveRecentFile(encryptedPath);
         }
 
-        private void RecentFilesListView_MouseClick(object sender, MouseEventArgs e)
+        private void recentFilesListView_MouseClick(object sender, MouseEventArgs e)
         {
-            ShowContextMenu(RecentFilesContextMenu, sender, e);
+            ShowContextMenu(recentFilesContextMenuStrip, sender, e);
         }
 
         private static void ShowContextMenu(ContextMenuStrip contextMenu, object sender, MouseEventArgs e)
@@ -705,27 +709,27 @@ namespace Axantum.AxCrypt
             contextMenu.Show(listView, e.Location);
         }
 
-        private void CloseOpenFilesMenuItem_Click(object sender, EventArgs e)
+        private void closeOpenFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PurgeActiveFiles();
         }
 
-        private void CloseOpenFilesButton_Click(object sender, EventArgs e)
+        private void closeAndRemoveOpenFilesToolStripButton_Click(object sender, EventArgs e)
         {
             PurgeActiveFiles();
         }
 
-        private void OpenFilesListView_MouseClick(object sender, MouseEventArgs e)
+        private void openFilesListView_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right)
             {
                 return;
             }
             ListView recentFiles = (ListView)sender;
-            OpenFilesContextMenu.Show(recentFiles, e.Location);
+            openFilesContextMenuStrip.Show(recentFiles, e.Location);
         }
 
-        private void EnterPassphraseMenuItem_Click(object sender, EventArgs e)
+        private void enterPassphraseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string passphraseText = AskForDecryptPassphrase();
             if (passphraseText == null)
@@ -746,16 +750,16 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-            ProgressContextMenu.Tag = sender;
-            ProgressContextMenu.Show((Control)sender, e.Location);
+            progressContextMenuStrip.Tag = sender;
+            progressContextMenuStrip.Show((Control)sender, e.Location);
         }
 
         private void progressBackgroundWorker_ProgressBarCreated(object sender, ControlEventArgs e)
         {
-            ProgressPanel.Controls.Add(e.Control);
+            progressTableLayoutPanel.Controls.Add(e.Control);
         }
 
-        private void ProgressContextCancelMenu_Click(object sender, EventArgs e)
+        private void progressContextCancelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem menuItem = (ToolStripMenuItem)sender;
             ContextMenuStrip menuStrip = (ContextMenuStrip)menuItem.GetCurrentParent();
@@ -781,33 +785,33 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            TrayNotifyIcon.BalloonTipTitle = Resources.AxCryptFileEncryption;
-            TrayNotifyIcon.BalloonTipText = Resources.TrayBalloonTooltip;
+            trayNotifyIcon.BalloonTipTitle = Resources.AxCryptFileEncryption;
+            trayNotifyIcon.BalloonTipText = Resources.TrayBalloonTooltip;
 
             if (FormWindowState.Minimized == this.WindowState)
             {
-                TrayNotifyIcon.Visible = true;
-                TrayNotifyIcon.ShowBalloonTip(500);
+                trayNotifyIcon.Visible = true;
+                trayNotifyIcon.ShowBalloonTip(500);
                 this.Hide();
             }
             else if (FormWindowState.Normal == this.WindowState)
             {
-                TrayNotifyIcon.Visible = false;
+                trayNotifyIcon.Visible = false;
             }
         }
 
-        private void TrayNotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void trayNotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             this.Show();
             this.WindowState = FormWindowState.Normal;
         }
 
-        private void EnglishMenuItem_Click(object sender, EventArgs e)
+        private void englishLanguageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SetLanguage("en-US"); //MLHIDE
         }
 
-        private void SwedishMenuItem_Click(object sender, EventArgs e)
+        private void swedishLanguageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SetLanguage("sv-SE"); //MLHIDE
         }
@@ -823,7 +827,7 @@ namespace Axantum.AxCrypt
             Resources.LanguageChangeRestartPrompt.ShowWarning();
         }
 
-        private void LanguageMenuItem_DropDownOpening(object sender, EventArgs e)
+        private void languageToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
             ToolStripMenuItem languageMenu = (ToolStripMenuItem)sender;
             CultureInfo currentUICulture = Thread.CurrentThread.CurrentUICulture;
@@ -847,32 +851,30 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void UpdateToolStripButton_Click(object sender, EventArgs e)
+        private void updateToolStripButton_Click(object sender, EventArgs e)
         {
             Settings.Default.LastUpdateCheckUtc = OS.Current.UtcNow;
             Settings.Default.Save();
             Process.Start(_updateUrl.ToString());
         }
 
-        private void debugToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void debugOptionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Settings.Default.Debug = !Settings.Default.Debug;
             Settings.Default.Save();
             UpdateDebugMode();
         }
 
-        private TabPage _logTabPage = null;
-
         private void UpdateDebugMode()
         {
-            debugToolStripMenuItem1.Checked = Settings.Default.Debug;
-            DebugToolStripMenuItem.Visible = Settings.Default.Debug;
+            debugOptionsToolStripMenuItem.Checked = Settings.Default.Debug;
+            debugToolStripMenuItem.Visible = Settings.Default.Debug;
             if (Settings.Default.Debug)
             {
                 OS.Log.SetLevel(LogLevel.Debug);
                 if (_logTabPage != null)
                 {
-                    StatusTabs.TabPages.Add(_logTabPage);
+                    statusTabControl.TabPages.Add(_logTabPage);
                 }
                 ServicePointManager.ServerCertificateValidationCallback = (object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) =>
                 {
@@ -883,8 +885,8 @@ namespace Axantum.AxCrypt
             {
                 ServicePointManager.ServerCertificateValidationCallback = null;
                 OS.Log.SetLevel(LogLevel.Error);
-                _logTabPage = StatusTabs.TabPages["LogTab"];
-                StatusTabs.TabPages.Remove(_logTabPage);
+                _logTabPage = statusTabControl.TabPages["LogTabPage"]; //MLHIDE
+                statusTabControl.TabPages.Remove(_logTabPage);
             }
         }
 
@@ -902,12 +904,12 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void checkVersionNow_Click(object sender, EventArgs e)
+        private void checkVersionNowToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UpdateCheck(DateTime.MinValue);
         }
 
-        private void about_Click(object sender, EventArgs e)
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (AboutBox aboutBox = new AboutBox())
             {
@@ -915,7 +917,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void helpButton_Click(object sender, EventArgs e)
+        private void helpToolStripButton_Click(object sender, EventArgs e)
         {
             Process.Start(Settings.Default.AxCrypt2HelpUrl.ToString());
         }
