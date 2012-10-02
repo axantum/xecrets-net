@@ -68,17 +68,17 @@ namespace Axantum.AxCrypt.Mono
             get { return _switch.Level >= TraceLevel.Verbose; }
         }
 
-        public void LogFatal(string message)
-        {
-            if (IsFatalEnabled)
-            {
-                Trace.WriteLine("{1} Fatal: {0}".InvariantFormat(message, AppName));
-            }
+        public virtual void LogFatal (string message)
+		{
+			if (IsFatalEnabled)
+			{
+				Trace.WriteLine("{1} Fatal: {0}".InvariantFormat(message, AppName));
+			}
         }
 
         public void LogError(string message)
         {
-            if (IsErrorEnabled)
+			if (IsErrorEnabled)
             {
                 Trace.TraceError(message);
             }

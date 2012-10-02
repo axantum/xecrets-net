@@ -153,7 +153,7 @@ namespace Axantum.AxCrypt.Mono
             return new WebCaller();
         }
 
-        private Logging _logging = null;
+        private ILogging _logging = null;
 
         public ILogging Log
         {

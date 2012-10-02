@@ -133,6 +133,10 @@ namespace Axantum.AxCrypt.Mono.Test
                 OS.Log.LogWarning("Warning" + Environment.NewLine);
                 Assert.That(listenerMessage, Is.EqualTo(null), "When logging is Error, Warning logging should not generate a message.");
 
+				listenerMessage = null;
+				OS.Log.LogFatal("Fatal" + Environment.NewLine);
+				Assert.That(listenerMessage.Contains("Fatal"), "When logging is Error, Fatal logging should generate a message.");
+
                 listenerMessage = null;
                 OS.Log.LogError("Error" + Environment.NewLine);
                 Assert.That(listenerMessage.Contains("Error"), "When logging is Error, Error logging should generate a message.");

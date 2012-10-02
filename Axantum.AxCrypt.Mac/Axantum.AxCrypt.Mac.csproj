@@ -82,6 +82,7 @@
     <CodeSigningKey>Mac Developer</CodeSigningKey>
     <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
     <DebugSymbols>True</DebugSymbols>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>none</DebugType>
@@ -94,6 +95,7 @@
     <AssemblyName>Axantum.AxCrypt.Mac</AssemblyName>
     <EnablePackageSigning>False</EnablePackageSigning>
     <CreatePackage>False</CreatePackage>
+    <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|x86' ">
     <DebugType>none</DebugType>
@@ -106,6 +108,7 @@
     <AssemblyName>Axantum.AxCrypt.Mac</AssemblyName>
     <EnablePackageSigning>False</EnablePackageSigning>
     <CreatePackage>False</CreatePackage>
+    <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
