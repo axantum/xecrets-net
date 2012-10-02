@@ -89,6 +89,13 @@ namespace Axantum.AxCrypt.Properties {
             }
         }
         
+        internal static System.Drawing.Icon axcrypticon {
+            get {
+                object obj = ResourceManager.GetObject("axcrypticon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap axcrypticon128 {
             get {
                 object obj = ResourceManager.GetObject("axcrypticon128", resourceCulture);

@@ -84,7 +84,6 @@
             this.enterPassphraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.progressContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.progressContextCancelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.trayNotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.backgroundMonitor = new Axantum.AxCrypt.BackgroundMonitor();
             this.progressBackgroundWorker = new Axantum.AxCrypt.ProgressBackgroundWorker();
             this.mainToolStrip.SuspendLayout();
@@ -488,11 +487,6 @@
             resources.ApplyResources(this.progressContextCancelToolStripMenuItem, "progressContextCancelToolStripMenuItem");
             this.progressContextCancelToolStripMenuItem.Click += new System.EventHandler(this.progressContextCancelToolStripMenuItem_Click);
             // 
-            // trayNotifyIcon
-            // 
-            resources.ApplyResources(this.trayNotifyIcon, "trayNotifyIcon");
-            this.trayNotifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.trayNotifyIcon_MouseDoubleClick);
-            // 
             // progressBackgroundWorker
             // 
             this.progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.progressBackgroundWorker_ProgressBarCreated);
@@ -575,7 +569,6 @@
         private System.Windows.Forms.ContextMenuStrip progressContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem progressContextCancelToolStripMenuItem;
         internal BackgroundMonitor backgroundMonitor;
-        private System.Windows.Forms.NotifyIcon trayNotifyIcon;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem languageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem englishLanguageToolStripMenuItem;

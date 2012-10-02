@@ -286,6 +286,7 @@
     <Content Include="AboutThisProgram.txt" />
     <Content Include="Axantum.AxCrypt_ml.xml" />
     <Content Include="AxCrypt.ico" />
+    <Content Include="resources\axcrypticon.ico" />
     <Content Include="resources\closeremovestandbygreen32.png" />
     <Content Include="resources\closeremovestandbyred32.png" />
     <None Include="resources\encryptlock32.png" />

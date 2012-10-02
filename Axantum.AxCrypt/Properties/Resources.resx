@@ -234,7 +234,6 @@ Includes software from http://www.bouncycastle.org/ .</value>
   <data name="opendocument32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\opendocument32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="closeremovestandbygreen32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\closeremovestandbygreen32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -243,5 +242,9 @@ Includes software from http://www.bouncycastle.org/ .</value>
   </data>
   <data name="helpquestiongreen32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\helpquestiongreen32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="axcrypticon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\axcrypticon.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

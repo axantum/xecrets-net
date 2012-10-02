@@ -63,6 +63,8 @@ namespace Axantum.AxCrypt
 
         private FileSystemState FileSystemState { get; set; }
 
+        private NotifyIcon _notifyIcon = null;
+
         public static MessageBoxOptions MessageBoxOptions { get; private set; }
 
         private bool _trackProcess;
@@ -87,6 +89,13 @@ namespace Axantum.AxCrypt
         {
             OS.Current = new RuntimeEnvironment();
             InitializeComponent();
+            if (OS.Current.Platform == Platform.WindowsDesktop)
+            {
+                _notifyIcon = new NotifyIcon(components);
+                _notifyIcon.MouseDoubleClick += trayNotifyIcon_MouseDoubleClick;
+                _notifyIcon.Icon = Resources.axcrypticon;
+                _notifyIcon.Visible = true;
+            }
         }
 
         private void AxCryptMainForm_Load(object sender, EventArgs e)
@@ -780,23 +789,23 @@ namespace Axantum.AxCrypt
 
         private void AxCryptMainForm_Resize(object sender, EventArgs e)
         {
-            if (OS.Current.Platform != Platform.WindowsDesktop)
+            if (_notifyIcon == null)
             {
                 return;
             }
 
-            trayNotifyIcon.BalloonTipTitle = Resources.AxCryptFileEncryption;
-            trayNotifyIcon.BalloonTipText = Resources.TrayBalloonTooltip;
+            _notifyIcon.BalloonTipTitle = Resources.AxCryptFileEncryption;
+            _notifyIcon.BalloonTipText = Resources.TrayBalloonTooltip;
 
             if (FormWindowState.Minimized == this.WindowState)
             {
-                trayNotifyIcon.Visible = true;
-                trayNotifyIcon.ShowBalloonTip(500);
+                _notifyIcon.Visible = true;
+                _notifyIcon.ShowBalloonTip(500);
                 this.Hide();
             }
             else if (FormWindowState.Normal == this.WindowState)
             {
-                trayNotifyIcon.Visible = false;
+                _notifyIcon.Visible = false;
             }
         }
 
