@@ -2,7 +2,7 @@
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{0E46C5F6-8B43-4571-AE55-6A65C0B87525}</ProjectGuid>
@@ -12,61 +12,6 @@
     <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
     <ReleaseVersion>2.0.1.0</ReleaseVersion>
     <SynchReleaseVersion>False</SynchReleaseVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>True</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>False</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <EnablePackageSigning>False</EnablePackageSigning>
-    <IncludeMonoRuntime>False</IncludeMonoRuntime>
-    <ConsolePause>False</ConsolePause>
-    <EnableCodeSigning>False</EnableCodeSigning>
-    <CreatePackage>False</CreatePackage>
-    <CodeSigningKey>Mac Developer</CodeSigningKey>
-    <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
-    <CustomCommands>
-      <CustomCommands>
-        <Command type="BeforeExecute" />
-      </CustomCommands>
-    </CustomCommands>
-    <LinkMode>Full</LinkMode>
-    <AssemblyName>AxCrypt</AssemblyName>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
-    <Optimize>True</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <EnablePackageSigning>False</EnablePackageSigning>
-    <IncludeMonoRuntime>False</IncludeMonoRuntime>
-    <ConsolePause>False</ConsolePause>
-    <EnableCodeSigning>False</EnableCodeSigning>
-    <CreatePackage>False</CreatePackage>
-    <CodeSigningKey>Mac Developer</CodeSigningKey>
-    <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
-    <LinkMode>Full</LinkMode>
-    <AssemblyName>AxCrypt</AssemblyName>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|AnyCPU' ">
-    <DebugType>none</DebugType>
-    <Optimize>True</Optimize>
-    <OutputPath>bin\AppStore</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
-    <IncludeMonoRuntime>True</IncludeMonoRuntime>
-    <LinkMode>Full</LinkMode>
-    <EnablePackageSigning>True</EnablePackageSigning>
-    <ConsolePause>False</ConsolePause>
-    <EnableCodeSigning>True</EnableCodeSigning>
-    <CreatePackage>True</CreatePackage>
-    <CodeSigningKey>3rd Party Mac Developer Application</CodeSigningKey>
-    <AssemblyName>AxCrypt</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugType>full</DebugType>
