@@ -39,10 +39,10 @@ namespace Axantum.AxCrypt.Mac
 			if (String.IsNullOrEmpty (encryptedFileName))
 				encryptedFileName = DateTime.Now.ToString ("yyyyMMddHHmmss");
 
-			if (!encryptedFileName.EndsWith(Os.Current.AxCryptExtension))
-				encryptedFileName += Os.Current.AxCryptExtension;
+			if (!encryptedFileName.EndsWith(OS.Current.AxCryptExtension))
+				encryptedFileName += OS.Current.AxCryptExtension;
 
-			return Os.Current.FileInfo(Path.Combine(Path.GetDirectoryName(sourceFilePath), encryptedFileName));
+			return OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(sourceFilePath), encryptedFileName));
 		}
 
 		public static void EncryptFile (ProgressContext progress)
@@ -71,7 +71,7 @@ namespace Axantum.AxCrypt.Mac
 				string sourceFilePath = open.Urls[0].Path;
 				open.Close();
 
-				IRuntimeFileInfo sourceFile = Os.Current.FileInfo(sourceFilePath);
+				IRuntimeFileInfo sourceFile = OS.Current.FileInfo(sourceFilePath);
 				Passphrase passphrase = passphraseController.VerifiedPassphrase;
 				if (passphrase == null) return;
 
@@ -98,7 +98,7 @@ namespace Axantum.AxCrypt.Mac
 				panel.Close();
 				ThreadPool.QueueUserWorkItem(delegate { 
 					using(new NSAutoreleasePool()) {
-						fileSelected(Os.Current.FileInfo(filePath), passwordController.Passphrase); 
+						fileSelected(OS.Current.FileInfo(filePath), passwordController.Passphrase); 
 					};
 				});
 			});
@@ -126,7 +126,6 @@ namespace Axantum.AxCrypt.Mac
 			
 			if (encryptedFileName == null) {
 				progress.DisplayText = "Invalid password: Check your caps lock button and try again";
-				progress.Interrupt();
 				return false;
 			}
 			return true;
@@ -142,9 +141,9 @@ namespace Axantum.AxCrypt.Mac
 				if (!TryDecrypt(file, filePath, key, progress, out fileName))
 					return;
 
-				IRuntimeFileInfo target = Os.Current.FileInfo(Path.Combine(filePath, fileName));
+				IRuntimeFileInfo target = OS.Current.FileInfo(Path.Combine(filePath, fileName));
 
-				ILauncher launcher = Os.Current.Launch(target.FullName);
+				ILauncher launcher = OS.Current.Launch(target.FullName);
 				launcher.Exited += delegate {
 					AxCryptFile.EncryptFileWithBackupAndWipe(target, file, key, progress);
 					launcher.Dispose();

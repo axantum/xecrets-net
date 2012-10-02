@@ -48,19 +48,6 @@ namespace Axantum.AxCrypt.Mac
 					indicator.StopAnimation(this);
 				}
 			};
-			progress.Interrupted += delegate {
-				string[] texts = String.IsNullOrEmpty(progress.DisplayText) ? 
-				new string[] { "Invald password", "Check your caps lock button and try again" } : 
-					progress.DisplayText.Split(new string[] { ": " }, StringSplitOptions.RemoveEmptyEntries);
-				
-				InvokeOnMainThread(delegate {
-					indicator.StopAnimation(this);
-					
-					NSAlert.WithMessage(texts[0], "OK", null, null, texts[1])
-						.RunModal();
-				});
-				
-			};
 			action(progress);
 		}
 		

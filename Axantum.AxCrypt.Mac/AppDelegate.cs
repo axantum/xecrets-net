@@ -19,7 +19,7 @@ namespace Axantum.AxCrypt.Mac
 
 		public AppDelegate ()
 		{
-			Os.Current = new RuntimeEnvironment();
+			OS.Current = new RuntimeEnvironment();
 
 			UpdateCheck updatecheck = new UpdateCheck(UpdateCheck.VersionUnknown);
 			Uri restApiUri = new Uri("https://www.axantum.com/Xecrets/RestApi.ashx/axcrypt2version/mac");
