@@ -61,8 +61,6 @@ namespace Axantum.AxCrypt
 
         private TabPage _logTabPage = null;
 
-        private FileSystemState FileSystemState { get; set; }
-
         private NotifyIcon _notifyIcon = null;
 
         public static MessageBoxOptions MessageBoxOptions { get; private set; }
@@ -117,11 +115,10 @@ namespace Axantum.AxCrypt
 
             OS.Current.FileChanged += new EventHandler<EventArgs>(HandleFileChangedEvent);
 
-            FileSystemState = new FileSystemState();
-            FileSystemState.Changed += new EventHandler<ActiveFileChangedEventArgs>(HandleFileSystemStateChangedEvent);
+            persistentState.Current.Changed += new EventHandler<ActiveFileChangedEventArgs>(HandleFileSystemStateChangedEvent);
 
             string fileSystemStateFullName = Path.Combine(OS.Current.TemporaryDirectoryInfo.FullName, "FileSystemState.xml"); //MLHIDE
-            FileSystemState.Load(OS.Current.FileInfo(fileSystemStateFullName));
+            persistentState.Current.Load(OS.Current.FileInfo(fileSystemStateFullName));
 
             backgroundMonitor.UpdateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(HandleVersionUpdateEvent);
             UpdateCheck(Settings.Default.LastUpdateCheckUtc);
@@ -322,7 +319,7 @@ namespace Axantum.AxCrypt
 
         private void EncryptFile(string file)
         {
-            FileOperationsController operationsController = new FileOperationsController(FileSystemState, file);
+            FileOperationsController operationsController = new FileOperationsController(persistentState.Current, file);
 
             operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
             {
@@ -365,7 +362,7 @@ namespace Axantum.AxCrypt
                     }
                     e.Passphrase = passphraseDialog.PassphraseTextBox.Text;
                 }
-                FileSystemState.KnownKeys.DefaultEncryptionKey = new Passphrase(e.Passphrase).DerivedPassphrase;
+                persistentState.Current.KnownKeys.DefaultEncryptionKey = new Passphrase(e.Passphrase).DerivedPassphrase;
             };
 
             operationsController.ProcessFile += HandleProcessFileEvent;
@@ -470,7 +467,7 @@ namespace Axantum.AxCrypt
 
         private bool DecryptFile(IRuntimeFileInfo source)
         {
-            FileOperationsController operationsController = new FileOperationsController(FileSystemState, source.Name);
+            FileOperationsController operationsController = new FileOperationsController(persistentState.Current, source.Name);
 
             operationsController.QueryDecryptionPassphrase += HandleQueryDecryptionPassphraseEvent;
 
@@ -510,8 +507,8 @@ namespace Axantum.AxCrypt
 
         private void AddKnownKey(AesKey key)
         {
-            FileSystemState.KnownKeys.Add(key);
-            FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, new ProgressContext());
+            persistentState.Current.KnownKeys.Add(key);
+            persistentState.Current.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, new ProgressContext());
         }
 
         private void openEncryptedToolStripButton_Click(object sender, EventArgs e)
@@ -547,7 +544,7 @@ namespace Axantum.AxCrypt
 
         private bool OpenEncrypted(string file)
         {
-            FileOperationsController operationsController = new FileOperationsController(FileSystemState, file);
+            FileOperationsController operationsController = new FileOperationsController(persistentState.Current, file);
 
             operationsController.QueryDecryptionPassphrase += HandleQueryDecryptionPassphraseEvent;
 
@@ -622,7 +619,7 @@ namespace Axantum.AxCrypt
                 progressBackgroundWorker.BackgroundWorkWithProgress(Resources.UpdatingStatus,
                     (ProgressContext progress) =>
                     {
-                        FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, progress);
+                        persistentState.Current.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, progress);
                         return FileOperationStatus.Success;
                     },
                     (FileOperationStatus status) =>
@@ -666,8 +663,8 @@ namespace Axantum.AxCrypt
             progressBackgroundWorker.BackgroundWorkWithProgress(Resources.PurgingActiveFiles,
                 (ProgressContext progress) =>
                 {
-                    FileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, progress);
-                    FileSystemState.PurgeActiveFiles(progress);
+                    persistentState.Current.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, progress);
+                    persistentState.Current.PurgeActiveFiles(progress);
                     return FileOperationStatus.Success;
                 },
                 (FileOperationStatus status) =>
@@ -677,7 +674,7 @@ namespace Axantum.AxCrypt
                         CheckStatusAndShowMessage(status, Resources.PurgingActiveFiles);
                         return;
                     }
-                    IList<ActiveFile> openFiles = FileSystemState.DecryptedActiveFiles;
+                    IList<ActiveFile> openFiles = persistentState.Current.DecryptedActiveFiles;
                     if (openFiles.Count == 0)
                     {
                         return;
@@ -700,7 +697,7 @@ namespace Axantum.AxCrypt
         private void removeRecentFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string encryptedPath = recentFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text; //MLHIDE
-            FileSystemState.RemoveRecentFile(encryptedPath);
+            persistentState.Current.RemoveRecentFile(encryptedPath);
         }
 
         private void recentFilesListView_MouseClick(object sender, MouseEventArgs e)
@@ -746,10 +743,10 @@ namespace Axantum.AxCrypt
                 return;
             }
             Passphrase passphrase = new Passphrase(passphraseText);
-            bool keyMatch = FileSystemState.UpdateActiveFileWithKeyIfKeyMatchesThumbprint(passphrase.DerivedPassphrase);
+            bool keyMatch = persistentState.Current.UpdateActiveFileWithKeyIfKeyMatchesThumbprint(passphrase.DerivedPassphrase);
             if (keyMatch)
             {
-                FileSystemState.KnownKeys.Add(passphrase.DerivedPassphrase);
+                persistentState.Current.KnownKeys.Add(passphrase.DerivedPassphrase);
             }
         }
 

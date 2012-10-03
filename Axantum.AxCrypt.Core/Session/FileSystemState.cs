@@ -36,7 +36,7 @@ using Axantum.AxCrypt.Core.UI;
 namespace Axantum.AxCrypt.Core.Session
 {
     [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
-    public class FileSystemState
+    public class FileSystemState : IDisposable
     {
         private object _lock;
 
@@ -273,5 +273,32 @@ namespace Axantum.AxCrypt.Core.Session
             DataContractSerializer serializer = new DataContractSerializer(typeof(FileSystemState), "FileSystemState", "http://www.axantum.com/Serialization/");
             return serializer;
         }
+
+        #region IDisposable Members
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_activeFilesByEncryptedPath == null)
+            {
+                return;
+            }
+            if (disposing)
+            {
+                foreach (ActiveFile activeFile in _activeFilesByEncryptedPath.Values)
+                {
+                    activeFile.Dispose();
+                }
+                _activeFilesByEncryptedPath = null;
+                _activeFilesByDecryptedPath = null;
+            }
+        }
+
+        #endregion IDisposable Members
     }
 }

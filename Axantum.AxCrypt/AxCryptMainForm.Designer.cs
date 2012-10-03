@@ -86,6 +86,7 @@
             this.progressContextCancelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundMonitor = new Axantum.AxCrypt.BackgroundMonitor();
             this.progressBackgroundWorker = new Axantum.AxCrypt.ProgressBackgroundWorker();
+            this.persistentState = new Axantum.AxCrypt.PersistentState();
             this.mainToolStrip.SuspendLayout();
             this.mainMenuStrip.SuspendLayout();
             this.statusTabControl.SuspendLayout();
@@ -97,6 +98,7 @@
             this.openFilesContextMenuStrip.SuspendLayout();
             this.progressContextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundMonitor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.persistentState)).BeginInit();
             this.SuspendLayout();
             // 
             // mainToolStrip
@@ -492,6 +494,10 @@
             this.progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.progressBackgroundWorker_ProgressBarCreated);
             this.progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.progressBackgroundWorker_ProgressBarClicked);
             // 
+            // persistentState
+            // 
+            this.persistentState.Current = null;
+            // 
             // AxCryptMainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -519,6 +525,7 @@
             this.openFilesContextMenuStrip.ResumeLayout(false);
             this.progressContextMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.backgroundMonitor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.persistentState)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -582,6 +589,7 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewHelpMenuItem;
         private ProgressBackgroundWorker progressBackgroundWorker;
+        private PersistentState persistentState;
     }
 }
 
