@@ -29,6 +29,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.System;
@@ -43,6 +44,8 @@ namespace Axantum.AxCrypt
     internal class ProgressBackgroundWorker : Component
     {
         private IDictionary<BackgroundWorker, ProgressBar> _progressBars = new Dictionary<BackgroundWorker, ProgressBar>();
+
+        private long _workerCount = 0;
 
         public ProgressBackgroundWorker()
         {
@@ -102,6 +105,7 @@ namespace Axantum.AxCrypt
                 _progressBars.Remove(e.Worker);
                 progressBar.Dispose();
                 e.Worker.Dispose();
+                Interlocked.Decrement(ref _workerCount);
             };
             worker.Progress += (object sender, ThreadWorkerEventArgs e) =>
             {
@@ -109,6 +113,7 @@ namespace Axantum.AxCrypt
                 progressBar.Value = e.ProgressPercentage;
             };
 
+            Interlocked.Increment(ref _workerCount);
             worker.Run();
         }
 
@@ -135,7 +140,7 @@ namespace Axantum.AxCrypt
         /// </summary>
         public void WaitForBackgroundIdle()
         {
-            while (_progressBars.Count > 0)
+            while (Interlocked.Read(ref _workerCount) > 0)
             {
                 Application.DoEvents();
             }
