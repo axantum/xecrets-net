@@ -29,6 +29,12 @@ namespace Axantum.AxCrypt.Mac
 		{
 		}
 
+		public static void OperationFailureHandler (string message, ProgressContext context)
+		{
+			NSAlert alert = NSAlert.WithMessage(message, "OK", null, null, context.DisplayText);
+			alert.InvokeOnMainThread(() => alert.RunModal());
+		}
+
 		public static void OnlineHelp ()
 		{
 			Process.Start("http://www.axantum.com/AxCrypt/Default.html");
@@ -45,7 +51,7 @@ namespace Axantum.AxCrypt.Mac
 			return OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(sourceFilePath), encryptedFileName));
 		}
 
-		public static void EncryptFile (ProgressContext progress)
+		public static void EncryptFile (ProgressContext progress, Action<string, ProgressContext> failure)
 		{
 			CreatePassphraseViewController passphraseController = new CreatePassphraseViewController {
 				EncryptedFileName = DateTime.Now.ToString("yyyyMMddHHmmss")
@@ -131,15 +137,17 @@ namespace Axantum.AxCrypt.Mac
 			return true;
 		}
 
-		public static void DecryptAndOpenFile (ProgressContext progress)
+		public static void DecryptAndOpenFile (ProgressContext progress, Action<string, ProgressContext> failure)
 		{
 			GetSourceFile((file, passphrase) => {
 				string filePath = Path.GetTempPath();
 				string fileName;
 				AesKey key = passphrase.DerivedPassphrase;
 
-				if (!TryDecrypt(file, filePath, key, progress, out fileName))
+				if (!TryDecrypt(file, filePath, key, progress, out fileName)) {
+					failure("Could not open file", progress);
 					return;
+				}
 
 				IRuntimeFileInfo target = OS.Current.FileInfo(Path.Combine(filePath, fileName));
 
@@ -151,14 +159,16 @@ namespace Axantum.AxCrypt.Mac
 			});
 		}
 
-		public static void DecryptFile(ProgressContext progress) {
+		public static void DecryptFile(ProgressContext progress, Action<string, ProgressContext> failure) {
 			GetSourceFile((file, passphrase) => {
 
 				string targetDirectory = Path.GetDirectoryName(file.FullName);
 				string fileName;
 
-				if (!TryDecrypt(file, targetDirectory, passphrase.DerivedPassphrase, progress, out fileName))
+				if (!TryDecrypt(file, targetDirectory, passphrase.DerivedPassphrase, progress, out fileName)) {
+					failure("Decryption failed", progress);
 					return;
+				}
 			});
 		}
 

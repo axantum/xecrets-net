@@ -37,7 +37,7 @@ namespace Axantum.AxCrypt.Mac
 			System.Diagnostics.Process.Start("http://www.axantum.com");
 		}
 		
-		void InvokeWithProgress (Action<ProgressContext> action, NSProgressIndicator indicator)
+		void InvokeWithProgress (Action<ProgressContext, Action<string, ProgressContext>> action, NSProgressIndicator indicator)
 		{
 			ProgressContext progress = new ProgressContext();
 			progress.Progressing += (sender, eventArgs) => {
@@ -48,7 +48,10 @@ namespace Axantum.AxCrypt.Mac
 					indicator.StopAnimation(this);
 				}
 			};
-			action(progress);
+			action(progress, (message, context) => {
+				indicator.StopAnimation(this);
+				AppController.OperationFailureHandler(message, context);
+			});
 		}
 		
 		partial void encryptClicked (NSObject sender)

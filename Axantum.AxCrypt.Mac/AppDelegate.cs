@@ -57,7 +57,7 @@ namespace Axantum.AxCrypt.Mac
 
 		partial void view (NSObject sender)
 		{
-			AppController.DecryptAndOpenFile(new ProgressContext());
+			AppController.DecryptAndOpenFile(new ProgressContext(), AppController.OperationFailureHandler);
 		}
 
 		partial void onlineHelp (NSObject sender)
@@ -67,12 +67,12 @@ namespace Axantum.AxCrypt.Mac
 
 		partial void encrypt (NSObject sender)
 		{
-			AppController.EncryptFile(new ProgressContext());
+			AppController.EncryptFile(new ProgressContext(), AppController.OperationFailureHandler);
 		}
 
 		partial void decrypt (NSObject sender)
 		{
-			AppController.DecryptAndOpenFile(new ProgressContext());
+			AppController.DecryptAndOpenFile(new ProgressContext(), AppController.OperationFailureHandler);
 		}
 
 		public override bool OpenFile (NSApplication sender, string filename)
