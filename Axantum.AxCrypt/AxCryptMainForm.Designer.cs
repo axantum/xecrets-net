@@ -84,9 +84,9 @@
             this.enterPassphraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.progressContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.progressContextCancelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.backgroundMonitor = new Axantum.AxCrypt.BackgroundMonitor();
-            this.progressBackgroundWorker = new Axantum.AxCrypt.ProgressBackgroundWorker();
-            this.persistentState = new Axantum.AxCrypt.PersistentState();
+            this.persistentState = new Axantum.AxCrypt.PersistentState(this.components);
+            this.progressBackgroundWorker = new Axantum.AxCrypt.ProgressBackgroundWorker(this.components);
+            this.backgroundMonitor = new Axantum.AxCrypt.BackgroundMonitor(this.components);
             this.mainToolStrip.SuspendLayout();
             this.mainMenuStrip.SuspendLayout();
             this.statusTabControl.SuspendLayout();
@@ -97,8 +97,8 @@
             this.recentFilesContextMenuStrip.SuspendLayout();
             this.openFilesContextMenuStrip.SuspendLayout();
             this.progressContextMenuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.backgroundMonitor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.persistentState)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundMonitor)).BeginInit();
             this.SuspendLayout();
             // 
             // mainToolStrip
@@ -489,11 +489,6 @@
             resources.ApplyResources(this.progressContextCancelToolStripMenuItem, "progressContextCancelToolStripMenuItem");
             this.progressContextCancelToolStripMenuItem.Click += new System.EventHandler(this.progressContextCancelToolStripMenuItem_Click);
             // 
-            // progressBackgroundWorker
-            // 
-            this.progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.progressBackgroundWorker_ProgressBarCreated);
-            this.progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.progressBackgroundWorker_ProgressBarClicked);
-            // 
             // persistentState
             // 
             this.persistentState.Current = null;
@@ -524,8 +519,8 @@
             this.recentFilesContextMenuStrip.ResumeLayout(false);
             this.openFilesContextMenuStrip.ResumeLayout(false);
             this.progressContextMenuStrip.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.backgroundMonitor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.persistentState)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.backgroundMonitor)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -575,7 +570,6 @@
         internal System.Windows.Forms.TableLayoutPanel progressTableLayoutPanel;
         private System.Windows.Forms.ContextMenuStrip progressContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem progressContextCancelToolStripMenuItem;
-        internal BackgroundMonitor backgroundMonitor;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem languageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem englishLanguageToolStripMenuItem;
@@ -588,8 +582,9 @@
         private System.Windows.Forms.ToolStripMenuItem checkVersionNowToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewHelpMenuItem;
-        private ProgressBackgroundWorker progressBackgroundWorker;
         private PersistentState persistentState;
+        private ProgressBackgroundWorker progressBackgroundWorker;
+        private BackgroundMonitor backgroundMonitor;
     }
 }
 

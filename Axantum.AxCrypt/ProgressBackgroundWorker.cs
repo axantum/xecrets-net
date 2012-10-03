@@ -47,8 +47,9 @@ namespace Axantum.AxCrypt
 
         private long _workerCount = 0;
 
-        public ProgressBackgroundWorker()
+        public ProgressBackgroundWorker(IContainer container)
         {
+            container.Add(this);
         }
 
         /// <summary>

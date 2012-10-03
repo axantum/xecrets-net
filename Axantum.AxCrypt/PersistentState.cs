@@ -9,6 +9,11 @@ namespace Axantum.AxCrypt
 {
     internal class PersistentState : Component, ISupportInitialize
     {
+        public PersistentState(IContainer container)
+        {
+            container.Add(this);
+        }
+
         private bool _disposed = false;
 
         public FileSystemState Current { get; set; }
@@ -25,7 +30,6 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-
             Current = new FileSystemState();
         }
 

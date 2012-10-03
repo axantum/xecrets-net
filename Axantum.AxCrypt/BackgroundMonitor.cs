@@ -47,8 +47,9 @@ namespace Axantum.AxCrypt
 
         private bool _disposed = false;
 
-        public BackgroundMonitor()
+        public BackgroundMonitor(IContainer container)
         {
+            container.Add(this);
         }
 
         public void BeginInit()
