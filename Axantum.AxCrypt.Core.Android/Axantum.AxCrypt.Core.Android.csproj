@@ -13,6 +13,7 @@
     <AssemblyName>Axantum.AxCrypt.Core.Android</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <AssemblyOriginatorKeyFile>AxantumStrongName.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugAndroid|AnyCPU'">
     <DebugSymbols>True</DebugSymbols>
@@ -25,7 +26,6 @@
     <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
     <CodeAnalysisFailOnMissingRules>true</CodeAnalysisFailOnMissingRules>
-    <AssemblyOriginatorKeyFile>AxantumStrongName.pfx</AssemblyOriginatorKeyFile>
     <AndroidLinkMode>None</AndroidLinkMode>
     <WarningLevel>4</WarningLevel>
     <Optimize>False</Optimize>
@@ -41,7 +41,6 @@
     <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
     <CodeAnalysisFailOnMissingRules>true</CodeAnalysisFailOnMissingRules>
-    <AssemblyOriginatorKeyFile>AxantumStrongName.pfx</AssemblyOriginatorKeyFile>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <WarningLevel>4</WarningLevel>

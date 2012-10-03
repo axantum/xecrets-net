@@ -12,6 +12,7 @@
     <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
     <ReleaseVersion>2.0.1.0</ReleaseVersion>
     <SynchReleaseVersion>False</SynchReleaseVersion>
+    <AssemblyName>Axantum.AxCrypt.Mac</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugType>full</DebugType>
@@ -21,7 +22,6 @@
     <IncludeMonoRuntime>False</IncludeMonoRuntime>
     <PlatformTarget>x86</PlatformTarget>
     <EnableCodeSigning>False</EnableCodeSigning>
-    <AssemblyName>Axantum.AxCrypt.Mac</AssemblyName>
     <EnablePackageSigning>False</EnablePackageSigning>
     <CreatePackage>False</CreatePackage>
     <CodeSigningKey>Mac Developer</CodeSigningKey>
@@ -37,7 +37,6 @@
     <IncludeMonoRuntime>False</IncludeMonoRuntime>
     <PlatformTarget>x86</PlatformTarget>
     <EnableCodeSigning>False</EnableCodeSigning>
-    <AssemblyName>Axantum.AxCrypt.Mac</AssemblyName>
     <EnablePackageSigning>False</EnablePackageSigning>
     <CreatePackage>False</CreatePackage>
     <DefineConstants>TRACE</DefineConstants>
@@ -50,7 +49,6 @@
     <IncludeMonoRuntime>False</IncludeMonoRuntime>
     <PlatformTarget>x86</PlatformTarget>
     <EnableCodeSigning>False</EnableCodeSigning>
-    <AssemblyName>Axantum.AxCrypt.Mac</AssemblyName>
     <EnablePackageSigning>False</EnablePackageSigning>
     <CreatePackage>False</CreatePackage>
     <DefineConstants>TRACE</DefineConstants>
