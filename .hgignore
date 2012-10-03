@@ -8,3 +8,5 @@ _ReSharper.*
 *.user
 Axantum.AxCrypt/Properties/AssemblyInfo.cs
 Axantum.AxCrypt.Core/Properties/AssemblyInfo.cs
+*.resources
+*.userprefs
