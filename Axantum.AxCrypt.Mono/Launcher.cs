@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt.Mono
         {
             get
             {
-                return _process != null;
+                return OS.Current.CanTrackProcess && _process != null;
             }
         }
 
