@@ -187,5 +187,10 @@ namespace Axantum.AxCrypt.Mono
         {
             get { return new DataProtection(); }
         }
+
+        public bool CanTrackProcess
+        {
+            get { return Platform == Platform.WindowsDesktop; }
+        }
     }
 }

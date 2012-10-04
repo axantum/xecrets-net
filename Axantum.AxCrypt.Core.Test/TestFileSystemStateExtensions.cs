@@ -88,7 +88,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 changedWasRaised = true;
             });
-            _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, false, new ProgressContext());
+            _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "The file should be detected as decrypted being created.");
         }
 
@@ -110,12 +110,12 @@ namespace Axantum.AxCrypt.Core.Test
             });
             using (FileLock fileLock = FileLock.Lock(activeFile.EncryptedFileInfo))
             {
-                _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, false, new ProgressContext());
+                _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             }
             Assert.That(changedWasRaised, Is.False, "The file should be not be detected as decrypted being created because the encrypted file is locked.");
             using (FileLock fileLock = FileLock.Lock(activeFile.DecryptedFileInfo))
             {
-                _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, false, new ProgressContext());
+                _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             }
             Assert.That(changedWasRaised, Is.False, "The file should be not be detected as decrypted being created because the decrypted file is locked.");
         }
@@ -136,7 +136,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 changedWasRaised = true;
             });
-            _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, false, new ProgressContext());
+            _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "The file should not be detected as decrypted being created, because the current time is too close to LastAccessTimeUtc.");
         }
 
@@ -161,7 +161,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 changedWasRaised = true;
             });
-            _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, false, new ProgressContext());
+            _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "The file should be detected as modified, because it is considered open and decrypted, has a proper key, is modified, no running process so it should be re-encrypted and deleted.");
             activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
             Assert.That(activeFile, Is.Not.Null, "The encrypted file should be found.");
@@ -195,7 +195,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(activeFile.Key, Is.Null, "The key should be null after loading of new FileSystemState");
 
             _fileSystemState.KnownKeys.Add(passphrase.DerivedPassphrase);
-            _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, false, new ProgressContext());
+            _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "The ActiveFile should be modified because there is now a known key.");
 
             activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
@@ -230,7 +230,7 @@ namespace Axantum.AxCrypt.Core.Test
             activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
             Assert.That(activeFile.Key, Is.Null, "The key should be null after loading of new FileSystemState");
 
-            _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, false, new ProgressContext());
+            _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because the file was modified as well and thus cannot be deleted.");
 
             activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
@@ -258,7 +258,7 @@ namespace Axantum.AxCrypt.Core.Test
             });
 
             _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
-            _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, false, new ProgressContext());
+            _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
 
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because it's already deleted.");
         }
@@ -281,14 +281,14 @@ namespace Axantum.AxCrypt.Core.Test
             });
 
             _fakeRuntimeEnvironment.Platform = Platform.Unknown;
-            _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, false, new ProgressContext());
+            _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "No change should be raised when the file is not modified and not Desktop Windows.");
             activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
             Assert.That(activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "Nothing should happen with the file when not running as Desktop Windows.");
 
             _fakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
             changedWasRaised = false;
-            _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, false, new ProgressContext());
+            _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "Since the file should be deleted because running as Desktop Windows the changed event should be raised.");
             activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
             Assert.That(activeFile.Status.HasMask(ActiveFileStatus.NotDecrypted), Is.True, "The file should be deleted and marked as Not Decrypted when running as Desktop Windows.");
@@ -328,7 +328,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.OpeningForRead += eventHandler;
             try
             {
-                _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, false, new ProgressContext());
+                _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             }
             finally
             {
@@ -358,7 +358,7 @@ namespace Axantum.AxCrypt.Core.Test
                 changedWasRaised = true;
             });
             _fakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
-            _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, true, new ProgressContext());
+            _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
 
             activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
             Assert.That(changedWasRaised, Is.False, "No changed event should be raised because no change should occur since the process is active.");
@@ -384,7 +384,7 @@ namespace Axantum.AxCrypt.Core.Test
             });
             _fakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
             fakeLauncher.HasExited = true;
-            _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, true, new ProgressContext());
+            _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
 
             activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
             Assert.That(changedWasRaised, Is.True, "A changed event should be raised because the process has exited.");
@@ -421,7 +421,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.Deleting += eventHandler;
             try
             {
-                _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, false, new ProgressContext());
+                _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             }
             finally
             {

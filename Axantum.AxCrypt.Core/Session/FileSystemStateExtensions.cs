@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Session
             });
         }
 
-        public static void CheckActiveFiles(this FileSystemState fileSystemState, ChangedEventMode mode, bool trackProcess, ProgressContext progress)
+        public static void CheckActiveFiles(this FileSystemState fileSystemState, ChangedEventMode mode, ProgressContext progress)
         {
             fileSystemState.ForEach(mode, (ActiveFile activeFile) =>
             {
@@ -77,7 +77,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     return activeFile;
                 }
-                activeFile = CheckActiveFileActions(fileSystemState, activeFile, trackProcess, progress);
+                activeFile = CheckActiveFileActions(fileSystemState, activeFile, progress);
                 return activeFile;
             });
         }
@@ -110,11 +110,11 @@ namespace Axantum.AxCrypt.Core.Session
             fileSystemState.Save();
         }
 
-        private static ActiveFile CheckActiveFileActions(FileSystemState fileSystemState, ActiveFile activeFile, bool trackProcess, ProgressContext progress)
+        private static ActiveFile CheckActiveFileActions(FileSystemState fileSystemState, ActiveFile activeFile, ProgressContext progress)
         {
             activeFile = CheckIfKeyIsKnown(fileSystemState, activeFile);
             activeFile = CheckIfCreated(activeFile);
-            activeFile = CheckIfProcessExited(activeFile, trackProcess);
+            activeFile = CheckIfProcessExited(activeFile);
             activeFile = CheckIfTimeToUpdate(activeFile, progress);
             activeFile = CheckIfTimeToDelete(activeFile);
             return activeFile;
@@ -155,9 +155,9 @@ namespace Axantum.AxCrypt.Core.Session
             return activeFile;
         }
 
-        private static ActiveFile CheckIfProcessExited(ActiveFile activeFile, bool trackProcess)
+        private static ActiveFile CheckIfProcessExited(ActiveFile activeFile)
         {
-            if (activeFile.Process == null || !trackProcess || !activeFile.Process.HasExited)
+            if (activeFile.Process == null || !activeFile.Process.HasExited)
             {
                 return activeFile;
             }

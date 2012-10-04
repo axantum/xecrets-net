@@ -64,5 +64,7 @@ namespace Axantum.AxCrypt.Core.System
         ILogging Log { get; }
 
         IDataProtection DataProtection { get; }
+
+        bool CanTrackProcess { get; }
     }
 }

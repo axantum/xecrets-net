@@ -41,19 +41,19 @@ namespace Axantum.AxCrypt.Mono
         private Process _process;
 
         [SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands", Justification = "The code has full trust anyway.")]
-		public Launcher (string path)
-		{
-			_process = Process.Start (path);
-			if (_process == null)
-			{
-				return;
-			}
-    		if (OS.Current.Platform == Platform.WindowsDesktop)
-			{
-				// This causes hang-on-exit on at least Mac OS X
-				_process.EnableRaisingEvents = true;
-				_process.Exited += Process_Exited;
-			}
+        public Launcher(string path)
+        {
+            _process = Process.Start(path);
+            if (_process == null)
+            {
+                return;
+            }
+            if (OS.Current.CanTrackProcess)
+            {
+                // This causes hang-on-exit on at least Mac OS X
+                _process.EnableRaisingEvents = true;
+                _process.Exited += Process_Exited;
+            }
         }
 
         private void Process_Exited(object sender, EventArgs e)
@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Mono
         [SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands", Justification = "The code has full trust anyway.")]
         public bool HasExited
         {
-            get { return WasStarted && _process.HasExited; }
+            get { return OS.Current.CanTrackProcess && WasStarted && _process.HasExited; }
         }
 
         public bool WasStarted
@@ -100,7 +100,7 @@ namespace Axantum.AxCrypt.Mono
             {
                 return;
             }
-			_process.Dispose();
+            _process.Dispose();
             _process = null;
         }
 

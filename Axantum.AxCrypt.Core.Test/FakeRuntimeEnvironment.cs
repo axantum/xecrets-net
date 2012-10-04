@@ -216,5 +216,10 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         #endregion IRuntimeEnvironment Members
+
+        public bool CanTrackProcess
+        {
+            get { return false; }
+        }
     }
 }

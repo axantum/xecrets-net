@@ -65,24 +65,6 @@ namespace Axantum.AxCrypt
 
         public static MessageBoxOptions MessageBoxOptions { get; private set; }
 
-        private bool _trackProcess;
-
-        public bool TrackProcess
-        {
-            get
-            {
-                return _trackProcess;
-            }
-            set
-            {
-                _trackProcess = value;
-                if (OS.Log.IsInfoEnabled)
-                {
-                    OS.Log.LogInfo("ActiveFileMonitor.TrackProcess='{0}'".InvariantFormat(value)); //MLHIDE
-                }
-            }
-        }
-
         public AxCryptMainForm()
         {
             OS.Current = new RuntimeEnvironment();
@@ -104,8 +86,6 @@ namespace Axantum.AxCrypt
             }
 
             Trace.Listeners.Add(new DelegateTraceListener("AxCryptMainFormListener", FormatTraceMessage)); //MLHIDE
-
-            TrackProcess = OS.Current.Platform == Platform.WindowsDesktop;
 
             RestoreUserPreferences();
 
@@ -212,7 +192,6 @@ namespace Axantum.AxCrypt
             }
 
             progressBackgroundWorker.WaitForBackgroundIdle();
-            TrackProcess = false;
             PurgeActiveFiles();
             progressBackgroundWorker.WaitForBackgroundIdle();
             Trace.Listeners.Remove("AxCryptMainFormListener");        //MLHIDE
@@ -508,7 +487,7 @@ namespace Axantum.AxCrypt
         private void AddKnownKey(AesKey key)
         {
             persistentState.Current.KnownKeys.Add(key);
-            persistentState.Current.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, new ProgressContext());
+            persistentState.Current.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
         }
 
         private void openEncryptedToolStripButton_Click(object sender, EventArgs e)
@@ -619,7 +598,7 @@ namespace Axantum.AxCrypt
                 progressBackgroundWorker.BackgroundWorkWithProgress(Resources.UpdatingStatus,
                     (ProgressContext progress) =>
                     {
-                        persistentState.Current.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, progress);
+                        persistentState.Current.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
                         return FileOperationStatus.Success;
                     },
                     (FileOperationStatus status) =>
@@ -663,7 +642,7 @@ namespace Axantum.AxCrypt
             progressBackgroundWorker.BackgroundWorkWithProgress(Resources.PurgingActiveFiles,
                 (ProgressContext progress) =>
                 {
-                    persistentState.Current.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, TrackProcess, progress);
+                    persistentState.Current.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
                     persistentState.Current.PurgeActiveFiles(progress);
                     return FileOperationStatus.Success;
                 },
