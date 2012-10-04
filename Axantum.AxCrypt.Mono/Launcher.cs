@@ -31,6 +31,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
+using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.System;
 
 namespace Axantum.AxCrypt.Mono
@@ -40,15 +41,19 @@ namespace Axantum.AxCrypt.Mono
         private Process _process;
 
         [SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands", Justification = "The code has full trust anyway.")]
-        public Launcher(string path)
-        {
-            _process = Process.Start(path);
-            if (_process == null)
-            {
-                return;
-            }
-            _process.EnableRaisingEvents = true;
-            _process.Exited += new EventHandler(Process_Exited);
+		public Launcher (string path)
+		{
+			_process = Process.Start (path);
+			if (_process == null)
+			{
+				return;
+			}
+    		if (OS.Current.Platform == Platform.WindowsDesktop)
+			{
+				// This causes hang-on-exit on at least Mac OS X
+				_process.EnableRaisingEvents = true;
+				_process.Exited += Process_Exited;
+			}
         }
 
         private void Process_Exited(object sender, EventArgs e)
@@ -95,7 +100,7 @@ namespace Axantum.AxCrypt.Mono
             {
                 return;
             }
-            _process.Dispose();
+			_process.Dispose();
             _process = null;
         }
 
