@@ -124,6 +124,7 @@
     <Compile Include="SetupAssembly.cs" />
     <Compile Include="TestActiveFile.cs" />
     <Compile Include="TestActiveFileCollectionTests.cs" />
+    <Compile Include="TestDelegateTraceListener.cs" />
     <Compile Include="TestFileOperation.cs" />
     <Compile Include="TestFileSystemStateExtensions.cs" />
     <Compile Include="TestAesCrypto.cs" />
