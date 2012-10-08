@@ -11,3 +11,5 @@ Axantum.AxCrypt.Core/Properties/AssemblyInfo.cs
 *.resources
 *.userprefs
 */test-results/*
+
+*.orig
