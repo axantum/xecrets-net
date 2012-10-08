@@ -27,13 +27,14 @@
 
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
 using System.Text;
 using System.Threading;
+using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
-using CoreResources = Axantum.AxCrypt.Core.Properties.Resources;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -43,18 +44,20 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestIt()
         {
-            ResourceManager manager = CoreResources.ResourceManager;
-            Assert.That(manager, Is.Not.Null, "There should be a ResourceManager in Core.");
+            CultureInfo culture = PublicResources.Culture;
+            Assert.That(culture, Is.Null, "There should be no explicitly culture set.");
 
-            CultureInfo culture = CoreResources.Culture;
-            Assert.That(culture, Is.Null, "The culture property should not be set.");
+            PublicResources.Culture = CultureInfo.CreateSpecificCulture("sv-SE");
+            Assert.That(PublicResources.Culture, Is.EqualTo(CultureInfo.CreateSpecificCulture("sv-SE")), "The culture should be Swedish now.");
 
-            CoreResources.Culture = CultureInfo.CreateSpecificCulture("sv-SE");
-            Assert.That(CoreResources.Culture, Is.Not.Null, "The default culture should now be set.");
-            Assert.That(CoreResources.Culture, Is.EqualTo(CultureInfo.CreateSpecificCulture("sv-SE")), "The culture should now be the Sweden-Swedish culture.");
+            PublicResources.Culture = culture;
+            Assert.That(PublicResources.Culture, Is.Null, "There should be no explicitly culture set again.");
 
-            CoreResources.Culture = culture;
-            Assert.That(CoreResources.Culture, Is.Null, "The culture should again be null.");
+            string license = PublicResources.BouncycastleLicense;
+            Assert.That(license, Is.Not.Null, "Just checking that there is a Bouncy Castle License Text.");
+
+            Icon icon = new Icon(PublicResources.AxCryptIcon);
+            Assert.That(icon, Is.Not.Null, "Just checking that there is an icon.");
         }
     }
 }

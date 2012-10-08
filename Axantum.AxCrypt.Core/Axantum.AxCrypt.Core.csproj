@@ -90,7 +90,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel.Web" />
     <Reference Include="BouncyCastle.Crypto">
@@ -185,6 +184,7 @@
     <Compile Include="UI\KnownKeys.cs" />
     <Compile Include="UI\ProgressContext.cs" />
     <Compile Include="UI\ProgressEventArgs.cs" />
+    <Compile Include="UI\PublicResources.cs" />
     <Compile Include="UI\UpdateCheck.cs" />
     <Compile Include="UI\VersionEventArgs.cs" />
     <Compile Include="UI\VersionResponse.cs" />
@@ -195,11 +195,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AboutThisAssembly.txt" />
-    <Content Include="resources\axcrypticon.ico" />
+    <EmbeddedResource Include="resources\axcrypticon.ico" />
+    <Content Include="resources\bouncycastlelicense.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
+      <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
