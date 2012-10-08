@@ -29,7 +29,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
 

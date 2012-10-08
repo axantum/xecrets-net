@@ -27,7 +27,7 @@
 
 using System;
 using System.Diagnostics;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.UI
 {

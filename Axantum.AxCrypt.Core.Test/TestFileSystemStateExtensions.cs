@@ -34,7 +34,7 @@ using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;

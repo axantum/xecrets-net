@@ -44,7 +44,7 @@ using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Mono;
 using Axantum.AxCrypt.Properties;

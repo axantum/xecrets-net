@@ -33,7 +33,7 @@ using System.Linq;
 using System.Text;
 using Axantum.AxCrypt.Core.UI;
 
-namespace Axantum.AxCrypt.Core.System
+namespace Axantum.AxCrypt.Core.Runtime
 {
     /// <summary>
     /// Perform work on a separate thread with support for progress and cancellation.

@@ -26,41 +26,16 @@
 #endregion Coypright and License
 
 using System;
-using System.Runtime.Serialization;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Axantum.AxCrypt.Core.System
+namespace Axantum.AxCrypt.Core.Runtime
 {
-    [Serializable]
-    public class FileFormatException : AxCryptException
+    public interface IDataProtection
     {
-        public FileFormatException()
-            : base()
-        {
-        }
+        byte[] Protect(byte[] unprotectedData);
 
-        public FileFormatException(string message)
-            : this(message, ErrorStatus.FileFormatError)
-        {
-        }
-
-        public FileFormatException(string message, ErrorStatus errorStatus)
-            : base(message, errorStatus)
-        {
-        }
-
-        protected FileFormatException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-        }
-
-        public FileFormatException(string message, Exception innerException)
-            : this(message, ErrorStatus.FileFormatError, innerException)
-        {
-        }
-
-        public FileFormatException(string message, ErrorStatus errorStatus, Exception innerException)
-            : base(message, errorStatus, innerException)
-        {
-        }
+        byte[] Unprotect(byte[] protectedData);
     }
 }

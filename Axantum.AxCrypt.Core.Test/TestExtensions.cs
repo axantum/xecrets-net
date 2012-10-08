@@ -29,7 +29,7 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Threading;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test

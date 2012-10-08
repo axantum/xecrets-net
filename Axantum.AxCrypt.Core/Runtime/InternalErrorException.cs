@@ -28,37 +28,41 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Axantum.AxCrypt.Core.System
+namespace Axantum.AxCrypt.Core.Runtime
 {
+    /// <summary>
+    /// An internal program logic error in the library itself has been detected. Use InvalidOperationException for invalid
+    /// program states typically caused by caller errors.
+    /// </summary>
     [Serializable]
-    public class InvalidDataException : AxCryptException
+    public class InternalErrorException : AxCryptException
     {
-        public InvalidDataException()
+        public InternalErrorException()
             : base()
         {
         }
 
-        public InvalidDataException(string message)
-            : this(message, ErrorStatus.DataError)
+        public InternalErrorException(string message)
+            : base(message, ErrorStatus.InternalError)
         {
         }
 
-        public InvalidDataException(string message, ErrorStatus errorStatus)
+        public InternalErrorException(string message, ErrorStatus errorStatus)
             : base(message, errorStatus)
         {
         }
 
-        protected InvalidDataException(SerializationInfo info, StreamingContext context)
+        protected InternalErrorException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
 
-        public InvalidDataException(string message, Exception innerException)
-            : this(message, ErrorStatus.DataError, innerException)
+        public InternalErrorException(string message, Exception innerException)
+            : this(message, ErrorStatus.InternalError, innerException)
         {
         }
 
-        public InvalidDataException(string message, ErrorStatus errorStatus, Exception innerException)
+        public InternalErrorException(string message, ErrorStatus errorStatus, Exception innerException)
             : base(message, errorStatus, innerException)
         {
         }

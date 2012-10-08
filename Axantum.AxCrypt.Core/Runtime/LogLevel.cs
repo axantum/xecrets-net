@@ -30,10 +30,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.System
+namespace Axantum.AxCrypt.Core.Runtime
 {
-    public interface ITiming
+    public enum LogLevel
     {
-        TimeSpan Elapsed { get; }
+        Fatal,
+        Error,
+        Warning,
+        Info,
+        Debug,
     }
 }

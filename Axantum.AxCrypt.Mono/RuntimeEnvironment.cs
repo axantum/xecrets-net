@@ -30,7 +30,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Security.Cryptography;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Mono
 {

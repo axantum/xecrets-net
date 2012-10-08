@@ -27,17 +27,34 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Resources;
 using System.Text;
+using System.Threading;
+using NUnit.Framework;
+using CoreResources = Axantum.AxCrypt.Core.Properties.Resources;
 
-namespace Axantum.AxCrypt.Core.System
+namespace Axantum.AxCrypt.Core.Test
 {
-    public enum LogLevel
+    [TestFixture]
+    public static class TestResources
     {
-        Fatal,
-        Error,
-        Warning,
-        Info,
-        Debug,
+        [Test]
+        public static void TestIt()
+        {
+            ResourceManager manager = CoreResources.ResourceManager;
+            Assert.That(manager, Is.Not.Null, "There should be a ResourceManager in Core.");
+
+            CultureInfo culture = CoreResources.Culture;
+            Assert.That(culture, Is.Null, "The culture property should not be set.");
+
+            CoreResources.Culture = CultureInfo.CreateSpecificCulture("sv-SE");
+            Assert.That(CoreResources.Culture, Is.Not.Null, "The default culture should now be set.");
+            Assert.That(CoreResources.Culture, Is.EqualTo(CultureInfo.CreateSpecificCulture("sv-SE")), "The culture should now be the Sweden-Swedish culture.");
+
+            CoreResources.Culture = culture;
+            Assert.That(CoreResources.Culture, Is.Null, "The culture should again be null.");
+        }
     }
 }

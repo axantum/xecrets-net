@@ -33,7 +33,7 @@ using System.Text;
 using System.Threading;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Mono.Test

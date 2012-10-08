@@ -29,7 +29,7 @@ using System;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -66,13 +66,13 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(ace.ErrorStatus, Is.EqualTo(ErrorStatus.Unknown), "Parameterless constructor should result in status Unknown.");
             }
 
-            Assert.Throws<Axantum.AxCrypt.Core.System.InvalidDataException>(() =>
+            Assert.Throws<Axantum.AxCrypt.Core.Runtime.InvalidDataException>(() =>
             {
-                throw new Axantum.AxCrypt.Core.System.InvalidDataException();
+                throw new Axantum.AxCrypt.Core.Runtime.InvalidDataException();
             });
             try
             {
-                throw new Axantum.AxCrypt.Core.System.InvalidDataException();
+                throw new Axantum.AxCrypt.Core.Runtime.InvalidDataException();
             }
             catch (AxCryptException ace)
             {
@@ -129,7 +129,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 try
                 {
-                    throw new Axantum.AxCrypt.Core.System.InvalidDataException("Testing inner", ice);
+                    throw new Axantum.AxCrypt.Core.Runtime.InvalidDataException("Testing inner", ice);
                 }
                 catch (AxCryptException ace)
                 {
@@ -165,13 +165,13 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(deserializedFfe.Message, Is.EqualTo("A test-exception"), "The deserialized message should be the same as the original.");
             }
 
-            Axantum.AxCrypt.Core.System.InvalidDataException ide = new Axantum.AxCrypt.Core.System.InvalidDataException("A test-exception");
+            Axantum.AxCrypt.Core.Runtime.InvalidDataException ide = new Axantum.AxCrypt.Core.Runtime.InvalidDataException("A test-exception");
             IFormatter ideFormatter = new BinaryFormatter();
             using (Stream stream = new MemoryStream())
             {
                 ideFormatter.Serialize(stream, ide);
                 stream.Position = 0;
-                Axantum.AxCrypt.Core.System.InvalidDataException deserializedFfe = (Axantum.AxCrypt.Core.System.InvalidDataException)ideFormatter.Deserialize(stream);
+                Axantum.AxCrypt.Core.Runtime.InvalidDataException deserializedFfe = (Axantum.AxCrypt.Core.Runtime.InvalidDataException)ideFormatter.Deserialize(stream);
                 Assert.That(deserializedFfe.ErrorStatus, Is.EqualTo(ErrorStatus.DataError), "The deserialized status should be the same as the original.");
                 Assert.That(deserializedFfe.Message, Is.EqualTo("A test-exception"), "The deserialized message should be the same as the original.");
             }

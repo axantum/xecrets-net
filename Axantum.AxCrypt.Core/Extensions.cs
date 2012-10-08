@@ -29,7 +29,7 @@ using System;
 using System.Globalization;
 using System.IO;
 using Axantum.AxCrypt.Core.Session;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core
 {

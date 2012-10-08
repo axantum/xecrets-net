@@ -27,29 +27,28 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using Axantum.AxCrypt.Core.Runtime;
-using NUnit.Framework;
+using Axantum.AxCrypt.Core.UI;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Core.Runtime
 {
-    [SuppressMessage("Microsoft.Design", "CA1053:StaticHolderTypesShouldNotHaveConstructors", Justification = "NUnit requires there to be a parameterless constructor.")]
-    [SetUpFixture]
-    public class SetupAssembly
+    public class ThreadWorkerEventArgs : EventArgs
     {
-        [SetUp]
-        public static void AssemblySetup()
+        public ThreadWorkerEventArgs(BackgroundWorker worker, int progressPercentage)
         {
-            OS.Current = new FakeRuntimeEnvironment();
-            OS.Log.SetLevel(LogLevel.Debug);
+            Worker = worker;
+            ProgressPercentage = progressPercentage;
         }
 
-        [TearDown]
-        public static void AssemblyTeardown()
+        public ThreadWorkerEventArgs(BackgroundWorker worker)
+            : this(worker, 0)
         {
         }
+
+        public BackgroundWorker Worker { get; private set; }
+
+        public int ProgressPercentage { get; set; }
     }
 }

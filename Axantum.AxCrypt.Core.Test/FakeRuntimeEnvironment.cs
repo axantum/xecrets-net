@@ -30,7 +30,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Test
 {

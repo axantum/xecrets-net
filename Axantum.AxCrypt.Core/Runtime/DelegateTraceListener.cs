@@ -26,22 +26,39 @@
 #endregion Coypright and License
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Diagnostics;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.System
+namespace Axantum.AxCrypt.Core.Runtime
 {
-    public enum Platform
+    public class DelegateTraceListener : TraceListener
     {
-        Unknown,
-        WindowsDesktop,
-        WindowsMobile,
-        WindowsPhone,
-        Linux,
-        AppleIos,
-        MacOsx,
-        Android,
-        Xbox,
+        private Action<string> _trace;
+
+        private StringBuilder _buffer = new StringBuilder();
+
+        public DelegateTraceListener(string name, Action<string> trace)
+            : base(name)
+        {
+            _trace = trace;
+        }
+
+        public override void Write(string message)
+        {
+            int i;
+            while ((i = message.IndexOf(Environment.NewLine, StringComparison.Ordinal)) >= 0)
+            {
+                _buffer.Append(message.Substring(0, i + Environment.NewLine.Length));
+                _trace(_buffer.ToString());
+                _buffer.Length = 0;
+                message = message.Substring(i + Environment.NewLine.Length);
+            }
+            _buffer.Append(message);
+        }
+
+        public override void WriteLine(string message)
+        {
+            Write(message + Environment.NewLine);
+        }
     }
 }

@@ -31,7 +31,7 @@ using System.IO;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core

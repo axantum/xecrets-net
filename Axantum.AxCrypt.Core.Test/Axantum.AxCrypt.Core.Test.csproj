@@ -159,6 +159,7 @@
     <Compile Include="TestProgressContext.cs" />
     <Compile Include="TestProgressEventArgsTest.cs" />
     <Compile Include="TestProgressStream.cs" />
+    <Compile Include="TestResources.cs" />
     <Compile Include="TestStream.cs" />
     <Compile Include="TestSubkey.cs" />
     <Compile Include="TestUnicodeFileNameInfoHeaderBlock .cs" />

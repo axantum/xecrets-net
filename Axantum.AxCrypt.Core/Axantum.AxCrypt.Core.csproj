@@ -90,6 +90,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel.Web" />
     <Reference Include="BouncyCastle.Crypto">
@@ -109,7 +110,7 @@
     </Compile>
     <Compile Include="Session\ActiveFileChangedEventArgs.cs" />
     <Compile Include="Session\ChangedEventMode.cs" />
-    <Compile Include="System\AxCryptException.cs" />
+    <Compile Include="Runtime\AxCryptException.cs" />
     <Compile Include="AxCryptFile.cs" />
     <Compile Include="AxCryptOptions.cs" />
     <Compile Include="Crypto\AesCrypto.cs" />
@@ -125,10 +126,10 @@
     <Compile Include="Crypto\Passphrase.cs" />
     <Compile Include="Crypto\Subkey.cs" />
     <Compile Include="OS.cs" />
-    <Compile Include="System\DelegateTraceListener.cs" />
+    <Compile Include="Runtime\DelegateTraceListener.cs" />
     <Compile Include="ErrorStatus.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="System\FileFormatException.cs" />
+    <Compile Include="Runtime\FileFormatException.cs" />
     <Compile Include="Header\AxCrypt1Guid.cs" />
     <Compile Include="Header\CompressionHeaderBlock.cs" />
     <Compile Include="Header\CompressionInfoHeaderBlock.cs" />
@@ -145,12 +146,12 @@
     <Compile Include="Header\UnicodeFileNameInfoHeaderBlock.cs" />
     <Compile Include="Header\UnrecognizedHeaderBlock.cs" />
     <Compile Include="IO\ProgressStream.cs" />
-    <Compile Include="System\IDataProtection.cs" />
-    <Compile Include="System\ILauncher.cs" />
-    <Compile Include="System\ILogging.cs" />
-    <Compile Include="System\IRuntimeEnvironment.cs" />
-    <Compile Include="System\InternalErrorException.cs" />
-    <Compile Include="System\InvalidDataException.cs" />
+    <Compile Include="Runtime\IDataProtection.cs" />
+    <Compile Include="Runtime\ILauncher.cs" />
+    <Compile Include="Runtime\ILogging.cs" />
+    <Compile Include="Runtime\IRuntimeEnvironment.cs" />
+    <Compile Include="Runtime\InternalErrorException.cs" />
+    <Compile Include="Runtime\InvalidDataException.cs" />
     <Compile Include="IO\AxCryptDataStream.cs" />
     <Compile Include="IO\HmacStream.cs" />
     <Compile Include="IO\IRuntimeFileInfo.cs" />
@@ -159,7 +160,7 @@
     <Compile Include="Header\HeaderBlock.cs" />
     <Compile Include="Header\HeaderBlockType.cs" />
     <Compile Include="Header\VersionHeaderBlock.cs" />
-    <Compile Include="System\ITiming.cs" />
+    <Compile Include="Runtime\ITiming.cs" />
     <None Include="Properties\AssemblyInfo.template" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reader\AxCryptReader.cs" />
@@ -167,16 +168,16 @@
     <Compile Include="Reader\AxCryptStreamReader.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="System\LogLevel.cs" />
-    <Compile Include="System\Platform.cs" />
+    <Compile Include="Runtime\LogLevel.cs" />
+    <Compile Include="Runtime\Platform.cs" />
     <Compile Include="IO\FileLock.cs" />
     <Compile Include="Session\ActiveFile.cs" />
     <Compile Include="Session\ActiveFileCollection.cs" />
     <Compile Include="Session\FileSystemStateExtensions.cs" />
     <Compile Include="Session\ActiveFileStatus.cs" />
     <Compile Include="Session\FileSystemState.cs" />
-    <Compile Include="System\ThreadWorker.cs" />
-    <Compile Include="System\ThreadWorkerEventArgs.cs" />
+    <Compile Include="Runtime\ThreadWorker.cs" />
+    <Compile Include="Runtime\ThreadWorkerEventArgs.cs" />
     <Compile Include="UI\FileOperation.cs" />
     <Compile Include="UI\FileOperationEventArgs.cs" />
     <Compile Include="UI\FileOperationsController.cs" />
@@ -194,10 +195,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AboutThisAssembly.txt" />
+    <Content Include="resources\axcrypticon.ico" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>

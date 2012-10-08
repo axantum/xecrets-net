@@ -28,7 +28,7 @@
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {

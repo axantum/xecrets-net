@@ -26,29 +26,45 @@
 #endregion Coypright and License
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using Axantum.AxCrypt.Core.UI;
+using System.IO;
+using Axantum.AxCrypt.Core.IO;
 
-namespace Axantum.AxCrypt.Core.System
+namespace Axantum.AxCrypt.Core.Runtime
 {
-    public class ThreadWorkerEventArgs : EventArgs
+    public interface IRuntimeEnvironment
     {
-        public ThreadWorkerEventArgs(BackgroundWorker worker, int progressPercentage)
-        {
-            Worker = worker;
-            ProgressPercentage = progressPercentage;
-        }
+        event EventHandler<EventArgs> FileChanged;
 
-        public ThreadWorkerEventArgs(BackgroundWorker worker)
-            : this(worker, 0)
-        {
-        }
+        void NotifyFileChanged();
 
-        public BackgroundWorker Worker { get; private set; }
+        bool IsLittleEndian { get; }
 
-        public int ProgressPercentage { get; set; }
+        byte[] GetRandomBytes(int count);
+
+        IRuntimeFileInfo FileInfo(string path);
+
+        string AxCryptExtension { get; }
+
+        Platform Platform { get; }
+
+        int StreamBufferSize { get; }
+
+        IFileWatcher FileWatcher(string path);
+
+        IRuntimeFileInfo TemporaryDirectoryInfo { get; }
+
+        DateTime UtcNow { get; }
+
+        ILauncher Launch(string path);
+
+        ITiming StartTiming();
+
+        IWebCaller CreateWebCaller();
+
+        ILogging Log { get; }
+
+        IDataProtection DataProtection { get; }
+
+        bool CanTrackProcess { get; }
     }
 }

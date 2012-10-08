@@ -36,7 +36,7 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.UI
 {

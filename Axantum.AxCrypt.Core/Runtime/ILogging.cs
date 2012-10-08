@@ -30,16 +30,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.System
+namespace Axantum.AxCrypt.Core.Runtime
 {
-    public interface ILauncher : IDisposable
+    public interface ILogging
     {
-        event EventHandler Exited;
+        void SetLevel(LogLevel level);
 
-        bool HasExited { get; }
+        bool IsFatalEnabled { get; }
 
-        bool WasStarted { get; }
+        bool IsErrorEnabled { get; }
 
-        string Path { get; }
+        bool IsWarningEnabled { get; }
+
+        bool IsInfoEnabled { get; }
+
+        bool IsDebugEnabled { get; }
+
+        void LogFatal(string message);
+
+        void LogError(string message);
+
+        void LogWarning(string message);
+
+        void LogInfo(string message);
+
+        void LogDebug(string message);
     }
 }
