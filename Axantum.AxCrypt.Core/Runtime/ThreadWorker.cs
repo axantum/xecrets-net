@@ -241,10 +241,6 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
             if (_worker != null)
             {
-                while (_worker.IsBusy)
-                {
-                    Thread.Sleep(1);
-                }
                 _worker.DoWork -= _worker_DoWork;
                 _worker.RunWorkerCompleted -= _worker_RunWorkerCompleted;
                 _worker.ProgressChanged -= _worker_ProgressChanged;

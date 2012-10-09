@@ -74,7 +74,6 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestProgress()
         {
             FakeRuntimeEnvironment environment = (FakeRuntimeEnvironment)OS.Current;
-            environment.CurrentTiming.CurrentTiming = TimeSpan.Zero;
             int progressCalls = 0;
 
             using (ThreadWorker worker = new ThreadWorker("DisplayTest"))
@@ -117,6 +116,89 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<ObjectDisposedException>(() => { worker.Run(); });
             Assert.Throws<ObjectDisposedException>(() => { worker.Join(); });
             Assert.DoesNotThrow(() => { worker.Dispose(); });
+        }
+
+        [Test]
+        public static void TestCancelationByException()
+        {
+            bool wasCanceled = false;
+            using (ThreadWorker worker = new ThreadWorker("Cancellation Test by Exception"))
+            {
+                worker.Work += (object sender, ThreadWorkerEventArgs e) =>
+                    {
+                        throw new OperationCanceledException();
+                    };
+                worker.Completed += (object sender, ThreadWorkerEventArgs e) =>
+                    {
+                        wasCanceled = e.Result == FileOperationStatus.Canceled;
+                    };
+                worker.Run();
+                worker.Join();
+            }
+
+            Assert.That(wasCanceled, Is.True, "The operation was canceled and should return status as such.");
+        }
+
+        [Test]
+        public static void TestCancelationByRequest()
+        {
+            bool wasCanceled = false;
+            FakeRuntimeEnvironment environment = (FakeRuntimeEnvironment)OS.Current;
+            using (ThreadWorker worker = new ThreadWorker("Cancellation Test by cancel request."))
+            {
+                worker.Work += (object sender, ThreadWorkerEventArgs e) =>
+                {
+                    e.Worker.CancelAsync();
+                    environment.CurrentTiming.CurrentTiming = e.ProgressContext.NextProgressing;
+                    e.ProgressContext.Current = 1;
+                };
+                worker.Completed += (object sender, ThreadWorkerEventArgs e) =>
+                {
+                    wasCanceled = e.Result == FileOperationStatus.Canceled;
+                };
+                worker.Run();
+                worker.Join();
+            }
+
+            Assert.That(wasCanceled, Is.True, "The operation was canceled and should return status as such.");
+        }
+
+        [Test]
+        public static void TestExceptionInWork()
+        {
+            bool exceptionCaught = false;
+            using (ThreadWorker worker = new ThreadWorker("Cancellation Test by Exception"))
+            {
+                worker.Work += (object sender, ThreadWorkerEventArgs e) =>
+                {
+                    throw new InvalidOperationException();
+                };
+                worker.Completed += (object sender, ThreadWorkerEventArgs e) =>
+                {
+                    exceptionCaught = e.Result == FileOperationStatus.Exception;
+                };
+                worker.Run();
+                worker.Join();
+            }
+
+            Assert.That(exceptionCaught, Is.True, "The operation was interrupted by an exception and should return status as such.");
+        }
+
+        [Test]
+        public static void TestPrepare()
+        {
+            bool wasPrepared = false;
+            using (ThreadWorker worker = new ThreadWorker("Cancellation Test by Exception"))
+            {
+                worker.Prepare += (object sender, ThreadWorkerEventArgs e) =>
+                    {
+                        wasPrepared = true;
+                    };
+                worker.Run();
+                worker.Join();
+            }
+
+            Assert.That(wasPrepared, Is.True, "The Prepare event should be raised.");
         }
     }
 }
