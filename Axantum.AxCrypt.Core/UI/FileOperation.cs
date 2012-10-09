@@ -33,8 +33,8 @@ using System.Linq;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -106,6 +106,10 @@ namespace Axantum.AxCrypt.Core.UI
             if (document == null)
             {
                 throw new ArgumentNullException("document");
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
             }
 
             IRuntimeFileInfo fileInfo = OS.Current.FileInfo(file);

@@ -33,8 +33,8 @@ using System.Linq;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using Microsoft;
@@ -126,6 +126,72 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
             Assert.That(launcher, Is.Not.Null, "There should be a call to launch.");
             Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
+        }
+
+        [Test]
+        public static void TestOpenAndLaunchOfAxCryptDocument()
+        {
+            FakeLauncher launcher = null;
+            _fakeRuntimeEnvironment.Launcher = ((string path) =>
+            {
+                launcher = new FakeLauncher(path);
+                return launcher;
+            });
+
+            FileOperationStatus status;
+            using (AxCryptDocument document = new AxCryptDocument())
+            {
+                using (Stream stream = OS.Current.FileInfo(_helloWorldAxxPath).OpenRead())
+                {
+                    document.Load(stream, new Passphrase("a").DerivedPassphrase);
+                    status = _fileSystemState.OpenAndLaunchApplication(_helloWorldAxxPath, document, new ProgressContext());
+                }
+            }
+
+            Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
+            Assert.That(launcher, Is.Not.Null, "There should be a call to launch.");
+            Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
+        }
+
+        [Test]
+        public static void TestOpenAndLaunchOfAxCryptDocumentWhenAlreadyDecrypted()
+        {
+            TestOpenAndLaunchOfAxCryptDocument();
+
+            FakeLauncher launcher = null;
+            _fakeRuntimeEnvironment.Launcher = ((string path) =>
+            {
+                launcher = new FakeLauncher(path);
+                return launcher;
+            });
+
+            FileOperationStatus status;
+            using (AxCryptDocument document = new AxCryptDocument())
+            {
+                using (Stream stream = OS.Current.FileInfo(_helloWorldAxxPath).OpenRead())
+                {
+                    document.Load(stream, new Passphrase("a").DerivedPassphrase);
+                    status = _fileSystemState.OpenAndLaunchApplication(_helloWorldAxxPath, document, new ProgressContext());
+                }
+            }
+
+            Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
+            Assert.That(launcher, Is.Not.Null, "There should be a call to launch.");
+            Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
+        }
+
+        [Test]
+        public static void TestOpenAndLaunchOfAxCryptDocumentArgumentNullException()
+        {
+            FileSystemState nullFileSystemState = null;
+            string nullString = null;
+            AxCryptDocument nullDocument = null;
+            ProgressContext nullProgressContext = null;
+
+            Assert.Throws<ArgumentNullException>(() => { nullFileSystemState.OpenAndLaunchApplication(_helloWorldAxxPath, new AxCryptDocument(), new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { _fileSystemState.OpenAndLaunchApplication(nullString, new AxCryptDocument(), new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { _fileSystemState.OpenAndLaunchApplication(_helloWorldAxxPath, nullDocument, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { _fileSystemState.OpenAndLaunchApplication(_helloWorldAxxPath, new AxCryptDocument(), nullProgressContext); });
         }
 
         [Test]
