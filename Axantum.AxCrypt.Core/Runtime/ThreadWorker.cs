@@ -51,6 +51,8 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private Action<FileOperationStatus> _complete;
 
+        private int _progressPending = 0;
+
         /// <summary>
         /// Create a thread worker.
         /// </summary>
@@ -75,6 +77,7 @@ namespace Axantum.AxCrypt.Core.Runtime
                 {
                     throw new OperationCanceledException();
                 }
+                Interlocked.Increment(ref _progressPending);
                 _worker.ReportProgress(e.Percent);
             };
         }
@@ -104,10 +107,6 @@ namespace Axantum.AxCrypt.Core.Runtime
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Here we really do want to catch everything, and report to the user.")]
         private void _worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            if (_disposed)
-            {
-                throw new ObjectDisposedException("ThreadWorker");
-            }
             try
             {
                 e.Result = _work((ProgressContext)e.Argument);
@@ -129,21 +128,19 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private void _worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            if (_disposed)
-            {
-                throw new ObjectDisposedException("ThreadWorker");
-            }
             OnProgress(new ThreadWorkerEventArgs(_worker, e.ProgressPercentage));
+            Interlocked.Decrement(ref _progressPending);
         }
 
         private void _worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (_disposed)
-            {
-                throw new ObjectDisposedException("ThreadWorker");
-            }
             try
             {
+                do
+                {
+                    Thread.Sleep(0);
+                }
+                while (_progressPending > 0);
                 _complete((FileOperationStatus)e.Result);
                 OnCompleted(new ThreadWorkerEventArgs(_worker));
             }
@@ -233,6 +230,10 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
             if (_worker != null)
             {
+                while (_worker.IsBusy)
+                {
+                    Thread.Sleep(1);
+                }
                 _worker.DoWork -= _worker_DoWork;
                 _worker.RunWorkerCompleted -= _worker_RunWorkerCompleted;
                 _worker.ProgressChanged -= _worker_ProgressChanged;

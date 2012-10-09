@@ -493,6 +493,11 @@
             // 
             this.persistentState.Current = null;
             // 
+            // progressBackgroundWorker
+            // 
+            this.progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.progressBackgroundWorker_ProgressBarCreated);
+            this.progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.progressBackgroundWorker_ProgressBarClicked);
+            // 
             // AxCryptMainForm
             // 
             resources.ApplyResources(this, "$this");

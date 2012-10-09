@@ -27,6 +27,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -74,6 +75,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestProgress()
         {
             FakeRuntimeEnvironment environment = (FakeRuntimeEnvironment)OS.Current;
+            environment.CurrentTiming.CurrentTiming = TimeSpan.Zero;
             int progressCalls = 0;
 
             using (ThreadWorker worker = new ThreadWorker("DisplayTest",
@@ -96,6 +98,31 @@ namespace Axantum.AxCrypt.Core.Test
             }
 
             Assert.That(progressCalls, Is.EqualTo(1), "The Progressing event should be raised exactly one time.");
+        }
+
+        [Test]
+        public static void TestObjectDisposedException()
+        {
+            ThreadWorker worker = new ThreadWorker("DisposedTest", (ProgressContext progressContext) =>
+            {
+                return FileOperationStatus.Success;
+            },
+            (FileOperationStatus status) =>
+            {
+            });
+            try
+            {
+                worker.Run();
+                worker.Join();
+            }
+            finally
+            {
+                worker.Dispose();
+            }
+
+            Assert.Throws<ObjectDisposedException>(() => { worker.Run(); });
+            Assert.Throws<ObjectDisposedException>(() => { worker.Join(); });
+            Assert.DoesNotThrow(() => { worker.Dispose(); });
         }
     }
 }
