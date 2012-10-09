@@ -33,8 +33,8 @@ using System.Linq;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
@@ -68,6 +68,7 @@ namespace Axantum.AxCrypt.Core.Test
             OS.Current = _environment;
             _environment = null;
             _fakeRuntimeEnvironment = null;
+            _fileSystemState.Dispose();
             _fileSystemState = null;
             FakeRuntimeFileInfo.ClearFiles();
         }
@@ -181,6 +182,8 @@ namespace Axantum.AxCrypt.Core.Test
             _fileSystemState.Add(activeFile);
             _fileSystemState.Save();
 
+            _fileSystemState.Dispose();
+
             _fileSystemState = new FileSystemState();
             _fileSystemState.Load(OS.Current.FileInfo(_fileSystemStateFilePath));
 
@@ -213,6 +216,7 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedFile1), OS.Current.FileInfo(_decryptedFile1), passphrase.DerivedPassphrase, ActiveFileStatus.AssumedOpenAndDecrypted, null);
             _fileSystemState.Add(activeFile);
             _fileSystemState.Save();
+            _fileSystemState.Dispose();
 
             _fileSystemState = new FileSystemState();
             _fileSystemState.Load(OS.Current.FileInfo(_fileSystemStateFilePath));
@@ -512,6 +516,7 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable, null);
             _fileSystemState.Add(activeFile);
             _fileSystemState.Save();
+            _fileSystemState.Dispose();
 
             _fileSystemState = new FileSystemState();
             _fileSystemState.Load(OS.Current.FileInfo(_fileSystemStateFilePath));
@@ -530,6 +535,7 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable, null);
             _fileSystemState.Add(activeFile);
             _fileSystemState.Save();
+            _fileSystemState.Dispose();
 
             _fileSystemState = new FileSystemState();
             _fileSystemState.Load(OS.Current.FileInfo(_fileSystemStateFilePath));

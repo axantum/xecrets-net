@@ -31,8 +31,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
 using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -78,164 +78,190 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestLoadNew()
         {
-            FileSystemState state = new FileSystemState();
-            state.Load(OS.Current.FileInfo(_mystateXmlPath));
+            using (FileSystemState state = new FileSystemState())
+            {
+                state.Load(OS.Current.FileInfo(_mystateXmlPath));
 
-            Assert.That(state, Is.Not.Null, "An instance should always be instantiated.");
-            Assert.That(state.ActiveFiles.Count(), Is.EqualTo(0), "A new state should not have any active files.");
+                Assert.That(state, Is.Not.Null, "An instance should always be instantiated.");
+                Assert.That(state.ActiveFiles.Count(), Is.EqualTo(0), "A new state should not have any active files.");
+            }
         }
 
         [Test]
         public static void TestLoadExisting()
         {
-            FileSystemState state = new FileSystemState();
-            state.Load(OS.Current.FileInfo(_mystateXmlPath));
+            ActiveFile activeFile;
+            using (FileSystemState state = new FileSystemState())
+            {
+                state.Load(OS.Current.FileInfo(_mystateXmlPath));
 
-            Assert.That(state, Is.Not.Null, "An instance should always be instantiated.");
-            Assert.That(state.ActiveFiles.Count(), Is.EqualTo(0), "A new state should not have any active files.");
+                Assert.That(state, Is.Not.Null, "An instance should always be instantiated.");
+                Assert.That(state.ActiveFiles.Count(), Is.EqualTo(0), "A new state should not have any active files.");
 
-            ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedAxxPath), OS.Current.FileInfo(_decryptedTxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted, null);
-            state.Add(activeFile);
-            state.Save();
+                activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedAxxPath), OS.Current.FileInfo(_decryptedTxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted, null);
+                state.Add(activeFile);
+                state.Save();
+            }
 
-            FileSystemState reloadedState = new FileSystemState();
-            reloadedState.Load(OS.Current.FileInfo(_mystateXmlPath));
-            Assert.That(reloadedState, Is.Not.Null, "An instance should always be instantiated.");
-            Assert.That(reloadedState.ActiveFiles.Count(), Is.EqualTo(1), "The reloaded state should have one active file.");
-            Assert.That(reloadedState.ActiveFiles.First().ThumbprintMatch(activeFile.Key), Is.True, "The reloaded thumbprint should  match the key.");
+            using (FileSystemState reloadedState = new FileSystemState())
+            {
+                reloadedState.Load(OS.Current.FileInfo(_mystateXmlPath));
+                Assert.That(reloadedState, Is.Not.Null, "An instance should always be instantiated.");
+                Assert.That(reloadedState.ActiveFiles.Count(), Is.EqualTo(1), "The reloaded state should have one active file.");
+                Assert.That(reloadedState.ActiveFiles.First().ThumbprintMatch(activeFile.Key), Is.True, "The reloaded thumbprint should  match the key.");
+            }
         }
 
         [Test]
         public static void TestChangedEvent()
         {
-            FileSystemState state = new FileSystemState();
-            state.Load(OS.Current.FileInfo(_mystateXmlPath));
-            bool wasHere;
-            state.Changed += new EventHandler<ActiveFileChangedEventArgs>((object sender, ActiveFileChangedEventArgs e) => { wasHere = true; });
-            ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedAxxPath), OS.Current.FileInfo(_decryptedTxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted, null);
+            using (FileSystemState state = new FileSystemState())
+            {
+                state.Load(OS.Current.FileInfo(_mystateXmlPath));
+                bool wasHere;
+                state.Changed += new EventHandler<ActiveFileChangedEventArgs>((object sender, ActiveFileChangedEventArgs e) => { wasHere = true; });
+                ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedAxxPath), OS.Current.FileInfo(_decryptedTxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted, null);
 
-            wasHere = false;
-            state.Add(activeFile);
-            Assert.That(state.ActiveFiles.Count(), Is.EqualTo(1), "After the Add() the state should have one active file.");
-            Assert.That(wasHere, Is.True, "After the Add(), the changed event should have been raised.");
+                wasHere = false;
+                state.Add(activeFile);
+                Assert.That(state.ActiveFiles.Count(), Is.EqualTo(1), "After the Add() the state should have one active file.");
+                Assert.That(wasHere, Is.True, "After the Add(), the changed event should have been raised.");
 
-            wasHere = false;
-            state.Remove(activeFile);
-            Assert.That(wasHere, Is.True, "After the Remove(), the changed event should have been raised.");
-            Assert.That(state.ActiveFiles.Count(), Is.EqualTo(0), "After the Remove() the state should have no active files.");
+                wasHere = false;
+                state.Remove(activeFile);
+                Assert.That(wasHere, Is.True, "After the Remove(), the changed event should have been raised.");
+                Assert.That(state.ActiveFiles.Count(), Is.EqualTo(0), "After the Remove() the state should have no active files.");
+            }
         }
 
         [Test]
         public static void TestStatusMaskAtLoad()
         {
-            FileSystemState state = new FileSystemState();
-            state.Load(OS.Current.FileInfo(_mystateXmlPath));
-            ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedAxxPath), OS.Current.FileInfo(_decryptedTxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, null);
-            state.Add(activeFile);
-            state.Save();
+            using (FileSystemState state = new FileSystemState())
+            {
+                state.Load(OS.Current.FileInfo(_mystateXmlPath));
+                ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedAxxPath), OS.Current.FileInfo(_decryptedTxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, null);
+                state.Add(activeFile);
+                state.Save();
 
-            FileSystemState reloadedState = new FileSystemState();
-            reloadedState.Load(OS.Current.FileInfo(_mystateXmlPath));
-            Assert.That(reloadedState, Is.Not.Null, "An instance should always be instantiated.");
-            Assert.That(reloadedState.ActiveFiles.Count(), Is.EqualTo(1), "The reloaded state should have one active file.");
-            Assert.That(reloadedState.ActiveFiles.First().Status, Is.EqualTo(ActiveFileStatus.AssumedOpenAndDecrypted), "When reloading saved state, some statuses should be masked away.");
+                FileSystemState reloadedState = new FileSystemState();
+                reloadedState.Load(OS.Current.FileInfo(_mystateXmlPath));
+                Assert.That(reloadedState, Is.Not.Null, "An instance should always be instantiated.");
+                Assert.That(reloadedState.ActiveFiles.Count(), Is.EqualTo(1), "The reloaded state should have one active file.");
+                Assert.That(reloadedState.ActiveFiles.First().Status, Is.EqualTo(ActiveFileStatus.AssumedOpenAndDecrypted), "When reloading saved state, some statuses should be masked away.");
+            }
         }
 
         [Test]
         public static void TestFindEncryptedAndDecryptedPath()
         {
-            FileSystemState state = new FileSystemState();
-            state.Load(OS.Current.FileInfo(_mystateXmlPath));
-            ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedAxxPath), OS.Current.FileInfo(_decryptedTxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, null);
-            state.Add(activeFile);
+            using (FileSystemState state = new FileSystemState())
+            {
+                state.Load(OS.Current.FileInfo(_mystateXmlPath));
+                ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedAxxPath), OS.Current.FileInfo(_decryptedTxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, null);
+                state.Add(activeFile);
 
-            ActiveFile byDecryptedPath = state.FindDecryptedPath(_decryptedTxtPath);
-            Assert.That(byDecryptedPath, Is.EqualTo(activeFile), "The search should return the same instance.");
+                ActiveFile byDecryptedPath = state.FindDecryptedPath(_decryptedTxtPath);
+                Assert.That(byDecryptedPath, Is.EqualTo(activeFile), "The search should return the same instance.");
 
-            ActiveFile byEncryptedPath = state.FindEncryptedPath(_encryptedAxxPath);
-            Assert.That(byEncryptedPath, Is.EqualTo(byDecryptedPath), "The search should return the same instance.");
+                ActiveFile byEncryptedPath = state.FindEncryptedPath(_encryptedAxxPath);
+                Assert.That(byEncryptedPath, Is.EqualTo(byDecryptedPath), "The search should return the same instance.");
 
-            ActiveFile notFoundEncrypted = state.FindEncryptedPath(Path.Combine(_rootPath, "notfoundfile.txt"));
-            Assert.That(notFoundEncrypted, Is.Null, "A search that does not succeed should return null.");
+                ActiveFile notFoundEncrypted = state.FindEncryptedPath(Path.Combine(_rootPath, "notfoundfile.txt"));
+                Assert.That(notFoundEncrypted, Is.Null, "A search that does not succeed should return null.");
 
-            ActiveFile notFoundDecrypted = state.FindDecryptedPath(Path.Combine(_rootPath, "notfoundfile.txt"));
-            Assert.That(notFoundDecrypted, Is.Null, "A search that does not succeed should return null.");
+                ActiveFile notFoundDecrypted = state.FindDecryptedPath(Path.Combine(_rootPath, "notfoundfile.txt"));
+                Assert.That(notFoundDecrypted, Is.Null, "A search that does not succeed should return null.");
+            }
         }
 
         [Test]
         public static void TestForEach()
         {
             bool changedEventWasRaised = false;
-            FileSystemState state = new FileSystemState();
-            state.Load(OS.Current.FileInfo(_mystateXmlPath));
-            state.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
+            using (FileSystemState state = new FileSystemState())
             {
-                changedEventWasRaised = true;
-            });
+                state.Load(OS.Current.FileInfo(_mystateXmlPath));
+                state.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
+                {
+                    changedEventWasRaised = true;
+                });
 
-            ActiveFile activeFile;
-            activeFile = new ActiveFile(OS.Current.FileInfo(_encrypted1AxxPath), OS.Current.FileInfo(_decrypted1TxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, null);
-            state.Add(activeFile);
-            activeFile = new ActiveFile(OS.Current.FileInfo(_encrypted2AxxPath), OS.Current.FileInfo(_decrypted2TxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, null);
-            state.Add(activeFile);
-            activeFile = new ActiveFile(OS.Current.FileInfo(_encrypted3AxxPath), OS.Current.FileInfo(_decrypted3TxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, null);
-            state.Add(activeFile);
-            Assert.That(changedEventWasRaised, Is.True, "The change event should have been raised by the adding of active files.");
+                ActiveFile activeFile;
+                activeFile = new ActiveFile(OS.Current.FileInfo(_encrypted1AxxPath), OS.Current.FileInfo(_decrypted1TxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, null);
+                state.Add(activeFile);
+                activeFile = new ActiveFile(OS.Current.FileInfo(_encrypted2AxxPath), OS.Current.FileInfo(_decrypted2TxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, null);
+                state.Add(activeFile);
+                activeFile = new ActiveFile(OS.Current.FileInfo(_encrypted3AxxPath), OS.Current.FileInfo(_decrypted3TxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, null);
+                state.Add(activeFile);
+                Assert.That(changedEventWasRaised, Is.True, "The change event should have been raised by the adding of active files.");
 
-            changedEventWasRaised = false;
-            Assert.That(state.ActiveFiles.Count(), Is.EqualTo(3), "There should be three.");
-            int i = 0;
-            state.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFileArgument) =>
-            {
-                ++i;
-                return activeFileArgument;
-            });
-            Assert.That(i, Is.EqualTo(3), "The iteration should have visited three active files.");
-            Assert.That(changedEventWasRaised, Is.False, "No change event should have been raised.");
+                changedEventWasRaised = false;
+                Assert.That(state.ActiveFiles.Count(), Is.EqualTo(3), "There should be three.");
+                int i = 0;
+                state.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFileArgument) =>
+                {
+                    ++i;
+                    return activeFileArgument;
+                });
+                Assert.That(i, Is.EqualTo(3), "The iteration should have visited three active files.");
+                Assert.That(changedEventWasRaised, Is.False, "No change event should have been raised.");
 
-            i = 0;
-            state.ForEach(ChangedEventMode.RaiseAlways, (ActiveFile activeFileArgument) =>
-            {
-                ++i;
-                return activeFileArgument;
-            });
-            Assert.That(i, Is.EqualTo(3), "The iteration should have visited three active files.");
-            Assert.That(changedEventWasRaised, Is.True, "The change event should have been raised.");
+                i = 0;
+                state.ForEach(ChangedEventMode.RaiseAlways, (ActiveFile activeFileArgument) =>
+                {
+                    ++i;
+                    return activeFileArgument;
+                });
+                Assert.That(i, Is.EqualTo(3), "The iteration should have visited three active files.");
+                Assert.That(changedEventWasRaised, Is.True, "The change event should have been raised.");
 
-            changedEventWasRaised = false;
-            i = 0;
-            state.ForEach(ChangedEventMode.RaiseAlways, (ActiveFile activeFileArgument) =>
-            {
-                ++i;
-                return new ActiveFile(activeFileArgument, activeFile.Status | ActiveFileStatus.Error);
-            });
-            Assert.That(i, Is.EqualTo(3), "The iteration should have visited three active files.");
-            Assert.That(changedEventWasRaised, Is.True, "The change event should have been raised.");
+                changedEventWasRaised = false;
+                i = 0;
+                state.ForEach(ChangedEventMode.RaiseAlways, (ActiveFile activeFileArgument) =>
+                {
+                    ++i;
+                    return new ActiveFile(activeFileArgument, activeFile.Status | ActiveFileStatus.Error);
+                });
+                Assert.That(i, Is.EqualTo(3), "The iteration should have visited three active files.");
+                Assert.That(changedEventWasRaised, Is.True, "The change event should have been raised.");
+            }
         }
 
         [Test]
         public static void TestDecryptedActiveFiles()
         {
+            using (FileSystemState state = new FileSystemState())
+            {
+                state.Load(OS.Current.FileInfo(_mystateXmlPath));
+
+                ActiveFile decryptedFile1 = new ActiveFile(OS.Current.FileInfo(_encryptedAxxPath), OS.Current.FileInfo(_decryptedTxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted, null);
+                state.Add(decryptedFile1);
+
+                ActiveFile decryptedFile2 = new ActiveFile(OS.Current.FileInfo(_encrypted2AxxPath), OS.Current.FileInfo(_decrypted2TxtPath), new AesKey(), ActiveFileStatus.DecryptedIsPendingDelete, null);
+                state.Add(decryptedFile2);
+
+                ActiveFile notDecryptedFile = new ActiveFile(OS.Current.FileInfo(_encrypted3AxxPath), OS.Current.FileInfo(_decrypted3TxtPath), new AesKey(), ActiveFileStatus.NotDecrypted, null);
+                state.Add(notDecryptedFile);
+
+                ActiveFile errorFile = new ActiveFile(OS.Current.FileInfo(_encrypted4AxxPath), OS.Current.FileInfo(_decrypted4TxtPath), new AesKey(), ActiveFileStatus.Error, null);
+                state.Add(errorFile);
+
+                IList<ActiveFile> decryptedFiles = state.DecryptedActiveFiles;
+                Assert.That(decryptedFiles.Count, Is.EqualTo(2), "There should be two decrypted files.");
+                Assert.That(decryptedFiles.Contains(decryptedFile1), "A file marked as AssumedOpenAndDecrypted should be found.");
+                Assert.That(decryptedFiles.Contains(decryptedFile2), "A file marked as DecryptedIsPendingDelete should be found.");
+                Assert.That(decryptedFiles.Contains(notDecryptedFile), Is.Not.True, "A file marked as NotDecrypted should not be found.");
+            }
+        }
+
+        [Test]
+        public static void TestDoubleDispose()
+        {
             FileSystemState state = new FileSystemState();
-            state.Load(OS.Current.FileInfo(_mystateXmlPath));
+            state.Dispose();
 
-            ActiveFile decryptedFile1 = new ActiveFile(OS.Current.FileInfo(_encryptedAxxPath), OS.Current.FileInfo(_decryptedTxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted, null);
-            state.Add(decryptedFile1);
-
-            ActiveFile decryptedFile2 = new ActiveFile(OS.Current.FileInfo(_encrypted2AxxPath), OS.Current.FileInfo(_decrypted2TxtPath), new AesKey(), ActiveFileStatus.DecryptedIsPendingDelete, null);
-            state.Add(decryptedFile2);
-
-            ActiveFile notDecryptedFile = new ActiveFile(OS.Current.FileInfo(_encrypted3AxxPath), OS.Current.FileInfo(_decrypted3TxtPath), new AesKey(), ActiveFileStatus.NotDecrypted, null);
-            state.Add(notDecryptedFile);
-
-            ActiveFile errorFile = new ActiveFile(OS.Current.FileInfo(_encrypted4AxxPath), OS.Current.FileInfo(_decrypted4TxtPath), new AesKey(), ActiveFileStatus.Error, null);
-            state.Add(errorFile);
-
-            IList<ActiveFile> decryptedFiles = state.DecryptedActiveFiles;
-            Assert.That(decryptedFiles.Count, Is.EqualTo(2), "There should be two decrypted files.");
-            Assert.That(decryptedFiles.Contains(decryptedFile1), "A file marked as AssumedOpenAndDecrypted should be found.");
-            Assert.That(decryptedFiles.Contains(decryptedFile2), "A file marked as DecryptedIsPendingDelete should be found.");
-            Assert.That(decryptedFiles.Contains(notDecryptedFile), Is.Not.True, "A file marked as NotDecrypted should not be found.");
+            Assert.DoesNotThrow(() => { state.Dispose(); });
         }
     }
 }

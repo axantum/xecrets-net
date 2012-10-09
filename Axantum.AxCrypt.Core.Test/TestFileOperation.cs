@@ -85,6 +85,7 @@ namespace Axantum.AxCrypt.Core.Test
         [TearDown]
         public static void Teardown()
         {
+            _fileSystemState.Dispose();
             OS.Current = _environment;
             FakeRuntimeFileInfo.ClearFiles();
         }
