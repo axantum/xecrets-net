@@ -31,6 +31,7 @@ using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core.Runtime
@@ -40,6 +41,8 @@ namespace Axantum.AxCrypt.Core.Runtime
     /// </summary>
     public class ThreadWorker : IDisposable
     {
+        private ManualResetEvent _joined = new ManualResetEvent(false);
+
         private BackgroundWorker _worker;
 
         private ProgressContext _progress;
@@ -89,6 +92,15 @@ namespace Axantum.AxCrypt.Core.Runtime
             _worker.RunWorkerAsync(_progress);
         }
 
+        public void Join()
+        {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException("ThreadWorker");
+            }
+            _joined.WaitOne();
+        }
+
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Here we really do want to catch everything, and report to the user.")]
         private void _worker_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -108,7 +120,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             {
                 if (OS.Log.IsWarningEnabled)
                 {
-                    OS.Log.LogWarning("Exception during encryption '{0}'".InvariantFormat(ex.Message));
+                    OS.Log.LogWarning("Exception in background thread '{0}'".InvariantFormat(ex.Message));
                 }
                 e.Result = FileOperationStatus.Exception;
             }
@@ -137,10 +149,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             }
             finally
             {
-                _worker.DoWork -= _worker_DoWork;
-                _worker.RunWorkerCompleted -= _worker_RunWorkerCompleted;
-                _worker.ProgressChanged -= _worker_ProgressChanged;
-                Dispose();
+                DisposeWorker();
             }
             if (OS.Log.IsInfoEnabled)
             {
@@ -214,18 +223,27 @@ namespace Axantum.AxCrypt.Core.Runtime
 
             if (disposing)
             {
-                if (_worker != null)
-                {
-                    IDisposable workerAsDisposibleWhichIsPlatformDependent = _worker as IDisposable;
-                    if (workerAsDisposibleWhichIsPlatformDependent != null)
-                    {
-                        workerAsDisposibleWhichIsPlatformDependent.Dispose();
-                    }
-                    _worker = null;
-                }
+                DisposeWorker();
             }
 
             _disposed = true;
+        }
+
+        private void DisposeWorker()
+        {
+            if (_worker != null)
+            {
+                _worker.DoWork -= _worker_DoWork;
+                _worker.RunWorkerCompleted -= _worker_RunWorkerCompleted;
+                _worker.ProgressChanged -= _worker_ProgressChanged;
+                IDisposable workerAsDisposibleWhichIsPlatformDependent = _worker as IDisposable;
+                if (workerAsDisposibleWhichIsPlatformDependent != null)
+                {
+                    workerAsDisposibleWhichIsPlatformDependent.Dispose();
+                }
+                _worker = null;
+                _joined.Set();
+            }
         }
     }
 }

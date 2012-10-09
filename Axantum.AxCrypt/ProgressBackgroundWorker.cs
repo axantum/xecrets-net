@@ -102,10 +102,20 @@ namespace Axantum.AxCrypt
             worker.Completed += (object sender, ThreadWorkerEventArgs e) =>
             {
                 ProgressBar progressBar = _progressBars[e.Worker];
-                progressBar.Parent = null;
-                _progressBars.Remove(e.Worker);
-                progressBar.Dispose();
-                e.Worker.Dispose();
+                try
+                {
+                    progressBar.Parent = null;
+                    _progressBars.Remove(e.Worker);
+                }
+                finally
+                {
+                    progressBar.Dispose();
+                    IDisposable threadWorker = sender as IDisposable;
+                    if (threadWorker != null)
+                    {
+                        threadWorker.Dispose();
+                    }
+                }
                 Interlocked.Decrement(ref _workerCount);
             };
             worker.Progress += (object sender, ThreadWorkerEventArgs e) =>
