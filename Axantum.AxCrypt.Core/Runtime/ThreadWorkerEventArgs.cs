@@ -36,19 +36,18 @@ namespace Axantum.AxCrypt.Core.Runtime
 {
     public class ThreadWorkerEventArgs : EventArgs
     {
-        public ThreadWorkerEventArgs(BackgroundWorker worker, int progressPercentage)
+        public ThreadWorkerEventArgs(BackgroundWorker worker, ProgressContext progressContext)
         {
             Worker = worker;
-            ProgressPercentage = progressPercentage;
-        }
-
-        public ThreadWorkerEventArgs(BackgroundWorker worker)
-            : this(worker, 0)
-        {
+            ProgressContext = progressContext;
         }
 
         public BackgroundWorker Worker { get; private set; }
 
         public int ProgressPercentage { get; set; }
+
+        public ProgressContext ProgressContext { get; private set; }
+
+        public FileOperationStatus Result { get; set; }
     }
 }

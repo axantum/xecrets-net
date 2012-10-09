@@ -92,37 +92,42 @@ namespace Axantum.AxCrypt
         /// <param name="complete">A 'complete' delegate, taking the final status. Executed on the original caller thread, typically the GUI thread.</param>
         public void BackgroundWorkWithProgress(string displayText, Func<ProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
         {
-            ThreadWorker worker = new ThreadWorker(displayText, work, complete);
+            ThreadWorker worker = new ThreadWorker(displayText);
             worker.Prepare += (object sender, ThreadWorkerEventArgs e) =>
-            {
-                ProgressBar progressBar = CreateProgressBar(e.Worker);
-                _progressBars.Add(e.Worker, progressBar);
-                OnProgressBarCreated(new ControlEventArgs(progressBar));
-            };
-            worker.Completed += (object sender, ThreadWorkerEventArgs e) =>
-            {
-                ProgressBar progressBar = _progressBars[e.Worker];
-                try
                 {
-                    progressBar.Parent = null;
-                    _progressBars.Remove(e.Worker);
-                }
-                finally
+                    ProgressBar progressBar = CreateProgressBar(e.Worker);
+                    _progressBars.Add(e.Worker, progressBar);
+                    OnProgressBarCreated(new ControlEventArgs(progressBar));
+                };
+            worker.Work += (object sender, ThreadWorkerEventArgs e) =>
                 {
-                    progressBar.Dispose();
-                    IDisposable threadWorker = sender as IDisposable;
-                    if (threadWorker != null)
-                    {
-                        threadWorker.Dispose();
-                    }
-                }
-                Interlocked.Decrement(ref _workerCount);
-            };
+                    e.Result = work(e.ProgressContext);
+                };
             worker.Progress += (object sender, ThreadWorkerEventArgs e) =>
             {
                 ProgressBar progressBar = _progressBars[e.Worker];
                 progressBar.Value = e.ProgressPercentage;
             };
+            worker.Completed += (object sender, ThreadWorkerEventArgs e) =>
+                {
+                    ProgressBar progressBar = _progressBars[e.Worker];
+                    try
+                    {
+                        complete(e.Result);
+                        progressBar.Parent = null;
+                        _progressBars.Remove(e.Worker);
+                    }
+                    finally
+                    {
+                        progressBar.Dispose();
+                        IDisposable threadWorker = sender as IDisposable;
+                        if (threadWorker != null)
+                        {
+                            threadWorker.Dispose();
+                        }
+                    }
+                    Interlocked.Decrement(ref _workerCount);
+                };
 
             Interlocked.Increment(ref _workerCount);
             worker.Run();

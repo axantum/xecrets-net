@@ -48,20 +48,19 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationStatus returnedStatus = FileOperationStatus.UnspecifiedError;
 
             bool done = false;
-            using (ThreadWorker worker = new ThreadWorker("DisplayTest",
-                (ProgressContext progressContext) =>
-                {
-                    workThreadId = Thread.CurrentThread.ManagedThreadId;
-                    return FileOperationStatus.Success;
-                },
-                (FileOperationStatus status) =>
-                {
-                    returnedStatus = status;
-                    completeThreadId = Thread.CurrentThread.ManagedThreadId;
-
-                    done = true;
-                }))
+            using (ThreadWorker worker = new ThreadWorker("DisplayTest"))
             {
+                worker.Work += (object sender, ThreadWorkerEventArgs e) =>
+                    {
+                        workThreadId = Thread.CurrentThread.ManagedThreadId;
+                        e.Result = FileOperationStatus.Success;
+                    };
+                worker.Completed += (object sender, ThreadWorkerEventArgs e) =>
+                    {
+                        returnedStatus = e.Result;
+                        completeThreadId = Thread.CurrentThread.ManagedThreadId;
+                        done = true;
+                    };
                 worker.Run();
                 worker.Join();
             }
@@ -78,17 +77,14 @@ namespace Axantum.AxCrypt.Core.Test
             environment.CurrentTiming.CurrentTiming = TimeSpan.Zero;
             int progressCalls = 0;
 
-            using (ThreadWorker worker = new ThreadWorker("DisplayTest",
-                (ProgressContext progressContext) =>
-                {
-                    environment.CurrentTiming.CurrentTiming = progressContext.NextProgressing;
-                    progressContext.Current = 1;
-                    return FileOperationStatus.Success;
-                },
-                (FileOperationStatus status) =>
-                {
-                }))
+            using (ThreadWorker worker = new ThreadWorker("DisplayTest"))
             {
+                worker.Work += (object sender, ThreadWorkerEventArgs e) =>
+                    {
+                        environment.CurrentTiming.CurrentTiming = e.ProgressContext.NextProgressing;
+                        e.ProgressContext.Current = 1;
+                        e.Result = FileOperationStatus.Success;
+                    };
                 worker.Progress += (object sender, ThreadWorkerEventArgs e) =>
                     {
                         ++progressCalls;
@@ -103,13 +99,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestObjectDisposedException()
         {
-            ThreadWorker worker = new ThreadWorker("DisposedTest", (ProgressContext progressContext) =>
-            {
-                return FileOperationStatus.Success;
-            },
-            (FileOperationStatus status) =>
-            {
-            });
+            ThreadWorker worker = new ThreadWorker("DisposedTest");
+            worker.Work += (object sender, ThreadWorkerEventArgs e) =>
+                {
+                    e.Result = FileOperationStatus.Success;
+                };
             try
             {
                 worker.Run();

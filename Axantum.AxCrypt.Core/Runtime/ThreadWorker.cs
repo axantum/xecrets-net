@@ -45,13 +45,9 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private BackgroundWorker _worker;
 
-        private ProgressContext _progress;
-
-        private Func<ProgressContext, FileOperationStatus> _work;
-
-        private Action<FileOperationStatus> _complete;
-
         private int _progressPending = 0;
+
+        private ThreadWorkerEventArgs _e;
 
         /// <summary>
         /// Create a thread worker.
@@ -59,10 +55,8 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// <param name="displayText">A text that may be used in messages as a reference for users.</param>
         /// <param name="work">A 'work' delegate. Executed on a separate thread, not the GUI thread.</param>
         /// <param name="complete">A 'complete' delegate. Executed on the original thread, typically the GUI thread.</param>
-        public ThreadWorker(string displayText, Func<ProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
+        public ThreadWorker(string displayText)
         {
-            _work = work;
-            _complete = complete;
             _worker = new BackgroundWorker();
             _worker.WorkerReportsProgress = true;
             _worker.WorkerSupportsCancellation = true;
@@ -70,8 +64,8 @@ namespace Axantum.AxCrypt.Core.Runtime
             _worker.ProgressChanged += new ProgressChangedEventHandler(_worker_ProgressChanged);
             _worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(_worker_RunWorkerCompleted);
 
-            _progress = new ProgressContext(displayText);
-            _progress.Progressing += (object sender, ProgressEventArgs e) =>
+            _e = new ThreadWorkerEventArgs(_worker, new ProgressContext(displayText));
+            _e.ProgressContext.Progressing += (object sender, ProgressEventArgs e) =>
             {
                 if (_worker.CancellationPending)
                 {
@@ -91,8 +85,8 @@ namespace Axantum.AxCrypt.Core.Runtime
             {
                 throw new ObjectDisposedException("ThreadWorker");
             }
-            OnPrepare(new ThreadWorkerEventArgs(_worker));
-            _worker.RunWorkerAsync(_progress);
+            OnPrepare(_e);
+            _worker.RunWorkerAsync();
         }
 
         public void Join()
@@ -109,7 +103,8 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
             try
             {
-                e.Result = _work((ProgressContext)e.Argument);
+                OnWork(_e);
+                e.Result = _e.Result;
             }
             catch (OperationCanceledException)
             {
@@ -128,7 +123,8 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private void _worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            OnProgress(new ThreadWorkerEventArgs(_worker, e.ProgressPercentage));
+            _e.ProgressPercentage = e.ProgressPercentage;
+            OnProgress(_e);
             Interlocked.Decrement(ref _progressPending);
         }
 
@@ -141,8 +137,8 @@ namespace Axantum.AxCrypt.Core.Runtime
                     Thread.Sleep(0);
                 }
                 while (_progressPending > 0);
-                _complete((FileOperationStatus)e.Result);
-                OnCompleted(new ThreadWorkerEventArgs(_worker));
+                _e.Result = (FileOperationStatus)e.Result;
+                OnCompleted(_e);
             }
             finally
             {
@@ -163,6 +159,21 @@ namespace Axantum.AxCrypt.Core.Runtime
         protected virtual void OnPrepare(ThreadWorkerEventArgs e)
         {
             EventHandler<ThreadWorkerEventArgs> handler = Prepare;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        /// <summary>
+        /// Raised when asynchronous execution starts. Runs on a different
+        /// thread than the caller thread. Do not interact with the GUI here.
+        /// </summary>
+        public event EventHandler<ThreadWorkerEventArgs> Work;
+
+        protected virtual void OnWork(ThreadWorkerEventArgs e)
+        {
+            EventHandler<ThreadWorkerEventArgs> handler = Work;
             if (handler != null)
             {
                 handler(this, e);
