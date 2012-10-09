@@ -28,8 +28,8 @@
 using System;
 using System.Globalization;
 using System.IO;
-using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -359,7 +359,9 @@ namespace Axantum.AxCrypt.Core
 
         /// <summary>
         /// Trim a log message from extra information in front, specifically text preceding the
-        /// log level text such as Information, Warning etc.
+        /// log level text such as Information, Warning etc. There must be a space preceding
+        /// the log level text. Recognized texts are 'Information', 'Warning', 'Debug', 'Error'
+        /// and 'Fatal'.
         /// </summary>
         /// <param name="message">A log message</param>
         /// <returns>A possible trimmed message</returns>

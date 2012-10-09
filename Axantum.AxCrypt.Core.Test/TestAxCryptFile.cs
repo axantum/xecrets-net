@@ -350,7 +350,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFileWithBackupAndWipeNullArguments()
+        public static void TestEncryptFileWithBackupFileInfoAndWipeNullArguments()
         {
             string sourceFilePath = _davidCopperfieldTxtPath;
             string destinationFilePath = Path.Combine(Path.GetDirectoryName(sourceFilePath), "David Copperfield-txt.axx");
@@ -372,7 +372,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFileWithBackupAndWipe()
+        public static void TestEncryptFileWithBackupAndWipeFileInfo()
         {
             string sourceFilePath = _davidCopperfieldTxtPath;
             string destinationFilePath = Path.Combine(Path.GetDirectoryName(sourceFilePath), "David Copperfield-txt.axx");
@@ -386,6 +386,43 @@ namespace Axantum.AxCrypt.Core.Test
 
             AxCryptFile.EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, key, progress);
 
+            Assert.That(sourceFileInfo.Exists, Is.False, "The source should be wiped.");
+            Assert.That(destinationFileInfo.Exists, Is.True, "The destination should be created and exist now.");
+        }
+
+        [Test]
+        public static void TestEncryptFileWithBackupFileNameAndWipeNullArguments()
+        {
+            string sourceFilePath = _davidCopperfieldTxtPath;
+            string destinationFilePath = Path.Combine(Path.GetDirectoryName(sourceFilePath), "David Copperfield-txt.axx");
+
+            string nullFileName = null;
+
+            AesKey key = new AesKey();
+            AesKey nullKey = null;
+
+            ProgressContext progress = new ProgressContext();
+            ProgressContext nullProgress = null;
+
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.EncryptFileWithBackupAndWipe(nullFileName, destinationFilePath, key, progress); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.EncryptFileWithBackupAndWipe(sourceFilePath, nullFileName, key, progress); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.EncryptFileWithBackupAndWipe(sourceFilePath, destinationFilePath, nullKey, progress); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.EncryptFileWithBackupAndWipe(sourceFilePath, destinationFilePath, key, nullProgress); });
+        }
+
+        [Test]
+        public static void TestEncryptFileWithBackupAndWipeFileName()
+        {
+            string sourceFilePath = _davidCopperfieldTxtPath;
+            string destinationFilePath = Path.Combine(Path.GetDirectoryName(sourceFilePath), "David Copperfield-txt.axx");
+
+            AesKey key = new AesKey();
+            ProgressContext progress = new ProgressContext();
+
+            AxCryptFile.EncryptFileWithBackupAndWipe(sourceFilePath, destinationFilePath, key, progress);
+
+            IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(sourceFilePath);
+            IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(destinationFilePath);
             Assert.That(sourceFileInfo.Exists, Is.False, "The source should be wiped.");
             Assert.That(destinationFileInfo.Exists, Is.True, "The destination should be created and exist now.");
         }
