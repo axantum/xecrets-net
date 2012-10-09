@@ -119,7 +119,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestCancelationByException()
+        public static void TestCancellationByException()
         {
             bool wasCanceled = false;
             using (ThreadWorker worker = new ThreadWorker("Cancellation Test by Exception"))
@@ -140,7 +140,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestCancelationByRequest()
+        public static void TestCancellationByRequest()
         {
             bool wasCanceled = false;
             FakeRuntimeEnvironment environment = (FakeRuntimeEnvironment)OS.Current;
