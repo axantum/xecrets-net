@@ -90,6 +90,59 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        public static void TestVersionUpdatedWithInvalidVersionFormatFromServer()
+        {
+            _fakeRuntimeEnvironment.WebCallerCreator = () =>
+            {
+                // The version returned has 5 components - bad!
+                return new FakeWebCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.307.0.0"",""R"":307,""S"":0,""M"":""OK""}");
+            };
+
+            DateTime utcNow = DateTime.UtcNow;
+            _fakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
+
+            Version thisVersion = new Version(2, 0, 300, 0);
+            Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
+            Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
+            VersionEventArgs eventArgs = null;
+            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion))
+            {
+                updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
+                {
+                    eventArgs = e;
+                };
+                updateCheck.CheckInBackground(DateTime.MinValue, UpdateCheck.VersionUnknown.ToString(), restApiUrl, updateWebPageUrl);
+                updateCheck.WaitForBackgroundCheckComplete();
+            }
+
+            Assert.That(eventArgs, Is.Not.Null, "The VersionUpdate event should be called with non-null VersionEventArgs.");
+            Assert.That(eventArgs.VersionUpdateStatus, Is.EqualTo(VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck), "This is not a successful check, and it was DateTime.MinValue since the last.");
+            Assert.That(eventArgs.UpdateWebpageUrl, Is.EqualTo(new Uri("http://localhost/AxCrypt/Downloads.html")), "The right URL should be passed in the event args.");
+            Assert.That(eventArgs.Version, Is.EqualTo(UpdateCheck.VersionUnknown), "The new version has 5 components, and should be parsed as unknown.");
+
+            _fakeRuntimeEnvironment.WebCallerCreator = () =>
+            {
+                // The version returned is an empty string - bad!
+                return new FakeWebCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":"""",""R"":307,""S"":0,""M"":""OK""}");
+            };
+
+            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion))
+            {
+                updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
+                {
+                    eventArgs = e;
+                };
+                updateCheck.CheckInBackground(DateTime.MinValue, UpdateCheck.VersionUnknown.ToString(), restApiUrl, updateWebPageUrl);
+                updateCheck.WaitForBackgroundCheckComplete();
+            }
+
+            Assert.That(eventArgs, Is.Not.Null, "The VersionUpdate event should be called with non-null VersionEventArgs.");
+            Assert.That(eventArgs.VersionUpdateStatus, Is.EqualTo(VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck), "This is not a successful check, and it was DateTime.MinValue since the last.");
+            Assert.That(eventArgs.UpdateWebpageUrl, Is.EqualTo(new Uri("http://localhost/AxCrypt/Downloads.html")), "The right URL should be passed in the event args.");
+            Assert.That(eventArgs.Version, Is.EqualTo(UpdateCheck.VersionUnknown), "The new version is an empty string and should be parse as unknown.");
+        }
+
+        [Test]
         public static void TestArgumentNullException()
         {
             string nullVersion = null;
