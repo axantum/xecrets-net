@@ -57,6 +57,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(_helloWorldAxxPath, new MemoryStream(Resources.helloworld_key_a_txt));
 
             _fileSystemState = new FileSystemState();
+            _fileSystemState.Load(FileSystemState.DefaultPathInfo);
         }
 
         [TearDown]
@@ -127,6 +128,50 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 fileContent = new StreamReader(stream).ReadToEnd();
             }
+            Assert.That(fileContent.Contains("Hello"), "A file named Hello World should contain that text when decrypted.");
+        }
+
+        [Test]
+        public static void TestSimpleDecryptAndLaunch()
+        {
+            FakeLauncher launcher = null;
+            FakeRuntimeEnvironment environment = (FakeRuntimeEnvironment)OS.Current;
+            environment.Launcher = ((string path) =>
+            {
+                launcher = new FakeLauncher(path);
+                return launcher;
+            });
+
+            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple DecryptAndLaunch()");
+            controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
+            {
+                e.Passphrase = "a";
+            };
+            string destinationPath = String.Empty;
+            FileOperationStatus status = FileOperationStatus.UnspecifiedError;
+            controller.ProcessFile += (object sender, FileOperationEventArgs e) =>
+            {
+                destinationPath = e.SaveFileFullName;
+                FileOperationsController c = (FileOperationsController)sender;
+                status = c.DoProcessFile(e);
+            };
+            bool decryptFileIsOk = controller.DecryptAndLaunch(_helloWorldAxxPath);
+
+            Assert.That(decryptFileIsOk, "The operation should return true to indicate success.");
+            Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
+
+            Assert.That(launcher, Is.Not.Null, "There should be a call to launch.");
+            Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
+
+            IRuntimeFileInfo destinationInfo = OS.Current.FileInfo(launcher.Path);
+            Assert.That(destinationInfo.Exists, "After decryption the destination file should be created.");
+
+            string fileContent;
+            using (Stream stream = destinationInfo.OpenRead())
+            {
+                fileContent = new StreamReader(stream).ReadToEnd();
+            }
+
             Assert.That(fileContent.Contains("Hello"), "A file named Hello World should contain that text when decrypted.");
         }
     }

@@ -73,7 +73,7 @@ namespace Axantum.AxCrypt.Core.UI
 
             if (destinationActiveFile == null || !destinationActiveFile.DecryptedFileInfo.Exists)
             {
-                IRuntimeFileInfo destinationFolderInfo = GetDestinationFolder(destinationActiveFile);
+                IRuntimeFileInfo destinationFolderInfo = GetTemporaryDestinationFolder(destinationActiveFile);
                 destinationActiveFile = TryDecrypt(fileInfo, destinationFolderInfo, keys, progress);
             }
             else
@@ -117,7 +117,7 @@ namespace Axantum.AxCrypt.Core.UI
             ActiveFile destinationActiveFile = fileSystemState.FindEncryptedPath(fileInfo.FullName);
             if (destinationActiveFile == null || !destinationActiveFile.DecryptedFileInfo.Exists)
             {
-                IRuntimeFileInfo destinationFolderInfo = GetDestinationFolder(destinationActiveFile);
+                IRuntimeFileInfo destinationFolderInfo = GetTemporaryDestinationFolder(destinationActiveFile);
                 destinationActiveFile = DecryptActiveFileDocument(fileInfo, destinationFolderInfo, document, progress);
             }
             else
@@ -237,7 +237,7 @@ namespace Axantum.AxCrypt.Core.UI
             return destinationActiveFile;
         }
 
-        private static IRuntimeFileInfo GetDestinationFolder(ActiveFile destinationActiveFile)
+        private static IRuntimeFileInfo GetTemporaryDestinationFolder(ActiveFile destinationActiveFile)
         {
             string destinationFolder;
             if (destinationActiveFile != null)

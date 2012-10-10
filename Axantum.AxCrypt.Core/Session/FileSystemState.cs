@@ -45,6 +45,14 @@ namespace Axantum.AxCrypt.Core.Session
             Initialize();
         }
 
+        public static IRuntimeFileInfo DefaultPathInfo
+        {
+            get
+            {
+                return OS.Current.FileInfo(Path.Combine(OS.Current.TemporaryDirectoryInfo.FullName, "FileSystemState.xml"));
+            }
+        }
+
         private void Initialize()
         {
             _lock = new object();

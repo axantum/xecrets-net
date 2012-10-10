@@ -174,7 +174,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
             DoProcessFile = DecryptAndLaunchFileOperation;
             OnProcessFile(_eventArgs);
-            return false;
+            return true;
         }
 
         private bool OpenAxCryptDocument(string sourceFile, FileOperationEventArgs e)

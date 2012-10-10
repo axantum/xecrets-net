@@ -97,8 +97,7 @@ namespace Axantum.AxCrypt
 
             persistentState.Current.Changed += new EventHandler<ActiveFileChangedEventArgs>(HandleFileSystemStateChangedEvent);
 
-            string fileSystemStateFullName = Path.Combine(OS.Current.TemporaryDirectoryInfo.FullName, "FileSystemState.xml"); //MLHIDE
-            persistentState.Current.Load(OS.Current.FileInfo(fileSystemStateFullName));
+            persistentState.Current.Load(FileSystemState.DefaultPathInfo);
 
             backgroundMonitor.UpdateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(HandleVersionUpdateEvent);
             UpdateCheck(Settings.Default.LastUpdateCheckUtc);
