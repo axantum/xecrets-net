@@ -44,7 +44,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public FileOperationsController(FileSystemState fileSystemState, string displayContext)
         {
-            _eventArgs = new FileOperationEventArgs(displayContext);
+            _eventArgs = new FileOperationEventArgs(displayContext, new ProgressContext());
             _fileSystemState = fileSystemState;
         }
 
@@ -113,8 +113,8 @@ namespace Axantum.AxCrypt.Core.UI
             }
             IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(sourceFile);
             IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
-            _eventArgs.SaveFileName = destinationFileInfo.FullName;
-            _eventArgs.OpenFileName = sourceFile;
+            _eventArgs.SaveFileFullName = destinationFileInfo.FullName;
+            _eventArgs.OpenFileFullName = sourceFile;
             if (destinationFileInfo.Exists)
             {
                 OnQuerySaveFileAs(_eventArgs);
@@ -151,6 +151,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
 
             IRuntimeFileInfo destination = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(sourceFile), _eventArgs.AxCryptDocument.DocumentHeaders.FileName));
+            _eventArgs.SaveFileFullName = destination.FullName;
             if (destination.Exists)
             {
                 OnQuerySaveFileAs(_eventArgs);
@@ -159,7 +160,6 @@ namespace Axantum.AxCrypt.Core.UI
                     return false;
                 }
             }
-            _eventArgs.SaveFileName = destination.FullName;
 
             DoProcessFile = DecryptFileOperation;
             OnProcessFile(_eventArgs);
@@ -183,7 +183,7 @@ namespace Axantum.AxCrypt.Core.UI
             try
             {
                 IRuntimeFileInfo source = OS.Current.FileInfo(sourceFile);
-                e.OpenFileName = source.FullName;
+                e.OpenFileFullName = source.FullName;
                 foreach (AesKey key in _fileSystemState.KnownKeys.Keys)
                 {
                     e.AxCryptDocument = AxCryptFile.Document(source, key, new ProgressContext());
@@ -230,7 +230,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             try
             {
-                return _fileSystemState.OpenAndLaunchApplication(e.OpenFileName, e.AxCryptDocument, e.Progress);
+                return _fileSystemState.OpenAndLaunchApplication(e.OpenFileFullName, e.AxCryptDocument, e.Progress);
             }
             finally
             {
@@ -243,20 +243,20 @@ namespace Axantum.AxCrypt.Core.UI
         {
             try
             {
-                AxCryptFile.Decrypt(e.AxCryptDocument, OS.Current.FileInfo(e.SaveFileName), AxCryptOptions.SetFileTimes, e.Progress);
+                AxCryptFile.Decrypt(e.AxCryptDocument, OS.Current.FileInfo(e.SaveFileFullName), AxCryptOptions.SetFileTimes, e.Progress);
             }
             finally
             {
                 e.AxCryptDocument.Dispose();
                 e.AxCryptDocument = null;
             }
-            AxCryptFile.Wipe(OS.Current.FileInfo(e.OpenFileName));
+            AxCryptFile.Wipe(OS.Current.FileInfo(e.OpenFileFullName));
             return FileOperationStatus.Success;
         }
 
         private static FileOperationStatus EncryptFileOperation(FileOperationEventArgs e)
         {
-            AxCryptFile.EncryptFileWithBackupAndWipe(e.OpenFileName, e.SaveFileName, e.Key, e.Progress);
+            AxCryptFile.EncryptFileWithBackupAndWipe(e.OpenFileFullName, e.SaveFileFullName, e.Key, e.Progress);
             return FileOperationStatus.Success;
         }
     }

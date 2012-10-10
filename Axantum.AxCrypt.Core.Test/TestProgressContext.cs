@@ -41,13 +41,13 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestProgressNoMax()
         {
-            ProgressContext progressContext = new ProgressContext(TimeSpan.Zero);
+            ProgressContext progress = new ProgressContext(TimeSpan.Zero);
             int percent = -1;
-            progressContext.Progressing += (object sender, ProgressEventArgs e) =>
+            progress.Progressing += (object sender, ProgressEventArgs e) =>
             {
                 percent = e.Percent;
             };
-            progressContext.Current = 100;
+            progress.Current = 100;
             Assert.That(percent, Is.EqualTo(0), "Since there is no Max set, the percentage should always be zero.");
         }
 
@@ -55,39 +55,39 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestProgressContextContext()
         {
             object testObject = new object();
-            ProgressContext progressContext = new ProgressContext("TestProgress", testObject, TimeSpan.Zero);
+            ProgressContext progress = new ProgressContext("TestProgress", testObject, TimeSpan.Zero);
             object progressObject = null;
-            progressContext.Progressing += (object sender, ProgressEventArgs e) =>
+            progress.Progressing += (object sender, ProgressEventArgs e) =>
             {
                 progressObject = e.Context;
             };
-            progressContext.Current = 0;
+            progress.Current = 0;
             Assert.That(progressObject, Is.EqualTo(testObject), "The context should be passed exactly as is to the event.");
         }
 
         [Test]
         public static void TestDisplayText()
         {
-            ProgressContext progressContext = new ProgressContext("TestProgress", null);
-            Assert.That(progressContext.DisplayText, Is.EqualTo("TestProgress"), "The DisplayText property should reflect the value used in the constructor.");
+            ProgressContext progress = new ProgressContext("TestProgress", null);
+            Assert.That(progress.DisplayText, Is.EqualTo("TestProgress"), "The DisplayText property should reflect the value used in the constructor.");
         }
 
         [Test]
         public static void TestCurrentAndMax()
         {
-            ProgressContext progressContext = new ProgressContext();
-            progressContext.Max = 99;
-            progressContext.Finished();
-            Assert.That(progressContext.Current, Is.EqualTo(99), "After Finished(), Current should be equal to Max.");
+            ProgressContext progress = new ProgressContext();
+            progress.Max = 99;
+            progress.Finished();
+            Assert.That(progress.Current, Is.EqualTo(99), "After Finished(), Current should be equal to Max.");
         }
 
         [Test]
         public static void TestPercent()
         {
-            ProgressContext progressContext = new ProgressContext();
-            progressContext.Max = 200;
-            progressContext.Current = 100;
-            Assert.That(progressContext.Percent, Is.EqualTo(50), "When halfway, the percent should be 50.");
+            ProgressContext progress = new ProgressContext();
+            progress.Max = 200;
+            progress.Current = 100;
+            Assert.That(progress.Percent, Is.EqualTo(50), "When halfway, the percent should be 50.");
         }
 
         [Test]
@@ -98,22 +98,22 @@ namespace Axantum.AxCrypt.Core.Test
             OS.Current = fakeEnvironment;
             try
             {
-                ProgressContext progressContext = new ProgressContext(TimeSpan.FromMilliseconds(13));
+                ProgressContext progress = new ProgressContext(TimeSpan.FromMilliseconds(13));
                 bool wasHere = false;
-                progressContext.Progressing += (object sender, ProgressEventArgs e) =>
+                progress.Progressing += (object sender, ProgressEventArgs e) =>
                 {
                     wasHere = true;
                 };
-                progressContext.Max = 100;
-                progressContext.Current = 50;
+                progress.Max = 100;
+                progress.Current = 50;
                 Assert.That(wasHere, Is.False, "No progress should be raised, since the first delay time has not elapsed as yet.");
 
                 fakeEnvironment.CurrentTiming.CurrentTiming = TimeSpan.FromMilliseconds(12);
-                progressContext.Current = 51;
+                progress.Current = 51;
                 Assert.That(wasHere, Is.False, "No progress should be raised, since the first delay time has not elapsed as yet.");
 
                 fakeEnvironment.CurrentTiming.CurrentTiming = TimeSpan.FromMilliseconds(13);
-                progressContext.Current = 52;
+                progress.Current = 52;
                 Assert.That(wasHere, Is.True, "Progress should be raised, since the first delay time has now elapsed.");
             }
             finally

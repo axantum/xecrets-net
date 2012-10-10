@@ -40,25 +40,25 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestArgumentOutOfRange()
         {
-            ProgressContext progressContext = new ProgressContext(TimeSpan.Zero);
-            progressContext.Max = 100;
+            ProgressContext progress = new ProgressContext(TimeSpan.Zero);
+            progress.Max = 100;
             Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
-                progressContext.Current = 101;
+                progress.Current = 101;
             });
         }
 
         [Test]
         public static void TestProgress()
         {
-            ProgressContext progressContext = new ProgressContext(TimeSpan.Zero);
-            progressContext.Max = 100;
+            ProgressContext progress = new ProgressContext(TimeSpan.Zero);
+            progress.Max = 100;
             bool wasHere = false;
-            progressContext.Progressing += (object sender, ProgressEventArgs e) =>
+            progress.Progressing += (object sender, ProgressEventArgs e) =>
             {
                 wasHere = true;
             };
-            progressContext.Current = 0;
+            progress.Current = 0;
             Assert.That(wasHere, "The event should be raised.");
         }
     }

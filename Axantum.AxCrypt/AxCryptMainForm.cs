@@ -309,9 +309,9 @@ namespace Axantum.AxCrypt
                     sfd.ValidateNames = true;
                     sfd.CheckPathExists = true;
                     sfd.DefaultExt = OS.Current.AxCryptExtension;
-                    sfd.FileName = e.SaveFileName;
+                    sfd.FileName = e.SaveFileFullName;
                     sfd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat(OS.Current.AxCryptExtension);
-                    sfd.InitialDirectory = Path.GetDirectoryName(e.SaveFileName);
+                    sfd.InitialDirectory = Path.GetDirectoryName(e.SaveFileFullName);
                     sfd.ValidateNames = true;
                     DialogResult saveAsResult = sfd.ShowDialog();
                     if (saveAsResult != DialogResult.OK)
@@ -319,7 +319,7 @@ namespace Axantum.AxCrypt
                         e.Cancel = true;
                         return;
                     }
-                    e.SaveFileName = sfd.FileName;
+                    e.SaveFileFullName = sfd.FileName;
                 }
             };
 
@@ -352,9 +352,9 @@ namespace Axantum.AxCrypt
         private void HandleProcessFileEvent(object sender, FileOperationEventArgs e)
         {
             progressBackgroundWorker.BackgroundWorkWithProgress(e.DisplayContext,
-                (ProgressContext progressContext) =>
+                (ProgressContext progress) =>
                 {
-                    e.Progress = progressContext;
+                    e.Progress = progress;
                     return ((FileOperationsController)sender).DoProcessFile(e);
                 },
                 (FileOperationStatus status) =>
@@ -452,7 +452,7 @@ namespace Axantum.AxCrypt
 
             operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
             {
-                string extension = Path.GetExtension(e.SaveFileName);
+                string extension = Path.GetExtension(e.SaveFileFullName);
                 using (SaveFileDialog sfd = new SaveFileDialog())
                 {
                     sfd.AddExtension = !String.IsNullOrEmpty(extension);
@@ -460,6 +460,7 @@ namespace Axantum.AxCrypt
                     sfd.DefaultExt = extension;
                     sfd.Filter = Resources.DecryptedSaveAsFileDialogFilterPattern.InvariantFormat(extension);
                     sfd.InitialDirectory = Path.GetDirectoryName(source.FullName);
+                    sfd.FileName = Path.GetFileName(e.SaveFileFullName);
                     sfd.OverwritePrompt = true;
                     sfd.RestoreDirectory = true;
                     sfd.Title = Resources.DecryptedSaveAsFileDialogTitle;
@@ -469,7 +470,7 @@ namespace Axantum.AxCrypt
                         e.Cancel = true;
                         return;
                     }
-                    e.SaveFileName = sfd.FileName;
+                    e.SaveFileFullName = sfd.FileName;
                 }
                 return;
             };

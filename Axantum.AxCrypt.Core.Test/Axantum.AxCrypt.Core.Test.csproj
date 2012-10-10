@@ -126,6 +126,7 @@
     <Compile Include="TestActiveFileCollectionTests.cs" />
     <Compile Include="TestDelegateTraceListener.cs" />
     <Compile Include="TestFileOperation.cs" />
+    <Compile Include="TestFileOperationsController.cs" />
     <Compile Include="TestFileSystemStateExtensions.cs" />
     <Compile Include="TestAesCrypto.cs" />
     <Compile Include="TestAesIV.cs" />
