@@ -46,7 +46,10 @@ namespace Axantum.AxCrypt.Core.UI
         {
             _eventArgs = new FileOperationEventArgs(displayContext, new ProgressContext());
             _fileSystemState = fileSystemState;
+            Status = FileOperationStatus.Unknown;
         }
+
+        public FileOperationStatus Status { get; private set; }
 
         public event EventHandler<FileOperationEventArgs> QuerySaveFileAs;
 
@@ -103,12 +106,13 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public Func<FileOperationEventArgs, FileOperationStatus> DoProcessFile { get; private set; }
+        public Action<FileOperationEventArgs> DoProcessFile { get; private set; }
 
         public bool EncryptFile(string sourceFile)
         {
             if (String.Compare(Path.GetExtension(sourceFile), OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
             {
+                Status = FileOperationStatus.InvalidPath;
                 return false;
             }
             IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(sourceFile);
@@ -120,6 +124,7 @@ namespace Axantum.AxCrypt.Core.UI
                 OnQuerySaveFileAs(_eventArgs);
                 if (_eventArgs.Cancel)
                 {
+                    Status = FileOperationStatus.Canceled;
                     return false;
                 }
             }
@@ -129,6 +134,7 @@ namespace Axantum.AxCrypt.Core.UI
                 OnQueryEncryptionPassphrase(_eventArgs);
                 if (_eventArgs.Cancel)
                 {
+                    Status = FileOperationStatus.Canceled;
                     return false;
                 }
                 Passphrase passphrase = new Passphrase(_eventArgs.Passphrase);
@@ -157,6 +163,7 @@ namespace Axantum.AxCrypt.Core.UI
                 OnQuerySaveFileAs(_eventArgs);
                 if (_eventArgs.Cancel)
                 {
+                    Status = FileOperationStatus.Canceled;
                     return false;
                 }
             }
@@ -201,6 +208,7 @@ namespace Axantum.AxCrypt.Core.UI
                     OnQueryDecryptionPassphrase(e);
                     if (e.Cancel)
                     {
+                        Status = FileOperationStatus.Canceled;
                         return false;
                     }
                     passphrase = new Passphrase(e.Passphrase);
@@ -221,16 +229,17 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     e.AxCryptDocument.Dispose();
                 }
+                Status = FileOperationStatus.Exception;
                 throw;
             }
             return true;
         }
 
-        private FileOperationStatus DecryptAndLaunchFileOperation(FileOperationEventArgs e)
+        private void DecryptAndLaunchFileOperation(FileOperationEventArgs e)
         {
             try
             {
-                return _fileSystemState.OpenAndLaunchApplication(e.OpenFileFullName, e.AxCryptDocument, e.Progress);
+                Status = _fileSystemState.OpenAndLaunchApplication(e.OpenFileFullName, e.AxCryptDocument, e.Progress);
             }
             finally
             {
@@ -239,7 +248,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        private static FileOperationStatus DecryptFileOperation(FileOperationEventArgs e)
+        private void DecryptFileOperation(FileOperationEventArgs e)
         {
             try
             {
@@ -251,13 +260,15 @@ namespace Axantum.AxCrypt.Core.UI
                 e.AxCryptDocument = null;
             }
             AxCryptFile.Wipe(OS.Current.FileInfo(e.OpenFileFullName));
-            return FileOperationStatus.Success;
+
+            Status = FileOperationStatus.Success;
         }
 
-        private static FileOperationStatus EncryptFileOperation(FileOperationEventArgs e)
+        private void EncryptFileOperation(FileOperationEventArgs e)
         {
             AxCryptFile.EncryptFileWithBackupAndWipe(e.OpenFileFullName, e.SaveFileFullName, e.Key, e.Progress);
-            return FileOperationStatus.Success;
+
+            Status = FileOperationStatus.Success;
         }
     }
 }

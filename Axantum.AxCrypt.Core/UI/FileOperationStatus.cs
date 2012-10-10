@@ -39,5 +39,7 @@ namespace Axantum.AxCrypt.Core.UI
         InvalidKey,
         Canceled,
         Exception,
+        Unknown,
+        InvalidPath,
     }
 }

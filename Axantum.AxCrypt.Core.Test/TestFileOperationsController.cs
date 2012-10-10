@@ -76,17 +76,16 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     e.Passphrase = "allan";
                 };
-            FileOperationStatus status = FileOperationStatus.UnspecifiedError;
             controller.ProcessFile += (object sender, FileOperationEventArgs e) =>
                 {
                     destinationPath = e.SaveFileFullName;
                     FileOperationsController c = (FileOperationsController)sender;
-                    status = c.DoProcessFile(e);
+                    c.DoProcessFile(e);
                 };
 
             bool encryptionOperationIsOk = controller.EncryptFile(_davidCopperfieldTxtPath);
             Assert.That(encryptionOperationIsOk, "The encrypting operation should indicate success by returning 'true'.");
-            Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should also indicate success.");
+            Assert.That(controller.Status, Is.EqualTo(FileOperationStatus.Success), "The status should also indicate success.");
 
             IRuntimeFileInfo destinationInfo = OS.Current.FileInfo(destinationPath);
             Assert.That(destinationInfo.Exists, "After encryption the destination file should be created.");
@@ -109,17 +108,16 @@ namespace Axantum.AxCrypt.Core.Test
                     e.Passphrase = "a";
                 };
             string destinationPath = String.Empty;
-            FileOperationStatus status = FileOperationStatus.UnspecifiedError;
             controller.ProcessFile += (object sender, FileOperationEventArgs e) =>
                 {
                     destinationPath = e.SaveFileFullName;
                     FileOperationsController c = (FileOperationsController)sender;
-                    status = c.DoProcessFile(e);
+                    c.DoProcessFile(e);
                 };
             bool decryptFileIsOk = controller.DecryptFile(_helloWorldAxxPath);
 
             Assert.That(decryptFileIsOk, "The operation should return true to indicate success.");
-            Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
+            Assert.That(controller.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
             IRuntimeFileInfo destinationInfo = OS.Current.FileInfo(destinationPath);
             Assert.That(destinationInfo.Exists, "After decryption the destination file should be created.");
 
@@ -148,17 +146,16 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Passphrase = "a";
             };
             string destinationPath = String.Empty;
-            FileOperationStatus status = FileOperationStatus.UnspecifiedError;
             controller.ProcessFile += (object sender, FileOperationEventArgs e) =>
             {
                 destinationPath = e.SaveFileFullName;
                 FileOperationsController c = (FileOperationsController)sender;
-                status = c.DoProcessFile(e);
+                c.DoProcessFile(e);
             };
             bool decryptFileIsOk = controller.DecryptAndLaunch(_helloWorldAxxPath);
 
             Assert.That(decryptFileIsOk, "The operation should return true to indicate success.");
-            Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
+            Assert.That(controller.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
             Assert.That(launcher, Is.Not.Null, "There should be a call to launch.");
             Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
@@ -173,6 +170,24 @@ namespace Axantum.AxCrypt.Core.Test
             }
 
             Assert.That(fileContent.Contains("Hello"), "A file named Hello World should contain that text when decrypted.");
+        }
+
+        [Test]
+        public static void TestCanceledDecryptAndLaunch()
+        {
+            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple DecryptAndLaunch()");
+            controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
+            {
+                e.Cancel = true;
+            };
+            controller.ProcessFile += (object sender, FileOperationEventArgs e) =>
+            {
+                FileOperationsController c = (FileOperationsController)sender;
+                c.DoProcessFile(e);
+            };
+            bool decryptFileIsOk = controller.DecryptAndLaunch(_helloWorldAxxPath);
+            Assert.That(decryptFileIsOk, Is.False, "The operation should return false to indicate failure.");
+            Assert.That(controller.Status, Is.EqualTo(FileOperationStatus.Canceled), "The status should indicate cancellation.");
         }
     }
 }

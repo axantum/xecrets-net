@@ -354,7 +354,9 @@ namespace Axantum.AxCrypt
                 (ProgressContext progress) =>
                 {
                     e.Progress = progress;
-                    return ((FileOperationsController)sender).DoProcessFile(e);
+                    FileOperationsController controller = (FileOperationsController)sender;
+                    controller.DoProcessFile(e);
+                    return controller.Status;
                 },
                 (FileOperationStatus status) =>
                 {
