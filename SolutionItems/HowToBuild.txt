@@ -33,3 +33,14 @@ Any CPU          - Defined for all
 
 The primary plaform is Any CPU except for Axantum.AxCrypt development where it is x86 due to better edit-and-continue support as well as being the Visual Studio
 default, and also except Axantum.AxCrypt.Mac which only supports x86.
+
+Typical combinations used:
+
+Debug|Mixed Platforms   - Development on Windows
+Release|Mixed Platforms - Testing release-builds on Windows (not actual production builds)
+Release|Any CPU         - Deployable release builds for desktop Mono (Windows, Linux and Mac OS X)
+DebugAndroid|Any CPU    - Development for Android
+ReleaseAndroid|Any CPU  - Release builds for Android
+Debug|x86               - Development for Mac OS X
+Release|x86             - Testing release-buidls for Mac OS X
+AppStore|x86            - Deployable release builds for Mac OS X
