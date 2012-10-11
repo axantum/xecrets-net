@@ -10,7 +10,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Threading;
 using Axantum.AxCrypt.Mono;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Mac
 {

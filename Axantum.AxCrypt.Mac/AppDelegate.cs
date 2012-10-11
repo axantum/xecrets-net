@@ -7,7 +7,7 @@ using Axantum.AxCrypt.Core;
 using System.IO;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.UI;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 using System.Diagnostics;
 using Axantum.AxCrypt.Mono;
 

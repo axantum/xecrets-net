@@ -44,7 +44,6 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestSimple()
         {
             int workThreadId = -1;
-            int completeThreadId = -1;
             FileOperationStatus returnedStatus = FileOperationStatus.UnspecifiedError;
 
             bool done = false;
@@ -58,7 +57,6 @@ namespace Axantum.AxCrypt.Core.Test
                 worker.Completed += (object sender, ThreadWorkerEventArgs e) =>
                     {
                         returnedStatus = e.Result;
-                        completeThreadId = Thread.CurrentThread.ManagedThreadId;
                         done = true;
                     };
                 worker.Run();

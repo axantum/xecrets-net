@@ -188,7 +188,6 @@ namespace Axantum.AxCrypt.Core.Test
             }
 
             FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple EncryptFile()");
-            string destinationPath = String.Empty;
             controller.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
             {
                 e.Cancel = true;
@@ -266,7 +265,6 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptWithCancelDuringQuerySaveAs()
         {
-            IRuntimeFileInfo sourceInfo = OS.Current.FileInfo(_davidCopperfieldTxtPath);
             IRuntimeFileInfo expectedDestinationInfo = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
             using (Stream stream = expectedDestinationInfo.OpenWrite())
             {
@@ -290,7 +288,6 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptWithAlternativeDestinationName()
         {
-            IRuntimeFileInfo sourceInfo = OS.Current.FileInfo(_davidCopperfieldTxtPath);
             IRuntimeFileInfo expectedDestinationInfo = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
             using (Stream stream = expectedDestinationInfo.OpenWrite())
             {
@@ -342,10 +339,8 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 e.Passphrase = "a";
             };
-            string destinationPath = String.Empty;
             controller.ProcessFile += (object sender, FileOperationEventArgs e) =>
             {
-                destinationPath = e.SaveFileFullName;
                 FileOperationsController c = (FileOperationsController)sender;
                 c.DoProcessFile(e);
             };

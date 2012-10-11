@@ -11,9 +11,12 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public static class PublicResources
     {
+#if DEBUG
+#pragma warning disable 414
         [SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields", Justification = "This is just a dummy here to ensure 100% code coverage in Unit Tests.")]
         private static Axantum.AxCrypt.Core.Properties.Resources _codeCoverageForInternalDesignerGeneratedConstructorDummy = new Axantum.AxCrypt.Core.Properties.Resources();
-
+#pragma warning restore 414
+#endif
         public static CultureInfo Culture
         {
             get
