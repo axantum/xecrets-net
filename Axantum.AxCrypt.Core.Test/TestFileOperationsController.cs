@@ -32,6 +32,7 @@ using System.Linq;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
@@ -194,6 +195,139 @@ namespace Axantum.AxCrypt.Core.Test
             bool decryptFileIsOk = controller.DecryptAndLaunch(_helloWorldAxxPath);
             Assert.That(decryptFileIsOk, Is.False, "The operation should return false to indicate failure.");
             Assert.That(controller.Status, Is.EqualTo(FileOperationStatus.Canceled), "The status should indicate cancellation.");
+        }
+
+        [Test]
+        public static void TestDecryptWithKnownKey()
+        {
+            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple DecryptFile()");
+            _fileSystemState.KnownKeys.Add(new Passphrase("b").DerivedPassphrase);
+            _fileSystemState.KnownKeys.Add(new Passphrase("c").DerivedPassphrase);
+            _fileSystemState.KnownKeys.Add(new Passphrase("a").DerivedPassphrase);
+            _fileSystemState.KnownKeys.Add(new Passphrase("e").DerivedPassphrase);
+            bool passphraseWasQueried = false;
+            controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
+            {
+                passphraseWasQueried = true;
+            };
+            string destinationPath = String.Empty;
+            controller.ProcessFile += (object sender, FileOperationEventArgs e) =>
+            {
+                destinationPath = e.SaveFileFullName;
+                FileOperationsController c = (FileOperationsController)sender;
+                c.DoProcessFile(e);
+            };
+            bool knownKeyWasAdded = false;
+            controller.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
+            {
+                knownKeyWasAdded = true;
+            };
+            bool decryptFileIsOk = controller.DecryptFile(_helloWorldAxxPath);
+
+            Assert.That(decryptFileIsOk, "The operation should return true to indicate success.");
+            Assert.That(controller.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
+            Assert.That(!knownKeyWasAdded, "An already known key was used, so the KnownKeyAdded event should not have been raised.");
+            Assert.That(!passphraseWasQueried, "An already known key was used, so the there should be no need to query for a passphrase.");
+            IRuntimeFileInfo destinationInfo = OS.Current.FileInfo(destinationPath);
+            Assert.That(destinationInfo.Exists, "After decryption the destination file should be created.");
+
+            string fileContent;
+            using (Stream stream = destinationInfo.OpenRead())
+            {
+                fileContent = new StreamReader(stream).ReadToEnd();
+            }
+            Assert.That(fileContent.Contains("Hello"), "A file named Hello World should contain that text when decrypted.");
+        }
+
+        [Test]
+        public static void TestDecryptFileWithRepeatedPassphraseQueries()
+        {
+            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple DecryptFile()");
+            int passphraseTry = 0;
+            controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
+            {
+                switch (++passphraseTry)
+                {
+                    case 1:
+                        e.Passphrase = "b";
+                        break;
+
+                    case 2:
+                        e.Passphrase = "d";
+                        break;
+
+                    case 3:
+                        e.Passphrase = "a";
+                        break;
+
+                    case 4:
+                        e.Passphrase = "e";
+                        break;
+                };
+            };
+            string destinationPath = String.Empty;
+            controller.ProcessFile += (object sender, FileOperationEventArgs e) =>
+            {
+                destinationPath = e.SaveFileFullName;
+                FileOperationsController c = (FileOperationsController)sender;
+                c.DoProcessFile(e);
+            };
+            bool knownKeyWasAdded = false;
+            controller.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
+            {
+                knownKeyWasAdded = e.Key == new Passphrase("a").DerivedPassphrase;
+            };
+            bool decryptFileIsOk = controller.DecryptFile(_helloWorldAxxPath);
+
+            Assert.That(decryptFileIsOk, "The operation should return true to indicate success.");
+            Assert.That(controller.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
+            Assert.That(knownKeyWasAdded, "A new known key was used, so the KnownKeyAdded event should have been raised.");
+            Assert.That(passphraseTry, Is.EqualTo(3), "The third key was the correct one.");
+            IRuntimeFileInfo destinationInfo = OS.Current.FileInfo(destinationPath);
+            Assert.That(destinationInfo.Exists, "After decryption the destination file should be created.");
+
+            string fileContent;
+            using (Stream stream = destinationInfo.OpenRead())
+            {
+                fileContent = new StreamReader(stream).ReadToEnd();
+            }
+            Assert.That(fileContent.Contains("Hello"), "A file named Hello World should contain that text when decrypted.");
+        }
+
+        [Test]
+        public static void TestDecryptFileWithExceptionBeforeStartingDecryption()
+        {
+            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple DecryptFile()");
+            controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
+            {
+                e.Passphrase = "a";
+            };
+            string destinationPath = String.Empty;
+            controller.ProcessFile += (object sender, FileOperationEventArgs e) =>
+            {
+                throw new InternalErrorException("Processing should never reach here.");
+            };
+            controller.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
+            {
+                throw new InvalidOperationException("Oops, something went wrong during the preparatory phase.");
+            };
+            bool decryptFileIsOk = false;
+            Assert.Throws<InvalidOperationException>(() => { decryptFileIsOk = controller.DecryptFile(_helloWorldAxxPath); });
+
+            Assert.That(!decryptFileIsOk, "The operation should never change the value, since an exception was thrown.");
+            Assert.That(controller.Status, Is.EqualTo(FileOperationStatus.Exception), "The status should indicate an exception occurred.");
+            IRuntimeFileInfo destinationInfo = OS.Current.FileInfo(destinationPath);
+            Assert.That(!destinationInfo.Exists, "Since an exception occurred, the destination file should not be created.");
+        }
+
+        [Test]
+        public static void TestEncryptFileThatIsAlreadyEncrypted()
+        {
+            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple DecryptFile()");
+            bool encryptFileIsOk = controller.EncryptFile("test" + OS.Current.AxCryptExtension);
+
+            Assert.That(!encryptFileIsOk, "The encryption should fail, since the file already has the AxCrypt-extension");
+            Assert.That(controller.Status, Is.EqualTo(FileOperationStatus.InvalidPath), "The status should indicate that the path is invalid.");
         }
     }
 }
