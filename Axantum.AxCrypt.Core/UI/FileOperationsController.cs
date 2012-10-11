@@ -108,6 +108,16 @@ namespace Axantum.AxCrypt.Core.UI
 
         public Action<FileOperationEventArgs> DoProcessFile { get; private set; }
 
+        /// <summary>
+        /// Encrypt file, raising events as required by the situation.
+        /// </summary>
+        /// <param name="sourceFile">The full path to a plain-text file to encrypt.</param>
+        /// <returns>'True' if the operation did not fail so far, 'False' if it definitely has failed.</returns>
+        /// <remarks>
+        /// Since especially the actual operation typically is executed asynchronously, the
+        /// return value and status do not conclusive indicate success. Only a failure return
+        /// is conclusive.
+        /// </remarks>
         public bool EncryptFile(string sourceFile)
         {
             if (String.Compare(Path.GetExtension(sourceFile), OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
@@ -149,6 +159,16 @@ namespace Axantum.AxCrypt.Core.UI
             return true;
         }
 
+        /// <summary>
+        /// Decrypt a file, raising events as required by the situation.
+        /// </summary>
+        /// <param name="sourceFile">The full path to an encrypted file.</param>
+        /// <returns>'True' if the operation did not fail so far, 'False' if it definitely has failed.</returns>
+        /// <remarks>
+        /// Since especially the actual operation typically is executed asynchronously, the
+        /// return value and status do not conclusive indicate success. Only a failure return
+        /// is conclusive.
+        /// </remarks>
         public bool DecryptFile(string sourceFile)
         {
             if (!OpenAxCryptDocument(sourceFile, _eventArgs))
@@ -173,6 +193,17 @@ namespace Axantum.AxCrypt.Core.UI
             return true;
         }
 
+        /// <summary>
+        /// Decrypt a file, and launch the associated application raising events as required by
+        /// the situation.
+        /// </summary>
+        /// <param name="sourceFile">The full path to an encrypted file.</param>
+        /// <returns>'True' if the operation did not fail so far, 'False' if it definitely has failed.</returns>
+        /// <remarks>
+        /// Since especially the actual operation typically is executed asynchronously, the
+        /// return value and status do not conclusive indicate success. Only a failure return
+        /// is conclusive.
+        /// </remarks>
         public bool DecryptAndLaunch(string sourceFile)
         {
             if (!OpenAxCryptDocument(sourceFile, _eventArgs))

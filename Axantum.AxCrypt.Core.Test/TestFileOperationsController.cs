@@ -250,6 +250,83 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        public static void TestDecryptWithCancelDuringQueryDecryptionPassphrase()
+        {
+            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple DecryptFile()");
+            controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
+            {
+                e.Cancel = true;
+            };
+            bool decryptFileIsOk = controller.DecryptFile(_helloWorldAxxPath);
+
+            Assert.That(!decryptFileIsOk, "The operation should return false to indicate failure.");
+            Assert.That(controller.Status, Is.EqualTo(FileOperationStatus.Canceled), "The status should indicate cancellation.");
+        }
+
+        [Test]
+        public static void TestDecryptWithCancelDuringQuerySaveAs()
+        {
+            IRuntimeFileInfo sourceInfo = OS.Current.FileInfo(_davidCopperfieldTxtPath);
+            IRuntimeFileInfo expectedDestinationInfo = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
+            using (Stream stream = expectedDestinationInfo.OpenWrite())
+            {
+            }
+
+            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple DecryptFile()");
+            controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
+                {
+                    e.Passphrase = "a";
+                };
+            controller.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
+                {
+                    e.Cancel = true;
+                };
+            bool decryptFileIsOk = controller.DecryptFile(_helloWorldAxxPath);
+
+            Assert.That(!decryptFileIsOk, "The operation should return false to indicate failure.");
+            Assert.That(controller.Status, Is.EqualTo(FileOperationStatus.Canceled), "The status should indicate cancellation.");
+        }
+
+        [Test]
+        public static void TestDecryptWithAlternativeDestinationName()
+        {
+            IRuntimeFileInfo sourceInfo = OS.Current.FileInfo(_davidCopperfieldTxtPath);
+            IRuntimeFileInfo expectedDestinationInfo = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
+            using (Stream stream = expectedDestinationInfo.OpenWrite())
+            {
+            }
+
+            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple DecryptFile()");
+            controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
+            {
+                e.Passphrase = "a";
+            };
+            controller.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
+            {
+                e.SaveFileFullName = Path.Combine(Path.GetDirectoryName(e.SaveFileFullName), "Other Hello World.txt");
+            };
+            string destinationPath = String.Empty;
+            controller.ProcessFile += (object sender, FileOperationEventArgs e) =>
+            {
+                destinationPath = e.SaveFileFullName;
+                FileOperationsController c = (FileOperationsController)sender;
+                c.DoProcessFile(e);
+            };
+            bool decryptFileIsOk = controller.DecryptFile(_helloWorldAxxPath);
+
+            Assert.That(decryptFileIsOk, "The operation should return true to indicate success.");
+            Assert.That(controller.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
+
+            IRuntimeFileInfo destinationInfo = OS.Current.FileInfo(destinationPath);
+            string fileContent;
+            using (Stream stream = destinationInfo.OpenRead())
+            {
+                fileContent = new StreamReader(stream).ReadToEnd();
+            }
+            Assert.That(fileContent.Contains("Hello"), "A file named 'Other Hello World.txt' should contain that text when decrypted.");
+        }
+
+        [Test]
         public static void TestSimpleDecryptAndLaunch()
         {
             FakeLauncher launcher = null;
