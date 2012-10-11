@@ -80,13 +80,43 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEquals()
         {
-            AesKey key1 = new AesKey(new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 });
-            AesKey key2 = new AesKey(new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 });
+            AesKey key1 = new AesKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
+            AesKey key2 = new AesKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
             AesKey key3 = new AesKey();
 
             Assert.That(!key1.Equals(null), "A key is never equal to a null reference.");
             Assert.That(key1.Equals(key2), "Two different, but equivalent keys should compare equal.");
             Assert.That(!key1.Equals(key3), "Two really different keys should not compare equal.");
+        }
+
+        [Test]
+        public static void TestObjectEquals()
+        {
+            object key1 = new AesKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
+            object key2 = new AesKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
+            object key3 = new AesKey();
+
+            Assert.That(!key1.Equals(null), "A key is never equal to a null reference.");
+            Assert.That(key1.Equals(key2), "Two different, but equivalent keys should compare equal.");
+            Assert.That(!key1.Equals(key3), "Two really different keys should not compare equal.");
+
+            Assert.That(key1.GetHashCode(), Is.EqualTo(key2.GetHashCode()), "The hashcodes should be the same for two different but equivalent keys.");
+        }
+
+        [Test]
+        public static void TestOperatorEquals()
+        {
+            AesKey key1 = new AesKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
+            AesKey key2 = new AesKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
+            AesKey key3 = new AesKey();
+            AesKey key3alias = key3;
+            AesKey nullKey = null;
+
+            Assert.That(key3 == key3alias, "A key is always equal to itself.");
+            Assert.That(key1 != nullKey, "A key is never equal to a null reference.");
+            Assert.That(nullKey != key1, "A key is never equal to a null reference.");
+            Assert.That(key1 == key2, "Two different, but equivalent keys should compare equal.");
+            Assert.That(key1 != key3, "Two really different keys should not compare equal.");
         }
     }
 }

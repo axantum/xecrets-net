@@ -119,7 +119,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>true if the keys are equivalent</returns>
         public bool Equals(AesKey other)
         {
-            if (other == null)
+            if ((object)other == null)
             {
                 return false;
             }
@@ -127,5 +127,44 @@ namespace Axantum.AxCrypt.Core.Crypto
         }
 
         #endregion IEquatable<AesKey> Members
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || typeof(AesKey) != obj.GetType())
+            {
+                return false;
+            }
+            AesKey other = (AesKey)obj;
+
+            return Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            int hashcode = 0;
+            foreach (byte b in _aesKey)
+            {
+                hashcode += b;
+            }
+            return hashcode;
+        }
+
+        public static bool operator ==(AesKey left, AesKey right)
+        {
+            if (Object.ReferenceEquals(left, right))
+            {
+                return true;
+            }
+            if ((object)left == null)
+            {
+                return false;
+            }
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(AesKey left, AesKey right)
+        {
+            return !(left == right);
+        }
     }
 }

@@ -114,10 +114,16 @@ namespace Axantum.AxCrypt.Core.Test
                     FileOperationsController c = (FileOperationsController)sender;
                     c.DoProcessFile(e);
                 };
+            bool knownKeyWasAdded = false;
+            controller.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
+                {
+                    knownKeyWasAdded = e.Key == new Passphrase("a").DerivedPassphrase;
+                };
             bool decryptFileIsOk = controller.DecryptFile(_helloWorldAxxPath);
 
             Assert.That(decryptFileIsOk, "The operation should return true to indicate success.");
             Assert.That(controller.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
+            Assert.That(knownKeyWasAdded, "A new known key was used, so the KnownKeyAdded event should have been raised.");
             IRuntimeFileInfo destinationInfo = OS.Current.FileInfo(destinationPath);
             Assert.That(destinationInfo.Exists, "After decryption the destination file should be created.");
 
