@@ -101,6 +101,119 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        public static void TestEncryptFileWithDefaultEncryptionKey()
+        {
+            _fileSystemState.KnownKeys.DefaultEncryptionKey = new Passphrase("default").DerivedPassphrase;
+            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple EncryptFile()");
+            bool queryEncryptionPassphraseWasCalled = false;
+            controller.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
+                {
+                    queryEncryptionPassphraseWasCalled = true;
+                };
+            string destinationPath = String.Empty;
+            controller.ProcessFile += (object sender, FileOperationEventArgs e) =>
+            {
+                destinationPath = e.SaveFileFullName;
+                FileOperationsController c = (FileOperationsController)sender;
+                c.DoProcessFile(e);
+            };
+
+            bool encryptionOperationIsOk = controller.EncryptFile(_davidCopperfieldTxtPath);
+            Assert.That(encryptionOperationIsOk, "The encrypting operation should indicate success by returning 'true'.");
+            Assert.That(controller.Status, Is.EqualTo(FileOperationStatus.Success), "The status should also indicate success.");
+            Assert.That(!queryEncryptionPassphraseWasCalled, "No query of encryption passphrase should be needed since there is a default set.");
+
+            IRuntimeFileInfo destinationInfo = OS.Current.FileInfo(destinationPath);
+            Assert.That(destinationInfo.Exists, "After encryption the destination file should be created.");
+            using (AxCryptDocument document = new AxCryptDocument())
+            {
+                using (Stream stream = destinationInfo.OpenRead())
+                {
+                    document.Load(stream, new Passphrase("default").DerivedPassphrase);
+                    Assert.That(document.PassphraseIsValid, "The encrypted document should be valid and encrypted with the default passphrase given.");
+                }
+            }
+        }
+
+        [Test]
+        public static void TestEncryptFileWhenDestinationExists()
+        {
+            IRuntimeFileInfo sourceInfo = OS.Current.FileInfo(_davidCopperfieldTxtPath);
+            IRuntimeFileInfo expectedDestinationInfo = OS.Current.FileInfo(AxCryptFile.MakeAxCryptFileName(sourceInfo));
+            using (Stream stream = expectedDestinationInfo.OpenWrite())
+            {
+            }
+
+            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple EncryptFile()");
+            string destinationPath = String.Empty;
+            controller.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
+            {
+                e.Passphrase = "allan";
+            };
+            controller.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
+            {
+                e.SaveFileFullName = Path.Combine(Path.GetDirectoryName(e.SaveFileFullName), "alternative-name.axx");
+            };
+            controller.ProcessFile += (object sender, FileOperationEventArgs e) =>
+            {
+                destinationPath = e.SaveFileFullName;
+                FileOperationsController c = (FileOperationsController)sender;
+                c.DoProcessFile(e);
+            };
+
+            bool encryptionOperationIsOk = controller.EncryptFile(_davidCopperfieldTxtPath);
+            Assert.That(encryptionOperationIsOk, "The encrypting operation should indicate success by returning 'true'.");
+            Assert.That(controller.Status, Is.EqualTo(FileOperationStatus.Success), "The status should also indicate success.");
+
+            Assert.That(Path.GetFileName(destinationPath), Is.EqualTo("alternative-name.axx"), "The alternative name should be used, since the default existed.");
+            IRuntimeFileInfo destinationInfo = OS.Current.FileInfo(destinationPath);
+            Assert.That(destinationInfo.Exists, "After encryption the destination file should be created.");
+            using (AxCryptDocument document = new AxCryptDocument())
+            {
+                using (Stream stream = destinationInfo.OpenRead())
+                {
+                    document.Load(stream, new Passphrase("allan").DerivedPassphrase);
+                    Assert.That(document.PassphraseIsValid, "The encrypted document should be valid and encrypted with the passphrase given.");
+                }
+            }
+        }
+
+        [Test]
+        public static void TestEncryptFileWhenCancelledDuringQuerySaveAs()
+        {
+            IRuntimeFileInfo sourceInfo = OS.Current.FileInfo(_davidCopperfieldTxtPath);
+            IRuntimeFileInfo expectedDestinationInfo = OS.Current.FileInfo(AxCryptFile.MakeAxCryptFileName(sourceInfo));
+            using (Stream stream = expectedDestinationInfo.OpenWrite())
+            {
+            }
+
+            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple EncryptFile()");
+            string destinationPath = String.Empty;
+            controller.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
+            {
+                e.Cancel = true;
+            };
+
+            bool encryptionOperationIsOk = controller.EncryptFile(_davidCopperfieldTxtPath);
+            Assert.That(!encryptionOperationIsOk, "The encrypting operation should indicate failure by returning 'false'.");
+            Assert.That(controller.Status, Is.EqualTo(FileOperationStatus.Canceled), "The status should also indicate cancellation.");
+        }
+
+        [Test]
+        public static void TestEncryptFileWhenCancelledDuringQueryPassphrase()
+        {
+            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple EncryptFile()");
+            controller.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
+            {
+                e.Cancel = true;
+            };
+
+            bool encryptionOperationIsOk = controller.EncryptFile(_davidCopperfieldTxtPath);
+            Assert.That(!encryptionOperationIsOk, "The encrypting operation should indicate failure by returning 'false'.");
+            Assert.That(controller.Status, Is.EqualTo(FileOperationStatus.Canceled), "The status should also indicate cancellation.");
+        }
+
+        [Test]
         public static void TestSimleDecryptFile()
         {
             FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple DecryptFile()");
