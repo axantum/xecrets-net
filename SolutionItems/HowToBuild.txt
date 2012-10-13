@@ -44,3 +44,8 @@ ReleaseAndroid|Any CPU  - Release builds for Android
 Debug|x86               - Development for Mac OS X
 Release|x86             - Testing release-buidls for Mac OS X
 AppStore|x86            - Deployable release builds for Mac OS X
+
+Build combinations from a development scenario:
+
+Mono Desktop on Windows - Debug|Mixed Platforms
+Android on Windows      - DebugAndroid|Any CPU

@@ -331,6 +331,7 @@
             this.smallImageList.Images.SetKeyName(1, "InactiveFile");
             this.smallImageList.Images.SetKeyName(2, "Exclamation");
             this.smallImageList.Images.SetKeyName(3, "DecryptedFile");
+            this.smallImageList.Images.SetKeyName(4, "DecryptedUnknownKeyFile");
             // 
             // activeFilePollingTimer
             // 

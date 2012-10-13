@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -57,6 +58,22 @@ namespace Axantum.AxCrypt
     /// </summary>
     public partial class AxCryptMainForm : Form
     {
+        private class RecentFilesByDateComparer : IComparer
+        {
+            #region IComparer Members
+
+            public int Compare(object x, object y)
+            {
+                ListViewItem item1 = (ListViewItem)x;
+                ListViewItem item2 = (ListViewItem)y;
+                DateTime dateTime1 = (DateTime)item1.SubItems["Date"].Tag;
+                DateTime dateTime2 = (DateTime)item2.SubItems["Date"].Tag;
+                return dateTime2.CompareTo(dateTime1);
+            }
+
+            #endregion IComparer Members
+        }
+
         private Uri _updateUrl = Settings.Default.UpdateUrl;
 
         private TabPage _logTabPage = null;
@@ -92,6 +109,8 @@ namespace Axantum.AxCrypt
             Text = "{0} {1}{2}".InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription); //MLHIDE
 
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
+
+            recentFilesListView.ListViewItemSorter = new RecentFilesByDateComparer();
 
             OS.Current.FileChanged += new EventHandler<EventArgs>(HandleFileChangedEvent);
 
@@ -212,59 +231,52 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            if (activeFile.Status.HasMask(ActiveFileStatus.NotDecrypted))
-            {
-                UpdateRecentFilesListView(activeFile);
-                return;
-            }
-
-            if (activeFile.Status.HasMask(ActiveFileStatus.DecryptedIsPendingDelete) || activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
-            {
-                UpdateOpenFilesListView(activeFile);
-                return;
-            }
-        }
-
-        private void UpdateOpenFilesListView(ActiveFile activeFile)
-        {
-            ListViewItem item;
-            item = new ListViewItem(Path.GetFileName(activeFile.DecryptedFileInfo.FullName), activeFile.Key != null ? "DecryptedFile" : "Exclamation"); //MLHIDE
-            ListViewItem.ListViewSubItem encryptedPathColumn = new ListViewItem.ListViewSubItem();
-            encryptedPathColumn.Name = "EncryptedPath";           //MLHIDE
-            encryptedPathColumn.Text = activeFile.EncryptedFileInfo.FullName;
-            item.SubItems.Add(encryptedPathColumn);
-
-            item.Name = activeFile.EncryptedFileInfo.FullName;
-            recentFilesListView.Items.RemoveByKey(item.Name);
-            recentFilesListView.Items.Add(item);
+            UpdateRecentFilesListView(activeFile);
         }
 
         private void UpdateRecentFilesListView(ActiveFile activeFile)
         {
-            ListViewItem item;
-            if (String.IsNullOrEmpty(activeFile.DecryptedFileInfo.FullName))
+            ListViewItem item = recentFilesListView.Items[activeFile.EncryptedFileInfo.FullName];
+            if (item == null)
             {
-                item = new ListViewItem(String.Empty, "InactiveFile"); //MLHIDE
+                item = new ListViewItem(Path.GetFileName(activeFile.DecryptedFileInfo.FullName));
+
+                ListViewItem.ListViewSubItem dateColumn = new ListViewItem.ListViewSubItem();
+                dateColumn.Name = "Date";                             //MLHIDE
+                item.SubItems.Add(dateColumn);
+
+                ListViewItem.ListViewSubItem encryptedPathColumn = new ListViewItem.ListViewSubItem();
+                encryptedPathColumn.Name = "EncryptedPath";           //MLHIDE
+                item.SubItems.Add(encryptedPathColumn);
+
+                item.Name = activeFile.EncryptedFileInfo.FullName;
+
+                UpdateListViewItem(item, activeFile);
+
+                recentFilesListView.Items.Add(item);
             }
             else
             {
-                item = new ListViewItem(Path.GetFileName(activeFile.DecryptedFileInfo.FullName), "ActiveFile"); //MLHIDE
+                UpdateListViewItem(item, activeFile);
             }
 
-            ListViewItem.ListViewSubItem dateColumn = new ListViewItem.ListViewSubItem();
-            dateColumn.Text = activeFile.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
-            dateColumn.Tag = activeFile.LastActivityTimeUtc;
-            dateColumn.Name = "Date";                             //MLHIDE
-            item.SubItems.Add(dateColumn);
+            recentFilesListView.Sort();
+        }
 
-            ListViewItem.ListViewSubItem encryptedPathColumn = new ListViewItem.ListViewSubItem();
-            encryptedPathColumn.Name = "EncryptedPath";           //MLHIDE
-            encryptedPathColumn.Text = activeFile.EncryptedFileInfo.FullName;
-            item.SubItems.Add(encryptedPathColumn);
+        private static void UpdateListViewItem(ListViewItem item, ActiveFile activeFile)
+        {
+            if (activeFile.Status.HasMask(ActiveFileStatus.DecryptedIsPendingDelete) || activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
+            {
+                item.ImageKey = activeFile.Key != null ? "DecryptedFile" : "DecryptedUnknownKeyFile";
+            }
+            if (activeFile.Status.HasMask(ActiveFileStatus.NotDecrypted))
+            {
+                item.ImageKey = String.IsNullOrEmpty(activeFile.DecryptedFileInfo.FullName) ? "InactiveFile" : "ActiveFile";
+            }
 
-            item.Name = activeFile.EncryptedFileInfo.FullName;
-            recentFilesListView.Items.RemoveByKey(item.Name);
-            recentFilesListView.Items.Add(item);
+            item.SubItems["EncryptedPath"].Text = activeFile.EncryptedFileInfo.FullName;
+            item.SubItems["Date"].Text = activeFile.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
+            item.SubItems["Date"].Tag = activeFile.LastActivityTimeUtc;
         }
 
         private void toolStripButtonEncrypt_Click(object sender, EventArgs e)
