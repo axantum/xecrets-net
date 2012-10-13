@@ -208,7 +208,6 @@ namespace Axantum.AxCrypt
         {
             if (activeFile.Status.HasMask(ActiveFileStatus.NoLongerActive))
             {
-                openFilesListView.Items.RemoveByKey(activeFile.EncryptedFileInfo.FullName);
                 recentFilesListView.Items.RemoveByKey(activeFile.EncryptedFileInfo.FullName);
                 return;
             }
@@ -229,16 +228,15 @@ namespace Axantum.AxCrypt
         private void UpdateOpenFilesListView(ActiveFile activeFile)
         {
             ListViewItem item;
-            item = new ListViewItem(Path.GetFileName(activeFile.DecryptedFileInfo.FullName), activeFile.Key != null ? "ActiveFile" : "Exclamation"); //MLHIDE
+            item = new ListViewItem(Path.GetFileName(activeFile.DecryptedFileInfo.FullName), activeFile.Key != null ? "DecryptedFile" : "Exclamation"); //MLHIDE
             ListViewItem.ListViewSubItem encryptedPathColumn = new ListViewItem.ListViewSubItem();
             encryptedPathColumn.Name = "EncryptedPath";           //MLHIDE
             encryptedPathColumn.Text = activeFile.EncryptedFileInfo.FullName;
             item.SubItems.Add(encryptedPathColumn);
 
             item.Name = activeFile.EncryptedFileInfo.FullName;
-            openFilesListView.Items.RemoveByKey(item.Name);
-            openFilesListView.Items.Add(item);
             recentFilesListView.Items.RemoveByKey(item.Name);
+            recentFilesListView.Items.Add(item);
         }
 
         private void UpdateRecentFilesListView(ActiveFile activeFile)
@@ -267,7 +265,6 @@ namespace Axantum.AxCrypt
             item.Name = activeFile.EncryptedFileInfo.FullName;
             recentFilesListView.Items.RemoveByKey(item.Name);
             recentFilesListView.Items.Add(item);
-            openFilesListView.Items.RemoveByKey(item.Name);
         }
 
         private void toolStripButtonEncrypt_Click(object sender, EventArgs e)
@@ -605,13 +602,18 @@ namespace Axantum.AxCrypt
                     },
                     (FileOperationStatus status) =>
                     {
-                        closeAndRemoveOpenFilesToolStripButton.Enabled = openFilesListView.Items.Count > 0;
+                        closeAndRemoveOpenFilesToolStripButton.Enabled = OpenFilesCount() > 0;
                     });
             }
             finally
             {
                 _pollingInProgress = false;
             }
+        }
+
+        private int OpenFilesCount()
+        {
+            return 1;
         }
 
         private void openEncryptedToolStripMenuItem_Click(object sender, EventArgs e)
@@ -671,8 +673,6 @@ namespace Axantum.AxCrypt
 
         private void openFilesListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            string encryptedPath = openFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text; //MLHIDE
-            OpenEncrypted(encryptedPath);
         }
 
         private void removeRecentFileToolStripMenuItem_Click(object sender, EventArgs e)

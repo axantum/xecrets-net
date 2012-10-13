@@ -60,22 +60,8 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusTabControl = new System.Windows.Forms.TabControl();
-            this.openFilesTabPage = new System.Windows.Forms.TabPage();
-            this.openFilesListView = new System.Windows.Forms.ListView();
-            this.openFileColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.encryptedSourceColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.largeImageList = new System.Windows.Forms.ImageList(this.components);
             this.smallImageList = new System.Windows.Forms.ImageList(this.components);
-            this.recentFilesTabPage = new System.Windows.Forms.TabPage();
-            this.recentFilesListView = new System.Windows.Forms.ListView();
-            this.decryptedFileColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lastAccessTimeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.encryptedPathColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.watchedFoldersTabPage = new System.Windows.Forms.TabPage();
-            this.watchedFoldersListView = new System.Windows.Forms.ListView();
-            this.logTabPage = new System.Windows.Forms.TabPage();
-            this.logOutputTextBox = new System.Windows.Forms.TextBox();
             this.activeFilePollingTimer = new System.Windows.Forms.Timer(this.components);
             this.progressTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.recentFilesContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -84,19 +70,28 @@
             this.enterPassphraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.progressContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.progressContextCancelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logTabPage = new System.Windows.Forms.TabPage();
+            this.logOutputTextBox = new System.Windows.Forms.TextBox();
+            this.watchedFoldersTabPage = new System.Windows.Forms.TabPage();
+            this.watchedFoldersListView = new System.Windows.Forms.ListView();
+            this.recentFilesTabPage = new System.Windows.Forms.TabPage();
+            this.recentFilesListView = new System.Windows.Forms.ListView();
+            this.decryptedFileColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lastAccessTimeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.encryptedPathColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.statusTabControl = new System.Windows.Forms.TabControl();
             this.persistentState = new Axantum.AxCrypt.PersistentState(this.components);
             this.progressBackgroundWorker = new Axantum.AxCrypt.ProgressBackgroundWorker(this.components);
             this.backgroundMonitor = new Axantum.AxCrypt.BackgroundMonitor(this.components);
             this.mainToolStrip.SuspendLayout();
             this.mainMenuStrip.SuspendLayout();
-            this.statusTabControl.SuspendLayout();
-            this.openFilesTabPage.SuspendLayout();
-            this.recentFilesTabPage.SuspendLayout();
-            this.watchedFoldersTabPage.SuspendLayout();
-            this.logTabPage.SuspendLayout();
             this.recentFilesContextMenuStrip.SuspendLayout();
             this.openFilesContextMenuStrip.SuspendLayout();
             this.progressContextMenuStrip.SuspendLayout();
+            this.logTabPage.SuspendLayout();
+            this.watchedFoldersTabPage.SuspendLayout();
+            this.recentFilesTabPage.SuspendLayout();
+            this.statusTabControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.persistentState)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundMonitor)).BeginInit();
             this.SuspendLayout();
@@ -320,46 +315,6 @@
             resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
-            // statusTabControl
-            // 
-            resources.ApplyResources(this.statusTabControl, "statusTabControl");
-            this.statusTabControl.Controls.Add(this.openFilesTabPage);
-            this.statusTabControl.Controls.Add(this.recentFilesTabPage);
-            this.statusTabControl.Controls.Add(this.watchedFoldersTabPage);
-            this.statusTabControl.Controls.Add(this.logTabPage);
-            this.statusTabControl.Name = "statusTabControl";
-            this.statusTabControl.SelectedIndex = 0;
-            // 
-            // openFilesTabPage
-            // 
-            this.openFilesTabPage.Controls.Add(this.openFilesListView);
-            resources.ApplyResources(this.openFilesTabPage, "openFilesTabPage");
-            this.openFilesTabPage.Name = "openFilesTabPage";
-            this.openFilesTabPage.UseVisualStyleBackColor = true;
-            // 
-            // openFilesListView
-            // 
-            this.openFilesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.openFileColumnHeader,
-            this.encryptedSourceColumnHeader});
-            resources.ApplyResources(this.openFilesListView, "openFilesListView");
-            this.openFilesListView.FullRowSelect = true;
-            this.openFilesListView.LargeImageList = this.largeImageList;
-            this.openFilesListView.Name = "openFilesListView";
-            this.openFilesListView.SmallImageList = this.smallImageList;
-            this.openFilesListView.UseCompatibleStateImageBehavior = false;
-            this.openFilesListView.View = System.Windows.Forms.View.Details;
-            this.openFilesListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.openFilesListView_MouseClick);
-            this.openFilesListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.openFilesListView_MouseDoubleClick);
-            // 
-            // openFileColumnHeader
-            // 
-            resources.ApplyResources(this.openFileColumnHeader, "openFileColumnHeader");
-            // 
-            // encryptedSourceColumnHeader
-            // 
-            resources.ApplyResources(this.encryptedSourceColumnHeader, "encryptedSourceColumnHeader");
-            // 
             // largeImageList
             // 
             this.largeImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("largeImageList.ImageStream")));
@@ -375,69 +330,7 @@
             this.smallImageList.Images.SetKeyName(0, "ActiveFile");
             this.smallImageList.Images.SetKeyName(1, "InactiveFile");
             this.smallImageList.Images.SetKeyName(2, "Exclamation");
-            // 
-            // recentFilesTabPage
-            // 
-            this.recentFilesTabPage.Controls.Add(this.recentFilesListView);
-            resources.ApplyResources(this.recentFilesTabPage, "recentFilesTabPage");
-            this.recentFilesTabPage.Name = "recentFilesTabPage";
-            this.recentFilesTabPage.UseVisualStyleBackColor = true;
-            // 
-            // recentFilesListView
-            // 
-            this.recentFilesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.decryptedFileColumnHeader,
-            this.lastAccessTimeColumnHeader,
-            this.encryptedPathColumnHeader});
-            resources.ApplyResources(this.recentFilesListView, "recentFilesListView");
-            this.recentFilesListView.FullRowSelect = true;
-            this.recentFilesListView.LargeImageList = this.largeImageList;
-            this.recentFilesListView.Name = "recentFilesListView";
-            this.recentFilesListView.SmallImageList = this.smallImageList;
-            this.recentFilesListView.UseCompatibleStateImageBehavior = false;
-            this.recentFilesListView.View = System.Windows.Forms.View.Details;
-            this.recentFilesListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.recentFilesListView_ColumnWidthChanged);
-            this.recentFilesListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.recentFilesListView_MouseClick);
-            this.recentFilesListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.recentFilesListView_MouseDoubleClick);
-            // 
-            // decryptedFileColumnHeader
-            // 
-            resources.ApplyResources(this.decryptedFileColumnHeader, "decryptedFileColumnHeader");
-            // 
-            // lastAccessTimeColumnHeader
-            // 
-            resources.ApplyResources(this.lastAccessTimeColumnHeader, "lastAccessTimeColumnHeader");
-            // 
-            // encryptedPathColumnHeader
-            // 
-            resources.ApplyResources(this.encryptedPathColumnHeader, "encryptedPathColumnHeader");
-            // 
-            // watchedFoldersTabPage
-            // 
-            this.watchedFoldersTabPage.Controls.Add(this.watchedFoldersListView);
-            resources.ApplyResources(this.watchedFoldersTabPage, "watchedFoldersTabPage");
-            this.watchedFoldersTabPage.Name = "watchedFoldersTabPage";
-            this.watchedFoldersTabPage.UseVisualStyleBackColor = true;
-            // 
-            // watchedFoldersListView
-            // 
-            resources.ApplyResources(this.watchedFoldersListView, "watchedFoldersListView");
-            this.watchedFoldersListView.FullRowSelect = true;
-            this.watchedFoldersListView.Name = "watchedFoldersListView";
-            this.watchedFoldersListView.UseCompatibleStateImageBehavior = false;
-            // 
-            // logTabPage
-            // 
-            this.logTabPage.Controls.Add(this.logOutputTextBox);
-            resources.ApplyResources(this.logTabPage, "logTabPage");
-            this.logTabPage.Name = "logTabPage";
-            this.logTabPage.UseVisualStyleBackColor = true;
-            // 
-            // logOutputTextBox
-            // 
-            resources.ApplyResources(this.logOutputTextBox, "logOutputTextBox");
-            this.logOutputTextBox.Name = "logOutputTextBox";
-            this.logOutputTextBox.ReadOnly = true;
+            this.smallImageList.Images.SetKeyName(3, "DecryptedFile");
             // 
             // activeFilePollingTimer
             // 
@@ -489,6 +382,78 @@
             resources.ApplyResources(this.progressContextCancelToolStripMenuItem, "progressContextCancelToolStripMenuItem");
             this.progressContextCancelToolStripMenuItem.Click += new System.EventHandler(this.progressContextCancelToolStripMenuItem_Click);
             // 
+            // logTabPage
+            // 
+            this.logTabPage.Controls.Add(this.logOutputTextBox);
+            resources.ApplyResources(this.logTabPage, "logTabPage");
+            this.logTabPage.Name = "logTabPage";
+            this.logTabPage.UseVisualStyleBackColor = true;
+            // 
+            // logOutputTextBox
+            // 
+            resources.ApplyResources(this.logOutputTextBox, "logOutputTextBox");
+            this.logOutputTextBox.Name = "logOutputTextBox";
+            this.logOutputTextBox.ReadOnly = true;
+            // 
+            // watchedFoldersTabPage
+            // 
+            this.watchedFoldersTabPage.Controls.Add(this.watchedFoldersListView);
+            resources.ApplyResources(this.watchedFoldersTabPage, "watchedFoldersTabPage");
+            this.watchedFoldersTabPage.Name = "watchedFoldersTabPage";
+            this.watchedFoldersTabPage.UseVisualStyleBackColor = true;
+            // 
+            // watchedFoldersListView
+            // 
+            resources.ApplyResources(this.watchedFoldersListView, "watchedFoldersListView");
+            this.watchedFoldersListView.FullRowSelect = true;
+            this.watchedFoldersListView.Name = "watchedFoldersListView";
+            this.watchedFoldersListView.UseCompatibleStateImageBehavior = false;
+            // 
+            // recentFilesTabPage
+            // 
+            this.recentFilesTabPage.Controls.Add(this.recentFilesListView);
+            resources.ApplyResources(this.recentFilesTabPage, "recentFilesTabPage");
+            this.recentFilesTabPage.Name = "recentFilesTabPage";
+            this.recentFilesTabPage.UseVisualStyleBackColor = true;
+            // 
+            // recentFilesListView
+            // 
+            this.recentFilesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.decryptedFileColumnHeader,
+            this.lastAccessTimeColumnHeader,
+            this.encryptedPathColumnHeader});
+            resources.ApplyResources(this.recentFilesListView, "recentFilesListView");
+            this.recentFilesListView.FullRowSelect = true;
+            this.recentFilesListView.LargeImageList = this.largeImageList;
+            this.recentFilesListView.Name = "recentFilesListView";
+            this.recentFilesListView.SmallImageList = this.smallImageList;
+            this.recentFilesListView.UseCompatibleStateImageBehavior = false;
+            this.recentFilesListView.View = System.Windows.Forms.View.Details;
+            this.recentFilesListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.recentFilesListView_ColumnWidthChanged);
+            this.recentFilesListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.recentFilesListView_MouseClick);
+            this.recentFilesListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.recentFilesListView_MouseDoubleClick);
+            // 
+            // decryptedFileColumnHeader
+            // 
+            resources.ApplyResources(this.decryptedFileColumnHeader, "decryptedFileColumnHeader");
+            // 
+            // lastAccessTimeColumnHeader
+            // 
+            resources.ApplyResources(this.lastAccessTimeColumnHeader, "lastAccessTimeColumnHeader");
+            // 
+            // encryptedPathColumnHeader
+            // 
+            resources.ApplyResources(this.encryptedPathColumnHeader, "encryptedPathColumnHeader");
+            // 
+            // statusTabControl
+            // 
+            resources.ApplyResources(this.statusTabControl, "statusTabControl");
+            this.statusTabControl.Controls.Add(this.recentFilesTabPage);
+            this.statusTabControl.Controls.Add(this.watchedFoldersTabPage);
+            this.statusTabControl.Controls.Add(this.logTabPage);
+            this.statusTabControl.Name = "statusTabControl";
+            this.statusTabControl.SelectedIndex = 0;
+            // 
             // persistentState
             // 
             this.persistentState.Current = null;
@@ -515,15 +480,14 @@
             this.mainToolStrip.PerformLayout();
             this.mainMenuStrip.ResumeLayout(false);
             this.mainMenuStrip.PerformLayout();
-            this.statusTabControl.ResumeLayout(false);
-            this.openFilesTabPage.ResumeLayout(false);
-            this.recentFilesTabPage.ResumeLayout(false);
-            this.watchedFoldersTabPage.ResumeLayout(false);
-            this.logTabPage.ResumeLayout(false);
-            this.logTabPage.PerformLayout();
             this.recentFilesContextMenuStrip.ResumeLayout(false);
             this.openFilesContextMenuStrip.ResumeLayout(false);
             this.progressContextMenuStrip.ResumeLayout(false);
+            this.logTabPage.ResumeLayout(false);
+            this.logTabPage.PerformLayout();
+            this.watchedFoldersTabPage.ResumeLayout(false);
+            this.recentFilesTabPage.ResumeLayout(false);
+            this.statusTabControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.persistentState)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundMonitor)).EndInit();
             this.ResumeLayout(false);
@@ -545,25 +509,11 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton openEncryptedToolStripButton;
         private System.Windows.Forms.ToolStripMenuItem openEncryptedToolStripMenuItem;
-        private System.Windows.Forms.TabControl statusTabControl;
-        private System.Windows.Forms.TabPage openFilesTabPage;
-        private System.Windows.Forms.ListView openFilesListView;
-        private System.Windows.Forms.TabPage watchedFoldersTabPage;
-        private System.Windows.Forms.ListView watchedFoldersListView;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.Timer activeFilePollingTimer;
         private System.Windows.Forms.ImageList largeImageList;
         private System.Windows.Forms.ImageList smallImageList;
-        private System.Windows.Forms.TabPage recentFilesTabPage;
-        private System.Windows.Forms.ListView recentFilesListView;
-        private System.Windows.Forms.ColumnHeader openFileColumnHeader;
-        private System.Windows.Forms.ColumnHeader encryptedSourceColumnHeader;
-        private System.Windows.Forms.ColumnHeader encryptedPathColumnHeader;
-        private System.Windows.Forms.ColumnHeader lastAccessTimeColumnHeader;
-        private System.Windows.Forms.ColumnHeader decryptedFileColumnHeader;
-        private System.Windows.Forms.TabPage logTabPage;
-        private System.Windows.Forms.TextBox logOutputTextBox;
         private System.Windows.Forms.ContextMenuStrip recentFilesContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem removeRecentFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeOpenFilesToolStripMenuItem;
@@ -590,6 +540,16 @@
         private PersistentState persistentState;
         private ProgressBackgroundWorker progressBackgroundWorker;
         private BackgroundMonitor backgroundMonitor;
+        private System.Windows.Forms.TabPage logTabPage;
+        private System.Windows.Forms.TextBox logOutputTextBox;
+        private System.Windows.Forms.TabPage watchedFoldersTabPage;
+        private System.Windows.Forms.ListView watchedFoldersListView;
+        private System.Windows.Forms.TabPage recentFilesTabPage;
+        private System.Windows.Forms.ListView recentFilesListView;
+        private System.Windows.Forms.ColumnHeader decryptedFileColumnHeader;
+        private System.Windows.Forms.ColumnHeader lastAccessTimeColumnHeader;
+        private System.Windows.Forms.ColumnHeader encryptedPathColumnHeader;
+        private System.Windows.Forms.TabControl statusTabControl;
     }
 }
 
