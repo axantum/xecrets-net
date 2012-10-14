@@ -95,6 +95,8 @@ namespace Axantum.AxCrypt
             }
         }
 
+        private IComparer _currentRecentFilesSorter = new RecentFilesByDateComparer();
+
         private void AxCryptMainForm_Load(object sender, EventArgs e)
         {
             if (DesignMode)
@@ -110,7 +112,7 @@ namespace Axantum.AxCrypt
 
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
 
-            recentFilesListView.ListViewItemSorter = new RecentFilesByDateComparer();
+            recentFilesListView.ListViewItemSorter = _currentRecentFilesSorter;
 
             OS.Current.FileChanged += new EventHandler<EventArgs>(HandleFileChangedEvent);
 
@@ -236,42 +238,34 @@ namespace Axantum.AxCrypt
 
         private void UpdateRecentFilesListView(ActiveFile activeFile)
         {
+            recentFilesListView.ListViewItemSorter = null;
             ListViewItem item = recentFilesListView.Items[activeFile.EncryptedFileInfo.FullName];
             if (item == null)
             {
-                item = new ListViewItem(Path.GetFileName(activeFile.DecryptedFileInfo.FullName));
-
-                ListViewItem.ListViewSubItem dateColumn = new ListViewItem.ListViewSubItem();
-                dateColumn.Name = "Date";                             //MLHIDE
-                item.SubItems.Add(dateColumn);
-
-                ListViewItem.ListViewSubItem encryptedPathColumn = new ListViewItem.ListViewSubItem();
-                encryptedPathColumn.Name = "EncryptedPath";           //MLHIDE
-                item.SubItems.Add(encryptedPathColumn);
-
+                string text = Path.GetFileName(activeFile.DecryptedFileInfo.FullName);
+                item = recentFilesListView.Items.Add(text);
                 item.Name = activeFile.EncryptedFileInfo.FullName;
 
-                UpdateListViewItem(item, activeFile);
+                ListViewItem.ListViewSubItem dateColumn = item.SubItems.Add(String.Empty);
+                dateColumn.Name = "Date"; //MLHIDE
 
-                recentFilesListView.Items.Add(item);
-            }
-            else
-            {
-                UpdateListViewItem(item, activeFile);
+                ListViewItem.ListViewSubItem encryptedPathColumn = item.SubItems.Add(String.Empty);
+                encryptedPathColumn.Name = "EncryptedPath"; //MLHIDE
             }
 
-            recentFilesListView.Sort();
+            UpdateListViewItem(item, activeFile);
+            recentFilesListView.ListViewItemSorter = _currentRecentFilesSorter;
         }
 
         private static void UpdateListViewItem(ListViewItem item, ActiveFile activeFile)
         {
             if (activeFile.Status.HasMask(ActiveFileStatus.DecryptedIsPendingDelete) || activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
             {
-                item.ImageKey = activeFile.Key != null ? "DecryptedFile" : "DecryptedUnknownKeyFile";
+                item.ImageKey = activeFile.Key != null ? "DecryptedFile" : "DecryptedUnknownKeyFile"; //MLHIDE
             }
             if (activeFile.Status.HasMask(ActiveFileStatus.NotDecrypted))
             {
-                item.ImageKey = String.IsNullOrEmpty(activeFile.DecryptedFileInfo.FullName) ? "InactiveFile" : "ActiveFile";
+                item.ImageKey = String.IsNullOrEmpty(activeFile.DecryptedFileInfo.FullName) ? "InactiveFile" : "ActiveFile"; //MLHIDE
             }
 
             item.SubItems["EncryptedPath"].Text = activeFile.EncryptedFileInfo.FullName;
@@ -623,7 +617,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private int OpenFilesCount()
+        private static int OpenFilesCount()
         {
             return 1;
         }

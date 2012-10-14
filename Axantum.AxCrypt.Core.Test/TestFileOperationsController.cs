@@ -179,7 +179,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFileWhenCancelledDuringQuerySaveAs()
+        public static void TestEncryptFileWhenCanceledDuringQuerySaveAs()
         {
             IRuntimeFileInfo sourceInfo = OS.Current.FileInfo(_davidCopperfieldTxtPath);
             IRuntimeFileInfo expectedDestinationInfo = OS.Current.FileInfo(AxCryptFile.MakeAxCryptFileName(sourceInfo));
@@ -199,7 +199,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFileWhenCancelledDuringQueryPassphrase()
+        public static void TestEncryptFileWhenCanceledDuringQueryPassphrase()
         {
             FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple EncryptFile()");
             controller.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
@@ -213,7 +213,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestSimleDecryptFile()
+        public static void TestSimpleDecryptFile()
         {
             FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple DecryptFile()");
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
