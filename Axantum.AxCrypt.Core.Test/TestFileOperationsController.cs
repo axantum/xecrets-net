@@ -494,13 +494,13 @@ namespace Axantum.AxCrypt.Core.Test
             };
             controller.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
             {
-                throw new InvalidOperationException("Oops, something went wrong during the preparatory phase.");
+                throw new FileNotFoundException("Just kidding, but we're faking...", e.OpenFileFullName);
             };
             bool decryptFileIsOk = false;
             Assert.DoesNotThrow(() => { decryptFileIsOk = controller.DecryptFile(_helloWorldAxxPath); });
 
             Assert.That(!decryptFileIsOk, "The operation should be false, since an exception was thrown, caught and converted to a status.");
-            Assert.That(controller.Status, Is.EqualTo(FileOperationStatus.Exception), "The status should indicate an exception occurred.");
+            Assert.That(controller.Status, Is.EqualTo(FileOperationStatus.FileDoesNotExist), "The status should indicate an exception occurred.");
             IRuntimeFileInfo destinationInfo = OS.Current.FileInfo(destinationPath);
             Assert.That(!destinationInfo.Exists, "Since an exception occurred, the destination file should not be created.");
         }
