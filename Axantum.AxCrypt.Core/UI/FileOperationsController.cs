@@ -254,14 +254,14 @@ namespace Axantum.AxCrypt.Core.UI
                     OnKnownKeyAdded(e);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 if (e.AxCryptDocument != null)
                 {
                     e.AxCryptDocument.Dispose();
                 }
-                Status = FileOperationStatus.Exception;
-                throw;
+                Status = ex is FileNotFoundException ? FileOperationStatus.FileDoesNotExist : FileOperationStatus.Exception;
+                return false;
             }
             return true;
         }

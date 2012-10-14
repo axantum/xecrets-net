@@ -346,9 +346,34 @@ namespace Axantum.AxCrypt
                 persistentState.Current.KnownKeys.DefaultEncryptionKey = new Passphrase(e.Passphrase).DerivedPassphrase;
             };
 
-            operationsController.ProcessFile += HandleProcessFileEvent;
+            operationsController.ProcessFile += HandleProcessEncryptFileEvent;
 
             operationsController.EncryptFile(file);
+        }
+
+        private void HandleProcessEncryptFileEvent(object sender, FileOperationEventArgs e)
+        {
+            progressBackgroundWorker.BackgroundWorkWithProgress(e.DisplayContext,
+                (ProgressContext progress) =>
+                {
+                    e.Progress = progress;
+                    FileOperationsController controller = (FileOperationsController)sender;
+                    controller.DoProcessFile(e);
+                    return controller.Status;
+                },
+                (FileOperationStatus status) =>
+                {
+                    CheckStatusAndShowMessage(status, e.DisplayContext);
+                    if (status != FileOperationStatus.Success)
+                    {
+                        return;
+                    }
+                    IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
+                    IRuntimeFileInfo decryptedInfo = OS.Current.FileInfo(e.OpenFileFullName);
+                    ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key, ActiveFileStatus.NotDecrypted, null);
+                    persistentState.Current.Add(activeFile);
+                    persistentState.Current.Save();
+                });
         }
 
         private void HandleProcessFileEvent(object sender, FileOperationEventArgs e)
@@ -539,7 +564,12 @@ namespace Axantum.AxCrypt
 
             operationsController.ProcessFile += HandleProcessFileEvent;
 
-            return operationsController.DecryptAndLaunch(file);
+            if (operationsController.DecryptAndLaunch(file))
+            {
+                return true;
+            }
+            CheckStatusAndShowMessage(operationsController.Status, file);
+            return false;
         }
 
         private void HandleQueryDecryptionPassphraseEvent(object sender, FileOperationEventArgs e)
@@ -608,7 +638,7 @@ namespace Axantum.AxCrypt
                     },
                     (FileOperationStatus status) =>
                     {
-                        closeAndRemoveOpenFilesToolStripButton.Enabled = OpenFilesCount() > 0;
+                        closeAndRemoveOpenFilesToolStripButton.Enabled = FilesAreOpen;
                     });
             }
             finally
@@ -617,9 +647,13 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private static int OpenFilesCount()
+        private bool FilesAreOpen
         {
-            return 1;
+            get
+            {
+                IList<ActiveFile> openFiles = persistentState.Current.DecryptedActiveFiles;
+                return openFiles.Count > 0;
+            }
         }
 
         private void openEncryptedToolStripMenuItem_Click(object sender, EventArgs e)

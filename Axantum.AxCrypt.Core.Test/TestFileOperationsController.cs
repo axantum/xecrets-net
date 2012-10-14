@@ -490,16 +490,16 @@ namespace Axantum.AxCrypt.Core.Test
             string destinationPath = String.Empty;
             controller.ProcessFile += (object sender, FileOperationEventArgs e) =>
             {
-                throw new InternalErrorException("Processing should never reach here.");
+                throw new InternalErrorException("The first exception should be caught, but we should never get here.");
             };
             controller.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
             {
                 throw new InvalidOperationException("Oops, something went wrong during the preparatory phase.");
             };
             bool decryptFileIsOk = false;
-            Assert.Throws<InvalidOperationException>(() => { decryptFileIsOk = controller.DecryptFile(_helloWorldAxxPath); });
+            Assert.DoesNotThrow(() => { decryptFileIsOk = controller.DecryptFile(_helloWorldAxxPath); });
 
-            Assert.That(!decryptFileIsOk, "The operation should never change the value, since an exception was thrown.");
+            Assert.That(!decryptFileIsOk, "The operation should be false, since an exception was thrown, caught and converted to a status.");
             Assert.That(controller.Status, Is.EqualTo(FileOperationStatus.Exception), "The status should indicate an exception occurred.");
             IRuntimeFileInfo destinationInfo = OS.Current.FileInfo(destinationPath);
             Assert.That(!destinationInfo.Exists, "Since an exception occurred, the destination file should not be created.");
