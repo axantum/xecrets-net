@@ -103,6 +103,11 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
+        /// <summary>
+        /// Find an active file by way of it's encrypted full path.
+        /// </summary>
+        /// <param name="decryptedPath">Full path to am encrypted file.</param>
+        /// <returns>An ActiveFile instance, or null if not found in file system state.</returns>
         public ActiveFile FindEncryptedPath(string encryptedPath)
         {
             if (encryptedPath == null)
@@ -120,6 +125,11 @@ namespace Axantum.AxCrypt.Core.Session
             return null;
         }
 
+        /// <summary>
+        /// Find an active file by way of it's decrypted full path.
+        /// </summary>
+        /// <param name="decryptedPath">Full path to a decrypted file.</param>
+        /// <returns>An ActiveFile instance, or null if not found in file system state.</returns>
         public ActiveFile FindDecryptedPath(string decryptedPath)
         {
             if (decryptedPath == null)
@@ -137,6 +147,10 @@ namespace Axantum.AxCrypt.Core.Session
             return null;
         }
 
+        /// <summary>
+        /// Add a file to the volatile file system state. To persist, call Save().
+        /// </summary>
+        /// <param name="activeFile">The active file to save</param>
         public void Add(ActiveFile activeFile)
         {
             if (activeFile == null)
@@ -150,6 +164,10 @@ namespace Axantum.AxCrypt.Core.Session
             OnChanged(new ActiveFileChangedEventArgs(activeFile));
         }
 
+        /// <summary>
+        /// Remove a file from the volatile file system state. To persist, call Save().
+        /// </summary>
+        /// <param name="activeFile">An active file to remove</param>
         public void Remove(ActiveFile activeFile)
         {
             if (activeFile == null)
@@ -199,8 +217,18 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
+        /// <summary>
+        /// Iterate over all active files in the state.
+        /// </summary>
+        /// <param name="mode">RaiseAlways to raise Changed event for each active file, RaiseOnlyOnModified to only raise for modified active files.</param>
+        /// <param name="action">A delegate with an action to take for each active file, returning the same or updated active file as need be.</param>
         public void ForEach(ChangedEventMode mode, Func<ActiveFile, ActiveFile> action)
         {
+            if (action == null)
+            {
+                throw new ArgumentNullException("action");
+            }
+
             bool isModified = false;
             List<ActiveFile> activeFiles = new List<ActiveFile>();
             foreach (ActiveFile activeFile in ActiveFiles)
@@ -240,6 +268,11 @@ namespace Axantum.AxCrypt.Core.Session
 
         public void Load(IRuntimeFileInfo path)
         {
+            if (path == null)
+            {
+                throw new ArgumentNullException("path");
+            }
+
             if (!path.Exists)
             {
                 _path = path.FullName;

@@ -31,6 +31,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using NUnit.Framework;
@@ -262,6 +263,25 @@ namespace Axantum.AxCrypt.Core.Test
             state.Dispose();
 
             Assert.DoesNotThrow(() => { state.Dispose(); });
+        }
+
+        [Test]
+        public static void TestArgumentNull()
+        {
+            using (FileSystemState state = new FileSystemState())
+            {
+                ActiveFile nullActiveFile = null;
+                string nullPath = null;
+                Func<ActiveFile, ActiveFile> nullAction = null;
+                IRuntimeFileInfo nullFileInfo = null;
+
+                Assert.Throws<ArgumentNullException>(() => { state.Remove(nullActiveFile); });
+                Assert.Throws<ArgumentNullException>(() => { state.Add(nullActiveFile); });
+                Assert.Throws<ArgumentNullException>(() => { state.FindEncryptedPath(nullPath); });
+                Assert.Throws<ArgumentNullException>(() => { state.FindDecryptedPath(nullPath); });
+                Assert.Throws<ArgumentNullException>(() => { state.ForEach(ChangedEventMode.RaiseAlways, nullAction); });
+                Assert.Throws<ArgumentNullException>(() => { state.Load(nullFileInfo); });
+            }
         }
     }
 }
