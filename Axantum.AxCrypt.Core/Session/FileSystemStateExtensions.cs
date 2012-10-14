@@ -147,14 +147,17 @@ namespace Axantum.AxCrypt.Core.Session
 
         private static ActiveFile CheckIfCreated(ActiveFile activeFile)
         {
-            if (activeFile.Status == ActiveFileStatus.NotDecrypted)
+            if (activeFile.Status != ActiveFileStatus.NotDecrypted)
             {
-                if (!activeFile.DecryptedFileInfo.Exists)
-                {
-                    return activeFile;
-                }
-                activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted);
+                return activeFile;
             }
+
+            if (!activeFile.DecryptedFileInfo.Exists)
+            {
+                return activeFile;
+            }
+
+            activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted);
 
             return activeFile;
         }
@@ -175,7 +178,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private static ActiveFile CheckIfTimeToUpdate(ActiveFile activeFile, ProgressContext progress)
         {
-            if (activeFile.Status.HasMask(ActiveFileStatus.NotShareable) || !activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
+            if (!activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted) || activeFile.Status.HasMask(ActiveFileStatus.NotShareable))
             {
                 return activeFile;
             }
