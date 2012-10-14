@@ -332,6 +332,7 @@
             this.smallImageList.Images.SetKeyName(2, "Exclamation");
             this.smallImageList.Images.SetKeyName(3, "DecryptedFile");
             this.smallImageList.Images.SetKeyName(4, "DecryptedUnknownKeyFile");
+            this.smallImageList.Images.SetKeyName(5, "ActiveFileKnownKey");
             // 
             // activeFilePollingTimer
             // 
@@ -408,6 +409,7 @@
             resources.ApplyResources(this.watchedFoldersListView, "watchedFoldersListView");
             this.watchedFoldersListView.FullRowSelect = true;
             this.watchedFoldersListView.Name = "watchedFoldersListView";
+            this.watchedFoldersListView.ShowItemToolTips = true;
             this.watchedFoldersListView.UseCompatibleStateImageBehavior = false;
             // 
             // recentFilesTabPage
@@ -427,6 +429,7 @@
             this.recentFilesListView.FullRowSelect = true;
             this.recentFilesListView.LargeImageList = this.largeImageList;
             this.recentFilesListView.Name = "recentFilesListView";
+            this.recentFilesListView.ShowItemToolTips = true;
             this.recentFilesListView.SmallImageList = this.smallImageList;
             this.recentFilesListView.UseCompatibleStateImageBehavior = false;
             this.recentFilesListView.View = System.Windows.Forms.View.Details;

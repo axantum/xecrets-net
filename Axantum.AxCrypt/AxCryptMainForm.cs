@@ -78,6 +78,8 @@ namespace Axantum.AxCrypt
 
         private TabPage _logTabPage = null;
 
+        private TabPage _watchedFoldersTabPage = null;
+
         private NotifyIcon _notifyIcon = null;
 
         public static MessageBoxOptions MessageBoxOptions { get; private set; }
@@ -113,6 +115,10 @@ namespace Axantum.AxCrypt
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
 
             recentFilesListView.ListViewItemSorter = _currentRecentFilesSorter;
+
+            // Hide this tab, until the feature is implemented
+            _watchedFoldersTabPage = statusTabControl.TabPages["watchedFoldersTabPage"]; //MLHIDE
+            statusTabControl.TabPages.Remove(_watchedFoldersTabPage);
 
             OS.Current.FileChanged += new EventHandler<EventArgs>(HandleFileChangedEvent);
 
@@ -259,18 +265,62 @@ namespace Axantum.AxCrypt
 
         private static void UpdateListViewItem(ListViewItem item, ActiveFile activeFile)
         {
-            if (activeFile.Status.HasMask(ActiveFileStatus.DecryptedIsPendingDelete) || activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
-            {
-                item.ImageKey = activeFile.Key != null ? "DecryptedFile" : "DecryptedUnknownKeyFile"; //MLHIDE
-            }
-            if (activeFile.Status.HasMask(ActiveFileStatus.NotDecrypted))
-            {
-                item.ImageKey = String.IsNullOrEmpty(activeFile.DecryptedFileInfo.FullName) ? "InactiveFile" : "ActiveFile"; //MLHIDE
-            }
+            UpdateStatusDependentPropertiesOfListViewItem(item, activeFile);
 
             item.SubItems["EncryptedPath"].Text = activeFile.EncryptedFileInfo.FullName;
             item.SubItems["Date"].Text = activeFile.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
             item.SubItems["Date"].Tag = activeFile.LastActivityTimeUtc;
+        }
+
+        private static void UpdateStatusDependentPropertiesOfListViewItem(ListViewItem item, ActiveFile activeFile)
+        {
+            item.ImageKey = ImageKeyFromActiveFileStatus(activeFile);
+            switch (item.ImageKey)
+            {
+                case "DecryptedFile":
+                    item.ToolTipText = Resources.DecryptedFileToolTip;
+                    break;
+
+                case "DecryptedUnknownKeyFile":
+                    item.ToolTipText = Resources.DecryptedUnknownKeyFileToolTip;
+                    break;
+
+                case "InactiveFile":
+                    item.ToolTipText = Resources.InactiveFileToolTip;
+                    break;
+
+                case "ActiveFile":
+                    item.ToolTipText = Resources.ActiveFileToolTip;
+                    break;
+
+                case "ActiveFileKnownKey":
+                    item.ToolTipText = Resources.ActiveFileKnownKeyToolTip;
+                    break;
+                default:
+                    item.ToolTipText = String.Empty;
+                    break;
+            }
+        }
+
+        private static string ImageKeyFromActiveFileStatus(ActiveFile activeFile)
+        {
+            if (activeFile.Status.HasMask(ActiveFileStatus.DecryptedIsPendingDelete))
+            {
+                return activeFile.Key != null ? "DecryptedFile" : "DecryptedUnknownKeyFile"; //MLHIDE
+            }
+            if (activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
+            {
+                return activeFile.Key != null ? "DecryptedFile" : "DecryptedUnknownKeyFile"; //MLHIDE
+            }
+            if (activeFile.Status.HasMask(ActiveFileStatus.NotDecrypted))
+            {
+                if (String.IsNullOrEmpty(activeFile.DecryptedFileInfo.FullName))
+                {
+                    return "InactiveFile"; //MLHIDE
+                }
+                return activeFile.Key != null ? "ActiveFileKnownKey" : "ActiveFile"; //MLHIDE
+            }
+            return String.Empty;
         }
 
         private void toolStripButtonEncrypt_Click(object sender, EventArgs e)
@@ -363,8 +413,7 @@ namespace Axantum.AxCrypt
                 },
                 (FileOperationStatus status) =>
                 {
-                    CheckStatusAndShowMessage(status, e.DisplayContext);
-                    if (status != FileOperationStatus.Success)
+                    if (!CheckStatusAndShowMessage(status, e.DisplayContext))
                     {
                         return;
                     }
@@ -376,7 +425,27 @@ namespace Axantum.AxCrypt
                 });
         }
 
-        private void HandleProcessFileEvent(object sender, FileOperationEventArgs e)
+        private void HandleProcessDecryptFileEvent(object sender, FileOperationEventArgs e)
+        {
+            progressBackgroundWorker.BackgroundWorkWithProgress(e.DisplayContext,
+                (ProgressContext progress) =>
+                {
+                    e.Progress = progress;
+                    FileOperationsController controller = (FileOperationsController)sender;
+                    controller.DoProcessFile(e);
+                    return controller.Status;
+                },
+                (FileOperationStatus status) =>
+                {
+                    if (!CheckStatusAndShowMessage(status, e.DisplayContext))
+                    {
+                        return;
+                    }
+                    persistentState.Current.RemoveRecentFile(e.OpenFileFullName);
+                });
+        }
+
+        private void HandleProcessOpenFileEvent(object sender, FileOperationEventArgs e)
         {
             progressBackgroundWorker.BackgroundWorkWithProgress(e.DisplayContext,
                 (ProgressContext progress) =>
@@ -392,12 +461,12 @@ namespace Axantum.AxCrypt
                 });
         }
 
-        private static void CheckStatusAndShowMessage(FileOperationStatus status, string displayContext)
+        private static bool CheckStatusAndShowMessage(FileOperationStatus status, string displayContext)
         {
             switch (status)
             {
                 case FileOperationStatus.Success:
-                    break;
+                    return true;
 
                 case FileOperationStatus.UnspecifiedError:
                     Resources.FileOperationFailed.InvariantFormat(displayContext).ShowWarning();
@@ -438,6 +507,7 @@ namespace Axantum.AxCrypt
                     Resources.UnrecognizedError.InvariantFormat(displayContext).ShowWarning();
                     break;
             }
+            return false;
         }
 
         private void decryptToolStripButton_Click(object sender, EventArgs e)
@@ -509,7 +579,7 @@ namespace Axantum.AxCrypt
                 AddKnownKey(e.Key);
             };
 
-            operationsController.ProcessFile += HandleProcessFileEvent;
+            operationsController.ProcessFile += HandleProcessDecryptFileEvent;
 
             return operationsController.DecryptFile(source.FullName);
         }
@@ -562,14 +632,13 @@ namespace Axantum.AxCrypt
                 AddKnownKey(e.Key);
             };
 
-            operationsController.ProcessFile += HandleProcessFileEvent;
+            operationsController.ProcessFile += HandleProcessOpenFileEvent;
 
             if (operationsController.DecryptAndLaunch(file))
             {
                 return true;
             }
-            CheckStatusAndShowMessage(operationsController.Status, file);
-            return false;
+            return CheckStatusAndShowMessage(operationsController.Status, file);
         }
 
         private void HandleQueryDecryptionPassphraseEvent(object sender, FileOperationEventArgs e)
@@ -692,9 +761,8 @@ namespace Axantum.AxCrypt
                 },
                 (FileOperationStatus status) =>
                 {
-                    if (status != FileOperationStatus.Success)
+                    if (!CheckStatusAndShowMessage(status, Resources.PurgingActiveFiles))
                     {
-                        CheckStatusAndShowMessage(status, Resources.PurgingActiveFiles);
                         return;
                     }
                     IList<ActiveFile> openFiles = persistentState.Current.DecryptedActiveFiles;
@@ -912,7 +980,7 @@ namespace Axantum.AxCrypt
             {
                 ServicePointManager.ServerCertificateValidationCallback = null;
                 OS.Log.SetLevel(LogLevel.Error);
-                _logTabPage = statusTabControl.TabPages["LogTabPage"]; //MLHIDE
+                _logTabPage = statusTabControl.TabPages["logTabPage"]; //MLHIDE
                 statusTabControl.TabPages.Remove(_logTabPage);
             }
         }

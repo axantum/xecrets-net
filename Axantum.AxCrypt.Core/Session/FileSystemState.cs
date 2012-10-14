@@ -105,6 +105,10 @@ namespace Axantum.AxCrypt.Core.Session
 
         public ActiveFile FindEncryptedPath(string encryptedPath)
         {
+            if (encryptedPath == null)
+            {
+                throw new ArgumentNullException("encryptedPath");
+            }
             ActiveFile activeFile;
             lock (_lock)
             {
@@ -118,6 +122,10 @@ namespace Axantum.AxCrypt.Core.Session
 
         public ActiveFile FindDecryptedPath(string decryptedPath)
         {
+            if (decryptedPath == null)
+            {
+                throw new ArgumentNullException("decryptedPath");
+            }
             ActiveFile activeFile;
             lock (_lock)
             {
@@ -131,6 +139,10 @@ namespace Axantum.AxCrypt.Core.Session
 
         public void Add(ActiveFile activeFile)
         {
+            if (activeFile == null)
+            {
+                throw new ArgumentNullException("activeFile");
+            }
             lock (_lock)
             {
                 AddInternal(activeFile);
@@ -140,6 +152,10 @@ namespace Axantum.AxCrypt.Core.Session
 
         public void Remove(ActiveFile activeFile)
         {
+            if (activeFile == null)
+            {
+                throw new ArgumentNullException("activeFile");
+            }
             lock (_lock)
             {
                 _activeFilesByDecryptedPath.Remove(activeFile.DecryptedFileInfo.FullName);

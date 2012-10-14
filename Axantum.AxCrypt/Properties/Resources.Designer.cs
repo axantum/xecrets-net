@@ -70,6 +70,24 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Double-click to Open.
+        /// </summary>
+        internal static string ActiveFileKnownKeyToolTip {
+            get {
+                return ResourceManager.GetString("ActiveFileKnownKeyToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Double-click to enter passphrase and Open.
+        /// </summary>
+        internal static string ActiveFileToolTip {
+            get {
+                return ResourceManager.GetString("ActiveFileToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open Source File Encryption for Windows
         ///
         ///Includes software from http://www.bouncycastle.org/ ..
@@ -154,6 +172,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Assumed open. Try to Close the application, or use the Clean function to remove it.
+        /// </summary>
+        internal static string DecryptedFileToolTip {
+            get {
+                return ResourceManager.GetString("DecryptedFileToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Documents (*{0})|*{0}|All files (*.*)|*.*.
         /// </summary>
         internal static string DecryptedSaveAsFileDialogFilterPattern {
@@ -168,6 +195,15 @@ namespace Axantum.AxCrypt.Properties {
         internal static string DecryptedSaveAsFileDialogTitle {
             get {
                 return ResourceManager.GetString("DecryptedSaveAsFileDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The passphrase has not been entered yet. Double-click to enter passphrase and Open, or right-click for options.
+        /// </summary>
+        internal static string DecryptedUnknownKeyFileToolTip {
+            get {
+                return ResourceManager.GetString("DecryptedUnknownKeyFileToolTip", resourceCulture);
             }
         }
         
@@ -270,6 +306,15 @@ namespace Axantum.AxCrypt.Properties {
             get {
                 object obj = ResourceManager.GetObject("helpquestiongreen32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inactive file.
+        /// </summary>
+        internal static string InactiveFileToolTip {
+            get {
+                return ResourceManager.GetString("InactiveFileToolTip", resourceCulture);
             }
         }
         

@@ -106,6 +106,10 @@ namespace Axantum.AxCrypt.Core.Session
         public static void RemoveRecentFile(this FileSystemState fileSystemState, string encryptedPath)
         {
             ActiveFile activeFile = fileSystemState.FindEncryptedPath(encryptedPath);
+            if (activeFile == null)
+            {
+                return;
+            }
             fileSystemState.Remove(activeFile);
             fileSystemState.Save();
         }
@@ -122,7 +126,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private static ActiveFile CheckIfKeyIsKnown(FileSystemState fileSystemState, ActiveFile activeFile)
         {
-            if (!activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted) && !activeFile.Status.HasMask(ActiveFileStatus.DecryptedIsPendingDelete))
+            if ((activeFile.Status & (ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.DecryptedIsPendingDelete | ActiveFileStatus.NotDecrypted)) == 0)
             {
                 return activeFile;
             }
