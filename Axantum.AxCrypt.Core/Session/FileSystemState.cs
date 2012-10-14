@@ -87,6 +87,14 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
+        public int ActiveFileCount
+        {
+            get
+            {
+                return _activeFilesByDecryptedPath.Count;
+            }
+        }
+
         public IList<ActiveFile> DecryptedActiveFiles
         {
             get

@@ -193,7 +193,7 @@
     <value>Rensar Aktiva Dokument</value>
   </data>
   <data name="TrayBalloonTooltip" xml:space="preserve">
-    <value>Dubbelklicka ikonen för att öppa AxCrypt</value>
+    <value>Klicka ikonen för att öppa AxCrypt</value>
   </data>
   <data name="UnrecognizedError" xml:space="preserve">
     <value>Okänt fel med '{0}'.</value>

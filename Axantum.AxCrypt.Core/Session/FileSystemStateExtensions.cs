@@ -67,18 +67,27 @@ namespace Axantum.AxCrypt.Core.Session
 
         public static void CheckActiveFiles(this FileSystemState fileSystemState, ChangedEventMode mode, ProgressContext progress)
         {
+            progress.Max = fileSystemState.ActiveFileCount;
+            progress.Current = 0;
             fileSystemState.ForEach(mode, (ActiveFile activeFile) =>
             {
-                if (FileLock.IsLocked(activeFile.DecryptedFileInfo, activeFile.EncryptedFileInfo))
+                try
                 {
+                    if (FileLock.IsLocked(activeFile.DecryptedFileInfo, activeFile.EncryptedFileInfo))
+                    {
+                        return activeFile;
+                    }
+                    if (OS.Current.UtcNow - activeFile.LastActivityTimeUtc <= new TimeSpan(0, 0, 5))
+                    {
+                        return activeFile;
+                    }
+                    activeFile = CheckActiveFileActions(fileSystemState, activeFile, progress);
                     return activeFile;
                 }
-                if (OS.Current.UtcNow - activeFile.LastActivityTimeUtc <= new TimeSpan(0, 0, 5))
+                finally
                 {
-                    return activeFile;
+                    progress.Current = progress.Current + 1;
                 }
-                activeFile = CheckActiveFileActions(fileSystemState, activeFile, progress);
-                return activeFile;
             });
         }
 

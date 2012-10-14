@@ -59,6 +59,7 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("key");
             }
             Initialize(activeFile);
+            LastActivityTimeUtc = activeFile.LastActivityTimeUtc;
             Key = key;
         }
 

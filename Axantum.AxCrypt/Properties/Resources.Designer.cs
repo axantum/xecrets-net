@@ -439,7 +439,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Double-click to restore the AxCrypt application window..
+        ///   Looks up a localized string similar to Click to restore the AxCrypt application window..
         /// </summary>
         internal static string TrayBalloonTooltip {
             get {

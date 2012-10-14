@@ -91,7 +91,7 @@ namespace Axantum.AxCrypt
             if (OS.Current.Platform == Platform.WindowsDesktop)
             {
                 _notifyIcon = new NotifyIcon(components);
-                _notifyIcon.MouseDoubleClick += trayNotifyIcon_MouseDoubleClick;
+                _notifyIcon.MouseClick += trayNotifyIcon_MouseClick;
                 _notifyIcon.Icon = Resources.axcrypticon;
                 _notifyIcon.Visible = true;
             }
@@ -895,7 +895,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void trayNotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void trayNotifyIcon_MouseClick(object sender, MouseEventArgs e)
         {
             this.Show();
             this.WindowState = FormWindowState.Normal;
