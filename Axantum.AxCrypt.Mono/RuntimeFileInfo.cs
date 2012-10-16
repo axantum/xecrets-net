@@ -52,6 +52,7 @@ namespace Axantum.AxCrypt.Mono
 
         public Stream OpenWrite()
         {
+            Directory.CreateDirectory(Path.GetDirectoryName(_file.FullName));
             return new FileStream(_file.FullName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None, OS.Current.StreamBufferSize);
         }
 

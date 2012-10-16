@@ -49,13 +49,18 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private ThreadWorkerEventArgs _e;
 
+        public ThreadWorker(string displayText)
+            : this(displayText, new ProgressContext(displayText))
+        {
+        }
+
         /// <summary>
         /// Create a thread worker.
         /// </summary>
         /// <param name="displayText">A text that may be used in messages as a reference for users.</param>
         /// <param name="work">A 'work' delegate. Executed on a separate thread, not the GUI thread.</param>
         /// <param name="complete">A 'complete' delegate. Executed on the original thread, typically the GUI thread.</param>
-        public ThreadWorker(string displayText)
+        public ThreadWorker(string displayText, ProgressContext progress)
         {
             _worker = new BackgroundWorker();
             _worker.WorkerReportsProgress = true;
@@ -64,7 +69,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             _worker.ProgressChanged += new ProgressChangedEventHandler(_worker_ProgressChanged);
             _worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(_worker_RunWorkerCompleted);
 
-            _e = new ThreadWorkerEventArgs(_worker, new ProgressContext(displayText));
+            _e = new ThreadWorkerEventArgs(_worker, progress);
             _e.ProgressContext.Progressing += (object sender, ProgressEventArgs e) =>
             {
                 if (_worker.CancellationPending)
@@ -96,6 +101,14 @@ namespace Axantum.AxCrypt.Core.Runtime
                 throw new ObjectDisposedException("ThreadWorker");
             }
             _joined.WaitOne();
+        }
+
+        public bool HasCompleted
+        {
+            get
+            {
+                return _joined.WaitOne(TimeSpan.Zero);
+            }
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Here we really do want to catch everything, and report to the user.")]

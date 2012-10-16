@@ -253,6 +253,12 @@ namespace Axantum.AxCrypt.Core.UI
             return destinationFolderInfo;
         }
 
+        public static string GetTemporaryDestinationName(string fileName)
+        {
+            string destinationFolder = Path.Combine(OS.Current.TemporaryDirectoryInfo.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + Path.DirectorySeparatorChar);
+            return Path.Combine(destinationFolder, Path.GetFileName(fileName));
+        }
+
         private static ActiveFile CheckKeysForAlreadyDecryptedFile(ActiveFile destinationActiveFile, IEnumerable<AesKey> keys, ProgressContext progress)
         {
             foreach (AesKey key in keys)

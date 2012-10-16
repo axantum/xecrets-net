@@ -84,15 +84,21 @@ namespace Axantum.AxCrypt
             }
         }
 
+        public void BackgroundWorkWithProgress(string displayText, Func<ProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
+        {
+            BackgroundWorkWithProgress(displayText, new WorkerGroup(), work, complete);
+        }
+
         /// <summary>
         /// Perform a background operation with support for progress bars and cancel.
         /// </summary>
         /// <param name="displayText">A text that may be used as a reference in various messages.</param>
-        /// <param name="work">A 'work' delegate, taking a ProgressContext and return a FileOperationStatus. Executed on a background thread. Not the GUI thread.</param>
+        /// <param name="work">A 'work' delegate, taking a ProgressContext and return a FileOperationStatus. Executed on a background thread. Not the calling/GUI thread.</param>
         /// <param name="complete">A 'complete' delegate, taking the final status. Executed on the original caller thread, typically the GUI thread.</param>
-        public void BackgroundWorkWithProgress(string displayText, Func<ProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
+        public void BackgroundWorkWithProgress(string displayText, WorkerGroup workerGroup, Func<ProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
         {
-            ThreadWorker worker = new ThreadWorker(displayText);
+            ThreadWorker worker = workerGroup.CreateWorker(displayText);
+
             worker.Prepare += (object sender, ThreadWorkerEventArgs e) =>
                 {
                     ProgressBar progressBar = CreateProgressBar(e.Worker);
@@ -120,11 +126,6 @@ namespace Axantum.AxCrypt
                     finally
                     {
                         progressBar.Dispose();
-                        IDisposable threadWorker = sender as IDisposable;
-                        if (threadWorker != null)
-                        {
-                            threadWorker.Dispose();
-                        }
                     }
                     Interlocked.Decrement(ref _workerCount);
                 };

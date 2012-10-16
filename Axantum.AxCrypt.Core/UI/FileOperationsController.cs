@@ -32,6 +32,7 @@ using System.Linq;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 
 namespace Axantum.AxCrypt.Core.UI
@@ -43,13 +44,24 @@ namespace Axantum.AxCrypt.Core.UI
         private FileOperationEventArgs _eventArgs;
 
         public FileOperationsController(FileSystemState fileSystemState, string displayContext)
+            : this(fileSystemState, displayContext, new WorkerGroup())
         {
-            _eventArgs = new FileOperationEventArgs(displayContext, new ProgressContext());
-            _fileSystemState = fileSystemState;
-            Status = FileOperationStatus.Unknown;
+            _eventArgs.WorkerGroup.AcquireOne();
         }
 
-        public FileOperationStatus Status { get; private set; }
+        public FileOperationsController(FileSystemState fileSystemState, string displayContext, WorkerGroup workerGroup)
+        {
+            _eventArgs = new FileOperationEventArgs(displayContext, workerGroup);
+            _fileSystemState = fileSystemState;
+        }
+
+        public FileOperationStatus Status
+        {
+            get
+            {
+                return _eventArgs.Status;
+            }
+        }
 
         public event EventHandler<FileOperationEventArgs> QuerySaveFileAs;
 
@@ -106,7 +118,25 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
+        public event EventHandler<FileOperationEventArgs> Completed;
+
+        protected virtual void OnCompleted(FileOperationEventArgs e)
+        {
+            EventHandler<FileOperationEventArgs> handler = Completed;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
         public Action<FileOperationEventArgs> DoProcessFile { get; private set; }
+
+        public void NotifyComplete(FileOperationStatus status)
+        {
+            _eventArgs.Status = status;
+            OnCompleted(_eventArgs);
+            _eventArgs.WorkerGroup.ReleaseOne();
+        }
 
         /// <summary>
         /// Encrypt file, raising events as required by the situation.
@@ -122,7 +152,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             if (String.Compare(Path.GetExtension(sourceFile), OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
             {
-                Status = FileOperationStatus.InvalidPath;
+                NotifyComplete(FileOperationStatus.InvalidPath);
                 return false;
             }
             IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(sourceFile);
@@ -134,7 +164,7 @@ namespace Axantum.AxCrypt.Core.UI
                 OnQuerySaveFileAs(_eventArgs);
                 if (_eventArgs.Cancel)
                 {
-                    Status = FileOperationStatus.Canceled;
+                    NotifyComplete(FileOperationStatus.Canceled);
                     return false;
                 }
             }
@@ -144,7 +174,7 @@ namespace Axantum.AxCrypt.Core.UI
                 OnQueryEncryptionPassphrase(_eventArgs);
                 if (_eventArgs.Cancel)
                 {
-                    Status = FileOperationStatus.Canceled;
+                    NotifyComplete(FileOperationStatus.Canceled);
                     return false;
                 }
                 Passphrase passphrase = new Passphrase(_eventArgs.Passphrase);
@@ -183,7 +213,7 @@ namespace Axantum.AxCrypt.Core.UI
                 OnQuerySaveFileAs(_eventArgs);
                 if (_eventArgs.Cancel)
                 {
-                    Status = FileOperationStatus.Canceled;
+                    NotifyComplete(FileOperationStatus.Canceled);
                     return false;
                 }
             }
@@ -239,7 +269,7 @@ namespace Axantum.AxCrypt.Core.UI
                     OnQueryDecryptionPassphrase(e);
                     if (e.Cancel)
                     {
-                        Status = FileOperationStatus.Canceled;
+                        NotifyComplete(FileOperationStatus.Canceled);
                         return false;
                     }
                     passphrase = new Passphrase(e.Passphrase);
@@ -261,7 +291,8 @@ namespace Axantum.AxCrypt.Core.UI
                     e.AxCryptDocument.Dispose();
                     e.AxCryptDocument = null;
                 }
-                Status = ioex is FileNotFoundException ? FileOperationStatus.FileDoesNotExist : FileOperationStatus.Exception;
+                FileOperationStatus status = ioex is FileNotFoundException ? FileOperationStatus.FileDoesNotExist : FileOperationStatus.Exception;
+                NotifyComplete(status);
                 return false;
             }
             return true;
@@ -271,7 +302,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             try
             {
-                Status = _fileSystemState.OpenAndLaunchApplication(e.OpenFileFullName, e.AxCryptDocument, e.Progress);
+                e.Status = _fileSystemState.OpenAndLaunchApplication(e.OpenFileFullName, e.AxCryptDocument, e.Progress);
             }
             finally
             {
@@ -293,14 +324,14 @@ namespace Axantum.AxCrypt.Core.UI
             }
             AxCryptFile.Wipe(OS.Current.FileInfo(e.OpenFileFullName));
 
-            Status = FileOperationStatus.Success;
+            e.Status = FileOperationStatus.Success;
         }
 
         private void EncryptFileOperation(FileOperationEventArgs e)
         {
             AxCryptFile.EncryptFileWithBackupAndWipe(e.OpenFileFullName, e.SaveFileFullName, e.Key, e.Progress);
 
-            Status = FileOperationStatus.Success;
+            e.Status = FileOperationStatus.Success;
         }
     }
 }

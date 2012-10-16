@@ -41,5 +41,7 @@ namespace Axantum.AxCrypt.Core.UI
         Exception,
         Unknown,
         InvalidPath,
+        Working,
+        WorkerGroupAborted,
     }
 }
