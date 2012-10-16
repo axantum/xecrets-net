@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDisplayName</key>
+	<string>AxCrypt</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>AxCrypt document</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.axantum.axcrypt-document</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Images/App Icons/logo 57x57.png</string>
+		<string>Images/App Icons/logo 114x114.png</string>
+		<string>Images/App Icons/logo 72x72.png</string>
+		<string>Images/App Icons/logo 144x144.png</string>
+		<string>Images/Spotlight &amp; Settings Icons/logo 29x29.png</string>
+		<string>Images/Spotlight &amp; Settings Icons/logo 58x58.png</string>
+		<string>Images/Spotlight &amp; Settings Icons/logo 50x50.png</string>
+		<string>Images/Spotlight &amp; Settings Icons/logo 100x100.png</string>
+	</array>
+	<key>CFBundleIdentifier</key>
+	<string>com.tretton37.axantum.axcrypt</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>MinimumOSVersion</key>
+	<string>5.0</string>
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>1</integer>
+		<integer>2</integer>
+	</array>
+	<key>UIFileSharingEnabled</key>
+	<true/>
+	<key>UIMainStoryboardFile</key>
+	<string>MainStoryboard_iPhone</string>
+	<key>UIMainStoryboardFile~ipad</key>
+	<string>MainStoryboard_iPad</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>AxCrypt document</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.axantum.axcrypt-document</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>com.apple.ostype</key>
+				<string>AXX</string>
+				<key>public.filename-extension</key>
+				<array>
+					<string>axx</string>
+				</array>
+				<key>public.mime-type</key>
+				<string>application/x-axx</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>
