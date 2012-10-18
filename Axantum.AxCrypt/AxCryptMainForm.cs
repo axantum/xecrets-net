@@ -520,18 +520,10 @@ namespace Axantum.AxCrypt
 
             operationsController.ProcessFile += HandleProcessOpenFileEvent;
 
-            //FileOperationStatus status = FileOperationStatus.Unknown;
-            //operationsController.Completed += (object sender, FileOperationEventArgs e) =>
-            //    {
-            //        status = e.Status;
-            //    };
-
             if (operationsController.DecryptAndLaunch(file))
             {
                 return;
             }
-
-            //CheckStatusAndShowMessage(status, file);
         }
 
         private void ProcessFilesInBackground(IEnumerable<string> files, Action<string, WorkerGroup> processFile)

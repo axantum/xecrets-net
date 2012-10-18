@@ -123,9 +123,16 @@ namespace Axantum.AxCrypt.Core.UI
         protected virtual void OnCompleted(FileOperationEventArgs e)
         {
             EventHandler<FileOperationEventArgs> handler = Completed;
-            if (handler != null)
+            try
             {
-                handler(this, e);
+                if (handler != null)
+                {
+                    handler(this, e);
+                }
+            }
+            finally
+            {
+                _eventArgs.WorkerGroup.ReleaseOne();
             }
         }
 
@@ -135,7 +142,6 @@ namespace Axantum.AxCrypt.Core.UI
         {
             _eventArgs.Status = status;
             OnCompleted(_eventArgs);
-            _eventArgs.WorkerGroup.ReleaseOne();
         }
 
         /// <summary>
@@ -187,6 +193,24 @@ namespace Axantum.AxCrypt.Core.UI
             DoProcessFile = EncryptFileOperation;
             OnProcessFile(_eventArgs);
             return true;
+        }
+
+        /// <summary>
+        /// Encrypt a file with the main task performed in a background thread.
+        /// </summary>
+        /// <param name="fullName"></param>
+        public void EncryptFileAsync(string fullName)
+        {
+            ThreadWorker worker = _eventArgs.WorkerGroup.CreateWorker();
+            worker.Work += (object workerSender, ThreadWorkerEventArgs threadWorkerEventArgs) =>
+            {
+                EncryptFileOperation(_eventArgs);
+            };
+            worker.Completed += (object workerSender, ThreadWorkerEventArgs threadWorkerEventArgs) =>
+            {
+                OnCompleted(_eventArgs);
+            };
+            worker.Run();
         }
 
         /// <summary>
