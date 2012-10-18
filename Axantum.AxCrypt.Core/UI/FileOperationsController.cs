@@ -43,15 +43,15 @@ namespace Axantum.AxCrypt.Core.UI
 
         private FileOperationEventArgs _eventArgs;
 
-        public FileOperationsController(FileSystemState fileSystemState, string displayContext)
-            : this(fileSystemState, displayContext, new WorkerGroup())
+        public FileOperationsController(FileSystemState fileSystemState)
+            : this(fileSystemState, new WorkerGroup())
         {
             _eventArgs.WorkerGroup.AcquireOne();
         }
 
-        public FileOperationsController(FileSystemState fileSystemState, string displayContext, WorkerGroup workerGroup)
+        public FileOperationsController(FileSystemState fileSystemState, WorkerGroup workerGroup)
         {
-            _eventArgs = new FileOperationEventArgs(displayContext, workerGroup);
+            _eventArgs = new FileOperationEventArgs(workerGroup);
             _fileSystemState = fileSystemState;
         }
 
@@ -302,7 +302,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             try
             {
-                e.Status = _fileSystemState.OpenAndLaunchApplication(e.OpenFileFullName, e.AxCryptDocument, e.Progress);
+                e.Status = _fileSystemState.OpenAndLaunchApplication(e.OpenFileFullName, e.AxCryptDocument, e.WorkerGroup.Progress);
             }
             finally
             {
@@ -315,7 +315,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             try
             {
-                AxCryptFile.Decrypt(e.AxCryptDocument, OS.Current.FileInfo(e.SaveFileFullName), AxCryptOptions.SetFileTimes, e.Progress);
+                AxCryptFile.Decrypt(e.AxCryptDocument, OS.Current.FileInfo(e.SaveFileFullName), AxCryptOptions.SetFileTimes, e.WorkerGroup.Progress);
             }
             finally
             {
@@ -329,7 +329,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private void EncryptFileOperation(FileOperationEventArgs e)
         {
-            AxCryptFile.EncryptFileWithBackupAndWipe(e.OpenFileFullName, e.SaveFileFullName, e.Key, e.Progress);
+            AxCryptFile.EncryptFileWithBackupAndWipe(e.OpenFileFullName, e.SaveFileFullName, e.Key, e.WorkerGroup.Progress);
 
             e.Status = FileOperationStatus.Success;
         }

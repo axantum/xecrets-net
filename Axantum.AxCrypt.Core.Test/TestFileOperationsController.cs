@@ -71,7 +71,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSimpleEncryptFile()
         {
-            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple EncryptFile()");
+            FileOperationsController controller = new FileOperationsController(_fileSystemState);
             string destinationPath = String.Empty;
             controller.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
                 {
@@ -104,7 +104,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestEncryptFileWithDefaultEncryptionKey()
         {
             _fileSystemState.KnownKeys.DefaultEncryptionKey = new Passphrase("default").DerivedPassphrase;
-            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple EncryptFile()");
+            FileOperationsController controller = new FileOperationsController(_fileSystemState);
             bool queryEncryptionPassphraseWasCalled = false;
             controller.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
                 {
@@ -144,7 +144,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
             }
 
-            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple EncryptFile()");
+            FileOperationsController controller = new FileOperationsController(_fileSystemState);
             string destinationPath = String.Empty;
             controller.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
             {
@@ -187,7 +187,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
             }
 
-            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple EncryptFile()");
+            FileOperationsController controller = new FileOperationsController(_fileSystemState);
             controller.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
             {
                 e.Cancel = true;
@@ -201,7 +201,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptFileWhenCanceledDuringQueryPassphrase()
         {
-            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple EncryptFile()");
+            FileOperationsController controller = new FileOperationsController(_fileSystemState);
             controller.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
             {
                 e.Cancel = true;
@@ -215,7 +215,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSimpleDecryptFile()
         {
-            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple DecryptFile()");
+            FileOperationsController controller = new FileOperationsController(_fileSystemState);
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
                 {
                     e.Passphrase = "a";
@@ -251,7 +251,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptWithCancelDuringQueryDecryptionPassphrase()
         {
-            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple DecryptFile()");
+            FileOperationsController controller = new FileOperationsController(_fileSystemState);
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
             {
                 e.Cancel = true;
@@ -270,7 +270,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
             }
 
-            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple DecryptFile()");
+            FileOperationsController controller = new FileOperationsController(_fileSystemState);
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
                 {
                     e.Passphrase = "a";
@@ -293,7 +293,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
             }
 
-            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple DecryptFile()");
+            FileOperationsController controller = new FileOperationsController(_fileSystemState);
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
             {
                 e.Passphrase = "a";
@@ -334,7 +334,7 @@ namespace Axantum.AxCrypt.Core.Test
                 return launcher;
             });
 
-            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple DecryptAndLaunch()");
+            FileOperationsController controller = new FileOperationsController(_fileSystemState);
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
             {
                 e.Passphrase = "a";
@@ -367,7 +367,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestCanceledDecryptAndLaunch()
         {
-            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple DecryptAndLaunch()");
+            FileOperationsController controller = new FileOperationsController(_fileSystemState);
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
             {
                 e.Cancel = true;
@@ -385,7 +385,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptWithKnownKey()
         {
-            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple DecryptFile()");
+            FileOperationsController controller = new FileOperationsController(_fileSystemState);
             _fileSystemState.KnownKeys.Add(new Passphrase("b").DerivedPassphrase);
             _fileSystemState.KnownKeys.Add(new Passphrase("c").DerivedPassphrase);
             _fileSystemState.KnownKeys.Add(new Passphrase("a").DerivedPassphrase);
@@ -427,7 +427,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptFileWithRepeatedPassphraseQueries()
         {
-            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple DecryptFile()");
+            FileOperationsController controller = new FileOperationsController(_fileSystemState);
             int passphraseTry = 0;
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
             {
@@ -482,7 +482,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptFileWithExceptionBeforeStartingDecryption()
         {
-            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple DecryptFile()");
+            FileOperationsController controller = new FileOperationsController(_fileSystemState);
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
             {
                 e.Passphrase = "a";
@@ -508,7 +508,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptFileThatIsAlreadyEncrypted()
         {
-            FileOperationsController controller = new FileOperationsController(_fileSystemState, "Testing Simple DecryptFile()");
+            FileOperationsController controller = new FileOperationsController(_fileSystemState);
             bool encryptFileIsOk = controller.EncryptFile("test" + OS.Current.AxCryptExtension);
 
             Assert.That(!encryptFileIsOk, "The encryption should fail, since the file already has the AxCrypt-extension");

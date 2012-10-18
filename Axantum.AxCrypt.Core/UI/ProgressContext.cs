@@ -67,51 +67,82 @@ namespace Axantum.AxCrypt.Core.UI
             _context = context;
             DisplayText = displayText;
             NextProgressing = firstProgressing;
-            Max = -1;
         }
+
+        public bool Cancel { get; set; }
 
         public event EventHandler<ProgressEventArgs> Progressing;
 
         public string DisplayText { get; set; }
 
-        public long Max { get; set; }
+        private static readonly object _lock = new object();
+
+        private long _total = -1;
+
+        public void AddTotal(long partTotal)
+        {
+            lock (_lock)
+            {
+                if (_finished)
+                {
+                    throw new InvalidOperationException("Out-of-sequence call, cannot call AddTotal() after call to Finished()");
+                }
+                if (partTotal <= 0)
+                {
+                    return;
+                }
+                if (_total < 0)
+                {
+                    _total = partTotal;
+                }
+                else
+                {
+                    _total += partTotal;
+                }
+            }
+        }
 
         private long _current = 0;
 
         private bool _finished = false;
 
-        public long Current
+        public void AddCount(long count)
         {
-            get
-            {
-                return _current;
-            }
-            set
+            ProgressEventArgs e;
+            lock (_lock)
             {
                 if (_finished)
                 {
-                    return;
+                    throw new InvalidOperationException("Out-of-sequence call, cannot call AddCount() after call to Finished()");
                 }
-                _current = value;
-                if (_stopwatch.Elapsed < NextProgressing && Percent != 100)
+                if (Cancel)
+                {
+                    throw new OperationCanceledException("Operation canceled on request");
+                }
+                _current += count;
+                if (_stopwatch.Elapsed < NextProgressing)
                 {
                     return;
                 }
-                ProgressEventArgs e;
                 e = new ProgressEventArgs(Percent, _context);
-                OnProgressing(e);
-                if (Percent == 100)
-                {
-                    _finished = true;
-                    return;
-                }
                 NextProgressing = _stopwatch.Elapsed.Add(DefaultInterval);
             }
+            OnProgressing(e);
         }
 
         public void Finished()
         {
-            Current = Max;
+            ProgressEventArgs e;
+            lock (_lock)
+            {
+                if (_finished)
+                {
+                    throw new InvalidOperationException("Out-of-sequence call, cannot call Finished() twice");
+                }
+                _finished = true;
+                e = new ProgressEventArgs(100, _context);
+            }
+            OnProgressing(e);
         }
 
         protected virtual void OnProgressing(ProgressEventArgs e)
@@ -123,20 +154,24 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public int Percent
+        private int Percent
         {
             get
             {
-                if (Current == Max)
+                lock (_lock)
                 {
-                    return 100;
-                }
-                if (Max >= 0)
-                {
+                    if (_total < 0)
+                    {
+                        return 0;
+                    }
                     long current100 = _current * 100;
-                    return (int)(current100 / Max);
+                    int percent = (int)(current100 / _total);
+                    if (percent >= 100)
+                    {
+                        percent = 99;
+                    }
+                    return percent;
                 }
-                return 0;
             }
         }
     }

@@ -29,6 +29,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
+using System.Xml;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
@@ -296,7 +297,19 @@ namespace Axantum.AxCrypt.Core.Session
 
             using (Stream fileSystemStateStream = loadInfo.OpenRead())
             {
-                FileSystemState fileSystemState = (FileSystemState)serializer.ReadObject(fileSystemStateStream);
+                FileSystemState fileSystemState;
+                try
+                {
+                    fileSystemState = (FileSystemState)serializer.ReadObject(fileSystemStateStream);
+                }
+                catch (XmlException)
+                {
+                    if (OS.Log.IsErrorEnabled)
+                    {
+                        OS.Log.LogError("XmlException reading {0}. Ignoring and re-initializing state.".InvariantFormat(path.FullName));
+                    }
+                    fileSystemState = new FileSystemState();
+                }
                 _path = path.FullName;
                 foreach (ActiveFile activeFile in fileSystemState.ActiveFiles)
                 {

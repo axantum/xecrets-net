@@ -47,11 +47,43 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
         }
 
+        public WorkerGroup(ProgressContext progress)
+            : this(1, progress)
+        {
+        }
+
         public WorkerGroup(int maxConcurrent)
+            : this(maxConcurrent, new ProgressContext())
+        {
+            SynchronizationContext context = SynchronizationContext.Current;
+            Progress.Progressing += (object sender, ProgressEventArgs e) =>
+                {
+                    context.Send((object state) =>
+                        {
+                            OnProgressing((ProgressEventArgs)state);
+                        }, e);
+                };
+        }
+
+        public WorkerGroup(int maxConcurrent, ProgressContext progress)
         {
             _concurrencyControlSemaphore = new Semaphore(maxConcurrent, maxConcurrent);
             _maxConcurrencyCount = maxConcurrent;
             LastError = FileOperationStatus.Success;
+            Progress = progress;
+        }
+
+        public ProgressContext Progress { get; private set; }
+
+        public event EventHandler<ProgressEventArgs> Progressing;
+
+        protected virtual void OnProgressing(ProgressEventArgs e)
+        {
+            EventHandler<ProgressEventArgs> handler = Progressing;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
         }
 
         public void AcquireOne()
@@ -106,14 +138,14 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private List<ThreadWorker> _threadWorkers = new List<ThreadWorker>();
 
-        public ThreadWorker CreateWorker(string displayText)
+        public ThreadWorker CreateWorker()
         {
             if (_disposed)
             {
                 throw new ObjectDisposedException("WorkerGroup");
             }
             DisposeCompletedWorkerThreads();
-            ThreadWorker threadWorker = new ThreadWorker(displayText);
+            ThreadWorker threadWorker = new ThreadWorker(Progress);
             threadWorker.Completed += new EventHandler<ThreadWorkerEventArgs>(HandleThreadWorkerCompleted);
             lock (_threadWorkers)
             {

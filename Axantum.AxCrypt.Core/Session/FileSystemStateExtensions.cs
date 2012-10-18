@@ -67,8 +67,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         public static void CheckActiveFiles(this FileSystemState fileSystemState, ChangedEventMode mode, ProgressContext progress)
         {
-            progress.Max = fileSystemState.ActiveFileCount;
-            progress.Current = 0;
+            progress.AddTotal(fileSystemState.ActiveFileCount);
             fileSystemState.ForEach(mode, (ActiveFile activeFile) =>
             {
                 try
@@ -86,9 +85,10 @@ namespace Axantum.AxCrypt.Core.Session
                 }
                 finally
                 {
-                    progress.Current = progress.Current + 1;
+                    progress.AddCount(1);
                 }
             });
+            progress.Finished();
         }
 
         public static bool UpdateActiveFileWithKeyIfKeyMatchesThumbprint(this FileSystemState fileSystemState, AesKey key)

@@ -37,16 +37,12 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public class FileOperationEventArgs : CancelEventArgs
     {
-        public FileOperationEventArgs(string displayContext, WorkerGroup workerGroup)
+        public FileOperationEventArgs(WorkerGroup workerGroup)
         {
-            DisplayContext = displayContext;
             WorkerGroup = workerGroup;
-            Progress = new ProgressContext(displayContext);
         }
 
         public WorkerGroup WorkerGroup { get; private set; }
-
-        public string DisplayContext { get; private set; }
 
         public string SaveFileFullName { get; set; }
 
@@ -55,8 +51,6 @@ namespace Axantum.AxCrypt.Core.UI
         public string Passphrase { get; set; }
 
         public AesKey Key { get; set; }
-
-        public ProgressContext Progress { get; set; }
 
         public AxCryptDocument AxCryptDocument { get; set; }
 

@@ -164,7 +164,7 @@ namespace Axantum.AxCrypt.Core
         {
             if (realInputStream.CanSeek)
             {
-                progress.Max = realInputStream.Length;
+                progress.AddTotal(realInputStream.Length);
             }
 
             long totalCount = 0;
@@ -185,15 +185,11 @@ namespace Axantum.AxCrypt.Core
                     break;
                 }
                 outputStream.Write(buffer, 0, offset);
-                if (realInputStream.CanSeek)
-                {
-                    progress.Current = realInputStream.Position;
-                }
+                progress.AddCount(offset);
                 totalCount += offset;
                 offset = 0;
                 length = buffer.Length;
             }
-            progress.Finished();
             return totalCount;
         }
 

@@ -47,8 +47,8 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 percent = e.Percent;
             };
-            progress.Current = 100;
-            Assert.That(percent, Is.EqualTo(0), "Since there is no Max set, the percentage should always be zero.");
+            progress.AddCount(100);
+            Assert.That(percent, Is.EqualTo(0), "Since there is no Total set, the percentage should always be zero.");
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 progressObject = e.Context;
             };
-            progress.Current = 0;
+            progress.AddCount(1);
             Assert.That(progressObject, Is.EqualTo(testObject), "The context should be passed exactly as is to the event.");
         }
 
@@ -76,18 +76,28 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestCurrentAndMax()
         {
             ProgressContext progress = new ProgressContext();
-            progress.Max = 99;
+            int percent = -1;
+            progress.Progressing += (object sender, ProgressEventArgs e) =>
+            {
+                percent = e.Percent;
+            };
+            progress.AddTotal(99);
             progress.Finished();
-            Assert.That(progress.Current, Is.EqualTo(99), "After Finished(), Current should be equal to Max.");
+            Assert.That(percent, Is.EqualTo(100), "After Finished(), Percent should always be 100.");
         }
 
         [Test]
         public static void TestPercent()
         {
-            ProgressContext progress = new ProgressContext();
-            progress.Max = 200;
-            progress.Current = 100;
-            Assert.That(progress.Percent, Is.EqualTo(50), "When halfway, the percent should be 50.");
+            ProgressContext progress = new ProgressContext(TimeSpan.Zero);
+            int percent = -1;
+            progress.Progressing += (object sender, ProgressEventArgs e) =>
+            {
+                percent = e.Percent;
+            };
+            progress.AddTotal(200);
+            progress.AddCount(100);
+            Assert.That(percent, Is.EqualTo(50), "When halfway, the percent should be 50.");
         }
 
         [Test]
@@ -104,16 +114,16 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     wasHere = true;
                 };
-                progress.Max = 100;
-                progress.Current = 50;
+                progress.AddTotal(100);
+                progress.AddCount(50);
                 Assert.That(wasHere, Is.False, "No progress should be raised, since the first delay time has not elapsed as yet.");
 
                 fakeEnvironment.CurrentTiming.CurrentTiming = TimeSpan.FromMilliseconds(12);
-                progress.Current = 51;
+                progress.AddCount(1);
                 Assert.That(wasHere, Is.False, "No progress should be raised, since the first delay time has not elapsed as yet.");
 
                 fakeEnvironment.CurrentTiming.CurrentTiming = TimeSpan.FromMilliseconds(13);
-                progress.Current = 52;
+                progress.AddCount(1);
                 Assert.That(wasHere, Is.True, "Progress should be raised, since the first delay time has now elapsed.");
             }
             finally

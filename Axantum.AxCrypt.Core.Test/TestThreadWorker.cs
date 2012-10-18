@@ -47,7 +47,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationStatus returnedStatus = FileOperationStatus.UnspecifiedError;
 
             bool done = false;
-            using (ThreadWorker worker = new ThreadWorker("DisplayTest"))
+            using (ThreadWorker worker = new ThreadWorker(new ProgressContext()))
             {
                 worker.Work += (object sender, ThreadWorkerEventArgs e) =>
                     {
@@ -74,15 +74,16 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeEnvironment environment = (FakeRuntimeEnvironment)OS.Current;
             int progressCalls = 0;
 
-            using (ThreadWorker worker = new ThreadWorker("DisplayTest"))
+            ProgressContext progress = new ProgressContext();
+            using (ThreadWorker worker = new ThreadWorker(progress))
             {
                 worker.Work += (object sender, ThreadWorkerEventArgs e) =>
                     {
                         environment.CurrentTiming.CurrentTiming = e.ProgressContext.NextProgressing;
-                        e.ProgressContext.Current = 1;
+                        e.ProgressContext.AddCount(1);
                         e.Result = FileOperationStatus.Success;
                     };
-                worker.Progress += (object sender, ThreadWorkerEventArgs e) =>
+                progress.Progressing += (object sender, ProgressEventArgs e) =>
                     {
                         ++progressCalls;
                     };
@@ -96,7 +97,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestObjectDisposedException()
         {
-            ThreadWorker worker = new ThreadWorker("DisposedTest");
+            ThreadWorker worker = new ThreadWorker(new ProgressContext());
             worker.Work += (object sender, ThreadWorkerEventArgs e) =>
                 {
                     e.Result = FileOperationStatus.Success;
@@ -120,7 +121,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestCancellationByException()
         {
             bool wasCanceled = false;
-            using (ThreadWorker worker = new ThreadWorker("Cancellation Test by Exception"))
+            using (ThreadWorker worker = new ThreadWorker(new ProgressContext()))
             {
                 worker.Work += (object sender, ThreadWorkerEventArgs e) =>
                     {
@@ -142,13 +143,13 @@ namespace Axantum.AxCrypt.Core.Test
         {
             bool wasCanceled = false;
             FakeRuntimeEnvironment environment = (FakeRuntimeEnvironment)OS.Current;
-            using (ThreadWorker worker = new ThreadWorker("Cancellation Test by cancel request."))
+            using (ThreadWorker worker = new ThreadWorker(new ProgressContext()))
             {
                 worker.Work += (object sender, ThreadWorkerEventArgs e) =>
                 {
-                    e.Worker.CancelAsync();
+                    e.ProgressContext.Cancel = true;
                     environment.CurrentTiming.CurrentTiming = e.ProgressContext.NextProgressing;
-                    e.ProgressContext.Current = 1;
+                    e.ProgressContext.AddCount(1);
                 };
                 worker.Completed += (object sender, ThreadWorkerEventArgs e) =>
                 {
@@ -165,7 +166,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestExceptionInWork()
         {
             bool exceptionCaught = false;
-            using (ThreadWorker worker = new ThreadWorker("Cancellation Test by Exception"))
+            using (ThreadWorker worker = new ThreadWorker(new ProgressContext()))
             {
                 worker.Work += (object sender, ThreadWorkerEventArgs e) =>
                 {
@@ -186,7 +187,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestPrepare()
         {
             bool wasPrepared = false;
-            using (ThreadWorker worker = new ThreadWorker("Cancellation Test by Exception"))
+            using (ThreadWorker worker = new ThreadWorker(new ProgressContext()))
             {
                 worker.Prepare += (object sender, ThreadWorkerEventArgs e) =>
                     {

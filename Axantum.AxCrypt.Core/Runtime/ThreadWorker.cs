@@ -45,14 +45,9 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private BackgroundWorker _worker;
 
-        private int _progressPending = 0;
-
         private ThreadWorkerEventArgs _e;
 
-        public ThreadWorker(string displayText)
-            : this(displayText, new ProgressContext(displayText))
-        {
-        }
+        private static readonly object _lock = new object();
 
         /// <summary>
         /// Create a thread worker.
@@ -60,25 +55,16 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// <param name="displayText">A text that may be used in messages as a reference for users.</param>
         /// <param name="work">A 'work' delegate. Executed on a separate thread, not the GUI thread.</param>
         /// <param name="complete">A 'complete' delegate. Executed on the original thread, typically the GUI thread.</param>
-        public ThreadWorker(string displayText, ProgressContext progress)
+        public ThreadWorker(ProgressContext progress)
         {
             _worker = new BackgroundWorker();
             _worker.WorkerReportsProgress = true;
             _worker.WorkerSupportsCancellation = true;
+
             _worker.DoWork += new DoWorkEventHandler(_worker_DoWork);
-            _worker.ProgressChanged += new ProgressChangedEventHandler(_worker_ProgressChanged);
             _worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(_worker_RunWorkerCompleted);
 
             _e = new ThreadWorkerEventArgs(_worker, progress);
-            _e.ProgressContext.Progressing += (object sender, ProgressEventArgs e) =>
-            {
-                if (_worker.CancellationPending)
-                {
-                    throw new OperationCanceledException();
-                }
-                Interlocked.Increment(ref _progressPending);
-                _worker.ReportProgress(e.Percent);
-            };
         }
 
         /// <summary>
@@ -134,28 +120,30 @@ namespace Axantum.AxCrypt.Core.Runtime
             return;
         }
 
-        private void _worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            _e.ProgressPercentage = e.ProgressPercentage;
-            OnProgress(_e);
-            Interlocked.Decrement(ref _progressPending);
-        }
-
         private void _worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            try
+            lock (_lock)
             {
-                do
+                try
                 {
-                    Thread.Sleep(0);
+                    if (e.Error != null)
+                    {
+                        _e.Result = FileOperationStatus.UnspecifiedError;
+                    }
+                    else if (e.Cancelled)
+                    {
+                        _e.Result = FileOperationStatus.Canceled;
+                    }
+                    else
+                    {
+                        _e.Result = (FileOperationStatus)e.Result;
+                    }
+                    OnCompleted(_e);
                 }
-                while (_progressPending > 0);
-                _e.Result = (FileOperationStatus)e.Result;
-                OnCompleted(_e);
-            }
-            finally
-            {
-                DisposeWorker();
+                finally
+                {
+                    DisposeWorker();
+                }
             }
             if (OS.Log.IsInfoEnabled)
             {
@@ -261,7 +249,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             {
                 _worker.DoWork -= _worker_DoWork;
                 _worker.RunWorkerCompleted -= _worker_RunWorkerCompleted;
-                _worker.ProgressChanged -= _worker_ProgressChanged;
+
                 IDisposable workerAsDisposibleWhichIsPlatformDependent = _worker as IDisposable;
                 if (workerAsDisposibleWhichIsPlatformDependent != null)
                 {

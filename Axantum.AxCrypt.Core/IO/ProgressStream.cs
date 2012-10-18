@@ -50,7 +50,10 @@ namespace Axantum.AxCrypt.Core.IO
             _stream = stream;
             _progress = progress;
 
-            _progress.Max = _stream.CanSeek ? _stream.Length : -1;
+            if (CanSeek)
+            {
+                _progress.AddTotal(_stream.Length);
+            }
         }
 
         public override bool CanRead
@@ -98,7 +101,7 @@ namespace Axantum.AxCrypt.Core.IO
             }
             int bytes = _stream.Read(buffer, offset, count);
 
-            _progress.Current = _stream.CanSeek ? _stream.Position : -1;
+            _progress.AddCount(bytes);
             return bytes;
         }
 
@@ -120,7 +123,7 @@ namespace Axantum.AxCrypt.Core.IO
             }
             _stream.Write(buffer, offset, count);
 
-            _progress.Current = _stream.CanSeek ? _stream.Position : -1;
+            _progress.AddCount(count);
         }
 
         private bool _disposed = false;

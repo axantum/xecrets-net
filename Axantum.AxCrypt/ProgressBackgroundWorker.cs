@@ -43,8 +43,6 @@ namespace Axantum.AxCrypt
     /// </summary>
     internal class ProgressBackgroundWorker : Component
     {
-        private IDictionary<BackgroundWorker, ProgressBar> _progressBars = new Dictionary<BackgroundWorker, ProgressBar>();
-
         private long _workerCount = 0;
 
         public ProgressBackgroundWorker(IContainer container)
@@ -84,9 +82,10 @@ namespace Axantum.AxCrypt
             }
         }
 
-        public void BackgroundWorkWithProgress(string displayText, Func<ProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
+        public void BackgroundWorkWithProgress(Func<ProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
         {
-            BackgroundWorkWithProgress(displayText, new WorkerGroup(), work, complete);
+            WorkerGroup workerGroup = new WorkerGroup();
+            BackgroundWorkWithProgress(new WorkerGroup(), work, complete);
         }
 
         /// <summary>
@@ -95,33 +94,27 @@ namespace Axantum.AxCrypt
         /// <param name="displayText">A text that may be used as a reference in various messages.</param>
         /// <param name="work">A 'work' delegate, taking a ProgressContext and return a FileOperationStatus. Executed on a background thread. Not the calling/GUI thread.</param>
         /// <param name="complete">A 'complete' delegate, taking the final status. Executed on the original caller thread, typically the GUI thread.</param>
-        public void BackgroundWorkWithProgress(string displayText, WorkerGroup workerGroup, Func<ProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
+        public void BackgroundWorkWithProgress(WorkerGroup workerGroup, Func<ProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
         {
-            ThreadWorker worker = workerGroup.CreateWorker(displayText);
+            ProgressBar progressBar = CreateProgressBar(workerGroup.Progress);
+            OnProgressBarCreated(new ControlEventArgs(progressBar));
 
-            worker.Prepare += (object sender, ThreadWorkerEventArgs e) =>
+            workerGroup.Progressing += (object sender, ProgressEventArgs e) =>
                 {
-                    ProgressBar progressBar = CreateProgressBar(e.Worker);
-                    _progressBars.Add(e.Worker, progressBar);
-                    OnProgressBarCreated(new ControlEventArgs(progressBar));
+                    progressBar.Value = e.Percent;
                 };
+
+            ThreadWorker worker = workerGroup.CreateWorker();
             worker.Work += (object sender, ThreadWorkerEventArgs e) =>
                 {
                     e.Result = work(e.ProgressContext);
                 };
-            worker.Progress += (object sender, ThreadWorkerEventArgs e) =>
-            {
-                ProgressBar progressBar = _progressBars[e.Worker];
-                progressBar.Value = e.ProgressPercentage;
-            };
             worker.Completed += (object sender, ThreadWorkerEventArgs e) =>
                 {
-                    ProgressBar progressBar = _progressBars[e.Worker];
                     try
                     {
                         complete(e.Result);
                         progressBar.Parent = null;
-                        _progressBars.Remove(e.Worker);
                     }
                     finally
                     {
@@ -134,7 +127,7 @@ namespace Axantum.AxCrypt
             worker.Run();
         }
 
-        private ProgressBar CreateProgressBar(BackgroundWorker worker)
+        private ProgressBar CreateProgressBar(ProgressContext progress)
         {
             ProgressBar progressBar = new ProgressBar();
             progressBar.Minimum = 0;
@@ -142,7 +135,7 @@ namespace Axantum.AxCrypt
             progressBar.Dock = DockStyle.Fill;
             progressBar.Margin = new Padding(0);
             progressBar.MouseClick += new MouseEventHandler(progressBar_MouseClick);
-            progressBar.Tag = worker;
+            progressBar.Tag = progress;
 
             return progressBar;
         }
@@ -161,6 +154,16 @@ namespace Axantum.AxCrypt
             {
                 Application.DoEvents();
             }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                WaitForBackgroundIdle();
+            }
+
+            base.Dispose(disposing);
         }
     }
 }
