@@ -246,6 +246,9 @@
     <Compile Include="..\Axantum.AxCrypt.Core\Runtime\ThreadWorkerEventArgs.cs">
       <Link>Runtime\ThreadWorkerEventArgs.cs</Link>
     </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Runtime\WorkerGroup.cs">
+      <Link>Runtime\WorkerGroup.cs</Link>
+    </Compile>
     <Compile Include="..\Axantum.AxCrypt.Core\Session\ActiveFile.cs">
       <Link>Session\ActiveFile.cs</Link>
     </Compile>
