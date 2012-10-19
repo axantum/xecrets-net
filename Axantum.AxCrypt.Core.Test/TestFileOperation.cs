@@ -360,5 +360,14 @@ namespace Axantum.AxCrypt.Core.Test
             status = _fileSystemState.OpenAndLaunchApplication(_helloWorldAxxPath, keys, new ProgressContext());
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The launch should once again succeed.");
         }
+
+        [Test]
+        public static void TestGetTemporaryDestinationName()
+        {
+            string temporaryDestinationName = FileOperation.GetTemporaryDestinationName(_davidCopperfieldTxtPath);
+
+            Assert.That(temporaryDestinationName.StartsWith(Path.GetDirectoryName(OS.Current.TemporaryDirectoryInfo.FullName)), "The temporary destination should be in the temporary directory.");
+            Assert.That(Path.GetFileName(temporaryDestinationName), Is.EqualTo(Path.GetFileName(_davidCopperfieldTxtPath)), "The temporary destination should have the same file name.");
+        }
     }
 }

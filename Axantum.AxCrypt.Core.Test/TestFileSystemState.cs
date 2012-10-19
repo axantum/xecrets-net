@@ -283,5 +283,29 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.Throws<ArgumentNullException>(() => { state.Load(nullFileInfo); });
             }
         }
+
+        [Test]
+        public static void TestInvalidXml()
+        {
+            string badXml = @"<FileSystemState xmlns=""http://www.axantum.com/Serialization/"" xmlns:i=""http://www.w3.org/2001/XMLSchema-instance"">";
+
+            IRuntimeFileInfo stateInfo = OS.Current.FileInfo(_mystateXmlPath);
+            using (Stream stream = stateInfo.OpenWrite())
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(badXml);
+                stream.Write(bytes, 0, bytes.Length);
+            }
+
+            using (FileSystemState state = new FileSystemState())
+            {
+                Assert.DoesNotThrow(() => state.Load(stateInfo));
+                Assert.That(state.ActiveFileCount, Is.EqualTo(0), "After loading damaged state, the count should be zero.");
+
+                ActiveFile decryptedFile1 = new ActiveFile(OS.Current.FileInfo(_encryptedAxxPath), OS.Current.FileInfo(_decryptedTxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted, null);
+                state.Add(decryptedFile1);
+
+                Assert.That(state.ActiveFileCount, Is.EqualTo(1), "After adding a file, the count should be one.");
+            }
+        }
     }
 }
