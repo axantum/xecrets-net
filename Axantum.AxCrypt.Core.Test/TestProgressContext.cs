@@ -82,7 +82,7 @@ namespace Axantum.AxCrypt.Core.Test
                 percent = e.Percent;
             };
             progress.AddTotal(99);
-            progress.Finished();
+            progress.NotifyFinished();
             Assert.That(percent, Is.EqualTo(100), "After Finished(), Percent should always be 100.");
         }
 

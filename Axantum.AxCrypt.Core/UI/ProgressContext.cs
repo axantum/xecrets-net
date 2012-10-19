@@ -67,6 +67,7 @@ namespace Axantum.AxCrypt.Core.UI
             _context = context;
             DisplayText = displayText;
             NextProgressing = firstProgressing;
+            Finished = false;
         }
 
         public bool Cancel { get; set; }
@@ -83,7 +84,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             lock (_lock)
             {
-                if (_finished)
+                if (Finished)
                 {
                     throw new InvalidOperationException("Out-of-sequence call, cannot call AddTotal() after call to Finished()");
                 }
@@ -104,14 +105,14 @@ namespace Axantum.AxCrypt.Core.UI
 
         private long _current = 0;
 
-        private bool _finished = false;
+        public bool Finished { get; private set; }
 
         public void AddCount(long count)
         {
             ProgressEventArgs e;
             lock (_lock)
             {
-                if (_finished)
+                if (Finished)
                 {
                     throw new InvalidOperationException("Out-of-sequence call, cannot call AddCount() after call to Finished()");
                 }
@@ -130,16 +131,16 @@ namespace Axantum.AxCrypt.Core.UI
             OnProgressing(e);
         }
 
-        public void Finished()
+        public void NotifyFinished()
         {
             ProgressEventArgs e;
             lock (_lock)
             {
-                if (_finished)
+                if (Finished)
                 {
-                    throw new InvalidOperationException("Out-of-sequence call, cannot call Finished() twice");
+                    throw new InvalidOperationException("Out-of-sequence call, cannot call NotifyFinished() twice");
                 }
-                _finished = true;
+                Finished = true;
                 e = new ProgressEventArgs(100, _context);
             }
             OnProgressing(e);

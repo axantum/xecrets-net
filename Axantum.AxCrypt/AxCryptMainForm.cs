@@ -563,9 +563,7 @@ namespace Axantum.AxCrypt
                             return workerGroup.LastError;
                         }
                     }
-                    workerGroup.AcquireAll();
-                    progress.Finished();
-                    workerGroup.WaitAll();
+                    workerGroup.NotifyFinished();
                     return workerGroup.LastError;
                 },
                 (FileOperationStatus status) =>
@@ -746,9 +744,7 @@ namespace Axantum.AxCrypt
                     {
                         return workerGroup.LastError;
                     }
-                    workerGroup.AcquireAll();
-                    progress.Finished();
-                    workerGroup.WaitAll();
+                    workerGroup.NotifyFinished();
                     return workerGroup.LastError;
                 },
                 (FileOperationStatus status) =>

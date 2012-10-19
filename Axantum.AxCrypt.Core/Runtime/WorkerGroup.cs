@@ -34,6 +34,9 @@ using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
+    /// <summary>
+    /// Manage a group of worker threads with a maximum level of concurrency
+    /// </summary>
     public class WorkerGroup : IDisposable
     {
         private Semaphore _concurrencyControlSemaphore;
@@ -42,16 +45,46 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private bool _disposed = false;
 
+        private bool _finished = false;
+
+        private readonly object _finishedLock = new object();
+
+        /// <summary>
+        /// Instantiate a worker group with no concurrency and implicit progress reporting.
+        /// </summary>
+        /// <remarks>
+        /// When using internal progress reporting, the instantiating call should come from a
+        /// thread useful for progress reporting, with a SynchronizationContext set, typically
+        /// the GUI thread.
+        /// </remarks>
         public WorkerGroup()
             : this(1)
         {
         }
 
+        /// <summary>
+        /// Instantiate a worker group with no concurrency and explicit progress reporting
+        /// </summary>
+        /// <param name="progress">The ProgressContext that receives progress notifications</param>
+        /// <remarks>
+        /// When using an explicitly specified ProgressContext progress reporting is not subscribed
+        /// to by this instance, it is expected that this is done by the caller who instantiated the
+        /// original ProgressContext instance.
+        /// </remarks>
         public WorkerGroup(ProgressContext progress)
             : this(1, progress)
         {
         }
 
+        /// <summary>
+        /// Instantiates a worker group with specified maximum concurrency and implicit progress reporting
+        /// </summary>
+        /// <param name="maxConcurrent">The maximum number of worker threads active at any one time</param>
+        /// <remarks>
+        /// When using internal progress reporting, the instantiating call should come from a
+        /// thread useful for progress reporting, with a SynchronizationContext set, typically
+        /// the GUI thread.
+        /// </remarks>
         public WorkerGroup(int maxConcurrent)
             : this(maxConcurrent, new ProgressContext())
         {
@@ -65,6 +98,16 @@ namespace Axantum.AxCrypt.Core.Runtime
                 };
         }
 
+        /// <summary>
+        /// Instantiates a worker group with specified maximum concurrency and external progress reporting
+        /// </summary>
+        /// <param name="maxConcurrent">The maximum number of worker threads active at any one time</param>
+        /// <param name="progress">The ProgressContext that receives progress notifications</param>
+        /// <remarks>
+        /// When using an explicitly specified ProgressContext progress reporting is not subscribed
+        /// to by this instance, it is expected that this is done by the caller who instantiated the
+        /// original ProgressContext instance.
+        /// </remarks>
         public WorkerGroup(int maxConcurrent, ProgressContext progress)
         {
             _concurrencyControlSemaphore = new Semaphore(maxConcurrent, maxConcurrent);
@@ -73,10 +116,25 @@ namespace Axantum.AxCrypt.Core.Runtime
             Progress = progress;
         }
 
+        /// <summary>
+        /// The ProgressContext that is passed to worker threads for progress reporting and cancellation checks. If it was
+        /// instantiated by this instance, then progress events are subscribed to and forwarded to the original instantiating
+        /// thread, typically the GUI thread. If the ProgressContext was supplied explicitly by the caller when instantiating this
+        /// instance, no progress events are subscribed to by this instance.
+        /// </summary>
         public ProgressContext Progress { get; private set; }
 
+        /// <summary>
+        /// Raised whenever progress is reported via the ProgressContext by a worker thread. The event handler code
+        /// is executed on the thread which instantiated this instance, if that thread has a SynchronizationContext set,
+        /// which typically is true for the GUI thread.
+        /// </summary>
         public event EventHandler<ProgressEventArgs> Progressing;
 
+        /// <summary>
+        /// Raises the <see cref="E:Progressing"/> event.
+        /// </summary>
+        /// <param name="e">The <see cref="Axantum.AxCrypt.Core.UI.ProgressEventArgs"/> instance containing the event data.</param>
         protected virtual void OnProgressing(ProgressEventArgs e)
         {
             EventHandler<ProgressEventArgs> handler = Progressing;
@@ -86,31 +144,78 @@ namespace Axantum.AxCrypt.Core.Runtime
             }
         }
 
+        /// <summary>
+        /// Acquire one concurrency worker right. This must be called explicitly by the caller before attempting to
+        /// create a new worker thread. This call may block if maximum concurrency has been reached, and will not
+        /// continue execution until a worker thread calls ReleaseOne().
+        /// </summary>
+        /// <remarks>
+        /// Since this call may block, it should never be called from the GUI thread.
+        /// </remarks>
         public void AcquireOne()
-        {
-            _concurrencyControlSemaphore.WaitOne();
-        }
-
-        public void ReleaseOne()
-        {
-            _concurrencyControlSemaphore.Release();
-        }
-
-        public void AcquireAll()
-        {
-            for (int i = 0; i < _maxConcurrencyCount; ++i)
-            {
-                _concurrencyControlSemaphore.WaitOne();
-            }
-        }
-
-        public void WaitAll()
         {
             if (_disposed)
             {
                 throw new ObjectDisposedException("WorkerGroup");
             }
+            _concurrencyControlSemaphore.WaitOne();
+        }
 
+        /// <summary>
+        /// Release one concurrency worker right, possibly releasing a thread that is blocking on AcquireOne().
+        /// </summary>
+        public void ReleaseOne()
+        {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException("WorkerGroup");
+            }
+            _concurrencyControlSemaphore.Release();
+        }
+
+        private void AcquireAll()
+        {
+            lock (_finishedLock)
+            {
+                if (_finished)
+                {
+                    return;
+                }
+                for (int i = 0; i < _maxConcurrencyCount; ++i)
+                {
+                    AcquireOne();
+                }
+                _finished = true;
+            }
+        }
+
+        /// <summary>
+        /// Notify this instance that all work has been scheduled. This call will block until all executing threads have terminated.
+        /// It will also notify the ProgressContext that all work has finished.
+        /// </summary>
+        /// <remarks>
+        /// Since this call may block, it should never be called from the GUI thread.
+        /// </remarks>
+        public void NotifyFinished()
+        {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException("WorkerGroup");
+            }
+            lock (_finishedLock)
+            {
+                if (_finished)
+                {
+                    throw new InvalidOperationException("NotifyFinished() must only be called once, but was called twice.");
+                }
+
+                AcquireAll();
+            }
+            Progress.NotifyFinished();
+        }
+
+        private void JoinAllActiveThreads()
+        {
             lock (_threadWorkers)
             {
                 foreach (ThreadWorker threadWorker in _threadWorkers)
@@ -138,6 +243,11 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private List<ThreadWorker> _threadWorkers = new List<ThreadWorker>();
 
+        /// <summary>
+        /// Create a ThreadWorker for background work. If concurrency limitations are to be effective, AcquireOne() and ReleaseOne()
+        /// must be called appropriately and explicitly.
+        /// </summary>
+        /// <returns></returns>
         public ThreadWorker CreateWorker()
         {
             if (_disposed)
@@ -188,7 +298,7 @@ namespace Axantum.AxCrypt.Core.Runtime
 
             if (disposing)
             {
-                WaitAll();
+                JoinAllActiveThreads();
                 if (_concurrencyControlSemaphore != null)
                 {
                     _concurrencyControlSemaphore.Close();
