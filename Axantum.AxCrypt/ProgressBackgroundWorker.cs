@@ -84,7 +84,6 @@ namespace Axantum.AxCrypt
 
         public void BackgroundWorkWithProgress(Func<ProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
         {
-            WorkerGroup workerGroup = new WorkerGroup();
             BackgroundWorkWithProgress(new WorkerGroup(), work, complete);
         }
 

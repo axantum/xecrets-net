@@ -93,7 +93,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
             get
             {
-                return _joined.WaitOne(TimeSpan.Zero);
+                return _joined.WaitOne(0, false);
             }
         }
 

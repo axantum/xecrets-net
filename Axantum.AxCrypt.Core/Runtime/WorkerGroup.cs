@@ -189,6 +189,11 @@ namespace Axantum.AxCrypt.Core.Runtime
             if (disposing)
             {
                 WaitAll();
+                if (_concurrencyControlSemaphore != null)
+                {
+                    _concurrencyControlSemaphore.Close();
+                    _concurrencyControlSemaphore = null;
+                }
             }
 
             _disposed = true;

@@ -319,7 +319,9 @@ namespace Axantum.AxCrypt.Core
             }
 
             AxCryptDocument document = new AxCryptDocument();
-            document.Load(new ProgressStream(sourceFile.OpenRead(), progress), key);
+            Stream stream = new ProgressStream(sourceFile.OpenRead(), progress);
+            progress.AddTotal(stream.Length);
+            document.Load(stream, key);
             return document;
         }
 

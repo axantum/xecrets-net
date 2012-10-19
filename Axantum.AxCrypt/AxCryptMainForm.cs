@@ -1041,5 +1041,26 @@ namespace Axantum.AxCrypt
         {
             Process.Start(Settings.Default.AxCrypt2HelpUrl.ToString());
         }
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (components != null)
+                {
+                    components.Dispose();
+                }
+                if (_interactionSemaphore != null)
+                {
+                    _interactionSemaphore.Close();
+                    _interactionSemaphore = null;
+                }
+            }
+            base.Dispose(disposing);
+        }
     }
 }

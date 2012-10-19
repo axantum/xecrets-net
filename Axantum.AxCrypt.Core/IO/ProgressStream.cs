@@ -49,11 +49,6 @@ namespace Axantum.AxCrypt.Core.IO
             }
             _stream = stream;
             _progress = progress;
-
-            if (CanSeek)
-            {
-                _progress.AddTotal(_stream.Length);
-            }
         }
 
         public override bool CanRead
