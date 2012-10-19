@@ -55,14 +55,6 @@ namespace Axantum.AxCrypt.Core.UI
             _fileSystemState = fileSystemState;
         }
 
-        public FileOperationStatus Status
-        {
-            get
-            {
-                return _eventArgs.Status;
-            }
-        }
-
         public event EventHandler<FileOperationEventArgs> QuerySaveFileAs;
 
         protected virtual void OnQuerySaveFileAs(FileOperationEventArgs e)
@@ -136,8 +128,6 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public Action<FileOperationEventArgs> DoProcessFile { get; private set; }
-
         /// <summary>
         /// Encrypt file, raising events as required by the situation.
         /// </summary>
@@ -148,7 +138,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// return value and status do not conclusive indicate success. Only a failure return
         /// is conclusive.
         /// </remarks>
-        public bool EncryptFile(string fullName)
+        public FileOperationStatus EncryptFile(string fullName)
         {
             return DoFile(fullName, EncryptFilePreparation, EncryptFileOperation);
         }
@@ -212,7 +202,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// return value and status do not conclusive indicate success. Only a failure return
         /// is conclusive.
         /// </remarks>
-        public bool DecryptFile(string fullName)
+        public FileOperationStatus DecryptFile(string fullName)
         {
             return DoFile(fullName, DecryptFilePreparation, DecryptFileOperation);
         }
@@ -245,7 +235,7 @@ namespace Axantum.AxCrypt.Core.UI
             worker.Run();
         }
 
-        private bool DoFile(string fullName, Func<string, bool> preparation, Func<bool> operation)
+        private FileOperationStatus DoFile(string fullName, Func<string, bool> preparation, Func<bool> operation)
         {
             if (preparation(fullName))
             {
@@ -253,7 +243,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
             OnCompleted(_eventArgs);
 
-            return _eventArgs.Status == FileOperationStatus.Success;
+            return _eventArgs.Status;
         }
 
         private bool DecryptFilePreparation(string sourceFile)
@@ -289,7 +279,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// return value and status do not conclusive indicate success. Only a failure return
         /// is conclusive.
         /// </remarks>
-        public bool DecryptAndLaunch(string fullName)
+        public FileOperationStatus DecryptAndLaunch(string fullName)
         {
             return DoFile(fullName, DecryptAndLaunchPreparation, DecryptAndLaunchFileOperation);
         }
