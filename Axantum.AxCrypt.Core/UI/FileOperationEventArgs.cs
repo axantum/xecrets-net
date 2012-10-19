@@ -40,6 +40,7 @@ namespace Axantum.AxCrypt.Core.UI
         public FileOperationEventArgs(WorkerGroup workerGroup)
         {
             WorkerGroup = workerGroup;
+            Status = FileOperationStatus.Unknown;
         }
 
         public WorkerGroup WorkerGroup { get; private set; }

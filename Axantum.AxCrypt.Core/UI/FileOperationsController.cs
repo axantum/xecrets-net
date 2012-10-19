@@ -138,12 +138,6 @@ namespace Axantum.AxCrypt.Core.UI
 
         public Action<FileOperationEventArgs> DoProcessFile { get; private set; }
 
-        public void NotifyComplete(FileOperationStatus status)
-        {
-            _eventArgs.Status = status;
-            OnCompleted(_eventArgs);
-        }
-
         /// <summary>
         /// Encrypt file, raising events as required by the situation.
         /// </summary>
@@ -154,11 +148,25 @@ namespace Axantum.AxCrypt.Core.UI
         /// return value and status do not conclusive indicate success. Only a failure return
         /// is conclusive.
         /// </remarks>
-        public bool EncryptFile(string sourceFile)
+        public bool EncryptFile(string fullName)
+        {
+            return DoFile(fullName, EncryptFilePreparation, EncryptFileOperation);
+        }
+
+        /// <summary>
+        /// Process a file with the main task performed in a background thread.
+        /// </summary>
+        /// <param name="fullName"></param>
+        public void EncryptFileAsync(string file)
+        {
+            DoFileAsync(file, EncryptFilePreparation, EncryptFileOperation);
+        }
+
+        private bool EncryptFilePreparation(string sourceFile)
         {
             if (String.Compare(Path.GetExtension(sourceFile), OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
             {
-                NotifyComplete(FileOperationStatus.InvalidPath);
+                _eventArgs.Status = FileOperationStatus.InvalidPath;
                 return false;
             }
             IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(sourceFile);
@@ -170,7 +178,7 @@ namespace Axantum.AxCrypt.Core.UI
                 OnQuerySaveFileAs(_eventArgs);
                 if (_eventArgs.Cancel)
                 {
-                    NotifyComplete(FileOperationStatus.Canceled);
+                    _eventArgs.Status = FileOperationStatus.Canceled;
                     return false;
                 }
             }
@@ -180,7 +188,7 @@ namespace Axantum.AxCrypt.Core.UI
                 OnQueryEncryptionPassphrase(_eventArgs);
                 if (_eventArgs.Cancel)
                 {
-                    NotifyComplete(FileOperationStatus.Canceled);
+                    _eventArgs.Status = FileOperationStatus.Canceled;
                     return false;
                 }
                 Passphrase passphrase = new Passphrase(_eventArgs.Passphrase);
@@ -190,27 +198,8 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 _eventArgs.Key = _fileSystemState.KnownKeys.DefaultEncryptionKey;
             }
-            DoProcessFile = EncryptFileOperation;
-            OnProcessFile(_eventArgs);
-            return true;
-        }
 
-        /// <summary>
-        /// Encrypt a file with the main task performed in a background thread.
-        /// </summary>
-        /// <param name="fullName"></param>
-        public void EncryptFileAsync(string fullName)
-        {
-            ThreadWorker worker = _eventArgs.WorkerGroup.CreateWorker();
-            worker.Work += (object workerSender, ThreadWorkerEventArgs threadWorkerEventArgs) =>
-            {
-                EncryptFileOperation(_eventArgs);
-            };
-            worker.Completed += (object workerSender, ThreadWorkerEventArgs threadWorkerEventArgs) =>
-            {
-                OnCompleted(_eventArgs);
-            };
-            worker.Run();
+            return true;
         }
 
         /// <summary>
@@ -223,7 +212,51 @@ namespace Axantum.AxCrypt.Core.UI
         /// return value and status do not conclusive indicate success. Only a failure return
         /// is conclusive.
         /// </remarks>
-        public bool DecryptFile(string sourceFile)
+        public bool DecryptFile(string fullName)
+        {
+            return DoFile(fullName, DecryptFilePreparation, DecryptFileOperation);
+        }
+
+        /// <summary>
+        /// Process a file with the main task performed in a background thread.
+        /// </summary>
+        /// <param name="fullName"></param>
+        public void DecryptFileAsync(string file)
+        {
+            DoFileAsync(file, DecryptFilePreparation, DecryptFileOperation);
+        }
+
+        private void DoFileAsync(string file, Func<string, bool> preparation, Func<bool> operation)
+        {
+            if (!preparation(file))
+            {
+                OnCompleted(_eventArgs);
+                return;
+            }
+            ThreadWorker worker = _eventArgs.WorkerGroup.CreateWorker();
+            worker.Work += (object workerSender, ThreadWorkerEventArgs threadWorkerEventArgs) =>
+            {
+                operation();
+            };
+            worker.Completed += (object workerSender, ThreadWorkerEventArgs threadWorkerEventArgs) =>
+            {
+                OnCompleted(_eventArgs);
+            };
+            worker.Run();
+        }
+
+        private bool DoFile(string fullName, Func<string, bool> preparation, Func<bool> operation)
+        {
+            if (preparation(fullName))
+            {
+                operation();
+            }
+            OnCompleted(_eventArgs);
+
+            return _eventArgs.Status == FileOperationStatus.Success;
+        }
+
+        private bool DecryptFilePreparation(string sourceFile)
         {
             if (!OpenAxCryptDocument(sourceFile, _eventArgs))
             {
@@ -237,13 +270,11 @@ namespace Axantum.AxCrypt.Core.UI
                 OnQuerySaveFileAs(_eventArgs);
                 if (_eventArgs.Cancel)
                 {
-                    NotifyComplete(FileOperationStatus.Canceled);
+                    _eventArgs.Status = FileOperationStatus.Canceled;
                     return false;
                 }
             }
 
-            DoProcessFile = DecryptFileOperation;
-            OnProcessFile(_eventArgs);
             return true;
         }
 
@@ -258,14 +289,23 @@ namespace Axantum.AxCrypt.Core.UI
         /// return value and status do not conclusive indicate success. Only a failure return
         /// is conclusive.
         /// </remarks>
-        public bool DecryptAndLaunch(string sourceFile)
+        public bool DecryptAndLaunch(string fullName)
+        {
+            return DoFile(fullName, DecryptAndLaunchPreparation, DecryptAndLaunchFileOperation);
+        }
+
+        public void DecryptAndLaunchAsync(string fullName)
+        {
+            DoFileAsync(fullName, DecryptAndLaunchPreparation, DecryptAndLaunchFileOperation);
+        }
+
+        private bool DecryptAndLaunchPreparation(string sourceFile)
         {
             if (!OpenAxCryptDocument(sourceFile, _eventArgs))
             {
                 return false;
             }
-            DoProcessFile = DecryptAndLaunchFileOperation;
-            OnProcessFile(_eventArgs);
+
             return true;
         }
 
@@ -293,7 +333,7 @@ namespace Axantum.AxCrypt.Core.UI
                     OnQueryDecryptionPassphrase(e);
                     if (e.Cancel)
                     {
-                        NotifyComplete(FileOperationStatus.Canceled);
+                        e.Status = FileOperationStatus.Canceled;
                         return false;
                     }
                     passphrase = new Passphrase(e.Passphrase);
@@ -316,46 +356,51 @@ namespace Axantum.AxCrypt.Core.UI
                     e.AxCryptDocument = null;
                 }
                 FileOperationStatus status = ioex is FileNotFoundException ? FileOperationStatus.FileDoesNotExist : FileOperationStatus.Exception;
-                NotifyComplete(status);
+                e.Status = status;
                 return false;
             }
             return true;
         }
 
-        private void DecryptAndLaunchFileOperation(FileOperationEventArgs e)
+        private bool DecryptAndLaunchFileOperation()
         {
             try
             {
-                e.Status = _fileSystemState.OpenAndLaunchApplication(e.OpenFileFullName, e.AxCryptDocument, e.WorkerGroup.Progress);
+                _eventArgs.Status = _fileSystemState.OpenAndLaunchApplication(_eventArgs.OpenFileFullName, _eventArgs.AxCryptDocument, _eventArgs.WorkerGroup.Progress);
             }
             finally
             {
-                e.AxCryptDocument.Dispose();
-                e.AxCryptDocument = null;
+                _eventArgs.AxCryptDocument.Dispose();
+                _eventArgs.AxCryptDocument = null;
             }
+
+            _eventArgs.Status = FileOperationStatus.Success;
+            return true;
         }
 
-        private void DecryptFileOperation(FileOperationEventArgs e)
+        private bool DecryptFileOperation()
         {
             try
             {
-                AxCryptFile.Decrypt(e.AxCryptDocument, OS.Current.FileInfo(e.SaveFileFullName), AxCryptOptions.SetFileTimes, e.WorkerGroup.Progress);
+                AxCryptFile.Decrypt(_eventArgs.AxCryptDocument, OS.Current.FileInfo(_eventArgs.SaveFileFullName), AxCryptOptions.SetFileTimes, _eventArgs.WorkerGroup.Progress);
             }
             finally
             {
-                e.AxCryptDocument.Dispose();
-                e.AxCryptDocument = null;
+                _eventArgs.AxCryptDocument.Dispose();
+                _eventArgs.AxCryptDocument = null;
             }
-            AxCryptFile.Wipe(OS.Current.FileInfo(e.OpenFileFullName));
+            AxCryptFile.Wipe(OS.Current.FileInfo(_eventArgs.OpenFileFullName));
 
-            e.Status = FileOperationStatus.Success;
+            _eventArgs.Status = FileOperationStatus.Success;
+            return true;
         }
 
-        private void EncryptFileOperation(FileOperationEventArgs e)
+        private bool EncryptFileOperation()
         {
-            AxCryptFile.EncryptFileWithBackupAndWipe(e.OpenFileFullName, e.SaveFileFullName, e.Key, e.WorkerGroup.Progress);
+            AxCryptFile.EncryptFileWithBackupAndWipe(_eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, _eventArgs.Key, _eventArgs.WorkerGroup.Progress);
 
-            e.Status = FileOperationStatus.Success;
+            _eventArgs.Status = FileOperationStatus.Success;
+            return true;
         }
     }
 }

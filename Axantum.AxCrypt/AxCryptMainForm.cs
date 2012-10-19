@@ -419,9 +419,19 @@ namespace Axantum.AxCrypt
                     persistentState.Current.KnownKeys.DefaultEncryptionKey = new Passphrase(e.Passphrase).DerivedPassphrase;
                 };
 
-            operationsController.ProcessFile += HandleProcessEncryptFileEvent;
+            operationsController.Completed += (object sender, FileOperationEventArgs e) =>
+                {
+                    if (CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
+                    {
+                        IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
+                        IRuntimeFileInfo decryptedInfo = OS.Current.FileInfo(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
+                        ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key, ActiveFileStatus.NotDecrypted, null);
+                        persistentState.Current.Add(activeFile);
+                        persistentState.Current.Save();
+                    }
+                };
 
-            operationsController.EncryptFile(file);
+            operationsController.EncryptFileAsync(file);
         }
 
         private void DecryptFilesViaDialog()
@@ -453,36 +463,42 @@ namespace Axantum.AxCrypt
             operationsController.QueryDecryptionPassphrase += HandleQueryDecryptionPassphraseEvent;
 
             operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
-            {
-                string extension = Path.GetExtension(e.SaveFileFullName);
-                using (SaveFileDialog sfd = new SaveFileDialog())
                 {
-                    sfd.AddExtension = !String.IsNullOrEmpty(extension);
-                    sfd.CheckPathExists = true;
-                    sfd.DefaultExt = extension;
-                    sfd.Filter = Resources.DecryptedSaveAsFileDialogFilterPattern.InvariantFormat(extension);
-                    sfd.InitialDirectory = Path.GetDirectoryName(file);
-                    sfd.FileName = Path.GetFileName(e.SaveFileFullName);
-                    sfd.OverwritePrompt = true;
-                    sfd.RestoreDirectory = true;
-                    sfd.Title = Resources.DecryptedSaveAsFileDialogTitle;
-                    DialogResult result = sfd.ShowDialog();
-                    if (result != DialogResult.OK)
+                    string extension = Path.GetExtension(e.SaveFileFullName);
+                    using (SaveFileDialog sfd = new SaveFileDialog())
                     {
-                        e.Cancel = true;
-                        return;
+                        sfd.AddExtension = !String.IsNullOrEmpty(extension);
+                        sfd.CheckPathExists = true;
+                        sfd.DefaultExt = extension;
+                        sfd.Filter = Resources.DecryptedSaveAsFileDialogFilterPattern.InvariantFormat(extension);
+                        sfd.InitialDirectory = Path.GetDirectoryName(file);
+                        sfd.FileName = Path.GetFileName(e.SaveFileFullName);
+                        sfd.OverwritePrompt = true;
+                        sfd.RestoreDirectory = true;
+                        sfd.Title = Resources.DecryptedSaveAsFileDialogTitle;
+                        DialogResult result = sfd.ShowDialog();
+                        if (result != DialogResult.OK)
+                        {
+                            e.Cancel = true;
+                            return;
+                        }
+                        e.SaveFileFullName = sfd.FileName;
                     }
-                    e.SaveFileFullName = sfd.FileName;
-                }
-                return;
-            };
+                    return;
+                };
 
             operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
-            {
-                AddKnownKey(e.Key);
-            };
+                {
+                    AddKnownKey(e.Key);
+                };
 
-            operationsController.ProcessFile += HandleProcessDecryptFileEvent;
+            operationsController.Completed += (object sender, FileOperationEventArgs e) =>
+                {
+                    if (CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
+                    {
+                        persistentState.Current.RemoveRecentFile(e.OpenFileFullName);
+                    }
+                };
 
             operationsController.DecryptFile(file);
         }
@@ -514,16 +530,16 @@ namespace Axantum.AxCrypt
             operationsController.QueryDecryptionPassphrase += HandleQueryDecryptionPassphraseEvent;
 
             operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
-            {
-                AddKnownKey(e.Key);
-            };
+                {
+                    AddKnownKey(e.Key);
+                };
 
-            operationsController.ProcessFile += HandleProcessOpenFileEvent;
+            operationsController.Completed += (object sender, FileOperationEventArgs e) =>
+                {
+                    CheckStatusAndShowMessage(e.Status, e.OpenFileFullName);
+                };
 
-            if (operationsController.DecryptAndLaunch(file))
-            {
-                return;
-            }
+            operationsController.DecryptAndLaunchAsync(file);
         }
 
         private void ProcessFilesInBackground(IEnumerable<string> files, Action<string, WorkerGroup> processFile)
@@ -556,70 +572,6 @@ namespace Axantum.AxCrypt
                 {
                     workerGroup.Dispose();
                 });
-        }
-
-        private void HandleProcessEncryptFileEvent(object sender, FileOperationEventArgs e)
-        {
-            FileOperationsController controller = (FileOperationsController)sender;
-            ThreadWorker worker = e.WorkerGroup.CreateWorker();
-            worker.Work += (object workerSender, ThreadWorkerEventArgs threadWorkerEventArgs) =>
-            {
-                controller.DoProcessFile(e);
-                threadWorkerEventArgs.Result = e.Status;
-            };
-            worker.Completed += (object workerSender, ThreadWorkerEventArgs threadWorkerEventArgs) =>
-            {
-                FileOperationStatus status = threadWorkerEventArgs.Result;
-                if (CheckStatusAndShowMessage(status, e.OpenFileFullName))
-                {
-                    IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
-                    IRuntimeFileInfo decryptedInfo = OS.Current.FileInfo(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
-                    ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key, ActiveFileStatus.NotDecrypted, null);
-                    persistentState.Current.Add(activeFile);
-                    persistentState.Current.Save();
-                }
-                controller.NotifyComplete(status);
-            };
-            worker.Run();
-        }
-
-        private void HandleProcessDecryptFileEvent(object sender, FileOperationEventArgs e)
-        {
-            FileOperationsController controller = (FileOperationsController)sender;
-            ThreadWorker worker = e.WorkerGroup.CreateWorker();
-            worker.Work += (object workerSender, ThreadWorkerEventArgs threadWorkerEventArgs) =>
-            {
-                controller.DoProcessFile(e);
-                threadWorkerEventArgs.Result = e.Status;
-            };
-            worker.Completed += (object workerSender, ThreadWorkerEventArgs threadWorkerEventArgs) =>
-            {
-                FileOperationStatus status = threadWorkerEventArgs.Result;
-                if (CheckStatusAndShowMessage(status, e.OpenFileFullName))
-                {
-                    persistentState.Current.RemoveRecentFile(e.OpenFileFullName);
-                }
-                controller.NotifyComplete(status);
-            };
-            worker.Run();
-        }
-
-        private void HandleProcessOpenFileEvent(object sender, FileOperationEventArgs e)
-        {
-            FileOperationsController controller = (FileOperationsController)sender;
-            ThreadWorker worker = e.WorkerGroup.CreateWorker();
-            worker.Work += (object workerSender, ThreadWorkerEventArgs threadWorkerEventArgs) =>
-            {
-                controller.DoProcessFile(e);
-                threadWorkerEventArgs.Result = e.Status;
-            };
-            worker.Completed += (object workerSender, ThreadWorkerEventArgs threadWorkerEventArgs) =>
-            {
-                FileOperationStatus status = threadWorkerEventArgs.Result;
-                CheckStatusAndShowMessage(status, e.OpenFileFullName);
-                controller.NotifyComplete(status);
-            };
-            worker.Run();
         }
 
         private static bool CheckStatusAndShowMessage(FileOperationStatus status, string displayContext)
@@ -841,7 +793,7 @@ namespace Axantum.AxCrypt
                     StringBuilder sb = new StringBuilder();
                     foreach (ActiveFile openFile in openFiles)
                     {
-                        sb.Append("{0}\n".InvariantFormat(Path.GetFileName(openFile.DecryptedFileInfo.FullName))); //MLHIDE
+                        sb.Append("{0}{1}".InvariantFormat(Path.GetFileName(openFile.DecryptedFileInfo.FullName), Environment.NewLine)); //MLHIDE
                     }
                     sb.ToString().ShowWarning();
                 });
