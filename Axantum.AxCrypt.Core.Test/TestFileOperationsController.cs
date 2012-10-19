@@ -98,6 +98,41 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        public static void TestSimpleEncryptFileOnThreadWorker()
+        {
+            FileOperationsController controller = new FileOperationsController(_fileSystemState);
+            controller.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
+            {
+                e.Passphrase = "allan";
+            };
+            string destinationPath = String.Empty;
+            FileOperationStatus status = FileOperationStatus.Unknown;
+            controller.Completed += (object sender, FileOperationEventArgs e) =>
+            {
+                destinationPath = e.SaveFileFullName;
+                status = e.Status;
+            };
+
+            using (ThreadWorker worker = new ThreadWorker(new ProgressContext()))
+            {
+                controller.EncryptFile(_davidCopperfieldTxtPath, worker);
+                worker.Join();
+            }
+            Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
+
+            IRuntimeFileInfo destinationInfo = OS.Current.FileInfo(destinationPath);
+            Assert.That(destinationInfo.Exists, "After encryption the destination file should be created.");
+            using (AxCryptDocument document = new AxCryptDocument())
+            {
+                using (Stream stream = destinationInfo.OpenRead())
+                {
+                    document.Load(stream, new Passphrase("allan").DerivedPassphrase);
+                    Assert.That(document.PassphraseIsValid, "The encrypted document should be valid and encrypted with the passphrase given.");
+                }
+            }
+        }
+
+        [Test]
         public static void TestEncryptFileWithDefaultEncryptionKey()
         {
             _fileSystemState.KnownKeys.DefaultEncryptionKey = new Passphrase("default").DerivedPassphrase;
@@ -235,6 +270,45 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        public static void TestSimpleDecryptFileOnThreadWorker()
+        {
+            FileOperationsController controller = new FileOperationsController(_fileSystemState);
+            controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
+            {
+                e.Passphrase = "a";
+            };
+            bool knownKeyWasAdded = false;
+            controller.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
+            {
+                knownKeyWasAdded = e.Key == new Passphrase("a").DerivedPassphrase;
+            };
+            string destinationPath = String.Empty;
+            FileOperationStatus status = FileOperationStatus.Unknown;
+            controller.Completed += (object sender, FileOperationEventArgs e) =>
+            {
+                destinationPath = e.SaveFileFullName;
+                status = e.Status;
+            };
+            using (ThreadWorker worker = new ThreadWorker(new ProgressContext()))
+            {
+                controller.DecryptFile(_helloWorldAxxPath, worker);
+                worker.Join();
+            }
+
+            Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
+            Assert.That(knownKeyWasAdded, "A new known key was used, so the KnownKeyAdded event should have been raised.");
+            IRuntimeFileInfo destinationInfo = OS.Current.FileInfo(destinationPath);
+            Assert.That(destinationInfo.Exists, "After decryption the destination file should be created.");
+
+            string fileContent;
+            using (Stream stream = destinationInfo.OpenRead())
+            {
+                fileContent = new StreamReader(stream).ReadToEnd();
+            }
+            Assert.That(fileContent.Contains("Hello"), "A file named Hello World should contain that text when decrypted.");
+        }
+
+        [Test]
         public static void TestDecryptWithCancelDuringQueryDecryptionPassphrase()
         {
             FileOperationsController controller = new FileOperationsController(_fileSystemState);
@@ -321,6 +395,51 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Passphrase = "a";
             };
             FileOperationStatus status = controller.DecryptAndLaunch(_helloWorldAxxPath);
+
+            Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
+
+            Assert.That(launcher, Is.Not.Null, "There should be a call to launch.");
+            Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
+
+            IRuntimeFileInfo destinationInfo = OS.Current.FileInfo(launcher.Path);
+            Assert.That(destinationInfo.Exists, "After decryption the destination file should be created.");
+
+            string fileContent;
+            using (Stream stream = destinationInfo.OpenRead())
+            {
+                fileContent = new StreamReader(stream).ReadToEnd();
+            }
+
+            Assert.That(fileContent.Contains("Hello"), "A file named Hello World should contain that text when decrypted.");
+        }
+
+        [Test]
+        public static void TestSimpleDecryptAndLaunchOnThreadWorker()
+        {
+            FakeLauncher launcher = null;
+            FakeRuntimeEnvironment environment = (FakeRuntimeEnvironment)OS.Current;
+            environment.Launcher = ((string path) =>
+            {
+                launcher = new FakeLauncher(path);
+                return launcher;
+            });
+
+            FileOperationsController controller = new FileOperationsController(_fileSystemState);
+            controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
+            {
+                e.Passphrase = "a";
+            };
+            FileOperationStatus status = FileOperationStatus.Unknown;
+            controller.Completed += (object sender, FileOperationEventArgs e) =>
+            {
+                status = e.Status;
+            };
+
+            using (ThreadWorker worker = new ThreadWorker(new ProgressContext()))
+            {
+                controller.DecryptAndLaunch(_helloWorldAxxPath, worker);
+                worker.Join();
+            }
 
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
@@ -473,6 +592,29 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationStatus status = controller.EncryptFile("test" + OS.Current.AxCryptExtension);
 
             Assert.That(status, Is.EqualTo(FileOperationStatus.InvalidPath), "The status should indicate that the path is invalid.");
+        }
+
+        [Test]
+        public static void TestDecryptWithCancelDuringQueryDecryptionPassphraseOnThreadWorker()
+        {
+            FileOperationsController controller = new FileOperationsController(_fileSystemState);
+            controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
+                {
+                    e.Cancel = true;
+                };
+            FileOperationStatus status = FileOperationStatus.Unknown;
+            controller.Completed += (object sender, FileOperationEventArgs e) =>
+                {
+                    status = e.Status;
+                };
+
+            using (ThreadWorker worker = new ThreadWorker(new ProgressContext()))
+            {
+                controller.DecryptFile(_helloWorldAxxPath, worker);
+                worker.Join();
+            }
+
+            Assert.That(status, Is.EqualTo(FileOperationStatus.Canceled), "The status should indicate cancellation.");
         }
     }
 }

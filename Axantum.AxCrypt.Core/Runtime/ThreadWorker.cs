@@ -89,6 +89,11 @@ namespace Axantum.AxCrypt.Core.Runtime
             _joined.WaitOne();
         }
 
+        public void Abort()
+        {
+            DisposeWorker();
+        }
+
         public bool HasCompleted
         {
             get

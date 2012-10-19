@@ -386,6 +386,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             if (!preparation(fullName))
             {
+                worker.Abort();
                 OnCompleted(_eventArgs);
                 return;
             }
