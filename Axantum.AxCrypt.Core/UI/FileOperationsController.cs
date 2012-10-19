@@ -37,24 +37,46 @@ using Axantum.AxCrypt.Core.Session;
 
 namespace Axantum.AxCrypt.Core.UI
 {
+    /// <summary>
+    /// This class implements the controlling logic for various file-oriented operations which typically
+    /// require user interaction. Opportunity to insert user interaction is provided via events which are
+    /// raised on a need-to-know basis. Instances of this class should typically be instantiated on a GUI
+    /// thread and methods should be called from the GUI thread. Support is provided for doing the heavy
+    /// lifting on background threads.
+    /// </summary>
     public class FileOperationsController
     {
         private FileSystemState _fileSystemState;
 
         private FileOperationEventArgs _eventArgs;
 
+        private ProgressContext _progress;
+
+        /// <summary>
+        /// Create a new instance, without any progress reporting.
+        /// </summary>
+        /// <param name="fileSystemState">The current FileSystemStatem instance</param>
         public FileOperationsController(FileSystemState fileSystemState)
-            : this(fileSystemState, new WorkerGroup())
+            : this(fileSystemState, new ProgressContext())
         {
-            _eventArgs.WorkerGroup.AcquireOne();
         }
 
-        public FileOperationsController(FileSystemState fileSystemState, WorkerGroup workerGroup)
+        /// <summary>
+        /// Create a new instance, reporting progress
+        /// </summary>
+        /// <param name="fileSystemState">The current FileSystemStatem instance</param>
+        /// <param name="progress">The instance of ProgressContext to report progress via</param>
+        public FileOperationsController(FileSystemState fileSystemState, ProgressContext progress)
         {
-            _eventArgs = new FileOperationEventArgs(workerGroup);
+            _eventArgs = new FileOperationEventArgs();
             _fileSystemState = fileSystemState;
+            _progress = progress;
         }
 
+        /// <summary>
+        /// Raised whenever there is a need to specify a file to save to because the expected target
+        /// name already exists.
+        /// </summary>
         public event EventHandler<FileOperationEventArgs> QuerySaveFileAs;
 
         protected virtual void OnQuerySaveFileAs(FileOperationEventArgs e)
@@ -66,6 +88,9 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
+        /// <summary>
+        /// Raised when a valid decryption passphrase was not found among the KnownKeys collection.
+        /// </summary>
         public event EventHandler<FileOperationEventArgs> QueryDecryptionPassphrase;
 
         protected virtual void OnQueryDecryptionPassphrase(FileOperationEventArgs e)
@@ -77,6 +102,9 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
+        /// <summary>
+        /// Raised when the KnownKeys.DefaultEncryptionKey is not set.
+        /// </summary>
         public event EventHandler<FileOperationEventArgs> QueryEncryptionPassphrase;
 
         protected virtual void OnQueryEncryptionPassphrase(FileOperationEventArgs e)
@@ -88,17 +116,9 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public event EventHandler<FileOperationEventArgs> ProcessFile;
-
-        protected virtual void OnProcessFile(FileOperationEventArgs e)
-        {
-            EventHandler<FileOperationEventArgs> handler = ProcessFile;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
-        }
-
+        /// <summary>
+        /// Raised when a new KnowKey is added.
+        /// </summary>
         public event EventHandler<FileOperationEventArgs> KnownKeyAdded;
 
         protected virtual void OnKnownKeyAdded(FileOperationEventArgs e)
@@ -110,21 +130,18 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
+        /// <summary>
+        /// Always raised at the end of an operation, regardless of errors or cancellation.
+        /// </summary>
+        /// <param name="e"></param>
         public event EventHandler<FileOperationEventArgs> Completed;
 
         protected virtual void OnCompleted(FileOperationEventArgs e)
         {
             EventHandler<FileOperationEventArgs> handler = Completed;
-            try
+            if (handler != null)
             {
-                if (handler != null)
-                {
-                    handler(this, e);
-                }
-            }
-            finally
-            {
-                _eventArgs.WorkerGroup.ReleaseOne();
+                handler(this, e);
             }
         }
 
@@ -147,22 +164,22 @@ namespace Axantum.AxCrypt.Core.UI
         /// Process a file with the main task performed in a background thread.
         /// </summary>
         /// <param name="fullName"></param>
-        public void EncryptFileAsync(string file)
+        public void EncryptFile(string fullName, ThreadWorker worker)
         {
-            DoFileAsync(file, EncryptFilePreparation, EncryptFileOperation);
+            DoFile(fullName, worker, EncryptFilePreparation, EncryptFileOperation);
         }
 
-        private bool EncryptFilePreparation(string sourceFile)
+        private bool EncryptFilePreparation(string fullName)
         {
-            if (String.Compare(Path.GetExtension(sourceFile), OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
+            if (String.Compare(Path.GetExtension(fullName), OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 _eventArgs.Status = FileOperationStatus.InvalidPath;
                 return false;
             }
-            IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(sourceFile);
+            IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(fullName);
             IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
             _eventArgs.SaveFileFullName = destinationFileInfo.FullName;
-            _eventArgs.OpenFileFullName = sourceFile;
+            _eventArgs.OpenFileFullName = fullName;
             if (destinationFileInfo.Exists)
             {
                 OnQuerySaveFileAs(_eventArgs);
@@ -192,6 +209,14 @@ namespace Axantum.AxCrypt.Core.UI
             return true;
         }
 
+        private bool EncryptFileOperation()
+        {
+            AxCryptFile.EncryptFileWithBackupAndWipe(_eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, _eventArgs.Key, _progress);
+
+            _eventArgs.Status = FileOperationStatus.Success;
+            return true;
+        }
+
         /// <summary>
         /// Decrypt a file, raising events as required by the situation.
         /// </summary>
@@ -211,49 +236,19 @@ namespace Axantum.AxCrypt.Core.UI
         /// Process a file with the main task performed in a background thread.
         /// </summary>
         /// <param name="fullName"></param>
-        public void DecryptFileAsync(string file)
+        public void DecryptFile(string fullName, ThreadWorker worker)
         {
-            DoFileAsync(file, DecryptFilePreparation, DecryptFileOperation);
+            DoFile(fullName, worker, DecryptFilePreparation, DecryptFileOperation);
         }
 
-        private void DoFileAsync(string file, Func<string, bool> preparation, Func<bool> operation)
+        private bool DecryptFilePreparation(string fullName)
         {
-            if (!preparation(file))
-            {
-                OnCompleted(_eventArgs);
-                return;
-            }
-            ThreadWorker worker = _eventArgs.WorkerGroup.CreateWorker();
-            worker.Work += (object workerSender, ThreadWorkerEventArgs threadWorkerEventArgs) =>
-            {
-                operation();
-            };
-            worker.Completed += (object workerSender, ThreadWorkerEventArgs threadWorkerEventArgs) =>
-            {
-                OnCompleted(_eventArgs);
-            };
-            worker.Run();
-        }
-
-        private FileOperationStatus DoFile(string fullName, Func<string, bool> preparation, Func<bool> operation)
-        {
-            if (preparation(fullName))
-            {
-                operation();
-            }
-            OnCompleted(_eventArgs);
-
-            return _eventArgs.Status;
-        }
-
-        private bool DecryptFilePreparation(string sourceFile)
-        {
-            if (!OpenAxCryptDocument(sourceFile, _eventArgs))
+            if (!OpenAxCryptDocument(fullName, _eventArgs))
             {
                 return false;
             }
 
-            IRuntimeFileInfo destination = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(sourceFile), _eventArgs.AxCryptDocument.DocumentHeaders.FileName));
+            IRuntimeFileInfo destination = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(fullName), _eventArgs.AxCryptDocument.DocumentHeaders.FileName));
             _eventArgs.SaveFileFullName = destination.FullName;
             if (destination.Exists)
             {
@@ -268,30 +263,49 @@ namespace Axantum.AxCrypt.Core.UI
             return true;
         }
 
+        private bool DecryptFileOperation()
+        {
+            try
+            {
+                AxCryptFile.Decrypt(_eventArgs.AxCryptDocument, OS.Current.FileInfo(_eventArgs.SaveFileFullName), AxCryptOptions.SetFileTimes, _progress);
+            }
+            finally
+            {
+                _eventArgs.AxCryptDocument.Dispose();
+                _eventArgs.AxCryptDocument = null;
+            }
+            AxCryptFile.Wipe(OS.Current.FileInfo(_eventArgs.OpenFileFullName));
+
+            _eventArgs.Status = FileOperationStatus.Success;
+            return true;
+        }
+
         /// <summary>
         /// Decrypt a file, and launch the associated application raising events as required by
         /// the situation.
         /// </summary>
-        /// <param name="sourceFile">The full path to an encrypted file.</param>
+        /// <param name="fullName">The full path to an encrypted file.</param>
         /// <returns>'True' if the operation did not fail so far, 'False' if it definitely has failed.</returns>
-        /// <remarks>
-        /// Since especially the actual operation typically is executed asynchronously, the
-        /// return value and status do not conclusive indicate success. Only a failure return
-        /// is conclusive.
-        /// </remarks>
         public FileOperationStatus DecryptAndLaunch(string fullName)
         {
             return DoFile(fullName, DecryptAndLaunchPreparation, DecryptAndLaunchFileOperation);
         }
 
-        public void DecryptAndLaunchAsync(string fullName)
+        /// <summary>
+        /// Decrypt a file, and launch the associated application raising events as required by
+        /// the situation. The decryption is performed asynchronously on a background thread.
+        /// </summary>
+        /// <param name="sourceFile">The full path to an encrypted file.</param>
+        /// <param name="worker">The worker thread on which to execute the decryption and launch.</param>
+        /// <returns>'True' if the operation did not fail so far, 'False' if it definitely has failed.</returns>
+        public void DecryptAndLaunch(string fullName, ThreadWorker worker)
         {
-            DoFileAsync(fullName, DecryptAndLaunchPreparation, DecryptAndLaunchFileOperation);
+            DoFile(fullName, worker, DecryptAndLaunchPreparation, DecryptAndLaunchFileOperation);
         }
 
-        private bool DecryptAndLaunchPreparation(string sourceFile)
+        private bool DecryptAndLaunchPreparation(string fullName)
         {
-            if (!OpenAxCryptDocument(sourceFile, _eventArgs))
+            if (!OpenAxCryptDocument(fullName, _eventArgs))
             {
                 return false;
             }
@@ -299,12 +313,28 @@ namespace Axantum.AxCrypt.Core.UI
             return true;
         }
 
-        private bool OpenAxCryptDocument(string sourceFile, FileOperationEventArgs e)
+        private bool DecryptAndLaunchFileOperation()
+        {
+            try
+            {
+                _eventArgs.Status = _fileSystemState.OpenAndLaunchApplication(_eventArgs.OpenFileFullName, _eventArgs.AxCryptDocument, _progress);
+            }
+            finally
+            {
+                _eventArgs.AxCryptDocument.Dispose();
+                _eventArgs.AxCryptDocument = null;
+            }
+
+            _eventArgs.Status = FileOperationStatus.Success;
+            return true;
+        }
+
+        private bool OpenAxCryptDocument(string fullName, FileOperationEventArgs e)
         {
             e.AxCryptDocument = null;
             try
             {
-                IRuntimeFileInfo source = OS.Current.FileInfo(sourceFile);
+                IRuntimeFileInfo source = OS.Current.FileInfo(fullName);
                 e.OpenFileFullName = source.FullName;
                 foreach (AesKey key in _fileSystemState.KnownKeys.Keys)
                 {
@@ -352,45 +382,33 @@ namespace Axantum.AxCrypt.Core.UI
             return true;
         }
 
-        private bool DecryptAndLaunchFileOperation()
+        private void DoFile(string fullName, ThreadWorker worker, Func<string, bool> preparation, Func<bool> operation)
         {
-            try
+            if (!preparation(fullName))
             {
-                _eventArgs.Status = _fileSystemState.OpenAndLaunchApplication(_eventArgs.OpenFileFullName, _eventArgs.AxCryptDocument, _eventArgs.WorkerGroup.Progress);
+                OnCompleted(_eventArgs);
+                return;
             }
-            finally
+            worker.Work += (object workerSender, ThreadWorkerEventArgs threadWorkerEventArgs) =>
             {
-                _eventArgs.AxCryptDocument.Dispose();
-                _eventArgs.AxCryptDocument = null;
-            }
-
-            _eventArgs.Status = FileOperationStatus.Success;
-            return true;
+                operation();
+            };
+            worker.Completed += (object workerSender, ThreadWorkerEventArgs threadWorkerEventArgs) =>
+            {
+                OnCompleted(_eventArgs);
+            };
+            worker.Run();
         }
 
-        private bool DecryptFileOperation()
+        private FileOperationStatus DoFile(string fullName, Func<string, bool> preparation, Func<bool> operation)
         {
-            try
+            if (preparation(fullName))
             {
-                AxCryptFile.Decrypt(_eventArgs.AxCryptDocument, OS.Current.FileInfo(_eventArgs.SaveFileFullName), AxCryptOptions.SetFileTimes, _eventArgs.WorkerGroup.Progress);
+                operation();
             }
-            finally
-            {
-                _eventArgs.AxCryptDocument.Dispose();
-                _eventArgs.AxCryptDocument = null;
-            }
-            AxCryptFile.Wipe(OS.Current.FileInfo(_eventArgs.OpenFileFullName));
+            OnCompleted(_eventArgs);
 
-            _eventArgs.Status = FileOperationStatus.Success;
-            return true;
-        }
-
-        private bool EncryptFileOperation()
-        {
-            AxCryptFile.EncryptFileWithBackupAndWipe(_eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, _eventArgs.Key, _eventArgs.WorkerGroup.Progress);
-
-            _eventArgs.Status = FileOperationStatus.Success;
-            return true;
+            return _eventArgs.Status;
         }
     }
 }

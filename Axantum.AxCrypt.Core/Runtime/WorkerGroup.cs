@@ -35,7 +35,7 @@ using Axantum.AxCrypt.Core.UI;
 namespace Axantum.AxCrypt.Core.Runtime
 {
     /// <summary>
-    /// Manage a group of worker threads with a maximum level of concurrency
+    /// Manage a group of worker threads with a maximum level of concurrency.
     /// </summary>
     public class WorkerGroup : IDisposable
     {
@@ -112,7 +112,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
             _concurrencyControlSemaphore = new Semaphore(maxConcurrent, maxConcurrent);
             _maxConcurrencyCount = maxConcurrent;
-            LastError = FileOperationStatus.Success;
+            FirstError = FileOperationStatus.Success;
             Progress = progress;
         }
 
@@ -145,51 +145,6 @@ namespace Axantum.AxCrypt.Core.Runtime
         }
 
         /// <summary>
-        /// Acquire one concurrency worker right. This must be called explicitly by the caller before attempting to
-        /// create a new worker thread. This call may block if maximum concurrency has been reached, and will not
-        /// continue execution until a worker thread calls ReleaseOne().
-        /// </summary>
-        /// <remarks>
-        /// Since this call may block, it should never be called from the GUI thread.
-        /// </remarks>
-        public void AcquireOne()
-        {
-            if (_disposed)
-            {
-                throw new ObjectDisposedException("WorkerGroup");
-            }
-            _concurrencyControlSemaphore.WaitOne();
-        }
-
-        /// <summary>
-        /// Release one concurrency worker right, possibly releasing a thread that is blocking on AcquireOne().
-        /// </summary>
-        public void ReleaseOne()
-        {
-            if (_disposed)
-            {
-                throw new ObjectDisposedException("WorkerGroup");
-            }
-            _concurrencyControlSemaphore.Release();
-        }
-
-        private void AcquireAll()
-        {
-            lock (_finishedLock)
-            {
-                if (_finished)
-                {
-                    return;
-                }
-                for (int i = 0; i < _maxConcurrencyCount; ++i)
-                {
-                    AcquireOne();
-                }
-                _finished = true;
-            }
-        }
-
-        /// <summary>
         /// Notify this instance that all work has been scheduled. This call will block until all executing threads have terminated.
         /// It will also notify the ProgressContext that all work has finished.
         /// </summary>
@@ -209,7 +164,7 @@ namespace Axantum.AxCrypt.Core.Runtime
                     throw new InvalidOperationException("NotifyFinished() must only be called once, but was called twice.");
                 }
 
-                AcquireAll();
+                AcquireAllConcurrencyRights();
             }
             Progress.NotifyFinished();
         }
@@ -244,9 +199,11 @@ namespace Axantum.AxCrypt.Core.Runtime
         private List<ThreadWorker> _threadWorkers = new List<ThreadWorker>();
 
         /// <summary>
-        /// Create a ThreadWorker for background work. If concurrency limitations are to be effective, AcquireOne() and ReleaseOne()
-        /// must be called appropriately and explicitly.
+        /// Create a ThreadWorker for background work. Concurrency limitations are effective, so this call may block.
         /// </summary>
+        /// <remarks>
+        /// Since this call may block, it should not be called from the GUI thread if there is a risk of blocking.
+        /// </remarks>
         /// <returns></returns>
         public ThreadWorker CreateWorker()
         {
@@ -254,6 +211,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             {
                 throw new ObjectDisposedException("WorkerGroup");
             }
+            AcquireOneConcurrencyRight();
             DisposeCompletedWorkerThreads();
             ThreadWorker threadWorker = new ThreadWorker(Progress);
             threadWorker.Completed += new EventHandler<ThreadWorkerEventArgs>(HandleThreadWorkerCompleted);
@@ -270,14 +228,60 @@ namespace Axantum.AxCrypt.Core.Runtime
             {
                 throw new ObjectDisposedException("WorkerGroup");
             }
+            ReleaseOneConcurrencyRight();
             DisposeCompletedWorkerThreads();
             if (e.Result != FileOperationStatus.Success)
             {
-                LastError = e.Result;
+                lock (_firstErrorLock)
+                {
+                    if (FirstError == FileOperationStatus.Success)
+                    {
+                        FirstError = e.Result;
+                    }
+                }
             }
         }
 
-        public FileOperationStatus LastError { get; private set; }
+        private static readonly object _firstErrorLock = new object();
+
+        /// <summary>
+        /// The first error reported. Subsequent errors may be missed.
+        /// </summary>
+        public FileOperationStatus FirstError { get; private set; }
+
+        private void AcquireOneConcurrencyRight()
+        {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException("WorkerGroup");
+            }
+            _concurrencyControlSemaphore.WaitOne();
+        }
+
+        private void ReleaseOneConcurrencyRight()
+        {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException("WorkerGroup");
+            }
+            _concurrencyControlSemaphore.Release();
+        }
+
+        private void AcquireAllConcurrencyRights()
+        {
+            lock (_finishedLock)
+            {
+                if (_finished)
+                {
+                    return;
+                }
+                for (int i = 0; i < _maxConcurrencyCount; ++i)
+                {
+                    AcquireOneConcurrencyRight();
+                }
+                _finished = true;
+            }
+        }
 
         #region IDisposable Members
 

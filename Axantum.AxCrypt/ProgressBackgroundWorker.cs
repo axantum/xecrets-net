@@ -164,5 +164,10 @@ namespace Axantum.AxCrypt
 
             base.Dispose(disposing);
         }
+
+        internal void BackgroundWorkWithProgress(Func<ProgressContext, FileOperationStatus> func, Func<ProgressContext, FileOperationStatus> func_2)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

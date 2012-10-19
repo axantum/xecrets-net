@@ -447,24 +447,23 @@ namespace Axantum.AxCrypt.Core.Test
         {
             FileOperationsController controller = new FileOperationsController(_fileSystemState);
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
-            {
-                e.Passphrase = "a";
-            };
-            string destinationPath = String.Empty;
-            controller.ProcessFile += (object sender, FileOperationEventArgs e) =>
-            {
-                throw new InternalErrorException("The first exception should be caught, but we should never get here.");
-            };
+                {
+                    e.Passphrase = "a";
+                };
             controller.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
-            {
-                throw new FileNotFoundException("Just kidding, but we're faking...", e.OpenFileFullName);
-            };
+                {
+                    throw new FileNotFoundException("Just kidding, but we're faking...", e.OpenFileFullName);
+                };
+            string destinationPath = String.Empty;
+            controller.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
+                {
+                    destinationPath = e.SaveFileFullName;
+                };
             FileOperationStatus status = FileOperationStatus.Unknown;
             Assert.DoesNotThrow(() => { status = controller.DecryptFile(_helloWorldAxxPath); });
 
             Assert.That(status, Is.EqualTo(FileOperationStatus.FileDoesNotExist), "The status should indicate an exception occurred.");
-            IRuntimeFileInfo destinationInfo = OS.Current.FileInfo(destinationPath);
-            Assert.That(!destinationInfo.Exists, "Since an exception occurred, the destination file should not be created.");
+            Assert.That(String.IsNullOrEmpty(destinationPath), "Since an exception occurred, the destination file should not be created.");
         }
 
         [Test]
