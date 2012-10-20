@@ -47,25 +47,14 @@ namespace Axantum.AxCrypt.Core.UI
         {
         }
 
-        public ProgressContext(string displayText)
-            : this(displayText, null)
-        {
-        }
-
-        public ProgressContext(string displayText, object context)
-            : this(displayText, context, DefaultFirstProgressing)
-        {
-        }
-
         public ProgressContext(TimeSpan firstElapsed)
-            : this(String.Empty, null, firstElapsed)
+            : this(null, firstElapsed)
         {
         }
 
-        public ProgressContext(string displayText, object context, TimeSpan firstProgressing)
+        public ProgressContext(object context, TimeSpan firstProgressing)
         {
             _context = context;
-            DisplayText = displayText;
             NextProgressing = firstProgressing;
             Finished = false;
         }
@@ -73,8 +62,6 @@ namespace Axantum.AxCrypt.Core.UI
         public bool Cancel { get; set; }
 
         public event EventHandler<ProgressEventArgs> Progressing;
-
-        public string DisplayText { get; set; }
 
         private static readonly object _lock = new object();
 
@@ -119,6 +106,10 @@ namespace Axantum.AxCrypt.Core.UI
                 if (Cancel)
                 {
                     throw new OperationCanceledException("Operation canceled on request");
+                }
+                if (count <= 0)
+                {
+                    return;
                 }
                 _current += count;
                 if (_stopwatch.Elapsed < NextProgressing)
