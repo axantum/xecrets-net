@@ -89,13 +89,23 @@ namespace Axantum.AxCrypt.Core.Runtime
             : this(maxConcurrent, new ProgressContext())
         {
             SynchronizationContext context = SynchronizationContext.Current;
-            Progress.Progressing += (object sender, ProgressEventArgs e) =>
-                {
-                    context.Send((object state) =>
-                        {
-                            OnProgressing((ProgressEventArgs)state);
-                        }, e);
-                };
+            if (context == null)
+            {
+                Progress.Progressing += (object sender, ProgressEventArgs e) =>
+                    {
+                        OnProgressing(e);
+                    };
+            }
+            else
+            {
+                Progress.Progressing += (object sender, ProgressEventArgs e) =>
+                    {
+                        context.Send((object state) =>
+                            {
+                                OnProgressing((ProgressEventArgs)state);
+                            }, e);
+                    };
+            }
         }
 
         /// <summary>

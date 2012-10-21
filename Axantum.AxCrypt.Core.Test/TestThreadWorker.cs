@@ -112,8 +112,11 @@ namespace Axantum.AxCrypt.Core.Test
                 worker.Dispose();
             }
 
+            bool hasCompleted = false;
             Assert.Throws<ObjectDisposedException>(() => { worker.Run(); });
             Assert.Throws<ObjectDisposedException>(() => { worker.Join(); });
+            Assert.Throws<ObjectDisposedException>(() => { hasCompleted = worker.HasCompleted; });
+            Assert.That(!hasCompleted, "Although the thread has completed, the variable should still be false since the attempt to set it is after Dispose().");
             Assert.DoesNotThrow(() => { worker.Dispose(); });
         }
 

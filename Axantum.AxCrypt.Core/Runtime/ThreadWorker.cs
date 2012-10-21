@@ -96,6 +96,10 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
             get
             {
+                if (_disposed)
+                {
+                    throw new ObjectDisposedException("ThreadWorker");
+                }
                 return _joined.WaitOne(0, false);
             }
         }
