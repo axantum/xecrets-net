@@ -144,7 +144,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 if (Finished)
                 {
-                    throw new InvalidOperationException("Out-of-sequence call, cannot call NotifyFinished() twice");
+                    return;
                 }
                 Finished = true;
                 e = new ProgressEventArgs(100, _context);

@@ -126,62 +126,30 @@ namespace Axantum.AxCrypt.Core.Runtime
         private readonly object _finishedLock = new object();
 
         /// <summary>
-        /// Instantiate a worker group with no concurrency and implicit progress reporting.
+        /// Instantiate a worker group with no concurrency and implicit progress reporting. Progress
+        /// will be reported on the thread calling the constructor.
         /// </summary>
-        /// <remarks>
-        /// When using internal progress reporting, the instantiating call should come from a
-        /// thread useful for progress reporting, with a SynchronizationContext set, typically
-        /// the GUI thread.
-        /// </remarks>
         public WorkerGroup()
             : this(1)
         {
         }
 
         /// <summary>
-        /// Instantiates a worker group with specified maximum concurrency and implicit progress reporting
+        /// Instantiates a worker group with specified maximum concurrency and implicit progress reporting. Progress
+        /// will be reported on the thread calling the constructor.
         /// </summary>
         /// <param name="maxConcurrent">The maximum number of worker threads active at any one time</param>
-        /// <remarks>
-        /// When using internal progress reporting, the instantiating call should come from a
-        /// thread useful for progress reporting, with a SynchronizationContext set, typically
-        /// the GUI thread.
-        /// </remarks>
         public WorkerGroup(int maxConcurrent)
             : this(maxConcurrent, new ProgressContext())
         {
-            //SynchronizationContext context = SynchronizationContext.Current;
-            //if (context == null)
-            //{
-            //    Progress.Progressing += (object sender, ProgressEventArgs e) =>
-            //        {
-            //            OnProgressing(e);
-            //        };
-            //}
-            //else
-            //{
-            //    Progress.Progressing += (object sender, ProgressEventArgs e) =>
-            //        {
-            //            context.Send((object state) =>
-            //                {
-            //                    OnProgressing((ProgressEventArgs)state);
-            //                }, e);
-            //        };
-            //}
         }
 
         /// <summary>
-        /// Instantiates a worker group with specified maximum concurrency and external progress reporting
+        /// Instantiates a worker group with specified maximum concurrency and external progress reporting. Progress
+        /// will be reported on the thread instantiating the ProgressContext used.
         /// </summary>
         /// <param name="maxConcurrent">The maximum number of worker threads active at any one time</param>
         /// <param name="progress">The ProgressContext that receives progress notifications</param>
-        /// <remarks>
-        /// When using an explicitly specified ProgressContext progress reporting is not subscribed
-        /// to by this instance, it is expected that this is done by the caller who instantiated the
-        /// original ProgressContext instance. This caller must also ensure that progress is reported
-        /// on a suitable thread, i.e. the GUI thread. The intention is that such an instance is in fact
-        /// instantiated by a WorkerGroup with a single thread and implicit progress which handles this.
-        /// </remarks>
         public WorkerGroup(int maxConcurrent, ProgressContext progress)
         {
             _concurrencyControlSemaphore = new Semaphore(maxConcurrent, maxConcurrent);
@@ -197,26 +165,6 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// instance, no progress events are subscribed to by this instance.
         /// </summary>
         public ProgressContext Progress { get; private set; }
-
-        /// <summary>
-        /// Raised whenever progress is reported via the ProgressContext by a worker thread. The event handler code
-        /// is executed on the thread which instantiated this instance, if that thread has a SynchronizationContext set,
-        /// which typically is true for the GUI thread.
-        /// </summary>
-        //public event EventHandler<ProgressEventArgs> Progressing;
-
-        /// <summary>
-        /// Raises the <see cref="E:Progressing"/> event.
-        /// </summary>
-        /// <param name="e">The <see cref="Axantum.AxCrypt.Core.UI.ProgressEventArgs"/> instance containing the event data.</param>
-        //protected virtual void OnProgressing(ProgressEventArgs e)
-        //{
-        //    EventHandler<ProgressEventArgs> handler = Progressing;
-        //    if (handler != null)
-        //    {
-        //        handler(this, e);
-        //    }
-        //}
 
         /// <summary>
         /// Notify this instance that all work has been scheduled. This call will block until all executing threads have terminated.
@@ -241,6 +189,24 @@ namespace Axantum.AxCrypt.Core.Runtime
             }
         }
 
+        public static void FinishInBackground(WorkerGroup workerGroup)
+        {
+            ThreadPool.QueueUserWorkItem(
+                (object state) =>
+                {
+                    WorkerGroup group = (WorkerGroup)state;
+                    try
+                    {
+                        group.NotifyFinished();
+                    }
+                    finally
+                    {
+                        group.Dispose();
+                    }
+                },
+                workerGroup);
+        }
+
         private void NotifyFinishedInternal()
         {
             lock (_finishedLock)
@@ -254,9 +220,12 @@ namespace Axantum.AxCrypt.Core.Runtime
                 {
                     AcquireOneConcurrencyRight();
                 }
-                for (int i = _threadWorkers.Count - 1; i >= 0; --i)
+                lock (_threadWorkers)
                 {
-                    _threadWorkers[i].Join();
+                    for (int i = _threadWorkers.Count - 1; i >= 0; --i)
+                    {
+                        _threadWorkers[i].Join();
+                    }
                 }
                 _finished = true;
             }

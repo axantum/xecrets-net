@@ -251,5 +251,20 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(percent, Is.EqualTo(100), "Progress at 100 percent should always be reported when the thread completes.");
             }
         }
+
+        [Test]
+        public static void TestFinishInBackground()
+        {
+            WorkerGroup workerGroup = new WorkerGroup();
+            ManualResetEvent completed = new ManualResetEvent(false);
+            workerGroup.Progress.Progressing += (object sender, ProgressEventArgs e) =>
+            {
+                completed.Set();
+            };
+            IThreadWorker worker = workerGroup.CreateWorker();
+            worker.Run();
+            WorkerGroup.FinishInBackground(workerGroup);
+            completed.WaitOne(TimeSpan.FromSeconds(10));
+        }
     }
 }

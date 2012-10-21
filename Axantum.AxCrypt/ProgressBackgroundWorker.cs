@@ -115,13 +115,14 @@ namespace Axantum.AxCrypt
                     finally
                     {
                         progressBar.Dispose();
-                        workerGroup.Dispose();
                     }
                     Interlocked.Decrement(ref _workerCount);
                 };
 
             Interlocked.Increment(ref _workerCount);
             worker.Run();
+
+            WorkerGroup.FinishInBackground(workerGroup);
         }
 
         private ProgressBar CreateProgressBar(ProgressContext progress)

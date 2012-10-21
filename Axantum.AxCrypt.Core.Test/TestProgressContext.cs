@@ -150,7 +150,7 @@ namespace Axantum.AxCrypt.Core.Test
             ProgressContext progress = new ProgressContext();
             progress.NotifyFinished();
 
-            Assert.Throws<InvalidOperationException>(() => { progress.NotifyFinished(); });
+            Assert.DoesNotThrow(() => { progress.NotifyFinished(); });
         }
 
         [Test]
@@ -227,7 +227,7 @@ namespace Axantum.AxCrypt.Core.Test
                 (object state) =>
                 {
                     bool didProgress = false;
-                    Assert.That(SynchronizationContext.Current, Is.Not.Null, "There should be a SynchronizationContext here.");
+                    Assert.That(SynchronizationContext.Current, Is.EqualTo(synchronizationContext), "There should be a SynchronizationContext here.");
                     ProgressContext progress = new ProgressContext();
                     progress.Progressing += (object sender, ProgressEventArgs e) =>
                     {
