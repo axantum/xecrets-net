@@ -95,6 +95,8 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// </summary>
         public void Abort()
         {
+            _e.Result = FileOperationStatus.Aborted;
+            OnCompleted(_e);
             DisposeWorker();
         }
 

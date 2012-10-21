@@ -82,19 +82,16 @@ namespace Axantum.AxCrypt
             }
         }
 
-        public void BackgroundWorkWithProgress(Func<ProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
-        {
-            BackgroundWorkWithProgress(new WorkerGroup(), work, complete);
-        }
-
         /// <summary>
         /// Perform a background operation with support for progress bars and cancel.
         /// </summary>
         /// <param name="displayText">A text that may be used as a reference in various messages.</param>
         /// <param name="work">A 'work' delegate, taking a ProgressContext and return a FileOperationStatus. Executed on a background thread. Not the calling/GUI thread.</param>
         /// <param name="complete">A 'complete' delegate, taking the final status. Executed on the original caller thread, typically the GUI thread.</param>
-        public void BackgroundWorkWithProgress(WorkerGroup workerGroup, Func<ProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
+        public void BackgroundWorkWithProgress(Func<ProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
         {
+            WorkerGroup workerGroup = new WorkerGroup();
+
             ProgressBar progressBar = CreateProgressBar(workerGroup.Progress);
             OnProgressBarCreated(new ControlEventArgs(progressBar));
 
@@ -118,6 +115,7 @@ namespace Axantum.AxCrypt
                     finally
                     {
                         progressBar.Dispose();
+                        workerGroup.Dispose();
                     }
                     Interlocked.Decrement(ref _workerCount);
                 };

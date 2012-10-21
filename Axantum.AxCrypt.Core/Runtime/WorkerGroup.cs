@@ -139,20 +139,6 @@ namespace Axantum.AxCrypt.Core.Runtime
         }
 
         /// <summary>
-        /// Instantiate a worker group with no concurrency and explicit progress reporting
-        /// </summary>
-        /// <param name="progress">The ProgressContext that receives progress notifications</param>
-        /// <remarks>
-        /// When using an explicitly specified ProgressContext progress reporting is not subscribed
-        /// to by this instance, it is expected that this is done by the caller who instantiated the
-        /// original ProgressContext instance.
-        /// </remarks>
-        public WorkerGroup(ProgressContext progress)
-            : this(1, progress)
-        {
-        }
-
-        /// <summary>
         /// Instantiates a worker group with specified maximum concurrency and implicit progress reporting
         /// </summary>
         /// <param name="maxConcurrent">The maximum number of worker threads active at any one time</param>
@@ -192,7 +178,9 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// <remarks>
         /// When using an explicitly specified ProgressContext progress reporting is not subscribed
         /// to by this instance, it is expected that this is done by the caller who instantiated the
-        /// original ProgressContext instance.
+        /// original ProgressContext instance. This caller must also ensure that progress is reported
+        /// on a suitable thread, i.e. the GUI thread. The intention is that such an instance is in fact
+        /// instantiated by a WorkerGroup with a single thread and implicit progress which handles this.
         /// </remarks>
         public WorkerGroup(int maxConcurrent, ProgressContext progress)
         {
@@ -249,22 +237,26 @@ namespace Axantum.AxCrypt.Core.Runtime
                 {
                     throw new InvalidOperationException("NotifyFinished() must only be called once, but was called twice.");
                 }
-
-                AcquireAllConcurrencyRights();
+                NotifyFinishedInternal();
             }
-            Progress.NotifyFinished();
         }
 
-        private void JoinAllActiveThreads()
+        private void NotifyFinishedInternal()
         {
-            lock (_threadWorkers)
+            lock (_finishedLock)
             {
-                foreach (ThreadWorker threadWorker in _threadWorkers)
+                if (_finished)
                 {
-                    threadWorker.Join();
+                    return;
                 }
-                DisposeCompletedWorkerThreads();
+
+                for (int i = 0; i < _maxConcurrencyCount; ++i)
+                {
+                    AcquireOneConcurrencyRight();
+                }
+                _finished = true;
             }
+            Progress.NotifyFinished();
         }
 
         private void DisposeCompletedWorkerThreads()
@@ -310,12 +302,6 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private void HandleThreadWorkerCompleted(object sender, ThreadWorkerEventArgs e)
         {
-            if (_disposed)
-            {
-                throw new ObjectDisposedException("WorkerGroup");
-            }
-            ReleaseOneConcurrencyRight();
-            DisposeCompletedWorkerThreads();
             if (e.Result != FileOperationStatus.Success)
             {
                 lock (_firstErrorLock)
@@ -326,6 +312,8 @@ namespace Axantum.AxCrypt.Core.Runtime
                     }
                 }
             }
+            ReleaseOneConcurrencyRight();
+            DisposeCompletedWorkerThreads();
         }
 
         private static readonly object _firstErrorLock = new object();
@@ -337,36 +325,12 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private void AcquireOneConcurrencyRight()
         {
-            if (_disposed)
-            {
-                throw new ObjectDisposedException("WorkerGroup");
-            }
             _concurrencyControlSemaphore.WaitOne();
         }
 
         private void ReleaseOneConcurrencyRight()
         {
-            if (_disposed)
-            {
-                throw new ObjectDisposedException("WorkerGroup");
-            }
             _concurrencyControlSemaphore.Release();
-        }
-
-        private void AcquireAllConcurrencyRights()
-        {
-            lock (_finishedLock)
-            {
-                if (_finished)
-                {
-                    return;
-                }
-                for (int i = 0; i < _maxConcurrencyCount; ++i)
-                {
-                    AcquireOneConcurrencyRight();
-                }
-                _finished = true;
-            }
         }
 
         #region IDisposable Members
@@ -388,14 +352,14 @@ namespace Axantum.AxCrypt.Core.Runtime
 
             if (disposing)
             {
-                JoinAllActiveThreads();
+                NotifyFinishedInternal();
+                DisposeCompletedWorkerThreads();
                 if (_concurrencyControlSemaphore != null)
                 {
                     _concurrencyControlSemaphore.Close();
                     _concurrencyControlSemaphore = null;
                 }
             }
-
             _disposed = true;
         }
     }

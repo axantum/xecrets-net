@@ -31,6 +31,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -86,6 +87,168 @@ namespace Axantum.AxCrypt.Core.Test
 
                 workerGroup.NotifyFinished();
                 Assert.That(maxCount, Is.EqualTo(1), "There should never be more than one thread active at one time.");
+            }
+        }
+
+        [Test]
+        public static void TestInvalidOperationException()
+        {
+            using (WorkerGroup workerGroup = new WorkerGroup())
+            {
+                IThreadWorker worker = workerGroup.CreateWorker();
+
+                bool? f = null;
+                Assert.Throws<InvalidOperationException>(() => { f = worker.HasCompleted; });
+                Assert.That(!f.HasValue, "No value should be set, since an exception should have occurred.");
+                Assert.Throws<InvalidOperationException>(() => { worker.Join(); });
+                worker.Abort();
+            }
+        }
+
+        [Test]
+        public static void TestAddingSubscribersToWorkerThread()
+        {
+            using (WorkerGroup workerGroup = new WorkerGroup())
+            {
+                IThreadWorker worker = workerGroup.CreateWorker();
+                bool wasPrepared = false;
+                worker.Prepare += (object sender, ThreadWorkerEventArgs e) =>
+                    {
+                        wasPrepared = true;
+                    };
+                bool didWork = false;
+                worker.Work += (object sender, ThreadWorkerEventArgs e) =>
+                {
+                    didWork = true;
+                };
+                bool didComplete = false;
+                worker.Completed += (object sender, ThreadWorkerEventArgs e) =>
+                {
+                    didComplete = true;
+                };
+                worker.Run();
+                workerGroup.NotifyFinished();
+                Assert.That(wasPrepared, "The Prepare event should be raised.");
+                Assert.That(didWork, "The Work event should be raised.");
+                Assert.That(didComplete, "The Completed event should be raised.");
+            }
+        }
+
+        private static void ThreadWorkerEventHandler(object sender, ThreadWorkerEventArgs e)
+        {
+            e.Result = FileOperationStatus.UnspecifiedError;
+        }
+
+        [Test]
+        public static void TestRemovingSubscribersFromWorkerThread()
+        {
+            using (WorkerGroup workerGroup = new WorkerGroup())
+            {
+                IThreadWorker worker = workerGroup.CreateWorker();
+                worker.Prepare += ThreadWorkerEventHandler;
+                worker.Work += ThreadWorkerEventHandler;
+                worker.Completed += ThreadWorkerEventHandler;
+
+                worker.Run();
+                workerGroup.NotifyFinished();
+
+                Assert.That(workerGroup.FirstError, Is.EqualTo(FileOperationStatus.UnspecifiedError), "The status should be set by one of the event handlers.");
+            }
+
+            using (WorkerGroup workerGroup = new WorkerGroup())
+            {
+                IThreadWorker worker = workerGroup.CreateWorker();
+                worker.Prepare += ThreadWorkerEventHandler;
+                worker.Work += ThreadWorkerEventHandler;
+                worker.Completed += ThreadWorkerEventHandler;
+
+                worker.Prepare -= ThreadWorkerEventHandler;
+                worker.Work -= ThreadWorkerEventHandler;
+                worker.Completed -= ThreadWorkerEventHandler;
+
+                worker.Run();
+                workerGroup.NotifyFinished();
+
+                Assert.That(workerGroup.FirstError, Is.EqualTo(FileOperationStatus.Success), "None of the event handlers should have been called, so the status should not have been set there.");
+            }
+        }
+
+        [Test]
+        public static void TestDoubleDispose()
+        {
+            Assert.DoesNotThrow(() =>
+                {
+                    using (WorkerGroup workerGroup = new WorkerGroup())
+                    {
+                        IThreadWorker worker = workerGroup.CreateWorker();
+                        worker.Run();
+                        workerGroup.NotifyFinished();
+                        workerGroup.Dispose();
+                    }
+                });
+        }
+
+        [Test]
+        public static void TestObjectDisposed()
+        {
+            using (WorkerGroup workerGroup = new WorkerGroup())
+            {
+                IThreadWorker worker = workerGroup.CreateWorker();
+                worker.Run();
+                workerGroup.NotifyFinished();
+                workerGroup.Dispose();
+
+                worker = null;
+                Assert.Throws<ObjectDisposedException>(() => { worker = workerGroup.CreateWorker(); }, "A call to a method on a disposed object should raise ObjectDisposedException.");
+                Assert.That(worker, Is.Null, "The worker should still be null, since the previous attempt to create should fail with an exception.");
+                Assert.Throws<ObjectDisposedException>(() => { workerGroup.NotifyFinished(); }, "A call to a method on a disposed object should raise ObjectDisposedException.");
+            }
+        }
+
+        [Test]
+        public static void TestDoubleFinished()
+        {
+            using (WorkerGroup workerGroup = new WorkerGroup())
+            {
+                IThreadWorker worker = workerGroup.CreateWorker();
+                worker.Run();
+                workerGroup.NotifyFinished();
+                Assert.Throws<InvalidOperationException>(() => { workerGroup.NotifyFinished(); });
+            }
+        }
+
+        [Test]
+        public static void TestExplictConstructor()
+        {
+            ProgressContext progress = new ProgressContext();
+            int percent = 0;
+            progress.Progressing += (object sender, ProgressEventArgs e) =>
+                {
+                    percent = e.Percent;
+                };
+            using (WorkerGroup workerGroup = new WorkerGroup(1, progress))
+            {
+                IThreadWorker worker = workerGroup.CreateWorker();
+                worker.Run();
+                workerGroup.NotifyFinished();
+            }
+            Assert.That(percent, Is.EqualTo(100), "Progress at 100 percent should always be reported when the thread completes.");
+        }
+
+        [Test]
+        public static void TestProgressing()
+        {
+            using (WorkerGroup workerGroup = new WorkerGroup())
+            {
+                int percent = 0;
+                workerGroup.Progressing += (object sender, ProgressEventArgs e) =>
+                    {
+                        percent = e.Percent;
+                    };
+                IThreadWorker worker = workerGroup.CreateWorker();
+                worker.Run();
+                workerGroup.NotifyFinished();
+                Assert.That(percent, Is.EqualTo(100), "Progress at 100 percent should always be reported when the thread completes.");
             }
         }
     }
