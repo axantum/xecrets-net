@@ -163,27 +163,6 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestExceptionInWork()
-        {
-            bool exceptionCaught = false;
-            using (ThreadWorker worker = new ThreadWorker(new ProgressContext()))
-            {
-                worker.Work += (object sender, ThreadWorkerEventArgs e) =>
-                {
-                    throw new InvalidOperationException();
-                };
-                worker.Completed += (object sender, ThreadWorkerEventArgs e) =>
-                {
-                    exceptionCaught = e.Result == FileOperationStatus.Exception;
-                };
-                worker.Run();
-                worker.Join();
-            }
-
-            Assert.That(exceptionCaught, Is.True, "The operation was interrupted by an exception and should return status as such.");
-        }
-
-        [Test]
         public static void TestPrepare()
         {
             bool wasPrepared = false;
@@ -198,6 +177,50 @@ namespace Axantum.AxCrypt.Core.Test
             }
 
             Assert.That(wasPrepared, Is.True, "The Prepare event should be raised.");
+        }
+
+        [Test]
+        public static void TestErrorSetInWorkCompleted()
+        {
+            bool errorInWork = false;
+            using (ThreadWorker worker = new ThreadWorker(new ProgressContext()))
+            {
+                worker.Work += (object sender, ThreadWorkerEventArgs e) =>
+                {
+                    throw new InvalidOperationException();
+                };
+                worker.Completed += (object sender, ThreadWorkerEventArgs e) =>
+                {
+                    errorInWork = e.Result == FileOperationStatus.Exception;
+                };
+                worker.Run();
+                worker.Join();
+            }
+
+            Assert.That(errorInWork, Is.True, "The operation was interrupted by an exception and should return status as such.");
+        }
+
+        [Test]
+        public static void TestHasCompleted()
+        {
+            using (ThreadWorker worker = new ThreadWorker(new ProgressContext()))
+            {
+                bool wasCompletedInWork = false;
+                worker.Work += (object sender, ThreadWorkerEventArgs e) =>
+                {
+                    wasCompletedInWork = worker.HasCompleted;
+                };
+                bool wasCompletedInCompleted = false;
+                worker.Completed += (object sender, ThreadWorkerEventArgs e) =>
+                {
+                    wasCompletedInCompleted = worker.HasCompleted;
+                };
+                worker.Run();
+                worker.Join();
+                Assert.That(!wasCompletedInWork, "Completion is not set as true in the work event.");
+                Assert.That(!wasCompletedInCompleted, "Completion is not set as true until after the completed event.");
+                Assert.That(worker.HasCompleted, "Completion should be set as true when the thread is joined.");
+            }
         }
     }
 }

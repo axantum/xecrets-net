@@ -58,8 +58,6 @@ namespace Axantum.AxCrypt.Core.Runtime
         public ThreadWorker(ProgressContext progress)
         {
             _worker = new BackgroundWorker();
-            _worker.WorkerReportsProgress = true;
-            _worker.WorkerSupportsCancellation = true;
 
             _worker.DoWork += new DoWorkEventHandler(_worker_DoWork);
             _worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(_worker_RunWorkerCompleted);
@@ -114,14 +112,6 @@ namespace Axantum.AxCrypt.Core.Runtime
             {
                 e.Result = FileOperationStatus.Canceled;
             }
-            catch (Exception ex)
-            {
-                if (OS.Log.IsWarningEnabled)
-                {
-                    OS.Log.LogWarning("Exception in background thread '{0}'".InvariantFormat(ex.Message));
-                }
-                e.Result = FileOperationStatus.Exception;
-            }
             return;
         }
 
@@ -133,11 +123,7 @@ namespace Axantum.AxCrypt.Core.Runtime
                 {
                     if (e.Error != null)
                     {
-                        _e.Result = FileOperationStatus.UnspecifiedError;
-                    }
-                    else if (e.Cancelled)
-                    {
-                        _e.Result = FileOperationStatus.Canceled;
+                        _e.Result = FileOperationStatus.Exception;
                     }
                     else
                     {
@@ -180,21 +166,6 @@ namespace Axantum.AxCrypt.Core.Runtime
         protected virtual void OnWork(ThreadWorkerEventArgs e)
         {
             EventHandler<ThreadWorkerEventArgs> handler = Work;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
-        }
-
-        /// <summary>
-        /// Raised when progress is reported. Runs on the original thread,
-        /// typically the GUI thread.
-        /// </summary>
-        public event EventHandler<ThreadWorkerEventArgs> Progress;
-
-        protected virtual void OnProgress(ThreadWorkerEventArgs e)
-        {
-            EventHandler<ThreadWorkerEventArgs> handler = Progress;
             if (handler != null)
             {
                 handler(this, e);
