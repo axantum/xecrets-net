@@ -164,7 +164,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// Process a file with the main task performed in a background thread.
         /// </summary>
         /// <param name="fullName"></param>
-        public void EncryptFile(string fullName, ThreadWorker worker)
+        public void EncryptFile(string fullName, IThreadWorker worker)
         {
             DoFile(fullName, worker, EncryptFilePreparation, EncryptFileOperation);
         }
@@ -236,7 +236,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// Process a file with the main task performed in a background thread.
         /// </summary>
         /// <param name="fullName"></param>
-        public void DecryptFile(string fullName, ThreadWorker worker)
+        public void DecryptFile(string fullName, IThreadWorker worker)
         {
             DoFile(fullName, worker, DecryptFilePreparation, DecryptFileOperation);
         }
@@ -298,7 +298,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// <param name="sourceFile">The full path to an encrypted file.</param>
         /// <param name="worker">The worker thread on which to execute the decryption and launch.</param>
         /// <returns>'True' if the operation did not fail so far, 'False' if it definitely has failed.</returns>
-        public void DecryptAndLaunch(string fullName, ThreadWorker worker)
+        public void DecryptAndLaunch(string fullName, IThreadWorker worker)
         {
             DoFile(fullName, worker, DecryptAndLaunchPreparation, DecryptAndLaunchFileOperation);
         }
@@ -382,7 +382,7 @@ namespace Axantum.AxCrypt.Core.UI
             return true;
         }
 
-        private void DoFile(string fullName, ThreadWorker worker, Func<string, bool> preparation, Func<bool> operation)
+        private void DoFile(string fullName, IThreadWorker worker, Func<string, bool> preparation, Func<bool> operation)
         {
             if (!preparation(fullName))
             {

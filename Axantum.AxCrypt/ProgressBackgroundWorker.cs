@@ -103,7 +103,7 @@ namespace Axantum.AxCrypt
                     progressBar.Value = e.Percent;
                 };
 
-            ThreadWorker worker = workerGroup.CreateWorker();
+            IThreadWorker worker = workerGroup.CreateWorker();
             worker.Work += (object sender, ThreadWorkerEventArgs e) =>
                 {
                     e.Result = work(e.ProgressContext);

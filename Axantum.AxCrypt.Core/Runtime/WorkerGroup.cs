@@ -39,6 +39,82 @@ namespace Axantum.AxCrypt.Core.Runtime
     /// </summary>
     public class WorkerGroup : IDisposable
     {
+        private class ThreadWorkerWrapper : IThreadWorker
+        {
+            private IThreadWorker _worker;
+
+            public ThreadWorkerWrapper(IThreadWorker worker)
+            {
+                _worker = worker;
+            }
+
+            #region IThreadWorker Members
+
+            /// <summary>
+            /// Start the asynchronous execution of the work.
+            /// </summary>
+            public void Run()
+            {
+                _worker.Run();
+            }
+
+            /// <summary>
+            /// Perform blocking wait until this thread has completed execution.
+            /// </summary>
+            public void Join()
+            {
+                throw new InvalidOperationException("This instance is managed by a WorkerGroup, and Join() cannot be called explicitly.");
+            }
+
+            /// <summary>
+            /// Abort this thread - can only be called *before* Run() has been called.
+            /// </summary>
+            public void Abort()
+            {
+                _worker.Abort();
+            }
+
+            /// <summary>
+            /// Returns true if the thread has completed execution.
+            /// </summary>
+            public bool HasCompleted
+            {
+                get { throw new InvalidOperationException("This instance is managed by a WorkerGroup, and HasCompleted cannot be called explicitly."); }
+            }
+
+            /// <summary>
+            /// Raised just before asynchronous execution starts. Runs on the
+            /// original thread, typically the GUI thread.
+            /// </summary>
+            public event EventHandler<ThreadWorkerEventArgs> Prepare
+            {
+                add { _worker.Prepare += value; }
+                remove { _worker.Prepare -= value; }
+            }
+
+            /// <summary>
+            /// Raised when asynchronous execution starts. Runs on a different
+            /// thread than the caller thread. Do not interact with the GUI here.
+            /// </summary>
+            public event EventHandler<ThreadWorkerEventArgs> Work
+            {
+                add { _worker.Work += value; }
+                remove { _worker.Work -= value; }
+            }
+
+            /// <summary>
+            /// Raised when all is done. Runs on the original thread, typically
+            /// the GUI thread.
+            /// </summary>
+            public event EventHandler<ThreadWorkerEventArgs> Completed
+            {
+                add { _worker.Completed += value; }
+                remove { _worker.Completed -= value; }
+            }
+
+            #endregion IThreadWorker Members
+        }
+
         private Semaphore _concurrencyControlSemaphore;
 
         private int _maxConcurrencyCount;
@@ -215,7 +291,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// Since this call may block, it should not be called from the GUI thread if there is a risk of blocking.
         /// </remarks>
         /// <returns></returns>
-        public ThreadWorker CreateWorker()
+        public IThreadWorker CreateWorker()
         {
             if (_disposed)
             {
@@ -229,7 +305,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             {
                 _threadWorkers.Add(threadWorker);
             }
-            return threadWorker;
+            return new ThreadWorkerWrapper(threadWorker);
         }
 
         private void HandleThreadWorkerCompleted(object sender, ThreadWorkerEventArgs e)

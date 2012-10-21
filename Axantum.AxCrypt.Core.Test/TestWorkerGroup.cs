@@ -46,7 +46,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (WorkerGroup workerGroup = new WorkerGroup())
             {
                 object threadLock = new object();
-                ThreadWorker worker1 = workerGroup.CreateWorker();
+                IThreadWorker worker1 = workerGroup.CreateWorker();
                 worker1.Work += (object sender, ThreadWorkerEventArgs e) =>
                     {
                         lock (threadLock)
@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Test
                     };
                 worker1.Run();
 
-                ThreadWorker worker2 = workerGroup.CreateWorker();
+                IThreadWorker worker2 = workerGroup.CreateWorker();
                 worker2.Work += (object sender, ThreadWorkerEventArgs e) =>
                     {
                         lock (threadLock)

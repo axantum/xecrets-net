@@ -371,7 +371,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void EncryptFile(string file, ThreadWorker worker, ProgressContext progress)
+        private void EncryptFile(string file, IThreadWorker worker, ProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(persistentState.Current, progress);
 
@@ -456,7 +456,7 @@ namespace Axantum.AxCrypt
             ProcessFilesInBackground(fileNames, DecryptFile);
         }
 
-        private void DecryptFile(string file, ThreadWorker worker, ProgressContext progress)
+        private void DecryptFile(string file, IThreadWorker worker, ProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(persistentState.Current, progress);
 
@@ -523,7 +523,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void OpenEncrypted(string file, ThreadWorker worker, ProgressContext progress)
+        private void OpenEncrypted(string file, IThreadWorker worker, ProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(persistentState.Current, progress);
 
@@ -542,7 +542,7 @@ namespace Axantum.AxCrypt
             operationsController.DecryptAndLaunch(file, worker);
         }
 
-        private void ProcessFilesInBackground(IEnumerable<string> files, Action<string, ThreadWorker, ProgressContext> processFile)
+        private void ProcessFilesInBackground(IEnumerable<string> files, Action<string, IThreadWorker, ProgressContext> processFile)
         {
             WorkerGroup workerGroup = null;
             int maxConcurrency = Environment.ProcessorCount > 2 ? Environment.ProcessorCount - 1 : 1;
@@ -554,7 +554,7 @@ namespace Axantum.AxCrypt
                     {
                         foreach (string file in files)
                         {
-                            ThreadWorker worker = workerGroup.CreateWorker();
+                            IThreadWorker worker = workerGroup.CreateWorker();
                             string closureOverCopyOfLoopVariableFile = file;
                             InteractionSafeUi(() =>
                             {

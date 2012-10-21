@@ -37,9 +37,9 @@ using Axantum.AxCrypt.Core.UI;
 namespace Axantum.AxCrypt.Core.Runtime
 {
     /// <summary>
-    /// Perform work on a separate thread with support for progress and cancellation.
+    /// Perform work on a separate thread.
     /// </summary>
-    public class ThreadWorker : IDisposable
+    public class ThreadWorker : IThreadWorker, IDisposable
     {
         private ManualResetEvent _joined = new ManualResetEvent(false);
 
@@ -78,6 +78,9 @@ namespace Axantum.AxCrypt.Core.Runtime
             _worker.RunWorkerAsync();
         }
 
+        /// <summary>
+        /// Perform blocking wait until this thread has completed execution.
+        /// </summary>
         public void Join()
         {
             if (_disposed)
@@ -87,11 +90,17 @@ namespace Axantum.AxCrypt.Core.Runtime
             _joined.WaitOne();
         }
 
+        /// <summary>
+        /// Abort this thread - can only be called *before* Run() has been called.
+        /// </summary>
         public void Abort()
         {
             DisposeWorker();
         }
 
+        /// <summary>
+        /// Returns true if the thread has completed execution.
+        /// </summary>
         public bool HasCompleted
         {
             get
