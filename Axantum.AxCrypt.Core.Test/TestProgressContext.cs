@@ -29,6 +29,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
@@ -197,6 +198,44 @@ namespace Axantum.AxCrypt.Core.Test
             fakeEnvironment.CurrentTiming.CurrentTiming = TimeSpan.FromMilliseconds(2000);
             progress.AddCount(1);
             Assert.That(percent, Is.EqualTo(50), "1 of 2 is 50 percent.");
+        }
+
+        [Test]
+        public static void TestProgressWithoutSynchronizationContext()
+        {
+            Thread thread = new Thread(
+                (object state) =>
+                {
+                    bool didProgress = false;
+                    Assert.That(SynchronizationContext.Current, Is.Null, "There should be no SynchronizationContext here.");
+                    ProgressContext progress = new ProgressContext();
+                    progress.Progressing += (object sender, ProgressEventArgs e) =>
+                        {
+                            didProgress = true;
+                        };
+                    progress.NotifyFinished();
+                    Assert.That(didProgress, "There should always be one Progressing event after NotifyFinished().");
+                }
+                );
+        }
+
+        [Test]
+        public static void TestProgressWithSynchronizationContext()
+        {
+            SynchronizationContext synchronizationContext = new SynchronizationContext();
+            synchronizationContext.Post(
+                (object state) =>
+                {
+                    bool didProgress = false;
+                    Assert.That(SynchronizationContext.Current, Is.Not.Null, "There should be a SynchronizationContext here.");
+                    ProgressContext progress = new ProgressContext();
+                    progress.Progressing += (object sender, ProgressEventArgs e) =>
+                    {
+                        didProgress = true;
+                    };
+                    progress.NotifyFinished();
+                    Assert.That(didProgress, "There should always be one Progressing event after NotifyFinished().");
+                }, null);
         }
     }
 }

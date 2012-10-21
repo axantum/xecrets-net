@@ -95,7 +95,7 @@ namespace Axantum.AxCrypt
             ProgressBar progressBar = CreateProgressBar(workerGroup.Progress);
             OnProgressBarCreated(new ControlEventArgs(progressBar));
 
-            workerGroup.Progressing += (object sender, ProgressEventArgs e) =>
+            workerGroup.Progress.Progressing += (object sender, ProgressEventArgs e) =>
                 {
                     progressBar.Value = e.Percent;
                 };

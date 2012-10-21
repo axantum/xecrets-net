@@ -27,10 +27,15 @@
 
 using System;
 using System.Diagnostics;
+using System.Threading;
 using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.UI
 {
+    /// <summary>
+    /// Coordinate progress reporting, marshaling reports to the original instantiating thread (if
+    /// it has a SynchronizationContext) and throttle the amount of calls based on a timer.
+    /// </summary>
     public class ProgressContext
     {
         private static readonly TimeSpan DefaultFirstProgressing = TimeSpan.FromMilliseconds(500);
@@ -52,11 +57,21 @@ namespace Axantum.AxCrypt.Core.UI
         {
         }
 
+        private SynchronizationContext _synchronizationContext;
+
         public ProgressContext(object context, TimeSpan firstProgressing)
         {
             _context = context;
             NextProgressing = firstProgressing;
             Finished = false;
+            if (SynchronizationContext.Current == null)
+            {
+                _synchronizationContext = new SynchronizationContext();
+            }
+            else
+            {
+                _synchronizationContext = SynchronizationContext.Current;
+            }
         }
 
         public bool Cancel { get; set; }
@@ -142,7 +157,12 @@ namespace Axantum.AxCrypt.Core.UI
             EventHandler<ProgressEventArgs> handler = Progressing;
             if (handler != null)
             {
-                handler(this, e);
+                _synchronizationContext.Send(
+                    (object state) =>
+                    {
+                        handler(this, (ProgressEventArgs)e);
+                    },
+                    e);
             }
         }
 

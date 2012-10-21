@@ -241,7 +241,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (WorkerGroup workerGroup = new WorkerGroup())
             {
                 int percent = 0;
-                workerGroup.Progressing += (object sender, ProgressEventArgs e) =>
+                workerGroup.Progress.Progressing += (object sender, ProgressEventArgs e) =>
                     {
                         percent = e.Percent;
                     };

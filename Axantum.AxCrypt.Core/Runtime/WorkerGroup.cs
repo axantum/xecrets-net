@@ -150,24 +150,24 @@ namespace Axantum.AxCrypt.Core.Runtime
         public WorkerGroup(int maxConcurrent)
             : this(maxConcurrent, new ProgressContext())
         {
-            SynchronizationContext context = SynchronizationContext.Current;
-            if (context == null)
-            {
-                Progress.Progressing += (object sender, ProgressEventArgs e) =>
-                    {
-                        OnProgressing(e);
-                    };
-            }
-            else
-            {
-                Progress.Progressing += (object sender, ProgressEventArgs e) =>
-                    {
-                        context.Send((object state) =>
-                            {
-                                OnProgressing((ProgressEventArgs)state);
-                            }, e);
-                    };
-            }
+            //SynchronizationContext context = SynchronizationContext.Current;
+            //if (context == null)
+            //{
+            //    Progress.Progressing += (object sender, ProgressEventArgs e) =>
+            //        {
+            //            OnProgressing(e);
+            //        };
+            //}
+            //else
+            //{
+            //    Progress.Progressing += (object sender, ProgressEventArgs e) =>
+            //        {
+            //            context.Send((object state) =>
+            //                {
+            //                    OnProgressing((ProgressEventArgs)state);
+            //                }, e);
+            //        };
+            //}
         }
 
         /// <summary>
@@ -203,20 +203,20 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// is executed on the thread which instantiated this instance, if that thread has a SynchronizationContext set,
         /// which typically is true for the GUI thread.
         /// </summary>
-        public event EventHandler<ProgressEventArgs> Progressing;
+        //public event EventHandler<ProgressEventArgs> Progressing;
 
         /// <summary>
         /// Raises the <see cref="E:Progressing"/> event.
         /// </summary>
         /// <param name="e">The <see cref="Axantum.AxCrypt.Core.UI.ProgressEventArgs"/> instance containing the event data.</param>
-        protected virtual void OnProgressing(ProgressEventArgs e)
-        {
-            EventHandler<ProgressEventArgs> handler = Progressing;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
-        }
+        //protected virtual void OnProgressing(ProgressEventArgs e)
+        //{
+        //    EventHandler<ProgressEventArgs> handler = Progressing;
+        //    if (handler != null)
+        //    {
+        //        handler(this, e);
+        //    }
+        //}
 
         /// <summary>
         /// Notify this instance that all work has been scheduled. This call will block until all executing threads have terminated.
@@ -253,6 +253,10 @@ namespace Axantum.AxCrypt.Core.Runtime
                 for (int i = 0; i < _maxConcurrencyCount; ++i)
                 {
                     AcquireOneConcurrencyRight();
+                }
+                for (int i = _threadWorkers.Count - 1; i >= 0; --i)
+                {
+                    _threadWorkers[i].Join();
                 }
                 _finished = true;
             }
