@@ -230,7 +230,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestExplictConstructor()
+        public static void TestExplicitConstructor()
         {
             ProgressContext progress = new ProgressContext();
             int percent = 0;
@@ -278,7 +278,7 @@ namespace Axantum.AxCrypt.Core.Test
             IThreadWorker worker = workerGroup.CreateWorker();
             worker.Run();
             WorkerGroup.FinishInBackground(workerGroup);
-            completed.WaitOne(TimeSpan.FromSeconds(10));
+            completed.WaitOne(TimeSpan.FromSeconds(10), false);
 
             Assert.That(didComplete, "Execution should continue here, with the flag set indicating that the progress event occurred.");
         }

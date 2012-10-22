@@ -27,6 +27,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Xml;
@@ -275,6 +276,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private string _path;
 
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "The actual exception thrown by the de-serialization varies, even by platform, and the idea is to catch those and let the user continue.")]
         public void Load(IRuntimeFileInfo path)
         {
             if (path == null)

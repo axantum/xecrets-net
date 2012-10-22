@@ -232,35 +232,40 @@ namespace Axantum.AxCrypt.Core.Test
             thread.Start();
             thread.Join();
         }
-		
-		private class StateForSynchronizationContext
-		{
-			public bool DidProgress { get; set; }
-			public SynchronizationContext SynchronizationContext { get; set; }
-			public ManualResetEvent WaitEvent { get; set; }
-		}
+
+        private class StateForSynchronizationContext
+        {
+            public bool DidProgress { get; set; }
+
+            public SynchronizationContext SynchronizationContext { get; set; }
+
+            public ManualResetEvent WaitEvent { get; set; }
+        }
 
         [Test]
         public static void TestProgressWithSynchronizationContext()
         {
             SynchronizationContext synchronizationContext = new SynchronizationContext();
-			StateForSynchronizationContext s = new StateForSynchronizationContext();
-			s.WaitEvent = new ManualResetEvent(false);
+            StateForSynchronizationContext s = new StateForSynchronizationContext();
+            s.WaitEvent = new ManualResetEvent(false);
+            s.SynchronizationContext = synchronizationContext;
             synchronizationContext.Post(
                 (object state) =>
                 {
                     StateForSynchronizationContext ss = (StateForSynchronizationContext)state;
-					ss.SynchronizationContext = SynchronizationContext.Current;
+                    SynchronizationContext.SetSynchronizationContext(ss.SynchronizationContext);
+                    ss.SynchronizationContext = SynchronizationContext.Current;
+
                     ProgressContext progress = new ProgressContext();
                     progress.Progressing += (object sender, ProgressEventArgs e) =>
                     {
                         ss.DidProgress = true;
                     };
                     progress.NotifyFinished();
-					ss.WaitEvent.Set();
+                    ss.WaitEvent.Set();
                 }, s);
-			bool waitOk = s.WaitEvent.WaitOne(TimeSpan.FromSeconds(10));
-			Assert.That(waitOk, "The wait should not time-out");
+            bool waitOk = s.WaitEvent.WaitOne(TimeSpan.FromSeconds(10), false);
+            Assert.That(waitOk, "The wait should not time-out");
             Assert.That(s.SynchronizationContext, Is.EqualTo(synchronizationContext), "The SynchronizationContext should be current in the code executed.");
             Assert.That(s.DidProgress, "There should always be one Progressing event after NotifyFinished().");
         }

@@ -35,7 +35,7 @@ using NUnit.Framework;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public class TestAxCryptReaderMagicGuid
+    public static class TestAxCryptReaderMagicGuid
     {
         [SetUp]
         public static void Setup()
