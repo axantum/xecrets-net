@@ -41,8 +41,6 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestFileSystemState
     {
-        private static IRuntimeEnvironment _environment;
-
         private static readonly string _rootPath = Path.GetPathRoot(Environment.CurrentDirectory);
         private static readonly string _mystateXmlPath = _rootPath.PathCombine("mytemp", "mystate.txt");
         private static readonly string _encryptedAxxPath = Path.Combine(_rootPath, "Encrypted-txt.axx");
@@ -56,24 +54,16 @@ namespace Axantum.AxCrypt.Core.Test
         private static readonly string _decrypted3TxtPath = Path.Combine(_rootPath, "Decrypted3.txt");
         private static readonly string _decrypted4TxtPath = Path.Combine(_rootPath, "Decrypted4.txt");
 
-        [TestFixtureSetUp]
-        public static void SetupFixture()
+        [SetUp]
+        public static void Setup()
         {
-            _environment = OS.Current;
-            OS.Current = new FakeRuntimeEnvironment();
-        }
-
-        [TestFixtureTearDown]
-        public static void TeardownFixture()
-        {
-            OS.Current = _environment;
-            FakeRuntimeFileInfo.ClearFiles();
+            SetupAssembly.AssemblySetup();
         }
 
         [TearDown]
         public static void Teardown()
         {
-            FakeRuntimeFileInfo.ClearFiles();
+            SetupAssembly.AssemblyTeardown();
         }
 
         [Test]

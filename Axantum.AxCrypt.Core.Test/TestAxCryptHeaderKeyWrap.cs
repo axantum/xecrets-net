@@ -37,6 +37,18 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public class TestAxCryptHeaderKeyWrap
     {
+        [SetUp]
+        public static void Setup()
+        {
+            SetupAssembly.AssemblySetup();
+        }
+
+        [TearDown]
+        public static void Teardown()
+        {
+            SetupAssembly.AssemblyTeardown();
+        }
+
         [Test]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This is test, readability and coding ease is a concern, not performance.")]
         public void TestDefaultIterations()

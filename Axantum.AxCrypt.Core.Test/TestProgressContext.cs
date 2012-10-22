@@ -39,6 +39,18 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestProgressContext
     {
+        [SetUp]
+        public static void Setup()
+        {
+            SetupAssembly.AssemblySetup();
+        }
+
+        [TearDown]
+        public static void Teardown()
+        {
+            SetupAssembly.AssemblyTeardown();
+        }
+
         [Test]
         public static void TestProgressNoMax()
         {
@@ -217,6 +229,8 @@ namespace Axantum.AxCrypt.Core.Test
                     Assert.That(didProgress, "There should always be one Progressing event after NotifyFinished().");
                 }
                 );
+            thread.Start();
+            thread.Join();
         }
 
         [Test]

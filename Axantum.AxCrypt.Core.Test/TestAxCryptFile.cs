@@ -40,8 +40,6 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestAxCryptFile
     {
-        private static IRuntimeEnvironment _environment;
-
         private static readonly string _rootPath = Path.GetPathRoot(Environment.CurrentDirectory);
         private static readonly string _testTextPath = Path.Combine(_rootPath, "test.txt");
         private static readonly string _davidCopperfieldTxtPath = _rootPath.PathCombine("Users", "AxCrypt", "David Copperfield.txt");
@@ -51,8 +49,7 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
-            _environment = OS.Current;
-            OS.Current = new FakeRuntimeEnvironment();
+            SetupAssembly.AssemblySetup();
 
             FakeRuntimeFileInfo.AddFile(_testTextPath, FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate3Utc, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
             FakeRuntimeFileInfo.AddFile(_davidCopperfieldTxtPath, FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate5Utc, FakeRuntimeFileInfo.TestDate6Utc, new MemoryStream(Encoding.GetEncoding(1252).GetBytes(Resources.david_copperfield)));
@@ -63,8 +60,7 @@ namespace Axantum.AxCrypt.Core.Test
         [TearDown]
         public static void Teardown()
         {
-            OS.Current = _environment;
-            FakeRuntimeFileInfo.ClearFiles();
+            SetupAssembly.AssemblyTeardown();
         }
 
         [Test]

@@ -44,9 +44,7 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestFileSystemStateExtensions
     {
-        private static IRuntimeEnvironment _environment;
         private static FileSystemState _fileSystemState;
-        private static FakeRuntimeEnvironment _fakeRuntimeEnvironment;
 
         private static readonly string _pathRoot = Path.GetPathRoot(Environment.CurrentDirectory);
         private static readonly string _decryptedFile1 = _pathRoot.PathCombine("Documents", "test.txt");
@@ -56,8 +54,8 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
-            _environment = OS.Current;
-            OS.Current = _fakeRuntimeEnvironment = new FakeRuntimeEnvironment();
+            SetupAssembly.AssemblySetup();
+
             _fileSystemState = new FileSystemState();
             _fileSystemState.Load(OS.Current.FileInfo(_fileSystemStateFilePath));
         }
@@ -65,12 +63,10 @@ namespace Axantum.AxCrypt.Core.Test
         [TearDown]
         public static void Teardown()
         {
-            OS.Current = _environment;
-            _environment = null;
-            _fakeRuntimeEnvironment = null;
             _fileSystemState.Dispose();
             _fileSystemState = null;
-            FakeRuntimeFileInfo.ClearFiles();
+
+            SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
@@ -82,7 +78,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcYesterday, utcYesterday, utcYesterday, Stream.Null);
 
             ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedFile1), OS.Current.FileInfo(_decryptedFile1), new AesKey(), ActiveFileStatus.NotDecrypted, null);
-            _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(10); });
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(10); });
             bool changedWasRaised = false;
             _fileSystemState.Add(activeFile);
             _fileSystemState.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
@@ -102,7 +98,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcYesterday, utcYesterday, utcYesterday, Stream.Null);
 
             ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedFile1), OS.Current.FileInfo(_decryptedFile1), new AesKey(), ActiveFileStatus.NotDecrypted, null);
-            _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(10); });
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(10); });
             bool changedWasRaised = false;
             _fileSystemState.Add(activeFile);
             _fileSystemState.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
@@ -130,7 +126,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcYesterday, utcYesterday, utcYesterday, Stream.Null);
 
             ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedFile1), OS.Current.FileInfo(_decryptedFile1), new AesKey(), ActiveFileStatus.NotDecrypted, null);
-            _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddSeconds(1); });
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddSeconds(1); });
             bool changedWasRaised = false;
             _fileSystemState.Add(activeFile);
             _fileSystemState.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
@@ -156,7 +152,7 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(_decryptedFile1);
             decryptedFileInfo.SetFileTimes(utcNow, utcNow, utcNow);
 
-            _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
             _fileSystemState.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
             {
@@ -187,7 +183,7 @@ namespace Axantum.AxCrypt.Core.Test
             _fileSystemState = new FileSystemState();
             _fileSystemState.Load(OS.Current.FileInfo(_fileSystemStateFilePath));
 
-            _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
             _fileSystemState.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
             {
@@ -224,7 +220,7 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(_decryptedFile1);
             decryptedFileInfo.SetFileTimes(utcNow.AddSeconds(30), utcNow.AddSeconds(30), utcNow.AddSeconds(30));
 
-            _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
             _fileSystemState.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
             {
@@ -261,7 +257,7 @@ namespace Axantum.AxCrypt.Core.Test
                 changedWasRaised = true;
             });
 
-            _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
             _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
 
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because it's already deleted.");
@@ -277,20 +273,20 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedFile1), OS.Current.FileInfo(_decryptedFile1), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted, null);
             _fileSystemState.Add(activeFile);
 
-            _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
             _fileSystemState.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
             {
                 changedWasRaised = true;
             });
 
-            _fakeRuntimeEnvironment.Platform = Platform.Unknown;
+            SetupAssembly.FakeRuntimeEnvironment.Platform = Platform.Unknown;
             _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "No change should be raised when the file is not modified and not Desktop Windows.");
             activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
             Assert.That(activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "Nothing should happen with the file when not running as Desktop Windows.");
 
-            _fakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
+            SetupAssembly.FakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
             changedWasRaised = false;
             _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "Since the file should be deleted because running as Desktop Windows the changed event should be raised.");
@@ -312,7 +308,7 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(_decryptedFile1);
             decryptedFileInfo.SetFileTimes(utcNow.AddSeconds(30), utcNow.AddSeconds(30), utcNow.AddSeconds(30));
 
-            _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
             _fileSystemState.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
             {
@@ -355,13 +351,13 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedFile1), OS.Current.FileInfo(_decryptedFile1), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted, fakeLauncher);
             _fileSystemState.Add(activeFile);
 
-            _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
             _fileSystemState.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
             {
                 changedWasRaised = true;
             });
-            _fakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
+            SetupAssembly.FakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
             _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
 
             activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
@@ -380,13 +376,13 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedFile1), OS.Current.FileInfo(_decryptedFile1), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable, fakeLauncher);
             _fileSystemState.Add(activeFile);
 
-            _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
             _fileSystemState.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
             {
                 changedWasRaised = true;
             });
-            _fakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
+            SetupAssembly.FakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
             fakeLauncher.HasExited = true;
             _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
 
@@ -406,13 +402,13 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedFile1), OS.Current.FileInfo(_decryptedFile1), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted, null);
             _fileSystemState.Add(activeFile);
 
-            _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
             _fileSystemState.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
             {
                 changedWasRaised = true;
             });
-            _fakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
+            SetupAssembly.FakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
 
             EventHandler eventHandler = ((object sender, EventArgs e) =>
             {
@@ -476,7 +472,7 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable, null);
             _fileSystemState.Add(activeFile);
 
-            _fakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
             DateTime utcLater = OS.Current.UtcNow;
 
             decryptedFileInfo.SetFileTimes(utcLater, utcLater, utcLater);
@@ -553,7 +549,7 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.NotShareable, null);
             _fileSystemState.Add(activeFile);
 
-            _fakeRuntimeEnvironment.TimeFunction = (() => { return DateTime.UtcNow.AddMinutes(1); });
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return DateTime.UtcNow.AddMinutes(1); });
 
             bool somethingWasChanged = false;
             _fileSystemState.Changed += (object sender, ActiveFileChangedEventArgs e) =>

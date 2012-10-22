@@ -53,6 +53,8 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
+            SetupAssembly.AssemblySetup();
+
             FakeRuntimeFileInfo.AddFile(_davidCopperfieldTxtPath, FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate5Utc, FakeRuntimeFileInfo.TestDate6Utc, new MemoryStream(Encoding.GetEncoding(1252).GetBytes(Resources.david_copperfield)));
             FakeRuntimeFileInfo.AddFile(_uncompressedAxxPath, new MemoryStream(Resources.uncompressable_zip));
             FakeRuntimeFileInfo.AddFile(_helloWorldAxxPath, new MemoryStream(Resources.helloworld_key_a_txt));
@@ -65,7 +67,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void Teardown()
         {
             _fileSystemState.Dispose();
-            FakeRuntimeFileInfo.ClearFiles();
+            SetupAssembly.AssemblyTeardown();
         }
 
         [Test]

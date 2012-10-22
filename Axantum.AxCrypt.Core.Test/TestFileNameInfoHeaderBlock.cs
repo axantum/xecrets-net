@@ -47,6 +47,18 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
+        [SetUp]
+        public static void Setup()
+        {
+            SetupAssembly.AssemblySetup();
+        }
+
+        [TearDown]
+        public static void Teardown()
+        {
+            SetupAssembly.AssemblyTeardown();
+        }
+
         [Test]
         public static void TestNonTerminatingFileName()
         {
@@ -59,6 +71,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<InvalidOperationException>(() =>
             {
                 string fileName = fileInfoHeaderBlock.FileName;
+
                 // Avoid FxCop errors
                 Object.Equals(fileName, null);
             });

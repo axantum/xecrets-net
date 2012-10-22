@@ -37,6 +37,18 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestDelegateTraceListener
     {
+        [SetUp]
+        public static void Setup()
+        {
+            SetupAssembly.AssemblySetup();
+        }
+
+        [TearDown]
+        public static void Teardown()
+        {
+            SetupAssembly.AssemblyTeardown();
+        }
+
         [Test]
         public static void TestIt()
         {

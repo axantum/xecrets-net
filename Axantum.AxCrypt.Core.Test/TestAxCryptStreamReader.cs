@@ -40,6 +40,18 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestAxCryptStreamReader
     {
+        [SetUp]
+        public static void Setup()
+        {
+            SetupAssembly.AssemblySetup();
+        }
+
+        [TearDown]
+        public static void Teardown()
+        {
+            SetupAssembly.AssemblyTeardown();
+        }
+
         [Test]
         public static void TestConstructor()
         {
@@ -134,7 +146,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     Assert.Throws<InvalidOperationException>(() =>
                     {
-                        if (axCryptReader.Hmac == null) {}
+                        if (axCryptReader.Hmac == null) { }
                     }, "The reader is not positioned properly to get the HMAC.");
 
                     Passphrase passphrase = new Passphrase("a");
@@ -146,7 +158,7 @@ namespace Axantum.AxCrypt.Core.Test
                     {
                         Assert.Throws<InvalidOperationException>(() =>
                         {
-                            if (axCryptReader.Hmac == null) {}
+                            if (axCryptReader.Hmac == null) { }
                         }, "We have not read the encrypted data yet.");
 
                         Assert.That(axCryptReader.Read(), Is.False, "The reader should be at end of stream now, and Read() should return false.");

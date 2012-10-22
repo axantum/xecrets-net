@@ -37,6 +37,18 @@ namespace Axantum.AxCrypt.Core.Test
     [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", Justification = "Both HMAC and SHA1 are meaningful acronyms and this is the way .NET does the naming.")]
     public static class TestAxCryptHMACSHA1
     {
+        [SetUp]
+        public static void Setup()
+        {
+            SetupAssembly.AssemblySetup();
+        }
+
+        [TearDown]
+        public static void Teardown()
+        {
+            SetupAssembly.AssemblyTeardown();
+        }
+
         [Test]
         public static void TestInvalidArguments()
         {

@@ -39,6 +39,18 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestWorkerGroup
     {
+        [SetUp]
+        public static void Setup()
+        {
+            SetupAssembly.AssemblySetup();
+        }
+
+        [TearDown]
+        public static void Teardown()
+        {
+            SetupAssembly.AssemblyTeardown();
+        }
+
         [Test]
         public static void TestCoreFunctionality()
         {
@@ -257,14 +269,18 @@ namespace Axantum.AxCrypt.Core.Test
         {
             WorkerGroup workerGroup = new WorkerGroup();
             ManualResetEvent completed = new ManualResetEvent(false);
+            bool didComplete = false;
             workerGroup.Progress.Progressing += (object sender, ProgressEventArgs e) =>
             {
+                didComplete = true;
                 completed.Set();
             };
             IThreadWorker worker = workerGroup.CreateWorker();
             worker.Run();
             WorkerGroup.FinishInBackground(workerGroup);
             completed.WaitOne(TimeSpan.FromSeconds(10));
+
+            Assert.That(didComplete, "Execution should continue here, with the flag set indicating that the progress event occurred.");
         }
     }
 }

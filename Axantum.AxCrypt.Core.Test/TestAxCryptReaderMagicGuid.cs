@@ -38,9 +38,15 @@ namespace Axantum.AxCrypt.Core.Test
     public class TestAxCryptReaderMagicGuid
     {
         [SetUp]
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This is test, readability and coding ease is a concern, not performance.")]
-        public void Setup()
+        public static void Setup()
         {
+            SetupAssembly.AssemblySetup();
+        }
+
+        [TearDown]
+        public static void Teardown()
+        {
+            SetupAssembly.AssemblyTeardown();
         }
 
         [Test]

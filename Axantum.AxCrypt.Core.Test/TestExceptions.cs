@@ -37,6 +37,18 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestExceptions
     {
+        [SetUp]
+        public static void Setup()
+        {
+            SetupAssembly.AssemblySetup();
+        }
+
+        [TearDown]
+        public static void Teardown()
+        {
+            SetupAssembly.AssemblyTeardown();
+        }
+
         [Test]
         public static void TestAxCryptExceptions()
         {
@@ -86,6 +98,7 @@ namespace Axantum.AxCrypt.Core.Test
             try
             {
                 int i = (int)new object();
+
                 // Use the instance to avoid FxCop errors.
                 Object.Equals(i, null);
             }

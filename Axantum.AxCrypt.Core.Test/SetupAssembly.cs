@@ -36,20 +36,30 @@ using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
 {
+    /// <summary>
+    /// Not using SetUpFixtureAttribute etc because MonoDevelop does not always honor.
+    /// </summary>
     [SuppressMessage("Microsoft.Design", "CA1053:StaticHolderTypesShouldNotHaveConstructors", Justification = "NUnit requires there to be a parameterless constructor.")]
-    [SetUpFixture]
-    public class SetupAssembly
+    public static class SetupAssembly
     {
-        [SetUp]
         public static void AssemblySetup()
         {
             OS.Current = new FakeRuntimeEnvironment();
             OS.Log.SetLevel(LogLevel.Debug);
         }
 
-        [TearDown]
         public static void AssemblyTeardown()
         {
+            OS.Current = null;
+            FakeRuntimeFileInfo.ClearFiles();
+        }
+
+        internal static FakeRuntimeEnvironment FakeRuntimeEnvironment
+        {
+            get
+            {
+                return (FakeRuntimeEnvironment)OS.Current;
+            }
         }
     }
 }
