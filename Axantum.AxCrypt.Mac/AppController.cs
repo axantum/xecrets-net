@@ -125,7 +125,6 @@ namespace Axantum.AxCrypt.Mac
 			encryptedFileName = AxCryptFile.Decrypt(file, filePath, key, AxCryptOptions.EncryptWithCompression, progress);
 			
 			if (encryptedFileName == null) {
-				progress.DisplayText = "Invalid password: Check your caps lock button and try again";
 				return false;
 			}
 			return true;
