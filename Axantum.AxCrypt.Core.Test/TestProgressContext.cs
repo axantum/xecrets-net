@@ -29,6 +29,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
@@ -55,7 +56,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestProgressContextContext()
         {
             object testObject = new object();
-            ProgressContext progress = new ProgressContext("TestProgress", testObject, TimeSpan.Zero);
+            ProgressContext progress = new ProgressContext(testObject, TimeSpan.Zero);
             object progressObject = null;
             progress.Progressing += (object sender, ProgressEventArgs e) =>
             {
@@ -63,13 +64,6 @@ namespace Axantum.AxCrypt.Core.Test
             };
             progress.AddCount(1);
             Assert.That(progressObject, Is.EqualTo(testObject), "The context should be passed exactly as is to the event.");
-        }
-
-        [Test]
-        public static void TestDisplayText()
-        {
-            ProgressContext progress = new ProgressContext("TestProgress", null);
-            Assert.That(progress.DisplayText, Is.EqualTo("TestProgress"), "The DisplayText property should reflect the value used in the constructor.");
         }
 
         [Test]
@@ -82,7 +76,7 @@ namespace Axantum.AxCrypt.Core.Test
                 percent = e.Percent;
             };
             progress.AddTotal(99);
-            progress.Finished();
+            progress.NotifyFinished();
             Assert.That(percent, Is.EqualTo(100), "After Finished(), Percent should always be 100.");
         }
 
@@ -130,6 +124,118 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 OS.Current = environment;
             }
+        }
+
+        [Test]
+        public static void TestAddTotalAfterFinished()
+        {
+            ProgressContext progress = new ProgressContext();
+            progress.NotifyFinished();
+
+            Assert.Throws<InvalidOperationException>(() => { progress.AddTotal(1); });
+        }
+
+        [Test]
+        public static void TestAddCountAfterFinished()
+        {
+            ProgressContext progress = new ProgressContext();
+            progress.NotifyFinished();
+
+            Assert.Throws<InvalidOperationException>(() => { progress.AddCount(1); });
+        }
+
+        [Test]
+        public static void TestDoubleNotifyFinished()
+        {
+            ProgressContext progress = new ProgressContext();
+            progress.NotifyFinished();
+
+            Assert.DoesNotThrow(() => { progress.NotifyFinished(); });
+        }
+
+        [Test]
+        public static void TestProgressTo100AndAboveShouldOnlyReturn99BeforeFinishedPercent()
+        {
+            FakeRuntimeEnvironment fakeEnvironment = (FakeRuntimeEnvironment)OS.Current;
+            fakeEnvironment.CurrentTiming.CurrentTiming = TimeSpan.FromMilliseconds(1000);
+
+            ProgressContext progress = new ProgressContext(TimeSpan.FromMilliseconds(1000));
+            int percent = 0;
+            progress.Progressing += (object sender, ProgressEventArgs e) =>
+                {
+                    percent = e.Percent;
+                };
+            progress.AddTotal(2);
+            Assert.That(percent, Is.EqualTo(0), "No progress yet - should be zero.");
+            progress.AddCount(1);
+            Assert.That(percent, Is.EqualTo(50), "Halfway should be 50 percent.");
+            fakeEnvironment.CurrentTiming.CurrentTiming = TimeSpan.FromMilliseconds(2000);
+            progress.AddCount(1);
+            Assert.That(percent, Is.EqualTo(99), "Even at 100 should report 99 percent.");
+            fakeEnvironment.CurrentTiming.CurrentTiming = TimeSpan.FromMilliseconds(3000);
+            progress.AddCount(1000);
+            Assert.That(percent, Is.EqualTo(99), "Even at very much above 100 should report 99 percent.");
+            progress.NotifyFinished();
+            Assert.That(percent, Is.EqualTo(100), "Only when NotifyFinished() is called should 100 percent be reported.");
+        }
+
+        [Test]
+        public static void TestAddingNegativeCount()
+        {
+            FakeRuntimeEnvironment fakeEnvironment = (FakeRuntimeEnvironment)OS.Current;
+            fakeEnvironment.CurrentTiming.CurrentTiming = TimeSpan.FromMilliseconds(1000);
+
+            ProgressContext progress = new ProgressContext(TimeSpan.FromMilliseconds(1000));
+            int percent = 0;
+            progress.Progressing += (object sender, ProgressEventArgs e) =>
+            {
+                percent = e.Percent;
+            };
+            progress.AddTotal(2);
+            Assert.That(percent, Is.EqualTo(0), "No progress yet - should be zero.");
+            progress.AddCount(-100);
+            Assert.That(percent, Is.EqualTo(0), "Nothing should happen adding negative counts.");
+            fakeEnvironment.CurrentTiming.CurrentTiming = TimeSpan.FromMilliseconds(2000);
+            progress.AddCount(1);
+            Assert.That(percent, Is.EqualTo(50), "1 of 2 is 50 percent.");
+        }
+
+        [Test]
+        public static void TestProgressWithoutSynchronizationContext()
+        {
+            Thread thread = new Thread(
+                (object state) =>
+                {
+                    bool didProgress = false;
+                    Assert.That(SynchronizationContext.Current, Is.Null, "There should be no SynchronizationContext here.");
+                    ProgressContext progress = new ProgressContext();
+                    progress.Progressing += (object sender, ProgressEventArgs e) =>
+                        {
+                            didProgress = true;
+                        };
+                    progress.NotifyFinished();
+                    Assert.That(didProgress, "There should always be one Progressing event after NotifyFinished().");
+                }
+                );
+        }
+
+        [Test]
+        public static void TestProgressWithSynchronizationContext()
+        {
+            SynchronizationContext synchronizationContext = new SynchronizationContext();
+            synchronizationContext.Post(
+                (object state) =>
+                {
+                    bool didProgress = false;
+                    Assert.That(SynchronizationContext.Current, Is.EqualTo(synchronizationContext), "There should be a SynchronizationContext here.");
+                    ProgressContext progress = new ProgressContext();
+                    progress.Progressing += (object sender, ProgressEventArgs e) =>
+                    {
+                        didProgress = true;
+                    };
+                    progress.NotifyFinished();
+                    Assert.That(didProgress, "There should always be one Progressing event after NotifyFinished().");
+                }, null);
         }
     }
 }

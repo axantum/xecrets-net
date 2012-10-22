@@ -371,9 +371,9 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void EncryptFile(string file, WorkerGroup workerGroup)
+        private void EncryptFile(string file, IThreadWorker worker, ProgressContext progress)
         {
-            FileOperationsController operationsController = new FileOperationsController(persistentState.Current, workerGroup);
+            FileOperationsController operationsController = new FileOperationsController(persistentState.Current, progress);
 
             operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
                 {
@@ -431,7 +431,7 @@ namespace Axantum.AxCrypt
                     }
                 };
 
-            operationsController.EncryptFileAsync(file);
+            operationsController.EncryptFile(file, worker);
         }
 
         private void DecryptFilesViaDialog()
@@ -456,9 +456,9 @@ namespace Axantum.AxCrypt
             ProcessFilesInBackground(fileNames, DecryptFile);
         }
 
-        private void DecryptFile(string file, WorkerGroup workerGroup)
+        private void DecryptFile(string file, IThreadWorker worker, ProgressContext progress)
         {
-            FileOperationsController operationsController = new FileOperationsController(persistentState.Current, workerGroup);
+            FileOperationsController operationsController = new FileOperationsController(persistentState.Current, progress);
 
             operationsController.QueryDecryptionPassphrase += HandleQueryDecryptionPassphraseEvent;
 
@@ -500,7 +500,7 @@ namespace Axantum.AxCrypt
                     }
                 };
 
-            operationsController.DecryptFile(file);
+            operationsController.DecryptFile(file, worker);
         }
 
         private void OpenFilesViaDialog()
@@ -523,9 +523,9 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void OpenEncrypted(string file, WorkerGroup workerGroup)
+        private void OpenEncrypted(string file, IThreadWorker worker, ProgressContext progress)
         {
-            FileOperationsController operationsController = new FileOperationsController(persistentState.Current, workerGroup);
+            FileOperationsController operationsController = new FileOperationsController(persistentState.Current, progress);
 
             operationsController.QueryDecryptionPassphrase += HandleQueryDecryptionPassphraseEvent;
 
@@ -539,10 +539,10 @@ namespace Axantum.AxCrypt
                     CheckStatusAndShowMessage(e.Status, e.OpenFileFullName);
                 };
 
-            operationsController.DecryptAndLaunchAsync(file);
+            operationsController.DecryptAndLaunch(file, worker);
         }
 
-        private void ProcessFilesInBackground(IEnumerable<string> files, Action<string, WorkerGroup> processFile)
+        private void ProcessFilesInBackground(IEnumerable<string> files, Action<string, IThreadWorker, ProgressContext> processFile)
         {
             WorkerGroup workerGroup = null;
             int maxConcurrency = Environment.ProcessorCount > 2 ? Environment.ProcessorCount - 1 : 1;
@@ -550,23 +550,27 @@ namespace Axantum.AxCrypt
                 (ProgressContext progress) =>
                 {
                     workerGroup = new WorkerGroup(maxConcurrency, progress);
-                    foreach (string file in files)
+                    try
                     {
-                        workerGroup.AcquireOne();
-                        string fileParameter = file;
-                        InteractionSafeUi(() =>
+                        foreach (string file in files)
                         {
-                            processFile(fileParameter, workerGroup);
-                        });
-                        if (workerGroup.LastError != FileOperationStatus.Success)
-                        {
-                            return workerGroup.LastError;
+                            IThreadWorker worker = workerGroup.CreateWorker();
+                            string closureOverCopyOfLoopVariableFile = file;
+                            InteractionSafeUi(() =>
+                            {
+                                processFile(closureOverCopyOfLoopVariableFile, worker, progress);
+                            });
+                            if (workerGroup.FirstError != FileOperationStatus.Success)
+                            {
+                                break;
+                            }
                         }
                     }
-                    workerGroup.AcquireAll();
-                    progress.Finished();
-                    workerGroup.WaitAll();
-                    return workerGroup.LastError;
+                    finally
+                    {
+                        workerGroup.NotifyFinished();
+                    }
+                    return workerGroup.FirstError;
                 },
                 (FileOperationStatus status) =>
                 {
@@ -731,30 +735,8 @@ namespace Axantum.AxCrypt
         private void recentFilesListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             string encryptedPath = recentFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text; //MLHIDE
-            WorkerGroup workerGroup = null;
-            progressBackgroundWorker.BackgroundWorkWithProgress(
-                (ProgressContext progress) =>
-                {
-                    workerGroup = new WorkerGroup(progress);
 
-                    workerGroup.AcquireOne();
-                    InteractionSafeUi(() =>
-                        {
-                            OpenEncrypted(encryptedPath, workerGroup);
-                        });
-                    if (workerGroup.LastError != FileOperationStatus.Success)
-                    {
-                        return workerGroup.LastError;
-                    }
-                    workerGroup.AcquireAll();
-                    progress.Finished();
-                    workerGroup.WaitAll();
-                    return workerGroup.LastError;
-                },
-                (FileOperationStatus status) =>
-                {
-                    workerGroup.Dispose();
-                });
+            ProcessFilesInBackground(new string[] { encryptedPath }, OpenEncrypted);
         }
 
         private void recentFilesListView_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)

@@ -88,7 +88,7 @@ namespace Axantum.AxCrypt.Core.Session
                     progress.AddCount(1);
                 }
             });
-            progress.Finished();
+            progress.NotifyFinished();
         }
 
         public static bool UpdateActiveFileWithKeyIfKeyMatchesThumbprint(this FileSystemState fileSystemState, AesKey key)

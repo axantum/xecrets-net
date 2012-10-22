@@ -107,6 +107,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Runtime\IThreadWorker.cs" />
     <Compile Include="Runtime\WorkerGroup.cs" />
     <Compile Include="Session\ActiveFileChangedEventArgs.cs" />
     <Compile Include="Session\ChangedEventMode.cs" />

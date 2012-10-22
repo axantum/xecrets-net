@@ -37,9 +37,9 @@ using Axantum.AxCrypt.Core.UI;
 namespace Axantum.AxCrypt.Core.Runtime
 {
     /// <summary>
-    /// Perform work on a separate thread with support for progress and cancellation.
+    /// Perform work on a separate thread.
     /// </summary>
-    public class ThreadWorker : IDisposable
+    public class ThreadWorker : IThreadWorker, IDisposable
     {
         private ManualResetEvent _joined = new ManualResetEvent(false);
 
@@ -58,8 +58,6 @@ namespace Axantum.AxCrypt.Core.Runtime
         public ThreadWorker(ProgressContext progress)
         {
             _worker = new BackgroundWorker();
-            _worker.WorkerReportsProgress = true;
-            _worker.WorkerSupportsCancellation = true;
 
             _worker.DoWork += new DoWorkEventHandler(_worker_DoWork);
             _worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(_worker_RunWorkerCompleted);
@@ -80,6 +78,9 @@ namespace Axantum.AxCrypt.Core.Runtime
             _worker.RunWorkerAsync();
         }
 
+        /// <summary>
+        /// Perform blocking wait until this thread has completed execution.
+        /// </summary>
         public void Join()
         {
             if (_disposed)
@@ -89,10 +90,27 @@ namespace Axantum.AxCrypt.Core.Runtime
             _joined.WaitOne();
         }
 
+        /// <summary>
+        /// Abort this thread - can only be called *before* Run() has been called.
+        /// </summary>
+        public void Abort()
+        {
+            _e.Result = FileOperationStatus.Aborted;
+            OnCompleted(_e);
+            DisposeWorker();
+        }
+
+        /// <summary>
+        /// Returns true if the thread has completed execution.
+        /// </summary>
         public bool HasCompleted
         {
             get
             {
+                if (_disposed)
+                {
+                    throw new ObjectDisposedException("ThreadWorker");
+                }
                 return _joined.WaitOne(0, false);
             }
         }
@@ -109,14 +127,6 @@ namespace Axantum.AxCrypt.Core.Runtime
             {
                 e.Result = FileOperationStatus.Canceled;
             }
-            catch (Exception ex)
-            {
-                if (OS.Log.IsWarningEnabled)
-                {
-                    OS.Log.LogWarning("Exception in background thread '{0}'".InvariantFormat(ex.Message));
-                }
-                e.Result = FileOperationStatus.Exception;
-            }
             return;
         }
 
@@ -128,11 +138,7 @@ namespace Axantum.AxCrypt.Core.Runtime
                 {
                     if (e.Error != null)
                     {
-                        _e.Result = FileOperationStatus.UnspecifiedError;
-                    }
-                    else if (e.Cancelled)
-                    {
-                        _e.Result = FileOperationStatus.Canceled;
+                        _e.Result = FileOperationStatus.Exception;
                     }
                     else
                     {
@@ -175,21 +181,6 @@ namespace Axantum.AxCrypt.Core.Runtime
         protected virtual void OnWork(ThreadWorkerEventArgs e)
         {
             EventHandler<ThreadWorkerEventArgs> handler = Work;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
-        }
-
-        /// <summary>
-        /// Raised when progress is reported. Runs on the original thread,
-        /// typically the GUI thread.
-        /// </summary>
-        public event EventHandler<ThreadWorkerEventArgs> Progress;
-
-        protected virtual void OnProgress(ThreadWorkerEventArgs e)
-        {
-            EventHandler<ThreadWorkerEventArgs> handler = Progress;
             if (handler != null)
             {
                 handler(this, e);

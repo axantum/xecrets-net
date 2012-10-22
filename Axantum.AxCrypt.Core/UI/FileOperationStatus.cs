@@ -42,6 +42,6 @@ namespace Axantum.AxCrypt.Core.UI
         Unknown,
         InvalidPath,
         Working,
-        WorkerGroupAborted,
+        Aborted,
     }
 }

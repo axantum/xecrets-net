@@ -171,6 +171,7 @@
     <Compile Include="TestUnrecognizedHeaderBlock .cs" />
     <Compile Include="TestUpdateCheck.cs" />
     <Compile Include="TestVersionHeaderBlock .cs" />
+    <Compile Include="TestWorkerGroup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />

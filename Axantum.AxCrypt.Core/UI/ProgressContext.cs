@@ -27,10 +27,15 @@
 
 using System;
 using System.Diagnostics;
+using System.Threading;
 using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.UI
 {
+    /// <summary>
+    /// Coordinate progress reporting, marshaling reports to the original instantiating thread (if
+    /// it has a SynchronizationContext) and throttle the amount of calls based on a timer.
+    /// </summary>
     public class ProgressContext
     {
         private static readonly TimeSpan DefaultFirstProgressing = TimeSpan.FromMilliseconds(500);
@@ -47,33 +52,31 @@ namespace Axantum.AxCrypt.Core.UI
         {
         }
 
-        public ProgressContext(string displayText)
-            : this(displayText, null)
-        {
-        }
-
-        public ProgressContext(string displayText, object context)
-            : this(displayText, context, DefaultFirstProgressing)
-        {
-        }
-
         public ProgressContext(TimeSpan firstElapsed)
-            : this(String.Empty, null, firstElapsed)
+            : this(null, firstElapsed)
         {
         }
 
-        public ProgressContext(string displayText, object context, TimeSpan firstProgressing)
+        private SynchronizationContext _synchronizationContext;
+
+        public ProgressContext(object context, TimeSpan firstProgressing)
         {
             _context = context;
-            DisplayText = displayText;
             NextProgressing = firstProgressing;
+            Finished = false;
+            if (SynchronizationContext.Current == null)
+            {
+                _synchronizationContext = new SynchronizationContext();
+            }
+            else
+            {
+                _synchronizationContext = SynchronizationContext.Current;
+            }
         }
 
         public bool Cancel { get; set; }
 
         public event EventHandler<ProgressEventArgs> Progressing;
-
-        public string DisplayText { get; set; }
 
         private static readonly object _lock = new object();
 
@@ -83,7 +86,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             lock (_lock)
             {
-                if (_finished)
+                if (Finished)
                 {
                     throw new InvalidOperationException("Out-of-sequence call, cannot call AddTotal() after call to Finished()");
                 }
@@ -104,20 +107,24 @@ namespace Axantum.AxCrypt.Core.UI
 
         private long _current = 0;
 
-        private bool _finished = false;
+        public bool Finished { get; private set; }
 
         public void AddCount(long count)
         {
             ProgressEventArgs e;
             lock (_lock)
             {
-                if (_finished)
+                if (Finished)
                 {
                     throw new InvalidOperationException("Out-of-sequence call, cannot call AddCount() after call to Finished()");
                 }
                 if (Cancel)
                 {
                     throw new OperationCanceledException("Operation canceled on request");
+                }
+                if (count <= 0)
+                {
+                    return;
                 }
                 _current += count;
                 if (_stopwatch.Elapsed < NextProgressing)
@@ -130,16 +137,16 @@ namespace Axantum.AxCrypt.Core.UI
             OnProgressing(e);
         }
 
-        public void Finished()
+        public void NotifyFinished()
         {
             ProgressEventArgs e;
             lock (_lock)
             {
-                if (_finished)
+                if (Finished)
                 {
-                    throw new InvalidOperationException("Out-of-sequence call, cannot call Finished() twice");
+                    return;
                 }
-                _finished = true;
+                Finished = true;
                 e = new ProgressEventArgs(100, _context);
             }
             OnProgressing(e);
@@ -150,7 +157,12 @@ namespace Axantum.AxCrypt.Core.UI
             EventHandler<ProgressEventArgs> handler = Progressing;
             if (handler != null)
             {
-                handler(this, e);
+                _synchronizationContext.Send(
+                    (object state) =>
+                    {
+                        handler(this, (ProgressEventArgs)e);
+                    },
+                    e);
             }
         }
 

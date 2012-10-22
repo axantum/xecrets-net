@@ -302,11 +302,11 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     fileSystemState = (FileSystemState)serializer.ReadObject(fileSystemStateStream);
                 }
-                catch (XmlException)
+                catch (SerializationException)
                 {
                     if (OS.Log.IsErrorEnabled)
                     {
-                        OS.Log.LogError("XmlException reading {0}. Ignoring and re-initializing state.".InvariantFormat(path.FullName));
+                        OS.Log.LogError("SerializationException reading {0}. Ignoring and re-initializing state.".InvariantFormat(path.FullName));
                     }
                     fileSystemState = new FileSystemState();
                 }

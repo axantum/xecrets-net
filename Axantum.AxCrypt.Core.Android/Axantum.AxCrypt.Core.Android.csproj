@@ -231,6 +231,9 @@
     <Compile Include="..\Axantum.AxCrypt.Core\Runtime\IRuntimeEnvironment.cs">
       <Link>Runtime\IRuntimeEnvironment.cs</Link>
     </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Runtime\IThreadWorker.cs">
+      <Link>Runtime\IThreadWorker.cs</Link>
+    </Compile>
     <Compile Include="..\Axantum.AxCrypt.Core\Runtime\ITiming.cs">
       <Link>Runtime\ITiming.cs</Link>
     </Compile>

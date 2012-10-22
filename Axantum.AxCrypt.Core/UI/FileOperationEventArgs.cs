@@ -37,13 +37,10 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public class FileOperationEventArgs : CancelEventArgs
     {
-        public FileOperationEventArgs(WorkerGroup workerGroup)
+        public FileOperationEventArgs()
         {
-            WorkerGroup = workerGroup;
             Status = FileOperationStatus.Unknown;
         }
-
-        public WorkerGroup WorkerGroup { get; private set; }
 
         public string SaveFileFullName { get; set; }
 

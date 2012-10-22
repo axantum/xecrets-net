@@ -34,10 +34,6 @@ namespace Axantum.AxCrypt.Core.UI
         internal ProgressEventArgs(int percent, object context)
         {
             Context = context;
-            if (percent < 0 || percent > 100)
-            {
-                throw new ArgumentOutOfRangeException("percent");
-            }
             Percent = percent;
         }
 
