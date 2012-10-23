@@ -13,3 +13,4 @@ Axantum.AxCrypt.Core/Properties/AssemblyInfo.cs
 */test-results/*
 *.orig
 *.pidb
+test-results/*
