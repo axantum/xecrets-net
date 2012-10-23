@@ -244,6 +244,11 @@ namespace Axantum.AxCrypt.Core.Runtime
                     }
                 }
             }
+            IDisposable disposable = sender as IDisposable;
+            if (disposable != null)
+            {
+                disposable.Dispose();
+            }
             ReleaseOneConcurrencyRight();
         }
 

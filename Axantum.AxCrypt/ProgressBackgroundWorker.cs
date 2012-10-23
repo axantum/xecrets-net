@@ -97,29 +97,32 @@ namespace Axantum.AxCrypt
             {
                 progressBar.Value = e.Percent;
             };
-            IThreadWorker threadWorker = new ThreadWorker(progress);
+            ThreadWorker threadWorker = new ThreadWorker(progress);
             threadWorker.Work += (object sender, ThreadWorkerEventArgs e) =>
-                {
-                    e.Result = work(e.Progress);
-                };
+            {
+                e.Result = work(e.Progress);
+            };
             threadWorker.Completing += (object sender, ThreadWorkerEventArgs e) =>
+            {
+                try
                 {
-                    try
-                    {
-                        complete(e.Result);
-                        progressBar.Parent = null;
-                    }
-                    finally
-                    {
-                        progressBar.Dispose();
-                        IDisposable disposable = sender as IDisposable;
-                        if (disposable != null)
-                        {
-                            disposable.Dispose();
-                        }
-                        Interlocked.Decrement(ref _workerCount);
-                    }
-                };
+                    complete(e.Result);
+                    progressBar.Parent = null;
+                }
+                finally
+                {
+                    progressBar.Dispose();
+                }
+            };
+            threadWorker.Completed += (object sender, ThreadWorkerEventArgs e) =>
+            {
+                IDisposable disposable = sender as IDisposable;
+                if (disposable != null)
+                {
+                    disposable.Dispose();
+                }
+                Interlocked.Decrement(ref _workerCount);
+            };
             Interlocked.Increment(ref _workerCount);
             threadWorker.Run();
         }

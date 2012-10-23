@@ -545,7 +545,7 @@ namespace Axantum.AxCrypt
         private void ProcessFilesInBackground(IEnumerable<string> files, Action<string, IThreadWorker, ProgressContext> processFile)
         {
             WorkerGroup workerGroup = null;
-            int maxConcurrency = Environment.ProcessorCount > 2 ? Environment.ProcessorCount - 1 : 1;
+            int maxConcurrency = Environment.ProcessorCount > 2 ? Environment.ProcessorCount - 1 : 2;
             progressBackgroundWorker.BackgroundWorkWithProgress(
                 (ProgressContext progress) =>
                 {
