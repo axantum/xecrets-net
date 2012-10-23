@@ -97,7 +97,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
             _e.Result = FileOperationStatus.Aborted;
             OnCompleting(_e);
-            DisposeWorker();
+            CompleteWorker();
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace Axantum.AxCrypt.Core.Runtime
                 }
                 finally
                 {
-                    DisposeWorker();
+                    CompleteWorker();
                 }
             }
             if (OS.Log.IsInfoEnabled)
@@ -239,6 +239,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             if (disposing)
             {
                 Join();
+                DisposeWorker();
                 if (_joined != null)
                 {
                     _joined.Close();
@@ -249,7 +250,16 @@ namespace Axantum.AxCrypt.Core.Runtime
             _disposed = true;
         }
 
-        private void DisposeWorker()
+        private void CompleteWorker()
+        {
+            if (DisposeWorker())
+            {
+                _joined.Set();
+                OnCompleted(_e);
+            }
+        }
+
+        private bool DisposeWorker()
         {
             if (_worker != null)
             {
@@ -262,9 +272,9 @@ namespace Axantum.AxCrypt.Core.Runtime
                     workerAsDisposibleWhichIsPlatformDependent.Dispose();
                 }
                 _worker = null;
-                _joined.Set();
-                OnCompleted(_e);
+                return true;
             }
+            return false;
         }
     }
 }
