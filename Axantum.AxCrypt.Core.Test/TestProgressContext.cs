@@ -228,24 +228,27 @@ namespace Axantum.AxCrypt.Core.Test
 
         [Test]
         public static void TestProgressWithoutSynchronizationContext()
-        {
-            Thread thread = new Thread(
+		{
+			bool didProgress = false;
+			SynchronizationContext currentContext = new SynchronizationContext();
+			Thread thread = new Thread(
                 (object state) =>
                 {
-                    bool didProgress = false;
-                    Assert.That(SynchronizationContext.Current, Is.Null, "There should be no SynchronizationContext here.");
+					currentContext = SynchronizationContext.Current;
                     ProgressContext progress = new ProgressContext();
+					progress.NotifyLevelStart();
                     progress.Progressing += (object sender, ProgressEventArgs e) =>
                         {
                             didProgress = true;
                         };
                     progress.NotifyLevelFinished();
-                    Assert.That(didProgress, "There should always be one Progressing event after NotifyFinished().");
                 }
                 );
             thread.Start();
             thread.Join();
-        }
+			Assert.That(didProgress, "There should always be one Progressing event after NotifyFinished().");
+			Assert.That(currentContext, Is.Null, "There should be no SynchronizationContext here.");
+		}
 
         private class StateForSynchronizationContext
         {

@@ -198,7 +198,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             EventHandler<ProgressEventArgs> handler = Progressing;
             if (handler != null)
-            {
+			{            
                 _synchronizationContext.Send(
                     (object state) =>
                     {

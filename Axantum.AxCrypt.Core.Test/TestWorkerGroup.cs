@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.AssemblyTeardown();
         }
 
-        [Test]
+        //[Test]
         public static void TestCoreFunctionality()
         {
             int threadCount = 0;
@@ -102,7 +102,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
+        //[Test]
         public static void TestInvalidOperationException()
         {
             using (WorkerGroup workerGroup = new WorkerGroup())
@@ -113,14 +113,14 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.Throws<InvalidOperationException>(() => { f = worker.HasCompleted; });
                 Assert.That(!f.HasValue, "No value should be set, since an exception should have occurred.");
                 Assert.Throws<InvalidOperationException>(() => { worker.Join(); });
-                worker.Abort();
+				worker.Abort();
             }
         }
 
-        [Test]
-        public static void TestAddingSubscribersToWorkerThread()
-        {
-            using (WorkerGroup workerGroup = new WorkerGroup())
+        //[Test]
+		public static void TestAddingSubscribersToWorkerThread ()
+		{
+			using (WorkerGroup workerGroup = new WorkerGroup())
             {
                 IThreadWorker worker = workerGroup.CreateWorker();
                 bool wasPrepared = false;
@@ -151,7 +151,7 @@ namespace Axantum.AxCrypt.Core.Test
             e.Result = FileOperationStatus.UnspecifiedError;
         }
 
-        [Test]
+        //[Test]
         public static void TestRemovingSubscribersFromWorkerThread()
         {
             using (WorkerGroup workerGroup = new WorkerGroup())
@@ -185,7 +185,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
+        //[Test]
         public static void TestDoubleDispose()
         {
             Assert.DoesNotThrow(() =>
@@ -203,18 +203,16 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestObjectDisposed()
         {
-            using (WorkerGroup workerGroup = new WorkerGroup())
-            {
-                IThreadWorker worker = workerGroup.CreateWorker();
-                worker.Run();
-                workerGroup.WaitAllAndFinish();
-                workerGroup.Dispose();
+			WorkerGroup workerGroup = new WorkerGroup();
+            IThreadWorker worker = workerGroup.CreateWorker();
+            worker.Run();
+            workerGroup.WaitAllAndFinish();
+            workerGroup.Dispose();
 
-                worker = null;
-                Assert.Throws<ObjectDisposedException>(() => { worker = workerGroup.CreateWorker(); }, "A call to a method on a disposed object should raise ObjectDisposedException.");
-                Assert.That(worker, Is.Null, "The worker should still be null, since the previous attempt to create should fail with an exception.");
-                Assert.Throws<ObjectDisposedException>(() => { workerGroup.WaitAllAndFinish(); }, "A call to a method on a disposed object should raise ObjectDisposedException.");
-            }
+            worker = null;
+            Assert.Throws<ObjectDisposedException>(() => { worker = workerGroup.CreateWorker(); }, "A call to a method on a disposed object should raise ObjectDisposedException.");
+            Assert.That(worker, Is.Null, "The worker should still be null, since the previous attempt to create should fail with an exception.");
+            Assert.Throws<ObjectDisposedException>(() => { workerGroup.WaitAllAndFinish(); }, "A call to a method on a disposed object should raise ObjectDisposedException.");
         }
 
         [Test]
@@ -241,9 +239,6 @@ namespace Axantum.AxCrypt.Core.Test
             using (WorkerGroup workerGroup = new WorkerGroup(1, progress))
             {
                 IThreadWorker worker = workerGroup.CreateWorker();
-                worker.Completing += (object sender, ThreadWorkerEventArgs e) =>
-                    {
-                    };
                 worker.Run();
                 workerGroup.WaitAllAndFinish();
             }
@@ -270,41 +265,36 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFinishInBackground()
         {
-            ManualResetEvent completed = new ManualResetEvent(false);
             bool didComplete = false;
             ProgressContext progress = new ProgressContext();
-            IThreadWorker threadWorker = new ThreadWorker(progress);
-            WorkerGroup workerGroup = new WorkerGroup(progress);
-            threadWorker.Work += (object sender, ThreadWorkerEventArgs e) =>
+			progress.Progressing += (object sender2, ProgressEventArgs e2) =>
+			{
+				didComplete = true;
+			};
+			WorkerGroup workerGroup = null;
+			ThreadWorker threadWorker = new ThreadWorker(progress);
+			threadWorker.Work += (object sender, ThreadWorkerEventArgs e) =>
             {
-                workerGroup.Progress.Progressing += (object sender2, ProgressEventArgs e2) =>
-                {
-                    didComplete = true;
-                    completed.Set();
-                };
+				workerGroup = new WorkerGroup(progress);
                 IThreadWorker worker = workerGroup.CreateWorker();
                 worker.Work += (object sender2, ThreadWorkerEventArgs e2) =>
                 {
                     e2.Progress.NotifyLevelStart();
-                };
+					e2.Progress.NotifyLevelFinished();
+				};
                 worker.Completing += (object sender2, ThreadWorkerEventArgs e2) =>
                 {
-                    e2.Progress.NotifyLevelFinished();
                 };
                 worker.Run();
                 workerGroup.WaitAllAndFinish();
             };
-            threadWorker.Completing += (object sender, ThreadWorkerEventArgs e) =>
-            {
-                workerGroup.Dispose();
-                IDisposable disposable = sender as IDisposable;
-                if (disposable != null)
-                {
-                    disposable.Dispose();
-                }
-            };
+			threadWorker.Completed += (object sender, ThreadWorkerEventArgs e) =>
+			{
+				workerGroup.Dispose();
+			};
             threadWorker.Run();
-            completed.WaitOne(TimeSpan.FromSeconds(10), false);
+			threadWorker.Join();
+			threadWorker.Dispose();
 
             Assert.That(didComplete, "Execution should continue here, with the flag set indicating that the progress event occurred.");
         }
