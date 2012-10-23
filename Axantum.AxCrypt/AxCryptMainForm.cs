@@ -568,7 +568,7 @@ namespace Axantum.AxCrypt
                     }
                     finally
                     {
-                        workerGroup.NotifyFinished();
+                        workerGroup.WaitAllAndFinish();
                     }
                     return workerGroup.FirstError;
                 },

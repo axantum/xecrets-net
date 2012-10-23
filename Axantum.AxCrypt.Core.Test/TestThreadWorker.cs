@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Core.Test
                         workThreadId = Thread.CurrentThread.ManagedThreadId;
                         e.Result = FileOperationStatus.Success;
                     };
-                worker.Completed += (object sender, ThreadWorkerEventArgs e) =>
+                worker.Completing += (object sender, ThreadWorkerEventArgs e) =>
                     {
                         returnedStatus = e.Result;
                         done = true;
@@ -91,8 +91,8 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 worker.Work += (object sender, ThreadWorkerEventArgs e) =>
                     {
-                        environment.CurrentTiming.CurrentTiming = e.ProgressContext.NextProgressing;
-                        e.ProgressContext.AddCount(1);
+                        environment.CurrentTiming.CurrentTiming = e.Progress.NextProgressing;
+                        e.Progress.AddCount(1);
                         e.Result = FileOperationStatus.Success;
                     };
                 progress.Progressing += (object sender, ProgressEventArgs e) =>
@@ -142,7 +142,7 @@ namespace Axantum.AxCrypt.Core.Test
                     {
                         throw new OperationCanceledException();
                     };
-                worker.Completed += (object sender, ThreadWorkerEventArgs e) =>
+                worker.Completing += (object sender, ThreadWorkerEventArgs e) =>
                     {
                         wasCanceled = e.Result == FileOperationStatus.Canceled;
                     };
@@ -162,11 +162,11 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 worker.Work += (object sender, ThreadWorkerEventArgs e) =>
                 {
-                    e.ProgressContext.Cancel = true;
-                    environment.CurrentTiming.CurrentTiming = e.ProgressContext.NextProgressing;
-                    e.ProgressContext.AddCount(1);
+                    e.Progress.Cancel = true;
+                    environment.CurrentTiming.CurrentTiming = e.Progress.NextProgressing;
+                    e.Progress.AddCount(1);
                 };
-                worker.Completed += (object sender, ThreadWorkerEventArgs e) =>
+                worker.Completing += (object sender, ThreadWorkerEventArgs e) =>
                 {
                     wasCanceled = e.Result == FileOperationStatus.Canceled;
                 };
@@ -204,7 +204,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     throw new InvalidOperationException();
                 };
-                worker.Completed += (object sender, ThreadWorkerEventArgs e) =>
+                worker.Completing += (object sender, ThreadWorkerEventArgs e) =>
                 {
                     errorInWork = e.Result == FileOperationStatus.Exception;
                 };
@@ -226,7 +226,7 @@ namespace Axantum.AxCrypt.Core.Test
                     wasCompletedInWork = worker.HasCompleted;
                 };
                 bool wasCompletedInCompleted = false;
-                worker.Completed += (object sender, ThreadWorkerEventArgs e) =>
+                worker.Completing += (object sender, ThreadWorkerEventArgs e) =>
                 {
                     wasCompletedInCompleted = worker.HasCompleted;
                 };

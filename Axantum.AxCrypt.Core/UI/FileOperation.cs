@@ -204,7 +204,7 @@ namespace Axantum.AxCrypt.Core.UI
                 }
                 using (FileLock sourceLock = FileLock.Lock(sourceFileInfo))
                 {
-                    using (AxCryptDocument document = AxCryptFile.Document(sourceFileInfo, key, progress))
+                    using (AxCryptDocument document = AxCryptFile.Document(sourceFileInfo, key, new ProgressContext()))
                     {
                         if (!document.PassphraseIsValid)
                         {

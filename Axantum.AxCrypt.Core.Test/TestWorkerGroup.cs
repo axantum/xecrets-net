@@ -72,7 +72,7 @@ namespace Axantum.AxCrypt.Core.Test
                         }
                         Thread.Sleep(100);
                     };
-                worker1.Completed += (object sender, ThreadWorkerEventArgs e) =>
+                worker1.Completing += (object sender, ThreadWorkerEventArgs e) =>
                     {
                         --threadCount;
                     };
@@ -91,13 +91,13 @@ namespace Axantum.AxCrypt.Core.Test
                         }
                         Thread.Sleep(100);
                     };
-                worker2.Completed += (object sender, ThreadWorkerEventArgs e) =>
+                worker2.Completing += (object sender, ThreadWorkerEventArgs e) =>
                     {
                         --threadCount;
                     };
                 worker2.Run();
 
-                workerGroup.NotifyFinished();
+                workerGroup.WaitAllAndFinish();
                 Assert.That(maxCount, Is.EqualTo(1), "There should never be more than one thread active at one time.");
             }
         }
@@ -134,12 +134,12 @@ namespace Axantum.AxCrypt.Core.Test
                     didWork = true;
                 };
                 bool didComplete = false;
-                worker.Completed += (object sender, ThreadWorkerEventArgs e) =>
+                worker.Completing += (object sender, ThreadWorkerEventArgs e) =>
                 {
                     didComplete = true;
                 };
                 worker.Run();
-                workerGroup.NotifyFinished();
+                workerGroup.WaitAllAndFinish();
                 Assert.That(wasPrepared, "The Prepare event should be raised.");
                 Assert.That(didWork, "The Work event should be raised.");
                 Assert.That(didComplete, "The Completed event should be raised.");
@@ -159,10 +159,10 @@ namespace Axantum.AxCrypt.Core.Test
                 IThreadWorker worker = workerGroup.CreateWorker();
                 worker.Prepare += ThreadWorkerEventHandler;
                 worker.Work += ThreadWorkerEventHandler;
-                worker.Completed += ThreadWorkerEventHandler;
+                worker.Completing += ThreadWorkerEventHandler;
 
                 worker.Run();
-                workerGroup.NotifyFinished();
+                workerGroup.WaitAllAndFinish();
 
                 Assert.That(workerGroup.FirstError, Is.EqualTo(FileOperationStatus.UnspecifiedError), "The status should be set by one of the event handlers.");
             }
@@ -172,14 +172,14 @@ namespace Axantum.AxCrypt.Core.Test
                 IThreadWorker worker = workerGroup.CreateWorker();
                 worker.Prepare += ThreadWorkerEventHandler;
                 worker.Work += ThreadWorkerEventHandler;
-                worker.Completed += ThreadWorkerEventHandler;
+                worker.Completing += ThreadWorkerEventHandler;
 
                 worker.Prepare -= ThreadWorkerEventHandler;
                 worker.Work -= ThreadWorkerEventHandler;
-                worker.Completed -= ThreadWorkerEventHandler;
+                worker.Completing -= ThreadWorkerEventHandler;
 
                 worker.Run();
-                workerGroup.NotifyFinished();
+                workerGroup.WaitAllAndFinish();
 
                 Assert.That(workerGroup.FirstError, Is.EqualTo(FileOperationStatus.Success), "None of the event handlers should have been called, so the status should not have been set there.");
             }
@@ -194,7 +194,7 @@ namespace Axantum.AxCrypt.Core.Test
                     {
                         IThreadWorker worker = workerGroup.CreateWorker();
                         worker.Run();
-                        workerGroup.NotifyFinished();
+                        workerGroup.WaitAllAndFinish();
                         workerGroup.Dispose();
                     }
                 });
@@ -207,13 +207,13 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 IThreadWorker worker = workerGroup.CreateWorker();
                 worker.Run();
-                workerGroup.NotifyFinished();
+                workerGroup.WaitAllAndFinish();
                 workerGroup.Dispose();
 
                 worker = null;
                 Assert.Throws<ObjectDisposedException>(() => { worker = workerGroup.CreateWorker(); }, "A call to a method on a disposed object should raise ObjectDisposedException.");
                 Assert.That(worker, Is.Null, "The worker should still be null, since the previous attempt to create should fail with an exception.");
-                Assert.Throws<ObjectDisposedException>(() => { workerGroup.NotifyFinished(); }, "A call to a method on a disposed object should raise ObjectDisposedException.");
+                Assert.Throws<ObjectDisposedException>(() => { workerGroup.WaitAllAndFinish(); }, "A call to a method on a disposed object should raise ObjectDisposedException.");
             }
         }
 
@@ -224,8 +224,8 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 IThreadWorker worker = workerGroup.CreateWorker();
                 worker.Run();
-                workerGroup.NotifyFinished();
-                Assert.Throws<InvalidOperationException>(() => { workerGroup.NotifyFinished(); });
+                workerGroup.WaitAllAndFinish();
+                Assert.Throws<InvalidOperationException>(() => { workerGroup.WaitAllAndFinish(); });
             }
         }
 
@@ -241,8 +241,11 @@ namespace Axantum.AxCrypt.Core.Test
             using (WorkerGroup workerGroup = new WorkerGroup(1, progress))
             {
                 IThreadWorker worker = workerGroup.CreateWorker();
+                worker.Completing += (object sender, ThreadWorkerEventArgs e) =>
+                    {
+                    };
                 worker.Run();
-                workerGroup.NotifyFinished();
+                workerGroup.WaitAllAndFinish();
             }
             Assert.That(percent, Is.EqualTo(100), "Progress at 100 percent should always be reported when the thread completes.");
         }
@@ -259,7 +262,7 @@ namespace Axantum.AxCrypt.Core.Test
                     };
                 IThreadWorker worker = workerGroup.CreateWorker();
                 worker.Run();
-                workerGroup.NotifyFinished();
+                workerGroup.WaitAllAndFinish();
                 Assert.That(percent, Is.EqualTo(100), "Progress at 100 percent should always be reported when the thread completes.");
             }
         }
@@ -267,17 +270,40 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFinishInBackground()
         {
-            WorkerGroup workerGroup = new WorkerGroup();
             ManualResetEvent completed = new ManualResetEvent(false);
             bool didComplete = false;
-            workerGroup.Progress.Progressing += (object sender, ProgressEventArgs e) =>
+            ProgressContext progress = new ProgressContext();
+            IThreadWorker threadWorker = new ThreadWorker(progress);
+            WorkerGroup workerGroup = new WorkerGroup(progress);
+            threadWorker.Work += (object sender, ThreadWorkerEventArgs e) =>
             {
-                didComplete = true;
-                completed.Set();
+                workerGroup.Progress.Progressing += (object sender2, ProgressEventArgs e2) =>
+                {
+                    didComplete = true;
+                    completed.Set();
+                };
+                IThreadWorker worker = workerGroup.CreateWorker();
+                worker.Work += (object sender2, ThreadWorkerEventArgs e2) =>
+                {
+                    e2.Progress.NotifyLevelStart();
+                };
+                worker.Completing += (object sender2, ThreadWorkerEventArgs e2) =>
+                {
+                    e2.Progress.NotifyLevelFinished();
+                };
+                worker.Run();
+                workerGroup.WaitAllAndFinish();
             };
-            IThreadWorker worker = workerGroup.CreateWorker();
-            worker.Run();
-            WorkerGroup.FinishInBackground(workerGroup);
+            threadWorker.Completing += (object sender, ThreadWorkerEventArgs e) =>
+            {
+                workerGroup.Dispose();
+                IDisposable disposable = sender as IDisposable;
+                if (disposable != null)
+                {
+                    disposable.Dispose();
+                }
+            };
+            threadWorker.Run();
             completed.WaitOne(TimeSpan.FromSeconds(10), false);
 
             Assert.That(didComplete, "Execution should continue here, with the flag set indicating that the progress event occurred.");

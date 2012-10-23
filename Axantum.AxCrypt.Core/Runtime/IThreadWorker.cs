@@ -70,6 +70,6 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// Raised when all is done. Runs on the original thread, typically
         /// the GUI thread.
         /// </summary>
-        event EventHandler<ThreadWorkerEventArgs> Completed;
+        event EventHandler<ThreadWorkerEventArgs> Completing;
     }
 }

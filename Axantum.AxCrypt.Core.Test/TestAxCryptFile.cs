@@ -113,7 +113,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.WriteToFileWithBackup(fileInfo, nullStreamAction); });
 
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.MakeAxCryptFileName(nullFileInfo); });
-            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Wipe(nullFileInfo); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Wipe(nullFileInfo, new ProgressContext()); });
         }
 
         [Test]
@@ -341,7 +341,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
             }
             Assert.That(fileInfo.Exists, "Now it should exist.");
-            AxCryptFile.Wipe(fileInfo);
+            AxCryptFile.Wipe(fileInfo, new ProgressContext());
             Assert.That(!fileInfo.Exists, "And now it should not exist after wiping.");
         }
 

@@ -265,6 +265,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private bool DecryptFileOperation()
         {
+            _progress.NotifyLevelStart();
             try
             {
                 AxCryptFile.Decrypt(_eventArgs.AxCryptDocument, OS.Current.FileInfo(_eventArgs.SaveFileFullName), AxCryptOptions.SetFileTimes, _progress);
@@ -274,7 +275,8 @@ namespace Axantum.AxCrypt.Core.UI
                 _eventArgs.AxCryptDocument.Dispose();
                 _eventArgs.AxCryptDocument = null;
             }
-            AxCryptFile.Wipe(OS.Current.FileInfo(_eventArgs.OpenFileFullName));
+            AxCryptFile.Wipe(OS.Current.FileInfo(_eventArgs.OpenFileFullName), _progress);
+            _progress.NotifyLevelFinished();
 
             _eventArgs.Status = FileOperationStatus.Success;
             return true;
@@ -394,8 +396,9 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 operation();
             };
-            worker.Completed += (object workerSender, ThreadWorkerEventArgs threadWorkerEventArgs) =>
+            worker.Completing += (object workerSender, ThreadWorkerEventArgs threadWorkerEventArgs) =>
             {
+                _eventArgs.Status = threadWorkerEventArgs.Result;
                 OnCompleted(_eventArgs);
             };
             worker.Run();

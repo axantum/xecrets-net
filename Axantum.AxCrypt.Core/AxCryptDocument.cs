@@ -162,9 +162,10 @@ namespace Axantum.AxCrypt.Core
 
         private static long CopyToWithCount(Stream inputStream, Stream outputStream, Stream realInputStream, ProgressContext progress)
         {
+            progress.NotifyLevelStart();
             if (realInputStream.CanSeek)
             {
-                progress.AddTotal(realInputStream.Length);
+                progress.AddTotal(realInputStream.Length - realInputStream.Position);
             }
 
             long totalCount = 0;
@@ -190,6 +191,7 @@ namespace Axantum.AxCrypt.Core
                 offset = 0;
                 length = buffer.Length;
             }
+            progress.NotifyLevelFinished();
             return totalCount;
         }
 
@@ -260,6 +262,7 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new InternalErrorException("Document headers are not loaded");
             }
+
             using (ICryptoTransform decryptor = DataCrypto.CreateDecryptingTransform())
             {
                 using (AxCryptDataStream encryptedDataStream = _reader.CreateEncryptedDataStream(DocumentHeaders.HmacSubkey.Key, DocumentHeaders.CipherTextLength, progress))

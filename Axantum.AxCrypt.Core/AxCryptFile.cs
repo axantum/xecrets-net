@@ -161,6 +161,7 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("progress");
             }
+            progress.NotifyLevelStart();
             using (Stream activeFileStream = sourceFileInfo.OpenRead())
             {
                 WriteToFileWithBackup(destinationFileInfo, (Stream destination) =>
@@ -168,7 +169,8 @@ namespace Axantum.AxCrypt.Core
                     Encrypt(sourceFileInfo, destination, key, AxCryptOptions.EncryptWithCompression, progress);
                 });
             }
-            Wipe(sourceFileInfo);
+            Wipe(sourceFileInfo, progress);
+            progress.NotifyLevelFinished();
         }
 
         /// <summary>
@@ -196,7 +198,7 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("progress");
             }
-            using (AxCryptDocument document = Document(sourceFile, key, progress))
+            using (AxCryptDocument document = Document(sourceFile, key, new ProgressContext()))
             {
                 if (!document.PassphraseIsValid)
                 {
@@ -233,7 +235,7 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("progress");
             }
             string destinationFileName = null;
-            using (AxCryptDocument document = Document(sourceFile, key, progress))
+            using (AxCryptDocument document = Document(sourceFile, key, new ProgressContext()))
             {
                 if (!document.PassphraseIsValid)
                 {
@@ -400,7 +402,7 @@ namespace Axantum.AxCrypt.Core
             return axCryptFileName;
         }
 
-        public static void Wipe(IRuntimeFileInfo fileInfo)
+        public static void Wipe(IRuntimeFileInfo fileInfo, ProgressContext progress)
         {
             if (fileInfo == null)
             {
@@ -412,7 +414,9 @@ namespace Axantum.AxCrypt.Core
                 {
                     OS.Log.LogInfo("Wiping '{0}'.".InvariantFormat(fileInfo.Name));
                 }
+                progress.NotifyLevelStart();
                 fileInfo.Delete();
+                progress.NotifyLevelFinished();
             }
         }
     }

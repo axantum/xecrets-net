@@ -43,6 +43,8 @@ namespace Axantum.AxCrypt.Core.UI
 
         private object _context;
 
+        private SynchronizationContext _synchronizationContext;
+
         private ITiming _stopwatch = OS.Current.StartTiming();
 
         public TimeSpan NextProgressing { get; set; }
@@ -52,12 +54,10 @@ namespace Axantum.AxCrypt.Core.UI
         {
         }
 
-        public ProgressContext(TimeSpan firstElapsed)
-            : this(null, firstElapsed)
+        public ProgressContext(TimeSpan firstProgressing)
+            : this(null, firstProgressing)
         {
         }
-
-        private SynchronizationContext _synchronizationContext;
 
         public ProgressContext(object context, TimeSpan firstProgressing)
         {
@@ -76,6 +76,11 @@ namespace Axantum.AxCrypt.Core.UI
 
         public bool Cancel { get; set; }
 
+        /// <summary>
+        /// Progress has occurred. The actual number of events are throttled, so not all reports
+        /// of progress will result in an event being raised. Only if NotifyLevelStart() / NotifyLevelFinished()
+        /// are used, will a percentage of 100 be reported, and then only exactly once.
+        /// </summary>
         public event EventHandler<ProgressEventArgs> Progressing;
 
         private static readonly object _lock = new object();
@@ -137,8 +142,45 @@ namespace Axantum.AxCrypt.Core.UI
             OnProgressing(e);
         }
 
-        public void NotifyFinished()
+        private static readonly object _progressLevelLock = new object();
+
+        private int _progressLevel = 0;
+
+        /// <summary>
+        /// Start a new progress tracking level. Use this to indicate the start of a (sub-)operation
+        /// that tracks progress.
+        /// </summary>
+        public void NotifyLevelStart()
         {
+            lock (_progressLevelLock)
+            {
+                if (_progressLevel < 0)
+                {
+                    throw new InvalidOperationException("Call to NotifyLevelStart() after having already finished.");
+                }
+                ++_progressLevel;
+            }
+        }
+
+        /// <summary>
+        /// End a progress tracking level. When a transition to zero active levels occurs, then and only then,
+        /// is a Progressing event raised with a percent value of 100.
+        /// Calls to NotifyLevelStart() and NotifyLevelFinished() must be balanced.
+        /// </summary>
+        public void NotifyLevelFinished()
+        {
+            lock (_progressLevelLock)
+            {
+                if (_progressLevel == 0)
+                {
+                    throw new InvalidOperationException("Too many calls to NotifyLevelFinished()");
+                }
+                if (--_progressLevel > 0)
+                {
+                    return;
+                }
+                --_progressLevel;
+            }
             ProgressEventArgs e;
             lock (_lock)
             {

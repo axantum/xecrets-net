@@ -106,10 +106,10 @@ namespace Axantum.AxCrypt.Core.Runtime
             /// Raised when all is done. Runs on the original thread, typically
             /// the GUI thread.
             /// </summary>
-            public event EventHandler<ThreadWorkerEventArgs> Completed
+            public event EventHandler<ThreadWorkerEventArgs> Completing
             {
-                add { _worker.Completed += value; }
-                remove { _worker.Completed -= value; }
+                add { _worker.Completing += value; }
+                remove { _worker.Completing -= value; }
             }
 
             #endregion IThreadWorker Members
@@ -144,6 +144,11 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
         }
 
+        public WorkerGroup(ProgressContext progress)
+            : this(1, progress)
+        {
+        }
+
         /// <summary>
         /// Instantiates a worker group with specified maximum concurrency and external progress reporting. Progress
         /// will be reported on the thread instantiating the ProgressContext used.
@@ -155,6 +160,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             _concurrencyControlSemaphore = new Semaphore(maxConcurrent, maxConcurrent);
             _maxConcurrencyCount = maxConcurrent;
             FirstError = FileOperationStatus.Success;
+            progress.NotifyLevelStart();
             Progress = progress;
         }
 
@@ -167,13 +173,13 @@ namespace Axantum.AxCrypt.Core.Runtime
         public ProgressContext Progress { get; private set; }
 
         /// <summary>
-        /// Notify this instance that all work has been scheduled. This call will block until all executing threads have terminated.
+        /// Call when work for this instance has been scheduled. This call will block until all executing threads have terminated.
         /// It will also notify the ProgressContext that all work has finished.
         /// </summary>
         /// <remarks>
-        /// Since this call may block, it should never be called from the GUI thread.
+        /// Since this call may block, it should never be called from a GUI thread.
         /// </remarks>
-        public void NotifyFinished()
+        public void WaitAllAndFinish()
         {
             if (_disposed)
             {
@@ -189,24 +195,6 @@ namespace Axantum.AxCrypt.Core.Runtime
             }
         }
 
-        public static void FinishInBackground(WorkerGroup workerGroup)
-        {
-            ThreadPool.QueueUserWorkItem(
-                (object state) =>
-                {
-                    WorkerGroup group = (WorkerGroup)state;
-                    try
-                    {
-                        group.NotifyFinished();
-                    }
-                    finally
-                    {
-                        group.Dispose();
-                    }
-                },
-                workerGroup);
-        }
-
         private void NotifyFinishedInternal()
         {
             lock (_finishedLock)
@@ -220,34 +208,10 @@ namespace Axantum.AxCrypt.Core.Runtime
                 {
                     AcquireOneConcurrencyRight();
                 }
-                lock (_threadWorkers)
-                {
-                    for (int i = _threadWorkers.Count - 1; i >= 0; --i)
-                    {
-                        _threadWorkers[i].Join();
-                    }
-                }
                 _finished = true;
             }
-            Progress.NotifyFinished();
+            Progress.NotifyLevelFinished();
         }
-
-        private void DisposeCompletedWorkerThreads()
-        {
-            lock (_threadWorkers)
-            {
-                for (int i = _threadWorkers.Count - 1; i >= 0; --i)
-                {
-                    if (_threadWorkers[i].HasCompleted)
-                    {
-                        _threadWorkers[i].Dispose();
-                        _threadWorkers.RemoveAt(i);
-                    }
-                }
-            }
-        }
-
-        private List<ThreadWorker> _threadWorkers = new List<ThreadWorker>();
 
         /// <summary>
         /// Create a ThreadWorker for background work. Concurrency limitations are effective, so this call may block.
@@ -263,17 +227,12 @@ namespace Axantum.AxCrypt.Core.Runtime
                 throw new ObjectDisposedException("WorkerGroup");
             }
             AcquireOneConcurrencyRight();
-            DisposeCompletedWorkerThreads();
             ThreadWorker threadWorker = new ThreadWorker(Progress);
-            threadWorker.Completed += new EventHandler<ThreadWorkerEventArgs>(HandleThreadWorkerCompleted);
-            lock (_threadWorkers)
-            {
-                _threadWorkers.Add(threadWorker);
-            }
+            threadWorker.Completed += new EventHandler<ThreadWorkerEventArgs>(HandleThreadWorkerCompletedEvent);
             return new ThreadWorkerWrapper(threadWorker);
         }
 
-        private void HandleThreadWorkerCompleted(object sender, ThreadWorkerEventArgs e)
+        private void HandleThreadWorkerCompletedEvent(object sender, ThreadWorkerEventArgs e)
         {
             if (e.Result != FileOperationStatus.Success)
             {
@@ -286,7 +245,6 @@ namespace Axantum.AxCrypt.Core.Runtime
                 }
             }
             ReleaseOneConcurrencyRight();
-            DisposeCompletedWorkerThreads();
         }
 
         private static readonly object _firstErrorLock = new object();
@@ -326,7 +284,6 @@ namespace Axantum.AxCrypt.Core.Runtime
             if (disposing)
             {
                 NotifyFinishedInternal();
-                DisposeCompletedWorkerThreads();
                 if (_concurrencyControlSemaphore != null)
                 {
                     _concurrencyControlSemaphore.Close();

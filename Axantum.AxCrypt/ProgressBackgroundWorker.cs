@@ -90,22 +90,19 @@ namespace Axantum.AxCrypt
         /// <param name="complete">A 'complete' delegate, taking the final status. Executed on the original caller thread, typically the GUI thread.</param>
         public void BackgroundWorkWithProgress(Func<ProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
         {
-            WorkerGroup workerGroup = new WorkerGroup();
-
-            ProgressBar progressBar = CreateProgressBar(workerGroup.Progress);
+            ProgressContext progress = new ProgressContext();
+            ProgressBar progressBar = CreateProgressBar(progress);
             OnProgressBarCreated(new ControlEventArgs(progressBar));
-
-            workerGroup.Progress.Progressing += (object sender, ProgressEventArgs e) =>
+            progress.Progressing += (object sender, ProgressEventArgs e) =>
+            {
+                progressBar.Value = e.Percent;
+            };
+            IThreadWorker threadWorker = new ThreadWorker(progress);
+            threadWorker.Work += (object sender, ThreadWorkerEventArgs e) =>
                 {
-                    progressBar.Value = e.Percent;
+                    e.Result = work(e.Progress);
                 };
-
-            IThreadWorker worker = workerGroup.CreateWorker();
-            worker.Work += (object sender, ThreadWorkerEventArgs e) =>
-                {
-                    e.Result = work(e.ProgressContext);
-                };
-            worker.Completed += (object sender, ThreadWorkerEventArgs e) =>
+            threadWorker.Completing += (object sender, ThreadWorkerEventArgs e) =>
                 {
                     try
                     {
@@ -115,14 +112,16 @@ namespace Axantum.AxCrypt
                     finally
                     {
                         progressBar.Dispose();
+                        IDisposable disposable = sender as IDisposable;
+                        if (disposable != null)
+                        {
+                            disposable.Dispose();
+                        }
+                        Interlocked.Decrement(ref _workerCount);
                     }
-                    Interlocked.Decrement(ref _workerCount);
                 };
-
             Interlocked.Increment(ref _workerCount);
-            worker.Run();
-
-            WorkerGroup.FinishInBackground(workerGroup);
+            threadWorker.Run();
         }
 
         private ProgressBar CreateProgressBar(ProgressContext progress)

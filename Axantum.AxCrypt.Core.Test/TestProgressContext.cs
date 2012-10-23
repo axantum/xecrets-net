@@ -82,13 +82,14 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestCurrentAndMax()
         {
             ProgressContext progress = new ProgressContext();
+            progress.NotifyLevelStart();
             int percent = -1;
             progress.Progressing += (object sender, ProgressEventArgs e) =>
             {
                 percent = e.Percent;
             };
             progress.AddTotal(99);
-            progress.NotifyFinished();
+            progress.NotifyLevelFinished();
             Assert.That(percent, Is.EqualTo(100), "After Finished(), Percent should always be 100.");
         }
 
@@ -142,7 +143,8 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestAddTotalAfterFinished()
         {
             ProgressContext progress = new ProgressContext();
-            progress.NotifyFinished();
+            progress.NotifyLevelStart();
+            progress.NotifyLevelFinished();
 
             Assert.Throws<InvalidOperationException>(() => { progress.AddTotal(1); });
         }
@@ -151,7 +153,8 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestAddCountAfterFinished()
         {
             ProgressContext progress = new ProgressContext();
-            progress.NotifyFinished();
+            progress.NotifyLevelStart();
+            progress.NotifyLevelFinished();
 
             Assert.Throws<InvalidOperationException>(() => { progress.AddCount(1); });
         }
@@ -160,9 +163,19 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestDoubleNotifyFinished()
         {
             ProgressContext progress = new ProgressContext();
-            progress.NotifyFinished();
+            progress.NotifyLevelStart();
+            progress.NotifyLevelStart();
+            progress.NotifyLevelFinished();
 
-            Assert.DoesNotThrow(() => { progress.NotifyFinished(); });
+            Assert.DoesNotThrow(() => { progress.NotifyLevelFinished(); });
+        }
+
+        [Test]
+        public static void TestTooManyNotifyFinished()
+        {
+            ProgressContext progress = new ProgressContext();
+
+            Assert.Throws<InvalidOperationException>(() => { progress.NotifyLevelFinished(); });
         }
 
         [Test]
@@ -172,6 +185,7 @@ namespace Axantum.AxCrypt.Core.Test
             fakeEnvironment.CurrentTiming.CurrentTiming = TimeSpan.FromMilliseconds(1000);
 
             ProgressContext progress = new ProgressContext(TimeSpan.FromMilliseconds(1000));
+            progress.NotifyLevelStart();
             int percent = 0;
             progress.Progressing += (object sender, ProgressEventArgs e) =>
                 {
@@ -187,7 +201,7 @@ namespace Axantum.AxCrypt.Core.Test
             fakeEnvironment.CurrentTiming.CurrentTiming = TimeSpan.FromMilliseconds(3000);
             progress.AddCount(1000);
             Assert.That(percent, Is.EqualTo(99), "Even at very much above 100 should report 99 percent.");
-            progress.NotifyFinished();
+            progress.NotifyLevelFinished();
             Assert.That(percent, Is.EqualTo(100), "Only when NotifyFinished() is called should 100 percent be reported.");
         }
 
@@ -225,7 +239,7 @@ namespace Axantum.AxCrypt.Core.Test
                         {
                             didProgress = true;
                         };
-                    progress.NotifyFinished();
+                    progress.NotifyLevelFinished();
                     Assert.That(didProgress, "There should always be one Progressing event after NotifyFinished().");
                 }
                 );
@@ -257,11 +271,12 @@ namespace Axantum.AxCrypt.Core.Test
                     ss.SynchronizationContext = SynchronizationContext.Current;
 
                     ProgressContext progress = new ProgressContext();
+                    progress.NotifyLevelStart();
                     progress.Progressing += (object sender, ProgressEventArgs e) =>
                     {
                         ss.DidProgress = true;
                     };
-                    progress.NotifyFinished();
+                    progress.NotifyLevelFinished();
                     ss.WaitEvent.Set();
                 }, s);
             bool waitOk = s.WaitEvent.WaitOne(TimeSpan.FromSeconds(10), false);

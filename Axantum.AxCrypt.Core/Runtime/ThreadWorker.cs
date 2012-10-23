@@ -62,7 +62,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             _worker.DoWork += new DoWorkEventHandler(_worker_DoWork);
             _worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(_worker_RunWorkerCompleted);
 
-            _e = new ThreadWorkerEventArgs(_worker, progress);
+            _e = new ThreadWorkerEventArgs(progress);
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         public void Abort()
         {
             _e.Result = FileOperationStatus.Aborted;
-            OnCompleted(_e);
+            OnCompleting(_e);
             DisposeWorker();
         }
 
@@ -144,7 +144,7 @@ namespace Axantum.AxCrypt.Core.Runtime
                     {
                         _e.Result = (FileOperationStatus)e.Result;
                     }
-                    OnCompleted(_e);
+                    OnCompleting(_e);
                 }
                 finally
                 {
@@ -190,6 +190,21 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// <summary>
         /// Raised when all is done. Runs on the original thread, typically
         /// the GUI thread.
+        /// </summary>
+        public event EventHandler<ThreadWorkerEventArgs> Completing;
+
+        protected virtual void OnCompleting(ThreadWorkerEventArgs e)
+        {
+            EventHandler<ThreadWorkerEventArgs> handler = Completing;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        /// <summary>
+        /// Raised when the underlying worker thread has ended. There is no guarantee on what
+        /// thread this will run.
         /// </summary>
         public event EventHandler<ThreadWorkerEventArgs> Completed;
 
@@ -248,6 +263,7 @@ namespace Axantum.AxCrypt.Core.Runtime
                 }
                 _worker = null;
                 _joined.Set();
+                OnCompleted(_e);
             }
         }
     }
