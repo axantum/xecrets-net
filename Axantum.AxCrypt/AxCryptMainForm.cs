@@ -549,8 +549,7 @@ namespace Axantum.AxCrypt
             progressBackgroundWorker.BackgroundWorkWithProgress(
                 (ProgressContext progress) =>
                 {
-                    workerGroup = new WorkerGroup(maxConcurrency, progress);
-                    try
+                    using (workerGroup = new WorkerGroup(maxConcurrency, progress))
                     {
                         foreach (string file in files)
                         {
@@ -565,16 +564,12 @@ namespace Axantum.AxCrypt
                                 break;
                             }
                         }
-                    }
-                    finally
-                    {
                         workerGroup.WaitAllAndFinish();
+                        return workerGroup.FirstError;
                     }
-                    return workerGroup.FirstError;
                 },
                 (FileOperationStatus status) =>
                 {
-                    workerGroup.Dispose();
                 });
         }
 
