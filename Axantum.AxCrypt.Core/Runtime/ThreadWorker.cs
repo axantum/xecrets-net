@@ -238,7 +238,7 @@ namespace Axantum.AxCrypt.Core.Runtime
 
             if (disposing)
             {
-                DisposeWorker();
+                Join();
                 if (_joined != null)
                 {
                     _joined.Close();

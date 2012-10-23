@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.AssemblyTeardown();
         }
 
-        //[Test]
+        [Test]
         public static void TestCoreFunctionality()
         {
             int threadCount = 0;
@@ -102,7 +102,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        //[Test]
+        [Test]
         public static void TestInvalidOperationException()
         {
             using (WorkerGroup workerGroup = new WorkerGroup())
@@ -117,7 +117,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        //[Test]
+        [Test]
 		public static void TestAddingSubscribersToWorkerThread ()
 		{
 			using (WorkerGroup workerGroup = new WorkerGroup())
@@ -151,7 +151,7 @@ namespace Axantum.AxCrypt.Core.Test
             e.Result = FileOperationStatus.UnspecifiedError;
         }
 
-        //[Test]
+        [Test]
         public static void TestRemovingSubscribersFromWorkerThread()
         {
             using (WorkerGroup workerGroup = new WorkerGroup())
@@ -185,7 +185,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        //[Test]
+        [Test]
         public static void TestDoubleDispose()
         {
             Assert.DoesNotThrow(() =>
@@ -194,7 +194,6 @@ namespace Axantum.AxCrypt.Core.Test
                     {
                         IThreadWorker worker = workerGroup.CreateWorker();
                         worker.Run();
-                        workerGroup.WaitAllAndFinish();
                         workerGroup.Dispose();
                     }
                 });
@@ -206,7 +205,6 @@ namespace Axantum.AxCrypt.Core.Test
 			WorkerGroup workerGroup = new WorkerGroup();
             IThreadWorker worker = workerGroup.CreateWorker();
             worker.Run();
-            workerGroup.WaitAllAndFinish();
             workerGroup.Dispose();
 
             worker = null;
@@ -271,31 +269,25 @@ namespace Axantum.AxCrypt.Core.Test
 			{
 				didComplete = true;
 			};
-			WorkerGroup workerGroup = null;
-			ThreadWorker threadWorker = new ThreadWorker(progress);
-			threadWorker.Work += (object sender, ThreadWorkerEventArgs e) =>
-            {
-				workerGroup = new WorkerGroup(progress);
-                IThreadWorker worker = workerGroup.CreateWorker();
-                worker.Work += (object sender2, ThreadWorkerEventArgs e2) =>
-                {
-                    e2.Progress.NotifyLevelStart();
-					e2.Progress.NotifyLevelFinished();
-				};
-                worker.Completing += (object sender2, ThreadWorkerEventArgs e2) =>
-                {
-                };
-                worker.Run();
-                workerGroup.WaitAllAndFinish();
-            };
-			threadWorker.Completed += (object sender, ThreadWorkerEventArgs e) =>
+			
+			using (ThreadWorker threadWorker = new ThreadWorker(progress))
 			{
-				workerGroup.Dispose();
-			};
-            threadWorker.Run();
-			threadWorker.Join();
-			threadWorker.Dispose();
-
+				threadWorker.Work += (object sender, ThreadWorkerEventArgs e) =>
+	            {
+					using (WorkerGroup workerGroup = new WorkerGroup(progress))
+					{
+		                IThreadWorker worker = workerGroup.CreateWorker();
+		                worker.Work += (object sender2, ThreadWorkerEventArgs e2) =>
+		                {
+		                    e2.Progress.NotifyLevelStart();
+							e2.Progress.NotifyLevelFinished();
+						};
+		                worker.Run();
+					}
+				};
+	            threadWorker.Run();
+			}
+			
             Assert.That(didComplete, "Execution should continue here, with the flag set indicating that the progress event occurred.");
         }
     }
