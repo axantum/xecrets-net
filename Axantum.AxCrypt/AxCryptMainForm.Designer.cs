@@ -22,6 +22,7 @@
             this.encryptToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.decryptToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.encryptionKeyToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.closeAndRemoveOpenFilesToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.updateToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -94,6 +95,7 @@
             this.encryptToolStripButton,
             this.decryptToolStripButton,
             this.toolStripSeparator1,
+            this.encryptionKeyToolStripButton,
             this.closeAndRemoveOpenFilesToolStripButton,
             this.toolStripSeparator4,
             this.updateToolStripButton,
@@ -127,6 +129,14 @@
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
+            // 
+            // encryptionKeyToolStripButton
+            // 
+            this.encryptionKeyToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.encryptionKeyToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.encryptionkeygreen32;
+            resources.ApplyResources(this.encryptionKeyToolStripButton, "encryptionKeyToolStripButton");
+            this.encryptionKeyToolStripButton.Name = "encryptionKeyToolStripButton";
+            this.encryptionKeyToolStripButton.Click += new System.EventHandler(this.encryptionKeyToolStripButton_Click);
             // 
             // closeAndRemoveOpenFilesToolStripButton
             // 
@@ -541,6 +551,7 @@
         private System.Windows.Forms.ColumnHeader lastAccessTimeColumnHeader;
         private System.Windows.Forms.ColumnHeader encryptedPathColumnHeader;
         private System.Windows.Forms.TabControl statusTabControl;
+        private System.Windows.Forms.ToolStripButton encryptionKeyToolStripButton;
     }
 }
 

@@ -127,6 +127,8 @@ namespace Axantum.AxCrypt
 
             persistentState.Current.Load(FileSystemState.DefaultPathInfo);
 
+            SetToolButtonsState();
+
             backgroundMonitor.UpdateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(HandleVersionUpdateEvent);
             UpdateCheck(Settings.Default.LastUpdateCheckUtc);
         }
@@ -256,6 +258,20 @@ namespace Axantum.AxCrypt
             recentFilesListView.Columns[0].Width = Settings.Default.RecentFilesDocumentWidth > 0 ? Settings.Default.RecentFilesDocumentWidth : recentFilesListView.Columns[0].Width;
 
             UpdateDebugMode();
+        }
+
+        private void SetToolButtonsState()
+        {
+            if (persistentState.Current.KnownKeys.DefaultEncryptionKey == null)
+            {
+                encryptionKeyToolStripButton.Image = Resources.encryptionkeygreen32;
+                encryptionKeyToolStripButton.ToolTipText = Resources.NoDefaultEncryptionKeySetToolTip;
+            }
+            else
+            {
+                encryptionKeyToolStripButton.Image = Resources.encryptionkeyred32;
+                encryptionKeyToolStripButton.ToolTipText = Resources.DefaultEncryptionKeyIsIsetToolTip;
+            }
         }
 
         private void UpdateActiveFilesViews(ActiveFile activeFile)
@@ -401,22 +417,13 @@ namespace Axantum.AxCrypt
 
             operationsController.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
                 {
-                    using (EncryptPassphraseDialog passphraseDialog = new EncryptPassphraseDialog())
+                    string passphrase = AskForEncryptionPassphrase();
+                    if (String.IsNullOrEmpty(passphrase))
                     {
-                        passphraseDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowEncryptPasshrase;
-                        DialogResult dialogResult = passphraseDialog.ShowDialog();
-                        if (dialogResult != DialogResult.OK)
-                        {
-                            e.Cancel = true;
-                            return;
-                        }
-                        if (passphraseDialog.ShowPassphraseCheckBox.Checked != Settings.Default.ShowEncryptPasshrase)
-                        {
-                            Settings.Default.ShowEncryptPasshrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
-                            Settings.Default.Save();
-                        }
-                        e.Passphrase = passphraseDialog.PassphraseTextBox.Text;
+                        e.Cancel = true;
+                        return;
                     }
+                    e.Passphrase = passphrase;
                     persistentState.Current.KnownKeys.DefaultEncryptionKey = new Passphrase(e.Passphrase).DerivedPassphrase;
                 };
 
@@ -438,6 +445,25 @@ namespace Axantum.AxCrypt
                 };
 
             operationsController.EncryptFile(file, worker);
+        }
+
+        private string AskForEncryptionPassphrase()
+        {
+            using (EncryptPassphraseDialog passphraseDialog = new EncryptPassphraseDialog())
+            {
+                passphraseDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowEncryptPasshrase;
+                DialogResult dialogResult = passphraseDialog.ShowDialog();
+                if (dialogResult != DialogResult.OK)
+                {
+                    return String.Empty;
+                }
+                if (passphraseDialog.ShowPassphraseCheckBox.Checked != Settings.Default.ShowEncryptPasshrase)
+                {
+                    Settings.Default.ShowEncryptPasshrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
+                    Settings.Default.Save();
+                }
+                return passphraseDialog.PassphraseTextBox.Text;
+            }
         }
 
         private void DecryptFilesViaDialog()
@@ -705,6 +731,7 @@ namespace Axantum.AxCrypt
                     (ProgressContext progress) =>
                     {
                         persistentState.Current.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
+                        SetToolButtonsState();
                         return FileOperationStatus.Success;
                     },
                     (FileOperationStatus status) =>
@@ -1057,6 +1084,24 @@ namespace Axantum.AxCrypt
                 }
             }
             base.Dispose(disposing);
+        }
+
+        private void encryptionKeyToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (persistentState.Current.KnownKeys.DefaultEncryptionKey == null)
+            {
+                string passphrase = AskForEncryptionPassphrase();
+                if (String.IsNullOrEmpty(passphrase))
+                {
+                    return;
+                }
+                persistentState.Current.KnownKeys.DefaultEncryptionKey = new Passphrase(passphrase).DerivedPassphrase;
+            }
+            else
+            {
+                persistentState.Current.KnownKeys.DefaultEncryptionKey = null;
+            }
+            SetToolButtonsState();
         }
     }
 }

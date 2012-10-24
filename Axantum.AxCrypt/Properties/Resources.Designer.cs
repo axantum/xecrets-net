@@ -224,6 +224,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An encryption passphrase is set. Click to clear it..
+        /// </summary>
+        internal static string DefaultEncryptionKeyIsIsetToolTip {
+            get {
+                return ResourceManager.GetString("DefaultEncryptionKeyIsIsetToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt Files (*{0})|*{0}|All files (*.*)|*.*.
         /// </summary>
         internal static string EncryptedFileDialogFilterPattern {
@@ -256,6 +265,20 @@ namespace Axantum.AxCrypt.Properties {
         internal static string EncryptFileSaveAsDialogTitle {
             get {
                 return ResourceManager.GetString("EncryptFileSaveAsDialogTitle", resourceCulture);
+            }
+        }
+        
+        internal static System.Drawing.Bitmap encryptionkeygreen32 {
+            get {
+                object obj = ResourceManager.GetObject("encryptionkeygreen32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap encryptionkeyred32 {
+            get {
+                object obj = ResourceManager.GetObject("encryptionkeyred32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -378,6 +401,15 @@ namespace Axantum.AxCrypt.Properties {
         internal static string NewVersionIsAvailableTooltip {
             get {
                 return ResourceManager.GetString("NewVersionIsAvailableTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No encryption passphrase is set. Click to enter one..
+        /// </summary>
+        internal static string NoDefaultEncryptionKeySetToolTip {
+            get {
+                return ResourceManager.GetString("NoDefaultEncryptionKeySetToolTip", resourceCulture);
             }
         }
         
