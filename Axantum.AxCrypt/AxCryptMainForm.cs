@@ -304,6 +304,10 @@ namespace Axantum.AxCrypt
 
             UpdateListViewItem(item, activeFile);
             recentFilesListView.ListViewItemSorter = _currentRecentFilesSorter;
+            while (recentFilesListView.Items.Count > Settings.Default.MaxNumberRecentFiles)
+            {
+                recentFilesListView.Items.RemoveAt(recentFilesListView.Items.Count - 1);
+            }
         }
 
         private static void UpdateListViewItem(ListViewItem item, ActiveFile activeFile)
@@ -939,6 +943,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
+            _notifyIcon.Text = Resources.AxCryptFileEncryption;
             _notifyIcon.BalloonTipTitle = Resources.AxCryptFileEncryption;
             _notifyIcon.BalloonTipText = Resources.TrayBalloonTooltip;
 
