@@ -71,6 +71,7 @@
             this.persistentState = new Axantum.AxCrypt.PersistentState(this.components);
             this.progressBackgroundWorker = new Axantum.AxCrypt.ProgressBackgroundWorker(this.components);
             this.backgroundMonitor = new Axantum.AxCrypt.BackgroundMonitor(this.components);
+            this.decryptAndRemoveFromListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainToolStrip.SuspendLayout();
             this.mainMenuStrip.SuspendLayout();
             this.recentFilesContextMenuStrip.SuspendLayout();
@@ -345,7 +346,8 @@
             // recentFilesContextMenuStrip
             // 
             this.recentFilesContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.removeRecentFileToolStripMenuItem});
+            this.removeRecentFileToolStripMenuItem,
+            this.decryptAndRemoveFromListToolStripMenuItem});
             this.recentFilesContextMenuStrip.Name = "RecentFilesContextMenu";
             resources.ApplyResources(this.recentFilesContextMenuStrip, "recentFilesContextMenuStrip");
             // 
@@ -464,6 +466,12 @@
             this.progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.progressBackgroundWorker_ProgressBarCreated);
             this.progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.progressBackgroundWorker_ProgressBarClicked);
             // 
+            // decryptAndRemoveFromListToolStripMenuItem
+            // 
+            this.decryptAndRemoveFromListToolStripMenuItem.Name = "decryptAndRemoveFromListToolStripMenuItem";
+            resources.ApplyResources(this.decryptAndRemoveFromListToolStripMenuItem, "decryptAndRemoveFromListToolStripMenuItem");
+            this.decryptAndRemoveFromListToolStripMenuItem.Click += new System.EventHandler(this.decryptAndRemoveFromListToolStripMenuItem_Click);
+            // 
             // AxCryptMainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -552,6 +560,7 @@
         private System.Windows.Forms.ColumnHeader encryptedPathColumnHeader;
         private System.Windows.Forms.TabControl statusTabControl;
         private System.Windows.Forms.ToolStripButton encryptionKeyToolStripButton;
+        private System.Windows.Forms.ToolStripMenuItem decryptAndRemoveFromListToolStripMenuItem;
     }
 }
 

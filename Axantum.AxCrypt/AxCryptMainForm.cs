@@ -822,7 +822,7 @@ namespace Axantum.AxCrypt
 
         private void removeRecentFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            IEnumerable<string> encryptedPaths = recentFilesListView.SelectedItems.Cast<ListViewItem>().Select((ListViewItem item) => { return item.SubItems["EncryptedPath"].Text; }).ToArray();
+            IEnumerable<string> encryptedPaths = SelectedItems();
 
             progressBackgroundWorker.BackgroundWorkWithProgress(
                 (ProgressContext progress) =>
@@ -833,6 +833,19 @@ namespace Axantum.AxCrypt
                 (FileOperationStatus status) =>
                 {
                 });
+        }
+
+        private void decryptAndRemoveFromListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IEnumerable<string> encryptedPaths = SelectedItems();
+
+            ProcessFilesInBackground(encryptedPaths, DecryptFile);
+        }
+
+        private IEnumerable<string> SelectedItems()
+        {
+            IEnumerable<string> selected = recentFilesListView.SelectedItems.Cast<ListViewItem>().Select((ListViewItem item) => { return item.SubItems["EncryptedPath"].Text; }).ToArray();
+            return selected;
         }
 
         private void recentFilesListView_MouseClick(object sender, MouseEventArgs e)
@@ -1068,6 +1081,24 @@ namespace Axantum.AxCrypt
             Process.Start(Settings.Default.AxCrypt2HelpUrl.ToString());
         }
 
+        private void encryptionKeyToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (persistentState.Current.KnownKeys.DefaultEncryptionKey == null)
+            {
+                string passphrase = AskForEncryptionPassphrase();
+                if (String.IsNullOrEmpty(passphrase))
+                {
+                    return;
+                }
+                persistentState.Current.KnownKeys.DefaultEncryptionKey = new Passphrase(passphrase).DerivedPassphrase;
+            }
+            else
+            {
+                persistentState.Current.KnownKeys.DefaultEncryptionKey = null;
+            }
+            SetToolButtonsState();
+        }
+
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -1087,24 +1118,6 @@ namespace Axantum.AxCrypt
                 }
             }
             base.Dispose(disposing);
-        }
-
-        private void encryptionKeyToolStripButton_Click(object sender, EventArgs e)
-        {
-            if (persistentState.Current.KnownKeys.DefaultEncryptionKey == null)
-            {
-                string passphrase = AskForEncryptionPassphrase();
-                if (String.IsNullOrEmpty(passphrase))
-                {
-                    return;
-                }
-                persistentState.Current.KnownKeys.DefaultEncryptionKey = new Passphrase(passphrase).DerivedPassphrase;
-            }
-            else
-            {
-                persistentState.Current.KnownKeys.DefaultEncryptionKey = null;
-            }
-            SetToolButtonsState();
         }
     }
 }
