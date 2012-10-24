@@ -34,6 +34,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Security;
 using System.Reflection;
@@ -496,7 +497,7 @@ namespace Axantum.AxCrypt
                 {
                     if (CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
                     {
-                        persistentState.Current.RemoveRecentFile(e.OpenFileFullName);
+                        persistentState.Current.RemoveRecentFiles(new string[] { e.OpenFileFullName }, progress);
                     }
                 };
 
@@ -782,8 +783,17 @@ namespace Axantum.AxCrypt
 
         private void removeRecentFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string encryptedPath = recentFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text; //MLHIDE
-            persistentState.Current.RemoveRecentFile(encryptedPath);
+            IEnumerable<string> encryptedPaths = recentFilesListView.SelectedItems.Cast<ListViewItem>().Select((ListViewItem item) => { return item.SubItems["EncryptedPath"].Text; }).ToArray();
+
+            progressBackgroundWorker.BackgroundWorkWithProgress(
+                (ProgressContext progress) =>
+                {
+                    persistentState.Current.RemoveRecentFiles(encryptedPaths, progress);
+                    return FileOperationStatus.Success;
+                },
+                (FileOperationStatus status) =>
+                {
+                });
         }
 
         private void recentFilesListView_MouseClick(object sender, MouseEventArgs e)

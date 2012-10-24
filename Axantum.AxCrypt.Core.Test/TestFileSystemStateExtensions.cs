@@ -573,7 +573,7 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile beforeRemoval = _fileSystemState.FindEncryptedPath(encryptedFileInfo.FullName);
             Assert.That(beforeRemoval, Is.Not.Null, "Before being removed, the ActiveFile should be possible to find.");
 
-            _fileSystemState.RemoveRecentFile(encryptedFileInfo.FullName);
+            _fileSystemState.RemoveRecentFiles(new string[] { encryptedFileInfo.FullName }, new ProgressContext());
 
             ActiveFile afterRemoval = _fileSystemState.FindEncryptedPath(encryptedFileInfo.FullName);
             Assert.That(afterRemoval, Is.Null, "After being removed, the ActiveFile should not be possible to find.");
@@ -592,7 +592,7 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile beforeRemoval = _fileSystemState.FindEncryptedPath(encryptedFileInfo.FullName);
             Assert.That(beforeRemoval, Is.Not.Null, "Before being removed, the ActiveFile should be possible to find.");
 
-            Assert.DoesNotThrow(() => { _fileSystemState.RemoveRecentFile(encryptedFileInfo.FullName + ".notfound"); });
+            Assert.DoesNotThrow(() => { _fileSystemState.RemoveRecentFiles(new string[] { encryptedFileInfo.FullName + ".notfound" }, new ProgressContext()); });
 
             ActiveFile afterFailedRemoval = _fileSystemState.FindEncryptedPath(encryptedFileInfo.FullName);
             Assert.That(afterFailedRemoval, Is.Not.Null, "After failed removal, the ActiveFile should still be possible to find.");

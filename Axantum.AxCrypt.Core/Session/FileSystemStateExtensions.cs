@@ -28,6 +28,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
@@ -113,15 +114,21 @@ namespace Axantum.AxCrypt.Core.Session
             return keyMatch;
         }
 
-        public static void RemoveRecentFile(this FileSystemState fileSystemState, string encryptedPath)
+        public static void RemoveRecentFiles(this FileSystemState fileSystemState, IEnumerable<string> encryptedPaths, ProgressContext progress)
         {
-            ActiveFile activeFile = fileSystemState.FindEncryptedPath(encryptedPath);
-            if (activeFile == null)
+            progress.NotifyLevelStart();
+            progress.AddTotal(encryptedPaths.Count());
+            foreach (string encryptedPath in encryptedPaths)
             {
-                return;
+                ActiveFile activeFile = fileSystemState.FindEncryptedPath(encryptedPath);
+                if (activeFile != null)
+                {
+                    fileSystemState.Remove(activeFile);
+                }
+                progress.AddCount(1);
             }
-            fileSystemState.Remove(activeFile);
             fileSystemState.Save();
+            progress.NotifyLevelFinished();
         }
 
         private static ActiveFile CheckActiveFileActions(FileSystemState fileSystemState, ActiveFile activeFile, ProgressContext progress)
