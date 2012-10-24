@@ -76,6 +76,10 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
+        /// <summary>
+        /// Set to true to have an OperationCanceledException being thrown in the progress reporting
+        /// thread at the earliest opportunity.
+        /// </summary>
         public bool Cancel { get; set; }
 
         /// <summary>
@@ -85,6 +89,24 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         public event EventHandler<ProgressEventArgs> Progressing;
 
+        protected virtual void OnProgressing(ProgressEventArgs e)
+        {
+            EventHandler<ProgressEventArgs> handler = Progressing;
+            if (handler != null)
+            {
+                _synchronizationContext.Send(
+                    (object state) =>
+                    {
+                        handler(this, (ProgressEventArgs)e);
+                    },
+                    e);
+            }
+        }
+
+        /// <summary>
+        /// Add to the total work count.
+        /// </summary>
+        /// <param name="partTotal">The amount of work to add.</param>
         public void AddTotal(long partTotal)
         {
             Invariant();
@@ -105,14 +127,10 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        private bool Finished
-        {
-            get
-            {
-                return _progressLevel < 0;
-            }
-        }
-
+        /// <summary>
+        /// Add to the count of work having been performed. May lead to a Progressing event.
+        /// </summary>
+        /// <param name="count">The amount of work having been performed in this step.</param>
         public void AddCount(long count)
         {
             Invariant();
@@ -193,27 +211,13 @@ namespace Axantum.AxCrypt.Core.UI
 
         private void Invariant()
         {
-            if (Finished)
+            if (_progressLevel < 0)
             {
                 throw new InvalidOperationException("Out-of-sequence call, cannot call after being finished.");
             }
             if (Cancel)
             {
                 throw new OperationCanceledException("Operation canceled on request.");
-            }
-        }
-
-        protected virtual void OnProgressing(ProgressEventArgs e)
-        {
-            EventHandler<ProgressEventArgs> handler = Progressing;
-            if (handler != null)
-            {
-                _synchronizationContext.Send(
-                    (object state) =>
-                    {
-                        handler(this, (ProgressEventArgs)e);
-                    },
-                    e);
             }
         }
     }
