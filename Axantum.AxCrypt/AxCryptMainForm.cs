@@ -568,6 +568,10 @@ namespace Axantum.AxCrypt
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
                 {
+                    if (e.Status == FileOperationStatus.Canceled)
+                    {
+                        return;
+                    }
                     CheckStatusAndShowMessage(e.Status, e.OpenFileFullName);
                 };
 
@@ -641,7 +645,6 @@ namespace Axantum.AxCrypt
                     break;
 
                 case FileOperationStatus.Canceled:
-                    Resources.Canceled.InvariantFormat(displayContext).ShowWarning();
                     break;
 
                 case FileOperationStatus.Exception:
