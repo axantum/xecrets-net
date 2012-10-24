@@ -796,8 +796,11 @@ namespace Axantum.AxCrypt
             progressBackgroundWorker.BackgroundWorkWithProgress(
                 (ProgressContext progress) =>
                 {
+                    progress.NotifyLevelStart();
                     persistentState.Current.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
                     persistentState.Current.PurgeActiveFiles(progress);
+                    progress.NotifyLevelFinished();
+
                     return FileOperationStatus.Success;
                 },
                 (FileOperationStatus status) =>

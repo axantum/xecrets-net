@@ -28,6 +28,7 @@
 using System;
 using System.Globalization;
 using System.IO;
+using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
@@ -167,7 +168,7 @@ namespace Axantum.AxCrypt.Core
                 WriteToFileWithBackup(destinationFileInfo, (Stream destination) =>
                 {
                     Encrypt(sourceFileInfo, destination, key, AxCryptOptions.EncryptWithCompression, progress);
-                });
+                }, progress);
             }
             Wipe(sourceFileInfo, progress);
             progress.NotifyLevelFinished();
@@ -288,7 +289,7 @@ namespace Axantum.AxCrypt.Core
             {
                 if (destinationFile.Exists)
                 {
-                    destinationFile.Delete();
+                    AxCryptFile.Wipe(destinationFile, progress);
                 }
                 throw;
             }
@@ -327,7 +328,7 @@ namespace Axantum.AxCrypt.Core
             return document;
         }
 
-        public static void WriteToFileWithBackup(IRuntimeFileInfo destinationFileInfo, Action<Stream> writeFileStreamTo)
+        public static void WriteToFileWithBackup(IRuntimeFileInfo destinationFileInfo, Action<Stream> writeFileStreamTo, ProgressContext progress)
         {
             if (destinationFileInfo == null)
             {
@@ -352,7 +353,7 @@ namespace Axantum.AxCrypt.Core
             {
                 if (temporaryFileInfo.Exists)
                 {
-                    temporaryFileInfo.Delete();
+                    AxCryptFile.Wipe(temporaryFileInfo, progress);
                 }
                 throw;
             }
@@ -364,7 +365,7 @@ namespace Axantum.AxCrypt.Core
 
                 backupFileInfo.MoveTo(backupFilePath);
                 temporaryFileInfo.MoveTo(destinationFileInfo.FullName);
-                backupFileInfo.Delete();
+                AxCryptFile.Wipe(backupFileInfo, progress);
             }
             else
             {
@@ -408,16 +409,56 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("fileInfo");
             }
-            if (fileInfo.Exists)
+            if (!fileInfo.Exists)
             {
-                if (OS.Log.IsInfoEnabled)
-                {
-                    OS.Log.LogInfo("Wiping '{0}'.".InvariantFormat(fileInfo.Name));
-                }
-                progress.NotifyLevelStart();
-                fileInfo.Delete();
-                progress.NotifyLevelFinished();
+                return;
             }
+            if (OS.Log.IsInfoEnabled)
+            {
+                OS.Log.LogInfo("Wiping '{0}'.".InvariantFormat(fileInfo.Name));
+            }
+            progress.NotifyLevelStart();
+            using (Stream stream = fileInfo.OpenWrite())
+            {
+                long length = stream.Length + OS.Current.StreamBufferSize - stream.Length % OS.Current.StreamBufferSize;
+                progress.AddTotal(length);
+                for (long position = 0; position < length; position += OS.Current.StreamBufferSize)
+                {
+                    byte[] random = OS.Current.GetRandomBytes(OS.Current.StreamBufferSize);
+                    stream.Write(random, 0, random.Length);
+                    progress.AddCount(random.Length);
+                }
+                stream.Flush();
+            }
+            string randomName;
+            do
+            {
+                randomName = GenerateRandomFileName(fileInfo.FullName);
+            } while (OS.Current.FileInfo(randomName).Exists);
+
+            IRuntimeFileInfo moveToFileInfo = OS.Current.FileInfo(fileInfo.FullName);
+            moveToFileInfo.MoveTo(randomName);
+            moveToFileInfo.Delete();
+            progress.NotifyLevelFinished();
+        }
+
+        private static string GenerateRandomFileName(string originalFullName)
+        {
+            const string validFileNameChars = "abcdefghijklmnopqrstuvwxyz";
+
+            string directory = Path.GetDirectoryName(originalFullName);
+            string fileName = Path.GetFileNameWithoutExtension(originalFullName);
+
+            int randomLength = fileName.Length < 8 ? 8 : fileName.Length;
+            StringBuilder randomName = new StringBuilder(randomLength + 4);
+            byte[] random = OS.Current.GetRandomBytes(randomLength);
+            for (int i = 0; i < randomLength; ++i)
+            {
+                randomName.Append(validFileNameChars[random[i] % validFileNameChars.Length]);
+            }
+            randomName.Append(".tmp");
+
+            return Path.Combine(directory, randomName.ToString());
         }
     }
 }

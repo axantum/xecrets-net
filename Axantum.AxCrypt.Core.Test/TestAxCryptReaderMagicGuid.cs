@@ -158,7 +158,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFindMagicGuidFromSimpleFile()
         {
-            using (Stream testStream = new MemoryStream(Resources.helloworld_key_a_txt))
+            using (Stream testStream = FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
             {
                 using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
                 {

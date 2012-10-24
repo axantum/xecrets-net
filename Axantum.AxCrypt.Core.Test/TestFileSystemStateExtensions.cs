@@ -170,7 +170,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestCheckActiveFilesKeyIsNotSetWithKnownKey()
         {
             DateTime utcNow = OS.Current.UtcNow;
-            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, new MemoryStream(Resources.helloworld_key_a_txt));
+            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
             Passphrase passphrase = new Passphrase("a");
             AxCryptFile.Decrypt(OS.Current.FileInfo(_encryptedFile1), OS.Current.FileInfo(_decryptedFile1), passphrase.DerivedPassphrase, AxCryptOptions.None, new ProgressContext());
 
@@ -205,7 +205,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestCheckActiveFilesKeyIsNotSetWithoutKnownKey()
         {
             DateTime utcNow = OS.Current.UtcNow;
-            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, new MemoryStream(Resources.helloworld_key_a_txt));
+            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
             Passphrase passphrase = new Passphrase("a");
             AxCryptFile.Decrypt(OS.Current.FileInfo(_encryptedFile1), OS.Current.FileInfo(_decryptedFile1), passphrase.DerivedPassphrase, AxCryptOptions.None, new ProgressContext());
 
@@ -298,7 +298,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestCheckActiveFilesUpdateButWithTargetLockedForSharing()
         {
             DateTime utcNow = OS.Current.UtcNow;
-            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, new MemoryStream(Resources.helloworld_key_a_txt));
+            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
             Passphrase passphrase = new Passphrase("a");
             AxCryptFile.Decrypt(OS.Current.FileInfo(_encryptedFile1), OS.Current.FileInfo(_decryptedFile1), passphrase.DerivedPassphrase, AxCryptOptions.None, new ProgressContext());
 
@@ -419,6 +419,7 @@ namespace Axantum.AxCrypt.Core.Test
                 }
             });
             FakeRuntimeFileInfo.Deleting += eventHandler;
+            FakeRuntimeFileInfo.OpeningForWrite += eventHandler;
             try
             {
                 _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
@@ -426,6 +427,7 @@ namespace Axantum.AxCrypt.Core.Test
             finally
             {
                 FakeRuntimeFileInfo.Deleting -= eventHandler;
+                FakeRuntimeFileInfo.OpeningForWrite -= eventHandler;
             }
 
             activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);

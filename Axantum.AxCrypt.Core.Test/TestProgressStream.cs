@@ -70,7 +70,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestPropertiesAndMethods()
         {
-            using (MemoryStream memoryStream = new MemoryStream(new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }))
+            using (MemoryStream memoryStream = FakeRuntimeFileInfo.ExpandableMemoryStream(new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }))
             {
                 string kilroy = String.Empty;
                 using (FakeStream testStream = new FakeStream(memoryStream, (string wasHere) => { kilroy += wasHere; }))

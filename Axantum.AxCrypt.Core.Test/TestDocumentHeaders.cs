@@ -118,7 +118,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestBadKey()
         {
-            using (Stream testStream = new MemoryStream(Resources.helloworld_key_a_txt))
+            using (Stream testStream = FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
             {
                 using (AxCryptReader reader = AxCryptReader.Create(testStream))
                 {
@@ -154,7 +154,7 @@ namespace Axantum.AxCrypt.Core.Test
             DateTime creationTimeUtc = new DateTime(2012, 1, 1, 1, 2, 3, DateTimeKind.Utc);
             DateTime lastAccessTimeUtc = creationTimeUtc + new TimeSpan(1, 0, 0);
             DateTime lastWriteTimeUtc = creationTimeUtc + new TimeSpan(2, 0, 0); ;
-            using (Stream inputStream = new MemoryStream(Encoding.UTF8.GetBytes("AxCrypt is Great!")))
+            using (Stream inputStream = FakeRuntimeFileInfo.ExpandableMemoryStream(Encoding.UTF8.GetBytes("AxCrypt is Great!")))
             {
                 using (Stream outputStream = new MemoryStream())
                 {
