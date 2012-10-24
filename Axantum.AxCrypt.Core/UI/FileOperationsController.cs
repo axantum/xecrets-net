@@ -173,7 +173,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             if (String.Compare(Path.GetExtension(fullName), OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
             {
-                _eventArgs.Status = FileOperationStatus.InvalidPath;
+                _eventArgs.Status = FileOperationStatus.FileAlreadyEncrypted;
                 return false;
             }
             IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(fullName);

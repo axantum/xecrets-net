@@ -261,4 +261,10 @@ Includes software from http://www.bouncycastle.org/ .</value>
   <data name="InactiveFileToolTip" xml:space="preserve">
     <value>Inactive file</value>
   </data>
+  <data name="FileAlreadyEncrypted" xml:space="preserve">
+    <value>The file '{0}' is already encrypted.</value>
+  </data>
+  <data name="InvalidPath" xml:space="preserve">
+    <value>The file or path '{0}' is invalid for this.</value>
+  </data>
 </root>

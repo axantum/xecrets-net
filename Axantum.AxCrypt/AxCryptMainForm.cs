@@ -422,6 +422,11 @@ namespace Axantum.AxCrypt
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
                 {
+                    if (e.Status == FileOperationStatus.FileAlreadyEncrypted)
+                    {
+                        e.Status = FileOperationStatus.Success;
+                        return;
+                    }
                     if (CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
                     {
                         IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
@@ -615,6 +620,10 @@ namespace Axantum.AxCrypt
 
                 case FileOperationStatus.Exception:
                     Resources.Exception.InvariantFormat(displayContext).ShowWarning();
+                    break;
+
+                case FileOperationStatus.InvalidPath:
+                    Resources.InvalidPath.InvariantFormat(displayContext).ShowWarning();
                     break;
                 default:
                     Resources.UnrecognizedError.InvariantFormat(displayContext).ShowWarning();

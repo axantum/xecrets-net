@@ -276,6 +276,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The file &apos;{0}&apos; is already encrypted..
+        /// </summary>
+        internal static string FileAlreadyEncrypted {
+            get {
+                return ResourceManager.GetString("FileAlreadyEncrypted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File &apos;{0}&apos; already exists..
         /// </summary>
         internal static string FileAlreadyExists {
@@ -342,6 +351,15 @@ namespace Axantum.AxCrypt.Properties {
         internal static string InvalidKey {
             get {
                 return ResourceManager.GetString("InvalidKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file or path &apos;{0}&apos; is invalid for this..
+        /// </summary>
+        internal static string InvalidPath {
+            get {
+                return ResourceManager.GetString("InvalidPath", resourceCulture);
             }
         }
         

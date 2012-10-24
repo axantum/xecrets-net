@@ -593,7 +593,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationsController controller = new FileOperationsController(_fileSystemState);
             FileOperationStatus status = controller.EncryptFile("test" + OS.Current.AxCryptExtension);
 
-            Assert.That(status, Is.EqualTo(FileOperationStatus.InvalidPath), "The status should indicate that the path is invalid.");
+            Assert.That(status, Is.EqualTo(FileOperationStatus.FileAlreadyEncrypted), "The status should indicate that it was already encrypted.");
         }
 
         [Test]

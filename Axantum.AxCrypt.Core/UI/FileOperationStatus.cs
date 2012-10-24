@@ -43,5 +43,6 @@ namespace Axantum.AxCrypt.Core.UI
         InvalidPath,
         Working,
         Aborted,
+        FileAlreadyEncrypted,
     }
 }
