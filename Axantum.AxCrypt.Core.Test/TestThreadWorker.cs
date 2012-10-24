@@ -91,7 +91,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 worker.Work += (object sender, ThreadWorkerEventArgs e) =>
                     {
-                        environment.CurrentTiming.CurrentTiming = e.Progress.NextProgressing;
+                        environment.CurrentTiming.CurrentTiming = TimeSpan.FromSeconds(1);
                         e.Progress.AddCount(1);
                         e.Result = FileOperationStatus.Success;
                     };
@@ -163,7 +163,7 @@ namespace Axantum.AxCrypt.Core.Test
                 worker.Work += (object sender, ThreadWorkerEventArgs e) =>
                 {
                     e.Progress.Cancel = true;
-                    environment.CurrentTiming.CurrentTiming = e.Progress.NextProgressing;
+                    environment.CurrentTiming.CurrentTiming = TimeSpan.FromSeconds(1);
                     e.Progress.AddCount(1);
                 };
                 worker.Completing += (object sender, ThreadWorkerEventArgs e) =>

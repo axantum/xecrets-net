@@ -65,20 +65,6 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestProgressContextContext()
-        {
-            object testObject = new object();
-            ProgressContext progress = new ProgressContext(testObject, TimeSpan.Zero);
-            object progressObject = null;
-            progress.Progressing += (object sender, ProgressEventArgs e) =>
-            {
-                progressObject = e.Context;
-            };
-            progress.AddCount(1);
-            Assert.That(progressObject, Is.EqualTo(testObject), "The context should be passed exactly as is to the event.");
-        }
-
-        [Test]
         public static void TestCurrentAndMax()
         {
             ProgressContext progress = new ProgressContext();
@@ -108,35 +94,48 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        public static void TestSeveralCallsToCount()
+        {
+            ProgressContext progress = new ProgressContext(TimeSpan.Zero);
+            int percent = -1;
+            progress.Progressing += (object sender, ProgressEventArgs e) =>
+            {
+                percent = e.Percent;
+            };
+            FakeRuntimeEnvironment fakeEnvironment = (FakeRuntimeEnvironment)OS.Current;
+            progress.AddTotal(500);
+            progress.AddCount(50);
+            progress.AddCount(50);
+            fakeEnvironment.CurrentTiming.CurrentTiming = TimeSpan.FromSeconds(1);
+            progress.AddCount(50);
+            progress.AddCount(50);
+            fakeEnvironment.CurrentTiming.CurrentTiming = TimeSpan.FromSeconds(2);
+            progress.AddCount(50);
+            fakeEnvironment.CurrentTiming.CurrentTiming = TimeSpan.FromSeconds(2);
+            Assert.That(percent, Is.EqualTo(50), "When halfway, the percent should be 50.");
+        }
+
+        [Test]
         public static void TestFirstDelay()
         {
-            IRuntimeEnvironment environment = OS.Current;
-            FakeRuntimeEnvironment fakeEnvironment = new FakeRuntimeEnvironment();
-            OS.Current = fakeEnvironment;
-            try
+            FakeRuntimeEnvironment fakeEnvironment = (FakeRuntimeEnvironment)OS.Current;
+            ProgressContext progress = new ProgressContext(TimeSpan.FromMilliseconds(13));
+            bool wasHere = false;
+            progress.Progressing += (object sender, ProgressEventArgs e) =>
             {
-                ProgressContext progress = new ProgressContext(TimeSpan.FromMilliseconds(13));
-                bool wasHere = false;
-                progress.Progressing += (object sender, ProgressEventArgs e) =>
-                {
-                    wasHere = true;
-                };
-                progress.AddTotal(100);
-                progress.AddCount(50);
-                Assert.That(wasHere, Is.False, "No progress should be raised, since the first delay time has not elapsed as yet.");
+                wasHere = true;
+            };
+            progress.AddTotal(100);
+            progress.AddCount(50);
+            Assert.That(wasHere, Is.False, "No progress should be raised, since the first delay time has not elapsed as yet.");
 
-                fakeEnvironment.CurrentTiming.CurrentTiming = TimeSpan.FromMilliseconds(12);
-                progress.AddCount(1);
-                Assert.That(wasHere, Is.False, "No progress should be raised, since the first delay time has not elapsed as yet.");
+            fakeEnvironment.CurrentTiming.CurrentTiming = TimeSpan.FromMilliseconds(12);
+            progress.AddCount(1);
+            Assert.That(wasHere, Is.False, "No progress should be raised, since the first delay time has not elapsed as yet.");
 
-                fakeEnvironment.CurrentTiming.CurrentTiming = TimeSpan.FromMilliseconds(13);
-                progress.AddCount(1);
-                Assert.That(wasHere, Is.True, "Progress should be raised, since the first delay time has now elapsed.");
-            }
-            finally
-            {
-                OS.Current = environment;
-            }
+            fakeEnvironment.CurrentTiming.CurrentTiming = TimeSpan.FromMilliseconds(13);
+            progress.AddCount(1);
+            Assert.That(wasHere, Is.True, "Progress should be raised, since the first delay time has now elapsed.");
         }
 
         [Test]
@@ -228,15 +227,15 @@ namespace Axantum.AxCrypt.Core.Test
 
         [Test]
         public static void TestProgressWithoutSynchronizationContext()
-		{
-			bool didProgress = false;
-			SynchronizationContext currentContext = new SynchronizationContext();
-			Thread thread = new Thread(
+        {
+            bool didProgress = false;
+            SynchronizationContext currentContext = new SynchronizationContext();
+            Thread thread = new Thread(
                 (object state) =>
                 {
-					currentContext = SynchronizationContext.Current;
+                    currentContext = SynchronizationContext.Current;
                     ProgressContext progress = new ProgressContext();
-					progress.NotifyLevelStart();
+                    progress.NotifyLevelStart();
                     progress.Progressing += (object sender, ProgressEventArgs e) =>
                         {
                             didProgress = true;
@@ -246,9 +245,9 @@ namespace Axantum.AxCrypt.Core.Test
                 );
             thread.Start();
             thread.Join();
-			Assert.That(didProgress, "There should always be one Progressing event after NotifyFinished().");
-			Assert.That(currentContext, Is.Null, "There should be no SynchronizationContext here.");
-		}
+            Assert.That(didProgress, "There should always be one Progressing event after NotifyFinished().");
+            Assert.That(currentContext, Is.Null, "There should be no SynchronizationContext here.");
+        }
 
         private class StateForSynchronizationContext
         {
@@ -286,6 +285,35 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(waitOk, "The wait should not time-out");
             Assert.That(s.SynchronizationContext, Is.EqualTo(synchronizationContext), "The SynchronizationContext should be current in the code executed.");
             Assert.That(s.DidProgress, "There should always be one Progressing event after NotifyFinished().");
+        }
+
+        [Test]
+        public static void TestCancel()
+        {
+            ProgressContext progress = new ProgressContext();
+            progress.NotifyLevelStart();
+            progress.AddTotal(100);
+            progress.AddCount(10);
+            progress.Cancel = true;
+            Assert.Throws<OperationCanceledException>(() => { progress.NotifyLevelStart(); });
+            Assert.Throws<OperationCanceledException>(() => { progress.NotifyLevelFinished(); });
+            Assert.Throws<OperationCanceledException>(() => { progress.AddTotal(50); });
+            Assert.Throws<OperationCanceledException>(() => { progress.AddCount(10); });
+        }
+
+        [Test]
+        public static void TestMultipleAddTotal()
+        {
+            int percent = 0;
+            ProgressContext progress = new ProgressContext(TimeSpan.Zero);
+            progress.Progressing += (object sender, ProgressEventArgs e) =>
+            {
+                percent = e.Percent;
+            };
+            progress.AddTotal(50);
+            progress.AddTotal(50);
+            progress.AddCount(50);
+            Assert.That(percent, Is.EqualTo(50), "The total should be 100, so 50 is 50% and the progressing event should be raised at the first progress.");
         }
     }
 }
