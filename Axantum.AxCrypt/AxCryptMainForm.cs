@@ -451,7 +451,7 @@ namespace Axantum.AxCrypt
             operationsController.EncryptFile(file, worker);
         }
 
-        private string AskForEncryptionPassphrase()
+        private static string AskForEncryptionPassphrase()
         {
             using (EncryptPassphraseDialog passphraseDialog = new EncryptPassphraseDialog())
             {
