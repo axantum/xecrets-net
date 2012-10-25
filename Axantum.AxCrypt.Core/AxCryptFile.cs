@@ -417,6 +417,7 @@ namespace Axantum.AxCrypt.Core
             {
                 OS.Log.LogInfo("Wiping '{0}'.".InvariantFormat(fileInfo.Name));
             }
+            bool cancelPending = false;
             progress.NotifyLevelStart();
             using (Stream stream = fileInfo.OpenWrite())
             {
@@ -426,9 +427,18 @@ namespace Axantum.AxCrypt.Core
                 {
                     byte[] random = OS.Current.GetRandomBytes(OS.Current.StreamBufferSize);
                     stream.Write(random, 0, random.Length);
-                    progress.AddCount(random.Length);
+                    stream.Flush();
+                    try
+                    {
+                        progress.AddCount(random.Length);
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        cancelPending = true;
+                        progress.Cancel = false;
+                        progress.AddCount(random.Length);
+                    }
                 }
-                stream.Flush();
             }
             string randomName;
             do
@@ -440,6 +450,11 @@ namespace Axantum.AxCrypt.Core
             moveToFileInfo.MoveTo(randomName);
             moveToFileInfo.Delete();
             progress.NotifyLevelFinished();
+            if (cancelPending)
+            {
+                progress.Cancel = true;
+                throw new OperationCanceledException("Delayed cancel during wipe.");
+            }
         }
 
         private static string GenerateRandomFileName(string originalFullName)

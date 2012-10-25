@@ -48,6 +48,10 @@ namespace Axantum.AxCrypt.Core.UI
 
         public string Passphrase { get; set; }
 
+        public bool ConfirmAll { get; set; }
+
+        public bool Skip { get; set; }
+
         public AesKey Key { get; set; }
 
         public AxCryptDocument AxCryptDocument { get; set; }

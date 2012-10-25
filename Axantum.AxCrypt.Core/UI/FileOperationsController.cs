@@ -116,6 +116,17 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
+        public event EventHandler<FileOperationEventArgs> QueryConfirmation;
+
+        protected virtual void OnQueryConfirmation(FileOperationEventArgs e)
+        {
+            EventHandler<FileOperationEventArgs> handler = QueryConfirmation;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
         /// <summary>
         /// Raised when a new KnowKey is added.
         /// </summary>
@@ -325,6 +336,51 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 _eventArgs.AxCryptDocument.Dispose();
                 _eventArgs.AxCryptDocument = null;
+            }
+
+            _eventArgs.Status = FileOperationStatus.Success;
+            return true;
+        }
+
+        public FileOperationStatus WipeFile(string fullName)
+        {
+            return DoFile(fullName, WipeFilePreparation, WipeFileOperation);
+        }
+
+        public void WipeFile(string fullName, IThreadWorker worker)
+        {
+            DoFile(fullName, worker, WipeFilePreparation, WipeFileOperation);
+        }
+
+        private bool WipeFilePreparation(string fullName)
+        {
+            _eventArgs.OpenFileFullName = fullName;
+            _eventArgs.SaveFileFullName = fullName;
+            if (_progress.AllItemsConfirmed)
+            {
+                return true;
+            }
+            OnQueryConfirmation(_eventArgs);
+            if (_eventArgs.Cancel)
+            {
+                _eventArgs.Status = FileOperationStatus.Canceled;
+                return false;
+            }
+
+            if (_eventArgs.ConfirmAll)
+            {
+                _progress.AllItemsConfirmed = true;
+            }
+            return true;
+        }
+
+        private bool WipeFileOperation()
+        {
+            if (!_eventArgs.Skip)
+            {
+                _progress.NotifyLevelStart();
+                AxCryptFile.Wipe(OS.Current.FileInfo(_eventArgs.SaveFileFullName), _progress);
+                _progress.NotifyLevelFinished();
             }
 
             _eventArgs.Status = FileOperationStatus.Success;

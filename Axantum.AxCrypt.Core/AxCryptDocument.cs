@@ -186,6 +186,7 @@ namespace Axantum.AxCrypt.Core
                     break;
                 }
                 outputStream.Write(buffer, 0, offset);
+                outputStream.Flush();
                 progress.AddCount(offset);
                 totalCount += offset;
                 offset = 0;

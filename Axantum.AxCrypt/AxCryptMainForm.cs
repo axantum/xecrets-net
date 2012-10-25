@@ -539,6 +539,65 @@ namespace Axantum.AxCrypt
             operationsController.DecryptFile(file, worker);
         }
 
+        private void WipeFilesViaDialog()
+        {
+            string[] fileNames;
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Title = Resources.WipeFileSelectFileDialogTitle;
+                ofd.Multiselect = true;
+                ofd.CheckFileExists = true;
+                ofd.CheckPathExists = true;
+                DialogResult result = ofd.ShowDialog();
+                if (result != DialogResult.OK)
+                {
+                    return;
+                }
+                fileNames = ofd.FileNames;
+            }
+            ProcessFilesInBackground(fileNames, WipeFile);
+        }
+
+        private void WipeFile(string file, IThreadWorker worker, ProgressContext progress)
+        {
+            FileOperationsController operationsController = new FileOperationsController(persistentState.Current, progress);
+
+            operationsController.QueryConfirmation += (object sender, FileOperationEventArgs e) =>
+            {
+                using (ConfirmWipeDialog cwd = new ConfirmWipeDialog())
+                {
+                    cwd.FileNameLabel.Text = Path.GetFileName(file);
+                    DialogResult confirmResult = cwd.ShowDialog();
+                    e.ConfirmAll = cwd.ConfirmAllCheckBox.Checked;
+                    if (confirmResult == DialogResult.Yes)
+                    {
+                        e.Skip = false;
+                    }
+                    if (confirmResult == DialogResult.No)
+                    {
+                        e.Skip = true;
+                    }
+                    if (confirmResult == DialogResult.Cancel)
+                    {
+                        e.Cancel = true;
+                    }
+                }
+            };
+
+            operationsController.Completed += (object sender, FileOperationEventArgs e) =>
+            {
+                if (CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
+                {
+                    if (!e.Skip)
+                    {
+                        persistentState.Current.RemoveRecentFiles(new string[] { e.SaveFileFullName }, progress);
+                    }
+                }
+            };
+
+            operationsController.WipeFile(file, worker);
+        }
+
         private void OpenFilesViaDialog()
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
@@ -589,6 +648,7 @@ namespace Axantum.AxCrypt
             progressBackgroundWorker.BackgroundWorkWithProgress(
                 (ProgressContext progress) =>
                 {
+                    progress.AddItems(files.Count());
                     using (workerGroup = new WorkerGroup(maxConcurrency, progress))
                     {
                         foreach (string file in files)
@@ -603,6 +663,7 @@ namespace Axantum.AxCrypt
                             {
                                 break;
                             }
+                            progress.AddItems(-1);
                         }
                         workerGroup.WaitAllAndFinish();
                         return workerGroup.FirstError;
@@ -668,7 +729,7 @@ namespace Axantum.AxCrypt
         private void AddKnownKey(AesKey key)
         {
             persistentState.Current.KnownKeys.Add(key);
-            persistentState.Current.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+            RestartTimer();
         }
 
         private void openEncryptedToolStripButton_Click(object sender, EventArgs e)
@@ -731,25 +792,20 @@ namespace Axantum.AxCrypt
                 return;
             }
             activeFilePollingTimer.Enabled = false;
-            try
-            {
-                _pollingInProgress = true;
-                progressBackgroundWorker.BackgroundWorkWithProgress(
-                    (ProgressContext progress) =>
-                    {
-                        persistentState.Current.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
-                        SetToolButtonsState();
-                        return FileOperationStatus.Success;
-                    },
-                    (FileOperationStatus status) =>
-                    {
-                        closeAndRemoveOpenFilesToolStripButton.Enabled = FilesAreOpen;
-                    });
-            }
-            finally
-            {
-                _pollingInProgress = false;
-            }
+            _pollingInProgress = true;
+
+            progressBackgroundWorker.BackgroundWorkWithProgress(
+                (ProgressContext progress) =>
+                {
+                    persistentState.Current.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
+                    return FileOperationStatus.Success;
+                },
+                (FileOperationStatus status) =>
+                {
+                    _pollingInProgress = false;
+                    closeAndRemoveOpenFilesToolStripButton.Enabled = FilesAreOpen;
+                    SetToolButtonsState();
+                });
         }
 
         private bool FilesAreOpen
@@ -937,6 +993,11 @@ namespace Axantum.AxCrypt
         private void decryptToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DecryptFilesViaDialog();
+        }
+
+        private void wipeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WipeFilesViaDialog();
         }
 
         private void AxCryptMainForm_Resize(object sender, EventArgs e)

@@ -488,6 +488,13 @@ namespace Axantum.AxCrypt.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap trashred16 {
+            get {
+                object obj = ResourceManager.GetObject("trashred16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Click to restore the AxCrypt application window..
         /// </summary>
@@ -512,6 +519,15 @@ namespace Axantum.AxCrypt.Properties {
         internal static string UpdatingStatus {
             get {
                 return ResourceManager.GetString("UpdatingStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select files to securely delete.
+        /// </summary>
+        internal static string WipeFileSelectFileDialogTitle {
+            get {
+                return ResourceManager.GetString("WipeFileSelectFileDialogTitle", resourceCulture);
             }
         }
     }

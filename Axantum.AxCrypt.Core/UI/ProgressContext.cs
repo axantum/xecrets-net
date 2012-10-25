@@ -82,6 +82,17 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         public bool Cancel { get; set; }
 
+        public bool AllItemsConfirmed { get; set; }
+
+        private int _items;
+
+        public int Items { get { return _items; } }
+
+        public int AddItems(int count)
+        {
+            return Interlocked.Add(ref _items, count);
+        }
+
         /// <summary>
         /// Progress has occurred. The actual number of events are throttled, so not all reports
         /// of progress will result in an event being raised. Only if NotifyLevelStart() / NotifyLevelFinished()

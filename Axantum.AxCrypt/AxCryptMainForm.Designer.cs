@@ -33,9 +33,11 @@
             this.openEncryptedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.encryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.decryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.closeOpenFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.wipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.englishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -188,9 +190,11 @@
             this.openEncryptedToolStripMenuItem,
             this.encryptToolStripMenuItem,
             this.decryptToolStripMenuItem,
-            this.toolStripSeparator2,
+            this.toolStripSeparator6,
             this.closeOpenFilesToolStripMenuItem,
             this.toolStripSeparator3,
+            this.wipeToolStripMenuItem,
+            this.toolStripSeparator2,
             this.optionsToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -214,10 +218,10 @@
             this.decryptToolStripMenuItem.Name = "decryptToolStripMenuItem";
             this.decryptToolStripMenuItem.Click += new System.EventHandler(this.decryptToolStripMenuItem_Click);
             // 
-            // toolStripSeparator2
+            // toolStripSeparator6
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            resources.ApplyResources(this.toolStripSeparator6, "toolStripSeparator6");
             // 
             // closeOpenFilesToolStripMenuItem
             // 
@@ -229,6 +233,18 @@
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
+            // 
+            // wipeToolStripMenuItem
+            // 
+            this.wipeToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.trashred16;
+            this.wipeToolStripMenuItem.Name = "wipeToolStripMenuItem";
+            resources.ApplyResources(this.wipeToolStripMenuItem, "wipeToolStripMenuItem");
+            this.wipeToolStripMenuItem.Click += new System.EventHandler(this.wipeToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
             // 
             // optionsToolStripMenuItem
             // 
@@ -561,6 +577,8 @@
         private System.Windows.Forms.TabControl statusTabControl;
         private System.Windows.Forms.ToolStripButton encryptionKeyToolStripButton;
         private System.Windows.Forms.ToolStripMenuItem decryptAndRemoveFromListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripMenuItem wipeToolStripMenuItem;
     }
 }
 
