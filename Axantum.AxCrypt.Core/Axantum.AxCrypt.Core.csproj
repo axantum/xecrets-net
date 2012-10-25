@@ -102,6 +102,7 @@
     <Compile Include="IO\FileWatcherEventArgs.cs" />
     <Compile Include="IO\IFileWatcher.cs" />
     <Compile Include="IO\IWebCaller.cs" />
+    <Compile Include="IO\LockingStream.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

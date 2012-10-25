@@ -141,6 +141,7 @@ namespace Axantum.AxCrypt.Mono.Test
                 }
                 finally
                 {
+                    wasHere = false;
                     tempFileInfo.Delete();
                 }
                 for (int i = 0; !wasHere && i < 20; ++i)
