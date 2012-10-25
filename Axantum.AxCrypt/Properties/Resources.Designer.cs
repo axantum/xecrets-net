@@ -69,6 +69,13 @@ namespace Axantum.AxCrypt.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap activefilegreen16 {
+            get {
+                object obj = ResourceManager.GetObject("activefilegreen16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Double-click to Open.
         /// </summary>
@@ -171,6 +178,13 @@ namespace Axantum.AxCrypt.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap decryptedfilered16 {
+            get {
+                object obj = ResourceManager.GetObject("decryptedfilered16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Assumed open. Try to Close the application, or use the Clean function to remove it.
         /// </summary>
@@ -195,6 +209,13 @@ namespace Axantum.AxCrypt.Properties {
         internal static string DecryptedSaveAsFileDialogTitle {
             get {
                 return ResourceManager.GetString("DecryptedSaveAsFileDialogTitle", resourceCulture);
+            }
+        }
+        
+        internal static System.Drawing.Bitmap decryptedunknownkeyfilered16 {
+            get {
+                object obj = ResourceManager.GetObject("decryptedunknownkeyfilered16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -298,6 +319,13 @@ namespace Axantum.AxCrypt.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap exclamationgreen16 {
+            get {
+                object obj = ResourceManager.GetObject("exclamationgreen16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to The file &apos;{0}&apos; is already encrypted..
         /// </summary>
@@ -337,6 +365,13 @@ namespace Axantum.AxCrypt.Properties {
         internal static System.Drawing.Bitmap helpquestiongreen32 {
             get {
                 object obj = ResourceManager.GetObject("helpquestiongreen32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap inactivefilegreen16 {
+            get {
+                object obj = ResourceManager.GetObject("inactivefilegreen16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
