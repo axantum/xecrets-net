@@ -183,6 +183,9 @@
     <Compile Include="..\Axantum.AxCrypt.Core\IO\IWebCaller.cs">
       <Link>IO\IWebCaller.cs</Link>
     </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\IO\LockingStream.cs">
+      <Link>IO\LockingStream.cs</Link>
+    </Compile>
     <Compile Include="..\Axantum.AxCrypt.Core\IO\LookAheadStream.cs">
       <Link>IO\LookAheadStream.cs</Link>
     </Compile>
