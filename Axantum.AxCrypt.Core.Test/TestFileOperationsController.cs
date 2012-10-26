@@ -618,5 +618,110 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(status, Is.EqualTo(FileOperationStatus.Canceled), "The status should indicate cancellation.");
         }
+
+        [Test]
+        public static void TestSimpleWipe()
+        {
+            FileOperationsController controller = new FileOperationsController(_fileSystemState);
+            controller.QueryConfirmation += (object sender, FileOperationEventArgs e) =>
+            {
+                e.Cancel = false;
+                e.Skip = false;
+                e.ConfirmAll = false;
+            };
+            FileOperationStatus status = controller.WipeFile(_helloWorldAxxPath);
+            Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The wipe should indicate success.");
+
+            IRuntimeFileInfo fileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
+            Assert.That(!fileInfo.Exists, "The file should not exist after wiping.");
+        }
+
+        [Test]
+        public static void TestSimpleWipeOnThreadWorker()
+        {
+            FileOperationsController controller = new FileOperationsController(_fileSystemState);
+            controller.QueryConfirmation += (object sender, FileOperationEventArgs e) =>
+            {
+                e.Cancel = false;
+                e.Skip = false;
+                e.ConfirmAll = false;
+            };
+
+            string destinationPath = String.Empty;
+            FileOperationStatus status = FileOperationStatus.Unknown;
+            controller.Completed += (object sender, FileOperationEventArgs e) =>
+            {
+                destinationPath = e.SaveFileFullName;
+                status = e.Status;
+            };
+
+            using (ThreadWorker worker = new ThreadWorker(new ProgressContext()))
+            {
+                controller.WipeFile(_davidCopperfieldTxtPath, worker);
+            }
+            Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
+
+            IRuntimeFileInfo destinationInfo = OS.Current.FileInfo(destinationPath);
+            Assert.That(!destinationInfo.Exists, "After wiping the destination file should not exist.");
+        }
+
+        [Test]
+        public static void TestWipeWithCancel()
+        {
+            FileOperationsController controller = new FileOperationsController(_fileSystemState);
+            controller.QueryConfirmation += (object sender, FileOperationEventArgs e) =>
+            {
+                e.Cancel = true;
+            };
+            FileOperationStatus status = controller.WipeFile(_helloWorldAxxPath);
+            Assert.That(status, Is.EqualTo(FileOperationStatus.Canceled), "The wipe should indicate cancellation.");
+
+            IRuntimeFileInfo fileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
+            Assert.That(fileInfo.Exists, "The file should still exist after wiping that was canceled during confirmation.");
+        }
+
+        [Test]
+        public static void TestWipeWithSkip()
+        {
+            FileOperationsController controller = new FileOperationsController(_fileSystemState);
+            controller.QueryConfirmation += (object sender, FileOperationEventArgs e) =>
+            {
+                e.Skip = true;
+            };
+            FileOperationStatus status = controller.WipeFile(_helloWorldAxxPath);
+            Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The wipe should indicate success even when skipping.");
+
+            IRuntimeFileInfo fileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
+            Assert.That(fileInfo.Exists, "The file should still exist after wiping that was skipped during confirmation.");
+        }
+
+        [Test]
+        public static void TestWipeWithConfirmAll()
+        {
+            ProgressContext progress = new ProgressContext();
+            FileOperationsController controller = new FileOperationsController(_fileSystemState, progress);
+            int confirmationCount = 0;
+            controller.QueryConfirmation += (object sender, FileOperationEventArgs e) =>
+            {
+                if (confirmationCount++ > 0)
+                {
+                    throw new InvalidOperationException("The event should not be raised a second time.");
+                }
+                e.ConfirmAll = true;
+            };
+            progress.NotifyLevelStart();
+            FileOperationStatus status = controller.WipeFile(_helloWorldAxxPath);
+            Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The wipe should indicate success.");
+
+            IRuntimeFileInfo fileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
+            Assert.That(!fileInfo.Exists, "The file should not exist after wiping.");
+
+            Assert.DoesNotThrow(() => { status = controller.WipeFile(_davidCopperfieldTxtPath); });
+            Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The wipe should indicate success.");
+            progress.NotifyLevelFinished();
+
+            fileInfo = OS.Current.FileInfo(_davidCopperfieldTxtPath);
+            Assert.That(!fileInfo.Exists, "The file should not exist after wiping.");
+        }
     }
 }

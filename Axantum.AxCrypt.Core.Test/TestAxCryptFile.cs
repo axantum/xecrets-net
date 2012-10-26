@@ -422,5 +422,36 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(sourceFileInfo.Exists, Is.False, "The source should be wiped.");
             Assert.That(destinationFileInfo.Exists, Is.True, "The destination should be created and exist now.");
         }
+
+        [Test]
+        public static void TestWipeFileDoesNotExist()
+        {
+            ProgressContext progress = new ProgressContext(TimeSpan.Zero);
+            bool progressed = false;
+            progress.Progressing += (object sender, ProgressEventArgs e) =>
+            {
+                progressed = true;
+            };
+
+            string filePath = Path.Combine(Path.Combine(_rootPath, "Folder"), "DoesNot.Exist");
+            IRuntimeFileInfo fileInfo = OS.Current.FileInfo(filePath);
+
+            Assert.DoesNotThrow(() => { AxCryptFile.Wipe(fileInfo, progress); });
+            Assert.That(!progressed, "There should be no progress-notification since nothing should happen.");
+        }
+
+        [Test]
+        public static void TestWipeWithDelayedUntilDoneCancel()
+        {
+            IRuntimeFileInfo fileInfo = OS.Current.FileInfo(_davidCopperfieldTxtPath);
+
+            ProgressContext progress = new ProgressContext(TimeSpan.Zero);
+            progress.Progressing += (object sender, ProgressEventArgs e) =>
+            {
+                ((ProgressContext)sender).Cancel = true;
+            };
+            Assert.Throws<OperationCanceledException>(() => { AxCryptFile.Wipe(fileInfo, progress); });
+            Assert.That(!fileInfo.Exists, "The file should be completely wiped, even if canceled at start.");
+        }
     }
 }

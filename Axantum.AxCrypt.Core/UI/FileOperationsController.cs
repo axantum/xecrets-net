@@ -376,12 +376,15 @@ namespace Axantum.AxCrypt.Core.UI
 
         private bool WipeFileOperation()
         {
-            if (!_eventArgs.Skip)
+            if (_eventArgs.Skip)
             {
-                _progress.NotifyLevelStart();
-                AxCryptFile.Wipe(OS.Current.FileInfo(_eventArgs.SaveFileFullName), _progress);
-                _progress.NotifyLevelFinished();
+                _eventArgs.Status = FileOperationStatus.Success;
+                return true;
             }
+
+            _progress.NotifyLevelStart();
+            AxCryptFile.Wipe(OS.Current.FileInfo(_eventArgs.SaveFileFullName), _progress);
+            _progress.NotifyLevelFinished();
 
             _eventArgs.Status = FileOperationStatus.Success;
             return true;

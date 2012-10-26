@@ -315,5 +315,16 @@ namespace Axantum.AxCrypt.Core.Test
             progress.AddCount(50);
             Assert.That(percent, Is.EqualTo(50), "The total should be 100, so 50 is 50% and the progressing event should be raised at the first progress.");
         }
+
+        [Test]
+        public static void TestItems()
+        {
+            ProgressContext progress = new ProgressContext();
+            Assert.That(progress.Items, Is.EqualTo(0), "At start there are no item counted.");
+            progress.AddItems(7);
+            Assert.That(progress.Items, Is.EqualTo(7), "There was just 7 added.");
+            progress.AddItems(-1);
+            Assert.That(progress.Items, Is.EqualTo(6), "Items are counted down by adding negative numbers.");
+        }
     }
 }

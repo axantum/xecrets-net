@@ -158,6 +158,7 @@
     <Compile Include="TestKeyWrap2HeaderBlock.cs" />
     <Compile Include="TestKeyWrapSalt.cs" />
     <Compile Include="TestKnownKeys.cs" />
+    <Compile Include="TestLockingStreamTests.cs" />
     <Compile Include="TestPassphrase.cs" />
     <Compile Include="TestPreambleHeaderBlock.cs" />
     <Compile Include="TestProgressContext.cs" />

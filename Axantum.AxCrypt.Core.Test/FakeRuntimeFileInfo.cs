@@ -281,8 +281,6 @@ namespace Axantum.AxCrypt.Core.Test
             return stream;
         }
 
-        #region IRuntimeFileInfo Members
-
         public void CreateDirectory()
         {
             string directory = Path.GetDirectoryName(_file.FullName);
@@ -294,7 +292,5 @@ namespace Axantum.AxCrypt.Core.Test
             }
             AddFile(directory, utcNow, utcNow, utcNow, Stream.Null);
         }
-
-        #endregion IRuntimeFileInfo Members
     }
 }
