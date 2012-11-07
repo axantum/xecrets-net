@@ -31,7 +31,8 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Mono
 {
@@ -39,21 +40,35 @@ namespace Axantum.AxCrypt.Mono
     {
         private Process _process;
 
+		private string _path;
+
         [SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands", Justification = "The code has full trust anyway.")]
-        public Launcher(string path)
-        {
-            _process = Process.Start(path);
-            if (_process == null)
-            {
-                return;
-            }
-            _process.EnableRaisingEvents = true;
-            _process.Exited += new EventHandler(Process_Exited);
+		public Launcher (string path)
+		{
+			_process = Process.Start(path);
+			if (_process == null) {
+				return;
+			}
+			_path = _process.StartInfo.FileName;
+			if (OS.Current.CanTrackProcess) {
+				// This causes hang-on-exit on at least Mac OS X
+				_process.EnableRaisingEvents = true;
+				_process.Exited += Process_Exited;
+			}
+			else
+			{
+				_process.Dispose();
+				_process = null;
+			}
         }
 
         private void Process_Exited(object sender, EventArgs e)
         {
             OnExited(e);
+			_process.Exited -= Process_Exited;
+			_process.WaitForExit();
+			_process.Dispose();
+			_process = null;
         }
 
         #region ILauncher Members
@@ -63,14 +78,14 @@ namespace Axantum.AxCrypt.Mono
         [SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands", Justification = "The code has full trust anyway.")]
         public bool HasExited
         {
-            get { return WasStarted && _process.HasExited; }
+            get { return !WasStarted || _process.HasExited; }
         }
 
         public bool WasStarted
         {
             get
             {
-                return _process != null;
+                return OS.Current.CanTrackProcess && _process != null;
             }
         }
 
@@ -102,7 +117,7 @@ namespace Axantum.AxCrypt.Mono
         [SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands", Justification = "The code has full trust anyway.")]
         public string Path
         {
-            get { return _process.StartInfo.FileName; }
+            get { return _path; }
         }
 
         #region IDisposable Members

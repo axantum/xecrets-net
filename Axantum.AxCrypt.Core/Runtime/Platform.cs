@@ -30,16 +30,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.System
+namespace Axantum.AxCrypt.Core.Runtime
 {
-    public interface ILauncher : IDisposable
+    public enum Platform
     {
-        event EventHandler Exited;
-
-        bool HasExited { get; }
-
-        bool WasStarted { get; }
-
-        string Path { get; }
+        Unknown,
+        WindowsDesktop,
+        WindowsMobile,
+        WindowsPhone,
+        Linux,
+        AppleIos,
+        MacOsx,
+        Android,
+        Xbox,
     }
 }

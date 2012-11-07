@@ -26,43 +26,43 @@
 #endregion Coypright and License
 
 using System;
-using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using Axantum.AxCrypt.Core.IO;
+using NUnit.Framework;
 
-namespace Axantum.AxCrypt.Core.System
+namespace Axantum.AxCrypt.Core.Test
 {
-    public interface IRuntimeEnvironment
+    [TestFixture]
+    public static class TestFileWatcher
     {
-        event EventHandler<EventArgs> FileChanged;
+        [SetUp]
+        public static void Setup()
+        {
+            SetupAssembly.AssemblySetup();
+        }
 
-        void NotifyFileChanged();
+        [TearDown]
+        public static void Teardown()
+        {
+            SetupAssembly.AssemblyTeardown();
+        }
 
-        bool IsLittleEndian { get; }
+        [Test]
+        public static void SimpleTest()
+        {
+            IFileWatcher watcher = OS.Current.FileWatcher("c:\temp");
+            string fullName = String.Empty;
+            watcher.FileChanged += (object sender, FileWatcherEventArgs e) =>
+                {
+                    fullName = e.FullName;
+                };
 
-        byte[] GetRandomBytes(int count);
+            FakeFileWatcher fakeWatcher = (FakeFileWatcher)watcher;
+            fakeWatcher.OnChanged(new FileWatcherEventArgs("c:\temp\test.txt"));
 
-        IRuntimeFileInfo FileInfo(string path);
-
-        string AxCryptExtension { get; }
-
-        Platform Platform { get; }
-
-        int StreamBufferSize { get; }
-
-        IFileWatcher FileWatcher(string path);
-
-        IRuntimeFileInfo TemporaryDirectoryInfo { get; }
-
-        DateTime UtcNow { get; }
-
-        ILauncher Launch(string path);
-
-        ITiming StartTiming();
-
-        IWebCaller CreateWebCaller();
-
-        ILogging Log { get; }
-
-        IDataProtection DataProtection { get; }
+            Assert.That(fullName, Is.EqualTo("c:\temp\test.txt"), "The changed event should pass the path specified.");
+        }
     }
 }

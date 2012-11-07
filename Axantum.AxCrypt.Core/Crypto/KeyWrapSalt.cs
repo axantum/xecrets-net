@@ -27,7 +27,7 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {

@@ -48,7 +48,7 @@
     </PropertyGroup>
     <PropertyGroup>
         <_AxIsAxantumDeveloper>false</_AxIsAxantumDeveloper>
-        <_AxIsAxantumDeveloper Condition=" '$(USERNAME)' == 'Svante' ">true</_AxIsAxantumDeveloper>
+        <_AxIsAxantumDeveloper Condition=" '$(AX_AXANTUM)' == 'True' ">true</_AxIsAxantumDeveloper>
         <_AxIsAxantumBuildServer>false</_AxIsAxantumBuildServer>
         <_AxIsAxantumBuildServer Condition=" '$(COMPUTERNAME)' == 'HARLAN' ">true</_AxIsAxantumBuildServer>
         <_AxIsAxantum>false</_AxIsAxantum>

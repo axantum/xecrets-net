@@ -33,12 +33,12 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
-    internal class TestStream : Stream
+    internal class FakeStream : Stream
     {
         private Action<string> _visitorAction;
         private Stream _stream;
 
-        public TestStream(Stream stream, Action<string> visitorAction)
+        public FakeStream(Stream stream, Action<string> visitorAction)
         {
             _stream = stream;
             _visitorAction = visitorAction;

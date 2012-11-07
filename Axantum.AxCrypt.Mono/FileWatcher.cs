@@ -35,7 +35,7 @@ using System.Security.Permissions;
 using System.Text;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Mono
 {

@@ -33,8 +33,8 @@ using System.Linq;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
-using Axantum.AxCrypt.Core.System;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -73,7 +73,7 @@ namespace Axantum.AxCrypt.Core.UI
 
             if (destinationActiveFile == null || !destinationActiveFile.DecryptedFileInfo.Exists)
             {
-                IRuntimeFileInfo destinationFolderInfo = GetDestinationFolder(destinationActiveFile);
+                IRuntimeFileInfo destinationFolderInfo = GetTemporaryDestinationFolder(destinationActiveFile);
                 destinationActiveFile = TryDecrypt(fileInfo, destinationFolderInfo, keys, progress);
             }
             else
@@ -107,13 +107,17 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 throw new ArgumentNullException("document");
             }
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
 
             IRuntimeFileInfo fileInfo = OS.Current.FileInfo(file);
 
             ActiveFile destinationActiveFile = fileSystemState.FindEncryptedPath(fileInfo.FullName);
             if (destinationActiveFile == null || !destinationActiveFile.DecryptedFileInfo.Exists)
             {
-                IRuntimeFileInfo destinationFolderInfo = GetDestinationFolder(destinationActiveFile);
+                IRuntimeFileInfo destinationFolderInfo = GetTemporaryDestinationFolder(destinationActiveFile);
                 destinationActiveFile = DecryptActiveFileDocument(fileInfo, destinationFolderInfo, document, progress);
             }
             else
@@ -200,7 +204,7 @@ namespace Axantum.AxCrypt.Core.UI
                 }
                 using (FileLock sourceLock = FileLock.Lock(sourceFileInfo))
                 {
-                    using (AxCryptDocument document = AxCryptFile.Document(sourceFileInfo, key, progress))
+                    using (AxCryptDocument document = AxCryptFile.Document(sourceFileInfo, key, new ProgressContext()))
                     {
                         if (!document.PassphraseIsValid)
                         {
@@ -233,7 +237,7 @@ namespace Axantum.AxCrypt.Core.UI
             return destinationActiveFile;
         }
 
-        private static IRuntimeFileInfo GetDestinationFolder(ActiveFile destinationActiveFile)
+        private static IRuntimeFileInfo GetTemporaryDestinationFolder(ActiveFile destinationActiveFile)
         {
             string destinationFolder;
             if (destinationActiveFile != null)
@@ -247,6 +251,12 @@ namespace Axantum.AxCrypt.Core.UI
             IRuntimeFileInfo destinationFolderInfo = OS.Current.FileInfo(destinationFolder);
             destinationFolderInfo.CreateDirectory();
             return destinationFolderInfo;
+        }
+
+        public static string GetTemporaryDestinationName(string fileName)
+        {
+            string destinationFolder = Path.Combine(OS.Current.TemporaryDirectoryInfo.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + Path.DirectorySeparatorChar);
+            return Path.Combine(destinationFolder, Path.GetFileName(fileName));
         }
 
         private static ActiveFile CheckKeysForAlreadyDecryptedFile(ActiveFile destinationActiveFile, IEnumerable<AesKey> keys, ProgressContext progress)

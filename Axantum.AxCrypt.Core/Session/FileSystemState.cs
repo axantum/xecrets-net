@@ -27,22 +27,32 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Runtime.Serialization;
+using System.Xml;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core.Session
 {
     [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
-    public class FileSystemState
+    public class FileSystemState : IDisposable
     {
         private object _lock;
 
         public FileSystemState()
         {
             Initialize();
+        }
+
+        public static IRuntimeFileInfo DefaultPathInfo
+        {
+            get
+            {
+                return OS.Current.FileInfo(Path.Combine(OS.Current.TemporaryDirectoryInfo.FullName, "FileSystemState.xml"));
+            }
         }
 
         private void Initialize()
@@ -79,6 +89,14 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
+        public int ActiveFileCount
+        {
+            get
+            {
+                return _activeFilesByDecryptedPath.Count;
+            }
+        }
+
         public IList<ActiveFile> DecryptedActiveFiles
         {
             get
@@ -95,8 +113,17 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
+        /// <summary>
+        /// Find an active file by way of it's encrypted full path.
+        /// </summary>
+        /// <param name="decryptedPath">Full path to am encrypted file.</param>
+        /// <returns>An ActiveFile instance, or null if not found in file system state.</returns>
         public ActiveFile FindEncryptedPath(string encryptedPath)
         {
+            if (encryptedPath == null)
+            {
+                throw new ArgumentNullException("encryptedPath");
+            }
             ActiveFile activeFile;
             lock (_lock)
             {
@@ -108,8 +135,17 @@ namespace Axantum.AxCrypt.Core.Session
             return null;
         }
 
+        /// <summary>
+        /// Find an active file by way of it's decrypted full path.
+        /// </summary>
+        /// <param name="decryptedPath">Full path to a decrypted file.</param>
+        /// <returns>An ActiveFile instance, or null if not found in file system state.</returns>
         public ActiveFile FindDecryptedPath(string decryptedPath)
         {
+            if (decryptedPath == null)
+            {
+                throw new ArgumentNullException("decryptedPath");
+            }
             ActiveFile activeFile;
             lock (_lock)
             {
@@ -121,8 +157,16 @@ namespace Axantum.AxCrypt.Core.Session
             return null;
         }
 
+        /// <summary>
+        /// Add a file to the volatile file system state. To persist, call Save().
+        /// </summary>
+        /// <param name="activeFile">The active file to save</param>
         public void Add(ActiveFile activeFile)
         {
+            if (activeFile == null)
+            {
+                throw new ArgumentNullException("activeFile");
+            }
             lock (_lock)
             {
                 AddInternal(activeFile);
@@ -130,8 +174,16 @@ namespace Axantum.AxCrypt.Core.Session
             OnChanged(new ActiveFileChangedEventArgs(activeFile));
         }
 
+        /// <summary>
+        /// Remove a file from the volatile file system state. To persist, call Save().
+        /// </summary>
+        /// <param name="activeFile">An active file to remove</param>
         public void Remove(ActiveFile activeFile)
         {
+            if (activeFile == null)
+            {
+                throw new ArgumentNullException("activeFile");
+            }
             lock (_lock)
             {
                 _activeFilesByDecryptedPath.Remove(activeFile.DecryptedFileInfo.FullName);
@@ -175,8 +227,18 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
+        /// <summary>
+        /// Iterate over all active files in the state.
+        /// </summary>
+        /// <param name="mode">RaiseAlways to raise Changed event for each active file, RaiseOnlyOnModified to only raise for modified active files.</param>
+        /// <param name="action">A delegate with an action to take for each active file, returning the same or updated active file as need be.</param>
         public void ForEach(ChangedEventMode mode, Func<ActiveFile, ActiveFile> action)
         {
+            if (action == null)
+            {
+                throw new ArgumentNullException("action");
+            }
+
             bool isModified = false;
             List<ActiveFile> activeFiles = new List<ActiveFile>();
             foreach (ActiveFile activeFile in ActiveFiles)
@@ -214,8 +276,14 @@ namespace Axantum.AxCrypt.Core.Session
 
         private string _path;
 
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "The actual exception thrown by the de-serialization varies, even by platform, and the idea is to catch those and let the user continue.")]
         public void Load(IRuntimeFileInfo path)
         {
+            if (path == null)
+            {
+                throw new ArgumentNullException("path");
+            }
+
             if (!path.Exists)
             {
                 _path = path.FullName;
@@ -231,7 +299,19 @@ namespace Axantum.AxCrypt.Core.Session
 
             using (Stream fileSystemStateStream = loadInfo.OpenRead())
             {
-                FileSystemState fileSystemState = (FileSystemState)serializer.ReadObject(fileSystemStateStream);
+                FileSystemState fileSystemState;
+                try
+                {
+                    fileSystemState = (FileSystemState)serializer.ReadObject(fileSystemStateStream);
+                }
+                catch (Exception)
+                {
+                    if (OS.Log.IsErrorEnabled)
+                    {
+                        OS.Log.LogError("Exception reading {0}. Ignoring and re-initializing state.".InvariantFormat(path.FullName));
+                    }
+                    fileSystemState = new FileSystemState();
+                }
                 _path = path.FullName;
                 foreach (ActiveFile activeFile in fileSystemState.ActiveFiles)
                 {
@@ -273,5 +353,32 @@ namespace Axantum.AxCrypt.Core.Session
             DataContractSerializer serializer = new DataContractSerializer(typeof(FileSystemState), "FileSystemState", "http://www.axantum.com/Serialization/");
             return serializer;
         }
+
+        #region IDisposable Members
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_activeFilesByEncryptedPath == null)
+            {
+                return;
+            }
+            if (disposing)
+            {
+                foreach (ActiveFile activeFile in _activeFilesByEncryptedPath.Values)
+                {
+                    activeFile.Dispose();
+                }
+                _activeFilesByEncryptedPath = null;
+                _activeFilesByDecryptedPath = null;
+            }
+        }
+
+        #endregion IDisposable Members
     }
 }

@@ -30,7 +30,7 @@ using System.IO;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
@@ -40,8 +40,6 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestAxCryptFile
     {
-        private static IRuntimeEnvironment _environment;
-
         private static readonly string _rootPath = Path.GetPathRoot(Environment.CurrentDirectory);
         private static readonly string _testTextPath = Path.Combine(_rootPath, "test.txt");
         private static readonly string _davidCopperfieldTxtPath = _rootPath.PathCombine("Users", "AxCrypt", "David Copperfield.txt");
@@ -51,20 +49,18 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
-            _environment = OS.Current;
-            OS.Current = new FakeRuntimeEnvironment();
+            SetupAssembly.AssemblySetup();
 
-            FakeRuntimeFileInfo.AddFile(_testTextPath, FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate3Utc, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
-            FakeRuntimeFileInfo.AddFile(_davidCopperfieldTxtPath, FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate5Utc, FakeRuntimeFileInfo.TestDate6Utc, new MemoryStream(Encoding.GetEncoding(1252).GetBytes(Resources.david_copperfield)));
-            FakeRuntimeFileInfo.AddFile(_uncompressedAxxPath, new MemoryStream(Resources.uncompressable_zip));
-            FakeRuntimeFileInfo.AddFile(_helloWorldAxxPath, new MemoryStream(Resources.helloworld_key_a_txt));
+            FakeRuntimeFileInfo.AddFile(_testTextPath, FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate3Utc, FakeRuntimeFileInfo.ExpandableMemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
+            FakeRuntimeFileInfo.AddFile(_davidCopperfieldTxtPath, FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate5Utc, FakeRuntimeFileInfo.TestDate6Utc, FakeRuntimeFileInfo.ExpandableMemoryStream(Encoding.GetEncoding(1252).GetBytes(Resources.david_copperfield)));
+            FakeRuntimeFileInfo.AddFile(_uncompressedAxxPath, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.uncompressable_zip));
+            FakeRuntimeFileInfo.AddFile(_helloWorldAxxPath, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
         }
 
         [TearDown]
         public static void Teardown()
         {
-            OS.Current = _environment;
-            FakeRuntimeFileInfo.ClearFiles();
+            SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
@@ -112,12 +108,12 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Document(sourceFileInfo, nullKey, new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Document(sourceFileInfo, new AesKey(), nullProgress); });
 
-            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.WriteToFileWithBackup(null, (Stream stream) => { }); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.WriteToFileWithBackup(null, (Stream stream) => { }, new ProgressContext()); });
             IRuntimeFileInfo fileInfo = OS.Current.FileInfo(_testTextPath);
-            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.WriteToFileWithBackup(fileInfo, nullStreamAction); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.WriteToFileWithBackup(fileInfo, nullStreamAction, new ProgressContext()); });
 
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.MakeAxCryptFileName(nullFileInfo); });
-            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Wipe(nullFileInfo); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Wipe(nullFileInfo, new ProgressContext()); });
         }
 
         [Test]
@@ -277,10 +273,10 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestWriteToFileWithBackup()
         {
             string destinationFilePath = _rootPath.PathCombine("Written", "File.txt");
-            using (MemoryStream inputStream = new MemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
+            using (MemoryStream inputStream = FakeRuntimeFileInfo.ExpandableMemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
             {
                 IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(destinationFilePath);
-                AxCryptFile.WriteToFileWithBackup(destinationFileInfo, (Stream stream) => { inputStream.CopyTo(stream, 4096); });
+                AxCryptFile.WriteToFileWithBackup(destinationFileInfo, (Stream stream) => { inputStream.CopyTo(stream, 4096); }, new ProgressContext());
                 using (TextReader read = new StreamReader(destinationFileInfo.OpenRead()))
                 {
                     string readString = read.ReadToEnd();
@@ -293,9 +289,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestWriteToFileWithBackupWithCancel()
         {
             IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(_rootPath.PathCombine("Written", "File.txt"));
-            using (MemoryStream inputStream = new MemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
+            using (MemoryStream inputStream = FakeRuntimeFileInfo.ExpandableMemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
             {
-                Assert.Throws<OperationCanceledException>(() => { AxCryptFile.WriteToFileWithBackup(destinationFileInfo, (Stream stream) => { throw new OperationCanceledException(); }); });
+                Assert.Throws<OperationCanceledException>(() => { AxCryptFile.WriteToFileWithBackup(destinationFileInfo, (Stream stream) => { throw new OperationCanceledException(); }, new ProgressContext()); });
                 string tempFilePath = _rootPath.PathCombine("Written", "File.bak");
                 IRuntimeFileInfo tempFileInfo = OS.Current.FileInfo(tempFilePath);
                 Assert.That(tempFileInfo.Exists, Is.False, "The .bak file should be removed.");
@@ -315,9 +311,9 @@ namespace Axantum.AxCrypt.Core.Test
                 writeStream.Write(bytes, 0, bytes.Length);
             }
 
-            using (MemoryStream inputStream = new MemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
+            using (MemoryStream inputStream = FakeRuntimeFileInfo.ExpandableMemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
             {
-                AxCryptFile.WriteToFileWithBackup(destinationFileInfo, (Stream stream) => { inputStream.CopyTo(stream, 4096); });
+                AxCryptFile.WriteToFileWithBackup(destinationFileInfo, (Stream stream) => { inputStream.CopyTo(stream, 4096); }, new ProgressContext());
                 using (TextReader read = new StreamReader(destinationFileInfo.OpenRead()))
                 {
                     string readString = read.ReadToEnd();
@@ -345,12 +341,12 @@ namespace Axantum.AxCrypt.Core.Test
             {
             }
             Assert.That(fileInfo.Exists, "Now it should exist.");
-            AxCryptFile.Wipe(fileInfo);
+            AxCryptFile.Wipe(fileInfo, new ProgressContext());
             Assert.That(!fileInfo.Exists, "And now it should not exist after wiping.");
         }
 
         [Test]
-        public static void TestEncryptFileWithBackupAndWipeNullArguments()
+        public static void TestEncryptFileWithBackupFileInfoAndWipeNullArguments()
         {
             string sourceFilePath = _davidCopperfieldTxtPath;
             string destinationFilePath = Path.Combine(Path.GetDirectoryName(sourceFilePath), "David Copperfield-txt.axx");
@@ -372,7 +368,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFileWithBackupAndWipe()
+        public static void TestEncryptFileWithBackupAndWipeFileInfo()
         {
             string sourceFilePath = _davidCopperfieldTxtPath;
             string destinationFilePath = Path.Combine(Path.GetDirectoryName(sourceFilePath), "David Copperfield-txt.axx");
@@ -388,6 +384,74 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(sourceFileInfo.Exists, Is.False, "The source should be wiped.");
             Assert.That(destinationFileInfo.Exists, Is.True, "The destination should be created and exist now.");
+        }
+
+        [Test]
+        public static void TestEncryptFileWithBackupFileNameAndWipeNullArguments()
+        {
+            string sourceFilePath = _davidCopperfieldTxtPath;
+            string destinationFilePath = Path.Combine(Path.GetDirectoryName(sourceFilePath), "David Copperfield-txt.axx");
+
+            string nullFileName = null;
+
+            AesKey key = new AesKey();
+            AesKey nullKey = null;
+
+            ProgressContext progress = new ProgressContext();
+            ProgressContext nullProgress = null;
+
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.EncryptFileWithBackupAndWipe(nullFileName, destinationFilePath, key, progress); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.EncryptFileWithBackupAndWipe(sourceFilePath, nullFileName, key, progress); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.EncryptFileWithBackupAndWipe(sourceFilePath, destinationFilePath, nullKey, progress); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.EncryptFileWithBackupAndWipe(sourceFilePath, destinationFilePath, key, nullProgress); });
+        }
+
+        [Test]
+        public static void TestEncryptFileWithBackupAndWipeFileName()
+        {
+            string sourceFilePath = _davidCopperfieldTxtPath;
+            string destinationFilePath = Path.Combine(Path.GetDirectoryName(sourceFilePath), "David Copperfield-txt.axx");
+
+            AesKey key = new AesKey();
+            ProgressContext progress = new ProgressContext();
+
+            AxCryptFile.EncryptFileWithBackupAndWipe(sourceFilePath, destinationFilePath, key, progress);
+
+            IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(sourceFilePath);
+            IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(destinationFilePath);
+            Assert.That(sourceFileInfo.Exists, Is.False, "The source should be wiped.");
+            Assert.That(destinationFileInfo.Exists, Is.True, "The destination should be created and exist now.");
+        }
+
+        [Test]
+        public static void TestWipeFileDoesNotExist()
+        {
+            ProgressContext progress = new ProgressContext(TimeSpan.Zero);
+            bool progressed = false;
+            progress.Progressing += (object sender, ProgressEventArgs e) =>
+            {
+                progressed = true;
+            };
+
+            string filePath = Path.Combine(Path.Combine(_rootPath, "Folder"), "DoesNot.Exist");
+            IRuntimeFileInfo fileInfo = OS.Current.FileInfo(filePath);
+
+            Assert.DoesNotThrow(() => { AxCryptFile.Wipe(fileInfo, progress); });
+            Assert.That(!progressed, "There should be no progress-notification since nothing should happen.");
+        }
+
+        [Test]
+        public static void TestWipeWithDelayedUntilDoneCancel()
+        {
+            IRuntimeFileInfo fileInfo = OS.Current.FileInfo(_davidCopperfieldTxtPath);
+
+            ProgressContext progress = new ProgressContext(TimeSpan.Zero);
+            progress.Progressing += (object sender, ProgressEventArgs e) =>
+            {
+                ((ProgressContext)sender).Cancel = true;
+            };
+            Assert.Throws<OperationCanceledException>(() => { AxCryptFile.Wipe(fileInfo, progress); });
+            Assert.That(!fileInfo.Exists, "The file should be completely wiped, even if canceled at start.");
         }
     }
 }

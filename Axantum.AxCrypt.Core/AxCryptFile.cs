@@ -28,10 +28,11 @@
 using System;
 using System.Globalization;
 using System.IO;
+using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core
@@ -122,6 +123,22 @@ namespace Axantum.AxCrypt.Core
 
         public static void EncryptFileWithBackupAndWipe(string sourceFile, string destinationFile, AesKey key, ProgressContext progress)
         {
+            if (sourceFile == null)
+            {
+                throw new ArgumentNullException("sourceFile");
+            }
+            if (destinationFile == null)
+            {
+                throw new ArgumentNullException("destinationFile");
+            }
+            if (key == null)
+            {
+                throw new ArgumentNullException("key");
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
             IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(sourceFile);
             IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(destinationFile);
             EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, key, progress);
@@ -145,14 +162,16 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("progress");
             }
+            progress.NotifyLevelStart();
             using (Stream activeFileStream = sourceFileInfo.OpenRead())
             {
                 WriteToFileWithBackup(destinationFileInfo, (Stream destination) =>
                 {
                     Encrypt(sourceFileInfo, destination, key, AxCryptOptions.EncryptWithCompression, progress);
-                });
+                }, progress);
             }
-            Wipe(sourceFileInfo);
+            Wipe(sourceFileInfo, progress);
+            progress.NotifyLevelFinished();
         }
 
         /// <summary>
@@ -180,7 +199,7 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("progress");
             }
-            using (AxCryptDocument document = Document(sourceFile, key, progress))
+            using (AxCryptDocument document = Document(sourceFile, key, new ProgressContext()))
             {
                 if (!document.PassphraseIsValid)
                 {
@@ -217,7 +236,7 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("progress");
             }
             string destinationFileName = null;
-            using (AxCryptDocument document = Document(sourceFile, key, progress))
+            using (AxCryptDocument document = Document(sourceFile, key, new ProgressContext()))
             {
                 if (!document.PassphraseIsValid)
                 {
@@ -270,7 +289,7 @@ namespace Axantum.AxCrypt.Core
             {
                 if (destinationFile.Exists)
                 {
-                    destinationFile.Delete();
+                    AxCryptFile.Wipe(destinationFile, progress);
                 }
                 throw;
             }
@@ -303,11 +322,13 @@ namespace Axantum.AxCrypt.Core
             }
 
             AxCryptDocument document = new AxCryptDocument();
-            document.Load(new ProgressStream(sourceFile.OpenRead(), progress), key);
+            Stream stream = new ProgressStream(sourceFile.OpenRead(), progress);
+            progress.AddTotal(stream.Length);
+            document.Load(stream, key);
             return document;
         }
 
-        public static void WriteToFileWithBackup(IRuntimeFileInfo destinationFileInfo, Action<Stream> writeFileStreamTo)
+        public static void WriteToFileWithBackup(IRuntimeFileInfo destinationFileInfo, Action<Stream> writeFileStreamTo, ProgressContext progress)
         {
             if (destinationFileInfo == null)
             {
@@ -332,7 +353,7 @@ namespace Axantum.AxCrypt.Core
             {
                 if (temporaryFileInfo.Exists)
                 {
-                    temporaryFileInfo.Delete();
+                    AxCryptFile.Wipe(temporaryFileInfo, progress);
                 }
                 throw;
             }
@@ -344,7 +365,7 @@ namespace Axantum.AxCrypt.Core
 
                 backupFileInfo.MoveTo(backupFilePath);
                 temporaryFileInfo.MoveTo(destinationFileInfo.FullName);
-                backupFileInfo.Delete();
+                AxCryptFile.Wipe(backupFileInfo, progress);
             }
             else
             {
@@ -382,20 +403,77 @@ namespace Axantum.AxCrypt.Core
             return axCryptFileName;
         }
 
-        public static void Wipe(IRuntimeFileInfo fileInfo)
+        public static void Wipe(IRuntimeFileInfo fileInfo, ProgressContext progress)
         {
             if (fileInfo == null)
             {
                 throw new ArgumentNullException("fileInfo");
             }
-            if (fileInfo.Exists)
+            if (!fileInfo.Exists)
             {
-                if (OS.Log.IsInfoEnabled)
-                {
-                    OS.Log.LogInfo("Wiping '{0}'.".InvariantFormat(fileInfo.Name));
-                }
-                fileInfo.Delete();
+                return;
             }
+            if (OS.Log.IsInfoEnabled)
+            {
+                OS.Log.LogInfo("Wiping '{0}'.".InvariantFormat(fileInfo.Name));
+            }
+            bool cancelPending = false;
+            progress.NotifyLevelStart();
+            using (Stream stream = fileInfo.OpenWrite())
+            {
+                long length = stream.Length + OS.Current.StreamBufferSize - stream.Length % OS.Current.StreamBufferSize;
+                progress.AddTotal(length);
+                for (long position = 0; position < length; position += OS.Current.StreamBufferSize)
+                {
+                    byte[] random = OS.Current.GetRandomBytes(OS.Current.StreamBufferSize);
+                    stream.Write(random, 0, random.Length);
+                    stream.Flush();
+                    try
+                    {
+                        progress.AddCount(random.Length);
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        cancelPending = true;
+                        progress.Cancel = false;
+                        progress.AddCount(random.Length);
+                    }
+                }
+            }
+            string randomName;
+            do
+            {
+                randomName = GenerateRandomFileName(fileInfo.FullName);
+            } while (OS.Current.FileInfo(randomName).Exists);
+
+            IRuntimeFileInfo moveToFileInfo = OS.Current.FileInfo(fileInfo.FullName);
+            moveToFileInfo.MoveTo(randomName);
+            moveToFileInfo.Delete();
+            progress.NotifyLevelFinished();
+            if (cancelPending)
+            {
+                progress.Cancel = true;
+                throw new OperationCanceledException("Delayed cancel during wipe.");
+            }
+        }
+
+        private static string GenerateRandomFileName(string originalFullName)
+        {
+            const string validFileNameChars = "abcdefghijklmnopqrstuvwxyz";
+
+            string directory = Path.GetDirectoryName(originalFullName);
+            string fileName = Path.GetFileNameWithoutExtension(originalFullName);
+
+            int randomLength = fileName.Length < 8 ? 8 : fileName.Length;
+            StringBuilder randomName = new StringBuilder(randomLength + 4);
+            byte[] random = OS.Current.GetRandomBytes(randomLength);
+            for (int i = 0; i < randomLength; ++i)
+            {
+                randomName.Append(validFileNameChars[random[i] % validFileNameChars.Length]);
+            }
+            randomName.Append(".tmp");
+
+            return Path.Combine(directory, randomName.ToString());
         }
     }
 }

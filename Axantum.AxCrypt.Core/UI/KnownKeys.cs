@@ -74,6 +74,10 @@ namespace Axantum.AxCrypt.Core.UI
             set
             {
                 _defaultEncryptionKey = value;
+                if (value == null)
+                {
+                    return;
+                }
                 Add(value);
             }
         }

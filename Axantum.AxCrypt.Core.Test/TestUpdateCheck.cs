@@ -30,7 +30,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
 
@@ -39,34 +39,28 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestUpdateCheck
     {
-        private static IRuntimeEnvironment _environment;
-
-        private static FakeRuntimeEnvironment _fakeRuntimeEnvironment;
-
-        [TestFixtureSetUp]
-        public static void SetupFixture()
+        [SetUp]
+        public static void Setup()
         {
-            _environment = OS.Current;
-            OS.Current = _fakeRuntimeEnvironment = new FakeRuntimeEnvironment();
+            SetupAssembly.AssemblySetup();
         }
 
-        [TestFixtureTearDown]
-        public static void TeardownFixture()
+        [TearDown]
+        public static void Teardown()
         {
-            OS.Current = _environment;
-            FakeRuntimeFileInfo.ClearFiles();
+            SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
         public static void TestVersionUpdated()
         {
-            _fakeRuntimeEnvironment.WebCallerCreator = () =>
+            SetupAssembly.FakeRuntimeEnvironment.WebCallerCreator = () =>
             {
                 return new FakeWebCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.307.0"",""R"":307,""S"":0,""M"":""OK""}");
             };
 
             DateTime utcNow = DateTime.UtcNow;
-            _fakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
 
             Version thisVersion = new Version(2, 0, 300, 0);
             Version newVersion = new Version(2, 0, 307, 0);
@@ -87,6 +81,59 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(eventArgs.VersionUpdateStatus, Is.EqualTo(VersionUpdateStatus.NewerVersionIsAvailable), "The new version was newer.");
             Assert.That(eventArgs.UpdateWebpageUrl, Is.EqualTo(new Uri("http://localhost/AxCrypt/Downloads.html")), "The right URL should be passed in the event args.");
             Assert.That(eventArgs.Version, Is.EqualTo(newVersion), "The new version should be passed back.");
+        }
+
+        [Test]
+        public static void TestVersionUpdatedWithInvalidVersionFormatFromServer()
+        {
+            SetupAssembly.FakeRuntimeEnvironment.WebCallerCreator = () =>
+            {
+                // The version returned has 5 components - bad!
+                return new FakeWebCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.307.0.0"",""R"":307,""S"":0,""M"":""OK""}");
+            };
+
+            DateTime utcNow = DateTime.UtcNow;
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
+
+            Version thisVersion = new Version(2, 0, 300, 0);
+            Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
+            Uri updateWebPageUrl = new Uri("http://www.axantum.com/");
+            VersionEventArgs eventArgs = null;
+            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion))
+            {
+                updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
+                {
+                    eventArgs = e;
+                };
+                updateCheck.CheckInBackground(DateTime.MinValue, UpdateCheck.VersionUnknown.ToString(), restApiUrl, updateWebPageUrl);
+                updateCheck.WaitForBackgroundCheckComplete();
+            }
+
+            Assert.That(eventArgs, Is.Not.Null, "The VersionUpdate event should be called with non-null VersionEventArgs.");
+            Assert.That(eventArgs.VersionUpdateStatus, Is.EqualTo(VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck), "This is not a successful check, and it was DateTime.MinValue since the last.");
+            Assert.That(eventArgs.UpdateWebpageUrl, Is.EqualTo(new Uri("http://localhost/AxCrypt/Downloads.html")), "The right URL should be passed in the event args.");
+            Assert.That(eventArgs.Version, Is.EqualTo(UpdateCheck.VersionUnknown), "The new version has 5 components, and should be parsed as unknown.");
+
+            SetupAssembly.FakeRuntimeEnvironment.WebCallerCreator = () =>
+            {
+                // The version returned is an empty string - bad!
+                return new FakeWebCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":"""",""R"":307,""S"":0,""M"":""OK""}");
+            };
+
+            using (UpdateCheck updateCheck = new UpdateCheck(thisVersion))
+            {
+                updateCheck.VersionUpdate += (object sender, VersionEventArgs e) =>
+                {
+                    eventArgs = e;
+                };
+                updateCheck.CheckInBackground(DateTime.MinValue, UpdateCheck.VersionUnknown.ToString(), restApiUrl, updateWebPageUrl);
+                updateCheck.WaitForBackgroundCheckComplete();
+            }
+
+            Assert.That(eventArgs, Is.Not.Null, "The VersionUpdate event should be called with non-null VersionEventArgs.");
+            Assert.That(eventArgs.VersionUpdateStatus, Is.EqualTo(VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck), "This is not a successful check, and it was DateTime.MinValue since the last.");
+            Assert.That(eventArgs.UpdateWebpageUrl, Is.EqualTo(new Uri("http://localhost/AxCrypt/Downloads.html")), "The right URL should be passed in the event args.");
+            Assert.That(eventArgs.Version, Is.EqualTo(UpdateCheck.VersionUnknown), "The new version is an empty string and should be parse as unknown.");
         }
 
         [Test]
@@ -111,13 +158,13 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDoubleDisposeAndObjectDisposedException()
         {
-            _fakeRuntimeEnvironment.WebCallerCreator = () =>
+            SetupAssembly.FakeRuntimeEnvironment.WebCallerCreator = () =>
             {
                 return new FakeWebCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.307.0"",""R"":307,""S"":0,""M"":""OK""}");
             };
 
             DateTime utcNow = DateTime.UtcNow;
-            _fakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
 
             Version thisVersion = new Version(2, 0, 300, 0);
             Version newVersion = new Version(2, 0, 307, 0);
@@ -146,13 +193,13 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestVersionNotUpdatedNotCheckedBefore()
         {
-            _fakeRuntimeEnvironment.WebCallerCreator = () =>
+            SetupAssembly.FakeRuntimeEnvironment.WebCallerCreator = () =>
             {
                 return new FakeWebCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.207.0"",""R"":207,""S"":0,""M"":""OK""}");
             };
 
             DateTime utcNow = DateTime.UtcNow;
-            _fakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
 
             Version thisVersion = new Version(2, 0, 300, 0);
             Version newVersion = new Version(2, 0, 207, 0);
@@ -178,13 +225,13 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestVersionSameAndCheckedRecently()
         {
-            _fakeRuntimeEnvironment.WebCallerCreator = () =>
+            SetupAssembly.FakeRuntimeEnvironment.WebCallerCreator = () =>
             {
                 return new FakeWebCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.300.0"",""R"":300,""S"":0,""M"":""OK""}");
             };
 
             DateTime utcNow = DateTime.UtcNow;
-            _fakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
 
             Version thisVersion = new Version(2, 0, 300, 0);
             Version newVersion = new Version(2, 0, 300, 0);
@@ -213,13 +260,13 @@ namespace Axantum.AxCrypt.Core.Test
             bool wasCalled = false;
             FakeWebCaller webCaller = new FakeWebCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.400.0"",""R"":300,""S"":0,""M"":""OK""}");
             webCaller.Calling += (object sender, EventArgs e) => { wasCalled = true; };
-            _fakeRuntimeEnvironment.WebCallerCreator = () =>
+            SetupAssembly.FakeRuntimeEnvironment.WebCallerCreator = () =>
             {
                 return webCaller;
             };
 
             DateTime utcNow = DateTime.UtcNow;
-            _fakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
 
             Version thisVersion = new Version(2, 0, 300, 0);
             Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
@@ -249,13 +296,13 @@ namespace Axantum.AxCrypt.Core.Test
             ManualResetEvent wait = new ManualResetEvent(false);
             FakeWebCaller webCaller = new FakeWebCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.400.0"",""R"":300,""S"":0,""M"":""OK""}");
             webCaller.Calling += (object sender, EventArgs e) => { wait.WaitOne(); ++calls; };
-            _fakeRuntimeEnvironment.WebCallerCreator = () =>
+            SetupAssembly.FakeRuntimeEnvironment.WebCallerCreator = () =>
             {
                 return webCaller;
             };
 
             DateTime utcNow = DateTime.UtcNow;
-            _fakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
 
             Version thisVersion = new Version(2, 0, 300, 0);
             Version newVersion = new Version(2, 0, 400, 0);
@@ -286,13 +333,13 @@ namespace Axantum.AxCrypt.Core.Test
         {
             FakeWebCaller webCaller = new FakeWebCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.400.0"",""R"":300,""S"":0,""M"":""OK""}");
             webCaller.Calling += (object sender, EventArgs e) => { throw new InvalidOperationException("Oops - a forced exception during the call."); };
-            _fakeRuntimeEnvironment.WebCallerCreator = () =>
+            SetupAssembly.FakeRuntimeEnvironment.WebCallerCreator = () =>
             {
                 return webCaller;
             };
 
             DateTime utcNow = DateTime.UtcNow;
-            _fakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
 
             Version thisVersion = new Version(2, 0, 300, 0);
             Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
@@ -319,13 +366,13 @@ namespace Axantum.AxCrypt.Core.Test
         {
             FakeWebCaller webCaller = new FakeWebCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""2.0.400.0"",""R"":300,""S"":0,""M"":""OK""}");
             webCaller.Calling += (object sender, EventArgs e) => { throw new InvalidOperationException("Oops - a forced exception during the call."); };
-            _fakeRuntimeEnvironment.WebCallerCreator = () =>
+            SetupAssembly.FakeRuntimeEnvironment.WebCallerCreator = () =>
             {
                 return webCaller;
             };
 
             DateTime utcNow = DateTime.UtcNow;
-            _fakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
 
             Version thisVersion = new Version(2, 0, 300, 0);
             Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");
@@ -350,13 +397,13 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestInvalidVersionReturned()
         {
-            _fakeRuntimeEnvironment.WebCallerCreator = () =>
+            SetupAssembly.FakeRuntimeEnvironment.WebCallerCreator = () =>
             {
                 return new FakeWebCaller(@"{""U"":""http://localhost/AxCrypt/Downloads.html"",""V"":""x.y.z.z"",""R"":207,""S"":0,""M"":""OK""}");
             };
 
             DateTime utcNow = DateTime.UtcNow;
-            _fakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
 
             Version thisVersion = new Version(2, 0, 300, 0);
             Uri restApiUrl = new Uri("http://localhost/RestApi.asxh/axcrypt2version");

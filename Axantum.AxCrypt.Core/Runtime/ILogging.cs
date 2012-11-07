@@ -30,14 +30,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.System
+namespace Axantum.AxCrypt.Core.Runtime
 {
-    public enum LogLevel
+    public interface ILogging
     {
-        Fatal,
-        Error,
-        Warning,
-        Info,
-        Debug,
+        void SetLevel(LogLevel level);
+
+        bool IsFatalEnabled { get; }
+
+        bool IsErrorEnabled { get; }
+
+        bool IsWarningEnabled { get; }
+
+        bool IsInfoEnabled { get; }
+
+        bool IsDebugEnabled { get; }
+
+        void LogFatal(string message);
+
+        void LogError(string message);
+
+        void LogWarning(string message);
+
+        void LogInfo(string message);
+
+        void LogDebug(string message);
     }
 }

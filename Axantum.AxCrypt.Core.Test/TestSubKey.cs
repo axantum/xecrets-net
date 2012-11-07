@@ -27,7 +27,7 @@
 
 using System;
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -35,6 +35,18 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestSubkey
     {
+        [SetUp]
+        public static void Setup()
+        {
+            SetupAssembly.AssemblySetup();
+        }
+
+        [TearDown]
+        public static void Teardown()
+        {
+            SetupAssembly.AssemblyTeardown();
+        }
+
         [Test]
         public static void TestSubkeyMethods()
         {

@@ -31,22 +31,23 @@ using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using Axantum.AxCrypt.Core.UI;
 
-namespace Axantum.AxCrypt.Core.System
+namespace Axantum.AxCrypt.Core.Runtime
 {
     /// <summary>
-    /// Perform work on a separate thread with support for progress and cancellation.
+    /// Perform work on a separate thread.
     /// </summary>
-    public class ThreadWorker : IDisposable
+    public class ThreadWorker : IThreadWorker, IDisposable
     {
+        private ManualResetEvent _joined = new ManualResetEvent(false);
+
         private BackgroundWorker _worker;
 
-        private ProgressContext _progress;
+        private ThreadWorkerEventArgs _e;
 
-        private Func<ProgressContext, FileOperationStatus> _work;
-
-        private Action<FileOperationStatus> _complete;
+        private static readonly object _lock = new object();
 
         /// <summary>
         /// Create a thread worker.
@@ -54,26 +55,14 @@ namespace Axantum.AxCrypt.Core.System
         /// <param name="displayText">A text that may be used in messages as a reference for users.</param>
         /// <param name="work">A 'work' delegate. Executed on a separate thread, not the GUI thread.</param>
         /// <param name="complete">A 'complete' delegate. Executed on the original thread, typically the GUI thread.</param>
-        public ThreadWorker(string displayText, Func<ProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
+        public ThreadWorker(ProgressContext progress)
         {
-            _work = work;
-            _complete = complete;
             _worker = new BackgroundWorker();
-            _worker.WorkerReportsProgress = true;
-            _worker.WorkerSupportsCancellation = true;
+
             _worker.DoWork += new DoWorkEventHandler(_worker_DoWork);
-            _worker.ProgressChanged += new ProgressChangedEventHandler(_worker_ProgressChanged);
             _worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(_worker_RunWorkerCompleted);
 
-            _progress = new ProgressContext(displayText);
-            _progress.Progressing += (object sender, ProgressEventArgs e) =>
-            {
-                if (_worker.CancellationPending)
-                {
-                    throw new OperationCanceledException();
-                }
-                _worker.ReportProgress(e.Percent);
-            };
+            _e = new ThreadWorkerEventArgs(progress);
         }
 
         /// <summary>
@@ -85,62 +74,81 @@ namespace Axantum.AxCrypt.Core.System
             {
                 throw new ObjectDisposedException("ThreadWorker");
             }
-            OnPrepare(new ThreadWorkerEventArgs(_worker));
-            _worker.RunWorkerAsync(_progress);
+            OnPrepare(_e);
+            _worker.RunWorkerAsync();
+        }
+
+        /// <summary>
+        /// Perform blocking wait until this thread has completed execution.
+        /// </summary>
+        public void Join()
+        {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException("ThreadWorker");
+            }
+            _joined.WaitOne();
+        }
+
+        /// <summary>
+        /// Abort this thread - can only be called *before* Run() has been called.
+        /// </summary>
+        public void Abort()
+        {
+            OnCompleting(_e);
+            CompleteWorker();
+        }
+
+        /// <summary>
+        /// Returns true if the thread has completed execution.
+        /// </summary>
+        public bool HasCompleted
+        {
+            get
+            {
+                if (_disposed)
+                {
+                    throw new ObjectDisposedException("ThreadWorker");
+                }
+                return _joined.WaitOne(0, false);
+            }
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Here we really do want to catch everything, and report to the user.")]
         private void _worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            if (_disposed)
-            {
-                throw new ObjectDisposedException("ThreadWorker");
-            }
             try
             {
-                e.Result = _work((ProgressContext)e.Argument);
+                OnWork(_e);
+                e.Result = _e.Result;
             }
             catch (OperationCanceledException)
             {
                 e.Result = FileOperationStatus.Canceled;
             }
-            catch (Exception ex)
-            {
-                if (OS.Log.IsWarningEnabled)
-                {
-                    OS.Log.LogWarning("Exception during encryption '{0}'".InvariantFormat(ex.Message));
-                }
-                e.Result = FileOperationStatus.Exception;
-            }
             return;
-        }
-
-        private void _worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            if (_disposed)
-            {
-                throw new ObjectDisposedException("ThreadWorker");
-            }
-            OnProgress(new ThreadWorkerEventArgs(_worker, e.ProgressPercentage));
         }
 
         private void _worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (_disposed)
+            lock (_lock)
             {
-                throw new ObjectDisposedException("ThreadWorker");
-            }
-            try
-            {
-                _complete((FileOperationStatus)e.Result);
-                OnCompleted(new ThreadWorkerEventArgs(_worker));
-            }
-            finally
-            {
-                _worker.DoWork -= _worker_DoWork;
-                _worker.RunWorkerCompleted -= _worker_RunWorkerCompleted;
-                _worker.ProgressChanged -= _worker_ProgressChanged;
-                Dispose();
+                try
+                {
+                    if (e.Error != null)
+                    {
+                        _e.Result = FileOperationStatus.Exception;
+                    }
+                    else
+                    {
+                        _e.Result = (FileOperationStatus)e.Result;
+                    }
+                    OnCompleting(_e);
+                }
+                finally
+                {
+                    CompleteWorker();
+                }
             }
             if (OS.Log.IsInfoEnabled)
             {
@@ -164,14 +172,14 @@ namespace Axantum.AxCrypt.Core.System
         }
 
         /// <summary>
-        /// Raised when progress is reported. Runs on the original thread,
-        /// typically the GUI thread.
+        /// Raised when asynchronous execution starts. Runs on a different
+        /// thread than the caller thread. Do not interact with the GUI here.
         /// </summary>
-        public event EventHandler<ThreadWorkerEventArgs> Progress;
+        public event EventHandler<ThreadWorkerEventArgs> Work;
 
-        protected virtual void OnProgress(ThreadWorkerEventArgs e)
+        protected virtual void OnWork(ThreadWorkerEventArgs e)
         {
-            EventHandler<ThreadWorkerEventArgs> handler = Progress;
+            EventHandler<ThreadWorkerEventArgs> handler = Work;
             if (handler != null)
             {
                 handler(this, e);
@@ -181,6 +189,21 @@ namespace Axantum.AxCrypt.Core.System
         /// <summary>
         /// Raised when all is done. Runs on the original thread, typically
         /// the GUI thread.
+        /// </summary>
+        public event EventHandler<ThreadWorkerEventArgs> Completing;
+
+        protected virtual void OnCompleting(ThreadWorkerEventArgs e)
+        {
+            EventHandler<ThreadWorkerEventArgs> handler = Completing;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        /// <summary>
+        /// Raised when the underlying worker thread has ended. There is no guarantee on what
+        /// thread this will run.
         /// </summary>
         public event EventHandler<ThreadWorkerEventArgs> Completed;
 
@@ -214,18 +237,43 @@ namespace Axantum.AxCrypt.Core.System
 
             if (disposing)
             {
-                if (_worker != null)
+                Join();
+                DisposeWorker();
+                if (_joined != null)
                 {
-                    IDisposable workerAsDisposibleWhichIsPlatformDependent = _worker as IDisposable;
-                    if (workerAsDisposibleWhichIsPlatformDependent != null)
-                    {
-                        workerAsDisposibleWhichIsPlatformDependent.Dispose();
-                    }
-                    _worker = null;
+                    _joined.Close();
+                    _joined = null;
                 }
             }
 
             _disposed = true;
+        }
+
+        private void CompleteWorker()
+        {
+            if (DisposeWorker())
+            {
+                _joined.Set();
+                OnCompleted(_e);
+            }
+        }
+
+        private bool DisposeWorker()
+        {
+            if (_worker != null)
+            {
+                _worker.DoWork -= _worker_DoWork;
+                _worker.RunWorkerCompleted -= _worker_RunWorkerCompleted;
+
+                IDisposable workerAsDisposibleWhichIsPlatformDependent = _worker as IDisposable;
+                if (workerAsDisposibleWhichIsPlatformDependent != null)
+                {
+                    workerAsDisposibleWhichIsPlatformDependent.Dispose();
+                }
+                _worker = null;
+                return true;
+            }
+            return false;
         }
     }
 }

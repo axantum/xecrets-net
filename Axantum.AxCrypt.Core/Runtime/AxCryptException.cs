@@ -26,45 +26,46 @@
 #endregion Coypright and License
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
+using System.Security.Permissions;
 
-namespace Axantum.AxCrypt.Core.System
+namespace Axantum.AxCrypt.Core.Runtime
 {
-    /// <summary>
-    /// An internal program logic error in the library itself has been detected. Use InvalidOperationException for invalid
-    /// program states typically caused by caller errors.
-    /// </summary>
     [Serializable]
-    public class InternalErrorException : AxCryptException
+    public abstract class AxCryptException : Exception
     {
-        public InternalErrorException()
+        public ErrorStatus ErrorStatus { get; set; }
+
+        protected AxCryptException()
             : base()
         {
+            ErrorStatus = ErrorStatus.Unknown;
         }
 
-        public InternalErrorException(string message)
-            : base(message, ErrorStatus.InternalError)
+        protected AxCryptException(string message, ErrorStatus errorStatus)
+            : base(message)
         {
+            ErrorStatus = errorStatus;
         }
 
-        public InternalErrorException(string message, ErrorStatus errorStatus)
-            : base(message, errorStatus)
-        {
-        }
-
-        protected InternalErrorException(SerializationInfo info, StreamingContext context)
+        protected AxCryptException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
+            ErrorStatus = (ErrorStatus)info.GetInt32("ErrorStatus");
         }
 
-        public InternalErrorException(string message, Exception innerException)
-            : this(message, ErrorStatus.InternalError, innerException)
+        protected AxCryptException(string message, ErrorStatus errorStatus, Exception innerException)
+            : base(message, innerException)
         {
+            ErrorStatus = errorStatus;
         }
 
-        public InternalErrorException(string message, ErrorStatus errorStatus, Exception innerException)
-            : base(message, errorStatus, innerException)
+        [SuppressMessage("Microsoft.Security", "CA2123:OverrideLinkDemandsShouldBeIdenticalToBase", Justification = "CAS is obsoleted by some target platforms.")]
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
+            base.GetObjectData(info, context);
+            info.AddValue("ErrorStatus", (int)ErrorStatus);
         }
     }
 }

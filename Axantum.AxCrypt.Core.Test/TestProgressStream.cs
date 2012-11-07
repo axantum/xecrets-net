@@ -39,6 +39,18 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestProgressStreamTest
     {
+        [SetUp]
+        public static void Setup()
+        {
+            SetupAssembly.AssemblySetup();
+        }
+
+        [TearDown]
+        public static void Teardown()
+        {
+            SetupAssembly.AssemblyTeardown();
+        }
+
         [Test]
         public static void TestInvalidArguments()
         {
@@ -58,10 +70,10 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestPropertiesAndMethods()
         {
-            using (MemoryStream memoryStream = new MemoryStream(new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }))
+            using (MemoryStream memoryStream = FakeRuntimeFileInfo.ExpandableMemoryStream(new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }))
             {
                 string kilroy = String.Empty;
-                using (TestStream testStream = new TestStream(memoryStream, (string wasHere) => { kilroy += wasHere; }))
+                using (FakeStream testStream = new FakeStream(memoryStream, (string wasHere) => { kilroy += wasHere; }))
                 {
                     using (ProgressStream progressStream = new ProgressStream(testStream, new ProgressContext()))
                     {

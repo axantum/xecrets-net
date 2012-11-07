@@ -35,10 +35,22 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestAxCryptReaderVersionHeaderBlock
     {
+        [SetUp]
+        public static void Setup()
+        {
+            SetupAssembly.AssemblySetup();
+        }
+
+        [TearDown]
+        public static void Teardown()
+        {
+            SetupAssembly.AssemblyTeardown();
+        }
+
         [Test]
         public static void TestFindVersionHeaderBlockFromSimpleFile()
         {
-            using (Stream testStream = new MemoryStream(Resources.helloworld_key_a_txt))
+            using (Stream testStream = FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
             {
                 using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
                 {

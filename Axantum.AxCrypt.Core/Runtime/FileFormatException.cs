@@ -26,34 +26,41 @@
 #endregion Coypright and License
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Runtime.Serialization;
 
-namespace Axantum.AxCrypt.Core.System
+namespace Axantum.AxCrypt.Core.Runtime
 {
-    public interface ILogging
+    [Serializable]
+    public class FileFormatException : AxCryptException
     {
-        void SetLevel(LogLevel level);
+        public FileFormatException()
+            : base()
+        {
+        }
 
-        bool IsFatalEnabled { get; }
+        public FileFormatException(string message)
+            : this(message, ErrorStatus.FileFormatError)
+        {
+        }
 
-        bool IsErrorEnabled { get; }
+        public FileFormatException(string message, ErrorStatus errorStatus)
+            : base(message, errorStatus)
+        {
+        }
 
-        bool IsWarningEnabled { get; }
+        protected FileFormatException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        {
+        }
 
-        bool IsInfoEnabled { get; }
+        public FileFormatException(string message, Exception innerException)
+            : this(message, ErrorStatus.FileFormatError, innerException)
+        {
+        }
 
-        bool IsDebugEnabled { get; }
-
-        void LogFatal(string message);
-
-        void LogError(string message);
-
-        void LogWarning(string message);
-
-        void LogInfo(string message);
-
-        void LogDebug(string message);
+        public FileFormatException(string message, ErrorStatus errorStatus, Exception innerException)
+            : base(message, errorStatus, innerException)
+        {
+        }
     }
 }

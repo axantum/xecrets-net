@@ -136,5 +136,17 @@ namespace Axantum.AxCrypt.Properties {
                 this["ShowDecryptPassphrase"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("250")]
+        public int MaxNumberRecentFiles {
+            get {
+                return ((int)(this["MaxNumberRecentFiles"]));
+            }
+            set {
+                this["MaxNumberRecentFiles"] = value;
+            }
+        }
     }
 }

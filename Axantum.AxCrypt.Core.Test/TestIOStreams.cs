@@ -38,6 +38,18 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestIOStreams
     {
+        [SetUp]
+        public static void Setup()
+        {
+            SetupAssembly.AssemblySetup();
+        }
+
+        [TearDown]
+        public static void Teardown()
+        {
+            SetupAssembly.AssemblyTeardown();
+        }
+
         [Test]
         public static void TestAxCryptDataStream()
         {
@@ -180,6 +192,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.Throws<ObjectDisposedException>(() =>
                 {
                     DataHmac invalidDataHmac = hmacStream.HmacResult;
+
                     // Remove FxCop warning
                     Object.Equals(invalidDataHmac, null);
                 });
@@ -226,12 +239,14 @@ namespace Axantum.AxCrypt.Core.Test
                     Assert.Throws<NotSupportedException>(() =>
                     {
                         long length = lookAheadStream.Length;
+
                         // Make FxCop not complain
                         Object.Equals(length, null);
                     });
                     Assert.Throws<NotSupportedException>(() =>
                     {
                         long position = lookAheadStream.Position;
+
                         // Make FxCop not complain
                         Object.Equals(position, null);
                     });

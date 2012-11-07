@@ -37,28 +37,29 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestProgressEventArgsTest
     {
-        [Test]
-        public static void TestArgumentOutOfRange()
+        [SetUp]
+        public static void Setup()
         {
-            ProgressContext progressContext = new ProgressContext(TimeSpan.Zero);
-            progressContext.Max = 100;
-            Assert.Throws<ArgumentOutOfRangeException>(() =>
-            {
-                progressContext.Current = 101;
-            });
+            SetupAssembly.AssemblySetup();
+        }
+
+        [TearDown]
+        public static void Teardown()
+        {
+            SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
         public static void TestProgress()
         {
-            ProgressContext progressContext = new ProgressContext(TimeSpan.Zero);
-            progressContext.Max = 100;
+            ProgressContext progress = new ProgressContext(TimeSpan.Zero);
+            progress.AddTotal(100);
             bool wasHere = false;
-            progressContext.Progressing += (object sender, ProgressEventArgs e) =>
+            progress.Progressing += (object sender, ProgressEventArgs e) =>
             {
                 wasHere = true;
             };
-            progressContext.Current = 0;
+            progress.AddCount(1);
             Assert.That(wasHere, "The event should be raised.");
         }
     }

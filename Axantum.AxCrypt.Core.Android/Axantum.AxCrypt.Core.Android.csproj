@@ -183,6 +183,9 @@
     <Compile Include="..\Axantum.AxCrypt.Core\IO\IWebCaller.cs">
       <Link>IO\IWebCaller.cs</Link>
     </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\IO\LockingStream.cs">
+      <Link>IO\LockingStream.cs</Link>
+    </Compile>
     <Compile Include="..\Axantum.AxCrypt.Core\IO\LookAheadStream.cs">
       <Link>IO\LookAheadStream.cs</Link>
     </Compile>
@@ -204,6 +207,54 @@
     <Compile Include="..\Axantum.AxCrypt.Core\Reader\AxCryptStreamReader.cs">
       <Link>Reader\AxCryptStreamReader.cs</Link>
     </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Runtime\AxCryptException.cs">
+      <Link>Runtime\AxCryptException.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Runtime\DelegateTraceListener.cs">
+      <Link>Runtime\DelegateTraceListener.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Runtime\FileFormatException.cs">
+      <Link>Runtime\FileFormatException.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Runtime\IDataProtection.cs">
+      <Link>Runtime\IDataProtection.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Runtime\ILauncher.cs">
+      <Link>Runtime\ILauncher.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Runtime\ILogging.cs">
+      <Link>Runtime\ILogging.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Runtime\InternalErrorException.cs">
+      <Link>Runtime\InternalErrorException.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Runtime\InvalidDataException.cs">
+      <Link>Runtime\InvalidDataException.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Runtime\IRuntimeEnvironment.cs">
+      <Link>Runtime\IRuntimeEnvironment.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Runtime\IThreadWorker.cs">
+      <Link>Runtime\IThreadWorker.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Runtime\ITiming.cs">
+      <Link>Runtime\ITiming.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Runtime\LogLevel.cs">
+      <Link>Runtime\LogLevel.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Runtime\Platform.cs">
+      <Link>Runtime\Platform.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Runtime\ThreadWorker.cs">
+      <Link>Runtime\ThreadWorker.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Runtime\ThreadWorkerEventArgs.cs">
+      <Link>Runtime\ThreadWorkerEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Runtime\WorkerGroup.cs">
+      <Link>Runtime\WorkerGroup.cs</Link>
+    </Compile>
     <Compile Include="..\Axantum.AxCrypt.Core\Session\ActiveFile.cs">
       <Link>Session\ActiveFile.cs</Link>
     </Compile>
@@ -224,48 +275,6 @@
     </Compile>
     <Compile Include="..\Axantum.AxCrypt.Core\Session\FileSystemStateExtensions.cs">
       <Link>Session\FileSystemStateExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Core\System\AxCryptException.cs">
-      <Link>System\AxCryptException.cs</Link>
-    </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Core\System\DelegateTraceListener.cs">
-      <Link>System\DelegateTraceListener.cs</Link>
-    </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Core\System\FileFormatException.cs">
-      <Link>System\FileFormatException.cs</Link>
-    </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Core\System\IDataProtection.cs">
-      <Link>System\IDataProtection.cs</Link>
-    </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Core\System\ILauncher.cs">
-      <Link>System\ILauncher.cs</Link>
-    </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Core\System\ILogging.cs">
-      <Link>System\ILogging.cs</Link>
-    </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Core\System\InternalErrorException.cs">
-      <Link>System\InternalErrorException.cs</Link>
-    </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Core\System\InvalidDataException.cs">
-      <Link>System\InvalidDataException.cs</Link>
-    </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Core\System\IRuntimeEnvironment.cs">
-      <Link>System\IRuntimeEnvironment.cs</Link>
-    </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Core\System\ITiming.cs">
-      <Link>System\ITiming.cs</Link>
-    </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Core\System\LogLevel.cs">
-      <Link>System\LogLevel.cs</Link>
-    </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Core\System\Platform.cs">
-      <Link>System\Platform.cs</Link>
-    </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Core\System\ThreadWorker.cs">
-      <Link>System\ThreadWorker.cs</Link>
-    </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Core\System\ThreadWorkerEventArgs.cs">
-      <Link>System\ThreadWorkerEventArgs.cs</Link>
     </Compile>
     <Compile Include="..\Axantum.AxCrypt.Core\UI\FileOperation.cs">
       <Link>UI\FileOperation.cs</Link>

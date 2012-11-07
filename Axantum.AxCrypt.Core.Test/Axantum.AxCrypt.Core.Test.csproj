@@ -99,6 +99,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
     <Reference Include="nunit.framework">
@@ -123,7 +124,9 @@
     <Compile Include="SetupAssembly.cs" />
     <Compile Include="TestActiveFile.cs" />
     <Compile Include="TestActiveFileCollectionTests.cs" />
+    <Compile Include="TestDelegateTraceListener.cs" />
     <Compile Include="TestFileOperation.cs" />
+    <Compile Include="TestFileOperationsController.cs" />
     <Compile Include="TestFileSystemStateExtensions.cs" />
     <Compile Include="TestAesCrypto.cs" />
     <Compile Include="TestAesIV.cs" />
@@ -147,6 +150,7 @@
     <Compile Include="TestFileLock.cs" />
     <Compile Include="TestFileNameInfoHeaderBlock.cs" />
     <Compile Include="TestFileSystemState.cs" />
+    <Compile Include="TestFileWatcher.cs" />
     <Compile Include="TestIdTagHeaderBlock.cs" />
     <Compile Include="TestIOStreams.cs" />
     <Compile Include="TestKeyWrap.cs" />
@@ -154,17 +158,21 @@
     <Compile Include="TestKeyWrap2HeaderBlock.cs" />
     <Compile Include="TestKeyWrapSalt.cs" />
     <Compile Include="TestKnownKeys.cs" />
+    <Compile Include="TestLockingStreamTests.cs" />
     <Compile Include="TestPassphrase.cs" />
     <Compile Include="TestPreambleHeaderBlock.cs" />
     <Compile Include="TestProgressContext.cs" />
     <Compile Include="TestProgressEventArgsTest.cs" />
     <Compile Include="TestProgressStream.cs" />
-    <Compile Include="TestStream.cs" />
+    <Compile Include="TestResources.cs" />
+    <Compile Include="FakeStream.cs" />
     <Compile Include="TestSubkey.cs" />
+    <Compile Include="TestThreadWorker.cs" />
     <Compile Include="TestUnicodeFileNameInfoHeaderBlock .cs" />
     <Compile Include="TestUnrecognizedHeaderBlock .cs" />
     <Compile Include="TestUpdateCheck.cs" />
     <Compile Include="TestVersionHeaderBlock .cs" />
+    <Compile Include="TestWorkerGroup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />

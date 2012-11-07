@@ -33,6 +33,18 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestVersionHeaderBlock
     {
+        [SetUp]
+        public static void Setup()
+        {
+            SetupAssembly.AssemblySetup();
+        }
+
+        [TearDown]
+        public static void Teardown()
+        {
+            SetupAssembly.AssemblyTeardown();
+        }
+
         [Test]
         public static void TestVersionValues()
         {

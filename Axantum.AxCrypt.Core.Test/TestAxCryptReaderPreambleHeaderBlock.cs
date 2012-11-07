@@ -28,7 +28,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using Axantum.AxCrypt.Core.Reader;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Test.Properties;
 using NUnit.Framework;
 
@@ -37,6 +37,18 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public class TestAxCryptReaderPreambleHeaderBlock
     {
+        [SetUp]
+        public static void Setup()
+        {
+            SetupAssembly.AssemblySetup();
+        }
+
+        [TearDown]
+        public static void Teardown()
+        {
+            SetupAssembly.AssemblyTeardown();
+        }
+
         [Test]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This is test, readability and coding ease is a concern, not performance.")]
         public void TestFindPreambleHeaderBlockFirstButMoreThanOnceShouldThrow()
@@ -84,7 +96,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFindPreambleHeaderBlockFromSimpleFile()
         {
-            using (Stream testStream = new MemoryStream(Resources.helloworld_key_a_txt))
+            using (Stream testStream = FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
             {
                 using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
                 {

@@ -33,8 +33,8 @@ using System.Linq;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
-using Axantum.AxCrypt.Core.System;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using Microsoft;
@@ -45,10 +45,6 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestFileOperation
     {
-        private static IRuntimeEnvironment _environment;
-
-        private static FakeRuntimeEnvironment _fakeRuntimeEnvironment;
-
         private static FileSystemState _fileSystemState;
 
         private static readonly string _rootPath = Path.GetPathRoot(Environment.CurrentDirectory);
@@ -70,13 +66,12 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
-            _environment = OS.Current;
-            OS.Current = _fakeRuntimeEnvironment = new FakeRuntimeEnvironment();
+            SetupAssembly.AssemblySetup();
 
-            FakeRuntimeFileInfo.AddFile(_testTextPath, FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate1Utc, new MemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
-            FakeRuntimeFileInfo.AddFile(_davidCopperfieldTxtPath, FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate5Utc, FakeRuntimeFileInfo.TestDate6Utc, new MemoryStream(Encoding.GetEncoding(1252).GetBytes(Resources.david_copperfield)));
-            FakeRuntimeFileInfo.AddFile(_uncompressedAxxPath, new MemoryStream(Resources.uncompressable_zip));
-            FakeRuntimeFileInfo.AddFile(_helloWorldAxxPath, new MemoryStream(Resources.helloworld_key_a_txt));
+            FakeRuntimeFileInfo.AddFile(_testTextPath, FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.ExpandableMemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
+            FakeRuntimeFileInfo.AddFile(_davidCopperfieldTxtPath, FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate5Utc, FakeRuntimeFileInfo.TestDate6Utc, FakeRuntimeFileInfo.ExpandableMemoryStream(Encoding.GetEncoding(1252).GetBytes(Resources.david_copperfield)));
+            FakeRuntimeFileInfo.AddFile(_uncompressedAxxPath, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.uncompressable_zip));
+            FakeRuntimeFileInfo.AddFile(_helloWorldAxxPath, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
 
             _fileSystemState = new FileSystemState();
             _fileSystemState.Load(OS.Current.FileInfo(Path.Combine(Path.GetTempPath(), "FileSystemState.xml")));
@@ -85,8 +80,8 @@ namespace Axantum.AxCrypt.Core.Test
         [TearDown]
         public static void Teardown()
         {
-            OS.Current = _environment;
-            FakeRuntimeFileInfo.ClearFiles();
+            _fileSystemState.Dispose();
+            SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
@@ -115,7 +110,7 @@ namespace Axantum.AxCrypt.Core.Test
             IEnumerable<AesKey> keys = new AesKey[] { new Passphrase("a").DerivedPassphrase };
 
             FakeLauncher launcher = null;
-            _fakeRuntimeEnvironment.Launcher = ((string path) =>
+            SetupAssembly.FakeRuntimeEnvironment.Launcher = ((string path) =>
             {
                 launcher = new FakeLauncher(path);
                 return launcher;
@@ -126,6 +121,72 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
             Assert.That(launcher, Is.Not.Null, "There should be a call to launch.");
             Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
+        }
+
+        [Test]
+        public static void TestOpenAndLaunchOfAxCryptDocument()
+        {
+            FakeLauncher launcher = null;
+            SetupAssembly.FakeRuntimeEnvironment.Launcher = ((string path) =>
+            {
+                launcher = new FakeLauncher(path);
+                return launcher;
+            });
+
+            FileOperationStatus status;
+            using (AxCryptDocument document = new AxCryptDocument())
+            {
+                using (Stream stream = OS.Current.FileInfo(_helloWorldAxxPath).OpenRead())
+                {
+                    document.Load(stream, new Passphrase("a").DerivedPassphrase);
+                    status = _fileSystemState.OpenAndLaunchApplication(_helloWorldAxxPath, document, new ProgressContext());
+                }
+            }
+
+            Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
+            Assert.That(launcher, Is.Not.Null, "There should be a call to launch.");
+            Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
+        }
+
+        [Test]
+        public static void TestOpenAndLaunchOfAxCryptDocumentWhenAlreadyDecrypted()
+        {
+            TestOpenAndLaunchOfAxCryptDocument();
+
+            FakeLauncher launcher = null;
+            SetupAssembly.FakeRuntimeEnvironment.Launcher = ((string path) =>
+            {
+                launcher = new FakeLauncher(path);
+                return launcher;
+            });
+
+            FileOperationStatus status;
+            using (AxCryptDocument document = new AxCryptDocument())
+            {
+                using (Stream stream = OS.Current.FileInfo(_helloWorldAxxPath).OpenRead())
+                {
+                    document.Load(stream, new Passphrase("a").DerivedPassphrase);
+                    status = _fileSystemState.OpenAndLaunchApplication(_helloWorldAxxPath, document, new ProgressContext());
+                }
+            }
+
+            Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
+            Assert.That(launcher, Is.Not.Null, "There should be a call to launch.");
+            Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
+        }
+
+        [Test]
+        public static void TestOpenAndLaunchOfAxCryptDocumentArgumentNullException()
+        {
+            FileSystemState nullFileSystemState = null;
+            string nullString = null;
+            AxCryptDocument nullDocument = null;
+            ProgressContext nullProgressContext = null;
+
+            Assert.Throws<ArgumentNullException>(() => { nullFileSystemState.OpenAndLaunchApplication(_helloWorldAxxPath, new AxCryptDocument(), new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { _fileSystemState.OpenAndLaunchApplication(nullString, new AxCryptDocument(), new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { _fileSystemState.OpenAndLaunchApplication(_helloWorldAxxPath, nullDocument, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { _fileSystemState.OpenAndLaunchApplication(_helloWorldAxxPath, new AxCryptDocument(), nullProgressContext); });
         }
 
         [Test]
@@ -143,7 +204,7 @@ namespace Axantum.AxCrypt.Core.Test
             IEnumerable<AesKey> keys = new AesKey[] { new Passphrase("a").DerivedPassphrase };
 
             DateTime utcNow = DateTime.UtcNow;
-            _fakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
             FileOperationStatus status = _fileSystemState.OpenAndLaunchApplication(_helloWorldAxxPath, keys, new ProgressContext());
 
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
@@ -164,7 +225,7 @@ namespace Axantum.AxCrypt.Core.Test
             IEnumerable<AesKey> keys = new AesKey[] { new Passphrase("a").DerivedPassphrase };
 
             DateTime utcNow = DateTime.UtcNow;
-            _fakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
             FileOperationStatus status = _fileSystemState.OpenAndLaunchApplication(_helloWorldAxxPath, keys, new ProgressContext());
 
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
@@ -197,7 +258,7 @@ namespace Axantum.AxCrypt.Core.Test
             IEnumerable<AesKey> keys = new AesKey[] { new Passphrase("a").DerivedPassphrase };
 
             FakeLauncher launcher = null;
-            _fakeRuntimeEnvironment.Launcher = ((string path) =>
+            SetupAssembly.FakeRuntimeEnvironment.Launcher = ((string path) =>
             {
                 launcher = new FakeLauncher(path);
                 launcher.WasStarted = false;
@@ -216,7 +277,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IEnumerable<AesKey> keys = new AesKey[] { new Passphrase("a").DerivedPassphrase };
 
-            _fakeRuntimeEnvironment.Launcher = ((string path) =>
+            SetupAssembly.FakeRuntimeEnvironment.Launcher = ((string path) =>
             {
                 throw new Win32Exception("Fake Win32Exception from Unit Test.");
             });
@@ -232,7 +293,7 @@ namespace Axantum.AxCrypt.Core.Test
             IEnumerable<AesKey> keys = new AesKey[] { new Passphrase("a").DerivedPassphrase };
 
             FakeLauncher launcher = null;
-            _fakeRuntimeEnvironment.Launcher = ((string path) =>
+            SetupAssembly.FakeRuntimeEnvironment.Launcher = ((string path) =>
             {
                 launcher = new FakeLauncher(path);
                 launcher.WasStarted = true;
@@ -253,7 +314,7 @@ namespace Axantum.AxCrypt.Core.Test
             IEnumerable<AesKey> keys = new AesKey[] { new Passphrase("a").DerivedPassphrase };
 
             FakeLauncher launcher = null;
-            _fakeRuntimeEnvironment.Launcher = ((string path) =>
+            SetupAssembly.FakeRuntimeEnvironment.Launcher = ((string path) =>
             {
                 launcher = new FakeLauncher(path);
                 launcher.WasStarted = true;
@@ -292,6 +353,15 @@ namespace Axantum.AxCrypt.Core.Test
 
             status = _fileSystemState.OpenAndLaunchApplication(_helloWorldAxxPath, keys, new ProgressContext());
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The launch should once again succeed.");
+        }
+
+        [Test]
+        public static void TestGetTemporaryDestinationName()
+        {
+            string temporaryDestinationName = FileOperation.GetTemporaryDestinationName(_davidCopperfieldTxtPath);
+
+            Assert.That(temporaryDestinationName.StartsWith(Path.GetDirectoryName(OS.Current.TemporaryDirectoryInfo.FullName), StringComparison.OrdinalIgnoreCase), "The temporary destination should be in the temporary directory.");
+            Assert.That(Path.GetFileName(temporaryDestinationName), Is.EqualTo(Path.GetFileName(_davidCopperfieldTxtPath)), "The temporary destination should have the same file name.");
         }
     }
 }

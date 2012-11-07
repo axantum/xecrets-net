@@ -29,7 +29,7 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Threading;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -37,6 +37,18 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestExtensions
     {
+        [SetUp]
+        public static void Setup()
+        {
+            SetupAssembly.AssemblySetup();
+        }
+
+        [TearDown]
+        public static void Teardown()
+        {
+            SetupAssembly.AssemblyTeardown();
+        }
+
         [Test]
         public static void TestStringInvariantFormat()
         {
@@ -282,6 +294,53 @@ namespace Axantum.AxCrypt.Core.Test
                 // Use the instance to avoid FxCop errors.
                 Object.Equals(encryptedEncryptedFileName, null);
             });
+        }
+
+        [Test]
+        public static void TestTrimLogMessage()
+        {
+            string trimmed, untrimmed;
+
+            untrimmed = "This text should not be trimmed.";
+            trimmed = untrimmed.TrimLogMessage();
+            Assert.That(trimmed, Is.EqualTo(untrimmed), "The text does not contain anything that should be trimmed.");
+
+            untrimmed = "Information: Should not be trimmed.";
+            trimmed = untrimmed.TrimLogMessage();
+            Assert.That(trimmed, Is.EqualTo(untrimmed), "The text does not contain anything that should be trimmed.");
+
+            untrimmed = "blah blah Warning - should be trimmed!";
+            trimmed = untrimmed.TrimLogMessage();
+            Assert.That(trimmed, Is.EqualTo("Warning - should be trimmed!"), "The text should be trimmed at the start.");
+
+            untrimmed = " Warning - should be trimmed!";
+            trimmed = untrimmed.TrimLogMessage();
+            Assert.That(trimmed, Is.EqualTo("Warning - should be trimmed!"), "The text should be trimmed at the start, even just a single space.");
+
+            untrimmed = "18:30 Debug - should be trimmed!";
+            trimmed = untrimmed.TrimLogMessage();
+            Assert.That(trimmed, Is.EqualTo("Debug - should be trimmed!"), "The text should be trimmed at the start.");
+
+            untrimmed = "Information Error Error - should be trimmed!";
+            trimmed = untrimmed.TrimLogMessage();
+            Assert.That(trimmed, Is.EqualTo("Error Error - should be trimmed!"), "The text should be trimmed at the start, but only to the first occurrence.");
+
+            untrimmed = "Prefix Fatal";
+            trimmed = untrimmed.TrimLogMessage();
+            Assert.That(trimmed, Is.EqualTo("Fatal"), "The text should be trimmed at the start.");
+        }
+
+        [Test]
+        public static void TestCopyToArgumentExceptions()
+        {
+            Stream nullStream = null;
+            using (Stream stream = new MemoryStream())
+            {
+                Assert.Throws<ArgumentNullException>(() => { nullStream.CopyTo(stream, 100); });
+                Assert.Throws<ArgumentNullException>(() => { stream.CopyTo(nullStream, 100); });
+                Assert.Throws<ArgumentOutOfRangeException>(() => { stream.CopyTo(stream, 0); });
+                Assert.Throws<ArgumentOutOfRangeException>(() => { stream.CopyTo(stream, -1); });
+            }
         }
     }
 }

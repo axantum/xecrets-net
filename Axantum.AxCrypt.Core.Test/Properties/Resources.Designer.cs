@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 namespace Axantum.AxCrypt.Core.Test.Properties {
-    using System;
+    using Runtime;
     
     
     /// <summary>

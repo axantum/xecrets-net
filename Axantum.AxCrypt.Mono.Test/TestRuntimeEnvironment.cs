@@ -31,7 +31,7 @@ using System.Linq;
 using System.Threading;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Mono.Test
@@ -141,6 +141,7 @@ namespace Axantum.AxCrypt.Mono.Test
                 }
                 finally
                 {
+                    wasHere = false;
                     tempFileInfo.Delete();
                 }
                 for (int i = 0; !wasHere && i < 20; ++i)

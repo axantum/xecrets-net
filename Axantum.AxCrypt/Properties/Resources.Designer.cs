@@ -69,6 +69,31 @@ namespace Axantum.AxCrypt.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap activefilegreen16 {
+            get {
+                object obj = ResourceManager.GetObject("activefilegreen16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Double-click to Open.
+        /// </summary>
+        internal static string ActiveFileKnownKeyToolTip {
+            get {
+                return ResourceManager.GetString("ActiveFileKnownKeyToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Double-click to enter passphrase and Open.
+        /// </summary>
+        internal static string ActiveFileToolTip {
+            get {
+                return ResourceManager.GetString("ActiveFileToolTip", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Open Source File Encryption for Windows
         ///
@@ -153,6 +178,22 @@ namespace Axantum.AxCrypt.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap decryptedfilered16 {
+            get {
+                object obj = ResourceManager.GetObject("decryptedfilered16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assumed open. Try to Close the application, or use the Clean function to remove it.
+        /// </summary>
+        internal static string DecryptedFileToolTip {
+            get {
+                return ResourceManager.GetString("DecryptedFileToolTip", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Documents (*{0})|*{0}|All files (*.*)|*.*.
         /// </summary>
@@ -171,6 +212,22 @@ namespace Axantum.AxCrypt.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap decryptedunknownkeyfilered16 {
+            get {
+                object obj = ResourceManager.GetObject("decryptedunknownkeyfilered16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The passphrase has not been entered yet. Double-click to enter passphrase and Open, or right-click for options.
+        /// </summary>
+        internal static string DecryptedUnknownKeyFileToolTip {
+            get {
+                return ResourceManager.GetString("DecryptedUnknownKeyFileToolTip", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Select files to decrypt.
         /// </summary>
@@ -184,6 +241,15 @@ namespace Axantum.AxCrypt.Properties {
             get {
                 object obj = ResourceManager.GetObject("decryptlockopen32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An encryption passphrase is set. Click to clear it..
+        /// </summary>
+        internal static string DefaultEncryptionKeyIsIsetToolTip {
+            get {
+                return ResourceManager.GetString("DefaultEncryptionKeyIsIsetToolTip", resourceCulture);
             }
         }
         
@@ -223,6 +289,20 @@ namespace Axantum.AxCrypt.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap encryptionkeygreen32 {
+            get {
+                object obj = ResourceManager.GetObject("encryptionkeygreen32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap encryptionkeyred32 {
+            get {
+                object obj = ResourceManager.GetObject("encryptionkeyred32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap encryptlock32 {
             get {
                 object obj = ResourceManager.GetObject("encryptlock32", resourceCulture);
@@ -236,6 +316,22 @@ namespace Axantum.AxCrypt.Properties {
         internal static string Exception {
             get {
                 return ResourceManager.GetString("Exception", resourceCulture);
+            }
+        }
+        
+        internal static System.Drawing.Bitmap exclamationgreen16 {
+            get {
+                object obj = ResourceManager.GetObject("exclamationgreen16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file &apos;{0}&apos; is already encrypted..
+        /// </summary>
+        internal static string FileAlreadyEncrypted {
+            get {
+                return ResourceManager.GetString("FileAlreadyEncrypted", resourceCulture);
             }
         }
         
@@ -273,6 +369,22 @@ namespace Axantum.AxCrypt.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap inactivefilegreen16 {
+            get {
+                object obj = ResourceManager.GetObject("inactivefilegreen16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inactive file.
+        /// </summary>
+        internal static string InactiveFileToolTip {
+            get {
+                return ResourceManager.GetString("InactiveFileToolTip", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Inconsistent state with &apos;{0}&apos;..
         /// </summary>
@@ -301,6 +413,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The file or path &apos;{0}&apos; is invalid for this..
+        /// </summary>
+        internal static string InvalidPath {
+            get {
+                return ResourceManager.GetString("InvalidPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You must restart AxCrypt in order for the language change to take effect..
         /// </summary>
         internal static string LanguageChangeRestartPrompt {
@@ -315,6 +436,15 @@ namespace Axantum.AxCrypt.Properties {
         internal static string NewVersionIsAvailableTooltip {
             get {
                 return ResourceManager.GetString("NewVersionIsAvailableTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No encryption passphrase is set. Click to enter one..
+        /// </summary>
+        internal static string NoDefaultEncryptionKeySetToolTip {
+            get {
+                return ResourceManager.GetString("NoDefaultEncryptionKeySetToolTip", resourceCulture);
             }
         }
         
@@ -393,8 +523,15 @@ namespace Axantum.AxCrypt.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap trashred16 {
+            get {
+                object obj = ResourceManager.GetObject("trashred16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         /// <summary>
-        ///   Looks up a localized string similar to Double-click to restore the AxCrypt application window..
+        ///   Looks up a localized string similar to Click to restore the AxCrypt application window..
         /// </summary>
         internal static string TrayBalloonTooltip {
             get {
@@ -417,6 +554,15 @@ namespace Axantum.AxCrypt.Properties {
         internal static string UpdatingStatus {
             get {
                 return ResourceManager.GetString("UpdatingStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select files to securely delete.
+        /// </summary>
+        internal static string WipeFileSelectFileDialogTitle {
+            get {
+                return ResourceManager.GetString("WipeFileSelectFileDialogTitle", resourceCulture);
             }
         }
     }

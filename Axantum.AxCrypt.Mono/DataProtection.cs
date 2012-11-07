@@ -28,6 +28,8 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Security.Cryptography;
+using System.Text;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.System;
 

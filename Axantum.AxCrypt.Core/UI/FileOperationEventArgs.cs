@@ -27,33 +27,35 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.UI
 {
-    public class FileOperationEventArgs : EventArgs
+    public class FileOperationEventArgs : CancelEventArgs
     {
-        public FileOperationEventArgs(string displayContext)
+        public FileOperationEventArgs()
         {
-            DisplayContext = displayContext;
+            Status = FileOperationStatus.Unknown;
         }
 
-        public string DisplayContext { get; set; }
+        public string SaveFileFullName { get; set; }
 
-        public bool Cancel { get; set; }
-
-        public string SaveFileName { get; set; }
-
-        public string OpenFileName { get; set; }
+        public string OpenFileFullName { get; set; }
 
         public string Passphrase { get; set; }
 
+        public bool ConfirmAll { get; set; }
+
+        public bool Skip { get; set; }
+
         public AesKey Key { get; set; }
 
-        public ProgressContext Progress { get; set; }
-
         public AxCryptDocument AxCryptDocument { get; set; }
+
+        public FileOperationStatus Status { get; set; }
     }
 }

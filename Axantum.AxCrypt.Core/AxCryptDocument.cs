@@ -32,7 +32,7 @@ using System.Security.Cryptography;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using Org.BouncyCastle.Utilities.Zlib;
 
@@ -162,9 +162,10 @@ namespace Axantum.AxCrypt.Core
 
         private static long CopyToWithCount(Stream inputStream, Stream outputStream, Stream realInputStream, ProgressContext progress)
         {
+            progress.NotifyLevelStart();
             if (realInputStream.CanSeek)
             {
-                progress.Max = realInputStream.Length;
+                progress.AddTotal(realInputStream.Length - realInputStream.Position);
             }
 
             long totalCount = 0;
@@ -185,15 +186,13 @@ namespace Axantum.AxCrypt.Core
                     break;
                 }
                 outputStream.Write(buffer, 0, offset);
-                if (realInputStream.CanSeek)
-                {
-                    progress.Current = realInputStream.Position;
-                }
+                outputStream.Flush();
+                progress.AddCount(offset);
                 totalCount += offset;
                 offset = 0;
                 length = buffer.Length;
             }
-            progress.Finished();
+            progress.NotifyLevelFinished();
             return totalCount;
         }
 
@@ -230,7 +229,7 @@ namespace Axantum.AxCrypt.Core
 
                     if (_reader.Hmac != DocumentHeaders.Hmac)
                     {
-                        throw new Axantum.AxCrypt.Core.System.InvalidDataException("HMAC validation error in the input stream.", ErrorStatus.HmacValidationError);
+                        throw new Axantum.AxCrypt.Core.Runtime.InvalidDataException("HMAC validation error in the input stream.", ErrorStatus.HmacValidationError);
                     }
                 }
 
@@ -264,6 +263,7 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new InternalErrorException("Document headers are not loaded");
             }
+
             using (ICryptoTransform decryptor = DataCrypto.CreateDecryptingTransform())
             {
                 using (AxCryptDataStream encryptedDataStream = _reader.CreateEncryptedDataStream(DocumentHeaders.HmacSubkey.Key, DocumentHeaders.CipherTextLength, progress))
@@ -274,7 +274,7 @@ namespace Axantum.AxCrypt.Core
 
             if (_reader.Hmac != DocumentHeaders.Hmac)
             {
-                throw new Axantum.AxCrypt.Core.System.InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
+                throw new Axantum.AxCrypt.Core.Runtime.InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
             }
         }
 

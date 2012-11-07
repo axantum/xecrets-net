@@ -34,7 +34,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Session
 {
@@ -59,6 +59,7 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("key");
             }
             Initialize(activeFile);
+            LastActivityTimeUtc = activeFile.LastActivityTimeUtc;
             Key = key;
         }
 

@@ -272,7 +272,14 @@ namespace Axantum.AxCrypt.Core.Test
             ((FakeRuntimeEnvironment)OS.Current).FileDeleted(_file.FullName);
         }
 
-        #region IRuntimeFileInfo Members
+        public static MemoryStream ExpandableMemoryStream(byte[] buffer)
+        {
+            MemoryStream stream = new MemoryStream(buffer.Length);
+            stream.Write(buffer, 0, buffer.Length);
+            stream.Position = 0;
+
+            return stream;
+        }
 
         public void CreateDirectory()
         {
@@ -285,7 +292,5 @@ namespace Axantum.AxCrypt.Core.Test
             }
             AddFile(directory, utcNow, utcNow, utcNow, Stream.Null);
         }
-
-        #endregion IRuntimeFileInfo Members
     }
 }

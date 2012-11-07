@@ -30,7 +30,7 @@ using System.ComponentModel;
 using System.Reflection;
 using System.Windows.Forms;
 using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Properties;
 
 namespace Axantum.AxCrypt

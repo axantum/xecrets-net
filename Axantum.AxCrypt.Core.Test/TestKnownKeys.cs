@@ -38,6 +38,18 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestKnownKeys
     {
+        [SetUp]
+        public static void Setup()
+        {
+            SetupAssembly.AssemblySetup();
+        }
+
+        [TearDown]
+        public static void Teardown()
+        {
+            SetupAssembly.AssemblyTeardown();
+        }
+
         [Test]
         public static void TestAddNewKnownKey()
         {
@@ -93,6 +105,21 @@ namespace Axantum.AxCrypt.Core.Test
 
             knownKeys.Clear();
             Assert.That(knownKeys.Keys.Count(), Is.EqualTo(0), "There should be zero keys in the collection after Clear().");
+        }
+
+        [Test]
+        public static void TestSettingNullDefaultEncryptionKey()
+        {
+            KnownKeys knownKeys = new KnownKeys();
+            AesKey key1 = new AesKey();
+            knownKeys.Add(key1);
+            AesKey key2 = new AesKey();
+            knownKeys.DefaultEncryptionKey = key2;
+
+            Assert.That(knownKeys.Keys.Count(), Is.EqualTo(2), "Setting the DefaultEncryptionKey should also add it as a known key.");
+
+            knownKeys.DefaultEncryptionKey = null;
+            Assert.That(knownKeys.Keys.Count(), Is.EqualTo(2), "Setting the DefaultEncryptionKey to null should not affect the known keys.");
         }
     }
 }

@@ -28,9 +28,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core.Session
@@ -39,6 +40,7 @@ namespace Axantum.AxCrypt.Core.Session
     {
         public static void PurgeActiveFiles(this FileSystemState fileSystemState, ProgressContext progress)
         {
+            progress.NotifyLevelStart();
             fileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFile) =>
             {
                 if (FileLock.IsLocked(activeFile.DecryptedFileInfo))
@@ -59,27 +61,38 @@ namespace Axantum.AxCrypt.Core.Session
                 }
                 if (activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
                 {
-                    activeFile = TryDelete(activeFile);
+                    activeFile = TryDelete(activeFile, progress);
                 }
                 return activeFile;
             });
+            progress.NotifyLevelFinished();
         }
 
-        public static void CheckActiveFiles(this FileSystemState fileSystemState, ChangedEventMode mode, bool trackProcess, ProgressContext progress)
+        public static void CheckActiveFiles(this FileSystemState fileSystemState, ChangedEventMode mode, ProgressContext progress)
         {
+            progress.NotifyLevelStart();
+            progress.AddTotal(fileSystemState.ActiveFileCount);
             fileSystemState.ForEach(mode, (ActiveFile activeFile) =>
             {
-                if (FileLock.IsLocked(activeFile.DecryptedFileInfo, activeFile.EncryptedFileInfo))
+                try
                 {
+                    if (FileLock.IsLocked(activeFile.DecryptedFileInfo, activeFile.EncryptedFileInfo))
+                    {
+                        return activeFile;
+                    }
+                    if (OS.Current.UtcNow - activeFile.LastActivityTimeUtc <= new TimeSpan(0, 0, 5))
+                    {
+                        return activeFile;
+                    }
+                    activeFile = CheckActiveFileActions(fileSystemState, activeFile, progress);
                     return activeFile;
                 }
-                if (OS.Current.UtcNow - activeFile.LastActivityTimeUtc <= new TimeSpan(0, 0, 5))
+                finally
                 {
-                    return activeFile;
+                    progress.AddCount(1);
                 }
-                activeFile = CheckActiveFileActions(fileSystemState, activeFile, trackProcess, progress);
-                return activeFile;
             });
+            progress.NotifyLevelFinished();
         }
 
         public static bool UpdateActiveFileWithKeyIfKeyMatchesThumbprint(this FileSystemState fileSystemState, AesKey key)
@@ -103,26 +116,36 @@ namespace Axantum.AxCrypt.Core.Session
             return keyMatch;
         }
 
-        public static void RemoveRecentFile(this FileSystemState fileSystemState, string encryptedPath)
+        public static void RemoveRecentFiles(this FileSystemState fileSystemState, IEnumerable<string> encryptedPaths, ProgressContext progress)
         {
-            ActiveFile activeFile = fileSystemState.FindEncryptedPath(encryptedPath);
-            fileSystemState.Remove(activeFile);
+            progress.NotifyLevelStart();
+            progress.AddTotal(encryptedPaths.Count());
+            foreach (string encryptedPath in encryptedPaths)
+            {
+                ActiveFile activeFile = fileSystemState.FindEncryptedPath(encryptedPath);
+                if (activeFile != null)
+                {
+                    fileSystemState.Remove(activeFile);
+                }
+                progress.AddCount(1);
+            }
             fileSystemState.Save();
+            progress.NotifyLevelFinished();
         }
 
-        private static ActiveFile CheckActiveFileActions(FileSystemState fileSystemState, ActiveFile activeFile, bool trackProcess, ProgressContext progress)
+        private static ActiveFile CheckActiveFileActions(FileSystemState fileSystemState, ActiveFile activeFile, ProgressContext progress)
         {
             activeFile = CheckIfKeyIsKnown(fileSystemState, activeFile);
             activeFile = CheckIfCreated(activeFile);
-            activeFile = CheckIfProcessExited(activeFile, trackProcess);
+            activeFile = CheckIfProcessExited(activeFile);
             activeFile = CheckIfTimeToUpdate(activeFile, progress);
-            activeFile = CheckIfTimeToDelete(activeFile);
+            activeFile = CheckIfTimeToDelete(activeFile, progress);
             return activeFile;
         }
 
         private static ActiveFile CheckIfKeyIsKnown(FileSystemState fileSystemState, ActiveFile activeFile)
         {
-            if (!activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted) && !activeFile.Status.HasMask(ActiveFileStatus.DecryptedIsPendingDelete))
+            if ((activeFile.Status & (ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.DecryptedIsPendingDelete | ActiveFileStatus.NotDecrypted)) == 0)
             {
                 return activeFile;
             }
@@ -143,21 +166,24 @@ namespace Axantum.AxCrypt.Core.Session
 
         private static ActiveFile CheckIfCreated(ActiveFile activeFile)
         {
-            if (activeFile.Status == ActiveFileStatus.NotDecrypted)
+            if (activeFile.Status != ActiveFileStatus.NotDecrypted)
             {
-                if (!activeFile.DecryptedFileInfo.Exists)
-                {
-                    return activeFile;
-                }
-                activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted);
+                return activeFile;
             }
+
+            if (!activeFile.DecryptedFileInfo.Exists)
+            {
+                return activeFile;
+            }
+
+            activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted);
 
             return activeFile;
         }
 
-        private static ActiveFile CheckIfProcessExited(ActiveFile activeFile, bool trackProcess)
+        private static ActiveFile CheckIfProcessExited(ActiveFile activeFile)
         {
-            if (activeFile.Process == null || !trackProcess || !activeFile.Process.HasExited)
+            if (activeFile.Process == null || !activeFile.Process.HasExited)
             {
                 return activeFile;
             }
@@ -171,7 +197,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private static ActiveFile CheckIfTimeToUpdate(ActiveFile activeFile, ProgressContext progress)
         {
-            if (activeFile.Status.HasMask(ActiveFileStatus.NotShareable) || !activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
+            if (!activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted) || activeFile.Status.HasMask(ActiveFileStatus.NotShareable))
             {
                 return activeFile;
             }
@@ -191,7 +217,7 @@ namespace Axantum.AxCrypt.Core.Session
                     AxCryptFile.WriteToFileWithBackup(activeFile.EncryptedFileInfo, (Stream destination) =>
                     {
                         AxCryptFile.Encrypt(activeFile.DecryptedFileInfo, destination, activeFile.Key, AxCryptOptions.EncryptWithCompression, progress);
-                    });
+                    }, progress);
                 }
             }
             catch (IOException)
@@ -211,7 +237,7 @@ namespace Axantum.AxCrypt.Core.Session
             return activeFile;
         }
 
-        private static ActiveFile CheckIfTimeToDelete(ActiveFile activeFile)
+        private static ActiveFile CheckIfTimeToDelete(ActiveFile activeFile, ProgressContext progress)
         {
             if (OS.Current.Platform != Platform.WindowsDesktop)
             {
@@ -222,11 +248,11 @@ namespace Axantum.AxCrypt.Core.Session
                 return activeFile;
             }
 
-            activeFile = TryDelete(activeFile);
+            activeFile = TryDelete(activeFile, progress);
             return activeFile;
         }
 
-        private static ActiveFile TryDelete(ActiveFile activeFile)
+        private static ActiveFile TryDelete(ActiveFile activeFile, ProgressContext progress)
         {
             if (activeFile.Process != null && !activeFile.Process.HasExited)
             {
@@ -252,13 +278,13 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     OS.Log.LogInfo("Deleting '{0}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                 }
-                activeFile.DecryptedFileInfo.Delete();
+                AxCryptFile.Wipe(activeFile.DecryptedFileInfo, progress);
             }
             catch (IOException)
             {
                 if (OS.Log.IsWarningEnabled)
                 {
-                    OS.Log.LogWarning("Delete failed for '{0}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
+                    OS.Log.LogWarning("Wiping failed for '{0}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                 }
                 activeFile = new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.NotShareable);
                 return activeFile;
