@@ -12,6 +12,9 @@ Windows: Visual Studio 2010 (Any version including Express) or MonoDevelop. Load
 
 Linux: (Tested on Ubuntu) MonoDevelop. If earlier than 2.11, also need 'mono-gmcs' to compile against 3.5 profile.
 
+MonoDevelop: Under "MonoDevelop | Tools | Options | Preferences | Build | General" enable "Compile projects using MSBuild / XBuild".
+            (Avoid MonoDevlop issue: "Error while trying to invoke 'al2' to generate satellite assembly for 'XX' culture, File Not Found")
+
 About Configuration and Platforms
 =================================
 
