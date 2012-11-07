@@ -11,7 +11,7 @@ using System.ComponentModel;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.IO;
 using System.IO;
-using Axantum.AxCrypt.Core.System;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.iOS
 {
@@ -90,18 +90,6 @@ namespace Axantum.AxCrypt.iOS
 			});
 		}
 
-		Action<string> traceMessageHandler;
-		void BeginShowingTraceMessages (ProgressContext progress)
-		{
-			traceMessageHandler = message => SetProgress(progress.Percent, message);
-			System.Diagnostics.Trace.InformationEvent += traceMessageHandler;
-		}
-
-		void EndShowingTraceMessages ()
-		{
-			System.Diagnostics.Trace.InformationEvent -= traceMessageHandler;
-		}
-
 		void DecryptFile (string usingPassphrase)
 		{
 			if (FileDecrypted == null || String.IsNullOrEmpty (usingPassphrase))
@@ -110,34 +98,38 @@ namespace Axantum.AxCrypt.iOS
 			string targetFileName = null;
 			string targetDirectory = Path.GetTempPath();
 
-			ThreadWorker worker = new ThreadWorker("Unlocking ...",
-				context => {
-					BeginShowingTraceMessages(context);
-					using (NSAutoreleasePool pool = new NSAutoreleasePool()) {
-						AesKey key = new Passphrase(usingPassphrase).DerivedPassphrase;
-						IRuntimeFileInfo sourceFile = OS.Current.FileInfo (path);
-						targetFileName = AxCryptFile.Decrypt (sourceFile, targetDirectory, key, AxCryptOptions.None, context);
-					}
-
-					if (targetFileName == null)
-						return FileOperationStatus.Canceled;
-
-					return FileOperationStatus.Success;
-				},
-				status => {
-					activityIndicator.StopAnimating();
-					EndShowingTraceMessages();
-
-					if (status == FileOperationStatus.Canceled) {
-						AskForPassword("The passphrase you entered could not be used to open file", "Try again?");
-						return;
-					}
-
-					FileDecrypted(Path.Combine(targetDirectory, targetFileName));
-				});
-			worker.Prepare += delegate {
-				SetProgress(0, "Unlocking ...");
+			ProgressContext progress = new ProgressContext();
+			progress.Progressing += (sender, e) => {
+				SetProgress(e.Percent, String.Format("{0}%", e.Percent));
 			};
+
+
+			ThreadWorker worker = new ThreadWorker(progress);
+			worker.Prepare += delegate { SetProgress(0, "Unlocking ..."); };
+			worker.Work += (wo, wa) => {
+				using (NSAutoreleasePool pool = new NSAutoreleasePool()) {
+					AesKey key = new Passphrase(usingPassphrase).DerivedPassphrase;
+					IRuntimeFileInfo sourceFile = OS.Current.FileInfo (path);
+					targetFileName = AxCryptFile.Decrypt (sourceFile, targetDirectory, key, AxCryptOptions.None, progress);
+				}
+
+				if (targetFileName == null) {
+					wa.Result = FileOperationStatus.Canceled;
+					return;
+				}
+				
+				wa.Result = FileOperationStatus.Success;
+			};
+			worker.Completed += (wo, wa) => InvokeOnMainThread(delegate {
+				activityIndicator.StopAnimating();
+
+				if (wa.Result == FileOperationStatus.Canceled) {
+					AskForPassword("The passphrase you entered could not be used to open file", "Try again?");
+					return;
+				}
+				
+				FileDecrypted(Path.Combine(targetDirectory, targetFileName));
+			});
 
 			worker.Run();
 		}

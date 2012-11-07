@@ -182,12 +182,6 @@
     <None Include="resources\uncompressable-zip.axx" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Axantum.AxCrypt.Core\Axantum.AxCrypt.Core.csproj">
-      <Project>{966E9510-1A1D-46C7-97B5-460A0FF9B89F}</Project>
-      <Name>Axantum.AxCrypt.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -209,4 +203,10 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <ProjectReference Include="..\Axantum.AxCrypt.Core\Axantum.AxCrypt.Core.csproj">
+      <Project>{966E9510-1A1D-46C7-97B5-460A0FF9B89F}</Project>
+      <Name>Axantum.AxCrypt.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

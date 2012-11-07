@@ -31,7 +31,7 @@ namespace Axantum.AxCrypt.Mac
 
 		public static void OperationFailureHandler (string message, ProgressContext context)
 		{
-			NSAlert alert = NSAlert.WithMessage(message, "OK", null, null, context.DisplayText);
+			NSAlert alert = NSAlert.WithMessage(message, "OK", null, null, "Check your password and try again");
 			alert.InvokeOnMainThread(() => alert.RunModal());
 		}
 

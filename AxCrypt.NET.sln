@@ -49,7 +49,9 @@ Global
 		AppStore|iPhone = AppStore|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+<<<<<<< local
 		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.AppStore|Any CPU.ActiveCfg = AppStore|Any CPU
+=======
 		{0998224C-F45E-4EBF-A944-7FFBCB2DB134}.AppStore|Any CPU.ActiveCfg = Release|x86
 		{0998224C-F45E-4EBF-A944-7FFBCB2DB134}.AppStore|Mixed Platforms.ActiveCfg = Release|x86
 		{0998224C-F45E-4EBF-A944-7FFBCB2DB134}.AppStore|Mixed Platforms.Build.0 = Release|x86
@@ -218,6 +220,32 @@ Global
 		{79C4901A-BCAA-49AA-A789-6A8F97ACC881}.ReleaseAndroid|x86.ActiveCfg = ReleaseAndroid|Any CPU
 		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.AppStore|Any CPU.ActiveCfg = AppStore|x86
 		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.AppStore|Any CPU.Build.0 = AppStore|x86
+>>>>>>> other
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.AppStore|Mixed Platforms.ActiveCfg = AppStore|x86
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.AppStore|Mixed Platforms.Build.0 = AppStore|x86
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.AppStore|x86.ActiveCfg = AppStore|x86
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.AppStore|x86.Build.0 = AppStore|x86
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Debug|x86.Build.0 = Debug|Any CPU
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.DebugAndroid|Any CPU.ActiveCfg = DebugAndroid|Any CPU
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.DebugAndroid|Any CPU.Build.0 = DebugAndroid|Any CPU
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.DebugAndroid|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.DebugAndroid|Mixed Platforms.Build.0 = Debug|Any CPU
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.DebugAndroid|x86.ActiveCfg = DebugAndroid|Any CPU
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Release|x86.ActiveCfg = Release|Any CPU
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Release|x86.Build.0 = Release|Any CPU
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.ReleaseAndroid|Any CPU.ActiveCfg = ReleaseAndroid|Any CPU
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.ReleaseAndroid|Mixed Platforms.ActiveCfg = ReleaseAndroid|x86
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.ReleaseAndroid|Mixed Platforms.Build.0 = ReleaseAndroid|x86
+<<<<<<< local
 		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.ReleaseAndroid|x86.ActiveCfg = ReleaseAndroid|Any CPU
 		{2689B1EF-29AF-4F3E-A7EC-C87FF66DC403}.AppStore|Any CPU.ActiveCfg = AppStore|Any CPU
 		{2689B1EF-29AF-4F3E-A7EC-C87FF66DC403}.AppStore|Mixed Platforms.ActiveCfg = AppStore|x86
@@ -266,10 +294,30 @@ Global
 		{0998224C-F45E-4EBF-A944-7FFBCB2DB134}.ReleaseAndroid|Mixed Platforms.ActiveCfg = Release|x86
 		{0998224C-F45E-4EBF-A944-7FFBCB2DB134}.ReleaseAndroid|Mixed Platforms.Build.0 = Release|x86
 		{0998224C-F45E-4EBF-A944-7FFBCB2DB134}.ReleaseAndroid|x86.ActiveCfg = Release|x86
+=======
 		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.ReleaseAndroid|x86.ActiveCfg = ReleaseAndroid|x86
 		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.ReleaseAndroid|x86.Build.0 = ReleaseAndroid|x86
+>>>>>>> other
+		{A60D139A-7DBC-4BC5-976A-D89C32C913AD}.AppStore|Any CPU.ActiveCfg = ReleaseAndroid|Any CPU
+		{A60D139A-7DBC-4BC5-976A-D89C32C913AD}.AppStore|Mixed Platforms.ActiveCfg = ReleaseAndroid|Any CPU
+		{A60D139A-7DBC-4BC5-976A-D89C32C913AD}.AppStore|Mixed Platforms.Build.0 = ReleaseAndroid|Any CPU
+		{A60D139A-7DBC-4BC5-976A-D89C32C913AD}.AppStore|x86.ActiveCfg = ReleaseAndroid|Any CPU
+		{A60D139A-7DBC-4BC5-976A-D89C32C913AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A60D139A-7DBC-4BC5-976A-D89C32C913AD}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A60D139A-7DBC-4BC5-976A-D89C32C913AD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A60D139A-7DBC-4BC5-976A-D89C32C913AD}.DebugAndroid|Any CPU.ActiveCfg = DebugAndroid|Any CPU
+		{A60D139A-7DBC-4BC5-976A-D89C32C913AD}.DebugAndroid|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A60D139A-7DBC-4BC5-976A-D89C32C913AD}.DebugAndroid|x86.ActiveCfg = DebugAndroid|Any CPU
+		{A60D139A-7DBC-4BC5-976A-D89C32C913AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A60D139A-7DBC-4BC5-976A-D89C32C913AD}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A60D139A-7DBC-4BC5-976A-D89C32C913AD}.Release|x86.ActiveCfg = Release|Any CPU
+		{A60D139A-7DBC-4BC5-976A-D89C32C913AD}.ReleaseAndroid|Any CPU.ActiveCfg = ReleaseAndroid|Any CPU
+		{A60D139A-7DBC-4BC5-976A-D89C32C913AD}.ReleaseAndroid|Mixed Platforms.ActiveCfg = ReleaseAndroid|Any CPU
+		{A60D139A-7DBC-4BC5-976A-D89C32C913AD}.ReleaseAndroid|Mixed Platforms.Build.0 = ReleaseAndroid|Any CPU
+<<<<<<< local
 		{A60D139A-7DBC-4BC5-976A-D89C32C913AD}.ReleaseAndroid|x86.ActiveCfg = ReleaseAndroid|Any CPU
 		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.AppStore|Any CPU.ActiveCfg = AppStore|Any CPU
+=======
 		{A60D139A-7DBC-4BC5-976A-D89C32C913AD}.ReleaseAndroid|x86.ActiveCfg = ReleaseAndroid|x86
 		{B81CB4AF-7DC9-4699-B0EF-089452C6F1D5}.AppStore|Any CPU.ActiveCfg = ReleaseAndroid|Any CPU
 		{B81CB4AF-7DC9-4699-B0EF-089452C6F1D5}.AppStore|Mixed Platforms.ActiveCfg = ReleaseAndroid|Any CPU
@@ -296,6 +344,31 @@ Global
 		{B81CB4AF-7DC9-4699-B0EF-089452C6F1D5}.ReleaseAndroid|x86.ActiveCfg = ReleaseAndroid|Any CPU
 		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.AppStore|Any CPU.ActiveCfg = AppStore|x86
 		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.AppStore|Any CPU.Build.0 = AppStore|x86
+>>>>>>> other
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.AppStore|Mixed Platforms.ActiveCfg = AppStore|x86
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.AppStore|Mixed Platforms.Build.0 = AppStore|x86
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.AppStore|x86.ActiveCfg = AppStore|x86
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.AppStore|x86.Build.0 = AppStore|x86
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Debug|x86.Build.0 = Debug|Any CPU
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.DebugAndroid|Any CPU.ActiveCfg = DebugAndroid|Any CPU
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.DebugAndroid|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.DebugAndroid|x86.ActiveCfg = DebugAndroid|Any CPU
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Release|x86.ActiveCfg = Release|Any CPU
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Release|x86.Build.0 = Release|Any CPU
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.ReleaseAndroid|Any CPU.ActiveCfg = ReleaseAndroid|Any CPU
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.ReleaseAndroid|Mixed Platforms.ActiveCfg = ReleaseAndroid|x86
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.ReleaseAndroid|Mixed Platforms.Build.0 = ReleaseAndroid|x86
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.ReleaseAndroid|x86.ActiveCfg = ReleaseAndroid|Any CPU
+<<<<<<< local
 		{0E46C5F6-8B43-4571-AE55-6A65C0B87525}.AppStore|Any CPU.ActiveCfg = AppStore|x86
 		{0E46C5F6-8B43-4571-AE55-6A65C0B87525}.AppStore|Mixed Platforms.ActiveCfg = AppStore|Any CPU
 		{0E46C5F6-8B43-4571-AE55-6A65C0B87525}.AppStore|x86.ActiveCfg = AppStore|x86
@@ -355,9 +428,11 @@ Global
 		{B81CB4AF-7DC9-4699-B0EF-089452C6F1D5}.ReleaseAndroid|Mixed Platforms.ActiveCfg = ReleaseAndroid|Any CPU
 		{B81CB4AF-7DC9-4699-B0EF-089452C6F1D5}.ReleaseAndroid|Mixed Platforms.Build.0 = ReleaseAndroid|Any CPU
 		{B81CB4AF-7DC9-4699-B0EF-089452C6F1D5}.ReleaseAndroid|x86.ActiveCfg = ReleaseAndroid|Any CPU
+=======
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Axantum.AxCrypt.iOS\Axantum.AxCrypt.iOS.csproj
+>>>>>>> other
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
