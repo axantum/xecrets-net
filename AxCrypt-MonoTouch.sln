@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.iOS", "Axantum.AxCrypt.iOS\Axantum.AxCrypt.iOS.csproj", "{3773A07A-71B7-474C-A622-21ED8B8492DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Core.MonoTouch", "Axantum.AxCrypt.Core.MonoTouch\Axantum.AxCrypt.Core.MonoTouch.csproj", "{4F638C73-5AD2-48B4-88BF-9FA85605B9B4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3773A07A-71B7-474C-A622-21ED8B8492DD}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{3773A07A-71B7-474C-A622-21ED8B8492DD}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{3773A07A-71B7-474C-A622-21ED8B8492DD}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{3773A07A-71B7-474C-A622-21ED8B8492DD}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{3773A07A-71B7-474C-A622-21ED8B8492DD}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{3773A07A-71B7-474C-A622-21ED8B8492DD}.Debug|iPhone.Build.0 = Debug|iPhone
+		{3773A07A-71B7-474C-A622-21ED8B8492DD}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{3773A07A-71B7-474C-A622-21ED8B8492DD}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{3773A07A-71B7-474C-A622-21ED8B8492DD}.Release|iPhone.ActiveCfg = Release|iPhone
+		{3773A07A-71B7-474C-A622-21ED8B8492DD}.Release|iPhone.Build.0 = Release|iPhone
+		{3773A07A-71B7-474C-A622-21ED8B8492DD}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{3773A07A-71B7-474C-A622-21ED8B8492DD}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{4F638C73-5AD2-48B4-88BF-9FA85605B9B4}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU
+		{4F638C73-5AD2-48B4-88BF-9FA85605B9B4}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
+		{4F638C73-5AD2-48B4-88BF-9FA85605B9B4}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
+		{4F638C73-5AD2-48B4-88BF-9FA85605B9B4}.AppStore|iPhone.Build.0 = Debug|Any CPU
+		{4F638C73-5AD2-48B4-88BF-9FA85605B9B4}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{4F638C73-5AD2-48B4-88BF-9FA85605B9B4}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{4F638C73-5AD2-48B4-88BF-9FA85605B9B4}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{4F638C73-5AD2-48B4-88BF-9FA85605B9B4}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{4F638C73-5AD2-48B4-88BF-9FA85605B9B4}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{4F638C73-5AD2-48B4-88BF-9FA85605B9B4}.Release|iPhone.Build.0 = Release|Any CPU
+		{4F638C73-5AD2-48B4-88BF-9FA85605B9B4}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{4F638C73-5AD2-48B4-88BF-9FA85605B9B4}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Axantum.AxCrypt.iOS\Axantum.AxCrypt.iOS.csproj
+	EndGlobalSection
+EndGlobal

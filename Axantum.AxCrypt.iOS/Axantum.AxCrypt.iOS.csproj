@@ -116,12 +116,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\Axantum.AxCrypt.Core.MonoTouch\Axantum.AxCrypt.Core.MonoTouch.csproj">
-      <Project>{4F638C73-5AD2-48B4-88BF-9FA85605B9B4}</Project>
-      <Name>Axantum.AxCrypt.Core.MonoTouch</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Images\logo.png" />
     <Content Include="Images\App Icons\logo 57x57.png" />
     <Content Include="Images\App Icons\logo 114x114.png" />
@@ -144,5 +138,11 @@
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
     <ITunesArtwork Include="iTunesArtwork%402x" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Axantum.AxCrypt.Core.MonoTouch\Axantum.AxCrypt.Core.MonoTouch.csproj">
+      <Project>{4F638C73-5AD2-48B4-88BF-9FA85605B9B4}</Project>
+      <Name>Axantum.AxCrypt.Core.MonoTouch</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
