@@ -108,13 +108,13 @@
     <Content Include="AxCryptIcon128.icns" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.csproj">
-      <Project>{CE9E8614-8DC5-4757-9384-3C416AB61A47}</Project>
-      <Name>Axantum.AxCrypt.Mono</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Axantum.AxCrypt.Core\Axantum.AxCrypt.Core.csproj">
       <Project>{966E9510-1A1D-46C7-97B5-460A0FF9B89F}</Project>
       <Name>Axantum.AxCrypt.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.csproj">
+      <Project>{CE9E8614-8DC5-4757-9384-3C416AB61A47}</Project>
+      <Name>Axantum.AxCrypt.Mono</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
