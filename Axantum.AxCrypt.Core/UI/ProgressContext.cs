@@ -1,4 +1,4 @@
-#region Coypright and License
+﻿#region Coypright and License
 
 /*
  * AxCrypt - Copyright 2012, Svante Seleborg, All Rights Reserved

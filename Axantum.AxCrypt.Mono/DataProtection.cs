@@ -1,4 +1,4 @@
-#region Coypright and License
+﻿#region Coypright and License
 
 /*
  * AxCrypt - Copyright 2012, Svante Seleborg, All Rights Reserved
@@ -24,27 +24,31 @@
 */
 
 #endregion Coypright and License
+
 using System;
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.IO;
 
 namespace Axantum.AxCrypt.Mono
 {
-	class DataProtection : IDataProtection
-	{
-		public byte[] Protect (byte[] unprotectedData)
-		{
-			throw new NotImplementedException ();
-		}
+    internal class DataProtection : IDataProtection
+    {
+        #region IDataProtection Members
 
-		public byte[] Unprotect (byte[] protectedData)
-		{
-			throw new NotImplementedException ();
-		}
-	}
+        public byte[] Protect(byte[] unprotectedData)
+        {
+            return ProtectedData.Protect(unprotectedData, null, DataProtectionScope.CurrentUser);
+        }
 
+        public byte[] Unprotect(byte[] protectedData)
+        {
+            byte[] bytes = ProtectedData.Unprotect(protectedData, null, DataProtectionScope.CurrentUser);
+            return bytes;
+        }
+
+        #endregion IDataProtection Members
+    }
 }

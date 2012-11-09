@@ -14,3 +14,4 @@ Axantum.AxCrypt.Core/Properties/AssemblyInfo.cs
 *.orig
 *.pidb
 test-results/*
+*.DotSettings
