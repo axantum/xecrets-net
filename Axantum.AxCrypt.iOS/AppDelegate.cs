@@ -31,7 +31,7 @@ namespace Axantum.AxCrypt.iOS
 		//
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
-			OS.Current = new Axantum.AxCrypt.Mono.RuntimeEnvironment();
+			OS.Current = new Axantum.AxCrypt.MonoTouch.RuntimeEnvironment();
 			return true;
 		}
 		

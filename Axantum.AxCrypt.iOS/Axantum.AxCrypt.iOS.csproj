@@ -109,6 +109,7 @@
     <Compile Include="FilePresenter.cs" />
     <Compile Include="Infrastructure\UIAlertViewOkCancelDelegate.cs" />
     <Compile Include="Infrastructure\EditableTableViewSource.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainStoryboard_iPhone.storyboard" />
@@ -134,6 +135,7 @@
     <Folder Include="Images\Spotlight &amp; Settings Icons\" />
     <Folder Include="Infrastructure\" />
     <Folder Include="Images\iTunes Artwork\" />
+    <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
@@ -143,6 +145,10 @@
     <ProjectReference Include="..\Axantum.AxCrypt.Core.MonoTouch\Axantum.AxCrypt.Core.MonoTouch.csproj">
       <Project>{4F638C73-5AD2-48B4-88BF-9FA85605B9B4}</Project>
       <Name>Axantum.AxCrypt.Core.MonoTouch</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Axantum.AxCrypt.MonoTouch\Axantum.AxCrypt.MonoTouch.csproj">
+      <Project>{623D0558-31DF-4CDA-9424-934B7AFFFA05}</Project>
+      <Name>Axantum.AxCrypt.MonoTouch</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

@@ -181,9 +181,6 @@
     <Compile Include="..\Axantum.AxCrypt.Core\IO\ProgressStream.cs">
       <Link>IO\ProgressStream.cs</Link>
     </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Core\Properties\AssemblyInfo.cs">
-      <Link>Properties\AssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="..\Axantum.AxCrypt.Core\Properties\Resources.Designer.cs">
       <Link>Properties\Resources.Designer.cs</Link>
     </Compile>
@@ -238,29 +235,6 @@
     <Compile Include="..\Axantum.AxCrypt.Core\UI\ProgressEventArgs.cs">
       <Link>UI\ProgressEventArgs.cs</Link>
     </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Mono\Launcher.cs">
-      <Link>Launcher.cs</Link>
-    </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Mono\Logging.cs">
-      <Link>Logging.cs</Link>
-    </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Mono\RuntimeEnvironment.cs">
-      <Link>RuntimeEnvironment.cs</Link>
-    </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Mono\RuntimeFileInfo.cs">
-      <Link>RuntimeFileInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Mono\Timing.cs">
-      <Link>Timing.cs</Link>
-    </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Mono\WebCaller.cs">
-      <Link>WebCaller.cs</Link>
-    </Compile>
-    <Compile Include="System.Diagnostics\TraceSwitch.cs" />
-    <Compile Include="System.Diagnostics\TraceLevel.cs" />
-    <Compile Include="System.Diagnostics\Trace.cs" />
-    <Compile Include="Axantum.AxCrypt.Mono\DataProtection.cs" />
-    <Compile Include="Axantum.AxCrypt.Mono\FileWatcher.cs" />
     <Compile Include="..\Axantum.AxCrypt.Core\Runtime\AxCryptException.cs">
       <Link>Runtime\AxCryptException.cs</Link>
     </Compile>
@@ -312,6 +286,7 @@
     <Compile Include="..\Axantum.AxCrypt.Core\IO\LockingStream.cs">
       <Link>IO\LockingStream.cs</Link>
     </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Axantum.AxCrypt.Core\Properties\AssemblyInfo.template">

@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.iOS", "Axan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Core.MonoTouch", "Axantum.AxCrypt.Core.MonoTouch\Axantum.AxCrypt.Core.MonoTouch.csproj", "{4F638C73-5AD2-48B4-88BF-9FA85605B9B4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.MonoTouch", "Axantum.AxCrypt.MonoTouch\Axantum.AxCrypt.MonoTouch.csproj", "{623D0558-31DF-4CDA-9424-934B7AFFFA05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -39,6 +41,18 @@ Global
 		{4F638C73-5AD2-48B4-88BF-9FA85605B9B4}.Release|iPhone.Build.0 = Release|Any CPU
 		{4F638C73-5AD2-48B4-88BF-9FA85605B9B4}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{4F638C73-5AD2-48B4-88BF-9FA85605B9B4}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{623D0558-31DF-4CDA-9424-934B7AFFFA05}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU
+		{623D0558-31DF-4CDA-9424-934B7AFFFA05}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
+		{623D0558-31DF-4CDA-9424-934B7AFFFA05}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
+		{623D0558-31DF-4CDA-9424-934B7AFFFA05}.AppStore|iPhone.Build.0 = Debug|Any CPU
+		{623D0558-31DF-4CDA-9424-934B7AFFFA05}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{623D0558-31DF-4CDA-9424-934B7AFFFA05}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{623D0558-31DF-4CDA-9424-934B7AFFFA05}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{623D0558-31DF-4CDA-9424-934B7AFFFA05}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{623D0558-31DF-4CDA-9424-934B7AFFFA05}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{623D0558-31DF-4CDA-9424-934B7AFFFA05}.Release|iPhone.Build.0 = Release|Any CPU
+		{623D0558-31DF-4CDA-9424-934B7AFFFA05}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{623D0558-31DF-4CDA-9424-934B7AFFFA05}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Axantum.AxCrypt.iOS\Axantum.AxCrypt.iOS.csproj
