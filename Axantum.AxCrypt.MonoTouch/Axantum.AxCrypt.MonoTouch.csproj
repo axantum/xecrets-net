@@ -21,6 +21,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="BeforeBuild" command="cp ${SolutionDir}/Axantum.AxCrypt.Core/bin/Debug/Axantum.AxCrypt.Core.dll ${ProjectDir}/bin" />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -29,12 +34,20 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="BeforeBuild" command="cp ${SolutionDir}/Axantum.AxCrypt.Core/bin/Release/Axantum.AxCrypt.Core.dll ${ProjectDir}/bin" />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
+    <Reference Include="Axantum.AxCrypt.Core">
+      <HintPath>bin\Axantum.AxCrypt.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -55,12 +68,6 @@
     <Compile Include="Logging.cs" />
     <Compile Include="RuntimeEnvironment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Axantum.AxCrypt.Core.MonoTouch\Axantum.AxCrypt.Core.MonoTouch.csproj">
-      <Project>{4F638C73-5AD2-48B4-88BF-9FA85605B9B4}</Project>
-      <Name>Axantum.AxCrypt.Core.MonoTouch</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
