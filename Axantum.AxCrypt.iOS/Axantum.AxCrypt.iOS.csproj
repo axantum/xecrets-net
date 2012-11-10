@@ -115,6 +115,12 @@
     <Reference Include="Axantum.AxCrypt.Core">
       <HintPath>bin\Axantum.AxCrypt.Core.dll</HintPath>
     </Reference>
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>..\SolutionItems\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\SolutionItems\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
