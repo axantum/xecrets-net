@@ -37,6 +37,9 @@
     <DelaySign>false</DelaySign>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\SolutionItems\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -147,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AboutThisAssembly.txt" />
+    <Content Include="resources\json.netlicense.txt" />
     <EmbeddedResource Include="resources\axcrypticon.ico" />
     <Content Include="resources\bouncycastlelicense.txt" />
   </ItemGroup>

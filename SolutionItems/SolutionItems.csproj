@@ -22,6 +22,9 @@
     <None Include="AxantumStrongName.pub" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\AboutTheSolutions.txt">
+      <Link>AboutTheSolutions.txt</Link>
+    </Content>
     <Content Include="AxCrypt 2.0 Design.html" />
     <Content Include="BouncyCastle.Crypto.dll" />
     <Content Include="..\CustomDictionary.xml">
@@ -30,6 +33,7 @@
     <Content Include="ILMerge.exe" />
     <Content Include="MSBuildVersioning.dll" />
     <Content Include="HowToBuild.txt" />
+    <Content Include="Newtonsoft.Json.dll" />
     <Content Include="nunit.framework.dll" />
     <Content Include="signtool.exe" />
     <Content Include="sn.exe" />

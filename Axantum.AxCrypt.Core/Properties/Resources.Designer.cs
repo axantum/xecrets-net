@@ -70,5 +70,14 @@ namespace Axantum.AxCrypt.Core.Properties {
                 return ResourceManager.GetString("bouncycastlelicense", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string json_netlicense {
+            get {
+                return ResourceManager.GetString("json_netlicense", resourceCulture);
+            }
+        }
     }
 }

@@ -26,17 +26,11 @@
 #endregion Coypright and License
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Resources;
-using System.Runtime.Serialization.Json;
-using System.Text;
 using System.Threading;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
+using Newtonsoft.Json;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -134,12 +128,9 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 IWebCaller webCaller = OS.Current.CreateWebCaller();
                 string result = webCaller.Go(webServiceUrl);
-                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(VersionResponse));
-                VersionResponse versionResponse;
-                using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(result)))
-                {
-                    versionResponse = (VersionResponse)serializer.ReadObject(stream);
-                }
+
+                VersionResponse versionResponse = JsonConvert.DeserializeObject<VersionResponse>(result);
+
                 newVersion = ParseVersion(versionResponse.Version);
                 updateWebpageUrl = new Uri(versionResponse.WebReference);
                 if (OS.Log.IsInfoEnabled)
