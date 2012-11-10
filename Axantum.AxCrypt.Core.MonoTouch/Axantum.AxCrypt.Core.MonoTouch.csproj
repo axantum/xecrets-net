@@ -287,6 +287,21 @@
       <Link>IO\LockingStream.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\Axantum.AxCrypt.Core\UI\PublicResources.cs">
+      <Link>UI\PublicResources.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\UI\UpdateCheck.cs">
+      <Link>UI\UpdateCheck.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\UI\VersionEventArgs.cs">
+      <Link>UI\VersionEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\UI\VersionResponse.cs">
+      <Link>UI\VersionResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\UI\VersionUpdateStatus.cs">
+      <Link>UI\VersionUpdateStatus.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Axantum.AxCrypt.Core\Properties\AssemblyInfo.template">

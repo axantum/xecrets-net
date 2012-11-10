@@ -2,23 +2,5 @@ About Axantum.AxCrypt.Core.MonoTouch
 
 This assembly contains:
 	- the linked Axantum.AxCrypt.Core source files, built for the MonoTouch runtime.
-		- Exclusions: Version* since version checking is done by the iOS operating system.
-		
-	- the linked Axantum.AxCrypt.Mono source files, built for the MonoTouch runtime.
-		- Exclusions: FileSystemWatcher, DataProtection (not applicable).
-		
-	- System.Diagnostics.TraceSwitch implementation.
-	- System.Diagnostics.TraceLevel implementation.
-	- System.Diagnostics.Trace implementation.
 
-At this time, Mono and Windows are treated to be compatible and use the same implementation.
-
-A platform specific implementation assembly should implement IRuntimeEnvironment, and the
-interfaces exposed by methods and properties in that interface. This is currently:
-
-IFileWatcher, ILauncher, IRuntimeFileInfo, ITiming and IWebCaller.
-
-Code coverage is not required to be 100% here, but what reasonable can be tested should be.
-
-FxCop should pass without complaint.
-
+See Axantum.AxCrypt.Core for more details about this assembly.

@@ -22,7 +22,6 @@
  * updates, contributions and contact with the author. You may also visit
  * http://www.axantum.com for more information about the author.
 */
-using Axantum.AxCrypt.Mono;
 
 #endregion Coypright and License
 
@@ -32,6 +31,7 @@ using System.IO;
 using System.Security.Cryptography;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Mono;
 
 namespace Axantum.AxCrypt.MonoTouch
 {
