@@ -1,6 +1,0 @@
-About Axantum.AxCrypt.Core.MonoTouch
-
-This assembly contains:
-	- the linked Axantum.AxCrypt.Core source files, built for the MonoTouch runtime.
-
-See Axantum.AxCrypt.Core for more details about this assembly.
