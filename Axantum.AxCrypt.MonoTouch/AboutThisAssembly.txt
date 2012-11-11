@@ -1,0 +1,18 @@
+About Axantum.AxCrypt.MonoTouch
+
+This assembly is the MonoTouch-specific implementation of the various platform-specific interfaces
+defined and used by Axantum.AxCrypt.Core.
+
+Some of the code is identical with the generic Mono implementation, and is thus just linked to
+in the project.
+
+Some of the code is specific for MonoTouch and thus have a custom implementation here.
+
+The main application should configure itself for MonoTouch by a line of code similar to:
+
+            OS.Current = new Axantum.AxCrypt.MonoTouch.RuntimeEnvironment();
+
+NOTE: You must build Axantum.AxCrypt.Core.dll separately for 'Debug' and 'Release' configuration as needed.
+      This is built by the AxCrypt.NET solution, which can be loaded simultaneously into MonoDevelop for
+      a reasonably convenient workspace environment.
+      

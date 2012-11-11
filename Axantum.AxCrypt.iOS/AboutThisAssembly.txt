@@ -1,3 +1,8 @@
 About Axantum.AxCrypt.iOS
 
 This assembly contains the source code for the AxCrypt iOS application.
+
+NOTE: You must build Axantum.AxCrypt.Core.dll separately for 'Debug' and 'Release' configuration as needed.
+      This is built by the AxCrypt.NET solution, which can be loaded simultaneously into MonoDevelop for
+      a reasonably convenient workspace environment.
+      
