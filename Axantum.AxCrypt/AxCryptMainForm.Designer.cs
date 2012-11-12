@@ -50,8 +50,6 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.largeImageList = new System.Windows.Forms.ImageList(this.components);
-            this.smallImageList = new System.Windows.Forms.ImageList(this.components);
             this.activeFilePollingTimer = new System.Windows.Forms.Timer(this.components);
             this.progressTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.recentFilesContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -329,25 +327,6 @@
             resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
-            // largeImageList
-            // 
-            this.largeImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("largeImageList.ImageStream")));
-            this.largeImageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.largeImageList.Images.SetKeyName(0, "ActiveFile");
-            this.largeImageList.Images.SetKeyName(1, "InactiveFile");
-            this.largeImageList.Images.SetKeyName(2, "Exclamation");
-            // 
-            // smallImageList
-            // 
-            this.smallImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("smallImageList.ImageStream")));
-            this.smallImageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.smallImageList.Images.SetKeyName(0, "ActiveFile");
-            this.smallImageList.Images.SetKeyName(1, "InactiveFile");
-            this.smallImageList.Images.SetKeyName(2, "Exclamation");
-            this.smallImageList.Images.SetKeyName(3, "DecryptedFile");
-            this.smallImageList.Images.SetKeyName(4, "DecryptedUnknownKeyFile");
-            this.smallImageList.Images.SetKeyName(5, "ActiveFileKnownKey");
-            // 
             // activeFilePollingTimer
             // 
             this.activeFilePollingTimer.Interval = 1000;
@@ -448,10 +427,8 @@
             this.encryptedPathColumnHeader});
             resources.ApplyResources(this.recentFilesListView, "recentFilesListView");
             this.recentFilesListView.FullRowSelect = true;
-            this.recentFilesListView.LargeImageList = this.largeImageList;
             this.recentFilesListView.Name = "recentFilesListView";
             this.recentFilesListView.ShowItemToolTips = true;
-            this.recentFilesListView.SmallImageList = this.smallImageList;
             this.recentFilesListView.UseCompatibleStateImageBehavior = false;
             this.recentFilesListView.View = System.Windows.Forms.View.Details;
             this.recentFilesListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.recentFilesListView_ColumnWidthChanged);
@@ -537,8 +514,6 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.Timer activeFilePollingTimer;
-        private System.Windows.Forms.ImageList largeImageList;
-        private System.Windows.Forms.ImageList smallImageList;
         private System.Windows.Forms.ContextMenuStrip recentFilesContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem removeRecentFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeOpenFilesToolStripMenuItem;

@@ -195,6 +195,7 @@
     <Content Include="resources\decryptedfilered16.png" />
     <Content Include="resources\decryptedunknownkeyfilered16.png" />
     <Content Include="resources\exclamationgreen16.png" />
+    <None Include="resources\exclamationgreen32.png" />
     <Content Include="resources\helpquestiongreen32.png" />
     <None Include="resources\encryptionkeygreen32.png" />
     <None Include="resources\encryptionkeyred32.png" />

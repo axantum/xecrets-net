@@ -115,6 +115,8 @@ namespace Axantum.AxCrypt
 
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
 
+            recentFilesListView.SmallImageList = CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources(components);
+            recentFilesListView.LargeImageList = CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources(components);
             recentFilesListView.ListViewItemSorter = _currentRecentFilesSorter;
 
             // Hide this tab, until the feature is implemented
@@ -131,6 +133,33 @@ namespace Axantum.AxCrypt
 
             backgroundMonitor.UpdateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(HandleVersionUpdateEvent);
             UpdateCheck(Settings.Default.LastUpdateCheckUtc);
+        }
+
+        private static ImageList CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources(IContainer container)
+        {
+            ImageList smallImageList = new ImageList(container);
+            
+            smallImageList.Images.Add("ActiveFile", Resources.activefilegreen16);
+            smallImageList.Images.Add("InactiveFile", Resources.inactivefilegreen16);
+            smallImageList.Images.Add("Exclamation", Resources.exclamationgreen16);
+            smallImageList.Images.Add("DecryptedFile", Resources.decryptedfilered16);
+            smallImageList.Images.Add("DecryptedUnknownKeyFile", Resources.decryptedunknownkeyfilered16);
+            smallImageList.Images.Add("ActiveFileKnownKey", Resources.activefilegreen16);
+            smallImageList.TransparentColor = System.Drawing.Color.Transparent;
+
+            return smallImageList;
+        }
+
+        private static ImageList CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources(IContainer container)
+        {
+            ImageList largeImageList = new ImageList(container);
+
+            largeImageList.Images.Add("ActiveFile", Resources.opendocument32);
+            largeImageList.Images.Add("InactiveFile", Resources.helpquestiongreen32);
+            largeImageList.Images.Add("Exclamation", Resources.exclamationgreen32);
+            largeImageList.TransparentColor = System.Drawing.Color.Transparent;
+
+            return largeImageList;
         }
 
         private void FormatTraceMessage(string message)

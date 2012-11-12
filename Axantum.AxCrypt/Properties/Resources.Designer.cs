@@ -326,6 +326,13 @@ namespace Axantum.AxCrypt.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap exclamationgreen32 {
+            get {
+                object obj = ResourceManager.GetObject("exclamationgreen32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to The file &apos;{0}&apos; is already encrypted..
         /// </summary>
