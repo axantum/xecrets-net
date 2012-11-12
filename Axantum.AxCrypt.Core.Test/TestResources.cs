@@ -68,6 +68,9 @@ namespace Axantum.AxCrypt.Core.Test
             string license = PublicResources.BouncycastleLicense;
             Assert.That(license, Is.Not.Null, "Just checking that there is a Bouncy Castle License Text.");
 
+            license = PublicResources.JsonNetLicense;
+            Assert.That(license, Is.Not.Null, "Just checking that there is a Json.NET License Text.");
+
             Icon icon = new Icon(PublicResources.AxCryptIcon);
             Assert.That(icon, Is.Not.Null, "Just checking that there is an icon.");
         }

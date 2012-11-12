@@ -44,5 +44,13 @@ namespace Axantum.AxCrypt.Core.UI
                 return Resources.bouncycastlelicense;
             }
         }
+
+        public static string JsonNetLicense
+        {
+            get
+            {
+                return Resources.json_netlicense;
+            }
+        }
     }
 }
