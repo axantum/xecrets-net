@@ -28,7 +28,8 @@
     <MtouchI18n />
     <CustomCommands>
       <CustomCommands>
-        <Command type="BeforeBuild" command="cp ${SolutionDir}/Axantum.AxCrypt.Core/bin/Debug/Axantum.AxCrypt.Core.dll ${ProjectDir}/bin" />
+        <Command type="BeforeBuild" command="mkdir -p ${ProjectDir}/bin" />
+        <Command type="BeforeBuild" command="cp ${SolutionDir}/Axantum.AxCrypt.Core/bin/Debug/Axantum.AxCrypt.Core.dll ${ProjectDir}/bin" workingdir="" />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -129,14 +130,14 @@
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
     <Reference Include="MonoTouch.Dialog-1" />
-    <Reference Include="Axantum.AxCrypt.Core">
-      <HintPath>bin\Axantum.AxCrypt.Core.dll</HintPath>
-    </Reference>
     <Reference Include="BouncyCastle.Crypto">
       <HintPath>..\SolutionItems\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\SolutionItems\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Axantum.AxCrypt.Core">
+      <HintPath>bin\Axantum.AxCrypt.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
