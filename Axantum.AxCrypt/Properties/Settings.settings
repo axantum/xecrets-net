@@ -9,7 +9,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="AxCrypt2VersionCheckUrl" Type="System.Uri" Scope="User">
-      <Value Profile="(Default)">https://www.axantum.com/Xecrets/RestApi.ashx/axcrypt2version</Value>
+      <Value Profile="(Default)">https://www.axantum.com/Xecrets/RestApi.ashx/axcrypt2version/windows</Value>
     </Setting>
     <Setting Name="UpdateUrl" Type="System.Uri" Scope="Application">
       <Value Profile="(Default)">http://www.axantum.com/</Value>

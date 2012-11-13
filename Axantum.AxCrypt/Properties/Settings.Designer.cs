@@ -49,7 +49,7 @@ namespace Axantum.AxCrypt.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://www.axantum.com/Xecrets/RestApi.ashx/axcrypt2version")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://www.axantum.com/Xecrets/RestApi.ashx/axcrypt2version/windows")]
         public global::System.Uri AxCrypt2VersionCheckUrl {
             get {
                 return ((global::System.Uri)(this["AxCrypt2VersionCheckUrl"]));
