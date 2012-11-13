@@ -43,6 +43,7 @@
     <MtouchLink>None</MtouchLink>
     <CustomCommands>
       <CustomCommands>
+        <Command type="BeforeBuild" command="mkdir -p ${ProjectDir}/bin" />
         <Command type="BeforeBuild" command="cp ${SolutionDir}/Axantum.AxCrypt.Core/bin/Release/Axantum.AxCrypt.Core.dll ${ProjectDir}/bin" />
       </CustomCommands>
     </CustomCommands>
@@ -67,6 +68,7 @@
     <MtouchI18n>west</MtouchI18n>
     <CustomCommands>
       <CustomCommands>
+        <Command type="BeforeBuild" command="mkdir -p ${ProjectDir}/bin" />
         <Command type="BeforeBuild" command="cp ${SolutionDir}/Axantum.AxCrypt.Core/bin/Debug/Axantum.AxCrypt.Core.dll ${ProjectDir}/bin" />
       </CustomCommands>
     </CustomCommands>
@@ -83,6 +85,7 @@
     <MtouchI18n>west</MtouchI18n>
     <CustomCommands>
       <CustomCommands>
+        <Command type="BeforeBuild" command="mkdir -p ${ProjectDir}/bin" />
         <Command type="BeforeBuild" command="cp ${SolutionDir}/Axantum.AxCrypt.Core/bin/Release/Axantum.AxCrypt.Core.dll ${ProjectDir}/bin" />
       </CustomCommands>
     </CustomCommands>
@@ -99,6 +102,7 @@
     <CodesignKey>iPhone Distribution</CodesignKey>
     <CustomCommands>
       <CustomCommands>
+        <Command type="BeforeBuild" command="mkdir -p ${ProjectDir}/bin" />
         <Command type="BeforeBuild" command="cp ${SolutionDir}/Axantum.AxCrypt.Core/bin/Debug/Axantum.AxCrypt.Core.dll ${ProjectDir}/bin" />
       </CustomCommands>
     </CustomCommands>
@@ -119,6 +123,7 @@
     <IpaPackageName />
     <CustomCommands>
       <CustomCommands>
+        <Command type="BeforeBuild" command="mkdir -p ${ProjectDir}/bin" />
         <Command type="BeforeBuild" command="cp ${SolutionDir}/Axantum.AxCrypt.Core/bin/Release/Axantum.AxCrypt.Core.dll ${ProjectDir}/bin" />
       </CustomCommands>
     </CustomCommands>

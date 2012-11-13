@@ -37,6 +37,7 @@
     <ConsolePause>False</ConsolePause>
     <CustomCommands>
       <CustomCommands>
+        <Command type="BeforeBuild" command="mkdir -p ${ProjectDir}/bin" />
         <Command type="BeforeBuild" command="cp ${SolutionDir}/Axantum.AxCrypt.Core/bin/Release/Axantum.AxCrypt.Core.dll ${ProjectDir}/bin" />
       </CustomCommands>
     </CustomCommands>
