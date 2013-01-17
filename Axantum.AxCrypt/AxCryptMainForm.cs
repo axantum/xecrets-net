@@ -129,22 +129,29 @@ namespace Axantum.AxCrypt
 
             persistentState.Current.Load(FileSystemState.DefaultPathInfo);
 
+            persistentState.Current.KnownKeys.Changed += new EventHandler<EventArgs>(HandleKnownKeysChangedEvent);
+
             SetToolButtonsState();
 
             backgroundMonitor.UpdateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(HandleVersionUpdateEvent);
             UpdateCheck(Settings.Default.LastUpdateCheckUtc);
         }
 
+        private void HandleKnownKeysChangedEvent(object sender, EventArgs e)
+        {
+            ThreadSafeUi(RestartTimer);
+        }
+
         private static ImageList CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources(IContainer container)
         {
             ImageList smallImageList = new ImageList(container);
-            
+
             smallImageList.Images.Add("ActiveFile", Resources.activefilegreen16);
             smallImageList.Images.Add("InactiveFile", Resources.inactivefilegreen16);
             smallImageList.Images.Add("Exclamation", Resources.exclamationgreen16);
             smallImageList.Images.Add("DecryptedFile", Resources.decryptedfilered16);
             smallImageList.Images.Add("DecryptedUnknownKeyFile", Resources.decryptedunknownkeyfilered16);
-            smallImageList.Images.Add("ActiveFileKnownKey", Resources.activefilegreen16);
+            smallImageList.Images.Add("ActiveFileKnownKey", Resources.fileknownkeygreen16);
             smallImageList.TransparentColor = System.Drawing.Color.Transparent;
 
             return smallImageList;
@@ -457,7 +464,8 @@ namespace Axantum.AxCrypt
                         return;
                     }
                     e.Passphrase = passphrase;
-                    persistentState.Current.KnownKeys.DefaultEncryptionKey = new Passphrase(e.Passphrase).DerivedPassphrase;
+                    AesKey defaultEncryptionKey = new Passphrase(e.Passphrase).DerivedPassphrase;
+                    persistentState.Current.KnownKeys.DefaultEncryptionKey = defaultEncryptionKey;
                 };
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
@@ -554,7 +562,7 @@ namespace Axantum.AxCrypt
 
             operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
                 {
-                    AddKnownKey(e.Key);
+                    persistentState.Current.KnownKeys.Add(e.Key);
                 };
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
@@ -655,7 +663,7 @@ namespace Axantum.AxCrypt
 
             operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
                 {
-                    AddKnownKey(e.Key);
+                    persistentState.Current.KnownKeys.Add(e.Key);
                 };
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
@@ -753,12 +761,6 @@ namespace Axantum.AxCrypt
                     break;
             }
             return false;
-        }
-
-        private void AddKnownKey(AesKey key)
-        {
-            persistentState.Current.KnownKeys.Add(key);
-            RestartTimer();
         }
 
         private void openEncryptedToolStripButton_Click(object sender, EventArgs e)
@@ -983,11 +985,7 @@ namespace Axantum.AxCrypt
                 return;
             }
             Passphrase passphrase = new Passphrase(passphraseText);
-            bool keyMatch = persistentState.Current.UpdateActiveFileWithKeyIfKeyMatchesThumbprint(passphrase.DerivedPassphrase);
-            if (keyMatch)
-            {
-                persistentState.Current.KnownKeys.Add(passphrase.DerivedPassphrase);
-            }
+            persistentState.Current.KnownKeys.Add(passphrase.DerivedPassphrase);
         }
 
         private void progressBackgroundWorker_ProgressBarClicked(object sender, MouseEventArgs e)
@@ -1188,7 +1186,8 @@ namespace Axantum.AxCrypt
                 {
                     return;
                 }
-                persistentState.Current.KnownKeys.DefaultEncryptionKey = new Passphrase(passphrase).DerivedPassphrase;
+                AesKey defaultEncryptionKey = new Passphrase(passphrase).DerivedPassphrase;
+                persistentState.Current.KnownKeys.DefaultEncryptionKey = defaultEncryptionKey;
             }
             else
             {

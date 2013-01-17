@@ -38,6 +38,12 @@ namespace Axantum.AxCrypt.Core.Session
 {
     public static class FileSystemStateExtensions
     {
+        /// <summary>
+        /// Try do delete files that have been decrypted temporarily, if the conditions are met for such a deletion,
+        /// i.e. it is apparently not locked or in use etc.
+        /// </summary>
+        /// <param name="fileSystemState">The instance of FileSystemState where active files are recorded.</param>
+        /// <param name="progress">The context where progress may be reported.</param>
         public static void PurgeActiveFiles(this FileSystemState fileSystemState, ProgressContext progress)
         {
             progress.NotifyLevelStart();
@@ -95,6 +101,13 @@ namespace Axantum.AxCrypt.Core.Session
             progress.NotifyLevelFinished();
         }
 
+        /// <summary>
+        /// For each active file, check if provided key matches the thumbprint of an active file that does not yet have
+        /// a known key. If so, update the active file with the now known key.
+        /// </summary>
+        /// <param name="fileSystemState">The FileSystemState that contains the list of active files.</param>
+        /// <param name="key">The newly added key to check the files for a match with.</param>
+        /// <returns>True if any file was updated with the new key, False otherwise.</returns>
         public static bool UpdateActiveFileWithKeyIfKeyMatchesThumbprint(this FileSystemState fileSystemState, AesKey key)
         {
             bool keyMatch = false;

@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using System;
 using System.Collections.Generic;
 using Axantum.AxCrypt.Core.Crypto;
 
@@ -34,16 +35,32 @@ namespace Axantum.AxCrypt.Core.UI
     {
         private List<AesKey> _keys = new List<AesKey>();
 
+        public event EventHandler<EventArgs> Changed;
+
+        protected virtual void OnChanged(EventArgs e)
+        {
+            EventHandler<EventArgs> handler = Changed;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
         public void Add(AesKey key)
         {
+            bool changed = false;
             lock (_keys)
             {
                 int i = _keys.IndexOf(key);
-                if (i >= 0)
+                if (i < 0)
                 {
-                    return;
+                    _keys.Insert(0, key);
+                    changed = true;
                 }
-                _keys.Insert(0, key);
+            }
+            if (changed)
+            {
+                OnChanged(new EventArgs());
             }
         }
 

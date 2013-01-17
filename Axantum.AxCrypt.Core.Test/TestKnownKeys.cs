@@ -121,5 +121,22 @@ namespace Axantum.AxCrypt.Core.Test
             knownKeys.DefaultEncryptionKey = null;
             Assert.That(knownKeys.Keys.Count(), Is.EqualTo(2), "Setting the DefaultEncryptionKey to null should not affect the known keys.");
         }
+
+        [Test]
+        public static void TestChangedEvent()
+        {
+            bool wasChanged = false;
+            KnownKeys knownKeys = new KnownKeys();
+            knownKeys.Changed += (object sender, EventArgs e) =>
+            {
+                wasChanged = true;
+            };
+            AesKey key1 = new AesKey();
+            knownKeys.Add(key1);
+            Assert.That(wasChanged, Is.True, "A new key should trigger the Changed event.");
+            wasChanged = false;
+            knownKeys.Add(key1);
+            Assert.That(wasChanged, Is.False, "Re-adding an existing key should not trigger the Changed event.");
+        }
     }
 }
