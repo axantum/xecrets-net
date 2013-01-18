@@ -124,10 +124,22 @@
   <data name="mainToolStrip.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="encryptionKeyToolStripButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="encryptionKeyToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 47</value>
+  </data>
+  <data name="encryptionKeyToolStripButton.Text" xml:space="preserve">
+    <value>toolStripButton1</value>
+  </data>
+  <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>6, 50</value>
+  </data>
   <data name="openEncryptedToolStripButton.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="openEncryptedToolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -222,15 +234,6 @@
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>6, 50</value>
-  </data>
-  <data name="encryptionKeyToolStripButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="encryptionKeyToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 47</value>
-  </data>
-  <data name="encryptionKeyToolStripButton.Text" xml:space="preserve">
-    <value>toolStripButton1</value>
   </data>
   <data name="closeAndRemoveOpenFilesToolStripButton.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -720,7 +723,7 @@ ensure they are not in use.</value>
     <value>1</value>
   </data>
   <data name="watchedFoldersTabPage.Text" xml:space="preserve">
-    <value>Encrypted Folders</value>
+    <value>Watched Folders</value>
   </data>
   <data name="&gt;&gt;watchedFoldersTabPage.Name" xml:space="preserve">
     <value>watchedFoldersTabPage</value>
@@ -1468,19 +1471,25 @@ ensure they are not in use.</value>
     <value>persistentState</value>
   </data>
   <data name="&gt;&gt;persistentState.Type" xml:space="preserve">
-    <value>Axantum.AxCrypt.PersistentState, Axantum.AxCrypt, Version=2.0.544.1, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
+    <value>Axantum.AxCrypt.PersistentState, Axantum.AxCrypt, Version=2.0.550.1, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
   </data>
   <data name="&gt;&gt;progressBackgroundWorker.Name" xml:space="preserve">
     <value>progressBackgroundWorker</value>
   </data>
   <data name="&gt;&gt;progressBackgroundWorker.Type" xml:space="preserve">
-    <value>Axantum.AxCrypt.ProgressBackgroundWorker, Axantum.AxCrypt, Version=2.0.544.1, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
+    <value>Axantum.AxCrypt.ProgressBackgroundWorker, Axantum.AxCrypt, Version=2.0.550.1, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
   </data>
   <data name="&gt;&gt;backgroundMonitor.Name" xml:space="preserve">
     <value>backgroundMonitor</value>
   </data>
   <data name="&gt;&gt;backgroundMonitor.Type" xml:space="preserve">
-    <value>Axantum.AxCrypt.BackgroundMonitor, Axantum.AxCrypt, Version=2.0.544.1, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
+    <value>Axantum.AxCrypt.BackgroundMonitor, Axantum.AxCrypt, Version=2.0.550.1, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator7.Name" xml:space="preserve">
+    <value>toolStripSeparator7</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AxCryptMainForm</value>

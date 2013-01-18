@@ -245,7 +245,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An encryption passphrase is set. Click to clear it..
+        ///   Looks up a localized string similar to You are Logged On to AxCrypt. Click to Log Out..
         /// </summary>
         internal static string DefaultEncryptionKeyIsIsetToolTip {
             get {
@@ -445,6 +445,24 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Logged Off.
+        /// </summary>
+        internal static string LoggedOffStatusText {
+            get {
+                return ResourceManager.GetString("LoggedOffStatusText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logged On.
+        /// </summary>
+        internal static string LoggedOnStatusText {
+            get {
+                return ResourceManager.GetString("LoggedOnStatusText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Version {0} is available! Click to download..
         /// </summary>
         internal static string NewVersionIsAvailableTooltip {
@@ -454,7 +472,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No encryption passphrase is set. Click to enter one..
+        ///   Looks up a localized string similar to You are Logged Out of AxCrypt. Click to Log On..
         /// </summary>
         internal static string NoDefaultEncryptionKeySetToolTip {
             get {

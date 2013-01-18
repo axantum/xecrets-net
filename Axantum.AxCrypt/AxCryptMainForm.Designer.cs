@@ -72,6 +72,7 @@
             this.persistentState = new Axantum.AxCrypt.PersistentState(this.components);
             this.progressBackgroundWorker = new Axantum.AxCrypt.ProgressBackgroundWorker(this.components);
             this.backgroundMonitor = new Axantum.AxCrypt.BackgroundMonitor(this.components);
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.mainToolStrip.SuspendLayout();
             this.mainMenuStrip.SuspendLayout();
             this.recentFilesContextMenuStrip.SuspendLayout();
@@ -92,11 +93,12 @@
             this.mainToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.mainToolStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.mainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.encryptionKeyToolStripButton,
+            this.toolStripSeparator7,
             this.openEncryptedToolStripButton,
             this.encryptToolStripButton,
             this.decryptToolStripButton,
             this.toolStripSeparator1,
-            this.encryptionKeyToolStripButton,
             this.closeAndRemoveOpenFilesToolStripButton,
             this.toolStripSeparator4,
             this.updateToolStripButton,
@@ -465,6 +467,11 @@
             this.progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.progressBackgroundWorker_ProgressBarCreated);
             this.progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.progressBackgroundWorker_ProgressBarClicked);
             // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            resources.ApplyResources(this.toolStripSeparator7, "toolStripSeparator7");
+            // 
             // AxCryptMainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -554,6 +561,7 @@
         private System.Windows.Forms.ToolStripMenuItem decryptAndRemoveFromListToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem wipeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
     }
 }
 

@@ -83,6 +83,8 @@ namespace Axantum.AxCrypt
 
         private NotifyIcon _notifyIcon = null;
 
+        private string _title;
+
         public static MessageBoxOptions MessageBoxOptions { get; private set; }
 
         public AxCryptMainForm()
@@ -111,7 +113,7 @@ namespace Axantum.AxCrypt
 
             RestoreUserPreferences();
 
-            Text = "{0} {1}{2}".InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription); //MLHIDE
+            _title = "{0} {1}{2}".InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription); //MLHIDE
 
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
 
@@ -119,9 +121,7 @@ namespace Axantum.AxCrypt
             recentFilesListView.LargeImageList = CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources(components);
             recentFilesListView.ListViewItemSorter = _currentRecentFilesSorter;
 
-            // Hide this tab, until the feature is implemented
             _watchedFoldersTabPage = statusTabControl.TabPages["watchedFoldersTabPage"]; //MLHIDE
-            statusTabControl.TabPages.Remove(_watchedFoldersTabPage);
 
             OS.Current.FileChanged += new EventHandler<EventArgs>(HandleFileChangedEvent);
 
@@ -135,11 +135,33 @@ namespace Axantum.AxCrypt
 
             backgroundMonitor.UpdateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(HandleVersionUpdateEvent);
             UpdateCheck(Settings.Default.LastUpdateCheckUtc);
+
+            SetWindowTextWithLogonStatus();
+
+            RestartTimer();
         }
 
         private void HandleKnownKeysChangedEvent(object sender, EventArgs e)
         {
             ThreadSafeUi(RestartTimer);
+        }
+
+        private void SetWindowTextWithLogonStatus()
+        {
+            string logonStatus;
+            if (persistentState.Current.KnownKeys.DefaultEncryptionKey == null)
+            {
+                logonStatus = Resources.LoggedOffStatusText;
+            }
+            else
+            {
+                logonStatus = Resources.LoggedOnStatusText;
+            }
+            string text = String.Format("{0} - {1}", _title, logonStatus);
+            if (String.Compare(Text, text, StringComparison.Ordinal) != 0)
+            {
+                Text = text;
+            }
         }
 
         private static ImageList CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources(IContainer container)
@@ -836,6 +858,7 @@ namespace Axantum.AxCrypt
                     _pollingInProgress = false;
                     closeAndRemoveOpenFilesToolStripButton.Enabled = FilesAreOpen;
                     SetToolButtonsState();
+                    SetWindowTextWithLogonStatus();
                 });
         }
 

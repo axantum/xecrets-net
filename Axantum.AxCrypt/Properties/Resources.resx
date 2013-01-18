@@ -262,7 +262,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>Inactive file</value>
   </data>
   <data name="DefaultEncryptionKeyIsIsetToolTip" xml:space="preserve">
-    <value>An encryption passphrase is set. Click to clear it.</value>
+    <value>You are Logged On to AxCrypt. Click to Log Out.</value>
   </data>
   <data name="encryptionkeygreen32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\encryptionkeygreen32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -277,7 +277,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>The file or path '{0}' is invalid for this.</value>
   </data>
   <data name="NoDefaultEncryptionKeySetToolTip" xml:space="preserve">
-    <value>No encryption passphrase is set. Click to enter one.</value>
+    <value>You are Logged Out of AxCrypt. Click to Log On.</value>
   </data>
   <data name="trashred16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\trashred16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -306,5 +306,11 @@ Includes software from http://www.bouncycastle.org/ .</value>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="fileknownkeygreen16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\fileknownkeygreen16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LoggedOffStatusText" xml:space="preserve">
+    <value>Logged Off</value>
+  </data>
+  <data name="LoggedOnStatusText" xml:space="preserve">
+    <value>Logged On</value>
   </data>
 </root>
