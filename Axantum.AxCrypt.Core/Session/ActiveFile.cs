@@ -109,29 +109,24 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 throw new ArgumentNullException("key");
             }
-            Initialize(encryptedFileInfo, decryptedFileInfo, decryptedFileInfo.LastWriteTimeUtc, key, status, process);
+            Initialize(encryptedFileInfo, decryptedFileInfo, decryptedFileInfo.LastWriteTimeUtc, key, null, status, process);
         }
 
         private void Initialize(ActiveFile other)
         {
-            if (other.Key == null && other._keyThumbprintBytes != null)
-            {
-                _keyThumbprintBytes = other._keyThumbprintBytes;
-                _keyThumbprintSalt = other._keyThumbprintSalt;
-            }
-
-            Initialize(other.EncryptedFileInfo, other.DecryptedFileInfo, other.LastEncryptionWriteTimeUtc, other.Key, other.Status, other.Process);
+            Initialize(other.EncryptedFileInfo, other.DecryptedFileInfo, other.LastEncryptionWriteTimeUtc, other.Key, other.Thumbprint, other.Status, other.Process);
             if (other.Process != null)
             {
                 other.Process = null;
             }
         }
 
-        private void Initialize(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, DateTime lastWriteTimeUtc, AesKey key, ActiveFileStatus status, ILauncher process)
+        private void Initialize(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, DateTime lastWriteTimeUtc, AesKey key, AesKeyThumbprint thumbprint, ActiveFileStatus status, ILauncher process)
         {
             EncryptedFileInfo = OS.Current.FileInfo(encryptedFileInfo.FullName);
             DecryptedFileInfo = OS.Current.FileInfo(decryptedFileInfo.FullName);
             Key = key;
+            Thumbprint = thumbprint;
             Status = status;
             LastActivityTimeUtc = OS.Current.UtcNow;
             Process = process;
@@ -150,32 +145,23 @@ namespace Axantum.AxCrypt.Core.Session
             private set;
         }
 
-        private byte[] _keyThumbprintSalt = OS.Current.GetRandomBytes(32);
+        private AesKeyThumbprint _thumbprint;
 
-        [DataMember]
-        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "This is a private method used for serialization.")]
-        private byte[] KeyThumbprintSalt
-        {
-            get { return _keyThumbprintSalt; }
-            set { _keyThumbprintSalt = value; }
-        }
-
-        private byte[] _keyThumbprintBytes;
-
-        [DataMember]
-        private byte[] KeyThumbprintBytes
+        [DataMember(Name = "Thumbprint")]
+        private AesKeyThumbprint Thumbprint
         {
             get
             {
-                if (_keyThumbprintBytes == null)
+                if (Key != null)
                 {
-                    AesKeyThumbprint thumbprint = new AesKeyThumbprint(Key, KeyThumbprintSalt);
-                    _keyThumbprintBytes = thumbprint.GetThumbprintBytes();
+                    return Key.Thumbprint;
                 }
-
-                return _keyThumbprintBytes;
+                return _thumbprint;
             }
-            set { _keyThumbprintBytes = value; }
+            set
+            {
+                _thumbprint = value;
+            }
         }
 
         private string _decryptedFolder;
@@ -253,12 +239,8 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return _key;
             }
-            set
+            private set
             {
-                if (_key != null && !_key.Equals(value))
-                {
-                    KeyThumbprintBytes = null;
-                }
                 _key = value;
             }
         }
@@ -274,10 +256,10 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 throw new ArgumentNullException("key");
             }
-            AesKeyThumbprint thumbprint = new AesKeyThumbprint(key, KeyThumbprintSalt);
 
-            bool match = thumbprint.GetThumbprintBytes().IsEquivalentTo(KeyThumbprintBytes);
-            return match;
+            AesKeyThumbprint thumbprint = new AesKeyThumbprint(key, Thumbprint.GetSalt());
+
+            return thumbprint == Thumbprint;
         }
 
         public bool IsModified

@@ -45,15 +45,14 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// Instantiate a random key.
         /// </summary>
         public AesKey()
+            : this(OS.Current.GetRandomBytes(16))
         {
-            _aesKey = OS.Current.GetRandomBytes(16);
         }
 
         /// <summary>
         /// Instantiate a key.
         /// </summary>
         /// <param name="key">The key to use. The length can be any that is valid for the algorithm.</param>
-
         public AesKey(byte[] key)
         {
             if (key == null)
@@ -65,6 +64,7 @@ namespace Axantum.AxCrypt.Core.Crypto
                 throw new InternalErrorException("Invalid AES key size");
             }
             _aesKey = (byte[])key.Clone();
+            Thumbprint = new AesKeyThumbprint(this);
         }
 
         /// <summary>
@@ -92,6 +92,12 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 return _aesKey.Length;
             }
+        }
+
+        public AesKeyThumbprint Thumbprint
+        {
+            get;
+            private set;
         }
 
         private static ICollection<int> ValidAesKeySizes()

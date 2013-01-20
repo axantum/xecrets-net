@@ -136,8 +136,6 @@ namespace Axantum.AxCrypt
             backgroundMonitor.UpdateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(HandleVersionUpdateEvent);
             UpdateCheck(Settings.Default.LastUpdateCheckUtc);
 
-            SetWindowTextWithLogonStatus();
-
             RestartTimer();
         }
 
@@ -330,6 +328,7 @@ namespace Axantum.AxCrypt
                 encryptionKeyToolStripButton.Image = Resources.encryptionkeyred32;
                 encryptionKeyToolStripButton.ToolTipText = Resources.DefaultEncryptionKeyIsIsetToolTip;
             }
+            SetWindowTextWithLogonStatus();
         }
 
         private void UpdateActiveFilesViews(ActiveFile activeFile)
@@ -858,7 +857,6 @@ namespace Axantum.AxCrypt
                     _pollingInProgress = false;
                     closeAndRemoveOpenFilesToolStripButton.Enabled = FilesAreOpen;
                     SetToolButtonsState();
-                    SetWindowTextWithLogonStatus();
                 });
         }
 

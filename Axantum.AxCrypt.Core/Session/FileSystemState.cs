@@ -31,6 +31,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Xml;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
@@ -44,7 +45,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         public FileSystemState()
         {
-            Initialize();
+            Initialize(new StreamingContext());
         }
 
         public static IRuntimeFileInfo DefaultPathInfo
@@ -55,10 +56,12 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private void Initialize()
+        [OnDeserializing]
+        private void Initialize(StreamingContext context)
         {
             _lock = new object();
             KnownKeys = new KnownKeys();
+            _knownThumbprints = new List<AesKeyThumbprint>();
         }
 
         private Dictionary<string, ActiveFile> _activeFilesByEncryptedPath = new Dictionary<string, ActiveFile>();
@@ -212,6 +215,25 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
+        private List<AesKeyThumbprint> _knownThumbprints;
+
+        [DataMember(Name = "KnownThumbprints")]
+        public ICollection<AesKeyThumbprint> KnownThumbprints
+        {
+            get
+            {
+                return _knownThumbprints;
+            }
+            set
+            {
+                lock (_knownThumbprints)
+                {
+                    _knownThumbprints.Clear();
+                    _knownThumbprints.AddRange(value);
+                }
+            }
+        }
+
         private void SetRangeInternal(IEnumerable<ActiveFile> activeFiles, ActiveFileStatus mask)
         {
             _activeFilesByDecryptedPath = new Dictionary<string, ActiveFile>();
@@ -304,11 +326,11 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     fileSystemState = (FileSystemState)serializer.ReadObject(fileSystemStateStream);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     if (OS.Log.IsErrorEnabled)
                     {
-                        OS.Log.LogError("Exception reading {0}. Ignoring and re-initializing state.".InvariantFormat(path.FullName));
+                        OS.Log.LogError("Exception {1} reading {0}. Ignoring and re-initializing state.".InvariantFormat(path.FullName, ex.Message));
                     }
                     fileSystemState = new FileSystemState();
                 }
@@ -317,17 +339,12 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     Add(activeFile);
                 }
+                KnownThumbprints = fileSystemState.KnownThumbprints;
                 if (OS.Log.IsInfoEnabled)
                 {
                     OS.Log.LogInfo("Loaded FileSystemState from '{0}'.".InvariantFormat(fileSystemState._path));
                 }
             }
-        }
-
-        [OnDeserialized]
-        private void OnDeserialized(StreamingContext context)
-        {
-            Initialize();
         }
 
         public void Save()
