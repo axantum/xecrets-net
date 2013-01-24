@@ -8,10 +8,7 @@ namespace Axantum.AxCrypt.iOS
 {
 	public class EditableTableViewSource : DialogViewController.Source
 	{
-
-		public EditableTableViewSource (DialogViewController controller) : base(controller)
-		{
-		}
+		public EditableTableViewSource (DialogViewController controller) : base(controller) {}
 
 		public override void CommitEditingStyle (UITableView tableView, UITableViewCellEditingStyle editingStyle, NSIndexPath indexPath)
 		{

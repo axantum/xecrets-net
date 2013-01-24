@@ -46,34 +46,38 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>..\SolutionItems\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Json" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="Axantum.AxCrypt.Core">
       <HintPath>bin\Axantum.AxCrypt.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="..\Axantum.AxCrypt.Mono\Launcher.cs">
-      <Link>Launcher.cs</Link>
-    </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Mono\RuntimeFileInfo.cs">
-      <Link>RuntimeFileInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Mono\Timing.cs">
-      <Link>Timing.cs</Link>
-    </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Mono\WebCaller.cs">
-      <Link>WebCaller.cs</Link>
-    </Compile>
     <Compile Include="FileWatcher.cs" />
     <Compile Include="DataProtection.cs" />
     <Compile Include="Logging.cs" />
     <Compile Include="RuntimeEnvironment.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
+    <Compile Include="..\Axantum.AxCrypt.Mono\RuntimeFileInfo.cs">
+      <Link>Mono\RuntimeFileInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Mono\Launcher.cs">
+      <Link>Mono\Launcher.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Mono\Timing.cs">
+      <Link>Mono\Timing.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Mono\WebCaller.cs">
+      <Link>Mono\WebCaller.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="AboutThisAssembly.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Mono\" />
   </ItemGroup>
 </Project>

@@ -5,30 +5,30 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MonoTouch.Dialog;
 using System.Drawing;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.UI;
 using System.ComponentModel;
-using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.IO;
 using System.IO;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core;
 
 namespace Axantum.AxCrypt.iOS
 {
-	public partial class PassphraseViewController : AppViewController
+	public partial class PassphraseViewController : UIViewController
 	{
+		public event Action Decrypting;
 		public event Action<string> FileDecrypted;
 		public event Action Cancelled;
 
 		string path;
+		UIProgressView progressView;
 		UIActivityIndicatorView activityIndicator;
 		UILabel progressText;
 
 		public PassphraseViewController (string path) : base ()
 		{
 			this.path = path;
-			View.Frame = new RectangleF(0, 20, UIScreen.MainScreen.Bounds.Width, UIScreen.MainScreen.Bounds.Height - 20);
-			TableView.UserInteractionEnabled = false;
 		}
 
 		public override void ViewWillAppear (bool animated)
@@ -55,18 +55,26 @@ namespace Axantum.AxCrypt.iOS
 		void CreateLoadingView ()
 		{
 			const float subViewHeight = 20;
-			const float horizontalPadding = 30;
+			float horizontalPadding = View.Bounds.Width / 4;
 			float verticalMidpoint = UIScreen.MainScreen.ApplicationFrame.Height / 2;
 			float frameWidth = UIScreen.MainScreen.ApplicationFrame.Width;
 
+			View.Frame = new RectangleF(
+				x: horizontalPadding,
+				y: verticalMidpoint - subViewHeight * 2f,
+				width: View.Bounds.Width - horizontalPadding * 2f,
+				height: subViewHeight * 6
+				);
+
 			activityIndicator = new UIActivityIndicatorView(UIActivityIndicatorViewStyle.WhiteLarge) {
-				Frame = new RectangleF(horizontalPadding, verticalMidpoint - subViewHeight, frameWidth - horizontalPadding * 2, subViewHeight),
+				Frame = new RectangleF(subViewHeight, subViewHeight * 2, frameWidth - horizontalPadding * 2 - subViewHeight * 2, subViewHeight),
 				HidesWhenStopped = true,
-				Color = highlightColor,
+
+				Color = AppViewController.HighlightColor
 			};
 
 			progressText = new UILabel {
-				Frame = new RectangleF(horizontalPadding, verticalMidpoint + subViewHeight / 2, frameWidth - horizontalPadding * 2, subViewHeight * 2),
+				Frame = new RectangleF(0, subViewHeight * 3.5f, frameWidth - horizontalPadding * 2, subViewHeight * 2),
 				BackgroundColor = UIColor.Clear,
 				TextColor = UIColor.Black,
 				TextAlignment = UITextAlignment.Center,
@@ -79,13 +87,46 @@ namespace Axantum.AxCrypt.iOS
 
 			View.AddSubview(activityIndicator);
 			View.AddSubview(progressText);
+			View.BackgroundColor = UIColor.White.ColorWithAlpha(.95f);
+			View.Layer.BorderColor = AppViewController.HighlightColor.CGColor;
+			View.Layer.BorderWidth = AppViewController.BorderWith;
+			View.Layer.CornerRadius = AppViewController.CornerRadius;
+			View.Layer.Opacity = 0;
 		}
 
 		void SetProgress (int percent, string message)
 		{
 			InvokeOnMainThread(() => {
-				activityIndicator.StartAnimating();
-				progressText.Hidden = false;
+				Decrypting();
+
+				if (percent > 0) {
+					if (activityIndicator != null) {
+						progressView = new UIProgressView(activityIndicator.Frame) {
+							ProgressTintColor = AppViewController.HighlightColor,
+							//TrackTintColor = UIColor.Black
+						};
+						progressView.Center = new PointF(progressView.Center.X, (View.Bounds.Height - progressView.Bounds.Height) / 2);
+
+						UIView.Animate (.5d, delegate {
+							activityIndicator.RemoveFromSuperview();
+							View.Add(progressView);
+							progressText.Center = new PointF(progressView.Center.X, progressView.Center.Y + 20);
+						}, delegate {
+							if (activityIndicator != null) {
+								activityIndicator.Dispose();
+								activityIndicator = null;
+							}
+						});
+					}
+					progressView.SetProgress(percent / 100f, true);
+				}
+				else {
+					UIView.Animate(.5d, delegate {
+						View.Layer.Opacity = .875f;
+					});
+					activityIndicator.StartAnimating();
+					progressText.Hidden = false;
+				}
 				progressText.Text = message;
 			});
 		}
@@ -100,7 +141,7 @@ namespace Axantum.AxCrypt.iOS
 
 			ProgressContext progress = new ProgressContext();
 			progress.Progressing += (sender, e) => {
-				SetProgress(e.Percent, String.Format("{0}%", e.Percent));
+				SetProgress(e.Percent, "Decrypting ...");
 			};
 
 
@@ -111,7 +152,7 @@ namespace Axantum.AxCrypt.iOS
 					AesKey key = new Passphrase(usingPassphrase).DerivedPassphrase;
 					IRuntimeFileInfo sourceFile = OS.Current.FileInfo (path);
 					targetFileName = AxCryptFile.Decrypt (sourceFile, targetDirectory, key, AxCryptOptions.None, progress);
-				}
+				
 
 				if (targetFileName == null) {
 					wa.Result = FileOperationStatus.Canceled;
@@ -119,16 +160,23 @@ namespace Axantum.AxCrypt.iOS
 				}
 				
 				wa.Result = FileOperationStatus.Success;
+				}
 			};
 			worker.Completed += (wo, wa) => InvokeOnMainThread(delegate {
-				activityIndicator.StopAnimating();
 
 				if (wa.Result == FileOperationStatus.Canceled) {
+					activityIndicator.StopAnimating();
+					UIView.Animate(.5d, delegate {
+						View.Layer.Opacity = 0;
+					});
+
 					AskForPassword("The passphrase you entered could not be used to open file", "Try again?");
+					worker.Dispose();
 					return;
 				}
 				
 				FileDecrypted(Path.Combine(targetDirectory, targetFileName));
+				worker.Dispose();
 			});
 
 			worker.Run();
