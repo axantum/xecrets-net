@@ -4,8 +4,9 @@ using System.Linq;
 
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-using Axantum.AxCrypt.Core;
+//using Axantum.AxCrypt.Core;
 using System.IO;
+using Axantum.AxCrypt.Core;
 
 namespace Axantum.AxCrypt.iOS
 {
@@ -16,7 +17,7 @@ namespace Axantum.AxCrypt.iOS
 	public partial class AppDelegate : UIApplicationDelegate
 	{
 		// class-level declarations
-		
+		private AppViewController appViewController;
 		public override UIWindow Window {
 			get;
 			set;
@@ -32,6 +33,10 @@ namespace Axantum.AxCrypt.iOS
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
 			OS.Current = new Axantum.AxCrypt.MonoTouch.RuntimeEnvironment();
+			appViewController = new AppViewController();
+			Window = new UIWindow(UIScreen.MainScreen.Bounds);
+			Window.RootViewController = appViewController;
+			Window.MakeKeyAndVisible ();
 			return true;
 		}
 		
@@ -51,7 +56,7 @@ namespace Axantum.AxCrypt.iOS
 		/// This method is called as part of the transiton from background to active state.
 		public override void WillEnterForeground (UIApplication application)
 		{
-			Axantum_AxCrypt_iOSViewController.ReloadFileSystem();
+			appViewController.ReloadFileSystem();
 		}
 
 		/// This method is called when the application is about to terminate. Save data, if needed. 
@@ -63,9 +68,9 @@ namespace Axantum.AxCrypt.iOS
 		{
 			string targetPath = Path.Combine(Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), Path.GetFileName(url.Path));
 			System.IO.File.Move(url.Path, targetPath);
-			Axantum_AxCrypt_iOSViewController.ReloadFileSystem();
+			appViewController.ReloadFileSystem();
 
-			AppViewController.OpenFile(targetPath);
+			appViewController.OpenFile(targetPath);
 
 			return true;
 		}

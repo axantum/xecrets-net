@@ -40,6 +40,10 @@
     <EnablePackageSigning>False</EnablePackageSigning>
     <CreatePackage>False</CreatePackage>
     <DefineConstants>TRACE</DefineConstants>
+    <CodeSigningKey>Mac Developer</CodeSigningKey>
+    <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
+    <I18n>west</I18n>
+    <LinkMode>Full</LinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|x86' ">
     <DebugType>none</DebugType>
