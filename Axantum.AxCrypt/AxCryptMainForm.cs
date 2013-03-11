@@ -130,6 +130,8 @@ namespace Axantum.AxCrypt
             persistentState.Current.Load(FileSystemState.DefaultPathInfo);
 
             persistentState.Current.KnownKeys.Changed += new EventHandler<EventArgs>(HandleKnownKeysChangedEvent);
+            OS.Current.KeyWrapIterations = persistentState.Current.KeyWrapIterations;
+            OS.Current.ThumbprintSalt = persistentState.Current.ThumbprintSalt;
 
             SetToolButtonsState();
 

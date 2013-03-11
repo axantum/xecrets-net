@@ -27,15 +27,22 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Axantum.AxCrypt.Core.Crypto;
 
 namespace Axantum.AxCrypt.Core.UI
 {
+    [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
     public class KnownKeys
     {
-        private List<AesKey> _keys = new List<AesKey>();
+        private List<AesKey> _keys;
 
         public event EventHandler<EventArgs> Changed;
+
+        public KnownKeys()
+        {
+            Initialize(new StreamingContext());
+        }
 
         protected virtual void OnChanged(EventArgs e)
         {
@@ -44,6 +51,13 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 handler(this, e);
             }
+        }
+
+        [OnDeserializing]
+        private void Initialize(StreamingContext context)
+        {
+            _keys = new List<AesKey>();
+            _knownThumbprints = new List<AesKeyThumbprint>();
         }
 
         public void Add(AesKey key)
@@ -58,6 +72,7 @@ namespace Axantum.AxCrypt.Core.UI
                     changed = true;
                 }
             }
+            changed |= AddKnownThumbprint(key);
             if (changed)
             {
                 OnChanged(new EventArgs());
@@ -76,7 +91,10 @@ namespace Axantum.AxCrypt.Core.UI
         {
             get
             {
-                return _keys;
+                lock (_keys)
+                {
+                    return new List<AesKey>(_keys);
+                }
             }
         }
 
@@ -96,6 +114,46 @@ namespace Axantum.AxCrypt.Core.UI
                     return;
                 }
                 Add(value);
+            }
+        }
+
+        private List<AesKeyThumbprint> _knownThumbprints;
+
+        [DataMember(Name = "KnownThumbprints")]
+        public IEnumerable<AesKeyThumbprint> KnownThumbprints
+        {
+            get
+            {
+                lock (_knownThumbprints)
+                {
+                    return new List<AesKeyThumbprint>(_knownThumbprints);
+                }
+            }
+            set
+            {
+                lock (_knownThumbprints)
+                {
+                    _knownThumbprints.Clear();
+                    _knownThumbprints.AddRange(value);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Add a thumb print to the list of known thumb prints
+        /// </summary>
+        /// <param name="thumbprint">The key to add the fingerprint of</param>
+        /// <returns>True if a new thumb print was added, false if it was already known.</returns>
+        private bool AddKnownThumbprint(AesKey key)
+        {
+            lock (_knownThumbprints)
+            {
+                if (_knownThumbprints.Contains(key.Thumbprint))
+                {
+                    return false;
+                }
+                _knownThumbprints.Add(key.Thumbprint);
+                return true;
             }
         }
     }

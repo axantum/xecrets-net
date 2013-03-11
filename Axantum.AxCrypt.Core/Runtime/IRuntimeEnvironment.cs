@@ -27,6 +27,7 @@
 
 using System;
 using System.IO;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 
 namespace Axantum.AxCrypt.Core.Runtime
@@ -66,5 +67,9 @@ namespace Axantum.AxCrypt.Core.Runtime
         IDataProtection DataProtection { get; }
 
         bool CanTrackProcess { get; }
+
+        long KeyWrapIterations { get; set; }
+
+        KeyWrapSalt ThumbprintSalt { get; set; }
     }
 }

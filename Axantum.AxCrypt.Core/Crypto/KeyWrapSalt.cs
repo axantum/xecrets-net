@@ -27,6 +27,7 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Serialization;
 using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Crypto
@@ -34,8 +35,10 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// <summary>
     /// A salt for the AES Key Wrap. Instances of this class are immutable.
     /// </summary>
+    [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
     public class KeyWrapSalt
     {
+        [DataMember(Name = "Salt")]
         private readonly byte[] _salt;
 
         /// <summary>

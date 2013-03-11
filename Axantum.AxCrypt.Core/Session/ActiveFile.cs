@@ -152,9 +152,9 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                if (Key != null)
+                if (_thumbprint == null && Key != null)
                 {
-                    return Key.Thumbprint;
+                    _thumbprint = Key.Thumbprint;
                 }
                 return _thumbprint;
             }
@@ -257,9 +257,7 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("key");
             }
 
-            AesKeyThumbprint thumbprint = new AesKeyThumbprint(key, Thumbprint.GetSalt());
-
-            return thumbprint == Thumbprint;
+            return key.Thumbprint == Thumbprint;
         }
 
         public bool IsModified

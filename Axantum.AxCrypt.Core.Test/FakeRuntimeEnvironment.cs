@@ -29,6 +29,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 
@@ -50,6 +51,7 @@ namespace Axantum.AxCrypt.Core.Test
             TimeFunction = StandardTimeFunction;
             Platform = Platform.WindowsDesktop;
             CurrentTiming = new FakeTiming();
+            ThumbprintSalt = KeyWrapSalt.Zero;
         }
 
         public FakeRuntimeEnvironment(Endian endianness)
@@ -220,6 +222,20 @@ namespace Axantum.AxCrypt.Core.Test
         public bool CanTrackProcess
         {
             get { return false; }
+        }
+
+        private long _keyWrapIterations = 1234;
+
+        public long KeyWrapIterations
+        {
+            get { return _keyWrapIterations; }
+            set { _keyWrapIterations = value; }
+        }
+
+        public KeyWrapSalt ThumbprintSalt
+        {
+            get;
+            set;
         }
     }
 }

@@ -61,14 +61,53 @@ namespace Axantum.AxCrypt.Core.Session
         {
             _lock = new object();
             KnownKeys = new KnownKeys();
-            _knownThumbprints = new List<AesKeyThumbprint>();
         }
 
         private Dictionary<string, ActiveFile> _activeFilesByEncryptedPath = new Dictionary<string, ActiveFile>();
 
         private Dictionary<string, ActiveFile> _activeFilesByDecryptedPath = new Dictionary<string, ActiveFile>();
 
+        [DataMember(Name = "KnownKeys")]
         public KnownKeys KnownKeys { get; private set; }
+
+        private long? _keyWrapIterations = null;
+
+        [DataMember(Name = "KeyWrapIterations")]
+        public long KeyWrapIterations
+        {
+            get
+            {
+                if (!_keyWrapIterations.HasValue)
+                {
+                    _keyWrapIterations = OS.Current.KeyWrapIterations;
+                }
+
+                return _keyWrapIterations.Value;
+            }
+            private set
+            {
+                _keyWrapIterations = value;
+            }
+        }
+
+        private KeyWrapSalt _thumbprintSalt;
+
+        [DataMember(Name = "ThumbprintSalt")]
+        public KeyWrapSalt ThumbprintSalt
+        {
+            get
+            {
+                if (_thumbprintSalt == null)
+                {
+                    _thumbprintSalt = new KeyWrapSalt(AesKey.DefaultKeyLength);
+                }
+                return _thumbprintSalt;
+            }
+            private set
+            {
+                _thumbprintSalt = value;
+            }
+        }
 
         public event EventHandler<ActiveFileChangedEventArgs> Changed;
 
@@ -215,25 +254,6 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private List<AesKeyThumbprint> _knownThumbprints;
-
-        [DataMember(Name = "KnownThumbprints")]
-        public ICollection<AesKeyThumbprint> KnownThumbprints
-        {
-            get
-            {
-                return _knownThumbprints;
-            }
-            set
-            {
-                lock (_knownThumbprints)
-                {
-                    _knownThumbprints.Clear();
-                    _knownThumbprints.AddRange(value);
-                }
-            }
-        }
-
         private void SetRangeInternal(IEnumerable<ActiveFile> activeFiles, ActiveFileStatus mask)
         {
             _activeFilesByDecryptedPath = new Dictionary<string, ActiveFile>();
@@ -339,7 +359,9 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     Add(activeFile);
                 }
-                KnownThumbprints = fileSystemState.KnownThumbprints;
+                KnownKeys = fileSystemState.KnownKeys;
+                KeyWrapIterations = fileSystemState.KeyWrapIterations;
+                ThumbprintSalt = fileSystemState.ThumbprintSalt;
                 if (OS.Log.IsInfoEnabled)
                 {
                     OS.Log.LogInfo("Loaded FileSystemState from '{0}'.".InvariantFormat(fileSystemState._path));
