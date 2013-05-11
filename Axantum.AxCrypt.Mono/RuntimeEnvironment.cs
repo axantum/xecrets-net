@@ -202,7 +202,7 @@ namespace Axantum.AxCrypt.Mono
             {
                 if (_keyWrapIterations == 0)
                 {
-                    _keyWrapIterations = KeyWrap.CalculatedKeyWrapIterations;
+                    _keyWrapIterations = KeyWrapIterationCalculator.CalculatedKeyWrapIterations;
                 }
                 return _keyWrapIterations;
             }

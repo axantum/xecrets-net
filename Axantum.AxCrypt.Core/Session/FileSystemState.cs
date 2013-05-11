@@ -109,6 +109,34 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
+        private List<string> _watchedFolders = new List<string>();
+
+        [DataMember(Name = "WatchedFolders")]
+        public IEnumerable<string> WatchedFolders
+        {
+            get
+            {
+                return _watchedFolders;
+            }
+            private set
+            {
+                _watchedFolders = new List<string>(value);
+            }
+        }
+
+        public void AddWatchedFolder(string watchedFolder)
+        {
+            if (!_watchedFolders.Contains(watchedFolder))
+            {
+                _watchedFolders.Add(watchedFolder);
+            }
+        }
+
+        public void RemoveWatchedFolder(string watchedFolder)
+        {
+            _watchedFolders.Remove(watchedFolder);
+        }
+
         public event EventHandler<ActiveFileChangedEventArgs> Changed;
 
         protected virtual void OnChanged(ActiveFileChangedEventArgs e)
@@ -362,6 +390,7 @@ namespace Axantum.AxCrypt.Core.Session
                 KnownKeys = fileSystemState.KnownKeys;
                 KeyWrapIterations = fileSystemState.KeyWrapIterations;
                 ThumbprintSalt = fileSystemState.ThumbprintSalt;
+                WatchedFolders = fileSystemState.WatchedFolders;
                 if (OS.Log.IsInfoEnabled)
                 {
                     OS.Log.LogInfo("Loaded FileSystemState from '{0}'.".InvariantFormat(fileSystemState._path));

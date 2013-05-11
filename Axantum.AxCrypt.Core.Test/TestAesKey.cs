@@ -33,7 +33,7 @@ using NUnit.Framework;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public static class TestAesKey
+    internal static class TestAesKey
     {
         [SetUp]
         public static void Setup()
@@ -129,6 +129,19 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(nullKey != key1, "A key is never equal to a null reference.");
             Assert.That(key1 == key2, "Two different, but equivalent keys should compare equal.");
             Assert.That(key1 != key3, "Two really different keys should not compare equal.");
+        }
+
+        [Test]
+        public static void TestThumbprint()
+        {
+            AesKey key1 = new AesKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
+
+            AesKeyThumbprint originalThumbprint = key1.Thumbprint;
+            Assert.That(originalThumbprint, Is.EqualTo(key1.Thumbprint), "The thumbprints should be the same.");
+
+            key1.Thumbprint = new AesKeyThumbprint(key1, new KeyWrapSalt(AesKey.DefaultKeyLength), OS.Current.KeyWrapIterations);
+
+            Assert.That(originalThumbprint, Is.Not.EqualTo(key1.Thumbprint), "The thumbprints should differ.");
         }
     }
 }

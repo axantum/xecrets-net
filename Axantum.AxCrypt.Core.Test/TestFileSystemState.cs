@@ -297,5 +297,42 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(state.ActiveFileCount, Is.EqualTo(1), "After adding a file, the count should be one.");
             }
         }
+
+        [Test]
+        public static void TestWatchedFolders()
+        {
+            using (FileSystemState state = new FileSystemState())
+            {
+                IRuntimeFileInfo stateInfo = OS.Current.FileInfo(_mystateXmlPath);
+                state.Load(stateInfo);
+
+                Assert.That(state.WatchedFolders, Is.Not.Null, "There should be a Watched Folders instance.");
+                Assert.That(state.WatchedFolders.Count(), Is.EqualTo(0), "There should be no Watched folders.");
+
+                state.AddWatchedFolder(_rootPath);
+                Assert.That(state.WatchedFolders.Count(), Is.EqualTo(1), "There should be one Watched Folder.");
+
+                state.AddWatchedFolder(_rootPath);
+                Assert.That(state.WatchedFolders.Count(), Is.EqualTo(1), "There should still only be one Watched Folder.");
+
+                state.Save();
+            }
+
+            using (FileSystemState state = new FileSystemState())
+            {
+                IRuntimeFileInfo stateInfo = OS.Current.FileInfo(_mystateXmlPath);
+                state.Load(stateInfo);
+
+                Assert.That(state.WatchedFolders.Count(), Is.EqualTo(1), "There should be one Watched Folder.");
+
+                Assert.That(state.WatchedFolders.First(), Is.EqualTo(_rootPath), "The Watched Folder should be equal to this.");
+
+                state.RemoveWatchedFolder(_mystateXmlPath);
+                Assert.That(state.WatchedFolders.Count(), Is.EqualTo(1), "There should still be one Watched folders.");
+
+                state.RemoveWatchedFolder(_rootPath);
+                Assert.That(state.WatchedFolders.Count(), Is.EqualTo(0), "There should still be no Watched folders now.");
+            }
+        }
     }
 }
