@@ -109,22 +109,26 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private List<string> _watchedFolders = new List<string>();
+        private List<WatchedFolder> _watchedFolders;
 
         [DataMember(Name = "WatchedFolders")]
-        public IEnumerable<string> WatchedFolders
+        public IEnumerable<WatchedFolder> WatchedFolders
         {
             get
             {
+                if (_watchedFolders == null)
+                {
+                    _watchedFolders = new List<WatchedFolder>();
+                }
                 return _watchedFolders;
             }
             private set
             {
-                _watchedFolders = new List<string>(value);
+                _watchedFolders = new List<WatchedFolder>(value);
             }
         }
 
-        public void AddWatchedFolder(string watchedFolder)
+        public void AddWatchedFolder(WatchedFolder watchedFolder)
         {
             if (!_watchedFolders.Contains(watchedFolder))
             {
@@ -132,7 +136,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public void RemoveWatchedFolder(string watchedFolder)
+        public void RemoveWatchedFolder(WatchedFolder watchedFolder)
         {
             _watchedFolders.Remove(watchedFolder);
         }
