@@ -5,7 +5,7 @@
 	<key>CFBundleDocumentTypes</key>
 	<array/>
 	<key>CFBundleIconFile</key>
-	<string>AxCryptIcon128.icns</string>
+	<string>AxCryptIcon128</string>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>AxCryptIcon128.icns</string>

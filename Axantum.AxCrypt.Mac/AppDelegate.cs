@@ -46,8 +46,10 @@ namespace Axantum.AxCrypt.Mac
 		public override void FinishedLaunching (NSObject notification)
 		{
 			// You can put any code here after your app launched.
-			mainWindowController = new MainWindowController(); 
-			mainWindowController.ShowWindow(this);
+			mainWindowController = new MainWindowController (); 
+			mainWindowController.ShowWindow (this);
+
+			AppController.Initialize ();
 		}
 
 		partial void about (NSObject sender)

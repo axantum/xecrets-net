@@ -16,8 +16,10 @@ namespace Axantum.AxCrypt.Mac
 {
 	public class AppController
 	{
-		const string APP_NAME = "AxCrypt for Mac";
-		const string VERSION = "2.0.1.0";
+		public const string APP_NAME = "AxCrypt for Mac";
+		public const string VERSION = "2.0.1.0";
+
+		private static AesKey lastUsedKey;
 
 		public static string FullApplicationName {
 			get {
@@ -27,6 +29,65 @@ namespace Axantum.AxCrypt.Mac
 
 		public AppController ()
 		{
+		}
+
+		public static void Initialize()
+		{
+			const int
+			ACTIVATED = 0 ,
+			INACTIVATED= 1 ,
+			LAUNCHED= 2 ,
+			TERMINATED= 3;
+
+			int state = ACTIVATED;
+			string encryptedSourceFile = null, decryptedTargetFile = null;
+
+			NSNotificationCenter.DefaultCenter.AddObserver ("decrypted file", not => {
+				encryptedSourceFile = not.UserInfo["source file"].ToString();
+				decryptedTargetFile = not.UserInfo["target file"].ToString();
+			});
+			
+			NSApplication.Notifications.ObserveDidBecomeActive ((sender, args) => {
+				if (state == TERMINATED) {
+					// Re-encrypt file.
+					if (encryptedSourceFile != null && decryptedTargetFile != null) {
+
+						AxCryptFile.EncryptFileWithBackupAndWipe(
+							decryptedTargetFile, 
+							encryptedSourceFile, 
+							lastUsedKey, 
+							new ProgressContext());
+					}
+				}
+
+				state = ACTIVATED;
+				encryptedSourceFile = null;
+				decryptedTargetFile = null;
+			});
+
+			NSApplication.Notifications.ObserveDidResignActive ((sender, args) => {
+				state = INACTIVATED;
+			});
+
+			NSWorkspace.Notifications.ObserveDidActivateApplication ((sender, args) => {
+				if (state == INACTIVATED)
+					state = LAUNCHED;
+			});
+
+			NSWorkspace.Notifications.ObserveDidLaunchApplication ((sender, args) => {
+				if (state == INACTIVATED)
+					state = LAUNCHED;
+			});
+
+			NSWorkspace.Notifications.ObserveDidTerminateApplication ((sender, args) => {
+				if (state == LAUNCHED)
+					state = TERMINATED;
+			});
+
+			NSWorkspace.Notifications.ObserveDidDeactivateApplication ((sender, args) => {
+				if (state == LAUNCHED)
+					state = TERMINATED;
+			});
 		}
 
 		public static void OperationFailureHandler (string message, ProgressContext context)
@@ -140,23 +201,26 @@ namespace Axantum.AxCrypt.Mac
 
 		public static void DecryptAndOpenFile (ProgressContext progress, Action<string, ProgressContext> failure)
 		{
-			GetSourceFile((file, passphrase) => {
-				string filePath = Path.GetTempPath();
-				string fileName;
-				AesKey key = passphrase.DerivedPassphrase;
+			GetSourceFile((encryptedDocument, passphrase) => {
+				string tempPath = Path.GetTempPath();
+				string decryptedFileName;
+				lastUsedKey = passphrase.DerivedPassphrase;
 
-				if (!TryDecrypt(file, filePath, key, progress, out fileName)) {
+				if (!TryDecrypt(encryptedDocument, tempPath, lastUsedKey, progress, out decryptedFileName)) {
 					failure("Could not open file", progress);
 					return;
 				}
 
-				IRuntimeFileInfo target = OS.Current.FileInfo(Path.Combine(filePath, fileName));
+				string fullPathToDecryptedFile = Path.Combine(tempPath, decryptedFileName);
+				IRuntimeFileInfo decryptedFile = OS.Current.FileInfo(fullPathToDecryptedFile);
 
-				ILauncher launcher = OS.Current.Launch(target.FullName);
-				launcher.Exited += delegate {
-					AxCryptFile.EncryptFileWithBackupAndWipe(target, file, key, progress);
-					launcher.Dispose();
-				};
+				NSDictionary userInfo = new NSDictionary(
+					"source file", encryptedDocument.FullName,
+					"target file", decryptedFile.FullName);
+				NSNotification notification = NSNotification.FromName("decrypted file", new NSObject(), userInfo);
+				NSNotificationCenter.DefaultCenter.PostNotification(notification);
+
+				using(ILauncher launcher = OS.Current.Launch(fullPathToDecryptedFile));
 			});
 		}
 
