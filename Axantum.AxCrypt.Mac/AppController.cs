@@ -101,10 +101,12 @@ namespace Axantum.AxCrypt.Mac
 				if (result == 0 || panel.Urls.Length == 0) return;
 				if (!panel.Urls[0].IsFileUrl) return;
 				string filePath = panel.Urls[0].Path;
+				Passphrase generatedPassphrase = passwordController.Passphrase;
 				panel.Close();
+
 				ThreadPool.QueueUserWorkItem(delegate { 
 					using(new NSAutoreleasePool()) {
-						fileSelected(OS.Current.FileInfo(filePath), passwordController.Passphrase); 
+						fileSelected(OS.Current.FileInfo(filePath), generatedPassphrase); 
 					};
 				});
 			});
