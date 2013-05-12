@@ -48,10 +48,10 @@ namespace Axantum.AxCrypt.Mac
 					indicator.StopAnimation(this);
 				}
 			};
-			action(progress, (message, context) => {
+			action(progress, (message, context) => InvokeOnMainThread((NSAction) delegate {
 				indicator.StopAnimation(this);
 				AppController.OperationFailureHandler(message, context);
-			});
+			}));
 		}
 		
 		partial void encryptClicked (NSObject sender)
