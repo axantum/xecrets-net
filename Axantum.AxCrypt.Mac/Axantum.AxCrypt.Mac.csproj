@@ -13,6 +13,7 @@
     <ReleaseVersion>2.0.1.0</ReleaseVersion>
     <SynchReleaseVersion>False</SynchReleaseVersion>
     <AssemblyName>Axantum.AxCrypt.Mac</AssemblyName>
+    <SuppressXamMacUpsell>True</SuppressXamMacUpsell>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugType>full</DebugType>
