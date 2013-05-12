@@ -29,11 +29,13 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Security.Cryptography;
+using Axantum.AxCrypt.Core.Reader;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
     /// <summary>
-    /// Represent a salted thumbprint for a AES key. Instances of this class are immutable.
+    /// Represent a salted thumb print for a AES key. Instances of this class are immutable. A thumb print is
+    /// typically only valid and comparable on the same computer and log on where it was created.
     /// </summary>
     [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
     public class AesKeyThumbprint : IEquatable<AesKeyThumbprint>
@@ -41,17 +43,12 @@ namespace Axantum.AxCrypt.Core.Crypto
         [DataMember(Name = "Thumbprint")]
         private byte[] _bytes;
 
-        public AesKeyThumbprint(AesKey key)
-            : this(key, OS.Current.GetRandomBytes(32))
-        {
-        }
-
         /// <summary>
-        /// Instantiate a thumbprint
+        /// Instantiate a thumb print
         /// </summary>
         /// <param name="key">The key to thumbprint.</param>
         /// <param name="salt">The salt to use.</param>
-        public AesKeyThumbprint(AesKey key, byte[] salt)
+        public AesKeyThumbprint(AesKey key, KeyWrapSalt salt, long iterations)
         {
             if (key == null)
             {
@@ -62,48 +59,25 @@ namespace Axantum.AxCrypt.Core.Crypto
                 throw new ArgumentNullException("salt");
             }
 
-            HashAlgorithm hash = HashAlgorithm.Create("SHA256");
-            hash.TransformBlock(salt, 0, salt.Length, null, 0);
-            hash.TransformFinalBlock(key.GetBytes(), 0, key.Length);
+            KeyWrap keyWrap = new KeyWrap(key, salt, iterations, KeyWrapMode.Specification);
+            byte[] wrap = keyWrap.Wrap(key);
 
-            _bytes = new byte[sizeof(int) + salt.Length + hash.Hash.Length];
-            BitConverter.GetBytes(salt.Length).CopyTo(_bytes, 0);
-            salt.CopyTo(_bytes, sizeof(int));
-            hash.Hash.CopyTo(_bytes, sizeof(int) + salt.Length);
+            Initialize(wrap, iterations);
         }
 
-        public byte[] GetSalt()
+        private void Initialize(byte[] wrap, long iterations)
         {
-            int saltLength = BitConverter.ToInt32(_bytes, 0);
-            byte[] salt = new byte[saltLength];
-            Array.Copy(_bytes, sizeof(int), salt, 0, salt.Length);
-            return salt;
+            _bytes = ThumbprintFromWrappedKey(wrap);
         }
 
-        /// <summary>
-        /// Get the thumbprint.
-        /// </summary>
-        /// <returns>Calculate and return the thumbprint.</returns>
-        public byte[] GetBytes()
+        private byte[] ThumbprintFromWrappedKey(byte[] wrap)
         {
-            return (byte[])_bytes.Clone();
-        }
-
-        /// <summary>
-        /// Compare this instance to a set of other thumbprints for equivalence.
-        /// </summary>
-        /// <param name="thumbprints">A collection of thumbprints to match with this one.</param>
-        /// <returns>True if any of the thumbprints in the colleciton matches this one, otherwise False</returns>
-        public bool MatchAny(IEnumerable<AesKeyThumbprint> thumbprints)
-        {
-            foreach (AesKeyThumbprint thumbprint in thumbprints)
+            byte[] thumprint = new byte[8];
+            for (int i = 0; i < wrap.Length; ++i)
             {
-                if (this == thumbprint)
-                {
-                    return true;
-                }
+                thumprint[i % thumprint.Length] ^= wrap[i];
             }
-            return false;
+            return thumprint;
         }
 
         #region IEquatable<AesKeyThumbprint> Members
@@ -114,6 +88,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 return false;
             }
+
             return _bytes.IsEquivalentTo(other._bytes);
         }
 

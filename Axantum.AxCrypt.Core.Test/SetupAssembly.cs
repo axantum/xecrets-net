@@ -40,7 +40,7 @@ namespace Axantum.AxCrypt.Core.Test
     /// Not using SetUpFixtureAttribute etc because MonoDevelop does not always honor.
     /// </summary>
     [SuppressMessage("Microsoft.Design", "CA1053:StaticHolderTypesShouldNotHaveConstructors", Justification = "NUnit requires there to be a parameterless constructor.")]
-    public static class SetupAssembly
+    internal static class SetupAssembly
     {
         public static void AssemblySetup()
         {

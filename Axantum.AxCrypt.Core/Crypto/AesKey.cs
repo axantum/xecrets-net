@@ -27,6 +27,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Security.Cryptography;
 using Axantum.AxCrypt.Core.Runtime;
 
@@ -37,6 +38,8 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// </summary>
     public class AesKey : IEquatable<AesKey>
     {
+        public static readonly int DefaultKeyLength = 16;
+
         private static ICollection<int> _validAesKeySizes = ValidAesKeySizes();
 
         private byte[] _aesKey;
@@ -45,7 +48,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// Instantiate a random key.
         /// </summary>
         public AesKey()
-            : this(OS.Current.GetRandomBytes(16))
+            : this(OS.Current.GetRandomBytes(DefaultKeyLength))
         {
         }
 
@@ -64,7 +67,6 @@ namespace Axantum.AxCrypt.Core.Crypto
                 throw new InternalErrorException("Invalid AES key size");
             }
             _aesKey = (byte[])key.Clone();
-            Thumbprint = new AesKeyThumbprint(this);
         }
 
         /// <summary>
@@ -94,10 +96,22 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
         }
 
+        private AesKeyThumbprint _thumbprint;
+
         public AesKeyThumbprint Thumbprint
         {
-            get;
-            private set;
+            get
+            {
+                if (_thumbprint == null)
+                {
+                    _thumbprint = new AesKeyThumbprint(this, OS.Current.ThumbprintSalt, OS.Current.KeyWrapIterations);
+                }
+                return _thumbprint;
+            }
+            set
+            {
+                _thumbprint = value;
+            }
         }
 
         private static ICollection<int> ValidAesKeySizes()

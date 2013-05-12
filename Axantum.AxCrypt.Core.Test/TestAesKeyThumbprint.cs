@@ -53,9 +53,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestInvalidArguments()
         {
             AesKey nullKey = null;
-            Byte[] nullArray = null;
-            Assert.Throws<ArgumentNullException>(() => { if (new AesKeyThumbprint(nullKey, new byte[] { }) == null) { } });
-            Assert.Throws<ArgumentNullException>(() => { if (new AesKeyThumbprint(new AesKey(), nullArray) == null) { } });
+            KeyWrapSalt nullSalt = null;
+            Assert.Throws<ArgumentNullException>(() => { if (new AesKeyThumbprint(nullKey, new KeyWrapSalt(16), 10) == null) { } });
+            Assert.Throws<ArgumentNullException>(() => { if (new AesKeyThumbprint(new AesKey(), nullSalt, 10) == null) { } });
         }
 
         [Test]
@@ -63,14 +63,16 @@ namespace Axantum.AxCrypt.Core.Test
         {
             AesKey key1 = new AesKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
             AesKey key2 = new AesKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
-            byte[] salt1 = OS.Current.GetRandomBytes(32);
-            byte[] salt2 = (byte[])salt1.Clone();
+            KeyWrapSalt salt1 = new KeyWrapSalt(16);
+            KeyWrapSalt salt2 = new KeyWrapSalt(salt1.GetBytes());
 
-            byte[] thumbprint1 = new AesKeyThumbprint(key1, salt1).GetBytes();
-            byte[] thumbprint2 = new AesKeyThumbprint(key2, salt2).GetBytes();
+            AesKeyThumbprint thumbprint1 = new AesKeyThumbprint(key1, salt1, 10);
+            AesKeyThumbprint thumbprint2 = new AesKeyThumbprint(key2, salt2, 10);
 
-            Assert.That(thumbprint1.IsEquivalentTo(thumbprint2), "Two thumbprints made from the same key and salt bytes, although different AesKey instances should be equivalent.");
-            Assert.That(!thumbprint2.IsEquivalentTo(new AesKeyThumbprint(new AesKey(), OS.Current.GetRandomBytes(16)).GetBytes()), "To very different keys and salts should not be equivalent.");
+            Assert.That(thumbprint1 == thumbprint2, "Two thumb prints made from the same key and salt bytes, although different AesKey instances should be equivalent.");
+
+            AesKeyThumbprint thumbprint3 = new AesKeyThumbprint(new AesKey(), new KeyWrapSalt(AesKey.DefaultKeyLength), 10);
+            Assert.That(thumbprint2 != thumbprint3, "Two very different keys and salts should not be equivalent.");
         }
 
         [Test]
@@ -78,14 +80,14 @@ namespace Axantum.AxCrypt.Core.Test
         {
             AesKey key1 = new AesKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
             AesKey key2 = new AesKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
-            byte[] salt1 = OS.Current.GetRandomBytes(32);
-            byte[] salt2 = OS.Current.GetRandomBytes(32);
+            KeyWrapSalt salt1 = new KeyWrapSalt(AesKey.DefaultKeyLength);
+            KeyWrapSalt salt2 = new KeyWrapSalt(AesKey.DefaultKeyLength);
 
-            AesKeyThumbprint thumbprint1a = new AesKeyThumbprint(key1, salt1);
+            AesKeyThumbprint thumbprint1a = new AesKeyThumbprint(key1, salt1, 13);
             AesKeyThumbprint thumbprint1a_alias = thumbprint1a;
-            AesKeyThumbprint thumbprint1b = new AesKeyThumbprint(key1, salt2);
-            AesKeyThumbprint thumbprint2a = new AesKeyThumbprint(key2, salt2);
-            AesKeyThumbprint thumbprint2b = new AesKeyThumbprint(key2, salt1);
+            AesKeyThumbprint thumbprint1b = new AesKeyThumbprint(key1, salt2, 25);
+            AesKeyThumbprint thumbprint2a = new AesKeyThumbprint(key2, salt2, 25);
+            AesKeyThumbprint thumbprint2b = new AesKeyThumbprint(key2, salt1, 13);
             AesKeyThumbprint nullThumbprint = null;
 
             Assert.That(thumbprint1a == thumbprint1a_alias, "Same instance should of course compare equal.");
@@ -110,33 +112,15 @@ namespace Axantum.AxCrypt.Core.Test
         {
             AesKey key1 = new AesKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
             AesKey key2 = new AesKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
-            byte[] salt1 = OS.Current.GetRandomBytes(32);
-            byte[] salt2 = OS.Current.GetRandomBytes(32);
+            KeyWrapSalt salt1 = new KeyWrapSalt(AesKey.DefaultKeyLength);
+            KeyWrapSalt salt2 = new KeyWrapSalt(AesKey.DefaultKeyLength);
 
-            AesKeyThumbprint thumbprint1a = new AesKeyThumbprint(key1, salt1);
-            AesKeyThumbprint thumbprint1b = new AesKeyThumbprint(key1, salt2);
-            AesKeyThumbprint thumbprint2a = new AesKeyThumbprint(key2, salt2);
+            AesKeyThumbprint thumbprint1a = new AesKeyThumbprint(key1, salt1, 17);
+            AesKeyThumbprint thumbprint1b = new AesKeyThumbprint(key1, salt2, 17);
+            AesKeyThumbprint thumbprint2a = new AesKeyThumbprint(key2, salt2, 17);
 
             Assert.That(thumbprint1a.GetHashCode() != thumbprint1b.GetHashCode(), "The salt is different, so the hash code should be different.");
             Assert.That(thumbprint1b.GetHashCode() == thumbprint2a.GetHashCode(), "The keys are equivalent, and the salt the same, so the hash code should be different.");
-        }
-
-        [Test]
-        public static void TestMatchAny()
-        {
-            AesKey key1 = new AesKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
-            AesKey key2 = new AesKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
-            byte[] salt1 = OS.Current.GetRandomBytes(32);
-            byte[] salt2 = OS.Current.GetRandomBytes(32);
-
-            AesKeyThumbprint thumbprint1a = new AesKeyThumbprint(key1, salt1);
-            AesKeyThumbprint thumbprint1b = new AesKeyThumbprint(key1, salt2);
-            AesKeyThumbprint thumbprint2a = new AesKeyThumbprint(key2, salt2);
-            AesKeyThumbprint thumbprint2b = new AesKeyThumbprint(key2, salt1);
-
-            Assert.That(thumbprint1a.MatchAny(new AesKeyThumbprint[] { }), Is.False, "No instance can be matched in an empty collection");
-            Assert.That(thumbprint1a.MatchAny(new AesKeyThumbprint[] { thumbprint1b, thumbprint2a }), Is.False, "No instance should be matched in this collection");
-            Assert.That(thumbprint1a.MatchAny(new AesKeyThumbprint[] { thumbprint1b, thumbprint2a, thumbprint2b }), Is.True, "One instance should be matched in this collection");
         }
     }
 }

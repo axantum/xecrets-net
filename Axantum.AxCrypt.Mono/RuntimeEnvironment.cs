@@ -29,6 +29,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Security.Cryptography;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 
@@ -191,6 +192,30 @@ namespace Axantum.AxCrypt.Mono
         public bool CanTrackProcess
         {
             get { return Platform == Platform.WindowsDesktop; }
+        }
+
+        private long _keyWrapIterations = 0;
+
+        public long KeyWrapIterations
+        {
+            get
+            {
+                if (_keyWrapIterations == 0)
+                {
+                    _keyWrapIterations = KeyWrapIterationCalculator.CalculatedKeyWrapIterations;
+                }
+                return _keyWrapIterations;
+            }
+            set
+            {
+                _keyWrapIterations = value;
+            }
+        }
+
+        public KeyWrapSalt ThumbprintSalt
+        {
+            get;
+            set;
         }
     }
 }

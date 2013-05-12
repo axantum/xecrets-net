@@ -130,7 +130,7 @@ namespace Axantum.AxCrypt.Core.Reader
         private void Initialize(AesKey keyEncryptingKey)
         {
             AesKey masterKey = new AesKey();
-            long iterations = DefaultIterations;
+            long iterations = OS.Current.KeyWrapIterations;
             KeyWrapSalt salt = new KeyWrapSalt(keyEncryptingKey.Length);
             using (KeyWrap keyWrap = new KeyWrap(keyEncryptingKey, salt, iterations, KeyWrapMode.AxCrypt))
             {
@@ -146,49 +146,6 @@ namespace Axantum.AxCrypt.Core.Reader
             {
                 byte[] wrappedKeyData = keyWrap.Wrap(masterKey);
                 Set(wrappedKeyData, salt, Iterations);
-            }
-        }
-
-        private static long? _defaultIterations;
-
-        /// <summary>
-        /// Get the number of key wrap iterations we use by default. This is a calculated value intended to cause the wrapping
-        /// operation to take approximately 1/10th of a second in the system where the code is run.
-        /// A minimum of 20000 iterations are always guaranteed.
-        /// </summary>
-        public static long DefaultIterations
-        {
-            get
-            {
-                if (_defaultIterations.HasValue)
-                {
-                    return _defaultIterations.Value;
-                }
-                AesKey dummyKey = new AesKey();
-                KeyWrapSalt dummySalt = new KeyWrapSalt(dummyKey.Length);
-                DateTime startTime = DateTime.Now;
-                DateTime endTime;
-                long totalIterations = 0;
-                int iterationsIncrement = 1000;
-                using (KeyWrap keyWrap = new KeyWrap(dummyKey, dummySalt, iterationsIncrement, KeyWrapMode.AxCrypt))
-                {
-                    do
-                    {
-                        keyWrap.Wrap(dummyKey);
-                        totalIterations += iterationsIncrement;
-                        endTime = DateTime.Now;
-                    } while ((endTime - startTime).TotalMilliseconds < 500);
-                }
-                long iterationsPerSecond = totalIterations * 1000 / (long)(endTime - startTime).TotalMilliseconds;
-                _defaultIterations = iterationsPerSecond / 10;
-
-                // Guarantee a minimum
-                if (_defaultIterations < 20000)
-                {
-                    _defaultIterations = 20000;
-                }
-
-                return _defaultIterations.Value;
             }
         }
     }
