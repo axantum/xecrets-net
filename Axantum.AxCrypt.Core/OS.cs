@@ -26,13 +26,49 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Runtime;
+using System;
 
 namespace Axantum.AxCrypt.Core
 {
     public static class OS
     {
-        public static IRuntimeEnvironment Current { get; set; }
+        private static IRuntimeEnvironment _runtimeEnvironment;
 
+        /// <summary>
+        /// Gets or sets the current IRuntimeEnvironment platform dependent implementation instance.
+        /// If the instance implements IDisposable, the previous value will be disposed when a new
+        /// value is set.
+        /// </summary>
+        /// <value>
+        /// The current IRuntimeEnvironment platform dependent implementation instance.
+        /// </value>
+        public static IRuntimeEnvironment Current
+        {
+            get
+            {
+                return _runtimeEnvironment;
+            }
+            set
+            {
+                if (_runtimeEnvironment != null)
+                {
+                    IDisposable disposable = _runtimeEnvironment as IDisposable;
+                    if (disposable != null)
+                    {
+                        disposable.Dispose();
+                    }
+                }
+                _runtimeEnvironment = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the global logging instance. This is a convenience method to get the logger from
+        /// the current IRuntimeEnvironment instance.
+        /// </summary>
+        /// <value>
+        /// The log.
+        /// </value>
         public static ILogging Log { get { return Current.Log; } }
     }
 }

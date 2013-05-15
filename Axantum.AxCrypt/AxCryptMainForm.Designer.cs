@@ -18,11 +18,12 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AxCryptMainForm));
             this.mainToolStrip = new System.Windows.Forms.ToolStrip();
+            this.encryptionKeyToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.openEncryptedToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.encryptToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.decryptToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.encryptionKeyToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.closeAndRemoveOpenFilesToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.updateToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -50,7 +51,6 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.activeFilePollingTimer = new System.Windows.Forms.Timer(this.components);
             this.progressTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.recentFilesContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.removeRecentFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,7 +72,6 @@
             this.persistentState = new Axantum.AxCrypt.PersistentState(this.components);
             this.progressBackgroundWorker = new Axantum.AxCrypt.ProgressBackgroundWorker(this.components);
             this.backgroundMonitor = new Axantum.AxCrypt.BackgroundMonitor(this.components);
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.mainToolStrip.SuspendLayout();
             this.mainMenuStrip.SuspendLayout();
             this.recentFilesContextMenuStrip.SuspendLayout();
@@ -106,6 +105,19 @@
             this.helpToolStripButton});
             this.mainToolStrip.Name = "mainToolStrip";
             // 
+            // encryptionKeyToolStripButton
+            // 
+            this.encryptionKeyToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.encryptionKeyToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.encryptionkeygreen32;
+            resources.ApplyResources(this.encryptionKeyToolStripButton, "encryptionKeyToolStripButton");
+            this.encryptionKeyToolStripButton.Name = "encryptionKeyToolStripButton";
+            this.encryptionKeyToolStripButton.Click += new System.EventHandler(this.encryptionKeyToolStripButton_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            resources.ApplyResources(this.toolStripSeparator7, "toolStripSeparator7");
+            // 
             // openEncryptedToolStripButton
             // 
             resources.ApplyResources(this.openEncryptedToolStripButton, "openEncryptedToolStripButton");
@@ -132,14 +144,6 @@
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
-            // 
-            // encryptionKeyToolStripButton
-            // 
-            this.encryptionKeyToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.encryptionKeyToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.encryptionkeygreen32;
-            resources.ApplyResources(this.encryptionKeyToolStripButton, "encryptionKeyToolStripButton");
-            this.encryptionKeyToolStripButton.Name = "encryptionKeyToolStripButton";
-            this.encryptionKeyToolStripButton.Click += new System.EventHandler(this.encryptionKeyToolStripButton_Click);
             // 
             // closeAndRemoveOpenFilesToolStripButton
             // 
@@ -329,11 +333,6 @@
             resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
-            // activeFilePollingTimer
-            // 
-            this.activeFilePollingTimer.Interval = 1000;
-            this.activeFilePollingTimer.Tick += new System.EventHandler(this.activeFilePollingTimer_Tick);
-            // 
             // progressTableLayoutPanel
             // 
             resources.ApplyResources(this.progressTableLayoutPanel, "progressTableLayoutPanel");
@@ -467,11 +466,6 @@
             this.progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.progressBackgroundWorker_ProgressBarCreated);
             this.progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.progressBackgroundWorker_ProgressBarClicked);
             // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            resources.ApplyResources(this.toolStripSeparator7, "toolStripSeparator7");
-            // 
             // AxCryptMainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -520,7 +514,6 @@
         private System.Windows.Forms.ToolStripMenuItem openEncryptedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.Timer activeFilePollingTimer;
         private System.Windows.Forms.ContextMenuStrip recentFilesContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem removeRecentFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeOpenFilesToolStripMenuItem;

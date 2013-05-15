@@ -25,6 +25,14 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Mono;
+using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -42,14 +50,6 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.Session;
-using Axantum.AxCrypt.Core.UI;
-using Axantum.AxCrypt.Mono;
-using Axantum.AxCrypt.Properties;
 
 namespace Axantum.AxCrypt
 {
@@ -89,15 +89,7 @@ namespace Axantum.AxCrypt
 
         public AxCryptMainForm()
         {
-            OS.Current = new RuntimeEnvironment();
             InitializeComponent();
-            if (OS.Current.Platform == Platform.WindowsDesktop)
-            {
-                _notifyIcon = new NotifyIcon(components);
-                _notifyIcon.MouseClick += trayNotifyIcon_MouseClick;
-                _notifyIcon.Icon = Resources.axcrypticon;
-                _notifyIcon.Visible = true;
-            }
         }
 
         private IComparer _currentRecentFilesSorter = new RecentFilesByDateComparer();
@@ -107,6 +99,15 @@ namespace Axantum.AxCrypt
             if (DesignMode)
             {
                 return;
+            }
+
+            OS.Current = new RuntimeEnvironment(this);
+            if (OS.Current.Platform == Platform.WindowsDesktop)
+            {
+                _notifyIcon = new NotifyIcon(components);
+                _notifyIcon.MouseClick += trayNotifyIcon_MouseClick;
+                _notifyIcon.Icon = Resources.axcrypticon;
+                _notifyIcon.Visible = true;
             }
 
             Trace.Listeners.Add(new DelegateTraceListener("AxCryptMainFormListener", FormatTraceMessage)); //MLHIDE
@@ -123,7 +124,7 @@ namespace Axantum.AxCrypt
 
             _watchedFoldersTabPage = statusTabControl.TabPages["watchedFoldersTabPage"]; //MLHIDE
 
-            OS.Current.FileChanged += new EventHandler<EventArgs>(HandleFileChangedEvent);
+            OS.Current.WorkFolderStateChanged += HandleWorkFolderStateChangedEvent;
 
             persistentState.Current.Changed += new EventHandler<ActiveFileChangedEventArgs>(HandleFileSystemStateChangedEvent);
 
@@ -138,12 +139,12 @@ namespace Axantum.AxCrypt
             backgroundMonitor.UpdateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(HandleVersionUpdateEvent);
             UpdateCheck(Settings.Default.LastUpdateCheckUtc);
 
-            RestartTimer();
+            OS.Current.NotifyWorkFolderStateChanged();
         }
 
         private void HandleKnownKeysChangedEvent(object sender, EventArgs e)
         {
-            ThreadSafeUi(RestartTimer);
+            OS.Current.NotifyWorkFolderStateChanged();
         }
 
         private void SetWindowTextWithLogonStatus()
@@ -284,11 +285,6 @@ namespace Axantum.AxCrypt
             });
         }
 
-        private void HandleFileChangedEvent(object sender, EventArgs e)
-        {
-            ThreadSafeUi(RestartTimer);
-        }
-
         private void HandleFileSystemStateChangedEvent(object sender, ActiveFileChangedEventArgs e)
         {
             ThreadSafeUi(() =>
@@ -402,6 +398,7 @@ namespace Axantum.AxCrypt
                 case "ActiveFileKnownKey":
                     item.ToolTipText = Resources.ActiveFileKnownKeyToolTip;
                     break;
+
                 default:
                     item.ToolTipText = String.Empty;
                     break;
@@ -779,6 +776,7 @@ namespace Axantum.AxCrypt
                 case FileOperationStatus.InvalidPath:
                     Resources.InvalidPath.InvariantFormat(displayContext).ShowWarning();
                     break;
+
                 default:
                     Resources.UnrecognizedError.InvariantFormat(displayContext).ShowWarning();
                     break;
@@ -826,27 +824,21 @@ namespace Axantum.AxCrypt
             Application.Exit();
         }
 
-        public void RestartTimer()
-        {
-            activeFilePollingTimer.Enabled = false;
-            activeFilePollingTimer.Interval = 1000;
-            activeFilePollingTimer.Enabled = true;
-        }
+        private bool _handleWorkFolderStateChangedInProgress = false;
 
-        private bool _pollingInProgress = false;
-
-        private void activeFilePollingTimer_Tick(object sender, EventArgs e)
+        private void HandleWorkFolderStateChangedEvent(object sender, EventArgs e)
         {
             if (OS.Log.IsInfoEnabled)
             {
                 OS.Log.LogInfo("Tick");                                 //MLHIDE
             }
-            if (_pollingInProgress)
+
+            if (_handleWorkFolderStateChangedInProgress)
             {
+                OS.Current.NotifyWorkFolderStateChanged();
                 return;
             }
-            activeFilePollingTimer.Enabled = false;
-            _pollingInProgress = true;
+            _handleWorkFolderStateChangedInProgress = true;
 
             progressBackgroundWorker.BackgroundWorkWithProgress(
                 (ProgressContext progress) =>
@@ -856,9 +848,9 @@ namespace Axantum.AxCrypt
                 },
                 (FileOperationStatus status) =>
                 {
-                    _pollingInProgress = false;
                     closeAndRemoveOpenFilesToolStripButton.Enabled = FilesAreOpen;
                     SetToolButtonsState();
+                    _handleWorkFolderStateChangedInProgress = false;
                 });
         }
 
@@ -1236,6 +1228,7 @@ namespace Axantum.AxCrypt
                     _interactionSemaphore.Close();
                     _interactionSemaphore = null;
                 }
+                OS.Current = null;
             }
             base.Dispose(disposing);
         }

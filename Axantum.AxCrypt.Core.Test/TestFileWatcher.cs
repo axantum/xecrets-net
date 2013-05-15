@@ -52,7 +52,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void SimpleTest()
         {
-            IFileWatcher watcher = OS.Current.FileWatcher("c:\temp");
+            IFileWatcher watcher = OS.Current.CreateFileWatcher("c:\temp");
             string fullName = String.Empty;
             watcher.FileChanged += (object sender, FileWatcherEventArgs e) =>
                 {

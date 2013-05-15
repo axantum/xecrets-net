@@ -25,13 +25,13 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -102,7 +102,7 @@ namespace Axantum.AxCrypt.Core.Test
             get { return 512; }
         }
 
-        public IFileWatcher FileWatcher(string path)
+        public IFileWatcher CreateFileWatcher(string path)
         {
             FakeFileWatcher fileWatcher;
             if (_fileWatchers.TryGetValue(path, out fileWatcher))
@@ -117,7 +117,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         private IRuntimeFileInfo _temporaryDirectoryInfo;
 
-        public IRuntimeFileInfo TemporaryDirectoryInfo
+        public IRuntimeFileInfo WorkFolder
         {
             get
             {
@@ -189,21 +189,21 @@ namespace Axantum.AxCrypt.Core.Test
             return WebCallerCreator();
         }
 
-        public void NotifyFileChanged()
+        public void NotifyWorkFolderStateChanged()
         {
             OnChanged();
         }
 
         protected virtual void OnChanged()
         {
-            EventHandler<EventArgs> handler = FileChanged;
+            EventHandler<EventArgs> handler = WorkFolderStateChanged;
             if (handler != null)
             {
                 handler(this, new EventArgs());
             }
         }
 
-        public event EventHandler<EventArgs> FileChanged;
+        public event EventHandler<EventArgs> WorkFolderStateChanged;
 
         #region IRuntimeEnvironment Members
 

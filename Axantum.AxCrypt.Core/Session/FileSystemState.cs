@@ -25,16 +25,16 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Xml;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core.Session
 {
@@ -52,7 +52,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                return OS.Current.FileInfo(Path.Combine(OS.Current.TemporaryDirectoryInfo.FullName, "FileSystemState.xml"));
+                return OS.Current.FileInfo(Path.Combine(OS.Current.WorkFolder.FullName, "FileSystemState.xml"));
             }
         }
 

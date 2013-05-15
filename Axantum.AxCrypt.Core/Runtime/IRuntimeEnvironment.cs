@@ -25,18 +25,18 @@
 
 #endregion Coypright and License
 
-using System;
-using System.IO;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
+using System;
+using System.IO;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
     public interface IRuntimeEnvironment
     {
-        event EventHandler<EventArgs> FileChanged;
+        event EventHandler<EventArgs> WorkFolderStateChanged;
 
-        void NotifyFileChanged();
+        void NotifyWorkFolderStateChanged();
 
         bool IsLittleEndian { get; }
 
@@ -50,9 +50,9 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         int StreamBufferSize { get; }
 
-        IFileWatcher FileWatcher(string path);
+        IFileWatcher CreateFileWatcher(string path);
 
-        IRuntimeFileInfo TemporaryDirectoryInfo { get; }
+        IRuntimeFileInfo WorkFolder { get; }
 
         DateTime UtcNow { get; }
 

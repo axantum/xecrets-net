@@ -25,16 +25,16 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
-using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Mono.Test
 {
@@ -49,7 +49,7 @@ namespace Axantum.AxCrypt.Mono.Test
         public static void Setup()
         {
             _previousEnvironment = OS.Current;
-            OS.Current = new RuntimeEnvironment();
+            OS.Current = new RuntimeEnvironment(null);
             _tempPath = Path.Combine(Path.GetTempPath(), "Axantum.AxCrypt.Core.Test.TestFileWatcher");
             Directory.CreateDirectory(_tempPath);
         }
@@ -64,7 +64,7 @@ namespace Axantum.AxCrypt.Mono.Test
         [Test]
         public static void TestCreated()
         {
-            using (IFileWatcher fileWatcher = OS.Current.FileWatcher(_tempPath))
+            using (IFileWatcher fileWatcher = OS.Current.CreateFileWatcher(_tempPath))
             {
                 string fileName = String.Empty;
                 fileWatcher.FileChanged += (object sender, FileWatcherEventArgs e) => { fileName = Path.GetFileName(e.FullName); };
@@ -82,7 +82,7 @@ namespace Axantum.AxCrypt.Mono.Test
         [Test]
         public static void TestMoved()
         {
-            using (IFileWatcher fileWatcher = OS.Current.FileWatcher(_tempPath))
+            using (IFileWatcher fileWatcher = OS.Current.CreateFileWatcher(_tempPath))
             {
                 string fileName = String.Empty;
                 fileWatcher.FileChanged += (object sender, FileWatcherEventArgs e) => { fileName = Path.GetFileName(e.FullName); };
@@ -108,7 +108,7 @@ namespace Axantum.AxCrypt.Mono.Test
         {
             Assert.DoesNotThrow(() =>
             {
-                using (IFileWatcher fileWatcher = OS.Current.FileWatcher(_tempPath))
+                using (IFileWatcher fileWatcher = OS.Current.CreateFileWatcher(_tempPath))
                 {
                     fileWatcher.Dispose();
                 }

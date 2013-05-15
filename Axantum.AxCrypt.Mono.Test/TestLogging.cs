@@ -25,14 +25,14 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Runtime;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Runtime;
-using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Mono.Test
 {
@@ -45,7 +45,7 @@ namespace Axantum.AxCrypt.Mono.Test
         public static void Setup()
         {
             _previousEnvironment = OS.Current;
-            OS.Current = new RuntimeEnvironment();
+            OS.Current = new RuntimeEnvironment(null);
         }
 
         [TearDown]
@@ -133,9 +133,9 @@ namespace Axantum.AxCrypt.Mono.Test
                 OS.Log.LogWarning("Warning" + Environment.NewLine);
                 Assert.That(listenerMessage, Is.EqualTo(null), "When logging is Error, Warning logging should not generate a message.");
 
-				listenerMessage = null;
-				OS.Log.LogFatal("Fatal" + Environment.NewLine);
-				Assert.That(listenerMessage.Contains("Fatal"), "When logging is Error, Fatal logging should generate a message.");
+                listenerMessage = null;
+                OS.Log.LogFatal("Fatal" + Environment.NewLine);
+                Assert.That(listenerMessage.Contains("Fatal"), "When logging is Error, Fatal logging should generate a message.");
 
                 listenerMessage = null;
                 OS.Log.LogError("Error" + Environment.NewLine);
