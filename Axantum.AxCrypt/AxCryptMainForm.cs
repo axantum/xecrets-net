@@ -619,7 +619,7 @@ namespace Axantum.AxCrypt
         {
             FileOperationsController operationsController = new FileOperationsController(persistentState.Current, progress);
 
-            operationsController.QueryConfirmation += (object sender, FileOperationEventArgs e) =>
+            operationsController.WipeQueryConfirmation += (object sender, FileOperationEventArgs e) =>
             {
                 using (ConfirmWipeDialog cwd = new ConfirmWipeDialog())
                 {
