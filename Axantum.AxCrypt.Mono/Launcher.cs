@@ -25,57 +25,59 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Security.Permissions;
 using System.Text;
-using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Mono
 {
+    [HostProtection(SecurityAction.LinkDemand, SharedState = true, Synchronization = true, ExternalProcessMgmt = true, SelfAffectingProcessMgmt = true), PermissionSet(SecurityAction.LinkDemand, Name = "FullTrust"), PermissionSet(SecurityAction.InheritanceDemand, Name = "FullTrust")]
     internal class Launcher : ILauncher
     {
         private Process _process;
 
-		private string _path;
+        private string _path;
 
-        [SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands", Justification = "The code has full trust anyway.")]
-		public Launcher (string path)
-		{
-			_process = Process.Start(path);
-			if (_process == null) {
-				return;
-			}
-			_path = _process.StartInfo.FileName;
-			if (OS.Current.CanTrackProcess) {
-				// This causes hang-on-exit on at least Mac OS X
-				_process.EnableRaisingEvents = true;
-				_process.Exited += Process_Exited;
-			}
-			else
-			{
-				_process.Dispose();
-				_process = null;
-			}
+        public Launcher(string path)
+        {
+            _process = Process.Start(path);
+            if (_process == null)
+            {
+                return;
+            }
+            _path = _process.StartInfo.FileName;
+            if (OS.Current.CanTrackProcess)
+            {
+                // This causes hang-on-exit on at least Mac OS X
+                _process.EnableRaisingEvents = true;
+                _process.Exited += Process_Exited;
+            }
+            else
+            {
+                _process.Dispose();
+                _process = null;
+            }
         }
 
         private void Process_Exited(object sender, EventArgs e)
         {
             OnExited(e);
-			_process.Exited -= Process_Exited;
-			_process.WaitForExit();
-			_process.Dispose();
-			_process = null;
+            _process.Exited -= Process_Exited;
+            _process.WaitForExit();
+            _process.Dispose();
+            _process = null;
         }
 
         #region ILauncher Members
 
         public event EventHandler Exited;
 
-        [SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands", Justification = "The code has full trust anyway.")]
         public bool HasExited
         {
             get { return !WasStarted || _process.HasExited; }
@@ -114,7 +116,6 @@ namespace Axantum.AxCrypt.Mono
             _process = null;
         }
 
-        [SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands", Justification = "The code has full trust anyway.")]
         public string Path
         {
             get { return _path; }

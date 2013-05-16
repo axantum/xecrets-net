@@ -9,13 +9,14 @@ using System.Threading;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    internal static class TestDelayedAction
+    public static class TestDelayedAction
     {
         [Test]
         public static void TestNullArgument()
         {
             Action nullAction = null;
-            Assert.Throws<ArgumentNullException>(() => { new DelayedAction(nullAction, new TimeSpan(0, 0, 1), null); }, "The 'action' argument is not allowed to be null");
+            DelayedAction delayedAction;
+            Assert.Throws<ArgumentNullException>(() => { delayedAction = new DelayedAction(nullAction, new TimeSpan(0, 0, 1), null); }, "The 'action' argument is not allowed to be null");
         }
 
         [Test]

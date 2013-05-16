@@ -1,19 +1,21 @@
-﻿using System;
+﻿using Axantum.AxCrypt.Core.Session;
+using NUnit.Framework;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
-using Axantum.AxCrypt.Core.Session;
 
 namespace Axantum.AxCrypt.Core.Test
 {
-    internal static class TestWatchedFolder
+    public static class TestWatchedFolder
     {
         [Test]
         public static void TestArgumentNullConstructor()
         {
             string nullString = null;
-            Assert.Throws<ArgumentNullException>(() => { new WatchedFolder(nullString); });
+            WatchedFolder watchedFolder;
+            Assert.Throws<ArgumentNullException>(() => { watchedFolder = new WatchedFolder(nullString); });
         }
 
         [Test]

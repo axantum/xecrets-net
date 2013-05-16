@@ -158,7 +158,7 @@ namespace Axantum.AxCrypt
             {
                 logonStatus = Resources.LoggedOnStatusText;
             }
-            string text = String.Format("{0} - {1}", _title, logonStatus);
+            string text = "{0} - {1}".InvariantFormat(_title, logonStatus);
             if (String.Compare(Text, text, StringComparison.Ordinal) != 0)
             {
                 Text = text;

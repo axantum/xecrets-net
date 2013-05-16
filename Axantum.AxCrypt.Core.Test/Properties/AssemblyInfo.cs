@@ -33,6 +33,7 @@ using System.Runtime.InteropServices;
 
 [assembly: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "Axantum.AxCrypt.Core.Test", Justification = "This will pass...")]
 [module: SuppressMessage("Microsoft.Naming", "CA1703:ResourceStringsShouldBeSpelledCorrectly", Scope = "resource", Target = "Axantum.AxCrypt.Core.Test.Properties.Resources.resources")]
+[module: SuppressMessage("Microsoft.Design", "CA2210:AssembliesShouldHaveValidStrongNames", Justification = "The assembly is only for unit tests and is never deployed.")]
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
