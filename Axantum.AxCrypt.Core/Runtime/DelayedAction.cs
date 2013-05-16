@@ -40,12 +40,11 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private void HandleTimerElapsedEvent(object sender, ElapsedEventArgs e)
         {
-            if (_timer == null)
+            if (_timer != null)
             {
-                return;
+                _timer.Stop();
+                _action();
             }
-            _timer.Stop();
-            _action();
         }
 
         /// <summary>
@@ -53,6 +52,10 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// </summary>
         public void RestartIdleTimer()
         {
+            if (_timer == null)
+            {
+                throw new ObjectDisposedException("_timer");
+            }
             _timer.Stop();
             _timer.Start();
         }

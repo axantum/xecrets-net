@@ -35,7 +35,7 @@ using System.IO;
 
 namespace Axantum.AxCrypt.Core.Test
 {
-    internal class FakeRuntimeEnvironment : IRuntimeEnvironment
+    internal class FakeRuntimeEnvironment : IRuntimeEnvironment, IDisposable
     {
         private byte _randomForTest = 0;
 
@@ -236,6 +236,10 @@ namespace Axantum.AxCrypt.Core.Test
         {
             get;
             set;
+        }
+
+        public void Dispose()
+        {
         }
     }
 }
