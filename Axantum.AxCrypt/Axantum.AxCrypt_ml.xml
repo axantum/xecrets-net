@@ -47,6 +47,7 @@
   </GeneralIds>
   <GeneralIds>
     <StringID>16</StringID>
+    <Comment>Previous text: &amp;Close</Comment>
   </GeneralIds>
   <GeneralIds>
     <StringID>17</StringID>
@@ -77,12 +78,14 @@
   </GeneralIds>
   <GeneralIds>
     <StringID>26</StringID>
+    <Comment>Previous text: Encrypted Folders</Comment>
   </GeneralIds>
   <GeneralIds>
     <StringID>27</StringID>
   </GeneralIds>
   <GeneralIds>
     <StringID>28</StringID>
+    <Comment>Previous text: Remove</Comment>
   </GeneralIds>
   <GeneralIds>
     <StringID>29</StringID>
@@ -191,6 +194,9 @@
   </GeneralIds>
   <GeneralIds>
     <StringID>64</StringID>
+    <Comment>Previous text: Click to remove any open decrypted files left, but
+first ensure they are not used in an application. See
+the Open Files tab to see the list of files.</Comment>
   </GeneralIds>
   <GeneralIds>
     <StringID>65</StringID>
@@ -210,6 +216,7 @@
   </GeneralIds>
   <GeneralIds>
     <StringID>70</StringID>
+    <Comment>Previous text: Double-click to restore the AxCrypt application window.</Comment>
   </GeneralIds>
   <GeneralIds>
     <StringID>71</StringID>
@@ -222,6 +229,7 @@
   </GeneralIds>
   <GeneralIds>
     <StringID>74</StringID>
+    <Comment>Previous text: Double-click to restore the AxCrypt application window.</Comment>
   </GeneralIds>
   <GeneralIds>
     <StringID>75</StringID>
@@ -314,6 +322,102 @@
   <GeneralIds>
     <StringID>104</StringID>
   </GeneralIds>
+  <GeneralIds>
+    <StringID>105</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>106</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>107</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>108</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>109</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>110</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>111</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>112</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>113</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>114</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>115</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>116</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>117</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>118</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>119</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>120</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>121</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>122</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>123</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>124</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>125</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>126</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>127</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>128</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>129</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>130</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>131</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>132</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>133</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>134</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>135</StringID>
+  </GeneralIds>
+  <GeneralIds>
+    <StringID>136</StringID>
+  </GeneralIds>
   <Languages>
     <LanguageID>29</LanguageID>
     <LanguageName>Swedish</LanguageName>
@@ -390,13 +494,13 @@
     <StringID>26</StringID>
     <LanguageID>29</LanguageID>
     <LanguageText>Krypterade Mappar</LanguageText>
-    <Status>6</Status>
+    <Status>7</Status>
   </GeneralTexts>
   <GeneralTexts>
     <StringID>16</StringID>
     <LanguageID>29</LanguageID>
     <LanguageText>Stäng</LanguageText>
-    <Status>2</Status>
+    <Status>7</Status>
   </GeneralTexts>
   <GeneralTexts>
     <StringID>10</StringID>
@@ -587,7 +691,7 @@
   <GeneralTexts>
     <StringID>16</StringID>
     <LanguageID>9</LanguageID>
-    <LanguageText>&amp;Close</LanguageText>
+    <LanguageText>&amp;Clean Decrypted</LanguageText>
     <Status>1</Status>
   </GeneralTexts>
   <GeneralTexts>
@@ -719,8 +823,8 @@
   <GeneralTexts>
     <StringID>26</StringID>
     <LanguageID>9</LanguageID>
-    <LanguageText>Encrypted Folders</LanguageText>
-    <Status>3</Status>
+    <LanguageText>Watched Folders</LanguageText>
+    <Status>1</Status>
   </GeneralTexts>
   <GeneralTexts>
     <StringID>32</StringID>
@@ -953,7 +1057,7 @@
   <GeneralTexts>
     <StringID>28</StringID>
     <LanguageID>9</LanguageID>
-    <LanguageText>Remove</LanguageText>
+    <LanguageText>Leave Encrypted But &amp;Remove From List</LanguageText>
     <Status>1</Status>
   </GeneralTexts>
   <GeneralTexts>
@@ -990,7 +1094,7 @@
     <StringID>28</StringID>
     <LanguageID>29</LanguageID>
     <LanguageText>Ta Bort</LanguageText>
-    <Status>2</Status>
+    <Status>7</Status>
   </GeneralTexts>
   <GeneralTexts>
     <StringID>9</StringID>
@@ -1055,9 +1159,8 @@
   <GeneralTexts>
     <StringID>64</StringID>
     <LanguageID>9</LanguageID>
-    <LanguageText>Click to remove any open decrypted files left, but
-first ensure they are not used in an application. See
-the Open Files tab to see the list of files.</LanguageText>
+    <LanguageText>Click to clean and remove any open decrypted files, but 
+ensure they are not in use.</LanguageText>
     <Status>1</Status>
   </GeneralTexts>
   <GeneralTexts>
@@ -1105,14 +1208,14 @@ the Open Files tab to see the list of files.</LanguageText>
   <GeneralTexts>
     <StringID>70</StringID>
     <LanguageID>9</LanguageID>
-    <LanguageText>Double-click to restore the AxCrypt application window.</LanguageText>
+    <LanguageText>Click to restore the AxCrypt application window.</LanguageText>
     <Status>1</Status>
   </GeneralTexts>
   <GeneralTexts>
     <StringID>70</StringID>
     <LanguageID>29</LanguageID>
     <LanguageText>Dubbelklicka ikonen för att öppa AxCrypt</LanguageText>
-    <Status>2</Status>
+    <Status>7</Status>
   </GeneralTexts>
   <GeneralTexts>
     <StringID>72</StringID>
@@ -1135,7 +1238,7 @@ the Open Files tab to see the list of files.</LanguageText>
   <GeneralTexts>
     <StringID>74</StringID>
     <LanguageID>9</LanguageID>
-    <LanguageText>Double-click to restore the AxCrypt application window.</LanguageText>
+    <LanguageText>Click to restore the AxCrypt application window.</LanguageText>
     <Status>1</Status>
   </GeneralTexts>
   <GeneralTexts>
@@ -1154,7 +1257,7 @@ the Open Files tab to see the list of files.</LanguageText>
     <StringID>74</StringID>
     <LanguageID>29</LanguageID>
     <LanguageText>Dubbelklicka ikonen för att öppa AxCrypt</LanguageText>
-    <Status>3</Status>
+    <Status>7</Status>
   </GeneralTexts>
   <GeneralTexts>
     <StringID>71</StringID>
@@ -1172,7 +1275,7 @@ the Open Files tab to see the list of files.</LanguageText>
     <StringID>64</StringID>
     <LanguageID>29</LanguageID>
     <LanguageText>Det finns öppna, dekrypterade filer. Klicka här för att stänga och ta brot de, men säkerställ först att de inte används. Fliken 'Öppna Dokument' visar vilka det gäller.</LanguageText>
-    <Status>2</Status>
+    <Status>7</Status>
   </GeneralTexts>
   <GeneralTexts>
     <StringID>75</StringID>
@@ -1447,6 +1550,246 @@ Includes software from http://www.bouncycastle.org/ .</LanguageText>
     <LanguageID>9</LanguageID>
     <LanguageText>Invalid URL.</LanguageText>
     <Status>0</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>105</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Click to select files to encrypt</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>106</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>&amp;Secure Delete</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>107</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>&amp;Decrypt And Remove From List</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>108</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Are you sure want to permanently delete this file? This action cannot be undone.</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>109</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>A file.ext</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>110</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>&amp;No</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>111</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>&amp;Yes</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>112</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Do this for &amp;all remaining files?</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>113</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>&amp;Cancel All</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>114</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>AxCrypt Secure Delete</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>125</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Double-click to Open</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>126</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Double-click to enter passphrase and Open</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>127</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Assumed open. Try to Close the application, or use the Clean function to remove it</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>128</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>The passphrase has not been entered yet. Double-click to enter passphrase and Open, or right-click for options</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>129</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Inactive file</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>130</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>You are Logged On to AxCrypt. Click to Log Out.</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>131</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>The file '{0}' is already encrypted.</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>132</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>The file or path '{0}' is invalid for this.</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>133</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>You are Logged Out of AxCrypt. Click to Log On.</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>134</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Select files to securely delete</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>135</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Logged Off</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>136</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Logged On</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>115</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Logged Off</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>116</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Logged On</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>117</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>You are Logged Out of AxCrypt. Click to Log On.</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>118</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>You are Logged On to AxCrypt. Click to Log Out.</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>119</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Assumed open. Try to Close the application, or use the Clean function to remove it</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>120</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>The passphrase has not been entered yet. Double-click to enter passphrase and Open, or right-click for options</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>121</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Inactive file</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>122</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Double-click to enter passphrase and Open</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>123</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Double-click to Open</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>124</StringID>
+    <LanguageID>9</LanguageID>
+    <LanguageText>Select files to securely delete</LanguageText>
+    <Status>1</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>110</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>Nej</LanguageText>
+    <Status>3</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>111</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>Ja</LanguageText>
+    <Status>3</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>114</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>AxCrypt Säker Radering</LanguageText>
+    <Status>2</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>113</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>&amp;Avbryt allt</LanguageText>
+    <Status>2</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>112</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>Gör detta för &amp;alla återstående filer?</LanguageText>
+    <Status>2</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>108</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>Är du säker att du vill radera filen? Detta går inte att ångra.</LanguageText>
+    <Status>2</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>115</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>Avloggad</LanguageText>
+    <Status>2</Status>
+  </GeneralTexts>
+  <GeneralTexts>
+    <StringID>116</StringID>
+    <LanguageID>29</LanguageID>
+    <LanguageText>Inloggad</LanguageText>
+    <Status>2</Status>
   </GeneralTexts>
   <Properties>
     <Component>AxCryptMainForm.cs</Component>
@@ -2647,9 +2990,288 @@ Includes software from http://www.bouncycastle.org/ .</LanguageText>
     <ResourceName>Invalid_URL</ResourceName>
     <Hidden>false</Hidden>
   </Properties>
+  <Properties>
+    <Component>AxCryptMainForm.cs</Component>
+    <Name>englishLanguageToolStripMenuItem.Tag</Name>
+    <StringID>75</StringID>
+    <Selected>true</Selected>
+    <ResourceName>englishLanguageToolStripMenuItem.Tag</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AxCryptMainForm.cs</Component>
+    <Name>swedishLanguageToolStripMenuItem.Tag</Name>
+    <StringID>76</StringID>
+    <Selected>true</Selected>
+    <ResourceName>swedishLanguageToolStripMenuItem.Tag</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AxCryptMainForm.cs</Component>
+    <Name>encryptionKeyToolStripButton.Text</Name>
+    <StringID>99</StringID>
+    <Selected>true</Selected>
+    <ResourceName>encryptionKeyToolStripButton.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AxCryptMainForm.cs</Component>
+    <Name>encryptToolStripButton.ToolTipText</Name>
+    <StringID>105</StringID>
+    <Selected>true</Selected>
+    <ResourceName>encryptToolStripButton.ToolTipText</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AxCryptMainForm.cs</Component>
+    <Name>wipeToolStripMenuItem.Text</Name>
+    <StringID>106</StringID>
+    <Selected>true</Selected>
+    <ResourceName>wipeToolStripMenuItem.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>AxCryptMainForm.cs</Component>
+    <Name>decryptAndRemoveFromListToolStripMenuItem.Text</Name>
+    <StringID>107</StringID>
+    <Selected>true</Selected>
+    <ResourceName>decryptAndRemoveFromListToolStripMenuItem.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>ConfirmWipeDialog.cs</Component>
+    <Name>promptLabel.Text</Name>
+    <StringID>108</StringID>
+    <Selected>true</Selected>
+    <ResourceName>promptLabel.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>ConfirmWipeDialog.cs</Component>
+    <Name>FileNameLabel.Text</Name>
+    <Selected>false</Selected>
+    <ResourceName>FileNameLabel.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>ConfirmWipeDialog.cs</Component>
+    <Name>noButton.Text</Name>
+    <StringID>110</StringID>
+    <Selected>true</Selected>
+    <ResourceName>noButton.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>ConfirmWipeDialog.cs</Component>
+    <Name>yesButton.Text</Name>
+    <StringID>111</StringID>
+    <Selected>true</Selected>
+    <ResourceName>yesButton.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>ConfirmWipeDialog.cs</Component>
+    <Name>ConfirmAllCheckBox.Text</Name>
+    <StringID>112</StringID>
+    <Selected>true</Selected>
+    <ResourceName>ConfirmAllCheckBox.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>ConfirmWipeDialog.cs</Component>
+    <Name>cancelButton.Text</Name>
+    <StringID>113</StringID>
+    <Selected>true</Selected>
+    <ResourceName>cancelButton.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>ConfirmWipeDialog.cs</Component>
+    <Name>ConfirmWipeDialog.Text</Name>
+    <StringID>114</StringID>
+    <Selected>true</Selected>
+    <ResourceName>$this.Text</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Resources.LoggedOffStatusText</Name>
+    <StringID>115</StringID>
+    <Selected>true</Selected>
+    <ResourceName>LoggedOffStatusText</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Resources.LoggedOnStatusText</Name>
+    <StringID>116</StringID>
+    <Selected>true</Selected>
+    <ResourceName>LoggedOnStatusText</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Resources.NoDefaultEncryptionKeySetToolTip</Name>
+    <StringID>117</StringID>
+    <Selected>true</Selected>
+    <ResourceName>NoDefaultEncryptionKeySetToolTip</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Resources.DefaultEncryptionKeyIsIsetToolTip</Name>
+    <StringID>118</StringID>
+    <Selected>true</Selected>
+    <ResourceName>DefaultEncryptionKeyIsIsetToolTip</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Resources.DecryptedFileToolTip</Name>
+    <StringID>119</StringID>
+    <Selected>true</Selected>
+    <ResourceName>DecryptedFileToolTip</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Resources.DecryptedUnknownKeyFileToolTip</Name>
+    <StringID>120</StringID>
+    <Selected>true</Selected>
+    <ResourceName>DecryptedUnknownKeyFileToolTip</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Resources.InactiveFileToolTip</Name>
+    <StringID>121</StringID>
+    <Selected>true</Selected>
+    <ResourceName>InactiveFileToolTip</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Resources.ActiveFileToolTip</Name>
+    <StringID>122</StringID>
+    <Selected>true</Selected>
+    <ResourceName>ActiveFileToolTip</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Resources.ActiveFileKnownKeyToolTip</Name>
+    <StringID>123</StringID>
+    <Selected>true</Selected>
+    <ResourceName>ActiveFileKnownKeyToolTip</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Resources.WipeFileSelectFileDialogTitle</Name>
+    <StringID>124</StringID>
+    <Selected>true</Selected>
+    <ResourceName>WipeFileSelectFileDialogTitle</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Axantum.AxCrypt.Properties.Resources.ActiveFileKnownKeyToolTip</Name>
+    <StringID>125</StringID>
+    <Selected>true</Selected>
+    <ResourceName>ActiveFileKnownKeyToolTip</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Axantum.AxCrypt.Properties.Resources.ActiveFileToolTip</Name>
+    <StringID>126</StringID>
+    <Selected>true</Selected>
+    <ResourceName>ActiveFileToolTip</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Axantum.AxCrypt.Properties.Resources.DecryptedFileToolTip</Name>
+    <StringID>127</StringID>
+    <Selected>true</Selected>
+    <ResourceName>DecryptedFileToolTip</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Axantum.AxCrypt.Properties.Resources.DecryptedUnknownKeyFileToolTip</Name>
+    <StringID>128</StringID>
+    <Selected>true</Selected>
+    <ResourceName>DecryptedUnknownKeyFileToolTip</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Axantum.AxCrypt.Properties.Resources.InactiveFileToolTip</Name>
+    <StringID>129</StringID>
+    <Selected>true</Selected>
+    <ResourceName>InactiveFileToolTip</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Axantum.AxCrypt.Properties.Resources.DefaultEncryptionKeyIsIsetToolTip</Name>
+    <StringID>130</StringID>
+    <Selected>true</Selected>
+    <ResourceName>DefaultEncryptionKeyIsIsetToolTip</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Axantum.AxCrypt.Properties.Resources.FileAlreadyEncrypted</Name>
+    <StringID>131</StringID>
+    <Selected>true</Selected>
+    <ResourceName>FileAlreadyEncrypted</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Axantum.AxCrypt.Properties.Resources.InvalidPath</Name>
+    <StringID>132</StringID>
+    <Selected>true</Selected>
+    <ResourceName>InvalidPath</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Axantum.AxCrypt.Properties.Resources.NoDefaultEncryptionKeySetToolTip</Name>
+    <StringID>133</StringID>
+    <Selected>true</Selected>
+    <ResourceName>NoDefaultEncryptionKeySetToolTip</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Axantum.AxCrypt.Properties.Resources.WipeFileSelectFileDialogTitle</Name>
+    <StringID>134</StringID>
+    <Selected>true</Selected>
+    <ResourceName>WipeFileSelectFileDialogTitle</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Axantum.AxCrypt.Properties.Resources.LoggedOffStatusText</Name>
+    <StringID>135</StringID>
+    <Selected>true</Selected>
+    <ResourceName>LoggedOffStatusText</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
+  <Properties>
+    <Component>Resources.resx</Component>
+    <Name>Axantum.AxCrypt.Properties.Resources.LoggedOnStatusText</Name>
+    <StringID>136</StringID>
+    <Selected>true</Selected>
+    <ResourceName>LoggedOnStatusText</ResourceName>
+    <Hidden>false</Hidden>
+  </Properties>
   <GeneralAttributes>
     <Name>StatusHash</Name>
-    <TextValue>pbvrvfEcU3oio6natLg0mM60Qco=</TextValue>
+    <TextValue>KeJGQ6YyjLTqiTc4uJxjuELOJOc=</TextValue>
     <NumValue>0</NumValue>
   </GeneralAttributes>
   <GeneralAttributes>
