@@ -125,7 +125,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     string temporaryFolderPath = Path.Combine(Path.GetTempPath(), "AxCrypt");
                     IRuntimeFileInfo temporaryFolderInfo = FileInfo(temporaryFolderPath);
-                    temporaryFolderInfo.CreateDirectory();
+                    temporaryFolderInfo.CreateFolder();
                     _temporaryDirectoryInfo = temporaryFolderInfo;
                 }
 

@@ -249,7 +249,7 @@ namespace Axantum.AxCrypt.Core.UI
                 destinationFolder = Path.Combine(OS.Current.WorkFolder.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + Path.DirectorySeparatorChar);
             }
             IRuntimeFileInfo destinationFolderInfo = OS.Current.FileInfo(destinationFolder);
-            destinationFolderInfo.CreateDirectory();
+            destinationFolderInfo.CreateFolder();
             return destinationFolderInfo;
         }
 

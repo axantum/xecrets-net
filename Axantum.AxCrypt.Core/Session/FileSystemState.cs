@@ -33,6 +33,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization;
 using System.Xml;
 
@@ -111,8 +112,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private List<WatchedFolder> _watchedFolders;
 
-        [DataMember(Name = "WatchedFolders")]
-        public IEnumerable<WatchedFolder> WatchedFolders
+        private IList<WatchedFolder> WatchedFoldersInternal
         {
             get
             {
@@ -122,6 +122,15 @@ namespace Axantum.AxCrypt.Core.Session
                 }
                 return _watchedFolders;
             }
+        }
+
+        [DataMember(Name = "WatchedFolders")]
+        public IEnumerable<WatchedFolder> WatchedFolders
+        {
+            get
+            {
+                return WatchedFoldersInternal;
+            }
             private set
             {
                 _watchedFolders = new List<WatchedFolder>(value);
@@ -130,15 +139,15 @@ namespace Axantum.AxCrypt.Core.Session
 
         public void AddWatchedFolder(WatchedFolder watchedFolder)
         {
-            if (!_watchedFolders.Contains(watchedFolder))
+            if (!WatchedFoldersInternal.Contains(watchedFolder))
             {
-                _watchedFolders.Add(watchedFolder);
+                WatchedFoldersInternal.Add(watchedFolder);
             }
         }
 
         public void RemoveWatchedFolder(WatchedFolder watchedFolder)
         {
-            _watchedFolders.Remove(watchedFolder);
+            WatchedFoldersInternal.Remove(watchedFolder);
         }
 
         public event EventHandler<ActiveFileChangedEventArgs> Changed;
@@ -340,7 +349,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private void RaiseChangedForAll(List<ActiveFile> activeFiles)
+        private void RaiseChangedForAll(IEnumerable<ActiveFile> activeFiles)
         {
             foreach (ActiveFile activeFile in activeFiles)
             {

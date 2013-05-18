@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt.Mono.Test
             }
             Assert.That(Directory.Exists(testTempFolder), Is.False, "The test folder should not exist now.");
             IRuntimeFileInfo directoryInfo = new RuntimeFileInfo(testTempFolder);
-            directoryInfo.CreateDirectory();
+            directoryInfo.CreateFolder();
             Assert.That(Directory.Exists(testTempFolder), Is.True, "The test folder should exist now.");
             if (Directory.Exists(testTempFolder))
             {
