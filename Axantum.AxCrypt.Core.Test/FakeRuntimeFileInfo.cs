@@ -335,7 +335,7 @@ namespace Axantum.AxCrypt.Core.Test
                     {
                         continue;
                     }
-                    if (!kvp.Value.FullName.StartsWith(FullName))
+                    if (!kvp.Value.FullName.StartsWith(FullName, StringComparison.OrdinalIgnoreCase))
                     {
                         continue;
                     }
