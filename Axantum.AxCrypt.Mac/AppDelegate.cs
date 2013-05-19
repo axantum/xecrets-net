@@ -17,6 +17,7 @@ namespace Axantum.AxCrypt.Mac
 	public partial class AppDelegate : NSApplicationDelegate
 	{
 		NSWindowController mainWindowController;
+		OpenFileFromFinderController openFile;
 
 		public AppDelegate ()
 		{
@@ -46,11 +47,12 @@ namespace Axantum.AxCrypt.Mac
 
 		public override void FinishedLaunching (NSObject notification)
 		{
-			// You can put any code here after your app launched.
-			mainWindowController = new MainWindowController (); 
-			mainWindowController.ShowWindow (this);
-
 			AppController.Initialize ();
+
+			if (openFile == null) {
+				mainWindowController = new MainWindowController (); 
+				mainWindowController.ShowWindow (this);
+			}
 		}
 
 		partial void about (NSObject sender)
@@ -60,7 +62,7 @@ namespace Axantum.AxCrypt.Mac
 
 		partial void view (NSObject sender)
 		{
-			AppController.DecryptAndOpenFile(null, new ProgressContext(), AppController.OperationFailureHandler);
+			AppController.DecryptAndOpenFile(new ProgressContext(), AppController.OperationFailureHandler);
 		}
 
 		partial void onlineHelp (NSObject sender)
@@ -75,35 +77,31 @@ namespace Axantum.AxCrypt.Mac
 
 		partial void decrypt (NSObject sender)
 		{
-			AppController.DecryptAndOpenFile(null, new ProgressContext(), AppController.OperationFailureHandler);
+			AppController.DecryptAndOpenFile(new ProgressContext(), AppController.OperationFailureHandler);
 		}
 
-		/// <summary>
-		/// Non-interactive. Double-click while not running.
-		/// </summary>
-		/// <returns><c>true</c>, if file was opened, <c>false</c> otherwise.</returns>
-		/// <param name="sender">Sender.</param>
-		/// <param name="filename">Filename.</param>
-		public override bool OpenFile (NSApplication sender, string filename)
-		{
-			if (!filename.EndsWith(".axx"))
-				return false;
-
-			NSAlert.WithMessage ("opefile", "OK", null, null, "You like " + filename).RunModal ();
-
-			//AppController.DecryptAndOpenFile (filename, new ProgressContext (), AppController.OperationFailureHandler);
-
-			return true;
-		}
-
-		/// <summary>
-		/// Interactive. Double-click while running.
-		/// </summary>
-		/// <param name="sender">Sender.</param>
-		/// <param name="filenames">Filenames.</param>
 		public override void OpenFiles (NSApplication sender, string[] filenames)
 		{
-			NSAlert.WithMessage ("Open files", "OK", null, null, string.Join (",",filenames)).RunSheetModal (mainWindowController.Window);
+			openFile = new OpenFileFromFinderController ();
+			openFile.UserChoseOpen += (string passphrase) => {
+				AppController.DecryptAndOpenFile(
+					OS.Current.FileInfo(filenames[0]),
+					new Passphrase(passphrase),
+					new ProgressContext(),
+					AppController.OperationFailureHandler);
+				ReleaseOpenFileController();
+			};
+			openFile.UserChoseCancel += () => {
+				ReleaseOpenFileController();
+			};
+			openFile.ShowWindow (sender);
+		}
+
+		void ReleaseOpenFileController ()
+		{
+			openFile.Close ();
+			openFile.Dispose ();
+			openFile = null;
 		}
 	}
 }

@@ -12,9 +12,6 @@ namespace Axantum.AxCrypt.Mac.Windows
 	partial class OpenFileFromFinderController
 	{
 		[Outlet]
-		MonoMac.AppKit.NSTextField FileName { get; set; }
-
-		[Outlet]
 		MonoMac.AppKit.NSSecureTextField Passphrase { get; set; }
 
 		[Action ("Open:")]
@@ -25,11 +22,6 @@ namespace Axantum.AxCrypt.Mac.Windows
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (FileName != null) {
-				FileName.Dispose ();
-				FileName = null;
-			}
-
 			if (Passphrase != null) {
 				Passphrase.Dispose ();
 				Passphrase = null;

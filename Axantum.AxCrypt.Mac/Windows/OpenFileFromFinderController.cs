@@ -53,12 +53,6 @@ namespace Axantum.AxCrypt.Mac.Windows
 				UserChoseCancel();
 			Dispose ();
 		}
-
-		public void ShowWindow (string fileName, NSObject sender)
-		{
-			base.ShowWindow (sender);
-			FileName.StringValue = fileName;
-		}
 	}
 }
 

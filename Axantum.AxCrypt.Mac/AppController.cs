@@ -156,22 +156,9 @@ namespace Axantum.AxCrypt.Mac
 			});
 		}
 
-		private static void GetSourceFile (string defaultFileName, Action<IRuntimeFileInfo, Passphrase> fileSelected)
+		private static void GetSourceFile (Action<IRuntimeFileInfo, Passphrase> fileSelected)
 		{
 			NSOpenPanel panel = NSOpenPanel.OpenPanel;
-			if (defaultFileName != null) {
-				OpenFileFromFinderController of = new OpenFileFromFinderController ();
-				of.UserChoseOpen += p => {
-					ThreadPool.QueueUserWorkItem(delegate { 
-						using(new NSAutoreleasePool()) {
-							fileSelected(OS.Current.FileInfo(defaultFileName), new Passphrase(p)); 
-						};
-					});
-				};
-				of.ShowWindow (defaultFileName, new NSObject ());
-				return;
-			}
-
 			PasswordViewController passwordController = new PasswordViewController();
 			panel.AccessoryView = passwordController.View;
 
@@ -216,33 +203,37 @@ namespace Axantum.AxCrypt.Mac
 			return true;
 		}
 
-		public static void DecryptAndOpenFile (string fileName = null, ProgressContext progress = null, Action<string, ProgressContext> failure = null)
+		public static void DecryptAndOpenFile (ProgressContext progress = null, Action<string, ProgressContext> failure = null)
 		{
-			GetSourceFile(fileName, (encryptedDocument, passphrase) => {
-				string tempPath = Path.GetTempPath();
-				string decryptedFileName;
-				lastUsedKey = passphrase.DerivedPassphrase;
-
-				if (!TryDecrypt(encryptedDocument, tempPath, lastUsedKey, progress, out decryptedFileName)) {
-					failure("Could not open file", progress);
-					return;
-				}
-
-				string fullPathToDecryptedFile = Path.Combine(tempPath, decryptedFileName);
-				IRuntimeFileInfo decryptedFile = OS.Current.FileInfo(fullPathToDecryptedFile);
-
-				NSDictionary userInfo = new NSDictionary(
-					"source file", encryptedDocument.FullName,
-					"target file", decryptedFile.FullName);
-				NSNotification notification = NSNotification.FromName("decrypted file", new NSObject(), userInfo);
-				NSNotificationCenter.DefaultCenter.PostNotification(notification);
-
-				using(ILauncher launcher = OS.Current.Launch(fullPathToDecryptedFile));
+			GetSourceFile((encryptedDocument, passphrase) => {
+				DecryptAndOpenFile(encryptedDocument, passphrase, progress, failure);
 			});
 		}
 
+		public static void DecryptAndOpenFile(IRuntimeFileInfo encryptedDocument, Passphrase passphrase, ProgressContext progress, Action<string, ProgressContext> failure = null) {
+			string tempPath = Path.GetTempPath();
+			string decryptedFileName;
+			lastUsedKey = passphrase.DerivedPassphrase;
+
+			if (!TryDecrypt(encryptedDocument, tempPath, lastUsedKey, progress, out decryptedFileName)) {
+				failure("Could not open file", progress);
+				return;
+			}
+
+			string fullPathToDecryptedFile = Path.Combine(tempPath, decryptedFileName);
+			IRuntimeFileInfo decryptedFile = OS.Current.FileInfo(fullPathToDecryptedFile);
+
+			NSDictionary userInfo = new NSDictionary(
+				"source file", encryptedDocument.FullName,
+				"target file", decryptedFile.FullName);
+			NSNotification notification = NSNotification.FromName("decrypted file", new NSObject(), userInfo);
+			NSNotificationCenter.DefaultCenter.PostNotification(notification);
+
+			using(ILauncher launcher = OS.Current.Launch(fullPathToDecryptedFile));
+		}
+
 		public static void DecryptFile(ProgressContext progress, Action<string, ProgressContext> failure) {
-			GetSourceFile(null, (file, passphrase) => {
+			GetSourceFile((file, passphrase) => {
 
 				string targetDirectory = Path.GetDirectoryName(file.FullName);
 				string fileName;
