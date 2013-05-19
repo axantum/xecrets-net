@@ -25,14 +25,14 @@
 
 #endregion Coypright and License
 
-using System;
-using System.IO;
-using System.Linq;
-using System.Threading;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
+using System;
+using System.IO;
+using System.Linq;
+using System.Threading;
 
 namespace Axantum.AxCrypt.Mono.Test
 {
@@ -41,11 +41,13 @@ namespace Axantum.AxCrypt.Mono.Test
     {
         private static IRuntimeEnvironment _previousEnvironment;
 
+        private static readonly TimeSpan _workFolderStateMinimumIdle = new TimeSpan(0, 0, 0, 0, 100);
+
         [SetUp]
         public static void Setup()
         {
             _previousEnvironment = OS.Current;
-            OS.Current = new RuntimeEnvironment();
+            OS.Current = new RuntimeEnvironment(_workFolderStateMinimumIdle);
         }
 
         [TearDown]
@@ -91,7 +93,7 @@ namespace Axantum.AxCrypt.Mono.Test
         [Test]
         public static void TestTemporaryDirectoryInfo()
         {
-            IRuntimeFileInfo tempInfo = OS.Current.TemporaryDirectoryInfo;
+            IRuntimeFileInfo tempInfo = OS.Current.WorkFolder;
             Assert.That(tempInfo is RuntimeFileInfo, "The instance returned should be of type RuntimeFileInfo");
             IRuntimeFileInfo tempFileInfo = OS.Current.FileInfo(Path.Combine(tempInfo.FullName, "AxCryptTestTemp.tmp"));
             Assert.DoesNotThrow(() =>
@@ -121,13 +123,13 @@ namespace Axantum.AxCrypt.Mono.Test
         public static void TestFileWatcher()
         {
             bool wasHere = false;
-            using (IFileWatcher fileWatcher = OS.Current.FileWatcher(OS.Current.TemporaryDirectoryInfo.FullName))
+            using (IFileWatcher fileWatcher = OS.Current.CreateFileWatcher(OS.Current.WorkFolder.FullName))
             {
                 fileWatcher.FileChanged += (object sender, FileWatcherEventArgs e) =>
                 {
                     wasHere = true;
                 };
-                IRuntimeFileInfo tempFileInfo = OS.Current.FileInfo(Path.Combine(OS.Current.TemporaryDirectoryInfo.FullName, "AxCryptTestTemp.tmp"));
+                IRuntimeFileInfo tempFileInfo = OS.Current.FileInfo(Path.Combine(OS.Current.WorkFolder.FullName, "AxCryptTestTemp.tmp"));
                 try
                 {
                     using (Stream stream = tempFileInfo.OpenWrite())
@@ -156,8 +158,12 @@ namespace Axantum.AxCrypt.Mono.Test
         public static void TestChangedEvent()
         {
             bool wasHere = false;
-            OS.Current.FileChanged += (object sender, EventArgs e) => { wasHere = true; };
-            OS.Current.NotifyFileChanged();
+            OS.Current.WorkFolderStateChanged += (object sender, EventArgs e) => { wasHere = true; };
+            OS.Current.NotifyWorkFolderStateChanged();
+
+            Assert.That(wasHere, Is.False, "The RaiseChanged() method should not raise the event immediately.");
+
+            Thread.Sleep(_workFolderStateMinimumIdle.Add(new TimeSpan(0, 0, 0, 0, 100)));
 
             Assert.That(wasHere, Is.True, "The RaiseChanged() method should raise the event.");
         }

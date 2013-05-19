@@ -25,26 +25,53 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
-using System.Security.Cryptography;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
+using System;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.IO;
+using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Mono
 {
-    public class RuntimeEnvironment : IRuntimeEnvironment
+    public class RuntimeEnvironment : IRuntimeEnvironment, IDisposable
     {
-        public RuntimeEnvironment()
-            : this(".axx")
+        private static readonly TimeSpan _defaultWorkFolderStateMinimumIdle = new TimeSpan(0, 0, 1);
+
+        private IFileWatcher _workFolderWatcher;
+
+        private DelayedAction _delayedWorkFolderStateChanged;
+
+        public RuntimeEnvironment(TimeSpan workFolderStateMinimumIdle)
+            : this(null, workFolderStateMinimumIdle)
         {
         }
 
-        public RuntimeEnvironment(string extension)
+        public RuntimeEnvironment(ISynchronizeInvoke synchronizingObject)
+            : this(synchronizingObject, _defaultWorkFolderStateMinimumIdle)
+        {
+        }
+
+        public RuntimeEnvironment(ISynchronizeInvoke synchronizingObject, TimeSpan workFolderStateMinimumIdle)
+            : this(".axx", synchronizingObject, workFolderStateMinimumIdle)
+        {
+        }
+
+        public RuntimeEnvironment(string extension, ISynchronizeInvoke synchronizingObject, TimeSpan workFolderStateMinimumIdle)
         {
             AxCryptExtension = extension;
+
+            _workFolderWatcher = CreateFileWatcher(WorkFolder.FullName);
+            _workFolderWatcher.FileChanged += HandleWorkFolderFileChangedEvent;
+
+            _delayedWorkFolderStateChanged = new DelayedAction(OnWorkFolderStateChanged, workFolderStateMinimumIdle, synchronizingObject);
+        }
+
+        private void HandleWorkFolderFileChangedEvent(object sender, FileWatcherEventArgs e)
+        {
+            NotifyWorkFolderStateChanged();
         }
 
         public bool IsLittleEndian
@@ -111,14 +138,14 @@ namespace Axantum.AxCrypt.Mono
             get { return 65536; }
         }
 
-        public IFileWatcher FileWatcher(string path)
+        public IFileWatcher CreateFileWatcher(string path)
         {
             return new FileWatcher(path);
         }
 
         private IRuntimeFileInfo _temporaryDirectoryInfo;
 
-        public IRuntimeFileInfo TemporaryDirectoryInfo
+        public IRuntimeFileInfo WorkFolder
         {
             get
             {
@@ -126,7 +153,7 @@ namespace Axantum.AxCrypt.Mono
                 {
                     string temporaryFolderPath = Path.Combine(Path.GetTempPath(), @"AxCrypt" + Path.DirectorySeparatorChar);
                     IRuntimeFileInfo temporaryFolderInfo = FileInfo(temporaryFolderPath);
-                    temporaryFolderInfo.CreateDirectory();
+                    temporaryFolderInfo.CreateFolder();
                     _temporaryDirectoryInfo = temporaryFolderInfo;
                 }
 
@@ -168,21 +195,21 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        public void NotifyFileChanged()
+        public void NotifyWorkFolderStateChanged()
         {
-            OnChanged();
+            _delayedWorkFolderStateChanged.RestartIdleTimer();
         }
 
-        protected virtual void OnChanged()
+        protected virtual void OnWorkFolderStateChanged()
         {
-            EventHandler<EventArgs> handler = FileChanged;
+            EventHandler<EventArgs> handler = WorkFolderStateChanged;
             if (handler != null)
             {
                 handler(this, new EventArgs());
             }
         }
 
-        public event EventHandler<EventArgs> FileChanged;
+        public event EventHandler<EventArgs> WorkFolderStateChanged;
 
         public IDataProtection DataProtection
         {
@@ -216,6 +243,26 @@ namespace Axantum.AxCrypt.Mono
         {
             get;
             set;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_workFolderWatcher != null)
+            {
+                _workFolderWatcher.Dispose();
+                _workFolderWatcher = null;
+            }
+            if (_delayedWorkFolderStateChanged != null)
+            {
+                _delayedWorkFolderStateChanged.Dispose();
+                _delayedWorkFolderStateChanged = null;
+            }
         }
     }
 }

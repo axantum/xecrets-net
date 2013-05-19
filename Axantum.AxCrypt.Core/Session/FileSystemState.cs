@@ -25,16 +25,17 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
-using System.Runtime.Serialization;
-using System.Xml;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.IO;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Xml;
 
 namespace Axantum.AxCrypt.Core.Session
 {
@@ -52,7 +53,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                return OS.Current.FileInfo(Path.Combine(OS.Current.TemporaryDirectoryInfo.FullName, "FileSystemState.xml"));
+                return OS.Current.FileInfo(Path.Combine(OS.Current.WorkFolder.FullName, "FileSystemState.xml"));
             }
         }
 
@@ -109,32 +110,44 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private List<string> _watchedFolders = new List<string>();
+        private List<WatchedFolder> _watchedFolders;
 
-        [DataMember(Name = "WatchedFolders")]
-        public IEnumerable<string> WatchedFolders
+        private IList<WatchedFolder> WatchedFoldersInternal
         {
             get
             {
+                if (_watchedFolders == null)
+                {
+                    _watchedFolders = new List<WatchedFolder>();
+                }
                 return _watchedFolders;
+            }
+        }
+
+        [DataMember(Name = "WatchedFolders")]
+        public IEnumerable<WatchedFolder> WatchedFolders
+        {
+            get
+            {
+                return WatchedFoldersInternal;
             }
             private set
             {
-                _watchedFolders = new List<string>(value);
+                _watchedFolders = new List<WatchedFolder>(value);
             }
         }
 
-        public void AddWatchedFolder(string watchedFolder)
+        public void AddWatchedFolder(WatchedFolder watchedFolder)
         {
-            if (!_watchedFolders.Contains(watchedFolder))
+            if (!WatchedFoldersInternal.Contains(watchedFolder))
             {
-                _watchedFolders.Add(watchedFolder);
+                WatchedFoldersInternal.Add(watchedFolder);
             }
         }
 
-        public void RemoveWatchedFolder(string watchedFolder)
+        public void RemoveWatchedFolder(WatchedFolder watchedFolder)
         {
-            _watchedFolders.Remove(watchedFolder);
+            WatchedFoldersInternal.Remove(watchedFolder);
         }
 
         public event EventHandler<ActiveFileChangedEventArgs> Changed;
@@ -336,7 +349,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private void RaiseChangedForAll(List<ActiveFile> activeFiles)
+        private void RaiseChangedForAll(IEnumerable<ActiveFile> activeFiles)
         {
             foreach (ActiveFile activeFile in activeFiles)
             {

@@ -118,6 +118,202 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="promptLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>75, 9</value>
+  </data>
+  <data name="promptLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>387, 45</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="promptLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="promptLabel.Text" xml:space="preserve">
+    <value>Are you sure want to permanently delete this file? This action cannot be undone.</value>
+  </data>
+  <data name="&gt;&gt;promptLabel.Name" xml:space="preserve">
+    <value>promptLabel</value>
+  </data>
+  <data name="&gt;&gt;promptLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;promptLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;promptLabel.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="FileNameLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>75, 54</value>
+  </data>
+  <data name="FileNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>387, 24</value>
+  </data>
+  <data name="FileNameLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="FileNameLabel.Text" xml:space="preserve">
+    <value>A file.ext</value>
+  </data>
+  <data name="&gt;&gt;FileNameLabel.Name" xml:space="preserve">
+    <value>FileNameLabel</value>
+  </data>
+  <data name="&gt;&gt;FileNameLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;FileNameLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;FileNameLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="iconPictureBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 9</value>
+  </data>
+  <data name="iconPictureBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 48</value>
+  </data>
+  <data name="iconPictureBox.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;iconPictureBox.Name" xml:space="preserve">
+    <value>iconPictureBox</value>
+  </data>
+  <data name="&gt;&gt;iconPictureBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;iconPictureBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;iconPictureBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="noButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="noButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>306, 116</value>
+  </data>
+  <data name="noButton.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="noButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="noButton.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="noButton.Text" xml:space="preserve">
+    <value>&amp;No</value>
+  </data>
+  <data name="&gt;&gt;noButton.Name" xml:space="preserve">
+    <value>noButton</value>
+  </data>
+  <data name="&gt;&gt;noButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;noButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;noButton.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="yesButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="yesButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>225, 116</value>
+  </data>
+  <data name="yesButton.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="yesButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="yesButton.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="yesButton.Text" xml:space="preserve">
+    <value>&amp;Yes</value>
+  </data>
+  <data name="&gt;&gt;yesButton.Name" xml:space="preserve">
+    <value>yesButton</value>
+  </data>
+  <data name="&gt;&gt;yesButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;yesButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;yesButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="ConfirmAllCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ConfirmAllCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>78, 81</value>
+  </data>
+  <data name="ConfirmAllCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 17</value>
+  </data>
+  <data name="ConfirmAllCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="ConfirmAllCheckBox.Text" xml:space="preserve">
+    <value>Do this for &amp;all remaining files?</value>
+  </data>
+  <data name="&gt;&gt;ConfirmAllCheckBox.Name" xml:space="preserve">
+    <value>ConfirmAllCheckBox</value>
+  </data>
+  <data name="&gt;&gt;ConfirmAllCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ConfirmAllCheckBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ConfirmAllCheckBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="cancelButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>387, 116</value>
+  </data>
+  <data name="cancelButton.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="cancelButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="cancelButton.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="cancelButton.Text" xml:space="preserve">
+    <value>&amp;Cancel All</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.Name" xml:space="preserve">
+    <value>cancelButton</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cancelButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>474, 151</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAYAMDAAAAAACACoDgAAZgAAACAgAAAAAAgAqAgAAA4PAAAQEAAAAAAIAGgFAAC2FwAAMDAAAAAA
@@ -496,5 +692,14 @@
         AACTtauBlKyj9pawp/iavLKRAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+B8AAPAPAADgBwAA4AMAAMAD
         AADAAwAAgAEAAIABAACAAQAAgAEAAIABAACAAQAAgAEAAIABAADwDwAA/D8AAA==
 </value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>AxCrypt Secure Delete</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>ConfirmWipeDialog</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

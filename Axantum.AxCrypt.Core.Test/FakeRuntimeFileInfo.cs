@@ -25,11 +25,13 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.IO;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using Axantum.AxCrypt.Core.IO;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -37,6 +39,7 @@ namespace Axantum.AxCrypt.Core.Test
     {
         private class FakeFileInfo
         {
+            public bool IsFolder;
             public string FullName;
             public DateTime CreationTimeUtc;
             public DateTime LastAccessTimeUtc;
@@ -61,16 +64,26 @@ namespace Axantum.AxCrypt.Core.Test
 
         public static event EventHandler Deleting;
 
-        public static void AddFile(string path, DateTime creationTimeUtc, DateTime lastAccessTimeUtc, DateTime lastWriteTimeUtc, Stream stream)
+        public static void AddFile(string path, bool isFolder, DateTime creationTimeUtc, DateTime lastAccessTimeUtc, DateTime lastWriteTimeUtc, Stream stream)
         {
-            FakeFileInfo fileInfo = new FakeFileInfo { FullName = path, CreationTimeUtc = creationTimeUtc, LastAccessTimeUtc = lastAccessTimeUtc, LastWriteTimeUtc = lastWriteTimeUtc, Stream = stream };
+            FakeFileInfo fileInfo = new FakeFileInfo { FullName = path, CreationTimeUtc = creationTimeUtc, LastAccessTimeUtc = lastAccessTimeUtc, LastWriteTimeUtc = lastWriteTimeUtc, Stream = stream, IsFolder = isFolder, };
             _fakeFileSystem.Add(path, fileInfo);
             ((FakeRuntimeEnvironment)OS.Current).FileCreated(path);
+        }
+
+        public static void AddFile(string path, DateTime creationTimeUtc, DateTime lastAccessTimeUtc, DateTime lastWriteTimeUtc, Stream stream)
+        {
+            AddFile(path, false, creationTimeUtc, lastAccessTimeUtc, lastWriteTimeUtc, stream);
         }
 
         public static void AddFile(string path, Stream stream)
         {
             AddFile(path, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, stream);
+        }
+
+        public static void AddFolder(string path)
+        {
+            AddFile(path, true, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, null);
         }
 
         public static void ClearFiles()
@@ -81,6 +94,11 @@ namespace Axantum.AxCrypt.Core.Test
         public FakeRuntimeFileInfo(string fullName)
         {
             DateTime utcNow = OS.Current.UtcNow;
+            if (_fakeFileSystem.ContainsKey(fullName))
+            {
+                _file = _fakeFileSystem[fullName];
+                return;
+            }
             _file = new FakeFileInfo { FullName = fullName, CreationTimeUtc = utcNow, LastAccessTimeUtc = utcNow, LastWriteTimeUtc = utcNow, Stream = Stream.Null };
         }
 
@@ -281,7 +299,7 @@ namespace Axantum.AxCrypt.Core.Test
             return stream;
         }
 
-        public void CreateDirectory()
+        public void CreateFolder()
         {
             string directory = Path.GetDirectoryName(_file.FullName);
             DateTime utcNow = DateTime.UtcNow;
@@ -291,6 +309,40 @@ namespace Axantum.AxCrypt.Core.Test
                 return;
             }
             AddFile(directory, utcNow, utcNow, utcNow, Stream.Null);
+        }
+
+        public bool IsFolder
+        {
+            get
+            {
+                return _file.IsFolder;
+            }
+        }
+
+        public IEnumerable<IRuntimeFileInfo> Files
+        {
+            get
+            {
+                if (!IsFolder)
+                {
+                    return new IRuntimeFileInfo[0];
+                }
+
+                List<FakeFileInfo> files = new List<FakeFileInfo>();
+                foreach (KeyValuePair<string, FakeFileInfo> kvp in _fakeFileSystem)
+                {
+                    if (kvp.Value.IsFolder)
+                    {
+                        continue;
+                    }
+                    if (!kvp.Value.FullName.StartsWith(FullName, StringComparison.OrdinalIgnoreCase))
+                    {
+                        continue;
+                    }
+                    files.Add(kvp.Value);
+                }
+                return files.Select((FakeFileInfo fileInfo) => { return OS.Current.FileInfo(fileInfo.FullName); });
+            }
         }
     }
 }

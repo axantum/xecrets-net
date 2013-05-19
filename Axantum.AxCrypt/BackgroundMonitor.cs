@@ -41,8 +41,6 @@ namespace Axantum.AxCrypt
     /// </summary>
     internal class BackgroundMonitor : Component, ISupportInitialize
     {
-        private IFileWatcher _fileWatcher;
-
         public UpdateCheck UpdateCheck { get; private set; }
 
         private bool _disposed = false;
@@ -62,16 +60,9 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-            _fileWatcher = OS.Current.FileWatcher(OS.Current.TemporaryDirectoryInfo.FullName);
-            _fileWatcher.FileChanged += new EventHandler<FileWatcherEventArgs>(File_Changed);
 
             Version myVersion = Assembly.GetExecutingAssembly().GetName().Version;
             UpdateCheck = new UpdateCheck(myVersion);
-        }
-
-        private void File_Changed(object sender, EventArgs e)
-        {
-            OS.Current.NotifyFileChanged();
         }
 
         protected override void Dispose(bool disposing)
@@ -82,11 +73,6 @@ namespace Axantum.AxCrypt
             }
             if (disposing)
             {
-                if (_fileWatcher != null)
-                {
-                    _fileWatcher.Dispose();
-                    _fileWatcher = null;
-                }
                 if (UpdateCheck != null)
                 {
                     UpdateCheck.Dispose();

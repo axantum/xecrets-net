@@ -623,7 +623,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestSimpleWipe()
         {
             FileOperationsController controller = new FileOperationsController(_fileSystemState);
-            controller.QueryConfirmation += (object sender, FileOperationEventArgs e) =>
+            controller.WipeQueryConfirmation += (object sender, FileOperationEventArgs e) =>
             {
                 e.Cancel = false;
                 e.Skip = false;
@@ -640,7 +640,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestSimpleWipeOnThreadWorker()
         {
             FileOperationsController controller = new FileOperationsController(_fileSystemState);
-            controller.QueryConfirmation += (object sender, FileOperationEventArgs e) =>
+            controller.WipeQueryConfirmation += (object sender, FileOperationEventArgs e) =>
             {
                 e.Cancel = false;
                 e.Skip = false;
@@ -669,7 +669,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestWipeWithCancel()
         {
             FileOperationsController controller = new FileOperationsController(_fileSystemState);
-            controller.QueryConfirmation += (object sender, FileOperationEventArgs e) =>
+            controller.WipeQueryConfirmation += (object sender, FileOperationEventArgs e) =>
             {
                 e.Cancel = true;
             };
@@ -684,7 +684,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestWipeWithSkip()
         {
             FileOperationsController controller = new FileOperationsController(_fileSystemState);
-            controller.QueryConfirmation += (object sender, FileOperationEventArgs e) =>
+            controller.WipeQueryConfirmation += (object sender, FileOperationEventArgs e) =>
             {
                 e.Skip = true;
             };
@@ -701,7 +701,7 @@ namespace Axantum.AxCrypt.Core.Test
             ProgressContext progress = new ProgressContext();
             FileOperationsController controller = new FileOperationsController(_fileSystemState, progress);
             int confirmationCount = 0;
-            controller.QueryConfirmation += (object sender, FileOperationEventArgs e) =>
+            controller.WipeQueryConfirmation += (object sender, FileOperationEventArgs e) =>
             {
                 if (confirmationCount++ > 0)
                 {

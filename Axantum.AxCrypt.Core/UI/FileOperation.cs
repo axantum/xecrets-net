@@ -25,16 +25,16 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.Session;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -190,7 +190,7 @@ namespace Axantum.AxCrypt.Core.UI
                 OS.Log.LogInfo("Process exit event for '{0}'.".InvariantFormat(((ILauncher)sender).Path));
             }
 
-            OS.Current.NotifyFileChanged();
+            OS.Current.NotifyWorkFolderStateChanged();
         }
 
         private static ActiveFile TryDecrypt(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFolderInfo, IEnumerable<AesKey> keys, ProgressContext progress)
@@ -246,16 +246,16 @@ namespace Axantum.AxCrypt.Core.UI
             }
             else
             {
-                destinationFolder = Path.Combine(OS.Current.TemporaryDirectoryInfo.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + Path.DirectorySeparatorChar);
+                destinationFolder = Path.Combine(OS.Current.WorkFolder.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + Path.DirectorySeparatorChar);
             }
             IRuntimeFileInfo destinationFolderInfo = OS.Current.FileInfo(destinationFolder);
-            destinationFolderInfo.CreateDirectory();
+            destinationFolderInfo.CreateFolder();
             return destinationFolderInfo;
         }
 
         public static string GetTemporaryDestinationName(string fileName)
         {
-            string destinationFolder = Path.Combine(OS.Current.TemporaryDirectoryInfo.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + Path.DirectorySeparatorChar);
+            string destinationFolder = Path.Combine(OS.Current.WorkFolder.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + Path.DirectorySeparatorChar);
             return Path.Combine(destinationFolder, Path.GetFileName(fileName));
         }
 

@@ -61,7 +61,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             ErrorStatus = errorStatus;
         }
 
-        [SuppressMessage("Microsoft.Security", "CA2123:OverrideLinkDemandsShouldBeIdenticalToBase", Justification = "CAS is obsoleted by some target platforms.")]
+        [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             base.GetObjectData(info, context);

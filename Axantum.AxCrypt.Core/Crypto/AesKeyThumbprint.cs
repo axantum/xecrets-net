@@ -25,11 +25,11 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Reader;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Security.Cryptography;
-using Axantum.AxCrypt.Core.Reader;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -62,15 +62,15 @@ namespace Axantum.AxCrypt.Core.Crypto
             KeyWrap keyWrap = new KeyWrap(key, salt, iterations, KeyWrapMode.Specification);
             byte[] wrap = keyWrap.Wrap(key);
 
-            Initialize(wrap, iterations);
+            Initialize(wrap);
         }
 
-        private void Initialize(byte[] wrap, long iterations)
+        private void Initialize(byte[] wrap)
         {
             _bytes = ThumbprintFromWrappedKey(wrap);
         }
 
-        private byte[] ThumbprintFromWrappedKey(byte[] wrap)
+        private static byte[] ThumbprintFromWrappedKey(byte[] wrap)
         {
             byte[] thumprint = new byte[8];
             for (int i = 0; i < wrap.Length; ++i)

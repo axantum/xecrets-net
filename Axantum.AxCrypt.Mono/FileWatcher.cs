@@ -25,6 +25,9 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -33,17 +36,14 @@ using System.Linq;
 using System.Security;
 using System.Security.Permissions;
 using System.Text;
-using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Mono
 {
+    [PermissionSet(SecurityAction.LinkDemand, Name = "FullTrust"), PermissionSet(SecurityAction.InheritanceDemand, Name = "FullTrust")]
     internal class FileWatcher : IFileWatcher
     {
         private FileSystemWatcher _temporaryDirectoryWatcher;
 
-        [SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands", Justification = "The code has full trust anyway.")]
         public FileWatcher(string path)
         {
             _temporaryDirectoryWatcher = new FileSystemWatcher(path);

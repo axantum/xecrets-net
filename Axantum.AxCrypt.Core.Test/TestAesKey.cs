@@ -25,15 +25,15 @@
 
 #endregion Coypright and License
 
-using System;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
+using System;
 
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    internal static class TestAesKey
+    public static class TestAesKey
     {
         [SetUp]
         public static void Setup()

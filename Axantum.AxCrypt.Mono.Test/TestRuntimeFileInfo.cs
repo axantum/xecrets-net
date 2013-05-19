@@ -25,13 +25,13 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Globalization;
-using System.IO;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
+using System;
+using System.Globalization;
+using System.IO;
 
 namespace Axantum.AxCrypt.Mono.Test
 {
@@ -44,7 +44,7 @@ namespace Axantum.AxCrypt.Mono.Test
         public static void Setup()
         {
             _previousEnvironment = OS.Current;
-            OS.Current = new RuntimeEnvironment();
+            OS.Current = new RuntimeEnvironment(null);
         }
 
         [TearDown]
@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt.Mono.Test
             }
             Assert.That(Directory.Exists(testTempFolder), Is.False, "The test folder should not exist now.");
             IRuntimeFileInfo directoryInfo = new RuntimeFileInfo(testTempFolder);
-            directoryInfo.CreateDirectory();
+            directoryInfo.CreateFolder();
             Assert.That(Directory.Exists(testTempFolder), Is.True, "The test folder should exist now.");
             if (Directory.Exists(testTempFolder))
             {

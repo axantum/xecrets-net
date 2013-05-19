@@ -25,15 +25,15 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.Session;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -116,11 +116,14 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public event EventHandler<FileOperationEventArgs> QueryConfirmation;
+        /// <summary>
+        /// Raised to confirm that a file really should be wiped.
+        /// </summary>
+        public event EventHandler<FileOperationEventArgs> WipeQueryConfirmation;
 
-        protected virtual void OnQueryConfirmation(FileOperationEventArgs e)
+        protected virtual void OnWipeQueryConfirmation(FileOperationEventArgs e)
         {
-            EventHandler<FileOperationEventArgs> handler = QueryConfirmation;
+            EventHandler<FileOperationEventArgs> handler = WipeQueryConfirmation;
             if (handler != null)
             {
                 handler(this, e);
@@ -298,7 +301,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// the situation.
         /// </summary>
         /// <param name="fullName">The full path to an encrypted file.</param>
-        /// <returns>'True' if the operation did not fail so far, 'False' if it definitely has failed.</returns>
+        /// <returns>A FileOperationStatus indicating the result of the operation.</returns>
         public FileOperationStatus DecryptAndLaunch(string fullName)
         {
             return DoFile(fullName, DecryptAndLaunchPreparation, DecryptAndLaunchFileOperation);
@@ -310,7 +313,6 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         /// <param name="sourceFile">The full path to an encrypted file.</param>
         /// <param name="worker">The worker thread on which to execute the decryption and launch.</param>
-        /// <returns>'True' if the operation did not fail so far, 'False' if it definitely has failed.</returns>
         public void DecryptAndLaunch(string fullName, IThreadWorker worker)
         {
             DoFile(fullName, worker, DecryptAndLaunchPreparation, DecryptAndLaunchFileOperation);
@@ -342,11 +344,21 @@ namespace Axantum.AxCrypt.Core.UI
             return true;
         }
 
+        /// <summary>
+        /// Wipes a file securely synchronously.
+        /// </summary>
+        /// <param name="fullName">The full name of the file to wipe</param>
+        /// <returns>A FileOperationStatus indicating the result of the operation.</returns>
         public FileOperationStatus WipeFile(string fullName)
         {
             return DoFile(fullName, WipeFilePreparation, WipeFileOperation);
         }
 
+        /// <summary>
+        /// Wipes a file asynchronously on a background thread.
+        /// </summary>
+        /// <param name="fullName">The full name and path of the file to wipe.</param>
+        /// <param name="worker">The worker thread instance on which to do the wipe.</param>
         public void WipeFile(string fullName, IThreadWorker worker)
         {
             DoFile(fullName, worker, WipeFilePreparation, WipeFileOperation);
@@ -360,7 +372,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 return true;
             }
-            OnQueryConfirmation(_eventArgs);
+            OnWipeQueryConfirmation(_eventArgs);
             if (_eventArgs.Cancel)
             {
                 _eventArgs.Status = FileOperationStatus.Canceled;

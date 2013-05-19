@@ -25,12 +25,6 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
@@ -38,6 +32,13 @@ using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -47,8 +48,12 @@ namespace Axantum.AxCrypt.Core.Test
         private static FileSystemState _fileSystemState;
 
         private static readonly string _pathRoot = Path.GetPathRoot(Environment.CurrentDirectory);
-        private static readonly string _decryptedFile1 = _pathRoot.PathCombine("Documents", "test.txt");
-        private static readonly string _encryptedFile1 = _pathRoot.PathCombine("Documents", "Uncompressed.axx");
+        private static readonly string _documentsFolder = _pathRoot.PathCombine("Documents");
+        private static readonly string _decryptedFile1 = _documentsFolder.PathCombine("test.txt");
+        private static readonly string _encryptedFile1 = _documentsFolder.PathCombine("Uncompressed.axx");
+        private static readonly string _underDocumentsFolder = _documentsFolder.PathCombine("Under");
+        private static readonly string _decryptedFile11 = _underDocumentsFolder.PathCombine("undertest.txt");
+        private static readonly string _encryptedFile11 = _underDocumentsFolder.PathCombine("underUncompressed.axx");
         private static readonly string _fileSystemStateFilePath = Path.Combine(Path.GetTempPath(), "DummyFileSystemState.xml");
 
         [SetUp]
@@ -598,6 +603,24 @@ namespace Axantum.AxCrypt.Core.Test
 
             ActiveFile afterFailedRemoval = _fileSystemState.FindEncryptedPath(encryptedFileInfo.FullName);
             Assert.That(afterFailedRemoval, Is.Not.Null, "After failed removal, the ActiveFile should still be possible to find.");
+        }
+
+        [Test]
+        public static void TestDecryptedFilesInWatchedFolders()
+        {
+            DateTime utcNow = OS.Current.UtcNow;
+            FakeRuntimeFileInfo.AddFolder(_documentsFolder);
+            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
+            FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
+            FakeRuntimeFileInfo.AddFolder(_underDocumentsFolder);
+            FakeRuntimeFileInfo.AddFile(_encryptedFile11, utcNow, utcNow, utcNow, Stream.Null);
+            FakeRuntimeFileInfo.AddFile(_decryptedFile11, utcNow, utcNow, utcNow, Stream.Null);
+            _fileSystemState.AddWatchedFolder(new WatchedFolder(_underDocumentsFolder));
+
+            IEnumerable<IRuntimeFileInfo> decryptedFiles = _fileSystemState.DecryptedFilesInWatchedFolders();
+
+            Assert.That(decryptedFiles.Count(), Is.EqualTo(1), "There should be exactly one decrypted file here.");
+            Assert.That(decryptedFiles.First().FullName, Is.EqualTo(_decryptedFile11), "This is the file that is decrypted here.");
         }
     }
 }

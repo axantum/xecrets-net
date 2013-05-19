@@ -117,89 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AxCryptFileEncryption" xml:space="preserve">
-    <value>AxCrypt Dokumentkryptering</value>
+  <data name="cancelButton.Text" xml:space="preserve">
+    <value>&amp;Avbryt allt</value>
   </data>
-  <data name="Canceled" xml:space="preserve">
-    <value>Avbröt '{0}'.</value>
+  <data name="ConfirmAllCheckBox.Text" xml:space="preserve">
+    <value>Gör detta för &amp;alla återstående filer?</value>
   </data>
-  <data name="CannotStartApplication" xml:space="preserve">
-    <value>Kan inte starta applikation för '{0}'.</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>AxCrypt Säker Radering</value>
   </data>
-  <data name="CannotWrite" xml:space="preserve">
-    <value>Kan inte skriva till '{0}'.</value>
+  <data name="noButton.Text" xml:space="preserve">
+    <value>Nej</value>
   </data>
-  <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
-    <value>Klicka för att kontrollera om det finns en ny version.</value>
+  <data name="promptLabel.Text" xml:space="preserve">
+    <value>Är du säker att du vill radera filen? Detta går inte att ångra.</value>
   </data>
-  <data name="DecryptedSaveAsFileDialogFilterPattern" xml:space="preserve">
-    <value>Dokument (*{0})|*{0}|Alla dokument (*.*)|*.*</value>
-  </data>
-  <data name="DecryptedSaveAsFileDialogTitle" xml:space="preserve">
-    <value>Dokumentet finns redan, spara som</value>
-  </data>
-  <data name="DecryptFileOpenDialogTitle" xml:space="preserve">
-    <value>Välj dokument att dekryptera</value>
-  </data>
-  <data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
-    <value>AxCrypt Krypterade (*{0})|*{0}|Alla dokument (*.*)|*.*</value>
-  </data>
-  <data name="EncryptedSourceColumnHeader" xml:space="preserve">
-    <value>Krypterat Dokument</value>
-  </data>
-  <data name="EncryptFileOpenDialogTitle" xml:space="preserve">
-    <value>Välj dokument att kryptera</value>
-  </data>
-  <data name="EncryptFileSaveAsDialogTitle" xml:space="preserve">
-    <value>Dokumentet finns redan, spara som</value>
-  </data>
-  <data name="FileAlreadyExists" xml:space="preserve">
-    <value>Dokumentet '{0}' finns redan.</value>
-  </data>
-  <data name="FileDoesNotExist" xml:space="preserve">
-    <value>Dokumentet '{0}' finns inte.</value>
-  </data>
-  <data name="FileOperationFailed" xml:space="preserve">
-    <value>Fel med '{0}'.</value>
-  </data>
-  <data name="InconsistentState" xml:space="preserve">
-    <value>Internt fel med '{0}'.</value>
-  </data>
-  <data name="InvalidKey" xml:space="preserve">
-    <value>Felaktig krypteringsnyckel för '{0}'.</value>
-  </data>
-  <data name="LanguageChangeRestartPrompt" xml:space="preserve">
-    <value>AxCrypt måste startas om för att slutföra språkändringen.</value>
-  </data>
-  <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
-    <value>Version {0} finns tillgänglig! Klicka för att komma till nedladdningssidan.</value>
-  </data>
-  <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
-    <value>Inget uppdateringsbehov.</value>
-  </data>
-  <data name="OldVersionTooltip" xml:space="preserve">
-    <value>Du har en gammal version. Klicka för att kontrollera om det finns en nyare.</value>
-  </data>
-  <data name="OpenEncryptedFileOpenDialogTitle" xml:space="preserve">
-    <value>Välj dokument att dekryptera och öppna</value>
-  </data>
-  <data name="OpenFileColumnHeader" xml:space="preserve">
-    <value>Arkiv</value>
-  </data>
-  <data name="PassphraseVerificationMismatch" xml:space="preserve">
-    <value>Lösenorden är inte lika</value>
-  </data>
-  <data name="PurgingActiveFiles" xml:space="preserve">
-    <value>Rensar Aktiva Dokument</value>
-  </data>
-  <data name="TrayBalloonTooltip" xml:space="preserve">
-    <value>Dubbelklicka ikonen för att öppa AxCrypt</value>
-    <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
-  </data>
-  <data name="UnrecognizedError" xml:space="preserve">
-    <value>Okänt fel med '{0}'.</value>
-  </data>
-  <data name="UpdatingStatus" xml:space="preserve">
-    <value>Uppdaterar Status</value>
+  <data name="yesButton.Text" xml:space="preserve">
+    <value>Ja</value>
   </data>
 </root>

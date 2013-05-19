@@ -25,11 +25,11 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Globalization;
 using System.IO;
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.Session;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -293,6 +293,11 @@ namespace Axantum.AxCrypt.Core
             return bytes;
         }
 
+        public static bool IsEncryptedName(this string fullName)
+        {
+            return String.Compare(Path.GetExtension(fullName), OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0;
+        }
+
         /// <summary>
         /// Create a file name based on an existing, but convert the file name to the pattern used by
         /// AxCrypt for encrypted files. The original must not already be in that form.
@@ -302,11 +307,12 @@ namespace Axantum.AxCrypt.Core
         /// <exception cref="InternalErrorException">Can't get encrypted name for a file that already has the encrypted extension.</exception>
         public static string CreateEncryptedName(this string fullName)
         {
-            string extension = Path.GetExtension(fullName);
-            if (String.Compare(extension, OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
+            if (fullName.IsEncryptedName())
             {
                 throw new InternalErrorException("Can't get encrypted name for a file that already has the encrypted extension.");
             }
+
+            string extension = Path.GetExtension(fullName);
             string encryptedName = fullName;
             encryptedName = encryptedName.Substring(0, encryptedName.Length - extension.Length);
             encryptedName += extension.Replace('.', '-');

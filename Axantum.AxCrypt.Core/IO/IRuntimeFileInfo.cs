@@ -26,20 +26,32 @@
 #endregion Coypright and License
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Axantum.AxCrypt.Core.IO
 {
     /// <summary>
-    /// Abstraction for FileInfo-related operations
+    /// Abstraction for FileInfo-related operations. Provides properties and instance methods for the operations with files, and aids in the creation of Stream objects.
     /// </summary>
     public interface IRuntimeFileInfo
     {
+        /// <summary>
+        /// Opens a stream in read mode for the underlying file.
+        /// </summary>
+        /// <returns>A stream opened for reading.</returns>
         Stream OpenRead();
 
+        /// <summary>
+        /// Opens a stream in write mode for the underlying file.
+        /// </summary>
+        /// <returns>A stream opened for writing.</returns>
         Stream OpenWrite();
 
-        void CreateDirectory();
+        /// <summary>
+        /// Creates a folder in the underlying file system with the path of this instance.
+        /// </summary>
+        void CreateFolder();
 
         /// <summary>
         /// Get the Name part without the folder part of the path.
@@ -51,20 +63,75 @@ namespace Axantum.AxCrypt.Core.IO
         /// </summary>
         string FullName { get; }
 
+        /// <summary>
+        /// Gets or sets the creation time UTC.
+        /// </summary>
+        /// <value>
+        /// The creation time UTC.
+        /// </value>
         DateTime CreationTimeUtc { get; set; }
 
+        /// <summary>
+        /// Gets or sets the last access time UTC.
+        /// </summary>
+        /// <value>
+        /// The last access time UTC.
+        /// </value>
         DateTime LastAccessTimeUtc { get; set; }
 
+        /// <summary>
+        /// Gets or sets the last write time UTC.
+        /// </summary>
+        /// <value>
+        /// The last write time UTC.
+        /// </value>
         DateTime LastWriteTimeUtc { get; set; }
 
+        /// <summary>
+        /// Sets all of the file times of the underlying file.
+        /// </summary>
+        /// <param name="creationTimeUtc">The creation time UTC.</param>
+        /// <param name="lastAccessTimeUtc">The last access time UTC.</param>
+        /// <param name="lastWriteTimeUtc">The last write time UTC.</param>
         void SetFileTimes(DateTime creationTimeUtc, DateTime lastAccessTimeUtc, DateTime lastWriteTimeUtc);
 
+        /// <summary>
+        /// Gets a value indicating whether the file this <see cref="IRuntimeFileInfo"/> represents exists in the underlying file system.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if exists; otherwise, <c>false</c>.
+        /// </value>
         bool Exists { get; }
 
+        /// <summary>
+        /// Creates an instance representing this file in it's encrypted name form, typically
+        /// changing file.ext to file-ext.axx.
+        /// </summary>
+        /// <returns></returns>
         IRuntimeFileInfo CreateEncryptedName();
 
+        /// <summary>
+        /// Moves the underlying file to a new location.
+        /// </summary>
+        /// <param name="destinationFileName">Name of the destination file.</param>
         void MoveTo(string destinationFileName);
 
+        /// <summary>
+        /// Deletes the underlying file this instance refers to.
+        /// </summary>
         void Delete();
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is folder.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is folder; otherwise, <c>false</c>.
+        /// </value>
+        bool IsFolder { get; }
+
+        /// <summary>
+        /// Enumerate all files (not folders) in this folder, if it's a folder.
+        /// </summary>
+        IEnumerable<IRuntimeFileInfo> Files { get; }
     }
 }
