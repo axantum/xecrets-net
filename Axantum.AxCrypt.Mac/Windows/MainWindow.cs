@@ -6,7 +6,7 @@ using MonoMac.Foundation;
 using MonoMac.AppKit;
 using Axantum.AxCrypt.Core.UI;
 
-namespace Axantum.AxCrypt.Mac
+namespace Axantum.AxCrypt.Mac.Windows
 {
 	public partial class MainWindow : MonoMac.AppKit.NSWindow
 	{
@@ -61,7 +61,8 @@ namespace Axantum.AxCrypt.Mac
 		
 		partial void viewClicked (NSObject sender)
 		{
-			InvokeWithProgress(AppController.DecryptAndOpenFile, openingIndicator);
+			//InvokeWithProgress(AppController.DecryptAndOpenFile, openingIndicator);
+			AppController.DecryptFile(new ProgressContext(), AppController.OperationFailureHandler);
 		}
 		
 		partial void decryptClicked (NSObject sender)

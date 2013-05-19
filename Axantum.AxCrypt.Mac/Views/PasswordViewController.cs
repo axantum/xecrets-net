@@ -6,7 +6,7 @@ using MonoMac.Foundation;
 using MonoMac.AppKit;
 using Axantum.AxCrypt.Core.Crypto;
 
-namespace Axantum.AxCrypt.Mac
+namespace Axantum.AxCrypt.Mac.Views
 {
 	public partial class PasswordViewController : MonoMac.AppKit.NSViewController
 	{

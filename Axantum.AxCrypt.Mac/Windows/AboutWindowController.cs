@@ -6,7 +6,7 @@ using MonoMac.Foundation;
 using MonoMac.AppKit;
 using System.Diagnostics;
 
-namespace Axantum.AxCrypt.Mac
+namespace Axantum.AxCrypt.Mac.Windows
 {
 	public partial class AboutWindowController : MonoMac.AppKit.NSWindowController
 	{

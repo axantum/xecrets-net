@@ -5,7 +5,7 @@ using System.Linq;
 using MonoMac.Foundation;
 using MonoMac.AppKit;
 
-namespace Axantum.AxCrypt.Mac
+namespace Axantum.AxCrypt.Mac.Views
 {
 	public partial class PasswordView : MonoMac.AppKit.NSView
 	{

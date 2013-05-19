@@ -11,6 +11,8 @@ using System.Drawing;
 using System.Threading;
 using Axantum.AxCrypt.Mono;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Mac.Views;
+using Axantum.AxCrypt.Mac.Windows;
 
 namespace Axantum.AxCrypt.Mac
 {
@@ -92,8 +94,10 @@ namespace Axantum.AxCrypt.Mac
 
 		public static void OperationFailureHandler (string message, ProgressContext context)
 		{
-			NSAlert alert = NSAlert.WithMessage(message, "OK", null, null, "Check your password and try again");
-			alert.InvokeOnMainThread(() => alert.RunModal());
+			new NSObject().InvokeOnMainThread(() => {
+				NSAlert alert = NSAlert.WithMessage(message, "OK", null, null, "Check your password and try again");
+				alert.RunModal();
+			});
 		}
 
 		public static void OnlineHelp ()
@@ -152,9 +156,22 @@ namespace Axantum.AxCrypt.Mac
 			});
 		}
 
-		private static void GetSourceFile (Action<IRuntimeFileInfo, Passphrase> fileSelected)
+		private static void GetSourceFile (string defaultFileName, Action<IRuntimeFileInfo, Passphrase> fileSelected)
 		{
 			NSOpenPanel panel = NSOpenPanel.OpenPanel;
+			if (defaultFileName != null) {
+				OpenFileFromFinderController of = new OpenFileFromFinderController ();
+				of.UserChoseOpen += p => {
+					ThreadPool.QueueUserWorkItem(delegate { 
+						using(new NSAutoreleasePool()) {
+							fileSelected(OS.Current.FileInfo(defaultFileName), new Passphrase(p)); 
+						};
+					});
+				};
+				of.ShowWindow (defaultFileName, new NSObject ());
+				return;
+			}
+
 			PasswordViewController passwordController = new PasswordViewController();
 			panel.AccessoryView = passwordController.View;
 
@@ -199,9 +216,9 @@ namespace Axantum.AxCrypt.Mac
 			return true;
 		}
 
-		public static void DecryptAndOpenFile (ProgressContext progress, Action<string, ProgressContext> failure)
+		public static void DecryptAndOpenFile (string fileName = null, ProgressContext progress = null, Action<string, ProgressContext> failure = null)
 		{
-			GetSourceFile((encryptedDocument, passphrase) => {
+			GetSourceFile(fileName, (encryptedDocument, passphrase) => {
 				string tempPath = Path.GetTempPath();
 				string decryptedFileName;
 				lastUsedKey = passphrase.DerivedPassphrase;
@@ -225,7 +242,7 @@ namespace Axantum.AxCrypt.Mac
 		}
 
 		public static void DecryptFile(ProgressContext progress, Action<string, ProgressContext> failure) {
-			GetSourceFile((file, passphrase) => {
+			GetSourceFile(null, (file, passphrase) => {
 
 				string targetDirectory = Path.GetDirectoryName(file.FullName);
 				string fileName;

@@ -10,6 +10,7 @@ using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.Runtime;
 using System.Diagnostics;
 using Axantum.AxCrypt.Mono;
+using Axantum.AxCrypt.Mac.Windows;
 
 namespace Axantum.AxCrypt.Mac
 {
@@ -59,7 +60,7 @@ namespace Axantum.AxCrypt.Mac
 
 		partial void view (NSObject sender)
 		{
-			AppController.DecryptAndOpenFile(new ProgressContext(), AppController.OperationFailureHandler);
+			AppController.DecryptAndOpenFile(null, new ProgressContext(), AppController.OperationFailureHandler);
 		}
 
 		partial void onlineHelp (NSObject sender)
@@ -74,18 +75,35 @@ namespace Axantum.AxCrypt.Mac
 
 		partial void decrypt (NSObject sender)
 		{
-			AppController.DecryptAndOpenFile(new ProgressContext(), AppController.OperationFailureHandler);
+			AppController.DecryptAndOpenFile(null, new ProgressContext(), AppController.OperationFailureHandler);
 		}
 
+		/// <summary>
+		/// Non-interactive. Double-click while not running.
+		/// </summary>
+		/// <returns><c>true</c>, if file was opened, <c>false</c> otherwise.</returns>
+		/// <param name="sender">Sender.</param>
+		/// <param name="filename">Filename.</param>
 		public override bool OpenFile (NSApplication sender, string filename)
 		{
 			if (!filename.EndsWith(".axx"))
 				return false;
 
-			NSAlert.WithMessage("Enter password", "OK", null, null, "Ah, you'd like to open " + filename + "!")
-				.RunModal();
-					
+			NSAlert.WithMessage ("opefile", "OK", null, null, "You like " + filename).RunModal ();
+
+			//AppController.DecryptAndOpenFile (filename, new ProgressContext (), AppController.OperationFailureHandler);
+
 			return true;
+		}
+
+		/// <summary>
+		/// Interactive. Double-click while running.
+		/// </summary>
+		/// <param name="sender">Sender.</param>
+		/// <param name="filenames">Filenames.</param>
+		public override void OpenFiles (NSApplication sender, string[] filenames)
+		{
+			NSAlert.WithMessage ("Open files", "OK", null, null, string.Join (",",filenames)).RunSheetModal (mainWindowController.Window);
 		}
 	}
 }

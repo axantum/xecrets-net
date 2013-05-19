@@ -6,7 +6,7 @@
 //
 using MonoMac.Foundation;
 
-namespace Axantum.AxCrypt.Mac
+namespace Axantum.AxCrypt.Mac.Windows
 {
 	[Register ("AboutWindowController")]
 	partial class AboutWindowController
