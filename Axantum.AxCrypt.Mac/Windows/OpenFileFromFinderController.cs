@@ -34,6 +34,14 @@ namespace Axantum.AxCrypt.Mac.Windows
 		{
 		}
 		#endregion
+
+		public override void WindowDidLoad ()
+		{
+			base.WindowDidLoad ();
+			Passphrase.EditingEnded += (object sender, EventArgs e) => {
+				Open (sender as NSObject);
+			};
+		}
 		
 		//strongly typed window accessor
 		public new OpenFileFromFinder Window {

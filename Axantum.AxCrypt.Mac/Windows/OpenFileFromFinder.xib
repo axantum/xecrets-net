@@ -104,8 +104,7 @@
 							<object class="NSTextFieldCell" key="NSCell" id="790924092">
 								<int key="NSCellFlags">67108864</int>
 								<int key="NSCellFlags2">272629760</int>
-								<string type="base64-UTF8" key="NSContents">UGxlYXNlIGVudGVyIHRoZSBzYW1lIHBhc3NwaHJhc2UgYXMgd2FzCnVzZWQgdG8gbG9jayB0aGUgZG9j
-dW1lbnQ6A</string>
+								<string key="NSContents">Please enter the same passphrase that  was used to lock the document:</string>
 								<object class="NSFont" key="NSSupport" id="672024657">
 									<string key="NSName">LucidaGrande</string>
 									<double key="NSSize">13</double>
@@ -145,7 +144,7 @@ dW1lbnQ6A</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSSecureTextFieldCell" key="NSCell" id="56735834">
 								<int key="NSCellFlags">342884416</int>
-								<int key="NSCellFlags2">272630848</int>
+								<int key="NSCellFlags2">268436544</int>
 								<string key="NSContents"/>
 								<reference key="NSSupport" ref="672024657"/>
 								<string key="NSCellIdentifier">_NS:9</string>
@@ -192,7 +191,7 @@ dW1lbnQ6A</string>
 								<int key="NSButtonFlags">-2038284288</int>
 								<int key="NSButtonFlags2">129</int>
 								<string key="NSAlternateContents"/>
-								<string key="NSKeyEquivalent"/>
+								<string type="base64-UTF8" key="NSKeyEquivalent">DQ</string>
 								<int key="NSPeriodicDelay">200</int>
 								<int key="NSPeriodicInterval">25</int>
 							</object>

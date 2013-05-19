@@ -61,8 +61,7 @@ namespace Axantum.AxCrypt.Mac.Windows
 		
 		partial void viewClicked (NSObject sender)
 		{
-			//InvokeWithProgress(AppController.DecryptAndOpenFile, openingIndicator);
-			AppController.DecryptFile(new ProgressContext(), AppController.OperationFailureHandler);
+			InvokeWithProgress(AppController.DecryptAndOpenFile, openingIndicator);
 		}
 		
 		partial void decryptClicked (NSObject sender)
@@ -73,6 +72,11 @@ namespace Axantum.AxCrypt.Mac.Windows
 		partial void aboutClicked (NSObject sender)
 		{
 			AppController.About(sender);
+		}
+
+		partial void versionClicked (NSObject sender)
+		{
+			AppController.ShowVersionInfo();
 		}
 	}
 }

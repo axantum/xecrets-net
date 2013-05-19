@@ -34,6 +34,7 @@ namespace Axantum.AxCrypt.Mac.Windows
 		void Initialize ()
 		{
 			Window.Title = AppController.FullApplicationName;
+			versionInformation.StringValue = AppController.VersionInformation;
 		}
 		
 		#endregion

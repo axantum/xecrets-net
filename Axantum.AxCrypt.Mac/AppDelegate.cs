@@ -48,10 +48,15 @@ namespace Axantum.AxCrypt.Mac
 		public override void FinishedLaunching (NSObject notification)
 		{
 			AppController.Initialize ();
-
-			if (openFile == null) {
-				mainWindowController = new MainWindowController (); 
-				mainWindowController.ShowWindow (this);
+			mainWindowController = new MainWindowController ();
+			mainWindowController.ShowWindow (this);
+			if (openFile != null)
+				mainWindowController.Window.Miniaturize (this);
+			else {
+				if (VersionInformationWindowController.ShouldShowVersionInformation) {
+					VersionInformationWindowController versionInfo = new VersionInformationWindowController ();
+					versionInfo.ShowWindow (this);
+				}
 			}
 		}
 

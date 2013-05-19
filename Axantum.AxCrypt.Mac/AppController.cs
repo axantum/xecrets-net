@@ -19,13 +19,26 @@ namespace Axantum.AxCrypt.Mac
 	public class AppController
 	{
 		public const string APP_NAME = "AxCrypt for Mac";
-		public const string VERSION = "2.0.1.0";
+		public const string VERSION = "2.0.2.0";
+		public const string PUBLISH_DATE = "May 2013";
 
 		private static AesKey lastUsedKey;
 
 		public static string FullApplicationName {
 			get {
 				return String.Concat(APP_NAME, ", version ", VERSION);
+			}
+		}
+
+		public static string VersionInformation {
+			get {
+				return String.Concat ("Version ", VERSION, "(", PUBLISH_DATE ,")");
+			}
+		}
+
+		public static string VersionInformationUrl {
+			get {
+				return String.Concat ("http://monodeveloper.org/axcrypt-osx-version-history/#v", VERSION.Replace ('.', '_'));
 			}
 		}
 
@@ -48,24 +61,6 @@ namespace Axantum.AxCrypt.Mac
 				encryptedSourceFile = not.UserInfo["source file"].ToString();
 				decryptedTargetFile = not.UserInfo["target file"].ToString();
 			});
-			
-			NSApplication.Notifications.ObserveDidBecomeActive ((sender, args) => {
-				if (state == TERMINATED) {
-					// Re-encrypt file.
-					if (encryptedSourceFile != null && decryptedTargetFile != null) {
-
-						AxCryptFile.EncryptFileWithBackupAndWipe(
-							decryptedTargetFile, 
-							encryptedSourceFile, 
-							lastUsedKey, 
-							new ProgressContext());
-					}
-				}
-
-				state = ACTIVATED;
-				encryptedSourceFile = null;
-				decryptedTargetFile = null;
-			});
 
 			NSApplication.Notifications.ObserveDidResignActive ((sender, args) => {
 				state = INACTIVATED;
@@ -82,14 +77,28 @@ namespace Axantum.AxCrypt.Mac
 			});
 
 			NSWorkspace.Notifications.ObserveDidTerminateApplication ((sender, args) => {
-				if (state == LAUNCHED)
+				if (state == LAUNCHED) {
+					ReEncrypt(ref encryptedSourceFile, ref decryptedTargetFile);
 					state = TERMINATED;
+				}
 			});
 
 			NSWorkspace.Notifications.ObserveDidDeactivateApplication ((sender, args) => {
-				if (state == LAUNCHED)
+				if (state == LAUNCHED) {
+					ReEncrypt(ref encryptedSourceFile, ref decryptedTargetFile);
 					state = TERMINATED;
+				}
 			});
+		}
+
+		static void ReEncrypt(ref string encryptedSourceFile, ref string decryptedTargetFile)
+		{
+			if (!(encryptedSourceFile != null && decryptedTargetFile != null))
+				return;
+
+			AxCryptFile.EncryptFileWithBackupAndWipe (decryptedTargetFile, encryptedSourceFile, lastUsedKey, new ProgressContext ());
+			encryptedSourceFile = null;
+			decryptedTargetFile = null;
 		}
 
 		public static void OperationFailureHandler (string message, ProgressContext context)
@@ -250,6 +259,12 @@ namespace Axantum.AxCrypt.Mac
 			AboutWindowController controller = new AboutWindowController();
 			controller.ShowWindow((NSObject)sender);
 			controller.SetVersion(VERSION);
+		}
+
+		public static void ShowVersionInfo ()
+		{
+			VersionInformationWindowController versionInfo = new VersionInformationWindowController ();
+			versionInfo.ShowWindow (new NSObject());
 		}
 	}
 }

@@ -102,6 +102,11 @@
     <Compile Include="Views\PasswordViewController.cs" />
     <Compile Include="Views\CreatePassphraseViewController.cs" />
     <Compile Include="Windows\AboutWindowController.cs" />
+    <Compile Include="Windows\VersionInformationWindow.cs" />
+    <Compile Include="Windows\VersionInformationWindowController.cs" />
+    <Compile Include="Windows\VersionInformationWindow.designer.cs">
+      <DependentUpon>VersionInformationWindow.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainMenu.xib" />
@@ -110,6 +115,7 @@
     <InterfaceDefinition Include="Windows\AboutWindow.xib" />
     <InterfaceDefinition Include="Windows\MainWindow.xib" />
     <InterfaceDefinition Include="Windows\OpenFileFromFinder.xib" />
+    <InterfaceDefinition Include="Windows\VersionInformationWindow.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />

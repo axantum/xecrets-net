@@ -201,7 +201,7 @@
 							<string key="NSFrame">{{350, 80}, {54, 48}}</string>
 							<reference key="NSSuperview" ref="312036702"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="938683507"/>
+							<reference key="NSNextKeyView" ref="272169174"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="531185179">
@@ -236,11 +236,11 @@
 							<object class="NSButtonCell" key="NSCell" id="56654767">
 								<int key="NSCellFlags">67108864</int>
 								<int key="NSCellFlags2">134217728</int>
-								<string key="NSContents">Open</string>
+								<string key="NSContents">Open / Edit</string>
 								<reference key="NSSupport" ref="11819971"/>
 								<string key="NSCellIdentifier">_NS:9</string>
 								<reference key="NSControlView" ref="977070247"/>
-								<int key="NSButtonFlags">-2030288896</int>
+								<int key="NSButtonFlags">-2033958912</int>
 								<int key="NSButtonFlags2">268435590</int>
 								<object class="NSCustomResource" key="NSNormalImage">
 									<string key="NSClassName">NSImage</string>
@@ -264,11 +264,37 @@
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="836702324">
 								<int key="NSCellFlags">67108864</int>
-								<int key="NSCellFlags2">134217728</int>
+								<int key="NSCellFlags2">67108864</int>
 								<string key="NSContents">www.axantum.com</string>
 								<reference key="NSSupport" ref="11819971"/>
 								<string key="NSCellIdentifier">_NS:9</string>
 								<reference key="NSControlView" ref="938683507"/>
+								<int key="NSButtonFlags">-2046672896</int>
+								<int key="NSButtonFlags2">129</int>
+								<reference key="NSAlternateImage" ref="11819971"/>
+								<string key="NSAlternateContents"/>
+								<string key="NSKeyEquivalent"/>
+								<int key="NSPeriodicDelay">200</int>
+								<int key="NSPeriodicInterval">25</int>
+							</object>
+							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+						</object>
+						<object class="NSButton" id="272169174">
+							<reference key="NSNextResponder" ref="312036702"/>
+							<int key="NSvFlags">268</int>
+							<string key="NSFrame">{{156, 20}, {184, 32}}</string>
+							<reference key="NSSuperview" ref="312036702"/>
+							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView" ref="938683507"/>
+							<string key="NSReuseIdentifierKey">_NS:9</string>
+							<bool key="NSEnabled">YES</bool>
+							<object class="NSButtonCell" key="NSCell" id="1019161514">
+								<int key="NSCellFlags">67108864</int>
+								<int key="NSCellFlags2">0</int>
+								<string key="NSContents">Version 2.0.2.0 (May 2013)</string>
+								<reference key="NSSupport" ref="11819971"/>
+								<string key="NSCellIdentifier">_NS:9</string>
+								<reference key="NSControlView" ref="272169174"/>
 								<int key="NSButtonFlags">-2046672896</int>
 								<int key="NSButtonFlags2">129</int>
 								<reference key="NSAlternateImage" ref="11819971"/>
@@ -337,6 +363,14 @@
 						<reference key="destination" ref="748157544"/>
 					</object>
 					<int key="connectionID">6</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">versionInformation</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="272169174"/>
+					</object>
+					<int key="connectionID">43</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -426,6 +460,22 @@
 					</object>
 					<int key="connectionID">37</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">versionClicked:</string>
+						<reference key="source" ref="748157544"/>
+						<reference key="destination" ref="272169174"/>
+					</object>
+					<int key="connectionID">41</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">versionButton</string>
+						<reference key="source" ref="748157544"/>
+						<reference key="destination" ref="272169174"/>
+					</object>
+					<int key="connectionID">42</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -480,6 +530,7 @@
 							<reference ref="281467976"/>
 							<reference ref="404782825"/>
 							<reference ref="938683507"/>
+							<reference ref="272169174"/>
 						</object>
 						<reference key="parent" ref="748157544"/>
 					</object>
@@ -596,6 +647,20 @@
 						<reference key="object" ref="349766066"/>
 						<reference key="parent" ref="603977312"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">38</int>
+						<reference key="object" ref="272169174"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="1019161514"/>
+						</object>
+						<reference key="parent" ref="312036702"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">39</int>
+						<reference key="object" ref="1019161514"/>
+						<reference key="parent" ref="272169174"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -623,6 +688,8 @@
 					<string>22.IBPluginDependency</string>
 					<string>23.IBPluginDependency</string>
 					<string>3.IBPluginDependency</string>
+					<string>38.IBPluginDependency</string>
+					<string>39.IBPluginDependency</string>
 					<string>7.IBPluginDependency</string>
 					<string>8.IBPluginDependency</string>
 					<string>9.IBPluginDependency</string>
@@ -653,6 +720,8 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -667,7 +736,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">37</int>
+			<int key="maxID">43</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -683,10 +752,12 @@
 							<string>decryptClicked:</string>
 							<string>encryptClicked:</string>
 							<string>urlClicked:</string>
+							<string>versionClicked:</string>
 							<string>viewClicked:</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -702,6 +773,7 @@
 							<string>decryptClicked:</string>
 							<string>encryptClicked:</string>
 							<string>urlClicked:</string>
+							<string>versionClicked:</string>
 							<string>viewClicked:</string>
 						</object>
 						<object class="NSArray" key="dict.values">
@@ -723,6 +795,10 @@
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
+								<string key="name">versionClicked:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
 								<string key="name">viewClicked:</string>
 								<string key="candidateClassName">id</string>
 							</object>
@@ -738,6 +814,7 @@
 							<string>encryptingIndicator</string>
 							<string>openingButton</string>
 							<string>openingIndicator</string>
+							<string>versionButton</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -747,6 +824,7 @@
 							<string>NSProgressIndicator</string>
 							<string>NSButton</string>
 							<string>NSProgressIndicator</string>
+							<string>NSButton</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -759,6 +837,7 @@
 							<string>encryptingIndicator</string>
 							<string>openingButton</string>
 							<string>openingIndicator</string>
+							<string>versionButton</string>
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -786,6 +865,10 @@
 								<string key="name">openingIndicator</string>
 								<string key="candidateClassName">NSProgressIndicator</string>
 							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">versionButton</string>
+								<string key="candidateClassName">NSButton</string>
+							</object>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -796,6 +879,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">MainWindowController</string>
 					<string key="superclassName">NSWindowController</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">versionInformation</string>
+						<string key="NS.object.0">NSButton</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">versionInformation</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">versionInformation</string>
+							<string key="candidateClassName">NSButton</string>
+						</object>
+					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/MainWindowController.h</string>
