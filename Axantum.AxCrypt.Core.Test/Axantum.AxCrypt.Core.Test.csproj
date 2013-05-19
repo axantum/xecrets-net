@@ -66,6 +66,7 @@
     <Compile Include="SetupAssembly.cs" />
     <Compile Include="TestActiveFile.cs" />
     <Compile Include="TestActiveFileCollectionTests.cs" />
+    <Compile Include="TestDelayedAction.cs" />
     <Compile Include="TestDelegateTraceListener.cs" />
     <Compile Include="TestFileOperation.cs" />
     <Compile Include="TestFileOperationsController.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="TestUnrecognizedHeaderBlock .cs" />
     <Compile Include="TestUpdateCheck.cs" />
     <Compile Include="TestVersionHeaderBlock .cs" />
+    <Compile Include="TestWatchedFolder.cs" />
     <Compile Include="TestWorkerGroup.cs" />
   </ItemGroup>
   <ItemGroup>

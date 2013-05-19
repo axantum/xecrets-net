@@ -1,17 +1,23 @@
-﻿using System;
+﻿using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Runtime;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Security.Permissions;
 using System.Text;
-using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Mono
 {
     internal class Logging : ILogging
     {
         private TraceSwitch _switch = InitializeTraceSwitch();
+
+        [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.UnmanagedCode)]
+        public Logging()
+        {
+        }
 
         #region ILogging Members
 
@@ -38,6 +44,7 @@ namespace Axantum.AxCrypt.Mono
                 case LogLevel.Debug:
                     _switch.Level = TraceLevel.Verbose;
                     break;
+
                 default:
                     throw new ArgumentException("level must be a value form the LogLevel enumeration.");
             }
@@ -68,17 +75,17 @@ namespace Axantum.AxCrypt.Mono
             get { return _switch.Level >= TraceLevel.Verbose; }
         }
 
-        public virtual void LogFatal (string message)
-		{
-			if (IsFatalEnabled)
-			{
-				Trace.WriteLine("{1} Fatal: {0}".InvariantFormat(message, AppName));
-			}
+        public virtual void LogFatal(string message)
+        {
+            if (IsFatalEnabled)
+            {
+                Trace.WriteLine("{1} Fatal: {0}".InvariantFormat(message, AppName));
+            }
         }
 
         public void LogError(string message)
         {
-			if (IsErrorEnabled)
+            if (IsErrorEnabled)
             {
                 Trace.TraceError(message);
             }
@@ -110,6 +117,7 @@ namespace Axantum.AxCrypt.Mono
 
         #endregion ILogging Members
 
+        [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.UnmanagedCode)]
         private static TraceSwitch InitializeTraceSwitch()
         {
             TraceSwitch traceSwitch = new TraceSwitch("axCryptSwitch", "Logging levels for AxCrypt");

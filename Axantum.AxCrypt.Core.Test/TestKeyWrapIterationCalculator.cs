@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
-    internal static class TestKeyWrapIterationCalculator
+    public static class TestKeyWrapIterationCalculator
     {
         [SetUp]
         public static void Setup()

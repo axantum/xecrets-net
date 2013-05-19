@@ -60,6 +60,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Runtime\DelayedAction.cs" />
     <Compile Include="Runtime\IThreadWorker.cs" />
     <Compile Include="Runtime\WorkerGroup.cs" />
     <Compile Include="Session\ActiveFileChangedEventArgs.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Session\FileSystemState.cs" />
     <Compile Include="Runtime\ThreadWorker.cs" />
     <Compile Include="Runtime\ThreadWorkerEventArgs.cs" />
+    <Compile Include="Session\WatchedFolder.cs" />
     <Compile Include="UI\FileOperation.cs" />
     <Compile Include="UI\FileOperationEventArgs.cs" />
     <Compile Include="UI\FileOperationsController.cs" />

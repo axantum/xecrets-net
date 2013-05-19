@@ -25,12 +25,6 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
@@ -39,6 +33,12 @@ using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using Microsoft;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -328,7 +328,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
 
             bool changedWasRaised = false;
-            OS.Current.FileChanged += (object sender, EventArgs e) => { changedWasRaised = true; };
+            OS.Current.WorkFolderStateChanged += (object sender, EventArgs e) => { changedWasRaised = true; };
             Assert.That(changedWasRaised, Is.False, "The global changed event should not have been raised yet.");
 
             launcher.RaiseExited();
@@ -360,7 +360,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             string temporaryDestinationName = FileOperation.GetTemporaryDestinationName(_davidCopperfieldTxtPath);
 
-            Assert.That(temporaryDestinationName.StartsWith(Path.GetDirectoryName(OS.Current.TemporaryDirectoryInfo.FullName), StringComparison.OrdinalIgnoreCase), "The temporary destination should be in the temporary directory.");
+            Assert.That(temporaryDestinationName.StartsWith(Path.GetDirectoryName(OS.Current.WorkFolder.FullName), StringComparison.OrdinalIgnoreCase), "The temporary destination should be in the temporary directory.");
             Assert.That(Path.GetFileName(temporaryDestinationName), Is.EqualTo(Path.GetFileName(_davidCopperfieldTxtPath)), "The temporary destination should have the same file name.");
         }
     }

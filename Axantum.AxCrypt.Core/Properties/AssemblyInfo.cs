@@ -26,9 +26,12 @@
 #endregion Coypright and License
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
+
+[module: SuppressMessage("Microsoft.Design", "CA2210:AssembliesShouldHaveValidStrongNames", Justification = "The assembly is strong named when deployed.")]
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
