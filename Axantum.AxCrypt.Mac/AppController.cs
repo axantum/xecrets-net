@@ -13,16 +13,19 @@ using Axantum.AxCrypt.Mono;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Mac.Views;
 using Axantum.AxCrypt.Mac.Windows;
+using Axantum.AxCrypt.Core.MacOsx;
+using Axantum.AxCrypt.Core.Session;
 
 namespace Axantum.AxCrypt.Mac
 {
 	public class AppController
 	{
 		public const string APP_NAME = "AxCrypt for Mac";
-		public const string VERSION = "2.0.2.0";
+		public const string VERSION = "2.0.2.1";
 		public const string PUBLISH_DATE = "May 2013";
 
 		private static AesKey lastUsedKey;
+		private static FileSystemState fileSystemState;
 
 		public static string FullApplicationName {
 			get {
@@ -42,63 +45,23 @@ namespace Axantum.AxCrypt.Mac
 			}
 		}
 
-		public AppController ()
-		{
-		}
-
 		public static void Initialize()
 		{
-			const int
-			ACTIVATED = 0 ,
-			INACTIVATED= 1 ,
-			LAUNCHED= 2 ,
-			TERMINATED= 3;
-
-			int state = ACTIVATED;
-			string encryptedSourceFile = null, decryptedTargetFile = null;
-
-			NSNotificationCenter.DefaultCenter.AddObserver ("decrypted file", not => {
-				encryptedSourceFile = not.UserInfo["source file"].ToString();
-				decryptedTargetFile = not.UserInfo["target file"].ToString();
-			});
-
-			NSApplication.Notifications.ObserveDidResignActive ((sender, args) => {
-				state = INACTIVATED;
-			});
-
-			NSWorkspace.Notifications.ObserveDidActivateApplication ((sender, args) => {
-				if (state == INACTIVATED)
-					state = LAUNCHED;
-			});
-
-			NSWorkspace.Notifications.ObserveDidLaunchApplication ((sender, args) => {
-				if (state == INACTIVATED)
-					state = LAUNCHED;
-			});
-
-			NSWorkspace.Notifications.ObserveDidTerminateApplication ((sender, args) => {
-				if (state == LAUNCHED) {
-					ReEncrypt(ref encryptedSourceFile, ref decryptedTargetFile);
-					state = TERMINATED;
-				}
-			});
-
-			NSWorkspace.Notifications.ObserveDidDeactivateApplication ((sender, args) => {
-				if (state == LAUNCHED) {
-					ReEncrypt(ref encryptedSourceFile, ref decryptedTargetFile);
-					state = TERMINATED;
-				}
-			});
-		}
-
-		static void ReEncrypt(ref string encryptedSourceFile, ref string decryptedTargetFile)
-		{
-			if (!(encryptedSourceFile != null && decryptedTargetFile != null))
-				return;
-
-			AxCryptFile.EncryptFileWithBackupAndWipe (decryptedTargetFile, encryptedSourceFile, lastUsedKey, new ProgressContext ());
-			encryptedSourceFile = null;
-			decryptedTargetFile = null;
+			fileSystemState = new FileSystemState ();
+//			fileSystemState.Changed += (object sender, ActiveFileChangedEventArgs e) => {
+//				new NSObject().InvokeOnMainThread((NSAction)delegate {
+//					NSAlert.WithMessage("File System State Changed", "OK", null, null,
+//					                    String.Concat("Decrypted file: ", e.ActiveFile.DecryptedFileInfo.FullName, Environment.NewLine,
+//					              "Encrypted file: ", e.ActiveFile.EncryptedFileInfo.FullName, Environment.NewLine,
+//					              "State: ", e.ActiveFile.Status, Environment.NewLine,
+//					              "Process completed: ", e.ActiveFile.Process.HasExited, Environment.NewLine,
+//					              "Last activity time: ", e.ActiveFile.LastActivityTimeUtc.ToString())).RunModal();
+//				});
+//			};
+			fileSystemState.Load (FileSystemState.DefaultPathInfo);
+			OS.Current.KeyWrapIterations = fileSystemState.KeyWrapIterations;
+			OS.Current.ThumbprintSalt = fileSystemState.ThumbprintSalt;
+			fileSystemState.KnownKeys.Changed += delegate { OS.Current.NotifyWorkFolderStateChanged(); };
 		}
 
 		public static void OperationFailureHandler (string message, ProgressContext context)
@@ -238,7 +201,16 @@ namespace Axantum.AxCrypt.Mac
 			NSNotification notification = NSNotification.FromName("decrypted file", new NSObject(), userInfo);
 			NSNotificationCenter.DefaultCenter.PostNotification(notification);
 
-			using(ILauncher launcher = OS.Current.Launch(fullPathToDecryptedFile));
+			ILauncher launcher = OS.Current.Launch (fullPathToDecryptedFile);
+			launcher.Exited += (sender, e) => {
+				NSAlert.WithMessage("Done!", "OK", null, null, "I'm done with " + decryptedFileName + " !\nIt's time to re-encrypt it into " + encryptedDocument.FullName)
+					.RunModal();
+
+				fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+			};
+
+			fileSystemState.Add (new ActiveFile(encryptedDocument, decryptedFile, lastUsedKey, ActiveFileStatus.AssumedOpenAndDecrypted, launcher));
+			//fileSystemState.Save ();
 		}
 
 		public static void DecryptFile(ProgressContext progress, Action<string, ProgressContext> failure) {

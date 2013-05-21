@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Mono.Test",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionItems", "SolutionItems\SolutionItems.csproj", "{A60D139A-7DBC-4BC5-976A-D89C32C913AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Core.MacOsx", "Axantum.AxCrypt.Core.MacOsx\Axantum.AxCrypt.Core.MacOsx.csproj", "{815C4EC9-5A6D-4548-89B3-046A21B20BB9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -36,6 +38,12 @@ Global
 		{79C4901A-BCAA-49AA-A789-6A8F97ACC881}.Debug|x86.Build.0 = Debug|Any CPU
 		{79C4901A-BCAA-49AA-A789-6A8F97ACC881}.Release|x86.ActiveCfg = Release|Any CPU
 		{79C4901A-BCAA-49AA-A789-6A8F97ACC881}.Release|x86.Build.0 = Release|Any CPU
+		{815C4EC9-5A6D-4548-89B3-046A21B20BB9}.AppStore|x86.ActiveCfg = Release|Any CPU
+		{815C4EC9-5A6D-4548-89B3-046A21B20BB9}.AppStore|x86.Build.0 = Release|Any CPU
+		{815C4EC9-5A6D-4548-89B3-046A21B20BB9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{815C4EC9-5A6D-4548-89B3-046A21B20BB9}.Debug|x86.Build.0 = Debug|Any CPU
+		{815C4EC9-5A6D-4548-89B3-046A21B20BB9}.Release|x86.ActiveCfg = Release|Any CPU
+		{815C4EC9-5A6D-4548-89B3-046A21B20BB9}.Release|x86.Build.0 = Release|Any CPU
 		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.AppStore|x86.ActiveCfg = Release|Any CPU
 		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.AppStore|x86.Build.0 = Release|Any CPU
 		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Debug|x86.ActiveCfg = Debug|Any CPU

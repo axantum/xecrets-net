@@ -131,6 +131,10 @@
       <Project>{CE9E8614-8DC5-4757-9384-3C416AB61A47}</Project>
       <Name>Axantum.AxCrypt.Mono</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Axantum.AxCrypt.Core.MacOsx\Axantum.AxCrypt.Core.MacOsx.csproj">
+      <Project>{815C4EC9-5A6D-4548-89B3-046A21B20BB9}</Project>
+      <Name>Axantum.AxCrypt.Core.MacOsx</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
