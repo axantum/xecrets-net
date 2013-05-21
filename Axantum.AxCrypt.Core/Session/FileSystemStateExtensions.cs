@@ -74,6 +74,13 @@ namespace Axantum.AxCrypt.Core.Session
             progress.NotifyLevelFinished();
         }
 
+        /// <summary>
+        /// Enumerate all files listed as active, checking for status changes and take appropriate actions such as updating status
+        /// in the FileSystemState, re-encrypting or deleting temporary plaintext copies.
+        /// </summary>
+        /// <param name="fileSystemState">The FileSystemState to enumerate and possibly update.</param>
+        /// <param name="mode">Under what circumstances is the FileSystemState.Changed event raised.</param>
+        /// <param name="progress">The ProgressContext to provide visual progress feedback via.</param>
         public static void CheckActiveFiles(this FileSystemState fileSystemState, ChangedEventMode mode, ProgressContext progress)
         {
             progress.NotifyLevelStart();
@@ -90,7 +97,7 @@ namespace Axantum.AxCrypt.Core.Session
                     {
                         return activeFile;
                     }
-                    activeFile = CheckActiveFileActions(fileSystemState, activeFile, progress);
+                    activeFile = fileSystemState.CheckActiveFileActions(activeFile, progress);
                     return activeFile;
                 }
                 finally
@@ -99,6 +106,35 @@ namespace Axantum.AxCrypt.Core.Session
                 }
             });
             progress.NotifyLevelFinished();
+        }
+
+        public static void CheckWatchedFolders(this FileSystemState fileSystemState, ProgressContext progress)
+        {
+            if (fileSystemState == null)
+            {
+                throw new ArgumentNullException("fileSystemState");
+            }
+            AesKey encryptionKey = fileSystemState.KnownKeys.DefaultEncryptionKey;
+            if (encryptionKey == null)
+            {
+                return;
+            }
+            IEnumerable<IRuntimeFileInfo> files = fileSystemState.DecryptedFilesInWatchedFolders();
+            progress.NotifyLevelStart();
+            try
+            {
+                progress.AddTotal(files.Count());
+                foreach (IRuntimeFileInfo fileInfo in files)
+                {
+                    IRuntimeFileInfo destinationFileInfo = fileInfo.CreateEncryptedName();
+                    AxCryptFile.EncryptFileWithBackupAndWipe(fileInfo, destinationFileInfo, encryptionKey, progress);
+                    progress.AddCount(1);
+                }
+            }
+            finally
+            {
+                progress.NotifyLevelFinished();
+            }
         }
 
         /// <summary>
@@ -146,6 +182,11 @@ namespace Axantum.AxCrypt.Core.Session
             progress.NotifyLevelFinished();
         }
 
+        /// <summary>
+        /// Enumerate all apparently plaintext files in the list of watched folders.
+        /// </summary>
+        /// <param name="fileSystemState">The associated <see cref="FileSystemState"/>.</param>
+        /// <returns>An enumeration of found files.</returns>
         public static IEnumerable<IRuntimeFileInfo> DecryptedFilesInWatchedFolders(this FileSystemState fileSystemState)
         {
             IEnumerable<IRuntimeFileInfo> newFiles = new List<IRuntimeFileInfo>();
@@ -157,7 +198,7 @@ namespace Axantum.AxCrypt.Core.Session
             return newFiles.Where((IRuntimeFileInfo fileInfo) => { return !fileInfo.Name.IsEncryptedName(); });
         }
 
-        private static ActiveFile CheckActiveFileActions(FileSystemState fileSystemState, ActiveFile activeFile, ProgressContext progress)
+        private static ActiveFile CheckActiveFileActions(this FileSystemState fileSystemState, ActiveFile activeFile, ProgressContext progress)
         {
             activeFile = CheckIfKeyIsKnown(fileSystemState, activeFile);
             activeFile = CheckIfCreated(activeFile);

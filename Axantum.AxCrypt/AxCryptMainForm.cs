@@ -843,7 +843,16 @@ namespace Axantum.AxCrypt
             progressBackgroundWorker.BackgroundWorkWithProgress(
                 (ProgressContext progress) =>
                 {
-                    persistentState.Current.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
+                    progress.NotifyLevelStart();
+                    try
+                    {
+                        persistentState.Current.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
+                        persistentState.Current.CheckWatchedFolders(progress);
+                    }
+                    finally
+                    {
+                        progress.NotifyLevelFinished();
+                    }
                     return FileOperationStatus.Success;
                 },
                 (FileOperationStatus status) =>
@@ -899,9 +908,16 @@ namespace Axantum.AxCrypt
                 (ProgressContext progress) =>
                 {
                     progress.NotifyLevelStart();
-                    persistentState.Current.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
-                    persistentState.Current.PurgeActiveFiles(progress);
-                    progress.NotifyLevelFinished();
+                    try
+                    {
+                        persistentState.Current.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
+                        persistentState.Current.PurgeActiveFiles(progress);
+                        persistentState.Current.CheckWatchedFolders(progress);
+                    }
+                    finally
+                    {
+                        progress.NotifyLevelFinished();
+                    }
 
                     return FileOperationStatus.Success;
                 },
