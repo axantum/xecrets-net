@@ -56,11 +56,10 @@
     <ConsolePause>False</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>True</MtouchDebug>
-    <MtouchProfiling>True</MtouchProfiling>
     <MtouchArch>ARMv7</MtouchArch>
     <IpaPackageName />
     <MtouchI18n>west</MtouchI18n>
-    <CodesignProvision>9CDC6BA1-BD1A-41EA-80F9-1DF98B686E9D</CodesignProvision>
+    <CodesignProvision>9DA52B33-9272-40CD-9415-64FF17ADC82E</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -418,9 +417,17 @@
     <Compile Include="AxCrypt.Mono\FileWatcher.cs" />
     <Compile Include="System.Diagnostics\TraceSwitch.cs" />
     <Compile Include="System.Diagnostics\TraceLevel.cs" />
-    <Compile Include="System.Diagnostics\Trace.cs" />
     <Compile Include="System.Diagnostics\InvariantFormatStringExtension.cs" />
     <Compile Include="AxCrypt.Mono\DataProtection.cs" />
+    <Compile Include="..\Axantum.AxCrypt.Core\Session\WatchedFolder.cs">
+      <Link>AxCrypt.Core\Session\WatchedFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Runtime\DelayedAction.cs">
+      <Link>AxCrypt.Core\Runtime\DelayedAction.cs</Link>
+    </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Crypto\KeyWrapIterationCalculator.cs">
+      <Link>AxCrypt.Core\Crypto\KeyWrapIterationCalculator.cs</Link>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -1,15 +1,13 @@
-
 using System;
 using System.Collections.Generic;
-using System.Linq;
-
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.Dialog;
 using System.Drawing;
-using MonoTouch.CoreAnimation;
 using System.IO;
+using System.Linq;
+using MonoTouch.CoreAnimation;
+using MonoTouch.Dialog;
+using MonoTouch.Foundation;
 using MonoTouch.ObjCRuntime;
+using MonoTouch.UIKit;
 
 namespace Axantum.AxCrypt.iOS
 {
@@ -23,7 +21,6 @@ namespace Axantum.AxCrypt.iOS
 		private const string HeaderImagePath = "Images/logo.png";
 		private UIImage headerImage;
 		private Section fileSection;
-		private UIView logoView;
 
 		static bool UserInterfaceIdiomIsPhone {
 			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
