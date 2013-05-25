@@ -13,17 +13,17 @@ namespace Axantum.AxCrypt.Core.MacOsx
 		public event EventHandler Exited;
 		public bool HasExited {
 			get {
-				return this.state == TERMINATED;
+				return this.state == TerminatedAssociatedApplication;
 			}
 		}
 		public bool WasStarted {
 			get {
-				return this.state >= LAUNCHED;
+				return this.state >= LaunchedAssociatedApplication;
 			}
 		}
 		public string Path {
 			get {
-				return this.encryptedSourceFile;
+				return this.decryptedTargetFile;
 			}
 		}
 		#endregion
@@ -50,41 +50,35 @@ namespace Axantum.AxCrypt.Core.MacOsx
 		#endregion
 
 		const int
-			ACTIVATED = 0 ,
-			INACTIVATED= 1 ,
-			LAUNCHED= 2 ,
-			TERMINATED= 3;
+			Unknown = 0 ,
+			DecryptedTargetFile= 1 ,
+			LaunchedAssociatedApplication= 2 ,
+			TerminatedAssociatedApplication= 3;
 
-		string encryptedSourceFile;
 		string decryptedTargetFile;
 		int state;
 		Process process;
 		int processId;
 		string threadLock = "Axantum.AxCrypt.Core.MacOsx.Launcher";
 
+		public const string FileDecryptedNotification = "decrypted file";
+		public const string TargetFileUserInfoKey = "target file";
+
 		public Launcher (string filePath)
 		{
 			new NSObject ().InvokeOnMainThread ((NSAction) delegate {
-				NSNotificationCenter.DefaultCenter.AddObserver ("decrypted file", not => {
-					var sourceFile = not.UserInfo["source file"].ToString();
-					var targetFile = not.UserInfo["target file"].ToString();
+				NSNotificationCenter.DefaultCenter.AddObserver (FileDecryptedNotification, not => {
+					var targetFile = not.UserInfo[TargetFileUserInfoKey].ToString();
 
 					if (targetFile == this.decryptedTargetFile) {
-						this.encryptedSourceFile = sourceFile;
-					}
-				});
-
-				NSApplication.Notifications.ObserveDidResignActive ((sender, args) => {
-					lock(threadLock) {
-						if (this.state == ACTIVATED && this.decryptedTargetFile != null)
-							this.state = INACTIVATED;
+						state = DecryptedTargetFile;
 					}
 				});
 
 				NSWorkspace.Notifications.ObserveDidLaunchApplication ((sender, args) => {
 					lock(threadLock) {
-						if (this.state == INACTIVATED) {
-							this.state = LAUNCHED;
+						if (this.state == DecryptedTargetFile) {
+							this.state = LaunchedAssociatedApplication;
 							this.processId = args.Application.ProcessIdentifier;
 						}
 					}
@@ -92,8 +86,8 @@ namespace Axantum.AxCrypt.Core.MacOsx
 
 				NSWorkspace.Notifications.ObserveDidTerminateApplication ((sender, args) => {
 					lock(threadLock) {
-						if (this.state == LAUNCHED && this.processId == args.Application.ProcessIdentifier) {
-							this.state = TERMINATED;
+						if (this.state == LaunchedAssociatedApplication && this.processId == args.Application.ProcessIdentifier) {
+							this.state = TerminatedAssociatedApplication;
 							FireExited();
 						}
 					}
@@ -103,7 +97,7 @@ namespace Axantum.AxCrypt.Core.MacOsx
 			lock(threadLock) {
 				this.decryptedTargetFile = filePath;
 				this.process = Process.Start (this.decryptedTargetFile);
-				this.state = ACTIVATED;
+				this.state = Unknown;
 			}
 		}
 

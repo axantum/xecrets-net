@@ -48,16 +48,6 @@ namespace Axantum.AxCrypt.Mac
 		public static void Initialize()
 		{
 			fileSystemState = new FileSystemState ();
-//			fileSystemState.Changed += (object sender, ActiveFileChangedEventArgs e) => {
-//				new NSObject().InvokeOnMainThread((NSAction)delegate {
-//					NSAlert.WithMessage("File System State Changed", "OK", null, null,
-//					                    String.Concat("Decrypted file: ", e.ActiveFile.DecryptedFileInfo.FullName, Environment.NewLine,
-//					              "Encrypted file: ", e.ActiveFile.EncryptedFileInfo.FullName, Environment.NewLine,
-//					              "State: ", e.ActiveFile.Status, Environment.NewLine,
-//					              "Process completed: ", e.ActiveFile.Process.HasExited, Environment.NewLine,
-//					              "Last activity time: ", e.ActiveFile.LastActivityTimeUtc.ToString())).RunModal();
-//				});
-//			};
 			fileSystemState.Load (FileSystemState.DefaultPathInfo);
 			OS.Current.KeyWrapIterations = fileSystemState.KeyWrapIterations;
 			OS.Current.ThumbprintSalt = fileSystemState.ThumbprintSalt;
@@ -195,17 +185,12 @@ namespace Axantum.AxCrypt.Mac
 			string fullPathToDecryptedFile = Path.Combine(tempPath, decryptedFileName);
 			IRuntimeFileInfo decryptedFile = OS.Current.FileInfo(fullPathToDecryptedFile);
 
-			NSDictionary userInfo = new NSDictionary(
-				"source file", encryptedDocument.FullName,
-				"target file", decryptedFile.FullName);
-			NSNotification notification = NSNotification.FromName("decrypted file", new NSObject(), userInfo);
+			NSDictionary userInfo = new NSDictionary(Launcher.TargetFileUserInfoKey, decryptedFile.FullName);
+			NSNotification notification = NSNotification.FromName(Launcher.FileDecryptedNotification, new NSObject(), userInfo);
 			NSNotificationCenter.DefaultCenter.PostNotification(notification);
 
 			ILauncher launcher = OS.Current.Launch (fullPathToDecryptedFile);
 			launcher.Exited += (sender, e) => {
-				NSAlert.WithMessage("Done!", "OK", null, null, "I'm done with " + decryptedFileName + " !\nIt's time to re-encrypt it into " + encryptedDocument.FullName)
-					.RunModal();
-
 				fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
 			};
 
