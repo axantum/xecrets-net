@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using Axantum.AxCrypt.Core.Crypto;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -100,6 +100,12 @@ namespace Axantum.AxCrypt.Core.UI
 
         private AesKey _defaultEncryptionKey;
 
+        /// <summary>
+        /// Gets or sets the default encryption key.
+        /// </summary>
+        /// <value>
+        /// The default encryption key, or null if none is known.
+        /// </value>
         public AesKey DefaultEncryptionKey
         {
             get
