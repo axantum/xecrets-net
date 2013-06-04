@@ -1,30 +1,30 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Drawing;
+using System.IO;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-using MonoTouch.Dialog;
-using System.Drawing;
-using System.ComponentModel;
-using System.IO;
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.iOS.Infrastructure;
 
 namespace Axantum.AxCrypt.iOS
 {
 	public partial class PassphraseViewController : UIViewController
 	{
-		public event Action Decrypting;
-		public event Action<string> FileDecrypted;
-		public event Action Cancelled;
+		public event Action Decrypting = delegate {};
+		public event Action<string> FileDecrypted = delegate {};
+		public event Action Cancelled = delegate {};
 
 		string path;
 		UIProgressView progressView;
 		UIActivityIndicatorView activityIndicator;
 		UILabel progressText;
+
+		UIAlertViewDelegate alertViewDelegate;
+		UIAlertView alertView;
 
 		public PassphraseViewController (string path) : base ()
 		{
@@ -42,14 +42,14 @@ namespace Axantum.AxCrypt.iOS
 			base.ViewDidAppear (animated);
 			AskForPassword();
 		}
-		
+
 		void AskForPassword (string title = "%fileName%", string message = "Enter passphrase")
 		{
 			title = title.Replace("%fileName%", Path.GetFileNameWithoutExtension(path));
-			UIAlertViewDelegate del = new UIAlertViewOkCancelDelegate(DecryptFile, Cancelled);
-			UIAlertView view = new UIAlertView(title, message, del, "Cancel", new string[] { "OK" });
-			view.AlertViewStyle = UIAlertViewStyle.SecureTextInput;
-			view.Show ();
+			alertViewDelegate = new UIAlertViewOkCancelDelegate(DecryptFile, Cancelled);
+			alertView = new UIAlertView(title, message, alertViewDelegate, "Cancel", new string[] { "OK" });
+			alertView.AlertViewStyle = UIAlertViewStyle.SecureTextInput;
+			alertView.Show ();
 		}
 
 		void CreateLoadingView ()
@@ -69,8 +69,7 @@ namespace Axantum.AxCrypt.iOS
 			activityIndicator = new UIActivityIndicatorView(UIActivityIndicatorViewStyle.WhiteLarge) {
 				Frame = new RectangleF(subViewHeight, subViewHeight * 2, frameWidth - horizontalPadding * 2 - subViewHeight * 2, subViewHeight),
 				HidesWhenStopped = true,
-
-				Color = AppViewController.HighlightColor
+				Color = Theme.HighlightColor
 			};
 
 			progressText = new UILabel {
@@ -88,9 +87,9 @@ namespace Axantum.AxCrypt.iOS
 			View.AddSubview(activityIndicator);
 			View.AddSubview(progressText);
 			View.BackgroundColor = UIColor.White.ColorWithAlpha(.95f);
-			View.Layer.BorderColor = AppViewController.HighlightColor.CGColor;
-			View.Layer.BorderWidth = AppViewController.BorderWith;
-			View.Layer.CornerRadius = AppViewController.CornerRadius;
+			View.Layer.BorderColor = Theme.HighlightColor.CGColor;
+			View.Layer.BorderWidth = Theme.BorderWith;
+			View.Layer.CornerRadius = Theme.CornerRadius;
 			View.Layer.Opacity = 0;
 		}
 
@@ -102,8 +101,7 @@ namespace Axantum.AxCrypt.iOS
 				if (percent > 0) {
 					if (activityIndicator != null) {
 						progressView = new UIProgressView(activityIndicator.Frame) {
-							ProgressTintColor = AppViewController.HighlightColor,
-							//TrackTintColor = UIColor.Black
+							ProgressTintColor = Theme.HighlightColor,
 						};
 						progressView.Center = new PointF(progressView.Center.X, (View.Bounds.Height - progressView.Bounds.Height) / 2);
 

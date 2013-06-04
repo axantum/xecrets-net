@@ -22,10 +22,9 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <MtouchDebug>True</MtouchDebug>
-    <MtouchProfiling>True</MtouchProfiling>
     <MtouchLink>None</MtouchLink>
     <MtouchArch>ARMv7</MtouchArch>
-    <MtouchI18n />
+    <MtouchI18n>west</MtouchI18n>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -129,7 +128,6 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="AppViewController.cs" />
     <Compile Include="PassphraseViewController.cs" />
     <Compile Include="FilePresenter.cs" />
     <Compile Include="Infrastructure\UIAlertViewOkCancelDelegate.cs" />
@@ -422,12 +420,17 @@
     <Compile Include="..\Axantum.AxCrypt.Core\Session\WatchedFolder.cs">
       <Link>AxCrypt.Core\Session\WatchedFolder.cs</Link>
     </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Core\Runtime\DelayedAction.cs">
-      <Link>AxCrypt.Core\Runtime\DelayedAction.cs</Link>
-    </Compile>
     <Compile Include="..\Axantum.AxCrypt.Core\Crypto\KeyWrapIterationCalculator.cs">
       <Link>AxCrypt.Core\Crypto\KeyWrapIterationCalculator.cs</Link>
     </Compile>
+    <Compile Include="..\Axantum.AxCrypt.Core\Runtime\DelayedAction.cs">
+      <Link>AxCrypt.Core\Runtime\DelayedAction.cs</Link>
+    </Compile>
+    <Compile Include="FileListingViewController.cs" />
+    <Compile Include="MainViewController.cs" />
+    <Compile Include="Infrastructure\Theme.cs" />
+    <Compile Include="Infrastructure\Utilities.cs" />
+    <Compile Include="Infrastructure\ThemedStringElement.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -3,6 +3,7 @@ using MonoTouch.Dialog;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 using System.IO;
+using Axantum.AxCrypt.Core;
 
 namespace Axantum.AxCrypt.iOS
 {
@@ -15,7 +16,7 @@ namespace Axantum.AxCrypt.iOS
 			if (editingStyle == UITableViewCellEditingStyle.Delete) {
 				string fileName = Root[indexPath.Section][indexPath.Row].Caption;
 				string dir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-				File.Delete(Path.Combine(dir, fileName) + ".axx");
+				File.Delete(Path.Combine(dir, fileName) + OS.Current.AxCryptExtension);
 				Root[indexPath.Section].Remove(indexPath.Row);
 			}
 		}

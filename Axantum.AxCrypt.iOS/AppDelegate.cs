@@ -7,6 +7,7 @@ using MonoTouch.UIKit;
 //using Axantum.AxCrypt.Core;
 using System.IO;
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.iOS.Infrastructure;
 
 namespace Axantum.AxCrypt.iOS
 {
@@ -17,7 +18,9 @@ namespace Axantum.AxCrypt.iOS
 	public partial class AppDelegate : UIApplicationDelegate
 	{
 		// class-level declarations
-		private AppViewController appViewController;
+		private MainViewController appViewController;
+		private FileListingViewController fileListingViewController;
+
 		public override UIWindow Window {
 			get;
 			set;
@@ -33,11 +36,33 @@ namespace Axantum.AxCrypt.iOS
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
 			OS.Current = new Axantum.AxCrypt.MonoTouch.RuntimeEnvironment();
-			appViewController = new AppViewController();
+			appViewController = new MainViewController();
+			appViewController.OnAboutButtonTapped += delegate {};
+			appViewController.OnFeedbackButtonTapped += delegate {};
+			appViewController.OnLocalFilesButtonTapped += ShowLocalFiles;
+			appViewController.OnRecentFilesButtonTapped += delegate {};
+			appViewController.OnTroubleshootingButtonTapped += delegate {};
+
 			Window = new UIWindow(UIScreen.MainScreen.Bounds);
 			Window.RootViewController = appViewController;
 			Window.MakeKeyAndVisible ();
 			return true;
+		}
+
+		void ShowLocalFiles() {
+			FreeFileListingViewController ();
+			fileListingViewController = new FileListingViewController ("Local files", "Images/App Icons");
+			fileListingViewController.Done += FreeFileListingViewController;
+			appViewController.PresentViewControllerAsync (fileListingViewController, true);
+		}
+
+		void FreeFileListingViewController ()
+		{
+			if (fileListingViewController == null)
+				return;
+			fileListingViewController.RemoveFromParentViewController ();
+			fileListingViewController.Dispose ();
+			fileListingViewController = null;
 		}
 		
 		// This method is invoked when the application is about to move from active to inactive state.
@@ -56,7 +81,6 @@ namespace Axantum.AxCrypt.iOS
 		/// This method is called as part of the transiton from background to active state.
 		public override void WillEnterForeground (UIApplication application)
 		{
-			appViewController.ReloadFileSystem();
 		}
 
 		/// This method is called when the application is about to terminate. Save data, if needed. 
@@ -67,8 +91,9 @@ namespace Axantum.AxCrypt.iOS
 		public override bool OpenUrl (UIApplication application, NSUrl url, string sourceApplication, NSObject annotation)
 		{
 			string targetPath = Path.Combine(Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), Path.GetFileName(url.Path));
-			System.IO.File.Move(url.Path, targetPath);
-			appViewController.ReloadFileSystem();
+			if (File.Exists (targetPath))
+				File.Delete (targetPath);
+			File.Move(url.Path, targetPath);
 
 			appViewController.OpenFile(targetPath);
 

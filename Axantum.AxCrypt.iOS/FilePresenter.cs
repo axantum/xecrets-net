@@ -4,22 +4,54 @@ using MonoTouch.Foundation;
 
 namespace Axantum.AxCrypt.iOS
 {
-	public class FilePresenter
+	public class FilePresenter : UIDocumentInteractionControllerDelegate
 	{
-		public static void Present(string file, UIViewController onto, EventHandler readyToPresent, EventHandler done) {
-			UIDocumentInteractionController documentInteractionController = UIDocumentInteractionController.FromUrl (NSUrl.FromFilename (file));
-			documentInteractionController.ViewControllerForPreview = delegate {
-				return onto;
-			};
-			documentInteractionController.ViewForPreview = delegate {
-				return onto.View;
-			};
-			documentInteractionController.RectangleForPreview = delegate {
-				return onto.View.Bounds;
-			};
-			documentInteractionController.WillBeginPreview += readyToPresent;
-			if (done != null)
-				documentInteractionController.DidEndPreview += done;
+		UIDocumentInteractionController documentInteractionController;
+		UIViewController owner;
+		public event EventHandler ReadyToPresent = delegate {};
+		public event EventHandler Done = delegate {};
+
+		public FilePresenter ()
+		{
+			owner = new UIViewController ();
+			owner.View = new UIView(UIScreen.MainScreen.ApplicationFrame);
+		}
+
+		public FilePresenter (UIViewController owner)
+		{
+			this.owner = owner;
+			documentInteractionController = new UIDocumentInteractionController ();
+			documentInteractionController.Delegate = this;
+		}
+
+		public override UIViewController ViewControllerForPreview (UIDocumentInteractionController controller)
+		{
+			return owner;
+		}
+
+		public override void WillBeginPreview (UIDocumentInteractionController controller)
+		{
+			ReadyToPresent (controller, EventArgs.Empty);
+		}
+
+		public override void DidEndPreview (UIDocumentInteractionController controller)
+		{
+			Done (controller, EventArgs.Empty);
+		}
+
+		public override UIView ViewForPreview (UIDocumentInteractionController controller)
+		{
+			return owner.View;
+		}
+
+		public override System.Drawing.RectangleF RectangleForPreview (UIDocumentInteractionController controller)
+		{
+			return owner.View.Frame;
+		}
+
+		public void Present(string file) {
+			NSUrl url = NSUrl.FromFilename (file);
+			documentInteractionController.Url = url;
 			documentInteractionController.PresentPreview(true);
 		}
 	}
