@@ -8,20 +8,15 @@ namespace Axantum.AxCrypt.iOS
 	{
 		UIDocumentInteractionController documentInteractionController;
 		UIViewController owner;
+		bool userInteractive = true;
+
 		public event EventHandler ReadyToPresent = delegate {};
 		public event EventHandler Done = delegate {};
 
 		public FilePresenter ()
 		{
-			owner = new UIViewController ();
-			owner.View = new UIView(UIScreen.MainScreen.ApplicationFrame);
-		}
-
-		public FilePresenter (UIViewController owner)
-		{
-			this.owner = owner;
-			documentInteractionController = new UIDocumentInteractionController ();
-			documentInteractionController.Delegate = this;
+			this.documentInteractionController = new UIDocumentInteractionController ();
+			this.documentInteractionController.Delegate = this;
 		}
 
 		public override UIViewController ViewControllerForPreview (UIDocumentInteractionController controller)
@@ -36,7 +31,9 @@ namespace Axantum.AxCrypt.iOS
 
 		public override void DidEndPreview (UIDocumentInteractionController controller)
 		{
-			Done (controller, EventArgs.Empty);
+			if (userInteractive) {
+				Done (controller, EventArgs.Empty);
+			}
 		}
 
 		public override UIView ViewForPreview (UIDocumentInteractionController controller)
@@ -49,10 +46,17 @@ namespace Axantum.AxCrypt.iOS
 			return owner.View.Frame;
 		}
 
-		public void Present(string file) {
+		public void Present(string file, UIViewController owner) {
+			this.owner = owner;
+
 			NSUrl url = NSUrl.FromFilename (file);
-			documentInteractionController.Url = url;
-			documentInteractionController.PresentPreview(true);
+			this.documentInteractionController.Url = url;
+			this.documentInteractionController.PresentPreview(true);
+		}
+
+		public void Dismiss() {
+			this.userInteractive = false;
+			this.documentInteractionController.DismissPreview (false);
 		}
 	}
 }

@@ -431,6 +431,7 @@
     <Compile Include="Infrastructure\Theme.cs" />
     <Compile Include="Infrastructure\Utilities.cs" />
     <Compile Include="Infrastructure\ThemedStringElement.cs" />
+    <Compile Include="DecryptionViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
