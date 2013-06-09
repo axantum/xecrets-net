@@ -1,14 +1,14 @@
 using MonoTouch.UIKit;
 using System;
 using MonoTouch.Foundation;
+using System.Drawing;
 
 namespace Axantum.AxCrypt.iOS
 {
 	public class FilePresenter : UIDocumentInteractionControllerDelegate
 	{
 		UIDocumentInteractionController documentInteractionController;
-		UIViewController owner;
-		bool userInteractive = true;
+		WeakReference<UIViewController> owner;
 
 		public event EventHandler ReadyToPresent = delegate {};
 		public event EventHandler Done = delegate {};
@@ -21,7 +21,9 @@ namespace Axantum.AxCrypt.iOS
 
 		public override UIViewController ViewControllerForPreview (UIDocumentInteractionController controller)
 		{
-			return owner;
+			UIViewController value;
+			owner.TryGetTarget(out value);
+			return value;
 		}
 
 		public override void WillBeginPreview (UIDocumentInteractionController controller)
@@ -31,23 +33,27 @@ namespace Axantum.AxCrypt.iOS
 
 		public override void DidEndPreview (UIDocumentInteractionController controller)
 		{
-			if (userInteractive) {
-				Done (controller, EventArgs.Empty);
-			}
+			Done (controller, EventArgs.Empty);
 		}
 
 		public override UIView ViewForPreview (UIDocumentInteractionController controller)
 		{
-			return owner.View;
+			UIViewController vc = ViewControllerForPreview (controller);
+			if (vc == null)
+				return null;
+			return vc.View;
 		}
 
 		public override System.Drawing.RectangleF RectangleForPreview (UIDocumentInteractionController controller)
 		{
-			return owner.View.Frame;
+			UIView view = ViewForPreview (controller);
+			if (view == null)
+				return RectangleF.Empty;
+			return view.Frame;
 		}
 
 		public void Present(string file, UIViewController owner) {
-			this.owner = owner;
+			this.owner = new WeakReference<UIViewController>(owner);
 
 			NSUrl url = NSUrl.FromFilename (file);
 			this.documentInteractionController.Url = url;
@@ -55,8 +61,11 @@ namespace Axantum.AxCrypt.iOS
 		}
 
 		public void Dismiss() {
-			this.userInteractive = false;
-			this.documentInteractionController.DismissPreview (false);
+			documentInteractionController.Delegate = null;
+			documentInteractionController.DismissMenu (false);
+			documentInteractionController.DismissPreview (false);
+			documentInteractionController.Dispose ();
+			documentInteractionController = null;
 		}
 	}
 }

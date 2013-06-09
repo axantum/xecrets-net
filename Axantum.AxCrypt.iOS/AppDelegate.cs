@@ -27,6 +27,7 @@ namespace Axantum.AxCrypt.iOS
 		FilePresenter filePresenter;
 		MFMailComposeViewController feedbackMailViewController;
 		WebViewController webViewController;
+		bool isReceivingFile = false;
 
 		public override UIWindow Window {
 			get;
@@ -151,11 +152,6 @@ namespace Axantum.AxCrypt.iOS
 		// OpenGL applications should use this method to pause.
 		public override void OnResignActivation (UIApplication application)
 		{
-			if (filePresenter != null) {
-				filePresenter.Dismiss();
-				FreeFilePresenter ();
-			}
-
 			FreePassphraseViewController();
 			FreeDecryptionViewController();
 		}
@@ -165,6 +161,15 @@ namespace Axantum.AxCrypt.iOS
 		// when the user quits.
 		public override void DidEnterBackground (UIApplication application)
 		{
+		}
+
+		public override void OnActivated (UIApplication application)
+		{
+			if (filePresenter != null && !isReceivingFile) {
+				filePresenter.Dismiss();
+				FreeFilePresenter ();
+				isReceivingFile = false;
+			}
 		}
 		
 		/// This method is called as part of the transiton from background to active state.
@@ -206,10 +211,15 @@ namespace Axantum.AxCrypt.iOS
 			passphraseController.Cancelled += FreeViewControllers;
 			decryptionViewController.Succeeded += targetFileName => {
 				FreeViewControllers();
-				appViewController.DismissViewController(true, (NSAction)delegate { 
-					FreeFileListingViewController();
-					filePresenter.Present (targetFileName, appViewController);
-				});
+
+				if (fileListingViewController != null) {
+					appViewController.DismissViewController(true, (NSAction)delegate { 
+						FreeFileListingViewController();
+						filePresenter.Present (targetFileName, appViewController);
+					});
+					return;
+				}
+				filePresenter.Present (targetFileName, appViewController);
 
 			};
 			decryptionViewController.Failed += passphraseController.AskForPassword;
@@ -232,6 +242,7 @@ namespace Axantum.AxCrypt.iOS
 			File.Move(url.Path, targetPath);
 
 			HandleOpenFile(targetPath);
+			isReceivingFile = true;
 
 			return true;
 		}

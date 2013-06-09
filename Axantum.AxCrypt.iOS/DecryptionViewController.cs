@@ -27,7 +27,6 @@ namespace Axantum.AxCrypt.iOS
 			//			context.Progressing += (sender, e) => {
 			//				SetProgress(e.Percent, "Decrypting ...");
 			//			};
-			CreateWorker ();
 			this.sourceFile = OS.Current.FileInfo (sourceFilePath);
 		}
 
@@ -68,6 +67,7 @@ namespace Axantum.AxCrypt.iOS
 		}
 
 		public void Decrypt(Passphrase passphrase) {
+			CreateWorker ();
 			this.key = passphrase.DerivedPassphrase;
 			worker.Run();
 		}
