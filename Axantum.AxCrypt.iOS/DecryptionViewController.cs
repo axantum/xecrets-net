@@ -7,6 +7,7 @@ using Axantum.AxCrypt.Core.Runtime;
 using MonoTouch.Foundation;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core;
+using BigTed;
 
 namespace Axantum.AxCrypt.iOS
 {
@@ -58,6 +59,7 @@ namespace Axantum.AxCrypt.iOS
 		}
 
 		void WorkerCompleted(object sender, ThreadWorkerEventArgs args) {
+			BTProgressHUD.Dismiss ();
 			if (args.Result == FileOperationStatus.Canceled) {
 				Failed();
 				return;
@@ -67,6 +69,7 @@ namespace Axantum.AxCrypt.iOS
 		}
 
 		public void Decrypt(Passphrase passphrase) {
+			BTProgressHUD.Show ("Opening ...", maskType: BTProgressHUD.MaskType.Gradient);
 			CreateWorker ();
 			this.key = passphrase.DerivedPassphrase;
 			worker.Run();
