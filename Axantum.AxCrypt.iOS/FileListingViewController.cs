@@ -7,7 +7,6 @@ using MonoTouch.UIKit;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.iOS.Infrastructure;
 using MonoTouch.Foundation;
-using System.Text;
 
 namespace Axantum.AxCrypt.iOS
 {
@@ -44,31 +43,10 @@ namespace Axantum.AxCrypt.iOS
 			var selection = Directory.EnumerateFiles (basePath)
 				.Select (file => new { file, accessTime = File.GetLastAccessTime(file) })
 					.OrderByDescending (projection => projection.accessTime)
-					.Select(projection => new StyledStringElement(
-						caption: Path.GetFileNameWithoutExtension(projection.file),
-						value: String.Concat("Last opened ", FormatDateTime(projection.accessTime)),
-						style: UITableViewCellStyle.Subtitle));
+					.Select(projection => new ThemedFileElement(projection.file, projection.accessTime));
 			Root [0].AddAll (selection);
 		}
 
-		string FormatDateTime(DateTime value) {
-			DateTime now = DateTime.Now;
-			string nowDateString = now.ToShortDateString ();
-			string yesterdayString = now.AddDays (-1).ToShortDateString ();
-			string valueDateString = value.ToShortDateString ();
-			StringBuilder format = new StringBuilder ();
-
-			if (nowDateString == valueDateString) {
-				format.Append ("today at");
-			} else if (yesterdayString == valueDateString) {
-				format.Append ("yesterday at");
-			} else {
-				format.Append (nowDateString);
-			}
-
-			format.Append (" ").Append (now.ToShortTimeString());
-			return format.ToString ();
-		}
 
 		public override void ViewDidLoad ()
 		{

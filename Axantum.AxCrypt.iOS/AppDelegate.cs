@@ -99,11 +99,11 @@ namespace Axantum.AxCrypt.iOS
 		}
 
 		void ShowLocalFiles() {
-			ShowFileListing ("Local files");
+			ShowFileListing ("Transferred documents");
 		}
 
 		void ShowRecentFiles() {
-			ShowFileListing("Recent files", "Recent");
+			ShowFileListing("Received documents", "Recent");
 		}
 
 		void ShowFileListing(string caption, string pathSuffix = null) {

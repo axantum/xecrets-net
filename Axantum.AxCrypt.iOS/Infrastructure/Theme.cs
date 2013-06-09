@@ -44,14 +44,16 @@ namespace Axantum.AxCrypt.iOS.Infrastructure
 				Frame = new RectangleF (horizontalPadding, verticalPadding, viewWidth - horizontalPadding * 2, HeaderImageHeight + verticalMargin),
 				ContentMode = UIViewContentMode.TopLeft
 			});
+
 			view.AddSubview (new UILabel {
 				Frame = new RectangleF (HeaderImageWidth + horizontalMargin, verticalPadding, viewWidth - (HeaderImageWidth + horizontalPadding + horizontalMargin), HeaderImageHeight),
-				Font = UIFont.SystemFontOfSize (36),
-				Text = title,
+				Font = UIFont.SystemFontOfSize (title.Length > 7 ? 28 : 36),
+				Text = title.Replace(' ', '\n'),
 				TextColor = UIColor.DarkTextColor,
 				ShadowColor = HighlightColor,
 				ShadowOffset = new SizeF (1, 1),
-				BackgroundColor = UIColor.Clear
+				BackgroundColor = UIColor.Clear,
+				Lines = title.Contains(" ") ? 2 : 1
 			});
 		}
 

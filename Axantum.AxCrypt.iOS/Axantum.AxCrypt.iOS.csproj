@@ -430,6 +430,7 @@
     <Compile Include="DecryptionViewController.cs" />
     <Compile Include="PassphraseController.cs" />
     <Compile Include="WebViewController.cs" />
+    <Compile Include="Infrastructure\ThemedFileElement.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
