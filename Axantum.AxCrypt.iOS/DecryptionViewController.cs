@@ -1,0 +1,106 @@
+using System;
+using MonoTouch.UIKit;
+using Axantum.AxCrypt.Core.Crypto;
+using System.IO;
+using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Core.Runtime;
+using MonoTouch.Foundation;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core;
+
+namespace Axantum.AxCrypt.iOS
+{
+	public class DecryptionViewController : UIViewController
+	{
+		public event Action<string> Succeeded = delegate {};
+		public event Action Failed = delegate {};
+
+		string sourceFilePath;
+		bool disposed;
+
+		ProgressContext context;
+		ThreadWorker worker;
+		IRuntimeFileInfo sourceFile;
+		AesKey key;
+		string targetFilePath;
+
+		public DecryptionViewController (string sourceFilePath)
+		{
+			this.sourceFilePath = sourceFilePath;
+			this.context = new ProgressContext ();
+			//			context.Progressing += (sender, e) => {
+			//				SetProgress(e.Percent, "Decrypting ...");
+			//			};
+			CreateWorker ();
+			this.sourceFile = OS.Current.FileInfo (sourceFilePath);
+		}
+
+		void CreateWorker() {
+			this.worker = new ThreadWorker (this.context);
+			//worker.Prepare += delegate { SetProgress(0, "Unlocking ..."); };
+			worker.Work += Work;
+			worker.Completed += WorkerCompleted;
+		}
+
+		void Work(object sender, ThreadWorkerEventArgs args) {
+			using (NSAutoreleasePool pool = new NSAutoreleasePool()) {
+				string targetDirectory = Path.GetTempPath();
+				string extractedFileName = AxCryptFile.Decrypt (
+					this.sourceFile, 
+					targetDirectory, 
+					this.key, 
+					AxCryptOptions.None, 
+					this.context);
+
+				if (extractedFileName == null) {
+					args.Result = FileOperationStatus.Canceled;
+					return;
+				}
+
+				this.targetFilePath = Path.Combine(targetDirectory,	extractedFileName);
+				args.Result = FileOperationStatus.Success;
+			}
+		}
+
+		void WorkerCompleted(object sender, ThreadWorkerEventArgs args) {
+			if (args.Result == FileOperationStatus.Canceled) {
+				Failed();
+				return;
+			}
+
+			Succeeded(this.targetFilePath);
+		}
+
+		void FreeWorker() {
+			if (worker == null)
+				return;
+
+			worker.Dispose ();
+			worker = null;
+		}
+
+		public void Decrypt(Passphrase passphrase) {
+			this.key = passphrase.DerivedPassphrase;
+			worker.Run();
+		}
+
+		new void Dispose() {
+			Dispose (true);
+			GC.SuppressFinalize (this);
+		}
+
+		protected override void Dispose (bool disposing)
+		{
+			base.Dispose (disposing);
+			if (disposed)
+				return;
+
+			if (disposing) {
+				FreeWorker ();
+			}
+
+			disposed = true;
+		}
+	}
+}
+
