@@ -10,6 +10,7 @@ namespace Axantum.AxCrypt.iOS
 		public event Action 
 			OnRecentFilesButtonTapped,
 			OnLocalFilesButtonTapped,
+			OnFaqButtonTapped,
 			OnAboutButtonTapped, 
 			OnTroubleshootingButtonTapped, 
 			OnFeedbackButtonTapped;
@@ -25,15 +26,27 @@ namespace Axantum.AxCrypt.iOS
 			if (Root != null)
 				return;
 
-			//BeginInvokeOnMainThread(delegate {
 			Theme.Configure ("AxCrypt", this);
-			//});
+
+			Section receivedDocumentsSection = new Section {
+				new ThemedStringElement ("Received documents", OnRecentFilesButtonTapped)
+			};
+			Section transferredDocumentsSection = new Section { 
+				new ThemedStringElement("Transferred documents", OnLocalFilesButtonTapped) 
+			};
+
+			if (Utilities.iPhone5OrPad) {
+				// We've got plenty of vertical space to be a little more verbose
+				receivedDocumentsSection.Footer = "documents received from other apps";
+				transferredDocumentsSection.Footer = "documents transferred from iTunes";
+			}
 
 			Root = new RootElement(String.Empty) {
-				new Section("", "documents received from other apps") { new ThemedStringElement("Received documents", OnRecentFilesButtonTapped) },
-				new Section("", "documents transferred from iTunes") { new ThemedStringElement("Transferred documents", OnLocalFilesButtonTapped) },
+				receivedDocumentsSection,
+				transferredDocumentsSection,
 				new Section { 
 					new ThemedStringElement("About", OnAboutButtonTapped),
+					new ThemedStringElement("Frequently Asked Questions", OnFaqButtonTapped),
 					new ThemedStringElement("Troubleshooting", OnTroubleshootingButtonTapped),
 					new ThemedStringElement("Feedback", OnFeedbackButtonTapped)
 				},

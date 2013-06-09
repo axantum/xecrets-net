@@ -46,6 +46,7 @@ namespace Axantum.AxCrypt.iOS
 			OS.Current = new Axantum.AxCrypt.MonoTouch.RuntimeEnvironment();
 			appViewController = new MainViewController();
 			appViewController.OnAboutButtonTapped += ShowAbout;
+			appViewController.OnFaqButtonTapped += delegate {};
 			appViewController.OnFeedbackButtonTapped += ShowFeedbackUi;
 			appViewController.OnLocalFilesButtonTapped += ShowLocalFiles;
 			appViewController.OnRecentFilesButtonTapped += ShowRecentFiles;
