@@ -25,7 +25,8 @@ namespace Axantum.AxCrypt.iOS
 		PassphraseController passphraseController;
 		DecryptionViewController decryptionViewController;
 		FilePresenter filePresenter;
-		MFMailComposeViewController feedbackViewController;
+		MFMailComposeViewController feedbackMailViewController;
+		WebViewController webViewController;
 
 		public override UIWindow Window {
 			get;
@@ -57,37 +58,39 @@ namespace Axantum.AxCrypt.iOS
 		}
 
 		void ShowAbout() {
-			new UIAlertView (
-				"About AxCrypt for iOS",
-				@"By installing this app, you've given your other apps super powers! 
-
-Your other apps are now able to open .axx documents through AxCrypt.
-
-Just look for the Send To / Action icon and then tap AxCrypt",
-				null,
-				"OK, I get it")
-				.Show ();
+			PresentWebViewController ("http://monodeveloper.org/axcrypt-for-ios/");
 		}
 
 		void ShowFaq() {
-			UIApplication.SharedApplication.OpenUrl (NSUrl.FromString("http://monodeveloper.org/axcrypt-ios-faq/"));
+			PresentWebViewController ("http://monodeveloper.org/axcrypt-ios-faq/");
+		}
+
+		void FreeWebViewController() {
+			Free (ref webViewController);
+		}
+
+		void PresentWebViewController(string url) {
+			FreeWebViewController ();
+			webViewController = new WebViewController (url);
+			webViewController.Done += FreeWebViewController;
+			appViewController.PresentViewController (this.webViewController, true, null);
 		}
 
 		void ShowFeedbackUi() {
 			if (!MFMailComposeViewController.CanSendMail) {
-				UIApplication.SharedApplication.OpenUrl (NSUrl.FromString("http://monodeveloper.org/axcrypt-ios-feedback/"));
+				PresentWebViewController ("http://monodeveloper.org/axcrypt-ios-feedback/");
 				return;
 			}
 
 			FreeFeedbackViewController ();
-			feedbackViewController = new MFMailComposeViewController ();
-			feedbackViewController.SetToRecipients (new[] { "sami.lamti+axcrypt-ios-feedback@tretton37.com" });
-			feedbackViewController.SetSubject (String.Concat ("Feedback on AxCrypt for iOS v", AppVersion));
-			feedbackViewController.Finished += delegate {
+			feedbackMailViewController = new MFMailComposeViewController ();
+			feedbackMailViewController.SetToRecipients (new[] { "sami.lamti+axcrypt-ios-feedback@tretton37.com" });
+			feedbackMailViewController.SetSubject (String.Concat ("Feedback on AxCrypt for iOS v", AppVersion));
+			feedbackMailViewController.Finished += delegate {
 				FreeFeedbackViewController ();
 			}; 
 
-			appViewController.PresentViewController (feedbackViewController, true, null);
+			appViewController.PresentViewController (feedbackMailViewController, true, null);
 		}
 
 		void ShowLocalFiles() {
@@ -155,8 +158,6 @@ Just look for the Send To / Action icon and then tap AxCrypt",
 
 			FreePassphraseViewController();
 			FreeDecryptionViewController();
-
-			Window.RootViewController = appViewController;
 		}
 		
 		// This method should be used to release shared resources and it should store the application state.
@@ -184,10 +185,10 @@ Just look for the Send To / Action icon and then tap AxCrypt",
 		}
 
 		void FreeFeedbackViewController() {
-			if (feedbackViewController == null)
+			if (feedbackMailViewController == null)
 				return;
-			feedbackViewController.DismissViewController (false, (NSAction) delegate {
-				Free(ref feedbackViewController);
+			feedbackMailViewController.DismissViewController (false, (NSAction) delegate {
+				Free(ref feedbackMailViewController);
 			});
 		}
 

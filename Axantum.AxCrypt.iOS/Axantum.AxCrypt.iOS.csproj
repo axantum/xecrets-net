@@ -426,6 +426,7 @@
     <Compile Include="Infrastructure\ThemedStringElement.cs" />
     <Compile Include="DecryptionViewController.cs" />
     <Compile Include="PassphraseController.cs" />
+    <Compile Include="WebViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

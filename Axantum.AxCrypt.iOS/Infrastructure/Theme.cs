@@ -24,7 +24,7 @@ namespace Axantum.AxCrypt.iOS.Infrastructure
 			};
 		}
 
-		static void ConfigureViewLayer (this UIView view)
+		public static void Configure (UIView view)
 		{
 			view.Layer.CornerRadius = CornerRadius;
 			view.Layer.BorderColor = HighlightColor.CGColor;
@@ -62,7 +62,7 @@ namespace Axantum.AxCrypt.iOS.Infrastructure
 				HeaderImageWidth = HeaderImage.Size.Width;
 				HeaderImageHeight = HeaderImage.Size.Height;
 			}
-			ConfigureViewLayer (viewController.View);
+			Configure (viewController.View);
 			ConfigureTableView (viewController.TableView, viewController);
 			CreateHeader (text, viewController.View);
 		}
@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt.iOS.Infrastructure
 			cell.SelectedBackgroundView = new UIView (cell.Frame) { 
 				BackgroundColor = HighlightColor 
 			};
-			ConfigureViewLayer (cell.SelectedBackgroundView);
+			Configure (cell.SelectedBackgroundView);
 		}
 	}
 }

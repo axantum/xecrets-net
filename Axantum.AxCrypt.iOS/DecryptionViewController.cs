@@ -15,8 +15,6 @@ namespace Axantum.AxCrypt.iOS
 		public event Action<string> Succeeded = delegate {};
 		public event Action Failed = delegate {};
 
-		bool disposed;
-
 		ProgressContext context;
 		ThreadWorker worker;
 		IRuntimeFileInfo sourceFile;
