@@ -1,14 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-//using Axantum.AxCrypt.Core;
 using System.IO;
-using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.iOS.Infrastructure;
+using MonoTouch.Foundation;
 using MonoTouch.MessageUI;
+using MonoTouch.UIKit;
+using Axantum.AxCrypt.Core;
 
 namespace Axantum.AxCrypt.iOS
 {
@@ -21,7 +16,6 @@ namespace Axantum.AxCrypt.iOS
 		const string AppVersion = "1.1.3";
 
 		// class-level declarations
-		UIViewController activeViewController;
 		MainViewController appViewController;
 		FileListingViewController fileListingViewController;
 		PassphraseViewController passphraseViewController;
@@ -46,14 +40,13 @@ namespace Axantum.AxCrypt.iOS
 			OS.Current = new Axantum.AxCrypt.MonoTouch.RuntimeEnvironment();
 			appViewController = new MainViewController();
 			appViewController.OnAboutButtonTapped += ShowAbout;
-			appViewController.OnFaqButtonTapped += delegate {};
+			appViewController.OnFaqButtonTapped += ShowFaq;
 			appViewController.OnFeedbackButtonTapped += ShowFeedbackUi;
 			appViewController.OnLocalFilesButtonTapped += ShowLocalFiles;
 			appViewController.OnRecentFilesButtonTapped += ShowRecentFiles;
 			appViewController.OnTroubleshootingButtonTapped += delegate {};
 
 			Window = new UIWindow(UIScreen.MainScreen.Bounds);
-			activeViewController = appViewController;
 			Window.RootViewController = appViewController;
 			Window.MakeKeyAndVisible ();
 			return true;
@@ -70,6 +63,10 @@ Just look for the Send To / Action icon and then tap AxCrypt",
 				null,
 				"OK, I get it")
 				.Show ();
+		}
+
+		void ShowFaq() {
+			UIApplication.SharedApplication.OpenUrl (NSUrl.FromString("http://monodeveloper.org/axcrypt-ios-faq/"));
 		}
 
 		void ShowFeedbackUi() {
