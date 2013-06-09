@@ -17,11 +17,11 @@ namespace Axantum.AxCrypt.iOS
 		public event Action Done = delegate {};
 
 		Section fileSection;
-		string filePath;
+		string basePath;
 
 		public FileListingViewController (string title, string path) : base (UITableViewStyle.Plain, new RootElement(title), false)
 		{
-			filePath = path;
+			basePath = path;
 			fileSection = new Section ();
 			Root.Add (fileSection);
 
@@ -33,15 +33,15 @@ namespace Axantum.AxCrypt.iOS
 		{
 			base.Selected (indexPath);
 			string caption = fileSection [indexPath.Row].Caption;
-			string targetPath = Path.Combine(filePath, caption + OS.Current.AxCryptExtension);
+			string targetPath = Path.Combine(basePath, caption + OS.Current.AxCryptExtension);
 			OpenFile (targetPath);
 		}
 
 		void ReloadFileSystem ()
 		{
-			Directory.CreateDirectory (filePath);
+			Directory.CreateDirectory (basePath);
 
-			var selection = Directory.EnumerateFiles (filePath)
+			var selection = Directory.EnumerateFiles (basePath)
 				.Select (file => new { file, accessTime = File.GetLastAccessTime(file) })
 					.OrderByDescending (projection => projection.accessTime)
 					.Select(projection => new StyledStringElement(
@@ -74,6 +74,7 @@ namespace Axantum.AxCrypt.iOS
 		{
 			base.ViewDidLoad ();
 			Theme.Configure (Root.Caption, this);
+			TableView.Source = new EditableTableViewSource (this, this.basePath);
 		}
 
 		public override void ViewWillAppear (bool animated)

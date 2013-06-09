@@ -30,8 +30,8 @@ namespace Axantum.AxCrypt.iOS
 			//});
 
 			Root = new RootElement(String.Empty) {
-				new Section { new ThemedStringElement("Received documents", OnRecentFilesButtonTapped) },
-				new Section { new ThemedStringElement("Transferred documents", OnLocalFilesButtonTapped) },
+				new Section("", "documents received from other apps") { new ThemedStringElement("Received documents", OnRecentFilesButtonTapped) },
+				new Section("", "documents transferred from iTunes") { new ThemedStringElement("Transferred documents", OnLocalFilesButtonTapped) },
 				new Section { 
 					new ThemedStringElement("About", OnAboutButtonTapped),
 					new ThemedStringElement("Troubleshooting", OnTroubleshootingButtonTapped),

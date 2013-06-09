@@ -23,7 +23,6 @@ namespace Axantum.AxCrypt.iOS.Infrastructure
 			view.TableHeaderView = new UIView (new RectangleF (0, 0, view.Bounds.Width, HeaderImage.Size.Height + 15f)) {
 				BackgroundColor = UIColor.Clear
 			};
-			view.Source = new EditableTableViewSource (owner);
 		}
 
 		static void ConfigureViewLayer (this UIView view)
