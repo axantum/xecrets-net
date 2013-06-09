@@ -13,7 +13,11 @@ namespace Axantum.AxCrypt.iOS
 	[Register ("AppDelegate")]
 	public partial class AppDelegate : UIApplicationDelegate
 	{
-		const string AppVersion = "1.1.3";
+		public string AppVersion {
+			get {
+				return NSBundle.MainBundle.ObjectForInfoDictionary ("CFBundleVersion").ToString ();
+			}
+		}
 
 		// class-level declarations
 		MainViewController appViewController;
