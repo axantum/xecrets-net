@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.iOS
 			appViewController.OnFeedbackButtonTapped += ShowFeedbackUi;
 			appViewController.OnLocalFilesButtonTapped += ShowLocalFiles;
 			appViewController.OnRecentFilesButtonTapped += ShowRecentFiles;
-			appViewController.OnTroubleshootingButtonTapped += delegate {};
+			appViewController.OnTroubleshootingButtonTapped += ShowTroubleshooting;
 
 			Window = new UIWindow(UIScreen.MainScreen.Bounds);
 			Window.RootViewController = appViewController;
@@ -64,6 +64,10 @@ namespace Axantum.AxCrypt.iOS
 
 		void ShowFaq() {
 			PresentWebViewController ("http://monodeveloper.org/axcrypt-ios-faq/");
+		}
+
+		void ShowTroubleshooting() {
+			PresentWebViewController ("http://monodeveloper.org/axcrypt-ios-troubleshooting/");
 		}
 
 		void FreeWebViewController() {
