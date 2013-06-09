@@ -1,14 +1,5 @@
-
 using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-using MonoTouch.Dialog;
-using System.Drawing;
-using System.ComponentModel;
-using System.IO;
 
 namespace Axantum.AxCrypt.iOS
 {

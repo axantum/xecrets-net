@@ -34,12 +34,6 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <MtouchLink>None</MtouchLink>
-    <CustomCommands>
-      <CustomCommands>
-        <Command type="BeforeBuild" command="mkdir -p ${ProjectDir}/bin" />
-        <Command type="BeforeBuild" command="cp ${SolutionDir}/Axantum.AxCrypt.Core/bin/Release/Axantum.AxCrypt.Core.dll ${ProjectDir}/bin" />
-      </CustomCommands>
-    </CustomCommands>
     <MtouchUseLlvm>True</MtouchUseLlvm>
     <MtouchArch>ARMv7</MtouchArch>
     <MtouchI18n />
@@ -128,7 +122,6 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="PassphraseViewController.cs" />
     <Compile Include="FilePresenter.cs" />
     <Compile Include="Infrastructure\UIAlertViewOkCancelDelegate.cs" />
     <Compile Include="Infrastructure\EditableTableViewSource.cs" />
@@ -432,6 +425,7 @@
     <Compile Include="Infrastructure\Utilities.cs" />
     <Compile Include="Infrastructure\ThemedStringElement.cs" />
     <Compile Include="DecryptionViewController.cs" />
+    <Compile Include="PassphraseController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

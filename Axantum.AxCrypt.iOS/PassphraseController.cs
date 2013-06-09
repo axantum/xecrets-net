@@ -5,7 +5,7 @@ using Axantum.AxCrypt.Core.Crypto;
 
 namespace Axantum.AxCrypt.iOS
 {
-	public partial class PassphraseViewController : UIViewController
+	public partial class PassphraseController : IDisposable
 	{
 		public event Action<Passphrase> Done = delegate {}; 
 		public event Action Cancelled = delegate {};
@@ -14,20 +14,9 @@ namespace Axantum.AxCrypt.iOS
 		UIAlertViewDelegate alertViewDelegate;
 		UIAlertView alertView;
 
-		public PassphraseViewController (string path) : base ()
+		public PassphraseController (string path)
 		{
 			this.path = path;
-		}
-
-		public override void ViewWillAppear (bool animated)
-		{
-			base.ViewWillAppear (animated);
-		}
-
-		public override void ViewDidAppear (bool animated)
-		{
-			base.ViewDidAppear (animated);
-			AskForPassword();
 		}
 
 		public void AskForPassword ()
@@ -57,6 +46,20 @@ namespace Axantum.AxCrypt.iOS
 
 		void InvokeDone(string passphrase) {
 			Done (new Passphrase(passphrase));
+		}
+
+		public void Dispose ()
+		{
+			if (this.alertViewDelegate != null) {
+				this.alertViewDelegate.Dispose ();
+				this.alertViewDelegate = null;
+			}
+			if (this.alertView != null) {
+				this.alertView.Delegate = null;
+				this.alertView.DismissWithClickedButtonIndex (alertView.CancelButtonIndex, false);
+				this.alertView.Dispose ();
+				this.alertView = null;
+			}
 		}
 	}
 }

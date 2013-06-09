@@ -9,14 +9,7 @@ namespace System.Diagnostics
 			set;
 		}
 
-		private string axCryptSwitch;
-		private string loggingLevelsForAxCrypt;
-
-		public TraceSwitch (string axCryptSwitch, string loggingLevelsForAxCrypt)
-		{
-			this.axCryptSwitch = axCryptSwitch;
-			this.loggingLevelsForAxCrypt = loggingLevelsForAxCrypt;
-		}
+		public TraceSwitch (string axCryptSwitch, string loggingLevelsForAxCrypt) {}
 
 		public TraceSwitch ()
 		{

@@ -18,7 +18,7 @@ namespace Axantum.AxCrypt.iOS
 		// class-level declarations
 		MainViewController appViewController;
 		FileListingViewController fileListingViewController;
-		PassphraseViewController passphraseViewController;
+		PassphraseController passphraseController;
 		DecryptionViewController decryptionViewController;
 		FilePresenter filePresenter;
 		MFMailComposeViewController feedbackViewController;
@@ -75,7 +75,7 @@ Just look for the Send To / Action icon and then tap AxCrypt",
 				return;
 			}
 
-			Free (ref feedbackViewController);
+			FreeFeedbackViewController ();
 			feedbackViewController = new MFMailComposeViewController ();
 			feedbackViewController.SetToRecipients (new[] { "sami.lamti+axcrypt-ios-feedback@tretton37.com" });
 			feedbackViewController.SetSubject (String.Concat ("Feedback on AxCrypt for iOS v", AppVersion));
@@ -103,7 +103,6 @@ Just look for the Send To / Action icon and then tap AxCrypt",
 			fileListingViewController.OpenFile += HandleOpenFile;
 			fileListingViewController.Done += FreeFileListingViewController;
 			appViewController.PresentViewControllerAsync (fileListingViewController, true);
-			activeViewController = fileListingViewController;
 		}
 
 		static void Free<T> (ref T viewController) where T: UIViewController
@@ -121,11 +120,13 @@ Just look for the Send To / Action icon and then tap AxCrypt",
 			fileListingViewController.OpenFile -= HandleOpenFile;
 			fileListingViewController.Done -= FreeFileListingViewController;
 			Free (ref fileListingViewController);
-			activeViewController = appViewController;
 		}
 
 		void FreePassphraseViewController() {
-			Free (ref passphraseViewController);
+			if (passphraseController == null)
+				return;
+			passphraseController.Dispose();
+			passphraseController = null;
 		}
 
 		void FreeDecryptionViewController() {
@@ -145,9 +146,13 @@ Just look for the Send To / Action icon and then tap AxCrypt",
 		{
 			if (filePresenter != null) {
 				filePresenter.Dismiss();
-				FreeViewControllers();
 				FreeFilePresenter ();
 			}
+
+			FreePassphraseViewController();
+			FreeDecryptionViewController();
+
+			Window.RootViewController = appViewController;
 		}
 		
 		// This method should be used to release shared resources and it should store the application state.
@@ -168,7 +173,7 @@ Just look for the Send To / Action icon and then tap AxCrypt",
 		}
 
 		void FreeViewControllers() {
-			if (passphraseViewController != null)
+			if (passphraseController != null)
 				FreePassphraseViewController ();
 			if (decryptionViewController != null)
 				FreeDecryptionViewController ();
@@ -188,24 +193,27 @@ Just look for the Send To / Action icon and then tap AxCrypt",
 			FreeFilePresenter ();
 			FreeFeedbackViewController ();
 
-			passphraseViewController = new PassphraseViewController (filePath);
+			passphraseController = new PassphraseController (filePath);
 			decryptionViewController = new DecryptionViewController (filePath);
 			filePresenter = new FilePresenter ();
 
-			passphraseViewController.Done += decryptionViewController.Decrypt;
-			passphraseViewController.Cancelled += FreeViewControllers;
+			passphraseController.Done += decryptionViewController.Decrypt;
+			passphraseController.Cancelled += FreeViewControllers;
 			decryptionViewController.Succeeded += targetFileName => {
 				FreeViewControllers();
-				appViewController.DismissViewController(true, (NSAction)delegate { FreeFileListingViewController(); });
-				filePresenter.Present (targetFileName, appViewController);
+				appViewController.DismissViewController(true, (NSAction)delegate { 
+					FreeFileListingViewController();
+					filePresenter.Present (targetFileName, appViewController);
+				});
+
 			};
-			decryptionViewController.Failed += passphraseViewController.AskForPassword;
+			decryptionViewController.Failed += passphraseController.AskForPassword;
 			filePresenter.Done += delegate {
 				FreeViewControllers();
 				FreeFilePresenter();
 			};
 
-			passphraseViewController.AskForPassword ();
+			passphraseController.AskForPassword ();
 		}
 
 		public override bool OpenUrl (UIApplication application, NSUrl url, string sourceApplication, NSObject annotation)

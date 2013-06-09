@@ -15,7 +15,6 @@ namespace Axantum.AxCrypt.iOS
 		public event Action<string> Succeeded = delegate {};
 		public event Action Failed = delegate {};
 
-		string sourceFilePath;
 		bool disposed;
 
 		ProgressContext context;
@@ -26,7 +25,6 @@ namespace Axantum.AxCrypt.iOS
 
 		public DecryptionViewController (string sourceFilePath)
 		{
-			this.sourceFilePath = sourceFilePath;
 			this.context = new ProgressContext ();
 			//			context.Progressing += (sender, e) => {
 			//				SetProgress(e.Percent, "Decrypting ...");
@@ -71,35 +69,9 @@ namespace Axantum.AxCrypt.iOS
 			Succeeded(this.targetFilePath);
 		}
 
-		void FreeWorker() {
-			if (worker == null)
-				return;
-
-			worker.Dispose ();
-			worker = null;
-		}
-
 		public void Decrypt(Passphrase passphrase) {
 			this.key = passphrase.DerivedPassphrase;
 			worker.Run();
-		}
-
-		new void Dispose() {
-			Dispose (true);
-			GC.SuppressFinalize (this);
-		}
-
-		protected override void Dispose (bool disposing)
-		{
-			base.Dispose (disposing);
-			if (disposed)
-				return;
-
-			if (disposing) {
-				FreeWorker ();
-			}
-
-			disposed = true;
 		}
 	}
 }
