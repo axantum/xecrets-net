@@ -158,6 +158,8 @@ namespace Axantum.AxCrypt.iOS
 		{
 			FreePassphraseViewController();
 			FreeDecryptionViewController();
+			if (filePresenter != null)
+				filePresenter.Dismiss ();
 		}
 		
 		// This method should be used to release shared resources and it should store the application state.
@@ -170,12 +172,11 @@ namespace Axantum.AxCrypt.iOS
 		public override void OnActivated (UIApplication application)
 		{
 			if (filePresenter != null && !isReceivingFile) {
-				filePresenter.Dismiss();
 				FreeFilePresenter ();
 				isReceivingFile = false;
 			}
 		}
-		
+
 		/// This method is called as part of the transiton from background to active state.
 		public override void WillEnterForeground (UIApplication application)
 		{

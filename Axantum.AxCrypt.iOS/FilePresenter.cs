@@ -64,6 +64,11 @@ namespace Axantum.AxCrypt.iOS
 			documentInteractionController.Delegate = null;
 			documentInteractionController.DismissMenu (false);
 			documentInteractionController.DismissPreview (false);
+		}
+
+		protected override void Dispose (bool disposing)
+		{
+			base.Dispose (disposing);
 			documentInteractionController.Dispose ();
 			documentInteractionController = null;
 		}
