@@ -15,33 +15,55 @@ namespace Axantum.AxCrypt.iOS
 			OnTroubleshootingButtonTapped, 
 			OnFeedbackButtonTapped;
 
-		public MainViewController () : base(null)
+		public MainViewController () : base(new RootElement(String.Empty))
 		{
 			
 		}
 
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
+			if (!Utilities.UserInterfaceIdiomIsPhone) {
+				TableView.Source = new EditableTableViewSource (this);
+			}
+		}
+
+		FileListingViewController recent, local;
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			if (Root != null)
+			if (Root.Count != 0)
 				return;
 
 			Theme.Configure ("AxCrypt", this);
 
-			Section receivedDocumentsSection = new Section {
-				new ThemedStringElement ("Received documents", OnRecentFilesButtonTapped)
-			};
-			Section transferredDocumentsSection = new Section { 
-				new ThemedStringElement("Transferred documents", OnLocalFilesButtonTapped) 
-			};
+			Section receivedDocumentsSection = new Section ();
+			Section transferredDocumentsSection = new Section();
 
-			if (Utilities.iPhone5OrPad) {
-				// We've got plenty of vertical space to be a little more verbose
-				receivedDocumentsSection.Footer = "documents received from other apps";
-				transferredDocumentsSection.Footer = "documents transferred from iTunes";
+			if (Utilities.UserInterfaceIdiomIsPhone) {
+				receivedDocumentsSection.Add (new ThemedStringElement ("Received documents", OnRecentFilesButtonTapped));
+				transferredDocumentsSection.Add (new ThemedStringElement("Transferred documents", OnLocalFilesButtonTapped));
+
+				if (Utilities.iPhone5OrPad) {
+					// We've got plenty of vertical space to be a little more verbose
+					receivedDocumentsSection.Footer = "documents received from other apps";
+					transferredDocumentsSection.Footer = "documents transferred from iTunes";
+				}
+			} else {
+
+				receivedDocumentsSection.Caption = "Received documents";
+				recent = new FileListingViewController (String.Empty, BasePath.ReceivedFilesId);
+				recent.OpenFile += AppDelegate.Current.HandleOpenFile;
+				receivedDocumentsSection.AddAll (recent.GetElements());
+
+				transferredDocumentsSection.Caption = "Transferred documents";
+				local = new FileListingViewController (String.Empty, BasePath.TransferredFilesId);
+				local.OpenFile += AppDelegate.Current.HandleOpenFile;
+				transferredDocumentsSection.AddAll (local.GetElements());
+
 			}
 
-			Root = new RootElement(String.Empty) {
+			Root.Add (new[] {
 				receivedDocumentsSection,
 				transferredDocumentsSection,
 				new Section { 
@@ -50,7 +72,7 @@ namespace Axantum.AxCrypt.iOS
 					new ThemedStringElement("Troubleshooting", OnTroubleshootingButtonTapped),
 					new ThemedStringElement("Feedback", OnFeedbackButtonTapped)
 				},
-			};
+			});
 		}
 
 		public override void ViewWillDisappear (bool animated)

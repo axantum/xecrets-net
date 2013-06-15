@@ -431,6 +431,7 @@
     <Compile Include="PassphraseController.cs" />
     <Compile Include="WebViewController.cs" />
     <Compile Include="Infrastructure\ThemedFileElement.cs" />
+    <Compile Include="Infrastructure\BasePath.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

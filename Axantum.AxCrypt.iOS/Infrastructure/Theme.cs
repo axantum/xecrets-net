@@ -17,8 +17,9 @@ namespace Axantum.AxCrypt.iOS.Infrastructure
 
 		static void ConfigureTableView (this UITableView view, DialogViewController owner)
 		{
-			view.Bounces = false;
-			view.ScrollEnabled = false;
+			view.Bounces = true;
+			view.ScrollEnabled = true;
+
 			view.TableHeaderView = new UIView (new RectangleF (0, 0, view.Bounds.Width, HeaderImage.Size.Height + 15f)) {
 				BackgroundColor = UIColor.Clear
 			};
@@ -48,12 +49,12 @@ namespace Axantum.AxCrypt.iOS.Infrastructure
 			view.AddSubview (new UILabel {
 				Frame = new RectangleF (HeaderImageWidth + horizontalMargin, verticalPadding, viewWidth - (HeaderImageWidth + horizontalPadding + horizontalMargin), HeaderImageHeight),
 				Font = UIFont.SystemFontOfSize (title.Length > 7 ? 28 : 36),
-				Text = title.Replace(' ', '\n'),
+				Text = Utilities.UserInterfaceIdiomIsPhone ? title.Replace(' ', '\n') : title,
 				TextColor = UIColor.DarkTextColor,
 				ShadowColor = HighlightColor,
 				ShadowOffset = new SizeF (1, 1),
 				BackgroundColor = UIColor.Clear,
-				Lines = title.Contains(" ") ? 2 : 1
+				Lines = Utilities.UserInterfaceIdiomIsPhone && title.Contains(" ") ? 2 : 1
 			});
 		}
 

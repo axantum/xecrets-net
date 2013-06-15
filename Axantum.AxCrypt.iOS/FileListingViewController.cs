@@ -16,35 +16,40 @@ namespace Axantum.AxCrypt.iOS
 		public event Action Done = delegate {};
 
 		Section fileSection;
-		string basePath;
+		int basePathId;
 
-		public FileListingViewController (string title, string path) : base (UITableViewStyle.Plain, new RootElement(title), false)
+		public FileListingViewController (string title, int pathId) : base (UITableViewStyle.Plain, new RootElement(title), false)
 		{
-			basePath = path;
+			basePathId = pathId;
 			fileSection = new Section ();
 			Root.Add (fileSection);
 
-			ModalPresentationStyle = UIModalPresentationStyle.FullScreen;
-			ModalTransitionStyle = UIModalTransitionStyle.PartialCurl;
+			if (Utilities.UserInterfaceIdiomIsPhone) {
+				ModalPresentationStyle = UIModalPresentationStyle.FullScreen;
+				ModalTransitionStyle = UIModalTransitionStyle.PartialCurl;
+			} else {
+				ModalPresentationStyle = UIModalPresentationStyle.CurrentContext;
+				ModalTransitionStyle = UIModalTransitionStyle.CoverVertical;
+			}
 		}
 
 		public override void Selected (NSIndexPath indexPath)
 		{
 			base.Selected (indexPath);
-			string caption = fileSection [indexPath.Row].Caption;
-			string targetPath = Path.Combine(basePath, caption + OS.Current.AxCryptExtension);
+			ThemedFileElement element = (ThemedFileElement)fileSection [indexPath.Row];
+			string targetPath = BasePath.Expand (element.Caption, element.PathId);
 			OpenFile (targetPath);
 		}
 
-		void ReloadFileSystem ()
+		IEnumerable<ThemedFileElement> ReadFileSystem ()
 		{
+			string basePath = BasePath.GetBasePath (basePathId);
 			Directory.CreateDirectory (basePath);
 
-			var selection = Directory.EnumerateFiles (basePath)
+			return Directory.EnumerateFiles (basePath)
 				.Select (file => new { file, accessTime = File.GetLastAccessTime(file) })
 					.OrderByDescending (projection => projection.accessTime)
-					.Select(projection => new ThemedFileElement(projection.file, projection.accessTime));
-			Root [0].AddAll (selection);
+					.Select(projection => new ThemedFileElement(projection.file, projection.accessTime, basePathId));
 		}
 
 
@@ -52,13 +57,14 @@ namespace Axantum.AxCrypt.iOS
 		{
 			base.ViewDidLoad ();
 			Theme.Configure (Root.Caption, this);
-			TableView.Source = new EditableTableViewSource (this, this.basePath);
+			TableView.Source = new EditableTableViewSource (this);
 		}
 
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			ReloadFileSystem ();
+			Root [0].Clear ();
+			Root [0].AddAll (ReadFileSystem ());
 		}
 
 		public override void ViewDidDisappear (bool animated)
@@ -67,5 +73,11 @@ namespace Axantum.AxCrypt.iOS
 			Done ();
 		}
 
+		public IEnumerable<Element> GetElements() {
+			foreach (ThemedFileElement element in ReadFileSystem ()) {
+				element.Tapped += () => OpenFile(BasePath.Expand(element.Caption, basePathId));
+				yield return element;
+			}
+		}
 	}
 }

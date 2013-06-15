@@ -8,11 +8,17 @@ namespace Axantum.AxCrypt.iOS.Infrastructure
 {
 	public class ThemedFileElement : StyledStringElement
 	{
-		public ThemedFileElement (string fileName, DateTime lastAccessTime) : base(
+		public int PathId {
+			get;
+			private set;
+		}
+
+		public ThemedFileElement (string fileName, DateTime lastAccessTime, int pathId) : base(
 			caption: Path.GetFileNameWithoutExtension(fileName),
 			value: String.Concat("Last opened ", FormatDateTime(lastAccessTime)),
 			style: UITableViewCellStyle.Subtitle)
 		{
+			PathId = pathId;
 		}
 
 		static string FormatDateTime(DateTime value) {

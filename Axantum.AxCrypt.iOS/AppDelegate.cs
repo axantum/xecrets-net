@@ -4,6 +4,7 @@ using MonoTouch.Foundation;
 using MonoTouch.MessageUI;
 using MonoTouch.UIKit;
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.iOS.Infrastructure;
 
 namespace Axantum.AxCrypt.iOS
 {
@@ -17,6 +18,11 @@ namespace Axantum.AxCrypt.iOS
 			get {
 				return NSBundle.MainBundle.ObjectForInfoDictionary ("CFBundleVersion").ToString ();
 			}
+		}
+
+		public static AppDelegate Current {
+			get;
+			private set;
 		}
 
 		// class-level declarations
@@ -43,6 +49,7 @@ namespace Axantum.AxCrypt.iOS
 		//
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
+			AppDelegate.Current = this;
 			OS.Current = new Axantum.AxCrypt.MonoTouch.RuntimeEnvironment();
 			appViewController = new MainViewController();
 			appViewController.OnAboutButtonTapped += ShowAbout;
@@ -99,22 +106,31 @@ namespace Axantum.AxCrypt.iOS
 		}
 
 		void ShowLocalFiles() {
-			ShowFileListing ("Transferred documents");
+			ShowFileListing ("Transferred documents", BasePath.TransferredFilesId);
 		}
 
 		void ShowRecentFiles() {
-			ShowFileListing("Received documents", "Recent");
+			ShowFileListing("Received documents", BasePath.ReceivedFilesId);
 		}
 
-		void ShowFileListing(string caption, string pathSuffix = null) {
+		UIPopoverController pop;
+		void ShowFileListing(string caption, int basePathId) {
 			FreeFileListingViewController ();
-			string path = Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments);
-			if (pathSuffix != null)
-				path = Path.Combine (path, pathSuffix);
-			fileListingViewController = new FileListingViewController (caption, path);
+			fileListingViewController = new FileListingViewController (caption, basePathId);
 			fileListingViewController.OpenFile += HandleOpenFile;
 			fileListingViewController.Done += FreeFileListingViewController;
-			appViewController.PresentViewControllerAsync (fileListingViewController, true);
+
+			if (Utilities.UserInterfaceIdiomIsPhone) {
+				appViewController.PresentViewController (fileListingViewController, true, null);
+			} else {
+				pop = new UIPopoverController (fileListingViewController);
+				pop.PresentFromRect(
+					appViewController.TableView.TableHeaderView.Frame,
+					appViewController.TableView.TableHeaderView,
+					UIPopoverArrowDirection.Up,
+					true);
+
+			}
 		}
 
 		static void Free<T> (ref T viewController) where T: UIViewController
@@ -202,7 +218,7 @@ namespace Axantum.AxCrypt.iOS
 			});
 		}
 
-		void HandleOpenFile(string filePath) {
+		public void HandleOpenFile(string filePath) {
  			FreePassphraseViewController ();
 			FreeDecryptionViewController ();
 			FreeFilePresenter ();
