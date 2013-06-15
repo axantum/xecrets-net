@@ -31,7 +31,6 @@ namespace Axantum.AxCrypt.iOS
 		FileListingViewController recent, local;
 		public override void ViewWillAppear (bool animated)
 		{
-			base.ViewWillAppear (animated);
 			if (Root.Count != 0)
 				return;
 
@@ -73,6 +72,8 @@ namespace Axantum.AxCrypt.iOS
 					new ThemedStringElement("Feedback", OnFeedbackButtonTapped)
 				},
 			});
+			TableView.ScrollEnabled = receivedDocumentsSection.Count + receivedDocumentsSection.Count > 20;
+			base.ViewWillAppear (animated);
 		}
 
 		public override void ViewWillDisappear (bool animated)
@@ -82,7 +83,8 @@ namespace Axantum.AxCrypt.iOS
 
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
-			return (toInterfaceOrientation == UIInterfaceOrientation.Portrait || toInterfaceOrientation == UIInterfaceOrientation.PortraitUpsideDown);
+			//return (toInterfaceOrientation == UIInterfaceOrientation.Portrait || toInterfaceOrientation == UIInterfaceOrientation.PortraitUpsideDown);
+			return true;
 		}
 	}
 }
