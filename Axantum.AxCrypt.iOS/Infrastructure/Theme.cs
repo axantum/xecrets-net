@@ -38,8 +38,6 @@ namespace Axantum.AxCrypt.iOS.Infrastructure
 		{
 			const float horizontalPadding = 15f;
 			const float verticalPadding = 10f;
-			const float verticalMargin = 20f;
-			const float horizontalMargin = 25f;
 
 			float viewWidth = view.Bounds.Width;
 			headerView = new UIView ();

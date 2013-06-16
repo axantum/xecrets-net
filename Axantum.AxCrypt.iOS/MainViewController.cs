@@ -29,15 +29,27 @@ namespace Axantum.AxCrypt.iOS
 		}
 
 		FileListingViewController recent, local;
+		Section receivedDocumentsSection, transferredDocumentsSection;
 		public override void ViewWillAppear (bool animated)
 		{
-			if (Root.Count != 0)
+			if (Root.Count != 0) {
+				if (!Utilities.UserInterfaceIdiomIsPhone) {
+					if (receivedDocumentsSection != null) {
+						receivedDocumentsSection.Clear ();
+						receivedDocumentsSection.AddAll (recent.GetElements ());
+					}
+					if (transferredDocumentsSection != null) {
+						transferredDocumentsSection.Clear ();
+						transferredDocumentsSection.AddAll (local.GetElements ());
+					}
+				}
 				return;
+			}
 
 			Theme.Configure ("AxCrypt", this);
 
-			Section receivedDocumentsSection = new Section ();
-			Section transferredDocumentsSection = new Section();
+			receivedDocumentsSection = new Section ();
+			transferredDocumentsSection = new Section();
 
 			if (Utilities.UserInterfaceIdiomIsPhone) {
 				receivedDocumentsSection.Add (new ThemedStringElement ("Received documents", OnRecentFilesButtonTapped));
