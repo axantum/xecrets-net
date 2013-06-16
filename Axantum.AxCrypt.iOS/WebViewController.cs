@@ -2,6 +2,7 @@ using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 using Axantum.AxCrypt.iOS.Infrastructure;
 using System;
+using BigTed;
 
 namespace Axantum.AxCrypt.iOS
 {
@@ -32,6 +33,10 @@ namespace Axantum.AxCrypt.iOS
 			};
 			this.View.LoadFinished += delegate {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
+				BTProgressHUD.Dismiss();
+			};
+			this.View.LoadError += delegate {
+				BTProgressHUD.ShowErrorWithStatus("An error occurred loading the web page. Please ensure you're connected to the internet and try again later.", 3000);
 			};
 			base.ViewDidLoad ();
 			Theme.Configure (View);
@@ -40,6 +45,7 @@ namespace Axantum.AxCrypt.iOS
 		public override void ViewDidAppear (bool animated)
 		{
 			base.ViewDidAppear (animated);
+			BTProgressHUD.Show("Loading ...");
 			View.LoadRequest (this.request);
 		}
 

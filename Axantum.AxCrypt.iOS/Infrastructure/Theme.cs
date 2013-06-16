@@ -85,6 +85,9 @@ namespace Axantum.AxCrypt.iOS.Infrastructure
 		public static void Configure(UITableViewCell cell) {
 			cell.TextLabel.TextColor = HighlightColor;
 			cell.TextLabel.TextAlignment = UITextAlignment.Center;
+			if (cell.DetailTextLabel != null) {
+				cell.DetailTextLabel.Font = UIFont.SystemFontOfSize (UIFont.SmallSystemFontSize);
+			}
 
 			cell.SelectedBackgroundView = new UIView (cell.Frame) { 
 				BackgroundColor = HighlightColor 

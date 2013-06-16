@@ -16,7 +16,7 @@ namespace Axantum.AxCrypt.iOS.Infrastructure
 		public ThemedFileElement (string fileName, DateTime lastAccessTime, int pathId) : base(
 			caption: Path.GetFileNameWithoutExtension(fileName),
 			value: String.Concat("Last opened ", FormatDateTime(lastAccessTime)),
-			style: UITableViewCellStyle.Subtitle)
+			style: Utilities.UserInterfaceIdiomIsPhone ? UITableViewCellStyle.Subtitle : UITableViewCellStyle.Value1)
 		{
 			PathId = pathId;
 		}
