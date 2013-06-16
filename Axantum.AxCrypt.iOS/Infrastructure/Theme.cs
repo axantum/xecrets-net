@@ -14,7 +14,6 @@ namespace Axantum.AxCrypt.iOS.Infrastructure
 
 		const string HeaderImagePath = "Images/logo.png";
 		static UIImage HeaderImage;
-		static float HeaderImageWidth, HeaderImageHeight;
 		static UIView headerView;
 
 		static void ConfigureTableView (this UITableView view, DialogViewController owner)
@@ -72,8 +71,6 @@ namespace Axantum.AxCrypt.iOS.Infrastructure
 		{
 			if (HeaderImage == null) {
 				HeaderImage = UIImage.FromFile (HeaderImagePath);
-				HeaderImageWidth = HeaderImage.Size.Width;
-				HeaderImageHeight = HeaderImage.Size.Height;
 			}
 			Configure (viewController.View);
 			ConfigureTableView (viewController.TableView, viewController);
