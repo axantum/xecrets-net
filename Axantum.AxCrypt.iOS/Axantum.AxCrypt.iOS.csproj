@@ -121,6 +121,48 @@
   <ItemGroup>
     <None Include="Info.plist" />
     <None Include="AboutThisAssembly.txt" />
+    <None Include="Images\AppStore Images\iPad %28Retina%29\About.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
+    <None Include="Images\AppStore Images\iPad %28Retina%29\Document with actions.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
+    <None Include="Images\AppStore Images\iPad %28Retina%29\Main View.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
+    <None Include="Images\AppStore Images\iPad %28Retina%29\Password entry.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
+    <None Include="Images\AppStore Images\iPhone 3.5in\Document with actions.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
+    <None Include="Images\AppStore Images\iPhone 3.5in\Main View.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
+    <None Include="Images\AppStore Images\iPhone 3.5in\Password entry.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
+    <None Include="Images\AppStore Images\iPhone 3.5in\Received documents.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
+    <None Include="Images\AppStore Images\iPhone 3.5in\Transferred documents.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
+    <None Include="Images\AppStore Images\iPhone 4in\Document with actions.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
+    <None Include="Images\AppStore Images\iPhone 4in\Main View.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
+    <None Include="Images\AppStore Images\iPhone 4in\Password entry.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
+    <None Include="Images\AppStore Images\iPhone 4in\Received documents.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
+    <None Include="Images\AppStore Images\iPhone 4in\Transferred documents.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -459,6 +501,10 @@
     <Folder Include="AxCrypt.Core\" />
     <Folder Include="System.Diagnostics\" />
     <Folder Include="String Extensions\" />
+    <Folder Include="Images\AppStore Images\" />
+    <Folder Include="Images\AppStore Images\iPad %28Retina%29\" />
+    <Folder Include="Images\AppStore Images\iPhone 3.5in\" />
+    <Folder Include="Images\AppStore Images\iPhone 4in\" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
