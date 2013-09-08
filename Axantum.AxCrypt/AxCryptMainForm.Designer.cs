@@ -407,11 +407,15 @@
             // 
             // watchedFoldersListView
             // 
+            this.watchedFoldersListView.AllowDrop = true;
             resources.ApplyResources(this.watchedFoldersListView, "watchedFoldersListView");
             this.watchedFoldersListView.FullRowSelect = true;
             this.watchedFoldersListView.Name = "watchedFoldersListView";
             this.watchedFoldersListView.ShowItemToolTips = true;
             this.watchedFoldersListView.UseCompatibleStateImageBehavior = false;
+            this.watchedFoldersListView.DragDrop += new System.Windows.Forms.DragEventHandler(this.watchedFoldersListView_DragDrop);
+            this.watchedFoldersListView.DragEnter += new System.Windows.Forms.DragEventHandler(this.watchedFoldersListView_DragEnter);
+            this.watchedFoldersListView.DragOver += new System.Windows.Forms.DragEventHandler(this.watchedFoldersListView_DragOver);
             // 
             // recentFilesTabPage
             // 

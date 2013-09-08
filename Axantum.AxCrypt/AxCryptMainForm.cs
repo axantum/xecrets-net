@@ -127,7 +127,7 @@ namespace Axantum.AxCrypt
             OS.Current.WorkFolderStateChanged += HandleWorkFolderStateChangedEvent;
 
             persistentState.Current.Changed += new EventHandler<ActiveFileChangedEventArgs>(HandleFileSystemStateChangedEvent);
-
+            persistentState.Current.WatchedFolderChanged += HandleWatchedFolderChanged;
             persistentState.Current.Load(FileSystemState.DefaultPathInfo);
 
             persistentState.Current.KnownKeys.Changed += new EventHandler<EventArgs>(HandleKnownKeysChangedEvent);
@@ -140,6 +140,10 @@ namespace Axantum.AxCrypt
             UpdateCheck(Settings.Default.LastUpdateCheckUtc);
 
             OS.Current.NotifyWorkFolderStateChanged();
+        }
+
+        void HandleWatchedFolderChanged(object sender, WatchedFolderChangedEventArgs e)
+        {
         }
 
         private void HandleKnownKeysChangedEvent(object sender, EventArgs e)
@@ -1247,6 +1251,55 @@ namespace Axantum.AxCrypt
                 OS.Current = null;
             }
             base.Dispose(disposing);
+        }
+
+        private void watchedFoldersListView_DragDrop(object sender, DragEventArgs e)
+        {
+            IRuntimeFileInfo droppedFolder = GetDroppedFolderIfAny(e.Data);
+            if (droppedFolder == null)
+            {
+                return;
+            }
+            persistentState.Current.AddWatchedFolder(new WatchedFolder(droppedFolder.FullName));
+            persistentState.Current.Save();
+        }
+
+        private void watchedFoldersListView_DragEnter(object sender, DragEventArgs e)
+        {
+            IRuntimeFileInfo droppedFolder = GetDroppedFolderIfAny(e.Data);
+            if (droppedFolder == null)
+            {
+                return;
+            }
+        }
+
+        private void watchedFoldersListView_DragOver(object sender, DragEventArgs e)
+        {
+            IRuntimeFileInfo droppedFolder = GetDroppedFolderIfAny(e.Data);
+            if (droppedFolder == null)
+            {
+                return;
+            }
+            e.Effect = DragDropEffects.Link;
+        }
+
+        private static IRuntimeFileInfo GetDroppedFolderIfAny(IDataObject dataObject)
+        {
+            IList<string> dropped = dataObject.GetData(DataFormats.FileDrop) as IList<string>;
+            if (dropped == null)
+            {
+                return null;
+            }
+            if (dropped.Count != 1)
+            {
+                return null;
+            }
+            IRuntimeFileInfo fileInfo = OS.Current.FileInfo(dropped[0]);
+            if (!fileInfo.IsFolder)
+            {
+                return null;
+            }
+            return fileInfo;
         }
     }
 }
