@@ -85,6 +85,8 @@ namespace Axantum.AxCrypt
 
         private string _title;
 
+        private WatchedFoldersCore _watchedFoldersCore;
+
         public static MessageBoxOptions MessageBoxOptions { get; private set; }
 
         public AxCryptMainForm()
@@ -118,6 +120,8 @@ namespace Axantum.AxCrypt
 
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
 
+            _watchedFoldersCore = new WatchedFoldersCore(watchedFoldersListView, persistentState.Current);
+
             recentFilesListView.SmallImageList = CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources(components);
             recentFilesListView.LargeImageList = CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources(components);
             recentFilesListView.ListViewItemSorter = _currentRecentFilesSorter;
@@ -127,7 +131,7 @@ namespace Axantum.AxCrypt
             OS.Current.WorkFolderStateChanged += HandleWorkFolderStateChangedEvent;
 
             persistentState.Current.Changed += new EventHandler<ActiveFileChangedEventArgs>(HandleFileSystemStateChangedEvent);
-            persistentState.Current.WatchedFolderChanged += HandleWatchedFolderChanged;
+            persistentState.Current.WatchedFolderChanged += _watchedFoldersCore.HandleWatchedFolderChanged;
             persistentState.Current.Load(FileSystemState.DefaultPathInfo);
 
             persistentState.Current.KnownKeys.Changed += new EventHandler<EventArgs>(HandleKnownKeysChangedEvent);
@@ -140,10 +144,6 @@ namespace Axantum.AxCrypt
             UpdateCheck(Settings.Default.LastUpdateCheckUtc);
 
             OS.Current.NotifyWorkFolderStateChanged();
-        }
-
-        void HandleWatchedFolderChanged(object sender, WatchedFolderChangedEventArgs e)
-        {
         }
 
         private void HandleKnownKeysChangedEvent(object sender, EventArgs e)

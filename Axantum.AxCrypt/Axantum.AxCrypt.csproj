@@ -113,6 +113,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Include="WatchedFoldersCore.cs" />
     <EmbeddedResource Include="ConfirmWipeDialog.resx">
       <DependentUpon>ConfirmWipeDialog.cs</DependentUpon>
       <SubType>Designer</SubType>

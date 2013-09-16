@@ -69,6 +69,7 @@
             this.lastAccessTimeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.encryptedPathColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusTabControl = new System.Windows.Forms.TabControl();
+            this.watchedFolderColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.persistentState = new Axantum.AxCrypt.PersistentState(this.components);
             this.progressBackgroundWorker = new Axantum.AxCrypt.ProgressBackgroundWorker(this.components);
             this.backgroundMonitor = new Axantum.AxCrypt.BackgroundMonitor(this.components);
@@ -408,11 +409,14 @@
             // watchedFoldersListView
             // 
             this.watchedFoldersListView.AllowDrop = true;
+            this.watchedFoldersListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.watchedFolderColumnHeader});
             resources.ApplyResources(this.watchedFoldersListView, "watchedFoldersListView");
             this.watchedFoldersListView.FullRowSelect = true;
             this.watchedFoldersListView.Name = "watchedFoldersListView";
             this.watchedFoldersListView.ShowItemToolTips = true;
             this.watchedFoldersListView.UseCompatibleStateImageBehavior = false;
+            this.watchedFoldersListView.View = System.Windows.Forms.View.Details;
             this.watchedFoldersListView.DragDrop += new System.Windows.Forms.DragEventHandler(this.watchedFoldersListView_DragDrop);
             this.watchedFoldersListView.DragEnter += new System.Windows.Forms.DragEventHandler(this.watchedFoldersListView_DragEnter);
             this.watchedFoldersListView.DragOver += new System.Windows.Forms.DragEventHandler(this.watchedFoldersListView_DragOver);
@@ -460,6 +464,10 @@
             this.statusTabControl.Controls.Add(this.logTabPage);
             this.statusTabControl.Name = "statusTabControl";
             this.statusTabControl.SelectedIndex = 0;
+            // 
+            // watchedFolderColumnHeader
+            // 
+            resources.ApplyResources(this.watchedFolderColumnHeader, "watchedFolderColumnHeader");
             // 
             // persistentState
             // 
@@ -559,6 +567,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem wipeToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ColumnHeader watchedFolderColumnHeader;
     }
 }
 
