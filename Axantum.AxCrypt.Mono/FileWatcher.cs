@@ -42,19 +42,19 @@ namespace Axantum.AxCrypt.Mono
     [PermissionSet(SecurityAction.LinkDemand, Name = "FullTrust"), PermissionSet(SecurityAction.InheritanceDemand, Name = "FullTrust")]
     internal class FileWatcher : IFileWatcher
     {
-        private FileSystemWatcher _temporaryDirectoryWatcher;
+        private FileSystemWatcher _fileSystemWatcher;
 
         public FileWatcher(string path)
         {
-            _temporaryDirectoryWatcher = new FileSystemWatcher(path);
-            _temporaryDirectoryWatcher.Changed += TemporaryDirectoryWatcher_Changed;
-            _temporaryDirectoryWatcher.Created += TemporaryDirectoryWatcher_Changed;
-            _temporaryDirectoryWatcher.Deleted += TemporaryDirectoryWatcher_Changed;
-            _temporaryDirectoryWatcher.Renamed += new RenamedEventHandler(_temporaryDirectoryWatcher_Renamed);
-            _temporaryDirectoryWatcher.IncludeSubdirectories = true;
-            _temporaryDirectoryWatcher.Filter = String.Empty;
-            _temporaryDirectoryWatcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.CreationTime;
-            _temporaryDirectoryWatcher.EnableRaisingEvents = true;
+            _fileSystemWatcher = new FileSystemWatcher(path);
+            _fileSystemWatcher.Changed += TemporaryDirectoryWatcher_Changed;
+            _fileSystemWatcher.Created += TemporaryDirectoryWatcher_Changed;
+            _fileSystemWatcher.Deleted += TemporaryDirectoryWatcher_Changed;
+            _fileSystemWatcher.Renamed += new RenamedEventHandler(_temporaryDirectoryWatcher_Renamed);
+            _fileSystemWatcher.IncludeSubdirectories = true;
+            _fileSystemWatcher.Filter = String.Empty;
+            _fileSystemWatcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.CreationTime;
+            _fileSystemWatcher.EnableRaisingEvents = true;
         }
 
         protected virtual void OnChanged(FileWatcherEventArgs eventArgs)
@@ -101,11 +101,11 @@ namespace Axantum.AxCrypt.Mono
             }
             if (disposing)
             {
-                if (_temporaryDirectoryWatcher != null)
+                if (_fileSystemWatcher != null)
                 {
-                    _temporaryDirectoryWatcher.Dispose();
+                    _fileSystemWatcher.Dispose();
                 }
-                _temporaryDirectoryWatcher = null;
+                _fileSystemWatcher = null;
             }
             _disposed = true;
         }

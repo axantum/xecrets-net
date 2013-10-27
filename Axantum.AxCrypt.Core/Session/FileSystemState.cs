@@ -133,8 +133,10 @@ namespace Axantum.AxCrypt.Core.Session
             }
             private set
             {
-                _watchedFolders = new List<WatchedFolder>(value);
-                OnWatchedFolderChanged(new WatchedFolderChangedEventArgs(_watchedFolders, new WatchedFolder[] { }));
+                foreach (WatchedFolder watchedFolder in value)
+                {
+                    AddWatchedFolder(watchedFolder);
+                }
             }
         }
 
@@ -142,14 +144,21 @@ namespace Axantum.AxCrypt.Core.Session
         {
             if (!WatchedFoldersInternal.Contains(watchedFolder))
             {
+                watchedFolder.Changed += watchedFolder_Changed;
                 WatchedFoldersInternal.Add(watchedFolder);
                 OnWatchedFolderChanged(new WatchedFolderChangedEventArgs(new WatchedFolder[] { watchedFolder }, new WatchedFolder[] { }));
             }
         }
 
+        void watchedFolder_Changed(object sender, FileWatcherEventArgs e)
+        {
+            OnWatchedFolderChanged(new WatchedFolderChangedEventArgs(new WatchedFolder[] { (WatchedFolder)sender }, new WatchedFolder[0]));
+        }
+
         public void RemoveWatchedFolder(WatchedFolder watchedFolder)
         {
             WatchedFoldersInternal.Remove(watchedFolder);
+            watchedFolder.Changed -= watchedFolder_Changed;
             OnWatchedFolderChanged(new WatchedFolderChangedEventArgs(new WatchedFolder[] { }, new WatchedFolder[] { watchedFolder }));
         }
 

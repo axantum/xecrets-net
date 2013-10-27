@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Axantum.AxCrypt.Core.IO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -17,6 +18,10 @@ namespace Axantum.AxCrypt.Core.Session
         [DataMember(Name = "Path")]
         public string Path { get; private set; }
 
+        private IFileWatcher _fileWatcher;
+
+        public event EventHandler<FileWatcherEventArgs> Changed;
+
         public WatchedFolder(string path)
         {
             if (path == null)
@@ -24,6 +29,28 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("path");
             }
             Path = path;
+            Initialize(new StreamingContext());
+        }
+
+        [OnDeserialized]
+        private void Initialize(StreamingContext context)
+        {
+            _fileWatcher = OS.Current.CreateFileWatcher(Path);
+            _fileWatcher.FileChanged += _fileWatcher_FileChanged;
+        }
+
+        void _fileWatcher_FileChanged(object sender, FileWatcherEventArgs e)
+        {
+            OnChanged(e);
+        }
+
+        protected virtual void OnChanged(FileWatcherEventArgs e)
+        {
+            EventHandler<FileWatcherEventArgs> handler = Changed;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
         }
 
         public bool Equals(WatchedFolder other)
