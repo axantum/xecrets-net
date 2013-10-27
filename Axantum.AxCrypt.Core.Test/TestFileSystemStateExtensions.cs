@@ -153,6 +153,7 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile;
             activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedFile1), OS.Current.FileInfo(_decryptedFile1), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted, null);
             _fileSystemState.Add(activeFile);
+            _fileSystemState.KnownKeys.Add(activeFile.Key);
 
             IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(_decryptedFile1);
             decryptedFileInfo.SetFileTimes(utcNow, utcNow, utcNow);
@@ -255,6 +256,7 @@ namespace Axantum.AxCrypt.Core.Test
             OS.Current.FileInfo(_decryptedFile1).Delete();
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.NotDecrypted, null);
             _fileSystemState.Add(activeFile);
+            _fileSystemState.KnownKeys.Add(activeFile.Key);
 
             bool changedWasRaised = false;
             _fileSystemState.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
@@ -277,6 +279,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedFile1), OS.Current.FileInfo(_decryptedFile1), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted, null);
             _fileSystemState.Add(activeFile);
+            _fileSystemState.KnownKeys.Add(activeFile.Key);
 
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
@@ -355,6 +358,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeLauncher fakeLauncher = new FakeLauncher(_decryptedFile1);
             ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedFile1), OS.Current.FileInfo(_decryptedFile1), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted, fakeLauncher);
             _fileSystemState.Add(activeFile);
+            _fileSystemState.KnownKeys.Add(activeFile.Key);
 
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;

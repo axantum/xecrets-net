@@ -214,19 +214,34 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return activeFile;
             }
+            
+            AesKey key = FindKnownKeyOrNull(fileSystemState, activeFile);
             if (activeFile.Key != null)
             {
-                return activeFile;
+                if (key != null)
+                {
+                    return activeFile;
+                }
+                return new ActiveFile(activeFile);
             }
+
+            if (key != null)
+            {
+                return new ActiveFile(activeFile, key);
+            }
+            return activeFile;
+        }
+
+        private static AesKey FindKnownKeyOrNull(FileSystemState fileSystemState, ActiveFile activeFile)
+        {
             foreach (AesKey key in fileSystemState.KnownKeys.Keys)
             {
                 if (activeFile.ThumbprintMatch(key))
                 {
-                    activeFile = new ActiveFile(activeFile, key);
+                    return key;
                 }
-                return activeFile;
             }
-            return activeFile;
+            return null;
         }
 
         private static ActiveFile CheckIfCreated(ActiveFile activeFile)

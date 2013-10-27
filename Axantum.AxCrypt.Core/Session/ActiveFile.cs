@@ -48,6 +48,17 @@ namespace Axantum.AxCrypt.Core.Session
     [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
     public sealed class ActiveFile : IDisposable
     {
+        public ActiveFile(ActiveFile activeFile)
+        {
+            if (activeFile == null)
+            {
+                throw new ArgumentNullException("activeFile");
+            }
+            Initialize(activeFile);
+            LastActivityTimeUtc = activeFile.LastActivityTimeUtc;
+            Key = null;
+        }
+
         public ActiveFile(ActiveFile activeFile, AesKey key)
         {
             if (activeFile == null)

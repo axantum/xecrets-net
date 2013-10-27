@@ -83,8 +83,13 @@ namespace Axantum.AxCrypt.Core.UI
         {
             lock (_keys)
             {
+                if (_keys.Count == 0)
+                {
+                    return;
+                }
                 _keys.Clear();
             }
+            OnChanged(new EventArgs());
         }
 
         public IEnumerable<AesKey> Keys

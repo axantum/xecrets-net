@@ -1227,6 +1227,7 @@ namespace Axantum.AxCrypt
             else
             {
                 persistentState.Current.KnownKeys.DefaultEncryptionKey = null;
+                persistentState.Current.KnownKeys.Clear();
             }
             SetToolButtonsState();
         }
