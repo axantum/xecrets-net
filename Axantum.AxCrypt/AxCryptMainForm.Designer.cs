@@ -63,16 +63,18 @@
             this.logOutputTextBox = new System.Windows.Forms.TextBox();
             this.watchedFoldersTabPage = new System.Windows.Forms.TabPage();
             this.watchedFoldersListView = new System.Windows.Forms.ListView();
+            this.watchedFolderColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.recentFilesTabPage = new System.Windows.Forms.TabPage();
             this.recentFilesListView = new System.Windows.Forms.ListView();
             this.decryptedFileColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lastAccessTimeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.encryptedPathColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusTabControl = new System.Windows.Forms.TabControl();
-            this.watchedFolderColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.persistentState = new Axantum.AxCrypt.PersistentState(this.components);
             this.progressBackgroundWorker = new Axantum.AxCrypt.ProgressBackgroundWorker(this.components);
             this.backgroundMonitor = new Axantum.AxCrypt.BackgroundMonitor(this.components);
+            this.watchedFoldersContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainToolStrip.SuspendLayout();
             this.mainMenuStrip.SuspendLayout();
             this.recentFilesContextMenuStrip.SuspendLayout();
@@ -84,6 +86,7 @@
             this.statusTabControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.persistentState)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundMonitor)).BeginInit();
+            this.watchedFoldersContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainToolStrip
@@ -420,6 +423,11 @@
             this.watchedFoldersListView.DragDrop += new System.Windows.Forms.DragEventHandler(this.watchedFoldersListView_DragDrop);
             this.watchedFoldersListView.DragEnter += new System.Windows.Forms.DragEventHandler(this.watchedFoldersListView_DragEnter);
             this.watchedFoldersListView.DragOver += new System.Windows.Forms.DragEventHandler(this.watchedFoldersListView_DragOver);
+            this.watchedFoldersListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.watchedFoldersListView_MouseClick);
+            // 
+            // watchedFolderColumnHeader
+            // 
+            resources.ApplyResources(this.watchedFolderColumnHeader, "watchedFolderColumnHeader");
             // 
             // recentFilesTabPage
             // 
@@ -465,10 +473,6 @@
             this.statusTabControl.Name = "statusTabControl";
             this.statusTabControl.SelectedIndex = 0;
             // 
-            // watchedFolderColumnHeader
-            // 
-            resources.ApplyResources(this.watchedFolderColumnHeader, "watchedFolderColumnHeader");
-            // 
             // persistentState
             // 
             this.persistentState.Current = null;
@@ -477,6 +481,19 @@
             // 
             this.progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.progressBackgroundWorker_ProgressBarCreated);
             this.progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.progressBackgroundWorker_ProgressBarClicked);
+            // 
+            // watchedFoldersContextMenuStrip
+            // 
+            this.watchedFoldersContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteToolStripMenuItem});
+            this.watchedFoldersContextMenuStrip.Name = "watchedFoldersContextMenuStrip";
+            resources.ApplyResources(this.watchedFoldersContextMenuStrip, "watchedFoldersContextMenuStrip");
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            resources.ApplyResources(this.deleteToolStripMenuItem, "deleteToolStripMenuItem");
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // AxCryptMainForm
             // 
@@ -505,6 +522,7 @@
             this.statusTabControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.persistentState)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundMonitor)).EndInit();
+            this.watchedFoldersContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -568,6 +586,8 @@
         private System.Windows.Forms.ToolStripMenuItem wipeToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ColumnHeader watchedFolderColumnHeader;
+        private System.Windows.Forms.ContextMenuStrip watchedFoldersContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }
 }
 

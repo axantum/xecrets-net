@@ -33,6 +33,14 @@ namespace Axantum.AxCrypt
                     item.Name = text;
                 }
             }
+            for (int i = 0; i < _listView.Items.Count; ++i)
+            {
+                if (!_fileSystemState.WatchedFolders.Contains(new WatchedFolder(_listView.Items[i].Text)))
+                {
+                    _listView.Items.RemoveAt(i);
+                    --i;
+                }
+            }
             _listView.ListViewItemSorter = StringComparer.CurrentCulture;
         }
     }

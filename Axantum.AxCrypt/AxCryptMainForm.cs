@@ -127,6 +127,7 @@ namespace Axantum.AxCrypt
             recentFilesListView.ListViewItemSorter = _currentRecentFilesSorter;
 
             _watchedFoldersTabPage = statusTabControl.TabPages["watchedFoldersTabPage"]; //MLHIDE
+            ShowOrHideWatchedFoldersTabPage();
 
             OS.Current.WorkFolderStateChanged += HandleWorkFolderStateChangedEvent;
 
@@ -143,6 +144,21 @@ namespace Axantum.AxCrypt
             UpdateCheck(Settings.Default.LastUpdateCheckUtc);
 
             OS.Current.NotifyWorkFolderStateChanged();
+        }
+
+        private void ShowOrHideWatchedFoldersTabPage()
+        {
+            TabPage tabPage = statusTabControl.TabPages["watchedFoldersTabPage"]; //MLHIDE
+            if (persistentState.Current.KnownKeys.DefaultEncryptionKey != null && tabPage == null)
+            {
+                statusTabControl.TabPages.Add(_watchedFoldersTabPage);
+                return;
+            }
+            if (persistentState.Current.KnownKeys.DefaultEncryptionKey == null && tabPage != null)
+            {
+                statusTabControl.TabPages.Remove(tabPage);
+                return;
+            }
         }
 
         private void HandleKnownKeysChangedEvent(object sender, EventArgs e)
@@ -862,6 +878,7 @@ namespace Axantum.AxCrypt
                 {
                     closeAndRemoveOpenFilesToolStripButton.Enabled = FilesAreOpen;
                     SetToolButtonsState();
+                    ShowOrHideWatchedFoldersTabPage();
                     _watchedFoldersCore.UpdateWatchedFoldersListView();
                     _handleWorkFolderStateChangedInProgress = false;
                 });
@@ -951,7 +968,7 @@ namespace Axantum.AxCrypt
 
         private void removeRecentFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            IEnumerable<string> encryptedPaths = SelectedItems();
+            IEnumerable<string> encryptedPaths = SelectedRecentFilesItems();
 
             progressBackgroundWorker.BackgroundWorkWithProgress(
                 (ProgressContext progress) =>
@@ -966,12 +983,12 @@ namespace Axantum.AxCrypt
 
         private void decryptAndRemoveFromListToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            IEnumerable<string> encryptedPaths = SelectedItems();
+            IEnumerable<string> encryptedPaths = SelectedRecentFilesItems();
 
             ProcessFilesInBackground(encryptedPaths, DecryptFile);
         }
 
-        private IEnumerable<string> SelectedItems()
+        private IEnumerable<string> SelectedRecentFilesItems()
         {
             IEnumerable<string> selected = recentFilesListView.SelectedItems.Cast<ListViewItem>().Select((ListViewItem item) => { return item.SubItems["EncryptedPath"].Text; }).ToArray();
             return selected;
@@ -982,6 +999,11 @@ namespace Axantum.AxCrypt
             ShowContextMenu(recentFilesContextMenuStrip, sender, e);
         }
 
+        private void watchedFoldersListView_MouseClick(object sender, MouseEventArgs e)
+        {
+            ShowContextMenu(watchedFoldersContextMenuStrip, sender, e);
+        }
+
         private static void ShowContextMenu(ContextMenuStrip contextMenu, object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right)
@@ -990,6 +1012,21 @@ namespace Axantum.AxCrypt
             }
             ListView listView = (ListView)sender;
             contextMenu.Show(listView, e.Location);
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (string watchedFolderPath in SelectedWatchedFoldersItems())
+            {
+                persistentState.Current.RemoveWatchedFolder(new WatchedFolder(watchedFolderPath));
+                persistentState.Current.Save();
+            }
+        }
+
+        private IEnumerable<string> SelectedWatchedFoldersItems()
+        {
+            IEnumerable<string> selected  = watchedFoldersListView.SelectedItems.Cast<ListViewItem>().Select((ListViewItem item) => { return item.Text; }).ToArray();
+            return selected;
         }
 
         private void closeOpenFilesToolStripMenuItem_Click(object sender, EventArgs e)
