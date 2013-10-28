@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Axantum.AxCrypt.Core;
 
 namespace Axantum.AxCrypt
 {
@@ -19,15 +20,9 @@ namespace Axantum.AxCrypt
             _fileSystemState = fileSystemState;
         }
 
-        public void HandleWatchedFolderChanged(object sender, WatchedFolderChangedEventArgs e)
+        public void UpdateWatchedFoldersListView()
         {
             _listView.ListViewItemSorter = null;
-            UpdateWatchedFoldersListView();
-            _listView.ListViewItemSorter = StringComparer.CurrentCulture;
-        }
-
-        private void UpdateWatchedFoldersListView()
-        {
             foreach (WatchedFolder folder in _fileSystemState.WatchedFolders)
             {
                 ListViewItem item = _listView.Items[folder.Path];
@@ -38,6 +33,7 @@ namespace Axantum.AxCrypt
                     item.Name = text;
                 }
             }
+            _listView.ListViewItemSorter = StringComparer.CurrentCulture;
         }
     }
 }

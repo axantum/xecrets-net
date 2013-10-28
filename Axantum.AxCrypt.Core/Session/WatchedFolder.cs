@@ -13,7 +13,7 @@ namespace Axantum.AxCrypt.Core.Session
     /// immutable
     /// </summary>
     [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
-    public class WatchedFolder : IEquatable<WatchedFolder>
+    public class WatchedFolder : IEquatable<WatchedFolder>, IDisposable
     {
         [DataMember(Name = "Path")]
         public string Path { get; private set; }
@@ -29,6 +29,12 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("path");
             }
             Path = path;
+            Initialize(new StreamingContext());
+        }
+
+        public WatchedFolder(WatchedFolder watchedFolder)
+        {
+            Path = watchedFolder.Path;
             Initialize(new StreamingContext());
         }
 
@@ -98,5 +104,29 @@ namespace Axantum.AxCrypt.Core.Session
         {
             return !(left == right);
         }
+
+        #region IDisposable Members
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposing)
+            {
+                return;
+            }
+
+            if (_fileWatcher != null)
+            {
+                _fileWatcher.Dispose();
+                _fileWatcher = null;
+            }
+        }
+
+        #endregion IDisposable Members
     }
 }

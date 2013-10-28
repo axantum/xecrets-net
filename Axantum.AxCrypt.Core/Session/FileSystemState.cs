@@ -144,33 +144,23 @@ namespace Axantum.AxCrypt.Core.Session
         {
             if (!WatchedFoldersInternal.Contains(watchedFolder))
             {
-                watchedFolder.Changed += watchedFolder_Changed;
-                WatchedFoldersInternal.Add(watchedFolder);
-                OnWatchedFolderChanged(new WatchedFolderChangedEventArgs(new WatchedFolder[] { watchedFolder }, new WatchedFolder[] { }));
+                WatchedFolder copy = new WatchedFolder(watchedFolder);
+                copy.Changed += watchedFolder_Changed;
+                WatchedFoldersInternal.Add(copy);
+                OS.Current.NotifyWorkFolderStateChanged();
             }
         }
 
         void watchedFolder_Changed(object sender, FileWatcherEventArgs e)
         {
-            OnWatchedFolderChanged(new WatchedFolderChangedEventArgs(new WatchedFolder[] { (WatchedFolder)sender }, new WatchedFolder[0]));
+            OS.Current.NotifyWorkFolderStateChanged();
         }
 
         public void RemoveWatchedFolder(WatchedFolder watchedFolder)
         {
             WatchedFoldersInternal.Remove(watchedFolder);
             watchedFolder.Changed -= watchedFolder_Changed;
-            OnWatchedFolderChanged(new WatchedFolderChangedEventArgs(new WatchedFolder[] { }, new WatchedFolder[] { watchedFolder }));
-        }
-
-        public event EventHandler<WatchedFolderChangedEventArgs> WatchedFolderChanged;
-
-        protected virtual void OnWatchedFolderChanged(WatchedFolderChangedEventArgs e)
-        {
-            EventHandler<WatchedFolderChangedEventArgs> handler = WatchedFolderChanged;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            OS.Current.NotifyWorkFolderStateChanged();
         }
 
         public event EventHandler<ActiveFileChangedEventArgs> Changed;
@@ -400,14 +390,35 @@ namespace Axantum.AxCrypt.Core.Session
                 return;
             }
 
-            DataContractSerializer serializer = CreateSerializer();
-            IRuntimeFileInfo loadInfo = OS.Current.FileInfo(path.FullName);
+            using (FileSystemState fileSystemState = CreateFileSystemState(path))
+            {
+                _path = path.FullName;
+                foreach (ActiveFile activeFile in fileSystemState.ActiveFiles)
+                {
+                    Add(activeFile);
+                }
+                KnownKeys = fileSystemState.KnownKeys;
+                KeyWrapIterations = fileSystemState.KeyWrapIterations;
+                ThumbprintSalt = fileSystemState.ThumbprintSalt;
+                foreach (WatchedFolder watchedFolder in fileSystemState.WatchedFolders)
+                {
+                    AddWatchedFolder(watchedFolder);
+                }
+                if (OS.Log.IsInfoEnabled)
+                {
+                    OS.Log.LogInfo("Loaded FileSystemState from '{0}'.".InvariantFormat(fileSystemState._path));
+                }
+            }
+        }
 
-            using (Stream fileSystemStateStream = loadInfo.OpenRead())
+        private static FileSystemState CreateFileSystemState(IRuntimeFileInfo path)
+        {
+            using (Stream fileSystemStateStream = path.OpenRead())
             {
                 FileSystemState fileSystemState;
                 try
                 {
+                    DataContractSerializer serializer = CreateSerializer();
                     fileSystemState = (FileSystemState)serializer.ReadObject(fileSystemStateStream);
                 }
                 catch (Exception ex)
@@ -418,19 +429,7 @@ namespace Axantum.AxCrypt.Core.Session
                     }
                     fileSystemState = new FileSystemState();
                 }
-                _path = path.FullName;
-                foreach (ActiveFile activeFile in fileSystemState.ActiveFiles)
-                {
-                    Add(activeFile);
-                }
-                KnownKeys = fileSystemState.KnownKeys;
-                KeyWrapIterations = fileSystemState.KeyWrapIterations;
-                ThumbprintSalt = fileSystemState.ThumbprintSalt;
-                WatchedFolders = fileSystemState.WatchedFolders;
-                if (OS.Log.IsInfoEnabled)
-                {
-                    OS.Log.LogInfo("Loaded FileSystemState from '{0}'.".InvariantFormat(fileSystemState._path));
-                }
+                return fileSystemState;
             }
         }
 
@@ -468,11 +467,12 @@ namespace Axantum.AxCrypt.Core.Session
 
         protected virtual void Dispose(bool disposing)
         {
-            if (_activeFilesByEncryptedPath == null)
+            if (!disposing)
             {
                 return;
             }
-            if (disposing)
+
+            if (_activeFilesByEncryptedPath != null)
             {
                 foreach (ActiveFile activeFile in _activeFilesByEncryptedPath.Values)
                 {
@@ -480,6 +480,15 @@ namespace Axantum.AxCrypt.Core.Session
                 }
                 _activeFilesByEncryptedPath = null;
                 _activeFilesByDecryptedPath = null;
+            }
+            
+            if (_watchedFolders != null)
+            {
+                foreach (WatchedFolder watchedFolder in _watchedFolders)
+                {
+                    watchedFolder.Dispose();
+                }
+                _watchedFolders = null;
             }
         }
 

@@ -131,10 +131,9 @@ namespace Axantum.AxCrypt
             OS.Current.WorkFolderStateChanged += HandleWorkFolderStateChangedEvent;
 
             persistentState.Current.Changed += new EventHandler<ActiveFileChangedEventArgs>(HandleFileSystemStateChangedEvent);
-            persistentState.Current.WatchedFolderChanged += _watchedFoldersCore.HandleWatchedFolderChanged;
             persistentState.Current.Load(FileSystemState.DefaultPathInfo);
-
             persistentState.Current.KnownKeys.Changed += new EventHandler<EventArgs>(HandleKnownKeysChangedEvent);
+
             OS.Current.KeyWrapIterations = persistentState.Current.KeyWrapIterations;
             OS.Current.ThumbprintSalt = persistentState.Current.ThumbprintSalt;
 
@@ -863,6 +862,7 @@ namespace Axantum.AxCrypt
                 {
                     closeAndRemoveOpenFilesToolStripButton.Enabled = FilesAreOpen;
                     SetToolButtonsState();
+                    _watchedFoldersCore.UpdateWatchedFoldersListView();
                     _handleWorkFolderStateChangedInProgress = false;
                 });
         }

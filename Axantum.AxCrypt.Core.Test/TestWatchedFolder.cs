@@ -10,6 +10,18 @@ namespace Axantum.AxCrypt.Core.Test
 {
     public static class TestWatchedFolder
     {
+        [SetUp]
+        public static void Setup()
+        {
+            SetupAssembly.AssemblySetup();
+        }
+
+        [TearDown]
+        public static void Teardown()
+        {
+            SetupAssembly.AssemblyTeardown();
+        }
+
         [Test]
         public static void TestArgumentNullConstructor()
         {
