@@ -57,7 +57,7 @@ namespace Axantum.AxCrypt
     /// All code here is expected to execute on the GUI thread. If code may be called on another thread, this call
     /// must be made through ThreadSafeUi() .
     /// </summary>
-    public partial class AxCryptMainForm : Form
+    public partial class AxCryptMainForm : Form, IMainView
     {
         private class RecentFilesByDateComparer : IComparer
         {
@@ -79,8 +79,6 @@ namespace Axantum.AxCrypt
 
         private TabPage _logTabPage = null;
 
-        private TabPage _watchedFoldersTabPage = null;
-
         private NotifyIcon _notifyIcon = null;
 
         private string _title;
@@ -88,6 +86,21 @@ namespace Axantum.AxCrypt
         private WatchedFoldersCore _watchedFoldersCore;
 
         public static MessageBoxOptions MessageBoxOptions { get; private set; }
+
+        public FileSystemState FileSystemState
+        {
+            get { return persistentState.Current; }
+        }
+
+        public ListView WatchedFolders
+        {
+            get { return watchedFoldersListView; }
+        }
+
+        public TabControl Tabs
+        {
+            get { return statusTabControl; }
+        }
 
         public AxCryptMainForm()
         {
@@ -120,14 +133,11 @@ namespace Axantum.AxCrypt
 
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
 
-            _watchedFoldersCore = new WatchedFoldersCore(watchedFoldersListView, persistentState.Current);
+            _watchedFoldersCore = new WatchedFoldersCore(this);
 
             recentFilesListView.SmallImageList = CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources(components);
             recentFilesListView.LargeImageList = CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources(components);
             recentFilesListView.ListViewItemSorter = _currentRecentFilesSorter;
-
-            _watchedFoldersTabPage = statusTabControl.TabPages["watchedFoldersTabPage"]; //MLHIDE
-            ShowOrHideWatchedFoldersTabPage();
 
             OS.Current.WorkFolderStateChanged += HandleWorkFolderStateChangedEvent;
 
@@ -144,21 +154,6 @@ namespace Axantum.AxCrypt
             UpdateCheck(Settings.Default.LastUpdateCheckUtc);
 
             OS.Current.NotifyWorkFolderStateChanged();
-        }
-
-        private void ShowOrHideWatchedFoldersTabPage()
-        {
-            TabPage tabPage = statusTabControl.TabPages["watchedFoldersTabPage"]; //MLHIDE
-            if (persistentState.Current.KnownKeys.DefaultEncryptionKey != null && tabPage == null)
-            {
-                statusTabControl.TabPages.Add(_watchedFoldersTabPage);
-                return;
-            }
-            if (persistentState.Current.KnownKeys.DefaultEncryptionKey == null && tabPage != null)
-            {
-                statusTabControl.TabPages.Remove(tabPage);
-                return;
-            }
         }
 
         private void HandleKnownKeysChangedEvent(object sender, EventArgs e)
@@ -878,8 +873,7 @@ namespace Axantum.AxCrypt
                 {
                     closeAndRemoveOpenFilesToolStripButton.Enabled = FilesAreOpen;
                     SetToolButtonsState();
-                    ShowOrHideWatchedFoldersTabPage();
-                    _watchedFoldersCore.UpdateWatchedFoldersListView();
+                    _watchedFoldersCore.UpdateListView();
                     _handleWorkFolderStateChangedInProgress = false;
                 });
         }

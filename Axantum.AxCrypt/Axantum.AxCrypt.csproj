@@ -101,6 +101,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Extensions.cs" />
+    <Compile Include="IMainView.cs" />
     <Compile Include="PersistentState.cs">
       <SubType>Component</SubType>
     </Compile>

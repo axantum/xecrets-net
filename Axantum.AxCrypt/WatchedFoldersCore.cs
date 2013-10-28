@@ -10,38 +10,64 @@ namespace Axantum.AxCrypt
 {
     internal class WatchedFoldersCore
     {
-        private ListView _listView;
+        private IMainView _mainView;
 
-        private FileSystemState _fileSystemState;
-
-        public WatchedFoldersCore(ListView listView, FileSystemState fileSystemState)
+        public WatchedFoldersCore(IMainView mainView)
         {
-            _listView = listView;
-            _fileSystemState = fileSystemState;
+            _mainView = mainView;
         }
 
-        public void UpdateWatchedFoldersListView()
+        private TabPage WatchedFoldersTabPage
         {
-            _listView.ListViewItemSorter = null;
-            foreach (WatchedFolder folder in _fileSystemState.WatchedFolders)
+            get { return _mainView.Tabs.TabPages["watchedFoldersTabPage"]; }
+        }
+
+        public void UpdateListView()
+        {
+            AddRemoveWatchedFolders();
+            ShowOrHideWatchedFoldersTabPage();
+        }
+
+        private void AddRemoveWatchedFolders()
+        {
+            _mainView.WatchedFolders.ListViewItemSorter = null;
+            foreach (WatchedFolder folder in _mainView.FileSystemState.WatchedFolders)
             {
-                ListViewItem item = _listView.Items[folder.Path];
+                ListViewItem item = _mainView.WatchedFolders.Items[folder.Path];
                 if (item == null)
                 {
                     string text = folder.Path;
-                    item = _listView.Items.Add(text);
+                    item = _mainView.WatchedFolders.Items.Add(text);
                     item.Name = text;
                 }
             }
-            for (int i = 0; i < _listView.Items.Count; ++i)
+            for (int i = 0; i < _mainView.WatchedFolders.Items.Count; ++i)
             {
-                if (!_fileSystemState.WatchedFolders.Contains(new WatchedFolder(_listView.Items[i].Text)))
+                if (!_mainView.FileSystemState.WatchedFolders.Contains(new WatchedFolder(_mainView.WatchedFolders.Items[i].Text)))
                 {
-                    _listView.Items.RemoveAt(i);
+                    _mainView.WatchedFolders.Items.RemoveAt(i);
                     --i;
                 }
             }
-            _listView.ListViewItemSorter = StringComparer.CurrentCulture;
+            _mainView.WatchedFolders.ListViewItemSorter = StringComparer.CurrentCulture;
+        }
+
+        private TabPage _watchedFoldersTabPage;
+
+        private void ShowOrHideWatchedFoldersTabPage()
+        {
+            if (_mainView.FileSystemState.KnownKeys.DefaultEncryptionKey != null && WatchedFoldersTabPage == null)
+            {
+                _mainView.Tabs.TabPages.Add(_watchedFoldersTabPage);
+                _watchedFoldersTabPage = null;
+                return;
+            }
+            if (_mainView.FileSystemState.KnownKeys.DefaultEncryptionKey == null && WatchedFoldersTabPage != null)
+            {
+                _watchedFoldersTabPage = WatchedFoldersTabPage;
+                _mainView.Tabs.TabPages.Remove(WatchedFoldersTabPage);
+                return;
+            }
         }
     }
 }
