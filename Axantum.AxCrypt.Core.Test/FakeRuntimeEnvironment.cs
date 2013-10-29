@@ -32,6 +32,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using Axantum.AxCrypt.Core.Session;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -189,21 +190,21 @@ namespace Axantum.AxCrypt.Core.Test
             return WebCallerCreator();
         }
 
-        public void NotifyWorkFolderStateChanged()
+        public void NotifyWorkFolderStateChanged(SessionEventArgs e)
         {
-            OnChanged();
+            OnChanged(e);
         }
 
-        protected virtual void OnChanged()
+        protected virtual void OnChanged(SessionEventArgs e)
         {
-            EventHandler<EventArgs> handler = WorkFolderStateChanged;
+            EventHandler<SessionEventArgs> handler = WorkFolderStateChanged;
             if (handler != null)
             {
-                handler(this, new EventArgs());
+                handler(this, e);
             }
         }
 
-        public event EventHandler<EventArgs> WorkFolderStateChanged;
+        public event EventHandler<SessionEventArgs> WorkFolderStateChanged;
 
         #region IRuntimeEnvironment Members
 

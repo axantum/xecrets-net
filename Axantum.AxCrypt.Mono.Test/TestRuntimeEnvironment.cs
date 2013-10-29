@@ -33,6 +33,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using Axantum.AxCrypt.Core.Session;
 
 namespace Axantum.AxCrypt.Mono.Test
 {
@@ -158,8 +159,8 @@ namespace Axantum.AxCrypt.Mono.Test
         public static void TestChangedEvent()
         {
             bool wasHere = false;
-            OS.Current.WorkFolderStateChanged += (object sender, EventArgs e) => { wasHere = true; };
-            OS.Current.NotifyWorkFolderStateChanged();
+            OS.Current.WorkFolderStateChanged += (object sender, SessionEventArgs e) => { wasHere = true; };
+            OS.Current.NotifyWorkFolderStateChanged(new SessionEventArgs(SessionEvent.ActiveFileChange));
 
             Assert.That(wasHere, Is.False, "The RaiseChanged() method should not raise the event immediately.");
 

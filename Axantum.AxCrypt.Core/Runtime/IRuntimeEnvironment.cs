@@ -29,14 +29,15 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using System;
 using System.IO;
+using Axantum.AxCrypt.Core.Session;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
     public interface IRuntimeEnvironment
     {
-        event EventHandler<EventArgs> WorkFolderStateChanged;
+        event EventHandler<SessionEventArgs> WorkFolderStateChanged;
 
-        void NotifyWorkFolderStateChanged();
+        void NotifyWorkFolderStateChanged(SessionEventArgs e);
 
         bool IsLittleEndian { get; }
 

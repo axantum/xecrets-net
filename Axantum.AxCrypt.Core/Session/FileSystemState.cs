@@ -147,20 +147,19 @@ namespace Axantum.AxCrypt.Core.Session
                 WatchedFolder copy = new WatchedFolder(watchedFolder);
                 copy.Changed += watchedFolder_Changed;
                 WatchedFoldersInternal.Add(copy);
-                OS.Current.NotifyWorkFolderStateChanged();
+                OS.Current.NotifyWorkFolderStateChanged(new SessionEventArgs(SessionEvent.WatchedFolderAdded, KnownKeys.DefaultEncryptionKey, watchedFolder.Path));
             }
         }
 
         void watchedFolder_Changed(object sender, FileWatcherEventArgs e)
         {
-            OS.Current.NotifyWorkFolderStateChanged();
         }
 
         public void RemoveWatchedFolder(WatchedFolder watchedFolder)
         {
             WatchedFoldersInternal.Remove(watchedFolder);
             watchedFolder.Changed -= watchedFolder_Changed;
-            OS.Current.NotifyWorkFolderStateChanged();
+            OS.Current.NotifyWorkFolderStateChanged(new SessionEventArgs(SessionEvent.WatchedFolderRemoved, KnownKeys.DefaultEncryptionKey, watchedFolder.Path));
         }
 
         public event EventHandler<ActiveFileChangedEventArgs> Changed;

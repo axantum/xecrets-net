@@ -185,12 +185,13 @@ namespace Axantum.AxCrypt.Core.UI
 
         private static void process_Exited(object sender, EventArgs e)
         {
+            string path = ((ILauncher)sender).Path;
             if (OS.Log.IsInfoEnabled)
             {
-                OS.Log.LogInfo("Process exit event for '{0}'.".InvariantFormat(((ILauncher)sender).Path));
+                OS.Log.LogInfo("Process exit event for '{0}'.".InvariantFormat(path));
             }
 
-            OS.Current.NotifyWorkFolderStateChanged();
+            OS.Current.NotifyWorkFolderStateChanged(new SessionEventArgs(SessionEvent.ProcessExit, path));
         }
 
         private static ActiveFile TryDecrypt(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFolderInfo, IEnumerable<AesKey> keys, ProgressContext progress)

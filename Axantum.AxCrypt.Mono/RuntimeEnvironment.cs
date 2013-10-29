@@ -33,6 +33,7 @@ using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Security.Cryptography;
+using Axantum.AxCrypt.Core.Session;
 
 namespace Axantum.AxCrypt.Mono
 {
@@ -71,7 +72,7 @@ namespace Axantum.AxCrypt.Mono
 
         private void HandleWorkFolderFileChangedEvent(object sender, FileWatcherEventArgs e)
         {
-            NotifyWorkFolderStateChanged();
+            NotifyWorkFolderStateChanged(new SessionEventArgs(SessionEvent.WorkFolderChange, e.FullName));
         }
 
         public bool IsLittleEndian
@@ -195,21 +196,21 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        public void NotifyWorkFolderStateChanged()
+        public void NotifyWorkFolderStateChanged(SessionEventArgs e)
         {
             _delayedWorkFolderStateChanged.RestartIdleTimer();
         }
 
         protected virtual void OnWorkFolderStateChanged()
         {
-            EventHandler<EventArgs> handler = WorkFolderStateChanged;
+            EventHandler<SessionEventArgs> handler = WorkFolderStateChanged;
             if (handler != null)
             {
-                handler(this, new EventArgs());
+                handler(this, new SessionEventArgs(SessionEvent.SessionChange));
             }
         }
 
-        public event EventHandler<EventArgs> WorkFolderStateChanged;
+        public event EventHandler<SessionEventArgs> WorkFolderStateChanged;
 
         public IDataProtection DataProtection
         {
