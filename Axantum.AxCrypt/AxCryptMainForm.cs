@@ -861,7 +861,7 @@ namespace Axantum.AxCrypt
                     try
                     {
                         persistentState.Current.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
-                        persistentState.Current.CheckWatchedFolders(progress);
+                        _watchedFoldersCore.EncryptFiles(progress);
                     }
                     finally
                     {
@@ -927,7 +927,7 @@ namespace Axantum.AxCrypt
                     {
                         persistentState.Current.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
                         persistentState.Current.PurgeActiveFiles(progress);
-                        persistentState.Current.CheckWatchedFolders(progress);
+                        _watchedFoldersCore.EncryptFiles(progress);
                     }
                     finally
                     {

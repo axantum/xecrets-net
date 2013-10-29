@@ -108,7 +108,7 @@ namespace Axantum.AxCrypt.Core.Session
             progress.NotifyLevelFinished();
         }
 
-        public static void CheckWatchedFolders(this FileSystemState fileSystemState, ProgressContext progress)
+        public static void EncryptFilesInWatchedFolders(this FileSystemState fileSystemState, ProgressContext progress)
         {
             if (fileSystemState == null)
             {
@@ -127,6 +127,7 @@ namespace Axantum.AxCrypt.Core.Session
                 foreach (IRuntimeFileInfo fileInfo in files)
                 {
                     IRuntimeFileInfo destinationFileInfo = fileInfo.CreateEncryptedName();
+                    destinationFileInfo = OS.Current.FileInfo(destinationFileInfo.FullName.CreateUniqueFile());
                     AxCryptFile.EncryptFileWithBackupAndWipe(fileInfo, destinationFileInfo, encryptionKey, progress);
                     progress.AddCount(1);
                 }

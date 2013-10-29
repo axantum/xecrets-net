@@ -375,18 +375,8 @@ namespace Axantum.AxCrypt.Core
 
         private static string MakeAlternatePath(IRuntimeFileInfo fileInfo, string extension)
         {
-            string alternatePath;
-            IRuntimeFileInfo alternateFileInfo;
-            int version = 0;
-            do
-            {
-                string alternateExtension = (version > 0 ? "." + version.ToString(CultureInfo.InvariantCulture) : String.Empty) + extension;
-                alternatePath = Path.Combine(Path.GetDirectoryName(fileInfo.FullName), Path.GetFileNameWithoutExtension(fileInfo.Name) + alternateExtension);
-                alternateFileInfo = OS.Current.FileInfo(alternatePath);
-                ++version;
-            } while (alternateFileInfo.Exists);
-
-            return alternatePath;
+            string alternatePath = Path.Combine(Path.GetDirectoryName(fileInfo.FullName), Path.GetFileNameWithoutExtension(fileInfo.Name) + extension);
+            return alternatePath.CreateUniqueFile();
         }
 
         public static string MakeAxCryptFileName(IRuntimeFileInfo fileInfo)

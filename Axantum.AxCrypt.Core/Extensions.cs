@@ -30,6 +30,7 @@ using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Globalization;
 using System.IO;
+using Axantum.AxCrypt.Core.IO;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -320,6 +321,33 @@ namespace Axantum.AxCrypt.Core
 
             return encryptedName;
         }
+
+        public static string CreateUniqueFile(this string fullName)
+        {
+            IRuntimeFileInfo pathInfo = OS.Current.FileInfo(fullName);
+            string extension = Path.GetExtension(fullName);
+            int version = 0;
+            while (true)
+            {
+                try
+                {
+                    string alternateExtension = (version > 0 ? "." + version.ToString(CultureInfo.InvariantCulture) : String.Empty) + extension;
+                    string alternatePath = Path.Combine(Path.GetDirectoryName(pathInfo.FullName), Path.GetFileNameWithoutExtension(pathInfo.Name) + alternateExtension);
+                    IRuntimeFileInfo alternateFileInfo = OS.Current.FileInfo(alternatePath);
+                    alternateFileInfo.CreateNewFile();
+                    return alternateFileInfo.FullName;
+                }
+                catch (AxCryptException ace)
+                {
+                    if (ace.ErrorStatus != ErrorStatus.FileExists)
+                    {
+                        throw;
+                    }
+                }
+                ++version;
+            }
+        }
+
 
         public static bool HasMask(this AxCryptOptions options, AxCryptOptions mask)
         {

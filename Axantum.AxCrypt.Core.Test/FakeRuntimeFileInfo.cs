@@ -32,6 +32,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -309,6 +310,16 @@ namespace Axantum.AxCrypt.Core.Test
                 return;
             }
             AddFile(directory, utcNow, utcNow, utcNow, Stream.Null);
+        }
+
+        public void CreateNewFile()
+        {
+            FakeFileInfo fileInfo = FindFileInfo();
+            if (fileInfo != null)
+            {
+                throw new InternalErrorException("File exists.", ErrorStatus.FileExists);
+            }
+            AddFile(FullName, Stream.Null);
         }
 
         public bool IsFolder

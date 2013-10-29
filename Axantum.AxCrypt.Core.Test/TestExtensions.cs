@@ -29,6 +29,7 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Threading;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
 
@@ -341,6 +342,34 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.Throws<ArgumentOutOfRangeException>(() => { stream.CopyTo(stream, 0); });
                 Assert.Throws<ArgumentOutOfRangeException>(() => { stream.CopyTo(stream, -1); });
             }
+        }
+
+        [Test]
+        public static void TestCreateUniqueFileFirstIsOk()
+        {
+            string unique = @"C:\temp\test.txt".CreateUniqueFile();
+            Assert.That(unique, Is.EqualTo(@"C:\temp\test.txt"));
+        }
+
+        [Test]
+        public static void TestCreateUniqueFileFirstIsNotOk()
+        {
+            IRuntimeFileInfo fileInfo = OS.Current.FileInfo(@"C:\temp\test.txt");
+            using (Stream stream = fileInfo.OpenWrite())
+            {
+            }
+            string unique = @"C:\temp\test.txt".CreateUniqueFile();
+            Assert.That(unique, Is.EqualTo(@"C:\temp\test.1.txt"));
+        }
+
+        [Test]
+        public static void TestCreateUniqueFileReallyCreates()
+        {
+            string unique = @"C:\temp\test.txt".CreateUniqueFile();
+            Assert.That(unique, Is.EqualTo(@"C:\temp\test.txt"));
+
+            unique = @"C:\temp\test.txt".CreateUniqueFile();
+            Assert.That(unique, Is.EqualTo(@"C:\temp\test.1.txt"));
         }
     }
 }

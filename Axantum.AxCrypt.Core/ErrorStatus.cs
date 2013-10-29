@@ -39,5 +39,6 @@ namespace Axantum.AxCrypt.Core
         HmacValidationError,
         DataError,
         Cancel,
+        FileExists,
     }
 }

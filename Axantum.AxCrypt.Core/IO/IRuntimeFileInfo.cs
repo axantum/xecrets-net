@@ -54,6 +54,11 @@ namespace Axantum.AxCrypt.Core.IO
         void CreateFolder();
 
         /// <summary>
+        /// Creates a file in the underlying system. If it already exists, an AxCryptException is thrown with status FileExists.
+        /// </summary>
+        void CreateNewFile();
+
+        /// <summary>
         /// Get the Name part without the folder part of the path.
         /// </summary>
         string Name { get; }

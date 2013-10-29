@@ -31,6 +31,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.AccessControl;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Mono
 {
@@ -208,6 +210,20 @@ namespace Axantum.AxCrypt.Mono
         /// <param name="destinationFileName">Name of the destination file.</param>
         public void MoveTo(string destinationFileName)
         {
+            IRuntimeFileInfo destination = OS.Current.FileInfo(destinationFileName);
+            if (destination.Exists)
+            {
+                try
+                {
+                    File.Replace(_file.FullName, destinationFileName, null);
+                    _file = new FileInfo(destinationFileName);
+                    return;
+                }
+                catch (PlatformNotSupportedException)
+                {
+                }
+                destination.Delete();
+            }
             _file.MoveTo(destinationFileName);
         }
 
@@ -225,6 +241,24 @@ namespace Axantum.AxCrypt.Mono
         public void CreateFolder()
         {
             Directory.CreateDirectory(Path.GetDirectoryName(_file.FullName));
+        }
+
+        /// <summary>
+        /// Creates a file in the underlying system. If it already exists, an AxCryptException is thrown with status FileExists.
+        /// </summary>
+        public void CreateNewFile()
+        {
+            try
+            {
+                using (FileStream stream = new FileStream(_file.FullName, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.None))
+                {
+                    return;
+                }
+            }
+            catch (IOException)
+            {
+                throw new InternalErrorException("File exists.", ErrorStatus.FileExists);
+            }
         }
 
         /// <summary>
