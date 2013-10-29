@@ -279,6 +279,7 @@ namespace Axantum.AxCrypt.Core.Test
             _fakeFileSystem.Remove(_file.FullName);
 
             _file = new FakeFileInfo { FullName = destinationFileName, CreationTimeUtc = source.CreationTimeUtc, LastAccessTimeUtc = source.LastAccessTimeUtc, LastWriteTimeUtc = source.LastWriteTimeUtc, Stream = source.Stream };
+            _fakeFileSystem.Remove(destinationFileName);
             _fakeFileSystem.Add(destinationFileName, _file);
 
             ((FakeRuntimeEnvironment)OS.Current).FileMoved(destinationFileName);
@@ -319,7 +320,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 throw new InternalErrorException("File exists.", ErrorStatus.FileExists);
             }
-            AddFile(FullName, Stream.Null);
+            AddFile(FullName, new MemoryStream());
         }
 
         public bool IsFolder
