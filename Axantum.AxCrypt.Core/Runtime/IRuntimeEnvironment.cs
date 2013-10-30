@@ -30,6 +30,7 @@ using Axantum.AxCrypt.Core.IO;
 using System;
 using System.IO;
 using Axantum.AxCrypt.Core.Session;
+using System.Collections.Generic;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
@@ -37,7 +38,7 @@ namespace Axantum.AxCrypt.Core.Runtime
     {
         event EventHandler<SessionEventArgs> WorkFolderStateChanged;
 
-        void NotifyWorkFolderStateChanged(SessionEventArgs e);
+        void NotifyWorkFolderStateChanged(SessionEvent sessionEvent);
 
         bool IsLittleEndian { get; }
 

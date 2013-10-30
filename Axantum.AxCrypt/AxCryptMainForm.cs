@@ -153,12 +153,12 @@ namespace Axantum.AxCrypt
             backgroundMonitor.UpdateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(HandleVersionUpdateEvent);
             UpdateCheck(Settings.Default.LastUpdateCheckUtc);
 
-            OS.Current.NotifyWorkFolderStateChanged(new SessionEventArgs(SessionEvent.SessionChange));
+            OS.Current.NotifyWorkFolderStateChanged(new SessionEvent(SessionEventType.SessionChange));
         }
 
         private void HandleKnownKeysChangedEvent(object sender, EventArgs e)
         {
-            OS.Current.NotifyWorkFolderStateChanged(new SessionEventArgs(SessionEvent.KnownKeyChange));
+            OS.Current.NotifyWorkFolderStateChanged(new SessionEvent(SessionEventType.KnownKeyChange));
         }
 
         private void SetWindowTextWithLogonStatus()
@@ -840,7 +840,7 @@ namespace Axantum.AxCrypt
 
         private bool _handleWorkFolderStateChangedInProgress = false;
 
-        private void HandleWorkFolderStateChangedEvent(object sender, EventArgs e)
+        private void HandleWorkFolderStateChangedEvent(object sender, SessionEventArgs e)
         {
             if (OS.Log.IsInfoEnabled)
             {
@@ -849,7 +849,7 @@ namespace Axantum.AxCrypt
 
             if (_handleWorkFolderStateChangedInProgress)
             {
-                OS.Current.NotifyWorkFolderStateChanged(new SessionEventArgs(SessionEvent.SessionChange));
+                OS.Current.NotifyWorkFolderStateChanged(new SessionEvent(SessionEventType.SessionChange));
                 return;
             }
             _handleWorkFolderStateChangedInProgress = true;

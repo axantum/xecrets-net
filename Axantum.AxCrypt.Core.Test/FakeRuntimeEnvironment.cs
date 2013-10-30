@@ -190,11 +190,6 @@ namespace Axantum.AxCrypt.Core.Test
             return WebCallerCreator();
         }
 
-        public void NotifyWorkFolderStateChanged(SessionEventArgs e)
-        {
-            OnChanged(e);
-        }
-
         protected virtual void OnChanged(SessionEventArgs e)
         {
             EventHandler<SessionEventArgs> handler = WorkFolderStateChanged;
@@ -205,6 +200,12 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         public event EventHandler<SessionEventArgs> WorkFolderStateChanged;
+
+        public void NotifyWorkFolderStateChanged(SessionEvent sessionEvent)
+        {
+            OnChanged(new SessionEventArgs(sessionEvent));
+        }
+
 
         #region IRuntimeEnvironment Members
 
