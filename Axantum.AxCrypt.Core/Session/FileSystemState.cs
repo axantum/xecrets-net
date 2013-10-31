@@ -252,6 +252,15 @@ namespace Axantum.AxCrypt.Core.Session
             return null;
         }
 
+        public ActiveFile FindPath(string path)
+        {
+            if (path == null)
+            {
+                throw new ArgumentNullException("path");
+            }
+            return FindDecryptedPath(path) ?? FindEncryptedPath(path);
+        }
+
         /// <summary>
         /// Add a file to the volatile file system state. To persist, call Save().
         /// </summary>

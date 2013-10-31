@@ -30,7 +30,9 @@ using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using Axantum.AxCrypt.Core.IO;
+using System.Collections.Generic;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -411,6 +413,20 @@ namespace Axantum.AxCrypt.Core
             skipIndex = skipIndex < 0 ? message.IndexOf(" Fatal", StringComparison.Ordinal) : skipIndex;
 
             return message.Substring(skipIndex + 1);
+        }
+
+        public static IEnumerable<IRuntimeFileInfo> DecryptedFilesInFolder(this string folderPath)
+        {
+            IRuntimeFileInfo folderPathInfo = OS.Current.FileInfo(folderPath);
+
+            return folderPathInfo.Files.Where((IRuntimeFileInfo fileInfo) => { return !fileInfo.Name.IsEncryptedName(); });
+        }
+
+        public static IEnumerable<IRuntimeFileInfo> EncryptedFilesInFolder(this string folderPath)
+        {
+            IRuntimeFileInfo folderPathInfo = OS.Current.FileInfo(folderPath);
+
+            return folderPathInfo.Files.Where((IRuntimeFileInfo fileInfo) => { return fileInfo.Name.IsEncryptedName(); });
         }
     }
 }

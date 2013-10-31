@@ -282,18 +282,34 @@ namespace Axantum.AxCrypt.Core.UI
             _progress.NotifyLevelStart();
             try
             {
-                AxCryptFile.Decrypt(_eventArgs.AxCryptDocument, OS.Current.FileInfo(_eventArgs.SaveFileFullName), AxCryptOptions.SetFileTimes, _progress);
+                AxCryptFile.DecryptFile(_eventArgs.AxCryptDocument, _eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, _progress);
             }
             finally
             {
                 _eventArgs.AxCryptDocument.Dispose();
                 _eventArgs.AxCryptDocument = null;
             }
-            AxCryptFile.Wipe(OS.Current.FileInfo(_eventArgs.OpenFileFullName), _progress);
+            AxCryptFile.Wipe(_eventArgs.OpenFileFullName, _progress);
+
             _progress.NotifyLevelFinished();
 
             _eventArgs.Status = FileOperationStatus.Success;
             return true;
+        }
+
+        private void DecryptFileWithWipeOfOriginal(string encryptedFileFullName, string decryptedFileFullName, ProgressContext progress)
+        {
+            AesKey key;
+            if (!_fileSystemState.TryFindDecryptionKey(encryptedFileFullName, out key)) {
+                return;
+            }
+
+            IRuntimeFileInfo encryptedFileInfo = OS.Current.FileInfo(encryptedFileFullName);
+            using (AxCryptDocument document = AxCryptFile.Document(encryptedFileInfo, key, progress))
+            {
+                AxCryptFile.DecryptFile(document, encryptedFileFullName, decryptedFileFullName, progress);
+            }
+            AxCryptFile.Wipe(encryptedFileFullName, progress);
         }
 
         /// <summary>
@@ -409,15 +425,10 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 IRuntimeFileInfo source = OS.Current.FileInfo(fullName);
                 e.OpenFileFullName = source.FullName;
-                foreach (AesKey key in _fileSystemState.KnownKeys.Keys)
+                AesKey key;
+                if (_fileSystemState.TryFindDecryptionKey(source.FullName, out key))
                 {
                     e.AxCryptDocument = AxCryptFile.Document(source, key, new ProgressContext());
-                    if (e.AxCryptDocument.PassphraseIsValid)
-                    {
-                        break;
-                    }
-                    e.AxCryptDocument.Dispose();
-                    e.AxCryptDocument = null;
                 }
 
                 Passphrase passphrase;

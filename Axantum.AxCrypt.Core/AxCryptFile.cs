@@ -26,6 +26,8 @@
 #endregion Coypright and License
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text;
@@ -142,6 +144,22 @@ namespace Axantum.AxCrypt.Core
             IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(sourceFile);
             IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(destinationFile);
             EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, key, progress);
+        }
+
+        public static void EncryptFilesUniqueWithBackupAndWipe(IRuntimeFileInfo fileInfo, AesKey encryptionKey, ProgressContext progress)
+        {
+            IEnumerable<IRuntimeFileInfo> files = fileInfo.FullName.DecryptedFilesInFolder();
+            foreach (IRuntimeFileInfo file in files)
+            {
+                EncryptFileUniqueWithBackupAndWipe(file, encryptionKey, progress);
+            }
+        }
+
+        public static void EncryptFileUniqueWithBackupAndWipe(IRuntimeFileInfo fileInfo, AesKey encryptionKey, ProgressContext progress)
+        {
+            IRuntimeFileInfo destinationFileInfo = fileInfo.CreateEncryptedName();
+            destinationFileInfo = OS.Current.FileInfo(destinationFileInfo.FullName.CreateUniqueFile());
+            AxCryptFile.EncryptFileWithBackupAndWipe(fileInfo, destinationFileInfo, encryptionKey, progress);
         }
 
         public static void EncryptFileWithBackupAndWipe(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFileInfo, AesKey key, ProgressContext progress)
@@ -300,6 +318,37 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
+        public static void DecryptFilesUniqueWithWipeOfOriginal(IRuntimeFileInfo fileInfo, AesKey decryptionKey, ProgressContext progress)
+        {
+            IEnumerable<IRuntimeFileInfo> files = fileInfo.FullName.EncryptedFilesInFolder();
+            foreach (IRuntimeFileInfo file in files)
+            {
+                DecryptFileUniqueWithWipeOfOriginal(file, decryptionKey, progress);
+            }
+        }
+
+        public static void DecryptFileUniqueWithWipeOfOriginal(IRuntimeFileInfo fileInfo, AesKey decryptionKey, ProgressContext progress)
+        {
+            using (AxCryptDocument document = AxCryptFile.Document(fileInfo, decryptionKey, progress))
+            {
+                if (!document.PassphraseIsValid)
+                {
+                    return;
+                }
+
+                IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(fileInfo.FullName), document.DocumentHeaders.FileName));
+                destinationFileInfo = OS.Current.FileInfo(destinationFileInfo.FullName.CreateUniqueFile());
+                AxCryptFile.DecryptFile(document, fileInfo.FullName, destinationFileInfo.FullName, progress);
+            }
+            AxCryptFile.Wipe(fileInfo, progress);
+        }
+
+        public static void DecryptFile(AxCryptDocument document, string encryptedFileFullName, string decryptedFileFullName, ProgressContext progress)
+        {
+            IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(decryptedFileFullName);
+            AxCryptFile.Decrypt(document, decryptedFileInfo, AxCryptOptions.SetFileTimes, progress);
+        }
+
         /// <summary>
         /// Load an AxCryptDocument from a source file with a passphrase
         /// </summary>
@@ -391,6 +440,11 @@ namespace Axantum.AxCrypt.Core
             string axCryptFileName = Path.Combine(Path.GetDirectoryName(fileInfo.FullName), Path.GetFileNameWithoutExtension(fileInfo.Name) + modifiedExtension + axCryptExtension);
 
             return axCryptFileName;
+        }
+
+        public static void Wipe(string fullName, ProgressContext progress)
+        {
+            Wipe(OS.Current.FileInfo(fullName), progress);
         }
 
         public static void Wipe(IRuntimeFileInfo fileInfo, ProgressContext progress)

@@ -860,8 +860,7 @@ namespace Axantum.AxCrypt
                     progress.NotifyLevelStart();
                     try
                     {
-                        persistentState.Current.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
-                        _watchedFoldersCore.EncryptFiles(progress);
+                        persistentState.Current.HandleSessionStateEvents(e.SessionEvents, progress);
                     }
                     finally
                     {

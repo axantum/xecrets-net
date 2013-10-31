@@ -89,16 +89,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 try
                 {
-                    if (FileLock.IsLocked(activeFile.DecryptedFileInfo, activeFile.EncryptedFileInfo))
-                    {
-                        return activeFile;
-                    }
-                    if (OS.Current.UtcNow - activeFile.LastActivityTimeUtc <= new TimeSpan(0, 0, 5))
-                    {
-                        return activeFile;
-                    }
-                    activeFile = fileSystemState.CheckActiveFileActions(activeFile, progress);
-                    return activeFile;
+                    return fileSystemState.CheckActiveFile(activeFile, progress);
                 }
                 finally
                 {
@@ -108,12 +99,27 @@ namespace Axantum.AxCrypt.Core.Session
             progress.NotifyLevelFinished();
         }
 
+        public static ActiveFile CheckActiveFile(this FileSystemState fileSystemState, ActiveFile activeFile, ProgressContext progress)
+        {
+            if (FileLock.IsLocked(activeFile.DecryptedFileInfo, activeFile.EncryptedFileInfo))
+            {
+                return activeFile;
+            }
+            if (OS.Current.UtcNow - activeFile.LastActivityTimeUtc <= new TimeSpan(0, 0, 5))
+            {
+                return activeFile;
+            }
+            activeFile = fileSystemState.CheckActiveFileActions(activeFile, progress);
+            return activeFile;
+        }
+
         public static void EncryptFilesInWatchedFolders(this FileSystemState fileSystemState, ProgressContext progress)
         {
             if (fileSystemState == null)
             {
                 throw new ArgumentNullException("fileSystemState");
             }
+
             AesKey encryptionKey = fileSystemState.KnownKeys.DefaultEncryptionKey;
             if (encryptionKey == null)
             {
@@ -126,9 +132,7 @@ namespace Axantum.AxCrypt.Core.Session
                 progress.AddTotal(files.Count());
                 foreach (IRuntimeFileInfo fileInfo in files)
                 {
-                    IRuntimeFileInfo destinationFileInfo = fileInfo.CreateEncryptedName();
-                    destinationFileInfo = OS.Current.FileInfo(destinationFileInfo.FullName.CreateUniqueFile());
-                    AxCryptFile.EncryptFileWithBackupAndWipe(fileInfo, destinationFileInfo, encryptionKey, progress);
+                    AxCryptFile.EncryptFileUniqueWithBackupAndWipe(fileInfo, encryptionKey, progress);
                     progress.AddCount(1);
                 }
             }
@@ -136,6 +140,64 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 progress.NotifyLevelFinished();
             }
+        }
+
+        public static void HandleSessionStateEvents(this FileSystemState fileSystemState, IEnumerable<SessionEvent> events, ProgressContext progress)
+        {
+            foreach (SessionEvent sessionEvent in events)
+            {
+                fileSystemState.HandleSessionEvent(sessionEvent, progress);
+            }
+        }
+
+        public static void HandleSessionEvent(this FileSystemState fileSystemState, SessionEvent sessionEvent, ProgressContext progress)
+        {
+            switch (sessionEvent.SessionEventType)
+            {
+                case SessionEventType.ActiveFileChange:
+                    fileSystemState.CheckActiveFile(fileSystemState.FindPath(sessionEvent.FullName), progress);
+                    break;
+                case SessionEventType.WatchedFolderAdded:
+                    IRuntimeFileInfo addedFolderInfo = OS.Current.FileInfo(sessionEvent.FullName);
+                    AxCryptFile.EncryptFilesUniqueWithBackupAndWipe(addedFolderInfo, sessionEvent.Key, progress);
+                    break;
+                case SessionEventType.WatchedFolderRemoved:
+                    IRuntimeFileInfo removedFolderInfo = OS.Current.FileInfo(sessionEvent.FullName);
+                    AxCryptFile.DecryptFilesUniqueWithWipeOfOriginal(removedFolderInfo, sessionEvent.Key, progress);
+                    break;
+                case SessionEventType.LogOn:
+                    break;
+                case SessionEventType.LogOff:
+                    break;
+                case SessionEventType.ProcessExit:
+                    break;
+                case SessionEventType.SessionChange:
+                    break;
+                case SessionEventType.KnownKeyChange:
+                    break;
+                case SessionEventType.WorkFolderChange:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public static bool TryFindDecryptionKey(this FileSystemState fileSystemState, string fullName, out AesKey key)
+        {
+            IRuntimeFileInfo source = OS.Current.FileInfo(fullName);
+            foreach (AesKey knownKey in fileSystemState.KnownKeys.Keys)
+            {
+                using (AxCryptDocument document = AxCryptFile.Document(source, knownKey, new ProgressContext()))
+                {
+                    if (document.PassphraseIsValid)
+                    {
+                        key = knownKey;
+                        return true;
+                    }
+                }
+            }
+            key = null;
+            return false;
         }
 
         /// <summary>
@@ -193,10 +255,9 @@ namespace Axantum.AxCrypt.Core.Session
             IEnumerable<IRuntimeFileInfo> newFiles = new List<IRuntimeFileInfo>();
             foreach (WatchedFolder watchedFolder in fileSystemState.WatchedFolders)
             {
-                IRuntimeFileInfo fileInfo = OS.Current.FileInfo(watchedFolder.Path);
-                newFiles = newFiles.Concat(fileInfo.Files);
+                newFiles = newFiles.Concat(watchedFolder.Path.DecryptedFilesInFolder());
             }
-            return newFiles.Where((IRuntimeFileInfo fileInfo) => { return !fileInfo.Name.IsEncryptedName(); });
+            return newFiles;
         }
 
         private static ActiveFile CheckActiveFileActions(this FileSystemState fileSystemState, ActiveFile activeFile, ProgressContext progress)
