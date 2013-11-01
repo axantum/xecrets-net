@@ -25,6 +25,12 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.Test.Properties;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -33,12 +39,6 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.Session;
-using Axantum.AxCrypt.Core.Test.Properties;
-using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -81,6 +81,7 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile nullActiveFile = null;
 
             ActiveFile originalActiveFile = new ActiveFile(decryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, process);
+            Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullActiveFile) == null) { } });
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullActiveFile, key) == null) { } });
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(originalActiveFile, nullKey) == null) { } });
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullActiveFile, ActiveFileStatus.None, nullProcess) == null) { } });

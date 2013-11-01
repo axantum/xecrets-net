@@ -25,16 +25,16 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -163,6 +163,36 @@ namespace Axantum.AxCrypt.Core.Test
 
                 ActiveFile notFoundDecrypted = state.FindDecryptedPath(Path.Combine(_rootPath, "notfoundfile.txt"));
                 Assert.That(notFoundDecrypted, Is.Null, "A search that does not succeed should return null.");
+            }
+        }
+
+        [Test]
+        public static void TestFindPathArgumentNull()
+        {
+            using (FileSystemState state = new FileSystemState())
+            {
+                string path = null;
+                Assert.Throws<ArgumentNullException>(() => state.FindPath(path));
+            }
+        }
+
+        [Test]
+        public static void TestFindPath()
+        {
+            using (FileSystemState state = new FileSystemState())
+            {
+                state.Load(OS.Current.FileInfo(_mystateXmlPath));
+                ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedAxxPath), OS.Current.FileInfo(_decryptedTxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, null);
+                state.Add(activeFile);
+
+                ActiveFile byDecryptedPath = state.FindPath(_decryptedTxtPath);
+                Assert.That(byDecryptedPath, Is.EqualTo(activeFile), "The search should return the same instance.");
+
+                ActiveFile byEncryptedPath = state.FindPath(_encryptedAxxPath);
+                Assert.That(byEncryptedPath, Is.EqualTo(byDecryptedPath), "The search should return the same instance.");
+
+                ActiveFile notFoundEncrypted = state.FindPath(Path.Combine(_rootPath, "notfoundfile.txt"));
+                Assert.That(notFoundEncrypted, Is.Null, "A search that does not succeed should return null.");
             }
         }
 

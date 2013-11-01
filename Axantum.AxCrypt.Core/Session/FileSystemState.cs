@@ -486,11 +486,14 @@ namespace Axantum.AxCrypt.Core.Session
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposing)
+            if (disposing)
             {
-                return;
+                DisposeInternal();
             }
+        }
 
+        private void DisposeInternal()
+        {
             if (_activeFilesByEncryptedPath != null)
             {
                 foreach (ActiveFile activeFile in _activeFilesByEncryptedPath.Values)

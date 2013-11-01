@@ -25,13 +25,13 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.UI;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.UI;
-using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -105,6 +105,9 @@ namespace Axantum.AxCrypt.Core.Test
 
             knownKeys.Clear();
             Assert.That(knownKeys.Keys.Count(), Is.EqualTo(0), "There should be zero keys in the collection after Clear().");
+
+            knownKeys.Clear();
+            Assert.That(knownKeys.Keys.Count(), Is.EqualTo(0), "There should be zero keys in the collection after Clear() with zero keys to start with.");
         }
 
         [Test]
