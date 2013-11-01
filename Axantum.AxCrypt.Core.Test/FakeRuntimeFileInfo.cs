@@ -65,6 +65,10 @@ namespace Axantum.AxCrypt.Core.Test
 
         public static event EventHandler Deleting;
 
+        public static event EventHandler ExceptionHook;
+
+        public string TestTag { get; private set; }
+
         public static void AddFile(string path, bool isFolder, DateTime creationTimeUtc, DateTime lastAccessTimeUtc, DateTime lastWriteTimeUtc, Stream stream)
         {
             FakeFileInfo fileInfo = new FakeFileInfo { FullName = path, CreationTimeUtc = creationTimeUtc, LastAccessTimeUtc = lastAccessTimeUtc, LastWriteTimeUtc = lastWriteTimeUtc, Stream = stream, IsFolder = isFolder, };
@@ -128,6 +132,17 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 handler(this, new EventArgs());
             }
+        }
+
+        protected virtual void OnExceptionHook(string testTag)
+        {
+            TestTag = testTag;
+            EventHandler handler = ExceptionHook;
+            if (handler != null)
+            {
+                handler(this, new EventArgs());
+            }
+            TestTag = String.Empty;
         }
 
         private FakeFileInfo FindFileInfo()
@@ -315,6 +330,8 @@ namespace Axantum.AxCrypt.Core.Test
 
         public void CreateNewFile()
         {
+            OnExceptionHook("CreateNewFile");
+
             FakeFileInfo fileInfo = FindFileInfo();
             if (fileInfo != null)
             {

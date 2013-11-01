@@ -82,5 +82,14 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(watchedFolder1a.Equals(watchedFolder2), Is.False, "Different types.");
             Assert.That(watchedFolder1a.Equals(nullObject), Is.False, "Null is not equal to anything but null.");
         }
+
+        [Test]
+        public static void TestDispose()
+        {
+            WatchedFolder watchedFolder = new WatchedFolder(@"c:\test1");
+
+            Assert.DoesNotThrow(() => watchedFolder.Dispose());
+            Assert.DoesNotThrow(() => watchedFolder.Dispose());
+        }
     }
 }

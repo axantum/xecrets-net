@@ -434,6 +434,11 @@ namespace Axantum.AxCrypt.Core
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable is a word.")]
         public static bool IsEncryptable(this string fullName)
         {
+            if (fullName == null)
+            {
+                throw new ArgumentNullException("fullName");
+            }
+
             foreach (Regex filter in OS.PathFilters)
             {
                 if (filter.IsMatch(fullName))

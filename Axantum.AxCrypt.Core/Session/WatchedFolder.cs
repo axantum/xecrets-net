@@ -45,7 +45,7 @@ namespace Axantum.AxCrypt.Core.Session
             _fileWatcher.FileChanged += _fileWatcher_FileChanged;
         }
 
-        void _fileWatcher_FileChanged(object sender, FileWatcherEventArgs e)
+        private void _fileWatcher_FileChanged(object sender, FileWatcherEventArgs e)
         {
             OnChanged(e);
         }
@@ -115,11 +115,14 @@ namespace Axantum.AxCrypt.Core.Session
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposing)
+            if (disposing)
             {
-                return;
+                DisposeInternal();
             }
+        }
 
+        private void DisposeInternal()
+        {
             if (_fileWatcher != null)
             {
                 _fileWatcher.Dispose();

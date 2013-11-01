@@ -25,13 +25,14 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Globalization;
-using System.IO;
-using System.Threading;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
+using System;
+using System.Globalization;
+using System.IO;
+using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -370,6 +371,60 @@ namespace Axantum.AxCrypt.Core.Test
 
             unique = @"C:\temp\test.txt".CreateUniqueFile();
             Assert.That(unique, Is.EqualTo(@"C:\temp\test.1.txt"));
+        }
+
+        [Test]
+        public static void TestCreateUniqueFileUnexpectedAxCryptException()
+        {
+            FakeRuntimeFileInfo.ExceptionHook += (sender, e) =>
+            {
+                if (((FakeRuntimeFileInfo)sender).TestTag == "CreateNewFile")
+                {
+                    throw new InternalErrorException("An unexpected exception.", ErrorStatus.InternalError);
+                }
+            };
+            Assert.Throws<InternalErrorException>(() => @"C:\temp\test.txt".CreateUniqueFile());
+        }
+
+        [Test]
+        public static void TestIsEncryptable()
+        {
+            OS.PathFilters.Add(new Regex(@"^C:\\Windows\\(?!Temp$)"));
+
+            Assert.That(@"C:\Temp\test.txt".IsEncryptable(), Is.True);
+            Assert.That(@"C:\Windows\test.txt".IsEncryptable(), Is.False);
+            Assert.That(@"C:\Temp\test-txt.axx".IsEncryptable(), Is.False);
+
+            string nullString = null;
+            Assert.Throws<ArgumentNullException>(() => nullString.IsEncryptable());
+        }
+
+        [Test]
+        public static void TestNormalizeFolder()
+        {
+            string nullString = null;
+            Assert.Throws<ArgumentNullException>(() => nullString.NormalizeFolder());
+            Assert.Throws<ArgumentException>(() => String.Empty.NormalizeFolder());
+
+            string expected = @"C:\Documents\".Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
+            Assert.That(@"C:\Documents\".NormalizeFolder(), Is.EqualTo(expected));
+            Assert.That(@"C:/Documents\".NormalizeFolder(), Is.EqualTo(expected));
+            Assert.That(@"C:\Documents".NormalizeFolder(), Is.EqualTo(expected));
+            Assert.That(@"C:\Documents\\//".NormalizeFolder(), Is.EqualTo(expected));
+        }
+
+        [Test]
+        public static void TestFolderFromEnvironment()
+        {
+            string nullString = null;
+            Assert.Throws<ArgumentNullException>(() => nullString.FolderFromEnvironment());
+
+            string expected = @"C:\Windows\".Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
+
+            SetupAssembly.FakeRuntimeEnvironment.EnvironmentVariables.Add("VARIABLE", expected);
+
+            Assert.That("VARIABLE".FolderFromEnvironment(), Is.EqualTo(expected));
+            Assert.That("UNKNOWN".FolderFromEnvironment(), Is.EqualTo(String.Empty));
         }
     }
 }
