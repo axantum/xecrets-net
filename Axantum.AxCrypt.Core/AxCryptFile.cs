@@ -329,6 +329,7 @@ namespace Axantum.AxCrypt.Core
 
         public static void DecryptFileUniqueWithWipeOfOriginal(IRuntimeFileInfo fileInfo, AesKey decryptionKey, ProgressContext progress)
         {
+            progress.NotifyLevelStart();
             using (AxCryptDocument document = AxCryptFile.Document(fileInfo, decryptionKey, progress))
             {
                 if (!document.PassphraseIsValid)
@@ -341,6 +342,7 @@ namespace Axantum.AxCrypt.Core
                 AxCryptFile.DecryptFile(document, destinationFileInfo.FullName, progress);
             }
             AxCryptFile.Wipe(fileInfo, progress);
+            progress.NotifyLevelFinished();
         }
 
         public static void DecryptFile(AxCryptDocument document, string decryptedFileFullName, ProgressContext progress)

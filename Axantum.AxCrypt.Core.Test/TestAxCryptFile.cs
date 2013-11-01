@@ -25,15 +25,15 @@
 
 #endregion Coypright and License
 
-using System;
-using System.IO;
-using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
+using System;
+using System.IO;
+using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -421,6 +421,110 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(destinationFilePath);
             Assert.That(sourceFileInfo.Exists, Is.False, "The source should be wiped.");
             Assert.That(destinationFileInfo.Exists, Is.True, "The destination should be created and exist now.");
+        }
+
+        [Test]
+        public static void TestDecryptFileUniqueWithWipeOfOriginal()
+        {
+            IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
+            IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
+            Passphrase passphrase = new Passphrase("a");
+
+            Assert.That(sourceFileInfo.Exists, Is.True, "The source should exist.");
+            Assert.That(destinationFileInfo.Exists, Is.False, "The source should not exist yet.");
+
+            AxCryptFile.DecryptFileUniqueWithWipeOfOriginal(sourceFileInfo, passphrase.DerivedPassphrase, new ProgressContext());
+
+            Assert.That(sourceFileInfo.Exists, Is.False, "The source should be wiped.");
+            Assert.That(destinationFileInfo.Exists, Is.True, "The destination should be created and exist now.");
+        }
+
+        [Test]
+        public static void TestDecryptFilesUniqueWithWipeOfOriginal()
+        {
+            IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
+            sourceFileInfo.CreateFolder();
+            IRuntimeFileInfo sourceFolderInfo = OS.Current.FileInfo(Path.GetDirectoryName(sourceFileInfo.FullName));
+            IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
+            Passphrase passphrase = new Passphrase("a");
+
+            Assert.That(sourceFileInfo.Exists, Is.True, "The source should exist.");
+            Assert.That(destinationFileInfo.Exists, Is.False, "The source should not exist yet.");
+
+            AxCryptFile.DecryptFilesUniqueWithWipeOfOriginal(sourceFolderInfo, passphrase.DerivedPassphrase, new ProgressContext());
+
+            Assert.That(sourceFileInfo.Exists, Is.False, "The source should be wiped.");
+            Assert.That(destinationFileInfo.Exists, Is.True, "The destination should be created and exist now.");
+        }
+
+        [Test]
+        public static void TestEncryptFileUniqueWithBackupAndWipeWithNoCollission()
+        {
+            IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(_davidCopperfieldTxtPath);
+            sourceFileInfo.CreateFolder();
+            IRuntimeFileInfo sourceFolderInfo = OS.Current.FileInfo(Path.GetDirectoryName(sourceFileInfo.FullName));
+            IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(_davidCopperfieldTxtPath), "David Copperfield-txt.axx"));
+
+            Passphrase passphrase = new Passphrase("allan");
+
+            AxCryptFile.EncryptFileUniqueWithBackupAndWipe(sourceFileInfo, passphrase.DerivedPassphrase, new ProgressContext());
+
+            Assert.That(sourceFileInfo.Exists, Is.False, "The source should be wiped.");
+            Assert.That(destinationFileInfo.Exists, Is.True, "The destination should be created and exist now.");
+        }
+
+        [Test]
+        public static void TestEncryptFileUniqueWithBackupAndWipeWithCollission()
+        {
+            IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(_davidCopperfieldTxtPath);
+            sourceFileInfo.CreateFolder();
+            IRuntimeFileInfo sourceFolderInfo = OS.Current.FileInfo(Path.GetDirectoryName(sourceFileInfo.FullName));
+            IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(_davidCopperfieldTxtPath), "David Copperfield-txt.axx"));
+            destinationFileInfo.CreateNewFile();
+
+            IRuntimeFileInfo alternateDestinationFileInfo = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(_davidCopperfieldTxtPath), "David Copperfield-txt.1.axx"));
+
+            Passphrase passphrase = new Passphrase("allan");
+
+            AxCryptFile.EncryptFileUniqueWithBackupAndWipe(sourceFileInfo, passphrase.DerivedPassphrase, new ProgressContext());
+
+            Assert.That(sourceFileInfo.Exists, Is.False, "The source should be wiped.");
+            Assert.That(alternateDestinationFileInfo.Exists, Is.True, "The destination should be created and exist now.");
+        }
+
+        [Test]
+        public static void TestEncryptFilesUniqueWithBackupAndWipeWithNoCollission()
+        {
+            IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(_davidCopperfieldTxtPath);
+            sourceFileInfo.CreateFolder();
+            IRuntimeFileInfo sourceFolderInfo = OS.Current.FileInfo(Path.GetDirectoryName(sourceFileInfo.FullName));
+            IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(_davidCopperfieldTxtPath), "David Copperfield-txt.axx"));
+
+            Passphrase passphrase = new Passphrase("allan");
+
+            AxCryptFile.EncryptFilesUniqueWithBackupAndWipe(sourceFolderInfo, passphrase.DerivedPassphrase, new ProgressContext());
+
+            Assert.That(sourceFileInfo.Exists, Is.False, "The source should be wiped.");
+            Assert.That(destinationFileInfo.Exists, Is.True, "The destination should be created and exist now.");
+        }
+
+        [Test]
+        public static void TestEncryptFilesUniqueWithBackupAndWipeWithCollission()
+        {
+            IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(_davidCopperfieldTxtPath);
+            sourceFileInfo.CreateFolder();
+            IRuntimeFileInfo sourceFolderInfo = OS.Current.FileInfo(Path.GetDirectoryName(sourceFileInfo.FullName));
+            IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(_davidCopperfieldTxtPath), "David Copperfield-txt.axx"));
+            destinationFileInfo.CreateNewFile();
+
+            IRuntimeFileInfo alternateDestinationFileInfo = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(_davidCopperfieldTxtPath), "David Copperfield-txt.1.axx"));
+
+            Passphrase passphrase = new Passphrase("allan");
+
+            AxCryptFile.EncryptFilesUniqueWithBackupAndWipe(sourceFolderInfo, passphrase.DerivedPassphrase, new ProgressContext());
+
+            Assert.That(sourceFileInfo.Exists, Is.False, "The source should be wiped.");
+            Assert.That(alternateDestinationFileInfo.Exists, Is.True, "The destination should be created and exist now.");
         }
 
         [Test]

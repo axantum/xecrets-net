@@ -310,7 +310,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 return;
             }
-            AddFile(directory, utcNow, utcNow, utcNow, Stream.Null);
+            AddFile(directory, true, utcNow, utcNow, utcNow, Stream.Null);
         }
 
         public void CreateNewFile()
