@@ -26,13 +26,13 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -328,6 +328,14 @@ namespace Axantum.AxCrypt.Core.Test
             get
             {
                 return _file.IsFolder;
+            }
+        }
+
+        public bool IsEncryptable
+        {
+            get
+            {
+                return _file.FullName.IsEncryptable();
             }
         }
 

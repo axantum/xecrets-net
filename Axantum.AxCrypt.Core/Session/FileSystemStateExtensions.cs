@@ -120,12 +120,12 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("fileSystemState");
             }
 
-            IEnumerable<IRuntimeFileInfo> files = fileSystemState.DecryptedFilesInWatchedFolders();
+            IEnumerable<IRuntimeFileInfo> encryptableFiles = fileSystemState.ListEncryptableInWatchedFolders();
             progress.NotifyLevelStart();
             try
             {
-                progress.AddTotal(files.Count());
-                foreach (IRuntimeFileInfo fileInfo in files)
+                progress.AddTotal(encryptableFiles.Count());
+                foreach (IRuntimeFileInfo fileInfo in encryptableFiles)
                 {
                     AxCryptFile.EncryptFileUniqueWithBackupAndWipe(fileInfo, encryptionKey, progress);
                     progress.AddCount(1);
@@ -152,29 +152,38 @@ namespace Axantum.AxCrypt.Core.Session
                 case SessionEventType.ActiveFileChange:
                     fileSystemState.CheckActiveFile(fileSystemState.FindPath(sessionEvent.FullName), progress);
                     break;
+
                 case SessionEventType.WatchedFolderAdded:
                     IRuntimeFileInfo addedFolderInfo = OS.Current.FileInfo(sessionEvent.FullName);
                     AxCryptFile.EncryptFilesUniqueWithBackupAndWipe(addedFolderInfo, sessionEvent.Key, progress);
                     break;
+
                 case SessionEventType.WatchedFolderRemoved:
                     IRuntimeFileInfo removedFolderInfo = OS.Current.FileInfo(sessionEvent.FullName);
                     AxCryptFile.DecryptFilesUniqueWithWipeOfOriginal(removedFolderInfo, sessionEvent.Key, progress);
                     break;
+
                 case SessionEventType.LogOn:
                     fileSystemState.EncryptFilesInWatchedFolders(sessionEvent.Key, progress);
                     break;
+
                 case SessionEventType.LogOff:
                     fileSystemState.EncryptFilesInWatchedFolders(sessionEvent.Key, progress);
                     break;
+
                 case SessionEventType.ProcessExit:
                     break;
+
                 case SessionEventType.SessionChange:
                     break;
+
                 case SessionEventType.KnownKeyChange:
                     fileSystemState.EncryptFilesInWatchedFolders(sessionEvent.Key, progress);
                     break;
+
                 case SessionEventType.WorkFolderChange:
                     break;
+
                 default:
                     break;
             }
@@ -244,16 +253,16 @@ namespace Axantum.AxCrypt.Core.Session
         }
 
         /// <summary>
-        /// Enumerate all apparently plaintext files in the list of watched folders.
+        /// Enumerate all apparently encryptable plaintext files in the list of watched folders.
         /// </summary>
         /// <param name="fileSystemState">The associated <see cref="FileSystemState"/>.</param>
         /// <returns>An enumeration of found files.</returns>
-        public static IEnumerable<IRuntimeFileInfo> DecryptedFilesInWatchedFolders(this FileSystemState fileSystemState)
+        public static IEnumerable<IRuntimeFileInfo> ListEncryptableInWatchedFolders(this FileSystemState fileSystemState)
         {
             IEnumerable<IRuntimeFileInfo> newFiles = new List<IRuntimeFileInfo>();
             foreach (WatchedFolder watchedFolder in fileSystemState.WatchedFolders)
             {
-                newFiles = newFiles.Concat(watchedFolder.Path.ListDecryptedFiles());
+                newFiles = newFiles.Concat(watchedFolder.Path.ListEncryptable());
             }
             return newFiles;
         }
@@ -274,7 +283,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return activeFile;
             }
-            
+
             AesKey key = FindKnownKeyOrNull(fileSystemState, activeFile);
             if (activeFile.Key != null)
             {

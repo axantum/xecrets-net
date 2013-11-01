@@ -48,6 +48,7 @@ using System.Net.Security;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -107,8 +108,6 @@ namespace Axantum.AxCrypt
             InitializeComponent();
         }
 
-        private IComparer _currentRecentFilesSorter = new RecentFilesByDateComparer();
-
         private void AxCryptMainForm_Load(object sender, EventArgs e)
         {
             if (DesignMode)
@@ -133,11 +132,13 @@ namespace Axantum.AxCrypt
 
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
 
+            OS.FileNameFilters.Add(new Regex(@"\.dropbox$"));
+            OS.FileNameFilters.Add(new Regex(@"desktop\.ini$"));
+
             _watchedFoldersCore = new WatchedFoldersCore(this);
 
             recentFilesListView.SmallImageList = CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources(components);
             recentFilesListView.LargeImageList = CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources(components);
-            recentFilesListView.ListViewItemSorter = _currentRecentFilesSorter;
 
             OS.Current.SessionChanged += HandleWorkFolderStateChangedEvent;
 
@@ -356,7 +357,7 @@ namespace Axantum.AxCrypt
 
         private void UpdateRecentFilesListView(ActiveFile activeFile)
         {
-            recentFilesListView.ListViewItemSorter = null;
+            recentFilesListView.BeginUpdate();
             ListViewItem item = recentFilesListView.Items[activeFile.EncryptedFileInfo.FullName];
             if (item == null)
             {
@@ -372,11 +373,11 @@ namespace Axantum.AxCrypt
             }
 
             UpdateListViewItem(item, activeFile);
-            recentFilesListView.ListViewItemSorter = _currentRecentFilesSorter;
             while (recentFilesListView.Items.Count > Settings.Default.MaxNumberRecentFiles)
             {
                 recentFilesListView.Items.RemoveAt(recentFilesListView.Items.Count - 1);
             }
+            recentFilesListView.EndUpdate();
         }
 
         private static void UpdateListViewItem(ListViewItem item, ActiveFile activeFile)

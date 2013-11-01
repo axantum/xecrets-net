@@ -621,10 +621,10 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(_decryptedFile11, utcNow, utcNow, utcNow, Stream.Null);
             _fileSystemState.AddWatchedFolder(new WatchedFolder(_underDocumentsFolder));
 
-            IEnumerable<IRuntimeFileInfo> decryptedFiles = _fileSystemState.DecryptedFilesInWatchedFolders();
+            IEnumerable<IRuntimeFileInfo> encryptableFiles = _fileSystemState.ListEncryptableInWatchedFolders();
 
-            Assert.That(decryptedFiles.Count(), Is.EqualTo(1), "There should be exactly one decrypted file here.");
-            Assert.That(decryptedFiles.First().FullName, Is.EqualTo(_decryptedFile11), "This is the file that is decrypted here.");
+            Assert.That(encryptableFiles.Count(), Is.EqualTo(1), "There should be exactly one decrypted file here.");
+            Assert.That(encryptableFiles.First().FullName, Is.EqualTo(_decryptedFile11), "This is the file that is decrypted here.");
         }
     }
 }

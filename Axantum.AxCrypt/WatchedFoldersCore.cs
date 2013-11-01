@@ -1,12 +1,12 @@
-﻿using Axantum.AxCrypt.Core.Session;
+﻿using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.UI;
-using Axantum.AxCrypt.Core.IO;
 
 namespace Axantum.AxCrypt
 {
@@ -60,7 +60,7 @@ namespace Axantum.AxCrypt
 
         private void AddRemoveWatchedFolders()
         {
-            _mainView.WatchedFolders.ListViewItemSorter = null;
+            _mainView.WatchedFolders.BeginUpdate();
             foreach (WatchedFolder folder in _mainView.FileSystemState.WatchedFolders)
             {
                 ListViewItem item = _mainView.WatchedFolders.Items[folder.Path];
@@ -79,9 +79,8 @@ namespace Axantum.AxCrypt
                     --i;
                 }
             }
-            _mainView.WatchedFolders.ListViewItemSorter = StringComparer.CurrentCulture;
+            _mainView.WatchedFolders.EndUpdate();
         }
-
 
         private static IRuntimeFileInfo GetDroppedFolderIfAny(IDataObject dataObject)
         {
@@ -111,7 +110,7 @@ namespace Axantum.AxCrypt
             _mainView.FileSystemState.Save();
         }
 
-       private IEnumerable<string> SelectedWatchedFoldersItems()
+        private IEnumerable<string> SelectedWatchedFoldersItems()
         {
             IEnumerable<string> selected = _mainView.WatchedFolders.SelectedItems.Cast<ListViewItem>().Select((ListViewItem item) => { return item.Text; }).ToArray();
             return selected;

@@ -418,6 +418,7 @@
             this.watchedFoldersListView.FullRowSelect = true;
             this.watchedFoldersListView.Name = "watchedFoldersListView";
             this.watchedFoldersListView.ShowItemToolTips = true;
+            this.watchedFoldersListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.watchedFoldersListView.UseCompatibleStateImageBehavior = false;
             this.watchedFoldersListView.View = System.Windows.Forms.View.Details;
             this.watchedFoldersListView.DragDrop += new System.Windows.Forms.DragEventHandler(this.watchedFoldersListView_DragDrop);
@@ -446,6 +447,7 @@
             this.recentFilesListView.FullRowSelect = true;
             this.recentFilesListView.Name = "recentFilesListView";
             this.recentFilesListView.ShowItemToolTips = true;
+            this.recentFilesListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.recentFilesListView.UseCompatibleStateImageBehavior = false;
             this.recentFilesListView.View = System.Windows.Forms.View.Details;
             this.recentFilesListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.recentFilesListView_ColumnWidthChanged);

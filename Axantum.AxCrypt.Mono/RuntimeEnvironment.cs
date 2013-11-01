@@ -28,13 +28,14 @@
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Security.Cryptography;
-using Axantum.AxCrypt.Core.Session;
-using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Axantum.AxCrypt.Mono
 {
@@ -121,14 +122,19 @@ namespace Axantum.AxCrypt.Mono
                     case PlatformID.Win32S:
                     case PlatformID.Win32Windows:
                         return Platform.WindowsDesktop;
+
                     case PlatformID.MacOSX:
                         return Platform.MacOsx;
+
                     case PlatformID.Unix:
                         return Platform.Linux;
+
                     case PlatformID.WinCE:
                         return Platform.WindowsMobile;
+
                     case PlatformID.Xbox:
                         return Platform.Xbox;
+
                     default:
                         return Platform.Unknown;
                 }

@@ -27,6 +27,8 @@
 
 using Axantum.AxCrypt.Core.Runtime;
 using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -70,5 +72,15 @@ namespace Axantum.AxCrypt.Core
         /// The log.
         /// </value>
         public static ILogging Log { get { return Current.Log; } }
+
+        private static readonly List<Regex> _fileNameFilters = new List<Regex>();
+
+        public static IList<Regex> FileNameFilters
+        {
+            get
+            {
+                return _fileNameFilters;
+            }
+        }
     }
 }

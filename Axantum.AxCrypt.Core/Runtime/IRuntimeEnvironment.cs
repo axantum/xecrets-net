@@ -27,10 +27,11 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
-using System;
-using System.IO;
 using Axantum.AxCrypt.Core.Session;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {

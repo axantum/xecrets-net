@@ -27,12 +27,13 @@
 
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.AccessControl;
-using Axantum.AxCrypt.Core.Runtime;
+using System.Text.RegularExpressions;
 
 namespace Axantum.AxCrypt.Mono
 {
@@ -272,7 +273,15 @@ namespace Axantum.AxCrypt.Mono
         {
             get
             {
-                return _file.Attributes == FileAttributes.Directory;
+                return (_file.Attributes & FileAttributes.Directory) == FileAttributes.Directory;
+            }
+        }
+
+        public bool IsEncryptable
+        {
+            get
+            {
+                return _file.FullName.IsEncryptable();
             }
         }
 

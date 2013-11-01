@@ -134,6 +134,8 @@ namespace Axantum.AxCrypt.Core.IO
         /// </value>
         bool IsFolder { get; }
 
+        bool IsEncryptable { get; }
+
         /// <summary>
         /// Enumerate all files (not folders) in this folder, if it's a folder.
         /// </summary>

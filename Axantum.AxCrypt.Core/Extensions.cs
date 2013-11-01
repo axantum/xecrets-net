@@ -25,14 +25,15 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using Axantum.AxCrypt.Core.IO;
-using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -296,7 +297,7 @@ namespace Axantum.AxCrypt.Core
             return bytes;
         }
 
-        public static bool IsEncryptedName(this string fullName)
+        public static bool IsEncrypted(this string fullName)
         {
             return String.Compare(Path.GetExtension(fullName), OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0;
         }
@@ -310,9 +311,9 @@ namespace Axantum.AxCrypt.Core
         /// <exception cref="InternalErrorException">Can't get encrypted name for a file that already has the encrypted extension.</exception>
         public static string CreateEncryptedName(this string fullName)
         {
-            if (fullName.IsEncryptedName())
+            if (fullName.IsEncrypted())
             {
-                throw new InternalErrorException("Can't get encrypted name for a file that already has the encrypted extension.");
+                throw new InternalErrorException("Can't get encrypted name for a file that cannot be encrypted.");
             }
 
             string extension = Path.GetExtension(fullName);
@@ -349,7 +350,6 @@ namespace Axantum.AxCrypt.Core
                 ++version;
             }
         }
-
 
         public static bool HasMask(this AxCryptOptions options, AxCryptOptions mask)
         {
@@ -415,18 +415,30 @@ namespace Axantum.AxCrypt.Core
             return message.Substring(skipIndex + 1);
         }
 
-        public static IEnumerable<IRuntimeFileInfo> ListDecryptedFiles(this string folderPath)
+        public static IEnumerable<IRuntimeFileInfo> ListEncryptable(this string folderPath)
         {
             IRuntimeFileInfo folderPathInfo = OS.Current.FileInfo(folderPath);
 
-            return folderPathInfo.Files.Where((IRuntimeFileInfo fileInfo) => { return !fileInfo.Name.IsEncryptedName(); });
+            return folderPathInfo.Files.Where((IRuntimeFileInfo fileInfo) => { return fileInfo.FullName.IsEncryptable(); });
         }
 
-        public static IEnumerable<IRuntimeFileInfo> ListEncryptedFiles(this string folderPath)
+        public static IEnumerable<IRuntimeFileInfo> ListEncrypted(this string folderPath)
         {
             IRuntimeFileInfo folderPathInfo = OS.Current.FileInfo(folderPath);
 
-            return folderPathInfo.Files.Where((IRuntimeFileInfo fileInfo) => { return fileInfo.Name.IsEncryptedName(); });
+            return folderPathInfo.Files.Where((IRuntimeFileInfo fileInfo) => { return fileInfo.Name.IsEncrypted(); });
+        }
+
+        public static bool IsEncryptable(this string fullName)
+        {
+            foreach (Regex filter in OS.FileNameFilters)
+            {
+                if (filter.IsMatch(fullName))
+                {
+                    return false;
+                }
+            }
+            return !fullName.IsEncrypted();
         }
     }
 }

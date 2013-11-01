@@ -25,17 +25,17 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Reader;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Reader;
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -148,7 +148,7 @@ namespace Axantum.AxCrypt.Core
 
         public static void EncryptFilesUniqueWithBackupAndWipe(IRuntimeFileInfo fileInfo, AesKey encryptionKey, ProgressContext progress)
         {
-            IEnumerable<IRuntimeFileInfo> files = fileInfo.FullName.ListDecryptedFiles();
+            IEnumerable<IRuntimeFileInfo> files = fileInfo.FullName.ListEncryptable();
             foreach (IRuntimeFileInfo file in files)
             {
                 EncryptFileUniqueWithBackupAndWipe(file, encryptionKey, progress);
@@ -320,7 +320,7 @@ namespace Axantum.AxCrypt.Core
 
         public static void DecryptFilesUniqueWithWipeOfOriginal(IRuntimeFileInfo fileInfo, AesKey decryptionKey, ProgressContext progress)
         {
-            IEnumerable<IRuntimeFileInfo> files = fileInfo.FullName.ListEncryptedFiles();
+            IEnumerable<IRuntimeFileInfo> files = fileInfo.FullName.ListEncrypted();
             foreach (IRuntimeFileInfo file in files)
             {
                 DecryptFileUniqueWithWipeOfOriginal(file, decryptionKey, progress);
