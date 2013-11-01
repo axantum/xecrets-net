@@ -826,6 +826,24 @@ ensure they are not in use.</value>
   <data name="&gt;&gt;statusTabControl.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <metadata name="watchedFoldersContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>726, 56</value>
+  </metadata>
+  <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 22</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Decrypt</value>
+  </data>
+  <data name="watchedFoldersContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 26</value>
+  </data>
+  <data name="&gt;&gt;watchedFoldersContextMenuStrip.Name" xml:space="preserve">
+    <value>watchedFoldersContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;watchedFoldersContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <metadata name="persistentState.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>376, 56</value>
   </metadata>
@@ -835,24 +853,6 @@ ensure they are not in use.</value>
   <metadata name="backgroundMonitor.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>215, 56</value>
   </metadata>
-  <metadata name="watchedFoldersContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>726, 56</value>
-  </metadata>
-  <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 22</value>
-  </data>
-  <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Delete</value>
-  </data>
-  <data name="watchedFoldersContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 26</value>
-  </data>
-  <data name="&gt;&gt;watchedFoldersContextMenuStrip.Name" xml:space="preserve">
-    <value>watchedFoldersContextMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;watchedFoldersContextMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -1487,6 +1487,12 @@ ensure they are not in use.</value>
   <data name="&gt;&gt;encryptedPathColumnHeader.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;deleteToolStripMenuItem.Name" xml:space="preserve">
+    <value>deleteToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;deleteToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;persistentState.Name" xml:space="preserve">
     <value>persistentState</value>
   </data>
@@ -1504,12 +1510,6 @@ ensure they are not in use.</value>
   </data>
   <data name="&gt;&gt;backgroundMonitor.Type" xml:space="preserve">
     <value>Axantum.AxCrypt.BackgroundMonitor, Axantum.AxCrypt, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;deleteToolStripMenuItem.Name" xml:space="preserve">
-    <value>deleteToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;deleteToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AxCryptMainForm</value>

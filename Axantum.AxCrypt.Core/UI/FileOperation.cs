@@ -191,7 +191,7 @@ namespace Axantum.AxCrypt.Core.UI
                 OS.Log.LogInfo("Process exit event for '{0}'.".InvariantFormat(path));
             }
 
-            OS.Current.NotifyWorkFolderStateChanged(new SessionEvent(SessionEventType.ProcessExit, path));
+            OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.ProcessExit, path));
         }
 
         private static ActiveFile TryDecrypt(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFolderInfo, IEnumerable<AesKey> keys, ProgressContext progress)

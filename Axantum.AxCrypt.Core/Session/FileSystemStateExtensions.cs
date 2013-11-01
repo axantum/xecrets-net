@@ -113,18 +113,13 @@ namespace Axantum.AxCrypt.Core.Session
             return activeFile;
         }
 
-        public static void EncryptFilesInWatchedFolders(this FileSystemState fileSystemState, ProgressContext progress)
+        public static void EncryptFilesInWatchedFolders(this FileSystemState fileSystemState, AesKey encryptionKey, ProgressContext progress)
         {
             if (fileSystemState == null)
             {
                 throw new ArgumentNullException("fileSystemState");
             }
 
-            AesKey encryptionKey = fileSystemState.KnownKeys.DefaultEncryptionKey;
-            if (encryptionKey == null)
-            {
-                return;
-            }
             IEnumerable<IRuntimeFileInfo> files = fileSystemState.DecryptedFilesInWatchedFolders();
             progress.NotifyLevelStart();
             try
@@ -166,15 +161,17 @@ namespace Axantum.AxCrypt.Core.Session
                     AxCryptFile.DecryptFilesUniqueWithWipeOfOriginal(removedFolderInfo, sessionEvent.Key, progress);
                     break;
                 case SessionEventType.LogOn:
+                    fileSystemState.EncryptFilesInWatchedFolders(sessionEvent.Key, progress);
                     break;
                 case SessionEventType.LogOff:
+                    fileSystemState.EncryptFilesInWatchedFolders(sessionEvent.Key, progress);
                     break;
                 case SessionEventType.ProcessExit:
                     break;
                 case SessionEventType.SessionChange:
                     break;
                 case SessionEventType.KnownKeyChange:
-                    fileSystemState.EncryptFilesInWatchedFolders(progress);
+                    fileSystemState.EncryptFilesInWatchedFolders(sessionEvent.Key, progress);
                     break;
                 case SessionEventType.WorkFolderChange:
                     break;

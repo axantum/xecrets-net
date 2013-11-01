@@ -328,7 +328,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
 
             bool changedWasRaised = false;
-            OS.Current.WorkFolderStateChanged += (object sender, SessionEventArgs e) => { changedWasRaised = true; };
+            OS.Current.SessionChanged += (object sender, SessionEventArgs e) => { changedWasRaised = true; };
             Assert.That(changedWasRaised, Is.False, "The global changed event should not have been raised yet.");
 
             launcher.RaiseExited();

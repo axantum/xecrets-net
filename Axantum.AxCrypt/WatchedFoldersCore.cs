@@ -16,6 +16,7 @@ namespace Axantum.AxCrypt
         public WatchedFoldersCore(IMainView mainView)
         {
             _mainView = mainView;
+            ShowOrHideWatchedFoldersTabPage();
         }
 
         private TabPage WatchedFoldersTabPage
@@ -29,9 +30,10 @@ namespace Axantum.AxCrypt
             ShowOrHideWatchedFoldersTabPage();
         }
 
-        public void EncryptFiles(ProgressContext progress)
+        public void OpenSelectedFolder()
         {
-            _mainView.FileSystemState.EncryptFilesInWatchedFolders(progress);
+            string folder = _mainView.WatchedFolders.SelectedItems[0].Text;
+            OS.Current.Launch(folder);
         }
 
         private void AddRemoveWatchedFolders()

@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
@@ -119,6 +120,14 @@ namespace Axantum.AxCrypt.Core.UI
             }
             set
             {
+                if (value != null)
+                {
+                    OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.LogOn, value));
+                }
+                else
+                {
+                    OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.LogOff, _defaultEncryptionKey));
+                }
                 _defaultEncryptionKey = value;
                 if (value == null)
                 {

@@ -139,7 +139,7 @@ namespace Axantum.AxCrypt
             recentFilesListView.LargeImageList = CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources(components);
             recentFilesListView.ListViewItemSorter = _currentRecentFilesSorter;
 
-            OS.Current.WorkFolderStateChanged += HandleWorkFolderStateChangedEvent;
+            OS.Current.SessionChanged += HandleWorkFolderStateChangedEvent;
 
             persistentState.Current.Changed += new EventHandler<ActiveFileChangedEventArgs>(HandleFileSystemStateChangedEvent);
             persistentState.Current.Load(FileSystemState.DefaultPathInfo);
@@ -153,12 +153,12 @@ namespace Axantum.AxCrypt
             backgroundMonitor.UpdateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(HandleVersionUpdateEvent);
             UpdateCheck(Settings.Default.LastUpdateCheckUtc);
 
-            OS.Current.NotifyWorkFolderStateChanged(new SessionEvent(SessionEventType.SessionChange));
+            OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.SessionChange));
         }
 
         private void HandleKnownKeysChangedEvent(object sender, EventArgs e)
         {
-            OS.Current.NotifyWorkFolderStateChanged(new SessionEvent(SessionEventType.KnownKeyChange));
+            OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.KnownKeyChange));
         }
 
         private void SetWindowTextWithLogonStatus()
@@ -849,7 +849,7 @@ namespace Axantum.AxCrypt
 
             if (_handleWorkFolderStateChangedInProgress)
             {
-                OS.Current.NotifyWorkFolderStateChanged(new SessionEvent(SessionEventType.SessionChange));
+                OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.SessionChange));
                 return;
             }
             _handleWorkFolderStateChangedInProgress = true;
@@ -926,7 +926,6 @@ namespace Axantum.AxCrypt
                     {
                         persistentState.Current.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
                         persistentState.Current.PurgeActiveFiles(progress);
-                        _watchedFoldersCore.EncryptFiles(progress);
                     }
                     finally
                     {
@@ -1331,6 +1330,11 @@ namespace Axantum.AxCrypt
                 return null;
             }
             return fileInfo;
+        }
+
+        private void watchedFoldersListView_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            _watchedFoldersCore.OpenSelectedFolder();
         }
     }
 }

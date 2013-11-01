@@ -159,8 +159,8 @@ namespace Axantum.AxCrypt.Mono.Test
         public static void TestChangedEvent()
         {
             bool wasHere = false;
-            OS.Current.WorkFolderStateChanged += (object sender, SessionEventArgs e) => { wasHere = e.SessionEvents.First().SessionEventType == SessionEventType.ActiveFileChange; };
-            OS.Current.NotifyWorkFolderStateChanged(new SessionEvent(SessionEventType.ActiveFileChange));
+            OS.Current.SessionChanged += (object sender, SessionEventArgs e) => { wasHere = e.SessionEvents.First().SessionEventType == SessionEventType.ActiveFileChange; };
+            OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.ActiveFileChange));
 
             Assert.That(wasHere, Is.False, "The RaiseChanged() method should not raise the event immediately.");
 

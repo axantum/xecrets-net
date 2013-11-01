@@ -135,20 +135,30 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 foreach (WatchedFolder watchedFolder in value)
                 {
-                    AddWatchedFolder(watchedFolder);
+                    AddWatchedFolderInternal(watchedFolder);
                 }
             }
         }
 
         public void AddWatchedFolder(WatchedFolder watchedFolder)
         {
-            if (!WatchedFoldersInternal.Contains(watchedFolder))
+            if (AddWatchedFolderInternal(watchedFolder))
             {
-                WatchedFolder copy = new WatchedFolder(watchedFolder);
-                copy.Changed += watchedFolder_Changed;
-                WatchedFoldersInternal.Add(copy);
-                OS.Current.NotifyWorkFolderStateChanged(new SessionEvent(SessionEventType.WatchedFolderAdded, KnownKeys.DefaultEncryptionKey, watchedFolder.Path));
+                OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.WatchedFolderAdded, KnownKeys.DefaultEncryptionKey, watchedFolder.Path));
             }
+        }
+
+        private bool AddWatchedFolderInternal(WatchedFolder watchedFolder)
+        {
+            if (WatchedFoldersInternal.Contains(watchedFolder))
+            {
+                return false;
+            }
+
+            WatchedFolder copy = new WatchedFolder(watchedFolder);
+            copy.Changed += watchedFolder_Changed;
+            WatchedFoldersInternal.Add(copy);
+            return true;
         }
 
         void watchedFolder_Changed(object sender, FileWatcherEventArgs e)
@@ -159,7 +169,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             WatchedFoldersInternal.Remove(watchedFolder);
             watchedFolder.Changed -= watchedFolder_Changed;
-            OS.Current.NotifyWorkFolderStateChanged(new SessionEvent(SessionEventType.WatchedFolderRemoved, KnownKeys.DefaultEncryptionKey, watchedFolder.Path));
+            OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.WatchedFolderRemoved, KnownKeys.DefaultEncryptionKey, watchedFolder.Path));
         }
 
         public event EventHandler<ActiveFileChangedEventArgs> Changed;

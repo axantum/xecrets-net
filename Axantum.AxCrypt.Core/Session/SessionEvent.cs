@@ -15,16 +15,21 @@ namespace Axantum.AxCrypt.Core.Session
 
         public SessionEventType SessionEventType { get; private set; }
 
-        public SessionEvent(SessionEventType sessionEventType, string fullName)
-            : this(sessionEventType, null, fullName)
-        {
-        }
-
         public SessionEvent(SessionEventType sessionEventType, AesKey key, string fullName)
         {
             SessionEventType = sessionEventType;
             Key = key;
             FullName = fullName;
+        }
+
+        public SessionEvent(SessionEventType sessionEventType, string fullName)
+            : this(sessionEventType, null, fullName)
+        {
+        }
+
+        public SessionEvent(SessionEventType sessionEventType, AesKey key)
+            : this(sessionEventType, key, null)
+        {
         }
 
         public SessionEvent(SessionEventType sessionEventType)

@@ -192,16 +192,16 @@ namespace Axantum.AxCrypt.Core.Test
 
         protected virtual void OnChanged(SessionEventArgs e)
         {
-            EventHandler<SessionEventArgs> handler = WorkFolderStateChanged;
+            EventHandler<SessionEventArgs> handler = SessionChanged;
             if (handler != null)
             {
                 handler(this, e);
             }
         }
 
-        public event EventHandler<SessionEventArgs> WorkFolderStateChanged;
+        public event EventHandler<SessionEventArgs> SessionChanged;
 
-        public void NotifyWorkFolderStateChanged(SessionEvent sessionEvent)
+        public void NotifySessionChanged(SessionEvent sessionEvent)
         {
             OnChanged(new SessionEventArgs(sessionEvent));
         }

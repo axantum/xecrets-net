@@ -36,9 +36,9 @@ namespace Axantum.AxCrypt.Core.Runtime
 {
     public interface IRuntimeEnvironment
     {
-        event EventHandler<SessionEventArgs> WorkFolderStateChanged;
+        event EventHandler<SessionEventArgs> SessionChanged;
 
-        void NotifyWorkFolderStateChanged(SessionEvent sessionEvent);
+        void NotifySessionChanged(SessionEvent sessionEvent);
 
         bool IsLittleEndian { get; }
 

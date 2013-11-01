@@ -70,11 +70,11 @@
             this.lastAccessTimeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.encryptedPathColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusTabControl = new System.Windows.Forms.TabControl();
+            this.watchedFoldersContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.persistentState = new Axantum.AxCrypt.PersistentState(this.components);
             this.progressBackgroundWorker = new Axantum.AxCrypt.ProgressBackgroundWorker(this.components);
             this.backgroundMonitor = new Axantum.AxCrypt.BackgroundMonitor(this.components);
-            this.watchedFoldersContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainToolStrip.SuspendLayout();
             this.mainMenuStrip.SuspendLayout();
             this.recentFilesContextMenuStrip.SuspendLayout();
@@ -84,9 +84,9 @@
             this.watchedFoldersTabPage.SuspendLayout();
             this.recentFilesTabPage.SuspendLayout();
             this.statusTabControl.SuspendLayout();
+            this.watchedFoldersContextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.persistentState)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundMonitor)).BeginInit();
-            this.watchedFoldersContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainToolStrip
@@ -424,6 +424,7 @@
             this.watchedFoldersListView.DragEnter += new System.Windows.Forms.DragEventHandler(this.watchedFoldersListView_DragEnter);
             this.watchedFoldersListView.DragOver += new System.Windows.Forms.DragEventHandler(this.watchedFoldersListView_DragOver);
             this.watchedFoldersListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.watchedFoldersListView_MouseClick);
+            this.watchedFoldersListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.watchedFoldersListView_MouseDoubleClick);
             // 
             // watchedFolderColumnHeader
             // 
@@ -473,15 +474,6 @@
             this.statusTabControl.Name = "statusTabControl";
             this.statusTabControl.SelectedIndex = 0;
             // 
-            // persistentState
-            // 
-            this.persistentState.Current = null;
-            // 
-            // progressBackgroundWorker
-            // 
-            this.progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.progressBackgroundWorker_ProgressBarCreated);
-            this.progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.progressBackgroundWorker_ProgressBarClicked);
-            // 
             // watchedFoldersContextMenuStrip
             // 
             this.watchedFoldersContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -494,6 +486,15 @@
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             resources.ApplyResources(this.deleteToolStripMenuItem, "deleteToolStripMenuItem");
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // persistentState
+            // 
+            this.persistentState.Current = null;
+            // 
+            // progressBackgroundWorker
+            // 
+            this.progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.progressBackgroundWorker_ProgressBarCreated);
+            this.progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.progressBackgroundWorker_ProgressBarClicked);
             // 
             // AxCryptMainForm
             // 
@@ -520,9 +521,9 @@
             this.watchedFoldersTabPage.ResumeLayout(false);
             this.recentFilesTabPage.ResumeLayout(false);
             this.statusTabControl.ResumeLayout(false);
+            this.watchedFoldersContextMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.persistentState)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundMonitor)).EndInit();
-            this.watchedFoldersContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
