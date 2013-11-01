@@ -434,7 +434,7 @@ namespace Axantum.AxCrypt.Core
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable is a word.")]
         public static bool IsEncryptable(this string fullName)
         {
-            foreach (Regex filter in OS.FileNameFilters)
+            foreach (Regex filter in OS.PathFilters)
             {
                 if (filter.IsMatch(fullName))
                 {
@@ -442,6 +442,49 @@ namespace Axantum.AxCrypt.Core
                 }
             }
             return !fullName.IsEncrypted();
+        }
+
+        public static string FolderFromEnvironment(this string name)
+        {
+            if (name == null)
+            {
+                throw new ArgumentNullException("name");
+            }
+
+            string value = OS.Current.EnvironmentVariable(name);
+            if (String.IsNullOrEmpty(value))
+            {
+                return String.Empty;
+            }
+
+            value = value.Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
+            return value.NormalizeFolder();
+        }
+
+        public static string NormalizeFolder(this string folder)
+        {
+            if (folder == null)
+            {
+                throw new ArgumentNullException("folder");
+            }
+
+            if (folder.Length == 0)
+            {
+                throw new ArgumentException("folder");
+            }
+
+            folder = folder.Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
+            int directorySeparatorChars = 0;
+            while (folder[folder.Length - (directorySeparatorChars + 1)] == Path.DirectorySeparatorChar)
+            {
+                ++directorySeparatorChars;
+            }
+
+            if (directorySeparatorChars == 0)
+            {
+                return folder + Path.DirectorySeparatorChar;
+            }
+            return folder.Substring(0, folder.Length - (directorySeparatorChars - 1));
         }
     }
 }

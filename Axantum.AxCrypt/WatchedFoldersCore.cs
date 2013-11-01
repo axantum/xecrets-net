@@ -4,6 +4,7 @@ using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -100,6 +101,11 @@ namespace Axantum.AxCrypt
             }
             IRuntimeFileInfo fileInfo = OS.Current.FileInfo(dropped[0]);
             if (!fileInfo.IsFolder)
+            {
+                return null;
+            }
+
+            if (!fileInfo.FullName.NormalizeFolder().IsEncryptable())
             {
                 return null;
             }

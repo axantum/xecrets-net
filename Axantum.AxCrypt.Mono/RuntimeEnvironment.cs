@@ -284,5 +284,12 @@ namespace Axantum.AxCrypt.Mono
                 _delayedWorkFolderStateChanged = null;
             }
         }
+
+        public string EnvironmentVariable(string name)
+        {
+            string variable = Environment.GetEnvironmentVariable(name);
+
+            return variable;
+        }
     }
 }

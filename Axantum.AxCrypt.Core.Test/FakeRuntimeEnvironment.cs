@@ -28,11 +28,11 @@
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using Axantum.AxCrypt.Core.Session;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -53,6 +53,7 @@ namespace Axantum.AxCrypt.Core.Test
             Platform = Platform.WindowsDesktop;
             CurrentTiming = new FakeTiming();
             ThumbprintSalt = KeyWrapSalt.Zero;
+            EnvironmentVariables = new Dictionary<string, string>();
         }
 
         public FakeRuntimeEnvironment(Endian endianness)
@@ -206,7 +207,6 @@ namespace Axantum.AxCrypt.Core.Test
             OnChanged(new SessionEventArgs(sessionEvent));
         }
 
-
         #region IRuntimeEnvironment Members
 
         public ILogging Log
@@ -242,6 +242,18 @@ namespace Axantum.AxCrypt.Core.Test
 
         public void Dispose()
         {
+        }
+
+        public IDictionary<string, string> EnvironmentVariables { get; private set; }
+
+        public string EnvironmentVariable(string name)
+        {
+            string variable;
+            if (!EnvironmentVariables.TryGetValue(name, out variable))
+            {
+                return String.Empty;
+            }
+            return variable;
         }
     }
 }

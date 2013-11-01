@@ -73,13 +73,13 @@ namespace Axantum.AxCrypt.Core
         /// </value>
         public static ILogging Log { get { return Current.Log; } }
 
-        private static readonly List<Regex> _fileNameFilters = new List<Regex>();
+        private static readonly List<Regex> _pathFilters = new List<Regex>();
 
-        public static IList<Regex> FileNameFilters
+        public static IList<Regex> PathFilters
         {
             get
             {
-                return _fileNameFilters;
+                return _pathFilters;
             }
         }
     }

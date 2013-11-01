@@ -141,8 +141,7 @@ namespace Axantum.AxCrypt
 
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
 
-            OS.FileNameFilters.Add(new Regex(@"\.dropbox$"));
-            OS.FileNameFilters.Add(new Regex(@"desktop\.ini$"));
+            SetupPathFilters();
 
             _watchedFoldersCore = new WatchedFoldersCore(this);
 
@@ -165,6 +164,28 @@ namespace Axantum.AxCrypt
             UpdateCheck(Settings.Default.LastUpdateCheckUtc);
 
             OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.SessionChange));
+        }
+
+        private static void SetupPathFilters()
+        {
+            OS.PathFilters.Add(new Regex(@"\\\.dropbox$"));
+            OS.PathFilters.Add(new Regex(@"\\desktop\.ini$"));
+            AddEnvironmentVariableBasedPathFilter(@"^{0}(?!Temp$)", "SystemRoot");
+            AddEnvironmentVariableBasedPathFilter(@"^{0}(?!Temp$)", "windir");
+            AddEnvironmentVariableBasedPathFilter(@"^{0}", "ProgramFiles");
+            AddEnvironmentVariableBasedPathFilter(@"^{0}", "ProgramFiles(x86)");
+            AddEnvironmentVariableBasedPathFilter(@"^{0}$", "SystemDrive");
+        }
+
+        private static void AddEnvironmentVariableBasedPathFilter(string formatRegularExpression, string name)
+        {
+            string folder = name.FolderFromEnvironment();
+            if (String.IsNullOrEmpty(folder))
+            {
+                return;
+            }
+            folder = folder.Replace(@"\", @"\\");
+            OS.PathFilters.Add(new Regex(formatRegularExpression.InvariantFormat(folder)));
         }
 
         private void HandleKnownKeysChangedEvent(object sender, EventArgs e)

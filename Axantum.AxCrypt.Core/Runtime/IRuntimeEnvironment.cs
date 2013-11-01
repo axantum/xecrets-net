@@ -74,5 +74,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         long KeyWrapIterations { get; set; }
 
         KeyWrapSalt ThumbprintSalt { get; set; }
+
+        string EnvironmentVariable(string name);
     }
 }
