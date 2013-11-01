@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt
     /// <summary>
     /// Background thread operations with progress bar support
     /// </summary>
-    public class ProgressBackgroundWorker : Component
+    internal class ProgressBackgroundWorker : Component
     {
         private long _workerCount = 0;
 

@@ -14,7 +14,5 @@ namespace Axantum.AxCrypt
         ListView WatchedFolders { get; }
 
         TabControl Tabs { get; }
-
-        ProgressBackgroundWorker BackgroundWorker { get; }
     }
 }

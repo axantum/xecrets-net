@@ -112,11 +112,6 @@ namespace Axantum.AxCrypt
             get { return statusTabControl; }
         }
 
-        public ProgressBackgroundWorker BackgroundWorker
-        {
-            get { return progressBackgroundWorker; }
-        }
-
         public AxCryptMainForm()
         {
             InitializeComponent();
@@ -1286,7 +1281,24 @@ namespace Axantum.AxCrypt
 
         private void watchedFoldersListView_decryptTemporarilyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _watchedFoldersCore.DecryptSelectedFolder();
+            string folder = watchedFoldersListView.SelectedItems[0].Text;
+            progressBackgroundWorker.BackgroundWorkWithProgress(
+                (ProgressContext progress) =>
+                {
+                    progress.NotifyLevelStart();
+                    try
+                    {
+                        _watchedFoldersCore.DecryptSelectedFolder(folder, progress);
+                    }
+                    finally
+                    {
+                        progress.NotifyLevelFinished();
+                    }
+                    return FileOperationStatus.Success;
+                },
+                (FileOperationStatus status) =>
+                {
+                });
         }
 
         #endregion Watched Folders
