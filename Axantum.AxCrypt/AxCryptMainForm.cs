@@ -150,7 +150,7 @@ namespace Axantum.AxCrypt
             recentFilesListView.LargeImageList = CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources(components);
             recentFilesListView.ListViewItemSorter = new RecentFilesByDateComparer();
 
-            OS.Current.SessionChanged += HandleWorkFolderStateChangedEvent;
+            OS.Current.SessionChanged += HandleSessionChangedEvent;
 
             persistentState.Current.Changed += new EventHandler<ActiveFileChangedEventArgs>(HandleFileSystemStateChangedEvent);
             persistentState.Current.Load(FileSystemState.DefaultPathInfo);
@@ -849,21 +849,21 @@ namespace Axantum.AxCrypt
             Application.Exit();
         }
 
-        private bool _handleWorkFolderStateChangedInProgress = false;
+        private bool _handleSessionChangedInProgress = false;
 
-        private void HandleWorkFolderStateChangedEvent(object sender, SessionEventArgs e)
+        private void HandleSessionChangedEvent(object sender, SessionEventArgs e)
         {
             if (OS.Log.IsInfoEnabled)
             {
                 OS.Log.LogInfo("Tick");                                 //MLHIDE
             }
 
-            if (_handleWorkFolderStateChangedInProgress)
+            if (_handleSessionChangedInProgress)
             {
                 OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.SessionChange));
                 return;
             }
-            _handleWorkFolderStateChangedInProgress = true;
+            _handleSessionChangedInProgress = true;
 
             progressBackgroundWorker.BackgroundWorkWithProgress(
                 (ProgressContext progress) =>
@@ -884,7 +884,7 @@ namespace Axantum.AxCrypt
                     closeAndRemoveOpenFilesToolStripButton.Enabled = FilesAreOpen;
                     SetToolButtonsState();
                     _watchedFoldersCore.UpdateListView();
-                    _handleWorkFolderStateChangedInProgress = false;
+                    _handleSessionChangedInProgress = false;
                 });
         }
 
