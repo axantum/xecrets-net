@@ -27,6 +27,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
 namespace Axantum.AxCrypt.Core.IO
@@ -134,6 +135,7 @@ namespace Axantum.AxCrypt.Core.IO
         /// </value>
         bool IsFolder { get; }
 
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable is a word.")]
         bool IsEncryptable { get; }
 
         /// <summary>

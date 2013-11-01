@@ -68,12 +68,21 @@ namespace Axantum.AxCrypt
             {
                 ListViewItem item1 = (ListViewItem)x;
                 ListViewItem item2 = (ListViewItem)y;
-                DateTime dateTime1 = (DateTime)item1.SubItems["Date"].Tag;
-                DateTime dateTime2 = (DateTime)item2.SubItems["Date"].Tag;
+                DateTime dateTime1 = DateFromSubItem(item1.SubItems["Date"]);
+                DateTime dateTime2 = DateFromSubItem(item2.SubItems["Date"]);
                 return dateTime2.CompareTo(dateTime1);
             }
 
             #endregion IComparer Members
+        }
+
+        private static DateTime DateFromSubItem(ListViewItem.ListViewSubItem subItem)
+        {
+            if (subItem == null || subItem.Tag == null)
+            {
+                return DateTime.MinValue;
+            }
+            return (DateTime)subItem.Tag;
         }
 
         private Uri _updateUrl = Settings.Default.UpdateUrl;
@@ -139,6 +148,7 @@ namespace Axantum.AxCrypt
 
             recentFilesListView.SmallImageList = CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources(components);
             recentFilesListView.LargeImageList = CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources(components);
+            recentFilesListView.ListViewItemSorter = new RecentFilesByDateComparer();
 
             OS.Current.SessionChanged += HandleWorkFolderStateChangedEvent;
 

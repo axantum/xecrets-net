@@ -30,6 +30,7 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -415,6 +416,7 @@ namespace Axantum.AxCrypt.Core
             return message.Substring(skipIndex + 1);
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable is a word.")]
         public static IEnumerable<IRuntimeFileInfo> ListEncryptable(this string folderPath)
         {
             IRuntimeFileInfo folderPathInfo = OS.Current.FileInfo(folderPath);
@@ -429,6 +431,7 @@ namespace Axantum.AxCrypt.Core
             return folderPathInfo.Files.Where((IRuntimeFileInfo fileInfo) => { return fileInfo.Name.IsEncrypted(); });
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable is a word.")]
         public static bool IsEncryptable(this string fullName)
         {
             foreach (Regex filter in OS.FileNameFilters)

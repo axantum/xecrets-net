@@ -31,6 +31,7 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 
@@ -257,6 +258,7 @@ namespace Axantum.AxCrypt.Core.Session
         /// </summary>
         /// <param name="fileSystemState">The associated <see cref="FileSystemState"/>.</param>
         /// <returns>An enumeration of found files.</returns>
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable is a word.")]
         public static IEnumerable<IRuntimeFileInfo> ListEncryptableInWatchedFolders(this FileSystemState fileSystemState)
         {
             IEnumerable<IRuntimeFileInfo> newFiles = new List<IRuntimeFileInfo>();
