@@ -376,14 +376,16 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestCreateUniqueFileUnexpectedAxCryptException()
         {
-            FakeRuntimeFileInfo.ExceptionHook += (sender, e) =>
+            EventHandler handler = delegate(object sender, EventArgs e)
             {
                 if (((FakeRuntimeFileInfo)sender).TestTag == "CreateNewFile")
                 {
                     throw new InternalErrorException("An unexpected exception.", ErrorStatus.InternalError);
                 }
             };
+            FakeRuntimeFileInfo.ExceptionHook += handler;
             Assert.Throws<InternalErrorException>(() => @"C:\temp\test.txt".CreateUniqueFile());
+            FakeRuntimeFileInfo.ExceptionHook -= handler;
         }
 
         [Test]
