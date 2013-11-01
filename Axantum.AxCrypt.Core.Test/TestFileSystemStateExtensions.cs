@@ -239,8 +239,14 @@ namespace Axantum.AxCrypt.Core.Test
             _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because the file was modified as well and thus cannot be deleted.");
 
+            _fileSystemState.KnownKeys.Add(new Passphrase("x").DerivedPassphrase);
+            _fileSystemState.KnownKeys.Add(new Passphrase("y").DerivedPassphrase);
+            _fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+            Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because the file was modified as well and thus cannot be deleted.");
+
             activeFile = _fileSystemState.FindEncryptedPath(_encryptedFile1);
             Assert.That(activeFile.Key, Is.Null, "The key should still be null after the checking of active files.");
+
             Assert.That(activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "The file should still be there.");
             Assert.That(activeFile.ThumbprintMatch(passphrase.DerivedPassphrase), Is.True, "The active file should still be known to be decryptable with the original passphrase.");
         }
