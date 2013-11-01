@@ -991,11 +991,6 @@ namespace Axantum.AxCrypt
             ShowContextMenu(recentFilesContextMenuStrip, sender, e);
         }
 
-        private void watchedFoldersListView_MouseClick(object sender, MouseEventArgs e)
-        {
-            ShowContextMenu(watchedFoldersContextMenuStrip, sender, e);
-        }
-
         private static void ShowContextMenu(ContextMenuStrip contextMenu, object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right)
@@ -1004,21 +999,6 @@ namespace Axantum.AxCrypt
             }
             ListView listView = (ListView)sender;
             contextMenu.Show(listView, e.Location);
-        }
-
-        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            foreach (string watchedFolderPath in SelectedWatchedFoldersItems())
-            {
-                persistentState.Current.RemoveWatchedFolder(new WatchedFolder(watchedFolderPath));
-                persistentState.Current.Save();
-            }
-        }
-
-        private IEnumerable<string> SelectedWatchedFoldersItems()
-        {
-            IEnumerable<string> selected  = watchedFoldersListView.SelectedItems.Cast<ListViewItem>().Select((ListViewItem item) => { return item.Text; }).ToArray();
-            return selected;
         }
 
         private void closeOpenFilesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1261,6 +1241,35 @@ namespace Axantum.AxCrypt
             SetToolButtonsState();
         }
 
+        #region Watched Folders
+
+        private void watchedFoldersListView_DragDrop(object sender, DragEventArgs e)
+        {
+            _watchedFoldersCore.DropDragAndDrop(e);
+        }
+
+        private void watchedFoldersListView_DragOver(object sender, DragEventArgs e)
+        {
+            _watchedFoldersCore.StartDragAndDrop(e);
+        }
+
+        private void watchedFoldersListView_MouseClick(object sender, MouseEventArgs e)
+        {
+            ShowContextMenu(watchedFoldersContextMenuStrip, sender, e);
+        }
+
+        private void watchedFoldersListView_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            _watchedFoldersCore.OpenSelectedFolder();
+        }
+
+        private void watchedFoldersListView_deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _watchedFoldersCore.RemoveSelectedWatchedFolders();
+        }
+
+        #endregion Watched Folders
+
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -1281,60 +1290,6 @@ namespace Axantum.AxCrypt
                 OS.Current = null;
             }
             base.Dispose(disposing);
-        }
-
-        private void watchedFoldersListView_DragDrop(object sender, DragEventArgs e)
-        {
-            IRuntimeFileInfo droppedFolder = GetDroppedFolderIfAny(e.Data);
-            if (droppedFolder == null)
-            {
-                return;
-            }
-            persistentState.Current.AddWatchedFolder(new WatchedFolder(droppedFolder.FullName));
-            persistentState.Current.Save();
-        }
-
-        private void watchedFoldersListView_DragEnter(object sender, DragEventArgs e)
-        {
-            IRuntimeFileInfo droppedFolder = GetDroppedFolderIfAny(e.Data);
-            if (droppedFolder == null)
-            {
-                return;
-            }
-        }
-
-        private void watchedFoldersListView_DragOver(object sender, DragEventArgs e)
-        {
-            IRuntimeFileInfo droppedFolder = GetDroppedFolderIfAny(e.Data);
-            if (droppedFolder == null)
-            {
-                return;
-            }
-            e.Effect = DragDropEffects.Link;
-        }
-
-        private static IRuntimeFileInfo GetDroppedFolderIfAny(IDataObject dataObject)
-        {
-            IList<string> dropped = dataObject.GetData(DataFormats.FileDrop) as IList<string>;
-            if (dropped == null)
-            {
-                return null;
-            }
-            if (dropped.Count != 1)
-            {
-                return null;
-            }
-            IRuntimeFileInfo fileInfo = OS.Current.FileInfo(dropped[0]);
-            if (!fileInfo.IsFolder)
-            {
-                return null;
-            }
-            return fileInfo;
-        }
-
-        private void watchedFoldersListView_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            _watchedFoldersCore.OpenSelectedFolder();
         }
     }
 }

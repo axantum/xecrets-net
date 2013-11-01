@@ -421,7 +421,6 @@
             this.watchedFoldersListView.UseCompatibleStateImageBehavior = false;
             this.watchedFoldersListView.View = System.Windows.Forms.View.Details;
             this.watchedFoldersListView.DragDrop += new System.Windows.Forms.DragEventHandler(this.watchedFoldersListView_DragDrop);
-            this.watchedFoldersListView.DragEnter += new System.Windows.Forms.DragEventHandler(this.watchedFoldersListView_DragEnter);
             this.watchedFoldersListView.DragOver += new System.Windows.Forms.DragEventHandler(this.watchedFoldersListView_DragOver);
             this.watchedFoldersListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.watchedFoldersListView_MouseClick);
             this.watchedFoldersListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.watchedFoldersListView_MouseDoubleClick);
@@ -485,7 +484,7 @@
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             resources.ApplyResources(this.deleteToolStripMenuItem, "deleteToolStripMenuItem");
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.watchedFoldersListView_deleteToolStripMenuItem_Click);
             // 
             // persistentState
             // 

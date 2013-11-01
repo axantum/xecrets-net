@@ -6,6 +6,7 @@ using System.Text;
 using System.Windows.Forms;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Core.IO;
 
 namespace Axantum.AxCrypt
 {
@@ -36,6 +37,27 @@ namespace Axantum.AxCrypt
             OS.Current.Launch(folder);
         }
 
+        public void StartDragAndDrop(DragEventArgs e)
+        {
+            IRuntimeFileInfo droppedFolder = GetDroppedFolderIfAny(e.Data);
+            if (droppedFolder == null)
+            {
+                return;
+            }
+            e.Effect = DragDropEffects.Link;
+        }
+
+        public void DropDragAndDrop(DragEventArgs e)
+        {
+            IRuntimeFileInfo droppedFolder = GetDroppedFolderIfAny(e.Data);
+            if (droppedFolder == null)
+            {
+                return;
+            }
+            _mainView.FileSystemState.AddWatchedFolder(new WatchedFolder(droppedFolder.FullName));
+            _mainView.FileSystemState.Save();
+        }
+
         private void AddRemoveWatchedFolders()
         {
             _mainView.WatchedFolders.ListViewItemSorter = null;
@@ -58,6 +80,41 @@ namespace Axantum.AxCrypt
                 }
             }
             _mainView.WatchedFolders.ListViewItemSorter = StringComparer.CurrentCulture;
+        }
+
+
+        private static IRuntimeFileInfo GetDroppedFolderIfAny(IDataObject dataObject)
+        {
+            IList<string> dropped = dataObject.GetData(DataFormats.FileDrop) as IList<string>;
+            if (dropped == null)
+            {
+                return null;
+            }
+            if (dropped.Count != 1)
+            {
+                return null;
+            }
+            IRuntimeFileInfo fileInfo = OS.Current.FileInfo(dropped[0]);
+            if (!fileInfo.IsFolder)
+            {
+                return null;
+            }
+            return fileInfo;
+        }
+
+        public void RemoveSelectedWatchedFolders()
+        {
+            foreach (string watchedFolderPath in SelectedWatchedFoldersItems())
+            {
+                _mainView.FileSystemState.RemoveWatchedFolder(new WatchedFolder(watchedFolderPath));
+            }
+            _mainView.FileSystemState.Save();
+        }
+
+       private IEnumerable<string> SelectedWatchedFoldersItems()
+        {
+            IEnumerable<string> selected = _mainView.WatchedFolders.SelectedItems.Cast<ListViewItem>().Select((ListViewItem item) => { return item.Text; }).ToArray();
+            return selected;
         }
 
         private TabPage _watchedFoldersTabPage;
