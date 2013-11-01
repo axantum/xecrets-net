@@ -75,6 +75,7 @@
             this.persistentState = new Axantum.AxCrypt.PersistentState(this.components);
             this.progressBackgroundWorker = new Axantum.AxCrypt.ProgressBackgroundWorker(this.components);
             this.backgroundMonitor = new Axantum.AxCrypt.BackgroundMonitor(this.components);
+            this.decryptTemporarilyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainToolStrip.SuspendLayout();
             this.mainMenuStrip.SuspendLayout();
             this.recentFilesContextMenuStrip.SuspendLayout();
@@ -478,7 +479,8 @@
             // watchedFoldersContextMenuStrip
             // 
             this.watchedFoldersContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteToolStripMenuItem});
+            this.deleteToolStripMenuItem,
+            this.decryptTemporarilyToolStripMenuItem});
             this.watchedFoldersContextMenuStrip.Name = "watchedFoldersContextMenuStrip";
             resources.ApplyResources(this.watchedFoldersContextMenuStrip, "watchedFoldersContextMenuStrip");
             // 
@@ -496,6 +498,12 @@
             // 
             this.progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.progressBackgroundWorker_ProgressBarCreated);
             this.progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.progressBackgroundWorker_ProgressBarClicked);
+            // 
+            // decryptTemporarilyToolStripMenuItem
+            // 
+            this.decryptTemporarilyToolStripMenuItem.Name = "decryptTemporarilyToolStripMenuItem";
+            resources.ApplyResources(this.decryptTemporarilyToolStripMenuItem, "decryptTemporarilyToolStripMenuItem");
+            this.decryptTemporarilyToolStripMenuItem.Click += new System.EventHandler(this.watchedFoldersListView_decryptTemporarilyToolStripMenuItem_Click);
             // 
             // AxCryptMainForm
             // 
@@ -590,6 +598,7 @@
         private System.Windows.Forms.ColumnHeader watchedFolderColumnHeader;
         private System.Windows.Forms.ContextMenuStrip watchedFoldersContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem decryptTemporarilyToolStripMenuItem;
     }
 }
 

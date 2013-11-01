@@ -830,13 +830,19 @@ ensure they are not in use.</value>
     <value>726, 56</value>
   </metadata>
   <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 22</value>
+    <value>185, 22</value>
   </data>
   <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Decrypt</value>
+    <value>&amp;Decrypt Permanently</value>
+  </data>
+  <data name="decryptTemporarilyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 22</value>
+  </data>
+  <data name="decryptTemporarilyToolStripMenuItem.Text" xml:space="preserve">
+    <value>Decrypt &amp;Temporarily</value>
   </data>
   <data name="watchedFoldersContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 26</value>
+    <value>186, 70</value>
   </data>
   <data name="&gt;&gt;watchedFoldersContextMenuStrip.Name" xml:space="preserve">
     <value>watchedFoldersContextMenuStrip</value>
@@ -1510,6 +1516,12 @@ ensure they are not in use.</value>
   </data>
   <data name="&gt;&gt;backgroundMonitor.Type" xml:space="preserve">
     <value>Axantum.AxCrypt.BackgroundMonitor, Axantum.AxCrypt, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;decryptTemporarilyToolStripMenuItem.Name" xml:space="preserve">
+    <value>decryptTemporarilyToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;decryptTemporarilyToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AxCryptMainForm</value>

@@ -58,6 +58,28 @@ namespace Axantum.AxCrypt
             _mainView.FileSystemState.Save();
         }
 
+        public void DecryptSelectedFolder()
+        {
+            string folder = _mainView.WatchedFolders.SelectedItems[0].Text;
+            _mainView.BackgroundWorker.BackgroundWorkWithProgress(
+                (ProgressContext progress) =>
+                {
+                    progress.NotifyLevelStart();
+                    try
+                    {
+                        AxCryptFile.DecryptFilesUniqueWithWipeOfOriginal(OS.Current.FileInfo(folder), _mainView.FileSystemState.KnownKeys.DefaultEncryptionKey, progress);
+                    }
+                    finally
+                    {
+                        progress.NotifyLevelFinished();
+                    }
+                    return FileOperationStatus.Success;
+                },
+                (FileOperationStatus status) =>
+                {
+                });
+        }
+
         private void AddRemoveWatchedFolders()
         {
             _mainView.WatchedFolders.BeginUpdate();

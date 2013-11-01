@@ -25,23 +25,23 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
-using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.UI;
-using Axantum.AxCrypt.Properties;
 
 namespace Axantum.AxCrypt
 {
     /// <summary>
     /// Background thread operations with progress bar support
     /// </summary>
-    internal class ProgressBackgroundWorker : Component
+    public class ProgressBackgroundWorker : Component
     {
         private long _workerCount = 0;
 

@@ -161,7 +161,7 @@ namespace Axantum.AxCrypt.Core.Session
             return true;
         }
 
-        void watchedFolder_Changed(object sender, FileWatcherEventArgs e)
+        private void watchedFolder_Changed(object sender, FileWatcherEventArgs e)
         {
         }
 
@@ -420,7 +420,7 @@ namespace Axantum.AxCrypt.Core.Session
                 ThumbprintSalt = fileSystemState.ThumbprintSalt;
                 foreach (WatchedFolder watchedFolder in fileSystemState.WatchedFolders)
                 {
-                    AddWatchedFolder(watchedFolder);
+                    AddWatchedFolderInternal(watchedFolder);
                 }
                 if (OS.Log.IsInfoEnabled)
                 {
@@ -429,7 +429,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification="If the state can't be read, the software is rendered useless, so it's better to revert to empty here.")]
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "If the state can't be read, the software is rendered useless, so it's better to revert to empty here.")]
         private static FileSystemState CreateFileSystemState(IRuntimeFileInfo path)
         {
             using (Stream fileSystemStateStream = path.OpenRead())
@@ -500,7 +500,7 @@ namespace Axantum.AxCrypt.Core.Session
                 _activeFilesByEncryptedPath = null;
                 _activeFilesByDecryptedPath = null;
             }
-            
+
             if (_watchedFolders != null)
             {
                 foreach (WatchedFolder watchedFolder in _watchedFolders)
