@@ -174,6 +174,7 @@ namespace Axantum.AxCrypt.Core.Session
                 case SessionEventType.SessionChange:
                     break;
                 case SessionEventType.KnownKeyChange:
+                    fileSystemState.EncryptFilesInWatchedFolders(progress);
                     break;
                 case SessionEventType.WorkFolderChange:
                     break;

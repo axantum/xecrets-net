@@ -143,7 +143,7 @@
   <data name="openEncryptedToolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEE0AABBNAWeMAeAAAAOvSURBVFhHvZZJTxRRFIX5N3ZNP6D7l4Du/AeuABUVZ2Vo
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAOvSURBVFhHvZZJTxRRFIX5N3ZNP6D7l4Du/AeuABUVZ2Vo
         UEBBZFJAEBxwlkUnhSZuTLtuFkYlunBg1UjEcD236t2q16+rqukYOMm3IaHPOe/eelUt7qpb9F55paZ5
         CZ4ZPPVK7mM35hFYViyBBY17bsmet4stwY+tepTJa8Ur8FLxAjwHz8BTxROP3BWXYE4wJ/cBWAZL4D5Y
         BAtg3iVnziFr1iplB9CNxZyNTXPT+CHQzcX4HlDmzl0EmM4KsE+tndnQ3JlJC7DPrZ07obkzjQC3zQB7
@@ -193,7 +193,7 @@
   <data name="decryptToolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEE0AABBNAWeMAeAAAAR1SURBVFhHvZbbTxRnGMb5b9yZ2Y2RC40HBi+MxES48A9Q
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAR1SURBVFhHvZbbTxRnGMb5b9yZ2Y2RC40HBi+MxES48A9Q
         403hQq+88YBUaukByqIc5NgFCizLHlhQykGasSZNGktsbGJJs0STBhLSBsxCW1Kq+/Z5d75v59thdoFY
         +yW/CwaY3/PMfIcp8T/yBwOzAWvfzIApFw8Dln/C75AEcUEMRBRG/ZYe1oMl2Zs9ClBR5gSzYEYwDb4G
         U+Ch4EGA/JN+gpwgJ38CxEEMRMEYiICwn4wRg7RhzSoeQBVLOYvdcrd4HKhyKR4FQm4MIcBAsQDvqbUx
@@ -280,7 +280,7 @@ ensure they are not in use.</value>
     <value>He&amp;lp</value>
   </data>
   <data name="mainToolStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 27</value>
+    <value>0, 24</value>
   </data>
   <data name="mainToolStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>824, 50</value>
@@ -321,7 +321,7 @@ ensure they are not in use.</value>
 </value>
   </data>
   <data name="openEncryptedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 24</value>
+    <value>161, 22</value>
   </data>
   <data name="openEncryptedToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Open Encrypted</value>
@@ -343,7 +343,7 @@ ensure they are not in use.</value>
 </value>
   </data>
   <data name="encryptToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 24</value>
+    <value>161, 22</value>
   </data>
   <data name="encryptToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Encrypt</value>
@@ -365,13 +365,13 @@ ensure they are not in use.</value>
 </value>
   </data>
   <data name="decryptToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 24</value>
+    <value>161, 22</value>
   </data>
   <data name="decryptToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Decrypt</value>
   </data>
   <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 6</value>
+    <value>158, 6</value>
   </data>
   <data name="closeOpenFilesToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -391,43 +391,43 @@ ensure they are not in use.</value>
 </value>
   </data>
   <data name="closeOpenFilesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 24</value>
+    <value>161, 22</value>
   </data>
   <data name="closeOpenFilesToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Clean Decrypted</value>
   </data>
   <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 6</value>
+    <value>158, 6</value>
   </data>
   <data name="wipeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 24</value>
+    <value>161, 22</value>
   </data>
   <data name="wipeToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Secure Delete</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 6</value>
+    <value>158, 6</value>
   </data>
   <data name="englishLanguageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 24</value>
+    <value>116, 22</value>
   </data>
   <data name="englishLanguageToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;English</value>
   </data>
   <data name="swedishLanguageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 24</value>
+    <value>116, 22</value>
   </data>
   <data name="swedishLanguageToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Svenska</value>
   </data>
   <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 24</value>
+    <value>126, 22</value>
   </data>
   <data name="languageToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Language</value>
   </data>
   <data name="debugOptionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 24</value>
+    <value>126, 22</value>
   </data>
   <data name="debugOptionsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Debug</value>
@@ -449,55 +449,55 @@ ensure they are not in use.</value>
 </value>
   </data>
   <data name="optionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 24</value>
+    <value>161, 22</value>
   </data>
   <data name="optionsToolStripMenuItem.Text" xml:space="preserve">
     <value>O&amp;ptions</value>
   </data>
   <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 24</value>
+    <value>161, 22</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>E&amp;xit</value>
   </data>
   <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 23</value>
+    <value>37, 20</value>
   </data>
   <data name="fileToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;File</value>
   </data>
   <data name="checkVersionNowToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 24</value>
+    <value>177, 22</value>
   </data>
   <data name="checkVersionNowToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Check Version Now</value>
   </data>
   <data name="setUpdateCheckUrlToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 24</value>
+    <value>177, 22</value>
   </data>
   <data name="setUpdateCheckUrlToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Options</value>
   </data>
   <data name="debugToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 23</value>
+    <value>54, 20</value>
   </data>
   <data name="debugToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Debug</value>
   </data>
   <data name="viewHelpMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 24</value>
+    <value>127, 22</value>
   </data>
   <data name="viewHelpMenuItem.Text" xml:space="preserve">
     <value>&amp;View Help</value>
   </data>
   <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 24</value>
+    <value>127, 22</value>
   </data>
   <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;About</value>
   </data>
   <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 23</value>
+    <value>44, 20</value>
   </data>
   <data name="helpToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Help</value>
@@ -506,7 +506,7 @@ ensure they are not in use.</value>
     <value>0, 0</value>
   </data>
   <data name="mainMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>824, 27</value>
+    <value>824, 24</value>
   </data>
   <data name="mainMenuStrip.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -563,19 +563,19 @@ ensure they are not in use.</value>
     <value>713, 17</value>
   </metadata>
   <data name="removeRecentFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>317, 24</value>
+    <value>279, 22</value>
   </data>
   <data name="removeRecentFileToolStripMenuItem.Text" xml:space="preserve">
     <value>Leave Encrypted But &amp;Remove From List</value>
   </data>
   <data name="decryptAndRemoveFromListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>317, 24</value>
+    <value>279, 22</value>
   </data>
   <data name="decryptAndRemoveFromListToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Decrypt And Remove From List</value>
   </data>
   <data name="recentFilesContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>318, 52</value>
+    <value>280, 48</value>
   </data>
   <data name="&gt;&gt;recentFilesContextMenuStrip.Name" xml:space="preserve">
     <value>recentFilesContextMenuStrip</value>
@@ -587,13 +587,13 @@ ensure they are not in use.</value>
     <value>922, 17</value>
   </metadata>
   <data name="enterPassphraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 24</value>
+    <value>162, 22</value>
   </data>
   <data name="enterPassphraseToolStripMenuItem.Text" xml:space="preserve">
     <value>Enter &amp;Passphrase</value>
   </data>
   <data name="openFilesContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 28</value>
+    <value>163, 26</value>
   </data>
   <data name="&gt;&gt;openFilesContextMenuStrip.Name" xml:space="preserve">
     <value>openFilesContextMenuStrip</value>
@@ -605,13 +605,13 @@ ensure they are not in use.</value>
     <value>17, 56</value>
   </metadata>
   <data name="progressContextCancelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 24</value>
+    <value>110, 22</value>
   </data>
   <data name="progressContextCancelToolStripMenuItem.Text" xml:space="preserve">
     <value>Cancel</value>
   </data>
   <data name="progressContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 28</value>
+    <value>111, 26</value>
   </data>
   <data name="&gt;&gt;progressContextMenuStrip.Name" xml:space="preserve">
     <value>progressContextMenuStrip</value>
@@ -677,7 +677,7 @@ ensure they are not in use.</value>
     <value>2</value>
   </data>
   <data name="watchedFolderColumnHeader.Text" xml:space="preserve">
-    <value>Watched Folders</value>
+    <value>Name</value>
   </data>
   <data name="watchedFolderColumnHeader.Width" type="System.Int32, mscorlib">
     <value>368</value>
@@ -719,7 +719,7 @@ ensure they are not in use.</value>
     <value>1</value>
   </data>
   <data name="watchedFoldersTabPage.Text" xml:space="preserve">
-    <value>Watched Folders</value>
+    <value>Encrypted Folders</value>
   </data>
   <data name="&gt;&gt;watchedFoldersTabPage.Name" xml:space="preserve">
     <value>watchedFoldersTabPage</value>
@@ -839,13 +839,13 @@ ensure they are not in use.</value>
     <value>726, 56</value>
   </metadata>
   <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 24</value>
+    <value>107, 22</value>
   </data>
   <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Delete</value>
   </data>
   <data name="watchedFoldersContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 28</value>
+    <value>108, 26</value>
   </data>
   <data name="&gt;&gt;watchedFoldersContextMenuStrip.Name" xml:space="preserve">
     <value>watchedFoldersContextMenuStrip</value>
