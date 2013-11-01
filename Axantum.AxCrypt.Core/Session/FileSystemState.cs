@@ -429,6 +429,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification="If the state can't be read, the software is rendered useless, so it's better to revert to empty here.")]
         private static FileSystemState CreateFileSystemState(IRuntimeFileInfo path)
         {
             using (Stream fileSystemStateStream = path.OpenRead())

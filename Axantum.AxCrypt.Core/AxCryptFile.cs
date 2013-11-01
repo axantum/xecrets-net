@@ -148,7 +148,7 @@ namespace Axantum.AxCrypt.Core
 
         public static void EncryptFilesUniqueWithBackupAndWipe(IRuntimeFileInfo fileInfo, AesKey encryptionKey, ProgressContext progress)
         {
-            IEnumerable<IRuntimeFileInfo> files = fileInfo.FullName.DecryptedFilesInFolder();
+            IEnumerable<IRuntimeFileInfo> files = fileInfo.FullName.ListDecryptedFiles();
             foreach (IRuntimeFileInfo file in files)
             {
                 EncryptFileUniqueWithBackupAndWipe(file, encryptionKey, progress);
@@ -320,7 +320,7 @@ namespace Axantum.AxCrypt.Core
 
         public static void DecryptFilesUniqueWithWipeOfOriginal(IRuntimeFileInfo fileInfo, AesKey decryptionKey, ProgressContext progress)
         {
-            IEnumerable<IRuntimeFileInfo> files = fileInfo.FullName.EncryptedFilesInFolder();
+            IEnumerable<IRuntimeFileInfo> files = fileInfo.FullName.ListEncryptedFiles();
             foreach (IRuntimeFileInfo file in files)
             {
                 DecryptFileUniqueWithWipeOfOriginal(file, decryptionKey, progress);
@@ -338,12 +338,12 @@ namespace Axantum.AxCrypt.Core
 
                 IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(fileInfo.FullName), document.DocumentHeaders.FileName));
                 destinationFileInfo = OS.Current.FileInfo(destinationFileInfo.FullName.CreateUniqueFile());
-                AxCryptFile.DecryptFile(document, fileInfo.FullName, destinationFileInfo.FullName, progress);
+                AxCryptFile.DecryptFile(document, destinationFileInfo.FullName, progress);
             }
             AxCryptFile.Wipe(fileInfo, progress);
         }
 
-        public static void DecryptFile(AxCryptDocument document, string encryptedFileFullName, string decryptedFileFullName, ProgressContext progress)
+        public static void DecryptFile(AxCryptDocument document, string decryptedFileFullName, ProgressContext progress)
         {
             IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(decryptedFileFullName);
             AxCryptFile.Decrypt(document, decryptedFileInfo, AxCryptOptions.SetFileTimes, progress);

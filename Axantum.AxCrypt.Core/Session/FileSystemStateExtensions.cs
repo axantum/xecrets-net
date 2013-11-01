@@ -253,7 +253,7 @@ namespace Axantum.AxCrypt.Core.Session
             IEnumerable<IRuntimeFileInfo> newFiles = new List<IRuntimeFileInfo>();
             foreach (WatchedFolder watchedFolder in fileSystemState.WatchedFolders)
             {
-                newFiles = newFiles.Concat(watchedFolder.Path.DecryptedFilesInFolder());
+                newFiles = newFiles.Concat(watchedFolder.Path.ListDecryptedFiles());
             }
             return newFiles;
         }

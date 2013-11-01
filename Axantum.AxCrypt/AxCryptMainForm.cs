@@ -1250,7 +1250,7 @@ namespace Axantum.AxCrypt
 
         private void watchedFoldersListView_DragOver(object sender, DragEventArgs e)
         {
-            _watchedFoldersCore.StartDragAndDrop(e);
+            WatchedFoldersCore.StartDragAndDrop(e);
         }
 
         private void watchedFoldersListView_MouseClick(object sender, MouseEventArgs e)

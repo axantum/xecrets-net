@@ -282,7 +282,7 @@ namespace Axantum.AxCrypt.Core.UI
             _progress.NotifyLevelStart();
             try
             {
-                AxCryptFile.DecryptFile(_eventArgs.AxCryptDocument, _eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, _progress);
+                AxCryptFile.DecryptFile(_eventArgs.AxCryptDocument, _eventArgs.SaveFileFullName, _progress);
             }
             finally
             {
@@ -295,21 +295,6 @@ namespace Axantum.AxCrypt.Core.UI
 
             _eventArgs.Status = FileOperationStatus.Success;
             return true;
-        }
-
-        private void DecryptFileWithWipeOfOriginal(string encryptedFileFullName, string decryptedFileFullName, ProgressContext progress)
-        {
-            AesKey key;
-            if (!_fileSystemState.TryFindDecryptionKey(encryptedFileFullName, out key)) {
-                return;
-            }
-
-            IRuntimeFileInfo encryptedFileInfo = OS.Current.FileInfo(encryptedFileFullName);
-            using (AxCryptDocument document = AxCryptFile.Document(encryptedFileInfo, key, progress))
-            {
-                AxCryptFile.DecryptFile(document, encryptedFileFullName, decryptedFileFullName, progress);
-            }
-            AxCryptFile.Wipe(encryptedFileFullName, progress);
         }
 
         /// <summary>

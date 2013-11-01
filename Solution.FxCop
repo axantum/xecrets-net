@@ -49,19 +49,106 @@
  </Rules>
  <FxCopReport Version="10.0">
   <Targets>
+   <Target Name="$(ProjectDir)/Axantum.AxCrypt/bin/Debug/Axantum.AxCrypt.Core.dll">
+    <Modules>
+     <Module Name="axantum.axcrypt.core.dll">
+      <Namespaces>
+       <Namespace Name="Axantum.AxCrypt.Core">
+        <Types>
+         <Type Name="AxCryptFile">
+          <Members>
+           <Member Name="#DecryptFile(Axantum.AxCrypt.Core.AxCryptDocument,System.String,System.String,Axantum.AxCrypt.Core.UI.ProgressContext)">
+            <Messages>
+             <Message Id="encryptedFileFullName" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2013-11-01 08:58:29Z" FixCategory="DependsOnFix">
+              <Issue>
+               <Item>'encryptedFileFullName'</Item>
+               <Item>'AxCryptFile.DecryptFile(AxCryptDocument, string, string, ProgressContext)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Extensions">
+          <Members>
+           <Member Name="#DecryptedFilesInFolder(System.String)">
+            <Messages>
+             <Message Id="InFolder" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2013-11-01 08:58:29Z">
+              <Issue Name="MemberShouldBeDiscreteTerm">
+               <Item>InFolder</Item>
+               <Item>'Extensions.DecryptedFilesInFolder(this string)'</Item>
+               <Item>Infolder</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#EncryptedFilesInFolder(System.String)">
+            <Messages>
+             <Message Id="InFolder" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2013-11-01 08:58:29Z">
+              <Issue Name="MemberShouldBeDiscreteTerm">
+               <Item>InFolder</Item>
+               <Item>'Extensions.EncryptedFilesInFolder(this string)'</Item>
+               <Item>Infolder</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Axantum.AxCrypt.Core.Session">
+        <Types>
+         <Type Name="FileSystemState">
+          <Members>
+           <Member Name="#CreateFileSystemState(Axantum.AxCrypt.Core.IO.IRuntimeFileInfo)">
+            <Messages>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2013-11-01 08:58:29Z">
+              <Issue>
+               <Item>'FileSystemState.CreateFileSystemState(IRuntimeFileInfo)'</Item>
+               <Item>'Exception'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Axantum.AxCrypt.Core.UI">
+        <Types>
+         <Type Name="FileOperationsController">
+          <Members>
+           <Member Name="#DecryptFileWithWipeOfOriginal(System.String,System.String,Axantum.AxCrypt.Core.UI.ProgressContext)">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2013-11-01 08:58:29Z">
+              <Issue>
+               <Item>'FileOperationsController.DecryptFileWithWipeOfOriginal(string, string, ProgressContext)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
    <Target Name="$(ProjectDir)/Axantum.AxCrypt/bin/Debug/Axantum.AxCrypt.exe">
     <Modules>
      <Module Name="axantum.axcrypt.exe">
       <Namespaces>
        <Namespace Name="Axantum.AxCrypt">
         <Types>
-         <Type Name="AxCryptMainForm">
+         <Type Name="WatchedFoldersCore">
           <Members>
-           <Member Name="#_watchedFoldersTabPage">
+           <Member Name="#StartDragAndDrop(System.Windows.Forms.DragEventArgs)">
             <Messages>
-             <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Created="2013-05-16 17:44:27Z">
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2013-11-01 08:58:29Z" FixCategory="NonBreaking">
               <Issue>
-               <Item>'AxCryptMainForm._watchedFoldersTabPage'</Item>
+               <Item>'WatchedFoldersCore.StartDragAndDrop(DragEventArgs)'</Item>
               </Issue>
              </Message>
             </Messages>
@@ -76,8 +163,20 @@
    </Target>
   </Targets>
   <Rules>
-   <Rule TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823">
-    <Resolution Name="Default">It appears that field {0} is never used or is only ever assigned to. Use this field or remove it.</Resolution>
+   <Rule TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811">
+    <Resolution Name="Default">{0} appears to have no upstream public or protected callers.</Resolution>
+   </Rule>
+   <Rule TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702">
+    <Resolution Name="MemberShouldBeDiscreteTerm">The compound word '{0}' in member name {1} exists as a discrete term. If your usage is intended to be single word, case it as '{2}' or strip the first token entirely if it represents any sort of Hungarian notation.</Resolution>
+   </Rule>
+   <Rule TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031">
+    <Resolution Name="Default">Modify {0} to catch a more specific exception than {1} or rethrow the exception.</Resolution>
+   </Rule>
+   <Rule TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822">
+    <Resolution Name="Default">The 'this' parameter (or 'Me' in Visual Basic) of {0} is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Resolution>
+   </Rule>
+   <Rule TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801">
+    <Resolution Name="Default">Parameter {0} of {1} is never used. Remove the parameter or use it in the method body.</Resolution>
    </Rule>
   </Rules>
  </FxCopReport>
