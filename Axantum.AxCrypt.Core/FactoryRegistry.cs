@@ -72,7 +72,7 @@ namespace Axantum.AxCrypt.Core
             object function;
             if (!_mapping.TryGetValue(typeof(Func<TResult>), out function))
             {
-                throw new ArgumentException("Unregistered type factory. Initialize with 'FactoryRegistry.Register<{0}>(() => {{ return ({0}) ....; }});'".InvariantFormat(typeof(TResult)));
+                throw new ArgumentException("Unregistered type factory. Initialize with 'FactoryRegistry.Register<{0}>(() => {{ return new {0}(); }});'".InvariantFormat(typeof(TResult)));
             }
             return ((Func<TResult>)function)();
         }
@@ -82,7 +82,7 @@ namespace Axantum.AxCrypt.Core
             object function;
             if (!_mapping.TryGetValue(typeof(Func<TArgument, TResult>), out function))
             {
-                throw new ArgumentException("Unregistered type factory. Initialize with 'FactoryRegistry.Register<01}, {1}>((argument) => {{ return ({0}) ....; }});'".InvariantFormat(typeof(TArgument), typeof(TResult)));
+                throw new ArgumentException("Unregistered type factory. Initialize with 'FactoryRegistry.Register<{0}, {1}>((argument) => {{ return new {0}(argument); }});'".InvariantFormat(typeof(TArgument), typeof(TResult)));
             }
             return ((Func<TArgument, TResult>)function)(argument);
         }

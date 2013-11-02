@@ -72,6 +72,7 @@
     <Compile Include="TestActiveFileCollectionTests.cs" />
     <Compile Include="TestDelayedAction.cs" />
     <Compile Include="TestDelegateTraceListener.cs" />
+    <Compile Include="TestFactoryRegistry.cs" />
     <Compile Include="TestFileOperation.cs" />
     <Compile Include="TestFileOperationsController.cs" />
     <Compile Include="TestFileSystemStateActions.cs" />
