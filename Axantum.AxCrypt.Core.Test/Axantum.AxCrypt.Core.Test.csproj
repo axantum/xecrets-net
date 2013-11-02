@@ -115,6 +115,7 @@
     <Compile Include="TestProgressStream.cs" />
     <Compile Include="TestResources.cs" />
     <Compile Include="FakeStream.cs" />
+    <Compile Include="TestSessionEvent.cs" />
     <Compile Include="TestSubkey.cs" />
     <Compile Include="TestThreadWorker.cs" />
     <Compile Include="TestUnicodeFileNameInfoHeaderBlock .cs" />
