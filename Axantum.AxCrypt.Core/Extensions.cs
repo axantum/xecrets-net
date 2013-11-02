@@ -475,7 +475,7 @@ namespace Axantum.AxCrypt.Core
 
             if (folder.Length == 0)
             {
-                throw new ArgumentException("folder");
+                throw new ArgumentException("A non-empty string must be passed", "folder");
             }
 
             folder = folder.Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);

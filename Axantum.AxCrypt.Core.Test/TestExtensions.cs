@@ -29,6 +29,7 @@ using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -389,6 +390,8 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "TestIs")]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable")]
         public static void TestIsEncryptable()
         {
             OS.PathFilters.Add(new Regex(@"^C:\\Windows\\(?!Temp$)"));

@@ -632,5 +632,38 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(encryptableFiles.Count(), Is.EqualTo(1), "There should be exactly one decrypted file here.");
             Assert.That(encryptableFiles.First().FullName, Is.EqualTo(_decryptedFile11), "This is the file that is decrypted here.");
         }
+
+        [Test]
+        public static void TestEncryptFilesInWatchedFoldersBadArguments()
+        {
+            AesKey NullAesKey = null;
+            ProgressContext NullProgressContext = null;
+            FileSystemState NullFileSystemState = null;
+
+            Assert.Throws<ArgumentNullException>(() => { NullFileSystemState.EncryptFilesInWatchedFolders(new AesKey(), new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { _fileSystemState.EncryptFilesInWatchedFolders(NullAesKey, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { _fileSystemState.EncryptFilesInWatchedFolders(new AesKey(), NullProgressContext); });
+        }
+
+        [Test]
+        public static void TestEncryptFilesInWatchedFolders()
+        {
+            MockAxCryptFile mock = new MockAxCryptFile();
+            int callTimes = 0;
+            mock.EncryptFileUniqueWithBackupAndWipeMock = (IRuntimeFileInfo fileInfo, AesKey encryptionKey, ProgressContext progress) => { ++callTimes; };
+
+            FactoryRegistry.Instance.Register<AxCryptFile>(() => mock);
+
+            FakeRuntimeFileInfo.AddFolder(@"C:\My Documents\");
+            FakeRuntimeFileInfo.AddFile(@"C:\My Documents\Plaintext 1.txt", Stream.Null);
+            FakeRuntimeFileInfo.AddFile(@"C:\My Documents\Plaintext 2.txt", Stream.Null);
+            FakeRuntimeFileInfo.AddFile(@"C:\My Documents\Encrypted.axx", Stream.Null);
+
+            _fileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\My Documents\"));
+
+            _fileSystemState.EncryptFilesInWatchedFolders(new AesKey(), new ProgressContext());
+
+            Assert.That(callTimes, Is.EqualTo(2));
+        }
     }
 }

@@ -120,6 +120,14 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 throw new ArgumentNullException("fileSystemState");
             }
+            if (encryptionKey == null)
+            {
+                throw new ArgumentNullException("encryptionKey");
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
 
             IEnumerable<IRuntimeFileInfo> encryptableFiles = fileSystemState.ListEncryptableInWatchedFolders();
             progress.NotifyLevelStart();
@@ -128,7 +136,7 @@ namespace Axantum.AxCrypt.Core.Session
                 progress.AddTotal(encryptableFiles.Count());
                 foreach (IRuntimeFileInfo fileInfo in encryptableFiles)
                 {
-                    AxCryptFile.EncryptFileUniqueWithBackupAndWipe(fileInfo, encryptionKey, progress);
+                    Factory.AxCryptFile.EncryptFileUniqueWithBackupAndWipe(fileInfo, encryptionKey, progress);
                     progress.AddCount(1);
                 }
             }
@@ -156,7 +164,7 @@ namespace Axantum.AxCrypt.Core.Session
 
                 case SessionEventType.WatchedFolderAdded:
                     IRuntimeFileInfo addedFolderInfo = OS.Current.FileInfo(sessionEvent.FullName);
-                    AxCryptFile.EncryptFilesUniqueWithBackupAndWipe(addedFolderInfo, sessionEvent.Key, progress);
+                    Factory.AxCryptFile.EncryptFilesUniqueWithBackupAndWipe(addedFolderInfo, sessionEvent.Key, progress);
                     break;
 
                 case SessionEventType.WatchedFolderRemoved:

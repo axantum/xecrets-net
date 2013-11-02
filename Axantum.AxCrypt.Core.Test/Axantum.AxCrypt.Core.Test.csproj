@@ -12,6 +12,8 @@
     <AssemblyName>Axantum.AxCrypt.Core.Test</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -58,6 +60,7 @@
     <Compile Include="FakeRuntimeFileInfo.cs" />
     <Compile Include="FakeTiming.cs" />
     <Compile Include="FakeWebCaller.cs" />
+    <Compile Include="MockAxCryptFile.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -39,7 +39,7 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core
 {
-    public static class AxCryptFile
+    public class AxCryptFile
     {
         /// <summary>
         /// Encrypt a file
@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Core
         /// <param name="destination">The destination file</param>
         /// <remarks>It is the callers responsibility to ensure that the source file exists, that the destination file
         /// does not exist and can be created etc.</remarks>
-        public static void Encrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, Passphrase passphrase, AxCryptOptions options, ProgressContext progress)
+        public virtual void Encrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, Passphrase passphrase, AxCryptOptions options, ProgressContext progress)
         {
             if (sourceFile == null)
             {
@@ -146,7 +146,7 @@ namespace Axantum.AxCrypt.Core
             EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, key, progress);
         }
 
-        public static void EncryptFilesUniqueWithBackupAndWipe(IRuntimeFileInfo fileInfo, AesKey encryptionKey, ProgressContext progress)
+        public virtual void EncryptFilesUniqueWithBackupAndWipe(IRuntimeFileInfo fileInfo, AesKey encryptionKey, ProgressContext progress)
         {
             IEnumerable<IRuntimeFileInfo> files = fileInfo.FullName.ListEncryptable();
             foreach (IRuntimeFileInfo file in files)
@@ -155,7 +155,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        public static void EncryptFileUniqueWithBackupAndWipe(IRuntimeFileInfo fileInfo, AesKey encryptionKey, ProgressContext progress)
+        public virtual void EncryptFileUniqueWithBackupAndWipe(IRuntimeFileInfo fileInfo, AesKey encryptionKey, ProgressContext progress)
         {
             IRuntimeFileInfo destinationFileInfo = fileInfo.CreateEncryptedName();
             destinationFileInfo = OS.Current.FileInfo(destinationFileInfo.FullName.CreateUniqueFile());
