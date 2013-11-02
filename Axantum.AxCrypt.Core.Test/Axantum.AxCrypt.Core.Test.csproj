@@ -123,6 +123,7 @@
     <Compile Include="TestUpdateCheck.cs" />
     <Compile Include="TestVersionHeaderBlock .cs" />
     <Compile Include="TestWatchedFolder.cs" />
+    <Compile Include="TestWatchedFolderChangedEventArgs.cs" />
     <Compile Include="TestWorkerGroup.cs" />
   </ItemGroup>
   <ItemGroup>
