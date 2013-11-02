@@ -61,7 +61,7 @@ namespace Axantum.AxCrypt
 
         public void DecryptSelectedFolder(string folder, ProgressContext progress)
         {
-            AxCryptFile.DecryptFilesUniqueWithWipeOfOriginal(OS.Current.FileInfo(folder), _mainView.FileSystemState.KnownKeys.DefaultEncryptionKey, progress);
+            Factory.AxCryptFile.DecryptFilesUniqueWithWipeOfOriginal(OS.Current.FileInfo(folder), _mainView.FileSystemState.KnownKeys.DefaultEncryptionKey, progress);
         }
 
         private void AddRemoveWatchedFolders()

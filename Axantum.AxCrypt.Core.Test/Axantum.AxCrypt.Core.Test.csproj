@@ -61,6 +61,7 @@
     <Compile Include="FakeTiming.cs" />
     <Compile Include="FakeWebCaller.cs" />
     <Compile Include="MockAxCryptFile.cs" />
+    <Compile Include="MockFileSystemStateActions.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -73,7 +74,7 @@
     <Compile Include="TestDelegateTraceListener.cs" />
     <Compile Include="TestFileOperation.cs" />
     <Compile Include="TestFileOperationsController.cs" />
-    <Compile Include="TestFileSystemStateExtensions.cs" />
+    <Compile Include="TestFileSystemStateActions.cs" />
     <Compile Include="TestAesCrypto.cs" />
     <Compile Include="TestAesIV.cs" />
     <Compile Include="TestAesKey.cs" />

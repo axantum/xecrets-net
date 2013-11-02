@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Axantum.AxCrypt.Core.Session;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,7 +15,19 @@ namespace Axantum.AxCrypt.Core
 
         private FactoryRegistry()
         {
+            RegisterDefaults();
+        }
+
+        public void Clean()
+        {
+            Clear();
+            RegisterDefaults();
+        }
+
+        private void RegisterDefaults()
+        {
             Register<AxCryptFile>(() => new AxCryptFile());
+            Register<FileSystemState, FileSystemStateActions>((fileSystemState) => new FileSystemStateActions(fileSystemState));
         }
 
         private static FactoryRegistry _instance = new FactoryRegistry();
@@ -37,26 +50,41 @@ namespace Axantum.AxCrypt.Core
         /// Register a method that creates an instance of the given type. A second registration of the same type
         /// overwrites the first.
         /// </summary>
-        /// <typeparam name="T">The type to register a factory for.</typeparam>
+        /// <typeparam name="TResult">The type to register a factory for.</typeparam>
         /// <param name="creator">The delegate that creates an instance.</param>
-        public void Register<T>(Func<T> creator)
+        public void Register<TResult>(Func<TResult> creator)
         {
-            _mapping[typeof(T)] = creator;
+            _mapping[typeof(Func<TResult>)] = creator;
+        }
+
+        public void Register<TArgument, TResult>(Func<TArgument, TResult> creator)
+        {
+            _mapping[typeof(Func<TArgument, TResult>)] = creator;
         }
 
         /// <summary>
         /// Create an instance of a registered type.
         /// </summary>
-        /// <typeparam name="T">The type to create an instance of.</typeparam>
+        /// <typeparam name="TResult">The type to create an instance of.</typeparam>
         /// <returns>An instance of the type, according to the rules of the factory. It may be a singleton.</returns>
-        public T Create<T>()
+        public TResult Create<TResult>()
         {
             object function;
-            if (!_mapping.TryGetValue(typeof(T), out function))
+            if (!_mapping.TryGetValue(typeof(Func<TResult>), out function))
             {
-                throw new ArgumentException("Unregistered type factory. Initialize with 'FactoryRegistry.Register<{0}>(() => {{ return ({0}) ....; }});'".InvariantFormat(typeof(T).ToString()));
+                throw new ArgumentException("Unregistered type factory. Initialize with 'FactoryRegistry.Register<{0}>(() => {{ return ({0}) ....; }});'".InvariantFormat(typeof(TResult)));
             }
-            return ((Func<T>)function)();
+            return ((Func<TResult>)function)();
+        }
+
+        public TResult Create<TArgument, TResult>(TArgument argument)
+        {
+            object function;
+            if (!_mapping.TryGetValue(typeof(Func<TArgument, TResult>), out function))
+            {
+                throw new ArgumentException("Unregistered type factory. Initialize with 'FactoryRegistry.Register<01}, {1}>((argument) => {{ return ({0}) ....; }});'".InvariantFormat(typeof(TArgument), typeof(TResult)));
+            }
+            return ((Func<TArgument, TResult>)function)(argument);
         }
 
         /// <summary>

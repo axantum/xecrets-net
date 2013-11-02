@@ -25,14 +25,14 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Runtime;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
-using Axantum.AxCrypt.Core.Runtime;
-using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -52,6 +52,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             OS.Current = null;
             FakeRuntimeFileInfo.ClearFiles();
+            FactoryRegistry.Instance.Clean();
         }
 
         internal static FakeRuntimeEnvironment FakeRuntimeEnvironment

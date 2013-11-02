@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Axantum.AxCrypt.Core.Session;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 

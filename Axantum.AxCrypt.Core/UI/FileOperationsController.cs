@@ -411,7 +411,7 @@ namespace Axantum.AxCrypt.Core.UI
                 IRuntimeFileInfo source = OS.Current.FileInfo(fullName);
                 e.OpenFileFullName = source.FullName;
                 AesKey key;
-                if (_fileSystemState.TryFindDecryptionKey(source.FullName, out key))
+                if (_fileSystemState.Actions.TryFindDecryptionKey(source.FullName, out key))
                 {
                     e.AxCryptDocument = AxCryptFile.Document(source, key, new ProgressContext());
                 }

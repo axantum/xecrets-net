@@ -64,6 +64,14 @@ namespace Axantum.AxCrypt.Core.Session
             KnownKeys = new KnownKeys();
         }
 
+        public FileSystemStateActions Actions
+        {
+            get
+            {
+                return FactoryRegistry.Instance.Create<FileSystemState, FileSystemStateActions>(this);
+            }
+        }
+
         private Dictionary<string, ActiveFile> _activeFilesByEncryptedPath = new Dictionary<string, ActiveFile>();
 
         private Dictionary<string, ActiveFile> _activeFilesByDecryptedPath = new Dictionary<string, ActiveFile>();

@@ -635,7 +635,7 @@ namespace Axantum.AxCrypt
                 {
                     if (CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
                     {
-                        persistentState.Current.RemoveRecentFiles(new string[] { e.OpenFileFullName }, progress);
+                        persistentState.Current.Actions.RemoveRecentFiles(new string[] { e.OpenFileFullName }, progress);
                     }
                 };
 
@@ -693,7 +693,7 @@ namespace Axantum.AxCrypt
                 {
                     if (!e.Skip)
                     {
-                        persistentState.Current.RemoveRecentFiles(new string[] { e.SaveFileFullName }, progress);
+                        persistentState.Current.Actions.RemoveRecentFiles(new string[] { e.SaveFileFullName }, progress);
                     }
                 }
             };
@@ -892,7 +892,7 @@ namespace Axantum.AxCrypt
                     progress.NotifyLevelStart();
                     try
                     {
-                        persistentState.Current.HandleSessionStateEvents(e.SessionEvents, progress);
+                        persistentState.Current.Actions.HandleSessionEvents(e.SessionEvents, progress);
                     }
                     finally
                     {
@@ -956,8 +956,8 @@ namespace Axantum.AxCrypt
                     progress.NotifyLevelStart();
                     try
                     {
-                        persistentState.Current.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
-                        persistentState.Current.PurgeActiveFiles(progress);
+                        persistentState.Current.Actions.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
+                        persistentState.Current.Actions.PurgeActiveFiles(progress);
                     }
                     finally
                     {
@@ -997,7 +997,7 @@ namespace Axantum.AxCrypt
             progressBackgroundWorker.BackgroundWorkWithProgress(
                 (ProgressContext progress) =>
                 {
-                    persistentState.Current.RemoveRecentFiles(encryptedPaths, progress);
+                    persistentState.Current.Actions.RemoveRecentFiles(encryptedPaths, progress);
                     return FileOperationStatus.Success;
                 },
                 (FileOperationStatus status) =>
