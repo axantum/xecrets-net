@@ -72,7 +72,7 @@ namespace Axantum.AxCrypt.Presentation
             OS.Current.Launch(folder);
         }
 
-        public static void StartDragAndDrop(DragEventArgs e)
+        public void StartDragAndDrop(DragEventArgs e)
         {
             IRuntimeFileInfo droppedFolder = GetDroppedFolderIfAny(e.Data);
             if (droppedFolder == null)

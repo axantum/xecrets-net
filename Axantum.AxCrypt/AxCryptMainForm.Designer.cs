@@ -72,10 +72,10 @@
             this.statusTabControl = new System.Windows.Forms.TabControl();
             this.watchedFoldersContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.decryptTemporarilyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.persistentState = new Axantum.AxCrypt.PersistentState(this.components);
             this.progressBackgroundWorker = new Axantum.AxCrypt.ProgressBackgroundWorker(this.components);
             this.backgroundMonitor = new Axantum.AxCrypt.BackgroundMonitor(this.components);
-            this.decryptTemporarilyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainToolStrip.SuspendLayout();
             this.mainMenuStrip.SuspendLayout();
             this.recentFilesContextMenuStrip.SuspendLayout();
@@ -440,6 +440,7 @@
             // 
             // recentFilesListView
             // 
+            this.recentFilesListView.AllowDrop = true;
             this.recentFilesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.decryptedFileColumnHeader,
             this.lastAccessTimeColumnHeader,
@@ -452,6 +453,8 @@
             this.recentFilesListView.UseCompatibleStateImageBehavior = false;
             this.recentFilesListView.View = System.Windows.Forms.View.Details;
             this.recentFilesListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.recentFilesListView_ColumnWidthChanged);
+            this.recentFilesListView.DragDrop += new System.Windows.Forms.DragEventHandler(this.recentFilesListView_DragDrop);
+            this.recentFilesListView.DragOver += new System.Windows.Forms.DragEventHandler(this.recentFilesListView_DragOver);
             this.recentFilesListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.recentFilesListView_MouseClick);
             this.recentFilesListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.recentFilesListView_MouseDoubleClick);
             // 
@@ -490,6 +493,12 @@
             resources.ApplyResources(this.deleteToolStripMenuItem, "deleteToolStripMenuItem");
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.watchedFoldersListView_deleteToolStripMenuItem_Click);
             // 
+            // decryptTemporarilyToolStripMenuItem
+            // 
+            this.decryptTemporarilyToolStripMenuItem.Name = "decryptTemporarilyToolStripMenuItem";
+            resources.ApplyResources(this.decryptTemporarilyToolStripMenuItem, "decryptTemporarilyToolStripMenuItem");
+            this.decryptTemporarilyToolStripMenuItem.Click += new System.EventHandler(this.watchedFoldersListView_decryptTemporarilyToolStripMenuItem_Click);
+            // 
             // persistentState
             // 
             this.persistentState.Current = null;
@@ -498,12 +507,6 @@
             // 
             this.progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.progressBackgroundWorker_ProgressBarCreated);
             this.progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.progressBackgroundWorker_ProgressBarClicked);
-            // 
-            // decryptTemporarilyToolStripMenuItem
-            // 
-            this.decryptTemporarilyToolStripMenuItem.Name = "decryptTemporarilyToolStripMenuItem";
-            resources.ApplyResources(this.decryptTemporarilyToolStripMenuItem, "decryptTemporarilyToolStripMenuItem");
-            this.decryptTemporarilyToolStripMenuItem.Click += new System.EventHandler(this.watchedFoldersListView_decryptTemporarilyToolStripMenuItem_Click);
             // 
             // AxCryptMainForm
             // 

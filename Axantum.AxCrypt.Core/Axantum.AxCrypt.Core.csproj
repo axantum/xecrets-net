@@ -142,10 +142,12 @@
     <Compile Include="Session\SessionEventArgs.cs" />
     <Compile Include="Session\WatchedFolder.cs" />
     <Compile Include="Session\WatchedFolderChangedEventArgs.cs" />
+    <Compile Include="UI\Background.cs" />
     <Compile Include="UI\FileOperation.cs" />
     <Compile Include="UI\FileOperationEventArgs.cs" />
     <Compile Include="UI\FileOperationsController.cs" />
     <Compile Include="UI\FileOperationStatus.cs" />
+    <Compile Include="UI\IUIThread.cs" />
     <Compile Include="UI\KnownKeys.cs" />
     <Compile Include="UI\ProgressContext.cs" />
     <Compile Include="UI\ProgressEventArgs.cs" />

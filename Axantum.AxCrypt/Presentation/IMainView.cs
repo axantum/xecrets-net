@@ -1,4 +1,5 @@
 ﻿using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Axantum.AxCrypt.Presentation
 {
-    public interface IMainView
+    public interface IMainView : IUIThread
     {
         FileSystemState FileSystemState { get; }
 
@@ -19,5 +20,7 @@ namespace Axantum.AxCrypt.Presentation
         TabControl Tabs { get; }
 
         IContainer Components { get; }
+
+        Background Background { get; }
     }
 }

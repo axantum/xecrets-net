@@ -73,6 +73,8 @@ namespace Axantum.AxCrypt
 
         private RecentFilesPresentation _recentFilesPresentation;
 
+        private Background _background;
+
         public static MessageBoxOptions MessageBoxOptions { get; private set; }
 
         public FileSystemState FileSystemState
@@ -98,6 +100,21 @@ namespace Axantum.AxCrypt
         public IContainer Components
         {
             get { return components; }
+        }
+
+        public bool IsOnUIThread
+        {
+            get { return !InvokeRequired; }
+        }
+
+        public void RunOnUIThread(Action action)
+        {
+            BeginInvoke(action);
+        }
+
+        public Background Background
+        {
+            get { return _background; }
         }
 
         public AxCryptMainForm()
@@ -126,6 +143,7 @@ namespace Axantum.AxCrypt
 
             Trace.Listeners.Add(new DelegateTraceListener("AxCryptMainFormListener", FormatTraceMessage)); //MLHIDE
 
+            _background = new Background(this);
             UpdateDebugMode();
 
             _title = "{0} {1}{2}".InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription); //MLHIDE
@@ -198,50 +216,12 @@ namespace Axantum.AxCrypt
 
         private void FormatTraceMessage(string message)
         {
-            ThreadSafeUi(() =>
+            Background.ThreadSafeUI(() =>
             {
                 string formatted = "{0} {1}".InvariantFormat(OS.Current.UtcNow.ToString("o", CultureInfo.InvariantCulture), message.TrimLogMessage()); //MLHIDE
                 logOutputTextBox.AppendText(formatted);
             });
         }
-
-        private void ThreadSafeUi(Action action)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(action);
-            }
-            else
-            {
-                action();
-            }
-        }
-
-        private void InteractionSafeUi(Action action)
-        {
-            if (InvokeRequired)
-            {
-                _interactionSemaphore.WaitOne();
-                Action extendedAction = () =>
-                    {
-                        try
-                        {
-                            action();
-                        }
-                        finally
-                        {
-                            _interactionSemaphore.Release();
-                        }
-                    };
-                BeginInvoke(extendedAction);
-            }
-            else
-            {
-                action();
-            }
-        }
-
-        private Semaphore _interactionSemaphore = new Semaphore(1, 1);
 
         private void UpdateCheck(DateTime lastCheckUtc)
         {
@@ -283,7 +263,7 @@ namespace Axantum.AxCrypt
             Settings.Default.NewestKnownVersion = e.Version.ToString();
             Settings.Default.Save();
             _updateUrl = e.UpdateWebpageUrl;
-            ThreadSafeUi(() =>
+            Background.ThreadSafeUI(() =>
             {
                 UpdateVersionStatus(e.VersionUpdateStatus, e.Version);
             });
@@ -291,7 +271,7 @@ namespace Axantum.AxCrypt
 
         private void HandleFileSystemStateChangedEvent(object sender, ActiveFileChangedEventArgs e)
         {
-            ThreadSafeUi(() =>
+            Background.ThreadSafeUI(() =>
             {
                 _recentFilesPresentation.UpdateActiveFilesViews(e.ActiveFile);
             });
@@ -611,7 +591,7 @@ namespace Axantum.AxCrypt
                         {
                             IThreadWorker worker = workerGroup.CreateWorker();
                             string closureOverCopyOfLoopVariableFile = file;
-                            InteractionSafeUi(() =>
+                            Background.InteractionSafeUi(() =>
                             {
                                 processFile(closureOverCopyOfLoopVariableFile, worker, progress);
                             });
@@ -866,14 +846,14 @@ namespace Axantum.AxCrypt
             _recentFilesPresentation.ShowContextMenu(recentFilesContextMenuStrip, e);
         }
 
-        private static void ShowContextMenu(ContextMenuStrip contextMenu, object sender, MouseEventArgs e)
+        private void recentFilesListView_DragOver(object sender, DragEventArgs e)
         {
-            if (e.Button != MouseButtons.Right)
-            {
-                return;
-            }
-            ListView listView = (ListView)sender;
-            contextMenu.Show(listView, e.Location);
+            _recentFilesPresentation.StartDragAndDrop(e);
+        }
+
+        private void recentFilesListView_DragDrop(object sender, DragEventArgs e)
+        {
+            _recentFilesPresentation.DropDragAndDrop(e);
         }
 
         private void closeOpenFilesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1125,7 +1105,7 @@ namespace Axantum.AxCrypt
 
         private void watchedFoldersListView_DragOver(object sender, DragEventArgs e)
         {
-            WatchedFolderPresentation.StartDragAndDrop(e);
+            _watchedFoldersPresentation.StartDragAndDrop(e);
         }
 
         private void watchedFoldersListView_MouseClick(object sender, MouseEventArgs e)
@@ -1175,18 +1155,23 @@ namespace Axantum.AxCrypt
         {
             if (disposing)
             {
-                if (components != null)
-                {
-                    components.Dispose();
-                }
-                if (_interactionSemaphore != null)
-                {
-                    _interactionSemaphore.Close();
-                    _interactionSemaphore = null;
-                }
-                OS.Current = null;
+                DisposeInternal();
             }
             base.Dispose(disposing);
+        }
+
+        private void DisposeInternal()
+        {
+            if (components != null)
+            {
+                components.Dispose();
+            }
+            if (_background == null)
+            {
+                _background.Dispose();
+                _background = null;
+            }
+            OS.Current = null;
         }
     }
 }
