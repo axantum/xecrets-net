@@ -67,6 +67,7 @@
     <Compile Include="Runtime\IThreadWorker.cs" />
     <Compile Include="Runtime\WorkerGroup.cs" />
     <Compile Include="Session\ActiveFileChangedEventArgs.cs" />
+    <Compile Include="Session\ActiveFileVisualState.cs" />
     <Compile Include="Session\ChangedEventMode.cs" />
     <Compile Include="Runtime\AxCryptException.cs" />
     <Compile Include="AxCryptFile.cs" />

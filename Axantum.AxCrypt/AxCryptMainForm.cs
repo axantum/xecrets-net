@@ -422,54 +422,36 @@ namespace Axantum.AxCrypt
 
         private static void UpdateStatusDependentPropertiesOfListViewItem(ListViewItem item, ActiveFile activeFile)
         {
-            item.ImageKey = ImageKeyFromActiveFileStatus(activeFile);
-            switch (item.ImageKey)
+            switch (activeFile.VisualState)
             {
-                case "DecryptedFile":
+                case ActiveFileVisualState.DecryptedWithKnownKey:
+                    item.ImageKey = "DecryptedFile";
                     item.ToolTipText = Resources.DecryptedFileToolTip;
                     break;
 
-                case "DecryptedUnknownKeyFile":
+                case ActiveFileVisualState.DecryptedWithoutKnownKey:
+                    item.ImageKey = "DecryptedUnknownKeyFile";
                     item.ToolTipText = Resources.DecryptedUnknownKeyFileToolTip;
                     break;
 
-                case "InactiveFile":
+                case ActiveFileVisualState.EncryptedNeverBeenDecrypted:
+                    item.ImageKey = "InactiveFile";
                     item.ToolTipText = Resources.InactiveFileToolTip;
                     break;
 
-                case "ActiveFile":
+                case ActiveFileVisualState.EncryptedWithoutKnownKey:
+                    item.ImageKey = "ActiveFile";
                     item.ToolTipText = Resources.ActiveFileToolTip;
                     break;
 
-                case "ActiveFileKnownKey":
+                case ActiveFileVisualState.EncryptedWithKnownKey:
+                    item.ImageKey = "ActiveFileKnownKey";
                     item.ToolTipText = Resources.ActiveFileKnownKeyToolTip;
                     break;
 
                 default:
-                    item.ToolTipText = String.Empty;
-                    break;
+                    throw new InvalidOperationException("Unexpected ActiveFileVisualState value.");
             }
-        }
-
-        private static string ImageKeyFromActiveFileStatus(ActiveFile activeFile)
-        {
-            if (activeFile.Status.HasMask(ActiveFileStatus.DecryptedIsPendingDelete))
-            {
-                return activeFile.Key != null ? "DecryptedFile" : "DecryptedUnknownKeyFile"; //MLHIDE
-            }
-            if (activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
-            {
-                return activeFile.Key != null ? "DecryptedFile" : "DecryptedUnknownKeyFile"; //MLHIDE
-            }
-            if (activeFile.Status.HasMask(ActiveFileStatus.NotDecrypted))
-            {
-                if (String.IsNullOrEmpty(activeFile.DecryptedFileInfo.FullName))
-                {
-                    return "InactiveFile"; //MLHIDE
-                }
-                return activeFile.Key != null ? "ActiveFileKnownKey" : "ActiveFile"; //MLHIDE
-            }
-            return String.Empty;
         }
 
         private void toolStripButtonEncrypt_Click(object sender, EventArgs e)

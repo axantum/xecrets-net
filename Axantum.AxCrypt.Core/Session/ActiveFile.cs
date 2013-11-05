@@ -25,6 +25,9 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -32,9 +35,6 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Security.Cryptography;
 using System.Text;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Session
 {
@@ -285,6 +285,30 @@ namespace Axantum.AxCrypt.Core.Session
                     OS.Log.LogInfo("IsModified == '{0}' for file '{3}' info last write time '{1}' and active file last write time '{2}'".InvariantFormat(isModified.ToString(), DecryptedFileInfo.LastWriteTimeUtc.ToString(), LastEncryptionWriteTimeUtc.ToString(), DecryptedFileInfo.Name));
                 }
                 return isModified;
+            }
+        }
+
+        public ActiveFileVisualState VisualState
+        {
+            get
+            {
+                if (Status.HasMask(ActiveFileStatus.DecryptedIsPendingDelete))
+                {
+                    return Key != null ? ActiveFileVisualState.DecryptedWithKnownKey : ActiveFileVisualState.DecryptedWithoutKnownKey;
+                }
+                if (Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
+                {
+                    return Key != null ? ActiveFileVisualState.DecryptedWithKnownKey : ActiveFileVisualState.DecryptedWithoutKnownKey;
+                }
+                if (Status.HasMask(ActiveFileStatus.NotDecrypted))
+                {
+                    if (String.IsNullOrEmpty(DecryptedFileInfo.FullName))
+                    {
+                        return ActiveFileVisualState.EncryptedNeverBeenDecrypted;
+                    }
+                    return Key != null ? ActiveFileVisualState.EncryptedWithKnownKey : ActiveFileVisualState.EncryptedWithoutKnownKey;
+                }
+                throw new InvalidOperationException("ActieFile in an unhandled visual state.");
             }
         }
 
