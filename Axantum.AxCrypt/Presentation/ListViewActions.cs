@@ -15,7 +15,7 @@ namespace Axantum.AxCrypt.Presentation
             _listView = listView;
         }
 
-        public void ShowContextMenu(ContextMenuStrip contextMenu, MouseEventArgs e)
+        public void ShowContextMenu(ToolStripDropDown contextMenu, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right)
             {

@@ -33,6 +33,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -114,11 +115,12 @@ namespace Axantum.AxCrypt.Presentation
             ChangeColumnWidth(_mainView.RecentFiles, columnIndex);
         }
 
-        public void ShowContextMenu(ContextMenuStrip contextMenu, MouseEventArgs e)
+        public void ShowContextMenu(ToolStripDropDown contextMenu, MouseEventArgs e)
         {
             Actions.ShowContextMenu(contextMenu, e);
         }
 
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void StartDragAndDrop(DragEventArgs e)
         {
             IEnumerable<IRuntimeFileInfo> droppedFiles = GetDroppedFiles(e.Data);
@@ -129,6 +131,7 @@ namespace Axantum.AxCrypt.Presentation
             e.Effect = DragDropEffects.Link;
         }
 
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void DropDragAndDrop(DragEventArgs e)
         {
             IEnumerable<IRuntimeFileInfo> droppedFiles = GetDroppedFiles(e.Data);

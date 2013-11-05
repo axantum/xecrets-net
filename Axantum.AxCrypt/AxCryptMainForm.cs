@@ -591,7 +591,7 @@ namespace Axantum.AxCrypt
                         {
                             IThreadWorker worker = workerGroup.CreateWorker();
                             string closureOverCopyOfLoopVariableFile = file;
-                            Background.InteractionSafeUi(() =>
+                            Background.InteractionSafeUI(() =>
                             {
                                 processFile(closureOverCopyOfLoopVariableFile, worker, progress);
                             });

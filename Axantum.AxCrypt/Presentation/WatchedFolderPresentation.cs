@@ -31,6 +31,7 @@ using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -72,6 +73,7 @@ namespace Axantum.AxCrypt.Presentation
             OS.Current.Launch(folder);
         }
 
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void StartDragAndDrop(DragEventArgs e)
         {
             IRuntimeFileInfo droppedFolder = GetDroppedFolderIfAny(e.Data);
@@ -98,7 +100,7 @@ namespace Axantum.AxCrypt.Presentation
             Factory.AxCryptFile.DecryptFilesUniqueWithWipeOfOriginal(OS.Current.FileInfo(folder), _mainView.FileSystemState.KnownKeys.DefaultEncryptionKey, progress);
         }
 
-        public void ShowContextMenu(ContextMenuStrip contextMenu, MouseEventArgs e)
+        public void ShowContextMenu(ToolStripDropDown contextMenu, MouseEventArgs e)
         {
             Actions.ShowContextMenu(contextMenu, e);
         }

@@ -29,7 +29,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private Semaphore _interactionSemaphore = new Semaphore(1, 1);
 
-        public void InteractionSafeUi(Action action)
+        public void InteractionSafeUI(Action action)
         {
             if (!_uiThread.IsOnUIThread)
             {

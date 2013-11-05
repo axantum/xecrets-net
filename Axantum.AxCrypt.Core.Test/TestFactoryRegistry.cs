@@ -35,7 +35,7 @@ using System.Text;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public class TestFactoryRegistry
+    public static class TestFactoryRegistry
     {
         [SetUp]
         public static void Setup()

@@ -36,7 +36,7 @@ using System.Text;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public class TestSessionEvent
+    public static class TestSessionEvent
     {
         [SetUp]
         public static void Setup()

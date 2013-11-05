@@ -35,7 +35,7 @@ using System.Text;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public class TestWatchedFolderChangedEventArgs
+    public static class TestWatchedFolderChangedEventArgsTest
     {
         [SetUp]
         public static void Setup()
