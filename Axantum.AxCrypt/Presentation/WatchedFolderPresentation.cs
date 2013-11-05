@@ -1,4 +1,31 @@
-﻿using Axantum.AxCrypt.Core;
+﻿#region Coypright and License
+
+/*
+ * AxCrypt - Copyright 2012, Svante Seleborg, All Rights Reserved
+ *
+ * This file is part of AxCrypt.
+ *
+ * AxCrypt is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * AxCrypt is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with AxCrypt.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * The source is maintained at http://bitbucket.org/axantum/axcrypt-net please visit for
+ * updates, contributions and contact with the author. You may also visit
+ * http://www.axantum.com for more information about the author.
+*/
+
+#endregion Coypright and License
+
+using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
@@ -9,13 +36,20 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Axantum.AxCrypt
+namespace Axantum.AxCrypt.Presentation
 {
-    internal class WatchedFoldersCore
+    /// <summary>
+    /// Handle the presentation logic for Watched Folders. This is not really a Presenter in the MVP-sense, but rather
+    /// somewhere to place presentation logic for one aspect of user interface. It is still very much tied to the MainForm,
+    /// but it makes it easer to work with the particular code. It's also testable to some degree.
+    /// </summary>
+    public class WatchedFolderPresentation
     {
         private IMainView _mainView;
 
-        public WatchedFoldersCore(IMainView mainView)
+        private ListViewActions Actions { get { return new ListViewActions(_mainView.WatchedFolders); } }
+
+        public WatchedFolderPresentation(IMainView mainView)
         {
             _mainView = mainView;
             ShowOrHideWatchedFoldersTabPage();
@@ -62,6 +96,11 @@ namespace Axantum.AxCrypt
         public void DecryptSelectedFolder(string folder, ProgressContext progress)
         {
             Factory.AxCryptFile.DecryptFilesUniqueWithWipeOfOriginal(OS.Current.FileInfo(folder), _mainView.FileSystemState.KnownKeys.DefaultEncryptionKey, progress);
+        }
+
+        public void ShowContextMenu(ContextMenuStrip contextMenu, MouseEventArgs e)
+        {
+            Actions.ShowContextMenu(contextMenu, e);
         }
 
         private void AddRemoveWatchedFolders()

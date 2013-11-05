@@ -101,10 +101,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Extensions.cs" />
-    <Compile Include="IMainView.cs" />
+    <Compile Include="Presentation\IMainView.cs" />
     <Compile Include="PersistentState.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Presentation\ListViewActions.cs" />
+    <Compile Include="Presentation\RecentFilesPresentation.cs" />
     <Compile Include="ProgressBackgroundWorker.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -114,7 +116,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="WatchedFoldersCore.cs" />
+    <Compile Include="Presentation\WatchedFolderPresentation.cs" />
     <EmbeddedResource Include="ConfirmWipeDialog.resx">
       <DependentUpon>ConfirmWipeDialog.cs</DependentUpon>
       <SubType>Designer</SubType>

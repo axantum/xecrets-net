@@ -32,6 +32,7 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Mono;
+using Axantum.AxCrypt.Presentation;
 using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections;
@@ -60,31 +61,6 @@ namespace Axantum.AxCrypt
     /// </summary>
     public partial class AxCryptMainForm : Form, IMainView
     {
-        private class RecentFilesByDateComparer : IComparer
-        {
-            #region IComparer Members
-
-            public int Compare(object x, object y)
-            {
-                ListViewItem item1 = (ListViewItem)x;
-                ListViewItem item2 = (ListViewItem)y;
-                DateTime dateTime1 = DateFromSubItem(item1.SubItems["Date"]);
-                DateTime dateTime2 = DateFromSubItem(item2.SubItems["Date"]);
-                return dateTime2.CompareTo(dateTime1);
-            }
-
-            #endregion IComparer Members
-        }
-
-        private static DateTime DateFromSubItem(ListViewItem.ListViewSubItem subItem)
-        {
-            if (subItem == null || subItem.Tag == null)
-            {
-                return DateTime.MinValue;
-            }
-            return (DateTime)subItem.Tag;
-        }
-
         private Uri _updateUrl = Settings.Default.UpdateUrl;
 
         private TabPage _logTabPage = null;
@@ -93,7 +69,9 @@ namespace Axantum.AxCrypt
 
         private string _title;
 
-        private WatchedFoldersCore _watchedFoldersCore;
+        private WatchedFolderPresentation _watchedFoldersPresentation;
+
+        private RecentFilesPresentation _recentFilesPresentation;
 
         public static MessageBoxOptions MessageBoxOptions { get; private set; }
 
@@ -107,14 +85,27 @@ namespace Axantum.AxCrypt
             get { return watchedFoldersListView; }
         }
 
+        public ListView RecentFiles
+        {
+            get { return recentFilesListView; }
+        }
+
         public TabControl Tabs
         {
             get { return statusTabControl; }
         }
 
+        public IContainer Components
+        {
+            get { return components; }
+        }
+
         public AxCryptMainForm()
         {
             InitializeComponent();
+
+            _watchedFoldersPresentation = new WatchedFolderPresentation(this);
+            _recentFilesPresentation = new RecentFilesPresentation(this);
         }
 
         private void AxCryptMainForm_Load(object sender, EventArgs e)
@@ -135,19 +126,13 @@ namespace Axantum.AxCrypt
 
             Trace.Listeners.Add(new DelegateTraceListener("AxCryptMainFormListener", FormatTraceMessage)); //MLHIDE
 
-            RestoreUserPreferences();
+            UpdateDebugMode();
 
             _title = "{0} {1}{2}".InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription); //MLHIDE
 
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
 
             SetupPathFilters();
-
-            _watchedFoldersCore = new WatchedFoldersCore(this);
-
-            recentFilesListView.SmallImageList = CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources(components);
-            recentFilesListView.LargeImageList = CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources(components);
-            recentFilesListView.ListViewItemSorter = new RecentFilesByDateComparer();
 
             OS.Current.SessionChanged += HandleSessionChangedEvent;
 
@@ -209,33 +194,6 @@ namespace Axantum.AxCrypt
             {
                 Text = text;
             }
-        }
-
-        private static ImageList CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources(IContainer container)
-        {
-            ImageList smallImageList = new ImageList(container);
-
-            smallImageList.Images.Add("ActiveFile", Resources.activefilegreen16);
-            smallImageList.Images.Add("InactiveFile", Resources.inactivefilegreen16);
-            smallImageList.Images.Add("Exclamation", Resources.exclamationgreen16);
-            smallImageList.Images.Add("DecryptedFile", Resources.decryptedfilered16);
-            smallImageList.Images.Add("DecryptedUnknownKeyFile", Resources.decryptedunknownkeyfilered16);
-            smallImageList.Images.Add("ActiveFileKnownKey", Resources.fileknownkeygreen16);
-            smallImageList.TransparentColor = System.Drawing.Color.Transparent;
-
-            return smallImageList;
-        }
-
-        private static ImageList CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources(IContainer container)
-        {
-            ImageList largeImageList = new ImageList(container);
-
-            largeImageList.Images.Add("ActiveFile", Resources.opendocument32);
-            largeImageList.Images.Add("InactiveFile", Resources.helpquestiongreen32);
-            largeImageList.Images.Add("Exclamation", Resources.exclamationgreen32);
-            largeImageList.TransparentColor = System.Drawing.Color.Transparent;
-
-            return largeImageList;
         }
 
         private void FormatTraceMessage(string message)
@@ -335,7 +293,7 @@ namespace Axantum.AxCrypt
         {
             ThreadSafeUi(() =>
             {
-                UpdateActiveFilesViews(e.ActiveFile);
+                _recentFilesPresentation.UpdateActiveFilesViews(e.ActiveFile);
             });
         }
 
@@ -352,14 +310,6 @@ namespace Axantum.AxCrypt
             Trace.Listeners.Remove("AxCryptMainFormListener");        //MLHIDE
         }
 
-        private void RestoreUserPreferences()
-        {
-            recentFilesListView.Columns[0].Name = "DecryptedFile";    //MLHIDE
-            recentFilesListView.Columns[0].Width = Settings.Default.RecentFilesDocumentWidth > 0 ? Settings.Default.RecentFilesDocumentWidth : recentFilesListView.Columns[0].Width;
-
-            UpdateDebugMode();
-        }
-
         private void SetToolButtonsState()
         {
             if (persistentState.Current.KnownKeys.DefaultEncryptionKey == null)
@@ -373,85 +323,6 @@ namespace Axantum.AxCrypt
                 encryptionKeyToolStripButton.ToolTipText = Resources.DefaultEncryptionKeyIsIsetToolTip;
             }
             SetWindowTextWithLogonStatus();
-        }
-
-        private void UpdateActiveFilesViews(ActiveFile activeFile)
-        {
-            if (activeFile.Status.HasMask(ActiveFileStatus.NoLongerActive))
-            {
-                recentFilesListView.Items.RemoveByKey(activeFile.EncryptedFileInfo.FullName);
-                return;
-            }
-
-            UpdateRecentFilesListView(activeFile);
-        }
-
-        private void UpdateRecentFilesListView(ActiveFile activeFile)
-        {
-            recentFilesListView.BeginUpdate();
-            ListViewItem item = recentFilesListView.Items[activeFile.EncryptedFileInfo.FullName];
-            if (item == null)
-            {
-                string text = Path.GetFileName(activeFile.DecryptedFileInfo.FullName);
-                item = recentFilesListView.Items.Add(text);
-                item.Name = activeFile.EncryptedFileInfo.FullName;
-
-                ListViewItem.ListViewSubItem dateColumn = item.SubItems.Add(String.Empty);
-                dateColumn.Name = "Date"; //MLHIDE
-
-                ListViewItem.ListViewSubItem encryptedPathColumn = item.SubItems.Add(String.Empty);
-                encryptedPathColumn.Name = "EncryptedPath"; //MLHIDE
-            }
-
-            UpdateListViewItem(item, activeFile);
-            while (recentFilesListView.Items.Count > Settings.Default.MaxNumberRecentFiles)
-            {
-                recentFilesListView.Items.RemoveAt(recentFilesListView.Items.Count - 1);
-            }
-            recentFilesListView.EndUpdate();
-        }
-
-        private static void UpdateListViewItem(ListViewItem item, ActiveFile activeFile)
-        {
-            UpdateStatusDependentPropertiesOfListViewItem(item, activeFile);
-
-            item.SubItems["EncryptedPath"].Text = activeFile.EncryptedFileInfo.FullName;
-            item.SubItems["Date"].Text = activeFile.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
-            item.SubItems["Date"].Tag = activeFile.LastActivityTimeUtc;
-        }
-
-        private static void UpdateStatusDependentPropertiesOfListViewItem(ListViewItem item, ActiveFile activeFile)
-        {
-            switch (activeFile.VisualState)
-            {
-                case ActiveFileVisualState.DecryptedWithKnownKey:
-                    item.ImageKey = "DecryptedFile";
-                    item.ToolTipText = Resources.DecryptedFileToolTip;
-                    break;
-
-                case ActiveFileVisualState.DecryptedWithoutKnownKey:
-                    item.ImageKey = "DecryptedUnknownKeyFile";
-                    item.ToolTipText = Resources.DecryptedUnknownKeyFileToolTip;
-                    break;
-
-                case ActiveFileVisualState.EncryptedNeverBeenDecrypted:
-                    item.ImageKey = "InactiveFile";
-                    item.ToolTipText = Resources.InactiveFileToolTip;
-                    break;
-
-                case ActiveFileVisualState.EncryptedWithoutKnownKey:
-                    item.ImageKey = "ActiveFile";
-                    item.ToolTipText = Resources.ActiveFileToolTip;
-                    break;
-
-                case ActiveFileVisualState.EncryptedWithKnownKey:
-                    item.ImageKey = "ActiveFileKnownKey";
-                    item.ToolTipText = Resources.ActiveFileKnownKeyToolTip;
-                    break;
-
-                default:
-                    throw new InvalidOperationException("Unexpected ActiveFileVisualState value.");
-            }
         }
 
         private void toolStripButtonEncrypt_Click(object sender, EventArgs e)
@@ -886,7 +757,7 @@ namespace Axantum.AxCrypt
                 {
                     closeAndRemoveOpenFilesToolStripButton.Enabled = FilesAreOpen;
                     SetToolButtonsState();
-                    _watchedFoldersCore.UpdateListView();
+                    _watchedFoldersPresentation.UpdateListView();
                     _handleSessionChangedInProgress = false;
                 });
         }
@@ -912,22 +783,12 @@ namespace Axantum.AxCrypt
 
         private void recentFilesListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            string encryptedPath = recentFilesListView.SelectedItems[0].SubItems["EncryptedPath"].Text; //MLHIDE
-
-            ProcessFilesInBackground(new string[] { encryptedPath }, OpenEncrypted);
+            ProcessFilesInBackground(new string[] { _recentFilesPresentation.SelectedEncryptedPath }, OpenEncrypted);
         }
 
         private void recentFilesListView_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
         {
-            ListView listView = (ListView)sender;
-            string columnName = listView.Columns[e.ColumnIndex].Name;
-            switch (columnName)
-            {
-                case "DecryptedFile":                                 //MLHIDE
-                    Settings.Default.RecentFilesDocumentWidth = listView.Columns[e.ColumnIndex].Width;
-                    break;
-            }
-            Settings.Default.Save();
+            _recentFilesPresentation.ChangeColumnWidth(e.ColumnIndex);
         }
 
         private void PurgeActiveFiles()
@@ -1002,7 +863,7 @@ namespace Axantum.AxCrypt
 
         private void recentFilesListView_MouseClick(object sender, MouseEventArgs e)
         {
-            ShowContextMenu(recentFilesContextMenuStrip, sender, e);
+            _recentFilesPresentation.ShowContextMenu(recentFilesContextMenuStrip, e);
         }
 
         private static void ShowContextMenu(ContextMenuStrip contextMenu, object sender, MouseEventArgs e)
@@ -1259,27 +1120,27 @@ namespace Axantum.AxCrypt
 
         private void watchedFoldersListView_DragDrop(object sender, DragEventArgs e)
         {
-            _watchedFoldersCore.DropDragAndDrop(e);
+            _watchedFoldersPresentation.DropDragAndDrop(e);
         }
 
         private void watchedFoldersListView_DragOver(object sender, DragEventArgs e)
         {
-            WatchedFoldersCore.StartDragAndDrop(e);
+            WatchedFolderPresentation.StartDragAndDrop(e);
         }
 
         private void watchedFoldersListView_MouseClick(object sender, MouseEventArgs e)
         {
-            ShowContextMenu(watchedFoldersContextMenuStrip, sender, e);
+            _watchedFoldersPresentation.ShowContextMenu(watchedFoldersContextMenuStrip, e);
         }
 
         private void watchedFoldersListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            _watchedFoldersCore.OpenSelectedFolder();
+            _watchedFoldersPresentation.OpenSelectedFolder();
         }
 
         private void watchedFoldersListView_deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _watchedFoldersCore.RemoveSelectedWatchedFolders();
+            _watchedFoldersPresentation.RemoveSelectedWatchedFolders();
         }
 
         private void watchedFoldersListView_decryptTemporarilyToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1291,7 +1152,7 @@ namespace Axantum.AxCrypt
                     progress.NotifyLevelStart();
                     try
                     {
-                        _watchedFoldersCore.DecryptSelectedFolder(folder, progress);
+                        _watchedFoldersPresentation.DecryptSelectedFolder(folder, progress);
                     }
                     finally
                     {
