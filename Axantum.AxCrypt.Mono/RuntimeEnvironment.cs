@@ -291,5 +291,13 @@ namespace Axantum.AxCrypt.Mono
 
             return variable;
         }
+
+        public int MaxConcurrency
+        {
+            get
+            {
+                return Environment.ProcessorCount > 2 ? Environment.ProcessorCount - 1 : 2;
+            }
+        }
     }
 }

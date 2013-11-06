@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
@@ -52,7 +53,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
-using Axantum.AxCrypt.Core.Extensions;
 
 namespace Axantum.AxCrypt
 {
@@ -73,8 +73,6 @@ namespace Axantum.AxCrypt
         private WatchedFolderPresentation _watchedFoldersPresentation;
 
         private RecentFilesPresentation _recentFilesPresentation;
-
-        private Background _background;
 
         public static MessageBoxOptions MessageBoxOptions { get; private set; }
 
@@ -108,14 +106,14 @@ namespace Axantum.AxCrypt
             get { return !InvokeRequired; }
         }
 
+        public void BackgroundWorkWithProgress(Func<ProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
+        {
+            progressBackgroundWorker.BackgroundWorkWithProgress(work, complete);
+        }
+
         public void RunOnUIThread(Action action)
         {
             BeginInvoke(action);
-        }
-
-        public Background Background
-        {
-            get { return _background; }
         }
 
         public AxCryptMainForm()
@@ -144,7 +142,9 @@ namespace Axantum.AxCrypt
 
             Trace.Listeners.Add(new DelegateTraceListener("AxCryptMainFormListener", FormatTraceMessage)); //MLHIDE
 
-            _background = new Background(this);
+            FactoryRegistry.Instance.Register<IUIThread>(() => this);
+            FactoryRegistry.Instance.Register<IBackgroundWork>(() => this);
+
             UpdateDebugMode();
 
             _title = "{0} {1}{2}".InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription); //MLHIDE
@@ -217,7 +217,7 @@ namespace Axantum.AxCrypt
 
         private void FormatTraceMessage(string message)
         {
-            Background.ThreadSafeUI(() =>
+            Background.Instance.RunOnUIThread(() =>
             {
                 string formatted = "{0} {1}".InvariantFormat(OS.Current.UtcNow.ToString("o", CultureInfo.InvariantCulture), message.TrimLogMessage()); //MLHIDE
                 logOutputTextBox.AppendText(formatted);
@@ -264,7 +264,7 @@ namespace Axantum.AxCrypt
             Settings.Default.NewestKnownVersion = e.Version.ToString();
             Settings.Default.Save();
             _updateUrl = e.UpdateWebpageUrl;
-            Background.ThreadSafeUI(() =>
+            Background.Instance.RunOnUIThread(() =>
             {
                 UpdateVersionStatus(e.VersionUpdateStatus, e.Version);
             });
@@ -272,7 +272,7 @@ namespace Axantum.AxCrypt
 
         private void HandleFileSystemStateChangedEvent(object sender, ActiveFileChangedEventArgs e)
         {
-            Background.ThreadSafeUI(() =>
+            Background.Instance.RunOnUIThread(() =>
             {
                 _recentFilesPresentation.UpdateActiveFilesViews(e.ActiveFile);
             });
@@ -324,7 +324,7 @@ namespace Axantum.AxCrypt
                 {
                     return;
                 }
-                ProcessFilesInBackground(ofd.FileNames, EncryptFile);
+                Background.Instance.ProcessFiles(ofd.FileNames, EncryptFile);
             }
         }
 
@@ -426,7 +426,7 @@ namespace Axantum.AxCrypt
                 }
                 fileNames = ofd.FileNames;
             }
-            ProcessFilesInBackground(fileNames, DecryptFile);
+            Background.Instance.ProcessFiles(fileNames, DecryptFile);
         }
 
         private void DecryptFile(string file, IThreadWorker worker, ProgressContext progress)
@@ -492,7 +492,7 @@ namespace Axantum.AxCrypt
                 }
                 fileNames = ofd.FileNames;
             }
-            ProcessFilesInBackground(fileNames, WipeFile);
+            Background.Instance.ProcessFiles(fileNames, WipeFile);
         }
 
         private void WipeFile(string file, IThreadWorker worker, ProgressContext progress)
@@ -551,7 +551,7 @@ namespace Axantum.AxCrypt
                     return;
                 }
 
-                ProcessFilesInBackground(ofd.FileNames, OpenEncrypted);
+                Background.Instance.ProcessFiles(ofd.FileNames, OpenEncrypted);
             }
         }
 
@@ -576,39 +576,6 @@ namespace Axantum.AxCrypt
                 };
 
             operationsController.DecryptAndLaunch(file, worker);
-        }
-
-        private void ProcessFilesInBackground(IEnumerable<string> files, Action<string, IThreadWorker, ProgressContext> processFile)
-        {
-            WorkerGroup workerGroup = null;
-            int maxConcurrency = Environment.ProcessorCount > 2 ? Environment.ProcessorCount - 1 : 2;
-            progressBackgroundWorker.BackgroundWorkWithProgress(
-                (ProgressContext progress) =>
-                {
-                    progress.AddItems(files.Count());
-                    using (workerGroup = new WorkerGroup(maxConcurrency, progress))
-                    {
-                        foreach (string file in files)
-                        {
-                            IThreadWorker worker = workerGroup.CreateWorker();
-                            string closureOverCopyOfLoopVariableFile = file;
-                            Background.InteractionSafeUI(() =>
-                            {
-                                processFile(closureOverCopyOfLoopVariableFile, worker, progress);
-                            });
-                            if (workerGroup.FirstError != FileOperationStatus.Success)
-                            {
-                                break;
-                            }
-                            progress.AddItems(-1);
-                        }
-                        workerGroup.WaitAllAndFinish();
-                        return workerGroup.FirstError;
-                    }
-                },
-                (FileOperationStatus status) =>
-                {
-                });
         }
 
         private static bool CheckStatusAndShowMessage(FileOperationStatus status, string displayContext)
@@ -720,7 +687,7 @@ namespace Axantum.AxCrypt
             }
             _handleSessionChangedInProgress = true;
 
-            progressBackgroundWorker.BackgroundWorkWithProgress(
+            BackgroundWorkWithProgress(
                 (ProgressContext progress) =>
                 {
                     progress.NotifyLevelStart();
@@ -764,7 +731,7 @@ namespace Axantum.AxCrypt
 
         private void recentFilesListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            ProcessFilesInBackground(new string[] { _recentFilesPresentation.SelectedEncryptedPath }, OpenEncrypted);
+            Background.Instance.ProcessFiles(new string[] { _recentFilesPresentation.SelectedEncryptedPath }, OpenEncrypted);
         }
 
         private void recentFilesListView_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
@@ -774,7 +741,7 @@ namespace Axantum.AxCrypt
 
         private void PurgeActiveFiles()
         {
-            progressBackgroundWorker.BackgroundWorkWithProgress(
+            BackgroundWorkWithProgress(
                 (ProgressContext progress) =>
                 {
                     progress.NotifyLevelStart();
@@ -818,7 +785,7 @@ namespace Axantum.AxCrypt
         {
             IEnumerable<string> encryptedPaths = SelectedRecentFilesItems();
 
-            progressBackgroundWorker.BackgroundWorkWithProgress(
+            BackgroundWorkWithProgress(
                 (ProgressContext progress) =>
                 {
                     persistentState.Current.Actions.RemoveRecentFiles(encryptedPaths, progress);
@@ -833,7 +800,7 @@ namespace Axantum.AxCrypt
         {
             IEnumerable<string> encryptedPaths = SelectedRecentFilesItems();
 
-            ProcessFilesInBackground(encryptedPaths, DecryptFile);
+            Background.Instance.ProcessFiles(encryptedPaths, DecryptFile);
         }
 
         private IEnumerable<string> SelectedRecentFilesItems()
@@ -1127,7 +1094,7 @@ namespace Axantum.AxCrypt
         private void watchedFoldersListView_decryptTemporarilyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string folder = watchedFoldersListView.SelectedItems[0].Text;
-            progressBackgroundWorker.BackgroundWorkWithProgress(
+            BackgroundWorkWithProgress(
                 (ProgressContext progress) =>
                 {
                     progress.NotifyLevelStart();
@@ -1167,11 +1134,7 @@ namespace Axantum.AxCrypt
             {
                 components.Dispose();
             }
-            if (_background == null)
-            {
-                _background.Dispose();
-                _background = null;
-            }
+            Background.Instance = null;
             OS.Current = null;
         }
     }

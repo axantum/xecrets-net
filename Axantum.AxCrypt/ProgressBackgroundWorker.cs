@@ -33,6 +33,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -41,7 +42,7 @@ namespace Axantum.AxCrypt
     /// <summary>
     /// Background thread operations with progress bar support
     /// </summary>
-    internal class ProgressBackgroundWorker : Component
+    public class ProgressBackgroundWorker : Component
     {
         private long _workerCount = 0;
 
@@ -126,7 +127,6 @@ namespace Axantum.AxCrypt
             Interlocked.Increment(ref _workerCount);
             threadWorker.Run();
         }
-
         private ProgressBar CreateProgressBar(ProgressContext progress)
         {
             ProgressBar progressBar = new ProgressBar();

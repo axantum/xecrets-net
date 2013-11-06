@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Axantum.AxCrypt.Core.Runtime;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,12 +11,37 @@ namespace Axantum.AxCrypt.Core.UI
     {
         private IUIThread _uiThread;
 
-        public Background(IUIThread uiThread)
+        private IBackgroundWork _backgroundWork;
+
+        private Background(IUIThread uiThread, IBackgroundWork backgroundWork)
         {
             _uiThread = uiThread;
+            _backgroundWork = backgroundWork;
         }
 
-        public void ThreadSafeUI(Action action)
+        private static Background _background;
+
+        public static Background Instance
+        {
+            get
+            {
+                if (_background == null)
+                {
+                    _background = new Background(FactoryRegistry.Instance.Create<IUIThread>(), FactoryRegistry.Instance.Create<IBackgroundWork>());
+                }
+                return _background;
+            }
+            set
+            {
+                if (_background != null)
+                {
+                    _background.Dispose();
+                }
+                _background = value;
+            }
+        }
+
+        public void RunOnUIThread(Action action)
         {
             if (!_uiThread.IsOnUIThread)
             {
@@ -29,7 +55,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private Semaphore _interactionSemaphore = new Semaphore(1, 1);
 
-        public void InteractionSafeUI(Action action)
+        private void SerializedOnUIThread(Action action)
         {
             if (!_uiThread.IsOnUIThread)
             {
@@ -51,6 +77,38 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 action();
             }
+        }
+
+        public void ProcessFiles(IEnumerable<string> files, Action<string, IThreadWorker, ProgressContext> processFile)
+        {
+            WorkerGroup workerGroup = null;
+            _backgroundWork.BackgroundWorkWithProgress(
+                (ProgressContext progress) =>
+                {
+                    progress.AddItems(files.Count());
+                    using (workerGroup = new WorkerGroup(OS.Current.MaxConcurrency, progress))
+                    {
+                        foreach (string file in files)
+                        {
+                            IThreadWorker worker = workerGroup.CreateWorker();
+                            string closureOverCopyOfLoopVariableFile = file;
+                            SerializedOnUIThread(() =>
+                            {
+                                processFile(closureOverCopyOfLoopVariableFile, worker, progress);
+                            });
+                            if (workerGroup.FirstError != FileOperationStatus.Success)
+                            {
+                                break;
+                            }
+                            progress.AddItems(-1);
+                        }
+                        workerGroup.WaitAllAndFinish();
+                        return workerGroup.FirstError;
+                    }
+                },
+                (FileOperationStatus status) =>
+                {
+                });
         }
 
         public void Dispose()

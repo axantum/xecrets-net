@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Axantum.AxCrypt.Presentation
 {
-    public interface IMainView : IUIThread
+    public interface IMainView : IUIThread, IBackgroundWork
     {
         FileSystemState FileSystemState { get; }
 
@@ -20,7 +20,5 @@ namespace Axantum.AxCrypt.Presentation
         TabControl Tabs { get; }
 
         IContainer Components { get; }
-
-        Background Background { get; }
     }
 }

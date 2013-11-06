@@ -54,6 +54,7 @@ namespace Axantum.AxCrypt.Core.Test
             CurrentTiming = new FakeTiming();
             ThumbprintSalt = KeyWrapSalt.Zero;
             EnvironmentVariables = new Dictionary<string, string>();
+            MaxConcurrency = 2;
         }
 
         public FakeRuntimeEnvironment(Endian endianness)
@@ -255,5 +256,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
             return variable;
         }
+
+        public int MaxConcurrency { get; set; }
     }
 }

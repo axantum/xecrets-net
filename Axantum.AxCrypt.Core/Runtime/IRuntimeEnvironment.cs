@@ -76,5 +76,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         KeyWrapSalt ThumbprintSalt { get; set; }
 
         string EnvironmentVariable(string name);
+
+        int MaxConcurrency { get; }
     }
 }
