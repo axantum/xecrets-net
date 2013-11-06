@@ -25,12 +25,13 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
+using Newtonsoft.Json;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Threading;
-using Axantum.AxCrypt.Core.IO;
-using Newtonsoft.Json;
 
 namespace Axantum.AxCrypt.Core.UI
 {

@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;

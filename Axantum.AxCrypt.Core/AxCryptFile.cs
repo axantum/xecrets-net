@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
@@ -148,7 +149,7 @@ namespace Axantum.AxCrypt.Core
 
         public virtual void EncryptFilesUniqueWithBackupAndWipe(IRuntimeFileInfo fileInfo, AesKey encryptionKey, ProgressContext progress)
         {
-            IEnumerable<IRuntimeFileInfo> files = fileInfo.FullName.ListEncryptable();
+            IEnumerable<IRuntimeFileInfo> files = fileInfo.ListEncryptable();
             foreach (IRuntimeFileInfo file in files)
             {
                 EncryptFileUniqueWithBackupAndWipe(file, encryptionKey, progress);
@@ -320,7 +321,7 @@ namespace Axantum.AxCrypt.Core
 
         public virtual void DecryptFilesUniqueWithWipeOfOriginal(IRuntimeFileInfo fileInfo, AesKey decryptionKey, ProgressContext progress)
         {
-            IEnumerable<IRuntimeFileInfo> files = fileInfo.FullName.ListEncrypted();
+            IEnumerable<IRuntimeFileInfo> files = fileInfo.ListEncrypted();
             foreach (IRuntimeFileInfo file in files)
             {
                 DecryptFileUniqueWithWipeOfOriginal(file, decryptionKey, progress);

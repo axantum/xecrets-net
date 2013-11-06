@@ -25,10 +25,11 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
-using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -143,6 +144,7 @@ namespace Axantum.AxCrypt.Core.Crypto
                         case KeyWrapMode.Specification:
                             b.Xor(0, t.GetBigEndianBytes(), 0, 8);
                             break;
+
                         case KeyWrapMode.AxCrypt:
                             b.Xor(0, t.GetLittleEndianBytes(), 0, 8);
                             break;
@@ -193,6 +195,7 @@ namespace Axantum.AxCrypt.Core.Crypto
                         case KeyWrapMode.Specification:
                             block.Xor(0, t.GetBigEndianBytes(), 0, 8);
                             break;
+
                         case KeyWrapMode.AxCrypt:
                             block.Xor(0, t.GetLittleEndianBytes(), 0, 8);
                             break;

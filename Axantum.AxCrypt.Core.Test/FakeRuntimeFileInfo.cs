@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
@@ -268,13 +269,6 @@ namespace Axantum.AxCrypt.Core.Test
             LastWriteTimeUtc = lastWriteTimeUtc;
         }
 
-        public IRuntimeFileInfo CreateEncryptedName()
-        {
-            string encryptedName = _file.FullName.CreateEncryptedName();
-
-            return new FakeRuntimeFileInfo(encryptedName);
-        }
-
         public string FullName
         {
             get { return _file.FullName; }
@@ -345,14 +339,6 @@ namespace Axantum.AxCrypt.Core.Test
             get
             {
                 return _file.IsFolder;
-            }
-        }
-
-        public bool IsEncryptable
-        {
-            get
-            {
-                return _file.FullName.IsEncryptable();
             }
         }
 

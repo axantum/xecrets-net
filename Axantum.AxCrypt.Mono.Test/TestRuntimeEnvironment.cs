@@ -26,14 +26,15 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
 using NUnit.Framework;
 using System;
 using System.IO;
 using System.Linq;
 using System.Threading;
-using Axantum.AxCrypt.Core.Session;
 
 namespace Axantum.AxCrypt.Mono.Test
 {

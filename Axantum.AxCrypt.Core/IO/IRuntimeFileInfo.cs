@@ -110,13 +110,6 @@ namespace Axantum.AxCrypt.Core.IO
         bool Exists { get; }
 
         /// <summary>
-        /// Creates an instance representing this file in it's encrypted name form, typically
-        /// changing file.ext to file-ext.axx.
-        /// </summary>
-        /// <returns></returns>
-        IRuntimeFileInfo CreateEncryptedName();
-
-        /// <summary>
         /// Moves the underlying file to a new location.
         /// </summary>
         /// <param name="destinationFileName">Name of the destination file.</param>
@@ -134,9 +127,6 @@ namespace Axantum.AxCrypt.Core.IO
         ///   <c>true</c> if this instance is folder; otherwise, <c>false</c>.
         /// </value>
         bool IsFolder { get; }
-
-        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable is a word.")]
-        bool IsEncryptable { get; }
 
         /// <summary>
         /// Enumerate all files (not folders) in this folder, if it's a folder.

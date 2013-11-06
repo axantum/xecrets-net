@@ -52,6 +52,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
+using Axantum.AxCrypt.Core.Extensions;
 
 namespace Axantum.AxCrypt
 {

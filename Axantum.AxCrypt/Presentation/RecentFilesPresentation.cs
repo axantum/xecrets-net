@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Properties;
@@ -124,7 +125,7 @@ namespace Axantum.AxCrypt.Presentation
         public void StartDragAndDrop(DragEventArgs e)
         {
             IEnumerable<IRuntimeFileInfo> droppedFiles = GetDroppedFiles(e.Data);
-            if (droppedFiles.Count() == 0)
+            if (!droppedFiles.Any(fileInfo => fileInfo.Type() == FileInfoType.EncryptedFile || fileInfo.Type() == FileInfoType.EncryptableFile))
             {
                 return;
             }
@@ -135,35 +136,31 @@ namespace Axantum.AxCrypt.Presentation
         public void DropDragAndDrop(DragEventArgs e)
         {
             IEnumerable<IRuntimeFileInfo> droppedFiles = GetDroppedFiles(e.Data);
-            if (droppedFiles.Count() == 0)
-            {
-                return;
-            }
+
+            IEnumerable<IRuntimeFileInfo> encryptableFiles = droppedFiles.Where(fileInfo => fileInfo.Type() == FileInfoType.EncryptableFile);
+            ProcessEncryptableFilesDroppedInRecentList(encryptableFiles);
+
+            IEnumerable<IRuntimeFileInfo> encryptedFiles = droppedFiles.Where(fileInfo => fileInfo.Type() == FileInfoType.EncryptedFile);
+            ProcessEncryptedFilesDropedInRecentList(encryptedFiles);
+        }
+
+        private void ProcessEncryptedFilesDropedInRecentList(IEnumerable<IRuntimeFileInfo> encryptedFiles)
+        {
+        }
+
+        private void ProcessEncryptableFilesDroppedInRecentList(IEnumerable<IRuntimeFileInfo> encryptableFiles)
+        {
         }
 
         private static IEnumerable<IRuntimeFileInfo> GetDroppedFiles(IDataObject dataObject)
         {
-            List<IRuntimeFileInfo> files = new List<IRuntimeFileInfo>();
             IList<string> dropped = dataObject.GetData(DataFormats.FileDrop) as IList<string>;
             if (dropped == null)
             {
-                return files;
+                return new IRuntimeFileInfo[0];
             }
-            foreach (string file in dropped)
-            {
-                IRuntimeFileInfo fileInfo = OS.Current.FileInfo(file);
-                if (fileInfo.IsFolder)
-                {
-                    continue;
-                }
 
-                if (!fileInfo.FullName.IsEncryptable() && !fileInfo.FullName.IsEncrypted())
-                {
-                    continue;
-                }
-                files.Add(fileInfo);
-            }
-            return files;
+            return dropped.Select(path => OS.Current.FileInfo(path));
         }
 
         private static void ChangeColumnWidth(ListView listView, int columnIndex)

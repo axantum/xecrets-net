@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
-using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Properties;
 
 namespace Axantum.AxCrypt
 {

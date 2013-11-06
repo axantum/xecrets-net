@@ -25,8 +25,9 @@
 
 #endregion Coypright and License
 
-using System;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
+using System;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {

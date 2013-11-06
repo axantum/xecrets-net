@@ -51,6 +51,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AxCryptDocument.cs" />
+    <Compile Include="Extensions\ByteArrayExtensions.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Extensions\PrimitiveTypeExtensions.cs" />
+    <Compile Include="Extensions\RuntimeFileInfoExtensions.cs" />
+    <Compile Include="Extensions\StreamExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="Crypto\KeyWrapIterationCalculator.cs" />
     <Compile Include="FactoryRegistry.cs" />
@@ -87,7 +93,6 @@
     <Compile Include="OS.cs" />
     <Compile Include="Runtime\DelegateTraceListener.cs" />
     <Compile Include="ErrorStatus.cs" />
-    <Compile Include="Extensions.cs" />
     <Compile Include="Runtime\FileFormatException.cs" />
     <Compile Include="Header\AxCrypt1Guid.cs" />
     <Compile Include="Header\CompressionHeaderBlock.cs" />
@@ -132,6 +137,7 @@
     <Compile Include="IO\FileLock.cs" />
     <Compile Include="Session\ActiveFile.cs" />
     <Compile Include="Session\ActiveFileCollection.cs" />
+    <Compile Include="IO\FileInfoType.cs" />
     <Compile Include="Session\FileSystemStateActions.cs" />
     <Compile Include="Session\ActiveFileStatus.cs" />
     <Compile Include="Session\FileSystemState.cs" />
@@ -172,6 +178,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\SolutionItems\Axantum.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

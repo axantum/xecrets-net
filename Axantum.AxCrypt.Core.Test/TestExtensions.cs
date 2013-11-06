@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
@@ -275,24 +276,24 @@ namespace Axantum.AxCrypt.Core.Test
         {
             string rootPath = Path.GetPathRoot(Environment.CurrentDirectory);
             string fileName = rootPath.PathCombine("Users", "Axantum", "A Documents Folder", "My Document.docx");
-            string encryptedFileName = fileName.CreateEncryptedName();
+            string encryptedFileName = OS.Current.FileInfo(fileName).CreateEncryptedName().FullName;
             Assert.That(encryptedFileName, Is.EqualTo(rootPath.PathCombine("Users", "Axantum", "A Documents Folder", "My Document-docx.axx")), "Standard conversion of file name to encrypted form.");
 
             Assert.Throws<InternalErrorException>(() =>
                  {
-                     string encryptedEncryptedFileName = encryptedFileName.CreateEncryptedName();
+                     string encryptedEncryptedFileName = OS.Current.FileInfo(encryptedFileName).CreateEncryptedName().FullName;
 
                      // Use the instance to avoid FxCop errors.
                      Object.Equals(encryptedEncryptedFileName, null);
                  });
 
             fileName = rootPath.PathCombine("Users", "Axantum", "A Documents Folder", "My Extensionless File");
-            encryptedFileName = fileName.CreateEncryptedName();
+            encryptedFileName = OS.Current.FileInfo(fileName).CreateEncryptedName().FullName;
             Assert.That(encryptedFileName, Is.EqualTo(rootPath.PathCombine("Users", "Axantum", "A Documents Folder", "My Extensionless File.axx")), "Conversion of file name without extension to encrypted form.");
 
             Assert.Throws<InternalErrorException>(() =>
             {
-                string encryptedEncryptedFileName = encryptedFileName.CreateEncryptedName();
+                string encryptedEncryptedFileName = OS.Current.FileInfo(encryptedFileName).CreateEncryptedName().FullName;
 
                 // Use the instance to avoid FxCop errors.
                 Object.Equals(encryptedEncryptedFileName, null);
@@ -396,26 +397,26 @@ namespace Axantum.AxCrypt.Core.Test
         {
             OS.PathFilters.Add(new Regex(@"^C:\\Windows\\(?!Temp$)"));
 
-            Assert.That(@"C:\Temp\test.txt".IsEncryptable(), Is.True);
-            Assert.That(@"C:\Windows\test.txt".IsEncryptable(), Is.False);
-            Assert.That(@"C:\Temp\test-txt.axx".IsEncryptable(), Is.False);
+            Assert.That(OS.Current.FileInfo(@"C:\Temp\test.txt").IsEncryptable(), Is.True);
+            Assert.That(OS.Current.FileInfo(@"C:\Windows\test.txt").IsEncryptable(), Is.False);
+            Assert.That(OS.Current.FileInfo(@"C:\Temp\test-txt.axx").IsEncryptable(), Is.False);
 
-            string nullString = null;
-            Assert.Throws<ArgumentNullException>(() => nullString.IsEncryptable());
+            IRuntimeFileInfo nullFileInfo = null;
+            Assert.Throws<ArgumentNullException>(() => nullFileInfo.IsEncryptable());
         }
 
         [Test]
         public static void TestNormalizeFolder()
         {
-            string nullString = null;
-            Assert.Throws<ArgumentNullException>(() => nullString.NormalizeFolder());
-            Assert.Throws<ArgumentException>(() => String.Empty.NormalizeFolder());
+            IRuntimeFileInfo nullFileInfo = null;
+            Assert.Throws<ArgumentNullException>(() => nullFileInfo.NormalizeFolder());
+            Assert.Throws<ArgumentException>(() => OS.Current.FileInfo(String.Empty).NormalizeFolder());
 
             string expected = @"C:\Documents\".Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
-            Assert.That(@"C:\Documents\".NormalizeFolder(), Is.EqualTo(expected));
-            Assert.That(@"C:/Documents\".NormalizeFolder(), Is.EqualTo(expected));
-            Assert.That(@"C:\Documents".NormalizeFolder(), Is.EqualTo(expected));
-            Assert.That(@"C:\Documents\\//".NormalizeFolder(), Is.EqualTo(expected));
+            Assert.That(OS.Current.FileInfo(@"C:\Documents\").NormalizeFolder().FullName, Is.EqualTo(expected));
+            Assert.That(OS.Current.FileInfo(@"C:/Documents\").NormalizeFolder().FullName, Is.EqualTo(expected));
+            Assert.That(OS.Current.FileInfo(@"C:\Documents").NormalizeFolder().FullName, Is.EqualTo(expected));
+            Assert.That(OS.Current.FileInfo(@"C:\Documents\\//").NormalizeFolder().FullName, Is.EqualTo(expected));
         }
 
         [Test]

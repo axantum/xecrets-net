@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
@@ -171,18 +172,6 @@ namespace Axantum.AxCrypt.Mono
         }
 
         /// <summary>
-        /// Creates an instance representing this file in it's encrypted name form, typically
-        /// changing file.ext to file-ext.axx.
-        /// </summary>
-        /// <returns></returns>
-        public IRuntimeFileInfo CreateEncryptedName()
-        {
-            string encryptedName = _file.FullName.CreateEncryptedName();
-
-            return new RuntimeFileInfo(encryptedName);
-        }
-
-        /// <summary>
         /// Get the full name including drive, directory and file name if any
         /// </summary>
         public string FullName
@@ -274,14 +263,6 @@ namespace Axantum.AxCrypt.Mono
             get
             {
                 return (_file.Attributes & FileAttributes.Directory) == FileAttributes.Directory;
-            }
-        }
-
-        public bool IsEncryptable
-        {
-            get
-            {
-                return _file.FullName.IsEncryptable();
             }
         }
 

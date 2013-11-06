@@ -25,12 +25,13 @@
 
 #endregion Coypright and License
 
-using System;
-using System.IO;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
+using System;
+using System.IO;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
@@ -152,15 +153,19 @@ namespace Axantum.AxCrypt.Core.Reader
                 case AxCryptItemType.None:
                     LookForMagicGuid();
                     return CurrentItemType != AxCryptItemType.EndOfStream;
+
                 case AxCryptItemType.MagicGuid:
                 case AxCryptItemType.HeaderBlock:
                     LookForHeaderBlock();
                     return CurrentItemType != AxCryptItemType.EndOfStream;
+
                 case AxCryptItemType.Data:
                     CurrentItemType = AxCryptItemType.EndOfStream;
                     return false;
+
                 case AxCryptItemType.EndOfStream:
                     return false;
+
                 default:
                     throw new InternalErrorException("An AxCryptItemType that should not be possible to get was found.");
             }

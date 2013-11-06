@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
@@ -146,7 +147,7 @@ namespace Axantum.AxCrypt.Presentation
                 return null;
             }
 
-            if (!fileInfo.FullName.NormalizeFolder().IsEncryptable())
+            if (!fileInfo.NormalizeFolder().IsEncryptable())
             {
                 return null;
             }

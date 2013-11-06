@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
 using System;
 
 namespace Axantum.AxCrypt.Core.Reader
