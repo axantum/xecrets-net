@@ -154,6 +154,7 @@
     <Compile Include="UI\FileOperationsController.cs" />
     <Compile Include="UI\FileOperationStatus.cs" />
     <Compile Include="UI\IBackgroundWork.cs" />
+    <Compile Include="UI\IStatusChecker.cs" />
     <Compile Include="UI\IUIThread.cs" />
     <Compile Include="UI\KnownKeys.cs" />
     <Compile Include="UI\ProgressContext.cs" />

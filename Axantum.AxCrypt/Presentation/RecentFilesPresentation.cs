@@ -28,7 +28,9 @@
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections;
@@ -125,7 +127,7 @@ namespace Axantum.AxCrypt.Presentation
         public void StartDragAndDrop(DragEventArgs e)
         {
             IEnumerable<IRuntimeFileInfo> droppedFiles = GetDroppedFiles(e.Data);
-            if (!droppedFiles.Any(fileInfo => fileInfo.Type() == FileInfoType.EncryptedFile || fileInfo.Type() == FileInfoType.EncryptableFile))
+            if (!droppedFiles.Any(fileInfo => fileInfo.Type() == FileInfoType.EncryptedFile || (_mainView.FileSystemState.KnownKeys.DefaultEncryptionKey != null && fileInfo.Type() == FileInfoType.EncryptableFile)))
             {
                 return;
             }
@@ -137,7 +139,7 @@ namespace Axantum.AxCrypt.Presentation
         {
             IEnumerable<IRuntimeFileInfo> droppedFiles = GetDroppedFiles(e.Data);
 
-            IEnumerable<IRuntimeFileInfo> encryptableFiles = droppedFiles.Where(fileInfo => fileInfo.Type() == FileInfoType.EncryptableFile);
+            IEnumerable<IRuntimeFileInfo> encryptableFiles = droppedFiles.Where(fileInfo => _mainView.FileSystemState.KnownKeys.DefaultEncryptionKey != null && fileInfo.Type() == FileInfoType.EncryptableFile);
             ProcessEncryptableFilesDroppedInRecentList(encryptableFiles);
 
             IEnumerable<IRuntimeFileInfo> encryptedFiles = droppedFiles.Where(fileInfo => fileInfo.Type() == FileInfoType.EncryptedFile);
@@ -150,6 +152,31 @@ namespace Axantum.AxCrypt.Presentation
 
         private void ProcessEncryptableFilesDroppedInRecentList(IEnumerable<IRuntimeFileInfo> encryptableFiles)
         {
+            Background.Instance.ProcessFiles(encryptableFiles.Select(fileInfo => fileInfo.FullName), EncryptFile);
+        }
+
+        private void EncryptFile(string fullName, IThreadWorker worker, ProgressContext progress)
+        {
+            FileOperationsController operationsController = new FileOperationsController(_mainView.FileSystemState, progress);
+
+            operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
+            {
+                e.SaveFileFullName = OS.Current.FileInfo(e.SaveFileFullName).FullName.CreateUniqueFile();
+            };
+
+            operationsController.Completed += (object sender, FileOperationEventArgs e) =>
+            {
+                if (FactoryRegistry.Instance.Create<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
+                {
+                    IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
+                    IRuntimeFileInfo decryptedInfo = OS.Current.FileInfo(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
+                    ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key, ActiveFileStatus.NotDecrypted, null);
+                    _mainView.FileSystemState.Add(activeFile);
+                    _mainView.FileSystemState.Save();
+                }
+            };
+
+            operationsController.EncryptFile(fullName, worker);
         }
 
         private static IEnumerable<IRuntimeFileInfo> GetDroppedFiles(IDataObject dataObject)

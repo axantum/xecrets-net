@@ -60,7 +60,7 @@ namespace Axantum.AxCrypt
     /// All code here is expected to execute on the GUI thread. If code may be called on another thread, this call
     /// must be made through ThreadSafeUi() .
     /// </summary>
-    public partial class AxCryptMainForm : Form, IMainView
+    public partial class AxCryptMainForm : Form, IMainView, IStatusChecker
     {
         private Uri _updateUrl = Settings.Default.UpdateUrl;
 
@@ -144,6 +144,7 @@ namespace Axantum.AxCrypt
 
             FactoryRegistry.Instance.Register<IUIThread>(() => this);
             FactoryRegistry.Instance.Register<IBackgroundWork>(() => this);
+            FactoryRegistry.Instance.Register<IStatusChecker>(() => this);
 
             UpdateDebugMode();
 
@@ -578,7 +579,7 @@ namespace Axantum.AxCrypt
             operationsController.DecryptAndLaunch(file, worker);
         }
 
-        private static bool CheckStatusAndShowMessage(FileOperationStatus status, string displayContext)
+        public bool CheckStatusAndShowMessage(FileOperationStatus status, string displayContext)
         {
             switch (status)
             {
@@ -1137,5 +1138,5 @@ namespace Axantum.AxCrypt
             Background.Instance = null;
             OS.Current = null;
         }
-    }
+            }
 }
