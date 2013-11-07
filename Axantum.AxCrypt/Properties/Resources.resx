@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
     <value>About {0}</value>
@@ -213,7 +213,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>Logged Off</value>
   </data>
   <data name="LoggedOnStatusText" xml:space="preserve">
-    <value>Logged On</value>
+    <value>'{0}' is Logged On</value>
   </data>
   <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
     <value>Version {0} is available! Click to download.</value>
@@ -252,7 +252,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
   <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
     <value>Select files to securely delete</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="refreshgreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\refreshgreen.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -312,5 +312,8 @@ Includes software from http://www.bouncycastle.org/ .</value>
   </data>
   <data name="fileknownkeygreen16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\fileknownkeygreen16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="UnkownLogOn" xml:space="preserve">
+    <value>Passphrase is not previously known. Click 'New' to create a new Log On.</value>
   </data>
 </root>

@@ -207,7 +207,8 @@ namespace Axantum.AxCrypt
             }
             else
             {
-                logonStatus = Resources.LoggedOnStatusText;
+                PassphraseIdentity identity = persistentState.Current.Identities.First(i => i.Thumbprint == persistentState.Current.KnownKeys.DefaultEncryptionKey.Thumbprint);
+                logonStatus = Resources.LoggedOnStatusText.InvariantFormat(identity.Name);
             }
             string text = "{0} - {1}".InvariantFormat(_title, logonStatus);
             if (String.Compare(Text, text, StringComparison.Ordinal) != 0)
@@ -358,7 +359,7 @@ namespace Axantum.AxCrypt
 
             operationsController.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
                 {
-                    string passphrase = AskForEncryptionPassphrase();
+                    string passphrase = AskForLogOnPassphrase();
                     if (String.IsNullOrEmpty(passphrase))
                     {
                         e.Cancel = true;
@@ -389,22 +390,58 @@ namespace Axantum.AxCrypt
             operationsController.EncryptFile(file, worker);
         }
 
-        private static string AskForEncryptionPassphrase()
+        private string AskForEncryptionPassphrase()
         {
-            using (EncryptPassphraseDialog passphraseDialog = new EncryptPassphraseDialog())
+            using (EncryptPassphraseDialog passphraseDialog = new EncryptPassphraseDialog(persistentState.Current))
             {
                 passphraseDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowEncryptPasshrase;
                 DialogResult dialogResult = passphraseDialog.ShowDialog();
-                if (dialogResult != DialogResult.OK)
+                if (dialogResult != DialogResult.OK || passphraseDialog.PassphraseTextBox.Text.Length == 0)
                 {
                     return String.Empty;
                 }
+
                 if (passphraseDialog.ShowPassphraseCheckBox.Checked != Settings.Default.ShowEncryptPasshrase)
                 {
                     Settings.Default.ShowEncryptPasshrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
                     Settings.Default.Save();
                 }
+
+                Passphrase passphrase = new Passphrase(passphraseDialog.PassphraseTextBox.Text);
+                PassphraseIdentity identity = persistentState.Current.Identities.FirstOrDefault(i => i.Key.Thumbprint == passphrase.DerivedPassphrase.Thumbprint);
+                if (identity != null)
+                {
+                    return passphraseDialog.PassphraseTextBox.Text;
+                }
+
+                identity = new PassphraseIdentity(passphraseDialog.nameTextBox.Text, passphrase.DerivedPassphrase);
+                persistentState.Current.Identities.Add(identity);
+                persistentState.Current.Save();
+
                 return passphraseDialog.PassphraseTextBox.Text;
+            }
+        }
+
+        private string AskForLogOnPassphrase()
+        {
+            using (LogOnDialog logOnDialog = new LogOnDialog(persistentState.Current))
+            {
+                logOnDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowEncryptPasshrase;
+                DialogResult dialogResult = logOnDialog.ShowDialog();
+                if (dialogResult == DialogResult.Retry)
+                {
+                    return AskForEncryptionPassphrase();
+                }
+                if (dialogResult != DialogResult.OK || logOnDialog.PassphraseTextBox.Text.Length == 0)
+                {
+                    return String.Empty;
+                }
+                if (logOnDialog.ShowPassphraseCheckBox.Checked != Settings.Default.ShowEncryptPasshrase)
+                {
+                    Settings.Default.ShowEncryptPasshrase = logOnDialog.ShowPassphraseCheckBox.Checked;
+                    Settings.Default.Save();
+                }
+                return logOnDialog.PassphraseTextBox.Text;
             }
         }
 
@@ -1047,22 +1084,41 @@ namespace Axantum.AxCrypt
 
         private void encryptionKeyToolStripButton_Click(object sender, EventArgs e)
         {
-            if (persistentState.Current.KnownKeys.DefaultEncryptionKey == null)
+            if (persistentState.Current.IsLoggedOn)
+            {
+                persistentState.Current.KnownKeys.DefaultEncryptionKey = null;
+                persistentState.Current.KnownKeys.Clear();
+                return;
+            }
+
+            if (persistentState.Current.Identities.Any(identity => true))
+            {
+                TryLogOnToExistingIdentity();
+            }
+            else
             {
                 string passphrase = AskForEncryptionPassphrase();
                 if (String.IsNullOrEmpty(passphrase))
                 {
                     return;
                 }
+
                 AesKey defaultEncryptionKey = new Passphrase(passphrase).DerivedPassphrase;
                 persistentState.Current.KnownKeys.DefaultEncryptionKey = defaultEncryptionKey;
             }
-            else
-            {
-                persistentState.Current.KnownKeys.DefaultEncryptionKey = null;
-                persistentState.Current.KnownKeys.Clear();
-            }
             SetToolButtonsState();
+        }
+
+        private void TryLogOnToExistingIdentity()
+        {
+            string passphrase = AskForLogOnPassphrase();
+            if (String.IsNullOrEmpty(passphrase))
+            {
+                return;
+            }
+
+            AesKey defaultEncryptionKey = new Passphrase(passphrase).DerivedPassphrase;
+            persistentState.Current.KnownKeys.DefaultEncryptionKey = defaultEncryptionKey;
         }
 
         #region Watched Folders
@@ -1138,5 +1194,5 @@ namespace Axantum.AxCrypt
             Background.Instance = null;
             OS.Current = null;
         }
-            }
+    }
 }

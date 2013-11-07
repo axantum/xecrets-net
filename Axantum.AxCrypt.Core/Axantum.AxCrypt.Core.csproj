@@ -143,6 +143,7 @@
     <Compile Include="Session\FileSystemState.cs" />
     <Compile Include="Runtime\ThreadWorker.cs" />
     <Compile Include="Runtime\ThreadWorkerEventArgs.cs" />
+    <Compile Include="Session\PassphraseIdentity.cs" />
     <Compile Include="Session\SessionEvent.cs" />
     <Compile Include="Session\SessionEventType.cs" />
     <Compile Include="Session\SessionEventArgs.cs" />

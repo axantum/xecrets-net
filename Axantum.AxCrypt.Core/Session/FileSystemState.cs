@@ -63,6 +63,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             _lock = new object();
             KnownKeys = new KnownKeys();
+            Identities = new List<PassphraseIdentity>();
         }
 
         public FileSystemStateActions Actions
@@ -116,6 +117,27 @@ namespace Axantum.AxCrypt.Core.Session
             private set
             {
                 _thumbprintSalt = value;
+            }
+        }
+
+        [DataMember(Name = "PassphraseIdentities")]
+        public IList<PassphraseIdentity> Identities
+        {
+            get;
+            private set;
+        }
+
+        public PassphraseIdentity CurrentIdentity
+        {
+            get;
+            set;
+        }
+
+        public bool IsLoggedOn
+        {
+            get
+            {
+                return KnownKeys.DefaultEncryptionKey != null;
             }
         }
 
@@ -427,6 +449,7 @@ namespace Axantum.AxCrypt.Core.Session
                 KnownKeys = fileSystemState.KnownKeys;
                 KeyWrapIterations = fileSystemState.KeyWrapIterations;
                 ThumbprintSalt = fileSystemState.ThumbprintSalt;
+                Identities = new List<PassphraseIdentity>(fileSystemState.Identities);
                 foreach (WatchedFolder watchedFolder in fileSystemState.WatchedFolders)
                 {
                     AddWatchedFolderInternal(watchedFolder);

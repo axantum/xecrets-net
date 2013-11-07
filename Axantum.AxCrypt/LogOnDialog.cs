@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Properties;
@@ -33,16 +34,15 @@ using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
-using System.Security.Principal;
 using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
 {
-    public partial class EncryptPassphraseDialog : Form
+    public partial class LogOnDialog : Form
     {
         private FileSystemState _fileSystemState;
 
-        public EncryptPassphraseDialog(FileSystemState fileSystemState)
+        public LogOnDialog(FileSystemState fileSystemState)
         {
             InitializeComponent();
             SetAutoValidateViaReflectionToAvoidMoMaWarning();
@@ -52,16 +52,11 @@ namespace Axantum.AxCrypt
         private void EncryptPassphraseDialog_Load(object sender, EventArgs e)
         {
             ShowHidePasshrase();
-            if (!_fileSystemState.Identities.Any(identity => String.Compare(identity.Name, Environment.UserName, StringComparison.OrdinalIgnoreCase) == 0))
-            {
-                nameTextBox.Text = Environment.UserName;
-            }
         }
 
         private void ShowHidePasshrase()
         {
             PassphraseTextBox.UseSystemPasswordChar = !ShowPassphraseCheckBox.Checked;
-            VerifyPassphraseTextbox.UseSystemPasswordChar = !ShowPassphraseCheckBox.Checked;
         }
 
         private void SetAutoValidateViaReflectionToAvoidMoMaWarning()
@@ -73,15 +68,6 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void VerifyPassphraseTextbox_Validating(object sender, CancelEventArgs e)
-        {
-            if (String.Compare(PassphraseTextBox.Text, VerifyPassphraseTextbox.Text, StringComparison.Ordinal) != 0)
-            {
-                e.Cancel = true;
-                errorProvider1.SetError(VerifyPassphraseTextbox, Resources.PassphraseVerificationMismatch);
-            }
-        }
-
         private void buttonOk_Click(object sender, EventArgs e)
         {
             if (!ValidateChildren(ValidationConstraints.Visible))
@@ -90,14 +76,30 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void VerifyPassphraseTextbox_Validated(object sender, EventArgs e)
+        private void ShowPassphraseCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowHidePasshrase();
+        }
+
+        private void PassphraseTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            Passphrase passphrase = new Passphrase(PassphraseTextBox.Text);
+            if (!_fileSystemState.Identities.Any(identity => identity.Thumbprint == passphrase.DerivedPassphrase.Thumbprint))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(PassphraseTextBox, Resources.UnkownLogOn);
+            }
+        }
+
+        private void PassphraseTextBox_Validated(object sender, EventArgs e)
         {
             errorProvider1.Clear();
         }
 
-        private void ShowPassphraseCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void newButton_Click(object sender, EventArgs e)
         {
-            ShowHidePasshrase();
+            DialogResult = DialogResult.Retry;
+            
         }
     }
 }
