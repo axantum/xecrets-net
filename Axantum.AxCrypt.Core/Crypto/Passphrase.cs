@@ -38,6 +38,11 @@ namespace Axantum.AxCrypt.Core.Crypto
     {
         private readonly AesKey _derivedPassphrase;
 
+        public static AesKey Derive(string passphrase)
+        {
+            return new Passphrase(passphrase).DerivedPassphrase;
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Passphrase"/> class.
         /// </summary>

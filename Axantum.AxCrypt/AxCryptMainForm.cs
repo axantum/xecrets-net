@@ -417,8 +417,7 @@ namespace Axantum.AxCrypt
                 return String.Empty;
             }
 
-            AesKey defaultEncryptionKey = new Passphrase(passphrase).DerivedPassphrase;
-            Instance.KnownKeys.DefaultEncryptionKey = defaultEncryptionKey;
+            Instance.KnownKeys.DefaultEncryptionKey = Passphrase.Derive(passphrase);
             return passphrase;
         }
 
@@ -904,8 +903,7 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-            Passphrase passphrase = new Passphrase(passphraseText);
-            Instance.KnownKeys.Add(passphrase.DerivedPassphrase);
+            Instance.KnownKeys.Add(Passphrase.Derive(passphraseText));
         }
 
         private void progressBackgroundWorker_ProgressBarClicked(object sender, MouseEventArgs e)
@@ -1101,7 +1099,6 @@ namespace Axantum.AxCrypt
         {
             if (Instance.KnownKeys.IsLoggedOn)
             {
-                Instance.KnownKeys.DefaultEncryptionKey = null;
                 Instance.KnownKeys.Clear();
                 return;
             }
@@ -1118,8 +1115,7 @@ namespace Axantum.AxCrypt
                     return;
                 }
 
-                AesKey defaultEncryptionKey = new Passphrase(passphrase).DerivedPassphrase;
-                Instance.KnownKeys.DefaultEncryptionKey = defaultEncryptionKey;
+                Instance.KnownKeys.DefaultEncryptionKey = Passphrase.Derive(passphrase);
             }
             SetToolButtonsState();
         }

@@ -83,8 +83,8 @@ namespace Axantum.AxCrypt
 
         private void PassphraseTextBox_Validating(object sender, CancelEventArgs e)
         {
-            Passphrase passphrase = new Passphrase(PassphraseTextBox.Text);
-            if (!_fileSystemState.Identities.Any(identity => identity.Thumbprint == passphrase.DerivedPassphrase.Thumbprint))
+            AesKeyThumbprint thumbprint = Passphrase.Derive(PassphraseTextBox.Text).Thumbprint;
+            if (!_fileSystemState.Identities.Any(identity => identity.Thumbprint == thumbprint))
             {
                 e.Cancel = true;
                 errorProvider1.SetError(PassphraseTextBox, Resources.UnkownLogOn);
@@ -99,7 +99,6 @@ namespace Axantum.AxCrypt
         private void newButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Retry;
-            
         }
     }
 }

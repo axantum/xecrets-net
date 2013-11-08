@@ -212,8 +212,7 @@ namespace Axantum.AxCrypt.Core.UI
                     _eventArgs.Status = FileOperationStatus.Canceled;
                     return false;
                 }
-                Passphrase passphrase = new Passphrase(_eventArgs.Passphrase);
-                _eventArgs.Key = passphrase.DerivedPassphrase;
+                _eventArgs.Key = Passphrase.Derive(_eventArgs.Passphrase);
             }
             else
             {

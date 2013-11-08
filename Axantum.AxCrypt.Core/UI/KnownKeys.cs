@@ -91,6 +91,7 @@ namespace Axantum.AxCrypt.Core.UI
                 }
                 _keys.Clear();
             }
+            _defaultEncryptionKey = null;
             OnChanged(new EventArgs());
         }
 

@@ -240,7 +240,7 @@ namespace Axantum.AxCrypt.Core.Test
             _fileSystemState.Actions.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because the file was modified as well and thus cannot be deleted.");
 
-            Instance.KnownKeys.Add(new Passphrase("x").DerivedPassphrase);
+            Instance.KnownKeys.Add(Passphrase.Derive("x"));
             Instance.KnownKeys.Add(new Passphrase("y").DerivedPassphrase);
             _fileSystemState.Actions.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because the file was modified as well and thus cannot be deleted.");
