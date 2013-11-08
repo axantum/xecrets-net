@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
@@ -92,7 +93,7 @@ namespace Axantum.AxCrypt.Presentation
             {
                 return;
             }
-            _mainView.FileSystemState.AddWatchedFolder(new WatchedFolder(droppedFolder.FullName));
+            _mainView.FileSystemState.AddWatchedFolder(new WatchedFolder(droppedFolder.FullName, _mainView.FileSystemState.KnownKeys.DefaultEncryptionKey.Thumbprint));
             _mainView.FileSystemState.Save();
         }
 
@@ -108,6 +109,12 @@ namespace Axantum.AxCrypt.Presentation
 
         private void AddRemoveWatchedFolders()
         {
+            if (_mainView.FileSystemState.KnownKeys.DefaultEncryptionKey == null)
+            {
+                _mainView.WatchedFolders.Items.Clear();
+                return;
+            }
+
             _mainView.WatchedFolders.BeginUpdate();
             foreach (WatchedFolder folder in _mainView.FileSystemState.WatchedFolders)
             {
@@ -119,9 +126,10 @@ namespace Axantum.AxCrypt.Presentation
                     item.Name = text;
                 }
             }
+            AesKeyThumbprint knownThumbprint = _mainView.FileSystemState.KnownKeys.DefaultEncryptionKey.Thumbprint;
             for (int i = 0; i < _mainView.WatchedFolders.Items.Count; ++i)
             {
-                if (!_mainView.FileSystemState.WatchedFolders.Contains(new WatchedFolder(_mainView.WatchedFolders.Items[i].Text)))
+                if (!_mainView.FileSystemState.WatchedFolders.Contains(new WatchedFolder(_mainView.WatchedFolders.Items[i].Text, knownThumbprint)))
                 {
                     _mainView.WatchedFolders.Items.RemoveAt(i);
                     --i;
@@ -158,7 +166,7 @@ namespace Axantum.AxCrypt.Presentation
         {
             foreach (string watchedFolderPath in SelectedWatchedFoldersItems())
             {
-                _mainView.FileSystemState.RemoveWatchedFolder(new WatchedFolder(watchedFolderPath));
+                _mainView.FileSystemState.RemoveWatchedFolder(new WatchedFolder(watchedFolderPath, _mainView.FileSystemState.KnownKeys.DefaultEncryptionKey.Thumbprint));
             }
             _mainView.FileSystemState.Save();
         }

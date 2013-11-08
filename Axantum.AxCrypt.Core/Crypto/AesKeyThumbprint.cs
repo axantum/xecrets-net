@@ -41,8 +41,15 @@ namespace Axantum.AxCrypt.Core.Crypto
     [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
     public class AesKeyThumbprint : IEquatable<AesKeyThumbprint>
     {
+        public static readonly AesKeyThumbprint Zero = new AesKeyThumbprint();
+
         [DataMember(Name = "Thumbprint")]
         private byte[] _bytes;
+
+        private AesKeyThumbprint()
+        {
+            _bytes = new byte[8];
+        }
 
         /// <summary>
         /// Instantiate a thumb print

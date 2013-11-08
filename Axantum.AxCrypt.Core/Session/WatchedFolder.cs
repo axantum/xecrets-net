@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core.IO;
+﻿using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,20 +23,34 @@ namespace Axantum.AxCrypt.Core.Session
 
         public event EventHandler<FileWatcherEventArgs> Changed;
 
-        public WatchedFolder(string path)
+        public WatchedFolder(string path, AesKeyThumbprint thumbprint)
         {
             if (path == null)
             {
                 throw new ArgumentNullException("path");
             }
+            if (thumbprint == null)
+            {
+                throw new ArgumentNullException("thumbprint");
+            }
+
             Path = path;
+            Thumbprint = thumbprint;
             Initialize(new StreamingContext());
         }
 
         public WatchedFolder(WatchedFolder watchedFolder)
         {
             Path = watchedFolder.Path;
+            Thumbprint = watchedFolder.Thumbprint;
             Initialize(new StreamingContext());
+        }
+
+        [DataMember(Name = "Thumbprint")]
+        public AesKeyThumbprint Thumbprint
+        {
+            get;
+            private set;
         }
 
         [OnDeserialized]
@@ -71,7 +86,7 @@ namespace Axantum.AxCrypt.Core.Session
                 return true;
             }
 
-            return Path == other.Path;
+            return String.Compare(Path, other.Path, StringComparison.OrdinalIgnoreCase) == 0 && Thumbprint == other.Thumbprint;
         }
 
         public override bool Equals(object obj)
@@ -87,7 +102,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         public override int GetHashCode()
         {
-            return Path.GetHashCode();
+            return Path.GetHashCode() ^ Thumbprint.GetHashCode();
         }
 
         public static bool operator ==(WatchedFolder left, WatchedFolder right)

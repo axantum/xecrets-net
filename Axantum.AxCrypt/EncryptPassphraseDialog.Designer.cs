@@ -40,11 +40,13 @@
             this.PassphraseTextBox = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.nameTextBox = new System.Windows.Forms.TextBox();
+            this.NameTextBox = new System.Windows.Forms.TextBox();
+            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel1.SuspendLayout();
             this.PassphraseGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -112,16 +114,21 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.nameTextBox);
+            this.groupBox1.Controls.Add(this.NameTextBox);
             resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
-            // nameTextBox
+            // NameTextBox
             // 
-            this.nameTextBox.CausesValidation = false;
-            resources.ApplyResources(this.nameTextBox, "nameTextBox");
-            this.nameTextBox.Name = "nameTextBox";
+            resources.ApplyResources(this.NameTextBox, "NameTextBox");
+            this.NameTextBox.Name = "NameTextBox";
+            this.NameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.NameTextBox_Validating);
+            this.NameTextBox.Validated += new System.EventHandler(this.NameTextBox_Validated);
+            // 
+            // errorProvider2
+            // 
+            this.errorProvider2.ContainerControl = this;
             // 
             // EncryptPassphraseDialog
             // 
@@ -141,6 +148,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -158,6 +166,7 @@
         private System.Windows.Forms.TextBox VerifyPassphraseTextbox;
         internal System.Windows.Forms.CheckBox ShowPassphraseCheckBox;
         private System.Windows.Forms.GroupBox groupBox1;
-        internal System.Windows.Forms.TextBox nameTextBox;
+        internal System.Windows.Forms.TextBox NameTextBox;
+        private System.Windows.Forms.ErrorProvider errorProvider2;
     }
 }

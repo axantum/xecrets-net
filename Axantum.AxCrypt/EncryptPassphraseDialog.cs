@@ -54,7 +54,12 @@ namespace Axantum.AxCrypt
             ShowHidePasshrase();
             if (!_fileSystemState.Identities.Any(identity => String.Compare(identity.Name, Environment.UserName, StringComparison.OrdinalIgnoreCase) == 0))
             {
-                nameTextBox.Text = Environment.UserName;
+                NameTextBox.Text = Environment.UserName;
+                PassphraseTextBox.Focus();
+            }
+            else
+            {
+                NameTextBox.Focus();
             }
         }
 
@@ -73,6 +78,19 @@ namespace Axantum.AxCrypt
             }
         }
 
+        private void buttonOk_Click(object sender, EventArgs e)
+        {
+            if (!ValidateChildren(ValidationConstraints.Visible))
+            {
+                DialogResult = DialogResult.None;
+            }
+        }
+
+        private void ShowPassphraseCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowHidePasshrase();
+        }
+
         private void VerifyPassphraseTextbox_Validating(object sender, CancelEventArgs e)
         {
             if (String.Compare(PassphraseTextBox.Text, VerifyPassphraseTextbox.Text, StringComparison.Ordinal) != 0)
@@ -82,22 +100,23 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void buttonOk_Click(object sender, EventArgs e)
-        {
-            if (!ValidateChildren(ValidationConstraints.Visible))
-            {
-                DialogResult = DialogResult.None;
-            }
-        }
-
         private void VerifyPassphraseTextbox_Validated(object sender, EventArgs e)
         {
             errorProvider1.Clear();
         }
 
-        private void ShowPassphraseCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void NameTextBox_Validating(object sender, CancelEventArgs e)
         {
-            ShowHidePasshrase();
+            if (_fileSystemState.Identities.Any(i => i.Name == NameTextBox.Text))
+            {
+                e.Cancel = true;
+                errorProvider2.SetError(NameTextBox, Resources.LogOnExists);
+            }
+        }
+
+        private void NameTextBox_Validated(object sender, EventArgs e)
+        {
+            errorProvider2.Clear();
         }
     }
 }

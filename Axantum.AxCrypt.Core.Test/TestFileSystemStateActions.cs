@@ -626,7 +626,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFolder(_underDocumentsFolder);
             FakeRuntimeFileInfo.AddFile(_encryptedFile11, utcNow, utcNow, utcNow, Stream.Null);
             FakeRuntimeFileInfo.AddFile(_decryptedFile11, utcNow, utcNow, utcNow, Stream.Null);
-            _fileSystemState.AddWatchedFolder(new WatchedFolder(_underDocumentsFolder));
+            _fileSystemState.AddWatchedFolder(new WatchedFolder(_underDocumentsFolder, AesKeyThumbprint.Zero));
 
             IEnumerable<IRuntimeFileInfo> encryptableFiles = _fileSystemState.Actions.ListEncryptableInWatchedFolders();
 
@@ -658,7 +658,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(@"C:\My Documents\Plaintext 2.txt", Stream.Null);
             FakeRuntimeFileInfo.AddFile(@"C:\My Documents\Encrypted.axx", Stream.Null);
 
-            _fileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\My Documents\"));
+            _fileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\My Documents\", AesKeyThumbprint.Zero));
 
             _fileSystemState.Actions.EncryptFilesInWatchedFolders(new AesKey(), new ProgressContext());
 

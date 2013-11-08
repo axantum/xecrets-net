@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Session;
 using NUnit.Framework;
 using System;
@@ -53,9 +54,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestConstructor()
         {
             List<WatchedFolder> addedFolders = new List<WatchedFolder>();
-            addedFolders.Add(new WatchedFolder(@"C:\Folder1\"));
+            addedFolders.Add(new WatchedFolder(@"C:\Folder1\", AesKeyThumbprint.Zero));
             List<WatchedFolder> removedFolders = new List<WatchedFolder>();
-            removedFolders.Add(new WatchedFolder(@"C:\Folder2\"));
+            removedFolders.Add(new WatchedFolder(@"C:\Folder2\", AesKeyThumbprint.Zero));
 
             WatchedFolderChangedEventArgs e = new WatchedFolderChangedEventArgs(addedFolders, removedFolders);
 

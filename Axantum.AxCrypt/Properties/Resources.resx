@@ -316,4 +316,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
   <data name="UnkownLogOn" xml:space="preserve">
     <value>Passphrase is not previously known. Click 'New' to create a new Log On.</value>
   </data>
+  <data name="LogOnExists" xml:space="preserve">
+    <value>This Log On Identity already exists</value>
+  </data>
 </root>

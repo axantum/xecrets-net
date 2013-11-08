@@ -127,12 +127,6 @@ namespace Axantum.AxCrypt.Core.Session
             private set;
         }
 
-        public PassphraseIdentity CurrentIdentity
-        {
-            get;
-            set;
-        }
-
         public bool IsLoggedOn
         {
             get

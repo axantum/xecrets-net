@@ -511,6 +511,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This Log On Identity already exists.
+        /// </summary>
+        internal static string LogOnExists {
+            get {
+                return ResourceManager.GetString("LogOnExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Version {0} is available! Click to download..
         /// </summary>
         internal static string NewVersionIsAvailableTooltip {
