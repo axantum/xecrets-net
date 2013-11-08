@@ -73,7 +73,6 @@
             this.watchedFoldersContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.decryptTemporarilyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.persistentState = new Axantum.AxCrypt.PersistentState(this.components);
             this.progressBackgroundWorker = new Axantum.AxCrypt.ProgressBackgroundWorker(this.components);
             this.backgroundMonitor = new Axantum.AxCrypt.BackgroundMonitor(this.components);
             this.mainToolStrip.SuspendLayout();
@@ -86,7 +85,6 @@
             this.recentFilesTabPage.SuspendLayout();
             this.statusTabControl.SuspendLayout();
             this.watchedFoldersContextMenuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.persistentState)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundMonitor)).BeginInit();
             this.SuspendLayout();
             // 
@@ -499,10 +497,6 @@
             resources.ApplyResources(this.decryptTemporarilyToolStripMenuItem, "decryptTemporarilyToolStripMenuItem");
             this.decryptTemporarilyToolStripMenuItem.Click += new System.EventHandler(this.watchedFoldersListView_decryptTemporarilyToolStripMenuItem_Click);
             // 
-            // persistentState
-            // 
-            this.persistentState.Current = null;
-            // 
             // progressBackgroundWorker
             // 
             this.progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.progressBackgroundWorker_ProgressBarCreated);
@@ -534,7 +528,6 @@
             this.recentFilesTabPage.ResumeLayout(false);
             this.statusTabControl.ResumeLayout(false);
             this.watchedFoldersContextMenuStrip.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.persistentState)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundMonitor)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -580,7 +573,6 @@
         private System.Windows.Forms.ToolStripMenuItem checkVersionNowToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewHelpMenuItem;
-        private PersistentState persistentState;
         private ProgressBackgroundWorker progressBackgroundWorker;
         private BackgroundMonitor backgroundMonitor;
         private System.Windows.Forms.TabPage logTabPage;

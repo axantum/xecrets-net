@@ -136,7 +136,7 @@ namespace Axantum.AxCrypt.Core
         }
 
         /// <summary>
-        /// Unregister all factories.
+        /// Unregister all factories and instances, dispose if required.
         /// </summary>
         public void Clear()
         {

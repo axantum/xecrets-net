@@ -108,9 +108,6 @@
     </Compile>
     <Compile Include="Extensions.cs" />
     <Compile Include="Presentation\IMainView.cs" />
-    <Compile Include="PersistentState.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Presentation\ListViewActions.cs" />
     <Compile Include="Presentation\RecentFilesPresentation.cs" />
     <Compile Include="ProgressBackgroundWorker.cs">

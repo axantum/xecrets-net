@@ -1,4 +1,5 @@
 ﻿using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,11 @@ namespace Axantum.AxCrypt.Core
         public static IRuntimeEnvironment Environment
         {
             get { return FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(); }
+        }
+
+        public static FileSystemState FileSystemState
+        {
+            get { return FactoryRegistry.Instance.Singleton<FileSystemState>(); }
         }
     }
 }

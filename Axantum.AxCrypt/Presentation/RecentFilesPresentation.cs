@@ -157,7 +157,7 @@ namespace Axantum.AxCrypt.Presentation
 
         private void EncryptFile(string fullName, IThreadWorker worker, ProgressContext progress)
         {
-            FileOperationsController operationsController = new FileOperationsController(_mainView.FileSystemState, progress);
+            FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
 
             operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
             {
@@ -171,8 +171,8 @@ namespace Axantum.AxCrypt.Presentation
                     IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
                     IRuntimeFileInfo decryptedInfo = OS.Current.FileInfo(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
                     ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key, ActiveFileStatus.NotDecrypted, null);
-                    _mainView.FileSystemState.Add(activeFile);
-                    _mainView.FileSystemState.Save();
+                    Instance.FileSystemState.Add(activeFile);
+                    Instance.FileSystemState.Save();
                 }
             };
 

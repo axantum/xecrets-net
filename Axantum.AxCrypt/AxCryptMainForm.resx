@@ -850,9 +850,6 @@ ensure they are not in use.</value>
   <data name="&gt;&gt;watchedFoldersContextMenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="persistentState.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>376, 56</value>
-  </metadata>
   <metadata name="progressBackgroundWorker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>509, 56</value>
   </metadata>
@@ -1250,6 +1247,9 @@ ensure they are not in use.</value>
         AADAAwAAgAEAAIABAACAAQAAgAEAAIABAACAAQAAgAEAAIABAADwDwAA/D8AAA==
 </value>
   </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>AxCrypt</value>
   </data>
@@ -1504,12 +1504,6 @@ ensure they are not in use.</value>
   </data>
   <data name="&gt;&gt;decryptTemporarilyToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;persistentState.Name" xml:space="preserve">
-    <value>persistentState</value>
-  </data>
-  <data name="&gt;&gt;persistentState.Type" xml:space="preserve">
-    <value>Axantum.AxCrypt.PersistentState, Axantum.AxCrypt, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;progressBackgroundWorker.Name" xml:space="preserve">
     <value>progressBackgroundWorker</value>

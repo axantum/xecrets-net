@@ -76,11 +76,6 @@ namespace Axantum.AxCrypt
 
         public static MessageBoxOptions MessageBoxOptions { get; private set; }
 
-        public FileSystemState FileSystemState
-        {
-            get { return persistentState.Current; }
-        }
-
         public ListView WatchedFolders
         {
             get { return watchedFoldersListView; }
@@ -120,12 +115,13 @@ namespace Axantum.AxCrypt
         {
             InitializeComponent();
 
-            FactoryRegistry.Instance.Singleton(new KnownKeys());
-            FactoryRegistry.Instance.Singleton((IUIThread)this);
-            FactoryRegistry.Instance.Singleton((IBackgroundWork)this);
-            FactoryRegistry.Instance.Singleton((IStatusChecker)this);
-            FactoryRegistry.Instance.Singleton(new Background());
-            FactoryRegistry.Instance.Singleton((IRuntimeEnvironment)new RuntimeEnvironment(this));
+            FactoryRegistry.Instance.Singleton<KnownKeys>(new KnownKeys());
+            FactoryRegistry.Instance.Singleton<IUIThread>(this);
+            FactoryRegistry.Instance.Singleton<IBackgroundWork>(this);
+            FactoryRegistry.Instance.Singleton<IStatusChecker>(this);
+            FactoryRegistry.Instance.Singleton<Background>(new Background());
+            FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(new RuntimeEnvironment(this));
+            FactoryRegistry.Instance.Singleton<FileSystemState>(new FileSystemState());
 
             _watchedFoldersPresentation = new WatchedFolderPresentation(this);
             _recentFilesPresentation = new RecentFilesPresentation(this);
@@ -158,12 +154,12 @@ namespace Axantum.AxCrypt
 
             OS.Current.SessionChanged += HandleSessionChangedEvent;
 
-            persistentState.Current.Changed += new EventHandler<ActiveFileChangedEventArgs>(HandleFileSystemStateChangedEvent);
-            persistentState.Current.Load(FileSystemState.DefaultPathInfo);
+            Instance.FileSystemState.Changed += new EventHandler<ActiveFileChangedEventArgs>(HandleFileSystemStateChangedEvent);
+            Instance.FileSystemState.Load(FileSystemState.DefaultPathInfo);
             Instance.KnownKeys.Changed += new EventHandler<EventArgs>(HandleKnownKeysChangedEvent);
 
-            OS.Current.KeyWrapIterations = persistentState.Current.KeyWrapIterations;
-            OS.Current.ThumbprintSalt = persistentState.Current.ThumbprintSalt;
+            OS.Current.KeyWrapIterations = Instance.FileSystemState.KeyWrapIterations;
+            OS.Current.ThumbprintSalt = Instance.FileSystemState.ThumbprintSalt;
 
             SetToolButtonsState();
 
@@ -209,7 +205,7 @@ namespace Axantum.AxCrypt
             }
             else
             {
-                PassphraseIdentity identity = persistentState.Current.Identities.First(i => i.Thumbprint == Instance.KnownKeys.DefaultEncryptionKey.Thumbprint);
+                PassphraseIdentity identity = Instance.FileSystemState.Identities.First(i => i.Thumbprint == Instance.KnownKeys.DefaultEncryptionKey.Thumbprint);
                 logonStatus = Resources.LoggedOnStatusText.InvariantFormat(identity.Name);
             }
             string text = "{0} - {1}".InvariantFormat(_title, logonStatus);
@@ -334,7 +330,7 @@ namespace Axantum.AxCrypt
 
         private void EncryptFile(string file, IThreadWorker worker, ProgressContext progress)
         {
-            FileOperationsController operationsController = new FileOperationsController(persistentState.Current, progress);
+            FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
 
             operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
                 {
@@ -382,8 +378,8 @@ namespace Axantum.AxCrypt
                         IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
                         IRuntimeFileInfo decryptedInfo = OS.Current.FileInfo(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
                         ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key, ActiveFileStatus.NotDecrypted, null);
-                        persistentState.Current.Add(activeFile);
-                        persistentState.Current.Save();
+                        Instance.FileSystemState.Add(activeFile);
+                        Instance.FileSystemState.Save();
                     }
                 };
 
@@ -423,7 +419,7 @@ namespace Axantum.AxCrypt
 
         private string AskForLogOnOrEncryptionPassphrase()
         {
-            using (LogOnDialog logOnDialog = new LogOnDialog(persistentState.Current))
+            using (LogOnDialog logOnDialog = new LogOnDialog(Instance.FileSystemState))
             {
                 logOnDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowEncryptPasshrase;
                 DialogResult dialogResult = logOnDialog.ShowDialog();
@@ -448,7 +444,7 @@ namespace Axantum.AxCrypt
 
         private string AskForNewEncryptionPassphrase()
         {
-            using (EncryptPassphraseDialog passphraseDialog = new EncryptPassphraseDialog(persistentState.Current))
+            using (EncryptPassphraseDialog passphraseDialog = new EncryptPassphraseDialog(Instance.FileSystemState))
             {
                 passphraseDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowEncryptPasshrase;
                 DialogResult dialogResult = passphraseDialog.ShowDialog();
@@ -464,15 +460,15 @@ namespace Axantum.AxCrypt
                 }
 
                 Passphrase passphrase = new Passphrase(passphraseDialog.PassphraseTextBox.Text);
-                PassphraseIdentity identity = persistentState.Current.Identities.FirstOrDefault(i => i.Thumbprint == passphrase.DerivedPassphrase.Thumbprint);
+                PassphraseIdentity identity = Instance.FileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == passphrase.DerivedPassphrase.Thumbprint);
                 if (identity != null)
                 {
                     return passphraseDialog.PassphraseTextBox.Text;
                 }
 
                 identity = new PassphraseIdentity(passphraseDialog.NameTextBox.Text, passphrase.DerivedPassphrase);
-                persistentState.Current.Identities.Add(identity);
-                persistentState.Current.Save();
+                Instance.FileSystemState.Identities.Add(identity);
+                Instance.FileSystemState.Save();
 
                 return passphraseDialog.PassphraseTextBox.Text;
             }
@@ -502,7 +498,7 @@ namespace Axantum.AxCrypt
 
         private void DecryptFile(string file, IThreadWorker worker, ProgressContext progress)
         {
-            FileOperationsController operationsController = new FileOperationsController(persistentState.Current, progress);
+            FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
 
             operationsController.QueryDecryptionPassphrase += HandleQueryDecryptionPassphraseEvent;
 
@@ -540,7 +536,7 @@ namespace Axantum.AxCrypt
                 {
                     if (CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
                     {
-                        persistentState.Current.Actions.RemoveRecentFiles(new string[] { e.OpenFileFullName }, progress);
+                        Instance.FileSystemState.Actions.RemoveRecentFiles(new string[] { e.OpenFileFullName }, progress);
                     }
                 };
 
@@ -568,7 +564,7 @@ namespace Axantum.AxCrypt
 
         private void WipeFile(string file, IThreadWorker worker, ProgressContext progress)
         {
-            FileOperationsController operationsController = new FileOperationsController(persistentState.Current, progress);
+            FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
 
             operationsController.WipeQueryConfirmation += (object sender, FileOperationEventArgs e) =>
             {
@@ -598,7 +594,7 @@ namespace Axantum.AxCrypt
                 {
                     if (!e.Skip)
                     {
-                        persistentState.Current.Actions.RemoveRecentFiles(new string[] { e.SaveFileFullName }, progress);
+                        Instance.FileSystemState.Actions.RemoveRecentFiles(new string[] { e.SaveFileFullName }, progress);
                     }
                 }
             };
@@ -628,7 +624,7 @@ namespace Axantum.AxCrypt
 
         private void OpenEncrypted(string file, IThreadWorker worker, ProgressContext progress)
         {
-            FileOperationsController operationsController = new FileOperationsController(persistentState.Current, progress);
+            FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
 
             operationsController.QueryDecryptionPassphrase += HandleQueryDecryptionPassphraseEvent;
 
@@ -745,7 +741,7 @@ namespace Axantum.AxCrypt
                     progress.NotifyLevelStart();
                     try
                     {
-                        persistentState.Current.Actions.HandleSessionEvents(e.SessionEvents, progress);
+                        Instance.FileSystemState.Actions.HandleSessionEvents(e.SessionEvents, progress);
                     }
                     finally
                     {
@@ -766,7 +762,7 @@ namespace Axantum.AxCrypt
         {
             get
             {
-                IList<ActiveFile> openFiles = persistentState.Current.DecryptedActiveFiles;
+                IList<ActiveFile> openFiles = Instance.FileSystemState.DecryptedActiveFiles;
                 return openFiles.Count > 0;
             }
         }
@@ -799,8 +795,8 @@ namespace Axantum.AxCrypt
                     progress.NotifyLevelStart();
                     try
                     {
-                        persistentState.Current.Actions.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
-                        persistentState.Current.Actions.PurgeActiveFiles(progress);
+                        Instance.FileSystemState.Actions.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
+                        Instance.FileSystemState.Actions.PurgeActiveFiles(progress);
                     }
                     finally
                     {
@@ -815,7 +811,7 @@ namespace Axantum.AxCrypt
                     {
                         return;
                     }
-                    IList<ActiveFile> openFiles = persistentState.Current.DecryptedActiveFiles;
+                    IList<ActiveFile> openFiles = Instance.FileSystemState.DecryptedActiveFiles;
                     if (openFiles.Count == 0)
                     {
                         return;
@@ -840,7 +836,7 @@ namespace Axantum.AxCrypt
             BackgroundWorkWithProgress(
                 (ProgressContext progress) =>
                 {
-                    persistentState.Current.Actions.RemoveRecentFiles(encryptedPaths, progress);
+                    Instance.FileSystemState.Actions.RemoveRecentFiles(encryptedPaths, progress);
                     return FileOperationStatus.Success;
                 },
                 (FileOperationStatus status) =>
@@ -1103,7 +1099,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            if (persistentState.Current.Identities.Any(identity => true))
+            if (Instance.FileSystemState.Identities.Any(identity => true))
             {
                 TryLogOnToExistingIdentity();
             }

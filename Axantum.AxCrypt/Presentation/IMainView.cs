@@ -11,8 +11,6 @@ namespace Axantum.AxCrypt.Presentation
 {
     public interface IMainView : IUIThread, IBackgroundWork
     {
-        FileSystemState FileSystemState { get; }
-
         ListView WatchedFolders { get; }
 
         ListView RecentFiles { get; }

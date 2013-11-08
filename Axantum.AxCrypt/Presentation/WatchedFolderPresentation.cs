@@ -93,8 +93,8 @@ namespace Axantum.AxCrypt.Presentation
             {
                 return;
             }
-            _mainView.FileSystemState.AddWatchedFolder(new WatchedFolder(droppedFolder.FullName, Instance.KnownKeys.DefaultEncryptionKey.Thumbprint));
-            _mainView.FileSystemState.Save();
+            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(droppedFolder.FullName, Instance.KnownKeys.DefaultEncryptionKey.Thumbprint));
+            Instance.FileSystemState.Save();
         }
 
         public void DecryptSelectedFolder(string folder, ProgressContext progress)
@@ -109,33 +109,26 @@ namespace Axantum.AxCrypt.Presentation
 
         private void AddRemoveWatchedFolders()
         {
-            if (Instance.KnownKeys.DefaultEncryptionKey == null)
+            _mainView.WatchedFolders.BeginUpdate();
+            try
             {
                 _mainView.WatchedFolders.Items.Clear();
-                return;
-            }
+                if (!Instance.KnownKeys.IsLoggedOn)
+                {
+                    return;
+                }
 
-            _mainView.WatchedFolders.BeginUpdate();
-            foreach (WatchedFolder folder in _mainView.FileSystemState.WatchedFolders)
-            {
-                ListViewItem item = _mainView.WatchedFolders.Items[folder.Path];
-                if (item == null)
+                foreach (WatchedFolder folder in Instance.KnownKeys.WatchedFolders(Instance.FileSystemState.WatchedFolders))
                 {
                     string text = folder.Path;
-                    item = _mainView.WatchedFolders.Items.Add(text);
+                    ListViewItem item = _mainView.WatchedFolders.Items.Add(text);
                     item.Name = text;
                 }
             }
-            AesKeyThumbprint knownThumbprint = Instance.KnownKeys.DefaultEncryptionKey.Thumbprint;
-            for (int i = 0; i < _mainView.WatchedFolders.Items.Count; ++i)
+            finally
             {
-                if (!_mainView.FileSystemState.WatchedFolders.Contains(new WatchedFolder(_mainView.WatchedFolders.Items[i].Text, knownThumbprint)))
-                {
-                    _mainView.WatchedFolders.Items.RemoveAt(i);
-                    --i;
-                }
+                _mainView.WatchedFolders.EndUpdate();
             }
-            _mainView.WatchedFolders.EndUpdate();
         }
 
         private static IRuntimeFileInfo GetDroppedFolderIfAny(IDataObject dataObject)
@@ -166,9 +159,9 @@ namespace Axantum.AxCrypt.Presentation
         {
             foreach (string watchedFolderPath in SelectedWatchedFoldersItems())
             {
-                _mainView.FileSystemState.RemoveWatchedFolder(new WatchedFolder(watchedFolderPath, Instance.KnownKeys.DefaultEncryptionKey.Thumbprint));
+                Instance.FileSystemState.RemoveWatchedFolder(new WatchedFolder(watchedFolderPath, Instance.KnownKeys.DefaultEncryptionKey.Thumbprint));
             }
-            _mainView.FileSystemState.Save();
+            Instance.FileSystemState.Save();
         }
 
         private IEnumerable<string> SelectedWatchedFoldersItems()

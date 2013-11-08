@@ -29,6 +29,7 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 
 namespace Axantum.AxCrypt.Core.UI
@@ -176,6 +177,15 @@ namespace Axantum.AxCrypt.Core.UI
                 _knownThumbprints.Add(key.Thumbprint);
                 return true;
             }
+        }
+
+        public IList<WatchedFolder> WatchedFolders(IEnumerable<WatchedFolder> allWatchedFolders)
+        {
+            if (!IsLoggedOn)
+            {
+                return new WatchedFolder[0];
+            }
+            return new List<WatchedFolder>(allWatchedFolders.Where(wf => wf.Thumbprint == DefaultEncryptionKey.Thumbprint));
         }
     }
 }
