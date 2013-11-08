@@ -33,7 +33,6 @@ using System.Runtime.Serialization;
 
 namespace Axantum.AxCrypt.Core.UI
 {
-    [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
     public class KnownKeys
     {
         private List<AesKey> _keys;
@@ -42,7 +41,16 @@ namespace Axantum.AxCrypt.Core.UI
 
         public KnownKeys()
         {
-            Initialize(new StreamingContext());
+            _keys = new List<AesKey>();
+            _knownThumbprints = new List<AesKeyThumbprint>();
+        }
+
+        public bool IsLoggedOn
+        {
+            get
+            {
+                return DefaultEncryptionKey != null;
+            }
         }
 
         protected virtual void OnChanged(EventArgs e)
@@ -52,13 +60,6 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 handler(this, e);
             }
-        }
-
-        [OnDeserializing]
-        private void Initialize(StreamingContext context)
-        {
-            _keys = new List<AesKey>();
-            _knownThumbprints = new List<AesKeyThumbprint>();
         }
 
         public void Add(AesKey key)
@@ -139,7 +140,6 @@ namespace Axantum.AxCrypt.Core.UI
 
         private List<AesKeyThumbprint> _knownThumbprints;
 
-        [DataMember(Name = "KnownThumbprints")]
         public IEnumerable<AesKeyThumbprint> KnownThumbprints
         {
             get

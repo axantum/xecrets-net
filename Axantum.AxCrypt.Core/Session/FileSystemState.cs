@@ -62,7 +62,6 @@ namespace Axantum.AxCrypt.Core.Session
         private void Initialize(StreamingContext context)
         {
             _lock = new object();
-            KnownKeys = new KnownKeys();
             Identities = new List<PassphraseIdentity>();
         }
 
@@ -77,9 +76,6 @@ namespace Axantum.AxCrypt.Core.Session
         private Dictionary<string, ActiveFile> _activeFilesByEncryptedPath = new Dictionary<string, ActiveFile>();
 
         private Dictionary<string, ActiveFile> _activeFilesByDecryptedPath = new Dictionary<string, ActiveFile>();
-
-        [DataMember(Name = "KnownKeys")]
-        public KnownKeys KnownKeys { get; private set; }
 
         private long? _keyWrapIterations = null;
 
@@ -127,14 +123,6 @@ namespace Axantum.AxCrypt.Core.Session
             private set;
         }
 
-        public bool IsLoggedOn
-        {
-            get
-            {
-                return KnownKeys.DefaultEncryptionKey != null;
-            }
-        }
-
         private List<WatchedFolder> _watchedFolders;
 
         private IList<WatchedFolder> WatchedFoldersInternal
@@ -169,7 +157,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             if (AddWatchedFolderInternal(watchedFolder))
             {
-                OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.WatchedFolderAdded, KnownKeys.DefaultEncryptionKey, watchedFolder.Path));
+                OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.WatchedFolderAdded, Instance.KnownKeys.DefaultEncryptionKey, watchedFolder.Path));
             }
         }
 
@@ -194,7 +182,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             WatchedFoldersInternal.Remove(watchedFolder);
             watchedFolder.Changed -= watchedFolder_Changed;
-            OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.WatchedFolderRemoved, KnownKeys.DefaultEncryptionKey, watchedFolder.Path));
+            OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.WatchedFolderRemoved, Instance.KnownKeys.DefaultEncryptionKey, watchedFolder.Path));
         }
 
         public event EventHandler<ActiveFileChangedEventArgs> Changed;
@@ -440,7 +428,6 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     Add(activeFile);
                 }
-                KnownKeys = fileSystemState.KnownKeys;
                 KeyWrapIterations = fileSystemState.KeyWrapIterations;
                 ThumbprintSalt = fileSystemState.ThumbprintSalt;
                 Identities = new List<PassphraseIdentity>(fileSystemState.Identities);

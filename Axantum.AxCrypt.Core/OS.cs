@@ -32,14 +32,13 @@ using System.Text.RegularExpressions;
 
 namespace Axantum.AxCrypt.Core
 {
+    /// <summary>
+    /// Provides syntactically convenient access to runtime dependent instances.
+    /// </summary>
     public static class OS
     {
-        private static IRuntimeEnvironment _runtimeEnvironment;
-
         /// <summary>
-        /// Gets or sets the current IRuntimeEnvironment platform dependent implementation instance.
-        /// If the instance implements IDisposable, the previous value will be disposed when a new
-        /// value is set.
+        /// Gets the current IRuntimeEnvironment platform dependent implementation instance.
         /// </summary>
         /// <value>
         /// The current IRuntimeEnvironment platform dependent implementation instance.
@@ -48,19 +47,7 @@ namespace Axantum.AxCrypt.Core
         {
             get
             {
-                return _runtimeEnvironment;
-            }
-            set
-            {
-                if (_runtimeEnvironment != null)
-                {
-                    IDisposable disposable = _runtimeEnvironment as IDisposable;
-                    if (disposable != null)
-                    {
-                        disposable.Dispose();
-                    }
-                }
-                _runtimeEnvironment = value;
+                return Instance.Environment;
             }
         }
 

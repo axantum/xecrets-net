@@ -138,7 +138,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptFileWithDefaultEncryptionKey()
         {
-            _fileSystemState.KnownKeys.DefaultEncryptionKey = new Passphrase("default").DerivedPassphrase;
+            Instance.KnownKeys.DefaultEncryptionKey = new Passphrase("default").DerivedPassphrase;
             FileOperationsController controller = new FileOperationsController(_fileSystemState);
             bool queryEncryptionPassphraseWasCalled = false;
             controller.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
@@ -477,10 +477,10 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestDecryptWithKnownKey()
         {
             FileOperationsController controller = new FileOperationsController(_fileSystemState);
-            _fileSystemState.KnownKeys.Add(new Passphrase("b").DerivedPassphrase);
-            _fileSystemState.KnownKeys.Add(new Passphrase("c").DerivedPassphrase);
-            _fileSystemState.KnownKeys.Add(new Passphrase("a").DerivedPassphrase);
-            _fileSystemState.KnownKeys.Add(new Passphrase("e").DerivedPassphrase);
+            Instance.KnownKeys.Add(new Passphrase("b").DerivedPassphrase);
+            Instance.KnownKeys.Add(new Passphrase("c").DerivedPassphrase);
+            Instance.KnownKeys.Add(new Passphrase("a").DerivedPassphrase);
+            Instance.KnownKeys.Add(new Passphrase("e").DerivedPassphrase);
             bool passphraseWasQueried = false;
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
             {

@@ -9,43 +9,15 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public class Background : IDisposable
     {
-        private IUIThread _uiThread;
-
-        private IBackgroundWork _backgroundWork;
-
-        private Background(IUIThread uiThread, IBackgroundWork backgroundWork)
+        public Background()
         {
-            _uiThread = uiThread;
-            _backgroundWork = backgroundWork;
-        }
-
-        private static Background _background;
-
-        public static Background Instance
-        {
-            get
-            {
-                if (_background == null)
-                {
-                    _background = new Background(FactoryRegistry.Instance.Create<IUIThread>(), FactoryRegistry.Instance.Create<IBackgroundWork>());
-                }
-                return _background;
-            }
-            set
-            {
-                if (_background != null)
-                {
-                    _background.Dispose();
-                }
-                _background = value;
-            }
         }
 
         public void RunOnUIThread(Action action)
         {
-            if (!_uiThread.IsOnUIThread)
+            if (!Instance.IUIThread.IsOnUIThread)
             {
-                _uiThread.RunOnUIThread(action);
+                Instance.IUIThread.RunOnUIThread(action);
             }
             else
             {
@@ -57,7 +29,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private void SerializedOnUIThread(Action action)
         {
-            if (!_uiThread.IsOnUIThread)
+            if (!Instance.IUIThread.IsOnUIThread)
             {
                 _interactionSemaphore.WaitOne();
                 Action extendedAction = () =>
@@ -71,7 +43,7 @@ namespace Axantum.AxCrypt.Core.UI
                         _interactionSemaphore.Release();
                     }
                 };
-                _uiThread.RunOnUIThread(extendedAction);
+                Instance.IUIThread.RunOnUIThread(extendedAction);
             }
             else
             {
@@ -82,7 +54,7 @@ namespace Axantum.AxCrypt.Core.UI
         public void ProcessFiles(IEnumerable<string> files, Action<string, IThreadWorker, ProgressContext> processFile)
         {
             WorkerGroup workerGroup = null;
-            _backgroundWork.BackgroundWorkWithProgress(
+            Instance.IBackgroundWork.BackgroundWorkWithProgress(
                 (ProgressContext progress) =>
                 {
                     progress.AddItems(files.Count());

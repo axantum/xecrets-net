@@ -204,7 +204,7 @@ namespace Axantum.AxCrypt.Core.UI
                 }
             }
 
-            if (_fileSystemState.KnownKeys.DefaultEncryptionKey == null)
+            if (Instance.KnownKeys.DefaultEncryptionKey == null)
             {
                 OnQueryEncryptionPassphrase(_eventArgs);
                 if (_eventArgs.Cancel)
@@ -217,7 +217,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
             else
             {
-                _eventArgs.Key = _fileSystemState.KnownKeys.DefaultEncryptionKey;
+                _eventArgs.Key = Instance.KnownKeys.DefaultEncryptionKey;
             }
 
             return true;

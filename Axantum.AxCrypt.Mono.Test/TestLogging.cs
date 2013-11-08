@@ -39,19 +39,16 @@ namespace Axantum.AxCrypt.Mono.Test
     [TestFixture]
     public static class TestLogging
     {
-        private static IRuntimeEnvironment _previousEnvironment;
-
         [SetUp]
         public static void Setup()
         {
-            _previousEnvironment = OS.Current;
-            OS.Current = new RuntimeEnvironment(null);
+            FactoryRegistry.Instance.Singleton((IRuntimeEnvironment)new RuntimeEnvironment(null));
         }
 
         [TearDown]
         public static void Teardown()
         {
-            OS.Current = _previousEnvironment;
+            FactoryRegistry.Instance.Clean();
         }
 
         [Test]

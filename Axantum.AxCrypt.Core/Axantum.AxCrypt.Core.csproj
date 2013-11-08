@@ -60,6 +60,7 @@
     <Compile Include="Factory.cs" />
     <Compile Include="Crypto\KeyWrapIterationCalculator.cs" />
     <Compile Include="FactoryRegistry.cs" />
+    <Compile Include="Instance.cs" />
     <Compile Include="IO\FileWatcherEventArgs.cs" />
     <Compile Include="IO\IFileWatcher.cs" />
     <Compile Include="IO\IWebCaller.cs" />

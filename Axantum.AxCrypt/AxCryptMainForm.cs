@@ -120,6 +120,13 @@ namespace Axantum.AxCrypt
         {
             InitializeComponent();
 
+            FactoryRegistry.Instance.Singleton(new KnownKeys());
+            FactoryRegistry.Instance.Singleton((IUIThread)this);
+            FactoryRegistry.Instance.Singleton((IBackgroundWork)this);
+            FactoryRegistry.Instance.Singleton((IStatusChecker)this);
+            FactoryRegistry.Instance.Singleton(new Background());
+            FactoryRegistry.Instance.Singleton((IRuntimeEnvironment)new RuntimeEnvironment(this));
+
             _watchedFoldersPresentation = new WatchedFolderPresentation(this);
             _recentFilesPresentation = new RecentFilesPresentation(this);
         }
@@ -131,7 +138,6 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            OS.Current = new RuntimeEnvironment(this);
             if (OS.Current.Platform == Platform.WindowsDesktop)
             {
                 _notifyIcon = new NotifyIcon(components);
@@ -141,10 +147,6 @@ namespace Axantum.AxCrypt
             }
 
             Trace.Listeners.Add(new DelegateTraceListener("AxCryptMainFormListener", FormatTraceMessage)); //MLHIDE
-
-            FactoryRegistry.Instance.Register<IUIThread>(() => this);
-            FactoryRegistry.Instance.Register<IBackgroundWork>(() => this);
-            FactoryRegistry.Instance.Register<IStatusChecker>(() => this);
 
             UpdateDebugMode();
 
@@ -158,7 +160,7 @@ namespace Axantum.AxCrypt
 
             persistentState.Current.Changed += new EventHandler<ActiveFileChangedEventArgs>(HandleFileSystemStateChangedEvent);
             persistentState.Current.Load(FileSystemState.DefaultPathInfo);
-            persistentState.Current.KnownKeys.Changed += new EventHandler<EventArgs>(HandleKnownKeysChangedEvent);
+            Instance.KnownKeys.Changed += new EventHandler<EventArgs>(HandleKnownKeysChangedEvent);
 
             OS.Current.KeyWrapIterations = persistentState.Current.KeyWrapIterations;
             OS.Current.ThumbprintSalt = persistentState.Current.ThumbprintSalt;
@@ -201,13 +203,13 @@ namespace Axantum.AxCrypt
         private void SetWindowTextWithLogonStatus()
         {
             string logonStatus;
-            if (persistentState.Current.KnownKeys.DefaultEncryptionKey == null)
+            if (Instance.KnownKeys.DefaultEncryptionKey == null)
             {
                 logonStatus = Resources.LoggedOffStatusText;
             }
             else
             {
-                PassphraseIdentity identity = persistentState.Current.Identities.First(i => i.Thumbprint == persistentState.Current.KnownKeys.DefaultEncryptionKey.Thumbprint);
+                PassphraseIdentity identity = persistentState.Current.Identities.First(i => i.Thumbprint == Instance.KnownKeys.DefaultEncryptionKey.Thumbprint);
                 logonStatus = Resources.LoggedOnStatusText.InvariantFormat(identity.Name);
             }
             string text = "{0} - {1}".InvariantFormat(_title, logonStatus);
@@ -219,7 +221,7 @@ namespace Axantum.AxCrypt
 
         private void FormatTraceMessage(string message)
         {
-            Background.Instance.RunOnUIThread(() =>
+            Instance.Background.RunOnUIThread(() =>
             {
                 string formatted = "{0} {1}".InvariantFormat(OS.Current.UtcNow.ToString("o", CultureInfo.InvariantCulture), message.TrimLogMessage()); //MLHIDE
                 logOutputTextBox.AppendText(formatted);
@@ -266,7 +268,7 @@ namespace Axantum.AxCrypt
             Settings.Default.NewestKnownVersion = e.Version.ToString();
             Settings.Default.Save();
             _updateUrl = e.UpdateWebpageUrl;
-            Background.Instance.RunOnUIThread(() =>
+            Instance.Background.RunOnUIThread(() =>
             {
                 UpdateVersionStatus(e.VersionUpdateStatus, e.Version);
             });
@@ -274,7 +276,7 @@ namespace Axantum.AxCrypt
 
         private void HandleFileSystemStateChangedEvent(object sender, ActiveFileChangedEventArgs e)
         {
-            Background.Instance.RunOnUIThread(() =>
+            Instance.Background.RunOnUIThread(() =>
             {
                 _recentFilesPresentation.UpdateActiveFilesViews(e.ActiveFile);
             });
@@ -295,7 +297,7 @@ namespace Axantum.AxCrypt
 
         private void SetToolButtonsState()
         {
-            if (persistentState.Current.KnownKeys.DefaultEncryptionKey == null)
+            if (Instance.KnownKeys.DefaultEncryptionKey == null)
             {
                 encryptionKeyToolStripButton.Image = Resources.encryptionkeygreen32;
                 encryptionKeyToolStripButton.ToolTipText = Resources.NoDefaultEncryptionKeySetToolTip;
@@ -326,7 +328,7 @@ namespace Axantum.AxCrypt
                 {
                     return;
                 }
-                Background.Instance.ProcessFiles(ofd.FileNames, EncryptFile);
+                Instance.Background.ProcessFiles(ofd.FileNames, EncryptFile);
             }
         }
 
@@ -416,7 +418,7 @@ namespace Axantum.AxCrypt
             }
 
             AesKey defaultEncryptionKey = new Passphrase(passphrase).DerivedPassphrase;
-            persistentState.Current.KnownKeys.DefaultEncryptionKey = defaultEncryptionKey;
+            Instance.KnownKeys.DefaultEncryptionKey = defaultEncryptionKey;
             return passphrase;
         }
 
@@ -496,7 +498,7 @@ namespace Axantum.AxCrypt
                 }
                 fileNames = ofd.FileNames;
             }
-            Background.Instance.ProcessFiles(fileNames, DecryptFile);
+            Instance.Background.ProcessFiles(fileNames, DecryptFile);
         }
 
         private void DecryptFile(string file, IThreadWorker worker, ProgressContext progress)
@@ -532,7 +534,7 @@ namespace Axantum.AxCrypt
 
             operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
                 {
-                    persistentState.Current.KnownKeys.Add(e.Key);
+                    Instance.KnownKeys.Add(e.Key);
                 };
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
@@ -562,7 +564,7 @@ namespace Axantum.AxCrypt
                 }
                 fileNames = ofd.FileNames;
             }
-            Background.Instance.ProcessFiles(fileNames, WipeFile);
+            Instance.Background.ProcessFiles(fileNames, WipeFile);
         }
 
         private void WipeFile(string file, IThreadWorker worker, ProgressContext progress)
@@ -621,7 +623,7 @@ namespace Axantum.AxCrypt
                     return;
                 }
 
-                Background.Instance.ProcessFiles(ofd.FileNames, OpenEncrypted);
+                Instance.Background.ProcessFiles(ofd.FileNames, OpenEncrypted);
             }
         }
 
@@ -633,7 +635,7 @@ namespace Axantum.AxCrypt
 
             operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
                 {
-                    persistentState.Current.KnownKeys.Add(e.Key);
+                    Instance.KnownKeys.Add(e.Key);
                 };
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
@@ -782,7 +784,7 @@ namespace Axantum.AxCrypt
 
         private void recentFilesListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Background.Instance.ProcessFiles(new string[] { _recentFilesPresentation.SelectedEncryptedPath }, OpenEncrypted);
+            Instance.Background.ProcessFiles(new string[] { _recentFilesPresentation.SelectedEncryptedPath }, OpenEncrypted);
         }
 
         private void recentFilesListView_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
@@ -851,7 +853,7 @@ namespace Axantum.AxCrypt
         {
             IEnumerable<string> encryptedPaths = SelectedRecentFilesItems();
 
-            Background.Instance.ProcessFiles(encryptedPaths, DecryptFile);
+            Instance.Background.ProcessFiles(encryptedPaths, DecryptFile);
         }
 
         private IEnumerable<string> SelectedRecentFilesItems()
@@ -903,7 +905,7 @@ namespace Axantum.AxCrypt
                 return;
             }
             Passphrase passphrase = new Passphrase(passphraseText);
-            persistentState.Current.KnownKeys.Add(passphrase.DerivedPassphrase);
+            Instance.KnownKeys.Add(passphrase.DerivedPassphrase);
         }
 
         private void progressBackgroundWorker_ProgressBarClicked(object sender, MouseEventArgs e)
@@ -1097,10 +1099,10 @@ namespace Axantum.AxCrypt
 
         private void encryptionKeyToolStripButton_Click(object sender, EventArgs e)
         {
-            if (persistentState.Current.IsLoggedOn)
+            if (Instance.KnownKeys.IsLoggedOn)
             {
-                persistentState.Current.KnownKeys.DefaultEncryptionKey = null;
-                persistentState.Current.KnownKeys.Clear();
+                Instance.KnownKeys.DefaultEncryptionKey = null;
+                Instance.KnownKeys.Clear();
                 return;
             }
 
@@ -1117,7 +1119,7 @@ namespace Axantum.AxCrypt
                 }
 
                 AesKey defaultEncryptionKey = new Passphrase(passphrase).DerivedPassphrase;
-                persistentState.Current.KnownKeys.DefaultEncryptionKey = defaultEncryptionKey;
+                Instance.KnownKeys.DefaultEncryptionKey = defaultEncryptionKey;
             }
             SetToolButtonsState();
         }
@@ -1201,8 +1203,7 @@ namespace Axantum.AxCrypt
             {
                 components.Dispose();
             }
-            Background.Instance = null;
-            OS.Current = null;
+            FactoryRegistry.Instance.Clear();
         }
     }
 }

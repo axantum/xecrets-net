@@ -82,12 +82,32 @@ namespace Axantum.AxCrypt.Core
         /// <param name="creator">The delegate that creates an instance.</param>
         public void Register<TResult>(Func<TResult> creator)
         {
-            _mapping[typeof(Func<TResult>)] = creator;
+            SetAndDisposeIfDisposable(typeof(Func<TResult>), creator);
         }
 
         public void Register<TArgument, TResult>(Func<TArgument, TResult> creator)
         {
-            _mapping[typeof(Func<TArgument, TResult>)] = creator;
+            SetAndDisposeIfDisposable(typeof(Func<TArgument, TResult>), creator);
+        }
+
+        public void Singleton<TArgument>(TArgument instance)
+        {
+            SetAndDisposeIfDisposable(typeof(TArgument), instance);
+        }
+
+        private void SetAndDisposeIfDisposable(Type type, object value)
+        {
+            object o;
+            if (_mapping.TryGetValue(type, out o))
+            {
+                DisposeIfDisposable(o);
+            }
+            _mapping[type] = value;
+        }
+
+        public T Singleton<T>()
+        {
+            return (T)_mapping[typeof(T)];
         }
 
         /// <summary>
@@ -116,11 +136,24 @@ namespace Axantum.AxCrypt.Core
         }
 
         /// <summary>
-        /// Unregister all factories. Primarily used to support unit testing.
+        /// Unregister all factories.
         /// </summary>
         public void Clear()
         {
+            foreach (object o in _mapping)
+            {
+                DisposeIfDisposable(o);
+            }
             _mapping.Clear();
+        }
+
+        private static void DisposeIfDisposable(object o)
+        {
+            IDisposable disposable = o as IDisposable;
+            if (disposable != null)
+            {
+                disposable.Dispose();
+            }
         }
     }
 }

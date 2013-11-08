@@ -41,21 +41,18 @@ namespace Axantum.AxCrypt.Mono.Test
     [TestFixture]
     public static class TestRuntimeEnvironment
     {
-        private static IRuntimeEnvironment _previousEnvironment;
-
         private static readonly TimeSpan _workFolderStateMinimumIdle = new TimeSpan(0, 0, 0, 0, 100);
 
         [SetUp]
         public static void Setup()
         {
-            _previousEnvironment = OS.Current;
-            OS.Current = new RuntimeEnvironment(_workFolderStateMinimumIdle);
+            FactoryRegistry.Instance.Singleton((IRuntimeEnvironment)new RuntimeEnvironment(_workFolderStateMinimumIdle));
         }
 
         [TearDown]
         public static void Teardown()
         {
-            OS.Current = _previousEnvironment;
+            FactoryRegistry.Instance.Singleton((IRuntimeEnvironment)new RuntimeEnvironment(null));
         }
 
         [Test]

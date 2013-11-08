@@ -127,7 +127,7 @@ namespace Axantum.AxCrypt.Presentation
         public void StartDragAndDrop(DragEventArgs e)
         {
             IEnumerable<IRuntimeFileInfo> droppedFiles = GetDroppedFiles(e.Data);
-            if (!droppedFiles.Any(fileInfo => fileInfo.Type() == FileInfoType.EncryptedFile || (_mainView.FileSystemState.KnownKeys.DefaultEncryptionKey != null && fileInfo.Type() == FileInfoType.EncryptableFile)))
+            if (!droppedFiles.Any(fileInfo => fileInfo.Type() == FileInfoType.EncryptedFile || (Instance.KnownKeys.DefaultEncryptionKey != null && fileInfo.Type() == FileInfoType.EncryptableFile)))
             {
                 return;
             }
@@ -139,7 +139,7 @@ namespace Axantum.AxCrypt.Presentation
         {
             IEnumerable<IRuntimeFileInfo> droppedFiles = GetDroppedFiles(e.Data);
 
-            IEnumerable<IRuntimeFileInfo> encryptableFiles = droppedFiles.Where(fileInfo => _mainView.FileSystemState.KnownKeys.DefaultEncryptionKey != null && fileInfo.Type() == FileInfoType.EncryptableFile);
+            IEnumerable<IRuntimeFileInfo> encryptableFiles = droppedFiles.Where(fileInfo => Instance.KnownKeys.DefaultEncryptionKey != null && fileInfo.Type() == FileInfoType.EncryptableFile);
             ProcessEncryptableFilesDroppedInRecentList(encryptableFiles);
 
             IEnumerable<IRuntimeFileInfo> encryptedFiles = droppedFiles.Where(fileInfo => fileInfo.Type() == FileInfoType.EncryptedFile);
@@ -152,7 +152,7 @@ namespace Axantum.AxCrypt.Presentation
 
         private void ProcessEncryptableFilesDroppedInRecentList(IEnumerable<IRuntimeFileInfo> encryptableFiles)
         {
-            Background.Instance.ProcessFiles(encryptableFiles.Select(fileInfo => fileInfo.FullName), EncryptFile);
+            Instance.Background.ProcessFiles(encryptableFiles.Select(fileInfo => fileInfo.FullName), EncryptFile);
         }
 
         private void EncryptFile(string fullName, IThreadWorker worker, ProgressContext progress)
@@ -166,7 +166,7 @@ namespace Axantum.AxCrypt.Presentation
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
             {
-                if (FactoryRegistry.Instance.Create<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
+                if (FactoryRegistry.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
                 {
                     IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
                     IRuntimeFileInfo decryptedInfo = OS.Current.FileInfo(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));

@@ -198,7 +198,7 @@ namespace Axantum.AxCrypt.Core.Session
         public virtual bool TryFindDecryptionKey(string fullName, out AesKey key)
         {
             IRuntimeFileInfo source = OS.Current.FileInfo(fullName);
-            foreach (AesKey knownKey in _fileSystemState.KnownKeys.Keys)
+            foreach (AesKey knownKey in Instance.KnownKeys.Keys)
             {
                 using (AxCryptDocument document = AxCryptFile.Document(source, knownKey, new ProgressContext()))
                 {
@@ -310,7 +310,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private static AesKey FindKnownKeyOrNull(FileSystemState fileSystemState, ActiveFile activeFile)
         {
-            foreach (AesKey key in fileSystemState.KnownKeys.Keys)
+            foreach (AesKey key in Instance.KnownKeys.Keys)
             {
                 if (activeFile.ThumbprintMatch(key))
                 {
