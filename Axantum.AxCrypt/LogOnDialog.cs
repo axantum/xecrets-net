@@ -43,17 +43,17 @@ namespace Axantum.AxCrypt
     {
         private FileSystemState _fileSystemState;
 
-        public LogOnDialog(FileSystemState fileSystemState, string name)
+        public LogOnDialog(FileSystemState fileSystemState, PassphraseIdentity identity)
         {
             InitializeComponent();
             SetAutoValidateViaReflectionToAvoidMoMaWarning();
             _fileSystemState = fileSystemState;
 
-            if (String.IsNullOrEmpty(name))
+            if (String.IsNullOrEmpty(identity.Name))
             {
                 return;
             }
-            PassphraseGroupBox.Text = Resources.EnterPassphraseForIdentityPrompt.InvariantFormat(name);
+            PassphraseGroupBox.Text = Resources.EnterPassphraseForIdentityPrompt.InvariantFormat(identity.Name);
         }
 
         private void EncryptPassphraseDialog_Load(object sender, EventArgs e)

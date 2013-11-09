@@ -29,6 +29,7 @@ using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 using System.Security.Cryptography;
 
@@ -44,6 +45,15 @@ namespace Axantum.AxCrypt.Core.Crypto
         private static ICollection<int> _validAesKeySizes = ValidAesKeySizes();
 
         private byte[] _aesKey;
+
+        [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "This type is immutable.")]
+        public static readonly AesKey Zero = new AesKey(new byte[DefaultKeyLength], AesKeyThumbprint.Zero);
+
+        private AesKey(byte[] key, AesKeyThumbprint thumbprint)
+            : this(key)
+        {
+            Thumbprint = thumbprint;
+        }
 
         /// <summary>
         /// Instantiate a random key.

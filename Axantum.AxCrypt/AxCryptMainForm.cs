@@ -351,7 +351,7 @@ namespace Axantum.AxCrypt
 
             operationsController.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
                 {
-                    string passphrase = AskForLogOnPassphrase(String.Empty);
+                    string passphrase = AskForLogOnPassphrase(PassphraseIdentity.Empty);
                     if (String.IsNullOrEmpty(passphrase))
                     {
                         e.Cancel = true;
@@ -399,9 +399,9 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private static string AskForLogOnPassphrase(string fullName)
+        private static string AskForLogOnPassphrase(PassphraseIdentity identity)
         {
-            string passphrase = AskForLogOnOrEncryptionPassphrase(fullName);
+            string passphrase = AskForLogOnOrEncryptionPassphrase(identity);
             if (passphrase.Length == 0)
             {
                 return String.Empty;
@@ -411,9 +411,9 @@ namespace Axantum.AxCrypt
             return passphrase;
         }
 
-        private static string AskForLogOnOrEncryptionPassphrase(string fullName)
+        private static string AskForLogOnOrEncryptionPassphrase(PassphraseIdentity identity)
         {
-            using (LogOnDialog logOnDialog = new LogOnDialog(Instance.FileSystemState, fullName))
+            using (LogOnDialog logOnDialog = new LogOnDialog(Instance.FileSystemState, identity))
             {
                 logOnDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowEncryptPasshrase;
                 DialogResult dialogResult = logOnDialog.ShowDialog();
@@ -726,7 +726,7 @@ namespace Axantum.AxCrypt
                 return AskForDecryptPassphrase();
             }
 
-            return AskForLogOnPassphrase(identity.Name);
+            return AskForLogOnPassphrase(identity);
         }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1134,7 +1134,7 @@ namespace Axantum.AxCrypt
 
         private static void TryLogOnToExistingIdentity()
         {
-            string passphrase = AskForLogOnPassphrase(String.Empty);
+            string passphrase = AskForLogOnPassphrase(PassphraseIdentity.Empty);
             if (String.IsNullOrEmpty(passphrase))
             {
                 return;
