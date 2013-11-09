@@ -118,7 +118,7 @@ namespace Axantum.AxCrypt.Presentation
                     return;
                 }
 
-                foreach (WatchedFolder folder in Instance.KnownKeys.WatchedFolders(Instance.FileSystemState.WatchedFolders))
+                foreach (WatchedFolder folder in Instance.KnownKeys.WatchedFolders)
                 {
                     string text = folder.Path;
                     ListViewItem item = _mainView.WatchedFolders.Items.Add(text);

@@ -179,13 +179,16 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public IList<WatchedFolder> WatchedFolders(IEnumerable<WatchedFolder> allWatchedFolders)
+        public IEnumerable<WatchedFolder> WatchedFolders
         {
-            if (!IsLoggedOn)
+            get
             {
-                return new WatchedFolder[0];
+                if (!IsLoggedOn)
+                {
+                    return new WatchedFolder[0];
+                }
+                return Instance.FileSystemState.WatchedFolders.Where(wf => wf.Thumbprint == DefaultEncryptionKey.Thumbprint);
             }
-            return new List<WatchedFolder>(allWatchedFolders.Where(wf => wf.Thumbprint == DefaultEncryptionKey.Thumbprint));
         }
     }
 }
