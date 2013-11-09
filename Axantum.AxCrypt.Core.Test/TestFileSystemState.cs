@@ -358,10 +358,10 @@ namespace Axantum.AxCrypt.Core.Test
 
                 Assert.That(state.WatchedFolders.First(), Is.EqualTo(new WatchedFolder(_rootPath, AesKeyThumbprint.Zero)), "The Watched Folder should be equal to this.");
 
-                state.RemoveWatchedFolder(new WatchedFolder(_mystateXmlPath, AesKeyThumbprint.Zero));
+                state.RemoveWatchedFolder(stateInfo);
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(1), "There should still be one Watched folders.");
 
-                state.RemoveWatchedFolder(new WatchedFolder(_rootPath, AesKeyThumbprint.Zero));
+                state.RemoveWatchedFolder(OS.Current.FileInfo(_rootPath));
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(0), "There should still be no Watched folders now.");
             }
         }

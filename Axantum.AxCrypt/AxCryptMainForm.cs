@@ -156,7 +156,6 @@ namespace Axantum.AxCrypt
 
             Instance.FileSystemState.Changed += new EventHandler<ActiveFileChangedEventArgs>(HandleFileSystemStateChangedEvent);
             Instance.FileSystemState.Load(FileSystemState.DefaultPathInfo);
-            Instance.KnownKeys.Changed += new EventHandler<EventArgs>(HandleKnownKeysChangedEvent);
 
             OS.Current.KeyWrapIterations = Instance.FileSystemState.KeyWrapIterations;
             OS.Current.ThumbprintSalt = Instance.FileSystemState.ThumbprintSalt;
@@ -189,11 +188,6 @@ namespace Axantum.AxCrypt
             }
             folder = folder.Replace(@"\", @"\\");
             OS.PathFilters.Add(new Regex(formatRegularExpression.InvariantFormat(folder)));
-        }
-
-        private void HandleKnownKeysChangedEvent(object sender, EventArgs e)
-        {
-            OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.KnownKeyChange));
         }
 
         private void SetWindowTextWithLogonStatus()
@@ -1091,7 +1085,7 @@ namespace Axantum.AxCrypt
             Process.Start(Settings.Default.AxCrypt2HelpUrl.ToString());
         }
 
-        private void encryptionKeyToolStripButton_Click(object sender, EventArgs e)
+        private void LogOnToolStripButton_Click(object sender, EventArgs e)
         {
             if (Instance.KnownKeys.IsLoggedOn)
             {

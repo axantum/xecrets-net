@@ -114,7 +114,7 @@
             this.encryptionKeyToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.encryptionkeygreen32;
             resources.ApplyResources(this.encryptionKeyToolStripButton, "encryptionKeyToolStripButton");
             this.encryptionKeyToolStripButton.Name = "encryptionKeyToolStripButton";
-            this.encryptionKeyToolStripButton.Click += new System.EventHandler(this.encryptionKeyToolStripButton_Click);
+            this.encryptionKeyToolStripButton.Click += new System.EventHandler(this.LogOnToolStripButton_Click);
             // 
             // toolStripSeparator7
             // 

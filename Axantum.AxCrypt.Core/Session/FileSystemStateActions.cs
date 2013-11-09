@@ -160,6 +160,10 @@ namespace Axantum.AxCrypt.Core.Session
 
         public virtual void HandleSessionEvent(SessionEvent sessionEvent, ProgressContext progress)
         {
+            if (OS.Log.IsInfoEnabled)
+            {
+                OS.Log.LogInfo("Received session event type '{0}'.".InvariantFormat(sessionEvent.SessionEventType));
+            }
             switch (sessionEvent.SessionEventType)
             {
                 case SessionEventType.ActiveFileChange:

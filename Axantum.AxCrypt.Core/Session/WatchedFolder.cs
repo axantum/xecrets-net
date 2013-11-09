@@ -39,6 +39,11 @@ namespace Axantum.AxCrypt.Core.Session
             Initialize(new StreamingContext());
         }
 
+        public WatchedFolder(string fullName)
+            : this(fullName, AesKeyThumbprint.Zero)
+        {
+        }
+
         public WatchedFolder(WatchedFolder watchedFolder)
         {
             Path = watchedFolder.Path;
@@ -86,7 +91,7 @@ namespace Axantum.AxCrypt.Core.Session
                 return true;
             }
 
-            return String.Compare(Path, other.Path, StringComparison.OrdinalIgnoreCase) == 0 && Thumbprint == other.Thumbprint;
+            return String.Compare(Path, other.Path, StringComparison.OrdinalIgnoreCase) == 0;
         }
 
         public override bool Equals(object obj)
@@ -102,7 +107,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         public override int GetHashCode()
         {
-            return Path.GetHashCode() ^ Thumbprint.GetHashCode();
+            return Path.GetHashCode();
         }
 
         public static bool operator ==(WatchedFolder left, WatchedFolder right)

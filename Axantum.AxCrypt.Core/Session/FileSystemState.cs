@@ -178,11 +178,10 @@ namespace Axantum.AxCrypt.Core.Session
         {
         }
 
-        public void RemoveWatchedFolder(WatchedFolder watchedFolder)
+        public void RemoveWatchedFolder(IRuntimeFileInfo fileInfo)
         {
-            WatchedFoldersInternal.Remove(watchedFolder);
-            watchedFolder.Changed -= watchedFolder_Changed;
-            OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.WatchedFolderRemoved, Instance.KnownKeys.DefaultEncryptionKey, watchedFolder.Path));
+            WatchedFoldersInternal.Remove(new WatchedFolder(fileInfo.FullName, AesKeyThumbprint.Zero));
+            OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.WatchedFolderRemoved, Instance.KnownKeys.DefaultEncryptionKey, fileInfo.FullName));
         }
 
         public event EventHandler<ActiveFileChangedEventArgs> Changed;

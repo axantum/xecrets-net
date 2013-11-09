@@ -159,7 +159,7 @@ namespace Axantum.AxCrypt.Presentation
         {
             foreach (string watchedFolderPath in SelectedWatchedFoldersItems())
             {
-                Instance.FileSystemState.RemoveWatchedFolder(new WatchedFolder(watchedFolderPath, Instance.KnownKeys.DefaultEncryptionKey.Thumbprint));
+                Instance.FileSystemState.RemoveWatchedFolder(OS.Current.FileInfo(watchedFolderPath));
             }
             Instance.FileSystemState.Save();
         }

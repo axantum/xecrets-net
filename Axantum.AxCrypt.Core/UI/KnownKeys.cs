@@ -38,8 +38,6 @@ namespace Axantum.AxCrypt.Core.UI
     {
         private List<AesKey> _keys;
 
-        public event EventHandler<EventArgs> Changed;
-
         public KnownKeys()
         {
             _keys = new List<AesKey>();
@@ -54,13 +52,13 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        protected virtual void OnChanged(EventArgs e)
+        public void LogOff()
         {
-            EventHandler<EventArgs> handler = Changed;
-            if (handler != null)
+            if (IsLoggedOn)
             {
-                handler(this, e);
+                OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.LogOff, Instance.KnownKeys.DefaultEncryptionKey));
             }
+            _defaultEncryptionKey = null;
         }
 
         public void Add(AesKey key)
@@ -78,7 +76,7 @@ namespace Axantum.AxCrypt.Core.UI
             changed |= AddKnownThumbprint(key);
             if (changed)
             {
-                OnChanged(new EventArgs());
+                OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.KnownKeyChange, key));
             }
         }
 
@@ -92,8 +90,8 @@ namespace Axantum.AxCrypt.Core.UI
                 }
                 _keys.Clear();
             }
-            _defaultEncryptionKey = null;
-            OnChanged(new EventArgs());
+            LogOff();
+            OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.KnownKeyChange));
         }
 
         public IEnumerable<AesKey> Keys

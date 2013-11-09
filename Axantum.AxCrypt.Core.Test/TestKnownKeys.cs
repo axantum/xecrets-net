@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
 using System;
@@ -130,9 +131,9 @@ namespace Axantum.AxCrypt.Core.Test
         {
             bool wasChanged = false;
             KnownKeys knownKeys = new KnownKeys();
-            knownKeys.Changed += (object sender, EventArgs e) =>
+            OS.Current.SessionChanged += (object sender, SessionEventArgs e) =>
             {
-                wasChanged = true;
+                wasChanged = e.SessionEvents.Any(s => s.SessionEventType == SessionEventType.KnownKeyChange);
             };
             AesKey key1 = new AesKey();
             knownKeys.Add(key1);
