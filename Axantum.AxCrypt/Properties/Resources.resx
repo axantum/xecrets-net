@@ -319,4 +319,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
   <data name="LogOnExists" xml:space="preserve">
     <value>This Log On Identity already exists</value>
   </data>
+  <data name="EnterPassphraseForIdentityPrompt" xml:space="preserve">
+    <value>Enter passphrase for '{0}'</value>
+  </data>
 </root>

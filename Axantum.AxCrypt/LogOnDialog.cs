@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Properties;
@@ -42,11 +43,17 @@ namespace Axantum.AxCrypt
     {
         private FileSystemState _fileSystemState;
 
-        public LogOnDialog(FileSystemState fileSystemState)
+        public LogOnDialog(FileSystemState fileSystemState, string name)
         {
             InitializeComponent();
             SetAutoValidateViaReflectionToAvoidMoMaWarning();
             _fileSystemState = fileSystemState;
+
+            if (String.IsNullOrEmpty(name))
+            {
+                return;
+            }
+            PassphraseGroupBox.Text = Resources.EnterPassphraseForIdentityPrompt.InvariantFormat(name);
         }
 
         private void EncryptPassphraseDialog_Load(object sender, EventArgs e)

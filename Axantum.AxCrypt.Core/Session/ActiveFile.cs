@@ -160,7 +160,7 @@ namespace Axantum.AxCrypt.Core.Session
         private AesKeyThumbprint _thumbprint;
 
         [DataMember(Name = "Thumbprint")]
-        private AesKeyThumbprint Thumbprint
+        public AesKeyThumbprint Thumbprint
         {
             get
             {

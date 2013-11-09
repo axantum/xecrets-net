@@ -344,6 +344,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter passphrase for &apos;{0}&apos;.
+        /// </summary>
+        internal static string EnterPassphraseForIdentityPrompt {
+            get {
+                return ResourceManager.GetString("EnterPassphraseForIdentityPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exception during processing of &apos;{0}&apos;..
         /// </summary>
         internal static string Exception {

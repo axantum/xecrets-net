@@ -351,7 +351,7 @@ namespace Axantum.AxCrypt
 
             operationsController.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
                 {
-                    string passphrase = AskForLogOnPassphrase();
+                    string passphrase = AskForLogOnPassphrase(String.Empty);
                     if (String.IsNullOrEmpty(passphrase))
                     {
                         e.Cancel = true;
@@ -399,9 +399,9 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private static string AskForLogOnPassphrase()
+        private static string AskForLogOnPassphrase(string fullName)
         {
-            string passphrase = AskForLogOnOrEncryptionPassphrase();
+            string passphrase = AskForLogOnOrEncryptionPassphrase(fullName);
             if (passphrase.Length == 0)
             {
                 return String.Empty;
@@ -411,9 +411,9 @@ namespace Axantum.AxCrypt
             return passphrase;
         }
 
-        private static string AskForLogOnOrEncryptionPassphrase()
+        private static string AskForLogOnOrEncryptionPassphrase(string fullName)
         {
-            using (LogOnDialog logOnDialog = new LogOnDialog(Instance.FileSystemState))
+            using (LogOnDialog logOnDialog = new LogOnDialog(Instance.FileSystemState, fullName))
             {
                 logOnDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowEncryptPasshrase;
                 DialogResult dialogResult = logOnDialog.ShowDialog();
@@ -703,13 +703,30 @@ namespace Axantum.AxCrypt
 
         private void HandleQueryDecryptionPassphraseEvent(object sender, FileOperationEventArgs e)
         {
-            string passphraseText = AskForDecryptPassphrase();
+            string passphraseText = AskForLogOnOrDecryptPassphrase(e.OpenFileFullName);
             if (passphraseText == null)
             {
                 e.Cancel = true;
                 return;
             }
             e.Passphrase = passphraseText;
+        }
+
+        private string AskForLogOnOrDecryptPassphrase(string fullName)
+        {
+            ActiveFile openFile = Instance.FileSystemState.FindEncryptedPath(fullName);
+            if (openFile == null || openFile.Thumbprint == null)
+            {
+                return AskForDecryptPassphrase();
+            }
+
+            PassphraseIdentity identity = Instance.FileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == openFile.Thumbprint);
+            if (identity == null)
+            {
+                return AskForDecryptPassphrase();
+            }
+
+            return AskForLogOnPassphrase(identity.Name);
         }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1117,7 +1134,7 @@ namespace Axantum.AxCrypt
 
         private static void TryLogOnToExistingIdentity()
         {
-            string passphrase = AskForLogOnPassphrase();
+            string passphrase = AskForLogOnPassphrase(String.Empty);
             if (String.IsNullOrEmpty(passphrase))
             {
                 return;
