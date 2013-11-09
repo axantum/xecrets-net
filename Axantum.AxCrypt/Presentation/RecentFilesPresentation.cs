@@ -143,10 +143,11 @@ namespace Axantum.AxCrypt.Presentation
             ProcessEncryptableFilesDroppedInRecentList(encryptableFiles);
 
             IEnumerable<IRuntimeFileInfo> encryptedFiles = droppedFiles.Where(fileInfo => fileInfo.Type() == FileInfoType.EncryptedFile);
-            ProcessEncryptedFilesDropedInRecentList(encryptedFiles);
+            ProcessEncryptedFilesDroppedInRecentList(encryptedFiles);
         }
 
-        private void ProcessEncryptedFilesDropedInRecentList(IEnumerable<IRuntimeFileInfo> encryptedFiles)
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
+        private void ProcessEncryptedFilesDroppedInRecentList(IEnumerable<IRuntimeFileInfo> encryptedFiles)
         {
         }
 

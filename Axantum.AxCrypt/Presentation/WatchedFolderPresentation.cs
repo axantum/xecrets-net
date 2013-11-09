@@ -86,6 +86,7 @@ namespace Axantum.AxCrypt.Presentation
             e.Effect = DragDropEffects.Link;
         }
 
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void DropDragAndDrop(DragEventArgs e)
         {
             IRuntimeFileInfo droppedFolder = GetDroppedFolderIfAny(e.Data);
@@ -97,6 +98,7 @@ namespace Axantum.AxCrypt.Presentation
             Instance.FileSystemState.Save();
         }
 
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void DecryptSelectedFolder(string folder, ProgressContext progress)
         {
             Factory.AxCryptFile.DecryptFilesUniqueWithWipeOfOriginal(OS.Current.FileInfo(folder), Instance.KnownKeys.DefaultEncryptionKey, progress);

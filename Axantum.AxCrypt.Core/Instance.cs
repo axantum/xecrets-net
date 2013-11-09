@@ -3,6 +3,7 @@ using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 
@@ -15,7 +16,7 @@ namespace Axantum.AxCrypt.Core
             get { return FactoryRegistry.Instance.Singleton<KnownKeys>(); }
         }
 
-        public static IUIThread IUIThread
+        public static IUIThread UIThread
         {
             get { return FactoryRegistry.Instance.Singleton<IUIThread>(); }
         }

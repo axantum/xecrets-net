@@ -1,6 +1,7 @@
 ﻿using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -13,11 +14,12 @@ namespace Axantum.AxCrypt.Core.UI
         {
         }
 
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void RunOnUIThread(Action action)
         {
-            if (!Instance.IUIThread.IsOnUIThread)
+            if (!Instance.UIThread.IsOnUIThread)
             {
-                Instance.IUIThread.RunOnUIThread(action);
+                Instance.UIThread.RunOnUIThread(action);
             }
             else
             {
@@ -29,7 +31,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private void SerializedOnUIThread(Action action)
         {
-            if (!Instance.IUIThread.IsOnUIThread)
+            if (!Instance.UIThread.IsOnUIThread)
             {
                 _interactionSemaphore.WaitOne();
                 Action extendedAction = () =>
@@ -43,7 +45,7 @@ namespace Axantum.AxCrypt.Core.UI
                         _interactionSemaphore.Release();
                     }
                 };
-                Instance.IUIThread.RunOnUIThread(extendedAction);
+                Instance.UIThread.RunOnUIThread(extendedAction);
             }
             else
             {

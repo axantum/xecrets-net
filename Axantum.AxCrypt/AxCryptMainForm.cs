@@ -399,7 +399,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private string AskForLogOnPassphrase()
+        private static string AskForLogOnPassphrase()
         {
             string passphrase = AskForLogOnOrEncryptionPassphrase();
             if (passphrase.Length == 0)
@@ -411,7 +411,7 @@ namespace Axantum.AxCrypt
             return passphrase;
         }
 
-        private string AskForLogOnOrEncryptionPassphrase()
+        private static string AskForLogOnOrEncryptionPassphrase()
         {
             using (LogOnDialog logOnDialog = new LogOnDialog(Instance.FileSystemState))
             {
@@ -436,7 +436,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private string AskForNewEncryptionPassphrase()
+        private static string AskForNewEncryptionPassphrase()
         {
             using (EncryptPassphraseDialog passphraseDialog = new EncryptPassphraseDialog(Instance.FileSystemState))
             {
@@ -757,7 +757,7 @@ namespace Axantum.AxCrypt
                 });
         }
 
-        private bool FilesAreOpen
+        private static bool FilesAreOpen
         {
             get
             {
@@ -1115,7 +1115,7 @@ namespace Axantum.AxCrypt
             SetToolButtonsState();
         }
 
-        private void TryLogOnToExistingIdentity()
+        private static void TryLogOnToExistingIdentity()
         {
             string passphrase = AskForLogOnPassphrase();
             if (String.IsNullOrEmpty(passphrase))

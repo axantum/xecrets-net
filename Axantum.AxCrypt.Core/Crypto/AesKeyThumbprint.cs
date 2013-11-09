@@ -29,6 +29,7 @@ using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Reader;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 using System.Security.Cryptography;
 
@@ -41,6 +42,7 @@ namespace Axantum.AxCrypt.Core.Crypto
     [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
     public class AesKeyThumbprint : IEquatable<AesKeyThumbprint>
     {
+        [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "This class is immutable.")]
         public static readonly AesKeyThumbprint Zero = new AesKeyThumbprint();
 
         [DataMember(Name = "Thumbprint")]

@@ -118,7 +118,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return activeFile;
             }
-            activeFile = CheckActiveFileActions(_fileSystemState, activeFile, progress);
+            activeFile = CheckActiveFileActions(activeFile, progress);
             return activeFile;
         }
 
@@ -278,9 +278,9 @@ namespace Axantum.AxCrypt.Core.Session
             return newFiles;
         }
 
-        private static ActiveFile CheckActiveFileActions(FileSystemState fileSystemState, ActiveFile activeFile, ProgressContext progress)
+        private static ActiveFile CheckActiveFileActions(ActiveFile activeFile, ProgressContext progress)
         {
-            activeFile = CheckIfKeyIsKnown(fileSystemState, activeFile);
+            activeFile = CheckIfKeyIsKnown(activeFile);
             activeFile = CheckIfCreated(activeFile);
             activeFile = CheckIfProcessExited(activeFile);
             activeFile = CheckIfTimeToUpdate(activeFile, progress);
@@ -288,14 +288,14 @@ namespace Axantum.AxCrypt.Core.Session
             return activeFile;
         }
 
-        private static ActiveFile CheckIfKeyIsKnown(FileSystemState fileSystemState, ActiveFile activeFile)
+        private static ActiveFile CheckIfKeyIsKnown(ActiveFile activeFile)
         {
             if ((activeFile.Status & (ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.DecryptedIsPendingDelete | ActiveFileStatus.NotDecrypted)) == 0)
             {
                 return activeFile;
             }
 
-            AesKey key = FindKnownKeyOrNull(fileSystemState, activeFile);
+            AesKey key = FindKnownKeyOrNull(activeFile);
             if (activeFile.Key != null)
             {
                 if (key != null)
@@ -312,7 +312,7 @@ namespace Axantum.AxCrypt.Core.Session
             return activeFile;
         }
 
-        private static AesKey FindKnownKeyOrNull(FileSystemState fileSystemState, ActiveFile activeFile)
+        private static AesKey FindKnownKeyOrNull(ActiveFile activeFile)
         {
             foreach (AesKey key in Instance.KnownKeys.Keys)
             {
