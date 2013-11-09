@@ -54,11 +54,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public void LogOff()
         {
-            if (IsLoggedOn)
-            {
-                OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.LogOff, Instance.KnownKeys.DefaultEncryptionKey));
-            }
-            _defaultEncryptionKey = null;
+            DefaultEncryptionKey = null;
         }
 
         public void Add(AesKey key)
@@ -76,6 +72,10 @@ namespace Axantum.AxCrypt.Core.UI
             changed |= AddKnownThumbprint(key);
             if (changed)
             {
+                if (Instance.FileSystemState.Identities.Any(i => i.Thumbprint == key.Thumbprint))
+                {
+                    DefaultEncryptionKey = key;
+                }
                 OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.KnownKeyChange, key));
             }
         }
@@ -121,13 +121,17 @@ namespace Axantum.AxCrypt.Core.UI
             }
             set
             {
+                if (_defaultEncryptionKey == value)
+                {
+                    return;
+                }
+                if (IsLoggedOn)
+                {
+                    OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.LogOff, _defaultEncryptionKey));
+                }
                 if (value != null)
                 {
                     OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.LogOn, value));
-                }
-                else
-                {
-                    OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.LogOff, _defaultEncryptionKey));
                 }
                 _defaultEncryptionKey = value;
                 if (value == null)

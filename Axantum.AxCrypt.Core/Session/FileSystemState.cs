@@ -403,7 +403,7 @@ namespace Axantum.AxCrypt.Core.Session
         private string _path;
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "The actual exception thrown by the de-serialization varies, even by platform, and the idea is to catch those and let the user continue.")]
-        public void Load(IRuntimeFileInfo path)
+        public FileSystemState Load(IRuntimeFileInfo path)
         {
             if (path == null)
             {
@@ -417,7 +417,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     OS.Log.LogInfo("No existing FileSystemState. Save location is '{0}'.".InvariantFormat(_path));
                 }
-                return;
+                return this;
             }
 
             using (FileSystemState fileSystemState = CreateFileSystemState(path))
@@ -439,6 +439,7 @@ namespace Axantum.AxCrypt.Core.Session
                     OS.Log.LogInfo("Loaded FileSystemState from '{0}'.".InvariantFormat(fileSystemState._path));
                 }
             }
+            return this;
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "If the state can't be read, the software is rendered useless, so it's better to revert to empty here.")]

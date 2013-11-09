@@ -43,11 +43,13 @@ namespace Axantum.AxCrypt.Core.Test
         public static void Setup()
         {
             SetupAssembly.AssemblySetup();
+            FactoryRegistry.Instance.Singleton<FileSystemState>(new FileSystemState());
         }
 
         [TearDown]
         public static void Teardown()
         {
+            FactoryRegistry.Instance.Clear();
             SetupAssembly.AssemblyTeardown();
         }
 
