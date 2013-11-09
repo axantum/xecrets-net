@@ -32,11 +32,11 @@
             this.PassphraseGroupBox = new System.Windows.Forms.GroupBox();
             this.ShowPassphraseCheckBox = new System.Windows.Forms.CheckBox();
             this.Passphrase = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.buttonCancel = new System.Windows.Forms.Button();
-            this.buttonOk = new System.Windows.Forms.Button();
+            this._panel1 = new System.Windows.Forms.Panel();
+            this._buttonCancel = new System.Windows.Forms.Button();
+            this._buttonOk = new System.Windows.Forms.Button();
             this.PassphraseGroupBox.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this._panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // PassphraseGroupBox
@@ -61,38 +61,38 @@
             // 
             // panel1
             // 
-            resources.ApplyResources(this.panel1, "panel1");
-            this.panel1.Controls.Add(this.buttonCancel);
-            this.panel1.Controls.Add(this.buttonOk);
-            this.panel1.Name = "panel1";
+            resources.ApplyResources(this._panel1, "panel1");
+            this._panel1.Controls.Add(this._buttonCancel);
+            this._panel1.Controls.Add(this._buttonOk);
+            this._panel1.Name = "panel1";
             // 
             // buttonCancel
             // 
-            resources.ApplyResources(this.buttonCancel, "buttonCancel");
-            this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this._buttonCancel, "buttonCancel");
+            this._buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this._buttonCancel.Name = "buttonCancel";
+            this._buttonCancel.UseVisualStyleBackColor = true;
             // 
             // buttonOk
             // 
-            resources.ApplyResources(this.buttonOk, "buttonOk");
-            this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOk.Name = "buttonOk";
-            this.buttonOk.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this._buttonOk, "buttonOk");
+            this._buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this._buttonOk.Name = "buttonOk";
+            this._buttonOk.UseVisualStyleBackColor = true;
             // 
             // DecryptPassphraseDialog
             // 
-            this.AcceptButton = this.buttonOk;
+            this.AcceptButton = this._buttonOk;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.buttonCancel;
-            this.Controls.Add(this.panel1);
+            this.CancelButton = this._buttonCancel;
+            this.Controls.Add(this._panel1);
             this.Controls.Add(this.PassphraseGroupBox);
             this.Name = "DecryptPassphraseDialog";
             this.Load += new System.EventHandler(this.DecryptPassphraseDialog_Load);
             this.PassphraseGroupBox.ResumeLayout(false);
             this.PassphraseGroupBox.PerformLayout();
-            this.panel1.ResumeLayout(false);
+            this._panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -101,9 +101,9 @@
         #endregion
 
         internal System.Windows.Forms.TextBox Passphrase;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button buttonCancel;
-        private System.Windows.Forms.Button buttonOk;
+        private System.Windows.Forms.Panel _panel1;
+        private System.Windows.Forms.Button _buttonCancel;
+        private System.Windows.Forms.Button _buttonOk;
         internal System.Windows.Forms.GroupBox PassphraseGroupBox;
         internal System.Windows.Forms.CheckBox ShowPassphraseCheckBox;
     }

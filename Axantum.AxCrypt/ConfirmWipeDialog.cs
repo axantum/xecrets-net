@@ -18,7 +18,7 @@ namespace Axantum.AxCrypt
 
         private void ConfirmWipeDialog_Load(object sender, EventArgs e)
         {
-            iconPictureBox.Image = SystemIcons.Warning.ToBitmap();
+            _iconPictureBox.Image = SystemIcons.Warning.ToBitmap();
         }
 
         private void promptLabel_Click(object sender, EventArgs e)

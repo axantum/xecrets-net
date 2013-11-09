@@ -30,52 +30,52 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogOnDialog));
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.newButton = new System.Windows.Forms.Button();
-            this.buttonCancel = new System.Windows.Forms.Button();
-            this.buttonOk = new System.Windows.Forms.Button();
+            this._panel1 = new System.Windows.Forms.Panel();
+            this._newButton = new System.Windows.Forms.Button();
+            this._buttonCancel = new System.Windows.Forms.Button();
+            this._buttonOk = new System.Windows.Forms.Button();
             this.PassphraseGroupBox = new System.Windows.Forms.GroupBox();
             this.ShowPassphraseCheckBox = new System.Windows.Forms.CheckBox();
             this.PassphraseTextBox = new System.Windows.Forms.TextBox();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.panel1.SuspendLayout();
+            this._errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this._panel1.SuspendLayout();
             this.PassphraseGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            resources.ApplyResources(this.panel1, "panel1");
-            this.panel1.Controls.Add(this.newButton);
-            this.panel1.Controls.Add(this.buttonCancel);
-            this.panel1.Controls.Add(this.buttonOk);
-            this.panel1.Name = "panel1";
+            resources.ApplyResources(this._panel1, "panel1");
+            this._panel1.Controls.Add(this._newButton);
+            this._panel1.Controls.Add(this._buttonCancel);
+            this._panel1.Controls.Add(this._buttonOk);
+            this._panel1.Name = "panel1";
             // 
             // newButton
             // 
-            this.newButton.CausesValidation = false;
-            this.newButton.DialogResult = System.Windows.Forms.DialogResult.Retry;
-            resources.ApplyResources(this.newButton, "newButton");
-            this.newButton.Name = "newButton";
-            this.newButton.UseVisualStyleBackColor = true;
-            this.newButton.Click += new System.EventHandler(this.newButton_Click);
+            this._newButton.CausesValidation = false;
+            this._newButton.DialogResult = System.Windows.Forms.DialogResult.Retry;
+            resources.ApplyResources(this._newButton, "newButton");
+            this._newButton.Name = "newButton";
+            this._newButton.UseVisualStyleBackColor = true;
+            this._newButton.Click += new System.EventHandler(this.newButton_Click);
             // 
             // buttonCancel
             // 
-            this.buttonCancel.CausesValidation = false;
-            this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            resources.ApplyResources(this.buttonCancel, "buttonCancel");
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.UseVisualStyleBackColor = true;
+            this._buttonCancel.CausesValidation = false;
+            this._buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            resources.ApplyResources(this._buttonCancel, "buttonCancel");
+            this._buttonCancel.Name = "buttonCancel";
+            this._buttonCancel.UseVisualStyleBackColor = true;
             // 
             // buttonOk
             // 
-            this.buttonOk.CausesValidation = false;
-            this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            resources.ApplyResources(this.buttonOk, "buttonOk");
-            this.buttonOk.Name = "buttonOk";
-            this.buttonOk.UseVisualStyleBackColor = true;
-            this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
+            this._buttonOk.CausesValidation = false;
+            this._buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+            resources.ApplyResources(this._buttonOk, "buttonOk");
+            this._buttonOk.Name = "buttonOk";
+            this._buttonOk.UseVisualStyleBackColor = true;
+            this._buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             // 
             // PassphraseGroupBox
             // 
@@ -101,26 +101,26 @@
             // 
             // errorProvider1
             // 
-            this.errorProvider1.ContainerControl = this;
+            this._errorProvider1.ContainerControl = this;
             // 
             // LogOnDialog
             // 
-            this.AcceptButton = this.buttonOk;
+            this.AcceptButton = this._buttonOk;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.buttonCancel;
+            this.CancelButton = this._buttonCancel;
             this.CausesValidation = false;
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this._panel1);
             this.Controls.Add(this.PassphraseGroupBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "LogOnDialog";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Load += new System.EventHandler(this.EncryptPassphraseDialog_Load);
-            this.panel1.ResumeLayout(false);
+            this._panel1.ResumeLayout(false);
             this.PassphraseGroupBox.ResumeLayout(false);
             this.PassphraseGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -128,13 +128,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button buttonCancel;
-        private System.Windows.Forms.Button buttonOk;
+        private System.Windows.Forms.Panel _panel1;
+        private System.Windows.Forms.Button _buttonCancel;
+        private System.Windows.Forms.Button _buttonOk;
         internal System.Windows.Forms.GroupBox PassphraseGroupBox;
         internal System.Windows.Forms.TextBox PassphraseTextBox;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider _errorProvider1;
         internal System.Windows.Forms.CheckBox ShowPassphraseCheckBox;
-        private System.Windows.Forms.Button newButton;
+        private System.Windows.Forms.Button _newButton;
     }
 }

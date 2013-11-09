@@ -87,13 +87,13 @@ namespace Axantum.AxCrypt
             if (!_fileSystemState.Identities.Any(identity => identity.Thumbprint == thumbprint))
             {
                 e.Cancel = true;
-                errorProvider1.SetError(PassphraseTextBox, Resources.UnkownLogOn);
+                _errorProvider1.SetError(PassphraseTextBox, Resources.UnkownLogOn);
             }
         }
 
         private void PassphraseTextBox_Validated(object sender, EventArgs e)
         {
-            errorProvider1.Clear();
+            _errorProvider1.Clear();
         }
 
         private void newButton_Click(object sender, EventArgs e)

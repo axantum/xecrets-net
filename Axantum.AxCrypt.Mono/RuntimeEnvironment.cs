@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt.Mono
 {
     public class RuntimeEnvironment : IRuntimeEnvironment, IDisposable
     {
-        private static readonly TimeSpan _defaultWorkFolderStateMinimumIdle = new TimeSpan(0, 0, 1);
+        private static readonly TimeSpan _defaultWorkFolderStateMinimumIdle = TimeSpan.FromMilliseconds(500);
 
         private IFileWatcher _workFolderWatcher;
 

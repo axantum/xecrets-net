@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfirmWipeDialog));
-            this.promptLabel = new System.Windows.Forms.Label();
+            this._promptLabel = new System.Windows.Forms.Label();
             this.FileNameLabel = new System.Windows.Forms.Label();
-            this.iconPictureBox = new System.Windows.Forms.PictureBox();
-            this.noButton = new System.Windows.Forms.Button();
-            this.yesButton = new System.Windows.Forms.Button();
+            this._iconPictureBox = new System.Windows.Forms.PictureBox();
+            this._noButton = new System.Windows.Forms.Button();
+            this._yesButton = new System.Windows.Forms.Button();
             this.ConfirmAllCheckBox = new System.Windows.Forms.CheckBox();
-            this.cancelButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox)).BeginInit();
+            this._cancelButton = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this._iconPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // promptLabel
             // 
-            this.promptLabel.CausesValidation = false;
-            resources.ApplyResources(this.promptLabel, "promptLabel");
-            this.promptLabel.Name = "promptLabel";
-            this.promptLabel.Click += new System.EventHandler(this.promptLabel_Click);
+            this._promptLabel.CausesValidation = false;
+            resources.ApplyResources(this._promptLabel, "promptLabel");
+            this._promptLabel.Name = "promptLabel";
+            this._promptLabel.Click += new System.EventHandler(this.promptLabel_Click);
             // 
             // FileNameLabel
             // 
@@ -54,23 +54,23 @@
             // 
             // iconPictureBox
             // 
-            resources.ApplyResources(this.iconPictureBox, "iconPictureBox");
-            this.iconPictureBox.Name = "iconPictureBox";
-            this.iconPictureBox.TabStop = false;
+            resources.ApplyResources(this._iconPictureBox, "iconPictureBox");
+            this._iconPictureBox.Name = "iconPictureBox";
+            this._iconPictureBox.TabStop = false;
             // 
             // noButton
             // 
-            resources.ApplyResources(this.noButton, "noButton");
-            this.noButton.DialogResult = System.Windows.Forms.DialogResult.No;
-            this.noButton.Name = "noButton";
-            this.noButton.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this._noButton, "noButton");
+            this._noButton.DialogResult = System.Windows.Forms.DialogResult.No;
+            this._noButton.Name = "noButton";
+            this._noButton.UseVisualStyleBackColor = true;
             // 
             // yesButton
             // 
-            resources.ApplyResources(this.yesButton, "yesButton");
-            this.yesButton.DialogResult = System.Windows.Forms.DialogResult.Yes;
-            this.yesButton.Name = "yesButton";
-            this.yesButton.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this._yesButton, "yesButton");
+            this._yesButton.DialogResult = System.Windows.Forms.DialogResult.Yes;
+            this._yesButton.Name = "yesButton";
+            this._yesButton.UseVisualStyleBackColor = true;
             // 
             // ConfirmAllCheckBox
             // 
@@ -80,27 +80,27 @@
             // 
             // cancelButton
             // 
-            resources.ApplyResources(this.cancelButton, "cancelButton");
-            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this._cancelButton, "cancelButton");
+            this._cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this._cancelButton.Name = "cancelButton";
+            this._cancelButton.UseVisualStyleBackColor = true;
             // 
             // ConfirmWipeDialog
             // 
-            this.AcceptButton = this.cancelButton;
+            this.AcceptButton = this._cancelButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.cancelButton;
-            this.Controls.Add(this.cancelButton);
+            this.CancelButton = this._cancelButton;
+            this.Controls.Add(this._cancelButton);
             this.Controls.Add(this.ConfirmAllCheckBox);
-            this.Controls.Add(this.yesButton);
-            this.Controls.Add(this.noButton);
-            this.Controls.Add(this.iconPictureBox);
+            this.Controls.Add(this._yesButton);
+            this.Controls.Add(this._noButton);
+            this.Controls.Add(this._iconPictureBox);
             this.Controls.Add(this.FileNameLabel);
-            this.Controls.Add(this.promptLabel);
+            this.Controls.Add(this._promptLabel);
             this.Name = "ConfirmWipeDialog";
             this.Load += new System.EventHandler(this.ConfirmWipeDialog_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._iconPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -108,11 +108,11 @@
 
         #endregion
 
-        private System.Windows.Forms.Label promptLabel;
-        private System.Windows.Forms.PictureBox iconPictureBox;
-        private System.Windows.Forms.Button noButton;
-        private System.Windows.Forms.Button yesButton;
-        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Label _promptLabel;
+        private System.Windows.Forms.PictureBox _iconPictureBox;
+        private System.Windows.Forms.Button _noButton;
+        private System.Windows.Forms.Button _yesButton;
+        private System.Windows.Forms.Button _cancelButton;
         internal System.Windows.Forms.CheckBox ConfirmAllCheckBox;
         internal System.Windows.Forms.Label FileNameLabel;
 

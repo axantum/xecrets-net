@@ -96,13 +96,13 @@ namespace Axantum.AxCrypt
             if (String.Compare(PassphraseTextBox.Text, VerifyPassphraseTextbox.Text, StringComparison.Ordinal) != 0)
             {
                 e.Cancel = true;
-                errorProvider1.SetError(VerifyPassphraseTextbox, Resources.PassphraseVerificationMismatch);
+                _errorProvider1.SetError(VerifyPassphraseTextbox, Resources.PassphraseVerificationMismatch);
             }
         }
 
         private void VerifyPassphraseTextbox_Validated(object sender, EventArgs e)
         {
-            errorProvider1.Clear();
+            _errorProvider1.Clear();
         }
 
         private void NameTextBox_Validating(object sender, CancelEventArgs e)
@@ -110,13 +110,13 @@ namespace Axantum.AxCrypt
             if (_fileSystemState.Identities.Any(i => i.Name == NameTextBox.Text))
             {
                 e.Cancel = true;
-                errorProvider2.SetError(NameTextBox, Resources.LogOnExists);
+                _errorProvider2.SetError(NameTextBox, Resources.LogOnExists);
             }
         }
 
         private void NameTextBox_Validated(object sender, EventArgs e)
         {
-            errorProvider2.Clear();
+            _errorProvider2.Clear();
         }
     }
 }

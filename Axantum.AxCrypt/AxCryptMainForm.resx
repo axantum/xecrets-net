@@ -841,8 +841,14 @@ ensure they are not in use.</value>
   <data name="decryptTemporarilyToolStripMenuItem.Text" xml:space="preserve">
     <value>Decrypt &amp;Temporarily</value>
   </data>
+  <data name="openExplorerHereToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 22</value>
+  </data>
+  <data name="openExplorerHereToolStripMenuItem.Text" xml:space="preserve">
+    <value>Open &amp;Explorer Here</value>
+  </data>
   <data name="watchedFoldersContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 48</value>
+    <value>186, 92</value>
   </data>
   <data name="&gt;&gt;watchedFoldersContextMenuStrip.Name" xml:space="preserve">
     <value>watchedFoldersContextMenuStrip</value>
@@ -1247,9 +1253,6 @@ ensure they are not in use.</value>
         AADAAwAAgAEAAIABAACAAQAAgAEAAIABAACAAQAAgAEAAIABAADwDwAA/D8AAA==
 </value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>AxCrypt</value>
   </data>
@@ -1516,6 +1519,12 @@ ensure they are not in use.</value>
   </data>
   <data name="&gt;&gt;backgroundMonitor.Type" xml:space="preserve">
     <value>Axantum.AxCrypt.BackgroundMonitor, Axantum.AxCrypt, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;openExplorerHereToolStripMenuItem.Name" xml:space="preserve">
+    <value>openExplorerHereToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;openExplorerHereToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AxCryptMainForm</value>

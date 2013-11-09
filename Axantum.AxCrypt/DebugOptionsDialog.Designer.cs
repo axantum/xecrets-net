@@ -30,18 +30,18 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DebugOptionsDialog));
-            this.label1 = new System.Windows.Forms.Label();
+            this._label1 = new System.Windows.Forms.Label();
             this.UpdateCheckServiceUrl = new System.Windows.Forms.TextBox();
-            this.okButton = new System.Windows.Forms.Button();
-            this.cancelButton = new System.Windows.Forms.Button();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this._okButton = new System.Windows.Forms.Button();
+            this._cancelButton = new System.Windows.Forms.Button();
+            this._errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
+            resources.ApplyResources(this._label1, "label1");
+            this._label1.Name = "label1";
             // 
             // UpdateCheckServiceUrl
             // 
@@ -52,35 +52,35 @@
             // 
             // okButton
             // 
-            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            resources.ApplyResources(this.okButton, "okButton");
-            this.okButton.Name = "okButton";
-            this.okButton.UseVisualStyleBackColor = true;
+            this._okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            resources.ApplyResources(this._okButton, "okButton");
+            this._okButton.Name = "okButton";
+            this._okButton.UseVisualStyleBackColor = true;
             // 
             // cancelButton
             // 
-            this.cancelButton.CausesValidation = false;
-            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            resources.ApplyResources(this.cancelButton, "cancelButton");
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.UseVisualStyleBackColor = true;
+            this._cancelButton.CausesValidation = false;
+            this._cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            resources.ApplyResources(this._cancelButton, "cancelButton");
+            this._cancelButton.Name = "cancelButton";
+            this._cancelButton.UseVisualStyleBackColor = true;
             // 
             // errorProvider1
             // 
-            this.errorProvider1.ContainerControl = this;
+            this._errorProvider1.ContainerControl = this;
             // 
             // DebugOptionsDialog
             // 
-            this.AcceptButton = this.okButton;
+            this.AcceptButton = this._okButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.cancelButton;
-            this.Controls.Add(this.cancelButton);
-            this.Controls.Add(this.okButton);
+            this.CancelButton = this._cancelButton;
+            this.Controls.Add(this._cancelButton);
+            this.Controls.Add(this._okButton);
             this.Controls.Add(this.UpdateCheckServiceUrl);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this._label1);
             this.Name = "DebugOptionsDialog";
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -88,10 +88,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label _label1;
         internal System.Windows.Forms.TextBox UpdateCheckServiceUrl;
-        private System.Windows.Forms.Button okButton;
-        private System.Windows.Forms.Button cancelButton;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Button _okButton;
+        private System.Windows.Forms.Button _cancelButton;
+        private System.Windows.Forms.ErrorProvider _errorProvider1;
     }
 }

@@ -22,13 +22,13 @@ namespace Axantum.AxCrypt
             {
                 e.Cancel = true;
                 UpdateCheckServiceUrl.SelectAll();
-                errorProvider1.SetError(UpdateCheckServiceUrl, Axantum.AxCrypt.Properties.Resources.Invalid_URL);
+                _errorProvider1.SetError(UpdateCheckServiceUrl, Axantum.AxCrypt.Properties.Resources.Invalid_URL);
             }
         }
 
         private void UpdateCheckServiceUrl_Validated(object sender, EventArgs e)
         {
-            errorProvider1.SetError(UpdateCheckServiceUrl, String.Empty);
+            _errorProvider1.SetError(UpdateCheckServiceUrl, String.Empty);
         }
     }
 }
