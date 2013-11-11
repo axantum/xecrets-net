@@ -704,7 +704,7 @@ namespace Axantum.AxCrypt
         private void HandleQueryDecryptionPassphraseEvent(object sender, FileOperationEventArgs e)
         {
             string passphraseText = AskForLogOnOrDecryptPassphrase(e.OpenFileFullName);
-            if (passphraseText == null)
+            if (String.IsNullOrEmpty(passphraseText))
             {
                 e.Cancel = true;
                 return;
