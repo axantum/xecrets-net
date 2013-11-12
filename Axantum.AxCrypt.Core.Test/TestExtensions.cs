@@ -404,7 +404,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<ArgumentNullException>(() => nullFileInfo.NormalizeFolder());
             Assert.Throws<ArgumentException>(() => OS.Current.FileInfo(String.Empty).NormalizeFolder());
 
-            string expected = @"C:\Documents\".Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
+            string expected = @"C:\Documents\".Replace('\\', Path.DirectorySeparatorChar);
             Assert.That(OS.Current.FileInfo(@"C:\Documents\").NormalizeFolder().FullName, Is.EqualTo(expected));
             Assert.That(OS.Current.FileInfo(@"C:/Documents\").NormalizeFolder().FullName, Is.EqualTo(expected));
             Assert.That(OS.Current.FileInfo(@"C:\Documents").NormalizeFolder().FullName, Is.EqualTo(expected));

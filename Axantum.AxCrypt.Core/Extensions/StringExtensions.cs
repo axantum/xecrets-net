@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                 return String.Empty;
             }
 
-            value = value.Replace('\\', Path.DirectorySeparatorChar).Replace('/', Path.DirectorySeparatorChar);
+            value = value.Replace(Path.DirectorySeparatorChar == '/' ? '\\' : '/', Path.DirectorySeparatorChar);
             return OS.Current.FileInfo(value).NormalizeFolder().FullName;
         }
     }

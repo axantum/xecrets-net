@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                 throw new ArgumentException("The path must be a non-empty string.", "folder");
             }
 
-            string normalizedFolder = folder.FullName.Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
+            string normalizedFolder = folder.FullName.Replace(Path.DirectorySeparatorChar == '/' ? '\\' : '/', Path.DirectorySeparatorChar);
             int directorySeparatorChars = 0;
             while (normalizedFolder[normalizedFolder.Length - (directorySeparatorChars + 1)] == Path.DirectorySeparatorChar)
             {
