@@ -127,6 +127,8 @@ namespace Axantum.AxCrypt
             _recentFilesPresentation = new RecentFilesPresentation(this);
         }
 
+        private bool _loaded = false;
+
         private void AxCryptMainForm_Load(object sender, EventArgs e)
         {
             if (DesignMode)
@@ -165,7 +167,25 @@ namespace Axantum.AxCrypt
             _backgroundMonitor.UpdateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(HandleVersionUpdateEvent);
             UpdateCheck(Settings.Default.LastUpdateCheckUtc);
 
+            RestoreUserPreferences();
             OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.SessionChange));
+
+            _loaded = true;
+        }
+
+        private void AxCryptMainForm_Shown(object sender, EventArgs e)
+        {
+            _recentFilesListView.Sort();
+        }
+
+        private void RestoreUserPreferences()
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                Height = Settings.Default.MainFormHeight > 0 ? Settings.Default.MainFormHeight : Height;
+                Width = Settings.Default.MainFormWidth > 0 ? Settings.Default.MainFormWidth : Width;
+                Location = Settings.Default.MainFormLocation != Point.Empty ? Settings.Default.MainFormLocation : Location;
+            }
         }
 
         private static void SetupPathFilters()
@@ -193,14 +213,14 @@ namespace Axantum.AxCrypt
         private void SetWindowTextWithLogonStatus()
         {
             string logonStatus;
-            if (Instance.KnownKeys.DefaultEncryptionKey == null)
-            {
-                logonStatus = Resources.LoggedOffStatusText;
-            }
-            else
+            if (Instance.KnownKeys.IsLoggedOn)
             {
                 PassphraseIdentity identity = Instance.FileSystemState.Identities.First(i => i.Thumbprint == Instance.KnownKeys.DefaultEncryptionKey.Thumbprint);
                 logonStatus = Resources.LoggedOnStatusText.InvariantFormat(identity.Name);
+            }
+            else
+            {
+                logonStatus = Resources.LoggedOffStatusText;
             }
             string text = "{0} - {1}".InvariantFormat(_title, logonStatus);
             if (String.Compare(Text, text, StringComparison.Ordinal) != 0)
@@ -888,6 +908,11 @@ namespace Axantum.AxCrypt
             _recentFilesPresentation.DropDragAndDrop(e);
         }
 
+        private void RecentFilesListView_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            _recentFilesPresentation.ColumnClick(e.Column);
+        }
+
         private void CloseOpenFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PurgeActiveFiles();
@@ -968,15 +993,38 @@ namespace Axantum.AxCrypt
             _notifyIcon.BalloonTipTitle = Resources.AxCryptFileEncryption;
             _notifyIcon.BalloonTipText = Resources.TrayBalloonTooltip;
 
-            if (FormWindowState.Minimized == this.WindowState)
+            if (FormWindowState.Minimized == WindowState)
             {
                 _notifyIcon.Visible = true;
                 _notifyIcon.ShowBalloonTip(500);
                 this.Hide();
             }
-            else if (FormWindowState.Normal == this.WindowState)
+            else if (FormWindowState.Normal == WindowState)
             {
                 _notifyIcon.Visible = false;
+            }
+        }
+
+        private void AxCryptMainForm_ResizeEnd(object sender, EventArgs e)
+        {
+            if (FormWindowState.Normal == WindowState)
+            {
+                Settings.Default.MainFormHeight = Height;
+                Settings.Default.MainFormWidth = Width;
+                Settings.Default.Save();
+            }
+        }
+
+        private void AxCryptMainForm_Move(object sender, EventArgs e)
+        {
+            if (!_loaded)
+            {
+                return;
+            }
+            if (FormWindowState.Normal == WindowState)
+            {
+                Settings.Default.MainFormLocation = Location;
+                Settings.Default.Save();
             }
         }
 
@@ -1065,8 +1113,8 @@ namespace Axantum.AxCrypt
             {
                 ServicePointManager.ServerCertificateValidationCallback = null;
                 OS.Log.SetLevel(LogLevel.Error);
-                _hiddenLogTabPage = _statusTabControl.TabPages["logTabPage"]; //MLHIDE
-                _statusTabControl.TabPages.Remove(_hiddenLogTabPage);
+                _hiddenLogTabPage = _logTabPage; //MLHIDE
+                _statusTabControl.TabPages.Remove(_logTabPage);
             }
         }
 

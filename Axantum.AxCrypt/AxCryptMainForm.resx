@@ -117,30 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="mainToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="_mainToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="mainToolStrip.AutoSize" type="System.Boolean, mscorlib">
+  <data name="_mainToolStrip.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="encryptionKeyToolStripButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+  <data name="_encryptionKeyToolStripButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
-  <data name="encryptionKeyToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_encryptionKeyToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 47</value>
   </data>
-  <data name="encryptionKeyToolStripButton.Text" xml:space="preserve">
+  <data name="_encryptionKeyToolStripButton.Text" xml:space="preserve">
     <value>toolStripButton1</value>
   </data>
-  <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
     <value>6, 50</value>
   </data>
-  <data name="openEncryptedToolStripButton.AutoSize" type="System.Boolean, mscorlib">
+  <data name="_openEncryptedToolStripButton.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="openEncryptedToolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="_openEncryptedToolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAOvSURBVFhHvZZJTxRRFIX5N3ZNP6D7l4Du/AeuABUVZ2Vo
@@ -162,35 +162,35 @@
         AH68EYc6DxX/AZAD8t0ezXpaAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="openEncryptedToolStripButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+  <data name="_openEncryptedToolStripButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
-  <data name="openEncryptedToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_openEncryptedToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 47</value>
   </data>
-  <data name="openEncryptedToolStripButton.Text" xml:space="preserve">
+  <data name="_openEncryptedToolStripButton.Text" xml:space="preserve">
     <value>Open Encrypted</value>
   </data>
-  <data name="openEncryptedToolStripButton.ToolTipText" xml:space="preserve">
+  <data name="_openEncryptedToolStripButton.ToolTipText" xml:space="preserve">
     <value>Click and select or drag and drop files to decrypt temporarily and open in the associated application</value>
   </data>
-  <data name="encryptToolStripButton.AutoSize" type="System.Boolean, mscorlib">
+  <data name="_encryptToolStripButton.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="encryptToolStripButton.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
+  <data name="_encryptToolStripButton.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="encryptToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_encryptToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 47</value>
   </data>
-  <data name="encryptToolStripButton.ToolTipText" xml:space="preserve">
+  <data name="_encryptToolStripButton.ToolTipText" xml:space="preserve">
     <value>Click to select files to encrypt</value>
   </data>
-  <data name="decryptToolStripButton.AutoSize" type="System.Boolean, mscorlib">
+  <data name="_decryptToolStripButton.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="decryptToolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="_decryptToolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAR1SURBVFhHvZbbTxRnGMb5b9yZ2Y2RC40HBi+MxES48A9Q
@@ -215,98 +215,98 @@
         cGRC6nAH3NYsiG2wm0HogKWVBTffjQPXDgT/BWCVpIV9t7BJAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="decryptToolStripButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+  <data name="_decryptToolStripButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
-  <data name="decryptToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_decryptToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 47</value>
   </data>
-  <data name="decryptToolStripButton.Text" xml:space="preserve">
+  <data name="_decryptToolStripButton.Text" xml:space="preserve">
     <value>Decrypt</value>
   </data>
-  <data name="decryptToolStripButton.ToolTipText" xml:space="preserve">
+  <data name="_decryptToolStripButton.ToolTipText" xml:space="preserve">
     <value>Click and select or drag and drop files to decrypt permanently</value>
   </data>
-  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>6, 50</value>
   </data>
-  <data name="closeAndRemoveOpenFilesToolStripButton.AutoSize" type="System.Boolean, mscorlib">
+  <data name="_closeAndRemoveOpenFilesToolStripButton.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="closeAndRemoveOpenFilesToolStripButton.Enabled" type="System.Boolean, mscorlib">
+  <data name="_closeAndRemoveOpenFilesToolStripButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="closeAndRemoveOpenFilesToolStripButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+  <data name="_closeAndRemoveOpenFilesToolStripButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
-  <data name="closeAndRemoveOpenFilesToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_closeAndRemoveOpenFilesToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 47</value>
   </data>
-  <data name="closeAndRemoveOpenFilesToolStripButton.Text" xml:space="preserve">
+  <data name="_closeAndRemoveOpenFilesToolStripButton.Text" xml:space="preserve">
     <value>toolStripButton1</value>
   </data>
-  <data name="closeAndRemoveOpenFilesToolStripButton.ToolTipText" xml:space="preserve">
+  <data name="_closeAndRemoveOpenFilesToolStripButton.ToolTipText" xml:space="preserve">
     <value>Click to clean and remove any open decrypted files, but 
 ensure they are not in use.</value>
   </data>
-  <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
     <value>6, 50</value>
   </data>
-  <data name="updateToolStripButton.AutoSize" type="System.Boolean, mscorlib">
+  <data name="_updateToolStripButton.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="updateToolStripButton.Enabled" type="System.Boolean, mscorlib">
+  <data name="_updateToolStripButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="updateToolStripButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+  <data name="_updateToolStripButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
-  <data name="updateToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_updateToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 47</value>
   </data>
-  <data name="updateToolStripButton.Text" xml:space="preserve">
+  <data name="_updateToolStripButton.Text" xml:space="preserve">
     <value>Update</value>
   </data>
-  <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
     <value>6, 50</value>
   </data>
-  <data name="helpToolStripButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+  <data name="_helpToolStripButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
-  <data name="helpToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_helpToolStripButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 47</value>
   </data>
-  <data name="helpToolStripButton.Text" xml:space="preserve">
+  <data name="_helpToolStripButton.Text" xml:space="preserve">
     <value>He&amp;lp</value>
   </data>
-  <data name="mainToolStrip.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_mainToolStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 24</value>
   </data>
-  <data name="mainToolStrip.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_mainToolStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>824, 50</value>
   </data>
-  <data name="mainToolStrip.TabIndex" type="System.Int32, mscorlib">
+  <data name="_mainToolStrip.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="mainToolStrip.Text" xml:space="preserve">
+  <data name="_mainToolStrip.Text" xml:space="preserve">
     <value>toolStrip1</value>
   </data>
-  <data name="&gt;&gt;mainToolStrip.Name" xml:space="preserve">
-    <value>mainToolStrip</value>
+  <data name="&gt;&gt;_mainToolStrip.Name" xml:space="preserve">
+    <value>_mainToolStrip</value>
   </data>
-  <data name="&gt;&gt;mainToolStrip.Type" xml:space="preserve">
+  <data name="&gt;&gt;_mainToolStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mainToolStrip.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_mainToolStrip.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;mainToolStrip.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_mainToolStrip.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <metadata name="mainMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>145, 17</value>
+  <metadata name="_mainMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>150, 17</value>
   </metadata>
-  <data name="openEncryptedToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="_openEncryptedToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAghJREFUOE9t
         kslTE0EUh/lzprtnSE0KihPF3+W+4RoLkE2RJYqABmRTNvGYq1VeuHdVuHpQ54BK9Pm97iQm6qv6TtPv
@@ -320,13 +320,13 @@ ensure they are not in use.</value>
         BAiYsnUzYTxWr++K1WP1WD1Wj9XrrDR7rF6t2hhJ6r8Bi9c8pZqh570AAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="openEncryptedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_openEncryptedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 22</value>
   </data>
-  <data name="openEncryptedToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_openEncryptedToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Open Encrypted</value>
   </data>
-  <data name="encryptToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="_encryptToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAlxJREFUOE99
         kktPU1EUhfk591UmhDAhDBi1PwBCmDMgzJpAovWFYrUqFi2tgHBaX0UQQawULCTGtE2DYeADtYwOMAAT
@@ -342,13 +342,13 @@ ensure they are not in use.</value>
         qsw7YvUAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="encryptToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_encryptToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 22</value>
   </data>
-  <data name="encryptToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_encryptToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Encrypt</value>
   </data>
-  <data name="decryptToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="_decryptToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAlFJREFUOE91
         kktPU1EUhfk591UmhDBgxoR2xAhC+AeEWRNItL5QRKvWoqUVkJ7iq0qtQagULCbGtE2D6cBI8TE6pJM6
@@ -364,16 +364,16 @@ ensure they are not in use.</value>
         TkSuQmCC
 </value>
   </data>
-  <data name="decryptToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_decryptToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 22</value>
   </data>
-  <data name="decryptToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_decryptToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Decrypt</value>
   </data>
-  <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
     <value>158, 6</value>
   </data>
-  <data name="closeOpenFilesToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="_closeOpenFilesToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAohJREFUOE9d
         kstPE1EYxflzZu7MlJISuiBdEHaE7ljAjiV7Vr5foCI+QEZsa3kIyFu0tdDyMJI0JLrBIEpsXFyJCZFY
@@ -390,49 +390,49 @@ ensure they are not in use.</value>
         gg==
 </value>
   </data>
-  <data name="closeOpenFilesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_closeOpenFilesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 22</value>
   </data>
-  <data name="closeOpenFilesToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_closeOpenFilesToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Clean Decrypted</value>
   </data>
-  <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
     <value>158, 6</value>
   </data>
-  <data name="wipeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_wipeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 22</value>
   </data>
-  <data name="wipeToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_wipeToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Secure Delete</value>
   </data>
-  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
     <value>158, 6</value>
   </data>
-  <data name="englishLanguageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_englishLanguageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 22</value>
   </data>
-  <data name="englishLanguageToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_englishLanguageToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;English</value>
   </data>
-  <data name="swedishLanguageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_swedishLanguageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 22</value>
   </data>
-  <data name="swedishLanguageToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_swedishLanguageToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Svenska</value>
   </data>
-  <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 22</value>
   </data>
-  <data name="languageToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_languageToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Language</value>
   </data>
-  <data name="debugOptionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_debugOptionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 22</value>
   </data>
-  <data name="debugOptionsToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_debugOptionsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Debug</value>
   </data>
-  <data name="optionsToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="_optionsToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAoNJREFUOE9t
         kllPU1EUhfk599wBShsSEtI/wCshbXjjN0BS6jygojhUULQUCyKVSavIVAEjofHNEBJNVAw54Yk0oEDT
@@ -448,419 +448,419 @@ ensure they are not in use.</value>
         NTToNbMiJiRTpdorJyzFddIpJFMlU6XqlWLJVKlSldDFyP4GDMhi3CpAsUkAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="optionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_optionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 22</value>
   </data>
-  <data name="optionsToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_optionsToolStripMenuItem.Text" xml:space="preserve">
     <value>O&amp;ptions</value>
   </data>
-  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 22</value>
   </data>
-  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_exitToolStripMenuItem.Text" xml:space="preserve">
     <value>E&amp;xit</value>
   </data>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 20</value>
   </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_fileToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;File</value>
   </data>
-  <data name="checkVersionNowToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_checkVersionNowToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 22</value>
   </data>
-  <data name="checkVersionNowToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_checkVersionNowToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Check Version Now</value>
   </data>
-  <data name="setUpdateCheckUrlToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_setUpdateCheckUrlToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 22</value>
   </data>
-  <data name="setUpdateCheckUrlToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_setUpdateCheckUrlToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Options</value>
   </data>
-  <data name="debugToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_debugToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 20</value>
   </data>
-  <data name="debugToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_debugToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Debug</value>
   </data>
-  <data name="viewHelpMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_viewHelpMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>127, 22</value>
   </data>
-  <data name="viewHelpMenuItem.Text" xml:space="preserve">
+  <data name="_viewHelpMenuItem.Text" xml:space="preserve">
     <value>&amp;View Help</value>
   </data>
-  <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>127, 22</value>
   </data>
-  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_aboutToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;About</value>
   </data>
-  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 20</value>
   </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_helpToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Help</value>
   </data>
-  <data name="mainMenuStrip.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_mainMenuStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
-  <data name="mainMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_mainMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>824, 24</value>
   </data>
-  <data name="mainMenuStrip.TabIndex" type="System.Int32, mscorlib">
+  <data name="_mainMenuStrip.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="mainMenuStrip.Text" xml:space="preserve">
+  <data name="_mainMenuStrip.Text" xml:space="preserve">
     <value>menuStrip1</value>
   </data>
-  <data name="&gt;&gt;mainMenuStrip.Name" xml:space="preserve">
-    <value>mainMenuStrip</value>
+  <data name="&gt;&gt;_mainMenuStrip.Name" xml:space="preserve">
+    <value>_mainMenuStrip</value>
   </data>
-  <data name="&gt;&gt;mainMenuStrip.Type" xml:space="preserve">
+  <data name="&gt;&gt;_mainMenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mainMenuStrip.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_mainMenuStrip.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;mainMenuStrip.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_mainMenuStrip.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="progressTableLayoutPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="_progressTableLayoutPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
   </data>
-  <data name="progressTableLayoutPanel.ColumnCount" type="System.Int32, mscorlib">
+  <data name="_progressTableLayoutPanel.ColumnCount" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="progressTableLayoutPanel.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_progressTableLayoutPanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 255</value>
   </data>
-  <data name="progressTableLayoutPanel.RowCount" type="System.Int32, mscorlib">
+  <data name="_progressTableLayoutPanel.RowCount" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="progressTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_progressTableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
     <value>824, 20</value>
   </data>
-  <data name="progressTableLayoutPanel.TabIndex" type="System.Int32, mscorlib">
+  <data name="_progressTableLayoutPanel.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;progressTableLayoutPanel.Name" xml:space="preserve">
-    <value>progressTableLayoutPanel</value>
+  <data name="&gt;&gt;_progressTableLayoutPanel.Name" xml:space="preserve">
+    <value>_progressTableLayoutPanel</value>
   </data>
-  <data name="&gt;&gt;progressTableLayoutPanel.Type" xml:space="preserve">
+  <data name="&gt;&gt;_progressTableLayoutPanel.Type" xml:space="preserve">
     <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;progressTableLayoutPanel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_progressTableLayoutPanel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;progressTableLayoutPanel.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_progressTableLayoutPanel.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="progressTableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+  <data name="_progressTableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
     <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls /&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Percent,50,Percent,50" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
-  <metadata name="recentFilesContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>713, 17</value>
+  <metadata name="_recentFilesContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>290, 17</value>
   </metadata>
-  <data name="removeRecentFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_removeRecentFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>279, 22</value>
   </data>
-  <data name="removeRecentFileToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_removeRecentFileToolStripMenuItem.Text" xml:space="preserve">
     <value>Leave Encrypted But &amp;Remove From List</value>
   </data>
-  <data name="decryptAndRemoveFromListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_decryptAndRemoveFromListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>279, 22</value>
   </data>
-  <data name="decryptAndRemoveFromListToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_decryptAndRemoveFromListToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Decrypt And Remove From List</value>
   </data>
-  <data name="recentFilesContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_recentFilesContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>280, 48</value>
   </data>
-  <data name="&gt;&gt;recentFilesContextMenuStrip.Name" xml:space="preserve">
-    <value>recentFilesContextMenuStrip</value>
+  <data name="&gt;&gt;_recentFilesContextMenuStrip.Name" xml:space="preserve">
+    <value>_recentFilesContextMenuStrip</value>
   </data>
-  <data name="&gt;&gt;recentFilesContextMenuStrip.Type" xml:space="preserve">
+  <data name="&gt;&gt;_recentFilesContextMenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="openFilesContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>922, 17</value>
+  <metadata name="_openFilesContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>504, 17</value>
   </metadata>
-  <data name="enterPassphraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_enterPassphraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>162, 22</value>
   </data>
-  <data name="enterPassphraseToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_enterPassphraseToolStripMenuItem.Text" xml:space="preserve">
     <value>Enter &amp;Passphrase</value>
   </data>
-  <data name="openFilesContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_openFilesContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>163, 26</value>
   </data>
-  <data name="&gt;&gt;openFilesContextMenuStrip.Name" xml:space="preserve">
-    <value>openFilesContextMenuStrip</value>
+  <data name="&gt;&gt;_openFilesContextMenuStrip.Name" xml:space="preserve">
+    <value>_openFilesContextMenuStrip</value>
   </data>
-  <data name="&gt;&gt;openFilesContextMenuStrip.Type" xml:space="preserve">
+  <data name="&gt;&gt;_openFilesContextMenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="progressContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 56</value>
+  <metadata name="_progressContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>712, 17</value>
   </metadata>
-  <data name="progressContextCancelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_progressContextCancelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 22</value>
   </data>
-  <data name="progressContextCancelToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_progressContextCancelToolStripMenuItem.Text" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="progressContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_progressContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 26</value>
   </data>
-  <data name="&gt;&gt;progressContextMenuStrip.Name" xml:space="preserve">
-    <value>progressContextMenuStrip</value>
+  <data name="&gt;&gt;_progressContextMenuStrip.Name" xml:space="preserve">
+    <value>_progressContextMenuStrip</value>
   </data>
-  <data name="&gt;&gt;progressContextMenuStrip.Type" xml:space="preserve">
+  <data name="&gt;&gt;_progressContextMenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="logOutputTextBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="_logOutputTextBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="logOutputTextBox.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_logOutputTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
-  <data name="logOutputTextBox.Multiline" type="System.Boolean, mscorlib">
+  <data name="_logOutputTextBox.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="logOutputTextBox.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+  <data name="_logOutputTextBox.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
     <value>Vertical</value>
   </data>
-  <data name="logOutputTextBox.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_logOutputTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>810, 157</value>
   </data>
-  <data name="logOutputTextBox.TabIndex" type="System.Int32, mscorlib">
+  <data name="_logOutputTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;logOutputTextBox.Name" xml:space="preserve">
-    <value>logOutputTextBox</value>
+  <data name="&gt;&gt;_logOutputTextBox.Name" xml:space="preserve">
+    <value>_logOutputTextBox</value>
   </data>
-  <data name="&gt;&gt;logOutputTextBox.Type" xml:space="preserve">
+  <data name="&gt;&gt;_logOutputTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;logOutputTextBox.Parent" xml:space="preserve">
-    <value>logTabPage</value>
+  <data name="&gt;&gt;_logOutputTextBox.Parent" xml:space="preserve">
+    <value>_logTabPage</value>
   </data>
-  <data name="&gt;&gt;logOutputTextBox.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_logOutputTextBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="logTabPage.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_logTabPage.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
   </data>
-  <data name="logTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="_logTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
-  <data name="logTabPage.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_logTabPage.Size" type="System.Drawing.Size, System.Drawing">
     <value>816, 163</value>
   </data>
-  <data name="logTabPage.TabIndex" type="System.Int32, mscorlib">
+  <data name="_logTabPage.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="logTabPage.Text" xml:space="preserve">
+  <data name="_logTabPage.Text" xml:space="preserve">
     <value>Log Output</value>
   </data>
-  <data name="&gt;&gt;logTabPage.Name" xml:space="preserve">
-    <value>logTabPage</value>
+  <data name="&gt;&gt;_logTabPage.Name" xml:space="preserve">
+    <value>_logTabPage</value>
   </data>
-  <data name="&gt;&gt;logTabPage.Type" xml:space="preserve">
+  <data name="&gt;&gt;_logTabPage.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;logTabPage.Parent" xml:space="preserve">
-    <value>statusTabControl</value>
+  <data name="&gt;&gt;_logTabPage.Parent" xml:space="preserve">
+    <value>_statusTabControl</value>
   </data>
-  <data name="&gt;&gt;logTabPage.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_logTabPage.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="watchedFolderColumnHeader.Text" xml:space="preserve">
+  <data name="_watchedFolderColumnHeader.Text" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="watchedFolderColumnHeader.Width" type="System.Int32, mscorlib">
+  <data name="_watchedFolderColumnHeader.Width" type="System.Int32, mscorlib">
     <value>368</value>
   </data>
-  <data name="watchedFoldersListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="_watchedFoldersListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="watchedFoldersListView.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_watchedFoldersListView.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
-  <data name="watchedFoldersListView.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_watchedFoldersListView.Size" type="System.Drawing.Size, System.Drawing">
     <value>810, 157</value>
   </data>
-  <data name="watchedFoldersListView.TabIndex" type="System.Int32, mscorlib">
+  <data name="_watchedFoldersListView.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;watchedFoldersListView.Name" xml:space="preserve">
-    <value>watchedFoldersListView</value>
+  <data name="&gt;&gt;_watchedFoldersListView.Name" xml:space="preserve">
+    <value>_watchedFoldersListView</value>
   </data>
-  <data name="&gt;&gt;watchedFoldersListView.Type" xml:space="preserve">
+  <data name="&gt;&gt;_watchedFoldersListView.Type" xml:space="preserve">
     <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;watchedFoldersListView.Parent" xml:space="preserve">
-    <value>watchedFoldersTabPage</value>
+  <data name="&gt;&gt;_watchedFoldersListView.Parent" xml:space="preserve">
+    <value>_watchedFoldersTabPage</value>
   </data>
-  <data name="&gt;&gt;watchedFoldersListView.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_watchedFoldersListView.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="watchedFoldersTabPage.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_watchedFoldersTabPage.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
   </data>
-  <data name="watchedFoldersTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="_watchedFoldersTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
-  <data name="watchedFoldersTabPage.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_watchedFoldersTabPage.Size" type="System.Drawing.Size, System.Drawing">
     <value>816, 163</value>
   </data>
-  <data name="watchedFoldersTabPage.TabIndex" type="System.Int32, mscorlib">
+  <data name="_watchedFoldersTabPage.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="watchedFoldersTabPage.Text" xml:space="preserve">
+  <data name="_watchedFoldersTabPage.Text" xml:space="preserve">
     <value>Encrypted Folders</value>
   </data>
-  <data name="&gt;&gt;watchedFoldersTabPage.Name" xml:space="preserve">
-    <value>watchedFoldersTabPage</value>
+  <data name="&gt;&gt;_watchedFoldersTabPage.Name" xml:space="preserve">
+    <value>_watchedFoldersTabPage</value>
   </data>
-  <data name="&gt;&gt;watchedFoldersTabPage.Type" xml:space="preserve">
+  <data name="&gt;&gt;_watchedFoldersTabPage.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;watchedFoldersTabPage.Parent" xml:space="preserve">
-    <value>statusTabControl</value>
+  <data name="&gt;&gt;_watchedFoldersTabPage.Parent" xml:space="preserve">
+    <value>_statusTabControl</value>
   </data>
-  <data name="&gt;&gt;watchedFoldersTabPage.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_watchedFoldersTabPage.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="decryptedFileColumnHeader.Text" xml:space="preserve">
+  <data name="_decryptedFileColumnHeader.Text" xml:space="preserve">
     <value>Document</value>
   </data>
-  <data name="decryptedFileColumnHeader.Width" type="System.Int32, mscorlib">
+  <data name="_decryptedFileColumnHeader.Width" type="System.Int32, mscorlib">
     <value>159</value>
   </data>
-  <data name="lastAccessTimeColumnHeader.Text" xml:space="preserve">
+  <data name="_lastAccessTimeColumnHeader.Text" xml:space="preserve">
     <value>Time</value>
   </data>
-  <data name="lastAccessTimeColumnHeader.Width" type="System.Int32, mscorlib">
+  <data name="_lastAccessTimeColumnHeader.Width" type="System.Int32, mscorlib">
     <value>180</value>
   </data>
-  <data name="encryptedPathColumnHeader.Text" xml:space="preserve">
+  <data name="_encryptedPathColumnHeader.Text" xml:space="preserve">
     <value>Encrypted</value>
   </data>
-  <data name="encryptedPathColumnHeader.Width" type="System.Int32, mscorlib">
+  <data name="_encryptedPathColumnHeader.Width" type="System.Int32, mscorlib">
     <value>169</value>
   </data>
-  <data name="recentFilesListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="_recentFilesListView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="recentFilesListView.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_recentFilesListView.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
-  <data name="recentFilesListView.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_recentFilesListView.Size" type="System.Drawing.Size, System.Drawing">
     <value>810, 157</value>
   </data>
-  <data name="recentFilesListView.TabIndex" type="System.Int32, mscorlib">
+  <data name="_recentFilesListView.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;recentFilesListView.Name" xml:space="preserve">
-    <value>recentFilesListView</value>
+  <data name="&gt;&gt;_recentFilesListView.Name" xml:space="preserve">
+    <value>_recentFilesListView</value>
   </data>
-  <data name="&gt;&gt;recentFilesListView.Type" xml:space="preserve">
+  <data name="&gt;&gt;_recentFilesListView.Type" xml:space="preserve">
     <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;recentFilesListView.Parent" xml:space="preserve">
-    <value>recentFilesTabPage</value>
+  <data name="&gt;&gt;_recentFilesListView.Parent" xml:space="preserve">
+    <value>_recentFilesTabPage</value>
   </data>
-  <data name="&gt;&gt;recentFilesListView.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_recentFilesListView.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="recentFilesTabPage.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_recentFilesTabPage.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
   </data>
-  <data name="recentFilesTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="_recentFilesTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
-  <data name="recentFilesTabPage.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_recentFilesTabPage.Size" type="System.Drawing.Size, System.Drawing">
     <value>816, 163</value>
   </data>
-  <data name="recentFilesTabPage.TabIndex" type="System.Int32, mscorlib">
+  <data name="_recentFilesTabPage.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="recentFilesTabPage.Text" xml:space="preserve">
+  <data name="_recentFilesTabPage.Text" xml:space="preserve">
     <value>Recent Files</value>
   </data>
-  <data name="&gt;&gt;recentFilesTabPage.Name" xml:space="preserve">
-    <value>recentFilesTabPage</value>
+  <data name="&gt;&gt;_recentFilesTabPage.Name" xml:space="preserve">
+    <value>_recentFilesTabPage</value>
   </data>
-  <data name="&gt;&gt;recentFilesTabPage.Type" xml:space="preserve">
+  <data name="&gt;&gt;_recentFilesTabPage.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;recentFilesTabPage.Parent" xml:space="preserve">
-    <value>statusTabControl</value>
+  <data name="&gt;&gt;_recentFilesTabPage.Parent" xml:space="preserve">
+    <value>_statusTabControl</value>
   </data>
-  <data name="&gt;&gt;recentFilesTabPage.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_recentFilesTabPage.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="statusTabControl.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="_statusTabControl.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="statusTabControl.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_statusTabControl.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 67</value>
   </data>
-  <data name="statusTabControl.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_statusTabControl.Size" type="System.Drawing.Size, System.Drawing">
     <value>824, 189</value>
   </data>
-  <data name="statusTabControl.TabIndex" type="System.Int32, mscorlib">
+  <data name="_statusTabControl.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;statusTabControl.Name" xml:space="preserve">
-    <value>statusTabControl</value>
+  <data name="&gt;&gt;_statusTabControl.Name" xml:space="preserve">
+    <value>_statusTabControl</value>
   </data>
-  <data name="&gt;&gt;statusTabControl.Type" xml:space="preserve">
+  <data name="&gt;&gt;_statusTabControl.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;statusTabControl.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_statusTabControl.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;statusTabControl.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_statusTabControl.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <metadata name="watchedFoldersContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>726, 56</value>
+  <metadata name="_watchedFoldersContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>915, 17</value>
   </metadata>
-  <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>185, 22</value>
   </data>
-  <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_deleteToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Decrypt Permanently</value>
   </data>
-  <data name="decryptTemporarilyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_decryptTemporarilyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>185, 22</value>
   </data>
-  <data name="decryptTemporarilyToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_decryptTemporarilyToolStripMenuItem.Text" xml:space="preserve">
     <value>Decrypt &amp;Temporarily</value>
   </data>
-  <data name="openExplorerHereToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_openExplorerHereToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>185, 22</value>
   </data>
-  <data name="openExplorerHereToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_openExplorerHereToolStripMenuItem.Text" xml:space="preserve">
     <value>Open &amp;Explorer Here</value>
   </data>
-  <data name="watchedFoldersContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 92</value>
+  <data name="_watchedFoldersContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 70</value>
   </data>
-  <data name="&gt;&gt;watchedFoldersContextMenuStrip.Name" xml:space="preserve">
-    <value>watchedFoldersContextMenuStrip</value>
+  <data name="&gt;&gt;_watchedFoldersContextMenuStrip.Name" xml:space="preserve">
+    <value>_watchedFoldersContextMenuStrip</value>
   </data>
-  <data name="&gt;&gt;watchedFoldersContextMenuStrip.Type" xml:space="preserve">
+  <data name="&gt;&gt;_watchedFoldersContextMenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="progressBackgroundWorker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>509, 56</value>
+  <metadata name="_progressBackgroundWorker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1156, 17</value>
   </metadata>
-  <metadata name="backgroundMonitor.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>215, 56</value>
+  <metadata name="_backgroundMonitor.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1365, 17</value>
   </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1256,275 +1256,275 @@ ensure they are not in use.</value>
   <data name="$this.Text" xml:space="preserve">
     <value>AxCrypt</value>
   </data>
-  <data name="&gt;&gt;encryptionKeyToolStripButton.Name" xml:space="preserve">
-    <value>encryptionKeyToolStripButton</value>
+  <data name="&gt;&gt;_encryptionKeyToolStripButton.Name" xml:space="preserve">
+    <value>_encryptionKeyToolStripButton</value>
   </data>
-  <data name="&gt;&gt;encryptionKeyToolStripButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;_encryptionKeyToolStripButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator7.Name" xml:space="preserve">
-    <value>toolStripSeparator7</value>
+  <data name="&gt;&gt;_toolStripSeparator7.Name" xml:space="preserve">
+    <value>_toolStripSeparator7</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator7.Type" xml:space="preserve">
+  <data name="&gt;&gt;_toolStripSeparator7.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;openEncryptedToolStripButton.Name" xml:space="preserve">
-    <value>openEncryptedToolStripButton</value>
+  <data name="&gt;&gt;_openEncryptedToolStripButton.Name" xml:space="preserve">
+    <value>_openEncryptedToolStripButton</value>
   </data>
-  <data name="&gt;&gt;openEncryptedToolStripButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;_openEncryptedToolStripButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;encryptToolStripButton.Name" xml:space="preserve">
-    <value>encryptToolStripButton</value>
+  <data name="&gt;&gt;_encryptToolStripButton.Name" xml:space="preserve">
+    <value>_encryptToolStripButton</value>
   </data>
-  <data name="&gt;&gt;encryptToolStripButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;_encryptToolStripButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;decryptToolStripButton.Name" xml:space="preserve">
-    <value>decryptToolStripButton</value>
+  <data name="&gt;&gt;_decryptToolStripButton.Name" xml:space="preserve">
+    <value>_decryptToolStripButton</value>
   </data>
-  <data name="&gt;&gt;decryptToolStripButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;_decryptToolStripButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator1.Name" xml:space="preserve">
-    <value>toolStripSeparator1</value>
+  <data name="&gt;&gt;_toolStripSeparator1.Name" xml:space="preserve">
+    <value>_toolStripSeparator1</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator1.Type" xml:space="preserve">
+  <data name="&gt;&gt;_toolStripSeparator1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;closeAndRemoveOpenFilesToolStripButton.Name" xml:space="preserve">
-    <value>closeAndRemoveOpenFilesToolStripButton</value>
+  <data name="&gt;&gt;_closeAndRemoveOpenFilesToolStripButton.Name" xml:space="preserve">
+    <value>_closeAndRemoveOpenFilesToolStripButton</value>
   </data>
-  <data name="&gt;&gt;closeAndRemoveOpenFilesToolStripButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;_closeAndRemoveOpenFilesToolStripButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator4.Name" xml:space="preserve">
-    <value>toolStripSeparator4</value>
+  <data name="&gt;&gt;_toolStripSeparator4.Name" xml:space="preserve">
+    <value>_toolStripSeparator4</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator4.Type" xml:space="preserve">
+  <data name="&gt;&gt;_toolStripSeparator4.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;updateToolStripButton.Name" xml:space="preserve">
-    <value>updateToolStripButton</value>
+  <data name="&gt;&gt;_updateToolStripButton.Name" xml:space="preserve">
+    <value>_updateToolStripButton</value>
   </data>
-  <data name="&gt;&gt;updateToolStripButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;_updateToolStripButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator5.Name" xml:space="preserve">
-    <value>toolStripSeparator5</value>
+  <data name="&gt;&gt;_toolStripSeparator5.Name" xml:space="preserve">
+    <value>_toolStripSeparator5</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator5.Type" xml:space="preserve">
+  <data name="&gt;&gt;_toolStripSeparator5.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;helpToolStripButton.Name" xml:space="preserve">
-    <value>helpToolStripButton</value>
+  <data name="&gt;&gt;_helpToolStripButton.Name" xml:space="preserve">
+    <value>_helpToolStripButton</value>
   </data>
-  <data name="&gt;&gt;helpToolStripButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;_helpToolStripButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;fileToolStripMenuItem.Name" xml:space="preserve">
-    <value>fileToolStripMenuItem</value>
+  <data name="&gt;&gt;_fileToolStripMenuItem.Name" xml:space="preserve">
+    <value>_fileToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;fileToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_fileToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;openEncryptedToolStripMenuItem.Name" xml:space="preserve">
-    <value>openEncryptedToolStripMenuItem</value>
+  <data name="&gt;&gt;_openEncryptedToolStripMenuItem.Name" xml:space="preserve">
+    <value>_openEncryptedToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;openEncryptedToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_openEncryptedToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;encryptToolStripMenuItem.Name" xml:space="preserve">
-    <value>encryptToolStripMenuItem</value>
+  <data name="&gt;&gt;_encryptToolStripMenuItem.Name" xml:space="preserve">
+    <value>_encryptToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;encryptToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_encryptToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;decryptToolStripMenuItem.Name" xml:space="preserve">
-    <value>decryptToolStripMenuItem</value>
+  <data name="&gt;&gt;_decryptToolStripMenuItem.Name" xml:space="preserve">
+    <value>_decryptToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;decryptToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_decryptToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator6.Name" xml:space="preserve">
-    <value>toolStripSeparator6</value>
+  <data name="&gt;&gt;_toolStripSeparator6.Name" xml:space="preserve">
+    <value>_toolStripSeparator6</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator6.Type" xml:space="preserve">
+  <data name="&gt;&gt;_toolStripSeparator6.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;closeOpenFilesToolStripMenuItem.Name" xml:space="preserve">
-    <value>closeOpenFilesToolStripMenuItem</value>
+  <data name="&gt;&gt;_closeOpenFilesToolStripMenuItem.Name" xml:space="preserve">
+    <value>_closeOpenFilesToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;closeOpenFilesToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_closeOpenFilesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator3.Name" xml:space="preserve">
-    <value>toolStripSeparator3</value>
+  <data name="&gt;&gt;_toolStripSeparator3.Name" xml:space="preserve">
+    <value>_toolStripSeparator3</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator3.Type" xml:space="preserve">
+  <data name="&gt;&gt;_toolStripSeparator3.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;wipeToolStripMenuItem.Name" xml:space="preserve">
-    <value>wipeToolStripMenuItem</value>
+  <data name="&gt;&gt;_wipeToolStripMenuItem.Name" xml:space="preserve">
+    <value>_wipeToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;wipeToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_wipeToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator2.Name" xml:space="preserve">
-    <value>toolStripSeparator2</value>
+  <data name="&gt;&gt;_toolStripSeparator2.Name" xml:space="preserve">
+    <value>_toolStripSeparator2</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator2.Type" xml:space="preserve">
+  <data name="&gt;&gt;_toolStripSeparator2.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;optionsToolStripMenuItem.Name" xml:space="preserve">
-    <value>optionsToolStripMenuItem</value>
+  <data name="&gt;&gt;_optionsToolStripMenuItem.Name" xml:space="preserve">
+    <value>_optionsToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;optionsToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_optionsToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;languageToolStripMenuItem.Name" xml:space="preserve">
-    <value>languageToolStripMenuItem</value>
+  <data name="&gt;&gt;_languageToolStripMenuItem.Name" xml:space="preserve">
+    <value>_languageToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;languageToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_languageToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;englishLanguageToolStripMenuItem.Name" xml:space="preserve">
-    <value>englishLanguageToolStripMenuItem</value>
+  <data name="&gt;&gt;_englishLanguageToolStripMenuItem.Name" xml:space="preserve">
+    <value>_englishLanguageToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;englishLanguageToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_englishLanguageToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;swedishLanguageToolStripMenuItem.Name" xml:space="preserve">
-    <value>swedishLanguageToolStripMenuItem</value>
+  <data name="&gt;&gt;_swedishLanguageToolStripMenuItem.Name" xml:space="preserve">
+    <value>_swedishLanguageToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;swedishLanguageToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_swedishLanguageToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;debugOptionsToolStripMenuItem.Name" xml:space="preserve">
-    <value>debugOptionsToolStripMenuItem</value>
+  <data name="&gt;&gt;_debugOptionsToolStripMenuItem.Name" xml:space="preserve">
+    <value>_debugOptionsToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;debugOptionsToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_debugOptionsToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;exitToolStripMenuItem.Name" xml:space="preserve">
-    <value>exitToolStripMenuItem</value>
+  <data name="&gt;&gt;_exitToolStripMenuItem.Name" xml:space="preserve">
+    <value>_exitToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;exitToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_exitToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;debugToolStripMenuItem.Name" xml:space="preserve">
-    <value>debugToolStripMenuItem</value>
+  <data name="&gt;&gt;_debugToolStripMenuItem.Name" xml:space="preserve">
+    <value>_debugToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;debugToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_debugToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;checkVersionNowToolStripMenuItem.Name" xml:space="preserve">
-    <value>checkVersionNowToolStripMenuItem</value>
+  <data name="&gt;&gt;_checkVersionNowToolStripMenuItem.Name" xml:space="preserve">
+    <value>_checkVersionNowToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;checkVersionNowToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_checkVersionNowToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;setUpdateCheckUrlToolStripMenuItem.Name" xml:space="preserve">
-    <value>setUpdateCheckUrlToolStripMenuItem</value>
+  <data name="&gt;&gt;_setUpdateCheckUrlToolStripMenuItem.Name" xml:space="preserve">
+    <value>_setUpdateCheckUrlToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;setUpdateCheckUrlToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_setUpdateCheckUrlToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;helpToolStripMenuItem.Name" xml:space="preserve">
-    <value>helpToolStripMenuItem</value>
+  <data name="&gt;&gt;_helpToolStripMenuItem.Name" xml:space="preserve">
+    <value>_helpToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;helpToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_helpToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;viewHelpMenuItem.Name" xml:space="preserve">
-    <value>viewHelpMenuItem</value>
+  <data name="&gt;&gt;_viewHelpMenuItem.Name" xml:space="preserve">
+    <value>_viewHelpMenuItem</value>
   </data>
-  <data name="&gt;&gt;viewHelpMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_viewHelpMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;aboutToolStripMenuItem.Name" xml:space="preserve">
-    <value>aboutToolStripMenuItem</value>
+  <data name="&gt;&gt;_aboutToolStripMenuItem.Name" xml:space="preserve">
+    <value>_aboutToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;aboutToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_aboutToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;removeRecentFileToolStripMenuItem.Name" xml:space="preserve">
-    <value>removeRecentFileToolStripMenuItem</value>
+  <data name="&gt;&gt;_removeRecentFileToolStripMenuItem.Name" xml:space="preserve">
+    <value>_removeRecentFileToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;removeRecentFileToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_removeRecentFileToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;decryptAndRemoveFromListToolStripMenuItem.Name" xml:space="preserve">
-    <value>decryptAndRemoveFromListToolStripMenuItem</value>
+  <data name="&gt;&gt;_decryptAndRemoveFromListToolStripMenuItem.Name" xml:space="preserve">
+    <value>_decryptAndRemoveFromListToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;decryptAndRemoveFromListToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_decryptAndRemoveFromListToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;enterPassphraseToolStripMenuItem.Name" xml:space="preserve">
-    <value>enterPassphraseToolStripMenuItem</value>
+  <data name="&gt;&gt;_enterPassphraseToolStripMenuItem.Name" xml:space="preserve">
+    <value>_enterPassphraseToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;enterPassphraseToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_enterPassphraseToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;progressContextCancelToolStripMenuItem.Name" xml:space="preserve">
-    <value>progressContextCancelToolStripMenuItem</value>
+  <data name="&gt;&gt;_progressContextCancelToolStripMenuItem.Name" xml:space="preserve">
+    <value>_progressContextCancelToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;progressContextCancelToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_progressContextCancelToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;watchedFolderColumnHeader.Name" xml:space="preserve">
-    <value>watchedFolderColumnHeader</value>
+  <data name="&gt;&gt;_watchedFolderColumnHeader.Name" xml:space="preserve">
+    <value>_watchedFolderColumnHeader</value>
   </data>
-  <data name="&gt;&gt;watchedFolderColumnHeader.Type" xml:space="preserve">
+  <data name="&gt;&gt;_watchedFolderColumnHeader.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;decryptedFileColumnHeader.Name" xml:space="preserve">
-    <value>decryptedFileColumnHeader</value>
+  <data name="&gt;&gt;_decryptedFileColumnHeader.Name" xml:space="preserve">
+    <value>_decryptedFileColumnHeader</value>
   </data>
-  <data name="&gt;&gt;decryptedFileColumnHeader.Type" xml:space="preserve">
+  <data name="&gt;&gt;_decryptedFileColumnHeader.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lastAccessTimeColumnHeader.Name" xml:space="preserve">
-    <value>lastAccessTimeColumnHeader</value>
+  <data name="&gt;&gt;_lastAccessTimeColumnHeader.Name" xml:space="preserve">
+    <value>_lastAccessTimeColumnHeader</value>
   </data>
-  <data name="&gt;&gt;lastAccessTimeColumnHeader.Type" xml:space="preserve">
+  <data name="&gt;&gt;_lastAccessTimeColumnHeader.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;encryptedPathColumnHeader.Name" xml:space="preserve">
-    <value>encryptedPathColumnHeader</value>
+  <data name="&gt;&gt;_encryptedPathColumnHeader.Name" xml:space="preserve">
+    <value>_encryptedPathColumnHeader</value>
   </data>
-  <data name="&gt;&gt;encryptedPathColumnHeader.Type" xml:space="preserve">
+  <data name="&gt;&gt;_encryptedPathColumnHeader.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;deleteToolStripMenuItem.Name" xml:space="preserve">
-    <value>deleteToolStripMenuItem</value>
+  <data name="&gt;&gt;_deleteToolStripMenuItem.Name" xml:space="preserve">
+    <value>_deleteToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;deleteToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_deleteToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;decryptTemporarilyToolStripMenuItem.Name" xml:space="preserve">
-    <value>decryptTemporarilyToolStripMenuItem</value>
+  <data name="&gt;&gt;_decryptTemporarilyToolStripMenuItem.Name" xml:space="preserve">
+    <value>_decryptTemporarilyToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;decryptTemporarilyToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_decryptTemporarilyToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;progressBackgroundWorker.Name" xml:space="preserve">
-    <value>progressBackgroundWorker</value>
+  <data name="&gt;&gt;_openExplorerHereToolStripMenuItem.Name" xml:space="preserve">
+    <value>_openExplorerHereToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;progressBackgroundWorker.Type" xml:space="preserve">
+  <data name="&gt;&gt;_openExplorerHereToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_progressBackgroundWorker.Name" xml:space="preserve">
+    <value>_progressBackgroundWorker</value>
+  </data>
+  <data name="&gt;&gt;_progressBackgroundWorker.Type" xml:space="preserve">
     <value>Axantum.AxCrypt.ProgressBackgroundWorker, Axantum.AxCrypt, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;backgroundMonitor.Name" xml:space="preserve">
-    <value>backgroundMonitor</value>
+  <data name="&gt;&gt;_backgroundMonitor.Name" xml:space="preserve">
+    <value>_backgroundMonitor</value>
   </data>
-  <data name="&gt;&gt;backgroundMonitor.Type" xml:space="preserve">
+  <data name="&gt;&gt;_backgroundMonitor.Type" xml:space="preserve">
     <value>Axantum.AxCrypt.BackgroundMonitor, Axantum.AxCrypt, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;openExplorerHereToolStripMenuItem.Name" xml:space="preserve">
-    <value>openExplorerHereToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;openExplorerHereToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AxCryptMainForm</value>

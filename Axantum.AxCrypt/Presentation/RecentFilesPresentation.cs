@@ -49,6 +49,13 @@ namespace Axantum.AxCrypt.Presentation
     {
         private class RecentFilesByDateComparer : IComparer
         {
+            private SortOrder _sortOrder;
+
+            public RecentFilesByDateComparer(SortOrder sortOrder)
+            {
+                _sortOrder = sortOrder;
+            }
+
             #region IComparer Members
 
             public int Compare(object x, object y)
@@ -57,7 +64,8 @@ namespace Axantum.AxCrypt.Presentation
                 ListViewItem item2 = (ListViewItem)y;
                 DateTime dateTime1 = DateFromSubItem(item1.SubItems["Date"]);
                 DateTime dateTime2 = DateFromSubItem(item2.SubItems["Date"]);
-                return dateTime2.CompareTo(dateTime1);
+
+                return dateTime1.CompareTo(dateTime2) * (_sortOrder == SortOrder.Ascending ? 1 : -1);
             }
 
             #endregion IComparer Members
@@ -72,6 +80,44 @@ namespace Axantum.AxCrypt.Presentation
             }
         }
 
+        private class RecentFilesByDecryptedFileNameComparer : IComparer
+        {
+            private SortOrder _sortOrder;
+
+            public RecentFilesByDecryptedFileNameComparer(SortOrder sortOrder)
+            {
+                _sortOrder = sortOrder;
+            }
+
+            public int Compare(object x, object y)
+            {
+                ListViewItem item1 = (ListViewItem)x;
+                ListViewItem item2 = (ListViewItem)y;
+
+                return StringComparer.OrdinalIgnoreCase.Compare(item1.Text, item2.Text) * (_sortOrder == SortOrder.Ascending ? 1 : -1);
+            }
+        }
+
+        private class RecentFilesByEncryptedPathComparer : IComparer
+        {
+            private SortOrder _sortOrder;
+
+            public RecentFilesByEncryptedPathComparer(SortOrder sortOrder)
+            {
+                _sortOrder = sortOrder;
+            }
+
+            public int Compare(object x, object y)
+            {
+                ListViewItem item1 = (ListViewItem)x;
+                ListViewItem item2 = (ListViewItem)y;
+                string path1 = item1.SubItems["EncryptedPath"].Text;
+                string path2 = item2.SubItems["EncryptedPath"].Text;
+
+                return StringComparer.OrdinalIgnoreCase.Compare(path1, path2) * (_sortOrder == SortOrder.Ascending ? 1 : -1);
+            }
+        }
+
         private IMainView _mainView;
 
         private ListViewActions Actions { get { return new ListViewActions(_mainView.RecentFiles); } }
@@ -82,15 +128,36 @@ namespace Axantum.AxCrypt.Presentation
 
             _mainView.RecentFiles.SmallImageList = CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources();
             _mainView.RecentFiles.LargeImageList = CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources();
-            _mainView.RecentFiles.ListViewItemSorter = new RecentFilesByDateComparer();
 
             RestoreUserPreferences();
         }
 
         private void RestoreUserPreferences()
         {
-            _mainView.RecentFiles.Columns[0].Name = "DecryptedFile";    //MLHIDE
             _mainView.RecentFiles.Columns[0].Width = Settings.Default.RecentFilesDocumentWidth > 0 ? Settings.Default.RecentFilesDocumentWidth : _mainView.RecentFiles.Columns[0].Width;
+            _mainView.RecentFiles.Columns[1].Width = Settings.Default.RecentFilesDateTimeWidth > 0 ? Settings.Default.RecentFilesDateTimeWidth : _mainView.RecentFiles.Columns[1].Width;
+            _mainView.RecentFiles.Columns[2].Width = Settings.Default.RecentFilesEncryptedPathWidth > 0 ? Settings.Default.RecentFilesEncryptedPathWidth : _mainView.RecentFiles.Columns[2].Width;
+
+            _mainView.RecentFiles.Sorting = Settings.Default.RecentFilesSortOrderAscending ? SortOrder.Ascending : SortOrder.Descending;
+            SetSorter(Settings.Default.RecentFilesSortColumn, _mainView.RecentFiles.Sorting);
+        }
+
+        private void SetSorter(int column, SortOrder sortOrder)
+        {
+            switch (column)
+            {
+                case 0:
+                    _mainView.RecentFiles.ListViewItemSorter = new RecentFilesByDecryptedFileNameComparer(sortOrder);
+                    break;
+
+                case 1:
+                    _mainView.RecentFiles.ListViewItemSorter = new RecentFilesByDateComparer(sortOrder);
+                    break;
+
+                case 2:
+                    _mainView.RecentFiles.ListViewItemSorter = new RecentFilesByEncryptedPathComparer(sortOrder);
+                    break;
+            }
         }
 
         public void UpdateActiveFilesViews(ActiveFile activeFile)
@@ -146,6 +213,24 @@ namespace Axantum.AxCrypt.Presentation
             ProcessEncryptedFilesDroppedInRecentList(encryptedFiles);
         }
 
+        internal void ColumnClick(int column)
+        {
+            SetSorterOrOrder(column);
+            Settings.Default.Save();
+        }
+
+        private void SetSorterOrOrder(int column)
+        {
+            if (column == Settings.Default.RecentFilesSortColumn)
+            {
+                _mainView.RecentFiles.Sorting = _mainView.RecentFiles.Sorting == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
+                Settings.Default.RecentFilesSortOrderAscending = _mainView.RecentFiles.Sorting == SortOrder.Ascending;
+            }
+
+            SetSorter(column, _mainView.RecentFiles.Sorting);
+            Settings.Default.RecentFilesSortColumn = column;
+        }
+
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         private void ProcessEncryptedFilesDroppedInRecentList(IEnumerable<IRuntimeFileInfo> encryptedFiles)
         {
@@ -193,11 +278,18 @@ namespace Axantum.AxCrypt.Presentation
 
         private static void ChangeColumnWidth(ListView listView, int columnIndex)
         {
-            string columnName = listView.Columns[columnIndex].Name;
-            switch (columnName)
+            switch (columnIndex)
             {
-                case "DecryptedFile":                                 //MLHIDE
+                case 0:
                     Settings.Default.RecentFilesDocumentWidth = listView.Columns[columnIndex].Width;
+                    break;
+
+                case 1:
+                    Settings.Default.RecentFilesDateTimeWidth = listView.Columns[columnIndex].Width;
+                    break;
+
+                case 2:
+                    Settings.Default.RecentFilesEncryptedPathWidth = listView.Columns[columnIndex].Width;
                     break;
             }
             Settings.Default.Save();
@@ -210,7 +302,7 @@ namespace Axantum.AxCrypt.Presentation
             if (item == null)
             {
                 string text = Path.GetFileName(activeFile.DecryptedFileInfo.FullName);
-                item = _mainView.RecentFiles.Items.Add(text);
+                item = new ListViewItem(text);
                 item.Name = activeFile.EncryptedFileInfo.FullName;
 
                 ListViewItem.ListViewSubItem dateColumn = item.SubItems.Add(String.Empty);
@@ -218,6 +310,8 @@ namespace Axantum.AxCrypt.Presentation
 
                 ListViewItem.ListViewSubItem encryptedPathColumn = item.SubItems.Add(String.Empty);
                 encryptedPathColumn.Name = "EncryptedPath"; //MLHIDE
+
+                _mainView.RecentFiles.Items.Add(item);
             }
 
             UpdateListViewItem(item, activeFile);

@@ -176,13 +176,13 @@ namespace Axantum.AxCrypt.Presentation
 
         private void ShowOrHideWatchedFoldersTabPage()
         {
-            if (Instance.KnownKeys.DefaultEncryptionKey != null && WatchedFoldersTabPage == null)
+            if (Instance.KnownKeys.IsLoggedOn && WatchedFoldersTabPage == null)
             {
                 _mainView.Tabs.TabPages.Add(_watchedFoldersTabPage);
                 _watchedFoldersTabPage = null;
                 return;
             }
-            if (Instance.KnownKeys.DefaultEncryptionKey == null && WatchedFoldersTabPage != null)
+            if (!Instance.KnownKeys.IsLoggedOn && WatchedFoldersTabPage != null)
             {
                 _watchedFoldersTabPage = WatchedFoldersTabPage;
                 _mainView.Tabs.TabPages.Remove(WatchedFoldersTabPage);
