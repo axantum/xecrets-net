@@ -417,7 +417,7 @@ namespace Axantum.AxCrypt.Core.Test
             string nullString = null;
             Assert.Throws<ArgumentNullException>(() => nullString.FolderFromEnvironment());
 
-            string expected = @"C:\Windows\".Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
+            string expected = @"C:\Windows\".Replace('\\', Path.DirectorySeparatorChar);
 
             SetupAssembly.FakeRuntimeEnvironment.EnvironmentVariables.Add("VARIABLE", expected);
 
