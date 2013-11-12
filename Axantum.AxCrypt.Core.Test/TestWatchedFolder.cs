@@ -27,8 +27,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestArgumentNullConstructor()
         {
             string nullString = null;
-            WatchedFolder watchedFolder;
+            WatchedFolder watchedFolder = null;
             Assert.Throws<ArgumentNullException>(() => { watchedFolder = new WatchedFolder(nullString, AesKeyThumbprint.Zero); });
+            if (watchedFolder != null) { }
         }
 
         [Test]
