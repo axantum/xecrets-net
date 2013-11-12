@@ -15,8 +15,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestNullArgument()
         {
             Action nullAction = null;
-            DelayedAction delayedAction;
+            DelayedAction delayedAction = null;
             Assert.Throws<ArgumentNullException>(() => { delayedAction = new DelayedAction(nullAction, new TimeSpan(0, 0, 1), null); }, "The 'action' argument is not allowed to be null");
+            if (delayedAction != null) { }
         }
 
         [Test]
