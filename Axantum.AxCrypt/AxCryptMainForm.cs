@@ -820,6 +820,10 @@ namespace Axantum.AxCrypt
 
         private void RecentFilesListView_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
         {
+            if (_recentFilesPresentation == null)
+            {
+                return;
+            }
             _recentFilesPresentation.ChangeColumnWidth(e.ColumnIndex);
         }
 
