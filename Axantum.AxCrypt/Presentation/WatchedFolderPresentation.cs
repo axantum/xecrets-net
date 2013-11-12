@@ -60,7 +60,18 @@ namespace Axantum.AxCrypt.Presentation
 
         private TabPage WatchedFoldersTabPage
         {
-            get { return _mainView.Tabs.TabPages["watchedFoldersTabPage"]; }
+            get { return _mainView.Tabs.TabPages["_watchedFoldersTabPage"]; }
+            set
+            {
+                if (value != null)
+                {
+                    _mainView.Tabs.TabPages.Add(value);
+                }
+                else
+                {
+                    _mainView.Tabs.TabPages.Remove(WatchedFoldersTabPage);
+                }
+            }
         }
 
         public void UpdateListView()
@@ -172,20 +183,20 @@ namespace Axantum.AxCrypt.Presentation
             return selected;
         }
 
-        private TabPage _watchedFoldersTabPage;
+        private TabPage _hiddenWatchedFoldersTabPage;
 
         private void ShowOrHideWatchedFoldersTabPage()
         {
-            if (Instance.KnownKeys.IsLoggedOn && WatchedFoldersTabPage == null)
+            TabPage current = _mainView.Tabs.TabPages["_watchedFoldersTabPage"];
+            if (Instance.KnownKeys.IsLoggedOn && current == null)
             {
-                _mainView.Tabs.TabPages.Add(_watchedFoldersTabPage);
-                _watchedFoldersTabPage = null;
+                _mainView.Tabs.TabPages.Add(_hiddenWatchedFoldersTabPage);
                 return;
             }
-            if (!Instance.KnownKeys.IsLoggedOn && WatchedFoldersTabPage != null)
+            if (!Instance.KnownKeys.IsLoggedOn && current != null)
             {
-                _watchedFoldersTabPage = WatchedFoldersTabPage;
-                _mainView.Tabs.TabPages.Remove(WatchedFoldersTabPage);
+                _hiddenWatchedFoldersTabPage = current;
+                _mainView.Tabs.TabPages.Remove(_hiddenWatchedFoldersTabPage);
                 return;
             }
         }

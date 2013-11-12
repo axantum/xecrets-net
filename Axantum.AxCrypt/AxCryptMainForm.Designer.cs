@@ -589,7 +589,6 @@
         private BackgroundMonitor _backgroundMonitor;
         private System.Windows.Forms.TabPage _logTabPage;
         private System.Windows.Forms.TextBox _logOutputTextBox;
-        private System.Windows.Forms.TabPage _watchedFoldersTabPage;
         private System.Windows.Forms.ListView _watchedFoldersListView;
         private System.Windows.Forms.TabPage _recentFilesTabPage;
         private System.Windows.Forms.ListView _recentFilesListView;
@@ -607,6 +606,7 @@
         private System.Windows.Forms.ToolStripMenuItem _deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _decryptTemporarilyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _openExplorerHereToolStripMenuItem;
+        private System.Windows.Forms.TabPage _watchedFoldersTabPage;
     }
 }
 
