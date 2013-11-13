@@ -60,7 +60,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             SetupAssembly.AssemblySetup();
 
-            FactoryRegistry.Instance.Singleton<FileSystemState>(new FileSystemState().Load(OS.Current.FileInfo(_fileSystemStateFilePath)));
+            FactoryRegistry.Instance.Singleton<FileSystemState>(FileSystemState.Create(OS.Current.FileInfo(_fileSystemStateFilePath)));
         }
 
         [TearDown]
@@ -179,7 +179,7 @@ namespace Axantum.AxCrypt.Core.Test
             Instance.FileSystemState.Add(activeFile);
             Instance.FileSystemState.Save();
 
-            FactoryRegistry.Instance.Singleton<FileSystemState>(new FileSystemState().Load(OS.Current.FileInfo(_fileSystemStateFilePath)));
+            FactoryRegistry.Instance.Singleton<FileSystemState>(FileSystemState.Create(OS.Current.FileInfo(_fileSystemStateFilePath)));
 
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
@@ -211,7 +211,7 @@ namespace Axantum.AxCrypt.Core.Test
             Instance.FileSystemState.Add(activeFile);
             Instance.FileSystemState.Save();
 
-            FactoryRegistry.Instance.Singleton<FileSystemState>(new FileSystemState().Load(OS.Current.FileInfo(_fileSystemStateFilePath)));
+            FactoryRegistry.Instance.Singleton<FileSystemState>(FileSystemState.Create(OS.Current.FileInfo(_fileSystemStateFilePath)));
 
             IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(_decryptedFile1);
             decryptedFileInfo.SetFileTimes(utcNow.AddSeconds(30), utcNow.AddSeconds(30), utcNow.AddSeconds(30));
@@ -520,7 +520,7 @@ namespace Axantum.AxCrypt.Core.Test
             Instance.FileSystemState.Add(activeFile);
             Instance.FileSystemState.Save();
 
-            FactoryRegistry.Instance.Singleton<FileSystemState>(new FileSystemState().Load(OS.Current.FileInfo(_fileSystemStateFilePath)));
+            FactoryRegistry.Instance.Singleton<FileSystemState>(FileSystemState.Create(OS.Current.FileInfo(_fileSystemStateFilePath)));
 
             AesKey wrongKey = new AesKey();
             bool updateWasMade = Instance.FileSystemState.Actions.UpdateActiveFileWithKeyIfKeyMatchesThumbprint(wrongKey);
@@ -537,7 +537,7 @@ namespace Axantum.AxCrypt.Core.Test
             Instance.FileSystemState.Add(activeFile);
             Instance.FileSystemState.Save();
 
-            FactoryRegistry.Instance.Singleton<FileSystemState>(new FileSystemState().Load(OS.Current.FileInfo(_fileSystemStateFilePath)));
+            FactoryRegistry.Instance.Singleton<FileSystemState>(FileSystemState.Create(OS.Current.FileInfo(_fileSystemStateFilePath)));
 
             bool updateWasMade = Instance.FileSystemState.Actions.UpdateActiveFileWithKeyIfKeyMatchesThumbprint(key);
             Assert.That(updateWasMade, Is.True, "Since there is an ActiveFile with the right thumbprint in the list, an update should be made.");

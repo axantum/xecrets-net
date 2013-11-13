@@ -70,10 +70,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestLoadNew()
         {
-            using (FileSystemState state = new FileSystemState())
+            using (FileSystemState state = FileSystemState.Create(OS.Current.FileInfo(_mystateXmlPath)))
             {
-                state.Load(OS.Current.FileInfo(_mystateXmlPath));
-
                 Assert.That(state, Is.Not.Null, "An instance should always be instantiated.");
                 Assert.That(state.ActiveFiles.Count(), Is.EqualTo(0), "A new state should not have any active files.");
             }
@@ -83,10 +81,8 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestLoadExisting()
         {
             ActiveFile activeFile;
-            using (FileSystemState state = new FileSystemState())
+            using (FileSystemState state = FileSystemState.Create(OS.Current.FileInfo(_mystateXmlPath)))
             {
-                state.Load(OS.Current.FileInfo(_mystateXmlPath));
-
                 Assert.That(state, Is.Not.Null, "An instance should always be instantiated.");
                 Assert.That(state.ActiveFiles.Count(), Is.EqualTo(0), "A new state should not have any active files.");
 
@@ -95,9 +91,8 @@ namespace Axantum.AxCrypt.Core.Test
                 state.Save();
             }
 
-            using (FileSystemState reloadedState = new FileSystemState())
+            using (FileSystemState reloadedState = FileSystemState.Create(OS.Current.FileInfo(_mystateXmlPath)))
             {
-                reloadedState.Load(OS.Current.FileInfo(_mystateXmlPath));
                 Assert.That(reloadedState, Is.Not.Null, "An instance should always be instantiated.");
                 Assert.That(reloadedState.ActiveFiles.Count(), Is.EqualTo(1), "The reloaded state should have one active file.");
                 Assert.That(reloadedState.ActiveFiles.First().ThumbprintMatch(activeFile.Key), Is.True, "The reloaded thumbprint should  match the key.");
@@ -107,9 +102,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestChangedEvent()
         {
-            using (FileSystemState state = new FileSystemState())
+            using (FileSystemState state = FileSystemState.Create(OS.Current.FileInfo(_mystateXmlPath)))
             {
-                state.Load(OS.Current.FileInfo(_mystateXmlPath));
                 bool wasHere;
                 state.Changed += new EventHandler<ActiveFileChangedEventArgs>((object sender, ActiveFileChangedEventArgs e) => { wasHere = true; });
                 ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedAxxPath), OS.Current.FileInfo(_decryptedTxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted, null);
@@ -129,15 +123,13 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestStatusMaskAtLoad()
         {
-            using (FileSystemState state = new FileSystemState())
+            using (FileSystemState state = FileSystemState.Create(OS.Current.FileInfo(_mystateXmlPath)))
             {
-                state.Load(OS.Current.FileInfo(_mystateXmlPath));
                 ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedAxxPath), OS.Current.FileInfo(_decryptedTxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, null);
                 state.Add(activeFile);
                 state.Save();
 
-                FileSystemState reloadedState = new FileSystemState();
-                reloadedState.Load(OS.Current.FileInfo(_mystateXmlPath));
+                FileSystemState reloadedState = FileSystemState.Create(OS.Current.FileInfo(_mystateXmlPath));
                 Assert.That(reloadedState, Is.Not.Null, "An instance should always be instantiated.");
                 Assert.That(reloadedState.ActiveFiles.Count(), Is.EqualTo(1), "The reloaded state should have one active file.");
                 Assert.That(reloadedState.ActiveFiles.First().Status, Is.EqualTo(ActiveFileStatus.AssumedOpenAndDecrypted), "When reloading saved state, some statuses should be masked away.");
@@ -147,9 +139,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFindEncryptedAndDecryptedPath()
         {
-            using (FileSystemState state = new FileSystemState())
+            using (FileSystemState state = FileSystemState.Create(OS.Current.FileInfo(_mystateXmlPath)))
             {
-                state.Load(OS.Current.FileInfo(_mystateXmlPath));
                 ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedAxxPath), OS.Current.FileInfo(_decryptedTxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, null);
                 state.Add(activeFile);
 
@@ -180,9 +171,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFindPath()
         {
-            using (FileSystemState state = new FileSystemState())
+            using (FileSystemState state = FileSystemState.Create(OS.Current.FileInfo(_mystateXmlPath)))
             {
-                state.Load(OS.Current.FileInfo(_mystateXmlPath));
                 ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedAxxPath), OS.Current.FileInfo(_decryptedTxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, null);
                 state.Add(activeFile);
 
@@ -201,9 +191,8 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestForEach()
         {
             bool changedEventWasRaised = false;
-            using (FileSystemState state = new FileSystemState())
+            using (FileSystemState state = FileSystemState.Create(OS.Current.FileInfo(_mystateXmlPath)))
             {
-                state.Load(OS.Current.FileInfo(_mystateXmlPath));
                 state.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
                 {
                     changedEventWasRaised = true;
@@ -253,10 +242,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptedActiveFiles()
         {
-            using (FileSystemState state = new FileSystemState())
+            using (FileSystemState state = FileSystemState.Create(OS.Current.FileInfo(_mystateXmlPath)))
             {
-                state.Load(OS.Current.FileInfo(_mystateXmlPath));
-
                 ActiveFile decryptedFile1 = new ActiveFile(OS.Current.FileInfo(_encryptedAxxPath), OS.Current.FileInfo(_decryptedTxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted, null);
                 state.Add(decryptedFile1);
 
@@ -301,7 +288,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.Throws<ArgumentNullException>(() => { state.FindEncryptedPath(nullPath); });
                 Assert.Throws<ArgumentNullException>(() => { state.FindDecryptedPath(nullPath); });
                 Assert.Throws<ArgumentNullException>(() => { state.ForEach(ChangedEventMode.RaiseAlways, nullAction); });
-                Assert.Throws<ArgumentNullException>(() => { state.Load(nullFileInfo); });
+                Assert.Throws<ArgumentNullException>(() => { FileSystemState.Create(nullFileInfo); });
             }
         }
 
@@ -317,9 +304,8 @@ namespace Axantum.AxCrypt.Core.Test
                 stream.Write(bytes, 0, bytes.Length);
             }
 
-            using (FileSystemState state = new FileSystemState())
+            using (FileSystemState state = FileSystemState.Create(OS.Current.FileInfo(_mystateXmlPath)))
             {
-                Assert.DoesNotThrow(() => state.Load(stateInfo));
                 Assert.That(state.ActiveFileCount, Is.EqualTo(0), "After loading damaged state, the count should be zero.");
 
                 ActiveFile decryptedFile1 = new ActiveFile(OS.Current.FileInfo(_encryptedAxxPath), OS.Current.FileInfo(_decryptedTxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted, null);
@@ -332,11 +318,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestWatchedFolders()
         {
-            using (FileSystemState state = new FileSystemState())
+            using (FileSystemState state = FileSystemState.Create(OS.Current.FileInfo(_mystateXmlPath)))
             {
-                IRuntimeFileInfo stateInfo = OS.Current.FileInfo(_mystateXmlPath);
-                state.Load(stateInfo);
-
                 Assert.That(state.WatchedFolders, Is.Not.Null, "There should be a Watched Folders instance.");
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(0), "There should be no Watched folders.");
 
@@ -349,20 +332,17 @@ namespace Axantum.AxCrypt.Core.Test
                 state.Save();
             }
 
-            using (FileSystemState state = new FileSystemState())
+            using (FileSystemState state = FileSystemState.Create(OS.Current.FileInfo(_mystateXmlPath)))
             {
-                IRuntimeFileInfo stateInfo = OS.Current.FileInfo(_mystateXmlPath);
-                state.Load(stateInfo);
-
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(1), "There should be one Watched Folder.");
 
                 Assert.That(state.WatchedFolders.First(), Is.EqualTo(new WatchedFolder(_rootPath, AesKeyThumbprint.Zero)), "The Watched Folder should be equal to this.");
 
-                state.RemoveWatchedFolder(stateInfo);
+                state.RemoveWatchedFolder(OS.Current.FileInfo(_mystateXmlPath));
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(1), "There should still be one Watched folders.");
 
                 state.RemoveWatchedFolder(OS.Current.FileInfo(_rootPath));
-                Assert.That(state.WatchedFolders.Count(), Is.EqualTo(0), "There should still be no Watched folders now.");
+                Assert.That(state.WatchedFolders.Count(), Is.EqualTo(0), "There should be no Watched folders now.");
             }
         }
     }

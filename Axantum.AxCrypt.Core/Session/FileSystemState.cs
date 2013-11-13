@@ -50,6 +50,12 @@ namespace Axantum.AxCrypt.Core.Session
             Initialize(new StreamingContext());
         }
 
+        private FileSystemState(IRuntimeFileInfo path)
+            : this()
+        {
+            _path = path;
+        }
+
         public static IRuntimeFileInfo DefaultPathInfo
         {
             get
@@ -408,47 +414,27 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private string _path;
+        private IRuntimeFileInfo _path;
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "The actual exception thrown by the de-serialization varies, even by platform, and the idea is to catch those and let the user continue.")]
-        public FileSystemState Load(IRuntimeFileInfo path)
+        public static FileSystemState Create(IRuntimeFileInfo path)
         {
             if (path == null)
             {
                 throw new ArgumentNullException("path");
             }
 
-            if (!path.Exists)
+            if (path.Exists)
             {
-                _path = path.FullName;
-                if (OS.Log.IsInfoEnabled)
-                {
-                    OS.Log.LogInfo("No existing FileSystemState. Save location is '{0}'.".InvariantFormat(_path));
-                }
-                return this;
+                return CreateFileSystemState(path);
             }
 
-            using (FileSystemState fileSystemState = CreateFileSystemState(path))
+            FileSystemState fileSystemState = new FileSystemState(path);
+            if (OS.Log.IsInfoEnabled)
             {
-                _path = path.FullName;
-                foreach (ActiveFile activeFile in fileSystemState.ActiveFiles)
-                {
-                    Add(activeFile);
-                }
-                KeyWrapIterations = fileSystemState.KeyWrapIterations;
-                ThumbprintSalt = fileSystemState.ThumbprintSalt;
-                Identities = new List<PassphraseIdentity>(fileSystemState.Identities);
-                Settings = fileSystemState.Settings;
-                foreach (WatchedFolder watchedFolder in fileSystemState.WatchedFolders)
-                {
-                    AddWatchedFolderInternal(watchedFolder);
-                }
-                if (OS.Log.IsInfoEnabled)
-                {
-                    OS.Log.LogInfo("Loaded FileSystemState from '{0}'.".InvariantFormat(fileSystemState._path));
-                }
+                OS.Log.LogInfo("No existing FileSystemState. Save location is '{0}'.".InvariantFormat(path.FullName));
             }
-            return this;
+            return fileSystemState;
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "If the state can't be read, the software is rendered useless, so it's better to revert to empty here.")]
@@ -468,18 +454,26 @@ namespace Axantum.AxCrypt.Core.Session
                     {
                         OS.Log.LogError("Exception {1} reading {0}. Ignoring and re-initializing state.".InvariantFormat(path.FullName, ex.Message));
                     }
-                    fileSystemState = new FileSystemState();
+                    return new FileSystemState(path);
                 }
+                if (OS.Log.IsInfoEnabled)
+                {
+                    OS.Log.LogInfo("Loaded FileSystemState from '{0}'.".InvariantFormat(path));
+                }
+                fileSystemState._path = path;
                 return fileSystemState;
             }
         }
 
         public void Save()
         {
-            IRuntimeFileInfo saveInfo = OS.Current.FileInfo(_path);
+            if (_path == null)
+            {
+                return;
+            }
             lock (_lock)
             {
-                using (Stream fileSystemStateStream = saveInfo.OpenWrite())
+                using (Stream fileSystemStateStream = _path.OpenWrite())
                 {
                     fileSystemStateStream.SetLength(0);
                     DataContractSerializer serializer = CreateSerializer();

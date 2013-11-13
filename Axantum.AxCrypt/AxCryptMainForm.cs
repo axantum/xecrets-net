@@ -127,9 +127,8 @@ namespace Axantum.AxCrypt
             FactoryRegistry.Instance.Singleton<IBackgroundWork>(this);
             FactoryRegistry.Instance.Singleton<IStatusChecker>(this);
             FactoryRegistry.Instance.Singleton<Background>(new Background());
-            FactoryRegistry.Instance.Singleton<FileSystemState>(new FileSystemState());
             FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(new RuntimeEnvironment());
-            Instance.FileSystemState.Load(FileSystemState.DefaultPathInfo);
+            FactoryRegistry.Instance.Singleton<FileSystemState>(FileSystemState.Create(FileSystemState.DefaultPathInfo));
             SetCulture();
 
             InitializeComponent();

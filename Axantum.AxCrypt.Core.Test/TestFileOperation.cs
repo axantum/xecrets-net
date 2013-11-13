@@ -74,8 +74,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(_uncompressedAxxPath, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.uncompressable_zip));
             FakeRuntimeFileInfo.AddFile(_helloWorldAxxPath, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
 
-            _fileSystemState = new FileSystemState();
-            _fileSystemState.Load(OS.Current.FileInfo(Path.Combine(Path.GetTempPath(), "FileSystemState.xml")));
+            _fileSystemState = FileSystemState.Create(OS.Current.FileInfo(Path.Combine(Path.GetTempPath(), "FileSystemState.xml")));
         }
 
         [TearDown]
