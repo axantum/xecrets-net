@@ -23,12 +23,12 @@ namespace Axantum.AxCrypt.Presentation
         {
             using (DecryptPassphraseDialog passphraseDialog = new DecryptPassphraseDialog())
             {
-                passphraseDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowDecryptPassphrase;
+                passphraseDialog.ShowPassphraseCheckBox.Checked = Instance.FileSystemState.Settings.DisplayDecryptPassphrase;
                 DialogResult dialogResult = passphraseDialog.ShowDialog(_mainView.Control);
-                if (passphraseDialog.ShowPassphraseCheckBox.Checked != Settings.Default.ShowDecryptPassphrase)
+                if (passphraseDialog.ShowPassphraseCheckBox.Checked != Instance.FileSystemState.Settings.DisplayDecryptPassphrase)
                 {
-                    Settings.Default.ShowDecryptPassphrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
-                    Settings.Default.Save();
+                    Instance.FileSystemState.Settings.DisplayDecryptPassphrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
+                    Instance.FileSystemState.Save();
                 }
                 if (dialogResult != DialogResult.OK)
                 {
@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Presentation
         {
             using (LogOnDialog logOnDialog = new LogOnDialog(Instance.FileSystemState, identity))
             {
-                logOnDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowEncryptPasshrase;
+                logOnDialog.ShowPassphraseCheckBox.Checked = Instance.FileSystemState.Settings.DisplayEncryptPassphrase;
                 DialogResult dialogResult = logOnDialog.ShowDialog();
                 if (dialogResult == DialogResult.Retry)
                 {
@@ -66,10 +66,10 @@ namespace Axantum.AxCrypt.Presentation
                     return String.Empty;
                 }
 
-                if (logOnDialog.ShowPassphraseCheckBox.Checked != Settings.Default.ShowEncryptPasshrase)
+                if (logOnDialog.ShowPassphraseCheckBox.Checked != Instance.FileSystemState.Settings.DisplayEncryptPassphrase)
                 {
-                    Settings.Default.ShowEncryptPasshrase = logOnDialog.ShowPassphraseCheckBox.Checked;
-                    Settings.Default.Save();
+                    Instance.FileSystemState.Settings.DisplayEncryptPassphrase = logOnDialog.ShowPassphraseCheckBox.Checked;
+                    Instance.FileSystemState.Save();
                 }
                 return logOnDialog.PassphraseTextBox.Text;
             }
@@ -79,17 +79,17 @@ namespace Axantum.AxCrypt.Presentation
         {
             using (EncryptPassphraseDialog passphraseDialog = new EncryptPassphraseDialog(Instance.FileSystemState))
             {
-                passphraseDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowEncryptPasshrase;
+                passphraseDialog.ShowPassphraseCheckBox.Checked = Instance.FileSystemState.Settings.DisplayEncryptPassphrase;
                 DialogResult dialogResult = passphraseDialog.ShowDialog();
                 if (dialogResult != DialogResult.OK || passphraseDialog.PassphraseTextBox.Text.Length == 0)
                 {
                     return String.Empty;
                 }
 
-                if (passphraseDialog.ShowPassphraseCheckBox.Checked != Settings.Default.ShowEncryptPasshrase)
+                if (passphraseDialog.ShowPassphraseCheckBox.Checked != Instance.FileSystemState.Settings.DisplayEncryptPassphrase)
                 {
-                    Settings.Default.ShowEncryptPasshrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
-                    Settings.Default.Save();
+                    Instance.FileSystemState.Settings.DisplayEncryptPassphrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
+                    Instance.FileSystemState.Save();
                 }
 
                 Passphrase passphrase = new Passphrase(passphraseDialog.PassphraseTextBox.Text);

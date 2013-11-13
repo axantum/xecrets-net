@@ -62,7 +62,7 @@ namespace Axantum.AxCrypt
     /// </summary>
     public partial class AxCryptMainForm : Form, IMainView, IStatusChecker
     {
-        private Uri _updateUrl = Settings.Default.UpdateUrl;
+        private Uri _updateUrl;
 
         private TabPage _hiddenLogTabPage = null;
 
@@ -122,20 +122,31 @@ namespace Axantum.AxCrypt
 
         public AxCryptMainForm()
         {
-            InitializeComponent();
-
             FactoryRegistry.Instance.Singleton<KnownKeys>(new KnownKeys());
             FactoryRegistry.Instance.Singleton<IUIThread>(this);
             FactoryRegistry.Instance.Singleton<IBackgroundWork>(this);
             FactoryRegistry.Instance.Singleton<IStatusChecker>(this);
             FactoryRegistry.Instance.Singleton<Background>(new Background());
-            FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(new RuntimeEnvironment(this));
             FactoryRegistry.Instance.Singleton<FileSystemState>(new FileSystemState());
+            FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(new RuntimeEnvironment(this));
+            Instance.FileSystemState.Load(FileSystemState.DefaultPathInfo);
+            SetCulture();
+
+            InitializeComponent();
 
             _watchedFoldersPresentation = new WatchedFolderPresentation(this);
             _recentFilesPresentation = new RecentFilesPresentation(this);
             _fileOperationsPresentation = new FileOperationsPresentation(this);
             _passphrasePresentation = new PassphrasePresentation(this);
+        }
+
+        private static void SetCulture()
+        {
+            if (String.IsNullOrEmpty(Instance.FileSystemState.Settings.CultureName))
+            {
+                return;
+            }
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Instance.FileSystemState.Settings.CultureName);
         }
 
         private bool _loaded = false;
@@ -160,6 +171,7 @@ namespace Axantum.AxCrypt
             UpdateDebugMode();
 
             _title = "{0} {1}{2}".InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription); //MLHIDE
+            _updateUrl = Instance.FileSystemState.Settings.UpdateUrl;
 
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
 
@@ -168,7 +180,6 @@ namespace Axantum.AxCrypt
             OS.Current.SessionChanged += HandleSessionChangedEvent;
 
             Instance.FileSystemState.Changed += new EventHandler<ActiveFileChangedEventArgs>(HandleFileSystemStateChangedEvent);
-            Instance.FileSystemState.Load(FileSystemState.DefaultPathInfo);
 
             OS.Current.KeyWrapIterations = Instance.FileSystemState.KeyWrapIterations;
             OS.Current.ThumbprintSalt = Instance.FileSystemState.ThumbprintSalt;
@@ -176,7 +187,7 @@ namespace Axantum.AxCrypt
             SetToolButtonsState();
 
             _backgroundMonitor.UpdateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(HandleVersionUpdateEvent);
-            UpdateCheck(Settings.Default.LastUpdateCheckUtc);
+            UpdateCheck(Instance.FileSystemState.Settings.LastUpdateCheckUtc);
 
             RestoreUserPreferences();
             OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.SessionChange));
@@ -186,6 +197,7 @@ namespace Axantum.AxCrypt
 
         private void AxCryptMainForm_Shown(object sender, EventArgs e)
         {
+            Instance.FileSystemState.Actions.CheckActiveFiles(ChangedEventMode.RaiseAlways, new ProgressContext());
             _recentFilesListView.Sort();
         }
 
@@ -193,9 +205,10 @@ namespace Axantum.AxCrypt
         {
             if (WindowState == FormWindowState.Normal)
             {
-                Height = Settings.Default.MainFormHeight > 0 ? Settings.Default.MainFormHeight : Height;
-                Width = Settings.Default.MainFormWidth > 0 ? Settings.Default.MainFormWidth : Width;
-                Location = Settings.Default.MainFormLocation != Point.Empty ? Settings.Default.MainFormLocation : Location;
+                Height = Instance.FileSystemState.Settings.MainWindowHeight > 0 ? Instance.FileSystemState.Settings.MainWindowHeight : Height;
+                Width = Instance.FileSystemState.Settings.MainWindowWidth > 0 ? Instance.FileSystemState.Settings.MainWindowWidth : Width;
+                Point settingsLocation = new Point(Instance.FileSystemState.Settings.MainWindowLocationX, Instance.FileSystemState.Settings.MainWindowLocationY);
+                Location = settingsLocation != Point.Empty ? settingsLocation : Location;
             }
         }
 
@@ -251,7 +264,7 @@ namespace Axantum.AxCrypt
 
         private void UpdateCheck(DateTime lastCheckUtc)
         {
-            _backgroundMonitor.UpdateCheck.CheckInBackground(lastCheckUtc, Settings.Default.NewestKnownVersion, Settings.Default.AxCrypt2VersionCheckUrl, Settings.Default.UpdateUrl);
+            _backgroundMonitor.UpdateCheck.CheckInBackground(lastCheckUtc, Instance.FileSystemState.Settings.NewestKnownVersion, Instance.FileSystemState.Settings.AxCrypt2VersionCheckUrl, Instance.FileSystemState.Settings.UpdateUrl);
         }
 
         private void UpdateVersionStatus(VersionUpdateStatus status, Version version)
@@ -285,9 +298,9 @@ namespace Axantum.AxCrypt
 
         private void HandleVersionUpdateEvent(object sender, VersionEventArgs e)
         {
-            Settings.Default.LastUpdateCheckUtc = OS.Current.UtcNow;
-            Settings.Default.NewestKnownVersion = e.Version.ToString();
-            Settings.Default.Save();
+            Instance.FileSystemState.Settings.LastUpdateCheckUtc = OS.Current.UtcNow;
+            Instance.FileSystemState.Settings.NewestKnownVersion = e.Version.ToString();
+            Instance.FileSystemState.Save();
             _updateUrl = e.UpdateWebpageUrl;
             Instance.Background.RunOnUIThread(() =>
             {
@@ -465,7 +478,7 @@ namespace Axantum.AxCrypt
 
         private void RecentFilesListView_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
         {
-            if (_recentFilesPresentation == null)
+            if (!_loaded)
             {
                 return;
             }
@@ -658,9 +671,9 @@ namespace Axantum.AxCrypt
         {
             if (FormWindowState.Normal == WindowState)
             {
-                Settings.Default.MainFormHeight = Height;
-                Settings.Default.MainFormWidth = Width;
-                Settings.Default.Save();
+                Instance.FileSystemState.Settings.MainWindowHeight = Height;
+                Instance.FileSystemState.Settings.MainWindowWidth = Width;
+                Instance.FileSystemState.Save();
             }
         }
 
@@ -672,8 +685,9 @@ namespace Axantum.AxCrypt
             }
             if (FormWindowState.Normal == WindowState)
             {
-                Settings.Default.MainFormLocation = Location;
-                Settings.Default.Save();
+                Instance.FileSystemState.Settings.MainWindowLocationX = Location.X;
+                Instance.FileSystemState.Settings.MainWindowLocationY = Location.Y;
+                Instance.FileSystemState.Save();
             }
         }
 
@@ -695,11 +709,11 @@ namespace Axantum.AxCrypt
 
         private static void SetLanguage(string cultureName)
         {
-            Settings.Default.Language = cultureName;
-            Settings.Default.Save();
+            Instance.FileSystemState.Settings.CultureName = cultureName;
+            Instance.FileSystemState.Save();
             if (OS.Log.IsInfoEnabled)
             {
-                OS.Log.LogInfo("Set new UI language culture to '{0}'.".InvariantFormat(Settings.Default.Language)); //MLHIDE
+                OS.Log.LogInfo("Set new UI language culture to '{0}'.".InvariantFormat(Instance.FileSystemState.Settings.CultureName)); //MLHIDE
             }
             Resources.LanguageChangeRestartPrompt.ShowWarning();
         }
@@ -730,23 +744,23 @@ namespace Axantum.AxCrypt
 
         private void UpdateToolStripButton_Click(object sender, EventArgs e)
         {
-            Settings.Default.LastUpdateCheckUtc = OS.Current.UtcNow;
-            Settings.Default.Save();
+            Instance.FileSystemState.Settings.LastUpdateCheckUtc = OS.Current.UtcNow;
+            Instance.FileSystemState.Save();
             Process.Start(_updateUrl.ToString());
         }
 
         private void debugOptionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Settings.Default.Debug = !Settings.Default.Debug;
-            Settings.Default.Save();
+            Instance.FileSystemState.Settings.DebugMode = !Instance.FileSystemState.Settings.DebugMode;
+            Instance.FileSystemState.Save();
             UpdateDebugMode();
         }
 
         private void UpdateDebugMode()
         {
-            _debugOptionsToolStripMenuItem.Checked = Settings.Default.Debug;
-            _debugToolStripMenuItem.Visible = Settings.Default.Debug;
-            if (Settings.Default.Debug)
+            _debugOptionsToolStripMenuItem.Checked = Instance.FileSystemState.Settings.DebugMode;
+            _debugToolStripMenuItem.Visible = Instance.FileSystemState.Settings.DebugMode;
+            if (Instance.FileSystemState.Settings.DebugMode)
             {
                 OS.Log.SetLevel(LogLevel.Debug);
                 if (_hiddenLogTabPage != null)
@@ -771,13 +785,13 @@ namespace Axantum.AxCrypt
         {
             using (DebugOptionsDialog dialog = new DebugOptionsDialog())
             {
-                dialog.UpdateCheckServiceUrl.Text = Settings.Default.AxCrypt2VersionCheckUrl.ToString();
+                dialog.UpdateCheckServiceUrl.Text = Instance.FileSystemState.Settings.AxCrypt2VersionCheckUrl.ToString();
                 DialogResult result = dialog.ShowDialog();
                 if (result != DialogResult.OK)
                 {
                     return;
                 }
-                Settings.Default.AxCrypt2VersionCheckUrl = new Uri(dialog.UpdateCheckServiceUrl.Text);
+                Instance.FileSystemState.Settings.AxCrypt2VersionCheckUrl = new Uri(dialog.UpdateCheckServiceUrl.Text);
             }
         }
 
@@ -796,12 +810,12 @@ namespace Axantum.AxCrypt
 
         private void HelpToolStripButton_Click(object sender, EventArgs e)
         {
-            Process.Start(Settings.Default.AxCrypt2HelpUrl.ToString());
+            Process.Start(Instance.FileSystemState.Settings.AxCrypt2HelpUrl.ToString());
         }
 
         private void ViewHelpMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start(Settings.Default.AxCrypt2HelpUrl.ToString());
+            Process.Start(Instance.FileSystemState.Settings.AxCrypt2HelpUrl.ToString());
         }
 
         private void LogOnToolStripButton_Click(object sender, EventArgs e)

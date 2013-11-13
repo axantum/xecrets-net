@@ -25,12 +25,14 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Properties;
 using System;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
-using Axantum.AxCrypt.Core.UI;
-using Axantum.AxCrypt.Properties;
 
 namespace Axantum.AxCrypt
 {
@@ -44,17 +46,7 @@ namespace Axantum.AxCrypt
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            SetCulture();
             Application.Run(new AxCryptMainForm());
-        }
-
-        private static void SetCulture()
-        {
-            if (String.IsNullOrEmpty(Settings.Default.Language))
-            {
-                return;
-            }
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Settings.Default.Language);
         }
     }
 }

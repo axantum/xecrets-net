@@ -134,12 +134,12 @@ namespace Axantum.AxCrypt.Presentation
 
         private void RestoreUserPreferences()
         {
-            _mainView.RecentFiles.Columns[0].Width = Settings.Default.RecentFilesDocumentWidth > 0 ? Settings.Default.RecentFilesDocumentWidth : _mainView.RecentFiles.Columns[0].Width;
-            _mainView.RecentFiles.Columns[1].Width = Settings.Default.RecentFilesDateTimeWidth > 0 ? Settings.Default.RecentFilesDateTimeWidth : _mainView.RecentFiles.Columns[1].Width;
-            _mainView.RecentFiles.Columns[2].Width = Settings.Default.RecentFilesEncryptedPathWidth > 0 ? Settings.Default.RecentFilesEncryptedPathWidth : _mainView.RecentFiles.Columns[2].Width;
+            _mainView.RecentFiles.Columns[0].Width = Instance.FileSystemState.Settings.RecentFilesDocumentWidth > 0 ? Instance.FileSystemState.Settings.RecentFilesDocumentWidth : _mainView.RecentFiles.Columns[0].Width;
+            _mainView.RecentFiles.Columns[1].Width = Instance.FileSystemState.Settings.RecentFilesDateTimeWidth > 0 ? Instance.FileSystemState.Settings.RecentFilesDateTimeWidth : _mainView.RecentFiles.Columns[1].Width;
+            _mainView.RecentFiles.Columns[2].Width = Instance.FileSystemState.Settings.RecentFilesEncryptedPathWidth > 0 ? Instance.FileSystemState.Settings.RecentFilesEncryptedPathWidth : _mainView.RecentFiles.Columns[2].Width;
 
-            _mainView.RecentFiles.Sorting = Settings.Default.RecentFilesSortOrderAscending ? SortOrder.Ascending : SortOrder.Descending;
-            SetSorter(Settings.Default.RecentFilesSortColumn, _mainView.RecentFiles.Sorting);
+            _mainView.RecentFiles.Sorting = Instance.FileSystemState.Settings.RecentFilesAscending ? SortOrder.Ascending : SortOrder.Descending;
+            SetSorter(Instance.FileSystemState.Settings.RecentFilesSortColumn, _mainView.RecentFiles.Sorting);
         }
 
         private void SetSorter(int column, SortOrder sortOrder)
@@ -216,19 +216,19 @@ namespace Axantum.AxCrypt.Presentation
         internal void ColumnClick(int column)
         {
             SetSorterOrOrder(column);
-            Settings.Default.Save();
+            Instance.FileSystemState.Save();
         }
 
         private void SetSorterOrOrder(int column)
         {
-            if (column == Settings.Default.RecentFilesSortColumn)
+            if (column == Instance.FileSystemState.Settings.RecentFilesSortColumn)
             {
                 _mainView.RecentFiles.Sorting = _mainView.RecentFiles.Sorting == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
-                Settings.Default.RecentFilesSortOrderAscending = _mainView.RecentFiles.Sorting == SortOrder.Ascending;
+                Instance.FileSystemState.Settings.RecentFilesAscending = _mainView.RecentFiles.Sorting == SortOrder.Ascending;
             }
 
             SetSorter(column, _mainView.RecentFiles.Sorting);
-            Settings.Default.RecentFilesSortColumn = column;
+            Instance.FileSystemState.Settings.RecentFilesSortColumn = column;
         }
 
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
@@ -281,18 +281,18 @@ namespace Axantum.AxCrypt.Presentation
             switch (columnIndex)
             {
                 case 0:
-                    Settings.Default.RecentFilesDocumentWidth = listView.Columns[columnIndex].Width;
+                    Instance.FileSystemState.Settings.RecentFilesDocumentWidth = listView.Columns[columnIndex].Width;
                     break;
 
                 case 1:
-                    Settings.Default.RecentFilesDateTimeWidth = listView.Columns[columnIndex].Width;
+                    Instance.FileSystemState.Settings.RecentFilesDateTimeWidth = listView.Columns[columnIndex].Width;
                     break;
 
                 case 2:
-                    Settings.Default.RecentFilesEncryptedPathWidth = listView.Columns[columnIndex].Width;
+                    Instance.FileSystemState.Settings.RecentFilesEncryptedPathWidth = listView.Columns[columnIndex].Width;
                     break;
             }
-            Settings.Default.Save();
+            Instance.FileSystemState.Save();
         }
 
         private void UpdateRecentFilesListView(ActiveFile activeFile)
@@ -315,7 +315,7 @@ namespace Axantum.AxCrypt.Presentation
             }
 
             UpdateListViewItem(item, activeFile);
-            while (_mainView.RecentFiles.Items.Count > Settings.Default.MaxNumberRecentFiles)
+            while (_mainView.RecentFiles.Items.Count > Instance.FileSystemState.Settings.RecentFilesMaxNumber)
             {
                 _mainView.RecentFiles.Items.RemoveAt(_mainView.RecentFiles.Items.Count - 1);
             }

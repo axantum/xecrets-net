@@ -63,6 +63,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             _lock = new object();
             Identities = new List<PassphraseIdentity>();
+            Settings = new UserSettings();
         }
 
         public FileSystemStateActions Actions
@@ -338,6 +339,13 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
+        [DataMember(Name = "UserSettings")]
+        public UserSettings Settings
+        {
+            get;
+            set;
+        }
+
         private void SetRangeInternal(IEnumerable<ActiveFile> activeFiles, ActiveFileStatus mask)
         {
             _activeFilesByDecryptedPath = new Dictionary<string, ActiveFile>();
@@ -430,6 +438,7 @@ namespace Axantum.AxCrypt.Core.Session
                 KeyWrapIterations = fileSystemState.KeyWrapIterations;
                 ThumbprintSalt = fileSystemState.ThumbprintSalt;
                 Identities = new List<PassphraseIdentity>(fileSystemState.Identities);
+                Settings = fileSystemState.Settings;
                 foreach (WatchedFolder watchedFolder in fileSystemState.WatchedFolders)
                 {
                     AddWatchedFolderInternal(watchedFolder);
