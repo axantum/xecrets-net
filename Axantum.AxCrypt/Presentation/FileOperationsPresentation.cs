@@ -106,6 +106,60 @@ namespace Axantum.AxCrypt.Presentation
             Instance.Background.ProcessFiles(fileNames, WipeFile);
         }
 
+        public void EncryptFileNonInteractive(string fullName, IThreadWorker worker, ProgressContext progress)
+        {
+            FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
+
+            operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
+            {
+                e.SaveFileFullName = OS.Current.FileInfo(e.SaveFileFullName).FullName.CreateUniqueFile();
+            };
+
+            operationsController.Completed += (object sender, FileOperationEventArgs e) =>
+            {
+                if (FactoryRegistry.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
+                {
+                    IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
+                    IRuntimeFileInfo decryptedInfo = OS.Current.FileInfo(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
+                    ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key, ActiveFileStatus.NotDecrypted, null);
+                    Instance.FileSystemState.Add(activeFile);
+                    Instance.FileSystemState.Save();
+                }
+            };
+
+            operationsController.EncryptFile(fullName, worker);
+        }
+
+        public void VerifyAndAddActive(string fullName, IThreadWorker worker, ProgressContext progress)
+        {
+            FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
+
+            operationsController.QueryDecryptionPassphrase += HandleQueryDecryptionPassphraseEvent;
+
+            operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
+            {
+                Instance.KnownKeys.Add(e.Key);
+            };
+
+            operationsController.Completed += (object sender, FileOperationEventArgs e) =>
+            {
+                if (e.Skip)
+                {
+                    return;
+                }
+                if (FactoryRegistry.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
+                {
+                    IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.OpenFileFullName);
+                    IRuntimeFileInfo decryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
+                    ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key, ActiveFileStatus.NotDecrypted, null);
+                    Instance.FileSystemState.Add(activeFile);
+                    Instance.FileSystemState.Save();
+                }
+            };
+
+            operationsController.VerifyEncrypted(fullName, worker);
+        }
+
         private void EncryptFile(string file, IThreadWorker worker, ProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);

@@ -318,6 +318,11 @@ namespace Axantum.AxCrypt.Core.UI
             DoFile(fullName, worker, DecryptAndLaunchPreparation, DecryptAndLaunchFileOperation);
         }
 
+        public void VerifyEncrypted(string fullName, IThreadWorker worker)
+        {
+            DoFile(fullName, worker, DecryptAndLaunchPreparation, GetDocumentInfo);
+        }
+
         private bool DecryptAndLaunchPreparation(string fullName)
         {
             if (!OpenAxCryptDocument(fullName, _eventArgs))
@@ -325,6 +330,28 @@ namespace Axantum.AxCrypt.Core.UI
                 return false;
             }
 
+            return true;
+        }
+
+        private bool GetDocumentInfo()
+        {
+            try
+            {
+                if (!_eventArgs.Skip)
+                {
+                    _eventArgs.SaveFileFullName = _eventArgs.AxCryptDocument.DocumentHeaders.FileName;
+                }
+            }
+            finally
+            {
+                if (_eventArgs.AxCryptDocument != null)
+                {
+                    _eventArgs.AxCryptDocument.Dispose();
+                    _eventArgs.AxCryptDocument = null;
+                }
+            }
+
+            _eventArgs.Status = FileOperationStatus.Success;
             return true;
         }
 
@@ -413,6 +440,7 @@ namespace Axantum.AxCrypt.Core.UI
                 if (_fileSystemState.Actions.TryFindDecryptionKey(source.FullName, out key))
                 {
                     e.AxCryptDocument = AxCryptFile.Document(source, key, new ProgressContext());
+                    e.Key = key;
                 }
 
                 Passphrase passphrase;
@@ -423,6 +451,11 @@ namespace Axantum.AxCrypt.Core.UI
                     {
                         e.Status = FileOperationStatus.Canceled;
                         return false;
+                    }
+                    if (e.Skip)
+                    {
+                        e.Status = FileOperationStatus.Success;
+                        return true;
                     }
                     passphrase = new Passphrase(e.Passphrase);
                     e.AxCryptDocument = AxCryptFile.Document(source, passphrase.DerivedPassphrase, new ProgressContext());

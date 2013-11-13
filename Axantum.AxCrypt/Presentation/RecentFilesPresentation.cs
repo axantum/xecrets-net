@@ -120,11 +120,14 @@ namespace Axantum.AxCrypt.Presentation
 
         private IMainView _mainView;
 
+        private FileOperationsPresentation _fileOperationsPresentation;
+
         private ListViewActions Actions { get { return new ListViewActions(_mainView.RecentFiles); } }
 
         public RecentFilesPresentation(IMainView mainView)
         {
             _mainView = mainView;
+            _fileOperationsPresentation = new FileOperationsPresentation(mainView);
 
             _mainView.RecentFiles.SmallImageList = CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources();
             _mainView.RecentFiles.LargeImageList = CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources();
@@ -234,35 +237,12 @@ namespace Axantum.AxCrypt.Presentation
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         private void ProcessEncryptedFilesDroppedInRecentList(IEnumerable<IRuntimeFileInfo> encryptedFiles)
         {
+            Instance.Background.ProcessFiles(encryptedFiles.Select(fileInfo => fileInfo.FullName), _fileOperationsPresentation.VerifyAndAddActive);
         }
 
         private void ProcessEncryptableFilesDroppedInRecentList(IEnumerable<IRuntimeFileInfo> encryptableFiles)
         {
-            Instance.Background.ProcessFiles(encryptableFiles.Select(fileInfo => fileInfo.FullName), EncryptFile);
-        }
-
-        private void EncryptFile(string fullName, IThreadWorker worker, ProgressContext progress)
-        {
-            FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
-
-            operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
-            {
-                e.SaveFileFullName = OS.Current.FileInfo(e.SaveFileFullName).FullName.CreateUniqueFile();
-            };
-
-            operationsController.Completed += (object sender, FileOperationEventArgs e) =>
-            {
-                if (FactoryRegistry.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
-                {
-                    IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
-                    IRuntimeFileInfo decryptedInfo = OS.Current.FileInfo(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
-                    ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key, ActiveFileStatus.NotDecrypted, null);
-                    Instance.FileSystemState.Add(activeFile);
-                    Instance.FileSystemState.Save();
-                }
-            };
-
-            operationsController.EncryptFile(fullName, worker);
+            Instance.Background.ProcessFiles(encryptableFiles.Select(fileInfo => fileInfo.FullName), _fileOperationsPresentation.EncryptFileNonInteractive);
         }
 
         private static IEnumerable<IRuntimeFileInfo> GetDroppedFiles(IDataObject dataObject)
