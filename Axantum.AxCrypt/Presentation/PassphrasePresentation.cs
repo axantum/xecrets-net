@@ -80,7 +80,7 @@ namespace Axantum.AxCrypt.Presentation
             using (EncryptPassphraseDialog passphraseDialog = new EncryptPassphraseDialog(Instance.FileSystemState))
             {
                 passphraseDialog.ShowPassphraseCheckBox.Checked = Instance.FileSystemState.Settings.DisplayEncryptPassphrase;
-                DialogResult dialogResult = passphraseDialog.ShowDialog();
+                DialogResult dialogResult = passphraseDialog.ShowDialog(_mainView.Control);
                 if (dialogResult != DialogResult.OK || passphraseDialog.PassphraseTextBox.Text.Length == 0)
                 {
                     return String.Empty;

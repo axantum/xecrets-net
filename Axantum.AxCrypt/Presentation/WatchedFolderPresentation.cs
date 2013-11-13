@@ -58,22 +58,6 @@ namespace Axantum.AxCrypt.Presentation
             ShowOrHideWatchedFoldersTabPage();
         }
 
-        private TabPage WatchedFoldersTabPage
-        {
-            get { return _mainView.Tabs.TabPages["_watchedFoldersTabPage"]; }
-            set
-            {
-                if (value != null)
-                {
-                    _mainView.Tabs.TabPages.Add(value);
-                }
-                else
-                {
-                    _mainView.Tabs.TabPages.Remove(WatchedFoldersTabPage);
-                }
-            }
-        }
-
         public void UpdateListView()
         {
             AddRemoveWatchedFolders();
@@ -94,7 +78,7 @@ namespace Axantum.AxCrypt.Presentation
             {
                 return;
             }
-			e.Effect = (DragDropEffects.Link | DragDropEffects.Copy) & e.AllowedEffect;
+            e.Effect = (DragDropEffects.Link | DragDropEffects.Copy) & e.AllowedEffect;
         }
 
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
