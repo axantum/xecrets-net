@@ -198,7 +198,7 @@ namespace Axantum.AxCrypt.Presentation
             {
                 return;
             }
-            e.Effect = DragDropEffects.Link;
+            e.Effect = (DragDropEffects.Link | DragDropEffects.Copy) & e.AllowedEffect;
         }
 
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
