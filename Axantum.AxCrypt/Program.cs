@@ -26,8 +26,10 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Mono;
 using Axantum.AxCrypt.Properties;
 using System;
 using System.Globalization;
@@ -46,7 +48,21 @@ namespace Axantum.AxCrypt
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(new RuntimeEnvironment());
+            FactoryRegistry.Instance.Singleton<FileSystemState>(FileSystemState.Create(FileSystemState.DefaultPathInfo));
+            SetCulture();
+
             Application.Run(new AxCryptMainForm());
+        }
+
+        private static void SetCulture()
+        {
+            if (String.IsNullOrEmpty(Instance.FileSystemState.Settings.CultureName))
+            {
+                return;
+            }
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Instance.FileSystemState.Settings.CultureName);
         }
     }
 }

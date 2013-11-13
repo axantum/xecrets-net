@@ -122,30 +122,7 @@ namespace Axantum.AxCrypt
 
         public AxCryptMainForm()
         {
-            FactoryRegistry.Instance.Singleton<KnownKeys>(new KnownKeys());
-            FactoryRegistry.Instance.Singleton<IUIThread>(this);
-            FactoryRegistry.Instance.Singleton<IBackgroundWork>(this);
-            FactoryRegistry.Instance.Singleton<IStatusChecker>(this);
-            FactoryRegistry.Instance.Singleton<Background>(new Background());
-            FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(new RuntimeEnvironment());
-            FactoryRegistry.Instance.Singleton<FileSystemState>(FileSystemState.Create(FileSystemState.DefaultPathInfo));
-            SetCulture();
-
             InitializeComponent();
-
-            _watchedFoldersPresentation = new WatchedFolderPresentation(this);
-            _recentFilesPresentation = new RecentFilesPresentation(this);
-            _fileOperationsPresentation = new FileOperationsPresentation(this);
-            _passphrasePresentation = new PassphrasePresentation(this);
-        }
-
-        private static void SetCulture()
-        {
-            if (String.IsNullOrEmpty(Instance.FileSystemState.Settings.CultureName))
-            {
-                return;
-            }
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Instance.FileSystemState.Settings.CultureName);
         }
 
         private bool _loaded = false;
@@ -166,6 +143,17 @@ namespace Axantum.AxCrypt
             }
 
             Trace.Listeners.Add(new DelegateTraceListener("AxCryptMainFormListener", FormatTraceMessage)); //MLHIDE
+
+            FactoryRegistry.Instance.Singleton<KnownKeys>(new KnownKeys());
+            FactoryRegistry.Instance.Singleton<IUIThread>(this);
+            FactoryRegistry.Instance.Singleton<IBackgroundWork>(this);
+            FactoryRegistry.Instance.Singleton<IStatusChecker>(this);
+            FactoryRegistry.Instance.Singleton<Background>(new Background());
+
+            _watchedFoldersPresentation = new WatchedFolderPresentation(this);
+            _recentFilesPresentation = new RecentFilesPresentation(this);
+            _fileOperationsPresentation = new FileOperationsPresentation(this);
+            _passphrasePresentation = new PassphrasePresentation(this);
 
             UpdateDebugMode();
 
