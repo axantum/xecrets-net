@@ -25,18 +25,18 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.IO;
-using System.Security.Cryptography;
-using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -233,7 +233,7 @@ namespace Axantum.AxCrypt.Core.Test
                     Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                     using (MemoryStream plaintextStream = new MemoryStream())
                     {
-                        Assert.Throws<CryptographicException>(() => { document.DecryptTo(plaintextStream, new ProgressContext()); });
+                        Assert.Throws<Exception>(() => { document.DecryptTo(plaintextStream, new ProgressContext()); });
                     }
                 }
             }

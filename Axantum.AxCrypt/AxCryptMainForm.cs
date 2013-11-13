@@ -74,6 +74,10 @@ namespace Axantum.AxCrypt
 
         private RecentFilesPresentation _recentFilesPresentation;
 
+        private FileOperationsPresentation _fileOperationsPresentation;
+
+        private PassphrasePresentation _passphrasePresentation;
+
         public static MessageBoxOptions MessageBoxOptions { get; private set; }
 
         public ListView WatchedFolders
@@ -94,6 +98,11 @@ namespace Axantum.AxCrypt
         public IContainer Components
         {
             get { return components; }
+        }
+
+        public Control Control
+        {
+            get { return this; }
         }
 
         public bool IsOnUIThread
@@ -125,6 +134,8 @@ namespace Axantum.AxCrypt
 
             _watchedFoldersPresentation = new WatchedFolderPresentation(this);
             _recentFilesPresentation = new RecentFilesPresentation(this);
+            _fileOperationsPresentation = new FileOperationsPresentation(this);
+            _passphrasePresentation = new PassphrasePresentation(this);
         }
 
         private bool _loaded = false;
@@ -322,345 +333,7 @@ namespace Axantum.AxCrypt
 
         private void ToolStripButtonEncrypt_Click(object sender, EventArgs e)
         {
-            EncryptFilesViaDialog();
-        }
-
-        private void EncryptFilesViaDialog()
-        {
-            using (OpenFileDialog ofd = new OpenFileDialog())
-            {
-                ofd.Title = Resources.EncryptFileOpenDialogTitle;
-                ofd.Multiselect = true;
-                ofd.CheckFileExists = true;
-                ofd.CheckPathExists = true;
-                DialogResult result = ofd.ShowDialog();
-                if (result != DialogResult.OK)
-                {
-                    return;
-                }
-                Instance.Background.ProcessFiles(ofd.FileNames, EncryptFile);
-            }
-        }
-
-        private void EncryptFile(string file, IThreadWorker worker, ProgressContext progress)
-        {
-            FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
-
-            operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
-                {
-                    using (SaveFileDialog sfd = new SaveFileDialog())
-                    {
-                        sfd.Title = Resources.EncryptFileSaveAsDialogTitle;
-                        sfd.AddExtension = true;
-                        sfd.ValidateNames = true;
-                        sfd.CheckPathExists = true;
-                        sfd.DefaultExt = OS.Current.AxCryptExtension;
-                        sfd.FileName = e.SaveFileFullName;
-                        sfd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat(OS.Current.AxCryptExtension);
-                        sfd.InitialDirectory = Path.GetDirectoryName(e.SaveFileFullName);
-                        sfd.ValidateNames = true;
-                        DialogResult saveAsResult = sfd.ShowDialog();
-                        if (saveAsResult != DialogResult.OK)
-                        {
-                            e.Cancel = true;
-                            return;
-                        }
-                        e.SaveFileFullName = sfd.FileName;
-                    }
-                };
-
-            operationsController.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
-                {
-                    string passphrase = AskForLogOnPassphrase(PassphraseIdentity.Empty);
-                    if (String.IsNullOrEmpty(passphrase))
-                    {
-                        e.Cancel = true;
-                        return;
-                    }
-                    e.Passphrase = passphrase;
-                };
-
-            operationsController.Completed += (object sender, FileOperationEventArgs e) =>
-                {
-                    if (e.Status == FileOperationStatus.FileAlreadyEncrypted)
-                    {
-                        e.Status = FileOperationStatus.Success;
-                        return;
-                    }
-                    if (CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
-                    {
-                        IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
-                        IRuntimeFileInfo decryptedInfo = OS.Current.FileInfo(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
-                        ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key, ActiveFileStatus.NotDecrypted, null);
-                        Instance.FileSystemState.Add(activeFile);
-                        Instance.FileSystemState.Save();
-                    }
-                };
-
-            operationsController.EncryptFile(file, worker);
-        }
-
-        private string AskForDecryptPassphrase()
-        {
-            using (DecryptPassphraseDialog passphraseDialog = new DecryptPassphraseDialog())
-            {
-                passphraseDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowDecryptPassphrase;
-                DialogResult dialogResult = passphraseDialog.ShowDialog(this);
-                if (passphraseDialog.ShowPassphraseCheckBox.Checked != Settings.Default.ShowDecryptPassphrase)
-                {
-                    Settings.Default.ShowDecryptPassphrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
-                    Settings.Default.Save();
-                }
-                if (dialogResult != DialogResult.OK)
-                {
-                    return null;
-                }
-                return passphraseDialog.Passphrase.Text;
-            }
-        }
-
-        private static string AskForLogOnPassphrase(PassphraseIdentity identity)
-        {
-            string passphrase = AskForLogOnOrEncryptionPassphrase(identity);
-            if (passphrase.Length == 0)
-            {
-                return String.Empty;
-            }
-
-            Instance.KnownKeys.DefaultEncryptionKey = Passphrase.Derive(passphrase);
-            return passphrase;
-        }
-
-        private static string AskForLogOnOrEncryptionPassphrase(PassphraseIdentity identity)
-        {
-            using (LogOnDialog logOnDialog = new LogOnDialog(Instance.FileSystemState, identity))
-            {
-                logOnDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowEncryptPasshrase;
-                DialogResult dialogResult = logOnDialog.ShowDialog();
-                if (dialogResult == DialogResult.Retry)
-                {
-                    return AskForNewEncryptionPassphrase();
-                }
-
-                if (dialogResult != DialogResult.OK || logOnDialog.PassphraseTextBox.Text.Length == 0)
-                {
-                    return String.Empty;
-                }
-
-                if (logOnDialog.ShowPassphraseCheckBox.Checked != Settings.Default.ShowEncryptPasshrase)
-                {
-                    Settings.Default.ShowEncryptPasshrase = logOnDialog.ShowPassphraseCheckBox.Checked;
-                    Settings.Default.Save();
-                }
-                return logOnDialog.PassphraseTextBox.Text;
-            }
-        }
-
-        private static string AskForNewEncryptionPassphrase()
-        {
-            using (EncryptPassphraseDialog passphraseDialog = new EncryptPassphraseDialog(Instance.FileSystemState))
-            {
-                passphraseDialog.ShowPassphraseCheckBox.Checked = Settings.Default.ShowEncryptPasshrase;
-                DialogResult dialogResult = passphraseDialog.ShowDialog();
-                if (dialogResult != DialogResult.OK || passphraseDialog.PassphraseTextBox.Text.Length == 0)
-                {
-                    return String.Empty;
-                }
-
-                if (passphraseDialog.ShowPassphraseCheckBox.Checked != Settings.Default.ShowEncryptPasshrase)
-                {
-                    Settings.Default.ShowEncryptPasshrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
-                    Settings.Default.Save();
-                }
-
-                Passphrase passphrase = new Passphrase(passphraseDialog.PassphraseTextBox.Text);
-                PassphraseIdentity identity = Instance.FileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == passphrase.DerivedPassphrase.Thumbprint);
-                if (identity != null)
-                {
-                    return passphraseDialog.PassphraseTextBox.Text;
-                }
-
-                identity = new PassphraseIdentity(passphraseDialog.NameTextBox.Text, passphrase.DerivedPassphrase);
-                Instance.FileSystemState.Identities.Add(identity);
-                Instance.FileSystemState.Save();
-
-                return passphraseDialog.PassphraseTextBox.Text;
-            }
-        }
-
-        private void DecryptFilesViaDialog()
-        {
-            string[] fileNames;
-            using (OpenFileDialog ofd = new OpenFileDialog())
-            {
-                ofd.Title = Resources.DecryptFileOpenDialogTitle;
-                ofd.Multiselect = true;
-                ofd.CheckFileExists = true;
-                ofd.CheckPathExists = true;
-                ofd.DefaultExt = OS.Current.AxCryptExtension;
-                ofd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(OS.Current.AxCryptExtension)); //MLHIDE
-                ofd.Multiselect = true;
-                DialogResult result = ofd.ShowDialog();
-                if (result != DialogResult.OK)
-                {
-                    return;
-                }
-                fileNames = ofd.FileNames;
-            }
-            Instance.Background.ProcessFiles(fileNames, DecryptFile);
-        }
-
-        private void DecryptFile(string file, IThreadWorker worker, ProgressContext progress)
-        {
-            FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
-
-            operationsController.QueryDecryptionPassphrase += HandleQueryDecryptionPassphraseEvent;
-
-            operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
-                {
-                    string extension = Path.GetExtension(e.SaveFileFullName);
-                    using (SaveFileDialog sfd = new SaveFileDialog())
-                    {
-                        sfd.AddExtension = !String.IsNullOrEmpty(extension);
-                        sfd.CheckPathExists = true;
-                        sfd.DefaultExt = extension;
-                        sfd.Filter = Resources.DecryptedSaveAsFileDialogFilterPattern.InvariantFormat(extension);
-                        sfd.InitialDirectory = Path.GetDirectoryName(file);
-                        sfd.FileName = Path.GetFileName(e.SaveFileFullName);
-                        sfd.OverwritePrompt = true;
-                        sfd.RestoreDirectory = true;
-                        sfd.Title = Resources.DecryptedSaveAsFileDialogTitle;
-                        DialogResult result = sfd.ShowDialog();
-                        if (result != DialogResult.OK)
-                        {
-                            e.Cancel = true;
-                            return;
-                        }
-                        e.SaveFileFullName = sfd.FileName;
-                    }
-                    return;
-                };
-
-            operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
-                {
-                    Instance.KnownKeys.Add(e.Key);
-                };
-
-            operationsController.Completed += (object sender, FileOperationEventArgs e) =>
-                {
-                    if (CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
-                    {
-                        Instance.FileSystemState.Actions.RemoveRecentFiles(new string[] { e.OpenFileFullName }, progress);
-                    }
-                };
-
-            operationsController.DecryptFile(file, worker);
-        }
-
-        private void WipeFilesViaDialog()
-        {
-            string[] fileNames;
-            using (OpenFileDialog ofd = new OpenFileDialog())
-            {
-                ofd.Title = Resources.WipeFileSelectFileDialogTitle;
-                ofd.Multiselect = true;
-                ofd.CheckFileExists = true;
-                ofd.CheckPathExists = true;
-                DialogResult result = ofd.ShowDialog();
-                if (result != DialogResult.OK)
-                {
-                    return;
-                }
-                fileNames = ofd.FileNames;
-            }
-            Instance.Background.ProcessFiles(fileNames, WipeFile);
-        }
-
-        private void WipeFile(string file, IThreadWorker worker, ProgressContext progress)
-        {
-            FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
-
-            operationsController.WipeQueryConfirmation += (object sender, FileOperationEventArgs e) =>
-            {
-                using (ConfirmWipeDialog cwd = new ConfirmWipeDialog())
-                {
-                    cwd.FileNameLabel.Text = Path.GetFileName(file);
-                    DialogResult confirmResult = cwd.ShowDialog();
-                    e.ConfirmAll = cwd.ConfirmAllCheckBox.Checked;
-                    if (confirmResult == DialogResult.Yes)
-                    {
-                        e.Skip = false;
-                    }
-                    if (confirmResult == DialogResult.No)
-                    {
-                        e.Skip = true;
-                    }
-                    if (confirmResult == DialogResult.Cancel)
-                    {
-                        e.Cancel = true;
-                    }
-                }
-            };
-
-            operationsController.Completed += (object sender, FileOperationEventArgs e) =>
-            {
-                if (CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
-                {
-                    if (!e.Skip)
-                    {
-                        Instance.FileSystemState.Actions.RemoveRecentFiles(new string[] { e.SaveFileFullName }, progress);
-                    }
-                }
-            };
-
-            operationsController.WipeFile(file, worker);
-        }
-
-        private void OpenFilesViaDialog(IRuntimeFileInfo fileInfo)
-        {
-            using (OpenFileDialog ofd = new OpenFileDialog())
-            {
-                if (fileInfo != null && fileInfo.IsFolder)
-                {
-                    ofd.InitialDirectory = fileInfo.FullName;
-                }
-                ofd.Title = Resources.OpenEncryptedFileOpenDialogTitle;
-                ofd.Multiselect = false;
-                ofd.CheckFileExists = true;
-                ofd.CheckPathExists = true;
-                ofd.DefaultExt = OS.Current.AxCryptExtension;
-                ofd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(OS.Current.AxCryptExtension)); //MLHIDE
-                DialogResult result = ofd.ShowDialog();
-                if (result != DialogResult.OK)
-                {
-                    return;
-                }
-
-                Instance.Background.ProcessFiles(ofd.FileNames, OpenEncrypted);
-            }
-        }
-
-        private void OpenEncrypted(string file, IThreadWorker worker, ProgressContext progress)
-        {
-            FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
-
-            operationsController.QueryDecryptionPassphrase += HandleQueryDecryptionPassphraseEvent;
-
-            operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
-                {
-                    Instance.KnownKeys.Add(e.Key);
-                };
-
-            operationsController.Completed += (object sender, FileOperationEventArgs e) =>
-                {
-                    if (e.Status == FileOperationStatus.Canceled)
-                    {
-                        return;
-                    }
-                    CheckStatusAndShowMessage(e.Status, e.OpenFileFullName);
-                };
-
-            operationsController.DecryptAndLaunch(file, worker);
+            _fileOperationsPresentation.EncryptFilesViaDialog();
         }
 
         public bool CheckStatusAndShowMessage(FileOperationStatus status, string displayContext)
@@ -718,35 +391,7 @@ namespace Axantum.AxCrypt
 
         private void OpenEncryptedToolStripButton_Click(object sender, EventArgs e)
         {
-            OpenFilesViaDialog(null);
-        }
-
-        private void HandleQueryDecryptionPassphraseEvent(object sender, FileOperationEventArgs e)
-        {
-            string passphraseText = AskForLogOnOrDecryptPassphrase(e.OpenFileFullName);
-            if (String.IsNullOrEmpty(passphraseText))
-            {
-                e.Cancel = true;
-                return;
-            }
-            e.Passphrase = passphraseText;
-        }
-
-        private string AskForLogOnOrDecryptPassphrase(string fullName)
-        {
-            ActiveFile openFile = Instance.FileSystemState.FindEncryptedPath(fullName);
-            if (openFile == null || openFile.Thumbprint == null)
-            {
-                return AskForDecryptPassphrase();
-            }
-
-            PassphraseIdentity identity = Instance.FileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == openFile.Thumbprint);
-            if (identity == null)
-            {
-                return AskForDecryptPassphrase();
-            }
-
-            return AskForLogOnPassphrase(identity);
+            _fileOperationsPresentation.OpenFilesViaDialog(null);
         }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -805,17 +450,17 @@ namespace Axantum.AxCrypt
 
         private void DecryptToolStripButton_Click(object sender, EventArgs e)
         {
-            DecryptFilesViaDialog();
+            _fileOperationsPresentation.DecryptFilesViaDialog();
         }
 
         private void OpenEncryptedToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFilesViaDialog(null);
+            _fileOperationsPresentation.OpenFilesViaDialog(null);
         }
 
         private void RecentFilesListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Instance.Background.ProcessFiles(new string[] { _recentFilesPresentation.SelectedEncryptedPath }, OpenEncrypted);
+            Instance.Background.ProcessFiles(new string[] { _recentFilesPresentation.SelectedEncryptedPath }, _fileOperationsPresentation.OpenEncrypted);
         }
 
         private void RecentFilesListView_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
@@ -888,7 +533,7 @@ namespace Axantum.AxCrypt
         {
             IEnumerable<string> encryptedPaths = SelectedRecentFilesItems();
 
-            Instance.Background.ProcessFiles(encryptedPaths, DecryptFile);
+            Instance.Background.ProcessFiles(encryptedPaths, _fileOperationsPresentation.DecryptFile);
         }
 
         private IEnumerable<string> SelectedRecentFilesItems()
@@ -939,7 +584,7 @@ namespace Axantum.AxCrypt
 
         private void EnterPassphraseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string passphraseText = AskForDecryptPassphrase();
+            string passphraseText = _passphrasePresentation.AskForDecryptPassphrase();
             if (passphraseText == null)
             {
                 return;
@@ -973,17 +618,17 @@ namespace Axantum.AxCrypt
 
         private void EncryptToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            EncryptFilesViaDialog();
+            _fileOperationsPresentation.EncryptFilesViaDialog();
         }
 
         private void DecryptToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DecryptFilesViaDialog();
+            _fileOperationsPresentation.DecryptFilesViaDialog();
         }
 
         private void WipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            WipeFilesViaDialog();
+            _fileOperationsPresentation.WipeFilesViaDialog();
         }
 
         private void AxCryptMainForm_Resize(object sender, EventArgs e)
@@ -1173,7 +818,7 @@ namespace Axantum.AxCrypt
             }
             else
             {
-                string passphrase = AskForNewEncryptionPassphrase();
+                string passphrase = _passphrasePresentation.AskForNewEncryptionPassphrase();
                 if (String.IsNullOrEmpty(passphrase))
                 {
                     return;
@@ -1184,9 +829,9 @@ namespace Axantum.AxCrypt
             SetToolButtonsState();
         }
 
-        private static void TryLogOnToExistingIdentity()
+        private void TryLogOnToExistingIdentity()
         {
-            string passphrase = AskForLogOnPassphrase(PassphraseIdentity.Empty);
+            string passphrase = _passphrasePresentation.AskForLogOnPassphrase(PassphraseIdentity.Empty);
             if (String.IsNullOrEmpty(passphrase))
             {
                 return;
@@ -1212,7 +857,7 @@ namespace Axantum.AxCrypt
 
         private void WatchedFoldersListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            OpenFilesViaDialog(OS.Current.FileInfo(WatchedFolders.SelectedItems[0].Text));
+            _fileOperationsPresentation.OpenFilesViaDialog(OS.Current.FileInfo(WatchedFolders.SelectedItems[0].Text));
         }
 
         private void WatchedFoldersListView_DeleteToolStripMenuItem_Click(object sender, EventArgs e)

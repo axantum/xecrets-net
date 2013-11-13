@@ -18,5 +18,7 @@ namespace Axantum.AxCrypt.Presentation
         TabControl Tabs { get; }
 
         IContainer Components { get; }
+
+        Control Control { get; }
     }
 }
