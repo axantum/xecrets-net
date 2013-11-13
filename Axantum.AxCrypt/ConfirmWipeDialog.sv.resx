@@ -121,18 +121,21 @@
     <value>&amp;Avbryt allt</value>
   </data>
   <data name="ConfirmAllCheckBox.Text" xml:space="preserve">
-    <value>Gör detta för &amp;alla återstående filer?</value>
+    <value>Gör detta för &amp;alla återstående dokument?</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>AxCrypt Säker Radering</value>
   </data>
   <data name="noButton.Text" xml:space="preserve">
-    <value>Nej</value>
+    <value>&amp;Nej</value>
   </data>
   <data name="promptLabel.Text" xml:space="preserve">
-    <value>Är du säker att du vill radera filen? Detta går inte att ångra.</value>
+    <value>Är du säker att du vill radera dokumentet? Detta går inte att ångra.</value>
   </data>
   <data name="yesButton.Text" xml:space="preserve">
-    <value>Ja</value>
+    <value>&amp;Ja</value>
+  </data>
+  <data name="FileNameLabel.Text" xml:space="preserve">
+    <value>Ett Dokument.ext</value>
   </data>
 </root>

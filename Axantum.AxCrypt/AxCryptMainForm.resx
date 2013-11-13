@@ -169,10 +169,10 @@
     <value>36, 47</value>
   </data>
   <data name="_openEncryptedToolStripButton.Text" xml:space="preserve">
-    <value>Open Encrypted</value>
+    <value>Open Encrypted Document</value>
   </data>
   <data name="_openEncryptedToolStripButton.ToolTipText" xml:space="preserve">
-    <value>Click and select or drag and drop files to decrypt temporarily and open in the associated application</value>
+    <value>Click to open encrypted documents</value>
   </data>
   <data name="_encryptToolStripButton.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -185,7 +185,7 @@
     <value>36, 47</value>
   </data>
   <data name="_encryptToolStripButton.ToolTipText" xml:space="preserve">
-    <value>Click to select files to encrypt</value>
+    <value>Encrypt documents</value>
   </data>
   <data name="_decryptToolStripButton.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -225,7 +225,7 @@
     <value>Decrypt</value>
   </data>
   <data name="_decryptToolStripButton.ToolTipText" xml:space="preserve">
-    <value>Click and select or drag and drop files to decrypt permanently</value>
+    <value>Click and select or drag and drop documents to decrypt permanently</value>
   </data>
   <data name="_toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>6, 50</value>
@@ -246,8 +246,7 @@
     <value>toolStripButton1</value>
   </data>
   <data name="_closeAndRemoveOpenFilesToolStripButton.ToolTipText" xml:space="preserve">
-    <value>Click to clean and remove any open decrypted files, but 
-ensure they are not in use.</value>
+    <value>Click to clean and remove any open decrypted files, but ensure they are not in use.</value>
   </data>
   <data name="_toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
     <value>6, 50</value>
@@ -575,7 +574,7 @@ ensure they are not in use.</value>
     <value>279, 22</value>
   </data>
   <data name="_removeRecentFileToolStripMenuItem.Text" xml:space="preserve">
-    <value>Leave Encrypted But &amp;Remove From List</value>
+    <value>&amp;Remove from list without decrypting document</value>
   </data>
   <data name="_decryptAndRemoveFromListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>279, 22</value>
@@ -740,7 +739,7 @@ ensure they are not in use.</value>
     <value>1</value>
   </data>
   <data name="_watchedFolderColumnHeader.Text" xml:space="preserve">
-    <value>Name</value>
+    <value>Folder</value>
   </data>
   <data name="_watchedFolderColumnHeader.Width" type="System.Int32, mscorlib">
     <value>368</value>

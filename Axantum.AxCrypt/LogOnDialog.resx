@@ -132,7 +132,7 @@
     <value>10</value>
   </data>
   <data name="newButton.Text" xml:space="preserve">
-    <value>New</value>
+    <value>&amp;New</value>
   </data>
   <data name="&gt;&gt;newButton.Name" xml:space="preserve">
     <value>newButton</value>
@@ -689,7 +689,7 @@
 </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Log On to AxCrypt</value>
+    <value>Log On</value>
   </data>
   <data name="&gt;&gt;errorProvider1.Name" xml:space="preserve">
     <value>errorProvider1</value>

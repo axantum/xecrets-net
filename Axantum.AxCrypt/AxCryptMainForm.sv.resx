@@ -141,10 +141,10 @@
 </value>
   </data>
   <data name="_openEncryptedToolStripButton.Text" xml:space="preserve">
-    <value>Öppna krypterat dokument</value>
+    <value>Öppna Krypterat Dokument</value>
   </data>
   <data name="_openEncryptedToolStripButton.ToolTipText" xml:space="preserve">
-    <value>Klicka eller dra och släpp filer här för att dekrypera och öppna i sin applikation</value>
+    <value>Klicka för att öppna krypterade dokument</value>
   </data>
   <data name="encryptToolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -195,7 +195,7 @@
     <value>Magenta</value>
   </data>
   <data name="_encryptToolStripButton.ToolTipText" xml:space="preserve">
-    <value>Klicka eller dra och släpp filer här för att kryptera valda filer</value>
+    <value>Kryptera dokument</value>
   </data>
   <data name="decryptToolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -374,7 +374,7 @@
     <value>161, 22</value>
   </data>
   <data name="_closeOpenFilesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Stäng</value>
+    <value>&amp;Rensa och Stäng Öppna</value>
   </data>
   <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
     <value>158, 6</value>
@@ -408,7 +408,7 @@
     <value>161, 22</value>
   </data>
   <data name="_optionsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Alternativ</value>
+    <value>&amp;Alternativ</value>
   </data>
   <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 22</value>
@@ -432,7 +432,7 @@
     <value>162, 22</value>
   </data>
   <data name="_setUpdateCheckUrlToolStripMenuItem.Text" xml:space="preserve">
-    <value>Alternativ</value>
+    <value>&amp;Alternativ</value>
   </data>
   <data name="viewHelpMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 22</value>
@@ -1414,7 +1414,7 @@
     <value>112, 22</value>
   </data>
   <data name="_removeRecentFileToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ta Bort</value>
+    <value>Ta bort från listan utan att dekryptera dokumentet</value>
   </data>
   <data name="recentFilesContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>113, 26</value>
@@ -2194,5 +2194,20 @@
         AACTtauBlKyj9pawp/iavLKRAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+B8AAPAPAADgBwAA4AMAAMAD
         AADAAwAAgAEAAIABAACAAQAAgAEAAIABAACAAQAAgAEAAIABAADwDwAA/D8AAA==
 </value>
+  </data>
+  <data name="_decryptTemporarilyToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dekryptera &amp;Tillfälligt</value>
+  </data>
+  <data name="_deleteToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dekryptera &amp;Permanent</value>
+  </data>
+  <data name="_openExplorerHereToolStripMenuItem.Text" xml:space="preserve">
+    <value>Öppna &amp;Utforskaren Här</value>
+  </data>
+  <data name="_watchedFolderColumnHeader.Text" xml:space="preserve">
+    <value>Mapp</value>
+  </data>
+  <data name="_wipeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Säker Radering</value>
   </data>
 </root>

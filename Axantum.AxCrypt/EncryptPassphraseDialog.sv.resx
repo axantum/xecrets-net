@@ -589,4 +589,7 @@
   <data name="panel1.IconPadding" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Logga på</value>
+  </data>
 </root>

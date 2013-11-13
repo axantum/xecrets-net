@@ -98,7 +98,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open Source File Encryption for Windows
+        ///   Looks up a localized string similar to Open Source Document Encryption for Windows
         ///
         ///Includes software from http://www.bouncycastle.org/ ..
         /// </summary>
@@ -109,7 +109,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt File Encryption.
+        ///   Looks up a localized string similar to AxCrypt Document Encryption.
         /// </summary>
         internal static string AxCryptFileEncryption {
             get {
@@ -222,7 +222,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File exists, choose a new name to save as.
+        ///   Looks up a localized string similar to Document exists, choose a new name to save as.
         /// </summary>
         internal static string DecryptedSaveAsFileDialogTitle {
             get {
@@ -250,7 +250,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select files to decrypt.
+        ///   Looks up a localized string similar to Select document to decrypt.
         /// </summary>
         internal static string DecryptFileOpenDialogTitle {
             get {
@@ -269,7 +269,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are Logged On to AxCrypt. Click to Log Out..
+        ///   Looks up a localized string similar to You are Logged On. Click to Log Out..
         /// </summary>
         internal static string DefaultEncryptionKeyIsIsetToolTip {
             get {
@@ -278,7 +278,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Files (*{0})|*{0}|All files (*.*)|*.*.
+        ///   Looks up a localized string similar to AxCrypt Dokument (*{0})|*{0}|All files (*.*)|*.*.
         /// </summary>
         internal static string EncryptedFileDialogFilterPattern {
             get {
@@ -287,7 +287,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Encrypted File.
+        ///   Looks up a localized string similar to Encrypted Document.
         /// </summary>
         internal static string EncryptedSourceColumnHeader {
             get {
@@ -296,7 +296,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select files to encrypt.
+        ///   Looks up a localized string similar to Select documents to encrypt.
         /// </summary>
         internal static string EncryptFileOpenDialogTitle {
             get {
@@ -305,7 +305,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File Exists, Save As.
+        ///   Looks up a localized string similar to Document Exists, Save As.
         /// </summary>
         internal static string EncryptFileSaveAsDialogTitle {
             get {
@@ -382,7 +382,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file &apos;{0}&apos; is already encrypted..
+        ///   Looks up a localized string similar to The document &apos;{0}&apos; is already encrypted..
         /// </summary>
         internal static string FileAlreadyEncrypted {
             get {
@@ -391,7 +391,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File &apos;{0}&apos; already exists..
+        ///   Looks up a localized string similar to Document &apos;{0}&apos; already exists..
         /// </summary>
         internal static string FileAlreadyExists {
             get {
@@ -400,7 +400,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File &apos;{0}&apos; does not exist..
+        ///   Looks up a localized string similar to Document &apos;{0}&apos; does not exist..
         /// </summary>
         internal static string FileDoesNotExist {
             get {
@@ -448,7 +448,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Inactive file.
+        ///   Looks up a localized string similar to Inactive document.
         /// </summary>
         internal static string InactiveFileToolTip {
             get {
@@ -520,7 +520,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This Log On Identity already exists.
+        ///   Looks up a localized string similar to This AxCrypt Identity already exists.
         /// </summary>
         internal static string LogOnExists {
             get {
@@ -538,7 +538,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are Logged Out of AxCrypt. Click to Log On..
+        ///   Looks up a localized string similar to You are Logged Out. Click to Log On..
         /// </summary>
         internal static string NoDefaultEncryptionKeySetToolTip {
             get {
@@ -575,7 +575,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select file to decrypt and open.
+        ///   Looks up a localized string similar to Select document to decrypt and open.
         /// </summary>
         internal static string OpenEncryptedFileOpenDialogTitle {
             get {
@@ -677,7 +677,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select files to securely delete.
+        ///   Looks up a localized string similar to Select documents to securely delete.
         /// </summary>
         internal static string WipeFileSelectFileDialogTitle {
             get {

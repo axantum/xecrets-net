@@ -809,7 +809,7 @@
 </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>AxCrypt Log On</value>
+    <value>Log On</value>
   </data>
   <data name="&gt;&gt;errorProvider1.Name" xml:space="preserve">
     <value>errorProvider1</value>

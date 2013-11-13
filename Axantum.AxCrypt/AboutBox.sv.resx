@@ -123,4 +123,10 @@
   <data name="ProductNameText.Text" xml:space="preserve">
     <value>AxCrypt Dokumentkryptering</value>
   </data>
+  <data name="Description.Text" xml:space="preserve">
+    <value>Beskrivning</value>
+  </data>
+  <data name="VersionText.Text" xml:space="preserve">
+    <value>Version</value>
+  </data>
 </root>

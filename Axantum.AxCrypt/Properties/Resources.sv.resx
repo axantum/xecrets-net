@@ -142,7 +142,7 @@
     <value>Välj dokument att dekryptera</value>
   </data>
   <data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
-    <value>AxCrypt Krypterade (*{0})|*{0}|Alla dokument (*.*)|*.*</value>
+    <value>AxCrypt Dokument (*{0})|*{0}|Alla dokument (*.*)|*.*</value>
   </data>
   <data name="EncryptedSourceColumnHeader" xml:space="preserve">
     <value>Krypterat Dokument</value>
@@ -193,7 +193,7 @@
     <value>Rensar Aktiva Dokument</value>
   </data>
   <data name="TrayBalloonTooltip" xml:space="preserve">
-    <value>Dubbelklicka ikonen för att öppa AxCrypt</value>
+    <value>Dubbelklicka för att öppa AxCrypt</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
   <data name="UnrecognizedError" xml:space="preserve">
@@ -201,5 +201,61 @@
   </data>
   <data name="UpdatingStatus" xml:space="preserve">
     <value>Uppdaterar Status</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>Om {0}</value>
+  </data>
+  <data name="ActiveFileKnownKeyToolTip" xml:space="preserve">
+    <value>Öppna Med Dubbelklick</value>
+  </data>
+  <data name="ActiveFileToolTip" xml:space="preserve">
+    <value>Dubbelklick öppnar en dialog där du kan ange lösenord</value>
+  </data>
+  <data name="AxCryptAboutDescription" xml:space="preserve">
+    <value>Öppen och Fri Dokumentkrypering för Windows
+
+Innehåller programvara från http://www.bouncycastle.org/ .</value>
+  </data>
+  <data name="DecryptedFileToolTip" xml:space="preserve">
+    <value>Dokumentet troligen öppnat i sin applikation. Stäng applikationen eller använda Rensa-knappen.</value>
+  </data>
+  <data name="DecryptedUnknownKeyFileToolTip" xml:space="preserve">
+    <value>Okänt lösenord. Dubbelklicka eller Högerklicka för alternativ.</value>
+  </data>
+  <data name="DefaultEncryptionKeyIsIsetToolTip" xml:space="preserve">
+    <value>Du är påloggad. Klicka för att logga ut.</value>
+  </data>
+  <data name="EnterPassphraseForIdentityPrompt" xml:space="preserve">
+    <value>Ange lösenord för '{0}'</value>
+  </data>
+  <data name="FileAlreadyEncrypted" xml:space="preserve">
+    <value>Dokumentet '{0}' är redan krypterat.</value>
+  </data>
+  <data name="InactiveFileToolTip" xml:space="preserve">
+    <value>Inaktivt dokument</value>
+  </data>
+  <data name="Invalid_URL" xml:space="preserve">
+    <value>Felaktig sökväg.</value>
+  </data>
+  <data name="InvalidPath" xml:space="preserve">
+    <value>Sökvägen '{0}' är ogiltig.</value>
+  </data>
+  <data name="LoggedOffStatusText" xml:space="preserve">
+    <value>Avloggad</value>
+  </data>
+  <data name="LoggedOnStatusText" xml:space="preserve">
+    <value>'{0}' är påloggad</value>
+  </data>
+  <data name="LogOnExists" xml:space="preserve">
+    <value>Denna AxCrypt-Identitet finns redan.</value>
+  </data>
+  <data name="NoDefaultEncryptionKeySetToolTip" xml:space="preserve">
+    <value>Du är utloggad. Klicka för att logga på.</value>
+  </data>
+  <data name="UnkownLogOn" xml:space="preserve">
+    <value>Okänt lösenord. Klicka 'Ny' för att skapa en ny identitet.</value>
+  </data>
+  <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
+    <value>Välj dokument för säker radering</value>
   </data>
 </root>
