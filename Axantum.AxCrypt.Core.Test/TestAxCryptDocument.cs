@@ -233,7 +233,7 @@ namespace Axantum.AxCrypt.Core.Test
                     Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                     using (MemoryStream plaintextStream = new MemoryStream())
                     {
-                        Assert.Throws<Exception>(() => { document.DecryptTo(plaintextStream, new ProgressContext()); });
+                        Assert.That(() => { document.DecryptTo(plaintextStream, new ProgressContext()); }, Throws.InstanceOf<Exception>());
                     }
                 }
             }
