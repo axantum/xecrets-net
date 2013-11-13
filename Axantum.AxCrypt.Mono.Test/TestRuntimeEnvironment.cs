@@ -52,7 +52,7 @@ namespace Axantum.AxCrypt.Mono.Test
         [TearDown]
         public static void Teardown()
         {
-            FactoryRegistry.Instance.Singleton((IRuntimeEnvironment)new RuntimeEnvironment(null));
+            FactoryRegistry.Instance.Singleton((IRuntimeEnvironment)new RuntimeEnvironment());
         }
 
         [Test]

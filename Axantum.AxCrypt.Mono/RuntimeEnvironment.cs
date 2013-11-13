@@ -47,29 +47,24 @@ namespace Axantum.AxCrypt.Mono
 
         private DelayedAction _delayedWorkFolderStateChanged;
 
+        public RuntimeEnvironment()
+            : this(_defaultWorkFolderStateMinimumIdle)
+        {
+        }
+
         public RuntimeEnvironment(TimeSpan workFolderStateMinimumIdle)
-            : this(null, workFolderStateMinimumIdle)
+            : this(".axx", workFolderStateMinimumIdle)
         {
         }
 
-        public RuntimeEnvironment(ISynchronizeInvoke synchronizingObject)
-            : this(synchronizingObject, _defaultWorkFolderStateMinimumIdle)
-        {
-        }
-
-        public RuntimeEnvironment(ISynchronizeInvoke synchronizingObject, TimeSpan workFolderStateMinimumIdle)
-            : this(".axx", synchronizingObject, workFolderStateMinimumIdle)
-        {
-        }
-
-        public RuntimeEnvironment(string extension, ISynchronizeInvoke synchronizingObject, TimeSpan workFolderStateMinimumIdle)
+        public RuntimeEnvironment(string extension, TimeSpan workFolderStateMinimumIdle)
         {
             AxCryptExtension = extension;
 
             _workFolderWatcher = CreateFileWatcher(WorkFolder.FullName);
             _workFolderWatcher.FileChanged += HandleWorkFolderFileChangedEvent;
 
-            _delayedWorkFolderStateChanged = new DelayedAction(OnWorkFolderStateChanged, workFolderStateMinimumIdle, synchronizingObject);
+            _delayedWorkFolderStateChanged = new DelayedAction(OnWorkFolderStateChanged, workFolderStateMinimumIdle);
         }
 
         private void HandleWorkFolderFileChangedEvent(object sender, FileWatcherEventArgs e)

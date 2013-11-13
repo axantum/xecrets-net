@@ -22,8 +22,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// </summary>
         /// <param name="action">The action to perform after the specified idle time.</param>
         /// <param name="minimumIdleTime">The minium time of idle before actually performing the action.</param>
-        /// <param name="synchronizingObject">An optional object, such as a Form, indicating which thread to invoke the action on.</param>
-        public DelayedAction(Action action, TimeSpan minimumIdleTime, ISynchronizeInvoke synchronizingObject)
+        public DelayedAction(Action action, TimeSpan minimumIdleTime)
         {
             if (action == null)
             {
@@ -33,7 +32,6 @@ namespace Axantum.AxCrypt.Core.Runtime
             _action = action;
             _timer = new Timer();
             _timer.AutoReset = false;
-            _timer.SynchronizingObject = synchronizingObject;
             _timer.Interval = minimumIdleTime.TotalMilliseconds;
             _timer.Elapsed += HandleTimerElapsedEvent;
         }

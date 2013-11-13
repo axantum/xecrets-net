@@ -128,7 +128,7 @@ namespace Axantum.AxCrypt
             FactoryRegistry.Instance.Singleton<IStatusChecker>(this);
             FactoryRegistry.Instance.Singleton<Background>(new Background());
             FactoryRegistry.Instance.Singleton<FileSystemState>(new FileSystemState());
-            FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(new RuntimeEnvironment(this));
+            FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(new RuntimeEnvironment());
             Instance.FileSystemState.Load(FileSystemState.DefaultPathInfo);
             SetCulture();
 
@@ -190,9 +190,9 @@ namespace Axantum.AxCrypt
             UpdateCheck(Instance.FileSystemState.Settings.LastUpdateCheckUtc);
 
             RestoreUserPreferences();
-            OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.SessionChange));
 
             _loaded = true;
+            OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.SessionChange));
         }
 
         private void AxCryptMainForm_Shown(object sender, EventArgs e)
@@ -415,6 +415,15 @@ namespace Axantum.AxCrypt
         private bool _handleSessionChangedInProgress = false;
 
         private void HandleSessionChangedEvent(object sender, SessionEventArgs e)
+        {
+            if (!_loaded)
+            {
+                return;
+            }
+            Instance.UIThread.RunOnUIThread(() => SessionChangedInternal(e));
+        }
+
+        private void SessionChangedInternal(SessionEventArgs e)
         {
             if (OS.Log.IsInfoEnabled)
             {

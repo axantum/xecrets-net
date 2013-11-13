@@ -16,7 +16,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Action nullAction = null;
             DelayedAction delayedAction = null;
-            Assert.Throws<ArgumentNullException>(() => { delayedAction = new DelayedAction(nullAction, new TimeSpan(0, 0, 1), null); }, "The 'action' argument is not allowed to be null");
+            Assert.Throws<ArgumentNullException>(() => { delayedAction = new DelayedAction(nullAction, new TimeSpan(0, 0, 1)); }, "The 'action' argument is not allowed to be null");
             if (delayedAction != null) { }
         }
 
@@ -24,7 +24,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestShortDelayButNoStart()
         {
             bool wasHere = false;
-            using (DelayedAction delayedAction = new DelayedAction(() => { wasHere = true; }, new TimeSpan(0, 0, 0, 0, 1), null))
+            using (DelayedAction delayedAction = new DelayedAction(() => { wasHere = true; }, new TimeSpan(0, 0, 0, 0, 1)))
             {
                 Thread.Sleep(50);
                 Assert.That(wasHere, Is.False, "The event should not be triggered until started.");
@@ -35,7 +35,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestShortDelayAndImmediateStart()
         {
             bool wasHere = false;
-            using (DelayedAction delayedAction = new DelayedAction(() => { wasHere = true; }, new TimeSpan(0, 0, 0, 0, 1), null))
+            using (DelayedAction delayedAction = new DelayedAction(() => { wasHere = true; }, new TimeSpan(0, 0, 0, 0, 1)))
             {
                 delayedAction.RestartIdleTimer();
                 Thread.Sleep(50);
@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestManyRestartsButOnlyOneEvent()
         {
             int eventCount = 0;
-            using (DelayedAction delayedAction = new DelayedAction(() => { ++eventCount; }, new TimeSpan(0, 0, 0, 0, 5), null))
+            using (DelayedAction delayedAction = new DelayedAction(() => { ++eventCount; }, new TimeSpan(0, 0, 0, 0, 5)))
             {
                 for (int i = 0; i < 10; ++i)
                 {
@@ -67,7 +67,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestEventAfterDispose()
         {
             bool wasHere = false;
-            using (DelayedAction delayedAction = new DelayedAction(() => { wasHere = true; }, new TimeSpan(0, 0, 0, 0, 1), null))
+            using (DelayedAction delayedAction = new DelayedAction(() => { wasHere = true; }, new TimeSpan(0, 0, 0, 0, 1)))
             {
                 delayedAction.RestartIdleTimer();
                 Assert.That(wasHere, Is.False, "The event should not be triggered immediately.");
@@ -79,7 +79,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestObjectDisposedException()
         {
-            DelayedAction delayedAction = new DelayedAction(() => { }, new TimeSpan(0, 0, 0, 0, 1), null);
+            DelayedAction delayedAction = new DelayedAction(() => { }, new TimeSpan(0, 0, 0, 0, 1));
             delayedAction.Dispose();
             Assert.Throws<ObjectDisposedException>(() => { delayedAction.RestartIdleTimer(); });
         }

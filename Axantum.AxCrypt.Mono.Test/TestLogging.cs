@@ -42,7 +42,7 @@ namespace Axantum.AxCrypt.Mono.Test
         [SetUp]
         public static void Setup()
         {
-            FactoryRegistry.Instance.Singleton((IRuntimeEnvironment)new RuntimeEnvironment(null));
+            FactoryRegistry.Instance.Singleton((IRuntimeEnvironment)new RuntimeEnvironment());
         }
 
         [TearDown]
