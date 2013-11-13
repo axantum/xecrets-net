@@ -17,13 +17,10 @@ namespace Axantum.AxCrypt.Presentation
 {
     public class FileOperationsPresentation
     {
-        private IMainView _mainView;
-
         private PassphrasePresentation _passphrasePresentation;
 
         public FileOperationsPresentation(IMainView mainView)
         {
-            _mainView = mainView;
             _passphrasePresentation = new PassphrasePresentation(mainView);
         }
 
