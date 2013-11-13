@@ -165,7 +165,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>You are Logged On. Click to Log Out.</value>
   </data>
   <data name="EncryptedFileDialogFilterPattern" xml:space="preserve">
-    <value>AxCrypt Dokument (*{0})|*{0}|All files (*.*)|*.*</value>
+    <value>AxCrypt Documents (*{0})|*{0}|All files (*.*)|*.*</value>
   </data>
   <data name="EncryptedSourceColumnHeader" xml:space="preserve">
     <value>Encrypted Document</value>

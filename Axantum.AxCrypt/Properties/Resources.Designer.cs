@@ -278,7 +278,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Dokument (*{0})|*{0}|All files (*.*)|*.*.
+        ///   Looks up a localized string similar to AxCrypt Documents (*{0})|*{0}|All files (*.*)|*.*.
         /// </summary>
         internal static string EncryptedFileDialogFilterPattern {
             get {
