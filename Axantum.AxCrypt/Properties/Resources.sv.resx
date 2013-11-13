@@ -206,10 +206,10 @@
     <value>Om {0}</value>
   </data>
   <data name="ActiveFileKnownKeyToolTip" xml:space="preserve">
-    <value>Öppna Med Dubbelklick</value>
+    <value>Dubbelklick dekrypterar och öppnar dokumentet</value>
   </data>
   <data name="ActiveFileToolTip" xml:space="preserve">
-    <value>Dubbelklick öppnar en dialog där du kan ange lösenord</value>
+    <value>Dubbelklick öppnar en dialog där du kan ange lösenord innan dokumentet kan dekrypteras och öppnas</value>
   </data>
   <data name="AxCryptAboutDescription" xml:space="preserve">
     <value>Öppen och Fri Dokumentkrypering för Windows

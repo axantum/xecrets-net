@@ -121,10 +121,10 @@
     <value>About {0}</value>
   </data>
   <data name="ActiveFileKnownKeyToolTip" xml:space="preserve">
-    <value>Double-click to Open</value>
+    <value>Double-click decrypts and opens the document</value>
   </data>
   <data name="ActiveFileToolTip" xml:space="preserve">
-    <value>Double-click to enter passphrase and Open</value>
+    <value>Double-click opens a passphrase dialog before decrypting and opening the document.</value>
   </data>
   <data name="AxCryptAboutDescription" xml:space="preserve">
     <value>Open Source Document Encryption for Windows

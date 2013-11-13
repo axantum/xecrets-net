@@ -80,7 +80,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Double-click to Open.
+        ///   Looks up a localized string similar to Double-click decrypts and opens the document.
         /// </summary>
         internal static string ActiveFileKnownKeyToolTip {
             get {
@@ -89,7 +89,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Double-click to enter passphrase and Open.
+        ///   Looks up a localized string similar to Double-click opens a passphrase dialog before decrypting and opening the document..
         /// </summary>
         internal static string ActiveFileToolTip {
             get {

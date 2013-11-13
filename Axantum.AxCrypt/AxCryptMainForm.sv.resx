@@ -144,7 +144,7 @@
     <value>Öppna Krypterat Dokument</value>
   </data>
   <data name="_openEncryptedToolStripButton.ToolTipText" xml:space="preserve">
-    <value>Klicka för att öppna krypterade dokument</value>
+    <value>Klicka för att välja krypterade dokument att öppna</value>
   </data>
   <data name="encryptToolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -195,7 +195,7 @@
     <value>Magenta</value>
   </data>
   <data name="_encryptToolStripButton.ToolTipText" xml:space="preserve">
-    <value>Kryptera dokument</value>
+    <value>Klicka för att välja dokument att kryptera</value>
   </data>
   <data name="decryptToolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -226,7 +226,7 @@
     <value>Dekryptera</value>
   </data>
   <data name="_decryptToolStripButton.ToolTipText" xml:space="preserve">
-    <value>Klicka och välj eller dra och släpp dokument för att dekryptera permanent</value>
+    <value>Klicka för att välja dokument att dekryptera</value>
   </data>
   <data name="closeAndRemoveOpenFilesToolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -256,7 +256,7 @@
 </value>
   </data>
   <data name="_closeAndRemoveOpenFilesToolStripButton.ToolTipText" xml:space="preserve">
-    <value>Det finns öppna, dekrypterade filer. Klicka här för att stänga och ta brot de, men säkerställ först att de inte används. Fliken 'Öppna Dokument' visar vilka det gäller.</value>
+    <value>Klicka här för att stänga och ta bort öppna dekrypterade dokument, men säkerställ först att de inte används.</value>
   </data>
   <data name="_updateToolStripButton.Text" xml:space="preserve">
     <value>Uppdatera</value>

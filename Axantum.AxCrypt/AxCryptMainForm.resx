@@ -172,7 +172,7 @@
     <value>Open Encrypted Document</value>
   </data>
   <data name="_openEncryptedToolStripButton.ToolTipText" xml:space="preserve">
-    <value>Click to open encrypted documents</value>
+    <value>Click to select encrypted documents to open</value>
   </data>
   <data name="_encryptToolStripButton.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -185,7 +185,7 @@
     <value>36, 47</value>
   </data>
   <data name="_encryptToolStripButton.ToolTipText" xml:space="preserve">
-    <value>Encrypt documents</value>
+    <value>Click to select documents to encrypt</value>
   </data>
   <data name="_decryptToolStripButton.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -225,7 +225,7 @@
     <value>Decrypt</value>
   </data>
   <data name="_decryptToolStripButton.ToolTipText" xml:space="preserve">
-    <value>Click and select or drag and drop documents to decrypt permanently</value>
+    <value>Click to select documents to decrypt</value>
   </data>
   <data name="_toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>6, 50</value>
@@ -246,7 +246,7 @@
     <value>toolStripButton1</value>
   </data>
   <data name="_closeAndRemoveOpenFilesToolStripButton.ToolTipText" xml:space="preserve">
-    <value>Click to clean and remove any open decrypted files, but ensure they are not in use.</value>
+    <value>Click to clean and remove any open decrypted files, but ensure they are not in use first.</value>
   </data>
   <data name="_toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
     <value>6, 50</value>
