@@ -68,6 +68,11 @@ namespace Axantum.AxCrypt.Core.UI
                             string closureOverCopyOfLoopVariableFile = file;
                             SerializedOnUIThread(() =>
                             {
+                                if (workerGroup.FirstError != FileOperationStatus.Success)
+                                {
+                                    worker.Abort();
+                                    return;
+                                }
                                 processFile(closureOverCopyOfLoopVariableFile, worker, progress);
                             });
                             if (workerGroup.FirstError != FileOperationStatus.Success)
