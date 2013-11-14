@@ -59,25 +59,25 @@
             resources.ApplyResources(this.Passphrase, "Passphrase");
             this.Passphrase.Name = "Passphrase";
             // 
-            // panel1
+            // _panel1
             // 
-            resources.ApplyResources(this._panel1, "panel1");
             this._panel1.Controls.Add(this._buttonCancel);
             this._panel1.Controls.Add(this._buttonOk);
-            this._panel1.Name = "panel1";
+            resources.ApplyResources(this._panel1, "_panel1");
+            this._panel1.Name = "_panel1";
             // 
-            // buttonCancel
+            // _buttonCancel
             // 
-            resources.ApplyResources(this._buttonCancel, "buttonCancel");
             this._buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._buttonCancel.Name = "buttonCancel";
+            resources.ApplyResources(this._buttonCancel, "_buttonCancel");
+            this._buttonCancel.Name = "_buttonCancel";
             this._buttonCancel.UseVisualStyleBackColor = true;
             // 
-            // buttonOk
+            // _buttonOk
             // 
-            resources.ApplyResources(this._buttonOk, "buttonOk");
             this._buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this._buttonOk.Name = "buttonOk";
+            resources.ApplyResources(this._buttonOk, "_buttonOk");
+            this._buttonOk.Name = "_buttonOk";
             this._buttonOk.UseVisualStyleBackColor = true;
             // 
             // DecryptPassphraseDialog
