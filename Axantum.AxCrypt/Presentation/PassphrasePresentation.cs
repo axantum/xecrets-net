@@ -4,6 +4,7 @@ using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -19,11 +20,12 @@ namespace Axantum.AxCrypt.Presentation
             _mainView = mainView;
         }
 
-        public string AskForDecryptPassphrase()
+        public string AskForDecryptPassphrase(string fullName)
         {
             using (DecryptPassphraseDialog passphraseDialog = new DecryptPassphraseDialog())
             {
                 passphraseDialog.ShowPassphraseCheckBox.Checked = Instance.FileSystemState.Settings.DisplayDecryptPassphrase;
+                passphraseDialog.Text = Path.GetFileName(fullName);
                 DialogResult dialogResult = passphraseDialog.ShowDialog(_mainView.Control);
                 if (passphraseDialog.ShowPassphraseCheckBox.Checked != Instance.FileSystemState.Settings.DisplayDecryptPassphrase)
                 {
@@ -112,13 +114,13 @@ namespace Axantum.AxCrypt.Presentation
             ActiveFile openFile = Instance.FileSystemState.FindEncryptedPath(fullName);
             if (openFile == null || openFile.Thumbprint == null)
             {
-                return AskForDecryptPassphrase();
+                return AskForDecryptPassphrase(fullName);
             }
 
             PassphraseIdentity identity = Instance.FileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == openFile.Thumbprint);
             if (identity == null)
             {
-                return AskForDecryptPassphrase();
+                return AskForDecryptPassphrase(fullName);
             }
 
             return AskForLogOnPassphrase(identity);

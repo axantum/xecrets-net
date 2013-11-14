@@ -581,26 +581,6 @@ namespace Axantum.AxCrypt
             PurgeActiveFiles();
         }
 
-        private void OpenFilesListView_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Right)
-            {
-                return;
-            }
-            ListView recentFiles = (ListView)sender;
-            _openFilesContextMenuStrip.Show(recentFiles, e.Location);
-        }
-
-        private void EnterPassphraseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string passphraseText = _passphrasePresentation.AskForDecryptPassphrase();
-            if (passphraseText == null)
-            {
-                return;
-            }
-            Instance.KnownKeys.Add(Passphrase.Derive(passphraseText));
-        }
-
         private void ProgressBackgroundWorker_ProgressBarClicked(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Right)

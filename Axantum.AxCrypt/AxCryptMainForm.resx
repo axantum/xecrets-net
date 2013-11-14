@@ -279,7 +279,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;_mainToolStrip.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <metadata name="_mainMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>150, 17</value>
@@ -391,13 +391,13 @@
   </data>
   <data name="_englishLanguageToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;English</value>
-  <comment>@Invariant</comment></data>
+  </data>
   <data name="_swedishLanguageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 22</value>
   </data>
   <data name="_swedishLanguageToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Svenska</value>
-  <comment>@Invariant</comment></data>
+  </data>
   <data name="_languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 22</value>
   </data>
@@ -409,7 +409,7 @@
   </data>
   <data name="_debugOptionsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Debug</value>
-  <comment>@Invariant</comment></data>
+  </data>
   <data name="_optionsToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAoNJREFUOE9t
@@ -461,7 +461,7 @@
   </data>
   <data name="_debugToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Debug</value>
-  <comment>@Invariant</comment></data>
+  </data>
   <data name="_viewHelpMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>127, 22</value>
   </data>
@@ -499,7 +499,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;_mainMenuStrip.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>6</value>
   </data>
   <data name="_progressTableLayoutPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
@@ -529,7 +529,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;_progressTableLayoutPanel.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="_progressTableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
     <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls /&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Percent,50,Percent,50" /&gt;&lt;/TableLayoutSettings&gt;</value>
@@ -556,24 +556,6 @@
     <value>_recentFilesContextMenuStrip</value>
   </data>
   <data name="&gt;&gt;_recentFilesContextMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <metadata name="_openFilesContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>504, 17</value>
-  </metadata>
-  <data name="_enterPassphraseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 22</value>
-  </data>
-  <data name="_enterPassphraseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Enter &amp;Passphrase</value>
-  </data>
-  <data name="_openFilesContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>163, 26</value>
-  </data>
-  <data name="&gt;&gt;_openFilesContextMenuStrip.Name" xml:space="preserve">
-    <value>_openFilesContextMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;_openFilesContextMenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <metadata name="_progressContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -638,7 +620,7 @@
   </data>
   <data name="_logTabPage.Text" xml:space="preserve">
     <value>Log Output</value>
-  <comment>@Invariant</comment></data>
+  </data>
   <data name="&gt;&gt;_logTabPage.Name" xml:space="preserve">
     <value>_logTabPage</value>
   </data>
@@ -799,7 +781,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;_statusTabControl.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <metadata name="_watchedFoldersContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>915, 17</value>
@@ -1230,7 +1212,7 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>AxCrypt</value>
-  <comment>@Invariant</comment></data>
+  </data>
   <data name="&gt;&gt;_encryptionKeyToolStripButton.Name" xml:space="preserve">
     <value>_encryptionKeyToolStripButton</value>
   </data>
@@ -1433,12 +1415,6 @@
     <value>_decryptAndRemoveFromListToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;_decryptAndRemoveFromListToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;_enterPassphraseToolStripMenuItem.Name" xml:space="preserve">
-    <value>_enterPassphraseToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;_enterPassphraseToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;_progressContextCancelToolStripMenuItem.Name" xml:space="preserve">

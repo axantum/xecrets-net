@@ -55,8 +55,6 @@
             this._recentFilesContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this._removeRecentFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._decryptAndRemoveFromListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._openFilesContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this._enterPassphraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._progressContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this._progressContextCancelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._logTabPage = new System.Windows.Forms.TabPage();
@@ -79,7 +77,6 @@
             this._mainToolStrip.SuspendLayout();
             this._mainMenuStrip.SuspendLayout();
             this._recentFilesContextMenuStrip.SuspendLayout();
-            this._openFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
             this._logTabPage.SuspendLayout();
             this._watchedFoldersTabPage.SuspendLayout();
@@ -363,19 +360,6 @@
             resources.ApplyResources(this._decryptAndRemoveFromListToolStripMenuItem, "_decryptAndRemoveFromListToolStripMenuItem");
             this._decryptAndRemoveFromListToolStripMenuItem.Click += new System.EventHandler(this.DecryptAndRemoveFromListToolStripMenuItem_Click);
             // 
-            // _openFilesContextMenuStrip
-            // 
-            this._openFilesContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._enterPassphraseToolStripMenuItem});
-            this._openFilesContextMenuStrip.Name = "OpenFilesContextMenu";
-            resources.ApplyResources(this._openFilesContextMenuStrip, "_openFilesContextMenuStrip");
-            // 
-            // _enterPassphraseToolStripMenuItem
-            // 
-            this._enterPassphraseToolStripMenuItem.Name = "_enterPassphraseToolStripMenuItem";
-            resources.ApplyResources(this._enterPassphraseToolStripMenuItem, "_enterPassphraseToolStripMenuItem");
-            this._enterPassphraseToolStripMenuItem.Click += new System.EventHandler(this.EnterPassphraseToolStripMenuItem_Click);
-            // 
             // _progressContextMenuStrip
             // 
             this._progressContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -532,7 +516,6 @@
             this._mainMenuStrip.ResumeLayout(false);
             this._mainMenuStrip.PerformLayout();
             this._recentFilesContextMenuStrip.ResumeLayout(false);
-            this._openFilesContextMenuStrip.ResumeLayout(false);
             this._progressContextMenuStrip.ResumeLayout(false);
             this._logTabPage.ResumeLayout(false);
             this._logTabPage.PerformLayout();
@@ -568,8 +551,6 @@
         private System.Windows.Forms.ToolStripSeparator _toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton _closeAndRemoveOpenFilesToolStripButton;
         private System.Windows.Forms.ToolStripSeparator _toolStripSeparator4;
-        private System.Windows.Forms.ContextMenuStrip _openFilesContextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem _enterPassphraseToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel _progressTableLayoutPanel;
         private System.Windows.Forms.ContextMenuStrip _progressContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem _progressContextCancelToolStripMenuItem;
