@@ -25,15 +25,17 @@
 
 #endregion Coypright and License
 
+using System.IO;
 using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
 {
     public partial class DecryptPassphraseDialog : Form
     {
-        public DecryptPassphraseDialog()
+        public DecryptPassphraseDialog(string fullName)
         {
             InitializeComponent();
+            _fileNameLabel.Text = Path.GetFileName(fullName);
         }
 
         private void DecryptPassphraseDialog_Load(object sender, System.EventArgs e)
@@ -49,6 +51,10 @@ namespace Axantum.AxCrypt
         private void ShowPassphraseCheckBox_CheckedChanged(object sender, System.EventArgs e)
         {
             ShowHidePassphrase();
+        }
+
+        private void _fileNameLabel_Click(object sender, System.EventArgs e)
+        {
         }
     }
 }

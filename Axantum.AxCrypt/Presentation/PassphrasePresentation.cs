@@ -22,10 +22,9 @@ namespace Axantum.AxCrypt.Presentation
 
         public string AskForDecryptPassphrase(string fullName)
         {
-            using (DecryptPassphraseDialog passphraseDialog = new DecryptPassphraseDialog())
+            using (DecryptPassphraseDialog passphraseDialog = new DecryptPassphraseDialog(fullName))
             {
                 passphraseDialog.ShowPassphraseCheckBox.Checked = Instance.FileSystemState.Settings.DisplayDecryptPassphrase;
-                passphraseDialog.Text = Path.GetFileName(fullName);
                 DialogResult dialogResult = passphraseDialog.ShowDialog(_mainView.Control);
                 if (passphraseDialog.ShowPassphraseCheckBox.Checked != Instance.FileSystemState.Settings.DisplayDecryptPassphrase)
                 {

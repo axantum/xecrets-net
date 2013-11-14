@@ -35,6 +35,7 @@
             this._panel1 = new System.Windows.Forms.Panel();
             this._buttonCancel = new System.Windows.Forms.Button();
             this._buttonOk = new System.Windows.Forms.Button();
+            this._fileNameLabel = new System.Windows.Forms.Label();
             this.PassphraseGroupBox.SuspendLayout();
             this._panel1.SuspendLayout();
             this.SuspendLayout();
@@ -80,12 +81,19 @@
             this._buttonOk.Name = "_buttonOk";
             this._buttonOk.UseVisualStyleBackColor = true;
             // 
+            // _fileNameLabel
+            // 
+            resources.ApplyResources(this._fileNameLabel, "_fileNameLabel");
+            this._fileNameLabel.Name = "_fileNameLabel";
+            this._fileNameLabel.Click += new System.EventHandler(this._fileNameLabel_Click);
+            // 
             // DecryptPassphraseDialog
             // 
             this.AcceptButton = this._buttonOk;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this._buttonCancel;
+            this.Controls.Add(this._fileNameLabel);
             this.Controls.Add(this._panel1);
             this.Controls.Add(this.PassphraseGroupBox);
             this.Name = "DecryptPassphraseDialog";
@@ -106,5 +114,6 @@
         private System.Windows.Forms.Button _buttonOk;
         internal System.Windows.Forms.GroupBox PassphraseGroupBox;
         internal System.Windows.Forms.CheckBox ShowPassphraseCheckBox;
+        private System.Windows.Forms.Label _fileNameLabel;
     }
 }
