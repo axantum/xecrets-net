@@ -140,9 +140,6 @@
         3R7NeloAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="_openEncryptedToolStripButton.Text" xml:space="preserve">
-    <value>Öppna Krypterat Dokument</value>
-  </data>
   <data name="_openEncryptedToolStripButton.ToolTipText" xml:space="preserve">
     <value>Klicka för att välja krypterade dokument att öppna</value>
   </data>
@@ -222,9 +219,6 @@
         QeiApZUFN9+NA9cOBP8FYJWkhX23sEkAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="_decryptToolStripButton.Text" xml:space="preserve">
-    <value>Dekryptera</value>
-  </data>
   <data name="_decryptToolStripButton.ToolTipText" xml:space="preserve">
     <value>Klicka för att välja dokument att dekryptera</value>
   </data>
@@ -258,9 +252,6 @@
   <data name="_closeAndRemoveOpenFilesToolStripButton.ToolTipText" xml:space="preserve">
     <value>Klicka här för att stänga och ta bort öppna dekrypterade dokument, men säkerställ först att de inte används.</value>
   </data>
-  <data name="_updateToolStripButton.Text" xml:space="preserve">
-    <value>Uppdatera</value>
-  </data>
   <data name="helpToolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
@@ -282,9 +273,6 @@
         WBrrwHeNH85kzeBzMqkC91DgoKw9sBMUwL3sgK19BepQYC/W2bZWdms1iRyA43w3M6oR3FBSwUUBUBF8
         MgH1ch25YiQAFsFpBqAXbK1U8OPZcujsofh/LYxz4KyJsdgAAAAASUVORK5CYII=
 </value>
-  </data>
-  <data name="_helpToolStripButton.Text" xml:space="preserve">
-    <value>&amp;Hjälp</value>
   </data>
   <data name="openEncryptedToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2209,5 +2197,8 @@
   </data>
   <data name="_wipeToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Säker Radering</value>
+  </data>
+  <data name="_decryptAndRemoveFromListToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Dekryptera och ta bort från listan</value>
   </data>
 </root>

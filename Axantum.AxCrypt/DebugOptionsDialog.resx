@@ -133,7 +133,7 @@
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Update Check Service Url</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
   </data>
@@ -178,7 +178,7 @@
   </data>
   <data name="okButton.Text" xml:space="preserve">
     <value>OK</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;okButton.Name" xml:space="preserve">
     <value>okButton</value>
   </data>
@@ -202,7 +202,7 @@
   </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Cancel</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;cancelButton.Name" xml:space="preserve">
     <value>cancelButton</value>
   </data>
@@ -229,7 +229,7 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Debugging Options</value>
-  </data>
+  <comment>@Invariant</comment></data>
   <data name="&gt;&gt;errorProvider1.Name" xml:space="preserve">
     <value>errorProvider1</value>
   </data>

@@ -415,7 +415,7 @@
     <value>0</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Name</value>
+    <value>Identity</value>
   </data>
   <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
     <value>groupBox1</value>
@@ -809,7 +809,7 @@
 </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Log On</value>
+    <value>Create new identity</value>
   </data>
   <data name="&gt;&gt;errorProvider1.Name" xml:space="preserve">
     <value>errorProvider1</value>

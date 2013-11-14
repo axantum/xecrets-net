@@ -98,7 +98,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open Source Document Encryption for Windows
+        ///   Looks up a localized string similar to Open Source Document Encryption by Axantum Software AB
         ///
         ///Includes software from http://www.bouncycastle.org/ ..
         /// </summary>

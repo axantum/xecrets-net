@@ -212,7 +212,7 @@
     <value>Dubbelklick öppnar en dialog där du kan ange lösenord innan dokumentet kan dekrypteras och öppnas</value>
   </data>
   <data name="AxCryptAboutDescription" xml:space="preserve">
-    <value>Öppen och Fri Dokumentkrypering för Windows
+    <value>Öppen och Fri Dokumentkrypering från Axantum Software AB
 
 Innehåller programvara från http://www.bouncycastle.org/ .</value>
   </data>
