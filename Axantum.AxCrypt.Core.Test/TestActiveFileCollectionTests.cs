@@ -73,7 +73,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(_testTextPath);
             IRuntimeFileInfo encryptedFileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
-            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new AesKey(), ActiveFileStatus.None, null);
+            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new AesKey(), ActiveFileStatus.None);
 
             collection.Add(activeFile);
 
@@ -92,8 +92,8 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo encryptedFileInfo1 = OS.Current.FileInfo(Path.Combine(_rootPath, "test1-txt.axx"));
             IRuntimeFileInfo decryptedFileInfo2 = OS.Current.FileInfo(Path.Combine(_rootPath, "test2.txt"));
             IRuntimeFileInfo encryptedFileInfo2 = OS.Current.FileInfo(Path.Combine(_rootPath, "test2-text.axx"));
-            ActiveFile activeFile1 = new ActiveFile(encryptedFileInfo1, decryptedFileInfo1, new AesKey(), ActiveFileStatus.None, null);
-            ActiveFile activeFile2 = new ActiveFile(encryptedFileInfo2, decryptedFileInfo2, new AesKey(), ActiveFileStatus.None, null);
+            ActiveFile activeFile1 = new ActiveFile(encryptedFileInfo1, decryptedFileInfo1, new AesKey(), ActiveFileStatus.None);
+            ActiveFile activeFile2 = new ActiveFile(encryptedFileInfo2, decryptedFileInfo2, new AesKey(), ActiveFileStatus.None);
 
             ActiveFileCollection collection = new ActiveFileCollection(new ActiveFile[] { activeFile1, activeFile2 });
 

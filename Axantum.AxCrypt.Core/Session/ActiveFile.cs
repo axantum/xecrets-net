@@ -107,7 +107,7 @@ namespace Axantum.AxCrypt.Core.Session
             Status = status;
         }
 
-        public ActiveFile(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, AesKey key, ActiveFileStatus status, ILauncher process)
+        public ActiveFile(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, AesKey key, ActiveFileStatus status)
         {
             if (encryptedFileInfo == null)
             {
@@ -121,7 +121,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 throw new ArgumentNullException("key");
             }
-            Initialize(encryptedFileInfo, decryptedFileInfo, decryptedFileInfo.LastWriteTimeUtc, key, null, status, process);
+            Initialize(encryptedFileInfo, decryptedFileInfo, decryptedFileInfo.LastWriteTimeUtc, key, null, status, null);
         }
 
         private void Initialize(ActiveFile other)

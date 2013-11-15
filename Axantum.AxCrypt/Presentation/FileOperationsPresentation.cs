@@ -121,7 +121,7 @@ namespace Axantum.AxCrypt.Presentation
                 {
                     IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
                     IRuntimeFileInfo decryptedInfo = OS.Current.FileInfo(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
-                    ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key, ActiveFileStatus.NotDecrypted, null);
+                    ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key, ActiveFileStatus.NotDecrypted);
                     Instance.FileSystemState.Add(activeFile);
                     Instance.FileSystemState.Save();
                 }
@@ -151,7 +151,7 @@ namespace Axantum.AxCrypt.Presentation
                 {
                     IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.OpenFileFullName);
                     IRuntimeFileInfo decryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
-                    ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key, ActiveFileStatus.NotDecrypted, null);
+                    ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key, ActiveFileStatus.NotDecrypted);
                     Instance.FileSystemState.Add(activeFile);
                     Instance.FileSystemState.Save();
                 }
@@ -209,7 +209,7 @@ namespace Axantum.AxCrypt.Presentation
                 {
                     IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
                     IRuntimeFileInfo decryptedInfo = OS.Current.FileInfo(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
-                    ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key, ActiveFileStatus.NotDecrypted, null);
+                    ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key, ActiveFileStatus.NotDecrypted);
                     Instance.FileSystemState.Add(activeFile);
                     Instance.FileSystemState.Save();
                 }

@@ -114,10 +114,6 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return activeFile;
             }
-            //if (OS.Current.UtcNow - activeFile.LastActivityTimeUtc <= new TimeSpan(0, 0, 5))
-            //{
-            //    return activeFile;
-            //}
             activeFile = CheckActiveFileActions(activeFile, progress);
             return activeFile;
         }

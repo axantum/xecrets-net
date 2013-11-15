@@ -231,7 +231,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 AxCryptFile.Decrypt(document, destinationFileInfo, AxCryptOptions.SetFileTimes, progress);
             }
-            ActiveFile destinationActiveFile = new ActiveFile(sourceFileInfo, destinationFileInfo, document.DocumentHeaders.KeyEncryptingKey, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.IgnoreChange, null);
+            ActiveFile destinationActiveFile = new ActiveFile(sourceFileInfo, destinationFileInfo, document.DocumentHeaders.KeyEncryptingKey, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.IgnoreChange);
             if (OS.Log.IsInfoEnabled)
             {
                 OS.Log.LogInfo("File decrypted from '{0}' to '{1}'".InvariantFormat(sourceFileInfo.FullName, destinationActiveFile.DecryptedFileInfo.FullName));
