@@ -166,7 +166,7 @@ namespace Axantum.AxCrypt
 
             OS.Current.SessionChanged += HandleSessionChangedEvent;
 
-            Instance.FileSystemState.Changed += new EventHandler<ActiveFileChangedEventArgs>(HandleFileSystemStateChangedEvent);
+            Instance.FileSystemState.Changed += HandleFileSystemStateChangedEvent;
 
             OS.Current.KeyWrapIterations = Instance.FileSystemState.KeyWrapIterations;
             OS.Current.ThumbprintSalt = Instance.FileSystemState.ThumbprintSalt;
@@ -179,13 +179,11 @@ namespace Axantum.AxCrypt
             RestoreUserPreferences();
 
             _loaded = true;
-            OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.SessionChange));
+            OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.SessionStart));
         }
 
         private void AxCryptMainForm_Shown(object sender, EventArgs e)
         {
-            Instance.FileSystemState.Actions.CheckActiveFiles(ChangedEventMode.RaiseAlways, new ProgressContext());
-            _recentFilesListView.Sort();
         }
 
         private void RestoreUserPreferences()
@@ -431,7 +429,6 @@ namespace Axantum.AxCrypt
                     try
                     {
                         Instance.FileSystemState.Actions.HandleSessionEvents(e.SessionEvents, progress);
-                        Instance.FileSystemState.Actions.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
                     }
                     finally
                     {

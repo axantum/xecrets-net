@@ -304,7 +304,7 @@ namespace Axantum.AxCrypt.Core
                     OS.Log.LogInfo("Decrypted to '{0}'.".InvariantFormat(destinationFile.Name));
                 }
             }
-            catch (OperationCanceledException)
+            catch (Exception)
             {
                 if (destinationFile.Exists)
                 {
@@ -401,7 +401,7 @@ namespace Axantum.AxCrypt.Core
                     writeFileStreamTo(temporaryStream);
                 }
             }
-            catch (OperationCanceledException)
+            catch (Exception)
             {
                 if (temporaryFileInfo.Exists)
                 {

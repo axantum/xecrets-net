@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
@@ -126,6 +127,14 @@ namespace Axantum.AxCrypt.Core.Runtime
             catch (OperationCanceledException)
             {
                 e.Result = FileOperationStatus.Canceled;
+            }
+            catch (Exception ex)
+            {
+                e.Result = FileOperationStatus.Exception;
+                if (OS.Log.IsErrorEnabled)
+                {
+                    OS.Log.LogError("Exception in DoWork: '{0}'".InvariantFormat(ex.Message));
+                }
             }
             return;
         }

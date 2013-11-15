@@ -299,6 +299,7 @@ namespace Axantum.AxCrypt.Presentation
             {
                 _mainView.RecentFiles.Items.RemoveAt(_mainView.RecentFiles.Items.Count - 1);
             }
+            _mainView.RecentFiles.Sort();
             _mainView.RecentFiles.EndUpdate();
         }
 

@@ -14,6 +14,7 @@ namespace Axantum.AxCrypt.Core.Session
         LogOff,
         ProcessExit,
         SessionChange,
+        SessionStart,
         KnownKeyChange,
         WorkFolderChange,
     }

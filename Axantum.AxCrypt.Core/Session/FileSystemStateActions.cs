@@ -114,10 +114,10 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return activeFile;
             }
-            if (OS.Current.UtcNow - activeFile.LastActivityTimeUtc <= new TimeSpan(0, 0, 5))
-            {
-                return activeFile;
-            }
+            //if (OS.Current.UtcNow - activeFile.LastActivityTimeUtc <= new TimeSpan(0, 0, 5))
+            //{
+            //    return activeFile;
+            //}
             activeFile = CheckActiveFileActions(activeFile, progress);
             return activeFile;
         }
@@ -156,6 +156,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 HandleSessionEvent(sessionEvent, progress);
             }
+            CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
         }
 
         public virtual void HandleSessionEvent(SessionEvent sessionEvent, ProgressContext progress)
@@ -188,9 +189,13 @@ namespace Axantum.AxCrypt.Core.Session
                     EncryptFilesInWatchedFolders(sessionEvent.Key, progress);
                     break;
 
+                case SessionEventType.SessionStart:
+                    CheckActiveFiles(ChangedEventMode.RaiseAlways, progress);
+                    break;
+
+                case SessionEventType.KnownKeyChange:
                 case SessionEventType.ProcessExit:
                 case SessionEventType.SessionChange:
-                case SessionEventType.KnownKeyChange:
                 case SessionEventType.WorkFolderChange:
                     break;
 

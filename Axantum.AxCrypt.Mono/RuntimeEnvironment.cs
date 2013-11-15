@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
@@ -69,6 +70,10 @@ namespace Axantum.AxCrypt.Mono
 
         private void HandleWorkFolderFileChangedEvent(object sender, FileWatcherEventArgs e)
         {
+            if (e.FullName == FileSystemState.DefaultPathInfo.FullName)
+            {
+                return;
+            }
             NotifySessionChanged(new SessionEvent(SessionEventType.WorkFolderChange, e.FullName));
         }
 
