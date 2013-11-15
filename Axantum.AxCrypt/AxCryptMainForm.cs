@@ -808,7 +808,7 @@ namespace Axantum.AxCrypt
             }
             else
             {
-                string passphrase = _passphrasePresentation.AskForNewEncryptionPassphrase();
+                string passphrase = _passphrasePresentation.AskForNewEncryptionPassphrase(String.Empty);
                 if (String.IsNullOrEmpty(passphrase))
                 {
                     return;

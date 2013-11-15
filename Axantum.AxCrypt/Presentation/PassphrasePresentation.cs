@@ -59,7 +59,7 @@ namespace Axantum.AxCrypt.Presentation
                 DialogResult dialogResult = logOnDialog.ShowDialog();
                 if (dialogResult == DialogResult.Retry)
                 {
-                    return AskForNewEncryptionPassphrase();
+                    return AskForNewEncryptionPassphrase(logOnDialog.PassphraseTextBox.Text);
                 }
 
                 if (dialogResult != DialogResult.OK || logOnDialog.PassphraseTextBox.Text.Length == 0)
@@ -76,9 +76,9 @@ namespace Axantum.AxCrypt.Presentation
             }
         }
 
-        public string AskForNewEncryptionPassphrase()
+        public string AskForNewEncryptionPassphrase(string defaultPassphrase)
         {
-            using (EncryptPassphraseDialog passphraseDialog = new EncryptPassphraseDialog(Instance.FileSystemState))
+            using (EncryptPassphraseDialog passphraseDialog = new EncryptPassphraseDialog(Instance.FileSystemState, defaultPassphrase))
             {
                 passphraseDialog.ShowPassphraseCheckBox.Checked = Instance.FileSystemState.Settings.DisplayEncryptPassphrase;
                 DialogResult dialogResult = passphraseDialog.ShowDialog(_mainView.Control);

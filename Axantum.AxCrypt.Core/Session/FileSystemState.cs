@@ -72,6 +72,12 @@ namespace Axantum.AxCrypt.Core.Session
             Settings = new UserSettings();
         }
 
+        [OnDeserialized]
+        private void Finalize(StreamingContext context)
+        {
+            Identities = new List<PassphraseIdentity>(Identities);
+        }
+
         public FileSystemStateActions Actions
         {
             get

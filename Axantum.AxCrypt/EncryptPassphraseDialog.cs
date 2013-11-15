@@ -42,11 +42,12 @@ namespace Axantum.AxCrypt
     {
         private FileSystemState _fileSystemState;
 
-        public EncryptPassphraseDialog(FileSystemState fileSystemState)
+        public EncryptPassphraseDialog(FileSystemState fileSystemState, string passphrase)
         {
             InitializeComponent();
             SetAutoValidateViaReflectionToAvoidMoMaWarning();
             _fileSystemState = fileSystemState;
+            PassphraseTextBox.Text = passphrase;
         }
 
         private void EncryptPassphraseDialog_Load(object sender, EventArgs e)
