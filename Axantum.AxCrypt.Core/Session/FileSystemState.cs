@@ -43,8 +43,6 @@ namespace Axantum.AxCrypt.Core.Session
     [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
     public class FileSystemState : IDisposable
     {
-        private object _lock;
-
         public FileSystemState()
         {
             Initialize(new StreamingContext());
@@ -67,9 +65,9 @@ namespace Axantum.AxCrypt.Core.Session
         [OnDeserializing]
         private void Initialize(StreamingContext context)
         {
-            _lock = new object();
             Identities = new List<PassphraseIdentity>();
             Settings = new UserSettings();
+            _activeFilesByEncryptedPath = new Dictionary<string, ActiveFile>();
         }
 
         [OnDeserialized]
@@ -86,7 +84,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private Dictionary<string, ActiveFile> _activeFilesByEncryptedPath = new Dictionary<string, ActiveFile>();
+        private Dictionary<string, ActiveFile> _activeFilesByEncryptedPath;
 
         private long? _keyWrapIterations = null;
 
@@ -210,7 +208,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                lock (_lock)
+                lock (_activeFilesByEncryptedPath)
                 {
                     return new List<ActiveFile>(_activeFilesByEncryptedPath.Values);
                 }
@@ -244,7 +242,7 @@ namespace Axantum.AxCrypt.Core.Session
         /// <summary>
         /// Find an active file by way of it's encrypted full path.
         /// </summary>
-        /// <param name="decryptedPath">Full path to am encrypted file.</param>
+        /// <param name="decryptedPath">Full path to an encrypted file.</param>
         /// <returns>An ActiveFile instance, or null if not found in file system state.</returns>
         public ActiveFile FindEncryptedPath(string encryptedPath)
         {
@@ -253,7 +251,7 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("encryptedPath");
             }
             ActiveFile activeFile;
-            lock (_lock)
+            lock (_activeFilesByEncryptedPath)
             {
                 if (_activeFilesByEncryptedPath.TryGetValue(encryptedPath, out activeFile))
                 {
@@ -273,10 +271,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 throw new ArgumentNullException("activeFile");
             }
-            lock (_lock)
-            {
-                AddInternal(activeFile);
-            }
+            AddInternal(activeFile);
             OnChanged(new ActiveFileChangedEventArgs(activeFile));
         }
 
@@ -290,7 +285,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 throw new ArgumentNullException("activeFile");
             }
-            lock (_lock)
+            lock (_activeFilesByEncryptedPath)
             {
                 _activeFilesByEncryptedPath.Remove(activeFile.EncryptedFileInfo.FullName);
             }
@@ -300,11 +295,10 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void AddInternal(ActiveFile activeFile)
         {
-            ActiveFile oldEncryptedActiveFile;
-            if (_activeFilesByEncryptedPath.TryGetValue(activeFile.EncryptedFileInfo.FullName, out oldEncryptedActiveFile))
+            lock (_activeFilesByEncryptedPath)
             {
+                _activeFilesByEncryptedPath[activeFile.EncryptedFileInfo.FullName] = activeFile;
             }
-            _activeFilesByEncryptedPath[activeFile.EncryptedFileInfo.FullName] = activeFile;
         }
 
         [DataMember(Name = "ActiveFiles")]
@@ -312,7 +306,10 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                return new ActiveFileCollection(_activeFilesByEncryptedPath.Values);
+                lock (_activeFilesByEncryptedPath)
+                {
+                    return new ActiveFileCollection(_activeFilesByEncryptedPath.Values);
+                }
             }
             set
             {
@@ -329,7 +326,10 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void SetRangeInternal(IEnumerable<ActiveFile> activeFiles, ActiveFileStatus mask)
         {
-            _activeFilesByEncryptedPath = new Dictionary<string, ActiveFile>();
+            lock (_activeFilesByEncryptedPath)
+            {
+                _activeFilesByEncryptedPath.Clear();
+            }
             foreach (ActiveFile activeFile in activeFiles)
             {
                 ActiveFile thisActiveFile = activeFile;
@@ -368,10 +368,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
             if (isModified)
             {
-                lock (_lock)
-                {
-                    SetRangeInternal(activeFiles, ActiveFileStatus.None);
-                }
+                SetRangeInternal(activeFiles, ActiveFileStatus.None);
                 Save();
             }
             if (!isModified && mode == ChangedEventMode.RaiseAlways)
@@ -445,7 +442,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return;
             }
-            lock (_lock)
+            lock (_activeFilesByEncryptedPath)
             {
                 using (Stream fileSystemStateStream = _path.OpenWrite())
                 {
