@@ -367,7 +367,7 @@ namespace Axantum.AxCrypt.Core.Session
                 ActiveFile thisActiveFile = activeFile;
                 if ((activeFile.Status & mask) != 0)
                 {
-                    thisActiveFile = new ActiveFile(activeFile, activeFile.Status & ~mask, null);
+                    thisActiveFile = new ActiveFile(activeFile, activeFile.Status & ~mask);
                 }
                 AddInternal(thisActiveFile);
             }

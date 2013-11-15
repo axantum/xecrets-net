@@ -352,7 +352,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 OS.Log.LogInfo("Process exit for '{0}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
             }
-            activeFile = new ActiveFile(activeFile, activeFile.Status & ~ActiveFileStatus.NotShareable, null);
+            activeFile = new ActiveFile(activeFile, activeFile.Status & ~ActiveFileStatus.NotShareable);
             return activeFile;
         }
 
@@ -451,7 +451,7 @@ namespace Axantum.AxCrypt.Core.Session
                 return activeFile;
             }
 
-            activeFile = new ActiveFile(activeFile, ActiveFileStatus.NotDecrypted, null);
+            activeFile = new ActiveFile(activeFile, ActiveFileStatus.NotDecrypted);
 
             if (OS.Log.IsInfoEnabled)
             {
