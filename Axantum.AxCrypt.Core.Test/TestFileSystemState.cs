@@ -137,52 +137,17 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestFindEncryptedAndDecryptedPath()
+        public static void TestFindEncryptedPath()
         {
             using (FileSystemState state = FileSystemState.Create(OS.Current.FileInfo(_mystateXmlPath)))
             {
                 ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedAxxPath), OS.Current.FileInfo(_decryptedTxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable);
                 state.Add(activeFile);
-
-                ActiveFile byDecryptedPath = state.FindDecryptedPath(_decryptedTxtPath);
-                Assert.That(byDecryptedPath, Is.EqualTo(activeFile), "The search should return the same instance.");
 
                 ActiveFile byEncryptedPath = state.FindEncryptedPath(_encryptedAxxPath);
-                Assert.That(byEncryptedPath, Is.EqualTo(byDecryptedPath), "The search should return the same instance.");
+                Assert.That(byEncryptedPath.EncryptedFileInfo.FullName, Is.EqualTo(_encryptedAxxPath), "The search should return the same path.");
 
                 ActiveFile notFoundEncrypted = state.FindEncryptedPath(Path.Combine(_rootPath, "notfoundfile.txt"));
-                Assert.That(notFoundEncrypted, Is.Null, "A search that does not succeed should return null.");
-
-                ActiveFile notFoundDecrypted = state.FindDecryptedPath(Path.Combine(_rootPath, "notfoundfile.txt"));
-                Assert.That(notFoundDecrypted, Is.Null, "A search that does not succeed should return null.");
-            }
-        }
-
-        [Test]
-        public static void TestFindPathArgumentNull()
-        {
-            using (FileSystemState state = new FileSystemState())
-            {
-                string path = null;
-                Assert.Throws<ArgumentNullException>(() => state.FindPath(path));
-            }
-        }
-
-        [Test]
-        public static void TestFindPath()
-        {
-            using (FileSystemState state = FileSystemState.Create(OS.Current.FileInfo(_mystateXmlPath)))
-            {
-                ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedAxxPath), OS.Current.FileInfo(_decryptedTxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable);
-                state.Add(activeFile);
-
-                ActiveFile byDecryptedPath = state.FindPath(_decryptedTxtPath);
-                Assert.That(byDecryptedPath, Is.EqualTo(activeFile), "The search should return the same instance.");
-
-                ActiveFile byEncryptedPath = state.FindPath(_encryptedAxxPath);
-                Assert.That(byEncryptedPath, Is.EqualTo(byDecryptedPath), "The search should return the same instance.");
-
-                ActiveFile notFoundEncrypted = state.FindPath(Path.Combine(_rootPath, "notfoundfile.txt"));
                 Assert.That(notFoundEncrypted, Is.Null, "A search that does not succeed should return null.");
             }
         }
@@ -286,7 +251,6 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.Throws<ArgumentNullException>(() => { state.Remove(nullActiveFile); });
                 Assert.Throws<ArgumentNullException>(() => { state.Add(nullActiveFile); });
                 Assert.Throws<ArgumentNullException>(() => { state.FindEncryptedPath(nullPath); });
-                Assert.Throws<ArgumentNullException>(() => { state.FindDecryptedPath(nullPath); });
                 Assert.Throws<ArgumentNullException>(() => { state.ForEach(ChangedEventMode.RaiseAlways, nullAction); });
                 Assert.Throws<ArgumentNullException>(() => { FileSystemState.Create(nullFileInfo); });
             }

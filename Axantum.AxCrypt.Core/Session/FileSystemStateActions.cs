@@ -164,7 +164,6 @@ namespace Axantum.AxCrypt.Core.Session
             switch (sessionEvent.SessionEventType)
             {
                 case SessionEventType.ActiveFileChange:
-                    CheckActiveFile(_fileSystemState.FindPath(sessionEvent.FullName), progress);
                     break;
 
                 case SessionEventType.WatchedFolderAdded:

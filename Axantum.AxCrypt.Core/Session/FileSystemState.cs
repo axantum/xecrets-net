@@ -88,8 +88,6 @@ namespace Axantum.AxCrypt.Core.Session
 
         private Dictionary<string, ActiveFile> _activeFilesByEncryptedPath = new Dictionary<string, ActiveFile>();
 
-        private Dictionary<string, ActiveFile> _activeFilesByDecryptedPath = new Dictionary<string, ActiveFile>();
-
         private long? _keyWrapIterations = null;
 
         [DataMember(Name = "KeyWrapIterations")]
@@ -214,7 +212,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 lock (_lock)
                 {
-                    return new List<ActiveFile>(_activeFilesByDecryptedPath.Values);
+                    return new List<ActiveFile>(_activeFilesByEncryptedPath.Values);
                 }
             }
         }
@@ -223,7 +221,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                return _activeFilesByDecryptedPath.Count;
+                return _activeFilesByEncryptedPath.Count;
             }
         }
 
@@ -266,37 +264,6 @@ namespace Axantum.AxCrypt.Core.Session
         }
 
         /// <summary>
-        /// Find an active file by way of it's decrypted full path.
-        /// </summary>
-        /// <param name="decryptedPath">Full path to a decrypted file.</param>
-        /// <returns>An ActiveFile instance, or null if not found in file system state.</returns>
-        public ActiveFile FindDecryptedPath(string decryptedPath)
-        {
-            if (decryptedPath == null)
-            {
-                throw new ArgumentNullException("decryptedPath");
-            }
-            ActiveFile activeFile;
-            lock (_lock)
-            {
-                if (_activeFilesByDecryptedPath.TryGetValue(decryptedPath, out activeFile))
-                {
-                    return activeFile;
-                }
-            }
-            return null;
-        }
-
-        public ActiveFile FindPath(string path)
-        {
-            if (path == null)
-            {
-                throw new ArgumentNullException("path");
-            }
-            return FindDecryptedPath(path) ?? FindEncryptedPath(path);
-        }
-
-        /// <summary>
         /// Add a file to the volatile file system state. To persist, call Save().
         /// </summary>
         /// <param name="activeFile">The active file to save</param>
@@ -325,7 +292,6 @@ namespace Axantum.AxCrypt.Core.Session
             }
             lock (_lock)
             {
-                _activeFilesByDecryptedPath.Remove(activeFile.DecryptedFileInfo.FullName);
                 _activeFilesByEncryptedPath.Remove(activeFile.EncryptedFileInfo.FullName);
             }
             activeFile = new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.NoLongerActive);
@@ -334,8 +300,11 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void AddInternal(ActiveFile activeFile)
         {
+            ActiveFile oldEncryptedActiveFile;
+            if (_activeFilesByEncryptedPath.TryGetValue(activeFile.EncryptedFileInfo.FullName, out oldEncryptedActiveFile))
+            {
+            }
             _activeFilesByEncryptedPath[activeFile.EncryptedFileInfo.FullName] = activeFile;
-            _activeFilesByDecryptedPath[activeFile.DecryptedFileInfo.FullName] = activeFile;
         }
 
         [DataMember(Name = "ActiveFiles")]
@@ -360,7 +329,6 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void SetRangeInternal(IEnumerable<ActiveFile> activeFiles, ActiveFileStatus mask)
         {
-            _activeFilesByDecryptedPath = new Dictionary<string, ActiveFile>();
             _activeFilesByEncryptedPath = new Dictionary<string, ActiveFile>();
             foreach (ActiveFile activeFile in activeFiles)
             {
@@ -523,7 +491,6 @@ namespace Axantum.AxCrypt.Core.Session
                     activeFile.Dispose();
                 }
                 _activeFilesByEncryptedPath = null;
-                _activeFilesByDecryptedPath = null;
             }
 
             if (_watchedFolders != null)

@@ -293,12 +293,13 @@ namespace Axantum.AxCrypt.Presentation
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
             {
+                if (e.Skip)
+                {
+                    return;
+                }
                 if (FactoryRegistry.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
                 {
-                    if (!e.Skip)
-                    {
-                        Instance.FileSystemState.Actions.RemoveRecentFiles(new string[] { e.SaveFileFullName }, progress);
-                    }
+                    Instance.FileSystemState.Actions.RemoveRecentFiles(new string[] { e.SaveFileFullName }, progress);
                 }
             };
 

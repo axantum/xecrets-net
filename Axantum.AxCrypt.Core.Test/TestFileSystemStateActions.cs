@@ -661,20 +661,6 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestHandleSessionEventActiveFileChange()
-        {
-            MockFileSystemStateActions mock = new MockFileSystemStateActions(Instance.FileSystemState);
-            bool called = false;
-            mock.CheckActiveFileMock = (ActiveFile activeFile, ProgressContext progress) => { called = true; return (ActiveFile)null; };
-
-            FactoryRegistry.Instance.Register<FileSystemState, FileSystemStateActions>((fileSystemState) => mock);
-
-            Instance.FileSystemState.Actions.HandleSessionEvent(new SessionEvent(SessionEventType.ActiveFileChange, @"C:\My Documents\Plaintext 2.txt"), new ProgressContext());
-
-            Assert.That(called, Is.True);
-        }
-
-        [Test]
         public static void TestHandleSessionEventLogOn()
         {
             MockFileSystemStateActions mock = new MockFileSystemStateActions(Instance.FileSystemState);
