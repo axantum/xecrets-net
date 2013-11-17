@@ -37,7 +37,13 @@ namespace Axantum.AxCrypt.Core.Session
         NotDecrypted = 2,
         Error = 4,
         DecryptedIsPendingDelete = 8,
+
+        /// <summary>
+        /// Indicates a file operation has failed due to a sharing violation. Is only advisory, and may be ignored
+        /// or reset when an event is raised that may change the situation.
+        /// </summary>
         NotShareable = 16,
+
         IgnoreChange = 32,
         NoLongerActive = 64,
     }

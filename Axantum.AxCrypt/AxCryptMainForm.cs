@@ -149,6 +149,7 @@ namespace Axantum.AxCrypt
             FactoryRegistry.Instance.Singleton<IBackgroundWork>(this);
             FactoryRegistry.Instance.Singleton<IStatusChecker>(this);
             FactoryRegistry.Instance.Singleton<Background>(new Background());
+            FactoryRegistry.Instance.Singleton<ProcessState>(new ProcessState());
 
             _watchedFoldersPresentation = new WatchedFolderPresentation(this);
             _recentFilesPresentation = new RecentFilesPresentation(this);

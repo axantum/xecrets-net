@@ -230,7 +230,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedFile1), OS.Current.FileInfo(_decryptedFile1), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted);
             OS.Current.FileInfo(_decryptedFile1).Delete();
-            activeFile = new ActiveFile(activeFile, ActiveFileStatus.NotDecrypted, null);
+            activeFile = new ActiveFile(activeFile, ActiveFileStatus.NotDecrypted);
             Instance.FileSystemState.Add(activeFile);
             Instance.KnownKeys.Add(activeFile.Key);
 
@@ -333,8 +333,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             FakeLauncher fakeLauncher = new FakeLauncher(_decryptedFile1);
             ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedFile1), OS.Current.FileInfo(_decryptedFile1), new AesKey(), ActiveFileStatus.NotDecrypted);
-            activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted, fakeLauncher);
-            Instance.FileSystemState.Add(activeFile);
+            activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted);
+            Instance.FileSystemState.Add(activeFile, fakeLauncher);
             Instance.KnownKeys.Add(activeFile.Key);
 
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
@@ -360,8 +360,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             FakeLauncher fakeLauncher = new FakeLauncher(_decryptedFile1);
             ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedFile1), OS.Current.FileInfo(_decryptedFile1), new AesKey(), ActiveFileStatus.NotDecrypted);
-            activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable, fakeLauncher);
-            Instance.FileSystemState.Add(activeFile);
+            activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable);
+            Instance.FileSystemState.Add(activeFile, fakeLauncher);
 
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
@@ -526,7 +526,27 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestUpdateActiveFileButSkippingKeyCheckDueToIrrelevantStatus()
+        public static void TestUpdateActiveFileButWithNoChangeDueToIrrelevantStatus()
+        {
+            IRuntimeFileInfo encryptedFileInfo = OS.Current.FileInfo(_encryptedFile1);
+            IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(_decryptedFile1);
+            AesKey key = new AesKey();
+            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None);
+            Instance.FileSystemState.Add(activeFile);
+
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return DateTime.UtcNow.AddMinutes(1); });
+
+            bool somethingWasChanged = false;
+            Instance.FileSystemState.Changed += (object sender, ActiveFileChangedEventArgs e) =>
+                {
+                    somethingWasChanged = true;
+                };
+            Instance.FileSystemState.Actions.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+            Assert.That(somethingWasChanged, Is.False, "No event should be raised, because nothing should change.");
+        }
+
+        [Test]
+        public static void TestUpdateActiveFileWithEventRaisedSinceItAppearsAProcessHasExited()
         {
             IRuntimeFileInfo encryptedFileInfo = OS.Current.FileInfo(_encryptedFile1);
             IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(_decryptedFile1);
@@ -538,11 +558,11 @@ namespace Axantum.AxCrypt.Core.Test
 
             bool somethingWasChanged = false;
             Instance.FileSystemState.Changed += (object sender, ActiveFileChangedEventArgs e) =>
-                {
-                    somethingWasChanged = true;
-                };
+            {
+                somethingWasChanged = true;
+            };
             Instance.FileSystemState.Actions.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
-            Assert.That(!somethingWasChanged, "No event should be raised, because nothing should change.");
+            Assert.That(somethingWasChanged, Is.True, "An event should be raised, because status was NotShareable, but no process is active.");
         }
 
         [Test]

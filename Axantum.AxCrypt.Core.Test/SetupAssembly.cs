@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
 using System;
@@ -48,6 +49,7 @@ namespace Axantum.AxCrypt.Core.Test
             FactoryRegistry.Instance.Singleton((IRuntimeEnvironment)new FakeRuntimeEnvironment());
             OS.Log.SetLevel(LogLevel.Debug);
             FactoryRegistry.Instance.Singleton(new KnownKeys());
+            FactoryRegistry.Instance.Singleton(new ProcessState());
         }
 
         public static void AssemblyTeardown()

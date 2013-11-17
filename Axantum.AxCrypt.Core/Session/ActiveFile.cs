@@ -41,13 +41,11 @@ namespace Axantum.AxCrypt.Core.Session
 {
     /// <summary>
     /// This class represent an active source files' current known state. Instances of this class are
-    /// essentially immutable. Essentially comes from the fact that the Process property can only
-    /// be owned by one instance at a time, when a new instance is made from an existing instance,
-    /// the existing Process property is set to null.
+    /// immutable.
     /// </summary>
     ///
     [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
-    public sealed class ActiveFile : IDisposable
+    public sealed class ActiveFile
     {
         public ActiveFile(ActiveFile activeFile)
         {
@@ -73,17 +71,6 @@ namespace Axantum.AxCrypt.Core.Session
             Initialize(activeFile);
             LastActivityTimeUtc = activeFile.LastActivityTimeUtc;
             Key = key;
-        }
-
-        public ActiveFile(ActiveFile activeFile, ActiveFileStatus status, ILauncher process)
-        {
-            if (activeFile == null)
-            {
-                throw new ArgumentNullException("activeFile");
-            }
-            Initialize(activeFile);
-            Status = status;
-            Process = process;
         }
 
         public ActiveFile(ActiveFile activeFile, ActiveFileStatus status)
@@ -121,19 +108,15 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 throw new ArgumentNullException("key");
             }
-            Initialize(encryptedFileInfo, decryptedFileInfo, decryptedFileInfo.LastWriteTimeUtc, key, null, status, null);
+            Initialize(encryptedFileInfo, decryptedFileInfo, decryptedFileInfo.LastWriteTimeUtc, key, null, status);
         }
 
         private void Initialize(ActiveFile other)
         {
-            Initialize(other.EncryptedFileInfo, other.DecryptedFileInfo, other.LastEncryptionWriteTimeUtc, other.Key, other.Thumbprint, other.Status, other.Process);
-            if (other.Process != null)
-            {
-                other.Process = null;
-            }
+            Initialize(other.EncryptedFileInfo, other.DecryptedFileInfo, other.LastEncryptionWriteTimeUtc, other.Key, other.Thumbprint, other.Status);
         }
 
-        private void Initialize(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, DateTime lastWriteTimeUtc, AesKey key, AesKeyThumbprint thumbprint, ActiveFileStatus status, ILauncher process)
+        private void Initialize(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, DateTime lastWriteTimeUtc, AesKey key, AesKeyThumbprint thumbprint, ActiveFileStatus status)
         {
             EncryptedFileInfo = OS.Current.FileInfo(encryptedFileInfo.FullName);
             DecryptedFileInfo = OS.Current.FileInfo(decryptedFileInfo.FullName);
@@ -141,7 +124,6 @@ namespace Axantum.AxCrypt.Core.Session
             Thumbprint = thumbprint;
             Status = status;
             LastActivityTimeUtc = OS.Current.UtcNow;
-            Process = process;
             LastEncryptionWriteTimeUtc = lastWriteTimeUtc;
         }
 
@@ -241,8 +223,6 @@ namespace Axantum.AxCrypt.Core.Session
             DecryptedFileInfo = OS.Current.FileInfo(Path.Combine(_decryptedFolder, _decryptedName));
         }
 
-        public ILauncher Process { get; private set; }
-
         private AesKey _key;
 
         public AesKey Key
@@ -312,28 +292,5 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new InvalidOperationException("ActieFile in an unhandled visual state.");
             }
         }
-
-        #region IDisposable Members
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        private void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (Process == null)
-                {
-                    return;
-                }
-                Process.Dispose();
-                Process = null;
-            }
-        }
-
-        #endregion IDisposable Members
     }
 }

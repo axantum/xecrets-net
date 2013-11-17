@@ -275,6 +275,12 @@ namespace Axantum.AxCrypt.Core.Session
             OnChanged(new ActiveFileChangedEventArgs(activeFile));
         }
 
+        public void Add(ActiveFile activeFile, ILauncher process)
+        {
+            Instance.ProcessState.Add(process, activeFile);
+            Add(activeFile);
+        }
+
         /// <summary>
         /// Remove a file from the volatile file system state. To persist, call Save().
         /// </summary>
@@ -363,7 +369,6 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     isModified = true;
                     OnChanged(new ActiveFileChangedEventArgs(updatedActiveFile));
-                    activeFile.Dispose();
                 }
             }
             if (isModified)
@@ -481,15 +486,6 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void DisposeInternal()
         {
-            if (_activeFilesByEncryptedPath != null)
-            {
-                foreach (ActiveFile activeFile in _activeFilesByEncryptedPath.Values)
-                {
-                    activeFile.Dispose();
-                }
-                _activeFilesByEncryptedPath = null;
-            }
-
             if (_watchedFolders != null)
             {
                 foreach (WatchedFolder watchedFolder in _watchedFolders)

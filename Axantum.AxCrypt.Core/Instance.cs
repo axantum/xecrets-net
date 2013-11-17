@@ -40,5 +40,10 @@ namespace Axantum.AxCrypt.Core
         {
             get { return FactoryRegistry.Instance.Singleton<FileSystemState>(); }
         }
+
+        public static ProcessState ProcessState
+        {
+            get { return FactoryRegistry.Instance.Singleton<ProcessState>(); }
+        }
     }
 }

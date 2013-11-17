@@ -177,8 +177,8 @@ namespace Axantum.AxCrypt.Core.UI
                 OS.Log.LogInfo("Launched and opened '{0}'.".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName));
             }
 
-            destinationActiveFile = new ActiveFile(destinationActiveFile, ActiveFileStatus.AssumedOpenAndDecrypted, process);
-            fileSystemState.Add(destinationActiveFile);
+            destinationActiveFile = new ActiveFile(destinationActiveFile, ActiveFileStatus.AssumedOpenAndDecrypted);
+            fileSystemState.Add(destinationActiveFile, process);
             fileSystemState.Save();
 
             return FileOperationStatus.Success;

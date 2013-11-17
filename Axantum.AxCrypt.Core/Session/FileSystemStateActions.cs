@@ -343,7 +343,11 @@ namespace Axantum.AxCrypt.Core.Session
 
         private static ActiveFile CheckIfProcessExited(ActiveFile activeFile)
         {
-            if (activeFile.Process == null || !activeFile.Process.HasExited)
+            if (Instance.ProcessState.HasActiveProcess(activeFile))
+            {
+                return activeFile;
+            }
+            if (!activeFile.Status.HasMask(ActiveFileStatus.NotShareable))
             {
                 return activeFile;
             }
@@ -414,7 +418,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private static ActiveFile TryDelete(ActiveFile activeFile, ProgressContext progress)
         {
-            if (activeFile.Process != null && !activeFile.Process.HasExited)
+            if (Instance.ProcessState.HasActiveProcess(activeFile))
             {
                 if (OS.Log.IsInfoEnabled)
                 {

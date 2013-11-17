@@ -73,7 +73,6 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestInvalidArguments()
         {
             IRuntimeFileInfo nullFileInfo = null;
-            ILauncher nullProcess = null;
             IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(_testTextPath);
             IRuntimeFileInfo encryptedFileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
             AesKey key = new AesKey();
@@ -85,7 +84,6 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullActiveFile) == null) { } });
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullActiveFile, key) == null) { } });
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(originalActiveFile, nullKey) == null) { } });
-            Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullActiveFile, ActiveFileStatus.None, nullProcess) == null) { } });
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullActiveFile, ActiveFileStatus.None) == null) { } });
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullActiveFile, DateTime.MinValue, ActiveFileStatus.None) == null) { } });
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullFileInfo, decryptedFileInfo, new AesKey(), ActiveFileStatus.None) == null) { } });
@@ -99,31 +97,26 @@ namespace Axantum.AxCrypt.Core.Test
             AesKey key = new AesKey();
             IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(_testTextPath);
             IRuntimeFileInfo encryptedFileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
-            using (ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None))
-            {
-                decryptedFileInfo = activeFile.DecryptedFileInfo;
-                Assert.That(decryptedFileInfo.Exists, Is.True, "The file should exist in the fake file system.");
-                Assert.That(decryptedFileInfo.FullName, Is.EqualTo(_testTextPath), "The file should be named as it was in the constructor");
-                Assert.That(decryptedFileInfo.LastWriteTimeUtc, Is.EqualTo(decryptedFileInfo.LastWriteTimeUtc), "When a LastWriteTime is not specified, the decrypted file should be used to determine the value.");
-                SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return DateTime.UtcNow.AddMinutes(1); });
-                using (ActiveFile otherFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted))
-                {
-                    Assert.That(otherFile.Status, Is.EqualTo(ActiveFileStatus.AssumedOpenAndDecrypted), "The status should be as given in the constructor.");
-                    Assert.That(otherFile.DecryptedFileInfo.FullName, Is.EqualTo(activeFile.DecryptedFileInfo.FullName), "This should be copied from the original instance.");
-                    Assert.That(otherFile.EncryptedFileInfo.FullName, Is.EqualTo(activeFile.EncryptedFileInfo.FullName), "This should be copied from the original instance.");
-                    Assert.That(otherFile.Key, Is.EqualTo(activeFile.Key), "This should be copied from the original instance.");
-                    Assert.That(otherFile.LastActivityTimeUtc, Is.GreaterThan(activeFile.LastActivityTimeUtc), "This should not be copied from the original instance, but should be a later time.");
-                    Assert.That(activeFile.Process, Is.Null, "The process should only be owned by one instance at a time.");
-                    Assert.That(otherFile.ThumbprintMatch(activeFile.Key), Is.True, "The thumbprints should match.");
-                }
 
-                activeFile.DecryptedFileInfo.LastWriteTimeUtc = activeFile.DecryptedFileInfo.LastWriteTimeUtc.AddDays(1);
-                using (ActiveFile otherFile = new ActiveFile(activeFile, OS.Current.UtcNow, ActiveFileStatus.AssumedOpenAndDecrypted))
-                {
-                    Assert.That(activeFile.IsModified, Is.True, "The original instance has not been encrypted since the last change.");
-                    Assert.That(otherFile.IsModified, Is.False, "The copy indicates that it has been encrypted and thus is not modified.");
-                }
-            }
+            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None);
+            decryptedFileInfo = activeFile.DecryptedFileInfo;
+            Assert.That(decryptedFileInfo.Exists, Is.True, "The file should exist in the fake file system.");
+            Assert.That(decryptedFileInfo.FullName, Is.EqualTo(_testTextPath), "The file should be named as it was in the constructor");
+            Assert.That(decryptedFileInfo.LastWriteTimeUtc, Is.EqualTo(decryptedFileInfo.LastWriteTimeUtc), "When a LastWriteTime is not specified, the decrypted file should be used to determine the value.");
+            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return DateTime.UtcNow.AddMinutes(1); });
+
+            ActiveFile otherFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted);
+            Assert.That(otherFile.Status, Is.EqualTo(ActiveFileStatus.AssumedOpenAndDecrypted), "The status should be as given in the constructor.");
+            Assert.That(otherFile.DecryptedFileInfo.FullName, Is.EqualTo(activeFile.DecryptedFileInfo.FullName), "This should be copied from the original instance.");
+            Assert.That(otherFile.EncryptedFileInfo.FullName, Is.EqualTo(activeFile.EncryptedFileInfo.FullName), "This should be copied from the original instance.");
+            Assert.That(otherFile.Key, Is.EqualTo(activeFile.Key), "This should be copied from the original instance.");
+            Assert.That(otherFile.LastActivityTimeUtc, Is.GreaterThan(activeFile.LastActivityTimeUtc), "This should not be copied from the original instance, but should be a later time.");
+            Assert.That(otherFile.ThumbprintMatch(activeFile.Key), Is.True, "The thumbprints should match.");
+
+            activeFile.DecryptedFileInfo.LastWriteTimeUtc = activeFile.DecryptedFileInfo.LastWriteTimeUtc.AddDays(1);
+            otherFile = new ActiveFile(activeFile, OS.Current.UtcNow, ActiveFileStatus.AssumedOpenAndDecrypted);
+            Assert.That(activeFile.IsModified, Is.True, "The original instance has not been encrypted since the last change.");
+            Assert.That(otherFile.IsModified, Is.False, "The copy indicates that it has been encrypted and thus is not modified.");
         }
 
         [Test]
@@ -132,15 +125,12 @@ namespace Axantum.AxCrypt.Core.Test
             AesKey key = new AesKey();
             IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(_testTextPath);
             IRuntimeFileInfo encryptedFileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
-            using (ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None))
-            {
-                AesKey newKey = new AesKey();
-                using (ActiveFile newActiveFile = new ActiveFile(activeFile, newKey))
-                {
-                    Assert.That(activeFile.Key, Is.Not.EqualTo(newKey), "Ensure that it's really a different key.");
-                    Assert.That(newActiveFile.Key, Is.EqualTo(newKey), "The constructor should assign the new key to the new ActiveFile instance.");
-                }
-            }
+            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None);
+            AesKey newKey = new AesKey();
+
+            ActiveFile newActiveFile = new ActiveFile(activeFile, newKey);
+            Assert.That(activeFile.Key, Is.Not.EqualTo(newKey), "Ensure that it's really a different key.");
+            Assert.That(newActiveFile.Key, Is.EqualTo(newKey), "The constructor should assign the new key to the new ActiveFile instance.");
         }
 
         [Test]
@@ -154,10 +144,8 @@ namespace Axantum.AxCrypt.Core.Test
             using (MemoryStream stream = new MemoryStream())
             {
                 DataContractSerializer serializer = new DataContractSerializer(typeof(ActiveFile));
-                using (ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None))
-                {
-                    serializer.WriteObject(stream, activeFile);
-                }
+                ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None);
+                serializer.WriteObject(stream, activeFile);
                 stream.Position = 0;
                 ActiveFile deserializedActiveFile = (ActiveFile)serializer.ReadObject(stream);
 
@@ -174,14 +162,12 @@ namespace Axantum.AxCrypt.Core.Test
             AesKey key = new AesKey();
             using (MemoryStream stream = new MemoryStream())
             {
-                using (ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None))
+                ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None);
+                Assert.Throws<ArgumentNullException>(() =>
                 {
-                    Assert.Throws<ArgumentNullException>(() =>
-                    {
-                        AesKey nullKey = null;
-                        activeFile.ThumbprintMatch(nullKey);
-                    });
-                }
+                    AesKey nullKey = null;
+                    activeFile.ThumbprintMatch(nullKey);
+                });
             }
         }
 
@@ -190,10 +176,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(Path.Combine(_rootPath, "doesnotexist.txt"));
             IRuntimeFileInfo encryptedFileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
-            using (ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new AesKey(), ActiveFileStatus.None))
-            {
-                Assert.That(activeFile.IsModified, Is.False, "A non-existing decrypted file should not be treated as modified.");
-            }
+            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new AesKey(), ActiveFileStatus.None);
+            Assert.That(activeFile.IsModified, Is.False, "A non-existing decrypted file should not be treated as modified.");
         }
     }
 }

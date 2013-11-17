@@ -51,6 +51,7 @@ namespace Axantum.AxCrypt.Mono
             {
                 return;
             }
+            WasStarted = true;
             _path = _process.StartInfo.FileName;
             if (OS.Current.CanTrackProcess)
             {
@@ -80,15 +81,13 @@ namespace Axantum.AxCrypt.Mono
 
         public bool HasExited
         {
-            get { return !WasStarted || _process.HasExited; }
+            get { return _process == null || _process.HasExited; }
         }
 
         public bool WasStarted
         {
-            get
-            {
-                return OS.Current.CanTrackProcess && _process != null;
-            }
+            get;
+            private set;
         }
 
         #endregion ILauncher Members
