@@ -110,7 +110,7 @@ namespace Axantum.AxCrypt
             get { return !InvokeRequired; }
         }
 
-        public void BackgroundWorkWithProgress(Func<ProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
+        public void BackgroundWorkWithProgress(Func<IProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
         {
             _progressBackgroundWorker.BackgroundWorkWithProgress(work, complete);
         }
@@ -424,7 +424,7 @@ namespace Axantum.AxCrypt
             _handleSessionChangedInProgress = true;
 
             BackgroundWorkWithProgress(
-                (ProgressContext progress) =>
+                (IProgressContext progress) =>
                 {
                     progress.NotifyLevelStart();
                     try
@@ -482,7 +482,7 @@ namespace Axantum.AxCrypt
         private void PurgeActiveFiles()
         {
             BackgroundWorkWithProgress(
-                (ProgressContext progress) =>
+                (IProgressContext progress) =>
                 {
                     progress.NotifyLevelStart();
                     try
@@ -526,7 +526,7 @@ namespace Axantum.AxCrypt
             IEnumerable<string> encryptedPaths = SelectedRecentFilesItems();
 
             BackgroundWorkWithProgress(
-                (ProgressContext progress) =>
+                (IProgressContext progress) =>
                 {
                     Instance.FileSystemState.Actions.RemoveRecentFiles(encryptedPaths, progress);
                     return FileOperationStatus.Success;
@@ -599,7 +599,7 @@ namespace Axantum.AxCrypt
             ToolStripMenuItem menuItem = (ToolStripMenuItem)sender;
             ContextMenuStrip menuStrip = (ContextMenuStrip)menuItem.GetCurrentParent();
             ProgressBar progressBar = (ProgressBar)menuStrip.Tag;
-            ProgressContext progress = (ProgressContext)progressBar.Tag;
+            IProgressContext progress = (IProgressContext)progressBar.Tag;
             progress.Cancel = true;
         }
 
@@ -862,7 +862,7 @@ namespace Axantum.AxCrypt
         {
             string folder = _watchedFoldersListView.SelectedItems[0].Text;
             BackgroundWorkWithProgress(
-                (ProgressContext progress) =>
+                (IProgressContext progress) =>
                 {
                     progress.NotifyLevelStart();
                     try

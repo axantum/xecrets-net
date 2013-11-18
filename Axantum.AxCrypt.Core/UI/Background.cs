@@ -53,13 +53,12 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public void ProcessFiles(IEnumerable<string> files, Action<string, IThreadWorker, ProgressContext> processFile)
+        public void ProcessFiles(IEnumerable<string> files, Action<string, IThreadWorker, IProgressContext> processFile)
         {
             WorkerGroup workerGroup = null;
             Instance.IBackgroundWork.BackgroundWorkWithProgress(
-                (ProgressContext progress) =>
+                (IProgressContext progress) =>
                 {
-                    progress.AddItems(files.Count());
                     using (workerGroup = new WorkerGroup(OS.Current.MaxConcurrency, progress))
                     {
                         foreach (string file in files)
@@ -73,13 +72,12 @@ namespace Axantum.AxCrypt.Core.UI
                                     worker.Abort();
                                     return;
                                 }
-                                processFile(closureOverCopyOfLoopVariableFile, worker, progress);
+                                processFile(closureOverCopyOfLoopVariableFile, worker, new CancelContext(progress));
                             });
                             if (workerGroup.FirstError != FileOperationStatus.Success)
                             {
                                 break;
                             }
-                            progress.AddItems(-1);
                         }
                         workerGroup.WaitAllAndFinish();
                         return workerGroup.FirstError;

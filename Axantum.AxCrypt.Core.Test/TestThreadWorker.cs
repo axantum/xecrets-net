@@ -25,15 +25,15 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.UI;
-using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -158,7 +158,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             bool wasCanceled = false;
             FakeRuntimeEnvironment environment = (FakeRuntimeEnvironment)OS.Current;
-            using (ThreadWorker worker = new ThreadWorker(new ProgressContext()))
+            using (ThreadWorker worker = new ThreadWorker(new CancelContext(new ProgressContext())))
             {
                 worker.Work += (object sender, ThreadWorkerEventArgs e) =>
                 {

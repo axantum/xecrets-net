@@ -53,7 +53,7 @@ namespace Axantum.AxCrypt.Core.Session
         /// </summary>
         /// <param name="_fileSystemState">The instance of FileSystemState where active files are recorded.</param>
         /// <param name="progress">The context where progress may be reported.</param>
-        public virtual void PurgeActiveFiles(ProgressContext progress)
+        public virtual void PurgeActiveFiles(IProgressContext progress)
         {
             progress.NotifyLevelStart();
             _fileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFile) =>
@@ -90,7 +90,7 @@ namespace Axantum.AxCrypt.Core.Session
         /// <param name="_fileSystemState">The FileSystemState to enumerate and possibly update.</param>
         /// <param name="mode">Under what circumstances is the FileSystemState.Changed event raised.</param>
         /// <param name="progress">The ProgressContext to provide visual progress feedback via.</param>
-        public virtual void CheckActiveFiles(ChangedEventMode mode, ProgressContext progress)
+        public virtual void CheckActiveFiles(ChangedEventMode mode, IProgressContext progress)
         {
             progress.NotifyLevelStart();
             progress.AddTotal(_fileSystemState.ActiveFileCount);
@@ -108,7 +108,7 @@ namespace Axantum.AxCrypt.Core.Session
             progress.NotifyLevelFinished();
         }
 
-        public virtual ActiveFile CheckActiveFile(ActiveFile activeFile, ProgressContext progress)
+        public virtual ActiveFile CheckActiveFile(ActiveFile activeFile, IProgressContext progress)
         {
             if (FileLock.IsLocked(activeFile.DecryptedFileInfo, activeFile.EncryptedFileInfo))
             {
@@ -118,7 +118,7 @@ namespace Axantum.AxCrypt.Core.Session
             return activeFile;
         }
 
-        public virtual void EncryptFilesInWatchedFolders(AesKey encryptionKey, ProgressContext progress)
+        public virtual void EncryptFilesInWatchedFolders(AesKey encryptionKey, IProgressContext progress)
         {
             if (encryptionKey == null)
             {
@@ -146,7 +146,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public virtual void HandleSessionEvents(IEnumerable<SessionEvent> events, ProgressContext progress)
+        public virtual void HandleSessionEvents(IEnumerable<SessionEvent> events, IProgressContext progress)
         {
             foreach (SessionEvent sessionEvent in events)
             {
@@ -155,7 +155,7 @@ namespace Axantum.AxCrypt.Core.Session
             CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
         }
 
-        public virtual void HandleSessionEvent(SessionEvent sessionEvent, ProgressContext progress)
+        public virtual void HandleSessionEvent(SessionEvent sessionEvent, IProgressContext progress)
         {
             if (OS.Log.IsInfoEnabled)
             {
@@ -245,7 +245,7 @@ namespace Axantum.AxCrypt.Core.Session
             return keyMatch;
         }
 
-        public virtual void RemoveRecentFiles(IEnumerable<string> encryptedPaths, ProgressContext progress)
+        public virtual void RemoveRecentFiles(IEnumerable<string> encryptedPaths, IProgressContext progress)
         {
             progress.NotifyLevelStart();
             progress.AddTotal(encryptedPaths.Count());
@@ -278,7 +278,7 @@ namespace Axantum.AxCrypt.Core.Session
             return newFiles;
         }
 
-        private static ActiveFile CheckActiveFileActions(ActiveFile activeFile, ProgressContext progress)
+        private static ActiveFile CheckActiveFileActions(ActiveFile activeFile, IProgressContext progress)
         {
             activeFile = CheckIfKeyIsKnown(activeFile);
             activeFile = CheckIfCreated(activeFile);
@@ -359,7 +359,7 @@ namespace Axantum.AxCrypt.Core.Session
             return activeFile;
         }
 
-        private static ActiveFile CheckIfTimeToUpdate(ActiveFile activeFile, ProgressContext progress)
+        private static ActiveFile CheckIfTimeToUpdate(ActiveFile activeFile, IProgressContext progress)
         {
             if (!activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted) || activeFile.Status.HasMask(ActiveFileStatus.NotShareable))
             {
@@ -401,7 +401,7 @@ namespace Axantum.AxCrypt.Core.Session
             return activeFile;
         }
 
-        private static ActiveFile CheckIfTimeToDelete(ActiveFile activeFile, ProgressContext progress)
+        private static ActiveFile CheckIfTimeToDelete(ActiveFile activeFile, IProgressContext progress)
         {
             if (OS.Current.Platform != Platform.WindowsDesktop)
             {
@@ -416,7 +416,7 @@ namespace Axantum.AxCrypt.Core.Session
             return activeFile;
         }
 
-        private static ActiveFile TryDelete(ActiveFile activeFile, ProgressContext progress)
+        private static ActiveFile TryDelete(ActiveFile activeFile, IProgressContext progress)
         {
             if (Instance.ProcessState.HasActiveProcess(activeFile))
             {

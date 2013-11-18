@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private FileOperationEventArgs _eventArgs;
 
-        private ProgressContext _progress;
+        private IProgressContext _progress;
 
         /// <summary>
         /// Create a new instance, without any progress reporting.
@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         /// <param name="fileSystemState">The current FileSystemStatem instance</param>
         /// <param name="progress">The instance of ProgressContext to report progress via</param>
-        public FileOperationsController(FileSystemState fileSystemState, ProgressContext progress)
+        public FileOperationsController(FileSystemState fileSystemState, IProgressContext progress)
         {
             _eventArgs = new FileOperationEventArgs();
             _fileSystemState = fileSystemState;

@@ -25,9 +25,9 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.IO;
-using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core.IO
 {
@@ -35,9 +35,9 @@ namespace Axantum.AxCrypt.Core.IO
     {
         private Stream _stream;
 
-        private ProgressContext _progress;
+        private IProgressContext _progress;
 
-        public ProgressStream(Stream stream, ProgressContext progress)
+        public ProgressStream(Stream stream, IProgressContext progress)
         {
             if (stream == null)
             {

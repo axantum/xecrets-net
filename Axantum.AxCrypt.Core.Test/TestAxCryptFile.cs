@@ -194,10 +194,10 @@ namespace Axantum.AxCrypt.Core.Test
                     Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                     IRuntimeFileInfo destinationInfo = OS.Current.FileInfo(_rootPath.PathCombine("Destination", "Decrypted.txt"));
 
-                    ProgressContext progress = new ProgressContext(TimeSpan.Zero);
+                    IProgressContext progress = new CancelContext(new ProgressContext(TimeSpan.Zero));
                     progress.Progressing += (object sender, ProgressEventArgs e) =>
                     {
-                        throw new OperationCanceledException();
+                        progress.Cancel = true;
                     };
 
                     Assert.Throws<OperationCanceledException>(() => { AxCryptFile.Decrypt(document, destinationInfo, AxCryptOptions.None, progress); });
@@ -548,10 +548,10 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IRuntimeFileInfo fileInfo = OS.Current.FileInfo(_davidCopperfieldTxtPath);
 
-            ProgressContext progress = new ProgressContext(TimeSpan.Zero);
+            IProgressContext progress = new CancelContext(new ProgressContext(TimeSpan.Zero));
             progress.Progressing += (object sender, ProgressEventArgs e) =>
             {
-                ((ProgressContext)sender).Cancel = true;
+                ((IProgressContext)sender).Cancel = true;
             };
             Assert.Throws<OperationCanceledException>(() => { AxCryptFile.Wipe(fileInfo, progress); });
             Assert.That(!fileInfo.Exists, "The file should be completely wiped, even if canceled at start.");

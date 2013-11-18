@@ -89,9 +89,9 @@ namespace Axantum.AxCrypt
         /// <param name="displayText">A text that may be used as a reference in various messages.</param>
         /// <param name="work">A 'work' delegate, taking a ProgressContext and return a FileOperationStatus. Executed on a background thread. Not the calling/GUI thread.</param>
         /// <param name="complete">A 'complete' delegate, taking the final status. Executed on the original caller thread, typically the GUI thread.</param>
-        public void BackgroundWorkWithProgress(Func<ProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
+        public void BackgroundWorkWithProgress(Func<IProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
         {
-            ProgressContext progress = new ProgressContext();
+            IProgressContext progress = new CancelContext(new ProgressContext());
             ProgressBar progressBar = CreateProgressBar(progress);
             OnProgressBarCreated(new ControlEventArgs(progressBar));
             progress.Progressing += (object sender, ProgressEventArgs e) =>
@@ -127,7 +127,8 @@ namespace Axantum.AxCrypt
             Interlocked.Increment(ref _workerCount);
             threadWorker.Run();
         }
-        private ProgressBar CreateProgressBar(ProgressContext progress)
+
+        private ProgressBar CreateProgressBar(IProgressContext progress)
         {
             ProgressBar progressBar = new ProgressBar();
             progressBar.Minimum = 0;

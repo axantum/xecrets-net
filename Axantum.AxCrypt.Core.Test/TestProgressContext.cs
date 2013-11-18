@@ -25,14 +25,14 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.UI;
-using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -288,17 +288,63 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestCancel()
+        public static void TestCancelNotifyLevelStart()
         {
-            ProgressContext progress = new ProgressContext();
+            IProgressContext progress = new ProgressContext();
             progress.NotifyLevelStart();
             progress.AddTotal(100);
             progress.AddCount(10);
+            progress = new CancelContext(progress);
             progress.Cancel = true;
             Assert.Throws<OperationCanceledException>(() => { progress.NotifyLevelStart(); });
+            Assert.DoesNotThrow(() => { progress.AddTotal(50); });
+            Assert.DoesNotThrow(() => { progress.AddCount(10); });
+            Assert.DoesNotThrow(() => { progress.NotifyLevelFinished(); });
+        }
+
+        [Test]
+        public static void TestCancelNotifyLevelFinished()
+        {
+            IProgressContext progress = new ProgressContext();
+            progress.NotifyLevelStart();
+            progress.AddTotal(100);
+            progress.AddCount(10);
+            progress = new CancelContext(progress);
+            Assert.DoesNotThrow(() => { progress.NotifyLevelStart(); });
+            Assert.DoesNotThrow(() => { progress.AddTotal(50); });
+            Assert.DoesNotThrow(() => { progress.AddCount(10); });
+            progress.Cancel = true;
             Assert.Throws<OperationCanceledException>(() => { progress.NotifyLevelFinished(); });
+        }
+
+        [Test]
+        public static void TestCancelAddTotal()
+        {
+            IProgressContext progress = new ProgressContext();
+            progress.NotifyLevelStart();
+            progress.AddTotal(100);
+            progress.AddCount(10);
+            progress = new CancelContext(progress);
+            Assert.DoesNotThrow(() => { progress.NotifyLevelStart(); });
+            progress.Cancel = true;
             Assert.Throws<OperationCanceledException>(() => { progress.AddTotal(50); });
+            Assert.DoesNotThrow(() => { progress.AddCount(10); });
+            Assert.DoesNotThrow(() => { progress.NotifyLevelFinished(); });
+        }
+
+        [Test]
+        public static void TestCancelAddCount()
+        {
+            IProgressContext progress = new ProgressContext();
+            progress.NotifyLevelStart();
+            progress.AddTotal(100);
+            progress.AddCount(10);
+            progress = new CancelContext(progress);
+            Assert.DoesNotThrow(() => { progress.NotifyLevelStart(); });
+            Assert.DoesNotThrow(() => { progress.AddTotal(50); });
+            progress.Cancel = true;
             Assert.Throws<OperationCanceledException>(() => { progress.AddCount(10); });
+            Assert.DoesNotThrow(() => { progress.NotifyLevelFinished(); });
         }
 
         [Test]

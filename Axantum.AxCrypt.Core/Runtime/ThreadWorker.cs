@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// <param name="displayText">A text that may be used in messages as a reference for users.</param>
         /// <param name="work">A 'work' delegate. Executed on a separate thread, not the GUI thread.</param>
         /// <param name="complete">A 'complete' delegate. Executed on the original thread, typically the GUI thread.</param>
-        public ThreadWorker(ProgressContext progress)
+        public ThreadWorker(IProgressContext progress)
         {
             _worker = new BackgroundWorker();
 

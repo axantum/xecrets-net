@@ -94,7 +94,7 @@ namespace Axantum.AxCrypt.Presentation
         }
 
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public void DecryptSelectedFolder(string folder, ProgressContext progress)
+        public void DecryptSelectedFolder(string folder, IProgressContext progress)
         {
             Factory.AxCryptFile.DecryptFilesUniqueWithWipeOfOriginal(OS.Current.FileInfo(folder), Instance.KnownKeys.DefaultEncryptionKey, progress);
         }

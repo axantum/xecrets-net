@@ -7,6 +7,6 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public interface IBackgroundWork
     {
-        void BackgroundWorkWithProgress(Func<ProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete);
+        void BackgroundWorkWithProgress(Func<IProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete);
     }
 }

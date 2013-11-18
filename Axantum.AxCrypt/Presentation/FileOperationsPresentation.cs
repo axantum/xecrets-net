@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt.Presentation
             Instance.Background.ProcessFiles(fileNames, WipeFile);
         }
 
-        public void EncryptFileNonInteractive(string fullName, IThreadWorker worker, ProgressContext progress)
+        public void EncryptFileNonInteractive(string fullName, IThreadWorker worker, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
 
@@ -130,7 +130,7 @@ namespace Axantum.AxCrypt.Presentation
             operationsController.EncryptFile(fullName, worker);
         }
 
-        public void VerifyAndAddActive(string fullName, IThreadWorker worker, ProgressContext progress)
+        public void VerifyAndAddActive(string fullName, IThreadWorker worker, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
 
@@ -160,7 +160,7 @@ namespace Axantum.AxCrypt.Presentation
             operationsController.VerifyEncrypted(fullName, worker);
         }
 
-        private void EncryptFile(string file, IThreadWorker worker, ProgressContext progress)
+        private void EncryptFile(string file, IThreadWorker worker, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
 
@@ -218,7 +218,7 @@ namespace Axantum.AxCrypt.Presentation
             operationsController.EncryptFile(file, worker);
         }
 
-        public void DecryptFile(string file, IThreadWorker worker, ProgressContext progress)
+        public void DecryptFile(string file, IThreadWorker worker, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
 
@@ -265,7 +265,7 @@ namespace Axantum.AxCrypt.Presentation
             operationsController.DecryptFile(file, worker);
         }
 
-        private void WipeFile(string file, IThreadWorker worker, ProgressContext progress)
+        private void WipeFile(string file, IThreadWorker worker, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
 
@@ -306,7 +306,7 @@ namespace Axantum.AxCrypt.Presentation
             operationsController.WipeFile(file, worker);
         }
 
-        public void OpenEncrypted(string file, IThreadWorker worker, ProgressContext progress)
+        public void OpenEncrypted(string file, IThreadWorker worker, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
 

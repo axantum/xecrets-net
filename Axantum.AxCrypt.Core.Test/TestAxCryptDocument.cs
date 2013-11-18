@@ -184,10 +184,10 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 using (MemoryStream plaintextStream = new MemoryStream())
                 {
-                    ProgressContext progress = new ProgressContext(TimeSpan.Zero);
+                    IProgressContext progress = new CancelContext(new ProgressContext(TimeSpan.Zero));
                     progress.Progressing += (object sender, ProgressEventArgs e) =>
                     {
-                        throw new OperationCanceledException();
+                        progress.Cancel = true;
                     };
 
                     Assert.Throws<OperationCanceledException>(() => { document.DecryptTo(plaintextStream, progress); });
@@ -249,10 +249,10 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 using (MemoryStream plaintextStream = new MemoryStream())
                 {
-                    ProgressContext progress = new ProgressContext(TimeSpan.Zero);
+                    IProgressContext progress = new CancelContext(new ProgressContext(TimeSpan.Zero));
                     progress.Progressing += (object sender, ProgressEventArgs e) =>
                     {
-                        throw new OperationCanceledException();
+                        progress.Cancel = true;
                     };
 
                     Assert.Throws<OperationCanceledException>(() => { document.DecryptTo(plaintextStream, progress); });

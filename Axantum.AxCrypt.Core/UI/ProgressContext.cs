@@ -36,7 +36,7 @@ namespace Axantum.AxCrypt.Core.UI
     /// Coordinate progress reporting, marshaling reports to the original instantiating thread (if
     /// it has a SynchronizationContext) and throttle the amount of calls based on a timer.
     /// </summary>
-    public class ProgressContext
+    public class ProgressContext : IProgressContext
     {
         private static readonly TimeSpan TimeToFirstProgress = TimeSpan.FromMilliseconds(500);
 
@@ -53,9 +53,6 @@ namespace Axantum.AxCrypt.Core.UI
         private long _current = 0;
 
         private long _total = -1;
-
-        [ThreadStatic]
-        private static bool _cancelExceptionThrown;
 
         private static readonly object _progressLevelLock = new object();
 
@@ -77,6 +74,11 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 _synchronizationContext = SynchronizationContext.Current;
             }
+        }
+
+        public IProgressContext Progress
+        {
+            get { return this; }
         }
 
         /// <summary>
@@ -169,6 +171,15 @@ namespace Axantum.AxCrypt.Core.UI
             OnProgressing(e);
         }
 
+        public void RemoveCount(long totalCount, long progressCount)
+        {
+            lock (_progressLock)
+            {
+                _total -= totalCount;
+                _current -= progressCount;
+            }
+        }
+
         private int Percent
         {
             get
@@ -232,16 +243,6 @@ namespace Axantum.AxCrypt.Core.UI
             if (_progressLevel < 0)
             {
                 throw new InvalidOperationException("Out-of-sequence call, cannot call after being finished.");
-            }
-            if (!Cancel)
-            {
-                _cancelExceptionThrown = false;
-                return;
-            }
-            if (!_cancelExceptionThrown)
-            {
-                _cancelExceptionThrown = true;
-                throw new OperationCanceledException("Operation canceled on request.");
             }
         }
     }

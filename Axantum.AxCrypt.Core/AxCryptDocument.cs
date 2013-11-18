@@ -80,7 +80,7 @@ namespace Axantum.AxCrypt.Core
         /// <param name="outputDocumentHeaders"></param>
         /// <param name="inputStream"></param>
         /// <param name="outputStream"></param>
-        public void EncryptTo(DocumentHeaders outputDocumentHeaders, Stream inputStream, Stream outputStream, AxCryptOptions options, ProgressContext progress)
+        public void EncryptTo(DocumentHeaders outputDocumentHeaders, Stream inputStream, Stream outputStream, AxCryptOptions options, IProgressContext progress)
         {
             if (outputDocumentHeaders == null)
             {
@@ -142,7 +142,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        private static void EncryptWithCompressionInternal(DocumentHeaders outputDocumentHeaders, Stream inputStream, CryptoStream encryptingStream, ProgressContext progress)
+        private static void EncryptWithCompressionInternal(DocumentHeaders outputDocumentHeaders, Stream inputStream, CryptoStream encryptingStream, IProgressContext progress)
         {
             using (ZOutputStream deflatingStream = new ZOutputStream(encryptingStream, -1))
             {
@@ -156,19 +156,18 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        private static long CopyToWithCount(Stream inputStream, Stream outputStream, ProgressContext progress)
+        private static long CopyToWithCount(Stream inputStream, Stream outputStream, IProgressContext progress)
         {
             return CopyToWithCount(inputStream, outputStream, inputStream, progress);
         }
 
-        private static long CopyToWithCount(Stream inputStream, Stream outputStream, Stream realInputStream, ProgressContext progress)
+        private static long CopyToWithCount(Stream inputStream, Stream outputStream, Stream realInputStream, IProgressContext progress)
         {
             progress.NotifyLevelStart();
-            long totalTodo = 0;
+
             if (realInputStream.CanSeek)
             {
-                totalTodo = realInputStream.Length - realInputStream.Position;
-                progress.AddTotal(totalTodo);
+                progress.AddTotal(realInputStream.Length - realInputStream.Position);
             }
 
             long totalDone = 0;
@@ -260,7 +259,7 @@ namespace Axantum.AxCrypt.Core
         /// Decrypts the encrypted data to the given stream
         /// </summary>
         /// <param name="outputPlaintextStream">The resulting plain text stream.</param>
-        public void DecryptTo(Stream outputPlaintextStream, ProgressContext progress)
+        public void DecryptTo(Stream outputPlaintextStream, IProgressContext progress)
         {
             if (DocumentHeaders == null)
             {
@@ -281,7 +280,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        private void DecryptEncryptedDataStream(Stream outputPlaintextStream, ICryptoTransform decryptor, AxCryptDataStream encryptedDataStream, ProgressContext progress)
+        private void DecryptEncryptedDataStream(Stream outputPlaintextStream, ICryptoTransform decryptor, AxCryptDataStream encryptedDataStream, IProgressContext progress)
         {
             Exception savedExceptionIfCloseCausesCryptographicException = null;
             try

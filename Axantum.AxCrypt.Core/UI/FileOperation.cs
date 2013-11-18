@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public static class FileOperation
     {
-        public static FileOperationStatus OpenAndLaunchApplication(this FileSystemState fileSystemState, string file, IEnumerable<AesKey> keys, ProgressContext progress)
+        public static FileOperationStatus OpenAndLaunchApplication(this FileSystemState fileSystemState, string file, IEnumerable<AesKey> keys, IProgressContext progress)
         {
             if (fileSystemState == null)
             {
@@ -94,7 +94,7 @@ namespace Axantum.AxCrypt.Core.UI
             return status;
         }
 
-        public static FileOperationStatus OpenAndLaunchApplication(this FileSystemState fileSystemState, string file, AxCryptDocument document, ProgressContext progress)
+        public static FileOperationStatus OpenAndLaunchApplication(this FileSystemState fileSystemState, string file, AxCryptDocument document, IProgressContext progress)
         {
             if (fileSystemState == null)
             {
@@ -195,7 +195,7 @@ namespace Axantum.AxCrypt.Core.UI
             OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.ProcessExit, path));
         }
 
-        private static ActiveFile TryDecrypt(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFolderInfo, IEnumerable<AesKey> keys, ProgressContext progress)
+        private static ActiveFile TryDecrypt(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFolderInfo, IEnumerable<AesKey> keys, IProgressContext progress)
         {
             ActiveFile destinationActiveFile = null;
             foreach (AesKey key in keys)
@@ -221,7 +221,7 @@ namespace Axantum.AxCrypt.Core.UI
             return destinationActiveFile;
         }
 
-        private static ActiveFile DecryptActiveFileDocument(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFolderInfo, AxCryptDocument document, ProgressContext progress)
+        private static ActiveFile DecryptActiveFileDocument(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFolderInfo, AxCryptDocument document, IProgressContext progress)
         {
             string destinationName = document.DocumentHeaders.FileName;
             string destinationPath = Path.Combine(destinationFolderInfo.FullName, destinationName);
@@ -261,7 +261,7 @@ namespace Axantum.AxCrypt.Core.UI
             return Path.Combine(destinationFolder, Path.GetFileName(fileName));
         }
 
-        private static ActiveFile CheckKeysForAlreadyDecryptedFile(ActiveFile destinationActiveFile, IEnumerable<AesKey> keys, ProgressContext progress)
+        private static ActiveFile CheckKeysForAlreadyDecryptedFile(ActiveFile destinationActiveFile, IEnumerable<AesKey> keys, IProgressContext progress)
         {
             foreach (AesKey key in keys)
             {

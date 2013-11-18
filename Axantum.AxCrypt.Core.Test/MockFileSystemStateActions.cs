@@ -31,37 +31,37 @@ namespace Axantum.AxCrypt.Core.Test
             throw new InvalidOperationException("Unexpected call to this method.");
         }
 
-        public Func<ActiveFile, ProgressContext, ActiveFile> CheckActiveFileMock { get; set; }
+        public Func<ActiveFile, IProgressContext, ActiveFile> CheckActiveFileMock { get; set; }
 
-        public override ActiveFile CheckActiveFile(ActiveFile activeFile, ProgressContext progress)
+        public override ActiveFile CheckActiveFile(ActiveFile activeFile, IProgressContext progress)
         {
             return CheckActiveFileMock(activeFile, progress);
         }
 
-        public Action<ChangedEventMode, ProgressContext> CheckActiveFilesMock { get; set; }
+        public Action<ChangedEventMode, IProgressContext> CheckActiveFilesMock { get; set; }
 
-        public override void CheckActiveFiles(ChangedEventMode mode, ProgressContext progress)
+        public override void CheckActiveFiles(ChangedEventMode mode, IProgressContext progress)
         {
             CheckActiveFilesMock(mode, progress);
         }
 
-        public Action<AesKey, ProgressContext> EncryptFilesInWatchedFoldersMock { get; set; }
+        public Action<AesKey, IProgressContext> EncryptFilesInWatchedFoldersMock { get; set; }
 
-        public override void EncryptFilesInWatchedFolders(AesKey encryptionKey, ProgressContext progress)
+        public override void EncryptFilesInWatchedFolders(AesKey encryptionKey, IProgressContext progress)
         {
             EncryptFilesInWatchedFoldersMock(encryptionKey, progress);
         }
 
-        public Action<SessionEvent, ProgressContext> HandleSessionEventMock { get; set; }
+        public Action<SessionEvent, IProgressContext> HandleSessionEventMock { get; set; }
 
-        public override void HandleSessionEvent(SessionEvent sessionEvent, ProgressContext progress)
+        public override void HandleSessionEvent(SessionEvent sessionEvent, IProgressContext progress)
         {
             HandleSessionEventMock(sessionEvent, progress);
         }
 
-        public Action<IEnumerable<SessionEvent>, ProgressContext> HandleSessionEventsMock { get; set; }
+        public Action<IEnumerable<SessionEvent>, IProgressContext> HandleSessionEventsMock { get; set; }
 
-        public override void HandleSessionEvents(IEnumerable<SessionEvent> events, ProgressContext progress)
+        public override void HandleSessionEvents(IEnumerable<SessionEvent> events, IProgressContext progress)
         {
             HandleSessionEventsMock(events, progress);
         }
@@ -73,16 +73,16 @@ namespace Axantum.AxCrypt.Core.Test
             return ListEncryptableInWatchedFoldersMock();
         }
 
-        public Action<ProgressContext> PurgeActiveFilesMock { get; set; }
+        public Action<IProgressContext> PurgeActiveFilesMock { get; set; }
 
-        public override void PurgeActiveFiles(ProgressContext progress)
+        public override void PurgeActiveFiles(IProgressContext progress)
         {
             PurgeActiveFilesMock(progress);
         }
 
-        public Action<IEnumerable<string>, ProgressContext> RemoveRecentFilesMock { get; set; }
+        public Action<IEnumerable<string>, IProgressContext> RemoveRecentFilesMock { get; set; }
 
-        public override void RemoveRecentFiles(IEnumerable<string> encryptedPaths, ProgressContext progress)
+        public override void RemoveRecentFiles(IEnumerable<string> encryptedPaths, IProgressContext progress)
         {
             RemoveRecentFilesMock(encryptedPaths, progress);
         }

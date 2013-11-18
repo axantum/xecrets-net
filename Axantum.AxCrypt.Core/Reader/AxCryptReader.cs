@@ -73,7 +73,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
         private HmacStream _hmacStream;
 
-        public AxCryptDataStream CreateEncryptedDataStream(AesKey hmacKey, long cipherTextLength, ProgressContext progress)
+        public AxCryptDataStream CreateEncryptedDataStream(AesKey hmacKey, long cipherTextLength, IProgressContext progress)
         {
             if (hmacKey == null)
             {

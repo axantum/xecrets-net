@@ -636,7 +636,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             MockAxCryptFile mock = new MockAxCryptFile();
             int callTimes = 0;
-            mock.EncryptFileUniqueWithBackupAndWipeMock = (IRuntimeFileInfo fileInfo, AesKey encryptionKey, ProgressContext progress) => { ++callTimes; };
+            mock.EncryptFileUniqueWithBackupAndWipeMock = (IRuntimeFileInfo fileInfo, AesKey encryptionKey, IProgressContext progress) => { ++callTimes; };
 
             FactoryRegistry.Instance.Register<AxCryptFile>(() => mock);
 
@@ -657,7 +657,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             MockAxCryptFile mock = new MockAxCryptFile();
             bool called = false;
-            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IRuntimeFileInfo fileInfo, AesKey encryptionKey, ProgressContext progress) => { called = fileInfo.FullName == @"C:\My Documents\"; };
+            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IRuntimeFileInfo fileInfo, AesKey encryptionKey, IProgressContext progress) => { called = fileInfo.FullName == @"C:\My Documents\"; };
 
             FactoryRegistry.Instance.Register<AxCryptFile>(() => mock);
 
@@ -671,7 +671,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             MockAxCryptFile mock = new MockAxCryptFile();
             bool called = false;
-            mock.DecryptFilesUniqueWithWipeOfOriginalMock = (IRuntimeFileInfo fileInfo, AesKey decryptionKey, ProgressContext progress) => { called = fileInfo.FullName == @"C:\My Documents\"; };
+            mock.DecryptFilesUniqueWithWipeOfOriginalMock = (IRuntimeFileInfo fileInfo, AesKey decryptionKey, IProgressContext progress) => { called = fileInfo.FullName == @"C:\My Documents\"; };
 
             FactoryRegistry.Instance.Register<AxCryptFile>(() => mock);
 
@@ -685,7 +685,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             MockFileSystemStateActions mock = new MockFileSystemStateActions(Instance.FileSystemState);
             bool called = false;
-            mock.EncryptFilesInWatchedFoldersMock = (AesKey encryptionKey, ProgressContext progress) => { called = true; };
+            mock.EncryptFilesInWatchedFoldersMock = (AesKey encryptionKey, IProgressContext progress) => { called = true; };
 
             FactoryRegistry.Instance.Register<FileSystemState, FileSystemStateActions>((fileSystemState) => mock);
 
@@ -699,7 +699,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             MockFileSystemStateActions mock = new MockFileSystemStateActions(Instance.FileSystemState);
             bool called = false;
-            mock.EncryptFilesInWatchedFoldersMock = (AesKey encryptionKey, ProgressContext progress) => { called = true; };
+            mock.EncryptFilesInWatchedFoldersMock = (AesKey encryptionKey, IProgressContext progress) => { called = true; };
 
             FactoryRegistry.Instance.Register<FileSystemState, FileSystemStateActions>((fileSystemState) => mock);
 
@@ -742,7 +742,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             MockAxCryptFile mock = new MockAxCryptFile();
             int callTimes = 0;
-            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IRuntimeFileInfo fileInfo, AesKey decryptionKey, ProgressContext progress) => { if (fileInfo.FullName == @"C:\My Documents\") ++callTimes; };
+            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IRuntimeFileInfo fileInfo, AesKey decryptionKey, IProgressContext progress) => { if (fileInfo.FullName == @"C:\My Documents\") ++callTimes; };
             FactoryRegistry.Instance.Register<AxCryptFile>(() => mock);
 
             List<SessionEvent> sessionEvents = new List<SessionEvent>();

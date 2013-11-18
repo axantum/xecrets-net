@@ -25,12 +25,12 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
@@ -155,7 +155,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// </summary>
         /// <param name="maxConcurrent">The maximum number of worker threads active at any one time</param>
         /// <param name="progress">The ProgressContext that receives progress notifications</param>
-        public WorkerGroup(int maxConcurrent, ProgressContext progress)
+        public WorkerGroup(int maxConcurrent, IProgressContext progress)
         {
             _concurrencyControlSemaphore = new Semaphore(maxConcurrent, maxConcurrent);
             _maxConcurrencyCount = maxConcurrent;
@@ -170,7 +170,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// thread, typically the GUI thread. If the ProgressContext was supplied explicitly by the caller when instantiating this
         /// instance, no progress events are subscribed to by this instance.
         /// </summary>
-        public ProgressContext Progress { get; private set; }
+        public IProgressContext Progress { get; private set; }
 
         /// <summary>
         /// Call when work for this instance has been scheduled. This call will block until all executing threads have terminated.
