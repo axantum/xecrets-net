@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Diagnostics;
 using System.Threading;
-using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -53,6 +53,9 @@ namespace Axantum.AxCrypt.Core.UI
         private long _current = 0;
 
         private long _total = -1;
+
+        [ThreadStatic]
+        private static bool _cancelExceptionThrown;
 
         private static readonly object _progressLevelLock = new object();
 
@@ -80,7 +83,11 @@ namespace Axantum.AxCrypt.Core.UI
         /// Set to true to have an OperationCanceledException being thrown in the progress reporting
         /// thread at the earliest opportunity.
         /// </summary>
-        public bool Cancel { get; set; }
+        public bool Cancel
+        {
+            get;
+            set;
+        }
 
         public bool AllItemsConfirmed { get; set; }
 
@@ -226,8 +233,14 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 throw new InvalidOperationException("Out-of-sequence call, cannot call after being finished.");
             }
-            if (Cancel)
+            if (!Cancel)
             {
+                _cancelExceptionThrown = false;
+                return;
+            }
+            if (!_cancelExceptionThrown)
+            {
+                _cancelExceptionThrown = true;
                 throw new OperationCanceledException("Operation canceled on request.");
             }
         }

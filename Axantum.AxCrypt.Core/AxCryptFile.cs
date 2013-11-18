@@ -482,7 +482,6 @@ namespace Axantum.AxCrypt.Core
                     catch (OperationCanceledException)
                     {
                         cancelPending = true;
-                        progress.Cancel = false;
                         progress.AddCount(random.Length);
                     }
                 }
@@ -499,7 +498,6 @@ namespace Axantum.AxCrypt.Core
             progress.NotifyLevelFinished();
             if (cancelPending)
             {
-                progress.Cancel = true;
                 throw new OperationCanceledException("Delayed cancel during wipe.");
             }
         }

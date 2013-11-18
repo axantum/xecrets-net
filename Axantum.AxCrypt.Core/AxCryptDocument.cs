@@ -164,37 +164,39 @@ namespace Axantum.AxCrypt.Core
         private static long CopyToWithCount(Stream inputStream, Stream outputStream, Stream realInputStream, ProgressContext progress)
         {
             progress.NotifyLevelStart();
+            long totalTodo = 0;
             if (realInputStream.CanSeek)
             {
-                progress.AddTotal(realInputStream.Length - realInputStream.Position);
+                totalTodo = realInputStream.Length - realInputStream.Position;
+                progress.AddTotal(totalTodo);
             }
 
-            long totalCount = 0;
+            long totalDone = 0;
             byte[] buffer = new byte[OS.Current.StreamBufferSize];
-            int offset = 0;
-            int length = buffer.Length;
+            int bufferWrittenCount = 0;
+            int bufferRemainingCount = buffer.Length;
             while (true)
             {
-                int count = inputStream.Read(buffer, offset, length);
-                offset += count;
-                length -= count;
-                if (length > 0 && count > 0)
+                int readCount = inputStream.Read(buffer, bufferWrittenCount, bufferRemainingCount);
+                bufferWrittenCount += readCount;
+                bufferRemainingCount -= readCount;
+                if (bufferRemainingCount > 0 && readCount > 0)
                 {
                     continue;
                 }
-                if (offset == 0)
+                if (bufferWrittenCount == 0)
                 {
                     break;
                 }
-                outputStream.Write(buffer, 0, offset);
+                outputStream.Write(buffer, 0, bufferWrittenCount);
                 outputStream.Flush();
-                progress.AddCount(offset);
-                totalCount += offset;
-                offset = 0;
-                length = buffer.Length;
+                progress.AddCount(bufferWrittenCount);
+                totalDone += bufferWrittenCount;
+                bufferWrittenCount = 0;
+                bufferRemainingCount = buffer.Length;
             }
             progress.NotifyLevelFinished();
-            return totalCount;
+            return totalDone;
         }
 
         /// <summary>
