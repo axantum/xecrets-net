@@ -91,6 +91,14 @@ namespace Axantum.AxCrypt
         /// <param name="complete">A 'complete' delegate, taking the final status. Executed on the original caller thread, typically the GUI thread.</param>
         public void BackgroundWorkWithProgress(Func<IProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
         {
+            Instance.UIThread.RunOnUIThread(() =>
+            {
+                BackgroundWorkWithProgressOnUIThread(work, complete);
+            });
+        }
+
+        private void BackgroundWorkWithProgressOnUIThread(Func<IProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
+        {
             IProgressContext progress = new CancelContext(new ProgressContext());
             ProgressBar progressBar = CreateProgressBar(progress);
             OnProgressBarCreated(new ControlEventArgs(progressBar));

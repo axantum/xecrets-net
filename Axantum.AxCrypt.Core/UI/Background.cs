@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core.Runtime;
+﻿using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -51,6 +52,18 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 action();
             }
+        }
+
+        public void ProcessFiles(IEnumerable<IRuntimeFileInfo> files, Action<IRuntimeFileInfo, IProgressContext> processFile)
+        {
+            ProcessFiles(files.Select(f => f.FullName), (file, worker, progress) =>
+            {
+                worker.Work += (sender, e) =>
+                {
+                    processFile(OS.Current.FileInfo(file), progress);
+                };
+                worker.Run();
+            });
         }
 
         public void ProcessFiles(IEnumerable<string> files, Action<string, IThreadWorker, IProgressContext> processFile)

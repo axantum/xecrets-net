@@ -36,6 +36,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace Axantum.AxCrypt.Core
@@ -322,10 +323,10 @@ namespace Axantum.AxCrypt.Core
         public virtual void DecryptFilesUniqueWithWipeOfOriginal(IRuntimeFileInfo fileInfo, AesKey decryptionKey, IProgressContext progress)
         {
             IEnumerable<IRuntimeFileInfo> files = fileInfo.ListEncrypted();
-            foreach (IRuntimeFileInfo file in files)
+            Instance.Background.ProcessFiles(files, (file, context) =>
             {
-                DecryptFileUniqueWithWipeOfOriginal(file, decryptionKey, progress);
-            }
+                DecryptFileUniqueWithWipeOfOriginal(file, decryptionKey, context);
+            });
         }
 
         public static void DecryptFileUniqueWithWipeOfOriginal(IRuntimeFileInfo fileInfo, AesKey decryptionKey, IProgressContext progress)
