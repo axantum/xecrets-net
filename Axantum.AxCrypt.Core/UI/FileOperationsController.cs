@@ -180,36 +180,13 @@ namespace Axantum.AxCrypt.Core.UI
         }
 
         /// <summary>
-        /// Encrypt a file with the main task performed in a background thread.
-        /// </summary>
-        /// <param name="fileInfo"></param>
-        public void EncryptFile(IRuntimeFileInfo fileInfo, IThreadWorker worker)
-        {
-            DoFile(fileInfo, worker, EncryptFilePreparation, EncryptFileOperation);
-        }
-
-        /// <summary>
         /// Decrypt a file, raising events as required by the situation.
         /// </summary>
         /// <param name="sourceFile">The full path to an encrypted file.</param>
-        /// <returns>'True' if the operation did not fail so far, 'False' if it definitely has failed.</returns>
-        /// <remarks>
-        /// Since especially the actual operation typically is executed asynchronously, the
-        /// return value and status do not conclusive indicate success. Only a failure return
-        /// is conclusive.
-        /// </remarks>
+        /// <returns>The resulting status of the operation.</returns>
         public FileOperationStatus DecryptFile(IRuntimeFileInfo fileInfo)
         {
             return DoFile(fileInfo, DecryptFilePreparation, DecryptFileOperation);
-        }
-
-        /// <summary>
-        /// Process a file with the main task performed in a background thread.
-        /// </summary>
-        /// <param name="fileInfo"></param>
-        public void DecryptFile(IRuntimeFileInfo fileInfo, IThreadWorker worker)
-        {
-            DoFile(fileInfo, worker, DecryptFilePreparation, DecryptFileOperation);
         }
 
         /// <summary>
@@ -224,29 +201,13 @@ namespace Axantum.AxCrypt.Core.UI
         }
 
         /// <summary>
-        /// Decrypt a file, and launch the associated application raising events as required by
-        /// the situation. The decryption is performed asynchronously on a background thread.
+        /// Verify that a file is encrypted with a known key.
         /// </summary>
-        /// <param name="sourceFile">The full path to an encrypted file.</param>
-        /// <param name="worker">The worker thread on which to execute the decryption and launch.</param>
-        public void DecryptAndLaunch(IRuntimeFileInfo fileInfo, IThreadWorker worker)
-        {
-            DoFile(fileInfo, worker, DecryptAndLaunchPreparation, DecryptAndLaunchFileOperation);
-        }
-
+        /// <param name="fileInfo">The file to verify.</param>
+        /// <returns>FileOperationStatus.Success if  the file is encrypted with a known key.</returns>
         public FileOperationStatus VerifyEncrypted(IRuntimeFileInfo fileInfo)
         {
             return DoFile(fileInfo, DecryptAndLaunchPreparation, GetDocumentInfo);
-        }
-
-        /// <summary>
-        /// Wipes a file asynchronously on a background thread.
-        /// </summary>
-        /// <param name="fileInfo">The full name and path of the file to wipe.</param>
-        /// <param name="worker">The worker thread instance on which to do the wipe.</param>
-        public void WipeFile(IRuntimeFileInfo fileInfo, IThreadWorker worker)
-        {
-            DoFile(fileInfo, worker, WipeFilePreparation, WipeFileOperation);
         }
 
         /// <summary>
@@ -488,26 +449,6 @@ namespace Axantum.AxCrypt.Core.UI
                 return false;
             }
             return true;
-        }
-
-        private void DoFile(IRuntimeFileInfo fileInfo, IThreadWorker worker, Func<IRuntimeFileInfo, bool> preparation, Func<bool> operation)
-        {
-            if (!preparation(fileInfo))
-            {
-                worker.Abort();
-                OnCompleted(_eventArgs);
-                return;
-            }
-            worker.Work += (object workerSender, ThreadWorkerEventArgs threadWorkerEventArgs) =>
-            {
-                operation();
-            };
-            worker.Completing += (object workerSender, ThreadWorkerEventArgs threadWorkerEventArgs) =>
-            {
-                _eventArgs.Status = threadWorkerEventArgs.Result;
-                OnCompleted(_eventArgs);
-            };
-            worker.Run();
         }
 
         private FileOperationStatus DoFile(IRuntimeFileInfo fileInfo, Func<IRuntimeFileInfo, bool> preparation, Func<bool> operation)

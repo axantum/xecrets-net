@@ -113,11 +113,7 @@ namespace Axantum.AxCrypt.Core.Test
                 status = e.Status;
             };
 
-            using (ThreadWorker worker = new ThreadWorker(new ProgressContext()))
-            {
-                controller.EncryptFile(OS.Current.FileInfo(_davidCopperfieldTxtPath), worker);
-                worker.Join();
-            }
+            controller.EncryptFile(OS.Current.FileInfo(_davidCopperfieldTxtPath));
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
             IRuntimeFileInfo destinationInfo = OS.Current.FileInfo(destinationPath);
@@ -289,11 +285,8 @@ namespace Axantum.AxCrypt.Core.Test
                 destinationPath = e.SaveFileFullName;
                 status = e.Status;
             };
-            using (ThreadWorker worker = new ThreadWorker(new ProgressContext()))
-            {
-                controller.DecryptFile(OS.Current.FileInfo(_helloWorldAxxPath), worker);
-                worker.Join();
-            }
+
+            controller.DecryptFile(OS.Current.FileInfo(_helloWorldAxxPath));
 
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
             Assert.That(knownKeyWasAdded, "A new known key was used, so the KnownKeyAdded event should have been raised.");
@@ -435,11 +428,7 @@ namespace Axantum.AxCrypt.Core.Test
                 status = e.Status;
             };
 
-            using (ThreadWorker worker = new ThreadWorker(new ProgressContext()))
-            {
-                controller.DecryptAndLaunch(OS.Current.FileInfo(_helloWorldAxxPath), worker);
-                worker.Join();
-            }
+            controller.DecryptAndLaunch(OS.Current.FileInfo(_helloWorldAxxPath));
 
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
@@ -608,11 +597,7 @@ namespace Axantum.AxCrypt.Core.Test
                     status = e.Status;
                 };
 
-            using (ThreadWorker worker = new ThreadWorker(new ProgressContext()))
-            {
-                controller.DecryptFile(OS.Current.FileInfo(_helloWorldAxxPath), worker);
-                worker.Join();
-            }
+            controller.DecryptFile(OS.Current.FileInfo(_helloWorldAxxPath));
 
             Assert.That(status, Is.EqualTo(FileOperationStatus.Canceled), "The status should indicate cancellation.");
         }
@@ -653,10 +638,7 @@ namespace Axantum.AxCrypt.Core.Test
                 status = e.Status;
             };
 
-            using (ThreadWorker worker = new ThreadWorker(new ProgressContext()))
-            {
-                controller.WipeFile(OS.Current.FileInfo(_davidCopperfieldTxtPath), worker);
-            }
+            controller.WipeFile(OS.Current.FileInfo(_davidCopperfieldTxtPath));
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
             IRuntimeFileInfo destinationInfo = OS.Current.FileInfo(destinationPath);
