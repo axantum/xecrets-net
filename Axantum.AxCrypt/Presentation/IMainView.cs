@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Axantum.AxCrypt.Presentation
 {
-    public interface IMainView : IUIThread, IBackgroundWork
+    public interface IMainView : IUIThread
     {
         ListView WatchedFolders { get; }
 

@@ -13,5 +13,9 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationStatus status = work(new ProgressContext());
             complete(status);
         }
+
+        public void WaitForIdle()
+        {
+        }
     }
 }

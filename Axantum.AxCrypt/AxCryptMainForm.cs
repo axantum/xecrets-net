@@ -110,13 +110,13 @@ namespace Axantum.AxCrypt
             get { return !InvokeRequired; }
         }
 
-        public void BackgroundWorkWithProgress(Func<IProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
-        {
-            _progressBackgroundWorker.BackgroundWorkWithProgress(work, complete);
-        }
-
         public void RunOnUIThread(Action action)
         {
+            if (IsOnUIThread)
+            {
+                action();
+                return;
+            }
             BeginInvoke(action);
         }
 
@@ -146,7 +146,7 @@ namespace Axantum.AxCrypt
 
             FactoryRegistry.Instance.Singleton<KnownKeys>(new KnownKeys());
             FactoryRegistry.Instance.Singleton<IUIThread>(this);
-            FactoryRegistry.Instance.Singleton<IBackgroundWork>(this);
+            FactoryRegistry.Instance.Singleton<IBackgroundWork>(_progressBackgroundWorker);
             FactoryRegistry.Instance.Singleton<IStatusChecker>(this);
             FactoryRegistry.Instance.Singleton<Background>(new Background());
             FactoryRegistry.Instance.Singleton<ProcessState>(new ProcessState());
@@ -241,7 +241,7 @@ namespace Axantum.AxCrypt
 
         private void FormatTraceMessage(string message)
         {
-            Instance.Background.RunOnUIThread(() =>
+            Instance.UIThread.RunOnUIThread(() =>
             {
                 string formatted = "{0} {1}".InvariantFormat(OS.Current.UtcNow.ToString("o", CultureInfo.InvariantCulture), message.TrimLogMessage()); //MLHIDE
                 _logOutputTextBox.AppendText(formatted);
@@ -288,7 +288,7 @@ namespace Axantum.AxCrypt
             Instance.FileSystemState.Settings.NewestKnownVersion = e.Version.ToString();
             Instance.FileSystemState.Save();
             _updateUrl = e.UpdateWebpageUrl;
-            Instance.Background.RunOnUIThread(() =>
+            Instance.UIThread.RunOnUIThread(() =>
             {
                 UpdateVersionStatus(e.VersionUpdateStatus, e.Version);
             });
@@ -296,7 +296,7 @@ namespace Axantum.AxCrypt
 
         private void HandleFileSystemStateChangedEvent(object sender, ActiveFileChangedEventArgs e)
         {
-            Instance.Background.RunOnUIThread(() =>
+            Instance.UIThread.RunOnUIThread(() =>
             {
                 _recentFilesPresentation.UpdateActiveFilesViews(e.ActiveFile);
             });
@@ -309,9 +309,9 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            _progressBackgroundWorker.WaitForBackgroundIdle();
+            Instance.BackgroundWork.WaitForIdle();
             PurgeActiveFiles();
-            _progressBackgroundWorker.WaitForBackgroundIdle();
+            Instance.BackgroundWork.WaitForIdle();
             Trace.Listeners.Remove("AxCryptMainFormListener");        //MLHIDE
         }
 
@@ -423,7 +423,7 @@ namespace Axantum.AxCrypt
             }
             _handleSessionChangedInProgress = true;
 
-            BackgroundWorkWithProgress(
+            Instance.BackgroundWork.BackgroundWorkWithProgress(
                 (IProgressContext progress) =>
                 {
                     progress.NotifyLevelStart();
@@ -481,7 +481,7 @@ namespace Axantum.AxCrypt
 
         private void PurgeActiveFiles()
         {
-            BackgroundWorkWithProgress(
+            Instance.BackgroundWork.BackgroundWorkWithProgress(
                 (IProgressContext progress) =>
                 {
                     progress.NotifyLevelStart();
@@ -525,7 +525,7 @@ namespace Axantum.AxCrypt
         {
             IEnumerable<string> encryptedPaths = SelectedRecentFilesItems();
 
-            BackgroundWorkWithProgress(
+            Instance.BackgroundWork.BackgroundWorkWithProgress(
                 (IProgressContext progress) =>
                 {
                     Instance.FileSystemState.Actions.RemoveRecentFiles(encryptedPaths, progress);
@@ -861,7 +861,7 @@ namespace Axantum.AxCrypt
         private void watchedFoldersListView_DecryptTemporarilyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string folder = _watchedFoldersListView.SelectedItems[0].Text;
-            BackgroundWorkWithProgress(
+            Instance.BackgroundWork.BackgroundWorkWithProgress(
                 (IProgressContext progress) =>
                 {
                     progress.NotifyLevelStart();

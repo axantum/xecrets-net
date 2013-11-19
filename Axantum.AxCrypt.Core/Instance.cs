@@ -21,7 +21,7 @@ namespace Axantum.AxCrypt.Core
             get { return FactoryRegistry.Instance.Singleton<IUIThread>(); }
         }
 
-        public static IBackgroundWork IBackgroundWork
+        public static IBackgroundWork BackgroundWork
         {
             get { return FactoryRegistry.Instance.Singleton<IBackgroundWork>(); }
         }

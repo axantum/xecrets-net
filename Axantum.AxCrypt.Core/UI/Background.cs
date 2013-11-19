@@ -15,43 +15,28 @@ namespace Axantum.AxCrypt.Core.UI
         {
         }
 
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public void RunOnUIThread(Action action)
-        {
-            if (!Instance.UIThread.IsOnUIThread)
-            {
-                Instance.UIThread.RunOnUIThread(action);
-            }
-            else
-            {
-                action();
-            }
-        }
-
         private Semaphore _interactionSemaphore = new Semaphore(1, 1);
 
         private void SerializedOnUIThread(Action action)
         {
-            if (!Instance.UIThread.IsOnUIThread)
-            {
-                _interactionSemaphore.WaitOne();
-                Action extendedAction = () =>
-                {
-                    try
-                    {
-                        action();
-                    }
-                    finally
-                    {
-                        _interactionSemaphore.Release();
-                    }
-                };
-                Instance.UIThread.RunOnUIThread(extendedAction);
-            }
-            else
+            if (Instance.UIThread.IsOnUIThread)
             {
                 action();
+                return;
             }
+            _interactionSemaphore.WaitOne();
+            Action extendedAction = () =>
+            {
+                try
+                {
+                    action();
+                }
+                finally
+                {
+                    _interactionSemaphore.Release();
+                }
+            };
+            Instance.UIThread.RunOnUIThread(extendedAction);
         }
 
         public void ProcessFiles(IEnumerable<IRuntimeFileInfo> files, Action<IRuntimeFileInfo, IProgressContext> processFile)
@@ -69,7 +54,7 @@ namespace Axantum.AxCrypt.Core.UI
         public void ProcessFiles(IEnumerable<string> files, Action<string, IThreadWorker, IProgressContext> processFile)
         {
             WorkerGroup workerGroup = null;
-            Instance.IBackgroundWork.BackgroundWorkWithProgress(
+            Instance.BackgroundWork.BackgroundWorkWithProgress(
                 (IProgressContext progress) =>
                 {
                     using (workerGroup = new WorkerGroup(OS.Current.MaxConcurrency, progress))

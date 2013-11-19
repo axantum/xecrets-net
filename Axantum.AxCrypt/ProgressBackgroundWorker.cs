@@ -42,7 +42,7 @@ namespace Axantum.AxCrypt
     /// <summary>
     /// Background thread operations with progress bar support
     /// </summary>
-    public class ProgressBackgroundWorker : Component
+    public class ProgressBackgroundWorker : Component, IBackgroundWork
     {
         private long _workerCount = 0;
 
@@ -157,7 +157,7 @@ namespace Axantum.AxCrypt
         /// <summary>
         /// Wait for all operations to complete.
         /// </summary>
-        public void WaitForBackgroundIdle()
+        public void WaitForIdle()
         {
             while (Interlocked.Read(ref _workerCount) > 0)
             {
@@ -169,7 +169,7 @@ namespace Axantum.AxCrypt
         {
             if (disposing)
             {
-                WaitForBackgroundIdle();
+                WaitForIdle();
             }
 
             base.Dispose(disposing);

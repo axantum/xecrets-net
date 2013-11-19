@@ -359,34 +359,23 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("action");
             }
 
-            bool isModified = false;
+            bool isAnyModified = false;
             List<ActiveFile> activeFiles = new List<ActiveFile>();
             foreach (ActiveFile activeFile in ActiveFiles)
             {
                 ActiveFile updatedActiveFile = action(activeFile);
                 activeFiles.Add(updatedActiveFile);
-                if (updatedActiveFile != activeFile)
+                bool isModified = updatedActiveFile != activeFile;
+                if (isModified || mode == ChangedEventMode.RaiseAlways)
                 {
-                    isModified = true;
                     OnChanged(new ActiveFileChangedEventArgs(updatedActiveFile));
                 }
+                isAnyModified |= isModified;
             }
-            if (isModified)
+            if (isAnyModified)
             {
                 SetRangeInternal(activeFiles, ActiveFileStatus.None);
                 Save();
-            }
-            if (!isModified && mode == ChangedEventMode.RaiseAlways)
-            {
-                RaiseChangedForAll(activeFiles);
-            }
-        }
-
-        private void RaiseChangedForAll(IEnumerable<ActiveFile> activeFiles)
-        {
-            foreach (ActiveFile activeFile in activeFiles)
-            {
-                OnChanged(new ActiveFileChangedEventArgs(activeFile));
             }
         }
 
