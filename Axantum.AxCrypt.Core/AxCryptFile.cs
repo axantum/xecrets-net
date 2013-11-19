@@ -325,19 +325,19 @@ namespace Axantum.AxCrypt.Core
             IEnumerable<IRuntimeFileInfo> files = fileInfo.ListEncrypted();
             Instance.ParallelBackground.DoFiles(files, (file, context) =>
             {
-                DecryptFileUniqueWithWipeOfOriginal(file, decryptionKey, context);
+                return DecryptFileUniqueWithWipeOfOriginal(file, decryptionKey, context);
             },
             (status) => { });
         }
 
-        public static void DecryptFileUniqueWithWipeOfOriginal(IRuntimeFileInfo fileInfo, AesKey decryptionKey, IProgressContext progress)
+        public static FileOperationStatus DecryptFileUniqueWithWipeOfOriginal(IRuntimeFileInfo fileInfo, AesKey decryptionKey, IProgressContext progress)
         {
             progress.NotifyLevelStart();
             using (AxCryptDocument document = AxCryptFile.Document(fileInfo, decryptionKey, progress))
             {
                 if (!document.PassphraseIsValid)
                 {
-                    return;
+                    return FileOperationStatus.Canceled;
                 }
 
                 IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(fileInfo.FullName), document.DocumentHeaders.FileName));
@@ -346,6 +346,7 @@ namespace Axantum.AxCrypt.Core
             }
             AxCryptFile.Wipe(fileInfo, progress);
             progress.NotifyLevelFinished();
+            return FileOperationStatus.Success;
         }
 
         public static void DecryptFile(AxCryptDocument document, string decryptedFileFullName, IProgressContext progress)

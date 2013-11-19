@@ -39,20 +39,7 @@ namespace Axantum.AxCrypt.Core.UI
             Instance.UIThread.RunOnUIThread(extendedAction);
         }
 
-        public void DoFiles(IEnumerable<IRuntimeFileInfo> files, Action<IRuntimeFileInfo, IProgressContext> work, Action<FileOperationStatus> complete)
-        {
-            DoFiles(files,
-                (file, worker, progress) =>
-                {
-                    worker.Work += (sender, e) =>
-                    {
-                        work(file, progress);
-                    };
-                    worker.Run();
-                }, complete);
-        }
-
-        public void DoFiles(IEnumerable<IRuntimeFileInfo> files, Action<IRuntimeFileInfo, IThreadWorker, IProgressContext> work, Action<FileOperationStatus> complete)
+        public void DoFiles(IEnumerable<IRuntimeFileInfo> files, Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
         {
             WorkerGroup workerGroup = null;
             Instance.BackgroundWork.Work(
@@ -71,7 +58,11 @@ namespace Axantum.AxCrypt.Core.UI
                                     worker.Abort();
                                     return;
                                 }
-                                work(closureOverCopyOfLoopVariableFile, worker, new CancelContext(progress));
+                                worker.Work += (sender, e) =>
+                                {
+                                    e.Result = work(closureOverCopyOfLoopVariableFile, new CancelContext(progress));
+                                };
+                                worker.Run();
                             });
                             if (workerGroup.FirstError != FileOperationStatus.Success)
                             {

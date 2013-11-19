@@ -234,9 +234,9 @@ namespace Axantum.AxCrypt.Core.UI
             DoFile(fileInfo, worker, DecryptAndLaunchPreparation, DecryptAndLaunchFileOperation);
         }
 
-        public void VerifyEncrypted(IRuntimeFileInfo fileInfo, IThreadWorker worker)
+        public FileOperationStatus VerifyEncrypted(IRuntimeFileInfo fileInfo)
         {
-            DoFile(fileInfo, worker, DecryptAndLaunchPreparation, GetDocumentInfo);
+            return DoFile(fileInfo, DecryptAndLaunchPreparation, GetDocumentInfo);
         }
 
         /// <summary>
@@ -512,7 +512,12 @@ namespace Axantum.AxCrypt.Core.UI
 
         private FileOperationStatus DoFile(IRuntimeFileInfo fileInfo, Func<IRuntimeFileInfo, bool> preparation, Func<bool> operation)
         {
-            if (preparation(fileInfo))
+            bool ok = false;
+            Instance.UIThread.RunOnUIThread(() =>
+            {
+                ok = preparation(fileInfo);
+            });
+            if (ok)
             {
                 operation();
             }

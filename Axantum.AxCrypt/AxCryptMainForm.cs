@@ -105,21 +105,6 @@ namespace Axantum.AxCrypt
             get { return this; }
         }
 
-        public bool IsOnUIThread
-        {
-            get { return !InvokeRequired; }
-        }
-
-        public void RunOnUIThread(Action action)
-        {
-            if (IsOnUIThread)
-            {
-                action();
-                return;
-            }
-            BeginInvoke(action);
-        }
-
         public AxCryptMainForm()
         {
             InitializeComponent();
@@ -145,7 +130,7 @@ namespace Axantum.AxCrypt
             Trace.Listeners.Add(new DelegateTraceListener("AxCryptMainFormListener", FormatTraceMessage)); //MLHIDE
 
             FactoryRegistry.Instance.Singleton<KnownKeys>(new KnownKeys());
-            FactoryRegistry.Instance.Singleton<IUIThread>(this);
+            FactoryRegistry.Instance.Singleton<IUIThread>(new UIThread(this));
             FactoryRegistry.Instance.Singleton<IProgressBackground>(_progressBackgroundWorker);
             FactoryRegistry.Instance.Singleton<IStatusChecker>(this);
             FactoryRegistry.Instance.Singleton<ParallelBackground>(new ParallelBackground());
