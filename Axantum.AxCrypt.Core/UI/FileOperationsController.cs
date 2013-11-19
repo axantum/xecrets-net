@@ -50,6 +50,8 @@ namespace Axantum.AxCrypt.Core.UI
 
         private IProgressContext _progress;
 
+        #region Constructors
+
         /// <summary>
         /// Create a new instance, without any progress reporting.
         /// </summary>
@@ -67,6 +69,10 @@ namespace Axantum.AxCrypt.Core.UI
             _eventArgs = new FileOperationEventArgs();
             _progress = progress;
         }
+
+        #endregion Constructors
+
+        #region Events
 
         /// <summary>
         /// Raised whenever there is a need to specify a file to save to because the expected target
@@ -154,6 +160,10 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
+        #endregion Events
+
+        #region Public Methods
+
         /// <summary>
         /// Encrypt file, raising events as required by the situation.
         /// </summary>
@@ -170,13 +180,88 @@ namespace Axantum.AxCrypt.Core.UI
         }
 
         /// <summary>
-        /// Process a file with the main task performed in a background thread.
+        /// Encrypt a file with the main task performed in a background thread.
         /// </summary>
         /// <param name="fileInfo"></param>
         public void EncryptFile(IRuntimeFileInfo fileInfo, IThreadWorker worker)
         {
             DoFile(fileInfo, worker, EncryptFilePreparation, EncryptFileOperation);
         }
+
+        /// <summary>
+        /// Decrypt a file, raising events as required by the situation.
+        /// </summary>
+        /// <param name="sourceFile">The full path to an encrypted file.</param>
+        /// <returns>'True' if the operation did not fail so far, 'False' if it definitely has failed.</returns>
+        /// <remarks>
+        /// Since especially the actual operation typically is executed asynchronously, the
+        /// return value and status do not conclusive indicate success. Only a failure return
+        /// is conclusive.
+        /// </remarks>
+        public FileOperationStatus DecryptFile(IRuntimeFileInfo fileInfo)
+        {
+            return DoFile(fileInfo, DecryptFilePreparation, DecryptFileOperation);
+        }
+
+        /// <summary>
+        /// Process a file with the main task performed in a background thread.
+        /// </summary>
+        /// <param name="fileInfo"></param>
+        public void DecryptFile(IRuntimeFileInfo fileInfo, IThreadWorker worker)
+        {
+            DoFile(fileInfo, worker, DecryptFilePreparation, DecryptFileOperation);
+        }
+
+        /// <summary>
+        /// Decrypt a file, and launch the associated application raising events as required by
+        /// the situation.
+        /// </summary>
+        /// <param name="fileInfo">The full path to an encrypted file.</param>
+        /// <returns>A FileOperationStatus indicating the result of the operation.</returns>
+        public FileOperationStatus DecryptAndLaunch(IRuntimeFileInfo fileInfo)
+        {
+            return DoFile(fileInfo, DecryptAndLaunchPreparation, DecryptAndLaunchFileOperation);
+        }
+
+        /// <summary>
+        /// Decrypt a file, and launch the associated application raising events as required by
+        /// the situation. The decryption is performed asynchronously on a background thread.
+        /// </summary>
+        /// <param name="sourceFile">The full path to an encrypted file.</param>
+        /// <param name="worker">The worker thread on which to execute the decryption and launch.</param>
+        public void DecryptAndLaunch(IRuntimeFileInfo fileInfo, IThreadWorker worker)
+        {
+            DoFile(fileInfo, worker, DecryptAndLaunchPreparation, DecryptAndLaunchFileOperation);
+        }
+
+        public void VerifyEncrypted(IRuntimeFileInfo fileInfo, IThreadWorker worker)
+        {
+            DoFile(fileInfo, worker, DecryptAndLaunchPreparation, GetDocumentInfo);
+        }
+
+        /// <summary>
+        /// Wipes a file asynchronously on a background thread.
+        /// </summary>
+        /// <param name="fileInfo">The full name and path of the file to wipe.</param>
+        /// <param name="worker">The worker thread instance on which to do the wipe.</param>
+        public void WipeFile(IRuntimeFileInfo fileInfo, IThreadWorker worker)
+        {
+            DoFile(fileInfo, worker, WipeFilePreparation, WipeFileOperation);
+        }
+
+        /// <summary>
+        /// Wipes a file securely synchronously.
+        /// </summary>
+        /// <param name="fileInfo">The full name of the file to wipe</param>
+        /// <returns>A FileOperationStatus indicating the result of the operation.</returns>
+        public FileOperationStatus WipeFile(IRuntimeFileInfo fileInfo)
+        {
+            return DoFile(fileInfo, WipeFilePreparation, WipeFileOperation);
+        }
+
+        #endregion Public Methods
+
+        #region Private Methods
 
         private bool EncryptFilePreparation(IRuntimeFileInfo sourceFileInfo)
         {
@@ -224,30 +309,6 @@ namespace Axantum.AxCrypt.Core.UI
             return true;
         }
 
-        /// <summary>
-        /// Decrypt a file, raising events as required by the situation.
-        /// </summary>
-        /// <param name="sourceFile">The full path to an encrypted file.</param>
-        /// <returns>'True' if the operation did not fail so far, 'False' if it definitely has failed.</returns>
-        /// <remarks>
-        /// Since especially the actual operation typically is executed asynchronously, the
-        /// return value and status do not conclusive indicate success. Only a failure return
-        /// is conclusive.
-        /// </remarks>
-        public FileOperationStatus DecryptFile(IRuntimeFileInfo fileInfo)
-        {
-            return DoFile(fileInfo, DecryptFilePreparation, DecryptFileOperation);
-        }
-
-        /// <summary>
-        /// Process a file with the main task performed in a background thread.
-        /// </summary>
-        /// <param name="fileInfo"></param>
-        public void DecryptFile(IRuntimeFileInfo fileInfo, IThreadWorker worker)
-        {
-            DoFile(fileInfo, worker, DecryptFilePreparation, DecryptFileOperation);
-        }
-
         private bool DecryptFilePreparation(IRuntimeFileInfo fileInfo)
         {
             if (!OpenAxCryptDocument(fileInfo, _eventArgs))
@@ -288,33 +349,6 @@ namespace Axantum.AxCrypt.Core.UI
 
             _eventArgs.Status = FileOperationStatus.Success;
             return true;
-        }
-
-        /// <summary>
-        /// Decrypt a file, and launch the associated application raising events as required by
-        /// the situation.
-        /// </summary>
-        /// <param name="fileInfo">The full path to an encrypted file.</param>
-        /// <returns>A FileOperationStatus indicating the result of the operation.</returns>
-        public FileOperationStatus DecryptAndLaunch(IRuntimeFileInfo fileInfo)
-        {
-            return DoFile(fileInfo, DecryptAndLaunchPreparation, DecryptAndLaunchFileOperation);
-        }
-
-        /// <summary>
-        /// Decrypt a file, and launch the associated application raising events as required by
-        /// the situation. The decryption is performed asynchronously on a background thread.
-        /// </summary>
-        /// <param name="sourceFile">The full path to an encrypted file.</param>
-        /// <param name="worker">The worker thread on which to execute the decryption and launch.</param>
-        public void DecryptAndLaunch(IRuntimeFileInfo fileInfo, IThreadWorker worker)
-        {
-            DoFile(fileInfo, worker, DecryptAndLaunchPreparation, DecryptAndLaunchFileOperation);
-        }
-
-        public void VerifyEncrypted(IRuntimeFileInfo fileInfo, IThreadWorker worker)
-        {
-            DoFile(fileInfo, worker, DecryptAndLaunchPreparation, GetDocumentInfo);
         }
 
         private bool DecryptAndLaunchPreparation(IRuntimeFileInfo fileInfo)
@@ -363,26 +397,6 @@ namespace Axantum.AxCrypt.Core.UI
 
             _eventArgs.Status = FileOperationStatus.Success;
             return true;
-        }
-
-        /// <summary>
-        /// Wipes a file securely synchronously.
-        /// </summary>
-        /// <param name="fileInfo">The full name of the file to wipe</param>
-        /// <returns>A FileOperationStatus indicating the result of the operation.</returns>
-        public FileOperationStatus WipeFile(IRuntimeFileInfo fileInfo)
-        {
-            return DoFile(fileInfo, WipeFilePreparation, WipeFileOperation);
-        }
-
-        /// <summary>
-        /// Wipes a file asynchronously on a background thread.
-        /// </summary>
-        /// <param name="fileInfo">The full name and path of the file to wipe.</param>
-        /// <param name="worker">The worker thread instance on which to do the wipe.</param>
-        public void WipeFile(IRuntimeFileInfo fileInfo, IThreadWorker worker)
-        {
-            DoFile(fileInfo, worker, WipeFilePreparation, WipeFileOperation);
         }
 
         private bool WipeFilePreparation(IRuntimeFileInfo fileInfo)
@@ -506,5 +520,7 @@ namespace Axantum.AxCrypt.Core.UI
 
             return _eventArgs.Status;
         }
+
+        #endregion Private Methods
     }
 }
