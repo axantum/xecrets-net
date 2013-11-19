@@ -108,7 +108,7 @@ namespace Axantum.AxCrypt.Presentation
 
         public void EncryptFileNonInteractive(IRuntimeFileInfo fullName, IThreadWorker worker, IProgressContext progress)
         {
-            FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
+            FileOperationsController operationsController = new FileOperationsController(progress);
 
             operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
             {
@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Presentation
 
         public void VerifyAndAddActive(IRuntimeFileInfo fullName, IThreadWorker worker, IProgressContext progress)
         {
-            FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
+            FileOperationsController operationsController = new FileOperationsController(progress);
 
             operationsController.QueryDecryptionPassphrase += HandleQueryDecryptionPassphraseEvent;
 
@@ -162,7 +162,7 @@ namespace Axantum.AxCrypt.Presentation
 
         private void EncryptFile(IRuntimeFileInfo file, IThreadWorker worker, IProgressContext progress)
         {
-            FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
+            FileOperationsController operationsController = new FileOperationsController(progress);
 
             operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
             {
@@ -220,7 +220,7 @@ namespace Axantum.AxCrypt.Presentation
 
         public void DecryptFile(IRuntimeFileInfo file, IThreadWorker worker, IProgressContext progress)
         {
-            FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
+            FileOperationsController operationsController = new FileOperationsController(progress);
 
             operationsController.QueryDecryptionPassphrase += HandleQueryDecryptionPassphraseEvent;
 
@@ -267,7 +267,7 @@ namespace Axantum.AxCrypt.Presentation
 
         private void WipeFile(IRuntimeFileInfo file, IThreadWorker worker, IProgressContext progress)
         {
-            FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
+            FileOperationsController operationsController = new FileOperationsController(progress);
 
             operationsController.WipeQueryConfirmation += (object sender, FileOperationEventArgs e) =>
             {
@@ -308,7 +308,7 @@ namespace Axantum.AxCrypt.Presentation
 
         public void OpenEncrypted(IRuntimeFileInfo file, IThreadWorker worker, IProgressContext progress)
         {
-            FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
+            FileOperationsController operationsController = new FileOperationsController(progress);
 
             operationsController.QueryDecryptionPassphrase += HandleQueryDecryptionPassphraseEvent;
 
