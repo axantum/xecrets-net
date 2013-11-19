@@ -81,7 +81,7 @@ namespace Axantum.AxCrypt.Core.Test
                 destinationPath = e.SaveFileFullName;
             };
 
-            FileOperationStatus status = controller.EncryptFile(_davidCopperfieldTxtPath);
+            FileOperationStatus status = controller.EncryptFile(OS.Current.FileInfo(_davidCopperfieldTxtPath));
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
             IRuntimeFileInfo destinationInfo = OS.Current.FileInfo(destinationPath);
@@ -114,7 +114,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             using (ThreadWorker worker = new ThreadWorker(new ProgressContext()))
             {
-                controller.EncryptFile(_davidCopperfieldTxtPath, worker);
+                controller.EncryptFile(OS.Current.FileInfo(_davidCopperfieldTxtPath), worker);
                 worker.Join();
             }
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
@@ -147,7 +147,7 @@ namespace Axantum.AxCrypt.Core.Test
                     destinationPath = e.SaveFileFullName;
                 };
 
-            FileOperationStatus status = controller.EncryptFile(_davidCopperfieldTxtPath);
+            FileOperationStatus status = controller.EncryptFile(OS.Current.FileInfo(_davidCopperfieldTxtPath));
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
             Assert.That(!queryEncryptionPassphraseWasCalled, "No query of encryption passphrase should be needed since there is a default set.");
 
@@ -187,7 +187,7 @@ namespace Axantum.AxCrypt.Core.Test
                 destinationPath = e.SaveFileFullName;
             };
 
-            FileOperationStatus status = controller.EncryptFile(_davidCopperfieldTxtPath);
+            FileOperationStatus status = controller.EncryptFile(OS.Current.FileInfo(_davidCopperfieldTxtPath));
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
             Assert.That(Path.GetFileName(destinationPath), Is.EqualTo("alternative-name.axx"), "The alternative name should be used, since the default existed.");
@@ -218,7 +218,7 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Cancel = true;
             };
 
-            FileOperationStatus status = controller.EncryptFile(_davidCopperfieldTxtPath);
+            FileOperationStatus status = controller.EncryptFile(OS.Current.FileInfo(_davidCopperfieldTxtPath));
             Assert.That(status, Is.EqualTo(FileOperationStatus.Canceled), "The status should indicate cancellation.");
         }
 
@@ -231,7 +231,7 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Cancel = true;
             };
 
-            FileOperationStatus status = controller.EncryptFile(_davidCopperfieldTxtPath);
+            FileOperationStatus status = controller.EncryptFile(OS.Current.FileInfo(_davidCopperfieldTxtPath));
             Assert.That(status, Is.EqualTo(FileOperationStatus.Canceled), "The status should indicate cancellation.");
         }
 
@@ -253,7 +253,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     destinationPath = e.SaveFileFullName;
                 };
-            FileOperationStatus status = controller.DecryptFile(_helloWorldAxxPath);
+            FileOperationStatus status = controller.DecryptFile(OS.Current.FileInfo(_helloWorldAxxPath));
 
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
             Assert.That(knownKeyWasAdded, "A new known key was used, so the KnownKeyAdded event should have been raised.");
@@ -290,7 +290,7 @@ namespace Axantum.AxCrypt.Core.Test
             };
             using (ThreadWorker worker = new ThreadWorker(new ProgressContext()))
             {
-                controller.DecryptFile(_helloWorldAxxPath, worker);
+                controller.DecryptFile(OS.Current.FileInfo(_helloWorldAxxPath), worker);
                 worker.Join();
             }
 
@@ -315,7 +315,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 e.Cancel = true;
             };
-            FileOperationStatus status = controller.DecryptFile(_helloWorldAxxPath);
+            FileOperationStatus status = controller.DecryptFile(OS.Current.FileInfo(_helloWorldAxxPath));
 
             Assert.That(status, Is.EqualTo(FileOperationStatus.Canceled), "The status should indicate cancellation.");
         }
@@ -337,7 +337,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     e.Cancel = true;
                 };
-            FileOperationStatus status = controller.DecryptFile(_helloWorldAxxPath);
+            FileOperationStatus status = controller.DecryptFile(OS.Current.FileInfo(_helloWorldAxxPath));
 
             Assert.That(status, Is.EqualTo(FileOperationStatus.Canceled), "The status should indicate cancellation.");
         }
@@ -364,7 +364,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 destinationPath = e.SaveFileFullName;
             };
-            FileOperationStatus status = controller.DecryptFile(_helloWorldAxxPath);
+            FileOperationStatus status = controller.DecryptFile(OS.Current.FileInfo(_helloWorldAxxPath));
 
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
@@ -393,7 +393,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 e.Passphrase = "a";
             };
-            FileOperationStatus status = controller.DecryptAndLaunch(_helloWorldAxxPath);
+            FileOperationStatus status = controller.DecryptAndLaunch(OS.Current.FileInfo(_helloWorldAxxPath));
 
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
@@ -436,7 +436,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             using (ThreadWorker worker = new ThreadWorker(new ProgressContext()))
             {
-                controller.DecryptAndLaunch(_helloWorldAxxPath, worker);
+                controller.DecryptAndLaunch(OS.Current.FileInfo(_helloWorldAxxPath), worker);
                 worker.Join();
             }
 
@@ -465,7 +465,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 e.Cancel = true;
             };
-            FileOperationStatus status = controller.DecryptAndLaunch(_helloWorldAxxPath);
+            FileOperationStatus status = controller.DecryptAndLaunch(OS.Current.FileInfo(_helloWorldAxxPath));
             Assert.That(status, Is.EqualTo(FileOperationStatus.Canceled), "The status should indicate cancellation.");
         }
 
@@ -492,7 +492,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 knownKeyWasAdded = true;
             };
-            FileOperationStatus status = controller.DecryptFile(_helloWorldAxxPath);
+            FileOperationStatus status = controller.DecryptFile(OS.Current.FileInfo(_helloWorldAxxPath));
 
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
             Assert.That(!knownKeyWasAdded, "An already known key was used, so the KnownKeyAdded event should not have been raised.");
@@ -544,7 +544,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 knownKeyWasAdded = e.Key == new Passphrase("a").DerivedPassphrase;
             };
-            FileOperationStatus status = controller.DecryptFile(_helloWorldAxxPath);
+            FileOperationStatus status = controller.DecryptFile(OS.Current.FileInfo(_helloWorldAxxPath));
 
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
             Assert.That(knownKeyWasAdded, "A new known key was used, so the KnownKeyAdded event should have been raised.");
@@ -578,7 +578,7 @@ namespace Axantum.AxCrypt.Core.Test
                     destinationPath = e.SaveFileFullName;
                 };
             FileOperationStatus status = FileOperationStatus.Unknown;
-            Assert.DoesNotThrow(() => { status = controller.DecryptFile(_helloWorldAxxPath); });
+            Assert.DoesNotThrow(() => { status = controller.DecryptFile(OS.Current.FileInfo(_helloWorldAxxPath)); });
 
             Assert.That(status, Is.EqualTo(FileOperationStatus.FileDoesNotExist), "The status should indicate an exception occurred.");
             Assert.That(String.IsNullOrEmpty(destinationPath), "Since an exception occurred, the destination file should not be created.");
@@ -588,7 +588,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestEncryptFileThatIsAlreadyEncrypted()
         {
             FileOperationsController controller = new FileOperationsController(Instance.FileSystemState);
-            FileOperationStatus status = controller.EncryptFile("test" + OS.Current.AxCryptExtension);
+            FileOperationStatus status = controller.EncryptFile(OS.Current.FileInfo("test" + OS.Current.AxCryptExtension));
 
             Assert.That(status, Is.EqualTo(FileOperationStatus.FileAlreadyEncrypted), "The status should indicate that it was already encrypted.");
         }
@@ -609,7 +609,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             using (ThreadWorker worker = new ThreadWorker(new ProgressContext()))
             {
-                controller.DecryptFile(_helloWorldAxxPath, worker);
+                controller.DecryptFile(OS.Current.FileInfo(_helloWorldAxxPath), worker);
                 worker.Join();
             }
 
@@ -626,7 +626,7 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Skip = false;
                 e.ConfirmAll = false;
             };
-            FileOperationStatus status = controller.WipeFile(_helloWorldAxxPath);
+            FileOperationStatus status = controller.WipeFile(OS.Current.FileInfo(_helloWorldAxxPath));
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The wipe should indicate success.");
 
             IRuntimeFileInfo fileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
@@ -654,7 +654,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             using (ThreadWorker worker = new ThreadWorker(new ProgressContext()))
             {
-                controller.WipeFile(_davidCopperfieldTxtPath, worker);
+                controller.WipeFile(OS.Current.FileInfo(_davidCopperfieldTxtPath), worker);
             }
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
@@ -670,7 +670,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 e.Cancel = true;
             };
-            FileOperationStatus status = controller.WipeFile(_helloWorldAxxPath);
+            FileOperationStatus status = controller.WipeFile(OS.Current.FileInfo(_helloWorldAxxPath));
             Assert.That(status, Is.EqualTo(FileOperationStatus.Canceled), "The wipe should indicate cancellation.");
 
             IRuntimeFileInfo fileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
@@ -685,7 +685,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 e.Skip = true;
             };
-            FileOperationStatus status = controller.WipeFile(_helloWorldAxxPath);
+            FileOperationStatus status = controller.WipeFile(OS.Current.FileInfo(_helloWorldAxxPath));
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The wipe should indicate success even when skipping.");
 
             IRuntimeFileInfo fileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
@@ -707,13 +707,13 @@ namespace Axantum.AxCrypt.Core.Test
                 e.ConfirmAll = true;
             };
             progress.NotifyLevelStart();
-            FileOperationStatus status = controller.WipeFile(_helloWorldAxxPath);
+            FileOperationStatus status = controller.WipeFile(OS.Current.FileInfo(_helloWorldAxxPath));
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The wipe should indicate success.");
 
             IRuntimeFileInfo fileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
             Assert.That(!fileInfo.Exists, "The file should not exist after wiping.");
 
-            Assert.DoesNotThrow(() => { status = controller.WipeFile(_davidCopperfieldTxtPath); });
+            Assert.DoesNotThrow(() => { status = controller.WipeFile(OS.Current.FileInfo(_davidCopperfieldTxtPath)); });
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The wipe should indicate success.");
             progress.NotifyLevelFinished();
 

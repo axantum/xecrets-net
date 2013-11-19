@@ -54,8 +54,8 @@
     <Compile Include="Endian.cs" />
     <Compile Include="FakeDataProtection.cs" />
     <Compile Include="FakeFileWatcher.cs" />
-    <Compile Include="FakeIBackgroundWork.cs" />
-    <Compile Include="FakeIUIThread.cs" />
+    <Compile Include="FakeProgressBackground.cs" />
+    <Compile Include="FakeUIThread.cs" />
     <Compile Include="FakeLauncher.cs" />
     <Compile Include="FakeLogging.cs" />
     <Compile Include="FakeRuntimeEnvironment.cs" />

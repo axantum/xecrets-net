@@ -72,7 +72,7 @@
             this._deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._decryptTemporarilyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._openExplorerHereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._progressBackgroundWorker = new Axantum.AxCrypt.ProgressBackgroundWorker(this.components);
+            this._progressBackgroundWorker = new Axantum.AxCrypt.ProgressBackground(this.components);
             this._backgroundMonitor = new Axantum.AxCrypt.BackgroundMonitor(this.components);
             this._mainToolStrip.SuspendLayout();
             this._mainMenuStrip.SuspendLayout();
@@ -566,7 +566,7 @@
         private System.Windows.Forms.ToolStripMenuItem _checkVersionNowToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _viewHelpMenuItem;
-        private ProgressBackgroundWorker _progressBackgroundWorker;
+        private ProgressBackground _progressBackgroundWorker;
         private BackgroundMonitor _backgroundMonitor;
         private System.Windows.Forms.TabPage _logTabPage;
         private System.Windows.Forms.TextBox _logOutputTextBox;

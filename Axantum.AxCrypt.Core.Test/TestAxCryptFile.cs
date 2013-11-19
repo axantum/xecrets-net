@@ -443,9 +443,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptFilesUniqueWithWipeOfOriginal()
         {
-            FactoryRegistry.Instance.Singleton<Background>(new Background());
-            FactoryRegistry.Instance.Singleton<IBackgroundWork>(new FakeIBackgroundWork());
-            FactoryRegistry.Instance.Singleton<IUIThread>(new FakeIUIThread());
+            FactoryRegistry.Instance.Singleton<ParallelBackground>(new ParallelBackground());
+            FactoryRegistry.Instance.Singleton<IProgressBackground>(new FakeProgressBackground());
+            FactoryRegistry.Instance.Singleton<IUIThread>(new FakeUIThread());
             IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
             sourceFileInfo.CreateFolder();
             IRuntimeFileInfo sourceFolderInfo = OS.Current.FileInfo(Path.GetDirectoryName(sourceFileInfo.FullName));

@@ -42,11 +42,11 @@ namespace Axantum.AxCrypt
     /// <summary>
     /// Background thread operations with progress bar support
     /// </summary>
-    public class ProgressBackgroundWorker : Component, IBackgroundWork
+    public class ProgressBackground : Component, IProgressBackground
     {
         private long _workerCount = 0;
 
-        public ProgressBackgroundWorker(IContainer container)
+        public ProgressBackground(IContainer container)
         {
             container.Add(this);
         }
@@ -89,7 +89,7 @@ namespace Axantum.AxCrypt
         /// <param name="displayText">A text that may be used as a reference in various messages.</param>
         /// <param name="work">A 'work' delegate, taking a ProgressContext and return a FileOperationStatus. Executed on a background thread. Not the calling/GUI thread.</param>
         /// <param name="complete">A 'complete' delegate, taking the final status. Executed on the original caller thread, typically the GUI thread.</param>
-        public void BackgroundWorkWithProgress(Func<IProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
+        public void Work(Func<IProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
         {
             Instance.UIThread.RunOnUIThread(() =>
             {

@@ -37,7 +37,7 @@ namespace Axantum.AxCrypt.Presentation
                 {
                     return;
                 }
-                Instance.Background.ProcessFiles(ofd.FileNames, EncryptFile);
+                Instance.ParallelBackground.DoFiles(ofd.FileNames.Select(f => OS.Current.FileInfo(f)), EncryptFile, (status) => { });
             }
         }
 
@@ -60,7 +60,7 @@ namespace Axantum.AxCrypt.Presentation
                 }
                 fileNames = ofd.FileNames;
             }
-            Instance.Background.ProcessFiles(fileNames, DecryptFile);
+            Instance.ParallelBackground.DoFiles(fileNames.Select(f => OS.Current.FileInfo(f)), DecryptFile, (status) => { });
         }
 
         public void OpenFilesViaDialog(IRuntimeFileInfo fileInfo)
@@ -83,7 +83,7 @@ namespace Axantum.AxCrypt.Presentation
                     return;
                 }
 
-                Instance.Background.ProcessFiles(ofd.FileNames, OpenEncrypted);
+                Instance.ParallelBackground.DoFiles(ofd.FileNames.Select(f => OS.Current.FileInfo(f)), OpenEncrypted, (status) => { });
             }
         }
 
@@ -103,10 +103,10 @@ namespace Axantum.AxCrypt.Presentation
                 }
                 fileNames = ofd.FileNames;
             }
-            Instance.Background.ProcessFiles(fileNames, WipeFile);
+            Instance.ParallelBackground.DoFiles(fileNames.Select(f => OS.Current.FileInfo(f)), WipeFile, (status) => { });
         }
 
-        public void EncryptFileNonInteractive(string fullName, IThreadWorker worker, IProgressContext progress)
+        public void EncryptFileNonInteractive(IRuntimeFileInfo fullName, IThreadWorker worker, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
 
@@ -130,7 +130,7 @@ namespace Axantum.AxCrypt.Presentation
             operationsController.EncryptFile(fullName, worker);
         }
 
-        public void VerifyAndAddActive(string fullName, IThreadWorker worker, IProgressContext progress)
+        public void VerifyAndAddActive(IRuntimeFileInfo fullName, IThreadWorker worker, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
 
@@ -160,7 +160,7 @@ namespace Axantum.AxCrypt.Presentation
             operationsController.VerifyEncrypted(fullName, worker);
         }
 
-        private void EncryptFile(string file, IThreadWorker worker, IProgressContext progress)
+        private void EncryptFile(IRuntimeFileInfo file, IThreadWorker worker, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
 
@@ -218,7 +218,7 @@ namespace Axantum.AxCrypt.Presentation
             operationsController.EncryptFile(file, worker);
         }
 
-        public void DecryptFile(string file, IThreadWorker worker, IProgressContext progress)
+        public void DecryptFile(IRuntimeFileInfo file, IThreadWorker worker, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
 
@@ -233,7 +233,7 @@ namespace Axantum.AxCrypt.Presentation
                     sfd.CheckPathExists = true;
                     sfd.DefaultExt = extension;
                     sfd.Filter = Resources.DecryptedSaveAsFileDialogFilterPattern.InvariantFormat(extension);
-                    sfd.InitialDirectory = Path.GetDirectoryName(file);
+                    sfd.InitialDirectory = Path.GetDirectoryName(file.FullName);
                     sfd.FileName = Path.GetFileName(e.SaveFileFullName);
                     sfd.OverwritePrompt = true;
                     sfd.RestoreDirectory = true;
@@ -258,14 +258,14 @@ namespace Axantum.AxCrypt.Presentation
             {
                 if (FactoryRegistry.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
                 {
-                    Instance.FileSystemState.Actions.RemoveRecentFiles(new string[] { e.OpenFileFullName }, progress);
+                    Instance.FileSystemState.Actions.RemoveRecentFiles(new IRuntimeFileInfo[] { OS.Current.FileInfo(e.OpenFileFullName) }, progress);
                 }
             };
 
             operationsController.DecryptFile(file, worker);
         }
 
-        private void WipeFile(string file, IThreadWorker worker, IProgressContext progress)
+        private void WipeFile(IRuntimeFileInfo file, IThreadWorker worker, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
 
@@ -273,7 +273,7 @@ namespace Axantum.AxCrypt.Presentation
             {
                 using (ConfirmWipeDialog cwd = new ConfirmWipeDialog())
                 {
-                    cwd.FileNameLabel.Text = Path.GetFileName(file);
+                    cwd.FileNameLabel.Text = Path.GetFileName(file.FullName);
                     DialogResult confirmResult = cwd.ShowDialog();
                     e.ConfirmAll = cwd.ConfirmAllCheckBox.Checked;
                     if (confirmResult == DialogResult.Yes)
@@ -299,14 +299,14 @@ namespace Axantum.AxCrypt.Presentation
                 }
                 if (FactoryRegistry.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
                 {
-                    Instance.FileSystemState.Actions.RemoveRecentFiles(new string[] { e.SaveFileFullName }, progress);
+                    Instance.FileSystemState.Actions.RemoveRecentFiles(new IRuntimeFileInfo[] { OS.Current.FileInfo(e.SaveFileFullName) }, progress);
                 }
             };
 
             operationsController.WipeFile(file, worker);
         }
 
-        public void OpenEncrypted(string file, IThreadWorker worker, IProgressContext progress)
+        public void OpenEncrypted(IRuntimeFileInfo file, IThreadWorker worker, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(Instance.FileSystemState, progress);
 

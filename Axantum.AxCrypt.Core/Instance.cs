@@ -21,14 +21,14 @@ namespace Axantum.AxCrypt.Core
             get { return FactoryRegistry.Instance.Singleton<IUIThread>(); }
         }
 
-        public static IBackgroundWork BackgroundWork
+        public static IProgressBackground BackgroundWork
         {
-            get { return FactoryRegistry.Instance.Singleton<IBackgroundWork>(); }
+            get { return FactoryRegistry.Instance.Singleton<IProgressBackground>(); }
         }
 
-        public static Background Background
+        public static ParallelBackground ParallelBackground
         {
-            get { return FactoryRegistry.Instance.Singleton<Background>(); }
+            get { return FactoryRegistry.Instance.Singleton<ParallelBackground>(); }
         }
 
         public static IRuntimeEnvironment Environment

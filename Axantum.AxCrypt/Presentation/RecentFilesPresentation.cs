@@ -237,12 +237,12 @@ namespace Axantum.AxCrypt.Presentation
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         private void ProcessEncryptedFilesDroppedInRecentList(IEnumerable<IRuntimeFileInfo> encryptedFiles)
         {
-            Instance.Background.ProcessFiles(encryptedFiles.Select(fileInfo => fileInfo.FullName), _fileOperationsPresentation.VerifyAndAddActive);
+            Instance.ParallelBackground.DoFiles(encryptedFiles, _fileOperationsPresentation.VerifyAndAddActive, (status) => { });
         }
 
         private void ProcessEncryptableFilesDroppedInRecentList(IEnumerable<IRuntimeFileInfo> encryptableFiles)
         {
-            Instance.Background.ProcessFiles(encryptableFiles.Select(fileInfo => fileInfo.FullName), _fileOperationsPresentation.EncryptFileNonInteractive);
+            Instance.ParallelBackground.DoFiles(encryptableFiles, _fileOperationsPresentation.EncryptFileNonInteractive, (status) => { });
         }
 
         private static IEnumerable<IRuntimeFileInfo> GetDroppedFiles(IDataObject dataObject)

@@ -323,10 +323,11 @@ namespace Axantum.AxCrypt.Core
         public virtual void DecryptFilesUniqueWithWipeOfOriginal(IRuntimeFileInfo fileInfo, AesKey decryptionKey, IProgressContext progress)
         {
             IEnumerable<IRuntimeFileInfo> files = fileInfo.ListEncrypted();
-            Instance.Background.ProcessFiles(files, (file, context) =>
+            Instance.ParallelBackground.DoFiles(files, (file, context) =>
             {
                 DecryptFileUniqueWithWipeOfOriginal(file, decryptionKey, context);
-            });
+            },
+            (status) => { });
         }
 
         public static void DecryptFileUniqueWithWipeOfOriginal(IRuntimeFileInfo fileInfo, AesKey decryptionKey, IProgressContext progress)

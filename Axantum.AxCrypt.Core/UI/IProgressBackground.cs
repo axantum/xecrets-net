@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.UI
 {
-    public interface IBackgroundWork
+    public interface IProgressBackground
     {
-        void BackgroundWorkWithProgress(Func<IProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete);
+        void Work(Func<IProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete);
 
         void WaitForIdle();
     }

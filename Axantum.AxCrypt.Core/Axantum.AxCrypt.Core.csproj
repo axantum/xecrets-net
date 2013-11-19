@@ -151,13 +151,13 @@
     <Compile Include="Session\SessionEventArgs.cs" />
     <Compile Include="Session\WatchedFolder.cs" />
     <Compile Include="Session\WatchedFolderChangedEventArgs.cs" />
-    <Compile Include="UI\Background.cs" />
+    <Compile Include="UI\ParallelBackground.cs" />
     <Compile Include="UI\CancelContext.cs" />
     <Compile Include="UI\FileOperation.cs" />
     <Compile Include="UI\FileOperationEventArgs.cs" />
     <Compile Include="UI\FileOperationsController.cs" />
     <Compile Include="UI\FileOperationStatus.cs" />
-    <Compile Include="UI\IBackgroundWork.cs" />
+    <Compile Include="UI\IProgressBackground.cs" />
     <Compile Include="UI\IProgressContext.cs" />
     <Compile Include="UI\IStatusChecker.cs" />
     <Compile Include="UI\IUIThread.cs" />

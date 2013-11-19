@@ -112,7 +112,7 @@
     <Compile Include="Presentation\ListViewActions.cs" />
     <Compile Include="Presentation\PassphrasePresentation.cs" />
     <Compile Include="Presentation\RecentFilesPresentation.cs" />
-    <Compile Include="ProgressBackgroundWorker.cs">
+    <Compile Include="ProgressBackground.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Program.cs" />

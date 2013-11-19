@@ -146,9 +146,9 @@ namespace Axantum.AxCrypt
 
             FactoryRegistry.Instance.Singleton<KnownKeys>(new KnownKeys());
             FactoryRegistry.Instance.Singleton<IUIThread>(this);
-            FactoryRegistry.Instance.Singleton<IBackgroundWork>(_progressBackgroundWorker);
+            FactoryRegistry.Instance.Singleton<IProgressBackground>(_progressBackgroundWorker);
             FactoryRegistry.Instance.Singleton<IStatusChecker>(this);
-            FactoryRegistry.Instance.Singleton<Background>(new Background());
+            FactoryRegistry.Instance.Singleton<ParallelBackground>(new ParallelBackground());
             FactoryRegistry.Instance.Singleton<ProcessState>(new ProcessState());
 
             _watchedFoldersPresentation = new WatchedFolderPresentation(this);
@@ -423,7 +423,7 @@ namespace Axantum.AxCrypt
             }
             _handleSessionChangedInProgress = true;
 
-            Instance.BackgroundWork.BackgroundWorkWithProgress(
+            Instance.BackgroundWork.Work(
                 (IProgressContext progress) =>
                 {
                     progress.NotifyLevelStart();
@@ -467,7 +467,7 @@ namespace Axantum.AxCrypt
 
         private void RecentFilesListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Instance.Background.ProcessFiles(new string[] { _recentFilesPresentation.SelectedEncryptedPath }, _fileOperationsPresentation.OpenEncrypted);
+            Instance.ParallelBackground.DoFiles(new IRuntimeFileInfo[] { OS.Current.FileInfo(_recentFilesPresentation.SelectedEncryptedPath) }, _fileOperationsPresentation.OpenEncrypted, (status) => { });
         }
 
         private void RecentFilesListView_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
@@ -481,7 +481,7 @@ namespace Axantum.AxCrypt
 
         private void PurgeActiveFiles()
         {
-            Instance.BackgroundWork.BackgroundWorkWithProgress(
+            Instance.BackgroundWork.Work(
                 (IProgressContext progress) =>
                 {
                     progress.NotifyLevelStart();
@@ -523,9 +523,9 @@ namespace Axantum.AxCrypt
 
         private void RemoveRecentFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            IEnumerable<string> encryptedPaths = SelectedRecentFilesItems();
+            IEnumerable<IRuntimeFileInfo> encryptedPaths = SelectedRecentFilesItems();
 
-            Instance.BackgroundWork.BackgroundWorkWithProgress(
+            Instance.BackgroundWork.Work(
                 (IProgressContext progress) =>
                 {
                     Instance.FileSystemState.Actions.RemoveRecentFiles(encryptedPaths, progress);
@@ -538,15 +538,15 @@ namespace Axantum.AxCrypt
 
         private void DecryptAndRemoveFromListToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            IEnumerable<string> encryptedPaths = SelectedRecentFilesItems();
+            IEnumerable<IRuntimeFileInfo> encryptedPaths = SelectedRecentFilesItems();
 
-            Instance.Background.ProcessFiles(encryptedPaths, _fileOperationsPresentation.DecryptFile);
+            Instance.ParallelBackground.DoFiles(encryptedPaths, _fileOperationsPresentation.DecryptFile, (status) => { });
         }
 
-        private IEnumerable<string> SelectedRecentFilesItems()
+        private IEnumerable<IRuntimeFileInfo> SelectedRecentFilesItems()
         {
             IEnumerable<string> selected = _recentFilesListView.SelectedItems.Cast<ListViewItem>().Select((ListViewItem item) => { return item.SubItems["EncryptedPath"].Text; }).ToArray();
-            return selected;
+            return selected.Select(f => OS.Current.FileInfo(f));
         }
 
         private void RecentFilesListView_MouseClick(object sender, MouseEventArgs e)
@@ -861,7 +861,7 @@ namespace Axantum.AxCrypt
         private void watchedFoldersListView_DecryptTemporarilyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string folder = _watchedFoldersListView.SelectedItems[0].Text;
-            Instance.BackgroundWork.BackgroundWorkWithProgress(
+            Instance.BackgroundWork.Work(
                 (IProgressContext progress) =>
                 {
                     progress.NotifyLevelStart();

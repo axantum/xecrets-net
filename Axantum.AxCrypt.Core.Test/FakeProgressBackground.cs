@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
-    internal class FakeIBackgroundWork : IBackgroundWork
+    internal class FakeProgressBackground : IProgressBackground
     {
-        public void BackgroundWorkWithProgress(Func<IProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
+        public void Work(Func<IProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
         {
             FileOperationStatus status = work(new ProgressContext());
             complete(status);

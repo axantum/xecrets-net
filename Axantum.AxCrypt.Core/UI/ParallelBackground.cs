@@ -9,9 +9,9 @@ using System.Threading;
 
 namespace Axantum.AxCrypt.Core.UI
 {
-    public class Background : IDisposable
+    public class ParallelBackground : IDisposable
     {
-        public Background()
+        public ParallelBackground()
         {
         }
 
@@ -39,30 +39,31 @@ namespace Axantum.AxCrypt.Core.UI
             Instance.UIThread.RunOnUIThread(extendedAction);
         }
 
-        public void ProcessFiles(IEnumerable<IRuntimeFileInfo> files, Action<IRuntimeFileInfo, IProgressContext> processFile)
+        public void DoFiles(IEnumerable<IRuntimeFileInfo> files, Action<IRuntimeFileInfo, IProgressContext> work, Action<FileOperationStatus> complete)
         {
-            ProcessFiles(files.Select(f => f.FullName), (file, worker, progress) =>
-            {
-                worker.Work += (sender, e) =>
+            DoFiles(files,
+                (file, worker, progress) =>
                 {
-                    processFile(OS.Current.FileInfo(file), progress);
-                };
-                worker.Run();
-            });
+                    worker.Work += (sender, e) =>
+                    {
+                        work(file, progress);
+                    };
+                    worker.Run();
+                }, complete);
         }
 
-        public void ProcessFiles(IEnumerable<string> files, Action<string, IThreadWorker, IProgressContext> processFile)
+        public void DoFiles(IEnumerable<IRuntimeFileInfo> files, Action<IRuntimeFileInfo, IThreadWorker, IProgressContext> work, Action<FileOperationStatus> complete)
         {
             WorkerGroup workerGroup = null;
-            Instance.BackgroundWork.BackgroundWorkWithProgress(
+            Instance.BackgroundWork.Work(
                 (IProgressContext progress) =>
                 {
                     using (workerGroup = new WorkerGroup(OS.Current.MaxConcurrency, progress))
                     {
-                        foreach (string file in files)
+                        foreach (IRuntimeFileInfo file in files)
                         {
                             IThreadWorker worker = workerGroup.CreateWorker();
-                            string closureOverCopyOfLoopVariableFile = file;
+                            IRuntimeFileInfo closureOverCopyOfLoopVariableFile = file;
                             SerializedOnUIThread(() =>
                             {
                                 if (workerGroup.FirstError != FileOperationStatus.Success)
@@ -70,7 +71,7 @@ namespace Axantum.AxCrypt.Core.UI
                                     worker.Abort();
                                     return;
                                 }
-                                processFile(closureOverCopyOfLoopVariableFile, worker, new CancelContext(progress));
+                                work(closureOverCopyOfLoopVariableFile, worker, new CancelContext(progress));
                             });
                             if (workerGroup.FirstError != FileOperationStatus.Success)
                             {
@@ -83,6 +84,7 @@ namespace Axantum.AxCrypt.Core.UI
                 },
                 (FileOperationStatus status) =>
                 {
+                    complete(status);
                 });
         }
 

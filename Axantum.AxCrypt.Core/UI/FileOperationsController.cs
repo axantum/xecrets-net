@@ -169,7 +169,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// return value and status do not conclusive indicate success. Only a failure return
         /// is conclusive.
         /// </remarks>
-        public FileOperationStatus EncryptFile(string fullName)
+        public FileOperationStatus EncryptFile(IRuntimeFileInfo fullName)
         {
             return DoFile(fullName, EncryptFilePreparation, EncryptFileOperation);
         }
@@ -178,22 +178,21 @@ namespace Axantum.AxCrypt.Core.UI
         /// Process a file with the main task performed in a background thread.
         /// </summary>
         /// <param name="fullName"></param>
-        public void EncryptFile(string fullName, IThreadWorker worker)
+        public void EncryptFile(IRuntimeFileInfo fullName, IThreadWorker worker)
         {
             DoFile(fullName, worker, EncryptFilePreparation, EncryptFileOperation);
         }
 
-        private bool EncryptFilePreparation(string fullName)
+        private bool EncryptFilePreparation(IRuntimeFileInfo sourceFileInfo)
         {
-            if (String.Compare(Path.GetExtension(fullName), OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
+            if (String.Compare(Path.GetExtension(sourceFileInfo.FullName), OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 _eventArgs.Status = FileOperationStatus.FileAlreadyEncrypted;
                 return false;
             }
-            IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(fullName);
             IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
             _eventArgs.SaveFileFullName = destinationFileInfo.FullName;
-            _eventArgs.OpenFileFullName = fullName;
+            _eventArgs.OpenFileFullName = sourceFileInfo.FullName;
             if (destinationFileInfo.Exists)
             {
                 OnQuerySaveFileAs(_eventArgs);
@@ -240,7 +239,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// return value and status do not conclusive indicate success. Only a failure return
         /// is conclusive.
         /// </remarks>
-        public FileOperationStatus DecryptFile(string fullName)
+        public FileOperationStatus DecryptFile(IRuntimeFileInfo fullName)
         {
             return DoFile(fullName, DecryptFilePreparation, DecryptFileOperation);
         }
@@ -249,19 +248,19 @@ namespace Axantum.AxCrypt.Core.UI
         /// Process a file with the main task performed in a background thread.
         /// </summary>
         /// <param name="fullName"></param>
-        public void DecryptFile(string fullName, IThreadWorker worker)
+        public void DecryptFile(IRuntimeFileInfo fullName, IThreadWorker worker)
         {
             DoFile(fullName, worker, DecryptFilePreparation, DecryptFileOperation);
         }
 
-        private bool DecryptFilePreparation(string fullName)
+        private bool DecryptFilePreparation(IRuntimeFileInfo fullName)
         {
             if (!OpenAxCryptDocument(fullName, _eventArgs))
             {
                 return false;
             }
 
-            IRuntimeFileInfo destination = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(fullName), _eventArgs.AxCryptDocument.DocumentHeaders.FileName));
+            IRuntimeFileInfo destination = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(fullName.FullName), _eventArgs.AxCryptDocument.DocumentHeaders.FileName));
             _eventArgs.SaveFileFullName = destination.FullName;
             if (destination.Exists)
             {
@@ -302,7 +301,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         /// <param name="fullName">The full path to an encrypted file.</param>
         /// <returns>A FileOperationStatus indicating the result of the operation.</returns>
-        public FileOperationStatus DecryptAndLaunch(string fullName)
+        public FileOperationStatus DecryptAndLaunch(IRuntimeFileInfo fullName)
         {
             return DoFile(fullName, DecryptAndLaunchPreparation, DecryptAndLaunchFileOperation);
         }
@@ -313,17 +312,17 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         /// <param name="sourceFile">The full path to an encrypted file.</param>
         /// <param name="worker">The worker thread on which to execute the decryption and launch.</param>
-        public void DecryptAndLaunch(string fullName, IThreadWorker worker)
+        public void DecryptAndLaunch(IRuntimeFileInfo fullName, IThreadWorker worker)
         {
             DoFile(fullName, worker, DecryptAndLaunchPreparation, DecryptAndLaunchFileOperation);
         }
 
-        public void VerifyEncrypted(string fullName, IThreadWorker worker)
+        public void VerifyEncrypted(IRuntimeFileInfo fullName, IThreadWorker worker)
         {
             DoFile(fullName, worker, DecryptAndLaunchPreparation, GetDocumentInfo);
         }
 
-        private bool DecryptAndLaunchPreparation(string fullName)
+        private bool DecryptAndLaunchPreparation(IRuntimeFileInfo fullName)
         {
             if (!OpenAxCryptDocument(fullName, _eventArgs))
             {
@@ -376,7 +375,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         /// <param name="fullName">The full name of the file to wipe</param>
         /// <returns>A FileOperationStatus indicating the result of the operation.</returns>
-        public FileOperationStatus WipeFile(string fullName)
+        public FileOperationStatus WipeFile(IRuntimeFileInfo fullName)
         {
             return DoFile(fullName, WipeFilePreparation, WipeFileOperation);
         }
@@ -386,15 +385,15 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         /// <param name="fullName">The full name and path of the file to wipe.</param>
         /// <param name="worker">The worker thread instance on which to do the wipe.</param>
-        public void WipeFile(string fullName, IThreadWorker worker)
+        public void WipeFile(IRuntimeFileInfo fullName, IThreadWorker worker)
         {
             DoFile(fullName, worker, WipeFilePreparation, WipeFileOperation);
         }
 
-        private bool WipeFilePreparation(string fullName)
+        private bool WipeFilePreparation(IRuntimeFileInfo fileInfo)
         {
-            _eventArgs.OpenFileFullName = fullName;
-            _eventArgs.SaveFileFullName = fullName;
+            _eventArgs.OpenFileFullName = fileInfo.FullName;
+            _eventArgs.SaveFileFullName = fileInfo.FullName;
             if (_progress.AllItemsConfirmed)
             {
                 return true;
@@ -429,12 +428,11 @@ namespace Axantum.AxCrypt.Core.UI
             return true;
         }
 
-        private bool OpenAxCryptDocument(string fullName, FileOperationEventArgs e)
+        private bool OpenAxCryptDocument(IRuntimeFileInfo source, FileOperationEventArgs e)
         {
             e.AxCryptDocument = null;
             try
             {
-                IRuntimeFileInfo source = OS.Current.FileInfo(fullName);
                 e.OpenFileFullName = source.FullName;
                 AesKey key;
                 if (_fileSystemState.Actions.TryFindDecryptionKey(source.FullName, out key))
@@ -483,7 +481,7 @@ namespace Axantum.AxCrypt.Core.UI
             return true;
         }
 
-        private void DoFile(string fullName, IThreadWorker worker, Func<string, bool> preparation, Func<bool> operation)
+        private void DoFile(IRuntimeFileInfo fullName, IThreadWorker worker, Func<IRuntimeFileInfo, bool> preparation, Func<bool> operation)
         {
             if (!preparation(fullName))
             {
@@ -503,7 +501,7 @@ namespace Axantum.AxCrypt.Core.UI
             worker.Run();
         }
 
-        private FileOperationStatus DoFile(string fullName, Func<string, bool> preparation, Func<bool> operation)
+        private FileOperationStatus DoFile(IRuntimeFileInfo fullName, Func<IRuntimeFileInfo, bool> preparation, Func<bool> operation)
         {
             if (preparation(fullName))
             {

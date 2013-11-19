@@ -80,9 +80,9 @@ namespace Axantum.AxCrypt.Core.Test
             PurgeActiveFilesMock(progress);
         }
 
-        public Action<IEnumerable<string>, IProgressContext> RemoveRecentFilesMock { get; set; }
+        public Action<IEnumerable<IRuntimeFileInfo>, IProgressContext> RemoveRecentFilesMock { get; set; }
 
-        public override void RemoveRecentFiles(IEnumerable<string> encryptedPaths, IProgressContext progress)
+        public override void RemoveRecentFiles(IEnumerable<IRuntimeFileInfo> encryptedPaths, IProgressContext progress)
         {
             RemoveRecentFilesMock(encryptedPaths, progress);
         }

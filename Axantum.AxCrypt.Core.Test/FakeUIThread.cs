@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
-    internal class FakeIUIThread : IUIThread
+    internal class FakeUIThread : IUIThread
     {
         public bool IsOnUIThread
         {
