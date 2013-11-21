@@ -88,6 +88,7 @@
             // 
             // _mainToolStrip
             // 
+            this._mainToolStrip.AllowDrop = true;
             this._mainToolStrip.AllowMerge = false;
             resources.ApplyResources(this._mainToolStrip, "_mainToolStrip");
             this._mainToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
@@ -105,6 +106,9 @@
             this._toolStripSeparator5,
             this._helpToolStripButton});
             this._mainToolStrip.Name = "_mainToolStrip";
+            this._mainToolStrip.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainToolStrip_DragDrop);
+            this._mainToolStrip.DragOver += new System.Windows.Forms.DragEventHandler(this.MainToolStrip_DragOver);
+            this._mainToolStrip.GiveFeedback += new System.Windows.Forms.GiveFeedbackEventHandler(this.MainToolStrip_GiveFeedback);
             // 
             // _encryptionKeyToolStripButton
             // 
@@ -124,6 +128,7 @@
             resources.ApplyResources(this._openEncryptedToolStripButton, "_openEncryptedToolStripButton");
             this._openEncryptedToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this._openEncryptedToolStripButton.Name = "_openEncryptedToolStripButton";
+            this._openEncryptedToolStripButton.Tag = "";
             this._openEncryptedToolStripButton.Click += new System.EventHandler(this.OpenEncryptedToolStripButton_Click);
             // 
             // _encryptToolStripButton

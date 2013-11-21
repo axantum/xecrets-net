@@ -196,7 +196,7 @@ namespace Axantum.AxCrypt.Presentation
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void StartDragAndDrop(DragEventArgs e)
         {
-            IEnumerable<IRuntimeFileInfo> droppedFiles = GetDroppedFiles(e.Data);
+            IEnumerable<IRuntimeFileInfo> droppedFiles = e.GetDragged();
             if (!droppedFiles.Any(fileInfo => fileInfo.Type() == FileInfoType.EncryptedFile || (Instance.KnownKeys.DefaultEncryptionKey != null && fileInfo.Type() == FileInfoType.EncryptableFile)))
             {
                 return;
@@ -207,13 +207,10 @@ namespace Axantum.AxCrypt.Presentation
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void DropDragAndDrop(DragEventArgs e)
         {
-            IEnumerable<IRuntimeFileInfo> droppedFiles = GetDroppedFiles(e.Data);
+            IEnumerable<IRuntimeFileInfo> droppedFiles = e.GetDragged().ToList();
 
-            IEnumerable<IRuntimeFileInfo> encryptableFiles = droppedFiles.Where(fileInfo => Instance.KnownKeys.DefaultEncryptionKey != null && fileInfo.Type() == FileInfoType.EncryptableFile);
-            ProcessEncryptableFilesDroppedInRecentList(encryptableFiles);
-
-            IEnumerable<IRuntimeFileInfo> encryptedFiles = droppedFiles.Where(fileInfo => fileInfo.Type() == FileInfoType.EncryptedFile);
-            ProcessEncryptedFilesDroppedInRecentList(encryptedFiles);
+            ProcessEncryptableFilesDroppedInRecentList(droppedFiles.Encryptable());
+            ProcessEncryptedFilesDroppedInRecentList(droppedFiles.Encrypted());
         }
 
         internal void ColumnClick(int column)
@@ -243,17 +240,6 @@ namespace Axantum.AxCrypt.Presentation
         private void ProcessEncryptableFilesDroppedInRecentList(IEnumerable<IRuntimeFileInfo> encryptableFiles)
         {
             Instance.ParallelBackground.DoFiles(encryptableFiles, _fileOperationsPresentation.EncryptFileNonInteractive, (status) => { });
-        }
-
-        private static IEnumerable<IRuntimeFileInfo> GetDroppedFiles(IDataObject dataObject)
-        {
-            IList<string> dropped = dataObject.GetData(DataFormats.FileDrop) as IList<string>;
-            if (dropped == null)
-            {
-                return new IRuntimeFileInfo[0];
-            }
-
-            return dropped.Select(path => OS.Current.FileInfo(path));
         }
 
         private static void ChangeColumnWidth(ListView listView, int columnIndex)

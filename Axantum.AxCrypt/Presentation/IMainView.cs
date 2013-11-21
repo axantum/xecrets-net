@@ -20,5 +20,7 @@ namespace Axantum.AxCrypt.Presentation
         IContainer Components { get; }
 
         Control Control { get; }
+
+        DragDropEffects GetDragDropEffects(object sender, DragEventArgs e);
     }
 }

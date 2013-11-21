@@ -160,7 +160,7 @@ namespace Axantum.AxCrypt.Presentation
             return operationsController.VerifyEncrypted(fullName);
         }
 
-        private FileOperationStatus EncryptFile(IRuntimeFileInfo file, IProgressContext progress)
+        public FileOperationStatus EncryptFile(IRuntimeFileInfo file, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(progress);
 

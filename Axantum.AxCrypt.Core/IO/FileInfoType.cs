@@ -6,15 +6,18 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.IO
 {
+    [Flags]
     public enum FileInfoType
     {
-        Folder,
-        EncryptedFile,
+        Folder = 1,
+
+        EncryptedFile = 2,
 
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable")]
-        EncryptableFile,
+        EncryptableFile = 4,
 
-        NonExisting,
-        OtherFile,
+        NonExisting = 8,
+
+        OtherFile = 16,
     }
 }

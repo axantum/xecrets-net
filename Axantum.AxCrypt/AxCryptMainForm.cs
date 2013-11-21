@@ -105,6 +105,45 @@ namespace Axantum.AxCrypt
             get { return this; }
         }
 
+        public DragDropEffects GetDragDropEffects(object sender, DragEventArgs e)
+        {
+            if (Object.ReferenceEquals(sender, _mainToolStrip))
+            {
+                return GetEffectsForMainToolStrip(e);
+            }
+            return DragDropEffects.None;
+        }
+
+        private DragDropEffects GetEffectsForMainToolStrip(DragEventArgs e)
+        {
+            IList<IRuntimeFileInfo> draggedFiles = e.GetDragged().ToList();
+            if (draggedFiles.Count() != 1)
+            {
+                return DragDropEffects.None;
+            }
+            Point point = _mainToolStrip.PointToClient(new Point(e.X, e.Y));
+            ToolStripButton button = _mainToolStrip.GetItemAt(point) as ToolStripButton;
+            if (button == null)
+            {
+                return DragDropEffects.None;
+            }
+            if (button == _encryptToolStripButton)
+            {
+                if (draggedFiles.HasEncryptable())
+                {
+                    return (DragDropEffects.Link | DragDropEffects.Copy) & e.AllowedEffect;
+                }
+            }
+            if (button == _decryptToolStripButton || button == _openEncryptedToolStripButton)
+            {
+                if (draggedFiles.HasEncrypted())
+                {
+                    return (DragDropEffects.Link | DragDropEffects.Copy) & e.AllowedEffect;
+                }
+            }
+            return DragDropEffects.None;
+        }
+
         public AxCryptMainForm()
         {
             InitializeComponent();
@@ -147,6 +186,10 @@ namespace Axantum.AxCrypt
             _updateUrl = Instance.FileSystemState.Settings.UpdateUrl;
 
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
+
+            _encryptToolStripButton.Tag = FileInfoType.EncryptableFile;
+            _openEncryptedToolStripButton.Tag = FileInfoType.EncryptedFile;
+            _decryptToolStripButton.Tag = FileInfoType.EncryptedFile;
 
             SetupPathFilters();
 
@@ -440,6 +483,8 @@ namespace Axantum.AxCrypt
             }
         }
 
+        #region ToolStrip
+
         private void DecryptToolStripButton_Click(object sender, EventArgs e)
         {
             _fileOperationsPresentation.DecryptFilesViaDialog();
@@ -449,6 +494,43 @@ namespace Axantum.AxCrypt
         {
             _fileOperationsPresentation.OpenFilesViaDialog(null);
         }
+
+        private void MainToolStrip_DragOver(object sender, DragEventArgs e)
+        {
+            e.Effect = GetDragDropEffects(sender, e);
+        }
+
+        private void MainToolStrip_DragDrop(object sender, DragEventArgs e)
+        {
+            Point point = _mainToolStrip.PointToClient(new Point(e.X, e.Y));
+            ToolStripButton button = _mainToolStrip.GetItemAt(point) as ToolStripButton;
+            if (button == null)
+            {
+                return;
+            }
+
+            if (Object.ReferenceEquals(button, _decryptToolStripButton))
+            {
+                Instance.ParallelBackground.DoFiles(e.GetDragged(), _fileOperationsPresentation.DecryptFile, (status) => { });
+                return;
+            }
+            if (Object.ReferenceEquals(button, _openEncryptedToolStripButton))
+            {
+                Instance.ParallelBackground.DoFiles(e.GetDragged(), _fileOperationsPresentation.OpenEncrypted, (status) => { });
+                return;
+            }
+            if (Object.ReferenceEquals(button, _encryptToolStripButton))
+            {
+                Instance.ParallelBackground.DoFiles(e.GetDragged(), _fileOperationsPresentation.EncryptFile, (status) => { });
+                return;
+            }
+        }
+
+        private void MainToolStrip_GiveFeedback(object sender, GiveFeedbackEventArgs e)
+        {
+        }
+
+        #endregion ToolStrip
 
         private void RecentFilesListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
