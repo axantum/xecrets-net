@@ -399,16 +399,22 @@
     <value>&amp;Svenska</value>
   </data>
   <data name="_languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 22</value>
+    <value>254, 22</value>
   </data>
   <data name="_languageToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Language</value>
   </data>
   <data name="_debugOptionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 22</value>
+    <value>254, 22</value>
   </data>
   <data name="_debugOptionsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Debug</value>
+  </data>
+  <data name="_clearPassphraseMemoryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>254, 22</value>
+  </data>
+  <data name="_clearPassphraseMemoryToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Clear Passphrase Memory and Exit</value>
   </data>
   <data name="_optionsToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1210,9 +1216,6 @@
         AADAAwAAgAEAAIABAACAAQAAgAEAAIABAACAAQAAgAEAAIABAADwDwAA/D8AAA==
 </value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>AxCrypt</value>
   </data>
@@ -1364,6 +1367,12 @@
     <value>_debugOptionsToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;_debugOptionsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_clearPassphraseMemoryToolStripMenuItem.Name" xml:space="preserve">
+    <value>_clearPassphraseMemoryToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;_clearPassphraseMemoryToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;_exitToolStripMenuItem.Name" xml:space="preserve">

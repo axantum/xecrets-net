@@ -469,7 +469,16 @@ namespace Axantum.AxCrypt.Core
             }
             bool cancelPending = false;
             progress.NotifyLevelStart();
-            using (Stream stream = fileInfo.OpenWrite())
+
+            string randomName;
+            do
+            {
+                randomName = GenerateRandomFileName(fileInfo.FullName);
+            } while (OS.Current.FileInfo(randomName).Exists);
+            IRuntimeFileInfo moveToFileInfo = OS.Current.FileInfo(fileInfo.FullName);
+            moveToFileInfo.MoveTo(randomName);
+
+            using (Stream stream = moveToFileInfo.OpenWrite())
             {
                 long length = stream.Length + OS.Current.StreamBufferSize - stream.Length % OS.Current.StreamBufferSize;
                 progress.AddTotal(length);
@@ -489,14 +498,7 @@ namespace Axantum.AxCrypt.Core
                     }
                 }
             }
-            string randomName;
-            do
-            {
-                randomName = GenerateRandomFileName(fileInfo.FullName);
-            } while (OS.Current.FileInfo(randomName).Exists);
 
-            IRuntimeFileInfo moveToFileInfo = OS.Current.FileInfo(fileInfo.FullName);
-            moveToFileInfo.MoveTo(randomName);
             moveToFileInfo.Delete();
             progress.NotifyLevelFinished();
             if (cancelPending)

@@ -60,6 +60,8 @@ namespace Axantum.AxCrypt.Core.Test
 
         private FakeFileInfo _file;
 
+        public static event EventHandler Moving;
+
         public static event EventHandler OpeningForRead;
 
         public static event EventHandler OpeningForWrite;
@@ -129,6 +131,15 @@ namespace Axantum.AxCrypt.Core.Test
         protected virtual void OnDeleting()
         {
             EventHandler handler = Deleting;
+            if (handler != null)
+            {
+                handler(this, new EventArgs());
+            }
+        }
+
+        protected virtual void OnMoving()
+        {
+            EventHandler handler = Moving;
             if (handler != null)
             {
                 handler(this, new EventArgs());
@@ -284,6 +295,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         public void MoveTo(string destinationFileName)
         {
+            OnMoving();
             FakeFileInfo source = _fakeFileSystem[_file.FullName];
             _fakeFileSystem.Remove(_file.FullName);
 

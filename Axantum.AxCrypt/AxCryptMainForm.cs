@@ -426,6 +426,12 @@ namespace Axantum.AxCrypt
             Application.Exit();
         }
 
+        private void ClearPassphraseMemoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AxCryptFile.Wipe(FileSystemState.DefaultPathInfo, new ProgressContext());
+            Application.Exit();
+        }
+
         private bool _handleSessionChangedInProgress = false;
 
         private void HandleSessionChangedEvent(object sender, SessionEventArgs e)

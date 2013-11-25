@@ -405,6 +405,7 @@ namespace Axantum.AxCrypt.Core.Test
                     throw new IOException("Faked sharing violation.");
                 }
             });
+            FakeRuntimeFileInfo.Moving += eventHandler;
             FakeRuntimeFileInfo.Deleting += eventHandler;
             FakeRuntimeFileInfo.OpeningForWrite += eventHandler;
             try

@@ -44,6 +44,7 @@
             this._englishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._swedishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._debugOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._clearPassphraseMemoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._checkVersionNowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -260,7 +261,8 @@
             // 
             this._optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._languageToolStripMenuItem,
-            this._debugOptionsToolStripMenuItem});
+            this._debugOptionsToolStripMenuItem,
+            this._clearPassphraseMemoryToolStripMenuItem});
             resources.ApplyResources(this._optionsToolStripMenuItem, "_optionsToolStripMenuItem");
             this._optionsToolStripMenuItem.Name = "_optionsToolStripMenuItem";
             // 
@@ -292,6 +294,12 @@
             this._debugOptionsToolStripMenuItem.Name = "_debugOptionsToolStripMenuItem";
             resources.ApplyResources(this._debugOptionsToolStripMenuItem, "_debugOptionsToolStripMenuItem");
             this._debugOptionsToolStripMenuItem.Click += new System.EventHandler(this.debugOptionsToolStripMenuItem_Click);
+            // 
+            // _clearPassphraseMemoryToolStripMenuItem
+            // 
+            this._clearPassphraseMemoryToolStripMenuItem.Name = "_clearPassphraseMemoryToolStripMenuItem";
+            resources.ApplyResources(this._clearPassphraseMemoryToolStripMenuItem, "_clearPassphraseMemoryToolStripMenuItem");
+            this._clearPassphraseMemoryToolStripMenuItem.Click += new System.EventHandler(this.ClearPassphraseMemoryToolStripMenuItem_Click);
             // 
             // _exitToolStripMenuItem
             // 
@@ -593,6 +601,7 @@
         private System.Windows.Forms.ToolStripMenuItem _decryptTemporarilyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _openExplorerHereToolStripMenuItem;
         private System.Windows.Forms.TabPage _watchedFoldersTabPage;
+        private System.Windows.Forms.ToolStripMenuItem _clearPassphraseMemoryToolStripMenuItem;
     }
 }
 
