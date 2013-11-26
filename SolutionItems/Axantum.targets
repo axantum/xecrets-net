@@ -50,7 +50,7 @@
         <_AxIsAxantumDeveloper>false</_AxIsAxantumDeveloper>
         <_AxIsAxantumDeveloper Condition=" '$(AX_AXANTUM)' == 'True' ">true</_AxIsAxantumDeveloper>
         <_AxIsAxantumBuildServer>false</_AxIsAxantumBuildServer>
-        <_AxIsAxantumBuildServer Condition=" '$(COMPUTERNAME)' == 'HARLAN' ">true</_AxIsAxantumBuildServer>
+        <_AxIsAxantumBuildServer Condition=" '$(COMPUTERNAME)' == 'SHADOW' ">true</_AxIsAxantumBuildServer>
         <_AxIsAxantum>false</_AxIsAxantum>
         <_AxIsAxantum Condition=" '$(_AxIsAxantumDeveloper)' == 'true' Or '$(_AxIsAxantumBuildServer)' == 'true' ">true</_AxIsAxantum>
         <_AxSignToolPath>..\SolutionItems\signtool.exe</_AxSignToolPath>
