@@ -200,15 +200,13 @@ namespace Axantum.AxCrypt
             OS.Current.KeyWrapIterations = Instance.FileSystemState.KeyWrapIterations;
             OS.Current.ThumbprintSalt = Instance.FileSystemState.ThumbprintSalt;
 
-            SetToolButtonsState();
-
             _backgroundMonitor.UpdateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(HandleVersionUpdateEvent);
             UpdateCheck(Instance.FileSystemState.Settings.LastUpdateCheckUtc);
 
             RestoreUserPreferences();
 
             _loaded = true;
-            OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.SessionStart));
+            ReStartSession();
         }
 
         private void AxCryptMainForm_Shown(object sender, EventArgs e)
@@ -343,6 +341,14 @@ namespace Axantum.AxCrypt
             Trace.Listeners.Remove("AxCryptMainFormListener");        //MLHIDE
         }
 
+        private void ReStartSession()
+        {
+            _recentFilesListView.Items.Clear();
+            _watchedFoldersListView.Items.Clear();
+            SetToolButtonsState();
+            OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.SessionStart));
+        }
+
         private void SetToolButtonsState()
         {
             if (Instance.KnownKeys.DefaultEncryptionKey == null)
@@ -429,7 +435,9 @@ namespace Axantum.AxCrypt
         private void ClearPassphraseMemoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AxCryptFile.Wipe(FileSystemState.DefaultPathInfo, new ProgressContext());
-            Application.Exit();
+            FactoryRegistry.Instance.Singleton<FileSystemState>(FileSystemState.Create(FileSystemState.DefaultPathInfo));
+            FactoryRegistry.Instance.Singleton<KnownKeys>(new KnownKeys());
+            ReStartSession();
         }
 
         private bool _handleSessionChangedInProgress = false;
