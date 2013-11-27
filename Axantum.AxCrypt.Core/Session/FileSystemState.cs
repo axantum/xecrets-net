@@ -193,11 +193,11 @@ namespace Axantum.AxCrypt.Core.Session
             OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.WatchedFolderRemoved, Instance.KnownKeys.DefaultEncryptionKey, fileInfo.FullName));
         }
 
-        public event EventHandler<ActiveFileChangedEventArgs> Changed;
+        public event EventHandler<ActiveFileChangedEventArgs> ActiveFileChanged;
 
-        protected virtual void OnChanged(ActiveFileChangedEventArgs e)
+        protected virtual void OnActiveFileChanged(ActiveFileChangedEventArgs e)
         {
-            EventHandler<ActiveFileChangedEventArgs> handler = Changed;
+            EventHandler<ActiveFileChangedEventArgs> handler = ActiveFileChanged;
             if (handler != null)
             {
                 handler(this, e);
@@ -272,7 +272,7 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("activeFile");
             }
             AddInternal(activeFile);
-            OnChanged(new ActiveFileChangedEventArgs(activeFile));
+            OnActiveFileChanged(new ActiveFileChangedEventArgs(activeFile));
         }
 
         public void Add(ActiveFile activeFile, ILauncher process)
@@ -296,7 +296,7 @@ namespace Axantum.AxCrypt.Core.Session
                 _activeFilesByEncryptedPath.Remove(activeFile.EncryptedFileInfo.FullName);
             }
             activeFile = new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.NoLongerActive);
-            OnChanged(new ActiveFileChangedEventArgs(activeFile));
+            OnActiveFileChanged(new ActiveFileChangedEventArgs(activeFile));
         }
 
         private void AddInternal(ActiveFile activeFile)
@@ -368,7 +368,7 @@ namespace Axantum.AxCrypt.Core.Session
                 bool isModified = updatedActiveFile != activeFile;
                 if (isModified || mode == ChangedEventMode.RaiseAlways)
                 {
-                    OnChanged(new ActiveFileChangedEventArgs(updatedActiveFile));
+                    OnActiveFileChanged(new ActiveFileChangedEventArgs(updatedActiveFile));
                 }
                 isAnyModified |= isModified;
             }

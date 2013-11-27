@@ -195,7 +195,7 @@ namespace Axantum.AxCrypt
 
             OS.Current.SessionChanged += HandleSessionChangedEvent;
 
-            Instance.FileSystemState.Changed += HandleFileSystemStateChangedEvent;
+            Instance.FileSystemState.ActiveFileChanged += HandleActiveFileChangedEvent;
 
             OS.Current.KeyWrapIterations = Instance.FileSystemState.KeyWrapIterations;
             OS.Current.ThumbprintSalt = Instance.FileSystemState.ThumbprintSalt;
@@ -320,7 +320,7 @@ namespace Axantum.AxCrypt
             });
         }
 
-        private void HandleFileSystemStateChangedEvent(object sender, ActiveFileChangedEventArgs e)
+        private void HandleActiveFileChangedEvent(object sender, ActiveFileChangedEventArgs e)
         {
             Instance.UIThread.RunOnUIThread(() =>
             {

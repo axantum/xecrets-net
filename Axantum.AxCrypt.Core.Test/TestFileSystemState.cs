@@ -105,7 +105,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (FileSystemState state = FileSystemState.Create(OS.Current.FileInfo(_mystateXmlPath)))
             {
                 bool wasHere;
-                state.Changed += new EventHandler<ActiveFileChangedEventArgs>((object sender, ActiveFileChangedEventArgs e) => { wasHere = true; });
+                state.ActiveFileChanged += new EventHandler<ActiveFileChangedEventArgs>((object sender, ActiveFileChangedEventArgs e) => { wasHere = true; });
                 ActiveFile activeFile = new ActiveFile(OS.Current.FileInfo(_encryptedAxxPath), OS.Current.FileInfo(_decryptedTxtPath), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted);
 
                 wasHere = false;
@@ -158,7 +158,7 @@ namespace Axantum.AxCrypt.Core.Test
             bool changedEventWasRaised = false;
             using (FileSystemState state = FileSystemState.Create(OS.Current.FileInfo(_mystateXmlPath)))
             {
-                state.Changed += ((object sender, ActiveFileChangedEventArgs e) =>
+                state.ActiveFileChanged += ((object sender, ActiveFileChangedEventArgs e) =>
                 {
                     changedEventWasRaised = true;
                 });
