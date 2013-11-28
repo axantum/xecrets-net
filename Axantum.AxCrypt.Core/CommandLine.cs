@@ -25,15 +25,15 @@ namespace Axantum.AxCrypt.Core
 
         public void Execute()
         {
-            OptionSet options = new OptionSet()
+            OptionSetCollection options = new OptionSetCollection()
             {
                 {"x", var => Exit = true},
             };
-            List<string> files = options.Parse(_arguments);
+            IList<string> files = options.Parse(_arguments);
             Run(files);
         }
 
-        private void Run(List<string> files)
+        private void Run(IList<string> files)
         {
             if (Exit)
             {
