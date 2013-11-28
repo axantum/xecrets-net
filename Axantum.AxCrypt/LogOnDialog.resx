@@ -118,108 +118,108 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="panel1.AutoSize" type="System.Boolean, mscorlib">
+  <data name="_panel1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="newButton.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_newButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>184, 7</value>
   </data>
-  <data name="newButton.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_newButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
-  <data name="newButton.TabIndex" type="System.Int32, mscorlib">
+  <data name="_newButton.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
-  <data name="newButton.Text" xml:space="preserve">
+  <data name="_newButton.Text" xml:space="preserve">
     <value>&amp;New</value>
   </data>
-  <data name="&gt;&gt;newButton.Name" xml:space="preserve">
-    <value>newButton</value>
+  <data name="&gt;&gt;_newButton.Name" xml:space="preserve">
+    <value>_newButton</value>
   </data>
-  <data name="&gt;&gt;newButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;_newButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;newButton.Parent" xml:space="preserve">
-    <value>panel1</value>
+  <data name="&gt;&gt;_newButton.Parent" xml:space="preserve">
+    <value>_panel1</value>
   </data>
-  <data name="&gt;&gt;newButton.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_newButton.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="buttonCancel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="_buttonCancel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
     <value>102, 7</value>
   </data>
-  <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
-  <data name="buttonCancel.TabIndex" type="System.Int32, mscorlib">
+  <data name="_buttonCancel.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
-  <data name="buttonCancel.Text" xml:space="preserve">
+  <data name="_buttonCancel.Text" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="&gt;&gt;buttonCancel.Name" xml:space="preserve">
-    <value>buttonCancel</value>
+  <data name="&gt;&gt;_buttonCancel.Name" xml:space="preserve">
+    <value>_buttonCancel</value>
   </data>
-  <data name="&gt;&gt;buttonCancel.Type" xml:space="preserve">
+  <data name="&gt;&gt;_buttonCancel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;buttonCancel.Parent" xml:space="preserve">
-    <value>panel1</value>
+  <data name="&gt;&gt;_buttonCancel.Parent" xml:space="preserve">
+    <value>_panel1</value>
   </data>
-  <data name="&gt;&gt;buttonCancel.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_buttonCancel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="buttonOk.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="_buttonOk.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="buttonOk.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_buttonOk.Location" type="System.Drawing.Point, System.Drawing">
     <value>21, 7</value>
   </data>
-  <data name="buttonOk.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_buttonOk.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
-  <data name="buttonOk.TabIndex" type="System.Int32, mscorlib">
+  <data name="_buttonOk.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
-  <data name="buttonOk.Text" xml:space="preserve">
+  <data name="_buttonOk.Text" xml:space="preserve">
     <value>OK</value>
   </data>
-  <data name="&gt;&gt;buttonOk.Name" xml:space="preserve">
-    <value>buttonOk</value>
+  <data name="&gt;&gt;_buttonOk.Name" xml:space="preserve">
+    <value>_buttonOk</value>
   </data>
-  <data name="&gt;&gt;buttonOk.Type" xml:space="preserve">
+  <data name="&gt;&gt;_buttonOk.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;buttonOk.Parent" xml:space="preserve">
-    <value>panel1</value>
+  <data name="&gt;&gt;_buttonOk.Parent" xml:space="preserve">
+    <value>_panel1</value>
   </data>
-  <data name="&gt;&gt;buttonOk.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_buttonOk.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="_panel1.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 102</value>
   </data>
-  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_panel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>280, 37</value>
   </data>
-  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
+  <data name="_panel1.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
-    <value>panel1</value>
+  <data name="&gt;&gt;_panel1.Name" xml:space="preserve">
+    <value>_panel1</value>
   </data>
-  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
+  <data name="&gt;&gt;_panel1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;_panel1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;_panel1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="PassphraseGroupBox.AutoSize" type="System.Boolean, mscorlib">
@@ -297,7 +297,7 @@
   <data name="&gt;&gt;PassphraseGroupBox.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <metadata name="errorProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="_errorProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -691,10 +691,10 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Log On</value>
   </data>
-  <data name="&gt;&gt;errorProvider1.Name" xml:space="preserve">
-    <value>errorProvider1</value>
+  <data name="&gt;&gt;_errorProvider1.Name" xml:space="preserve">
+    <value>_errorProvider1</value>
   </data>
-  <data name="&gt;&gt;errorProvider1.Type" xml:space="preserve">
+  <data name="&gt;&gt;_errorProvider1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ErrorProvider, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

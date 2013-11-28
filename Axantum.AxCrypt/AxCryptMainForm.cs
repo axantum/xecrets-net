@@ -29,6 +29,7 @@ using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Ipc;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
@@ -187,9 +188,9 @@ namespace Axantum.AxCrypt
 
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
 
-            _encryptToolStripButton.Tag = FileInfoType.EncryptableFile;
-            _openEncryptedToolStripButton.Tag = FileInfoType.EncryptedFile;
-            _decryptToolStripButton.Tag = FileInfoType.EncryptedFile;
+            _encryptToolStripButton.Tag = FileInfoTypes.EncryptableFile;
+            _openEncryptedToolStripButton.Tag = FileInfoTypes.EncryptedFile;
+            _decryptToolStripButton.Tag = FileInfoTypes.EncryptedFile;
 
             SetupPathFilters();
 
@@ -205,8 +206,44 @@ namespace Axantum.AxCrypt
 
             RestoreUserPreferences();
 
+            Instance.CommandService.Received += AxCryptMainForm_Request;
+            Instance.CommandService.StartListening();
+
             _loaded = true;
             ReStartSession();
+        }
+
+        private void AxCryptMainForm_Request(object sender, CommandServiceArgs e)
+        {
+            Instance.UIThread.RunOnUIThread(() => DoRequest(e));
+        }
+
+        private void DoRequest(CommandServiceArgs e)
+        {
+            switch (e.RequestCommand)
+            {
+                case CommandVerb.Open:
+                    RestoreWindowWithFocus();
+                    Instance.ParallelBackground.DoFiles(e.Paths.Select(p => OS.Current.FileInfo(p)), _fileOperationsPresentation.OpenEncrypted, (status) => { });
+                    break;
+
+                case CommandVerb.Exit:
+                    Application.Exit();
+                    break;
+
+                case CommandVerb.Show:
+                    break;
+            }
+        }
+
+        private void RestoreWindowWithFocus()
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                WindowState = FormWindowState.Minimized;
+            }
+            Show();
+            WindowState = FormWindowState.Normal;
         }
 
         private void AxCryptMainForm_Shown(object sender, EventArgs e)

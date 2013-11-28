@@ -107,5 +107,12 @@ namespace Axantum.AxCrypt
         {
             DialogResult = DialogResult.Retry;
         }
+
+        private void LogOnDialog_Activated(object sender, EventArgs e)
+        {
+            TopMost = true;
+            BringToFront();
+            Focus();
+        }
     }
 }

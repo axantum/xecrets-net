@@ -26,13 +26,18 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Ipc;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Mono;
 using Axantum.AxCrypt.Properties;
+using NDesk.Options;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -46,14 +51,25 @@ namespace Axantum.AxCrypt
         [STAThread]
         private static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-
-            FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(new RuntimeEnvironment());
-            FactoryRegistry.Instance.Singleton<FileSystemState>(FileSystemState.Create(FileSystemState.DefaultPathInfo));
+            RegisterSingletonImplementations();
             SetCulture();
 
-            Application.Run(new AxCryptMainForm());
+            string[] commandLineArgs = Environment.GetCommandLineArgs();
+            if (commandLineArgs.Length == 1)
+            {
+                RunInteractive();
+            }
+            else
+            {
+                new CommandLine(commandLineArgs[0], commandLineArgs.Skip(1)).Execute();
+            }
+        }
+
+        private static void RegisterSingletonImplementations()
+        {
+            FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(new RuntimeEnvironment());
+            FactoryRegistry.Instance.Singleton<CommandService>(new CommandService(new HttpRequestServer(), new HttpRequestClient()));
+            FactoryRegistry.Instance.Singleton<FileSystemState>(FileSystemState.Create(FileSystemState.DefaultPathInfo));
         }
 
         private static void SetCulture()
@@ -63,6 +79,19 @@ namespace Axantum.AxCrypt
                 return;
             }
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Instance.FileSystemState.Settings.CultureName);
+        }
+
+        private static void RunInteractive()
+        {
+            if (!OS.Current.IsFirstInstance)
+            {
+                Instance.CommandService.Call(CommandVerb.Show);
+                return;
+            }
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            Application.Run(new AxCryptMainForm());
         }
     }
 }

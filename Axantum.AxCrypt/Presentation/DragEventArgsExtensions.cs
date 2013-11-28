@@ -3,6 +3,7 @@ using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -22,24 +23,26 @@ namespace Axantum.AxCrypt.Presentation
             return dropped.Select(path => OS.Current.FileInfo(path));
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable")]
         public static IEnumerable<IRuntimeFileInfo> Encryptable(this IEnumerable<IRuntimeFileInfo> files)
         {
-            return files.Where(fileInfo => Instance.KnownKeys.DefaultEncryptionKey != null && fileInfo.Type() == FileInfoType.EncryptableFile);
+            return files.Where(fileInfo => Instance.KnownKeys.DefaultEncryptionKey != null && fileInfo.Type() == FileInfoTypes.EncryptableFile);
         }
 
         public static IEnumerable<IRuntimeFileInfo> Encrypted(this IEnumerable<IRuntimeFileInfo> files)
         {
-            return files.Where(fileInfo => fileInfo.Type() == FileInfoType.EncryptedFile);
+            return files.Where(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile);
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable")]
         public static bool HasEncryptable(this IEnumerable<IRuntimeFileInfo> files)
         {
-            return files.Any(fileInfo => fileInfo.Type() == FileInfoType.EncryptableFile);
+            return files.Any(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptableFile);
         }
 
         public static bool HasEncrypted(this IEnumerable<IRuntimeFileInfo> files)
         {
-            return files.Any(fileInfo => fileInfo.Type() == FileInfoType.EncryptedFile);
+            return files.Any(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile);
         }
     }
 }

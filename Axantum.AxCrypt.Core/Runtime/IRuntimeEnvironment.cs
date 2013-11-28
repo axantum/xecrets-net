@@ -78,5 +78,11 @@ namespace Axantum.AxCrypt.Core.Runtime
         string EnvironmentVariable(string name);
 
         int MaxConcurrency { get; }
+
+        bool IsFirstInstance { get; }
+
+        bool FirstInstanceRunning(TimeSpan timeout);
+
+        void ExitApplication(int exitCode);
     }
 }

@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AxCryptDocument.cs" />
+    <Compile Include="CommandLine.cs" />
     <Compile Include="Extensions\ByteArrayExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\PrimitiveTypeExtensions.cs" />
@@ -65,6 +66,13 @@
     <Compile Include="IO\IFileWatcher.cs" />
     <Compile Include="IO\IWebCaller.cs" />
     <Compile Include="IO\LockingStream.cs" />
+    <Compile Include="Ipc\IRequestServer.cs" />
+    <Compile Include="Ipc\IRequestClient.cs" />
+    <Compile Include="Ipc\CommandServiceArgs.cs" />
+    <Compile Include="Ipc\CommandService.cs" />
+    <Compile Include="Ipc\CommandVerb.cs" />
+    <Compile Include="Ipc\RequestCommandArgs.cs" />
+    <Compile Include="Ipc\CommandStatus.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -138,7 +146,7 @@
     <Compile Include="IO\FileLock.cs" />
     <Compile Include="Session\ActiveFile.cs" />
     <Compile Include="Session\ActiveFileCollection.cs" />
-    <Compile Include="IO\FileInfoType.cs" />
+    <Compile Include="IO\FileInfoTypes.cs" />
     <Compile Include="Session\FileSystemStateActions.cs" />
     <Compile Include="Session\ActiveFileStatus.cs" />
     <Compile Include="Session\FileSystemState.cs" />
@@ -151,6 +159,7 @@
     <Compile Include="Session\SessionEventArgs.cs" />
     <Compile Include="Session\WatchedFolder.cs" />
     <Compile Include="Session\WatchedFolderChangedEventArgs.cs" />
+    <Compile Include="UI\Options.cs" />
     <Compile Include="UI\ParallelBackground.cs" />
     <Compile Include="UI\CancelContext.cs" />
     <Compile Include="UI\FileOperation.cs" />

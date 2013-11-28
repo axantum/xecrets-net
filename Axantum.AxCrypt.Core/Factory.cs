@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core.Session;
+﻿using Axantum.AxCrypt.Core.Ipc;
+using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,7 @@ namespace Axantum.AxCrypt.Core
     {
         public static AxCryptFile AxCryptFile
         {
-            get
-            {
-                return FactoryRegistry.Instance.Create<AxCryptFile>();
-            }
+            get { return FactoryRegistry.Instance.Create<AxCryptFile>(); }
         }
     }
 }

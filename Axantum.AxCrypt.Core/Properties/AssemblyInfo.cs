@@ -70,3 +70,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyInformationalVersion("2.0.0.0")]
 [assembly: AssemblyConfiguration("GPL")]
 #endif
+
+[module: SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", Scope = "namespace", Target = "Axantum.AxCrypt.Core.Ipc", MessageId = "Ipc")]

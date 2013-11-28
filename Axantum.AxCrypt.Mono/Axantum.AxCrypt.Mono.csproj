@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="DataProtection.cs" />
     <Compile Include="FileWatcher.cs" />
+    <Compile Include="HttpRequestClient.cs" />
+    <Compile Include="HttpRequestServer.cs" />
     <Compile Include="Launcher.cs" />
     <Compile Include="Logging.cs" />
     <Compile Include="RuntimeEnvironment.cs" />

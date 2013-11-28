@@ -12,25 +12,25 @@ namespace Axantum.AxCrypt.Core.Extensions
 {
     public static class RuntimeFileInfoExtensions
     {
-        public static FileInfoType Type(this IRuntimeFileInfo fileInfo)
+        public static FileInfoTypes Type(this IRuntimeFileInfo fileInfo)
         {
             if (!fileInfo.Exists)
             {
-                return FileInfoType.NonExisting;
+                return FileInfoTypes.NonExisting;
             }
             if (fileInfo.IsFolder)
             {
-                return FileInfoType.Folder;
+                return FileInfoTypes.Folder;
             }
             if (fileInfo.IsEncryptable())
             {
-                return FileInfoType.EncryptableFile;
+                return FileInfoTypes.EncryptableFile;
             }
             if (fileInfo.IsEncrypted())
             {
-                return FileInfoType.EncryptedFile;
+                return FileInfoTypes.EncryptedFile;
             }
-            return FileInfoType.OtherFile;
+            return FileInfoTypes.OtherFile;
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable is a word.")]

@@ -197,7 +197,7 @@ namespace Axantum.AxCrypt.Presentation
         public void StartDragAndDrop(DragEventArgs e)
         {
             IEnumerable<IRuntimeFileInfo> droppedFiles = e.GetDragged();
-            if (!droppedFiles.Any(fileInfo => fileInfo.Type() == FileInfoType.EncryptedFile || (Instance.KnownKeys.DefaultEncryptionKey != null && fileInfo.Type() == FileInfoType.EncryptableFile)))
+            if (!droppedFiles.Any(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile || (Instance.KnownKeys.DefaultEncryptionKey != null && fileInfo.Type() == FileInfoTypes.EncryptableFile)))
             {
                 return;
             }

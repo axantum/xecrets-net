@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core.Runtime;
+﻿using Axantum.AxCrypt.Core.Ipc;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using System;
@@ -44,6 +45,11 @@ namespace Axantum.AxCrypt.Core
         public static ProcessState ProcessState
         {
             get { return FactoryRegistry.Instance.Singleton<ProcessState>(); }
+        }
+
+        public static CommandService CommandService
+        {
+            get { return FactoryRegistry.Instance.Singleton<CommandService>(); }
         }
     }
 }

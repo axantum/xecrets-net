@@ -7,7 +7,7 @@ using System.Text;
 namespace Axantum.AxCrypt.Core.IO
 {
     [Flags]
-    public enum FileInfoType
+    public enum FileInfoTypes
     {
         Folder = 1,
 

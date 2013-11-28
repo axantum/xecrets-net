@@ -18,7 +18,7 @@
   <CustomDictionaries SearchFxCopDir="True" SearchUserProfile="True" SearchProjectDir="True" />
   <SearchGlobalAssemblyCache>False</SearchGlobalAssemblyCache>
   <DeadlockDetectionTimeout>120</DeadlockDetectionTimeout>
-  <IgnoreGeneratedCode>False</IgnoreGeneratedCode>
+  <IgnoreGeneratedCode>True</IgnoreGeneratedCode>
   <TargetFrameworkVersion>3.5</TargetFrameworkVersion>
  </ProjectOptions>
  <Targets>
@@ -48,65 +48,115 @@
   <Settings />
  </Rules>
  <FxCopReport Version="10.0">
+  <Namespaces>
+   <Namespace Name="Axantum.AxCrypt.Core.Ipc">
+    <Messages>
+     <Message Id="Ipc" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2013-11-28 13:33:25Z">
+      <Issue Name="Namespace">
+       <Item>Ipc</Item>
+       <Item>Axantum.AxCrypt.Core.Ipc</Item>
+      </Issue>
+     </Message>
+    </Messages>
+   </Namespace>
+  </Namespaces>
   <Targets>
-   <Target Name="$(ProjectDir)/Axantum.AxCrypt/bin/Debug/Axantum.AxCrypt.Core.dll">
+   <Target Name="$(ProjectDir)/Axantum.AxCrypt.Core.Test/bin/Debug/Axantum.AxCrypt.Core.Test.dll">
     <Modules>
-     <Module Name="axantum.axcrypt.core.dll">
+     <Module Name="axantum.axcrypt.core.test.dll">
       <Namespaces>
-       <Namespace Name="Axantum.AxCrypt.Core">
+       <Namespace Name="Axantum.AxCrypt.Core.Test">
         <Types>
-         <Type Name="AxCryptFile">
+         <Type Name="FakeRuntimeEnvironment">
           <Members>
-           <Member Name="#DecryptFile(Axantum.AxCrypt.Core.AxCryptDocument,System.String,System.String,Axantum.AxCrypt.Core.UI.ProgressContext)">
-            <Messages>
-             <Message Id="encryptedFileFullName" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2013-11-01 08:58:29Z" FixCategory="DependsOnFix">
-              <Issue>
-               <Item>'encryptedFileFullName'</Item>
-               <Item>'AxCryptFile.DecryptFile(AxCryptDocument, string, string, ProgressContext)'</Item>
-              </Issue>
-             </Message>
-            </Messages>
+           <Member Name="#ExitCode">
+            <Accessors>
+             <Accessor Name="#get_ExitCode()">
+              <Messages>
+               <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2013-11-28 13:33:25Z">
+                <Issue>
+                 <Item>'FakeRuntimeEnvironment.ExitCode.get()'</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+            </Accessors>
            </Member>
-          </Members>
-         </Type>
-         <Type Name="Extensions">
-          <Members>
-           <Member Name="#DecryptedFilesInFolder(System.String)">
-            <Messages>
-             <Message Id="InFolder" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2013-11-01 08:58:29Z">
-              <Issue Name="MemberShouldBeDiscreteTerm">
-               <Item>InFolder</Item>
-               <Item>'Extensions.DecryptedFilesInFolder(this string)'</Item>
-               <Item>Infolder</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="#EncryptedFilesInFolder(System.String)">
-            <Messages>
-             <Message Id="InFolder" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2013-11-01 08:58:29Z">
-              <Issue Name="MemberShouldBeDiscreteTerm">
-               <Item>InFolder</Item>
-               <Item>'Extensions.EncryptedFilesInFolder(this string)'</Item>
-               <Item>Infolder</Item>
-              </Issue>
-             </Message>
-            </Messages>
+           <Member Name="#IsFirstInstanceRunning">
+            <Accessors>
+             <Accessor Name="#set_IsFirstInstanceRunning(System.Boolean)">
+              <Messages>
+               <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2013-11-28 13:33:25Z">
+                <Issue>
+                 <Item>'FakeRuntimeEnvironment.IsFirstInstanceRunning.set(bool)'</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+            </Accessors>
            </Member>
           </Members>
          </Type>
         </Types>
        </Namespace>
-       <Namespace Name="Axantum.AxCrypt.Core.Session">
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/Axantum.AxCrypt/bin/Debug/Axantum.AxCrypt.Core.dll">
+    <Modules>
+     <Module Name="axantum.axcrypt.core.dll">
+      <Namespaces>
+       <Namespace Name="Axantum.AxCrypt.Core.IO">
         <Types>
-         <Type Name="FileSystemState">
+         <Type Name="FileInfoType">
+          <Messages>
+           <Message TypeName="FlagsEnumsShouldHavePluralNames" Category="Microsoft.Naming" CheckId="CA1714" Created="2013-11-28 13:33:25Z">
+            <Issue>
+             <Item>'FileInfoType'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="Axantum.AxCrypt.Core.Ipc">
+        <Types>
+         <Type Name="CommandServiceArgs">
           <Members>
-           <Member Name="#CreateFileSystemState(Axantum.AxCrypt.Core.IO.IRuntimeFileInfo)">
+           <Member Name="#Paths">
             <Messages>
-             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2013-11-01 08:58:29Z">
+             <Message TypeName="CollectionPropertiesShouldBeReadOnly" Category="Microsoft.Usage" CheckId="CA2227" Created="2013-11-28 13:33:25Z">
               <Issue>
-               <Item>'FileSystemState.CreateFileSystemState(IRuntimeFileInfo)'</Item>
-               <Item>'Exception'</Item>
+               <Item>'CommandServiceArgs.Paths'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="IRequestClient">
+          <Members>
+           <Member Name="#Call(System.String,System.String)">
+            <Messages>
+             <Message Id="Call" TypeName="IdentifiersShouldNotMatchKeywords" Category="Microsoft.Naming" CheckId="CA1716" Created="2013-11-28 13:33:25Z">
+              <Issue Name="Member">
+               <Item>'IRequestClient.Call(string, string)'</Item>
+               <Item>Call</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="IRequestServer">
+          <Members>
+           <Member Name="#Stop()">
+            <Messages>
+             <Message Id="Stop" TypeName="IdentifiersShouldNotMatchKeywords" Category="Microsoft.Naming" CheckId="CA1716" Created="2013-11-28 13:33:25Z">
+              <Issue Name="Member">
+               <Item>'IRequestServer.Stop()'</Item>
+               <Item>Stop</Item>
               </Issue>
              </Message>
             </Messages>
@@ -117,13 +167,313 @@
        </Namespace>
        <Namespace Name="Axantum.AxCrypt.Core.UI">
         <Types>
-         <Type Name="FileOperationsController">
+         <Type Name="CancelContext">
           <Members>
-           <Member Name="#DecryptFileWithWipeOfOriginal(System.String,System.String,Axantum.AxCrypt.Core.UI.ProgressContext)">
+           <Member Name="#IsCancelled">
             <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2013-11-01 08:58:29Z">
+             <Message Id="Cancelled" TypeName="UsePreferredTerms" Category="Microsoft.Naming" CheckId="CA1726" Created="2013-11-28 13:33:25Z">
+              <Issue Name="Member">
+               <Item>Cancelled</Item>
+               <Item>'CancelContext.IsCancelled'</Item>
+               <Item>Canceled</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="NDesk.Options">
+        <Types>
+         <Type Name="Option">
+          <Messages>
+           <Message Id="Option" TypeName="IdentifiersShouldNotMatchKeywords" Category="Microsoft.Naming" CheckId="CA1716" Created="2013-11-28 13:33:25Z">
+            <Issue Name="Type">
+             <Item>'Option'</Item>
+             <Item>Option</Item>
+            </Issue>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name="#.ctor(System.String,System.String,System.Int32)">
+            <Messages>
+             <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2013-11-28 13:33:25Z">
+              <Issue Name="IFormatProviderAlternateString">
+               <Item>'string.Format(string, object)'</Item>
+               <Item>'Option.Option(string, string, int)'</Item>
+               <Item>'string.Format(IFormatProvider, string, params object[])'</Item>
+               <Item>'CultureInfo.CurrentCulture'</Item>
+               <Item>'CultureInfo.InvariantCulture'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#AddSeparators(System.String,System.Int32,System.Collections.Generic.ICollection`1&lt;System.String&gt;)">
+            <Messages>
+             <Message TypeName="InstantiateArgumentExceptionsCorrectly" Category="Microsoft.Usage" CheckId="CA2208" Created="2013-11-28 13:33:25Z">
+              <Issue Name="IncorrectParameterName">
+               <Item>'Option.AddSeparators(string, int, ICollection&lt;string&gt;)'</Item>
+               <Item>prototype</Item>
+               <Item>'paramName'</Item>
+               <Item>'ArgumentException'</Item>
+              </Issue>
+              <Issue Name="IncorrectParameterName">
+               <Item>'Option.AddSeparators(string, int, ICollection&lt;string&gt;)'</Item>
+               <Item>prototype</Item>
+               <Item>'paramName'</Item>
+               <Item>'ArgumentException'</Item>
+              </Issue>
+              <Issue Name="IncorrectParameterName">
+               <Item>'Option.AddSeparators(string, int, ICollection&lt;string&gt;)'</Item>
+               <Item>prototype</Item>
+               <Item>'paramName'</Item>
+               <Item>'ArgumentException'</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2013-11-28 13:33:25Z">
+              <Issue Name="IFormatProviderAlternateString">
+               <Item>'string.Format(string, object)'</Item>
+               <Item>'Option.AddSeparators(string, int, ICollection&lt;string&gt;)'</Item>
+               <Item>'string.Format(IFormatProvider, string, params object[])'</Item>
+               <Item>'CultureInfo.CurrentCulture'</Item>
+               <Item>'CultureInfo.InvariantCulture'</Item>
+              </Issue>
+              <Issue Name="IFormatProviderAlternateString">
+               <Item>'string.Format(string, object)'</Item>
+               <Item>'Option.AddSeparators(string, int, ICollection&lt;string&gt;)'</Item>
+               <Item>'string.Format(IFormatProvider, string, params object[])'</Item>
+               <Item>'CultureInfo.CurrentCulture'</Item>
+               <Item>'CultureInfo.InvariantCulture'</Item>
+              </Issue>
+              <Issue Name="IFormatProviderAlternateString">
+               <Item>'string.Format(string, object)'</Item>
+               <Item>'Option.AddSeparators(string, int, ICollection&lt;string&gt;)'</Item>
+               <Item>'string.Format(IFormatProvider, string, params object[])'</Item>
+               <Item>'CultureInfo.CurrentCulture'</Item>
+               <Item>'CultureInfo.InvariantCulture'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Invoke(NDesk.Options.OptionContext)">
+            <Messages>
+             <Message Id="c" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2013-11-28 13:33:25Z">
+              <Issue Name="MemberParameterMoreMeaningfulName">
+               <Item>'Option.Invoke(OptionContext)'</Item>
+               <Item>'c'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#OnParseComplete(NDesk.Options.OptionContext)">
+            <Messages>
+             <Message Id="c" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2013-11-28 13:33:25Z">
+              <Issue Name="MemberParameterMoreMeaningfulName">
+               <Item>'Option.OnParseComplete(OptionContext)'</Item>
+               <Item>'c'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Parse`1(System.String,NDesk.Options.OptionContext)">
+            <Messages>
+             <Message Id="c" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2013-11-28 13:33:25Z">
+              <Issue Name="MemberParameterMoreMeaningfulName">
+               <Item>'Option.Parse&lt;T&gt;(string, OptionContext)'</Item>
+               <Item>'c'</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.String.Format(System.String,System.Object,System.Object,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2013-11-28 13:33:25Z">
+              <Issue Name="IFormatProviderAlternateString">
+               <Item>'string.Format(string, object, object, object)'</Item>
+               <Item>'Option.Parse&lt;T&gt;(string, OptionContext)'</Item>
+               <Item>'string.Format(IFormatProvider, string, params object[])'</Item>
+               <Item>'CultureInfo.CurrentCulture'</Item>
+               <Item>'CultureInfo.InvariantCulture'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#ParsePrototype()">
+            <Messages>
+             <Message TypeName="InstantiateArgumentExceptionsCorrectly" Category="Microsoft.Usage" CheckId="CA2208" Created="2013-11-28 13:33:25Z">
+              <Issue Name="IncorrectParameterName">
+               <Item>'Option.ParsePrototype()'</Item>
+               <Item>prototype</Item>
+               <Item>'paramName'</Item>
+               <Item>'ArgumentException'</Item>
+              </Issue>
+              <Issue Name="IncorrectParameterName">
+               <Item>'Option.ParsePrototype()'</Item>
+               <Item>prototype</Item>
+               <Item>'paramName'</Item>
+               <Item>'ArgumentException'</Item>
+              </Issue>
+              <Issue Name="IncorrectParameterName">
+               <Item>'Option.ParsePrototype()'</Item>
+               <Item>prototype</Item>
+               <Item>'paramName'</Item>
+               <Item>'ArgumentException'</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2013-11-28 13:33:25Z">
+              <Issue Name="IFormatProviderAlternateString">
+               <Item>'string.Format(string, object)'</Item>
+               <Item>'Option.ParsePrototype()'</Item>
+               <Item>'string.Format(IFormatProvider, string, params object[])'</Item>
+               <Item>'CultureInfo.CurrentCulture'</Item>
+               <Item>'CultureInfo.InvariantCulture'</Item>
+              </Issue>
+             </Message>
+             <Message Id="System.String.Format(System.String,System.Object,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2013-11-28 13:33:25Z">
+              <Issue Name="IFormatProviderAlternateString">
+               <Item>'string.Format(string, object, object)'</Item>
+               <Item>'Option.ParsePrototype()'</Item>
+               <Item>'string.Format(IFormatProvider, string, params object[])'</Item>
+               <Item>'CultureInfo.CurrentCulture'</Item>
+               <Item>'CultureInfo.InvariantCulture'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="OptionException">
+          <Messages>
+           <Message TypeName="ImplementStandardExceptionConstructors" Category="Microsoft.Design" CheckId="CA1032" Created="2013-11-28 13:33:25Z">
+            <Issue Name="MissingConstructor">
+             <Item>'OptionException'</Item>
+             <Item>public OptionException(String)</Item>
+            </Issue>
+            <Issue Name="MissingConstructor">
+             <Item>'OptionException'</Item>
+             <Item>public OptionException(String, Exception)</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="OptionSet">
+          <Messages>
+           <Message TypeName="IdentifiersShouldHaveCorrectSuffix" Category="Microsoft.Naming" CheckId="CA1710" Created="2013-11-28 13:33:25Z">
+            <Issue>
+             <Item>'OptionSet'</Item>
+             <Item>Collection</Item>
+            </Issue>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name="#GetArgumentName(System.Int32,System.Int32,System.String)">
+            <Messages>
+             <Message Id="System.String.IndexOf(System.String,System.Int32)" TypeName="SpecifyStringComparison" Category="Microsoft.Globalization" CheckId="CA1307" Created="2013-11-28 13:33:25Z">
               <Issue>
-               <Item>'FileOperationsController.DecryptFileWithWipeOfOriginal(string, string, ProgressContext)'</Item>
+               <Item>'string.IndexOf(string, int)'</Item>
+               <Item>'OptionSet.GetArgumentName(int, int, string)'</Item>
+               <Item>'string.IndexOf(string, int, StringComparison)'</Item>
+              </Issue>
+              <Issue>
+               <Item>'string.IndexOf(string, int)'</Item>
+               <Item>'OptionSet.GetArgumentName(int, int, string)'</Item>
+               <Item>'string.IndexOf(string, int, StringComparison)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#GetKeyForItem(NDesk.Options.Option)">
+            <Messages>
+             <Message TypeName="InstantiateArgumentExceptionsCorrectly" Category="Microsoft.Usage" CheckId="CA2208" Created="2013-11-28 13:33:25Z">
+              <Issue Name="IncorrectParameterName">
+               <Item>'OptionSet.GetKeyForItem(Option)'</Item>
+               <Item>option</Item>
+               <Item>'paramName'</Item>
+               <Item>'ArgumentNullException'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#GetOptionParts(System.String,System.String&amp;,System.String&amp;,System.String&amp;,System.String&amp;)">
+            <Messages>
+             <Message Id="1#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Created="2013-11-28 13:33:25Z">
+              <Issue>
+               <Item>'flag'</Item>
+              </Issue>
+             </Message>
+             <Message Id="2#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Created="2013-11-28 13:33:25Z">
+              <Issue>
+               <Item>'name'</Item>
+              </Issue>
+             </Message>
+             <Message Id="3#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Created="2013-11-28 13:33:25Z">
+              <Issue>
+               <Item>'sep'</Item>
+              </Issue>
+             </Message>
+             <Message Id="4#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Created="2013-11-28 13:33:25Z">
+              <Issue>
+               <Item>'value'</Item>
+              </Issue>
+             </Message>
+             <Message Id="flag" TypeName="UsePreferredTerms" Category="Microsoft.Naming" CheckId="CA1726" Created="2013-11-28 13:33:25Z">
+              <Issue Name="MemberParameterNoAlternate">
+               <Item>'OptionSet.GetOptionParts(string, out string, out string, out string, out string)'</Item>
+               <Item>flag</Item>
+               <Item>'flag'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Parse(System.Collections.Generic.IEnumerable`1&lt;System.String&gt;)">
+            <Messages>
+             <Message TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002" Created="2013-11-28 13:33:25Z">
+              <Issue>
+               <Item>'List&lt;string&gt;'</Item>
+               <Item>'OptionSet.Parse(IEnumerable&lt;string&gt;)'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Parse(System.String,NDesk.Options.OptionContext)">
+            <Messages>
+             <Message Id="c" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2013-11-28 13:33:25Z">
+              <Issue Name="MemberParameterMoreMeaningfulName">
+               <Item>'OptionSet.Parse(string, OptionContext)'</Item>
+               <Item>'c'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#ParseBundledValue(System.String,System.String,NDesk.Options.OptionContext)">
+            <Messages>
+             <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2013-11-28 13:33:25Z">
+              <Issue Name="IFormatProviderAlternateString">
+               <Item>'string.Format(string, object)'</Item>
+               <Item>'OptionSet.ParseBundledValue(string, string, OptionContext)'</Item>
+               <Item>'string.Format(IFormatProvider, string, params object[])'</Item>
+               <Item>'CultureInfo.CurrentCulture'</Item>
+               <Item>'CultureInfo.InvariantCulture'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#ParseValue(System.String,NDesk.Options.OptionContext)">
+            <Messages>
+             <Message Id="System.String.Format(System.String,System.Object,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2013-11-28 13:33:25Z">
+              <Issue Name="IFormatProviderAlternateString">
+               <Item>'string.Format(string, object, object)'</Item>
+               <Item>'OptionSet.ParseValue(string, OptionContext)'</Item>
+               <Item>'string.Format(IFormatProvider, string, params object[])'</Item>
+               <Item>'CultureInfo.CurrentCulture'</Item>
+               <Item>'CultureInfo.InvariantCulture'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#WriteOptionDescriptions(System.IO.TextWriter)">
+            <Messages>
+             <Message Id="o" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2013-11-28 13:33:25Z">
+              <Issue Name="MemberParameterMoreMeaningfulName">
+               <Item>'OptionSet.WriteOptionDescriptions(TextWriter)'</Item>
+               <Item>'o'</Item>
               </Issue>
              </Message>
             </Messages>
@@ -140,15 +490,15 @@
     <Modules>
      <Module Name="axantum.axcrypt.exe">
       <Namespaces>
-       <Namespace Name="Axantum.AxCrypt">
+       <Namespace Name="Axantum.AxCrypt.Presentation">
         <Types>
-         <Type Name="WatchedFoldersCore">
+         <Type Name="ButtonPresentation">
           <Members>
-           <Member Name="#StartDragAndDrop(System.Windows.Forms.DragEventArgs)">
+           <Member Name="#_mainView">
             <Messages>
-             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2013-11-01 08:58:29Z" FixCategory="NonBreaking">
+             <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Created="2013-11-28 13:33:25Z">
               <Issue>
-               <Item>'WatchedFoldersCore.StartDragAndDrop(DragEventArgs)'</Item>
+               <Item>'ButtonPresentation._mainView'</Item>
               </Issue>
              </Message>
             </Messages>
@@ -163,20 +513,51 @@
    </Target>
   </Targets>
   <Rules>
+   <Rule TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021">
+    <Resolution Name="Default">Consider a design that does not require that {0} be an out parameter.</Resolution>
+   </Rule>
    <Rule TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811">
     <Resolution Name="Default">{0} appears to have no upstream public or protected callers.</Resolution>
    </Rule>
-   <Rule TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702">
-    <Resolution Name="MemberShouldBeDiscreteTerm">The compound word '{0}' in member name {1} exists as a discrete term. If your usage is intended to be single word, case it as '{2}' or strip the first token entirely if it represents any sort of Hungarian notation.</Resolution>
+   <Rule TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823">
+    <Resolution Name="Default">It appears that field {0} is never used or is only ever assigned to. Use this field or remove it.</Resolution>
    </Rule>
-   <Rule TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031">
-    <Resolution Name="Default">Modify {0} to catch a more specific exception than {1} or rethrow the exception.</Resolution>
+   <Rule TypeName="CollectionPropertiesShouldBeReadOnly" Category="Microsoft.Usage" CheckId="CA2227">
+    <Resolution Name="Default">Change {0} to be read-only by removing the property setter.</Resolution>
    </Rule>
-   <Rule TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822">
-    <Resolution Name="Default">The 'this' parameter (or 'Me' in Visual Basic) of {0} is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Resolution>
+   <Rule TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002">
+    <Resolution Name="Default">Change {0} in {1} to use Collection&lt;T&gt;, ReadOnlyCollection&lt;T&gt; or KeyedCollection&lt;K,V&gt;</Resolution>
    </Rule>
-   <Rule TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801">
-    <Resolution Name="Default">Parameter {0} of {1} is never used. Remove the parameter or use it in the method body.</Resolution>
+   <Rule TypeName="FlagsEnumsShouldHavePluralNames" Category="Microsoft.Naming" CheckId="CA1714">
+    <Resolution Name="Default">If enumeration name {0} is singular, change it to a plural form.</Resolution>
+   </Rule>
+   <Rule TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704">
+    <Resolution Name="Member">Correct the spelling of '{0}' in member name {1} or remove it entirely if it represents any sort of Hungarian notation.</Resolution>
+    <Resolution Name="MemberParameterMoreMeaningfulName">In method {0}, consider providing a more meaningful name than parameter name {1}.</Resolution>
+    <Resolution Name="Namespace">Correct the spelling of '{0}' in namespace name '{1}'.</Resolution>
+   </Rule>
+   <Rule TypeName="IdentifiersShouldHaveCorrectSuffix" Category="Microsoft.Naming" CheckId="CA1710">
+    <Resolution Name="Default">Rename {0} to end in '{1}'.</Resolution>
+   </Rule>
+   <Rule TypeName="IdentifiersShouldNotMatchKeywords" Category="Microsoft.Naming" CheckId="CA1716">
+    <Resolution Name="Member">Rename virtual/interface member {0} so that it no longer conflicts with the reserved language keyword '{1}'. Using a reserved keyword as the name of a virtual/interface member makes it harder for consumers in other languages to override/implement the member.</Resolution>
+    <Resolution Name="Type">Rename type {0} so that it no longer conflicts with the reserved language keyword '{1}'. Using a reserved keyword as the name of a type makes it harder for consumers in other languages to use the type.</Resolution>
+   </Rule>
+   <Rule TypeName="ImplementStandardExceptionConstructors" Category="Microsoft.Design" CheckId="CA1032">
+    <Resolution Name="MissingConstructor">Add the following constructor to {0}: {1}.</Resolution>
+   </Rule>
+   <Rule TypeName="InstantiateArgumentExceptionsCorrectly" Category="Microsoft.Usage" CheckId="CA2208">
+    <Resolution Name="IncorrectParameterName">Method {0} passes '{1}' as the {2} argument to a {3} constructor. Replace this argument with one of the method's parameter names. Note that the provided parameter name should have the exact casing as declared on the method.</Resolution>
+   </Rule>
+   <Rule TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305">
+    <Resolution Name="IFormatProviderAlternateString">Because the behavior of {0} could vary based on the current user's locale settings, replace this call in {1} with a call to {2}. If the result of {2} will be displayed to the user, specify {3} as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify {4}.</Resolution>
+   </Rule>
+   <Rule TypeName="SpecifyStringComparison" Category="Microsoft.Globalization" CheckId="CA1307">
+    <Resolution Name="Default">Because the behavior of {0} could vary based on the current user's locale settings, replace this call in {1} with a call to {2}. If the result of {2} will be displayed to the user, such as when sorting a list of items for display in a list box, specify 'StringComparison.CurrentCulture' or 'StringComparison.CurrentCultureIgnoreCase' as the 'StringComparison' parameter. If comparing case-insensitive identifiers, such as file paths, environment variables, or registry keys and values, specify 'StringComparison.OrdinalIgnoreCase'. Otherwise, if comparing case-sensitive identifiers, specify 'StringComparison.Ordinal'.</Resolution>
+   </Rule>
+   <Rule TypeName="UsePreferredTerms" Category="Microsoft.Naming" CheckId="CA1726">
+    <Resolution Name="Member">Replace the term '{0}' in member name {1} with the preferred alternate '{2}'.</Resolution>
+    <Resolution Name="MemberParameterNoAlternate">In member {0}, replace the term '{1}' in parameter name {2} with an appropriate alternate or remove it entirely.</Resolution>
    </Rule>
   </Rules>
  </FxCopReport>

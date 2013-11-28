@@ -26,7 +26,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public long CurrentCount { get; set; }
 
-        public bool IsCancelled { get; set; }
+        public bool Canceled { get; set; }
 
         public void AddCount(long count)
         {
@@ -42,11 +42,11 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 return;
             }
-            if (!IsCancelled)
+            if (!Canceled)
             {
                 _progress.AddCount(TotalCount - CurrentCount);
                 CurrentCount = TotalCount;
-                IsCancelled = true;
+                Canceled = true;
                 throw new OperationCanceledException("Operation canceled on request.");
             }
         }

@@ -43,37 +43,37 @@
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // _panel1
             // 
-            resources.ApplyResources(this._panel1, "panel1");
+            resources.ApplyResources(this._panel1, "_panel1");
             this._panel1.Controls.Add(this._newButton);
             this._panel1.Controls.Add(this._buttonCancel);
             this._panel1.Controls.Add(this._buttonOk);
-            this._panel1.Name = "panel1";
+            this._panel1.Name = "_panel1";
             // 
-            // newButton
+            // _newButton
             // 
             this._newButton.CausesValidation = false;
             this._newButton.DialogResult = System.Windows.Forms.DialogResult.Retry;
-            resources.ApplyResources(this._newButton, "newButton");
-            this._newButton.Name = "newButton";
+            resources.ApplyResources(this._newButton, "_newButton");
+            this._newButton.Name = "_newButton";
             this._newButton.UseVisualStyleBackColor = true;
             this._newButton.Click += new System.EventHandler(this.newButton_Click);
             // 
-            // buttonCancel
+            // _buttonCancel
             // 
             this._buttonCancel.CausesValidation = false;
             this._buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            resources.ApplyResources(this._buttonCancel, "buttonCancel");
-            this._buttonCancel.Name = "buttonCancel";
+            resources.ApplyResources(this._buttonCancel, "_buttonCancel");
+            this._buttonCancel.Name = "_buttonCancel";
             this._buttonCancel.UseVisualStyleBackColor = true;
             // 
-            // buttonOk
+            // _buttonOk
             // 
             this._buttonOk.CausesValidation = false;
             this._buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            resources.ApplyResources(this._buttonOk, "buttonOk");
-            this._buttonOk.Name = "buttonOk";
+            resources.ApplyResources(this._buttonOk, "_buttonOk");
+            this._buttonOk.Name = "_buttonOk";
             this._buttonOk.UseVisualStyleBackColor = true;
             this._buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             // 
@@ -99,7 +99,7 @@
             this.PassphraseTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.PassphraseTextBox_Validating);
             this.PassphraseTextBox.Validated += new System.EventHandler(this.PassphraseTextBox_Validated);
             // 
-            // errorProvider1
+            // _errorProvider1
             // 
             this._errorProvider1.ContainerControl = this;
             // 
@@ -116,6 +116,7 @@
             this.MaximizeBox = false;
             this.Name = "LogOnDialog";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.Activated += new System.EventHandler(this.LogOnDialog_Activated);
             this.Load += new System.EventHandler(this.EncryptPassphraseDialog_Load);
             this._panel1.ResumeLayout(false);
             this.PassphraseGroupBox.ResumeLayout(false);

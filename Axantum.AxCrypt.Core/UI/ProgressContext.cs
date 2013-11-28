@@ -126,11 +126,11 @@ namespace Axantum.AxCrypt.Core.UI
         /// <summary>
         /// Add to the total work count.
         /// </summary>
-        /// <param name="partTotal">The amount of work to add.</param>
-        public void AddTotal(long partTotal)
+        /// <param name="count">The amount of work to add.</param>
+        public void AddTotal(long count)
         {
             Invariant();
-            if (partTotal <= 0)
+            if (count <= 0)
             {
                 return;
             }
@@ -138,11 +138,11 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 if (_total < 0)
                 {
-                    _total = partTotal;
+                    _total = count;
                 }
                 else
                 {
-                    _total += partTotal;
+                    _total += count;
                 }
             }
         }

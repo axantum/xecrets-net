@@ -203,7 +203,7 @@ namespace Axantum.AxCrypt.Core
         /// and encryption key(s) etc.
         /// </summary>
         /// <param name="outputStream"></param>
-        public void CopyEncryptedTo(DocumentHeaders outputDocumentHeaders, Stream cipherStream, ProgressContext progress)
+        public void CopyEncryptedTo(DocumentHeaders outputDocumentHeaders, Stream cipherStream, IProgressContext progress)
         {
             if (outputDocumentHeaders == null)
             {

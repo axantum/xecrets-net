@@ -77,7 +77,6 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo encryptedFileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
             AesKey key = new AesKey();
             AesKey nullKey = null;
-            ILauncher process = new FakeLauncher(String.Empty);
             ActiveFile nullActiveFile = null;
 
             ActiveFile originalActiveFile = new ActiveFile(decryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None);

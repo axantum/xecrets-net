@@ -55,6 +55,8 @@ namespace Axantum.AxCrypt.Core.Test
             ThumbprintSalt = KeyWrapSalt.Zero;
             EnvironmentVariables = new Dictionary<string, string>();
             MaxConcurrency = 2;
+            IsFirstInstance = true;
+            ExitCode = -1;
         }
 
         public FakeRuntimeEnvironment(Endian endianness)
@@ -258,5 +260,21 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         public int MaxConcurrency { get; set; }
+
+        public bool IsFirstInstance { get; set; }
+
+        public bool IsFirstInstanceRunning { get; set; }
+
+        public bool FirstInstanceRunning(TimeSpan timeout)
+        {
+            return IsFirstInstanceRunning;
+        }
+
+        public int ExitCode { get; set; }
+
+        public void ExitApplication(int exitCode)
+        {
+            ExitCode = exitCode;
+        }
     }
 }
