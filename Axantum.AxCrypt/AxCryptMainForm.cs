@@ -212,6 +212,14 @@ namespace Axantum.AxCrypt
             Instance.CommandService.Received += AxCryptMainForm_Request;
             Instance.CommandService.StartListening();
 
+            BindToMainViewModel();
+
+            _loaded = true;
+            ReStartSession();
+        }
+
+        private void BindToMainViewModel()
+        {
             _mainViewModel.Bind("LogonEnabled", (bool logonEnabled) => { _encryptionKeyToolStripButton.Image = logonEnabled ? Resources.encryptionkeygreen32 : Resources.encryptionkeyred32; });
             _mainViewModel.Bind("LogonEnabled", (bool logonEnabled) => { _encryptionKeyToolStripButton.ToolTipText = logonEnabled ? Resources.DefaultEncryptionKeyIsIsetToolTip : Resources.NoDefaultEncryptionKeySetToolTip; });
             _mainViewModel.Bind("EncryptFileEnabled", (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
@@ -219,9 +227,6 @@ namespace Axantum.AxCrypt
             _mainViewModel.Bind("OpenEncryptedEnabled", (bool enabled) => { _openEncryptedToolStripButton.Enabled = enabled; });
             _mainViewModel.Bind("event LoggingOn", (object me, LogOnEventArgs args) => { HandleLogOn(args); });
             _mainViewModel.Bind(h => _encryptionKeyToolStripButton.Click += h, "LogOnLogOff()");
-
-            _loaded = true;
-            ReStartSession();
         }
 
         private void HandleLogOn(LogOnEventArgs args)
@@ -307,10 +312,6 @@ namespace Axantum.AxCrypt
             }
             Show();
             WindowState = FormWindowState.Normal;
-        }
-
-        private void AxCryptMainForm_Shown(object sender, EventArgs e)
-        {
         }
 
         private void RestoreUserPreferences()
