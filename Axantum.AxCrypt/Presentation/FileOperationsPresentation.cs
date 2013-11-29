@@ -63,13 +63,13 @@ namespace Axantum.AxCrypt.Presentation
             Instance.ParallelBackground.DoFiles(fileNames.Select(f => OS.Current.FileInfo(f)), DecryptFile, (status) => { });
         }
 
-        public void OpenFilesViaDialog(IRuntimeFileInfo fileInfo)
+        public void OpenFilesViaDialog(IRuntimeFileInfo initialFolder)
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
-                if (fileInfo != null && fileInfo.IsFolder)
+                if (initialFolder != null && initialFolder.IsFolder)
                 {
-                    ofd.InitialDirectory = fileInfo.FullName;
+                    ofd.InitialDirectory = initialFolder.FullName;
                 }
                 ofd.Title = Resources.OpenEncryptedFileOpenDialogTitle;
                 ofd.Multiselect = false;

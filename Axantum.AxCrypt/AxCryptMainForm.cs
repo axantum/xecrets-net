@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2012, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2013, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -33,6 +33,7 @@ using Axantum.AxCrypt.Core.Ipc;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Mono;
 using Axantum.AxCrypt.Presentation;
 using Axantum.AxCrypt.Properties;
@@ -79,7 +80,7 @@ namespace Axantum.AxCrypt
 
         private PassphrasePresentation _passphrasePresentation;
 
-        private PropertyBinder _buttonBinder = new PropertyBinder(new ButtonPresentation());
+        private ViewModelBinder _mainViewModel = new ViewModelBinder(new MainViewModel());
 
         public static MessageBoxOptions MessageBoxOptions { get; private set; }
 
@@ -211,15 +212,68 @@ namespace Axantum.AxCrypt
             Instance.CommandService.Received += AxCryptMainForm_Request;
             Instance.CommandService.StartListening();
 
-            _buttonBinder.Bind("LogonEnabled", (bool logonEnabled) => { _encryptionKeyToolStripButton.Image = logonEnabled ? Resources.encryptionkeygreen32 : Resources.encryptionkeyred32; });
-            _buttonBinder.Bind("LogonEnabled", (bool logonEnabled) => { _encryptionKeyToolStripButton.ToolTipText = logonEnabled ? Resources.DefaultEncryptionKeyIsIsetToolTip : Resources.NoDefaultEncryptionKeySetToolTip; });
-            _buttonBinder.Bind("EncryptFileEnabled", (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
-            _buttonBinder.Bind("DecryptFileEnabled", (bool enabled) => { _decryptToolStripButton.Enabled = enabled; });
-            _buttonBinder.Bind("OpenEncryptedEnabled", (bool enabled) => { _openEncryptedToolStripButton.Enabled = enabled; });
-            _buttonBinder.Notify();
+            _mainViewModel.Bind("LogonEnabled", (bool logonEnabled) => { _encryptionKeyToolStripButton.Image = logonEnabled ? Resources.encryptionkeygreen32 : Resources.encryptionkeyred32; });
+            _mainViewModel.Bind("LogonEnabled", (bool logonEnabled) => { _encryptionKeyToolStripButton.ToolTipText = logonEnabled ? Resources.DefaultEncryptionKeyIsIsetToolTip : Resources.NoDefaultEncryptionKeySetToolTip; });
+            _mainViewModel.Bind("EncryptFileEnabled", (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
+            _mainViewModel.Bind("DecryptFileEnabled", (bool enabled) => { _decryptToolStripButton.Enabled = enabled; });
+            _mainViewModel.Bind("OpenEncryptedEnabled", (bool enabled) => { _openEncryptedToolStripButton.Enabled = enabled; });
+            _mainViewModel.Bind("event LoggingOn", (object me, LogOnEventArgs args) => { HandleLogOn(args); });
+            _mainViewModel.Bind(h => _encryptionKeyToolStripButton.Click += h, "LogOnLogOff()");
 
             _loaded = true;
             ReStartSession();
+        }
+
+        private void HandleLogOn(LogOnEventArgs args)
+        {
+            if (args.CreateNew)
+            {
+                HandleCreateNewLogOn(args);
+            }
+            else
+            {
+                HandleExistingLogOn(args);
+            }
+        }
+
+        private void HandleCreateNewLogOn(LogOnEventArgs args)
+        {
+            using (EncryptPassphraseDialog passphraseDialog = new EncryptPassphraseDialog(Instance.FileSystemState, args.Passphrase))
+            {
+                passphraseDialog.ShowPassphraseCheckBox.Checked = args.DisplayPassphrase;
+                DialogResult dialogResult = passphraseDialog.ShowDialog(this);
+                if (dialogResult != DialogResult.OK || passphraseDialog.PassphraseTextBox.Text.Length == 0)
+                {
+                    args.Cancel = true;
+                    return;
+                }
+                args.DisplayPassphrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
+                args.Passphrase = passphraseDialog.PassphraseTextBox.Text;
+            }
+            return;
+        }
+
+        private void HandleExistingLogOn(LogOnEventArgs args)
+        {
+            using (LogOnDialog logOnDialog = new LogOnDialog(Instance.FileSystemState, args.Identity))
+            {
+                logOnDialog.ShowPassphraseCheckBox.Checked = args.DisplayPassphrase;
+                DialogResult dialogResult = logOnDialog.ShowDialog(this);
+                if (dialogResult == DialogResult.Retry)
+                {
+                    args.CreateNew = true;
+                    return;
+                }
+
+                if (dialogResult != DialogResult.OK || logOnDialog.PassphraseTextBox.Text.Length == 0)
+                {
+                    args.Cancel = true;
+                    return;
+                }
+                args.DisplayPassphrase = logOnDialog.ShowPassphraseCheckBox.Checked;
+                args.Passphrase = logOnDialog.PassphraseTextBox.Text;
+            }
+            return;
         }
 
         private void AxCryptMainForm_Request(object sender, CommandServiceArgs e)
@@ -391,23 +445,8 @@ namespace Axantum.AxCrypt
         {
             _recentFilesListView.Items.Clear();
             _watchedFoldersListView.Items.Clear();
-            SetToolButtonsState();
-            OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.SessionStart));
-        }
-
-        private void SetToolButtonsState()
-        {
-            //if (Instance.KnownKeys.DefaultEncryptionKey == null)
-            //{
-            //    _encryptionKeyToolStripButton.Image = Resources.encryptionkeygreen32;
-            //    _encryptionKeyToolStripButton.ToolTipText = Resources.NoDefaultEncryptionKeySetToolTip;
-            //}
-            //else
-            //{
-            //    _encryptionKeyToolStripButton.Image = Resources.encryptionkeyred32;
-            //    _encryptionKeyToolStripButton.ToolTipText = Resources.DefaultEncryptionKeyIsIsetToolTip;
-            //}
             SetWindowTextWithLogonStatus();
+            OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.SessionStart));
         }
 
         private void ToolStripButtonEncrypt_Click(object sender, EventArgs e)
@@ -528,8 +567,7 @@ namespace Axantum.AxCrypt
                 (FileOperationStatus status) =>
                 {
                     _closeAndRemoveOpenFilesToolStripButton.Enabled = FilesAreOpen;
-                    SetToolButtonsState();
-                    _buttonBinder.Notify();
+                    SetWindowTextWithLogonStatus();
                     _watchedFoldersPresentation.UpdateListView();
                     _handleSessionChangedInProgress = false;
                 });
@@ -922,26 +960,26 @@ namespace Axantum.AxCrypt
 
         private void LogOnToolStripButton_Click(object sender, EventArgs e)
         {
-            if (Instance.KnownKeys.IsLoggedOn)
-            {
-                Instance.KnownKeys.Clear();
-                return;
-            }
+            //if (Instance.KnownKeys.IsLoggedOn)
+            //{
+            //    Instance.KnownKeys.Clear();
+            //    return;
+            //}
 
-            if (Instance.FileSystemState.Identities.Any(identity => true))
-            {
-                TryLogOnToExistingIdentity();
-            }
-            else
-            {
-                string passphrase = _passphrasePresentation.AskForNewEncryptionPassphrase(String.Empty);
-                if (String.IsNullOrEmpty(passphrase))
-                {
-                    return;
-                }
+            //if (Instance.FileSystemState.Identities.Any(identity => true))
+            //{
+            //    TryLogOnToExistingIdentity();
+            //}
+            //else
+            //{
+            //    string passphrase = _passphrasePresentation.AskForNewEncryptionPassphrase(String.Empty);
+            //    if (String.IsNullOrEmpty(passphrase))
+            //    {
+            //        return;
+            //    }
 
-                Instance.KnownKeys.DefaultEncryptionKey = Passphrase.Derive(passphrase);
-            }
+            //    Instance.KnownKeys.DefaultEncryptionKey = Passphrase.Derive(passphrase);
+            //}
         }
 
         private void TryLogOnToExistingIdentity()
