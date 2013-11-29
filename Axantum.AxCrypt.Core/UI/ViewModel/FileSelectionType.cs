@@ -11,6 +11,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         Decrypt,
         Encrypt,
         Open,
-        SaveAs,
+        SaveAsEncrypted,
+        SaveAsDecrypted,
     }
 }

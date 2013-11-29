@@ -143,7 +143,6 @@
             resources.ApplyResources(this._decryptToolStripButton, "_decryptToolStripButton");
             this._decryptToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this._decryptToolStripButton.Name = "_decryptToolStripButton";
-            this._decryptToolStripButton.Click += new System.EventHandler(this.DecryptToolStripButton_Click);
             // 
             // _toolStripSeparator1
             // 
@@ -224,7 +223,6 @@
             // 
             resources.ApplyResources(this._decryptToolStripMenuItem, "_decryptToolStripMenuItem");
             this._decryptToolStripMenuItem.Name = "_decryptToolStripMenuItem";
-            this._decryptToolStripMenuItem.Click += new System.EventHandler(this.DecryptToolStripMenuItem_Click);
             // 
             // _toolStripSeparator6
             // 

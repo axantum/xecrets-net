@@ -131,6 +131,10 @@ namespace Axantum.AxCrypt
             {
                 return DragDropEffects.None;
             }
+            if (!button.Enabled)
+            {
+                return DragDropEffects.None;
+            }
             if (button == _encryptToolStripButton)
             {
                 if (draggedFiles.HasEncryptable())
@@ -228,11 +232,15 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyToView("DecryptFileEnabled", (bool enabled) => { _decryptToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyToView("OpenEncryptedEnabled", (bool enabled) => { _openEncryptedToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyToView("OpenEncryptedEnabled", (bool enabled) => { _openEncryptedToolStripMenuItem.Enabled = enabled; });
-            _mainViewModel.BindEventToViewHandler("event LoggingOn", (object me, LogOnEventArgs args) => { HandleLogOn(args); });
+            
             _mainViewModel.BindViewEventToAction(h => _encryptionKeyToolStripButton.Click += h, _mainViewModel.LogOnLogOff);
-            _mainViewModel.BindEventToViewHandler("event SelectingFiles", (object me, FileSelectionEventArgs args) => { HandleFileSelection(args); });
             _mainViewModel.BindViewEventToAction(h => _encryptToolStripButton.Click += h, _mainViewModel.EncryptFiles);
             _mainViewModel.BindViewEventToAction(h => _encryptToolStripMenuItem.Click += h, _mainViewModel.EncryptFiles);
+            _mainViewModel.BindViewEventToAction(h => _decryptToolStripButton.Click += h, _mainViewModel.DecryptFiles);
+            _mainViewModel.BindViewEventToAction(h => _decryptToolStripMenuItem.Click += h, _mainViewModel.DecryptFiles);
+
+            _mainViewModel.LoggingOn += (object me, LogOnEventArgs args) => { HandleLogOn(args); };
+            _mainViewModel.SelectingFiles += (object me, FileSelectionEventArgs args) => { HandleFileSelection(args); };
         }
 
         private void HandleLogOn(LogOnEventArgs args)
@@ -289,13 +297,15 @@ namespace Axantum.AxCrypt
 
         private void HandleFileSelection(FileSelectionEventArgs args)
         {
-            if (args.FileSelectionType != FileSelectionType.SaveAs)
+            switch (args.FileSelectionType)
             {
-                HandleOpenFileSelection(args);
-            }
-            else
-            {
-                HandleSaveAsFileSelection(args);
+                case FileSelectionType.SaveAsEncrypted:
+                case FileSelectionType.SaveAsDecrypted:
+                    HandleSaveAsFileSelection(args);
+                    break;
+                default:
+                    HandleOpenFileSelection(args);
+                    break;
             }
         }
 
@@ -306,6 +316,13 @@ namespace Axantum.AxCrypt
                 switch (args.FileSelectionType)
                 {
                     case FileSelectionType.Decrypt:
+                        ofd.Title = Resources.DecryptFileOpenDialogTitle;
+                        ofd.Multiselect = true;
+                        ofd.CheckFileExists = true;
+                        ofd.CheckPathExists = true;
+                        ofd.DefaultExt = OS.Current.AxCryptExtension;
+                        ofd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(OS.Current.AxCryptExtension)); //MLHIDE
+                        ofd.Multiselect = true;
                         break;
                     case FileSelectionType.Encrypt:
                         ofd.Title = Resources.EncryptFileOpenDialogTitle;
@@ -332,15 +349,28 @@ namespace Axantum.AxCrypt
         {
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
-                sfd.Title = Resources.EncryptFileSaveAsDialogTitle;
-                sfd.AddExtension = true;
-                sfd.ValidateNames = true;
+                switch (args.FileSelectionType)
+                {
+                    case FileSelectionType.SaveAsEncrypted:
+                        sfd.Title = Resources.EncryptFileSaveAsDialogTitle;
+                        sfd.DefaultExt = OS.Current.AxCryptExtension;
+                        sfd.AddExtension = true;
+                        sfd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat(OS.Current.AxCryptExtension);
+                        break;
+                    case FileSelectionType.SaveAsDecrypted:
+                        string extension = Path.GetExtension(args.SelectedFiles[0]);
+                        sfd.Title = Resources.DecryptedSaveAsFileDialogTitle;
+                        sfd.DefaultExt = extension;
+                        sfd.AddExtension = !String.IsNullOrEmpty(extension);
+                        sfd.Filter = Resources.DecryptedSaveAsFileDialogFilterPattern.InvariantFormat(extension);
+                        break;
+                }
                 sfd.CheckPathExists = true;
-                sfd.DefaultExt = OS.Current.AxCryptExtension;
-                sfd.FileName = args.SelectedFiles[0];
-                sfd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat(OS.Current.AxCryptExtension);
+                sfd.FileName = Path.GetFileName(args.SelectedFiles[0]);
                 sfd.InitialDirectory = Path.GetDirectoryName(args.SelectedFiles[0]);
                 sfd.ValidateNames = true;
+                sfd.OverwritePrompt = true;
+                sfd.RestoreDirectory = true;
                 DialogResult saveAsResult = sfd.ShowDialog();
                 if (saveAsResult != DialogResult.OK)
                 {
@@ -650,11 +680,6 @@ namespace Axantum.AxCrypt
 
         #region ToolStrip
 
-        private void DecryptToolStripButton_Click(object sender, EventArgs e)
-        {
-            _fileOperationsPresentation.DecryptFilesViaDialog();
-        }
-
         private void OpenEncryptedToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _fileOperationsPresentation.OpenFilesViaDialog(null);
@@ -673,10 +698,14 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
+            if (!button.Enabled)
+            {
+                return;
+            }
 
             if (Object.ReferenceEquals(button, _decryptToolStripButton))
             {
-                Instance.ParallelBackground.DoFiles(e.GetDragged(), _fileOperationsPresentation.DecryptFile, (status) => { });
+                _mainViewModel.DecryptFiles(e.GetDragged());
                 return;
             }
             if (Object.ReferenceEquals(button, _openEncryptedToolStripButton))
@@ -771,8 +800,7 @@ namespace Axantum.AxCrypt
         private void DecryptAndRemoveFromListToolStripMenuItem_Click(object sender, EventArgs e)
         {
             IEnumerable<IRuntimeFileInfo> encryptedPaths = SelectedRecentFilesItems();
-
-            Instance.ParallelBackground.DoFiles(encryptedPaths, _fileOperationsPresentation.DecryptFile, (status) => { });
+            _mainViewModel.DecryptFiles(SelectedRecentFilesItems());
         }
 
         private IEnumerable<IRuntimeFileInfo> SelectedRecentFilesItems()
@@ -833,11 +861,6 @@ namespace Axantum.AxCrypt
             ProgressBar progressBar = (ProgressBar)menuStrip.Tag;
             IProgressContext progress = (IProgressContext)progressBar.Tag;
             progress.Cancel = true;
-        }
-
-        private void DecryptToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _fileOperationsPresentation.DecryptFilesViaDialog();
         }
 
         private void WipeToolStripMenuItem_Click(object sender, EventArgs e)

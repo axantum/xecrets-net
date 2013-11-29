@@ -24,28 +24,6 @@ namespace Axantum.AxCrypt.Presentation
             _passphrasePresentation = new PassphrasePresentation(mainView);
         }
 
-        public void DecryptFilesViaDialog()
-        {
-            string[] fileNames;
-            using (OpenFileDialog ofd = new OpenFileDialog())
-            {
-                ofd.Title = Resources.DecryptFileOpenDialogTitle;
-                ofd.Multiselect = true;
-                ofd.CheckFileExists = true;
-                ofd.CheckPathExists = true;
-                ofd.DefaultExt = OS.Current.AxCryptExtension;
-                ofd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(OS.Current.AxCryptExtension)); //MLHIDE
-                ofd.Multiselect = true;
-                DialogResult result = ofd.ShowDialog();
-                if (result != DialogResult.OK)
-                {
-                    return;
-                }
-                fileNames = ofd.FileNames;
-            }
-            Instance.ParallelBackground.DoFiles(fileNames.Select(f => OS.Current.FileInfo(f)), DecryptFile, (status) => { });
-        }
-
         public void OpenFilesViaDialog(IRuntimeFileInfo initialFolder)
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
@@ -141,53 +119,6 @@ namespace Axantum.AxCrypt.Presentation
             };
 
             return operationsController.VerifyEncrypted(fullName);
-        }
-
-        public FileOperationStatus DecryptFile(IRuntimeFileInfo file, IProgressContext progress)
-        {
-            FileOperationsController operationsController = new FileOperationsController(progress);
-
-            operationsController.QueryDecryptionPassphrase += HandleQueryDecryptionPassphraseEvent;
-
-            operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
-            {
-                string extension = Path.GetExtension(e.SaveFileFullName);
-                using (SaveFileDialog sfd = new SaveFileDialog())
-                {
-                    sfd.AddExtension = !String.IsNullOrEmpty(extension);
-                    sfd.CheckPathExists = true;
-                    sfd.DefaultExt = extension;
-                    sfd.Filter = Resources.DecryptedSaveAsFileDialogFilterPattern.InvariantFormat(extension);
-                    sfd.InitialDirectory = Path.GetDirectoryName(file.FullName);
-                    sfd.FileName = Path.GetFileName(e.SaveFileFullName);
-                    sfd.OverwritePrompt = true;
-                    sfd.RestoreDirectory = true;
-                    sfd.Title = Resources.DecryptedSaveAsFileDialogTitle;
-                    DialogResult result = sfd.ShowDialog();
-                    if (result != DialogResult.OK)
-                    {
-                        e.Cancel = true;
-                        return;
-                    }
-                    e.SaveFileFullName = sfd.FileName;
-                }
-                return;
-            };
-
-            operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
-            {
-                Instance.KnownKeys.Add(e.Key);
-            };
-
-            operationsController.Completed += (object sender, FileOperationEventArgs e) =>
-            {
-                if (FactoryRegistry.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
-                {
-                    Instance.FileSystemState.Actions.RemoveRecentFiles(new IRuntimeFileInfo[] { OS.Current.FileInfo(e.OpenFileFullName) }, progress);
-                }
-            };
-
-            return operationsController.DecryptFile(file);
         }
 
         private FileOperationStatus WipeFile(IRuntimeFileInfo file, IProgressContext progress)

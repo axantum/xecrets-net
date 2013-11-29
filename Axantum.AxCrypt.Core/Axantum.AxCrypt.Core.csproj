@@ -179,7 +179,6 @@
     <Compile Include="UI\ProgressContext.cs" />
     <Compile Include="UI\ProgressEventArgs.cs" />
     <Compile Include="UI\ViewModel\ViewModelBase.cs" />
-    <Compile Include="UI\ViewModel\ViewModelBinder.cs" />
     <Compile Include="UI\PublicResources.cs" />
     <Compile Include="UI\UpdateCheck.cs" />
     <Compile Include="UI\UserSettings.cs" />

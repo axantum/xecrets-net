@@ -112,15 +112,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             action(GetProperty<T>(name));
         }
 
-        public void BindEventToViewHandler<T>(string name, EventHandler<T> handler) where T : EventArgs
-        {
-            if (!name.StartsWith("event ", StringComparison.Ordinal))
-            {
-                throw new ArgumentException("To make the code clear to read, the event to bind must be prefixed with 'event'", "name");
-            }
-            AddEvent(this, name.Substring("event ".Length), handler);
-        }
-
         public void BindViewEventToAction(Action<EventHandler> subscribe, Action action)
         {
             subscribe((object sender, EventArgs e) => action());

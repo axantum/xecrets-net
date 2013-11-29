@@ -152,6 +152,92 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             Instance.ParallelBackground.DoFiles(files, EncryptFile, (status) => { });
         }
 
+        public void DecryptFiles()
+        {
+            FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs()
+            {
+                FileSelectionType = FileSelectionType.Decrypt,
+            };
+            OnSelectingFiles(fileSelectionArgs);
+            if (fileSelectionArgs.Cancel)
+            {
+                return;
+            }
+            DecryptFiles(fileSelectionArgs.SelectedFiles.Select(f => OS.Current.FileInfo(f)));
+
+        }
+
+        public void DecryptFiles(IEnumerable<IRuntimeFileInfo> files)
+        {
+            Instance.ParallelBackground.DoFiles(files, DecryptFile, (status) => { });
+        }
+
+        public FileOperationStatus DecryptFile(IRuntimeFileInfo file, IProgressContext progress)
+        {
+            FileOperationsController operationsController = new FileOperationsController(progress);
+
+            operationsController.QueryDecryptionPassphrase += HandleQueryDecryptionPassphraseEvent;
+
+            operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
+            {
+                FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs()
+                {
+                    FileSelectionType = FileSelectionType.SaveAsDecrypted,
+                    SelectedFiles = new string[] {e.SaveFileFullName },
+                };
+                OnSelectingFiles(fileSelectionArgs);
+                if (fileSelectionArgs.Cancel)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+                e.SaveFileFullName = fileSelectionArgs.SelectedFiles[0];
+            };
+
+            operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
+            {
+                Instance.KnownKeys.Add(e.Key);
+            };
+
+            operationsController.Completed += (object sender, FileOperationEventArgs e) =>
+            {
+                if (FactoryRegistry.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
+                {
+                    Instance.FileSystemState.Actions.RemoveRecentFiles(new IRuntimeFileInfo[] { OS.Current.FileInfo(e.OpenFileFullName) }, progress);
+                }
+            };
+
+            return operationsController.DecryptFile(file);
+        }
+
+        private void HandleQueryDecryptionPassphraseEvent(object sender, FileOperationEventArgs e)
+        {
+            string passphraseText = AskForLogOnOrDecryptPassphrase(e.OpenFileFullName);
+            if (String.IsNullOrEmpty(passphraseText))
+            {
+                e.Cancel = true;
+                return;
+            }
+            e.Passphrase = passphraseText;
+        }
+
+        private string AskForLogOnOrDecryptPassphrase(string fullName)
+        {
+            ActiveFile openFile = Instance.FileSystemState.FindEncryptedPath(fullName);
+            if (openFile == null || openFile.Thumbprint == null)
+            {
+                return AskForLogOnPassphrase(PassphraseIdentity.Empty);
+            }
+
+            PassphraseIdentity identity = Instance.FileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == openFile.Thumbprint);
+            if (identity == null)
+            {
+                return AskForLogOnPassphrase(PassphraseIdentity.Empty);
+            }
+
+            return AskForLogOnPassphrase(identity);
+        }
+
         private FileOperationStatus EncryptFile(IRuntimeFileInfo file, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(progress);
@@ -160,7 +246,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs()
                 {
-                    FileSelectionType = FileSelectionType.SaveAs,
+                    FileSelectionType = FileSelectionType.SaveAsEncrypted,
                     SelectedFiles = new string[] { e.SaveFileFullName },
                 };
                 OnSelectingFiles(fileSelectionArgs);
