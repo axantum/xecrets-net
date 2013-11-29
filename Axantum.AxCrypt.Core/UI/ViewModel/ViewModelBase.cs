@@ -29,13 +29,35 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
     public class ViewModelBase : IViewModel
     {
+        private Dictionary<string, List<Action<object>>> _actions = new Dictionary<string, List<Action<object>>>();
+
         private Dictionary<string, object> _items = new Dictionary<string, object>();
+
+        public ViewModelBase()
+        {
+            PropertyChanged += HandlePropertyChanged;
+        }
+
+        private void HandlePropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            object value = GetProperty(sender, e.PropertyName);
+            List<Action<object>> actions;
+            if (!_actions.TryGetValue(e.PropertyName, out actions))
+            {
+                return;
+            }
+            foreach (Action<object> action in actions)
+            {
+                action(value);
+            }
+        }
 
         protected void SetProperty<T>(string name, T value)
         {
@@ -77,6 +99,67 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 handler(this, e);
             }
+        }
+        public void BindPropertyToView<T>(string name, Action<T> action)
+        {
+            List<Action<object>> actions;
+            if (!_actions.TryGetValue(name, out actions))
+            {
+                actions = new List<Action<object>>();
+                _actions.Add(name, actions);
+            }
+            actions.Add(o => action((T)o));
+            action(GetProperty<T>(name));
+        }
+
+        public void BindEventToViewHandler<T>(string name, EventHandler<T> handler) where T : EventArgs
+        {
+            if (!name.StartsWith("event ", StringComparison.Ordinal))
+            {
+                throw new ArgumentException("To make the code clear to read, the event to bind must be prefixed with 'event'", "name");
+            }
+            AddEvent(this, name.Substring("event ".Length), handler);
+        }
+
+        public void BindViewEventToAction(Action<EventHandler> subscribe, Action action)
+        {
+            subscribe((object sender, EventArgs e) => action());
+        }
+
+        public void BindViewEventToAction<TEventArgs>(Action<EventHandler<TEventArgs>> subscribe, string name) where TEventArgs : EventArgs
+        {
+            Action action = GetAction(this, name);
+            subscribe((object sender, TEventArgs e) => action());
+        }
+
+        private static bool HasValueChanged<T>(object me, PropertyInfo pi, T value)
+        {
+            object o = pi.GetValue(me, null);
+            if (o == null)
+            {
+                return value != null;
+            }
+            T oldValue = (T)o;
+            return !oldValue.Equals(value);
+        }
+
+        private static object GetProperty(object me, string name)
+        {
+            PropertyInfo pi = me.GetType().GetProperty(name);
+            return pi.GetValue(me, null);
+        }
+
+        private static void AddEvent<T>(object me, string name, EventHandler<T> handler) where T : EventArgs
+        {
+            EventInfo ei = me.GetType().GetEvent(name);
+            ei.AddEventHandler(me, handler);
+        }
+
+        private static Action GetAction(object me, string name)
+        {
+            MethodInfo mi = me.GetType().GetMethod(name);
+            Action action = (Action)Delegate.CreateDelegate(typeof(Action), me, mi);
+            return action;
         }
     }
 }

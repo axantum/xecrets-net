@@ -42,6 +42,42 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public MainViewModel()
         {
             LogonEnabled = true;
+
+            OS.Current.SessionChanged += Current_SessionChanged;
+        }
+
+        void Current_SessionChanged(object sender, SessionEventArgs e)
+        {
+            foreach (SessionEvent sessionEvent in e.SessionEvents)
+            {
+                switch (sessionEvent.SessionEventType)
+                {
+                    case SessionEventType.ActiveFileChange:
+                        break;
+                    case SessionEventType.WatchedFolderAdded:
+                        break;
+                    case SessionEventType.WatchedFolderRemoved:
+                        break;
+                    case SessionEventType.LogOn:
+                        Instance.UIThread.RunOnUIThread(() => SetLogOnState(Instance.KnownKeys.IsLoggedOn));
+                        break;
+                    case SessionEventType.LogOff:
+                        Instance.UIThread.RunOnUIThread(() => SetLogOnState(Instance.KnownKeys.IsLoggedOn));
+                        break;
+                    case SessionEventType.ProcessExit:
+                        break;
+                    case SessionEventType.SessionChange:
+                        break;
+                    case SessionEventType.SessionStart:
+                        break;
+                    case SessionEventType.KnownKeyChange:
+                        break;
+                    case SessionEventType.WorkFolderChange:
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 
         public bool LogonEnabled { get { return GetProperty<bool>("LogonEnabled"); } set { SetProperty("LogonEnabled", value); } }
@@ -55,11 +91,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public void LogOnLogOff()
         {
             LogOnLogOffInternal();
+        }
 
-            LogonEnabled = !Instance.KnownKeys.IsLoggedOn;
-            EncryptFileEnabled = Instance.KnownKeys.IsLoggedOn;
-            DecryptFileEnabled = Instance.KnownKeys.IsLoggedOn;
-            OpenEncryptedEnabled = Instance.KnownKeys.IsLoggedOn;
+        private void SetLogOnState(bool isLoggedOn)
+        {
+            LogonEnabled = !isLoggedOn;
+            EncryptFileEnabled = isLoggedOn;
+            DecryptFileEnabled = isLoggedOn;
+            OpenEncryptedEnabled = isLoggedOn;
         }
 
         private void LogOnLogOffInternal()
@@ -105,10 +144,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return;
             }
-            Instance.ParallelBackground.DoFiles(fileSelectionArgs.SelectedFiles.Select(f => OS.Current.FileInfo(f)), EncryptFile, (status) => { });
+            EncryptFiles(fileSelectionArgs.SelectedFiles.Select(f => OS.Current.FileInfo(f)));
         }
 
-        public FileOperationStatus EncryptFile(IRuntimeFileInfo file, IProgressContext progress)
+        public void EncryptFiles(IEnumerable<IRuntimeFileInfo> files)
+        {
+            Instance.ParallelBackground.DoFiles(files, EncryptFile, (status) => { });
+        }
+
+        private FileOperationStatus EncryptFile(IRuntimeFileInfo file, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(progress);
 

@@ -24,23 +24,6 @@ namespace Axantum.AxCrypt.Presentation
             _passphrasePresentation = new PassphrasePresentation(mainView);
         }
 
-        public void EncryptFilesViaDialog()
-        {
-            using (OpenFileDialog ofd = new OpenFileDialog())
-            {
-                ofd.Title = Resources.EncryptFileOpenDialogTitle;
-                ofd.Multiselect = true;
-                ofd.CheckFileExists = true;
-                ofd.CheckPathExists = true;
-                DialogResult result = ofd.ShowDialog();
-                if (result != DialogResult.OK)
-                {
-                    return;
-                }
-                Instance.ParallelBackground.DoFiles(ofd.FileNames.Select(f => OS.Current.FileInfo(f)), EncryptFile, (status) => { });
-            }
-        }
-
         public void DecryptFilesViaDialog()
         {
             string[] fileNames;
@@ -158,64 +141,6 @@ namespace Axantum.AxCrypt.Presentation
             };
 
             return operationsController.VerifyEncrypted(fullName);
-        }
-
-        public FileOperationStatus EncryptFile(IRuntimeFileInfo file, IProgressContext progress)
-        {
-            FileOperationsController operationsController = new FileOperationsController(progress);
-
-            operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
-            {
-                using (SaveFileDialog sfd = new SaveFileDialog())
-                {
-                    sfd.Title = Resources.EncryptFileSaveAsDialogTitle;
-                    sfd.AddExtension = true;
-                    sfd.ValidateNames = true;
-                    sfd.CheckPathExists = true;
-                    sfd.DefaultExt = OS.Current.AxCryptExtension;
-                    sfd.FileName = e.SaveFileFullName;
-                    sfd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat(OS.Current.AxCryptExtension);
-                    sfd.InitialDirectory = Path.GetDirectoryName(e.SaveFileFullName);
-                    sfd.ValidateNames = true;
-                    DialogResult saveAsResult = sfd.ShowDialog();
-                    if (saveAsResult != DialogResult.OK)
-                    {
-                        e.Cancel = true;
-                        return;
-                    }
-                    e.SaveFileFullName = sfd.FileName;
-                }
-            };
-
-            operationsController.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
-            {
-                string passphrase = _passphrasePresentation.AskForLogOnPassphrase(PassphraseIdentity.Empty);
-                if (String.IsNullOrEmpty(passphrase))
-                {
-                    e.Cancel = true;
-                    return;
-                }
-                e.Passphrase = passphrase;
-            };
-
-            operationsController.Completed += (object sender, FileOperationEventArgs e) =>
-            {
-                if (e.Status == FileOperationStatus.FileAlreadyEncrypted)
-                {
-                    e.Status = FileOperationStatus.Success;
-                    return;
-                }
-                if (FactoryRegistry.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
-                {
-                    IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
-                    IRuntimeFileInfo decryptedInfo = OS.Current.FileInfo(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
-                    ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key, ActiveFileStatus.NotDecrypted);
-                    Instance.FileSystemState.Add(activeFile);
-                    Instance.FileSystemState.Save();
-                }
-            };
-
-            return operationsController.EncryptFile(file);
         }
 
         public FileOperationStatus DecryptFile(IRuntimeFileInfo file, IProgressContext progress)

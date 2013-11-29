@@ -80,7 +80,7 @@ namespace Axantum.AxCrypt
 
         private PassphrasePresentation _passphrasePresentation;
 
-        private ViewModelBinder _mainViewModel = new ViewModelBinder(new MainViewModel());
+        private MainViewModel _mainViewModel = new MainViewModel();
 
         public static MessageBoxOptions MessageBoxOptions { get; private set; }
 
@@ -229,10 +229,10 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyToView("OpenEncryptedEnabled", (bool enabled) => { _openEncryptedToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyToView("OpenEncryptedEnabled", (bool enabled) => { _openEncryptedToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindEventToViewHandler("event LoggingOn", (object me, LogOnEventArgs args) => { HandleLogOn(args); });
-            _mainViewModel.BindViewEventToAction(h => _encryptionKeyToolStripButton.Click += h, "LogOnLogOff()");
+            _mainViewModel.BindViewEventToAction(h => _encryptionKeyToolStripButton.Click += h, _mainViewModel.LogOnLogOff);
             _mainViewModel.BindEventToViewHandler("event SelectingFiles", (object me, FileSelectionEventArgs args) => { HandleFileSelection(args); });
-            _mainViewModel.BindViewEventToAction(h => _encryptToolStripButton.Click += h, "EncryptFiles()");
-            _mainViewModel.BindViewEventToAction(h => _encryptToolStripMenuItem.Click += h, "EncryptFiles()");
+            _mainViewModel.BindViewEventToAction(h => _encryptToolStripButton.Click += h, _mainViewModel.EncryptFiles);
+            _mainViewModel.BindViewEventToAction(h => _encryptToolStripMenuItem.Click += h, _mainViewModel.EncryptFiles);
         }
 
         private void HandleLogOn(LogOnEventArgs args)
@@ -686,7 +686,7 @@ namespace Axantum.AxCrypt
             }
             if (Object.ReferenceEquals(button, _encryptToolStripButton))
             {
-                Instance.ParallelBackground.DoFiles(e.GetDragged(), _fileOperationsPresentation.EncryptFile, (status) => { });
+                _mainViewModel.EncryptFiles(e.GetDragged());
                 return;
             }
         }
@@ -1017,39 +1017,6 @@ namespace Axantum.AxCrypt
         private void ViewHelpMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start(Instance.FileSystemState.Settings.AxCrypt2HelpUrl.ToString());
-        }
-
-        private void LogOnToolStripButton_Click(object sender, EventArgs e)
-        {
-            //if (Instance.KnownKeys.IsLoggedOn)
-            //{
-            //    Instance.KnownKeys.Clear();
-            //    return;
-            //}
-
-            //if (Instance.FileSystemState.Identities.Any(identity => true))
-            //{
-            //    TryLogOnToExistingIdentity();
-            //}
-            //else
-            //{
-            //    string passphrase = _passphrasePresentation.AskForNewEncryptionPassphrase(String.Empty);
-            //    if (String.IsNullOrEmpty(passphrase))
-            //    {
-            //        return;
-            //    }
-
-            //    Instance.KnownKeys.DefaultEncryptionKey = Passphrase.Derive(passphrase);
-            //}
-        }
-
-        private void TryLogOnToExistingIdentity()
-        {
-            string passphrase = _passphrasePresentation.AskForLogOnPassphrase(PassphraseIdentity.Empty);
-            if (String.IsNullOrEmpty(passphrase))
-            {
-                return;
-            }
         }
 
         #region Watched Folders
