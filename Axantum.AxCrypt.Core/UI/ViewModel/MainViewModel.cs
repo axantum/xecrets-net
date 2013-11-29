@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using System;
@@ -90,6 +91,82 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             if (String.IsNullOrEmpty(passphrase))
             {
                 return;
+            }
+        }
+
+        public void EncryptFiles()
+        {
+            FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs()
+            {
+                FileSelectionType = FileSelectionType.Encrypt,
+            };
+            OnSelectingFiles(fileSelectionArgs);
+            if (fileSelectionArgs.Cancel)
+            {
+                return;
+            }
+            Instance.ParallelBackground.DoFiles(fileSelectionArgs.SelectedFiles.Select(f => OS.Current.FileInfo(f)), EncryptFile, (status) => { });
+        }
+
+        public FileOperationStatus EncryptFile(IRuntimeFileInfo file, IProgressContext progress)
+        {
+            FileOperationsController operationsController = new FileOperationsController(progress);
+
+            operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
+            {
+                FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs()
+                {
+                    FileSelectionType = FileSelectionType.SaveAs,
+                    SelectedFiles = new string[] { e.SaveFileFullName },
+                };
+                OnSelectingFiles(fileSelectionArgs);
+                if (fileSelectionArgs.Cancel)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+                e.SaveFileFullName = fileSelectionArgs.SelectedFiles[0];
+            };
+
+            operationsController.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
+            {
+                string passphrase = AskForLogOnPassphrase(PassphraseIdentity.Empty);
+                if (String.IsNullOrEmpty(passphrase))
+                {
+                    e.Cancel = true;
+                    return;
+                }
+                e.Passphrase = passphrase;
+            };
+
+            operationsController.Completed += (object sender, FileOperationEventArgs e) =>
+            {
+                if (e.Status == FileOperationStatus.FileAlreadyEncrypted)
+                {
+                    e.Status = FileOperationStatus.Success;
+                    return;
+                }
+                if (FactoryRegistry.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
+                {
+                    IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
+                    IRuntimeFileInfo decryptedInfo = OS.Current.FileInfo(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
+                    ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key, ActiveFileStatus.NotDecrypted);
+                    Instance.FileSystemState.Add(activeFile);
+                    Instance.FileSystemState.Save();
+                }
+            };
+
+            return operationsController.EncryptFile(file);
+        }
+
+        public event EventHandler<FileSelectionEventArgs> SelectingFiles;
+
+        protected virtual void OnSelectingFiles(FileSelectionEventArgs e)
+        {
+            EventHandler<FileSelectionEventArgs> handler = SelectingFiles;
+            if (handler != null)
+            {
+                handler(this, e);
             }
         }
 

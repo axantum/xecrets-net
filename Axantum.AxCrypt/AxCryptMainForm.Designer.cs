@@ -138,7 +138,6 @@
             this._encryptToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this._encryptToolStripButton.Image = global::Axantum.AxCrypt.Properties.Resources.encryptlock32;
             this._encryptToolStripButton.Name = "_encryptToolStripButton";
-            this._encryptToolStripButton.Click += new System.EventHandler(this.ToolStripButtonEncrypt_Click);
             // 
             // _decryptToolStripButton
             // 
@@ -221,7 +220,6 @@
             // 
             resources.ApplyResources(this._encryptToolStripMenuItem, "_encryptToolStripMenuItem");
             this._encryptToolStripMenuItem.Name = "_encryptToolStripMenuItem";
-            this._encryptToolStripMenuItem.Click += new System.EventHandler(this.EncryptToolStripMenuItem_Click);
             // 
             // _decryptToolStripMenuItem
             // 

@@ -220,13 +220,19 @@ namespace Axantum.AxCrypt
 
         private void BindToMainViewModel()
         {
-            _mainViewModel.Bind("LogonEnabled", (bool logonEnabled) => { _encryptionKeyToolStripButton.Image = logonEnabled ? Resources.encryptionkeygreen32 : Resources.encryptionkeyred32; });
-            _mainViewModel.Bind("LogonEnabled", (bool logonEnabled) => { _encryptionKeyToolStripButton.ToolTipText = logonEnabled ? Resources.DefaultEncryptionKeyIsIsetToolTip : Resources.NoDefaultEncryptionKeySetToolTip; });
-            _mainViewModel.Bind("EncryptFileEnabled", (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
-            _mainViewModel.Bind("DecryptFileEnabled", (bool enabled) => { _decryptToolStripButton.Enabled = enabled; });
-            _mainViewModel.Bind("OpenEncryptedEnabled", (bool enabled) => { _openEncryptedToolStripButton.Enabled = enabled; });
-            _mainViewModel.Bind("event LoggingOn", (object me, LogOnEventArgs args) => { HandleLogOn(args); });
-            _mainViewModel.Bind(h => _encryptionKeyToolStripButton.Click += h, "LogOnLogOff()");
+            _mainViewModel.BindPropertyToView("LogonEnabled", (bool logonEnabled) => { _encryptionKeyToolStripButton.Image = logonEnabled ? Resources.encryptionkeygreen32 : Resources.encryptionkeyred32; });
+            _mainViewModel.BindPropertyToView("LogonEnabled", (bool logonEnabled) => { _encryptionKeyToolStripButton.ToolTipText = logonEnabled ? Resources.NoDefaultEncryptionKeySetToolTip : Resources.DefaultEncryptionKeyIsIsetToolTip; });
+            _mainViewModel.BindPropertyToView("EncryptFileEnabled", (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
+            _mainViewModel.BindPropertyToView("EncryptFileEnabled", (bool enabled) => { _encryptToolStripMenuItem.Enabled = enabled; });
+            _mainViewModel.BindPropertyToView("DecryptFileEnabled", (bool enabled) => { _decryptToolStripButton.Enabled = enabled; });
+            _mainViewModel.BindPropertyToView("DecryptFileEnabled", (bool enabled) => { _decryptToolStripMenuItem.Enabled = enabled; });
+            _mainViewModel.BindPropertyToView("OpenEncryptedEnabled", (bool enabled) => { _openEncryptedToolStripButton.Enabled = enabled; });
+            _mainViewModel.BindPropertyToView("OpenEncryptedEnabled", (bool enabled) => { _openEncryptedToolStripMenuItem.Enabled = enabled; });
+            _mainViewModel.BindEventToViewHandler("event LoggingOn", (object me, LogOnEventArgs args) => { HandleLogOn(args); });
+            _mainViewModel.BindViewEventToAction(h => _encryptionKeyToolStripButton.Click += h, "LogOnLogOff()");
+            _mainViewModel.BindEventToViewHandler("event SelectingFiles", (object me, FileSelectionEventArgs args) => { HandleFileSelection(args); });
+            _mainViewModel.BindViewEventToAction(h => _encryptToolStripButton.Click += h, "EncryptFiles()");
+            _mainViewModel.BindViewEventToAction(h => _encryptToolStripMenuItem.Click += h, "EncryptFiles()");
         }
 
         private void HandleLogOn(LogOnEventArgs args)
@@ -279,6 +285,70 @@ namespace Axantum.AxCrypt
                 args.Passphrase = logOnDialog.PassphraseTextBox.Text;
             }
             return;
+        }
+
+        private void HandleFileSelection(FileSelectionEventArgs args)
+        {
+            if (args.FileSelectionType != FileSelectionType.SaveAs)
+            {
+                HandleOpenFileSelection(args);
+            }
+            else
+            {
+                HandleSaveAsFileSelection(args);
+            }
+        }
+
+        private void HandleOpenFileSelection(FileSelectionEventArgs args)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                switch (args.FileSelectionType)
+                {
+                    case FileSelectionType.Decrypt:
+                        break;
+                    case FileSelectionType.Encrypt:
+                        ofd.Title = Resources.EncryptFileOpenDialogTitle;
+                        ofd.Multiselect = true;
+                        ofd.CheckFileExists = true;
+                        ofd.CheckPathExists = true;
+                        break;
+                    case FileSelectionType.Open:
+                        break;
+                    default:
+                        break;
+                }
+                DialogResult result = ofd.ShowDialog();
+                if (result != DialogResult.OK)
+                {
+                    args.Cancel = true;
+                    return;
+                }
+                args.SelectedFiles = new List<string>(ofd.FileNames);
+            }
+        }
+
+        private void HandleSaveAsFileSelection(FileSelectionEventArgs args)
+        {
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Title = Resources.EncryptFileSaveAsDialogTitle;
+                sfd.AddExtension = true;
+                sfd.ValidateNames = true;
+                sfd.CheckPathExists = true;
+                sfd.DefaultExt = OS.Current.AxCryptExtension;
+                sfd.FileName = args.SelectedFiles[0];
+                sfd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat(OS.Current.AxCryptExtension);
+                sfd.InitialDirectory = Path.GetDirectoryName(args.SelectedFiles[0]);
+                sfd.ValidateNames = true;
+                DialogResult saveAsResult = sfd.ShowDialog();
+                if (saveAsResult != DialogResult.OK)
+                {
+                    args.Cancel = true;
+                    return;
+                }
+                args.SelectedFiles[0] = sfd.FileName;
+            }
         }
 
         private void AxCryptMainForm_Request(object sender, CommandServiceArgs e)
@@ -448,11 +518,6 @@ namespace Axantum.AxCrypt
             _watchedFoldersListView.Items.Clear();
             SetWindowTextWithLogonStatus();
             OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.SessionStart));
-        }
-
-        private void ToolStripButtonEncrypt_Click(object sender, EventArgs e)
-        {
-            _fileOperationsPresentation.EncryptFilesViaDialog();
         }
 
         public bool CheckStatusAndShowMessage(FileOperationStatus status, string displayContext)
@@ -768,11 +833,6 @@ namespace Axantum.AxCrypt
             ProgressBar progressBar = (ProgressBar)menuStrip.Tag;
             IProgressContext progress = (IProgressContext)progressBar.Tag;
             progress.Cancel = true;
-        }
-
-        private void EncryptToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _fileOperationsPresentation.EncryptFilesViaDialog();
         }
 
         private void DecryptToolStripMenuItem_Click(object sender, EventArgs e)

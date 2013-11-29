@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        public void Bind<T>(string name, Action<T> action)
+        public void BindPropertyToView<T>(string name, Action<T> action)
         {
             List<Action<object>> actions;
             if (!_actions.TryGetValue(name, out actions))
@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             action(_viewModel.GetProperty<T>(name));
         }
 
-        public void Bind<T>(string name, EventHandler<T> handler) where T : EventArgs
+        public void BindEventToViewHandler<T>(string name, EventHandler<T> handler) where T : EventArgs
         {
             if (!name.StartsWith("event ", StringComparison.Ordinal))
             {
@@ -77,7 +77,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             AddEvent(_viewModel, name.Substring("event ".Length), handler);
         }
 
-        public void Bind(Action<EventHandler> subscribe, string name)
+        public void BindViewEventToAction(Action<EventHandler> subscribe, string name)
         {
             if (!name.EndsWith("()"))
             {
@@ -87,7 +87,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             subscribe((object sender, EventArgs e) => action());
         }
 
-        public void Bind<TEventArgs>(object element, Action<EventHandler<TEventArgs>> subscribe, string name) where TEventArgs : EventArgs
+        public void BindViewEventToAction<TEventArgs>(Action<EventHandler<TEventArgs>> subscribe, string name) where TEventArgs : EventArgs
         {
             Action action = GetAction(_viewModel, name);
             subscribe((object sender, TEventArgs e) => action());
