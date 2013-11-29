@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace Axantum.AxCrypt.Core.Extensions
@@ -56,6 +58,36 @@ namespace Axantum.AxCrypt.Core.Extensions
                 value >>= 8;
             }
             return bytes;
+        }
+
+        public static void SetProperty<T>(this object me, string name, T value)
+        {
+            PropertyInfo pi = me.GetType().GetProperty(name);
+            if (!HasValueChanged<T>(me, pi, value ))
+            {
+                return;
+            }
+            pi.SetValue(me, value, null);
+            MethodInfo mi = me.GetType().GetMethod("OnPropertyChanged", BindingFlags.NonPublic|BindingFlags.Instance, null, new Type[]{typeof(PropertyChangedEventArgs)}, null);
+            mi.Invoke(me, new object[]{new PropertyChangedEventArgs(name)});
+            return;
+        }
+
+        private static bool HasValueChanged<T>(object me, PropertyInfo pi, T value)
+        {
+            object o = pi.GetValue(me, null);
+            if (o == null)
+            {
+                return value != null;
+            }
+            T oldValue = (T)o;
+            return !oldValue.Equals(value);
+        }
+
+        public static object GetProperty(this object me, string name)
+        {
+            PropertyInfo pi = me.GetType().GetProperty(name);
+            return pi.GetValue(me, null);
         }
     }
 }

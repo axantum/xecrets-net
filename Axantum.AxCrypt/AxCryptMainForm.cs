@@ -79,6 +79,8 @@ namespace Axantum.AxCrypt
 
         private PassphrasePresentation _passphrasePresentation;
 
+        private PropertyBinder _buttonBinder = new PropertyBinder(new ButtonPresentation());
+
         public static MessageBoxOptions MessageBoxOptions { get; private set; }
 
         public ListView WatchedFolders
@@ -208,6 +210,13 @@ namespace Axantum.AxCrypt
 
             Instance.CommandService.Received += AxCryptMainForm_Request;
             Instance.CommandService.StartListening();
+
+            _buttonBinder.Bind("LogonEnabled", (bool logonEnabled) => { _encryptionKeyToolStripButton.Image = logonEnabled ? Resources.encryptionkeygreen32 : Resources.encryptionkeyred32; });
+            _buttonBinder.Bind("LogonEnabled", (bool logonEnabled) => { _encryptionKeyToolStripButton.ToolTipText = logonEnabled ? Resources.DefaultEncryptionKeyIsIsetToolTip : Resources.NoDefaultEncryptionKeySetToolTip; });
+            _buttonBinder.Bind("EncryptFileEnabled", (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
+            _buttonBinder.Bind("DecryptFileEnabled", (bool enabled) => { _decryptToolStripButton.Enabled = enabled; });
+            _buttonBinder.Bind("OpenEncryptedEnabled", (bool enabled) => { _openEncryptedToolStripButton.Enabled = enabled; });
+            _buttonBinder.Notify();
 
             _loaded = true;
             ReStartSession();
@@ -388,16 +397,16 @@ namespace Axantum.AxCrypt
 
         private void SetToolButtonsState()
         {
-            if (Instance.KnownKeys.DefaultEncryptionKey == null)
-            {
-                _encryptionKeyToolStripButton.Image = Resources.encryptionkeygreen32;
-                _encryptionKeyToolStripButton.ToolTipText = Resources.NoDefaultEncryptionKeySetToolTip;
-            }
-            else
-            {
-                _encryptionKeyToolStripButton.Image = Resources.encryptionkeyred32;
-                _encryptionKeyToolStripButton.ToolTipText = Resources.DefaultEncryptionKeyIsIsetToolTip;
-            }
+            //if (Instance.KnownKeys.DefaultEncryptionKey == null)
+            //{
+            //    _encryptionKeyToolStripButton.Image = Resources.encryptionkeygreen32;
+            //    _encryptionKeyToolStripButton.ToolTipText = Resources.NoDefaultEncryptionKeySetToolTip;
+            //}
+            //else
+            //{
+            //    _encryptionKeyToolStripButton.Image = Resources.encryptionkeyred32;
+            //    _encryptionKeyToolStripButton.ToolTipText = Resources.DefaultEncryptionKeyIsIsetToolTip;
+            //}
             SetWindowTextWithLogonStatus();
         }
 
@@ -520,6 +529,7 @@ namespace Axantum.AxCrypt
                 {
                     _closeAndRemoveOpenFilesToolStripButton.Enabled = FilesAreOpen;
                     SetToolButtonsState();
+                    _buttonBinder.Notify();
                     _watchedFoldersPresentation.UpdateListView();
                     _handleSessionChangedInProgress = false;
                 });
@@ -932,7 +942,6 @@ namespace Axantum.AxCrypt
 
                 Instance.KnownKeys.DefaultEncryptionKey = Passphrase.Derive(passphrase);
             }
-            SetToolButtonsState();
         }
 
         private void TryLogOnToExistingIdentity()
