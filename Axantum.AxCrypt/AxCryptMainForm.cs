@@ -238,6 +238,10 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindViewEventToAction(h => _encryptToolStripMenuItem.Click += h, _mainViewModel.EncryptFiles);
             _mainViewModel.BindViewEventToAction(h => _decryptToolStripButton.Click += h, _mainViewModel.DecryptFiles);
             _mainViewModel.BindViewEventToAction(h => _decryptToolStripMenuItem.Click += h, _mainViewModel.DecryptFiles);
+            _watchedFoldersListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedWatchedFolders = _watchedFoldersListView.SelectedItems.Cast<ListViewItem>().Select(lvi => lvi.Text); };
+            _watchedFoldersListView.MouseDoubleClick += (sender, e) => { _mainViewModel.OpenFileFromFolder(_mainViewModel.SelectedWatchedFolders.FirstOrDefault()); };
+            _openEncryptedToolStripButton.Click += (sender, e) => { _mainViewModel.OpenFileFromFolder(String.Empty); };
+            _openEncryptedToolStripMenuItem.Click += (sender, e) => { _mainViewModel.OpenFileFromFolder(String.Empty); };
 
             _mainViewModel.LoggingOn += (object me, LogOnEventArgs args) => { HandleLogOn(args); };
             _mainViewModel.SelectingFiles += (object me, FileSelectionEventArgs args) => { HandleFileSelection(args); };
@@ -313,6 +317,14 @@ namespace Axantum.AxCrypt
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
+                if (args.SelectedFiles != null && args.SelectedFiles.Count > 0 && !String.IsNullOrEmpty(args.SelectedFiles[0]))
+                {
+                    IRuntimeFileInfo initialFolder = OS.Current.FileInfo(args.SelectedFiles[0]);
+                    if (initialFolder.IsFolder)
+                    {
+                        ofd.InitialDirectory = initialFolder.FullName;
+                    }
+                }
                 switch (args.FileSelectionType)
                 {
                     case FileSelectionType.Decrypt:
@@ -321,7 +333,7 @@ namespace Axantum.AxCrypt
                         ofd.CheckFileExists = true;
                         ofd.CheckPathExists = true;
                         ofd.DefaultExt = OS.Current.AxCryptExtension;
-                        ofd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(OS.Current.AxCryptExtension)); //MLHIDE
+                        ofd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(OS.Current.AxCryptExtension));
                         ofd.Multiselect = true;
                         break;
                     case FileSelectionType.Encrypt:
@@ -331,6 +343,12 @@ namespace Axantum.AxCrypt
                         ofd.CheckPathExists = true;
                         break;
                     case FileSelectionType.Open:
+                        ofd.Title = Resources.OpenEncryptedFileOpenDialogTitle;
+                        ofd.Multiselect = false;
+                        ofd.CheckFileExists = true;
+                        ofd.CheckPathExists = true;
+                        ofd.DefaultExt = OS.Current.AxCryptExtension;
+                        ofd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(OS.Current.AxCryptExtension));
                         break;
                     default:
                         break;
@@ -603,11 +621,6 @@ namespace Axantum.AxCrypt
             return false;
         }
 
-        private void OpenEncryptedToolStripButton_Click(object sender, EventArgs e)
-        {
-            _fileOperationsPresentation.OpenFilesViaDialog(null);
-        }
-
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -679,11 +692,6 @@ namespace Axantum.AxCrypt
         }
 
         #region ToolStrip
-
-        private void OpenEncryptedToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _fileOperationsPresentation.OpenFilesViaDialog(null);
-        }
 
         private void MainToolStrip_DragOver(object sender, DragEventArgs e)
         {
@@ -1057,11 +1065,6 @@ namespace Axantum.AxCrypt
         private void WatchedFoldersListView_MouseClick(object sender, MouseEventArgs e)
         {
             _watchedFoldersPresentation.ShowContextMenu(_watchedFoldersContextMenuStrip, e);
-        }
-
-        private void WatchedFoldersListView_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            _fileOperationsPresentation.OpenFilesViaDialog(OS.Current.FileInfo(WatchedFolders.SelectedItems[0].Text));
         }
 
         private void WatchedFoldersListView_DeleteToolStripMenuItem_Click(object sender, EventArgs e)

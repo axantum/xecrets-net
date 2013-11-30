@@ -129,7 +129,6 @@
             this._openEncryptedToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this._openEncryptedToolStripButton.Name = "_openEncryptedToolStripButton";
             this._openEncryptedToolStripButton.Tag = "";
-            this._openEncryptedToolStripButton.Click += new System.EventHandler(this.OpenEncryptedToolStripButton_Click);
             // 
             // _encryptToolStripButton
             // 
@@ -212,7 +211,6 @@
             // 
             resources.ApplyResources(this._openEncryptedToolStripMenuItem, "_openEncryptedToolStripMenuItem");
             this._openEncryptedToolStripMenuItem.Name = "_openEncryptedToolStripMenuItem";
-            this._openEncryptedToolStripMenuItem.Click += new System.EventHandler(this.OpenEncryptedToolStripMenuItem_Click);
             // 
             // _encryptToolStripMenuItem
             // 
@@ -416,7 +414,6 @@
             this._watchedFoldersListView.DragDrop += new System.Windows.Forms.DragEventHandler(this.WatchedFoldersListView_DragDrop);
             this._watchedFoldersListView.DragOver += new System.Windows.Forms.DragEventHandler(this.watchedFoldersListView_DragOver);
             this._watchedFoldersListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.WatchedFoldersListView_MouseClick);
-            this._watchedFoldersListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.WatchedFoldersListView_MouseDoubleClick);
             // 
             // _watchedFolderColumnHeader
             // 

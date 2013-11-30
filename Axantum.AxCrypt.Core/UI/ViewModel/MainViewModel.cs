@@ -88,6 +88,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool OpenEncryptedEnabled { get { return GetProperty<bool>("OpenEncryptedEnabled"); } set { SetProperty("OpenEncryptedEnabled", value); } }
 
+        public IEnumerable<string> SelectedWatchedFolders { get { return GetProperty<IEnumerable<string>>("SelectedWatchedFolders"); } set { SetProperty("SelectedWatchedFolders", value); } }
+
         public void LogOnLogOff()
         {
             LogOnLogOffInternal();
@@ -164,7 +166,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return;
             }
             DecryptFiles(fileSelectionArgs.SelectedFiles.Select(f => OS.Current.FileInfo(f)));
-
         }
 
         public void DecryptFiles(IEnumerable<IRuntimeFileInfo> files)
@@ -208,6 +209,49 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             };
 
             return operationsController.DecryptFile(file);
+        }
+
+        public void OpenFileFromFolder(string folder)
+        {
+            FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs()
+            {
+                FileSelectionType = FileSelectionType.Open,
+                SelectedFiles = new string[] { folder },
+            };
+            OnSelectingFiles(fileSelectionArgs);
+            if (fileSelectionArgs.Cancel)
+            {
+                return;
+            }
+            OpenFiles(fileSelectionArgs.SelectedFiles.Select(f => OS.Current.FileInfo(f)));
+        }
+
+        public void OpenFiles(IEnumerable<IRuntimeFileInfo> files)
+        {
+            Instance.ParallelBackground.DoFiles(files, OpenEncrypted, (status) => { });
+        }
+
+        public FileOperationStatus OpenEncrypted(IRuntimeFileInfo file, IProgressContext progress)
+        {
+            FileOperationsController operationsController = new FileOperationsController(progress);
+
+            operationsController.QueryDecryptionPassphrase += HandleQueryDecryptionPassphraseEvent;
+
+            operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
+            {
+                Instance.KnownKeys.Add(e.Key);
+            };
+
+            operationsController.Completed += (object sender, FileOperationEventArgs e) =>
+            {
+                if (e.Status == FileOperationStatus.Canceled)
+                {
+                    return;
+                }
+                FactoryRegistry.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName);
+            };
+
+            return operationsController.DecryptAndLaunch(file);
         }
 
         private void HandleQueryDecryptionPassphraseEvent(object sender, FileOperationEventArgs e)

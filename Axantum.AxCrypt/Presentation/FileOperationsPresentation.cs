@@ -24,30 +24,6 @@ namespace Axantum.AxCrypt.Presentation
             _passphrasePresentation = new PassphrasePresentation(mainView);
         }
 
-        public void OpenFilesViaDialog(IRuntimeFileInfo initialFolder)
-        {
-            using (OpenFileDialog ofd = new OpenFileDialog())
-            {
-                if (initialFolder != null && initialFolder.IsFolder)
-                {
-                    ofd.InitialDirectory = initialFolder.FullName;
-                }
-                ofd.Title = Resources.OpenEncryptedFileOpenDialogTitle;
-                ofd.Multiselect = false;
-                ofd.CheckFileExists = true;
-                ofd.CheckPathExists = true;
-                ofd.DefaultExt = OS.Current.AxCryptExtension;
-                ofd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(OS.Current.AxCryptExtension)); //MLHIDE
-                DialogResult result = ofd.ShowDialog();
-                if (result != DialogResult.OK)
-                {
-                    return;
-                }
-
-                Instance.ParallelBackground.DoFiles(ofd.FileNames.Select(f => OS.Current.FileInfo(f)), OpenEncrypted, (status) => { });
-            }
-        }
-
         public void WipeFilesViaDialog()
         {
             string[] fileNames;
