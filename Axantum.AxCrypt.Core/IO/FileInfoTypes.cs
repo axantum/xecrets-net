@@ -9,6 +9,8 @@ namespace Axantum.AxCrypt.Core.IO
     [Flags]
     public enum FileInfoTypes
     {
+        None = 0,
+
         Folder = 1,
 
         EncryptedFile = 2,

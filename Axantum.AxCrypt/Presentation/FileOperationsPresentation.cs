@@ -138,29 +138,6 @@ namespace Axantum.AxCrypt.Presentation
             return operationsController.WipeFile(file);
         }
 
-        public FileOperationStatus OpenEncrypted(IRuntimeFileInfo file, IProgressContext progress)
-        {
-            FileOperationsController operationsController = new FileOperationsController(progress);
-
-            operationsController.QueryDecryptionPassphrase += HandleQueryDecryptionPassphraseEvent;
-
-            operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
-            {
-                Instance.KnownKeys.Add(e.Key);
-            };
-
-            operationsController.Completed += (object sender, FileOperationEventArgs e) =>
-            {
-                if (e.Status == FileOperationStatus.Canceled)
-                {
-                    return;
-                }
-                FactoryRegistry.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName);
-            };
-
-            return operationsController.DecryptAndLaunch(file);
-        }
-
         private void HandleQueryDecryptionPassphraseEvent(object sender, FileOperationEventArgs e)
         {
             string passphraseText = _passphrasePresentation.AskForLogOnOrDecryptPassphrase(e.OpenFileFullName);

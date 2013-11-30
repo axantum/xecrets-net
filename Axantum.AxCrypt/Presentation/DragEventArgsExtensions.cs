@@ -12,15 +12,15 @@ namespace Axantum.AxCrypt.Presentation
 {
     public static class DragEventArgsExtensions
     {
-        public static IEnumerable<IRuntimeFileInfo> GetDragged(this DragEventArgs e)
+        public static IEnumerable<string> GetDragged(this DragEventArgs e)
         {
             IList<string> dropped = e.Data.GetData(DataFormats.FileDrop) as IList<string>;
             if (dropped == null)
             {
-                return new IRuntimeFileInfo[0];
+                return new string[0];
             }
 
-            return dropped.Select(path => OS.Current.FileInfo(path));
+            return dropped;
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable")]

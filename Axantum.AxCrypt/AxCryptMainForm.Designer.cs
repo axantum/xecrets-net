@@ -445,7 +445,6 @@
             this._recentFilesListView.DragDrop += new System.Windows.Forms.DragEventHandler(this.RecentFilesListView_DragDrop);
             this._recentFilesListView.DragOver += new System.Windows.Forms.DragEventHandler(this.RecentFilesListView_DragOver);
             this._recentFilesListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RecentFilesListView_MouseClick);
-            this._recentFilesListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.RecentFilesListView_MouseDoubleClick);
             // 
             // _decryptedFileColumnHeader
             // 

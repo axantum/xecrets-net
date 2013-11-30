@@ -100,7 +100,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 handler(this, e);
             }
         }
-        public void BindPropertyToView<T>(string name, Action<T> action)
+        public void BindPropertyChanged<T>(string name, Action<T> action)
         {
             List<Action<object>> actions;
             if (!_actions.TryGetValue(name, out actions))
@@ -110,17 +110,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             actions.Add(o => action((T)o));
             action(GetProperty<T>(name));
-        }
-
-        public void BindViewEventToAction(Action<EventHandler> subscribe, Action action)
-        {
-            subscribe((object sender, EventArgs e) => action());
-        }
-
-        public void BindViewEventToAction<TEventArgs>(Action<EventHandler<TEventArgs>> subscribe, string name) where TEventArgs : EventArgs
-        {
-            Action action = GetAction(this, name);
-            subscribe((object sender, TEventArgs e) => action());
         }
 
         private static bool HasValueChanged<T>(object me, PropertyInfo pi, T value)

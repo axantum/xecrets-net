@@ -196,7 +196,7 @@ namespace Axantum.AxCrypt.Presentation
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void StartDragAndDrop(DragEventArgs e)
         {
-            IEnumerable<IRuntimeFileInfo> droppedFiles = e.GetDragged();
+            IEnumerable<IRuntimeFileInfo> droppedFiles = e.GetDragged().Select(f => OS.Current.FileInfo(f));
             if (!droppedFiles.Any(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile || (Instance.KnownKeys.DefaultEncryptionKey != null && fileInfo.Type() == FileInfoTypes.EncryptableFile)))
             {
                 return;
@@ -207,7 +207,7 @@ namespace Axantum.AxCrypt.Presentation
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void DropDragAndDrop(DragEventArgs e)
         {
-            IEnumerable<IRuntimeFileInfo> droppedFiles = e.GetDragged().ToList();
+            IEnumerable<IRuntimeFileInfo> droppedFiles = e.GetDragged().Select(f => OS.Current.FileInfo(f)).ToList();
 
             ProcessEncryptableFilesDroppedInRecentList(droppedFiles.Encryptable());
             ProcessEncryptedFilesDroppedInRecentList(droppedFiles.Encrypted());
