@@ -24,25 +24,6 @@ namespace Axantum.AxCrypt.Presentation
             _passphrasePresentation = new PassphrasePresentation(mainView);
         }
 
-        public void WipeFilesViaDialog()
-        {
-            string[] fileNames;
-            using (OpenFileDialog ofd = new OpenFileDialog())
-            {
-                ofd.Title = Resources.WipeFileSelectFileDialogTitle;
-                ofd.Multiselect = true;
-                ofd.CheckFileExists = true;
-                ofd.CheckPathExists = true;
-                DialogResult result = ofd.ShowDialog();
-                if (result != DialogResult.OK)
-                {
-                    return;
-                }
-                fileNames = ofd.FileNames;
-            }
-            Instance.ParallelBackground.DoFiles(fileNames.Select(f => OS.Current.FileInfo(f)), WipeFile, (status) => { });
-        }
-
         public FileOperationStatus EncryptFileNonInteractive(IRuntimeFileInfo fullName, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(progress);
@@ -95,47 +76,6 @@ namespace Axantum.AxCrypt.Presentation
             };
 
             return operationsController.VerifyEncrypted(fullName);
-        }
-
-        private FileOperationStatus WipeFile(IRuntimeFileInfo file, IProgressContext progress)
-        {
-            FileOperationsController operationsController = new FileOperationsController(progress);
-
-            operationsController.WipeQueryConfirmation += (object sender, FileOperationEventArgs e) =>
-            {
-                using (ConfirmWipeDialog cwd = new ConfirmWipeDialog())
-                {
-                    cwd.FileNameLabel.Text = Path.GetFileName(file.FullName);
-                    DialogResult confirmResult = cwd.ShowDialog();
-                    e.ConfirmAll = cwd.ConfirmAllCheckBox.Checked;
-                    if (confirmResult == DialogResult.Yes)
-                    {
-                        e.Skip = false;
-                    }
-                    if (confirmResult == DialogResult.No)
-                    {
-                        e.Skip = true;
-                    }
-                    if (confirmResult == DialogResult.Cancel)
-                    {
-                        e.Cancel = true;
-                    }
-                }
-            };
-
-            operationsController.Completed += (object sender, FileOperationEventArgs e) =>
-            {
-                if (e.Skip)
-                {
-                    return;
-                }
-                if (FactoryRegistry.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
-                {
-                    Instance.FileSystemState.Actions.RemoveRecentFiles(new IRuntimeFileInfo[] { OS.Current.FileInfo(e.SaveFileFullName) }, progress);
-                }
-            };
-
-            return operationsController.WipeFile(file);
         }
 
         private void HandleQueryDecryptionPassphraseEvent(object sender, FileOperationEventArgs e)

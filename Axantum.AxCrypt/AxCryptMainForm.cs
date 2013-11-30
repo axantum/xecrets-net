@@ -239,6 +239,7 @@ namespace Axantum.AxCrypt
             _decryptToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DecryptFiles(); };
             _openEncryptedToolStripButton.Click += (sender, e) => { _mainViewModel.OpenFileFromFolder(String.Empty); };
             _openEncryptedToolStripMenuItem.Click += (sender, e) => { _mainViewModel.OpenFileFromFolder(String.Empty); };
+            _wipeToolStripMenuItem.Click += (sender, e) => { _mainViewModel.WipeFiles(); };
             
             _watchedFoldersListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedWatchedFolders = _watchedFoldersListView.SelectedItems.Cast<ListViewItem>().Select(lvi => lvi.Text); };
             _watchedFoldersListView.MouseDoubleClick += (sender, e) => { _mainViewModel.OpenFileFromFolder(_mainViewModel.SelectedWatchedFolders.FirstOrDefault()); };
@@ -312,9 +313,25 @@ namespace Axantum.AxCrypt
                 case FileSelectionType.SaveAsDecrypted:
                     HandleSaveAsFileSelection(args);
                     break;
+                case FileSelectionType.WipeConfirm:
+                    HandleWipeConfirm(args);
+                    break;
                 default:
                     HandleOpenFileSelection(args);
                     break;
+            }
+        }
+
+        private void HandleWipeConfirm(FileSelectionEventArgs args)
+        {
+            using (ConfirmWipeDialog cwd = new ConfirmWipeDialog())
+            {
+                cwd.FileNameLabel.Text = Path.GetFileName(args.SelectedFiles[0]);
+                args.Skip = false;
+                DialogResult confirmResult = cwd.ShowDialog();
+                args.ConfirmAll = cwd.ConfirmAllCheckBox.Checked;
+                args.Skip = confirmResult == DialogResult.No;
+                args.Cancel = confirmResult == DialogResult.Cancel;
             }
         }
 
@@ -355,15 +372,17 @@ namespace Axantum.AxCrypt
                         ofd.DefaultExt = OS.Current.AxCryptExtension;
                         ofd.Filter = Resources.EncryptedFileDialogFilterPattern.InvariantFormat("{0}".InvariantFormat(OS.Current.AxCryptExtension));
                         break;
+                    case FileSelectionType.Wipe:
+                        ofd.Title = Resources.WipeFileSelectFileDialogTitle;
+                        ofd.Multiselect = true;
+                        ofd.CheckFileExists = true;
+                        ofd.CheckPathExists = true;
+                        break;
                     default:
                         break;
                 }
                 DialogResult result = ofd.ShowDialog();
-                if (result != DialogResult.OK)
-                {
-                    args.Cancel = true;
-                    return;
-                }
+                args.Cancel = result != DialogResult.OK;
                 args.SelectedFiles = new List<string>(ofd.FileNames);
             }
         }
@@ -395,11 +414,7 @@ namespace Axantum.AxCrypt
                 sfd.OverwritePrompt = true;
                 sfd.RestoreDirectory = true;
                 DialogResult saveAsResult = sfd.ShowDialog();
-                if (saveAsResult != DialogResult.OK)
-                {
-                    args.Cancel = true;
-                    return;
-                }
+                args.Cancel = saveAsResult != DialogResult.OK;
                 args.SelectedFiles[0] = sfd.FileName;
             }
         }
@@ -869,11 +884,6 @@ namespace Axantum.AxCrypt
             ProgressBar progressBar = (ProgressBar)menuStrip.Tag;
             IProgressContext progress = (IProgressContext)progressBar.Tag;
             progress.Cancel = true;
-        }
-
-        private void WipeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _fileOperationsPresentation.WipeFilesViaDialog();
         }
 
         private void AxCryptMainForm_Resize(object sender, EventArgs e)

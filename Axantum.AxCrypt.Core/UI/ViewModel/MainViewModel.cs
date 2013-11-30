@@ -235,6 +235,58 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return operationsController.DecryptFile(file);
         }
 
+        public void WipeFiles()
+        {
+            FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs()
+            {
+                FileSelectionType = FileSelectionType.Wipe,
+            };
+            OnSelectingFiles(fileSelectionArgs);
+            if (fileSelectionArgs.Cancel)
+            {
+                return;
+            }
+            WipeFiles(fileSelectionArgs.SelectedFiles);
+        }
+
+        public void WipeFiles(IEnumerable<string> files)
+        {
+            Instance.ParallelBackground.DoFiles(files.Select(f => OS.Current.FileInfo(f)), WipeFile, (status) => { });
+        }
+
+        private FileOperationStatus WipeFile(IRuntimeFileInfo file, IProgressContext progress)
+        {
+            FileOperationsController operationsController = new FileOperationsController(progress);
+
+            operationsController.WipeQueryConfirmation += (object sender, FileOperationEventArgs e) =>
+            {
+                FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs()
+                {
+                    FileSelectionType = FileSelectionType.WipeConfirm,
+                    SelectedFiles = new string[] { file.FullName, },
+                };
+                OnSelectingFiles(fileSelectionArgs);
+                e.Cancel = fileSelectionArgs.Cancel;
+                e.Skip = fileSelectionArgs.Skip;
+                e.ConfirmAll = fileSelectionArgs.ConfirmAll;
+                e.SaveFileFullName = fileSelectionArgs.SelectedFiles.FirstOrDefault() ?? String.Empty;
+            };
+
+            operationsController.Completed += (object sender, FileOperationEventArgs e) =>
+            {
+                if (e.Skip)
+                {
+                    return;
+                }
+                if (Instance.StatusChecker.CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
+                {
+                    Instance.FileSystemState.Actions.RemoveRecentFiles(new IRuntimeFileInfo[] { OS.Current.FileInfo(e.SaveFileFullName) }, progress);
+                }
+            };
+
+            return operationsController.WipeFile(file);
+        }
+
         public void OpenFileFromFolder(string folder)
         {
             FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs()

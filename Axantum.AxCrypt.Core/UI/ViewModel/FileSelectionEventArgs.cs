@@ -16,6 +16,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool Cancel { get; set; }
 
+        public bool ConfirmAll { get; set; }
+
+        public bool Skip { get; set; }
+
         public IList<string> SelectedFiles { get; set; }
     }
 }

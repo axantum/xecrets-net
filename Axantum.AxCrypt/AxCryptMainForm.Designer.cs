@@ -243,7 +243,6 @@
             this._wipeToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.trashred16;
             this._wipeToolStripMenuItem.Name = "_wipeToolStripMenuItem";
             resources.ApplyResources(this._wipeToolStripMenuItem, "_wipeToolStripMenuItem");
-            this._wipeToolStripMenuItem.Click += new System.EventHandler(this.WipeToolStripMenuItem_Click);
             // 
             // _toolStripSeparator2
             // 

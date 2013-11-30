@@ -51,5 +51,10 @@ namespace Axantum.AxCrypt.Core
         {
             get { return FactoryRegistry.Instance.Singleton<CommandService>(); }
         }
+
+        public static IStatusChecker StatusChecker
+        {
+            get { return FactoryRegistry.Instance.Singleton<IStatusChecker>(); }
+        }
     }
 }
