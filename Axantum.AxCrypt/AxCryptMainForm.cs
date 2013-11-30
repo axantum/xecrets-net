@@ -733,17 +733,17 @@ namespace Axantum.AxCrypt
 
             if (Object.ReferenceEquals(button, _decryptToolStripButton))
             {
-                _mainViewModel.DecryptFiles(e.GetDragged());
+                _mainViewModel.DecryptFiles(_mainViewModel.DragAndDropFiles);
                 return;
             }
             if (Object.ReferenceEquals(button, _openEncryptedToolStripButton))
             {
-                _mainViewModel.OpenFiles(e.GetDragged());
+                _mainViewModel.OpenFiles(_mainViewModel.DragAndDropFiles);
                 return;
             }
             if (Object.ReferenceEquals(button, _encryptToolStripButton))
             {
-                _mainViewModel.EncryptFiles(e.GetDragged());
+                _mainViewModel.EncryptFiles(_mainViewModel.DragAndDropFiles);
                 return;
             }
         }
@@ -799,10 +799,6 @@ namespace Axantum.AxCrypt
                     }
                     sb.ToString().ShowWarning();
                 });
-        }
-
-        private void OpenFilesListView_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
         }
 
         private void RemoveRecentFileToolStripMenuItem_Click(object sender, EventArgs e)
