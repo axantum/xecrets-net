@@ -235,6 +235,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged("OpenEncryptedEnabled", (bool enabled) => { _openEncryptedToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("OpenEncryptedEnabled", (bool enabled) => { _openEncryptedToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("FilesAreOpen", (bool filesAreOpen) => { _closeAndRemoveOpenFilesToolStripButton.Enabled = filesAreOpen; });
+            _mainViewModel.BindPropertyChanged("WatchedFolders", (IEnumerable<WatchedFolder> folders) => { UpdateWatchedFolders(folders); });
 
             _clearPassphraseMemoryToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory(); ReStartSession(); };
             _decryptAndRemoveFromListToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DecryptFiles(_mainViewModel.SelectedRecentFiles); };
@@ -575,6 +576,25 @@ namespace Axantum.AxCrypt
             });
         }
 
+        private void UpdateWatchedFolders(IEnumerable<WatchedFolder> watchedFolders)
+        {
+            _watchedFoldersListView.BeginUpdate();
+            try
+            {
+                _watchedFoldersListView.Items.Clear();
+                foreach (WatchedFolder folder in watchedFolders)
+                {
+                    string text = folder.Path;
+                    ListViewItem item = _watchedFoldersListView.Items.Add(text);
+                    item.Name = text;
+                }
+            }
+            finally
+            {
+                _watchedFoldersListView.EndUpdate();
+            }
+        }
+
         private void HandleActiveFileChangedEvent(object sender, ActiveFileChangedEventArgs e)
         {
             Instance.UIThread.RunOnUIThread(() =>
@@ -710,11 +730,6 @@ namespace Axantum.AxCrypt
         }
 
         #region ToolStrip
-
-        private void MainToolStrip_DragOver(object sender, DragEventArgs e)
-        {
-            e.Effect = GetEffectsForMainToolStrip(e);
-        }
 
         private void MainToolStrip_DragDrop(object sender, DragEventArgs e)
         {
@@ -1007,32 +1022,6 @@ namespace Axantum.AxCrypt
         {
             Process.Start(Instance.FileSystemState.Settings.AxCrypt2HelpUrl.ToString());
         }
-
-        #region Watched Folders
-
-        //private void watchedFoldersListView_DecryptTemporarilyToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    string folder = _watchedFoldersListView.SelectedItems[0].Text;
-        //    Instance.BackgroundWork.Work(
-        //        (IProgressContext progress) =>
-        //        {
-        //            progress.NotifyLevelStart();
-        //            try
-        //            {
-        //                _watchedFoldersPresentation.DecryptSelectedFolder(folder, progress);
-        //            }
-        //            finally
-        //            {
-        //                progress.NotifyLevelFinished();
-        //            }
-        //            return FileOperationStatus.Success;
-        //        },
-        //        (FileOperationStatus status) =>
-        //        {
-        //        });
-        //}
-
-        #endregion Watched Folders
 
         /// <summary>
         /// Clean up any resources being used.

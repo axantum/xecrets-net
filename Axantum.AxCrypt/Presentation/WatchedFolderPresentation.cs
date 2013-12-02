@@ -58,33 +58,7 @@ namespace Axantum.AxCrypt.Presentation
 
         public void UpdateListView()
         {
-            AddRemoveWatchedFolders();
             ShowOrHideWatchedFoldersTabPage();
-        }
-
-
-        private void AddRemoveWatchedFolders()
-        {
-            _mainView.WatchedFolders.BeginUpdate();
-            try
-            {
-                _mainView.WatchedFolders.Items.Clear();
-                if (!Instance.KnownKeys.IsLoggedOn)
-                {
-                    return;
-                }
-
-                foreach (WatchedFolder folder in Instance.KnownKeys.WatchedFolders)
-                {
-                    string text = folder.Path;
-                    ListViewItem item = _mainView.WatchedFolders.Items.Add(text);
-                    item.Name = text;
-                }
-            }
-            finally
-            {
-                _mainView.WatchedFolders.EndUpdate();
-            }
         }
 
         private TabPage _hiddenWatchedFoldersTabPage;

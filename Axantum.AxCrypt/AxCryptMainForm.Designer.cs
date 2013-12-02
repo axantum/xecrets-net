@@ -108,7 +108,6 @@
             this._helpToolStripButton});
             this._mainToolStrip.Name = "_mainToolStrip";
             this._mainToolStrip.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainToolStrip_DragDrop);
-            this._mainToolStrip.DragOver += new System.Windows.Forms.DragEventHandler(this.MainToolStrip_DragOver);
             // 
             // _encryptionKeyToolStripButton
             // 

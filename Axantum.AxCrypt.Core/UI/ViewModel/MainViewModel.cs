@@ -44,6 +44,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             LogonEnabled = true;
             DragAndDropFiles = new string[0];
+            WatchedFolders = new WatchedFolder[0];
 
             OS.Current.SessionChanged += HandleSessionChanged;
             Instance.FileSystemState.ActiveFileChanged += HandleActiveFileChangedEvent;
@@ -108,14 +109,18 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     case SessionEventType.ActiveFileChange:
                         break;
                     case SessionEventType.WatchedFolderAdded:
+                        Instance.UIThread.RunOnUIThread(() => SetWatchedFolders());
                         break;
                     case SessionEventType.WatchedFolderRemoved:
+                        Instance.UIThread.RunOnUIThread(() => SetWatchedFolders());
                         break;
                     case SessionEventType.LogOn:
                         Instance.UIThread.RunOnUIThread(() => SetLogOnState(Instance.KnownKeys.IsLoggedOn));
+                        Instance.UIThread.RunOnUIThread(() => SetWatchedFolders());
                         break;
                     case SessionEventType.LogOff:
                         Instance.UIThread.RunOnUIThread(() => SetLogOnState(Instance.KnownKeys.IsLoggedOn));
+                        Instance.UIThread.RunOnUIThread(() => SetWatchedFolders());
                         break;
                     case SessionEventType.ProcessExit:
                         break;
@@ -133,6 +138,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
+        private void SetWatchedFolders()
+        {
+            WatchedFolders = Instance.KnownKeys.WatchedFolders.ToList();
+        }
+
         private void SetFilesAreOpen()
         {
             IList<ActiveFile> openFiles = Instance.FileSystemState.DecryptedActiveFiles;
@@ -146,6 +156,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public bool DecryptFileEnabled { get { return GetProperty<bool>("DecryptFileEnabled"); } set { SetProperty("DecryptFileEnabled", value); } }
 
         public bool OpenEncryptedEnabled { get { return GetProperty<bool>("OpenEncryptedEnabled"); } set { SetProperty("OpenEncryptedEnabled", value); } }
+
+        public IEnumerable<WatchedFolder> WatchedFolders { get { return GetProperty<IEnumerable<WatchedFolder>>("WatchedFolders"); } set { SetProperty("WatchedFolders", value.ToList()); } }
 
         public IEnumerable<string> SelectedWatchedFolders { get { return GetProperty<IEnumerable<string>>("SelectedWatchedFolders"); } set { SetProperty("SelectedWatchedFolders", value.ToList()); } }
 

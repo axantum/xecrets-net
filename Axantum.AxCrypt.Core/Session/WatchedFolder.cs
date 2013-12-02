@@ -61,8 +61,11 @@ namespace Axantum.AxCrypt.Core.Session
         [OnDeserialized]
         private void Initialize(StreamingContext context)
         {
-            _fileWatcher = OS.Current.CreateFileWatcher(Path);
-            _fileWatcher.FileChanged += _fileWatcher_FileChanged;
+            if (OS.Current.FileInfo(Path).IsFolder)
+            {
+                _fileWatcher = OS.Current.CreateFileWatcher(Path);
+                _fileWatcher.FileChanged += _fileWatcher_FileChanged;
+            }
         }
 
         private void _fileWatcher_FileChanged(object sender, FileWatcherEventArgs e)
