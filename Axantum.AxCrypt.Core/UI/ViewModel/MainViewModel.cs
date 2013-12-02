@@ -50,6 +50,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DragAndDropFilesTypes = DetermineFileTypes(files.Select(f => OS.Current.FileInfo(f))); });
             BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsRecent = DetermineDroppableAsRecent(files.Select(f => OS.Current.FileInfo(f))); });
+            BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => OS.Current.FileInfo(f))); });
         }
 
         private void HandleActiveFileChangedEvent(object sender, ActiveFileChangedEventArgs e)
@@ -75,6 +76,27 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private static bool DetermineDroppableAsRecent(IEnumerable<IRuntimeFileInfo> files)
         {
             return files.Any(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile || (Instance.KnownKeys.IsLoggedOn && fileInfo.Type() == FileInfoTypes.EncryptableFile));
+        }
+
+        private static bool DetermineDroppableAsWatchedFolder(IEnumerable<IRuntimeFileInfo> files)
+        {
+            if (files.Count() != 1)
+            {
+                return false;
+            }
+
+            IRuntimeFileInfo fileInfo = files.First();
+            if (!fileInfo.IsFolder)
+            {
+                return false;
+            }
+
+            if (!fileInfo.NormalizeFolder().IsEncryptable())
+            {
+                return false;
+            }
+
+            return true;
         }
 
         void HandleSessionChanged(object sender, SessionEventArgs e)
@@ -134,6 +156,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public FileInfoTypes DragAndDropFilesTypes { get { return GetProperty<FileInfoTypes>("DragAndDropFilesTypes"); } set { SetProperty("DragAndDropFilesTypes", value); } }
 
         public bool DroppableAsRecent { get { return GetProperty<bool>("DroppableAsRecent"); } set { SetProperty("DroppableAsRecent", value); } }
+
+        public bool DroppableAsWatchedFolder { get { return GetProperty<bool>("DroppableAsWatchedFolder"); } set { SetProperty("DroppableAsWatchedFolder", value); } }
 
         public bool FilesAreOpen { get { return GetProperty<bool>("FilesAreOpen"); } set { SetProperty("FilesAreOpen", value); } }
 
@@ -199,6 +223,40 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     Instance.FileSystemState.Remove(activeFile);
                 }
             }
+        }
+
+        public void AddWatchedFolders(IEnumerable<string> folders)
+        {
+            foreach (string folder in folders)
+            {
+                Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(folder, Instance.KnownKeys.DefaultEncryptionKey.Thumbprint));
+            }
+            Instance.FileSystemState.Save();
+        }
+
+        public void RemoveWatchedFolders(IEnumerable<string> folders)
+        {
+            foreach (string watchedFolderPath in folders)
+            {
+                Instance.FileSystemState.RemoveWatchedFolder(OS.Current.FileInfo(watchedFolderPath));
+            }
+            Instance.FileSystemState.Save();
+        }
+
+        public void OpenSelectedFolder(string folder)
+        {
+            OS.Current.Launch(folder);
+        }
+
+        public void DecryptWatchedFolders(IEnumerable<string> folders)
+        {
+            Instance.ParallelBackground.DoFiles(folders.Select(f => OS.Current.FileInfo(f)).ToList(), DecryptWatchedFolder, (status) => { });
+        }
+
+        private FileOperationStatus DecryptWatchedFolder(IRuntimeFileInfo folder, IProgressContext progress)
+        {
+            Factory.AxCryptFile.DecryptFilesUniqueWithWipeOfOriginal(folder, Instance.KnownKeys.DefaultEncryptionKey, progress);
+            return FileOperationStatus.Success;
         }
 
         public void EncryptFiles()

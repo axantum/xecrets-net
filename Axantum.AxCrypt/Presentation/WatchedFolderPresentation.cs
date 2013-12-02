@@ -62,40 +62,6 @@ namespace Axantum.AxCrypt.Presentation
             ShowOrHideWatchedFoldersTabPage();
         }
 
-        public void OpenSelectedFolder()
-        {
-            string folder = _mainView.WatchedFolders.SelectedItems[0].Text;
-            OS.Current.Launch(folder);
-        }
-
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public void StartDragAndDrop(DragEventArgs e)
-        {
-            IRuntimeFileInfo droppedFolder = GetDroppedFolderIfAny(e.Data);
-            if (droppedFolder == null)
-            {
-                return;
-            }
-            e.Effect = (DragDropEffects.Link | DragDropEffects.Copy) & e.AllowedEffect;
-        }
-
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public void DropDragAndDrop(DragEventArgs e)
-        {
-            IRuntimeFileInfo droppedFolder = GetDroppedFolderIfAny(e.Data);
-            if (droppedFolder == null)
-            {
-                return;
-            }
-            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(droppedFolder.FullName, Instance.KnownKeys.DefaultEncryptionKey.Thumbprint));
-            Instance.FileSystemState.Save();
-        }
-
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public void DecryptSelectedFolder(string folder, IProgressContext progress)
-        {
-            Factory.AxCryptFile.DecryptFilesUniqueWithWipeOfOriginal(OS.Current.FileInfo(folder), Instance.KnownKeys.DefaultEncryptionKey, progress);
-        }
 
         private void AddRemoveWatchedFolders()
         {
@@ -119,45 +85,6 @@ namespace Axantum.AxCrypt.Presentation
             {
                 _mainView.WatchedFolders.EndUpdate();
             }
-        }
-
-        private static IRuntimeFileInfo GetDroppedFolderIfAny(IDataObject dataObject)
-        {
-            IList<string> dropped = dataObject.GetData(DataFormats.FileDrop) as IList<string>;
-            if (dropped == null)
-            {
-                return null;
-            }
-            if (dropped.Count != 1)
-            {
-                return null;
-            }
-            IRuntimeFileInfo fileInfo = OS.Current.FileInfo(dropped[0]);
-            if (!fileInfo.IsFolder)
-            {
-                return null;
-            }
-
-            if (!fileInfo.NormalizeFolder().IsEncryptable())
-            {
-                return null;
-            }
-            return fileInfo;
-        }
-
-        public void RemoveSelectedWatchedFolders()
-        {
-            foreach (string watchedFolderPath in SelectedWatchedFoldersItems())
-            {
-                Instance.FileSystemState.RemoveWatchedFolder(OS.Current.FileInfo(watchedFolderPath));
-            }
-            Instance.FileSystemState.Save();
-        }
-
-        private IEnumerable<string> SelectedWatchedFoldersItems()
-        {
-            IEnumerable<string> selected = _mainView.WatchedFolders.SelectedItems.Cast<ListViewItem>().Select((ListViewItem item) => { return item.Text; }).ToArray();
-            return selected;
         }
 
         private TabPage _hiddenWatchedFoldersTabPage;

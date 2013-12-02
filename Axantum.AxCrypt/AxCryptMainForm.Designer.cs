@@ -70,9 +70,9 @@
             this._encryptedPathColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._statusTabControl = new System.Windows.Forms.TabControl();
             this._watchedFoldersContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this._deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._decryptTemporarilyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._openExplorerHereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._watchedFoldersRemoveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._watchedFoldersdecryptTemporarilyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._watchedFoldersOpenExplorerHereMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._progressBackgroundWorker = new Axantum.AxCrypt.ProgressBackground(this.components);
             this._backgroundMonitor = new Axantum.AxCrypt.BackgroundMonitor(this.components);
             this._mainToolStrip.SuspendLayout();
@@ -406,8 +406,6 @@
             this._watchedFoldersListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this._watchedFoldersListView.UseCompatibleStateImageBehavior = false;
             this._watchedFoldersListView.View = System.Windows.Forms.View.Details;
-            this._watchedFoldersListView.DragDrop += new System.Windows.Forms.DragEventHandler(this.WatchedFoldersListView_DragDrop);
-            this._watchedFoldersListView.DragOver += new System.Windows.Forms.DragEventHandler(this.watchedFoldersListView_DragOver);
             // 
             // _watchedFolderColumnHeader
             // 
@@ -461,29 +459,26 @@
             // _watchedFoldersContextMenuStrip
             // 
             this._watchedFoldersContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._deleteToolStripMenuItem,
-            this._decryptTemporarilyToolStripMenuItem,
-            this._openExplorerHereToolStripMenuItem});
+            this._watchedFoldersRemoveMenuItem,
+            this._watchedFoldersdecryptTemporarilyMenuItem,
+            this._watchedFoldersOpenExplorerHereMenuItem});
             this._watchedFoldersContextMenuStrip.Name = "watchedFoldersContextMenuStrip";
             resources.ApplyResources(this._watchedFoldersContextMenuStrip, "_watchedFoldersContextMenuStrip");
             // 
             // _deleteToolStripMenuItem
             // 
-            this._deleteToolStripMenuItem.Name = "_deleteToolStripMenuItem";
-            resources.ApplyResources(this._deleteToolStripMenuItem, "_deleteToolStripMenuItem");
-            this._deleteToolStripMenuItem.Click += new System.EventHandler(this.WatchedFoldersListView_DeleteToolStripMenuItem_Click);
+            this._watchedFoldersRemoveMenuItem.Name = "_deleteToolStripMenuItem";
+            resources.ApplyResources(this._watchedFoldersRemoveMenuItem, "_deleteToolStripMenuItem");
             // 
             // _decryptTemporarilyToolStripMenuItem
             // 
-            this._decryptTemporarilyToolStripMenuItem.Name = "_decryptTemporarilyToolStripMenuItem";
-            resources.ApplyResources(this._decryptTemporarilyToolStripMenuItem, "_decryptTemporarilyToolStripMenuItem");
-            this._decryptTemporarilyToolStripMenuItem.Click += new System.EventHandler(this.watchedFoldersListView_DecryptTemporarilyToolStripMenuItem_Click);
+            this._watchedFoldersdecryptTemporarilyMenuItem.Name = "_decryptTemporarilyToolStripMenuItem";
+            resources.ApplyResources(this._watchedFoldersdecryptTemporarilyMenuItem, "_decryptTemporarilyToolStripMenuItem");
             // 
             // _openExplorerHereToolStripMenuItem
             // 
-            this._openExplorerHereToolStripMenuItem.Name = "_openExplorerHereToolStripMenuItem";
-            resources.ApplyResources(this._openExplorerHereToolStripMenuItem, "_openExplorerHereToolStripMenuItem");
-            this._openExplorerHereToolStripMenuItem.Click += new System.EventHandler(this.WatchedFoldersListView_OpenExplorerHereToolStripMenuItem_Click);
+            this._watchedFoldersOpenExplorerHereMenuItem.Name = "_openExplorerHereToolStripMenuItem";
+            resources.ApplyResources(this._watchedFoldersOpenExplorerHereMenuItem, "_openExplorerHereToolStripMenuItem");
             // 
             // _progressBackgroundWorker
             // 
@@ -578,9 +573,9 @@
         private System.Windows.Forms.ToolStripSeparator _toolStripSeparator7;
         private System.Windows.Forms.ColumnHeader _watchedFolderColumnHeader;
         private System.Windows.Forms.ContextMenuStrip _watchedFoldersContextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem _deleteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem _decryptTemporarilyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem _openExplorerHereToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _watchedFoldersRemoveMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _watchedFoldersdecryptTemporarilyMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _watchedFoldersOpenExplorerHereMenuItem;
         private System.Windows.Forms.TabPage _watchedFoldersTabPage;
         private System.Windows.Forms.ToolStripMenuItem _clearPassphraseMemoryToolStripMenuItem;
     }

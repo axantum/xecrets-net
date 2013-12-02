@@ -147,6 +147,15 @@ namespace Axantum.AxCrypt
             return (DragDropEffects.Link | DragDropEffects.Copy) & e.AllowedEffect;
         }
 
+        public DragDropEffects GetEffectsForWatchedFolders(DragEventArgs e)
+        {
+            if (!_mainViewModel.DroppableAsWatchedFolder)
+            {
+                return DragDropEffects.None;
+            }
+            return (DragDropEffects.Link | DragDropEffects.Copy) & e.AllowedEffect;
+        }
+
         public AxCryptMainForm()
         {
             InitializeComponent();
@@ -242,6 +251,11 @@ namespace Axantum.AxCrypt
             _watchedFoldersListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedWatchedFolders = _watchedFoldersListView.SelectedItems.Cast<ListViewItem>().Select(lvi => lvi.Text); };
             _watchedFoldersListView.MouseDoubleClick += (sender, e) => { _mainViewModel.OpenFileFromFolder(_mainViewModel.SelectedWatchedFolders.FirstOrDefault()); };
             _watchedFoldersListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _watchedFoldersContextMenuStrip.Show((Control)sender, e.Location); };
+            _watchedFoldersListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForWatchedFolders(e); };
+            _watchedFoldersListView.DragDrop += (sender, e) => { _mainViewModel.AddWatchedFolders(_mainViewModel.DragAndDropFiles); };
+            _watchedFoldersOpenExplorerHereMenuItem.Click += (sender, e) => { _mainViewModel.OpenSelectedFolder(_mainViewModel.SelectedWatchedFolders.First());};
+            _watchedFoldersdecryptTemporarilyMenuItem.Click += (sender, e) => { _mainViewModel.DecryptWatchedFolders(_mainViewModel.SelectedWatchedFolders); };
+            _watchedFoldersRemoveMenuItem.Click += (sender, e) => { _mainViewModel.RemoveWatchedFolders(_mainViewModel.SelectedWatchedFolders); };
 
             _recentFilesListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedRecentFiles = _recentFilesListView.SelectedItems.Cast<ListViewItem>().Select(lvi => lvi.SubItems["EncryptedPath"].Text); };
             _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesContextMenuStrip.Show((Control)sender, e.Location); };
@@ -253,7 +267,6 @@ namespace Axantum.AxCrypt
 
             _mainViewModel.LoggingOn += (object me, LogOnEventArgs args) => { HandleLogOn(args); };
             _mainViewModel.SelectingFiles += (object me, FileSelectionEventArgs args) => { HandleFileSelection(args); };
-
         }
 
         private void HandleLogOn(LogOnEventArgs args)
@@ -997,47 +1010,27 @@ namespace Axantum.AxCrypt
 
         #region Watched Folders
 
-        private void WatchedFoldersListView_DragDrop(object sender, DragEventArgs e)
-        {
-            _watchedFoldersPresentation.DropDragAndDrop(e);
-        }
-
-        private void watchedFoldersListView_DragOver(object sender, DragEventArgs e)
-        {
-            _watchedFoldersPresentation.StartDragAndDrop(e);
-        }
-
-        private void WatchedFoldersListView_DeleteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _watchedFoldersPresentation.RemoveSelectedWatchedFolders();
-        }
-
-        private void WatchedFoldersListView_OpenExplorerHereToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _watchedFoldersPresentation.OpenSelectedFolder();
-        }
-
-        private void watchedFoldersListView_DecryptTemporarilyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string folder = _watchedFoldersListView.SelectedItems[0].Text;
-            Instance.BackgroundWork.Work(
-                (IProgressContext progress) =>
-                {
-                    progress.NotifyLevelStart();
-                    try
-                    {
-                        _watchedFoldersPresentation.DecryptSelectedFolder(folder, progress);
-                    }
-                    finally
-                    {
-                        progress.NotifyLevelFinished();
-                    }
-                    return FileOperationStatus.Success;
-                },
-                (FileOperationStatus status) =>
-                {
-                });
-        }
+        //private void watchedFoldersListView_DecryptTemporarilyToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    string folder = _watchedFoldersListView.SelectedItems[0].Text;
+        //    Instance.BackgroundWork.Work(
+        //        (IProgressContext progress) =>
+        //        {
+        //            progress.NotifyLevelStart();
+        //            try
+        //            {
+        //                _watchedFoldersPresentation.DecryptSelectedFolder(folder, progress);
+        //            }
+        //            finally
+        //            {
+        //                progress.NotifyLevelFinished();
+        //            }
+        //            return FileOperationStatus.Success;
+        //        },
+        //        (FileOperationStatus status) =>
+        //        {
+        //        });
+        //}
 
         #endregion Watched Folders
 
