@@ -205,8 +205,6 @@ namespace Axantum.AxCrypt
 
             OS.Current.SessionChanged += HandleSessionChangedEvent;
 
-            Instance.FileSystemState.ActiveFileChanged += HandleActiveFileChangedEvent;
-
             OS.Current.KeyWrapIterations = Instance.FileSystemState.KeyWrapIterations;
             OS.Current.ThumbprintSalt = Instance.FileSystemState.ThumbprintSalt;
 
@@ -237,6 +235,8 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged("FilesAreOpen", (bool filesAreOpen) => { _closeAndRemoveOpenFilesToolStripButton.Enabled = filesAreOpen; });
             _mainViewModel.BindPropertyChanged("WatchedFolders", (IEnumerable<string> folders) => { UpdateWatchedFolders(folders); });
             _mainViewModel.BindPropertyChanged("WatchedFoldersEnabled", (bool enabled) => { if (enabled) Tabs.TabPages.Add(_hiddenWatchedFoldersTabPage); else Tabs.TabPages.Remove(_hiddenWatchedFoldersTabPage); });
+            _mainViewModel.BindPropertyChanged("RecentFiles", (IEnumerable<ActiveFile> files) => { UpdateRecentFiles(files); });
+
 
             _clearPassphraseMemoryToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory(); ReStartSession(); };
             _decryptAndRemoveFromListToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DecryptFiles(_mainViewModel.SelectedRecentFiles); };
@@ -595,12 +595,78 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void HandleActiveFileChangedEvent(object sender, ActiveFileChangedEventArgs e)
+        private void UpdateRecentFiles(IEnumerable<ActiveFile> files)
         {
-            Instance.UIThread.RunOnUIThread(() =>
+            _recentFilesListView.BeginUpdate();
+            foreach (ActiveFile file in files)
             {
-                _recentFilesPresentation.UpdateActiveFilesViews(e.ActiveFile);
-            });
+                ListViewItem item = _recentFilesListView.Items[file.EncryptedFileInfo.FullName];
+                if (item == null)
+                {
+                    string text = Path.GetFileName(file.DecryptedFileInfo.FullName);
+                    item = new ListViewItem(text);
+                    item.Name = file.EncryptedFileInfo.FullName;
+
+                    ListViewItem.ListViewSubItem dateColumn = item.SubItems.Add(String.Empty);
+                    dateColumn.Name = "Date";
+
+                    ListViewItem.ListViewSubItem encryptedPathColumn = item.SubItems.Add(String.Empty);
+                    encryptedPathColumn.Name = "EncryptedPath";
+
+                    _recentFilesListView.Items.Add(item);
+                }
+
+                UpdateListViewItem(item, file);
+            }
+            while (_recentFilesListView.Items.Count > Instance.FileSystemState.Settings.RecentFilesMaxNumber)
+            {
+                _recentFilesListView.Items.RemoveAt(_recentFilesListView.Items.Count - 1);
+            }
+            _recentFilesListView.Sort();
+            _recentFilesListView.EndUpdate();
+        }
+
+        private static void UpdateListViewItem(ListViewItem item, ActiveFile activeFile)
+        {
+            UpdateStatusDependentPropertiesOfListViewItem(item, activeFile);
+
+            item.SubItems["EncryptedPath"].Text = activeFile.EncryptedFileInfo.FullName;
+            item.SubItems["Date"].Text = activeFile.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
+            item.SubItems["Date"].Tag = activeFile.LastActivityTimeUtc;
+        }
+
+        private static void UpdateStatusDependentPropertiesOfListViewItem(ListViewItem item, ActiveFile activeFile)
+        {
+            switch (activeFile.VisualState)
+            {
+                case ActiveFileVisualState.DecryptedWithKnownKey:
+                    item.ImageKey = "DecryptedFile";
+                    item.ToolTipText = Resources.DecryptedFileToolTip;
+                    break;
+
+                case ActiveFileVisualState.DecryptedWithoutKnownKey:
+                    item.ImageKey = "DecryptedUnknownKeyFile";
+                    item.ToolTipText = Resources.DecryptedUnknownKeyFileToolTip;
+                    break;
+
+                case ActiveFileVisualState.EncryptedNeverBeenDecrypted:
+                    item.ImageKey = "InactiveFile";
+                    item.ToolTipText = Resources.InactiveFileToolTip;
+                    break;
+
+                case ActiveFileVisualState.EncryptedWithoutKnownKey:
+                    item.ImageKey = "ActiveFile";
+                    item.ToolTipText = Resources.ActiveFileToolTip;
+                    break;
+
+                case ActiveFileVisualState.EncryptedWithKnownKey:
+                    item.ImageKey = "ActiveFileKnownKey";
+                    item.ToolTipText = Resources.ActiveFileKnownKeyToolTip;
+                    break;
+
+                default:
+                    throw new InvalidOperationException("Unexpected ActiveFileVisualState value.");
+            }
         }
 
         private void AxCryptMainForm_FormClosing(object sender, FormClosingEventArgs e)

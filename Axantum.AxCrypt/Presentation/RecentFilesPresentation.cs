@@ -158,17 +158,6 @@ namespace Axantum.AxCrypt.Presentation
             }
         }
 
-        public void UpdateActiveFilesViews(ActiveFile activeFile)
-        {
-            if (activeFile.Status.HasMask(ActiveFileStatus.NoLongerActive))
-            {
-                _mainView.RecentFiles.Items.RemoveByKey(activeFile.EncryptedFileInfo.FullName);
-                return;
-            }
-
-            UpdateRecentFilesListView(activeFile);
-        }
-
         public void ChangeColumnWidth(int columnIndex)
         {
             ChangeColumnWidth(_mainView.RecentFiles, columnIndex);
@@ -209,77 +198,6 @@ namespace Axantum.AxCrypt.Presentation
                     break;
             }
             Instance.FileSystemState.Save();
-        }
-
-        private void UpdateRecentFilesListView(ActiveFile activeFile)
-        {
-            _mainView.RecentFiles.BeginUpdate();
-            ListViewItem item = _mainView.RecentFiles.Items[activeFile.EncryptedFileInfo.FullName];
-            if (item == null)
-            {
-                string text = Path.GetFileName(activeFile.DecryptedFileInfo.FullName);
-                item = new ListViewItem(text);
-                item.Name = activeFile.EncryptedFileInfo.FullName;
-
-                ListViewItem.ListViewSubItem dateColumn = item.SubItems.Add(String.Empty);
-                dateColumn.Name = "Date"; //MLHIDE
-
-                ListViewItem.ListViewSubItem encryptedPathColumn = item.SubItems.Add(String.Empty);
-                encryptedPathColumn.Name = "EncryptedPath"; //MLHIDE
-
-                _mainView.RecentFiles.Items.Add(item);
-            }
-
-            UpdateListViewItem(item, activeFile);
-            while (_mainView.RecentFiles.Items.Count > Instance.FileSystemState.Settings.RecentFilesMaxNumber)
-            {
-                _mainView.RecentFiles.Items.RemoveAt(_mainView.RecentFiles.Items.Count - 1);
-            }
-            _mainView.RecentFiles.Sort();
-            _mainView.RecentFiles.EndUpdate();
-        }
-
-        private static void UpdateListViewItem(ListViewItem item, ActiveFile activeFile)
-        {
-            UpdateStatusDependentPropertiesOfListViewItem(item, activeFile);
-
-            item.SubItems["EncryptedPath"].Text = activeFile.EncryptedFileInfo.FullName;
-            item.SubItems["Date"].Text = activeFile.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
-            item.SubItems["Date"].Tag = activeFile.LastActivityTimeUtc;
-        }
-
-        private static void UpdateStatusDependentPropertiesOfListViewItem(ListViewItem item, ActiveFile activeFile)
-        {
-            switch (activeFile.VisualState)
-            {
-                case ActiveFileVisualState.DecryptedWithKnownKey:
-                    item.ImageKey = "DecryptedFile";
-                    item.ToolTipText = Resources.DecryptedFileToolTip;
-                    break;
-
-                case ActiveFileVisualState.DecryptedWithoutKnownKey:
-                    item.ImageKey = "DecryptedUnknownKeyFile";
-                    item.ToolTipText = Resources.DecryptedUnknownKeyFileToolTip;
-                    break;
-
-                case ActiveFileVisualState.EncryptedNeverBeenDecrypted:
-                    item.ImageKey = "InactiveFile";
-                    item.ToolTipText = Resources.InactiveFileToolTip;
-                    break;
-
-                case ActiveFileVisualState.EncryptedWithoutKnownKey:
-                    item.ImageKey = "ActiveFile";
-                    item.ToolTipText = Resources.ActiveFileToolTip;
-                    break;
-
-                case ActiveFileVisualState.EncryptedWithKnownKey:
-                    item.ImageKey = "ActiveFileKnownKey";
-                    item.ToolTipText = Resources.ActiveFileKnownKeyToolTip;
-                    break;
-
-                default:
-                    throw new InvalidOperationException("Unexpected ActiveFileVisualState value.");
-            }
         }
 
         private ImageList CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources()

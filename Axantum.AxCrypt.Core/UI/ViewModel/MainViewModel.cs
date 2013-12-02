@@ -51,8 +51,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             LogonEnabled = true;
             WatchedFoldersEnabled = false;
-            DragAndDropFiles = new string[0];
             WatchedFolders = new string[0];
+            DragAndDropFiles = new string[0];
+            RecentFiles = new ActiveFile[0];
         }
 
         private void SubscribeToModelEvents()
@@ -71,6 +72,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void HandleActiveFileChangedEvent(object sender, ActiveFileChangedEventArgs e)
         {
             Instance.UIThread.RunOnUIThread(() => SetFilesAreOpen());
+            Instance.UIThread.RunOnUIThread(() => SetRecentFiles());
         }
 
         private static FileInfoTypes DetermineFileTypes(IEnumerable<IRuntimeFileInfo> files)
@@ -157,6 +159,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             WatchedFolders = Instance.KnownKeys.WatchedFolders.Select(wf => wf.Path).ToList();
         }
 
+        private void SetRecentFiles()
+        {
+            RecentFiles = Instance.FileSystemState.ActiveFiles;
+        }
+
         private void SetFilesAreOpen()
         {
             IList<ActiveFile> openFiles = Instance.FileSystemState.DecryptedActiveFiles;
@@ -174,6 +181,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public bool WatchedFoldersEnabled { get { return GetProperty<bool>("WatchedFoldersEnabled"); } set { SetProperty("WatchedFoldersEnabled", value); } }
 
         public IEnumerable<string> WatchedFolders { get { return GetProperty<IEnumerable<string>>("WatchedFolders"); } set { SetProperty("WatchedFolders", value.ToList()); } }
+
+        public IEnumerable<ActiveFile> RecentFiles { get { return GetProperty<IEnumerable<ActiveFile>>("RecentFiles"); } set { SetProperty("RecentFiles", value.ToList()); } }
 
         public IEnumerable<string> SelectedWatchedFolders { get { return GetProperty<IEnumerable<string>>("SelectedWatchedFolders"); } set { SetProperty("SelectedWatchedFolders", value.ToList()); } }
 
