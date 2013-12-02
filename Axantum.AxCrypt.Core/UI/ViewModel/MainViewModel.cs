@@ -52,7 +52,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             LogonEnabled = true;
             WatchedFoldersEnabled = false;
             DragAndDropFiles = new string[0];
-            WatchedFolders = new WatchedFolder[0];
+            WatchedFolders = new string[0];
         }
 
         private void SubscribeToModelEvents()
@@ -154,7 +154,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void SetWatchedFolders()
         {
-            WatchedFolders = Instance.KnownKeys.WatchedFolders.ToList();
+            WatchedFolders = Instance.KnownKeys.WatchedFolders.Select(wf => wf.Path).ToList();
         }
 
         private void SetFilesAreOpen()
@@ -173,7 +173,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool WatchedFoldersEnabled { get { return GetProperty<bool>("WatchedFoldersEnabled"); } set { SetProperty("WatchedFoldersEnabled", value); } }
 
-        public IEnumerable<WatchedFolder> WatchedFolders { get { return GetProperty<IEnumerable<WatchedFolder>>("WatchedFolders"); } set { SetProperty("WatchedFolders", value.ToList()); } }
+        public IEnumerable<string> WatchedFolders { get { return GetProperty<IEnumerable<string>>("WatchedFolders"); } set { SetProperty("WatchedFolders", value.ToList()); } }
 
         public IEnumerable<string> SelectedWatchedFolders { get { return GetProperty<IEnumerable<string>>("SelectedWatchedFolders"); } set { SetProperty("SelectedWatchedFolders", value.ToList()); } }
 

@@ -235,7 +235,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged("OpenEncryptedEnabled", (bool enabled) => { _openEncryptedToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("OpenEncryptedEnabled", (bool enabled) => { _openEncryptedToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("FilesAreOpen", (bool filesAreOpen) => { _closeAndRemoveOpenFilesToolStripButton.Enabled = filesAreOpen; });
-            _mainViewModel.BindPropertyChanged("WatchedFolders", (IEnumerable<WatchedFolder> folders) => { UpdateWatchedFolders(folders); });
+            _mainViewModel.BindPropertyChanged("WatchedFolders", (IEnumerable<string> folders) => { UpdateWatchedFolders(folders); });
             _mainViewModel.BindPropertyChanged("WatchedFoldersEnabled", (bool enabled) => { if (enabled) Tabs.TabPages.Add(_hiddenWatchedFoldersTabPage); else Tabs.TabPages.Remove(_hiddenWatchedFoldersTabPage); });
 
             _clearPassphraseMemoryToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory(); ReStartSession(); };
@@ -577,17 +577,16 @@ namespace Axantum.AxCrypt
             });
         }
 
-        private void UpdateWatchedFolders(IEnumerable<WatchedFolder> watchedFolders)
+        private void UpdateWatchedFolders(IEnumerable<string> watchedFolders)
         {
             _watchedFoldersListView.BeginUpdate();
             try
             {
                 _watchedFoldersListView.Items.Clear();
-                foreach (WatchedFolder folder in watchedFolders)
+                foreach (string folder in watchedFolders)
                 {
-                    string text = folder.Path;
-                    ListViewItem item = _watchedFoldersListView.Items.Add(text);
-                    item.Name = text;
+                    ListViewItem item = _watchedFoldersListView.Items.Add(folder);
+                    item.Name = folder;
                 }
             }
             finally
