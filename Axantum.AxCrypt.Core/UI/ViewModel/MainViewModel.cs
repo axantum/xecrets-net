@@ -45,8 +45,16 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             LogonEnabled = true;
             DragAndDropFiles = new string[0];
 
-            OS.Current.SessionChanged += Current_SessionChanged;
+            OS.Current.SessionChanged += HandleSessionChanged;
+            Instance.FileSystemState.ActiveFileChanged += HandleActiveFileChangedEvent;
+
             BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DragAndDropFilesTypes = DetermineFileTypes(files.Select(f => OS.Current.FileInfo(f))); });
+            BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsRecent = DetermineDroppableAsRecent(files.Select(f => OS.Current.FileInfo(f))); });
+        }
+
+        private void HandleActiveFileChangedEvent(object sender, ActiveFileChangedEventArgs e)
+        {
+            Instance.UIThread.RunOnUIThread(() => SetFilesAreOpen());
         }
 
         private static FileInfoTypes DetermineFileTypes(IEnumerable<IRuntimeFileInfo> files)
@@ -64,7 +72,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return types;
         }
 
-        void Current_SessionChanged(object sender, SessionEventArgs e)
+        private static bool DetermineDroppableAsRecent(IEnumerable<IRuntimeFileInfo> files)
+        {
+            return files.Any(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile || (Instance.KnownKeys.IsLoggedOn && fileInfo.Type() == FileInfoTypes.EncryptableFile));
+        }
+
+        void HandleSessionChanged(object sender, SessionEventArgs e)
         {
             foreach (SessionEvent sessionEvent in e.SessionEvents)
             {
@@ -98,6 +111,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
+        private void SetFilesAreOpen()
+        {
+            IList<ActiveFile> openFiles = Instance.FileSystemState.DecryptedActiveFiles;
+            FilesAreOpen = openFiles.Count > 0;
+        }
+
         public bool LogonEnabled { get { return GetProperty<bool>("LogonEnabled"); } set { SetProperty("LogonEnabled", value); } }
 
         public bool EncryptFileEnabled { get { return GetProperty<bool>("EncryptFileEnabled"); } set { SetProperty("EncryptFileEnabled", value); } }
@@ -106,13 +125,17 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool OpenEncryptedEnabled { get { return GetProperty<bool>("OpenEncryptedEnabled"); } set { SetProperty("OpenEncryptedEnabled", value); } }
 
-        public IEnumerable<string> SelectedWatchedFolders { get { return GetProperty<IEnumerable<string>>("SelectedWatchedFolders"); } set { SetProperty("SelectedWatchedFolders", value); } }
+        public IEnumerable<string> SelectedWatchedFolders { get { return GetProperty<IEnumerable<string>>("SelectedWatchedFolders"); } set { SetProperty("SelectedWatchedFolders", value.ToList()); } }
 
-        public IEnumerable<string> SelectedRecentFiles { get { return GetProperty<IEnumerable<string>>("SelectedRecentFiles"); } set { SetProperty("SelectedRecentFiles", value); } }
+        public IEnumerable<string> SelectedRecentFiles { get { return GetProperty<IEnumerable<string>>("SelectedRecentFiles"); } set { SetProperty("SelectedRecentFiles", value.ToList()); } }
 
-        public IEnumerable<string> DragAndDropFiles { get { return GetProperty<IEnumerable<string>>("DragAndDropFiles"); } set { SetProperty("DragAndDropFiles", value); } }
+        public IEnumerable<string> DragAndDropFiles { get { return GetProperty<IEnumerable<string>>("DragAndDropFiles"); } set { SetProperty("DragAndDropFiles", value.ToList()); } }
 
         public FileInfoTypes DragAndDropFilesTypes { get { return GetProperty<FileInfoTypes>("DragAndDropFilesTypes"); } set { SetProperty("DragAndDropFilesTypes", value); } }
+
+        public bool DroppableAsRecent { get { return GetProperty<bool>("DroppableAsRecent"); } set { SetProperty("DroppableAsRecent", value); } }
+
+        public bool FilesAreOpen { get { return GetProperty<bool>("FilesAreOpen"); } set { SetProperty("FilesAreOpen", value); } }
 
         public void LogOnLogOff()
         {
@@ -159,6 +182,25 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
+        public void ClearPassphraseMemory()
+        {
+            AxCryptFile.Wipe(FileSystemState.DefaultPathInfo, new ProgressContext());
+            FactoryRegistry.Instance.Singleton<FileSystemState>(FileSystemState.Create(FileSystemState.DefaultPathInfo));
+            FactoryRegistry.Instance.Singleton<KnownKeys>(new KnownKeys());
+        }
+
+        public void RemoveRecentFiles(IEnumerable<string> files)
+        {
+            foreach (string file in files)
+            {
+                ActiveFile activeFile = Instance.FileSystemState.FindEncryptedPath(file);
+                if (activeFile != null)
+                {
+                    Instance.FileSystemState.Remove(activeFile);
+                }
+            }
+        }
+
         public void EncryptFiles()
         {
             FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs()
@@ -175,7 +217,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public void EncryptFiles(IEnumerable<string> files)
         {
-            Instance.ParallelBackground.DoFiles(files.Select(f => OS.Current.FileInfo(f)), EncryptFile, (status) => { });
+            Instance.ParallelBackground.DoFiles(files.Select(f => OS.Current.FileInfo(f)).ToList(), EncryptFile, (status) => { });
         }
 
         public void DecryptFiles()
@@ -194,7 +236,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public void DecryptFiles(IEnumerable<string> files)
         {
-            Instance.ParallelBackground.DoFiles(files.Select(f => OS.Current.FileInfo(f)), DecryptFile, (status) => { });
+            Instance.ParallelBackground.DoFiles(files.Select(f => OS.Current.FileInfo(f)).ToList(), DecryptFile, (status) => { });
         }
 
         public FileOperationStatus DecryptFile(IRuntimeFileInfo file, IProgressContext progress)
@@ -251,7 +293,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public void WipeFiles(IEnumerable<string> files)
         {
-            Instance.ParallelBackground.DoFiles(files.Select(f => OS.Current.FileInfo(f)), WipeFile, (status) => { });
+            Instance.ParallelBackground.DoFiles(files.Select(f => OS.Current.FileInfo(f)).ToList(), WipeFile, (status) => { });
         }
 
         private FileOperationStatus WipeFile(IRuntimeFileInfo file, IProgressContext progress)
@@ -304,7 +346,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public void OpenFiles(IEnumerable<string> files)
         {
-            Instance.ParallelBackground.DoFiles(files.Select(f => OS.Current.FileInfo(f)), OpenEncrypted, (status) => { });
+            Instance.ParallelBackground.DoFiles(files.Select(f => OS.Current.FileInfo(f)).ToList(), OpenEncrypted, (status) => { });
         }
 
         public FileOperationStatus OpenEncrypted(IRuntimeFileInfo file, IProgressContext progress)
@@ -407,6 +449,77 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             };
 
             return operationsController.EncryptFile(file);
+        }
+
+        public void DragAndDroppedRecentFiles()
+        {
+            IEnumerable<IRuntimeFileInfo> files = DragAndDropFiles.Select(f => OS.Current.FileInfo(f)).ToList();
+            ProcessEncryptableFilesDroppedInRecentList(files.Where(fileInfo => Instance.KnownKeys.IsLoggedOn && fileInfo.Type() == FileInfoTypes.EncryptableFile));
+            ProcessEncryptedFilesDroppedInRecentList(files.Where(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile));
+        }
+
+        private void ProcessEncryptedFilesDroppedInRecentList(IEnumerable<IRuntimeFileInfo> encryptedFiles)
+        {
+            Instance.ParallelBackground.DoFiles(encryptedFiles, VerifyAndAddActive, (status) => { });
+        }
+
+        public FileOperationStatus VerifyAndAddActive(IRuntimeFileInfo fullName, IProgressContext progress)
+        {
+            FileOperationsController operationsController = new FileOperationsController(progress);
+
+            operationsController.QueryDecryptionPassphrase += HandleQueryDecryptionPassphraseEvent;
+
+            operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
+            {
+                Instance.KnownKeys.Add(e.Key);
+            };
+
+            operationsController.Completed += (object sender, FileOperationEventArgs e) =>
+            {
+                if (e.Skip)
+                {
+                    return;
+                }
+                if (FactoryRegistry.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
+                {
+                    IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.OpenFileFullName);
+                    IRuntimeFileInfo decryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
+                    ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key, ActiveFileStatus.NotDecrypted);
+                    Instance.FileSystemState.Add(activeFile);
+                    Instance.FileSystemState.Save();
+                }
+            };
+
+            return operationsController.VerifyEncrypted(fullName);
+        }
+
+        private void ProcessEncryptableFilesDroppedInRecentList(IEnumerable<IRuntimeFileInfo> encryptableFiles)
+        {
+            Instance.ParallelBackground.DoFiles(encryptableFiles, EncryptFileNonInteractive, (status) => { });
+        }
+
+        public FileOperationStatus EncryptFileNonInteractive(IRuntimeFileInfo fullName, IProgressContext progress)
+        {
+            FileOperationsController operationsController = new FileOperationsController(progress);
+
+            operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
+            {
+                e.SaveFileFullName = OS.Current.FileInfo(e.SaveFileFullName).FullName.CreateUniqueFile();
+            };
+
+            operationsController.Completed += (object sender, FileOperationEventArgs e) =>
+            {
+                if (FactoryRegistry.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
+                {
+                    IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
+                    IRuntimeFileInfo decryptedInfo = OS.Current.FileInfo(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
+                    ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key, ActiveFileStatus.NotDecrypted);
+                    Instance.FileSystemState.Add(activeFile);
+                    Instance.FileSystemState.Save();
+                }
+            };
+
+            return operationsController.EncryptFile(fullName);
         }
 
         public event EventHandler<FileSelectionEventArgs> SelectingFiles;

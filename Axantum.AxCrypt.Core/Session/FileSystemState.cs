@@ -361,6 +361,7 @@ namespace Axantum.AxCrypt.Core.Session
 
             bool isAnyModified = false;
             List<ActiveFile> activeFiles = new List<ActiveFile>();
+            List<ActiveFile> updatedActiveFiles = new List<ActiveFile>();
             foreach (ActiveFile activeFile in ActiveFiles)
             {
                 ActiveFile updatedActiveFile = action(activeFile);
@@ -368,7 +369,7 @@ namespace Axantum.AxCrypt.Core.Session
                 bool isModified = updatedActiveFile != activeFile;
                 if (isModified || mode == ChangedEventMode.RaiseAlways)
                 {
-                    OnActiveFileChanged(new ActiveFileChangedEventArgs(updatedActiveFile));
+                    updatedActiveFiles.Add(updatedActiveFile);
                 }
                 isAnyModified |= isModified;
             }
@@ -377,6 +378,7 @@ namespace Axantum.AxCrypt.Core.Session
                 SetRangeInternal(activeFiles, ActiveFileStatus.None);
                 Save();
             }
+            updatedActiveFiles.ForEach(af => OnActiveFileChanged(new ActiveFileChangedEventArgs(af)));
         }
 
         private IRuntimeFileInfo _path;

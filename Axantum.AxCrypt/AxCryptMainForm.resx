@@ -1481,13 +1481,13 @@
     <value>_progressBackgroundWorker</value>
   </data>
   <data name="&gt;&gt;_progressBackgroundWorker.Type" xml:space="preserve">
-    <value>Axantum.AxCrypt.ProgressBackground, Axantum.AxCrypt, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Axantum.AxCrypt.ProgressBackground, Axantum.AxCrypt, Version=2.0.665.1, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
   </data>
   <data name="&gt;&gt;_backgroundMonitor.Name" xml:space="preserve">
     <value>_backgroundMonitor</value>
   </data>
   <data name="&gt;&gt;_backgroundMonitor.Type" xml:space="preserve">
-    <value>Axantum.AxCrypt.BackgroundMonitor, Axantum.AxCrypt, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Axantum.AxCrypt.BackgroundMonitor, Axantum.AxCrypt, Version=2.0.665.1, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AxCryptMainForm</value>

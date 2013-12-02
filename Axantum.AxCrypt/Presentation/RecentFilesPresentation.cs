@@ -120,14 +120,9 @@ namespace Axantum.AxCrypt.Presentation
 
         private IMainView _mainView;
 
-        private FileOperationsPresentation _fileOperationsPresentation;
-
-        private ListViewActions Actions { get { return new ListViewActions(_mainView.RecentFiles); } }
-
         public RecentFilesPresentation(IMainView mainView)
         {
             _mainView = mainView;
-            _fileOperationsPresentation = new FileOperationsPresentation(mainView);
 
             _mainView.RecentFiles.SmallImageList = CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources();
             _mainView.RecentFiles.LargeImageList = CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources();
@@ -174,43 +169,9 @@ namespace Axantum.AxCrypt.Presentation
             UpdateRecentFilesListView(activeFile);
         }
 
-        public string SelectedEncryptedPath
-        {
-            get
-            {
-                string encryptedPath = _mainView.RecentFiles.SelectedItems[0].SubItems["EncryptedPath"].Text; //MLHIDE
-                return encryptedPath;
-            }
-        }
-
         public void ChangeColumnWidth(int columnIndex)
         {
             ChangeColumnWidth(_mainView.RecentFiles, columnIndex);
-        }
-
-        public void ShowContextMenu(ToolStripDropDown contextMenu, MouseEventArgs e)
-        {
-            Actions.ShowContextMenu(contextMenu, e);
-        }
-
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public void StartDragAndDrop(DragEventArgs e)
-        {
-            IEnumerable<IRuntimeFileInfo> droppedFiles = e.GetDragged().Select(f => OS.Current.FileInfo(f));
-            if (!droppedFiles.Any(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile || (Instance.KnownKeys.DefaultEncryptionKey != null && fileInfo.Type() == FileInfoTypes.EncryptableFile)))
-            {
-                return;
-            }
-            e.Effect = (DragDropEffects.Link | DragDropEffects.Copy) & e.AllowedEffect;
-        }
-
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public void DropDragAndDrop(DragEventArgs e)
-        {
-            IEnumerable<IRuntimeFileInfo> droppedFiles = e.GetDragged().Select(f => OS.Current.FileInfo(f)).ToList();
-
-            ProcessEncryptableFilesDroppedInRecentList(droppedFiles.Encryptable());
-            ProcessEncryptedFilesDroppedInRecentList(droppedFiles.Encrypted());
         }
 
         internal void ColumnClick(int column)
@@ -229,17 +190,6 @@ namespace Axantum.AxCrypt.Presentation
 
             SetSorter(column, _mainView.RecentFiles.Sorting);
             Instance.FileSystemState.Settings.RecentFilesSortColumn = column;
-        }
-
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        private void ProcessEncryptedFilesDroppedInRecentList(IEnumerable<IRuntimeFileInfo> encryptedFiles)
-        {
-            Instance.ParallelBackground.DoFiles(encryptedFiles, _fileOperationsPresentation.VerifyAndAddActive, (status) => { });
-        }
-
-        private void ProcessEncryptableFilesDroppedInRecentList(IEnumerable<IRuntimeFileInfo> encryptableFiles)
-        {
-            Instance.ParallelBackground.DoFiles(encryptableFiles, _fileOperationsPresentation.EncryptFileNonInteractive, (status) => { });
         }
 
         private static void ChangeColumnWidth(ListView listView, int columnIndex)

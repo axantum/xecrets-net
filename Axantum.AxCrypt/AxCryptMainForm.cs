@@ -76,10 +76,6 @@ namespace Axantum.AxCrypt
 
         private RecentFilesPresentation _recentFilesPresentation;
 
-        private FileOperationsPresentation _fileOperationsPresentation;
-
-        private PassphrasePresentation _passphrasePresentation;
-
         private MainViewModel _mainViewModel = new MainViewModel();
 
         public static MessageBoxOptions MessageBoxOptions { get; private set; }
@@ -107,15 +103,6 @@ namespace Axantum.AxCrypt
         public Control Control
         {
             get { return this; }
-        }
-
-        public DragDropEffects GetDragDropEffects(object sender, DragEventArgs e)
-        {
-            if (Object.ReferenceEquals(sender, _mainToolStrip))
-            {
-                return GetEffectsForMainToolStrip(e);
-            }
-            return DragDropEffects.None;
         }
 
         private DragDropEffects GetEffectsForMainToolStrip(DragEventArgs e)
@@ -151,6 +138,15 @@ namespace Axantum.AxCrypt
             return DragDropEffects.None;
         }
 
+        private DragDropEffects GetEffectsForRecentFiles(DragEventArgs e)
+        {
+            if (!_mainViewModel.DroppableAsRecent)
+            {
+                return DragDropEffects.None;
+            }
+            return (DragDropEffects.Link | DragDropEffects.Copy) & e.AllowedEffect;
+        }
+
         public AxCryptMainForm()
         {
             InitializeComponent();
@@ -184,8 +180,6 @@ namespace Axantum.AxCrypt
 
             _watchedFoldersPresentation = new WatchedFolderPresentation(this);
             _recentFilesPresentation = new RecentFilesPresentation(this);
-            _fileOperationsPresentation = new FileOperationsPresentation(this);
-            _passphrasePresentation = new PassphrasePresentation(this);
 
             UpdateDebugMode();
 
@@ -231,26 +225,35 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged("DecryptFileEnabled", (bool enabled) => { _decryptToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("OpenEncryptedEnabled", (bool enabled) => { _openEncryptedToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("OpenEncryptedEnabled", (bool enabled) => { _openEncryptedToolStripMenuItem.Enabled = enabled; });
+            _mainViewModel.BindPropertyChanged("FilesAreOpen", (bool filesAreOpen) => { _closeAndRemoveOpenFilesToolStripButton.Enabled = filesAreOpen; });
 
+            _clearPassphraseMemoryToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory(); ReStartSession(); };
+            _decryptAndRemoveFromListToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DecryptFiles(_mainViewModel.SelectedRecentFiles); };
+            _decryptToolStripButton.Click += (sender, e) => { _mainViewModel.DecryptFiles(); };
+            _decryptToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DecryptFiles(); };
             _encryptionKeyToolStripButton.Click += (sender, e) => { _mainViewModel.LogOnLogOff(); };
             _encryptToolStripButton.Click += (sender, e) => { _mainViewModel.EncryptFiles(); };
             _encryptToolStripMenuItem.Click += (sender, e) => { _mainViewModel.EncryptFiles(); };
-            _decryptToolStripButton.Click += (sender, e) => { _mainViewModel.DecryptFiles(); };
-            _decryptToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DecryptFiles(); };
             _openEncryptedToolStripButton.Click += (sender, e) => { _mainViewModel.OpenFileFromFolder(String.Empty); };
             _openEncryptedToolStripMenuItem.Click += (sender, e) => { _mainViewModel.OpenFileFromFolder(String.Empty); };
+            _removeRecentFileToolStripMenuItem.Click += (sender, e) => { _mainViewModel.RemoveRecentFiles(_mainViewModel.SelectedRecentFiles); };
             _wipeToolStripMenuItem.Click += (sender, e) => { _mainViewModel.WipeFiles(); };
-            
+
             _watchedFoldersListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedWatchedFolders = _watchedFoldersListView.SelectedItems.Cast<ListViewItem>().Select(lvi => lvi.Text); };
             _watchedFoldersListView.MouseDoubleClick += (sender, e) => { _mainViewModel.OpenFileFromFolder(_mainViewModel.SelectedWatchedFolders.FirstOrDefault()); };
+            _watchedFoldersListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _watchedFoldersContextMenuStrip.Show((Control)sender, e.Location); };
 
-            _recentFilesListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedRecentFiles = _recentFilesListView.SelectedItems.Cast<ListViewItem>().Select(lvi => lvi.Text); };
-            _watchedFoldersListView.MouseDoubleClick += (sender, e) => { _mainViewModel.OpenFiles(_mainViewModel.SelectedRecentFiles); };
+            _recentFilesListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedRecentFiles = _recentFilesListView.SelectedItems.Cast<ListViewItem>().Select(lvi => lvi.SubItems["EncryptedPath"].Text); };
+            _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesContextMenuStrip.Show((Control)sender, e.Location); };
+            _recentFilesListView.MouseDoubleClick += (sender, e) => { _mainViewModel.OpenFiles(_mainViewModel.SelectedRecentFiles); };
+            _recentFilesListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForRecentFiles(e); };
+            _recentFilesListView.DragDrop += (sender, e) => { _mainViewModel.DragAndDroppedRecentFiles(); };
 
             _mainToolStrip.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForMainToolStrip(e); };
 
             _mainViewModel.LoggingOn += (object me, LogOnEventArgs args) => { HandleLogOn(args); };
             _mainViewModel.SelectingFiles += (object me, FileSelectionEventArgs args) => { HandleFileSelection(args); };
+
         }
 
         private void HandleLogOn(LogOnEventArgs args)
@@ -646,14 +649,6 @@ namespace Axantum.AxCrypt
             Application.Exit();
         }
 
-        private void ClearPassphraseMemoryToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AxCryptFile.Wipe(FileSystemState.DefaultPathInfo, new ProgressContext());
-            FactoryRegistry.Instance.Singleton<FileSystemState>(FileSystemState.Create(FileSystemState.DefaultPathInfo));
-            FactoryRegistry.Instance.Singleton<KnownKeys>(new KnownKeys());
-            ReStartSession();
-        }
-
         private bool _handleSessionChangedInProgress = false;
 
         private void HandleSessionChangedEvent(object sender, SessionEventArgs e)
@@ -695,27 +690,17 @@ namespace Axantum.AxCrypt
                 },
                 (FileOperationStatus status) =>
                 {
-                    _closeAndRemoveOpenFilesToolStripButton.Enabled = FilesAreOpen;
                     SetWindowTextWithLogonStatus();
                     _watchedFoldersPresentation.UpdateListView();
                     _handleSessionChangedInProgress = false;
                 });
         }
 
-        private static bool FilesAreOpen
-        {
-            get
-            {
-                IList<ActiveFile> openFiles = Instance.FileSystemState.DecryptedActiveFiles;
-                return openFiles.Count > 0;
-            }
-        }
-
         #region ToolStrip
 
         private void MainToolStrip_DragOver(object sender, DragEventArgs e)
         {
-            e.Effect = GetDragDropEffects(sender, e);
+            e.Effect = GetEffectsForMainToolStrip(e);
         }
 
         private void MainToolStrip_DragDrop(object sender, DragEventArgs e)
@@ -746,10 +731,6 @@ namespace Axantum.AxCrypt
                 _mainViewModel.EncryptFiles(_mainViewModel.DragAndDropFiles);
                 return;
             }
-        }
-
-        private void MainToolStrip_GiveFeedback(object sender, GiveFeedbackEventArgs e)
-        {
         }
 
         #endregion ToolStrip
@@ -799,48 +780,6 @@ namespace Axantum.AxCrypt
                     }
                     sb.ToString().ShowWarning();
                 });
-        }
-
-        private void RemoveRecentFileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            IEnumerable<string> encryptedPaths = SelectedRecentFilesItems();
-
-            Instance.BackgroundWork.Work(
-                (IProgressContext progress) =>
-                {
-                    Instance.FileSystemState.Actions.RemoveRecentFiles(encryptedPaths.Select(f => OS.Current.FileInfo(f)), progress);
-                    return FileOperationStatus.Success;
-                },
-                (FileOperationStatus status) =>
-                {
-                });
-        }
-
-        private void DecryptAndRemoveFromListToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            IEnumerable<string> encryptedPaths = SelectedRecentFilesItems();
-            _mainViewModel.DecryptFiles(SelectedRecentFilesItems());
-        }
-
-        private IEnumerable<string> SelectedRecentFilesItems()
-        {
-            IEnumerable<string> selected = _recentFilesListView.SelectedItems.Cast<ListViewItem>().Select((ListViewItem item) => { return item.SubItems["EncryptedPath"].Text; }).ToArray();
-            return selected;
-        }
-
-        private void RecentFilesListView_MouseClick(object sender, MouseEventArgs e)
-        {
-            _recentFilesPresentation.ShowContextMenu(_recentFilesContextMenuStrip, e);
-        }
-
-        private void RecentFilesListView_DragOver(object sender, DragEventArgs e)
-        {
-            _recentFilesPresentation.StartDragAndDrop(e);
-        }
-
-        private void RecentFilesListView_DragDrop(object sender, DragEventArgs e)
-        {
-            _recentFilesPresentation.DropDragAndDrop(e);
         }
 
         private void RecentFilesListView_ColumnClick(object sender, ColumnClickEventArgs e)
@@ -1066,11 +1005,6 @@ namespace Axantum.AxCrypt
         private void watchedFoldersListView_DragOver(object sender, DragEventArgs e)
         {
             _watchedFoldersPresentation.StartDragAndDrop(e);
-        }
-
-        private void WatchedFoldersListView_MouseClick(object sender, MouseEventArgs e)
-        {
-            _watchedFoldersPresentation.ShowContextMenu(_watchedFoldersContextMenuStrip, e);
         }
 
         private void WatchedFoldersListView_DeleteToolStripMenuItem_Click(object sender, EventArgs e)

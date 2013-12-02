@@ -50,8 +50,6 @@ namespace Axantum.AxCrypt.Presentation
     {
         private IMainView _mainView;
 
-        private ListViewActions Actions { get { return new ListViewActions(_mainView.WatchedFolders); } }
-
         public WatchedFolderPresentation(IMainView mainView)
         {
             _mainView = mainView;
@@ -97,11 +95,6 @@ namespace Axantum.AxCrypt.Presentation
         public void DecryptSelectedFolder(string folder, IProgressContext progress)
         {
             Factory.AxCryptFile.DecryptFilesUniqueWithWipeOfOriginal(OS.Current.FileInfo(folder), Instance.KnownKeys.DefaultEncryptionKey, progress);
-        }
-
-        public void ShowContextMenu(ToolStripDropDown contextMenu, MouseEventArgs e)
-        {
-            Actions.ShowContextMenu(contextMenu, e);
         }
 
         private void AddRemoveWatchedFolders()

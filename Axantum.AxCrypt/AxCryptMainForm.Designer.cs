@@ -109,7 +109,6 @@
             this._mainToolStrip.Name = "_mainToolStrip";
             this._mainToolStrip.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainToolStrip_DragDrop);
             this._mainToolStrip.DragOver += new System.Windows.Forms.DragEventHandler(this.MainToolStrip_DragOver);
-            this._mainToolStrip.GiveFeedback += new System.Windows.Forms.GiveFeedbackEventHandler(this.MainToolStrip_GiveFeedback);
             // 
             // _encryptionKeyToolStripButton
             // 
@@ -291,7 +290,6 @@
             // 
             this._clearPassphraseMemoryToolStripMenuItem.Name = "_clearPassphraseMemoryToolStripMenuItem";
             resources.ApplyResources(this._clearPassphraseMemoryToolStripMenuItem, "_clearPassphraseMemoryToolStripMenuItem");
-            this._clearPassphraseMemoryToolStripMenuItem.Click += new System.EventHandler(this.ClearPassphraseMemoryToolStripMenuItem_Click);
             // 
             // _exitToolStripMenuItem
             // 
@@ -357,13 +355,11 @@
             // 
             this._removeRecentFileToolStripMenuItem.Name = "_removeRecentFileToolStripMenuItem";
             resources.ApplyResources(this._removeRecentFileToolStripMenuItem, "_removeRecentFileToolStripMenuItem");
-            this._removeRecentFileToolStripMenuItem.Click += new System.EventHandler(this.RemoveRecentFileToolStripMenuItem_Click);
             // 
             // _decryptAndRemoveFromListToolStripMenuItem
             // 
             this._decryptAndRemoveFromListToolStripMenuItem.Name = "_decryptAndRemoveFromListToolStripMenuItem";
             resources.ApplyResources(this._decryptAndRemoveFromListToolStripMenuItem, "_decryptAndRemoveFromListToolStripMenuItem");
-            this._decryptAndRemoveFromListToolStripMenuItem.Click += new System.EventHandler(this.DecryptAndRemoveFromListToolStripMenuItem_Click);
             // 
             // _progressContextMenuStrip
             // 
@@ -412,7 +408,6 @@
             this._watchedFoldersListView.View = System.Windows.Forms.View.Details;
             this._watchedFoldersListView.DragDrop += new System.Windows.Forms.DragEventHandler(this.WatchedFoldersListView_DragDrop);
             this._watchedFoldersListView.DragOver += new System.Windows.Forms.DragEventHandler(this.watchedFoldersListView_DragOver);
-            this._watchedFoldersListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.WatchedFoldersListView_MouseClick);
             // 
             // _watchedFolderColumnHeader
             // 
@@ -441,9 +436,6 @@
             this._recentFilesListView.View = System.Windows.Forms.View.Details;
             this._recentFilesListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.RecentFilesListView_ColumnClick);
             this._recentFilesListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.RecentFilesListView_ColumnWidthChanged);
-            this._recentFilesListView.DragDrop += new System.Windows.Forms.DragEventHandler(this.RecentFilesListView_DragDrop);
-            this._recentFilesListView.DragOver += new System.Windows.Forms.DragEventHandler(this.RecentFilesListView_DragOver);
-            this._recentFilesListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RecentFilesListView_MouseClick);
             // 
             // _decryptedFileColumnHeader
             // 

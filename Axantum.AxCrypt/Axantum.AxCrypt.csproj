@@ -108,10 +108,7 @@
     </Compile>
     <Compile Include="Extensions.cs" />
     <Compile Include="Presentation\DragEventArgsExtensions.cs" />
-    <Compile Include="Presentation\FileOperationsPresentation.cs" />
     <Compile Include="Presentation\IMainView.cs" />
-    <Compile Include="Presentation\ListViewActions.cs" />
-    <Compile Include="Presentation\PassphrasePresentation.cs" />
     <Compile Include="Presentation\RecentFilesPresentation.cs" />
     <Compile Include="ProgressBackground.cs">
       <SubType>Component</SubType>
