@@ -72,13 +72,13 @@ namespace Axantum.AxCrypt
 
         private string _title;
 
-        private WatchedFolderPresentation _watchedFoldersPresentation;
-
         private RecentFilesPresentation _recentFilesPresentation;
 
         private MainViewModel _mainViewModel = new MainViewModel();
 
         public static MessageBoxOptions MessageBoxOptions { get; private set; }
+
+        private TabPage _hiddenWatchedFoldersTabPage;
 
         public ListView WatchedFolders
         {
@@ -187,8 +187,8 @@ namespace Axantum.AxCrypt
             FactoryRegistry.Instance.Singleton<ParallelBackground>(new ParallelBackground());
             FactoryRegistry.Instance.Singleton<ProcessState>(new ProcessState());
 
-            _watchedFoldersPresentation = new WatchedFolderPresentation(this);
             _recentFilesPresentation = new RecentFilesPresentation(this);
+            _hiddenWatchedFoldersTabPage = Tabs.TabPages["_watchedFoldersTabPage"];
 
             UpdateDebugMode();
 
@@ -236,6 +236,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged("OpenEncryptedEnabled", (bool enabled) => { _openEncryptedToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("FilesAreOpen", (bool filesAreOpen) => { _closeAndRemoveOpenFilesToolStripButton.Enabled = filesAreOpen; });
             _mainViewModel.BindPropertyChanged("WatchedFolders", (IEnumerable<WatchedFolder> folders) => { UpdateWatchedFolders(folders); });
+            _mainViewModel.BindPropertyChanged("WatchedFoldersEnabled", (bool enabled) => { if (enabled) Tabs.TabPages.Add(_hiddenWatchedFoldersTabPage); else Tabs.TabPages.Remove(_hiddenWatchedFoldersTabPage); });
 
             _clearPassphraseMemoryToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory(); ReStartSession(); };
             _decryptAndRemoveFromListToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DecryptFiles(_mainViewModel.SelectedRecentFiles); };
@@ -724,7 +725,6 @@ namespace Axantum.AxCrypt
                 (FileOperationStatus status) =>
                 {
                     SetWindowTextWithLogonStatus();
-                    _watchedFoldersPresentation.UpdateListView();
                     _handleSessionChangedInProgress = false;
                 });
         }

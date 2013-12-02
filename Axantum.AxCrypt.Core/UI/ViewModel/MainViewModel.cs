@@ -42,13 +42,27 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     {
         public MainViewModel()
         {
+            InitializePropertyValues();
+            BindPropertyChangedEvents();
+            SubscribeToModelEvents();
+        }
+
+        private void InitializePropertyValues()
+        {
             LogonEnabled = true;
+            WatchedFoldersEnabled = false;
             DragAndDropFiles = new string[0];
             WatchedFolders = new WatchedFolder[0];
+        }
 
+        private void SubscribeToModelEvents()
+        {
             OS.Current.SessionChanged += HandleSessionChanged;
             Instance.FileSystemState.ActiveFileChanged += HandleActiveFileChangedEvent;
+        }
 
+        private void BindPropertyChangedEvents()
+        {
             BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DragAndDropFilesTypes = DetermineFileTypes(files.Select(f => OS.Current.FileInfo(f))); });
             BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsRecent = DetermineDroppableAsRecent(files.Select(f => OS.Current.FileInfo(f))); });
             BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => OS.Current.FileInfo(f))); });
@@ -157,6 +171,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool OpenEncryptedEnabled { get { return GetProperty<bool>("OpenEncryptedEnabled"); } set { SetProperty("OpenEncryptedEnabled", value); } }
 
+        public bool WatchedFoldersEnabled { get { return GetProperty<bool>("WatchedFoldersEnabled"); } set { SetProperty("WatchedFoldersEnabled", value); } }
+
         public IEnumerable<WatchedFolder> WatchedFolders { get { return GetProperty<IEnumerable<WatchedFolder>>("WatchedFolders"); } set { SetProperty("WatchedFolders", value.ToList()); } }
 
         public IEnumerable<string> SelectedWatchedFolders { get { return GetProperty<IEnumerable<string>>("SelectedWatchedFolders"); } set { SetProperty("SelectedWatchedFolders", value.ToList()); } }
@@ -184,6 +200,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             EncryptFileEnabled = isLoggedOn;
             DecryptFileEnabled = isLoggedOn;
             OpenEncryptedEnabled = isLoggedOn;
+            WatchedFoldersEnabled = isLoggedOn;
         }
 
         private void LogOnLogOffInternal()
