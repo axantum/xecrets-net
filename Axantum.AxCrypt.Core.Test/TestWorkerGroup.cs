@@ -25,14 +25,14 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.UI;
-using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -113,14 +113,14 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.Throws<InvalidOperationException>(() => { f = worker.HasCompleted; });
                 Assert.That(!f.HasValue, "No value should be set, since an exception should have occurred.");
                 Assert.Throws<InvalidOperationException>(() => { worker.Join(); });
-				worker.Abort();
+                worker.Abort();
             }
         }
 
         [Test]
-		public static void TestAddingSubscribersToWorkerThread ()
-		{
-			using (WorkerGroup workerGroup = new WorkerGroup())
+        public static void TestAddingSubscribersToWorkerThread()
+        {
+            using (WorkerGroup workerGroup = new WorkerGroup())
             {
                 IThreadWorker worker = workerGroup.CreateWorker();
                 bool wasPrepared = false;
@@ -202,7 +202,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestObjectDisposed()
         {
-			WorkerGroup workerGroup = new WorkerGroup();
+            WorkerGroup workerGroup = new WorkerGroup();
             IThreadWorker worker = workerGroup.CreateWorker();
             worker.Run();
             workerGroup.Dispose();
@@ -265,29 +265,29 @@ namespace Axantum.AxCrypt.Core.Test
         {
             bool didComplete = false;
             ProgressContext progress = new ProgressContext();
-			progress.Progressing += (object sender2, ProgressEventArgs e2) =>
-			{
-				didComplete = true;
-			};
-			
-			using (ThreadWorker threadWorker = new ThreadWorker(progress))
-			{
-				threadWorker.Work += (object sender, ThreadWorkerEventArgs e) =>
-	            {
-					using (WorkerGroup workerGroup = new WorkerGroup(progress))
-					{
-		                IThreadWorker worker = workerGroup.CreateWorker();
-		                worker.Work += (object sender2, ThreadWorkerEventArgs e2) =>
-		                {
-		                    e2.Progress.NotifyLevelStart();
-							e2.Progress.NotifyLevelFinished();
-						};
-		                worker.Run();
-					}
-				};
-	            threadWorker.Run();
-			}
-			
+            progress.Progressing += (object sender2, ProgressEventArgs e2) =>
+            {
+                didComplete = true;
+            };
+
+            using (ThreadWorker threadWorker = new ThreadWorker(progress))
+            {
+                threadWorker.Work += (object sender, ThreadWorkerEventArgs e) =>
+                {
+                    using (WorkerGroup workerGroup = new WorkerGroup(progress))
+                    {
+                        IThreadWorker worker = workerGroup.CreateWorker();
+                        worker.Work += (object sender2, ThreadWorkerEventArgs e2) =>
+                        {
+                            e2.Progress.NotifyLevelStart();
+                            e2.Progress.NotifyLevelFinished();
+                        };
+                        worker.Run();
+                    }
+                };
+                threadWorker.Run();
+            }
+
             Assert.That(didComplete, "Execution should continue here, with the flag set indicating that the progress event occurred.");
         }
     }
