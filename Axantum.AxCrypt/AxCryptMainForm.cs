@@ -283,7 +283,7 @@ namespace Axantum.AxCrypt
 
         private void HandleExistingLogOn(LogOnEventArgs args)
         {
-            using (LogOnDialog logOnDialog = new LogOnDialog(Instance.FileSystemState, args.Identity))
+            using (LogOnDialog logOnDialog = new LogOnDialog(args.Identity.Name))
             {
                 logOnDialog.ShowPassphraseCheckBox.Checked = args.DisplayPassphrase;
                 DialogResult dialogResult = logOnDialog.ShowDialog(this);

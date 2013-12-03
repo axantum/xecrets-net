@@ -676,6 +676,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             LogOnEventArgs logOnArgs = new LogOnEventArgs()
             {
                 DisplayPassphrase = Instance.UserSettings.DisplayEncryptPassphrase,
+                Identity = identity,
             };
             OnLogggingOn(logOnArgs);
 

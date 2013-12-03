@@ -37,5 +37,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         None = 0,
         VerificationPassphraseWrong,
         IdentityExistsAlready,
+        WrongPassphrase,
     }
 }

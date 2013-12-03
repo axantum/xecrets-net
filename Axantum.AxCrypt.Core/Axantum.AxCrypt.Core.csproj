@@ -164,6 +164,7 @@
     <Compile Include="UI\ViewModel\FileSelectionType.cs" />
     <Compile Include="UI\ViewModel\LogOnEventArgs.cs" />
     <Compile Include="UI\ViewModel\IViewModel.cs" />
+    <Compile Include="UI\ViewModel\LogOnViewModel.cs" />
     <Compile Include="UI\ViewModel\MainViewModel.cs" />
     <Compile Include="UI\Options.cs" />
     <Compile Include="UI\ParallelBackground.cs" />

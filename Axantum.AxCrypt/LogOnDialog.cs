@@ -30,6 +30,7 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Properties;
 using System;
 using System.ComponentModel;
@@ -41,29 +42,24 @@ namespace Axantum.AxCrypt
 {
     public partial class LogOnDialog : Form
     {
-        private FileSystemState _fileSystemState;
+        private LogOnViewModel _viewModel;
 
-        public LogOnDialog(FileSystemState fileSystemState, PassphraseIdentity identity)
+        public LogOnDialog(string identityName)
         {
             InitializeComponent();
             SetAutoValidateViaReflectionToAvoidMoMaWarning();
-            _fileSystemState = fileSystemState;
 
-            if (String.IsNullOrEmpty(identity.Name))
-            {
-                return;
-            }
-            PassphraseGroupBox.Text = Resources.EnterPassphraseForIdentityPrompt.InvariantFormat(identity.Name);
+            _viewModel = new LogOnViewModel(identityName);
+
+            PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
+            ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
+
+            _viewModel.BindPropertyChanged("IdentityName", (string id) => { PassphraseGroupBox.Text = !String.IsNullOrEmpty(id) ? Resources.EnterPassphraseForIdentityPrompt.InvariantFormat(id) : String.Empty; });
+            _viewModel.BindPropertyChanged("ShowPassphrase", (bool show) => { PassphraseTextBox.UseSystemPasswordChar = !show; });
         }
 
         private void EncryptPassphraseDialog_Load(object sender, EventArgs e)
         {
-            ShowHidePasshrase();
-        }
-
-        private void ShowHidePasshrase()
-        {
-            PassphraseTextBox.UseSystemPasswordChar = !ShowPassphraseCheckBox.Checked;
         }
 
         private void SetAutoValidateViaReflectionToAvoidMoMaWarning()
@@ -83,15 +79,9 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void ShowPassphraseCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            ShowHidePasshrase();
-        }
-
         private void PassphraseTextBox_Validating(object sender, CancelEventArgs e)
         {
-            AesKeyThumbprint thumbprint = Passphrase.Derive(PassphraseTextBox.Text).Thumbprint;
-            if (!_fileSystemState.Identities.Any(identity => identity.Thumbprint == thumbprint))
+            if (_viewModel["Passphrase"].Length > 0)
             {
                 e.Cancel = true;
                 _errorProvider1.SetError(PassphraseTextBox, Resources.UnkownLogOn);

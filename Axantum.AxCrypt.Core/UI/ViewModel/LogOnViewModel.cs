@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,12 +33,11 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
-    public class NewPassphraseViewModel : ViewModelBase
+    public class LogOnViewModel : ViewModelBase
     {
-        public NewPassphraseViewModel(string defaultIdentityName)
+        public LogOnViewModel(string identityName)
         {
-            bool defaultIdentityKnown = Instance.FileSystemState.Identities.Any(identity => String.Compare(identity.Name, Environment.UserName, StringComparison.OrdinalIgnoreCase) == 0);
-            IdentityName = defaultIdentityKnown ? defaultIdentityName : String.Empty;
+            IdentityName = identityName;
             Passphrase = String.Empty;
         }
 
@@ -46,8 +46,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public bool ShowPassphrase { get { return GetProperty<bool>("ShowPassphrase"); } set { SetProperty("ShowPassphrase", value); } }
 
         public string Passphrase { get { return GetProperty<string>("Passphrase"); } set { SetProperty("Passphrase", value); } }
-
-        public string Verification { get { return GetProperty<string>("Verification"); } set { SetProperty("Verification", value); } }
 
         public override string this[string propertyName]
         {
@@ -58,23 +56,16 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     return error;
                 }
+
                 switch (propertyName)
                 {
                     case "Passphrase":
-                    case "Verification":
-                        if (String.Compare(Passphrase, Verification, StringComparison.Ordinal) == 0)
+                        AesKeyThumbprint thumbprint = Axantum.AxCrypt.Core.Crypto.Passphrase.Derive(Passphrase).Thumbprint;
+                        if (Instance.FileSystemState.Identities.Any(identity => (String.IsNullOrEmpty(IdentityName) || IdentityName == identity.Name) && identity.Thumbprint == thumbprint))
                         {
                             return String.Empty;
                         }
-                        ValidationError = ValidationError.VerificationPassphraseWrong;
-                        break;
-
-                    case "IdentityName":
-                        if (!Instance.FileSystemState.Identities.Any(i => i.Name == IdentityName))
-                        {
-                            return String.Empty;
-                        }
-                        ValidationError = ValidationError.IdentityExistsAlready;
+                        ValidationError = ValidationError.WrongPassphrase;
                         break;
 
                     default:
