@@ -33,7 +33,7 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
-    public interface IViewModel : INotifyPropertyChanged
+    public interface IViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
         T GetProperty<T>(string name);
     }

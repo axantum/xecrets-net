@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Properties;
 using System;
 using System.ComponentModel;
@@ -40,34 +41,36 @@ namespace Axantum.AxCrypt
 {
     public partial class EncryptPassphraseDialog : Form
     {
-        private FileSystemState _fileSystemState;
+        private NewPassphraseViewModel _viewModel;
 
-        public EncryptPassphraseDialog(FileSystemState fileSystemState, string passphrase)
+        public EncryptPassphraseDialog(string passphrase)
         {
             InitializeComponent();
+
             SetAutoValidateViaReflectionToAvoidMoMaWarning();
-            _fileSystemState = fileSystemState;
             PassphraseTextBox.Text = passphrase;
+
+            _viewModel = new NewPassphraseViewModel(Environment.UserName);
+
+            NameTextBox.TextChanged += (sender, e) => { _viewModel.IdentityName = NameTextBox.Text; };
+            PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
+            VerifyPassphraseTextbox.TextChanged += (sender, e) => { _viewModel.Verification = VerifyPassphraseTextbox.Text; };
+            ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
+
+            _viewModel.BindPropertyChanged("ShowPassphrase", (bool show) => { PassphraseTextBox.UseSystemPasswordChar = VerifyPassphraseTextbox.UseSystemPasswordChar = !show; });
         }
 
         private void EncryptPassphraseDialog_Load(object sender, EventArgs e)
         {
-            ShowHidePasshrase();
-            if (!_fileSystemState.Identities.Any(identity => String.Compare(identity.Name, Environment.UserName, StringComparison.OrdinalIgnoreCase) == 0))
+            if (_viewModel.IdentityName.Length != 0)
             {
-                NameTextBox.Text = Environment.UserName;
+                NameTextBox.Text = _viewModel.IdentityName;
                 PassphraseTextBox.Focus();
             }
             else
             {
                 NameTextBox.Focus();
             }
-        }
-
-        private void ShowHidePasshrase()
-        {
-            PassphraseTextBox.UseSystemPasswordChar = !ShowPassphraseCheckBox.Checked;
-            VerifyPassphraseTextbox.UseSystemPasswordChar = !ShowPassphraseCheckBox.Checked;
         }
 
         private void SetAutoValidateViaReflectionToAvoidMoMaWarning()
@@ -87,14 +90,9 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void ShowPassphraseCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            ShowHidePasshrase();
-        }
-
         private void VerifyPassphraseTextbox_Validating(object sender, CancelEventArgs e)
         {
-            if (String.Compare(PassphraseTextBox.Text, VerifyPassphraseTextbox.Text, StringComparison.Ordinal) != 0)
+            if (_viewModel["Verification"].Length > 0)
             {
                 e.Cancel = true;
                 _errorProvider1.SetError(VerifyPassphraseTextbox, Resources.PassphraseVerificationMismatch);
@@ -108,7 +106,7 @@ namespace Axantum.AxCrypt
 
         private void NameTextBox_Validating(object sender, CancelEventArgs e)
         {
-            if (_fileSystemState.Identities.Any(i => i.Name == NameTextBox.Text))
+            if (_viewModel["IdentityName"].Length > 0)
             {
                 e.Cancel = true;
                 _errorProvider2.SetError(NameTextBox, Resources.LogOnExists);

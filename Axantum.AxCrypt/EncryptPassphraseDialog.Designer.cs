@@ -88,7 +88,6 @@
             resources.ApplyResources(this.ShowPassphraseCheckBox, "ShowPassphraseCheckBox");
             this.ShowPassphraseCheckBox.Name = "ShowPassphraseCheckBox";
             this.ShowPassphraseCheckBox.UseVisualStyleBackColor = true;
-            this.ShowPassphraseCheckBox.CheckedChanged += new System.EventHandler(this.ShowPassphraseCheckBox_CheckedChanged);
             // 
             // VerifyPassphraseTextbox
             // 

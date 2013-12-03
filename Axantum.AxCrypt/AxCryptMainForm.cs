@@ -266,7 +266,7 @@ namespace Axantum.AxCrypt
 
         private void HandleCreateNewLogOn(LogOnEventArgs args)
         {
-            using (EncryptPassphraseDialog passphraseDialog = new EncryptPassphraseDialog(Instance.FileSystemState, args.Passphrase))
+            using (EncryptPassphraseDialog passphraseDialog = new EncryptPassphraseDialog(args.Passphrase))
             {
                 passphraseDialog.ShowPassphraseCheckBox.Checked = args.DisplayPassphrase;
                 DialogResult dialogResult = passphraseDialog.ShowDialog(this);

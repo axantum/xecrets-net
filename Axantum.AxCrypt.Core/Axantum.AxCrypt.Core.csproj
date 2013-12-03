@@ -179,6 +179,8 @@
     <Compile Include="UI\KnownKeys.cs" />
     <Compile Include="UI\ProgressContext.cs" />
     <Compile Include="UI\ProgressEventArgs.cs" />
+    <Compile Include="UI\ViewModel\NewPassphraseViewModel.cs" />
+    <Compile Include="UI\ViewModel\ValidationError.cs" />
     <Compile Include="UI\ViewModel\ViewModelBase.cs" />
     <Compile Include="UI\PublicResources.cs" />
     <Compile Include="UI\UpdateCheck.cs" />

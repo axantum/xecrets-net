@@ -56,17 +56,17 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             RecentFiles = new ActiveFile[0];
         }
 
-        private void SubscribeToModelEvents()
-        {
-            OS.Current.SessionChanged += HandleSessionChanged;
-            Instance.FileSystemState.ActiveFileChanged += HandleActiveFileChangedEvent;
-        }
-
         private void BindPropertyChangedEvents()
         {
             BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DragAndDropFilesTypes = DetermineFileTypes(files.Select(f => OS.Current.FileInfo(f))); });
             BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsRecent = DetermineDroppableAsRecent(files.Select(f => OS.Current.FileInfo(f))); });
             BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => OS.Current.FileInfo(f))); });
+        }
+
+        private void SubscribeToModelEvents()
+        {
+            OS.Current.SessionChanged += HandleSessionChanged;
+            Instance.FileSystemState.ActiveFileChanged += HandleActiveFileChangedEvent;
         }
 
         private void HandleActiveFileChangedEvent(object sender, ActiveFileChangedEventArgs e)

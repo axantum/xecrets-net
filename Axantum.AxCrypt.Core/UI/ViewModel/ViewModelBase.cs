@@ -100,6 +100,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 handler(this, e);
             }
         }
+
         public void BindPropertyChanged<T>(string name, Action<T> action)
         {
             List<Action<object>> actions;
@@ -140,6 +141,30 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             MethodInfo mi = me.GetType().GetMethod(name);
             Action action = (Action)Delegate.CreateDelegate(typeof(Action), me, mi);
             return action;
+        }
+
+        public string Error
+        {
+            get
+            {
+                IEnumerable<PropertyDescriptor> properties = TypeDescriptor.GetProperties(GetType()).Cast<PropertyDescriptor>();
+
+                return
+                    (from property in properties
+                     let error = this[property.Name]
+                     where !String.IsNullOrEmpty(error)
+                     select error)
+                        .Aggregate(new StringBuilder(), (acc, next) => acc.Append(acc.Length > 0 ? " " : String.Empty).Append(next))
+                        .ToString();
+            }
+        }
+
+        public virtual string this[string propertyName]
+        {
+            get
+            {
+                return String.Empty;
+            }
         }
     }
 }
