@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -40,6 +41,17 @@ namespace Axantum.AxCrypt
         public static Point Fallback(this Point value, Point fallback)
         {
             return value != default(Point) ? value : fallback;
+        }
+
+        public static IEnumerable<string> GetDragged(this DragEventArgs e)
+        {
+            IList<string> dropped = e.Data.GetData(DataFormats.FileDrop) as IList<string>;
+            if (dropped == null)
+            {
+                return new string[0];
+            }
+
+            return dropped;
         }
     }
 }
