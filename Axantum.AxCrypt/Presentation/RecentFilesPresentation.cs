@@ -132,12 +132,12 @@ namespace Axantum.AxCrypt.Presentation
 
         private void RestoreUserPreferences()
         {
-            _mainView.RecentFiles.Columns[0].Width = Instance.FileSystemState.Settings.RecentFilesDocumentWidth > 0 ? Instance.FileSystemState.Settings.RecentFilesDocumentWidth : _mainView.RecentFiles.Columns[0].Width;
-            _mainView.RecentFiles.Columns[1].Width = Instance.FileSystemState.Settings.RecentFilesDateTimeWidth > 0 ? Instance.FileSystemState.Settings.RecentFilesDateTimeWidth : _mainView.RecentFiles.Columns[1].Width;
-            _mainView.RecentFiles.Columns[2].Width = Instance.FileSystemState.Settings.RecentFilesEncryptedPathWidth > 0 ? Instance.FileSystemState.Settings.RecentFilesEncryptedPathWidth : _mainView.RecentFiles.Columns[2].Width;
+            _mainView.RecentFiles.Columns[0].Width = Preferences.Fallback(Preferences.RecentFilesDocumentWidth, _mainView.RecentFiles.Columns[0].Width);
+            _mainView.RecentFiles.Columns[1].Width = Preferences.Fallback(Preferences.RecentFilesDateTimeWidth, _mainView.RecentFiles.Columns[1].Width);
+            _mainView.RecentFiles.Columns[2].Width = Preferences.Fallback(Preferences.RecentFilesEncryptedPathWidth, _mainView.RecentFiles.Columns[2].Width);
 
-            _mainView.RecentFiles.Sorting = Instance.FileSystemState.Settings.RecentFilesAscending ? SortOrder.Ascending : SortOrder.Descending;
-            SetSorter(Instance.FileSystemState.Settings.RecentFilesSortColumn, _mainView.RecentFiles.Sorting);
+            _mainView.RecentFiles.Sorting = Preferences.RecentFilesAscending ? SortOrder.Ascending : SortOrder.Descending;
+            SetSorter(Preferences.RecentFilesSortColumn, _mainView.RecentFiles.Sorting);
         }
 
         private void SetSorter(int column, SortOrder sortOrder)
@@ -166,19 +166,18 @@ namespace Axantum.AxCrypt.Presentation
         internal void ColumnClick(int column)
         {
             SetSorterOrOrder(column);
-            Instance.FileSystemState.Save();
         }
 
         private void SetSorterOrOrder(int column)
         {
-            if (column == Instance.FileSystemState.Settings.RecentFilesSortColumn)
+            if (column == Preferences.RecentFilesSortColumn)
             {
                 _mainView.RecentFiles.Sorting = _mainView.RecentFiles.Sorting == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
-                Instance.FileSystemState.Settings.RecentFilesAscending = _mainView.RecentFiles.Sorting == SortOrder.Ascending;
+                Preferences.RecentFilesAscending = _mainView.RecentFiles.Sorting == SortOrder.Ascending;
             }
 
             SetSorter(column, _mainView.RecentFiles.Sorting);
-            Instance.FileSystemState.Settings.RecentFilesSortColumn = column;
+            Preferences.RecentFilesSortColumn = column;
         }
 
         private static void ChangeColumnWidth(ListView listView, int columnIndex)
@@ -186,18 +185,17 @@ namespace Axantum.AxCrypt.Presentation
             switch (columnIndex)
             {
                 case 0:
-                    Instance.FileSystemState.Settings.RecentFilesDocumentWidth = listView.Columns[columnIndex].Width;
+                    Preferences.RecentFilesDocumentWidth = listView.Columns[columnIndex].Width;
                     break;
 
                 case 1:
-                    Instance.FileSystemState.Settings.RecentFilesDateTimeWidth = listView.Columns[columnIndex].Width;
+                    Preferences.RecentFilesDateTimeWidth = listView.Columns[columnIndex].Width;
                     break;
 
                 case 2:
-                    Instance.FileSystemState.Settings.RecentFilesEncryptedPathWidth = listView.Columns[columnIndex].Width;
+                    Preferences.RecentFilesEncryptedPathWidth = listView.Columns[columnIndex].Width;
                     break;
             }
-            Instance.FileSystemState.Save();
         }
 
         private ImageList CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources()

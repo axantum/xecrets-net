@@ -27,10 +27,10 @@
 
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
-using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -116,7 +116,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return true;
         }
 
-        void HandleSessionChanged(object sender, SessionEventArgs e)
+        private void HandleSessionChanged(object sender, SessionEventArgs e)
         {
             foreach (SessionEvent sessionEvent in e.SessionEvents)
             {
@@ -124,30 +124,40 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     case SessionEventType.ActiveFileChange:
                         break;
+
                     case SessionEventType.WatchedFolderAdded:
                         Instance.UIThread.RunOnUIThread(() => SetWatchedFolders());
                         break;
+
                     case SessionEventType.WatchedFolderRemoved:
                         Instance.UIThread.RunOnUIThread(() => SetWatchedFolders());
                         break;
+
                     case SessionEventType.LogOn:
                         Instance.UIThread.RunOnUIThread(() => SetLogOnState(Instance.KnownKeys.IsLoggedOn));
                         Instance.UIThread.RunOnUIThread(() => SetWatchedFolders());
                         break;
+
                     case SessionEventType.LogOff:
                         Instance.UIThread.RunOnUIThread(() => SetLogOnState(Instance.KnownKeys.IsLoggedOn));
                         Instance.UIThread.RunOnUIThread(() => SetWatchedFolders());
                         break;
+
                     case SessionEventType.ProcessExit:
                         break;
+
                     case SessionEventType.SessionChange:
                         break;
+
                     case SessionEventType.SessionStart:
                         break;
+
                     case SessionEventType.KnownKeyChange:
                         break;
+
                     case SessionEventType.WorkFolderChange:
                         break;
+
                     default:
                         break;
                 }
@@ -656,7 +666,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             LogOnEventArgs logOnArgs = new LogOnEventArgs()
             {
-                DisplayPassphrase = Instance.FileSystemState.Settings.DisplayEncryptPassphrase,
+                DisplayPassphrase = Instance.UserSettings.DisplayEncryptPassphrase,
             };
             OnLogggingOn(logOnArgs);
 
@@ -670,11 +680,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return String.Empty;
             }
 
-            if (logOnArgs.DisplayPassphrase != Instance.FileSystemState.Settings.DisplayEncryptPassphrase)
-            {
-                Instance.FileSystemState.Settings.DisplayEncryptPassphrase = logOnArgs.DisplayPassphrase;
-                Instance.FileSystemState.Save();
-            }
+            Instance.UserSettings.DisplayEncryptPassphrase = logOnArgs.DisplayPassphrase;
 
             return logOnArgs.Passphrase;
         }
@@ -684,7 +690,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             LogOnEventArgs logOnArgs = new LogOnEventArgs()
             {
                 CreateNew = true,
-                DisplayPassphrase = Instance.FileSystemState.Settings.DisplayEncryptPassphrase,
+                DisplayPassphrase = Instance.UserSettings.DisplayEncryptPassphrase,
                 Passphrase = defaultPassphrase
             };
             OnLogggingOn(logOnArgs);
@@ -694,11 +700,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return String.Empty;
             }
 
-            if (logOnArgs.DisplayPassphrase != Instance.FileSystemState.Settings.DisplayEncryptPassphrase)
-            {
-                Instance.FileSystemState.Settings.DisplayEncryptPassphrase = logOnArgs.DisplayPassphrase;
-                Instance.FileSystemState.Save();
-            }
+            Instance.UserSettings.DisplayEncryptPassphrase = logOnArgs.DisplayPassphrase;
 
             Passphrase passphrase = new Passphrase(logOnArgs.Passphrase);
             PassphraseIdentity identity = Instance.FileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == passphrase.DerivedPassphrase.Thumbprint);

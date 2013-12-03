@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt
         {
             if (OS.Current.Platform == Platform.WindowsDesktop)
             {
-                PropertyInfo propertyInfo = typeof(EncryptPassphraseDialog).GetProperty("AutoValidate"); //MLHIDE
+                PropertyInfo propertyInfo = typeof(EncryptPassphraseDialog).GetProperty("AutoValidate");
                 propertyInfo.SetValue(this, AutoValidate.EnableAllowFocusChange, null);
             }
         }

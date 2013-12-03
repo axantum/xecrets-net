@@ -159,6 +159,7 @@
     <Compile Include="Session\SessionEventArgs.cs" />
     <Compile Include="Session\WatchedFolder.cs" />
     <Compile Include="Session\WatchedFolderChangedEventArgs.cs" />
+    <Compile Include="UI\IUserSettings.cs" />
     <Compile Include="UI\ViewModel\FileSelectionEventArgs.cs" />
     <Compile Include="UI\ViewModel\FileSelectionType.cs" />
     <Compile Include="UI\ViewModel\LogOnEventArgs.cs" />

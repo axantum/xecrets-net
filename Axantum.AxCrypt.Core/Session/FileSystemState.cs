@@ -66,7 +66,6 @@ namespace Axantum.AxCrypt.Core.Session
         private void Initialize(StreamingContext context)
         {
             Identities = new List<PassphraseIdentity>();
-            Settings = new UserSettings();
             _activeFilesByEncryptedPath = new Dictionary<string, ActiveFile>();
         }
 
@@ -321,13 +320,6 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 SetRangeInternal(value, ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable);
             }
-        }
-
-        [DataMember(Name = "UserSettings")]
-        public UserSettings Settings
-        {
-            get;
-            set;
         }
 
         private void SetRangeInternal(IEnumerable<ActiveFile> activeFiles, ActiveFileStatus mask)

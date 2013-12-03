@@ -56,5 +56,10 @@ namespace Axantum.AxCrypt.Core
         {
             get { return FactoryRegistry.Instance.Singleton<IStatusChecker>(); }
         }
+
+        public static IUserSettings UserSettings
+        {
+            get { return FactoryRegistry.Instance.Singleton<IUserSettings>(); }
+        }
     }
 }

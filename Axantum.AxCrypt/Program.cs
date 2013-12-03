@@ -70,15 +70,16 @@ namespace Axantum.AxCrypt
             FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(new RuntimeEnvironment());
             FactoryRegistry.Instance.Singleton<CommandService>(new CommandService(new HttpRequestServer(), new HttpRequestClient()));
             FactoryRegistry.Instance.Singleton<FileSystemState>(FileSystemState.Create(FileSystemState.DefaultPathInfo));
+            FactoryRegistry.Instance.Singleton<IUserSettings>(new UserSettings(UserSettings.DefaultPathInfo));
         }
 
         private static void SetCulture()
         {
-            if (String.IsNullOrEmpty(Instance.FileSystemState.Settings.CultureName))
+            if (String.IsNullOrEmpty(Instance.UserSettings.CultureName))
             {
                 return;
             }
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Instance.FileSystemState.Settings.CultureName);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Instance.UserSettings.CultureName);
         }
 
         private static void RunInteractive()

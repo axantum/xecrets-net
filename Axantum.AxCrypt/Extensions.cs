@@ -33,7 +33,7 @@ namespace Axantum.AxCrypt
     {
         public static void ShowWarning(this string message)
         {
-            MessageBox.Show(message, "AxCrypt", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, AxCryptMainForm.MessageBoxOptions); //MLHIDE
+            MessageBox.Show(message, "AxCrypt", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, AxCryptMainForm.MessageBoxOptions);
         }
     }
 }
