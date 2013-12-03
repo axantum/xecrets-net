@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
@@ -34,6 +35,11 @@ namespace Axantum.AxCrypt
         public static void ShowWarning(this string message)
         {
             MessageBox.Show(message, "AxCrypt", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, AxCryptMainForm.MessageBoxOptions);
+        }
+
+        public static Point Fallback(this Point value, Point fallback)
+        {
+            return value != default(Point) ? value : fallback;
         }
     }
 }

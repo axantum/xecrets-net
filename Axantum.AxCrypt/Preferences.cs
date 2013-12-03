@@ -28,15 +28,5 @@ namespace Axantum.AxCrypt
         public static bool RecentFilesAscending { get { return Instance.UserSettings.Get<bool>("RecentFilesAscending", true); } set { Instance.UserSettings.Set("RecentFilesAscending", value); } }
 
         public static int RecentFilesSortColumn { get { return Instance.UserSettings.Get<int>("RecentFilesSortColumn", 0); } set { Instance.UserSettings.Set("RecentFilesSortColumn", value); } }
-
-        public static T Fallback<T>(T value, T fallback) where T : IEquatable<T>
-        {
-            return !value.Equals(default(T)) ? value : fallback;
-        }
-
-        public static Point Fallback(Point value, Point fallback)
-        {
-            return value != default(Point) ? value : fallback;
-        }
     }
 }

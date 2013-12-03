@@ -132,9 +132,9 @@ namespace Axantum.AxCrypt.Presentation
 
         private void RestoreUserPreferences()
         {
-            _mainView.RecentFiles.Columns[0].Width = Preferences.Fallback(Preferences.RecentFilesDocumentWidth, _mainView.RecentFiles.Columns[0].Width);
-            _mainView.RecentFiles.Columns[1].Width = Preferences.Fallback(Preferences.RecentFilesDateTimeWidth, _mainView.RecentFiles.Columns[1].Width);
-            _mainView.RecentFiles.Columns[2].Width = Preferences.Fallback(Preferences.RecentFilesEncryptedPathWidth, _mainView.RecentFiles.Columns[2].Width);
+            _mainView.RecentFiles.Columns[0].Width = Preferences.RecentFilesDocumentWidth.Fallback(_mainView.RecentFiles.Columns[0].Width);
+            _mainView.RecentFiles.Columns[1].Width = Preferences.RecentFilesDateTimeWidth.Fallback(_mainView.RecentFiles.Columns[1].Width);
+            _mainView.RecentFiles.Columns[2].Width = Preferences.RecentFilesEncryptedPathWidth.Fallback(_mainView.RecentFiles.Columns[2].Width);
 
             _mainView.RecentFiles.Sorting = Preferences.RecentFilesAscending ? SortOrder.Ascending : SortOrder.Descending;
             SetSorter(Preferences.RecentFilesSortColumn, _mainView.RecentFiles.Sorting);

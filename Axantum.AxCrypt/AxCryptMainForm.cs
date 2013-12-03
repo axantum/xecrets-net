@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
@@ -480,9 +481,9 @@ namespace Axantum.AxCrypt
         {
             if (WindowState == FormWindowState.Normal)
             {
-                Height = Preferences.Fallback(Preferences.MainWindowHeight, Height);
-                Width = Preferences.Fallback(Preferences.MainWindowWidth, Width);
-                Location = Preferences.Fallback(Preferences.MainWindowLocation, Location);
+                Height = Preferences.MainWindowHeight.Fallback(Height);
+                Width = Preferences.MainWindowWidth.Fallback(Width);
+                Location = Preferences.MainWindowLocation.Fallback(Location);
             }
         }
 
@@ -683,7 +684,7 @@ namespace Axantum.AxCrypt
             Instance.BackgroundWork.WaitForIdle();
             PurgeActiveFiles();
             Instance.BackgroundWork.WaitForIdle();
-            Trace.Listeners.Remove("AxCryptMainFormListener");       
+            Trace.Listeners.Remove("AxCryptMainFormListener");
         }
 
         private void ReStartSession()
@@ -767,7 +768,7 @@ namespace Axantum.AxCrypt
         {
             if (OS.Log.IsInfoEnabled)
             {
-                OS.Log.LogInfo("Tick");                                
+                OS.Log.LogInfo("Tick");
             }
 
             if (_handleSessionChangedInProgress)

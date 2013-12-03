@@ -59,5 +59,10 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
             return bytes;
         }
+
+        public static T Fallback<T>(this T value, T fallback) where T : IEquatable<T>
+        {
+            return !value.Equals(default(T)) ? value : fallback;
+        }
     }
 }
