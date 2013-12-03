@@ -163,6 +163,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             get
             {
+                if (GetType().GetProperty(propertyName) == null)
+                {
+                    throw new ArgumentException("Non-existing property name.", propertyName);
+                }
                 return String.Empty;
             }
         }
