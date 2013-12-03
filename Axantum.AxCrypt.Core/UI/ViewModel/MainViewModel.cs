@@ -190,6 +190,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool WatchedFoldersEnabled { get { return GetProperty<bool>("WatchedFoldersEnabled"); } set { SetProperty("WatchedFoldersEnabled", value); } }
 
+        public string LogOnName { get { return GetProperty<string>("LogOnName"); } set { SetProperty("LogOnName", value); } }
+
         public IEnumerable<string> WatchedFolders { get { return GetProperty<IEnumerable<string>>("WatchedFolders"); } set { SetProperty("WatchedFolders", value.ToList()); } }
 
         public IEnumerable<ActiveFile> RecentFiles { get { return GetProperty<IEnumerable<ActiveFile>>("RecentFiles"); } set { SetProperty("RecentFiles", value.ToList()); } }
@@ -215,6 +217,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void SetLogOnState(bool isLoggedOn)
         {
+            string name = String.Empty;
+            if (isLoggedOn)
+            {
+                PassphraseIdentity identity = Instance.FileSystemState.Identities.First(i => i.Thumbprint == Instance.KnownKeys.DefaultEncryptionKey.Thumbprint);
+                name = identity.Name;
+            }
+            LogOnName = name;
             LogonEnabled = !isLoggedOn;
             EncryptFileEnabled = isLoggedOn;
             DecryptFileEnabled = isLoggedOn;

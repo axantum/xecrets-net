@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt
     /// All code here is expected to execute on the GUI thread. If code may be called on another thread, this call
     /// must be made through ThreadSafeUi() .
     /// </summary>
-    public partial class AxCryptMainForm : Form, IMainView, IStatusChecker
+    public partial class AxCryptMainForm : Form, IStatusChecker
     {
         private Uri _updateUrl;
 
@@ -81,29 +81,9 @@ namespace Axantum.AxCrypt
 
         private TabPage _hiddenWatchedFoldersTabPage;
 
-        public ListView WatchedFolders
-        {
-            get { return _watchedFoldersListView; }
-        }
-
-        public ListView RecentFiles
-        {
-            get { return _recentFilesListView; }
-        }
-
         public TabControl Tabs
         {
             get { return _statusTabControl; }
-        }
-
-        public IContainer Components
-        {
-            get { return components; }
-        }
-
-        public Control Control
-        {
-            get { return this; }
         }
 
         private DragDropEffects GetEffectsForMainToolStrip(DragEventArgs e)
@@ -188,7 +168,7 @@ namespace Axantum.AxCrypt
             FactoryRegistry.Instance.Singleton<ParallelBackground>(new ParallelBackground());
             FactoryRegistry.Instance.Singleton<ProcessState>(new ProcessState());
 
-            _recentFilesPresentation = new RecentFilesPresentation(this);
+            _recentFilesPresentation = new RecentFilesPresentation(_recentFilesListView);
             _hiddenWatchedFoldersTabPage = Tabs.TabPages["_watchedFoldersTabPage"];
 
             UpdateDebugMode();
@@ -227,6 +207,7 @@ namespace Axantum.AxCrypt
         {
             _mainViewModel.BindPropertyChanged("LogonEnabled", (bool logonEnabled) => { _encryptionKeyToolStripButton.Image = logonEnabled ? Resources.encryptionkeygreen32 : Resources.encryptionkeyred32; });
             _mainViewModel.BindPropertyChanged("LogonEnabled", (bool logonEnabled) => { _encryptionKeyToolStripButton.ToolTipText = logonEnabled ? Resources.NoDefaultEncryptionKeySetToolTip : Resources.DefaultEncryptionKeyIsIsetToolTip; });
+            _mainViewModel.BindPropertyChanged("LogonEnabled", (bool logonEnabled) => { SetWindowTextWithLogonStatus(!logonEnabled); });
             _mainViewModel.BindPropertyChanged("EncryptFileEnabled", (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("EncryptFileEnabled", (bool enabled) => { _encryptToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("DecryptFileEnabled", (bool enabled) => { _decryptToolStripButton.Enabled = enabled; });
@@ -509,13 +490,12 @@ namespace Axantum.AxCrypt
             OS.PathFilters.Add(new Regex(formatRegularExpression.InvariantFormat(folder)));
         }
 
-        private void SetWindowTextWithLogonStatus()
+        private void SetWindowTextWithLogonStatus(bool isLoggedOn)
         {
             string logonStatus;
-            if (Instance.KnownKeys.IsLoggedOn)
+            if (isLoggedOn)
             {
-                PassphraseIdentity identity = Instance.FileSystemState.Identities.First(i => i.Thumbprint == Instance.KnownKeys.DefaultEncryptionKey.Thumbprint);
-                logonStatus = Resources.LoggedOnStatusText.InvariantFormat(identity.Name);
+                logonStatus = Resources.LoggedOnStatusText.InvariantFormat(_mainViewModel.LogOnName);
             }
             else
             {
@@ -691,7 +671,6 @@ namespace Axantum.AxCrypt
         {
             _recentFilesListView.Items.Clear();
             _watchedFoldersListView.Items.Clear();
-            SetWindowTextWithLogonStatus();
             OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.SessionStart));
         }
 
@@ -794,7 +773,6 @@ namespace Axantum.AxCrypt
                 },
                 (FileOperationStatus status) =>
                 {
-                    SetWindowTextWithLogonStatus();
                     _handleSessionChangedInProgress = false;
                 });
         }

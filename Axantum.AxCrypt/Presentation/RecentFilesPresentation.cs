@@ -118,26 +118,26 @@ namespace Axantum.AxCrypt.Presentation
             }
         }
 
-        private IMainView _mainView;
+        private ListView _recentFiles;
 
-        public RecentFilesPresentation(IMainView mainView)
+        public RecentFilesPresentation(ListView recentFiles)
         {
-            _mainView = mainView;
+            _recentFiles = recentFiles;
 
-            _mainView.RecentFiles.SmallImageList = CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources();
-            _mainView.RecentFiles.LargeImageList = CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources();
+            _recentFiles.SmallImageList = CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources();
+            _recentFiles.LargeImageList = CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources();
 
             RestoreUserPreferences();
         }
 
         private void RestoreUserPreferences()
         {
-            _mainView.RecentFiles.Columns[0].Width = Preferences.RecentFilesDocumentWidth.Fallback(_mainView.RecentFiles.Columns[0].Width);
-            _mainView.RecentFiles.Columns[1].Width = Preferences.RecentFilesDateTimeWidth.Fallback(_mainView.RecentFiles.Columns[1].Width);
-            _mainView.RecentFiles.Columns[2].Width = Preferences.RecentFilesEncryptedPathWidth.Fallback(_mainView.RecentFiles.Columns[2].Width);
+            _recentFiles.Columns[0].Width = Preferences.RecentFilesDocumentWidth.Fallback(_recentFiles.Columns[0].Width);
+            _recentFiles.Columns[1].Width = Preferences.RecentFilesDateTimeWidth.Fallback(_recentFiles.Columns[1].Width);
+            _recentFiles.Columns[2].Width = Preferences.RecentFilesEncryptedPathWidth.Fallback(_recentFiles.Columns[2].Width);
 
-            _mainView.RecentFiles.Sorting = Preferences.RecentFilesAscending ? SortOrder.Ascending : SortOrder.Descending;
-            SetSorter(Preferences.RecentFilesSortColumn, _mainView.RecentFiles.Sorting);
+            _recentFiles.Sorting = Preferences.RecentFilesAscending ? SortOrder.Ascending : SortOrder.Descending;
+            SetSorter(Preferences.RecentFilesSortColumn, _recentFiles.Sorting);
         }
 
         private void SetSorter(int column, SortOrder sortOrder)
@@ -145,22 +145,22 @@ namespace Axantum.AxCrypt.Presentation
             switch (column)
             {
                 case 0:
-                    _mainView.RecentFiles.ListViewItemSorter = new RecentFilesByDecryptedFileNameComparer(sortOrder);
+                    _recentFiles.ListViewItemSorter = new RecentFilesByDecryptedFileNameComparer(sortOrder);
                     break;
 
                 case 1:
-                    _mainView.RecentFiles.ListViewItemSorter = new RecentFilesByDateComparer(sortOrder);
+                    _recentFiles.ListViewItemSorter = new RecentFilesByDateComparer(sortOrder);
                     break;
 
                 case 2:
-                    _mainView.RecentFiles.ListViewItemSorter = new RecentFilesByEncryptedPathComparer(sortOrder);
+                    _recentFiles.ListViewItemSorter = new RecentFilesByEncryptedPathComparer(sortOrder);
                     break;
             }
         }
 
         public void ChangeColumnWidth(int columnIndex)
         {
-            ChangeColumnWidth(_mainView.RecentFiles, columnIndex);
+            ChangeColumnWidth(_recentFiles, columnIndex);
         }
 
         internal void ColumnClick(int column)
@@ -172,11 +172,11 @@ namespace Axantum.AxCrypt.Presentation
         {
             if (column == Preferences.RecentFilesSortColumn)
             {
-                _mainView.RecentFiles.Sorting = _mainView.RecentFiles.Sorting == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
-                Preferences.RecentFilesAscending = _mainView.RecentFiles.Sorting == SortOrder.Ascending;
+                _recentFiles.Sorting = _recentFiles.Sorting == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
+                Preferences.RecentFilesAscending = _recentFiles.Sorting == SortOrder.Ascending;
             }
 
-            SetSorter(column, _mainView.RecentFiles.Sorting);
+            SetSorter(column, _recentFiles.Sorting);
             Preferences.RecentFilesSortColumn = column;
         }
 
@@ -200,7 +200,7 @@ namespace Axantum.AxCrypt.Presentation
 
         private ImageList CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources()
         {
-            ImageList smallImageList = new ImageList(_mainView.Components);
+            ImageList smallImageList = new ImageList();
 
             smallImageList.Images.Add("ActiveFile", Resources.activefilegreen16);
             smallImageList.Images.Add("InactiveFile", Resources.inactivefilegreen16);
@@ -215,7 +215,7 @@ namespace Axantum.AxCrypt.Presentation
 
         private ImageList CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources()
         {
-            ImageList largeImageList = new ImageList(_mainView.Components);
+            ImageList largeImageList = new ImageList();
 
             largeImageList.Images.Add("ActiveFile", Resources.opendocument32);
             largeImageList.Images.Add("InactiveFile", Resources.helpquestiongreen32);
