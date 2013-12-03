@@ -1,6 +1,6 @@
 ﻿namespace Axantum.AxCrypt
 {
-    partial class EncryptPassphraseDialog
+    partial class NewPassphraseDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EncryptPassphraseDialog));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewPassphraseDialog));
             this._panel1 = new System.Windows.Forms.Panel();
             this._buttonCancel = new System.Windows.Forms.Button();
             this._buttonOk = new System.Windows.Forms.Button();

@@ -39,11 +39,11 @@ using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
 {
-    public partial class EncryptPassphraseDialog : Form
+    public partial class NewPassphraseDialog : Form
     {
         private NewPassphraseViewModel _viewModel;
 
-        public EncryptPassphraseDialog(string passphrase)
+        public NewPassphraseDialog(string passphrase)
         {
             InitializeComponent();
 
@@ -77,7 +77,7 @@ namespace Axantum.AxCrypt
         {
             if (OS.Current.Platform == Platform.WindowsDesktop)
             {
-                PropertyInfo propertyInfo = typeof(EncryptPassphraseDialog).GetProperty("AutoValidate");
+                PropertyInfo propertyInfo = typeof(NewPassphraseDialog).GetProperty("AutoValidate");
                 propertyInfo.SetValue(this, AutoValidate.EnableAllowFocusChange, null);
             }
         }

@@ -91,11 +91,11 @@
     <Compile Include="DebugOptionsDialog.Designer.cs">
       <DependentUpon>DebugOptionsDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="EncryptPassphraseDialog.cs">
+    <Compile Include="NewPassphraseDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EncryptPassphraseDialog.Designer.cs">
-      <DependentUpon>EncryptPassphraseDialog.cs</DependentUpon>
+    <Compile Include="NewPassphraseDialog.Designer.cs">
+      <DependentUpon>NewPassphraseDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="DecryptPassphraseDialog.cs">
       <SubType>Form</SubType>
@@ -168,14 +168,14 @@
     <EmbeddedResource Include="DecryptPassphraseDialog.sv.resx">
       <DependentUpon>DecryptPassphraseDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EncryptPassphraseDialog.resx">
-      <DependentUpon>EncryptPassphraseDialog.cs</DependentUpon>
+    <EmbeddedResource Include="NewPassphraseDialog.resx">
+      <DependentUpon>NewPassphraseDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DecryptPassphraseDialog.resx">
       <DependentUpon>DecryptPassphraseDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EncryptPassphraseDialog.sv.resx">
-      <DependentUpon>EncryptPassphraseDialog.cs</DependentUpon>
+    <EmbeddedResource Include="NewPassphraseDialog.sv.resx">
+      <DependentUpon>NewPassphraseDialog.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="AxantumStrongName.pfx" />
