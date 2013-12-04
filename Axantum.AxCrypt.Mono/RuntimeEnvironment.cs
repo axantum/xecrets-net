@@ -162,7 +162,7 @@ namespace Axantum.AxCrypt.Mono
             {
                 if (_temporaryDirectoryInfo == null)
                 {
-                    string temporaryFolderPath = Path.Combine(Path.GetTempPath(), @"AxCrypt" + Path.DirectorySeparatorChar);
+                    string temporaryFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"AxCrypt" + Path.DirectorySeparatorChar);
                     IRuntimeFileInfo temporaryFolderInfo = FileInfo(temporaryFolderPath);
                     temporaryFolderInfo.CreateFolder();
                     _temporaryDirectoryInfo = temporaryFolderInfo;
