@@ -85,26 +85,6 @@ namespace Axantum.AxCrypt.Core.Session
 
         private Dictionary<string, ActiveFile> _activeFilesByEncryptedPath;
 
-        private long? _keyWrapIterations = null;
-
-        [DataMember(Name = "KeyWrapIterations")]
-        public long KeyWrapIterations
-        {
-            get
-            {
-                if (!_keyWrapIterations.HasValue)
-                {
-                    _keyWrapIterations = OS.Current.KeyWrapIterations;
-                }
-
-                return _keyWrapIterations.Value;
-            }
-            private set
-            {
-                _keyWrapIterations = value;
-            }
-        }
-
         private KeyWrapSalt _thumbprintSalt;
 
         [DataMember(Name = "ThumbprintSalt")]

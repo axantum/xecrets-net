@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
@@ -47,6 +48,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void AssemblySetup()
         {
             FactoryRegistry.Instance.Singleton((IRuntimeEnvironment)new FakeRuntimeEnvironment());
+            FactoryRegistry.Instance.Singleton((IUserSettings)new UserSettings(UserSettings.DefaultPathInfo));
+            Instance.UserSettings.KeyWrapIterations = 1234;
+            Instance.UserSettings.ThumbprintSalt = KeyWrapSalt.Zero;
             OS.Log.SetLevel(LogLevel.Debug);
             FactoryRegistry.Instance.Singleton(new KnownKeys());
             FactoryRegistry.Instance.Singleton(new ProcessState());

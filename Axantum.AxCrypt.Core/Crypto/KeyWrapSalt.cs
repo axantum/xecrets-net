@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
-using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -46,6 +46,10 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "The reference type 'AesIV' is, in fact, immutable.")]
         public static readonly KeyWrapSalt Zero = new KeyWrapSalt(new byte[0]);
+
+        private KeyWrapSalt()
+        {
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="KeyWrapSalt"/> class.
@@ -80,6 +84,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <summary>
         /// Gets the length of the salt.
         /// </summary>
+        ///
         public int Length
         {
             get

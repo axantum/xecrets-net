@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -115,7 +116,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 if (_thumbprint == null)
                 {
-                    _thumbprint = new AesKeyThumbprint(this, OS.Current.ThumbprintSalt, OS.Current.KeyWrapIterations);
+                    _thumbprint = new AesKeyThumbprint(this, Instance.UserSettings.ThumbprintSalt, Instance.UserSettings.KeyWrapIterations);
                 }
                 return _thumbprint;
             }

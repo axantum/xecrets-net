@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Newtonsoft.Json;
 using System;
@@ -49,18 +50,12 @@ namespace Axantum.AxCrypt.Core.UI
 
             JsonSerializer serializer = CreateSerializer();
 
-            Dictionary<string, string> settings = new Dictionary<string, string>();
             if (_persistanceFileInfo.Exists)
             {
                 using (JsonReader reader = new JsonTextReader(new StreamReader(_persistanceFileInfo.OpenRead())))
                 {
-                    settings = serializer.Deserialize<Dictionary<string, string>>(reader);
+                    _settings = serializer.Deserialize<Dictionary<string, string>>(reader);
                 }
-            }
-            Defaults();
-            foreach (KeyValuePair<string, string> kvp in settings)
-            {
-                _settings[kvp.Key] = kvp.Value;
             }
         }
 
@@ -70,19 +65,6 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 return OS.Current.FileInfo(Path.Combine(OS.Current.WorkFolder.FullName, "UserSettings.txt"));
             }
-        }
-
-        private void Defaults()
-        {
-            CultureName = "en-US";
-            AxCrypt2VersionCheckUrl = new Uri("https://www.axantum.com/Xecrets/RestApi.ashx/axcrypt2version/windows");
-            UpdateUrl = new Uri("http://www.axantum.com/");
-            LastUpdateCheckUtc = DateTime.MinValue;
-            NewestKnownVersion = String.Empty;
-            DebugMode = false;
-            AxCrypt2HelpUrl = new Uri("http://www.axantum.com/AxCrypt/AxCryptNetHelp.html");
-            DisplayEncryptPassphrase = true;
-            DisplayDecryptPassphrase = false;
         }
 
         private static JsonSerializer CreateSerializer()
@@ -97,23 +79,71 @@ namespace Axantum.AxCrypt.Core.UI
             return JsonSerializer.Create(serializerSettings);
         }
 
-        public string CultureName { get { return this["CultureName"]; } set { this["CultureName"] = value; } }
+        public string CultureName
+        {
+            get { return Get("CultureName", "en-US"); }
+            set { Set("CultureName", value); }
+        }
 
-        public Uri AxCrypt2VersionCheckUrl { get { return new Uri(this["AxCrypt2VersionCheckUrl"]); } set { this["AxCrypt2VersionCheckUrl"] = value.ToString(); } }
+        public Uri AxCrypt2VersionCheckUrl
+        {
+            get { return Get("AxCrypt2VersionCheckUrl", new Uri("https://www.axantum.com/Xecrets/RestApi.ashx/axcrypt2version/windows")); }
+            set { Set("AxCrypt2VersionCheckUrl", value.ToString()); }
+        }
 
-        public Uri UpdateUrl { get { return new Uri(this["UpdateUrl"]); } set { this["UpdateUrl"] = value.ToString(); } }
+        public Uri UpdateUrl
+        {
+            get { return Get("UpdateUrl", new Uri("http://www.axantum.com/")); }
+            set { Set("UpdateUrl", value.ToString()); }
+        }
 
-        public DateTime LastUpdateCheckUtc { get { return Convert.ToDateTime(this["LastUpdateCheckUtc"]); } set { this["LastUpdateCheckUtc"] = Convert.ToString(value); } }
+        public DateTime LastUpdateCheckUtc
+        {
+            get { return Get("LastUpdateCheckUtc", DateTime.MinValue); }
+            set { Set("LastUpdateCheckUtc", value); }
+        }
 
-        public string NewestKnownVersion { get { return this["NewestKnownVersion"]; } set { this["NewestKnownVersion"] = value; } }
+        public string NewestKnownVersion
+        {
+            get { return Get("NewestKnownVersion", String.Empty); }
+            set { Set("NewestKnownVersion", value); }
+        }
 
-        public bool DebugMode { get { return Convert.ToBoolean(this["DebugMode"]); } set { this["DebugMode"] = Convert.ToString(value); } }
+        public bool DebugMode
+        {
+            get { return Get("DebugMode", false); }
+            set { Set("DebugMode", value); }
+        }
 
-        public Uri AxCrypt2HelpUrl { get { return new Uri(this["AxCrypt2HelpUrl"]); } set { this["AxCrypt2HelpUrl"] = value.ToString(); } }
+        public Uri AxCrypt2HelpUrl
+        {
+            get { return Get("AxCrypt2HelpUrl", new Uri("http://www.axantum.com/AxCrypt/AxCryptNetHelp.html")); }
+            set { Set("AxCrypt2HelpUrl", value.ToString()); }
+        }
 
-        public bool DisplayEncryptPassphrase { get { return Convert.ToBoolean(this["DisplayEncryptPassphrase"]); } set { this["DisplayEncryptPassphrase"] = Convert.ToString(value); } }
+        public bool DisplayEncryptPassphrase
+        {
+            get { return Get("DisplayEncryptPassphrase", true); }
+            set { Set("DisplayEncryptPassphrase", value); }
+        }
 
-        public bool DisplayDecryptPassphrase { get { return Convert.ToBoolean(this["DisplayDecryptPassphrase"]); } set { this["DisplayDecryptPassphrase"] = Convert.ToString(value); } }
+        public bool DisplayDecryptPassphrase
+        {
+            get { return Get("DisplayDecryptPassphrase", true); }
+            set { Set("DisplayDecryptPassphrase", value); }
+        }
+
+        public long KeyWrapIterations
+        {
+            get { return Get("KeyWrapIterations", () => KeyWrapIterationCalculator.CalculatedKeyWrapIterations); }
+            set { Set("KeyWrapIterations", value); }
+        }
+
+        public KeyWrapSalt ThumbprintSalt
+        {
+            get { return Get("ThumbprintSalt", () => new KeyWrapSalt(AesKey.DefaultKeyLength)); }
+            set { Set("ThumbprintSalt", JsonConvert.SerializeObject(value)); }
+        }
 
         public string this[string key]
         {
@@ -151,6 +181,44 @@ namespace Axantum.AxCrypt.Core.UI
             return Get(key, default(T));
         }
 
+        public T Get<T>(string key, Func<T> fallbackAction)
+        {
+            string value;
+            if (_settings.TryGetValue(key, out value))
+            {
+                try
+                {
+                    return (T)Convert.ChangeType(value, typeof(T));
+                }
+                catch (FormatException)
+                {
+                }
+            }
+
+            T fallback = fallbackAction();
+            this[key] = Convert.ToString(fallback);
+            return fallback;
+        }
+
+        public KeyWrapSalt Get(string key, Func<KeyWrapSalt> fallbackAction)
+        {
+            string value;
+            if (_settings.TryGetValue(key, out value))
+            {
+                try
+                {
+                    return JsonConvert.DeserializeObject<KeyWrapSalt>(value);
+                }
+                catch (JsonException)
+                {
+                }
+            }
+
+            KeyWrapSalt fallback = fallbackAction();
+            this[key] = JsonConvert.SerializeObject(fallback);
+            return fallback;
+        }
+
         public T Get<T>(string key, T fallback)
         {
             string value;
@@ -159,6 +227,16 @@ namespace Axantum.AxCrypt.Core.UI
                 return fallback;
             }
             return (T)Convert.ChangeType(value, typeof(T));
+        }
+
+        public Uri Get(string key, Uri fallback)
+        {
+            string value;
+            if (!_settings.TryGetValue(key, out value))
+            {
+                return fallback;
+            }
+            return new Uri(value);
         }
 
         public void Set<T>(string key, T value)

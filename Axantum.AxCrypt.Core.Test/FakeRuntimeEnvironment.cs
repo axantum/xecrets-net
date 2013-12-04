@@ -52,7 +52,6 @@ namespace Axantum.AxCrypt.Core.Test
             TimeFunction = StandardTimeFunction;
             Platform = Platform.WindowsDesktop;
             CurrentTiming = new FakeTiming();
-            ThumbprintSalt = KeyWrapSalt.Zero;
             EnvironmentVariables = new Dictionary<string, string>();
             MaxConcurrency = 2;
             IsFirstInstance = true;
@@ -227,20 +226,6 @@ namespace Axantum.AxCrypt.Core.Test
         public bool CanTrackProcess
         {
             get { return false; }
-        }
-
-        private long _keyWrapIterations = 1234;
-
-        public long KeyWrapIterations
-        {
-            get { return _keyWrapIterations; }
-            set { _keyWrapIterations = value; }
-        }
-
-        public KeyWrapSalt ThumbprintSalt
-        {
-            get;
-            set;
         }
 
         public void Dispose()

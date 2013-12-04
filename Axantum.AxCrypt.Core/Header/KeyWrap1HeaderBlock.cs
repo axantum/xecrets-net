@@ -131,7 +131,7 @@ namespace Axantum.AxCrypt.Core.Reader
         private void Initialize(AesKey keyEncryptingKey)
         {
             AesKey masterKey = new AesKey();
-            long iterations = OS.Current.KeyWrapIterations;
+            long iterations = Instance.UserSettings.KeyWrapIterations;
             KeyWrapSalt salt = new KeyWrapSalt(keyEncryptingKey.Length);
             using (KeyWrap keyWrap = new KeyWrap(keyEncryptingKey, salt, iterations, KeyWrapMode.AxCrypt))
             {

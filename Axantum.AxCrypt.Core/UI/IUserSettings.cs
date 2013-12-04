@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,5 +64,9 @@ namespace Axantum.AxCrypt.Core.UI
         bool DisplayEncryptPassphrase { get; set; }
 
         bool DisplayDecryptPassphrase { get; set; }
+
+        long KeyWrapIterations { get; set; }
+
+        KeyWrapSalt ThumbprintSalt { get; set; }
     }
 }

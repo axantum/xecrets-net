@@ -139,7 +139,7 @@ namespace Axantum.AxCrypt.Core.Test
             AesKeyThumbprint originalThumbprint = key1.Thumbprint;
             Assert.That(originalThumbprint, Is.EqualTo(key1.Thumbprint), "The thumbprints should be the same.");
 
-            key1.Thumbprint = new AesKeyThumbprint(key1, new KeyWrapSalt(AesKey.DefaultKeyLength), OS.Current.KeyWrapIterations);
+            key1.Thumbprint = new AesKeyThumbprint(key1, new KeyWrapSalt(AesKey.DefaultKeyLength), Instance.UserSettings.KeyWrapIterations);
 
             Assert.That(originalThumbprint, Is.Not.EqualTo(key1.Thumbprint), "The thumbprints should differ.");
         }

@@ -71,10 +71,6 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         bool CanTrackProcess { get; }
 
-        long KeyWrapIterations { get; set; }
-
-        KeyWrapSalt ThumbprintSalt { get; set; }
-
         string EnvironmentVariable(string name);
 
         int MaxConcurrency { get; }

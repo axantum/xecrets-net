@@ -186,9 +186,6 @@ namespace Axantum.AxCrypt
 
             OS.Current.SessionChanged += HandleSessionChangedEvent;
 
-            OS.Current.KeyWrapIterations = Instance.FileSystemState.KeyWrapIterations;
-            OS.Current.ThumbprintSalt = Instance.FileSystemState.ThumbprintSalt;
-
             _backgroundMonitor.UpdateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(HandleVersionUpdateEvent);
             UpdateCheck(Instance.UserSettings.LastUpdateCheckUtc);
 

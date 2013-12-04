@@ -244,30 +244,6 @@ namespace Axantum.AxCrypt.Mono
             get { return Platform == Platform.WindowsDesktop; }
         }
 
-        private long _keyWrapIterations = 0;
-
-        public long KeyWrapIterations
-        {
-            get
-            {
-                if (_keyWrapIterations == 0)
-                {
-                    _keyWrapIterations = KeyWrapIterationCalculator.CalculatedKeyWrapIterations;
-                }
-                return _keyWrapIterations;
-            }
-            set
-            {
-                _keyWrapIterations = value;
-            }
-        }
-
-        public KeyWrapSalt ThumbprintSalt
-        {
-            get;
-            set;
-        }
-
         public void Dispose()
         {
             Dispose(true);
