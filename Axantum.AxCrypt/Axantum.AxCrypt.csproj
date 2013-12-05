@@ -103,9 +103,6 @@
     <Compile Include="DecryptPassphraseDialog.Designer.cs">
       <DependentUpon>DecryptPassphraseDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="BackgroundMonitor.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Extensions.cs" />
     <Compile Include="Preferences.cs" />
     <Compile Include="Presentation\RecentFilesPresentation.cs" />

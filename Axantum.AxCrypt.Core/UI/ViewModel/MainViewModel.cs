@@ -38,8 +38,10 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase, IDisposable
     {
+        private UpdateCheck _updateCheck;
+
         public MainViewModel()
         {
             InitializePropertyValues();
@@ -54,6 +56,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             WatchedFolders = new string[0];
             DragAndDropFiles = new string[0];
             RecentFiles = new ActiveFile[0];
+            VersionUpdateStatus = UI.VersionUpdateStatus.Unknown;
         }
 
         private void BindPropertyChangedEvents()
@@ -61,6 +64,25 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DragAndDropFilesTypes = DetermineFileTypes(files.Select(f => OS.Current.FileInfo(f))); });
             BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsRecent = DetermineDroppableAsRecent(files.Select(f => OS.Current.FileInfo(f))); });
             BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => OS.Current.FileInfo(f))); });
+            BindPropertyChanged("CurrentVersion", (Version cv) => { if (cv != null) UpdateUpdateCheck(cv); });
+        }
+
+        private void UpdateUpdateCheck(Version currentVersion)
+        {
+            DisposeUpdateCheck();
+            _updateCheck = new UpdateCheck(currentVersion);
+            _updateCheck.VersionUpdate += Handle_VersionUpdate;
+            UpdateCheck(Instance.UserSettings.LastUpdateCheckUtc);
+        }
+
+        private void Handle_VersionUpdate(object sender, VersionEventArgs e)
+        {
+            Instance.UserSettings.LastUpdateCheckUtc = OS.Current.UtcNow;
+            Instance.UserSettings.NewestKnownVersion = e.Version.ToString();
+            Instance.UserSettings.UpdateUrl = e.UpdateWebpageUrl;
+
+            UpdatedVersion = e.Version;
+            VersionUpdateStatus = e.VersionUpdateStatus;
         }
 
         private void SubscribeToModelEvents()
@@ -210,6 +232,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool FilesAreOpen { get { return GetProperty<bool>("FilesAreOpen"); } set { SetProperty("FilesAreOpen", value); } }
 
+        public Version CurrentVersion { get { return GetProperty<Version>("CurrentVersion"); } set { SetProperty("CurrentVersion", value); } }
+
+        public Version UpdatedVersion { get { return GetProperty<Version>("UpdatedVersion"); } set { SetProperty("UpdatedVersion", value); } }
+
+        public VersionUpdateStatus VersionUpdateStatus { get { return GetProperty<VersionUpdateStatus>("VersionUpdateStatus"); } set { SetProperty("VersionUpdateStatus", value); } }
+
         public void LogOnLogOff()
         {
             LogOnLogOffInternal();
@@ -308,6 +336,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public void DecryptWatchedFolders(IEnumerable<string> folders)
         {
             Instance.ParallelBackground.DoFiles(folders.Select(f => OS.Current.FileInfo(f)).ToList(), DecryptWatchedFolder, (status) => { });
+        }
+
+        public void UpdateCheck(DateTime lastUpdateCheckUtc)
+        {
+            _updateCheck.CheckInBackground(lastUpdateCheckUtc, Instance.UserSettings.NewestKnownVersion, Instance.UserSettings.AxCrypt2VersionCheckUrl, Instance.UserSettings.UpdateUrl); 
         }
 
         private FileOperationStatus DecryptWatchedFolder(IRuntimeFileInfo folder, IProgressContext progress)
@@ -724,6 +757,34 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             Instance.FileSystemState.Save();
 
             return logOnArgs.Passphrase;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                DisposeInternal();
+            }
+        }
+
+        private void DisposeInternal()
+        {
+            DisposeUpdateCheck();
+        }
+
+        private void DisposeUpdateCheck()
+        {
+            if (_updateCheck != null)
+            {
+                _updateCheck.VersionUpdate -= Handle_VersionUpdate;
+                _updateCheck.Dispose();
+            }
         }
     }
 }

@@ -111,7 +111,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 actions = new List<Action<object>>();
                 _actions.Add(name, actions);
             }
-            actions.Add(o => action((T)o));
+            actions.Add(o => Instance.UIThread.RunOnUIThread(() => action((T)o)));
             action(GetProperty<T>(name));
         }
 

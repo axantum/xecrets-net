@@ -65,8 +65,6 @@ namespace Axantum.AxCrypt
     /// </summary>
     public partial class AxCryptMainForm : Form, IStatusChecker
     {
-        private Uri _updateUrl;
-
         private TabPage _hiddenLogTabPage = null;
 
         private NotifyIcon _notifyIcon = null;
@@ -174,7 +172,6 @@ namespace Axantum.AxCrypt
             UpdateDebugMode();
 
             _title = "{0} {1}{2}".InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription);
-            _updateUrl = Instance.UserSettings.UpdateUrl;
 
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
 
@@ -186,15 +183,13 @@ namespace Axantum.AxCrypt
 
             OS.Current.SessionChanged += HandleSessionChangedEvent;
 
-            _backgroundMonitor.UpdateCheck.VersionUpdate += new EventHandler<VersionEventArgs>(HandleVersionUpdateEvent);
-            UpdateCheck(Instance.UserSettings.LastUpdateCheckUtc);
-
             RestoreUserPreferences();
 
             Instance.CommandService.Received += AxCryptMainForm_Request;
             Instance.CommandService.StartListening();
 
             BindToMainViewModel();
+            _mainViewModel.CurrentVersion = Assembly.GetExecutingAssembly().GetName().Version;
 
             _loaded = true;
             ReStartSession();
@@ -215,7 +210,9 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged("WatchedFolders", (IEnumerable<string> folders) => { UpdateWatchedFolders(folders); });
             _mainViewModel.BindPropertyChanged("WatchedFoldersEnabled", (bool enabled) => { if (enabled) Tabs.TabPages.Add(_hiddenWatchedFoldersTabPage); else Tabs.TabPages.Remove(_hiddenWatchedFoldersTabPage); });
             _mainViewModel.BindPropertyChanged("RecentFiles", (IEnumerable<ActiveFile> files) => { UpdateRecentFiles(files); });
+            _mainViewModel.BindPropertyChanged("VersionUpdateStatus", (VersionUpdateStatus vus) => { UpdateVersionStatus(vus); });
 
+            _checkVersionNowToolStripMenuItem.Click += (sender, e) => { _mainViewModel.UpdateCheck(DateTime.MinValue); };
             _clearPassphraseMemoryToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory(); ReStartSession(); };
             _decryptAndRemoveFromListToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DecryptFiles(_mainViewModel.SelectedRecentFiles); };
             _decryptToolStripButton.Click += (sender, e) => { _mainViewModel.DecryptFiles(); };
@@ -514,12 +511,7 @@ namespace Axantum.AxCrypt
             });
         }
 
-        private void UpdateCheck(DateTime lastCheckUtc)
-        {
-            _backgroundMonitor.UpdateCheck.CheckInBackground(lastCheckUtc, Instance.UserSettings.NewestKnownVersion, Instance.UserSettings.AxCrypt2VersionCheckUrl, Instance.UserSettings.UpdateUrl);
-        }
-
-        private void UpdateVersionStatus(VersionUpdateStatus status, Version version)
+        private void UpdateVersionStatus(VersionUpdateStatus status)
         {
             switch (status)
             {
@@ -535,28 +527,18 @@ namespace Axantum.AxCrypt
                     break;
 
                 case VersionUpdateStatus.NewerVersionIsAvailable:
-                    _updateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.NewVersionIsAvailableTooltip.InvariantFormat(version);
+                    _updateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.NewVersionIsAvailableTooltip.InvariantFormat(_mainViewModel.UpdatedVersion);
                     _updateToolStripButton.Image = Resources.refreshred;
                     _updateToolStripButton.Enabled = true;
                     break;
 
+                case VersionUpdateStatus.Unknown:
                 case VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck:
                     _updateToolStripButton.ToolTipText = Axantum.AxCrypt.Properties.Resources.ClickToCheckForNewerVersionTooltip;
                     _updateToolStripButton.Image = Resources.refreshgreen;
                     _updateToolStripButton.Enabled = true;
                     break;
             }
-        }
-
-        private void HandleVersionUpdateEvent(object sender, VersionEventArgs e)
-        {
-            Instance.UserSettings.LastUpdateCheckUtc = OS.Current.UtcNow;
-            Instance.UserSettings.NewestKnownVersion = e.Version.ToString();
-            _updateUrl = e.UpdateWebpageUrl;
-            Instance.UIThread.RunOnUIThread(() =>
-            {
-                UpdateVersionStatus(e.VersionUpdateStatus, e.Version);
-            });
         }
 
         private void UpdateWatchedFolders(IEnumerable<string> watchedFolders)
@@ -991,7 +973,7 @@ namespace Axantum.AxCrypt
         private void UpdateToolStripButton_Click(object sender, EventArgs e)
         {
             Instance.UserSettings.LastUpdateCheckUtc = OS.Current.UtcNow;
-            Process.Start(_updateUrl.ToString());
+            Process.Start(Instance.UserSettings.UpdateUrl.ToString());
         }
 
         private void debugOptionsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1037,11 +1019,6 @@ namespace Axantum.AxCrypt
                 }
                 Instance.UserSettings.AxCrypt2VersionCheckUrl = new Uri(dialog.UpdateCheckServiceUrl.Text);
             }
-        }
-
-        private void CheckVersionNowToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            UpdateCheck(DateTime.MinValue);
         }
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)

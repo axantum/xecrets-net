@@ -792,22 +792,22 @@
   <metadata name="_watchedFoldersContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>915, 17</value>
   </metadata>
-  <data name="_deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_watchedFoldersRemoveMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>185, 22</value>
   </data>
-  <data name="_deleteToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_watchedFoldersRemoveMenuItem.Text" xml:space="preserve">
     <value>&amp;Decrypt Permanently</value>
   </data>
-  <data name="_decryptTemporarilyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_watchedFoldersdecryptTemporarilyMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>185, 22</value>
   </data>
-  <data name="_decryptTemporarilyToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_watchedFoldersdecryptTemporarilyMenuItem.Text" xml:space="preserve">
     <value>Decrypt &amp;Temporarily</value>
   </data>
-  <data name="_openExplorerHereToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="_watchedFoldersOpenExplorerHereMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>185, 22</value>
   </data>
-  <data name="_openExplorerHereToolStripMenuItem.Text" xml:space="preserve">
+  <data name="_watchedFoldersOpenExplorerHereMenuItem.Text" xml:space="preserve">
     <value>Open &amp;Explorer Here</value>
   </data>
   <data name="_watchedFoldersContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
@@ -821,9 +821,6 @@
   </data>
   <metadata name="_progressBackgroundWorker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1156, 17</value>
-  </metadata>
-  <metadata name="_backgroundMonitor.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1365, 17</value>
   </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1459,35 +1456,29 @@
   <data name="&gt;&gt;_encryptedPathColumnHeader.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;_deleteToolStripMenuItem.Name" xml:space="preserve">
-    <value>_deleteToolStripMenuItem</value>
+  <data name="&gt;&gt;_watchedFoldersRemoveMenuItem.Name" xml:space="preserve">
+    <value>_watchedFoldersRemoveMenuItem</value>
   </data>
-  <data name="&gt;&gt;_deleteToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_watchedFoldersRemoveMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;_decryptTemporarilyToolStripMenuItem.Name" xml:space="preserve">
-    <value>_decryptTemporarilyToolStripMenuItem</value>
+  <data name="&gt;&gt;_watchedFoldersdecryptTemporarilyMenuItem.Name" xml:space="preserve">
+    <value>_watchedFoldersdecryptTemporarilyMenuItem</value>
   </data>
-  <data name="&gt;&gt;_decryptTemporarilyToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_watchedFoldersdecryptTemporarilyMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;_openExplorerHereToolStripMenuItem.Name" xml:space="preserve">
-    <value>_openExplorerHereToolStripMenuItem</value>
+  <data name="&gt;&gt;_watchedFoldersOpenExplorerHereMenuItem.Name" xml:space="preserve">
+    <value>_watchedFoldersOpenExplorerHereMenuItem</value>
   </data>
-  <data name="&gt;&gt;_openExplorerHereToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;_watchedFoldersOpenExplorerHereMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;_progressBackgroundWorker.Name" xml:space="preserve">
     <value>_progressBackgroundWorker</value>
   </data>
   <data name="&gt;&gt;_progressBackgroundWorker.Type" xml:space="preserve">
-    <value>Axantum.AxCrypt.ProgressBackground, Axantum.AxCrypt, Version=2.0.665.1, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
-  </data>
-  <data name="&gt;&gt;_backgroundMonitor.Name" xml:space="preserve">
-    <value>_backgroundMonitor</value>
-  </data>
-  <data name="&gt;&gt;_backgroundMonitor.Type" xml:space="preserve">
-    <value>Axantum.AxCrypt.BackgroundMonitor, Axantum.AxCrypt, Version=2.0.665.1, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
+    <value>Axantum.AxCrypt.ProgressBackground, Axantum.AxCrypt, Version=2.0.687.1, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AxCryptMainForm</value>

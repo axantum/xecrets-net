@@ -74,7 +74,6 @@
             this._watchedFoldersdecryptTemporarilyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._watchedFoldersOpenExplorerHereMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._progressBackgroundWorker = new Axantum.AxCrypt.ProgressBackground(this.components);
-            this._backgroundMonitor = new Axantum.AxCrypt.BackgroundMonitor(this.components);
             this._mainToolStrip.SuspendLayout();
             this._mainMenuStrip.SuspendLayout();
             this._recentFilesContextMenuStrip.SuspendLayout();
@@ -84,7 +83,6 @@
             this._recentFilesTabPage.SuspendLayout();
             this._statusTabControl.SuspendLayout();
             this._watchedFoldersContextMenuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._backgroundMonitor)).BeginInit();
             this.SuspendLayout();
             // 
             // _mainToolStrip
@@ -308,7 +306,6 @@
             // 
             this._checkVersionNowToolStripMenuItem.Name = "_checkVersionNowToolStripMenuItem";
             resources.ApplyResources(this._checkVersionNowToolStripMenuItem, "_checkVersionNowToolStripMenuItem");
-            this._checkVersionNowToolStripMenuItem.Click += new System.EventHandler(this.CheckVersionNowToolStripMenuItem_Click);
             // 
             // _setUpdateCheckUrlToolStripMenuItem
             // 
@@ -464,20 +461,20 @@
             this._watchedFoldersContextMenuStrip.Name = "watchedFoldersContextMenuStrip";
             resources.ApplyResources(this._watchedFoldersContextMenuStrip, "_watchedFoldersContextMenuStrip");
             // 
-            // _deleteToolStripMenuItem
+            // _watchedFoldersRemoveMenuItem
             // 
-            this._watchedFoldersRemoveMenuItem.Name = "_deleteToolStripMenuItem";
-            resources.ApplyResources(this._watchedFoldersRemoveMenuItem, "_deleteToolStripMenuItem");
+            this._watchedFoldersRemoveMenuItem.Name = "_watchedFoldersRemoveMenuItem";
+            resources.ApplyResources(this._watchedFoldersRemoveMenuItem, "_watchedFoldersRemoveMenuItem");
             // 
-            // _decryptTemporarilyToolStripMenuItem
+            // _watchedFoldersdecryptTemporarilyMenuItem
             // 
-            this._watchedFoldersdecryptTemporarilyMenuItem.Name = "_decryptTemporarilyToolStripMenuItem";
-            resources.ApplyResources(this._watchedFoldersdecryptTemporarilyMenuItem, "_decryptTemporarilyToolStripMenuItem");
+            this._watchedFoldersdecryptTemporarilyMenuItem.Name = "_watchedFoldersdecryptTemporarilyMenuItem";
+            resources.ApplyResources(this._watchedFoldersdecryptTemporarilyMenuItem, "_watchedFoldersdecryptTemporarilyMenuItem");
             // 
-            // _openExplorerHereToolStripMenuItem
+            // _watchedFoldersOpenExplorerHereMenuItem
             // 
-            this._watchedFoldersOpenExplorerHereMenuItem.Name = "_openExplorerHereToolStripMenuItem";
-            resources.ApplyResources(this._watchedFoldersOpenExplorerHereMenuItem, "_openExplorerHereToolStripMenuItem");
+            this._watchedFoldersOpenExplorerHereMenuItem.Name = "_watchedFoldersOpenExplorerHereMenuItem";
+            resources.ApplyResources(this._watchedFoldersOpenExplorerHereMenuItem, "_watchedFoldersOpenExplorerHereMenuItem");
             // 
             // _progressBackgroundWorker
             // 
@@ -511,7 +508,6 @@
             this._recentFilesTabPage.ResumeLayout(false);
             this._statusTabControl.ResumeLayout(false);
             this._watchedFoldersContextMenuStrip.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this._backgroundMonitor)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -555,7 +551,6 @@
         private System.Windows.Forms.ToolStripMenuItem _aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _viewHelpMenuItem;
         private ProgressBackground _progressBackgroundWorker;
-        private BackgroundMonitor _backgroundMonitor;
         private System.Windows.Forms.TabPage _logTabPage;
         private System.Windows.Forms.TextBox _logOutputTextBox;
         private System.Windows.Forms.ListView _watchedFoldersListView;

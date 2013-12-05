@@ -34,6 +34,7 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public enum VersionUpdateStatus
     {
+        Unknown,
         IsUpToDateOrRecentlyChecked,
         NewerVersionIsAvailable,
         ShortTimeSinceLastSuccessfulCheck,
