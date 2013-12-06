@@ -65,8 +65,6 @@ namespace Axantum.AxCrypt
     /// </summary>
     public partial class AxCryptMainForm : Form, IStatusChecker
     {
-        private TabPage _hiddenLogTabPage = null;
-
         private NotifyIcon _notifyIcon = null;
 
         private string _title;
@@ -76,6 +74,8 @@ namespace Axantum.AxCrypt
         private MainViewModel _mainViewModel = new MainViewModel();
 
         public static MessageBoxOptions MessageBoxOptions { get; private set; }
+
+        private TabPage _hiddenLogTabPage = null;
 
         private TabPage _hiddenWatchedFoldersTabPage;
 
@@ -168,8 +168,7 @@ namespace Axantum.AxCrypt
 
             _recentFilesPresentation = new RecentFilesPresentation(_recentFilesListView);
             _hiddenWatchedFoldersTabPage = Tabs.TabPages["_watchedFoldersTabPage"];
-
-            UpdateDebugMode();
+            _hiddenLogTabPage = Tabs.TabPages["_logTabPage"];
 
             _title = "{0} {1}{2}".InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription);
 
@@ -211,9 +210,11 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged("WatchedFoldersEnabled", (bool enabled) => { if (enabled) Tabs.TabPages.Add(_hiddenWatchedFoldersTabPage); else Tabs.TabPages.Remove(_hiddenWatchedFoldersTabPage); });
             _mainViewModel.BindPropertyChanged("RecentFiles", (IEnumerable<ActiveFile> files) => { UpdateRecentFiles(files); });
             _mainViewModel.BindPropertyChanged("VersionUpdateStatus", (VersionUpdateStatus vus) => { UpdateVersionStatus(vus); });
+            _mainViewModel.BindPropertyChanged("DebugMode", (bool enabled) => { UpdateDebugMode(enabled); });
 
             _checkVersionNowToolStripMenuItem.Click += (sender, e) => { _mainViewModel.UpdateCheck(DateTime.MinValue); };
             _clearPassphraseMemoryToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory(); ReStartSession(); };
+            _debugOptionsToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
             _decryptAndRemoveFromListToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DecryptFiles(_mainViewModel.SelectedRecentFiles); };
             _decryptToolStripButton.Click += (sender, e) => { _mainViewModel.DecryptFiles(); };
             _decryptToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DecryptFiles(); };
@@ -538,6 +539,21 @@ namespace Axantum.AxCrypt
                     _updateToolStripButton.Image = Resources.refreshgreen;
                     _updateToolStripButton.Enabled = true;
                     break;
+            }
+        }
+
+
+        private void UpdateDebugMode(bool enabled)
+        {
+            _debugOptionsToolStripMenuItem.Checked = enabled;
+            _debugToolStripMenuItem.Visible = enabled;
+            if (enabled)
+            {
+                Tabs.TabPages.Add(_hiddenLogTabPage);
+            }
+            else
+            {
+                Tabs.TabPages.Remove(_hiddenLogTabPage);
             }
         }
 
@@ -974,37 +990,6 @@ namespace Axantum.AxCrypt
         {
             Instance.UserSettings.LastUpdateCheckUtc = OS.Current.UtcNow;
             Process.Start(Instance.UserSettings.UpdateUrl.ToString());
-        }
-
-        private void debugOptionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Instance.UserSettings.DebugMode = !Instance.UserSettings.DebugMode;
-            UpdateDebugMode();
-        }
-
-        private void UpdateDebugMode()
-        {
-            _debugOptionsToolStripMenuItem.Checked = Instance.UserSettings.DebugMode;
-            _debugToolStripMenuItem.Visible = Instance.UserSettings.DebugMode;
-            if (Instance.UserSettings.DebugMode)
-            {
-                OS.Log.SetLevel(LogLevel.Debug);
-                if (_hiddenLogTabPage != null)
-                {
-                    _statusTabControl.TabPages.Add(_hiddenLogTabPage);
-                }
-                ServicePointManager.ServerCertificateValidationCallback = (object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) =>
-                {
-                    return true;
-                };
-            }
-            else
-            {
-                ServicePointManager.ServerCertificateValidationCallback = null;
-                OS.Log.SetLevel(LogLevel.Error);
-                _hiddenLogTabPage = _logTabPage;
-                _statusTabControl.TabPages.Remove(_logTabPage);
-            }
         }
 
         private void SetUpdateCheckUrlToolStripMenuItem_Click(object sender, EventArgs e)

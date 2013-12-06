@@ -29,12 +29,16 @@ using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
@@ -56,6 +60,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             WatchedFolders = new string[0];
             DragAndDropFiles = new string[0];
             RecentFiles = new ActiveFile[0];
+            DebugMode = false;
             VersionUpdateStatus = UI.VersionUpdateStatus.Unknown;
         }
 
@@ -65,6 +70,24 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsRecent = DetermineDroppableAsRecent(files.Select(f => OS.Current.FileInfo(f))); });
             BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => OS.Current.FileInfo(f))); });
             BindPropertyChanged("CurrentVersion", (Version cv) => { if (cv != null) UpdateUpdateCheck(cv); });
+            BindPropertyChanged("DebugMode", (bool enabled) => { UpdateDebugMode(enabled); });
+        }
+
+        private void UpdateDebugMode(bool enabled)
+        {
+            if (enabled)
+            {
+                OS.Log.SetLevel(LogLevel.Debug);
+                ServicePointManager.ServerCertificateValidationCallback = (object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) =>
+                {
+                    return true;
+                };
+            }
+            else
+            {
+                ServicePointManager.ServerCertificateValidationCallback = null;
+                OS.Log.SetLevel(LogLevel.Error);
+            }
         }
 
         private void UpdateUpdateCheck(Version currentVersion)
@@ -237,6 +260,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public Version UpdatedVersion { get { return GetProperty<Version>("UpdatedVersion"); } set { SetProperty("UpdatedVersion", value); } }
 
         public VersionUpdateStatus VersionUpdateStatus { get { return GetProperty<VersionUpdateStatus>("VersionUpdateStatus"); } set { SetProperty("VersionUpdateStatus", value); } }
+
+        public bool DebugMode { get { return GetProperty<bool>("DebugMode"); } set { SetProperty("DebugMode", value); } }
 
         public void LogOnLogOff()
         {

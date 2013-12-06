@@ -281,7 +281,6 @@
             // 
             this._debugOptionsToolStripMenuItem.Name = "_debugOptionsToolStripMenuItem";
             resources.ApplyResources(this._debugOptionsToolStripMenuItem, "_debugOptionsToolStripMenuItem");
-            this._debugOptionsToolStripMenuItem.Click += new System.EventHandler(this.debugOptionsToolStripMenuItem_Click);
             // 
             // _clearPassphraseMemoryToolStripMenuItem
             // 
