@@ -27,9 +27,7 @@
 
 using Axantum.AxCrypt.Core.Session;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
@@ -48,6 +46,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public bool DisplayPassphrase { get; set; }
 
         public string Passphrase { get; set; }
+
+        public string Name { get; set; }
 
         public PassphraseIdentity Identity { get; set; }
     }

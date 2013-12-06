@@ -25,9 +25,7 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt;
 using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Ipc;
@@ -35,23 +33,17 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
-using Axantum.AxCrypt.Mono;
 using Axantum.AxCrypt.Presentation;
 using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Net.Security;
 using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -78,11 +70,6 @@ namespace Axantum.AxCrypt
         private TabPage _hiddenLogTabPage = null;
 
         private TabPage _hiddenWatchedFoldersTabPage;
-
-        public TabControl Tabs
-        {
-            get { return _statusTabControl; }
-        }
 
         private DragDropEffects GetEffectsForMainToolStrip(DragEventArgs e)
         {
@@ -167,8 +154,8 @@ namespace Axantum.AxCrypt
             FactoryRegistry.Instance.Singleton<ProcessState>(new ProcessState());
 
             _recentFilesPresentation = new RecentFilesPresentation(_recentFilesListView);
-            _hiddenWatchedFoldersTabPage = Tabs.TabPages["_watchedFoldersTabPage"];
-            _hiddenLogTabPage = Tabs.TabPages["_logTabPage"];
+            _hiddenWatchedFoldersTabPage = _statusTabControl.TabPages["_watchedFoldersTabPage"];
+            _hiddenLogTabPage = _statusTabControl.TabPages["_logTabPage"];
 
             _title = "{0} {1}{2}".InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription);
 
@@ -207,7 +194,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged("OpenEncryptedEnabled", (bool enabled) => { _openEncryptedToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("FilesAreOpen", (bool filesAreOpen) => { _closeAndRemoveOpenFilesToolStripButton.Enabled = filesAreOpen; });
             _mainViewModel.BindPropertyChanged("WatchedFolders", (IEnumerable<string> folders) => { UpdateWatchedFolders(folders); });
-            _mainViewModel.BindPropertyChanged("WatchedFoldersEnabled", (bool enabled) => { if (enabled) Tabs.TabPages.Add(_hiddenWatchedFoldersTabPage); else Tabs.TabPages.Remove(_hiddenWatchedFoldersTabPage); });
+            _mainViewModel.BindPropertyChanged("WatchedFoldersEnabled", (bool enabled) => { if (enabled) _statusTabControl.TabPages.Add(_hiddenWatchedFoldersTabPage); else _statusTabControl.TabPages.Remove(_hiddenWatchedFoldersTabPage); });
             _mainViewModel.BindPropertyChanged("RecentFiles", (IEnumerable<ActiveFile> files) => { UpdateRecentFiles(files); });
             _mainViewModel.BindPropertyChanged("VersionUpdateStatus", (VersionUpdateStatus vus) => { UpdateVersionStatus(vus); });
             _mainViewModel.BindPropertyChanged("DebugMode", (bool enabled) => { UpdateDebugMode(enabled); });
@@ -272,6 +259,7 @@ namespace Axantum.AxCrypt
                 }
                 args.DisplayPassphrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
                 args.Passphrase = passphraseDialog.PassphraseTextBox.Text;
+                args.Name = passphraseDialog.NameTextBox.Text;
             }
             return;
         }
@@ -542,18 +530,17 @@ namespace Axantum.AxCrypt
             }
         }
 
-
         private void UpdateDebugMode(bool enabled)
         {
             _debugOptionsToolStripMenuItem.Checked = enabled;
             _debugToolStripMenuItem.Visible = enabled;
             if (enabled)
             {
-                Tabs.TabPages.Add(_hiddenLogTabPage);
+                _statusTabControl.TabPages.Add(_hiddenLogTabPage);
             }
             else
             {
-                Tabs.TabPages.Remove(_hiddenLogTabPage);
+                _statusTabControl.TabPages.Remove(_hiddenLogTabPage);
             }
         }
 

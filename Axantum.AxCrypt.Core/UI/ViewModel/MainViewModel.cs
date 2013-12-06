@@ -25,16 +25,13 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
-using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Net.Security;
@@ -365,7 +362,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public void UpdateCheck(DateTime lastUpdateCheckUtc)
         {
-            _updateCheck.CheckInBackground(lastUpdateCheckUtc, Instance.UserSettings.NewestKnownVersion, Instance.UserSettings.AxCrypt2VersionCheckUrl, Instance.UserSettings.UpdateUrl); 
+            _updateCheck.CheckInBackground(lastUpdateCheckUtc, Instance.UserSettings.NewestKnownVersion, Instance.UserSettings.AxCrypt2VersionCheckUrl, Instance.UserSettings.UpdateUrl);
         }
 
         private FileOperationStatus DecryptWatchedFolder(IRuntimeFileInfo folder, IProgressContext progress)
@@ -777,7 +774,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return logOnArgs.Passphrase;
             }
 
-            identity = new PassphraseIdentity(logOnArgs.Passphrase, passphrase.DerivedPassphrase);
+            identity = new PassphraseIdentity(logOnArgs.Name, passphrase.DerivedPassphrase);
             Instance.FileSystemState.Identities.Add(identity);
             Instance.FileSystemState.Save();
 
