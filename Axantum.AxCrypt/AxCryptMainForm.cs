@@ -222,6 +222,7 @@ namespace Axantum.AxCrypt
             _watchedFoldersdecryptTemporarilyMenuItem.Click += (sender, e) => { _mainViewModel.DecryptWatchedFolders(_mainViewModel.SelectedWatchedFolders); };
             _watchedFoldersRemoveMenuItem.Click += (sender, e) => { _mainViewModel.RemoveWatchedFolders(_mainViewModel.SelectedWatchedFolders); };
 
+            _recentFilesListView.ColumnClick += (sender, e) => { SetSortOrder(e.Column); };
             _recentFilesListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedRecentFiles = _recentFilesListView.SelectedItems.Cast<ListViewItem>().Select(lvi => lvi.SubItems["EncryptedPath"].Text); };
             _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesContextMenuStrip.Show((Control)sender, e.Location); };
             _recentFilesListView.MouseDoubleClick += (sender, e) => { _mainViewModel.OpenFiles(_mainViewModel.SelectedRecentFiles); };
@@ -565,23 +566,20 @@ namespace Axantum.AxCrypt
         private void UpdateRecentFiles(IEnumerable<ActiveFile> files)
         {
             _recentFilesListView.BeginUpdate();
+            _recentFilesListView.Items.Clear();
             foreach (ActiveFile file in files)
             {
-                ListViewItem item = _recentFilesListView.Items[file.EncryptedFileInfo.FullName];
-                if (item == null)
-                {
-                    string text = Path.GetFileName(file.DecryptedFileInfo.FullName);
-                    item = new ListViewItem(text);
-                    item.Name = file.EncryptedFileInfo.FullName;
+                string text = Path.GetFileName(file.DecryptedFileInfo.FullName);
+                ListViewItem item = new ListViewItem(text);
+                item.Name = file.EncryptedFileInfo.FullName;
 
-                    ListViewItem.ListViewSubItem dateColumn = item.SubItems.Add(String.Empty);
-                    dateColumn.Name = "Date";
+                ListViewItem.ListViewSubItem dateColumn = item.SubItems.Add(String.Empty);
+                dateColumn.Name = "Date";
 
-                    ListViewItem.ListViewSubItem encryptedPathColumn = item.SubItems.Add(String.Empty);
-                    encryptedPathColumn.Name = "EncryptedPath";
+                ListViewItem.ListViewSubItem encryptedPathColumn = item.SubItems.Add(String.Empty);
+                encryptedPathColumn.Name = "EncryptedPath";
 
-                    _recentFilesListView.Items.Add(item);
-                }
+                _recentFilesListView.Items.Add(item);
 
                 UpdateListViewItem(item, file);
             }
@@ -589,7 +587,6 @@ namespace Axantum.AxCrypt
             {
                 _recentFilesListView.Items.RemoveAt(_recentFilesListView.Items.Count - 1);
             }
-            _recentFilesListView.Sort();
             _recentFilesListView.EndUpdate();
         }
 
@@ -840,9 +837,33 @@ namespace Axantum.AxCrypt
                 });
         }
 
-        private void RecentFilesListView_ColumnClick(object sender, ColumnClickEventArgs e)
+        private void SetSortOrder(int column)
         {
-            _recentFilesPresentation.ColumnClick(e.Column);
+            switch (column)
+            {
+                case 0:
+                    _mainViewModel.RecentFilesComparer = ChooseComparer(_mainViewModel.RecentFilesComparer, ActiveFileComparer.DecryptedNameComparer);
+                    break;
+
+                case 1:
+                    _mainViewModel.RecentFilesComparer = ChooseComparer(_mainViewModel.RecentFilesComparer, ActiveFileComparer.DateComparer);
+                    break;
+
+                case 2:
+                    _mainViewModel.RecentFilesComparer = ChooseComparer(_mainViewModel.RecentFilesComparer, ActiveFileComparer.EncryptedNameComparer);
+                    break;
+            }
+            Preferences.RecentFilesAscending = !_mainViewModel.RecentFilesComparer.ReverseSort;
+            Preferences.RecentFilesSortColumn = column;
+        }
+
+        private static ActiveFileComparer ChooseComparer(ActiveFileComparer current, ActiveFileComparer comparer)
+        {
+            if (current != null && current.GetType() == comparer.GetType())
+            {
+                comparer.ReverseSort = !current.ReverseSort;
+            }
+            return comparer;
         }
 
         private void CloseOpenFilesToolStripMenuItem_Click(object sender, EventArgs e)

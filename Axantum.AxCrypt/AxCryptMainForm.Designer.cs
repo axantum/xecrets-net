@@ -424,10 +424,9 @@
             this._recentFilesListView.FullRowSelect = true;
             this._recentFilesListView.Name = "_recentFilesListView";
             this._recentFilesListView.ShowItemToolTips = true;
-            this._recentFilesListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this._recentFilesListView.Sorting = System.Windows.Forms.SortOrder.None;
             this._recentFilesListView.UseCompatibleStateImageBehavior = false;
             this._recentFilesListView.View = System.Windows.Forms.View.Details;
-            this._recentFilesListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.RecentFilesListView_ColumnClick);
             this._recentFilesListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.RecentFilesListView_ColumnWidthChanged);
             // 
             // _decryptedFileColumnHeader
