@@ -146,6 +146,47 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
+        private bool _handleSessionChangedInProgress = false;
+
+        public void HandleSessionChangedEvent(object sender, SessionEventArgs e)
+        {
+            Instance.UIThread.RunOnUIThread(() => SessionChangedInternal(e));
+        }
+
+        private void SessionChangedInternal(SessionEventArgs e)
+        {
+            if (OS.Log.IsInfoEnabled)
+            {
+                OS.Log.LogInfo("Tick");
+            }
+
+            if (_handleSessionChangedInProgress)
+            {
+                Instance.FileSystemState.NotifySessionChanged(new SessionEvent(SessionEventType.SessionChange));
+                return;
+            }
+            _handleSessionChangedInProgress = true;
+
+            Instance.BackgroundWork.Work(
+                (IProgressContext progress) =>
+                {
+                    progress.NotifyLevelStart();
+                    try
+                    {
+                        HandleSessionEvents(e.SessionEvents, progress);
+                    }
+                    finally
+                    {
+                        progress.NotifyLevelFinished();
+                    }
+                    return FileOperationStatus.Success;
+                },
+                (FileOperationStatus status) =>
+                {
+                    _handleSessionChangedInProgress = false;
+                });
+        }
+
         public virtual void HandleSessionEvents(IEnumerable<SessionEvent> events, IProgressContext progress)
         {
             foreach (SessionEvent sessionEvent in events)

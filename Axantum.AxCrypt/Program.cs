@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2012, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2013, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -31,11 +31,7 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Mono;
-using Axantum.AxCrypt.Properties;
-using NDesk.Options;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -69,8 +65,9 @@ namespace Axantum.AxCrypt
         {
             FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(new RuntimeEnvironment());
             FactoryRegistry.Instance.Singleton<CommandService>(new CommandService(new HttpRequestServer(), new HttpRequestClient()));
-            FactoryRegistry.Instance.Singleton<FileSystemState>(FileSystemState.Create(FileSystemState.DefaultPathInfo));
             FactoryRegistry.Instance.Singleton<IUserSettings>(new UserSettings(UserSettings.DefaultPathInfo));
+            FactoryRegistry.Instance.Register<IDelayTimer>(() => new DelayTimer());
+            FactoryRegistry.Instance.Singleton<FileSystemState>(FileSystemState.Create(FileSystemState.DefaultPathInfo));
         }
 
         private static void SetCulture()

@@ -26,49 +26,31 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Ipc;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
-using System.Security.AccessControl;
 using System.Security.Cryptography;
-using System.Text.RegularExpressions;
 using System.Threading;
 
 namespace Axantum.AxCrypt.Mono
 {
     public class RuntimeEnvironment : IRuntimeEnvironment, IDisposable
     {
-        private static readonly TimeSpan _defaultWorkFolderStateMinimumIdle = TimeSpan.FromMilliseconds(500);
-
         private IFileWatcher _workFolderWatcher;
 
-        private DelayedAction _delayedWorkFolderStateChanged;
-
         public RuntimeEnvironment()
-            : this(_defaultWorkFolderStateMinimumIdle)
+            : this(".axx")
         {
         }
 
-        public RuntimeEnvironment(TimeSpan workFolderStateMinimumIdle)
-            : this(".axx", workFolderStateMinimumIdle)
-        {
-        }
-
-        public RuntimeEnvironment(string extension, TimeSpan workFolderStateMinimumIdle)
+        public RuntimeEnvironment(string extension)
         {
             AxCryptExtension = extension;
 
             _workFolderWatcher = CreateFileWatcher(WorkFolder.FullName);
             _workFolderWatcher.FileChanged += HandleWorkFolderFileChangedEvent;
-
-            _delayedWorkFolderStateChanged = new DelayedAction(OnWorkFolderStateChanged, workFolderStateMinimumIdle);
         }
 
         private void HandleWorkFolderFileChangedEvent(object sender, FileWatcherEventArgs e)
@@ -77,7 +59,7 @@ namespace Axantum.AxCrypt.Mono
             {
                 return;
             }
-            NotifySessionChanged(new SessionEvent(SessionEventType.WorkFolderChange, e.FullName));
+            Instance.FileSystemState.NotifySessionChanged(new SessionEvent(SessionEventType.WorkFolderChange, e.FullName));
         }
 
         public bool IsLittleEndian
@@ -206,34 +188,6 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        private HashSet<SessionEvent> _sessionEvents = new HashSet<SessionEvent>();
-
-        public void NotifySessionChanged(SessionEvent sessionEvent)
-        {
-            lock (_sessionEvents)
-            {
-                _sessionEvents.Add(sessionEvent);
-            }
-            _delayedWorkFolderStateChanged.RestartIdleTimer();
-        }
-
-        protected virtual void OnWorkFolderStateChanged()
-        {
-            EventHandler<SessionEventArgs> handler = SessionChanged;
-            if (handler != null)
-            {
-                IEnumerable<SessionEvent> events;
-                lock (_sessionEvents)
-                {
-                    events = new List<SessionEvent>(_sessionEvents);
-                    _sessionEvents.Clear();
-                }
-                handler(this, new SessionEventArgs(events));
-            }
-        }
-
-        public event EventHandler<SessionEventArgs> SessionChanged;
-
         public IDataProtection DataProtection
         {
             get { return new DataProtection(); }
@@ -264,11 +218,6 @@ namespace Axantum.AxCrypt.Mono
             {
                 _workFolderWatcher.Dispose();
                 _workFolderWatcher = null;
-            }
-            if (_delayedWorkFolderStateChanged != null)
-            {
-                _delayedWorkFolderStateChanged.Dispose();
-                _delayedWorkFolderStateChanged = null;
             }
             if (_firstInstanceMutex != null)
             {

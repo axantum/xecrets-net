@@ -162,9 +162,7 @@ namespace Axantum.AxCrypt
             _decryptToolStripButton.Tag = FileInfoTypes.EncryptedFile;
 
             SetupPathFilters();
-
-            OS.Current.SessionChanged += HandleSessionChangedEvent;
-
+            IntializeControls();
             RestoreUserPreferences();
 
             Instance.CommandService.Received += AxCryptMainForm_Request;
@@ -683,7 +681,7 @@ namespace Axantum.AxCrypt
         {
             _recentFilesListView.Items.Clear();
             _watchedFoldersListView.Items.Clear();
-            OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.SessionStart));
+            Instance.FileSystemState.NotifySessionChanged(new SessionEvent(SessionEventType.SessionStart));
         }
 
         public bool CheckStatusAndShowMessage(FileOperationStatus status, string displayContext)
@@ -742,51 +740,6 @@ namespace Axantum.AxCrypt
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }
-
-        private bool _handleSessionChangedInProgress = false;
-
-        private void HandleSessionChangedEvent(object sender, SessionEventArgs e)
-        {
-            if (!_loaded)
-            {
-                return;
-            }
-            Instance.UIThread.RunOnUIThread(() => SessionChangedInternal(e));
-        }
-
-        private void SessionChangedInternal(SessionEventArgs e)
-        {
-            if (OS.Log.IsInfoEnabled)
-            {
-                OS.Log.LogInfo("Tick");
-            }
-
-            if (_handleSessionChangedInProgress)
-            {
-                OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.SessionChange));
-                return;
-            }
-            _handleSessionChangedInProgress = true;
-
-            Instance.BackgroundWork.Work(
-                (IProgressContext progress) =>
-                {
-                    progress.NotifyLevelStart();
-                    try
-                    {
-                        Instance.FileSystemState.Actions.HandleSessionEvents(e.SessionEvents, progress);
-                    }
-                    finally
-                    {
-                        progress.NotifyLevelFinished();
-                    }
-                    return FileOperationStatus.Success;
-                },
-                (FileOperationStatus status) =>
-                {
-                    _handleSessionChangedInProgress = false;
-                });
         }
 
         #region ToolStrip

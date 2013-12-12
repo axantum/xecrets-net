@@ -35,7 +35,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -192,7 +191,7 @@ namespace Axantum.AxCrypt.Core.UI
                 OS.Log.LogInfo("Process exit event for '{0}'.".InvariantFormat(path));
             }
 
-            OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.ProcessExit, path));
+            Instance.FileSystemState.NotifySessionChanged(new SessionEvent(SessionEventType.ProcessExit, path));
         }
 
         private static ActiveFile TryDecrypt(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFolderInfo, IEnumerable<AesKey> keys, IProgressContext progress)

@@ -25,48 +25,30 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Linq;
+using System.Threading;
 
-namespace Axantum.AxCrypt.Core.UI
+namespace Axantum.AxCrypt.Mono
 {
-    public interface IUserSettings
+    public class Sleep : ISleep
     {
-        string this[string key]
+        public void Time(TimeSpan time)
         {
-            get;
-            set;
+            Thread.Sleep((int)time.TotalMilliseconds);
+            OnElapsed(new SleepEventArgs(time));
         }
 
-        T Get<T>(string key);
+        public event EventHandler<SleepEventArgs> Elapsed;
 
-        T Get<T>(string key, T fallback);
-
-        void Set<T>(string key, T value);
-
-        string CultureName { get; set; }
-
-        Uri AxCrypt2VersionCheckUrl { get; set; }
-
-        Uri UpdateUrl { get; set; }
-
-        DateTime LastUpdateCheckUtc { get; set; }
-
-        string NewestKnownVersion { get; set; }
-
-        bool DebugMode { get; set; }
-
-        Uri AxCrypt2HelpUrl { get; set; }
-
-        bool DisplayEncryptPassphrase { get; set; }
-
-        bool DisplayDecryptPassphrase { get; set; }
-
-        long KeyWrapIterations { get; set; }
-
-        KeyWrapSalt ThumbprintSalt { get; set; }
-
-        TimeSpan SessionChangedMinimumIdle { get; set; }
+        protected virtual void OnElapsed(SleepEventArgs e)
+        {
+            EventHandler<SleepEventArgs> handler = Elapsed;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
     }
 }

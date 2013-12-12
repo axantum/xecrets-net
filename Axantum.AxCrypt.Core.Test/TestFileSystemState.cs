@@ -28,7 +28,6 @@
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using NUnit.Framework;
 using System;
@@ -59,6 +58,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void Setup()
         {
             SetupAssembly.AssemblySetup();
+            FactoryRegistry.Instance.Singleton<FileSystemState>(FileSystemState.Create(FileSystemState.DefaultPathInfo));
         }
 
         [TearDown]
@@ -100,7 +100,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestChangedEvent()
+        public static void TestActiveFileChangedEvent()
         {
             using (FileSystemState state = FileSystemState.Create(OS.Current.FileInfo(_mystateXmlPath)))
             {
@@ -308,6 +308,20 @@ namespace Axantum.AxCrypt.Core.Test
                 state.RemoveWatchedFolder(OS.Current.FileInfo(_rootPath));
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(0), "There should be no Watched folders now.");
             }
+        }
+
+        [Test]
+        public static void TestChangedEvent()
+        {
+            bool wasHere = false;
+            Instance.FileSystemState.SessionChanged += (object sender, SessionEventArgs e) => { wasHere = e.SessionEvents.First().SessionEventType == SessionEventType.ActiveFileChange; };
+            Instance.FileSystemState.NotifySessionChanged(new SessionEvent(SessionEventType.ActiveFileChange));
+
+            Assert.That(wasHere, Is.False, "The RaiseChanged() method should not raise the event immediately.");
+
+            Instance.Sleep.Time(Instance.UserSettings.SessionChangedMinimumIdle);
+
+            Assert.That(wasHere, Is.True, "The RaiseChanged() method should raise the event.");
         }
     }
 }

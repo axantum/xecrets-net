@@ -26,11 +26,7 @@
 #endregion Coypright and License
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Timers;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
@@ -42,10 +38,10 @@ namespace Axantum.AxCrypt.Core.Runtime
     {
         private Action _action;
 
-        private Timer _timer;
+        private IDelayTimer _timer;
 
         /// <summary>
-        /// Create an instance bound to an action delegate, a minimum idle time and an option synchronizingObject.
+        /// Create an instance bound to an action delegate and a minimum idle time.
         /// </summary>
         /// <param name="action">The action to perform after the specified idle time.</param>
         /// <param name="minimumIdleTime">The minium time of idle before actually performing the action.</param>
@@ -57,31 +53,28 @@ namespace Axantum.AxCrypt.Core.Runtime
             }
 
             _action = action;
-            _timer = new Timer();
-            _timer.AutoReset = false;
-            _timer.Interval = minimumIdleTime.TotalMilliseconds;
+            _timer = FactoryRegistry.Instance.Create<IDelayTimer>();
+            _timer.Interval = minimumIdleTime;
             _timer.Elapsed += HandleTimerElapsedEvent;
         }
 
-        private void HandleTimerElapsedEvent(object sender, ElapsedEventArgs e)
+        private void HandleTimerElapsedEvent(object sender, EventArgs e)
         {
             if (_timer != null)
             {
-                _timer.Stop();
                 _action();
             }
         }
 
         /// <summary>
-        /// Restart the idle timeer.
+        /// (Re)Start the idle timeer.
         /// </summary>
-        public void RestartIdleTimer()
+        public void StartIdleTimer()
         {
             if (_timer == null)
             {
                 throw new ObjectDisposedException("_timer");
             }
-            _timer.Stop();
             _timer.Start();
         }
 

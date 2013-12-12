@@ -29,30 +29,27 @@ using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.Session;
 using NUnit.Framework;
 using System;
 using System.IO;
 using System.Linq;
-using System.Threading;
 
 namespace Axantum.AxCrypt.Mono.Test
 {
     [TestFixture]
     public static class TestRuntimeEnvironment
     {
-        private static readonly TimeSpan _workFolderStateMinimumIdle = new TimeSpan(0, 0, 0, 0, 100);
-
         [SetUp]
         public static void Setup()
         {
-            FactoryRegistry.Instance.Singleton((IRuntimeEnvironment)new RuntimeEnvironment(_workFolderStateMinimumIdle));
+            FactoryRegistry.Instance.Singleton((IRuntimeEnvironment)new RuntimeEnvironment());
+            FactoryRegistry.Instance.Singleton<ISleep>(new Sleep());
         }
 
         [TearDown]
         public static void Teardown()
         {
-            FactoryRegistry.Instance.Singleton((IRuntimeEnvironment)new RuntimeEnvironment());
+            FactoryRegistry.Instance.Clear();
         }
 
         [Test]
@@ -136,7 +133,7 @@ namespace Axantum.AxCrypt.Mono.Test
                     }
                     for (int i = 0; !wasHere && i < 20; ++i)
                     {
-                        Thread.Sleep(100);
+                        Instance.Sleep.Time(new TimeSpan(0, 0, 0, 0, 100));
                     }
                     Assert.That(wasHere, "The FileWatcher should have noticed the creation of a file.");
                 }
@@ -147,24 +144,10 @@ namespace Axantum.AxCrypt.Mono.Test
                 }
                 for (int i = 0; !wasHere && i < 20; ++i)
                 {
-                    Thread.Sleep(100);
+                    Instance.Sleep.Time(new TimeSpan(0, 0, 0, 0, 100));
                 }
                 Assert.That(wasHere, "The FileWatcher should have noticed the deletion of a file.");
             }
-        }
-
-        [Test]
-        public static void TestChangedEvent()
-        {
-            bool wasHere = false;
-            OS.Current.SessionChanged += (object sender, SessionEventArgs e) => { wasHere = e.SessionEvents.First().SessionEventType == SessionEventType.ActiveFileChange; };
-            OS.Current.NotifySessionChanged(new SessionEvent(SessionEventType.ActiveFileChange));
-
-            Assert.That(wasHere, Is.False, "The RaiseChanged() method should not raise the event immediately.");
-
-            Thread.Sleep(_workFolderStateMinimumIdle.Add(new TimeSpan(0, 0, 0, 0, 100)));
-
-            Assert.That(wasHere, Is.True, "The RaiseChanged() method should raise the event.");
         }
     }
 }

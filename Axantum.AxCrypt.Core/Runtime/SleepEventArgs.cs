@@ -25,48 +25,18 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.Linq;
 
-namespace Axantum.AxCrypt.Core.UI
+namespace Axantum.AxCrypt.Core.Runtime
 {
-    public interface IUserSettings
+    public class SleepEventArgs : EventArgs
     {
-        string this[string key]
+        public TimeSpan Time { get; private set; }
+
+        public SleepEventArgs(TimeSpan time)
         {
-            get;
-            set;
+            Time = time;
         }
-
-        T Get<T>(string key);
-
-        T Get<T>(string key, T fallback);
-
-        void Set<T>(string key, T value);
-
-        string CultureName { get; set; }
-
-        Uri AxCrypt2VersionCheckUrl { get; set; }
-
-        Uri UpdateUrl { get; set; }
-
-        DateTime LastUpdateCheckUtc { get; set; }
-
-        string NewestKnownVersion { get; set; }
-
-        bool DebugMode { get; set; }
-
-        Uri AxCrypt2HelpUrl { get; set; }
-
-        bool DisplayEncryptPassphrase { get; set; }
-
-        bool DisplayDecryptPassphrase { get; set; }
-
-        long KeyWrapIterations { get; set; }
-
-        KeyWrapSalt ThumbprintSalt { get; set; }
-
-        TimeSpan SessionChangedMinimumIdle { get; set; }
     }
 }

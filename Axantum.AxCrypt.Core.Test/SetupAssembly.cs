@@ -29,13 +29,9 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
-using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -54,6 +50,10 @@ namespace Axantum.AxCrypt.Core.Test
             OS.Log.SetLevel(LogLevel.Debug);
             FactoryRegistry.Instance.Singleton(new KnownKeys());
             FactoryRegistry.Instance.Singleton(new ProcessState());
+            FactoryRegistry.Instance.Singleton<ISleep>(new FakeSleep());
+            FactoryRegistry.Instance.Register<IDelayTimer>(() => new FakeDelayTimer());
+            FactoryRegistry.Instance.Singleton<IUIThread>(new FakeUIThread());
+            FactoryRegistry.Instance.Singleton<IProgressBackground>(new FakeProgressBackground());
         }
 
         public static void AssemblyTeardown()

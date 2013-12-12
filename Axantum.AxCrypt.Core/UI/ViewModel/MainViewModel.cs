@@ -149,7 +149,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void SubscribeToModelEvents()
         {
-            OS.Current.SessionChanged += HandleSessionChanged;
+            Instance.FileSystemState.SessionChanged += HandleSessionChanged;
             Instance.FileSystemState.ActiveFileChanged += HandleActiveFileChangedEvent;
         }
 

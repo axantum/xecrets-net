@@ -53,8 +53,10 @@
   <ItemGroup>
     <Compile Include="Endian.cs" />
     <Compile Include="FakeDataProtection.cs" />
+    <Compile Include="FakeDelayTimer.cs" />
     <Compile Include="FakeFileWatcher.cs" />
     <Compile Include="FakeProgressBackground.cs" />
+    <Compile Include="FakeSleep.cs" />
     <Compile Include="FakeUIThread.cs" />
     <Compile Include="FakeLauncher.cs" />
     <Compile Include="FakeLogging.cs" />

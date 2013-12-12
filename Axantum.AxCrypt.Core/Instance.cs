@@ -30,10 +30,7 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -87,6 +84,11 @@ namespace Axantum.AxCrypt.Core
         public static IUserSettings UserSettings
         {
             get { return FactoryRegistry.Instance.Singleton<IUserSettings>(); }
+        }
+
+        public static ISleep Sleep
+        {
+            get { return FactoryRegistry.Instance.Singleton<ISleep>(); }
         }
     }
 }

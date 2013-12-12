@@ -30,11 +30,8 @@ using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading;
 
 namespace Axantum.AxCrypt.Mono.Test
 {
@@ -47,6 +44,7 @@ namespace Axantum.AxCrypt.Mono.Test
         public static void Setup()
         {
             FactoryRegistry.Instance.Singleton((IRuntimeEnvironment)new RuntimeEnvironment());
+            FactoryRegistry.Instance.Singleton<ISleep>(new Sleep());
             _tempPath = Path.Combine(Path.GetTempPath(), "Axantum.AxCrypt.Core.Test.TestFileWatcher");
             Directory.CreateDirectory(_tempPath);
         }
@@ -55,7 +53,7 @@ namespace Axantum.AxCrypt.Mono.Test
         public static void Teardown()
         {
             Directory.Delete(_tempPath, true);
-            FactoryRegistry.Instance.Singleton((IRuntimeEnvironment)new RuntimeEnvironment());
+            FactoryRegistry.Instance.Clear();
         }
 
         [Test]
@@ -70,7 +68,7 @@ namespace Axantum.AxCrypt.Mono.Test
                 }
                 for (int i = 0; String.IsNullOrEmpty(fileName) && i < 20; ++i)
                 {
-                    Thread.Sleep(100);
+                    Instance.Sleep.Time(new TimeSpan(0, 0, 0, 0, 100));
                 }
                 Assert.That(fileName, Is.EqualTo("CreatedFile.txt"), "The watcher should detect the newly created file.");
             }
@@ -88,13 +86,13 @@ namespace Axantum.AxCrypt.Mono.Test
                 }
                 for (int i = 0; String.IsNullOrEmpty(fileName) && i < 20; ++i)
                 {
-                    Thread.Sleep(100);
+                    Instance.Sleep.Time(new TimeSpan(0, 0, 0, 0, 100));
                 }
                 fileName = String.Empty;
                 File.Move(Path.Combine(_tempPath, "NewFile.txt"), Path.Combine(_tempPath, "MovedFile.txt"));
                 for (int i = 0; String.IsNullOrEmpty(fileName) && i < 20; ++i)
                 {
-                    Thread.Sleep(100);
+                    Instance.Sleep.Time(new TimeSpan(0, 0, 0, 0, 100));
                 }
                 Assert.That(fileName, Is.EqualTo("MovedFile.txt"), "The watcher should detect the newly created file.");
             }

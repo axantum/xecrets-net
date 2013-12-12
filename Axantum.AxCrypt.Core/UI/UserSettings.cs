@@ -30,11 +30,8 @@ using Axantum.AxCrypt.Core.IO;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -145,6 +142,12 @@ namespace Axantum.AxCrypt.Core.UI
             set { Set("ThumbprintSalt", JsonConvert.SerializeObject(value)); }
         }
 
+        public TimeSpan SessionChangedMinimumIdle
+        {
+            get { return Get("WorkFolderMinimumIdle", TimeSpan.FromMilliseconds(500)); }
+            set { Set("WorkFolderMinimumIdle", value); }
+        }
+
         public string this[string key]
         {
             get
@@ -237,6 +240,16 @@ namespace Axantum.AxCrypt.Core.UI
                 return fallback;
             }
             return new Uri(value);
+        }
+
+        public TimeSpan Get(string key, TimeSpan fallback)
+        {
+            string value;
+            if (!_settings.TryGetValue(key, out value))
+            {
+                return fallback;
+            }
+            return TimeSpan.Parse(value);
         }
 
         public void Set<T>(string key, T value)

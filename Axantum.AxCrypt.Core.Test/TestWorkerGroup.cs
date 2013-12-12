@@ -29,10 +29,7 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -70,7 +67,7 @@ namespace Axantum.AxCrypt.Core.Test
                                 maxCount = threadCount;
                             }
                         }
-                        Thread.Sleep(100);
+                        Instance.Sleep.Time(new TimeSpan(0, 0, 0, 0, 100));
                     };
                 worker1.Completing += (object sender, ThreadWorkerEventArgs e) =>
                     {
@@ -89,7 +86,7 @@ namespace Axantum.AxCrypt.Core.Test
                                 maxCount = threadCount;
                             }
                         }
-                        Thread.Sleep(100);
+                        Instance.Sleep.Time(new TimeSpan(0, 0, 0, 0, 100));
                     };
                 worker2.Completing += (object sender, ThreadWorkerEventArgs e) =>
                     {

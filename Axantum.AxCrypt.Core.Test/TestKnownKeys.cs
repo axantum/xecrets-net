@@ -30,9 +30,7 @@ using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -133,12 +131,13 @@ namespace Axantum.AxCrypt.Core.Test
         {
             bool wasChanged = false;
             KnownKeys knownKeys = new KnownKeys();
-            OS.Current.SessionChanged += (object sender, SessionEventArgs e) =>
+            Instance.FileSystemState.SessionChanged += (object sender, SessionEventArgs e) =>
             {
                 wasChanged = e.SessionEvents.Any(s => s.SessionEventType == SessionEventType.KnownKeyChange);
             };
             AesKey key1 = new AesKey();
             knownKeys.Add(key1);
+            Instance.Sleep.Time(Instance.UserSettings.SessionChangedMinimumIdle);
             Assert.That(wasChanged, Is.True, "A new key should trigger the Changed event.");
             wasChanged = false;
             knownKeys.Add(key1);

@@ -25,22 +25,13 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Session;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text.RegularExpressions;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
     public interface IRuntimeEnvironment
     {
-        event EventHandler<SessionEventArgs> SessionChanged;
-
-        void NotifySessionChanged(SessionEvent sessionEvent);
-
         bool IsLittleEndian { get; }
 
         byte[] GetRandomBytes(int count);

@@ -28,16 +28,26 @@
 using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
 
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
     public static class TestDelayedAction
     {
+        [SetUp]
+        public static void SetUp()
+        {
+            FactoryRegistry.Instance.Singleton<ISleep>(new FakeSleep());
+            FactoryRegistry.Instance.Register<IDelayTimer>(() => new FakeDelayTimer());
+        }
+
+        [TearDown]
+        public static void TearDown()
+        {
+            FactoryRegistry.Instance.Clear();
+        }
+
         [Test]
         public static void TestNullArgument()
         {
@@ -53,7 +63,7 @@ namespace Axantum.AxCrypt.Core.Test
             bool wasHere = false;
             using (DelayedAction delayedAction = new DelayedAction(() => { wasHere = true; }, new TimeSpan(0, 0, 0, 0, 1)))
             {
-                Thread.Sleep(50);
+                Instance.Sleep.Time(new TimeSpan(0, 0, 0, 0, 50));
                 Assert.That(wasHere, Is.False, "The event should not be triggered until started.");
             }
         }
@@ -64,11 +74,11 @@ namespace Axantum.AxCrypt.Core.Test
             bool wasHere = false;
             using (DelayedAction delayedAction = new DelayedAction(() => { wasHere = true; }, new TimeSpan(0, 0, 0, 0, 1)))
             {
-                delayedAction.RestartIdleTimer();
-                Thread.Sleep(50);
+                delayedAction.StartIdleTimer();
+                Instance.Sleep.Time(new TimeSpan(0, 0, 0, 0, 50));
                 Assert.That(wasHere, Is.True, "The event should be triggered once started.");
                 wasHere = false;
-                Thread.Sleep(50);
+                Instance.Sleep.Time(new TimeSpan(0, 0, 0, 0, 50));
                 Assert.That(wasHere, Is.False, "The event should not be triggered more than once.");
             }
         }
@@ -81,11 +91,11 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 for (int i = 0; i < 10; ++i)
                 {
-                    delayedAction.RestartIdleTimer();
+                    delayedAction.StartIdleTimer();
                 }
-                Thread.Sleep(50);
+                Instance.Sleep.Time(new TimeSpan(0, 0, 0, 0, 5));
                 Assert.That(eventCount, Is.EqualTo(1), "The event should be triggered exactly once.");
-                Thread.Sleep(50);
+                Instance.Sleep.Time(new TimeSpan(0, 0, 0, 0, 5));
                 Assert.That(eventCount, Is.EqualTo(1), "The event should still be triggered exactly once.");
             }
         }
@@ -96,11 +106,11 @@ namespace Axantum.AxCrypt.Core.Test
             bool wasHere = false;
             using (DelayedAction delayedAction = new DelayedAction(() => { wasHere = true; }, new TimeSpan(0, 0, 0, 0, 1)))
             {
-                delayedAction.RestartIdleTimer();
+                delayedAction.StartIdleTimer();
                 Assert.That(wasHere, Is.False, "The event should not be triggered immediately.");
             }
-            Thread.Sleep(50);
-            Assert.That(wasHere, Is.False, "The event should be note be triggered once disposed.");
+            Instance.Sleep.Time(new TimeSpan(0, 0, 0, 0, 1));
+            Assert.That(wasHere, Is.False, "The event should be not be triggered once disposed.");
         }
 
         [Test]
@@ -108,7 +118,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             DelayedAction delayedAction = new DelayedAction(() => { }, new TimeSpan(0, 0, 0, 0, 1));
             delayedAction.Dispose();
-            Assert.Throws<ObjectDisposedException>(() => { delayedAction.RestartIdleTimer(); });
+            Assert.Throws<ObjectDisposedException>(() => { delayedAction.StartIdleTimer(); });
         }
     }
 }
