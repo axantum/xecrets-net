@@ -105,7 +105,6 @@
     </Compile>
     <Compile Include="Extensions.cs" />
     <Compile Include="Preferences.cs" />
-    <Compile Include="Presentation\RecentFilesPresentation.cs" />
     <Compile Include="ProgressBackground.cs">
       <SubType>Component</SubType>
     </Compile>

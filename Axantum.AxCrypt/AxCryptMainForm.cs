@@ -33,7 +33,6 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
-using Axantum.AxCrypt.Presentation;
 using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections;
@@ -60,8 +59,6 @@ namespace Axantum.AxCrypt
         private NotifyIcon _notifyIcon = null;
 
         private string _title;
-
-        private RecentFilesPresentation _recentFilesPresentation;
 
         private MainViewModel _mainViewModel = new MainViewModel();
 
@@ -153,7 +150,6 @@ namespace Axantum.AxCrypt
             FactoryRegistry.Instance.Singleton<ParallelBackground>(new ParallelBackground());
             FactoryRegistry.Instance.Singleton<ProcessState>(new ProcessState());
 
-            _recentFilesPresentation = new RecentFilesPresentation(_recentFilesListView);
             _hiddenWatchedFoldersTabPage = _statusTabControl.TabPages["_watchedFoldersTabPage"];
             _hiddenLogTabPage = _statusTabControl.TabPages["_logTabPage"];
 
@@ -450,6 +446,43 @@ namespace Axantum.AxCrypt
                 Width = Preferences.MainWindowWidth.Fallback(Width);
                 Location = Preferences.MainWindowLocation.Fallback(Location);
             }
+
+            _recentFilesListView.Columns[0].Width = Preferences.RecentFilesDocumentWidth.Fallback(_recentFilesListView.Columns[0].Width);
+            _recentFilesListView.Columns[1].Width = Preferences.RecentFilesDateTimeWidth.Fallback(_recentFilesListView.Columns[1].Width);
+            _recentFilesListView.Columns[2].Width = Preferences.RecentFilesEncryptedPathWidth.Fallback(_recentFilesListView.Columns[2].Width);
+        }
+
+        private void IntializeControls()
+        {
+            _recentFilesListView.SmallImageList = CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources();
+            _recentFilesListView.LargeImageList = CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources();
+        }
+
+        private ImageList CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources()
+        {
+            ImageList smallImageList = new ImageList();
+
+            smallImageList.Images.Add("ActiveFile", Resources.activefilegreen16);
+            smallImageList.Images.Add("InactiveFile", Resources.inactivefilegreen16);
+            smallImageList.Images.Add("Exclamation", Resources.exclamationgreen16);
+            smallImageList.Images.Add("DecryptedFile", Resources.decryptedfilered16);
+            smallImageList.Images.Add("DecryptedUnknownKeyFile", Resources.decryptedunknownkeyfilered16);
+            smallImageList.Images.Add("ActiveFileKnownKey", Resources.fileknownkeygreen16);
+            smallImageList.TransparentColor = System.Drawing.Color.Transparent;
+
+            return smallImageList;
+        }
+
+        private ImageList CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources()
+        {
+            ImageList largeImageList = new ImageList();
+
+            largeImageList.Images.Add("ActiveFile", Resources.opendocument32);
+            largeImageList.Images.Add("InactiveFile", Resources.helpquestiongreen32);
+            largeImageList.Images.Add("Exclamation", Resources.exclamationgreen32);
+            largeImageList.TransparentColor = System.Drawing.Color.Transparent;
+
+            return largeImageList;
         }
 
         private static void SetupPathFilters()
@@ -796,7 +829,20 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-            _recentFilesPresentation.ChangeColumnWidth(e.ColumnIndex);
+            switch (e.ColumnIndex)
+            {
+                case 0:
+                    Preferences.RecentFilesDocumentWidth = _recentFilesListView.Columns[e.ColumnIndex].Width;
+                    break;
+
+                case 1:
+                    Preferences.RecentFilesDateTimeWidth = _recentFilesListView.Columns[e.ColumnIndex].Width;
+                    break;
+
+                case 2:
+                    Preferences.RecentFilesEncryptedPathWidth = _recentFilesListView.Columns[e.ColumnIndex].Width;
+                    break;
+            }
         }
 
         private void PurgeActiveFiles()
@@ -946,8 +992,8 @@ namespace Axantum.AxCrypt
 
         private void TrayNotifyIcon_MouseClick(object sender, MouseEventArgs e)
         {
-            this.Show();
-            this.WindowState = FormWindowState.Normal;
+            Show();
+            WindowState = FormWindowState.Normal;
         }
 
         private void EnglishLanguageToolStripMenuItem_Click(object sender, EventArgs e)
