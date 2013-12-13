@@ -28,11 +28,9 @@
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.UI;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Text;
 using System.Threading;
 
 namespace Axantum.AxCrypt.Core.Runtime
@@ -131,9 +129,9 @@ namespace Axantum.AxCrypt.Core.Runtime
             catch (Exception ex)
             {
                 e.Result = FileOperationStatus.Exception;
-                if (OS.Log.IsErrorEnabled)
+                if (Instance.Log.IsErrorEnabled)
                 {
-                    OS.Log.LogError("Exception in DoWork: '{0}'".InvariantFormat(ex.Message));
+                    Instance.Log.LogError("Exception in DoWork: '{0}'".InvariantFormat(ex.Message));
                 }
             }
             return;
@@ -160,9 +158,9 @@ namespace Axantum.AxCrypt.Core.Runtime
                     CompleteWorker();
                 }
             }
-            if (OS.Log.IsInfoEnabled)
+            if (Instance.Log.IsInfoEnabled)
             {
-                OS.Log.LogInfo("BackgroundWorker Disposed.");
+                Instance.Log.LogInfo("BackgroundWorker Disposed.");
             }
         }
 

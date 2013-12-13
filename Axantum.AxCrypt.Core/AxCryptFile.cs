@@ -29,12 +29,10 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
-using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -290,9 +288,9 @@ namespace Axantum.AxCrypt.Core
             }
             try
             {
-                if (OS.Log.IsInfoEnabled)
+                if (Instance.Log.IsInfoEnabled)
                 {
-                    OS.Log.LogInfo("Decrypting to '{0}'.".InvariantFormat(destinationFile.Name));
+                    Instance.Log.LogInfo("Decrypting to '{0}'.".InvariantFormat(destinationFile.Name));
                 }
 
                 using (Stream destinationStream = destinationFile.OpenWrite())
@@ -300,9 +298,9 @@ namespace Axantum.AxCrypt.Core
                     document.DecryptTo(destinationStream, progress);
                 }
 
-                if (OS.Log.IsInfoEnabled)
+                if (Instance.Log.IsInfoEnabled)
                 {
-                    OS.Log.LogInfo("Decrypted to '{0}'.".InvariantFormat(destinationFile.Name));
+                    Instance.Log.LogInfo("Decrypted to '{0}'.".InvariantFormat(destinationFile.Name));
                 }
             }
             catch (Exception)
@@ -463,9 +461,9 @@ namespace Axantum.AxCrypt.Core
             {
                 return;
             }
-            if (OS.Log.IsInfoEnabled)
+            if (Instance.Log.IsInfoEnabled)
             {
-                OS.Log.LogInfo("Wiping '{0}'.".InvariantFormat(fileInfo.Name));
+                Instance.Log.LogInfo("Wiping '{0}'.".InvariantFormat(fileInfo.Name));
             }
             bool cancelPending = false;
             progress.NotifyLevelStart();

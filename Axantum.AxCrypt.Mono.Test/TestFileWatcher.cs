@@ -44,6 +44,7 @@ namespace Axantum.AxCrypt.Mono.Test
         public static void Setup()
         {
             FactoryRegistry.Instance.Singleton((IRuntimeEnvironment)new RuntimeEnvironment());
+            FactoryRegistry.Instance.Singleton<ILogging>(new Logging());
             FactoryRegistry.Instance.Singleton<ISleep>(new Sleep());
             _tempPath = Path.Combine(Path.GetTempPath(), "Axantum.AxCrypt.Core.Test.TestFileWatcher");
             Directory.CreateDirectory(_tempPath);

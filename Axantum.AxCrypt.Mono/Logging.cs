@@ -25,29 +25,43 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Security.Permissions;
-using System.Text;
 
 namespace Axantum.AxCrypt.Mono
 {
-    internal class Logging : ILogging
+    public class Logging : ILogging
     {
         private TraceSwitch _switch = InitializeTraceSwitch();
 
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.UnmanagedCode)]
         public Logging()
         {
+            Trace.Listeners.Add(new DelegateTraceListener("ILoggingListener", TraceMessage));
+        }
+
+        private void TraceMessage(string message)
+        {
+            OnLogging(new LoggingEventArgs(message));
         }
 
         #region ILogging Members
+
+        public event EventHandler<LoggingEventArgs> Logged;
+
+        protected virtual void OnLogging(LoggingEventArgs e)
+        {
+            EventHandler<LoggingEventArgs> handler = Logged;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
 
         public void SetLevel(LogLevel level)
         {
@@ -164,6 +178,28 @@ namespace Axantum.AxCrypt.Mono
                     _appName = Path.GetFileName(Environment.GetCommandLineArgs()[0]);
                 }
                 return _appName;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                DisposeInternal();
+            }
+        }
+
+        private void DisposeInternal()
+        {
+            if (_switch != null)
+            {
+                Trace.Listeners.Remove("ILoggingListener");
+                _switch = null;
             }
         }
     }

@@ -118,7 +118,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             if (enabled)
             {
-                OS.Log.SetLevel(LogLevel.Debug);
+                Instance.Log.SetLevel(LogLevel.Debug);
                 ServicePointManager.ServerCertificateValidationCallback = (object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) =>
                 {
                     return true;
@@ -127,7 +127,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             else
             {
                 ServicePointManager.ServerCertificateValidationCallback = null;
-                OS.Log.SetLevel(LogLevel.Error);
+                Instance.Log.SetLevel(LogLevel.Error);
             }
         }
 

@@ -27,15 +27,24 @@
 
 using Axantum.AxCrypt.Core.Runtime;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
     internal class FakeLogging : ILogging
     {
         #region ILogging Members
+
+        public event EventHandler<LoggingEventArgs> Logged;
+
+        protected virtual void OnLogged(string message)
+        {
+            EventHandler<LoggingEventArgs> handler = Logged;
+            if (handler != null)
+            {
+                handler(this, new LoggingEventArgs(message));
+            }
+        }
 
         public void SetLevel(LogLevel level)
         {
@@ -68,24 +77,33 @@ namespace Axantum.AxCrypt.Core.Test
 
         public void LogFatal(string message)
         {
+            OnLogged(message);
         }
 
         public void LogError(string message)
         {
+            OnLogged(message);
         }
 
         public void LogWarning(string message)
         {
+            OnLogged(message);
         }
 
         public void LogInfo(string message)
         {
+            OnLogged(message);
         }
 
         public void LogDebug(string message)
         {
+            OnLogged(message);
         }
 
         #endregion ILogging Members
+
+        public void Dispose()
+        {
+        }
     }
 }

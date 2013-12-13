@@ -44,10 +44,11 @@ namespace Axantum.AxCrypt.Core.Test
         public static void AssemblySetup()
         {
             FactoryRegistry.Instance.Singleton((IRuntimeEnvironment)new FakeRuntimeEnvironment());
+            FactoryRegistry.Instance.Singleton<ILogging>(new FakeLogging());
             FactoryRegistry.Instance.Singleton((IUserSettings)new UserSettings(UserSettings.DefaultPathInfo));
             Instance.UserSettings.KeyWrapIterations = 1234;
             Instance.UserSettings.ThumbprintSalt = KeyWrapSalt.Zero;
-            OS.Log.SetLevel(LogLevel.Debug);
+            Instance.Log.SetLevel(LogLevel.Debug);
             FactoryRegistry.Instance.Singleton(new KnownKeys());
             FactoryRegistry.Instance.Singleton(new ProcessState());
             FactoryRegistry.Instance.Singleton<ISleep>(new FakeSleep());

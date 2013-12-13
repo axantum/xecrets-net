@@ -409,9 +409,9 @@ namespace Axantum.AxCrypt.Core.Session
             }
 
             FileSystemState fileSystemState = new FileSystemState(path);
-            if (OS.Log.IsInfoEnabled)
+            if (Instance.Log.IsInfoEnabled)
             {
-                OS.Log.LogInfo("No existing FileSystemState. Save location is '{0}'.".InvariantFormat(path.FullName));
+                Instance.Log.LogInfo("No existing FileSystemState. Save location is '{0}'.".InvariantFormat(path.FullName));
             }
             return fileSystemState;
         }
@@ -429,15 +429,15 @@ namespace Axantum.AxCrypt.Core.Session
                 }
                 catch (Exception ex)
                 {
-                    if (OS.Log.IsErrorEnabled)
+                    if (Instance.Log.IsErrorEnabled)
                     {
-                        OS.Log.LogError("Exception {1} reading {0}. Ignoring and re-initializing state.".InvariantFormat(path.FullName, ex.Message));
+                        Instance.Log.LogError("Exception {1} reading {0}. Ignoring and re-initializing state.".InvariantFormat(path.FullName, ex.Message));
                     }
                     return new FileSystemState(path);
                 }
-                if (OS.Log.IsInfoEnabled)
+                if (Instance.Log.IsInfoEnabled)
                 {
-                    OS.Log.LogInfo("Loaded FileSystemState from '{0}'.".InvariantFormat(path));
+                    Instance.Log.LogInfo("Loaded FileSystemState from '{0}'.".InvariantFormat(path));
                 }
                 fileSystemState._path = path;
                 return fileSystemState;
@@ -459,9 +459,9 @@ namespace Axantum.AxCrypt.Core.Session
                     serializer.WriteObject(fileSystemStateStream, this);
                 }
             }
-            if (OS.Log.IsInfoEnabled)
+            if (Instance.Log.IsInfoEnabled)
             {
-                OS.Log.LogInfo("Wrote FileSystemState to '{0}'.".InvariantFormat(_path));
+                Instance.Log.LogInfo("Wrote FileSystemState to '{0}'.".InvariantFormat(_path));
             }
         }
 

@@ -27,9 +27,7 @@
 
 using Axantum.AxCrypt.Core.UI;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -49,11 +47,16 @@ namespace Axantum.AxCrypt
 
         public bool IsOnUIThread
         {
-            get { return _control.InvokeRequired; }
+            get { return !_control.InvokeRequired; }
         }
 
         public void RunOnUIThread(Action action)
         {
+            if (IsOnUIThread)
+            {
+                action();
+                return;
+            }
             _context.Send((state) => { action(); }, null);
         }
     }

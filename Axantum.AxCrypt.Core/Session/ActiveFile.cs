@@ -28,13 +28,10 @@
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
 using System;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Runtime.Serialization;
-using System.Security.Cryptography;
 using System.Text;
 
 namespace Axantum.AxCrypt.Core.Session
@@ -261,9 +258,9 @@ namespace Axantum.AxCrypt.Core.Session
                     return false;
                 }
                 bool isModified = DecryptedFileInfo.LastWriteTimeUtc > LastEncryptionWriteTimeUtc;
-                if (OS.Log.IsInfoEnabled)
+                if (Instance.Log.IsInfoEnabled)
                 {
-                    OS.Log.LogInfo("IsModified == '{0}' for file '{3}' info last write time '{1}' and active file last write time '{2}'".InvariantFormat(isModified.ToString(), DecryptedFileInfo.LastWriteTimeUtc.ToString(), LastEncryptionWriteTimeUtc.ToString(), DecryptedFileInfo.Name));
+                    Instance.Log.LogInfo("IsModified == '{0}' for file '{3}' info last write time '{1}' and active file last write time '{2}'".InvariantFormat(isModified.ToString(), DecryptedFileInfo.LastWriteTimeUtc.ToString(), LastEncryptionWriteTimeUtc.ToString(), DecryptedFileInfo.Name));
                 }
                 return isModified;
             }

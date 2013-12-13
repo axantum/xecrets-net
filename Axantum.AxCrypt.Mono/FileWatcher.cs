@@ -28,15 +28,11 @@
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Security;
 using System.Security.Permissions;
-using System.Text;
 
 namespace Axantum.AxCrypt.Mono
 {
@@ -79,9 +75,9 @@ namespace Axantum.AxCrypt.Mono
 
         private void FileSystemChanged(string fullPath)
         {
-            if (OS.Log.IsInfoEnabled)
+            if (Instance.Log.IsInfoEnabled)
             {
-                OS.Log.LogInfo("Watcher says '{0}' changed.".InvariantFormat(fullPath));
+                Instance.Log.LogInfo("Watcher says '{0}' changed.".InvariantFormat(fullPath));
             }
             OnChanged(new FileWatcherEventArgs(fullPath));
         }

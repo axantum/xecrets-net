@@ -44,6 +44,7 @@ namespace Axantum.AxCrypt.Mono.Test
         {
             FactoryRegistry.Instance.Singleton((IRuntimeEnvironment)new RuntimeEnvironment());
             FactoryRegistry.Instance.Singleton<ISleep>(new Sleep());
+            FactoryRegistry.Instance.Singleton<ILogging>(new Logging());
         }
 
         [TearDown]

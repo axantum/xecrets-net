@@ -63,6 +63,7 @@ namespace Axantum.AxCrypt
 
         private static void RegisterSingletonImplementations()
         {
+            FactoryRegistry.Instance.Singleton<ILogging>(new Logging());
             FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(new RuntimeEnvironment());
             FactoryRegistry.Instance.Singleton<CommandService>(new CommandService(new HttpRequestServer(), new HttpRequestClient()));
             FactoryRegistry.Instance.Singleton<IUserSettings>(new UserSettings(UserSettings.DefaultPathInfo));

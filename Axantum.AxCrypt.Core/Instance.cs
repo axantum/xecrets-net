@@ -90,5 +90,10 @@ namespace Axantum.AxCrypt.Core
         {
             get { return FactoryRegistry.Instance.Singleton<ISleep>(); }
         }
+
+        public static ILogging Log
+        {
+            get { return FactoryRegistry.Instance.Singleton<ILogging>(); }
+        }
     }
 }

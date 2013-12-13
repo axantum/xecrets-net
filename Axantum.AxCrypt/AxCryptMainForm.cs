@@ -78,7 +78,14 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            Trace.Listeners.Add(new DelegateTraceListener("AxCryptMainFormListener", FormatTraceMessage));
+            Instance.Log.Logged += (logger, loggingEventArgs) =>
+            {
+                Instance.UIThread.RunOnUIThread(() =>
+                {
+                    string formatted = "{0} {1}".InvariantFormat(OS.Current.UtcNow.ToString("o", CultureInfo.InvariantCulture), loggingEventArgs.Message.TrimLogMessage());
+                    _logOutputTextBox.AppendText(formatted);
+                });
+            };
 
             FactoryRegistry.Instance.Singleton<KnownKeys>(new KnownKeys());
             FactoryRegistry.Instance.Singleton<IUIThread>(new UIThread(this));
@@ -248,6 +255,9 @@ namespace Axantum.AxCrypt
 
         private void BindToMainViewModel()
         {
+            _mainViewModel.Title = "{0} {1}{2}".InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription);
+            _mainViewModel.CurrentVersion = Assembly.GetExecutingAssembly().GetName().Version;
+
             _mainViewModel.BindPropertyChanged("LogonEnabled", (bool logonEnabled) => { _encryptionKeyToolStripButton.Image = logonEnabled ? Resources.encryptionkeygreen32 : Resources.encryptionkeyred32; });
             _mainViewModel.BindPropertyChanged("LogonEnabled", (bool logonEnabled) => { _encryptionKeyToolStripButton.ToolTipText = logonEnabled ? Resources.NoDefaultEncryptionKeySetToolTip : Resources.DefaultEncryptionKeyIsIsetToolTip; });
             _mainViewModel.BindPropertyChanged("LogonEnabled", (bool logonEnabled) => { SetWindowTextWithLogonStatus(!logonEnabled); });
@@ -298,9 +308,6 @@ namespace Axantum.AxCrypt
 
             _mainViewModel.LoggingOn += (object me, LogOnEventArgs args) => { HandleLogOn(args); };
             _mainViewModel.SelectingFiles += (object me, FileSelectionEventArgs args) => { HandleFileSelection(args); };
-
-            _mainViewModel.Title = "{0} {1}{2}".InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription);
-            _mainViewModel.CurrentVersion = Assembly.GetExecutingAssembly().GetName().Version;
         }
 
         private void HandleLogOn(LogOnEventArgs args)
@@ -575,15 +582,6 @@ namespace Axantum.AxCrypt
             Text = "{0} - {1}".InvariantFormat(_mainViewModel.Title, logonStatus);
         }
 
-        private void FormatTraceMessage(string message)
-        {
-            Instance.UIThread.RunOnUIThread(() =>
-            {
-                string formatted = "{0} {1}".InvariantFormat(OS.Current.UtcNow.ToString("o", CultureInfo.InvariantCulture), message.TrimLogMessage());
-                _logOutputTextBox.AppendText(formatted);
-            });
-        }
-
         private void UpdateVersionStatus(VersionUpdateStatus status)
         {
             switch (status)
@@ -724,7 +722,6 @@ namespace Axantum.AxCrypt
             }
 
             PurgeActiveFiles();
-            Trace.Listeners.Remove("AxCryptMainFormListener");
         }
 
         public bool CheckStatusAndShowMessage(FileOperationStatus status, string displayContext)
@@ -910,9 +907,9 @@ namespace Axantum.AxCrypt
         private static void SetLanguage(string cultureName)
         {
             Instance.UserSettings.CultureName = cultureName;
-            if (OS.Log.IsInfoEnabled)
+            if (Instance.Log.IsInfoEnabled)
             {
-                OS.Log.LogInfo("Set new UI language culture to '{0}'.".InvariantFormat(Instance.UserSettings.CultureName));
+                Instance.Log.LogInfo("Set new UI language culture to '{0}'.".InvariantFormat(Instance.UserSettings.CultureName));
             }
             Resources.LanguageChangeRestartPrompt.ShowWarning();
         }

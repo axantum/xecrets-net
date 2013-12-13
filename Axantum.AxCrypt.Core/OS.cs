@@ -51,15 +51,6 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        /// <summary>
-        /// Gets the global logging instance. This is a convenience method to get the logger from
-        /// the current IRuntimeEnvironment instance.
-        /// </summary>
-        /// <value>
-        /// The log.
-        /// </value>
-        public static ILogging Log { get { return Current.Log; } }
-
         private static readonly List<Regex> _pathFilters = new List<Regex>();
 
         public static IList<Regex> PathFilters

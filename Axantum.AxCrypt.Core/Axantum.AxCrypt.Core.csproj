@@ -82,6 +82,7 @@
     <Compile Include="Runtime\IDelayTimer.cs" />
     <Compile Include="Runtime\ISleep.cs" />
     <Compile Include="Runtime\IThreadWorker.cs" />
+    <Compile Include="Runtime\LoggingEventArgs.cs" />
     <Compile Include="Runtime\SleepEventArgs.cs" />
     <Compile Include="Runtime\WorkerGroup.cs" />
     <Compile Include="Session\ActiveFileChangedEventArgs.cs" />

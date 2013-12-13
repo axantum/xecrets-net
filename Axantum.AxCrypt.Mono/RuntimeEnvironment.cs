@@ -174,20 +174,6 @@ namespace Axantum.AxCrypt.Mono
             return new WebCaller();
         }
 
-        private ILogging _logging = null;
-
-        public ILogging Log
-        {
-            get
-            {
-                if (_logging == null)
-                {
-                    _logging = new Logging();
-                }
-                return _logging;
-            }
-        }
-
         public IDataProtection DataProtection
         {
             get { return new DataProtection(); }
