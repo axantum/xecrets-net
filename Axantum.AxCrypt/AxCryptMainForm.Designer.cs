@@ -488,7 +488,6 @@
             this.Controls.Add(this._mainMenuStrip);
             this.MainMenuStrip = this._mainMenuStrip;
             this.Name = "AxCryptMainForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AxCryptMainForm_FormClosing);
             this.Load += new System.EventHandler(this.AxCryptMainForm_Load);
             this._mainToolStrip.ResumeLayout(false);
             this._mainToolStrip.PerformLayout();

@@ -149,6 +149,10 @@ namespace Axantum.AxCrypt
                     Preferences.MainWindowLocation = Location;
                 }
             };
+            FormClosing += (sender, e) =>
+            {
+                PurgeActiveFiles();
+            };
 
             _encryptToolStripButton.Tag = FileInfoTypes.EncryptableFile;
             _openEncryptedToolStripButton.Tag = FileInfoTypes.EncryptedFile;
@@ -647,28 +651,34 @@ namespace Axantum.AxCrypt
         private void UpdateRecentFiles(IEnumerable<ActiveFile> files)
         {
             _recentFilesListView.BeginUpdate();
-            _recentFilesListView.Items.Clear();
-            foreach (ActiveFile file in files)
+            try
             {
-                string text = Path.GetFileName(file.DecryptedFileInfo.FullName);
-                ListViewItem item = new ListViewItem(text);
-                item.Name = file.EncryptedFileInfo.FullName;
+                _recentFilesListView.Items.Clear();
+                foreach (ActiveFile file in files)
+                {
+                    string text = Path.GetFileName(file.DecryptedFileInfo.FullName);
+                    ListViewItem item = new ListViewItem(text);
+                    item.Name = file.EncryptedFileInfo.FullName;
 
-                ListViewItem.ListViewSubItem dateColumn = item.SubItems.Add(String.Empty);
-                dateColumn.Name = "Date";
+                    ListViewItem.ListViewSubItem dateColumn = item.SubItems.Add(String.Empty);
+                    dateColumn.Name = "Date";
 
-                ListViewItem.ListViewSubItem encryptedPathColumn = item.SubItems.Add(String.Empty);
-                encryptedPathColumn.Name = "EncryptedPath";
+                    ListViewItem.ListViewSubItem encryptedPathColumn = item.SubItems.Add(String.Empty);
+                    encryptedPathColumn.Name = "EncryptedPath";
 
-                _recentFilesListView.Items.Add(item);
+                    _recentFilesListView.Items.Add(item);
 
-                UpdateListViewItem(item, file);
+                    UpdateListViewItem(item, file);
+                }
+                while (_recentFilesListView.Items.Count > Preferences.RecentFilesMaxNumber)
+                {
+                    _recentFilesListView.Items.RemoveAt(_recentFilesListView.Items.Count - 1);
+                }
             }
-            while (_recentFilesListView.Items.Count > Preferences.RecentFilesMaxNumber)
+            finally
             {
-                _recentFilesListView.Items.RemoveAt(_recentFilesListView.Items.Count - 1);
+                _recentFilesListView.EndUpdate();
             }
-            _recentFilesListView.EndUpdate();
         }
 
         private static void UpdateListViewItem(ListViewItem item, ActiveFile activeFile)
@@ -712,16 +722,6 @@ namespace Axantum.AxCrypt
                 default:
                     throw new InvalidOperationException("Unexpected ActiveFileVisualState value.");
             }
-        }
-
-        private void AxCryptMainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (DesignMode)
-            {
-                return;
-            }
-
-            PurgeActiveFiles();
         }
 
         public bool CheckStatusAndShowMessage(FileOperationStatus status, string displayContext)
