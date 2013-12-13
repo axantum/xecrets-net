@@ -73,7 +73,10 @@ namespace Axantum.AxCrypt.Core.Session
                     events = new List<SessionEvent>(_sessionEvents);
                     _sessionEvents.Clear();
                 }
-                handler(this, new SessionEventArgs(events));
+                if (events.Any())
+                {
+                    handler(this, new SessionEventArgs(events));
+                }
             }
         }
 
@@ -88,6 +91,11 @@ namespace Axantum.AxCrypt.Core.Session
                 _sessionEvents.Add(sessionEvent);
             }
             _delayedSessionChanged.StartIdleTimer();
+        }
+
+        public void DoAllSessionEvents()
+        {
+            OnSessionChanged();
         }
 
         [OnDeserializing]

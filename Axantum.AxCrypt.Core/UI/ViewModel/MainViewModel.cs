@@ -327,6 +327,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             AxCryptFile.Wipe(FileSystemState.DefaultPathInfo, new ProgressContext());
             FactoryRegistry.Instance.Singleton<FileSystemState>(FileSystemState.Create(FileSystemState.DefaultPathInfo));
             FactoryRegistry.Instance.Singleton<KnownKeys>(new KnownKeys());
+            Instance.FileSystemState.NotifySessionChanged(new SessionEvent(SessionEventType.SessionStart));
+        }
+
+        public IEnumerable<ActiveFile> PurgeActiveFiles()
+        {
+            Instance.FileSystemState.NotifySessionChanged(new SessionEvent(SessionEventType.PurgeActiveFiles));
+            Instance.FileSystemState.DoAllSessionEvents();
+            return Instance.FileSystemState.DecryptedActiveFiles;
         }
 
         public void RemoveRecentFiles(IEnumerable<string> files)

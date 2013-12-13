@@ -229,6 +229,10 @@ namespace Axantum.AxCrypt.Core.Session
                     CheckActiveFiles(ChangedEventMode.RaiseAlways, progress);
                     break;
 
+                case SessionEventType.PurgeActiveFiles:
+                    Instance.FileSystemState.Actions.PurgeActiveFiles(progress);
+                    break;
+
                 case SessionEventType.KnownKeyChange:
                 case SessionEventType.ProcessExit:
                 case SessionEventType.SessionChange:

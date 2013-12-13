@@ -124,8 +124,6 @@ namespace Axantum.AxCrypt
             InitializeComponent();
         }
 
-        private bool _loaded = false;
-
         private void AxCryptMainForm_Load(object sender, EventArgs e)
         {
             if (DesignMode)
@@ -157,10 +155,6 @@ namespace Axantum.AxCrypt
 
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
 
-            _encryptToolStripButton.Tag = FileInfoTypes.EncryptableFile;
-            _openEncryptedToolStripButton.Tag = FileInfoTypes.EncryptedFile;
-            _decryptToolStripButton.Tag = FileInfoTypes.EncryptedFile;
-
             SetupPathFilters();
             IntializeControls();
             RestoreUserPreferences();
@@ -170,9 +164,6 @@ namespace Axantum.AxCrypt
 
             BindToMainViewModel();
             _mainViewModel.CurrentVersion = Assembly.GetExecutingAssembly().GetName().Version;
-
-            _loaded = true;
-            ReStartSession();
         }
 
         private void BindToMainViewModel()
@@ -194,7 +185,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged("DebugMode", (bool enabled) => { UpdateDebugMode(enabled); });
 
             _checkVersionNowToolStripMenuItem.Click += (sender, e) => { _mainViewModel.UpdateCheck(DateTime.MinValue); };
-            _clearPassphraseMemoryToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory(); ReStartSession(); };
+            _clearPassphraseMemoryToolStripMenuItem.Click += (sender, e) => { _mainViewModel.ClearPassphraseMemory(); };
             _debugOptionsToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
             _decryptAndRemoveFromListToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DecryptFiles(_mainViewModel.SelectedRecentFiles); };
             _decryptToolStripButton.Click += (sender, e) => { _mainViewModel.DecryptFiles(); };
@@ -452,6 +443,10 @@ namespace Axantum.AxCrypt
 
         private void IntializeControls()
         {
+            _encryptToolStripButton.Tag = FileInfoTypes.EncryptableFile;
+            _openEncryptedToolStripButton.Tag = FileInfoTypes.EncryptedFile;
+            _decryptToolStripButton.Tag = FileInfoTypes.EncryptedFile;
+
             _recentFilesListView.SmallImageList = CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources();
             _recentFilesListView.LargeImageList = CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources();
         }
@@ -671,17 +666,8 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            Instance.BackgroundWork.WaitForIdle();
             PurgeActiveFiles();
-            Instance.BackgroundWork.WaitForIdle();
             Trace.Listeners.Remove("AxCryptMainFormListener");
-        }
-
-        private void ReStartSession()
-        {
-            _recentFilesListView.Items.Clear();
-            _watchedFoldersListView.Items.Clear();
-            Instance.FileSystemState.NotifySessionChanged(new SessionEvent(SessionEventType.SessionStart));
         }
 
         public bool CheckStatusAndShowMessage(FileOperationStatus status, string displayContext)
@@ -778,10 +764,6 @@ namespace Axantum.AxCrypt
 
         private void RecentFilesListView_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
         {
-            if (!_loaded)
-            {
-                return;
-            }
             switch (e.ColumnIndex)
             {
                 case 0:
@@ -800,40 +782,17 @@ namespace Axantum.AxCrypt
 
         private void PurgeActiveFiles()
         {
-            Instance.BackgroundWork.Work(
-                (IProgressContext progress) =>
-                {
-                    progress.NotifyLevelStart();
-                    try
-                    {
-                        Instance.FileSystemState.Actions.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
-                        Instance.FileSystemState.Actions.PurgeActiveFiles(progress);
-                    }
-                    finally
-                    {
-                        progress.NotifyLevelFinished();
-                    }
-
-                    return FileOperationStatus.Success;
-                },
-                (FileOperationStatus status) =>
-                {
-                    if (!CheckStatusAndShowMessage(status, Resources.PurgingActiveFiles))
-                    {
-                        return;
-                    }
-                    IList<ActiveFile> openFiles = Instance.FileSystemState.DecryptedActiveFiles;
-                    if (openFiles.Count == 0)
-                    {
-                        return;
-                    }
-                    StringBuilder sb = new StringBuilder();
-                    foreach (ActiveFile openFile in openFiles)
-                    {
-                        sb.Append("{0}{1}".InvariantFormat(Path.GetFileName(openFile.DecryptedFileInfo.FullName), Environment.NewLine));
-                    }
-                    sb.ToString().ShowWarning();
-                });
+            IEnumerable<ActiveFile> openFiles = _mainViewModel.PurgeActiveFiles();
+            if (!openFiles.Any())
+            {
+                return;
+            }
+            StringBuilder sb = new StringBuilder();
+            foreach (ActiveFile openFile in openFiles)
+            {
+                sb.Append("{0}{1}".InvariantFormat(Path.GetFileName(openFile.DecryptedFileInfo.FullName), Environment.NewLine));
+            }
+            sb.ToString().ShowWarning();
         }
 
         private void SetSortOrder(int column)
@@ -933,10 +892,6 @@ namespace Axantum.AxCrypt
 
         private void AxCryptMainForm_Move(object sender, EventArgs e)
         {
-            if (!_loaded)
-            {
-                return;
-            }
             if (FormWindowState.Normal == WindowState)
             {
                 Preferences.MainWindowLocation = Location;
