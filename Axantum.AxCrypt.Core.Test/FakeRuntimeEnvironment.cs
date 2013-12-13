@@ -25,13 +25,10 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -55,13 +52,18 @@ namespace Axantum.AxCrypt.Core.Test
             EnvironmentVariables = new Dictionary<string, string>();
             MaxConcurrency = 2;
             IsFirstInstance = true;
-            ExitCode = -1;
+            ExitCode = Int32.MinValue;
         }
 
         public FakeRuntimeEnvironment(Endian endianness)
             : this()
         {
             _isLittleEndian = endianness == Endian.Reverse ? !_isLittleEndian : _isLittleEndian;
+        }
+
+        public static FakeRuntimeEnvironment Instance
+        {
+            get { return (FakeRuntimeEnvironment)FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(); }
         }
 
         private static DateTime StandardTimeFunction()
@@ -193,28 +195,7 @@ namespace Axantum.AxCrypt.Core.Test
             return WebCallerCreator();
         }
 
-        protected virtual void OnChanged(SessionEventArgs e)
-        {
-            EventHandler<SessionEventArgs> handler = SessionChanged;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
-        }
-
-        public event EventHandler<SessionEventArgs> SessionChanged;
-
-        public void NotifySessionChanged(SessionEvent sessionEvent)
-        {
-            OnChanged(new SessionEventArgs(sessionEvent));
-        }
-
         #region IRuntimeEnvironment Members
-
-        public ILogging Log
-        {
-            get { return new FakeLogging(); }
-        }
 
         public IDataProtection DataProtection
         {
@@ -259,7 +240,10 @@ namespace Axantum.AxCrypt.Core.Test
 
         public void ExitApplication(int exitCode)
         {
-            ExitCode = exitCode;
+            if (ExitCode == Int32.MinValue)
+            {
+                ExitCode = exitCode;
+            }
         }
     }
 }

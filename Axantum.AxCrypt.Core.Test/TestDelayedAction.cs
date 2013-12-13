@@ -36,14 +36,14 @@ namespace Axantum.AxCrypt.Core.Test
     public static class TestDelayedAction
     {
         [SetUp]
-        public static void SetUp()
+        public static void Setup()
         {
             FactoryRegistry.Instance.Singleton<ISleep>(() => new FakeSleep());
             FactoryRegistry.Instance.Register<IDelayTimer>(() => new FakeDelayTimer());
         }
 
         [TearDown]
-        public static void TearDown()
+        public static void Teardown()
         {
             FactoryRegistry.Instance.Clear();
         }

@@ -198,7 +198,7 @@ namespace Axantum.AxCrypt
             };
         }
 
-        private ImageList CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources()
+        private static ImageList CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources()
         {
             ImageList smallImageList = new ImageList();
 
@@ -213,7 +213,7 @@ namespace Axantum.AxCrypt
             return smallImageList;
         }
 
-        private ImageList CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources()
+        private static ImageList CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources()
         {
             ImageList largeImageList = new ImageList();
 
@@ -245,6 +245,8 @@ namespace Axantum.AxCrypt
 
         private void RestoreUserPreferences()
         {
+            Preferences.RecentFilesMaxNumber = 100;
+
             if (WindowState == FormWindowState.Normal)
             {
                 Height = Preferences.MainWindowHeight.Fallback(Height);
@@ -255,6 +257,8 @@ namespace Axantum.AxCrypt
             _recentFilesListView.Columns[0].Width = Preferences.RecentFilesDocumentWidth.Fallback(_recentFilesListView.Columns[0].Width);
             _recentFilesListView.Columns[1].Width = Preferences.RecentFilesDateTimeWidth.Fallback(_recentFilesListView.Columns[1].Width);
             _recentFilesListView.Columns[2].Width = Preferences.RecentFilesEncryptedPathWidth.Fallback(_recentFilesListView.Columns[2].Width);
+
+            _mainViewModel.RecentFilesComparer = GetComparer(Preferences.RecentFilesSortColumn, !Preferences.RecentFilesAscending);
         }
 
         private void BindToMainViewModel()
@@ -367,7 +371,7 @@ namespace Axantum.AxCrypt
             return;
         }
 
-        private void HandleFileSelection(FileSelectionEventArgs args)
+        private static void HandleFileSelection(FileSelectionEventArgs args)
         {
             switch (args.FileSelectionType)
             {
@@ -386,7 +390,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void HandleWipeConfirm(FileSelectionEventArgs args)
+        private static void HandleWipeConfirm(FileSelectionEventArgs args)
         {
             using (ConfirmWipeDialog cwd = new ConfirmWipeDialog())
             {
@@ -399,7 +403,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void HandleOpenFileSelection(FileSelectionEventArgs args)
+        private static void HandleOpenFileSelection(FileSelectionEventArgs args)
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
@@ -455,7 +459,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void HandleSaveAsFileSelection(FileSelectionEventArgs args)
+        private static void HandleSaveAsFileSelection(FileSelectionEventArgs args)
         {
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
@@ -833,22 +837,34 @@ namespace Axantum.AxCrypt
 
         private void SetSortOrder(int column)
         {
+            ActiveFileComparer comparer = GetComparer(column, Preferences.RecentFilesSortColumn == column ? !Preferences.RecentFilesAscending : false);
+            Preferences.RecentFilesAscending = !comparer.ReverseSort;
+            Preferences.RecentFilesSortColumn = column;
+            _mainViewModel.RecentFilesComparer = comparer;
+        }
+
+        private static ActiveFileComparer GetComparer(int column, bool reverseSort)
+        {
+            ActiveFileComparer comparer;
             switch (column)
             {
                 case 0:
-                    _mainViewModel.RecentFilesComparer = ChooseComparer(_mainViewModel.RecentFilesComparer, ActiveFileComparer.DecryptedNameComparer);
+                    comparer = ActiveFileComparer.DecryptedNameComparer;
                     break;
 
                 case 1:
-                    _mainViewModel.RecentFilesComparer = ChooseComparer(_mainViewModel.RecentFilesComparer, ActiveFileComparer.DateComparer);
+                    comparer = ActiveFileComparer.DateComparer;
                     break;
 
                 case 2:
-                    _mainViewModel.RecentFilesComparer = ChooseComparer(_mainViewModel.RecentFilesComparer, ActiveFileComparer.EncryptedNameComparer);
+                    comparer = ActiveFileComparer.EncryptedNameComparer;
                     break;
+
+                default:
+                    throw new ArgumentException("column is wrong.");
             }
-            Preferences.RecentFilesAscending = !_mainViewModel.RecentFilesComparer.ReverseSort;
-            Preferences.RecentFilesSortColumn = column;
+            comparer.ReverseSort = reverseSort;
+            return comparer;
         }
 
         private static ActiveFileComparer ChooseComparer(ActiveFileComparer current, ActiveFileComparer comparer)
@@ -994,6 +1010,11 @@ namespace Axantum.AxCrypt
             if (components != null)
             {
                 components.Dispose();
+            }
+            if (_mainViewModel != null)
+            {
+                _mainViewModel.Dispose();
+                _mainViewModel = null;
             }
             FactoryRegistry.Instance.Clear();
         }

@@ -44,8 +44,6 @@ namespace Axantum.AxCrypt
 
         public static int RecentFilesDocumentWidth { get { return Instance.UserSettings.Get<int>("RecentFilesDocumentWidth"); } set { Instance.UserSettings.Set("RecentFilesDocumentWidth", value); } }
 
-        public static int RecentFilesDocumentHeight { get { return Instance.UserSettings.Get<int>("RecentFilesDocumentHeight"); } set { Instance.UserSettings.Set("RecentFilesDocumentHeight", value); } }
-
         public static int RecentFilesDateTimeWidth { get { return Instance.UserSettings.Get<int>("RecentFilesDateTimeWidth"); } set { Instance.UserSettings.Set("RecentFilesDateTimeWidth", value); } }
 
         public static int RecentFilesEncryptedPathWidth { get { return Instance.UserSettings.Get<int>("RecentFilesEncryptedPathWidth"); } set { Instance.UserSettings.Set("RecentFilesEncryptedPathWidth", value); } }

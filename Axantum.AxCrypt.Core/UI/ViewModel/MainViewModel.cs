@@ -111,7 +111,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChanged("CurrentVersion", (Version cv) => { if (cv != null) UpdateUpdateCheck(cv); });
             BindPropertyChanged("DebugMode", (bool enabled) => { UpdateDebugMode(enabled); });
             BindPropertyChanged("RecentFilesComparer", (ActiveFileComparer comparer) => { SetRecentFiles(); });
-            BindPropertyChanged("RecentFilesReverseSort", (bool ascending) => { SetRecentFiles(); });
         }
 
         private void UpdateDebugMode(bool enabled)

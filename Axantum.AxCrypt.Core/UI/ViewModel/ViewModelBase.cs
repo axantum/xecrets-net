@@ -71,7 +71,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             OnPropertyChanged(new PropertyChangedEventArgs(name));
         }
 
-        private bool HasValueChanged<T>(object o, T value)
+        private static bool HasValueChanged<T>(object o, T value)
         {
             if (o == null)
             {
@@ -115,34 +115,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             action(GetProperty<T>(name));
         }
 
-        private static bool HasValueChanged<T>(object me, PropertyInfo pi, T value)
-        {
-            object o = pi.GetValue(me, null);
-            if (o == null)
-            {
-                return value != null;
-            }
-            T oldValue = (T)o;
-            return !oldValue.Equals(value);
-        }
-
         private static object GetProperty(object me, string name)
         {
             PropertyInfo pi = me.GetType().GetProperty(name);
             return pi.GetValue(me, null);
-        }
-
-        private static void AddEvent<T>(object me, string name, EventHandler<T> handler) where T : EventArgs
-        {
-            EventInfo ei = me.GetType().GetEvent(name);
-            ei.AddEventHandler(me, handler);
-        }
-
-        private static Action GetAction(object me, string name)
-        {
-            MethodInfo mi = me.GetType().GetMethod(name);
-            Action action = (Action)Delegate.CreateDelegate(typeof(Action), me, mi);
-            return action;
         }
 
         public string Error
@@ -161,13 +137,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        public virtual string this[string propertyName]
+        public virtual string this[string columnName]
         {
             get
             {
-                if (GetType().GetProperty(propertyName) == null)
+                if (GetType().GetProperty(columnName) == null)
                 {
-                    throw new ArgumentException("Non-existing property name.", propertyName);
+                    throw new ArgumentException("Non-existing property name.", columnName);
                 }
                 return String.Empty;
             }

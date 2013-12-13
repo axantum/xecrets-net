@@ -26,11 +26,7 @@
 #endregion Coypright and License
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Extensions
 {
@@ -87,9 +83,9 @@ namespace Axantum.AxCrypt.Core.Extensions
             return bytes;
         }
 
-        public static T Fallback<T>(this T value, T fallback) where T : IEquatable<T>
+        public static T Fallback<T>(this T value, T fallbackValue) where T : IEquatable<T>
         {
-            return !value.Equals(default(T)) ? value : fallback;
+            return !value.Equals(default(T)) ? value : fallbackValue;
         }
     }
 }
