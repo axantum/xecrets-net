@@ -27,7 +27,6 @@
 
 using Axantum.AxCrypt.Core.Ipc;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -51,6 +50,10 @@ namespace Axantum.AxCrypt.Mono
         private void ListenerCallback(IAsyncResult result)
         {
             HttpListener listener = (HttpListener)result.AsyncState;
+            if (!listener.IsListening)
+            {
+                return;
+            }
             HttpListenerContext context = listener.EndGetContext(result);
             _listener.BeginGetContext(ListenerCallback, _listener);
             HttpListenerRequest request = context.Request;
@@ -101,6 +104,7 @@ namespace Axantum.AxCrypt.Mono
         {
             if (_listener != null)
             {
+                _listener.Stop();
                 _listener.Close();
             }
         }

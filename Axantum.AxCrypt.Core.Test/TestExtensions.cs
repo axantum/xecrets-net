@@ -225,7 +225,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEndianOptimization()
         {
-            FactoryRegistry.Instance.Singleton((IRuntimeEnvironment)new FakeRuntimeEnvironment(Endian.Reverse));
+            FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment(Endian.Reverse));
             if (BitConverter.IsLittleEndian)
             {
                 byte[] actuallyLittleEndianBytes = 0x0102030405060708L.GetBigEndianBytes();

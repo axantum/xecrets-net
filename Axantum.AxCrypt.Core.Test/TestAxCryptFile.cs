@@ -28,7 +28,6 @@
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
@@ -443,9 +442,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptFilesUniqueWithWipeOfOriginal()
         {
-            FactoryRegistry.Instance.Singleton<ParallelBackground>(new ParallelBackground());
-            FactoryRegistry.Instance.Singleton<IProgressBackground>(new FakeProgressBackground());
-            FactoryRegistry.Instance.Singleton<IUIThread>(new FakeUIThread());
+            FactoryRegistry.Instance.Singleton<ParallelBackground>(() => new ParallelBackground());
+            FactoryRegistry.Instance.Singleton<IProgressBackground>(() => new FakeProgressBackground());
+            FactoryRegistry.Instance.Singleton<IUIThread>(() => new FakeUIThread());
             IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
             sourceFileInfo.CreateFolder();
             IRuntimeFileInfo sourceFolderInfo = OS.Current.FileInfo(Path.GetDirectoryName(sourceFileInfo.FullName));

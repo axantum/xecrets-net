@@ -63,12 +63,12 @@ namespace Axantum.AxCrypt
 
         private static void RegisterSingletonImplementations()
         {
-            FactoryRegistry.Instance.Singleton<ILogging>(new Logging());
-            FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(new RuntimeEnvironment());
-            FactoryRegistry.Instance.Singleton<CommandService>(new CommandService(new HttpRequestServer(), new HttpRequestClient()));
-            FactoryRegistry.Instance.Singleton<IUserSettings>(new UserSettings(UserSettings.DefaultPathInfo));
+            FactoryRegistry.Instance.Singleton<ILogging>(() => new Logging());
+            FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment());
+            FactoryRegistry.Instance.Singleton<CommandService>(() => new CommandService(new HttpRequestServer(), new HttpRequestClient()));
+            FactoryRegistry.Instance.Singleton<IUserSettings>(() => new UserSettings(UserSettings.DefaultPathInfo));
             FactoryRegistry.Instance.Register<IDelayTimer>(() => new DelayTimer());
-            FactoryRegistry.Instance.Singleton<FileSystemState>(FileSystemState.Create(FileSystemState.DefaultPathInfo));
+            FactoryRegistry.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(FileSystemState.DefaultPathInfo));
         }
 
         private static void SetCulture()

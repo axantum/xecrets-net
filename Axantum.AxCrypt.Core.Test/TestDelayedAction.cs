@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void SetUp()
         {
-            FactoryRegistry.Instance.Singleton<ISleep>(new FakeSleep());
+            FactoryRegistry.Instance.Singleton<ISleep>(() => new FakeSleep());
             FactoryRegistry.Instance.Register<IDelayTimer>(() => new FakeDelayTimer());
         }
 

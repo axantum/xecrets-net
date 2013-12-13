@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void Setup()
         {
             SetupAssembly.AssemblySetup();
-            FactoryRegistry.Instance.Singleton<FileSystemState>(new FileSystemState());
+            FactoryRegistry.Instance.Singleton<FileSystemState>(() => new FileSystemState());
         }
 
         [TearDown]

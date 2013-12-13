@@ -90,9 +90,9 @@ namespace Axantum.AxCrypt.Core
             SetAndDisposeIfDisposable(typeof(Func<TArgument, TResult>), creator);
         }
 
-        public void Singleton<TArgument>(TArgument instance)
+        public void Singleton<TArgument>(Func<TArgument> creator)
         {
-            SetAndDisposeIfDisposable(typeof(TArgument), instance);
+            SetAndDisposeIfDisposable(typeof(TArgument), creator);
         }
 
         private void SetAndDisposeIfDisposable(Type type, object value)
@@ -105,9 +105,23 @@ namespace Axantum.AxCrypt.Core
             _mapping[type] = value;
         }
 
-        public T Singleton<T>()
+        public T Singleton<T>() where T : class
         {
-            return (T)_mapping[typeof(T)];
+            object o = _mapping[typeof(T)];
+            T value = o as T;
+            if (value != null)
+            {
+                return value;
+            }
+
+            Func<T> creator = o as Func<T>;
+            if (creator != null)
+            {
+                value = creator();
+                _mapping[typeof(T)] = value;
+                return value;
+            }
+            throw new ArgumentException("Unregistered singleton. Initialize with 'FactoryRegistry.Singleton<{0}>(() => {{ return new {0}(); }});'".InvariantFormat(typeof(T)));
         }
 
         /// <summary>
@@ -140,7 +154,7 @@ namespace Axantum.AxCrypt.Core
         /// </summary>
         public void Clear()
         {
-            foreach (object o in _mapping)
+            foreach (object o in _mapping.Values)
             {
                 DisposeIfDisposable(o);
             }

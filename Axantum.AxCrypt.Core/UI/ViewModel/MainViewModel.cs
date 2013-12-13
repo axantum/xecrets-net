@@ -327,8 +327,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public void ClearPassphraseMemory()
         {
             AxCryptFile.Wipe(FileSystemState.DefaultPathInfo, new ProgressContext());
-            FactoryRegistry.Instance.Singleton<FileSystemState>(FileSystemState.Create(FileSystemState.DefaultPathInfo));
-            FactoryRegistry.Instance.Singleton<KnownKeys>(new KnownKeys());
+            FactoryRegistry.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(FileSystemState.DefaultPathInfo));
+            FactoryRegistry.Instance.Singleton<KnownKeys>(() => new KnownKeys());
             Instance.FileSystemState.NotifySessionChanged(new SessionEvent(SessionEventType.SessionStart));
         }
 

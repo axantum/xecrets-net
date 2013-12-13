@@ -43,18 +43,18 @@ namespace Axantum.AxCrypt.Core.Test
     {
         public static void AssemblySetup()
         {
-            FactoryRegistry.Instance.Singleton((IRuntimeEnvironment)new FakeRuntimeEnvironment());
-            FactoryRegistry.Instance.Singleton<ILogging>(new FakeLogging());
-            FactoryRegistry.Instance.Singleton((IUserSettings)new UserSettings(UserSettings.DefaultPathInfo));
+            FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
+            FactoryRegistry.Instance.Singleton<ILogging>(() => new FakeLogging());
+            FactoryRegistry.Instance.Singleton<IUserSettings>(() => new UserSettings(UserSettings.DefaultPathInfo));
             Instance.UserSettings.KeyWrapIterations = 1234;
             Instance.UserSettings.ThumbprintSalt = KeyWrapSalt.Zero;
             Instance.Log.SetLevel(LogLevel.Debug);
-            FactoryRegistry.Instance.Singleton(new KnownKeys());
-            FactoryRegistry.Instance.Singleton(new ProcessState());
-            FactoryRegistry.Instance.Singleton<ISleep>(new FakeSleep());
+            FactoryRegistry.Instance.Singleton(() => new KnownKeys());
+            FactoryRegistry.Instance.Singleton(() => new ProcessState());
+            FactoryRegistry.Instance.Singleton<ISleep>(() => new FakeSleep());
             FactoryRegistry.Instance.Register<IDelayTimer>(() => new FakeDelayTimer());
-            FactoryRegistry.Instance.Singleton<IUIThread>(new FakeUIThread());
-            FactoryRegistry.Instance.Singleton<IProgressBackground>(new FakeProgressBackground());
+            FactoryRegistry.Instance.Singleton<IUIThread>(() => new FakeUIThread());
+            FactoryRegistry.Instance.Singleton<IProgressBackground>(() => new FakeProgressBackground());
         }
 
         public static void AssemblyTeardown()
