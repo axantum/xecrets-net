@@ -53,6 +53,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool WatchedFoldersEnabled { get { return GetProperty<bool>("WatchedFoldersEnabled"); } set { SetProperty("WatchedFoldersEnabled", value); } }
 
+        public string Title { get { return GetProperty<string>("Title"); } set { SetProperty("Title", value); } }
+
         public string LogOnName { get { return GetProperty<string>("LogOnName"); } set { SetProperty("LogOnName", value); } }
 
         public IEnumerable<string> WatchedFolders { get { return GetProperty<IEnumerable<string>>("WatchedFolders"); } set { SetProperty("WatchedFolders", value.ToList()); } }

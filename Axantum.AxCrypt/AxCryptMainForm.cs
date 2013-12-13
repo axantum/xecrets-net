@@ -58,66 +58,13 @@ namespace Axantum.AxCrypt
     {
         private NotifyIcon _notifyIcon = null;
 
-        private string _title;
-
         private MainViewModel _mainViewModel = new MainViewModel();
 
         public static MessageBoxOptions MessageBoxOptions { get; private set; }
 
-        private TabPage _hiddenLogTabPage = null;
+        private TabPage _hiddenLogTabPage;
 
         private TabPage _hiddenWatchedFoldersTabPage;
-
-        private DragDropEffects GetEffectsForMainToolStrip(DragEventArgs e)
-        {
-            if (_mainViewModel.DragAndDropFiles.Count() != 1)
-            {
-                return DragDropEffects.None;
-            }
-            Point point = _mainToolStrip.PointToClient(new Point(e.X, e.Y));
-            ToolStripButton button = _mainToolStrip.GetItemAt(point) as ToolStripButton;
-            if (button == null)
-            {
-                return DragDropEffects.None;
-            }
-            if (!button.Enabled)
-            {
-                return DragDropEffects.None;
-            }
-            if (button == _encryptToolStripButton)
-            {
-                if ((_mainViewModel.DragAndDropFilesTypes & FileInfoTypes.EncryptableFile) == FileInfoTypes.EncryptableFile)
-                {
-                    return (DragDropEffects.Link | DragDropEffects.Copy) & e.AllowedEffect;
-                }
-            }
-            if (button == _decryptToolStripButton || button == _openEncryptedToolStripButton)
-            {
-                if ((_mainViewModel.DragAndDropFilesTypes & FileInfoTypes.EncryptedFile) == FileInfoTypes.EncryptedFile)
-                {
-                    return (DragDropEffects.Link | DragDropEffects.Copy) & e.AllowedEffect;
-                }
-            }
-            return DragDropEffects.None;
-        }
-
-        private DragDropEffects GetEffectsForRecentFiles(DragEventArgs e)
-        {
-            if (!_mainViewModel.DroppableAsRecent)
-            {
-                return DragDropEffects.None;
-            }
-            return (DragDropEffects.Link | DragDropEffects.Copy) & e.AllowedEffect;
-        }
-
-        public DragDropEffects GetEffectsForWatchedFolders(DragEventArgs e)
-        {
-            if (!_mainViewModel.DroppableAsWatchedFolder)
-            {
-                return DragDropEffects.None;
-            }
-            return (DragDropEffects.Link | DragDropEffects.Copy) & e.AllowedEffect;
-        }
 
         public AxCryptMainForm()
         {
@@ -131,14 +78,6 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            if (OS.Current.Platform == Platform.WindowsDesktop)
-            {
-                _notifyIcon = new NotifyIcon(components);
-                _notifyIcon.MouseClick += TrayNotifyIcon_MouseClick;
-                _notifyIcon.Icon = Resources.axcrypticon;
-                _notifyIcon.Visible = true;
-            }
-
             Trace.Listeners.Add(new DelegateTraceListener("AxCryptMainFormListener", FormatTraceMessage));
 
             FactoryRegistry.Instance.Singleton<KnownKeys>(new KnownKeys());
@@ -148,22 +87,163 @@ namespace Axantum.AxCrypt
             FactoryRegistry.Instance.Singleton<ParallelBackground>(new ParallelBackground());
             FactoryRegistry.Instance.Singleton<ProcessState>(new ProcessState());
 
-            _hiddenWatchedFoldersTabPage = _statusTabControl.TabPages["_watchedFoldersTabPage"];
-            _hiddenLogTabPage = _statusTabControl.TabPages["_logTabPage"];
-
-            _title = "{0} {1}{2}".InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription);
-
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
 
             SetupPathFilters();
             IntializeControls();
             RestoreUserPreferences();
+            BindToMainViewModel();
 
             Instance.CommandService.Received += AxCryptMainForm_Request;
             Instance.CommandService.StartListening();
+        }
 
-            BindToMainViewModel();
-            _mainViewModel.CurrentVersion = Assembly.GetExecutingAssembly().GetName().Version;
+        private static void SetupPathFilters()
+        {
+            OS.PathFilters.Add(new Regex(@"\\\.dropbox$"));
+            OS.PathFilters.Add(new Regex(@"\\desktop\.ini$"));
+            AddEnvironmentVariableBasedPathFilter(@"^{0}(?!Temp$)", "SystemRoot");
+            AddEnvironmentVariableBasedPathFilter(@"^{0}(?!Temp$)", "windir");
+            AddEnvironmentVariableBasedPathFilter(@"^{0}", "ProgramFiles");
+            AddEnvironmentVariableBasedPathFilter(@"^{0}", "ProgramFiles(x86)");
+            AddEnvironmentVariableBasedPathFilter(@"^{0}$", "SystemDrive");
+        }
+
+        private static void AddEnvironmentVariableBasedPathFilter(string formatRegularExpression, string name)
+        {
+            string folder = name.FolderFromEnvironment();
+            if (String.IsNullOrEmpty(folder))
+            {
+                return;
+            }
+            folder = folder.Replace(@"\", @"\\");
+            OS.PathFilters.Add(new Regex(formatRegularExpression.InvariantFormat(folder)));
+        }
+
+        private void IntializeControls()
+        {
+            if (OS.Current.Platform == Platform.WindowsDesktop)
+            {
+                InitializeNotifyIcon();
+            }
+
+            ResizeEnd += (sender, e) =>
+            {
+                if (WindowState == FormWindowState.Normal)
+                {
+                    Preferences.MainWindowHeight = Height;
+                    Preferences.MainWindowWidth = Width;
+                }
+            };
+            Move += (sender, e) =>
+            {
+                if (WindowState == FormWindowState.Normal)
+                {
+                    Preferences.MainWindowLocation = Location;
+                }
+            };
+
+            _encryptToolStripButton.Tag = FileInfoTypes.EncryptableFile;
+            _openEncryptedToolStripButton.Tag = FileInfoTypes.EncryptedFile;
+            _decryptToolStripButton.Tag = FileInfoTypes.EncryptedFile;
+
+            _hiddenWatchedFoldersTabPage = _statusTabControl.TabPages["_watchedFoldersTabPage"];
+            _hiddenLogTabPage = _statusTabControl.TabPages["_logTabPage"];
+
+            _recentFilesListView.SmallImageList = CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources();
+            _recentFilesListView.LargeImageList = CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources();
+            _recentFilesListView.ColumnWidthChanged += RecentFilesListView_ColumnWidthChanged;
+        }
+
+        private void InitializeNotifyIcon()
+        {
+            _notifyIcon = new NotifyIcon(components);
+            _notifyIcon.Icon = Resources.axcrypticon;
+            _notifyIcon.Text = Resources.AxCryptFileEncryption;
+            _notifyIcon.BalloonTipTitle = Resources.AxCryptFileEncryption;
+            _notifyIcon.BalloonTipText = Resources.TrayBalloonTooltip;
+            _notifyIcon.Visible = true;
+
+            _notifyIcon.MouseClick += (sender, e) =>
+            {
+                Show();
+                WindowState = FormWindowState.Normal;
+            };
+
+            Resize += (sender, e) =>
+            {
+                switch (WindowState)
+                {
+                    case FormWindowState.Minimized:
+                        _notifyIcon.Visible = true;
+                        _notifyIcon.ShowBalloonTip(500);
+                        Hide();
+                        break;
+
+                    case FormWindowState.Normal:
+                        _notifyIcon.Visible = false;
+                        break;
+                }
+            };
+        }
+
+        private ImageList CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources()
+        {
+            ImageList smallImageList = new ImageList();
+
+            smallImageList.Images.Add("ActiveFile", Resources.activefilegreen16);
+            smallImageList.Images.Add("InactiveFile", Resources.inactivefilegreen16);
+            smallImageList.Images.Add("Exclamation", Resources.exclamationgreen16);
+            smallImageList.Images.Add("DecryptedFile", Resources.decryptedfilered16);
+            smallImageList.Images.Add("DecryptedUnknownKeyFile", Resources.decryptedunknownkeyfilered16);
+            smallImageList.Images.Add("ActiveFileKnownKey", Resources.fileknownkeygreen16);
+            smallImageList.TransparentColor = System.Drawing.Color.Transparent;
+
+            return smallImageList;
+        }
+
+        private ImageList CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources()
+        {
+            ImageList largeImageList = new ImageList();
+
+            largeImageList.Images.Add("ActiveFile", Resources.opendocument32);
+            largeImageList.Images.Add("InactiveFile", Resources.helpquestiongreen32);
+            largeImageList.Images.Add("Exclamation", Resources.exclamationgreen32);
+            largeImageList.TransparentColor = System.Drawing.Color.Transparent;
+
+            return largeImageList;
+        }
+
+        private void RecentFilesListView_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
+        {
+            switch (e.ColumnIndex)
+            {
+                case 0:
+                    Preferences.RecentFilesDocumentWidth = _recentFilesListView.Columns[e.ColumnIndex].Width;
+                    break;
+
+                case 1:
+                    Preferences.RecentFilesDateTimeWidth = _recentFilesListView.Columns[e.ColumnIndex].Width;
+                    break;
+
+                case 2:
+                    Preferences.RecentFilesEncryptedPathWidth = _recentFilesListView.Columns[e.ColumnIndex].Width;
+                    break;
+            }
+        }
+
+        private void RestoreUserPreferences()
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                Height = Preferences.MainWindowHeight.Fallback(Height);
+                Width = Preferences.MainWindowWidth.Fallback(Width);
+                Location = Preferences.MainWindowLocation.Fallback(Location);
+            }
+
+            _recentFilesListView.Columns[0].Width = Preferences.RecentFilesDocumentWidth.Fallback(_recentFilesListView.Columns[0].Width);
+            _recentFilesListView.Columns[1].Width = Preferences.RecentFilesDateTimeWidth.Fallback(_recentFilesListView.Columns[1].Width);
+            _recentFilesListView.Columns[2].Width = Preferences.RecentFilesEncryptedPathWidth.Fallback(_recentFilesListView.Columns[2].Width);
         }
 
         private void BindToMainViewModel()
@@ -218,6 +298,9 @@ namespace Axantum.AxCrypt
 
             _mainViewModel.LoggingOn += (object me, LogOnEventArgs args) => { HandleLogOn(args); };
             _mainViewModel.SelectingFiles += (object me, FileSelectionEventArgs args) => { HandleFileSelection(args); };
+
+            _mainViewModel.Title = "{0} {1}{2}".InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription);
+            _mainViewModel.CurrentVersion = Assembly.GetExecutingAssembly().GetName().Version;
         }
 
         private void HandleLogOn(LogOnEventArgs args)
@@ -427,82 +510,55 @@ namespace Axantum.AxCrypt
             WindowState = FormWindowState.Normal;
         }
 
-        private void RestoreUserPreferences()
+        private DragDropEffects GetEffectsForMainToolStrip(DragEventArgs e)
         {
-            if (WindowState == FormWindowState.Normal)
+            if (_mainViewModel.DragAndDropFiles.Count() != 1)
             {
-                Height = Preferences.MainWindowHeight.Fallback(Height);
-                Width = Preferences.MainWindowWidth.Fallback(Width);
-                Location = Preferences.MainWindowLocation.Fallback(Location);
+                return DragDropEffects.None;
             }
-
-            _recentFilesListView.Columns[0].Width = Preferences.RecentFilesDocumentWidth.Fallback(_recentFilesListView.Columns[0].Width);
-            _recentFilesListView.Columns[1].Width = Preferences.RecentFilesDateTimeWidth.Fallback(_recentFilesListView.Columns[1].Width);
-            _recentFilesListView.Columns[2].Width = Preferences.RecentFilesEncryptedPathWidth.Fallback(_recentFilesListView.Columns[2].Width);
-        }
-
-        private void IntializeControls()
-        {
-            _recentFilesListView.ColumnWidthChanged += RecentFilesListView_ColumnWidthChanged;
-            ResizeEnd += AxCryptMainForm_ResizeEnd;
-            Move += AxCryptMainForm_Move;
-            Resize += AxCryptMainForm_Resize;
-
-            _encryptToolStripButton.Tag = FileInfoTypes.EncryptableFile;
-            _openEncryptedToolStripButton.Tag = FileInfoTypes.EncryptedFile;
-            _decryptToolStripButton.Tag = FileInfoTypes.EncryptedFile;
-
-            _recentFilesListView.SmallImageList = CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources();
-            _recentFilesListView.LargeImageList = CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources();
-        }
-
-        private ImageList CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources()
-        {
-            ImageList smallImageList = new ImageList();
-
-            smallImageList.Images.Add("ActiveFile", Resources.activefilegreen16);
-            smallImageList.Images.Add("InactiveFile", Resources.inactivefilegreen16);
-            smallImageList.Images.Add("Exclamation", Resources.exclamationgreen16);
-            smallImageList.Images.Add("DecryptedFile", Resources.decryptedfilered16);
-            smallImageList.Images.Add("DecryptedUnknownKeyFile", Resources.decryptedunknownkeyfilered16);
-            smallImageList.Images.Add("ActiveFileKnownKey", Resources.fileknownkeygreen16);
-            smallImageList.TransparentColor = System.Drawing.Color.Transparent;
-
-            return smallImageList;
-        }
-
-        private ImageList CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources()
-        {
-            ImageList largeImageList = new ImageList();
-
-            largeImageList.Images.Add("ActiveFile", Resources.opendocument32);
-            largeImageList.Images.Add("InactiveFile", Resources.helpquestiongreen32);
-            largeImageList.Images.Add("Exclamation", Resources.exclamationgreen32);
-            largeImageList.TransparentColor = System.Drawing.Color.Transparent;
-
-            return largeImageList;
-        }
-
-        private static void SetupPathFilters()
-        {
-            OS.PathFilters.Add(new Regex(@"\\\.dropbox$"));
-            OS.PathFilters.Add(new Regex(@"\\desktop\.ini$"));
-            AddEnvironmentVariableBasedPathFilter(@"^{0}(?!Temp$)", "SystemRoot");
-            AddEnvironmentVariableBasedPathFilter(@"^{0}(?!Temp$)", "windir");
-            AddEnvironmentVariableBasedPathFilter(@"^{0}", "ProgramFiles");
-            AddEnvironmentVariableBasedPathFilter(@"^{0}", "ProgramFiles(x86)");
-            AddEnvironmentVariableBasedPathFilter(@"^{0}$", "SystemDrive");
-        }
-
-        private static void AddEnvironmentVariableBasedPathFilter(string formatRegularExpression, string name)
-        {
-            string folder = name.FolderFromEnvironment();
-            if (String.IsNullOrEmpty(folder))
+            Point point = _mainToolStrip.PointToClient(new Point(e.X, e.Y));
+            ToolStripButton button = _mainToolStrip.GetItemAt(point) as ToolStripButton;
+            if (button == null)
             {
-                return;
+                return DragDropEffects.None;
             }
-            folder = folder.Replace(@"\", @"\\");
-            OS.PathFilters.Add(new Regex(formatRegularExpression.InvariantFormat(folder)));
+            if (!button.Enabled)
+            {
+                return DragDropEffects.None;
+            }
+            if (button == _encryptToolStripButton)
+            {
+                if ((_mainViewModel.DragAndDropFilesTypes & FileInfoTypes.EncryptableFile) == FileInfoTypes.EncryptableFile)
+                {
+                    return (DragDropEffects.Link | DragDropEffects.Copy) & e.AllowedEffect;
+                }
+            }
+            if (button == _decryptToolStripButton || button == _openEncryptedToolStripButton)
+            {
+                if ((_mainViewModel.DragAndDropFilesTypes & FileInfoTypes.EncryptedFile) == FileInfoTypes.EncryptedFile)
+                {
+                    return (DragDropEffects.Link | DragDropEffects.Copy) & e.AllowedEffect;
+                }
+            }
+            return DragDropEffects.None;
+        }
+
+        private DragDropEffects GetEffectsForRecentFiles(DragEventArgs e)
+        {
+            if (!_mainViewModel.DroppableAsRecent)
+            {
+                return DragDropEffects.None;
+            }
+            return (DragDropEffects.Link | DragDropEffects.Copy) & e.AllowedEffect;
+        }
+
+        public DragDropEffects GetEffectsForWatchedFolders(DragEventArgs e)
+        {
+            if (!_mainViewModel.DroppableAsWatchedFolder)
+            {
+                return DragDropEffects.None;
+            }
+            return (DragDropEffects.Link | DragDropEffects.Copy) & e.AllowedEffect;
         }
 
         private void SetWindowTextWithLogonStatus(bool isLoggedOn)
@@ -516,11 +572,7 @@ namespace Axantum.AxCrypt
             {
                 logonStatus = Resources.LoggedOffStatusText;
             }
-            string text = "{0} - {1}".InvariantFormat(_title, logonStatus);
-            if (String.Compare(Text, text, StringComparison.Ordinal) != 0)
-            {
-                Text = text;
-            }
+            Text = "{0} - {1}".InvariantFormat(_mainViewModel.Title, logonStatus);
         }
 
         private void FormatTraceMessage(string message)
@@ -767,24 +819,6 @@ namespace Axantum.AxCrypt
 
         #endregion ToolStrip
 
-        private void RecentFilesListView_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
-        {
-            switch (e.ColumnIndex)
-            {
-                case 0:
-                    Preferences.RecentFilesDocumentWidth = _recentFilesListView.Columns[e.ColumnIndex].Width;
-                    break;
-
-                case 1:
-                    Preferences.RecentFilesDateTimeWidth = _recentFilesListView.Columns[e.ColumnIndex].Width;
-                    break;
-
-                case 2:
-                    Preferences.RecentFilesEncryptedPathWidth = _recentFilesListView.Columns[e.ColumnIndex].Width;
-                    break;
-            }
-        }
-
         private void PurgeActiveFiles()
         {
             IEnumerable<ActiveFile> openFiles = _mainViewModel.PurgeActiveFiles();
@@ -861,52 +895,6 @@ namespace Axantum.AxCrypt
             ProgressBar progressBar = (ProgressBar)menuStrip.Tag;
             IProgressContext progress = (IProgressContext)progressBar.Tag;
             progress.Cancel = true;
-        }
-
-        private void AxCryptMainForm_Resize(object sender, EventArgs e)
-        {
-            if (_notifyIcon == null)
-            {
-                return;
-            }
-
-            _notifyIcon.Text = Resources.AxCryptFileEncryption;
-            _notifyIcon.BalloonTipTitle = Resources.AxCryptFileEncryption;
-            _notifyIcon.BalloonTipText = Resources.TrayBalloonTooltip;
-
-            if (FormWindowState.Minimized == WindowState)
-            {
-                _notifyIcon.Visible = true;
-                _notifyIcon.ShowBalloonTip(500);
-                this.Hide();
-            }
-            else if (FormWindowState.Normal == WindowState)
-            {
-                _notifyIcon.Visible = false;
-            }
-        }
-
-        private void AxCryptMainForm_ResizeEnd(object sender, EventArgs e)
-        {
-            if (FormWindowState.Normal == WindowState)
-            {
-                Preferences.MainWindowHeight = Height;
-                Preferences.MainWindowWidth = Width;
-            }
-        }
-
-        private void AxCryptMainForm_Move(object sender, EventArgs e)
-        {
-            if (FormWindowState.Normal == WindowState)
-            {
-                Preferences.MainWindowLocation = Location;
-            }
-        }
-
-        private void TrayNotifyIcon_MouseClick(object sender, MouseEventArgs e)
-        {
-            Show();
-            WindowState = FormWindowState.Normal;
         }
 
         private void EnglishLanguageToolStripMenuItem_Click(object sender, EventArgs e)
