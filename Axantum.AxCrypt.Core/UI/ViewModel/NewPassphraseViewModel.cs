@@ -37,7 +37,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public NewPassphraseViewModel(string defaultIdentityName)
         {
             bool defaultIdentityKnown = Instance.FileSystemState.Identities.Any(identity => String.Compare(identity.Name, Environment.UserName, StringComparison.OrdinalIgnoreCase) == 0);
-            IdentityName = defaultIdentityKnown ? defaultIdentityName : String.Empty;
+            IdentityName = defaultIdentityKnown ? String.Empty : defaultIdentityName;
             Passphrase = String.Empty;
         }
 

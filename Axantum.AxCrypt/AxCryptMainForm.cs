@@ -443,6 +443,11 @@ namespace Axantum.AxCrypt
 
         private void IntializeControls()
         {
+            _recentFilesListView.ColumnWidthChanged += RecentFilesListView_ColumnWidthChanged;
+            ResizeEnd += AxCryptMainForm_ResizeEnd;
+            Move += AxCryptMainForm_Move;
+            Resize += AxCryptMainForm_Resize;
+
             _encryptToolStripButton.Tag = FileInfoTypes.EncryptableFile;
             _openEncryptedToolStripButton.Tag = FileInfoTypes.EncryptedFile;
             _decryptToolStripButton.Tag = FileInfoTypes.EncryptedFile;

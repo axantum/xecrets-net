@@ -427,7 +427,6 @@
             this._recentFilesListView.Sorting = System.Windows.Forms.SortOrder.None;
             this._recentFilesListView.UseCompatibleStateImageBehavior = false;
             this._recentFilesListView.View = System.Windows.Forms.View.Details;
-            this._recentFilesListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.RecentFilesListView_ColumnWidthChanged);
             // 
             // _decryptedFileColumnHeader
             // 
@@ -491,9 +490,6 @@
             this.Name = "AxCryptMainForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AxCryptMainForm_FormClosing);
             this.Load += new System.EventHandler(this.AxCryptMainForm_Load);
-            this.ResizeEnd += new System.EventHandler(this.AxCryptMainForm_ResizeEnd);
-            this.Move += new System.EventHandler(this.AxCryptMainForm_Move);
-            this.Resize += new System.EventHandler(this.AxCryptMainForm_Resize);
             this._mainToolStrip.ResumeLayout(false);
             this._mainToolStrip.PerformLayout();
             this._mainMenuStrip.ResumeLayout(false);
