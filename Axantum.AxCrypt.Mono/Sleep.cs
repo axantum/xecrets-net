@@ -34,10 +34,10 @@ namespace Axantum.AxCrypt.Mono
 {
     public class Sleep : ISleep
     {
-        public void Time(TimeSpan time)
+        public void Time(TimeSpan value)
         {
-            Thread.Sleep((int)time.TotalMilliseconds);
-            OnElapsed(new SleepEventArgs(time));
+            Thread.Sleep((int)value.TotalMilliseconds);
+            OnElapsed(new SleepEventArgs(value));
         }
 
         public event EventHandler<SleepEventArgs> Elapsed;

@@ -33,9 +33,9 @@ namespace Axantum.AxCrypt.Core.Test
 {
     internal class FakeSleep : ISleep
     {
-        public void Time(TimeSpan time)
+        public void Time(TimeSpan value)
         {
-            OnElapsed(new SleepEventArgs(time));
+            OnElapsed(new SleepEventArgs(value));
         }
 
         public event EventHandler<SleepEventArgs> Elapsed;

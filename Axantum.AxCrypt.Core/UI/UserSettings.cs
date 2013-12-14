@@ -30,6 +30,7 @@ using Axantum.AxCrypt.Core.IO;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 
@@ -78,74 +79,74 @@ namespace Axantum.AxCrypt.Core.UI
 
         public string CultureName
         {
-            get { return Get("CultureName", "en-US"); }
-            set { Set("CultureName", value); }
+            get { return Load("CultureName", "en-US"); }
+            set { Store("CultureName", value); }
         }
 
         public Uri AxCrypt2VersionCheckUrl
         {
-            get { return Get("AxCrypt2VersionCheckUrl", new Uri("https://www.axantum.com/Xecrets/RestApi.ashx/axcrypt2version/windows")); }
-            set { Set("AxCrypt2VersionCheckUrl", value.ToString()); }
+            get { return Load("AxCrypt2VersionCheckUrl", new Uri("https://www.axantum.com/Xecrets/RestApi.ashx/axcrypt2version/windows")); }
+            set { Store("AxCrypt2VersionCheckUrl", value.ToString()); }
         }
 
         public Uri UpdateUrl
         {
-            get { return Get("UpdateUrl", new Uri("http://www.axantum.com/")); }
-            set { Set("UpdateUrl", value.ToString()); }
+            get { return Load("UpdateUrl", new Uri("http://www.axantum.com/")); }
+            set { Store("UpdateUrl", value.ToString()); }
         }
 
         public DateTime LastUpdateCheckUtc
         {
-            get { return Get("LastUpdateCheckUtc", DateTime.MinValue); }
-            set { Set("LastUpdateCheckUtc", value); }
+            get { return Load("LastUpdateCheckUtc", DateTime.MinValue); }
+            set { Store("LastUpdateCheckUtc", value); }
         }
 
         public string NewestKnownVersion
         {
-            get { return Get("NewestKnownVersion", String.Empty); }
-            set { Set("NewestKnownVersion", value); }
+            get { return Load("NewestKnownVersion", String.Empty); }
+            set { Store("NewestKnownVersion", value); }
         }
 
         public bool DebugMode
         {
-            get { return Get("DebugMode", false); }
-            set { Set("DebugMode", value); }
+            get { return Load("DebugMode", false); }
+            set { Store("DebugMode", value); }
         }
 
         public Uri AxCrypt2HelpUrl
         {
-            get { return Get("AxCrypt2HelpUrl", new Uri("http://www.axantum.com/AxCrypt/AxCryptNetHelp.html")); }
-            set { Set("AxCrypt2HelpUrl", value.ToString()); }
+            get { return Load("AxCrypt2HelpUrl", new Uri("http://www.axantum.com/AxCrypt/AxCryptNetHelp.html")); }
+            set { Store("AxCrypt2HelpUrl", value.ToString()); }
         }
 
         public bool DisplayEncryptPassphrase
         {
-            get { return Get("DisplayEncryptPassphrase", true); }
-            set { Set("DisplayEncryptPassphrase", value); }
+            get { return Load("DisplayEncryptPassphrase", true); }
+            set { Store("DisplayEncryptPassphrase", value); }
         }
 
         public bool DisplayDecryptPassphrase
         {
-            get { return Get("DisplayDecryptPassphrase", true); }
-            set { Set("DisplayDecryptPassphrase", value); }
+            get { return Load("DisplayDecryptPassphrase", true); }
+            set { Store("DisplayDecryptPassphrase", value); }
         }
 
         public long KeyWrapIterations
         {
-            get { return Get("KeyWrapIterations", () => KeyWrapIterationCalculator.CalculatedKeyWrapIterations); }
-            set { Set("KeyWrapIterations", value); }
+            get { return Load("KeyWrapIterations", () => KeyWrapIterationCalculator.CalculatedKeyWrapIterations); }
+            set { Store("KeyWrapIterations", value); }
         }
 
         public KeyWrapSalt ThumbprintSalt
         {
-            get { return Get("ThumbprintSalt", () => new KeyWrapSalt(AesKey.DefaultKeyLength)); }
-            set { Set("ThumbprintSalt", JsonConvert.SerializeObject(value)); }
+            get { return Load("ThumbprintSalt", () => new KeyWrapSalt(AesKey.DefaultKeyLength)); }
+            set { Store("ThumbprintSalt", JsonConvert.SerializeObject(value)); }
         }
 
         public TimeSpan SessionChangedMinimumIdle
         {
-            get { return Get("WorkFolderMinimumIdle", TimeSpan.FromMilliseconds(500)); }
-            set { Set("WorkFolderMinimumIdle", value); }
+            get { return Load("WorkFolderMinimumIdle", TimeSpan.FromMilliseconds(500)); }
+            set { Store("WorkFolderMinimumIdle", value); }
         }
 
         public string this[string key]
@@ -179,19 +180,19 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public T Get<T>(string key)
+        public T Load<T>(string key)
         {
-            return Get(key, default(T));
+            return Load(key, default(T));
         }
 
-        public T Get<T>(string key, Func<T> fallbackAction)
+        public T Load<T>(string key, Func<T> fallbackAction)
         {
             string value;
             if (_settings.TryGetValue(key, out value))
             {
                 try
                 {
-                    return (T)Convert.ChangeType(value, typeof(T));
+                    return (T)Convert.ChangeType(value, typeof(T), CultureInfo.InvariantCulture);
                 }
                 catch (FormatException)
                 {
@@ -199,11 +200,11 @@ namespace Axantum.AxCrypt.Core.UI
             }
 
             T fallback = fallbackAction();
-            this[key] = Convert.ToString(fallback);
+            this[key] = Convert.ToString(fallback, CultureInfo.InvariantCulture);
             return fallback;
         }
 
-        public KeyWrapSalt Get(string key, Func<KeyWrapSalt> fallbackAction)
+        public KeyWrapSalt Load(string key, Func<KeyWrapSalt> fallbackAction)
         {
             string value;
             if (_settings.TryGetValue(key, out value))
@@ -222,17 +223,17 @@ namespace Axantum.AxCrypt.Core.UI
             return fallback;
         }
 
-        public T Get<T>(string key, T fallback)
+        public T Load<T>(string key, T fallback)
         {
             string value;
             if (!_settings.TryGetValue(key, out value))
             {
                 return fallback;
             }
-            return (T)Convert.ChangeType(value, typeof(T));
+            return (T)Convert.ChangeType(value, typeof(T), CultureInfo.InvariantCulture);
         }
 
-        public Uri Get(string key, Uri fallback)
+        public Uri Load(string key, Uri fallback)
         {
             string value;
             if (!_settings.TryGetValue(key, out value))
@@ -242,7 +243,7 @@ namespace Axantum.AxCrypt.Core.UI
             return new Uri(value);
         }
 
-        public TimeSpan Get(string key, TimeSpan fallback)
+        public TimeSpan Load(string key, TimeSpan fallback)
         {
             string value;
             if (!_settings.TryGetValue(key, out value))
@@ -252,9 +253,9 @@ namespace Axantum.AxCrypt.Core.UI
             return TimeSpan.Parse(value);
         }
 
-        public void Set<T>(string key, T value)
+        public void Store<T>(string key, T value)
         {
-            this[key] = Convert.ToString(value);
+            this[key] = Convert.ToString(value, CultureInfo.InvariantCulture);
         }
     }
 }

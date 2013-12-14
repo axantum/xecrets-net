@@ -39,11 +39,11 @@ namespace Axantum.AxCrypt.Core.UI
             set;
         }
 
-        T Get<T>(string key);
+        T Load<T>(string key);
 
-        T Get<T>(string key, T fallback);
+        T Load<T>(string key, T fallback);
 
-        void Set<T>(string key, T value);
+        void Store<T>(string key, T value);
 
         string CultureName { get; set; }
 

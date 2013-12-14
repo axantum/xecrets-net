@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Core.Runtime
 
             _action = action;
             _timer = FactoryRegistry.Instance.Create<IDelayTimer>();
-            _timer.Interval = minimumIdleTime;
+            _timer.SetInterval(minimumIdleTime);
             _timer.Elapsed += HandleTimerElapsedEvent;
         }
 

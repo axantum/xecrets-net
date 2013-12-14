@@ -59,6 +59,8 @@ namespace Axantum.AxCrypt
             {
                 new CommandLine(commandLineArgs[0], commandLineArgs.Skip(1)).Execute();
             }
+
+            FactoryRegistry.Instance.Clear();
         }
 
         private static void RegisterSingletonImplementations()

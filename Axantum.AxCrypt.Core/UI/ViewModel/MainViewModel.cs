@@ -43,7 +43,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     {
         private UpdateCheck _updateCheck;
 
-        public bool LogonEnabled { get { return GetProperty<bool>("LogonEnabled"); } set { SetProperty("LogonEnabled", value); } }
+        public bool LogOnEnabled { get { return GetProperty<bool>("LogOnEnabled"); } set { SetProperty("LogOnEnabled", value); } }
 
         public bool EncryptFileEnabled { get { return GetProperty<bool>("EncryptFileEnabled"); } set { SetProperty("EncryptFileEnabled", value); } }
 
@@ -60,6 +60,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public IEnumerable<string> WatchedFolders { get { return GetProperty<IEnumerable<string>>("WatchedFolders"); } set { SetProperty("WatchedFolders", value.ToList()); } }
 
         public IEnumerable<ActiveFile> RecentFiles { get { return GetProperty<IEnumerable<ActiveFile>>("RecentFiles"); } set { SetProperty("RecentFiles", value.ToList()); } }
+
+        public IEnumerable<ActiveFile> DecryptedFiles { get { return GetProperty<IEnumerable<ActiveFile>>("DecryptedFiles"); } set { SetProperty("DecryptedFiles", value.ToList()); } }
 
         public ActiveFileComparer RecentFilesComparer { get { return GetProperty<ActiveFileComparer>("RecentFilesComparer"); } set { SetProperty("RecentFilesComparer", value); } }
 
@@ -85,6 +87,18 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool DebugMode { get { return GetProperty<bool>("DebugMode"); } set { SetProperty("DebugMode", value); } }
 
+        public IAction RemoveRecentFiles { get; private set; }
+
+        public IAction AddWatchedFolders { get; private set; }
+
+        public IAction PurgeActiveFiles { get; private set; }
+
+        public IAction ClearPassphraseMemory { get; private set; }
+
+        public IAction RemoveWatchedFolders { get; private set; }
+
+        public IAction OpenSelectedFolder { get; private set; }
+
         public MainViewModel()
         {
             InitializePropertyValues();
@@ -94,13 +108,20 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void InitializePropertyValues()
         {
-            LogonEnabled = true;
+            LogOnEnabled = true;
             WatchedFoldersEnabled = false;
             WatchedFolders = new string[0];
             DragAndDropFiles = new string[0];
             RecentFiles = new ActiveFile[0];
             DebugMode = false;
             VersionUpdateStatus = UI.VersionUpdateStatus.Unknown;
+
+            AddWatchedFolders = new DelegateAction<IEnumerable<string>>((folders) => AddWatchedFoldersAction(folders));
+            RemoveRecentFiles = new DelegateAction<IEnumerable<string>>((files) => RemoveRecentFilesAction(files));
+            PurgeActiveFiles = new DelegateAction<object>((parameter) => PurgeActiveFilesAction());
+            ClearPassphraseMemory = new DelegateAction<object>((parameter) => ClearPassphraseMemoryAction());
+            RemoveWatchedFolders = new DelegateAction<IEnumerable<string>>((files) => RemoveWatchedFoldersAction(files));
+            OpenSelectedFolder = new DelegateAction<string>((folder) => OpenSelectedFolderAction(folder));
         }
 
         private void BindPropertyChangedEvents()
@@ -113,7 +134,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChanged("RecentFilesComparer", (ActiveFileComparer comparer) => { SetRecentFiles(); });
         }
 
-        private void UpdateDebugMode(bool enabled)
+        private static void UpdateDebugMode(bool enabled)
         {
             if (enabled)
             {
@@ -262,6 +283,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 activeFiles.Sort(RecentFilesComparer);
             }
             RecentFiles = activeFiles;
+            DecryptedFiles = Instance.FileSystemState.DecryptedActiveFiles;
         }
 
         private void SetFilesAreOpen()
@@ -284,7 +306,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 name = identity.Name;
             }
             LogOnName = name;
-            LogonEnabled = !isLoggedOn;
+            LogOnEnabled = !isLoggedOn;
             EncryptFileEnabled = isLoggedOn;
             DecryptFileEnabled = isLoggedOn;
             OpenEncryptedEnabled = isLoggedOn;
@@ -323,7 +345,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        public void ClearPassphraseMemory()
+        private static void ClearPassphraseMemoryAction()
         {
             AxCryptFile.Wipe(FileSystemState.DefaultPathInfo, new ProgressContext());
             FactoryRegistry.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(FileSystemState.DefaultPathInfo));
@@ -331,14 +353,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             Instance.FileSystemState.NotifySessionChanged(new SessionEvent(SessionEventType.SessionStart));
         }
 
-        public IEnumerable<ActiveFile> PurgeActiveFiles()
+        private void PurgeActiveFilesAction()
         {
             Instance.FileSystemState.NotifySessionChanged(new SessionEvent(SessionEventType.PurgeActiveFiles));
             Instance.FileSystemState.DoAllSessionEvents();
-            return Instance.FileSystemState.DecryptedActiveFiles;
+            SetRecentFiles();
         }
 
-        public void RemoveRecentFiles(IEnumerable<string> files)
+        private static void RemoveRecentFilesAction(IEnumerable<string> files)
         {
             foreach (string file in files)
             {
@@ -350,7 +372,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        public void AddWatchedFolders(IEnumerable<string> folders)
+        private static void AddWatchedFoldersAction(IEnumerable<string> folders)
         {
             foreach (string folder in folders)
             {
@@ -359,7 +381,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             Instance.FileSystemState.Save();
         }
 
-        public void RemoveWatchedFolders(IEnumerable<string> folders)
+        private static void RemoveWatchedFoldersAction(IEnumerable<string> folders)
         {
             foreach (string watchedFolderPath in folders)
             {
@@ -368,7 +390,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             Instance.FileSystemState.Save();
         }
 
-        public void OpenSelectedFolder(string folder)
+        private static void OpenSelectedFolderAction(string folder)
         {
             OS.Current.Launch(folder);
         }
@@ -723,7 +745,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public event EventHandler<LogOnEventArgs> LoggingOn;
 
-        protected virtual void OnLogggingOn(LogOnEventArgs e)
+        protected virtual void OnLoggingOn(LogOnEventArgs e)
         {
             EventHandler<LogOnEventArgs> handler = LoggingOn;
             if (handler != null)
@@ -751,7 +773,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 DisplayPassphrase = Instance.UserSettings.DisplayEncryptPassphrase,
                 Identity = identity,
             };
-            OnLogggingOn(logOnArgs);
+            OnLoggingOn(logOnArgs);
 
             if (logOnArgs.CreateNew)
             {
@@ -776,7 +798,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 DisplayPassphrase = Instance.UserSettings.DisplayEncryptPassphrase,
                 Passphrase = defaultPassphrase
             };
-            OnLogggingOn(logOnArgs);
+            OnLoggingOn(logOnArgs);
 
             if (logOnArgs.Cancel || logOnArgs.Passphrase.Length == 0)
             {

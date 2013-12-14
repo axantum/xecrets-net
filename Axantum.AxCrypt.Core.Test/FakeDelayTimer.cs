@@ -40,12 +40,12 @@ namespace Axantum.AxCrypt.Core.Test
 
         private void Sleep_Elapsed(object sender, SleepEventArgs e)
         {
-            if (_elapsed >= Interval)
+            if (_elapsed >= _interval)
             {
                 return;
             }
             _elapsed += e.Time;
-            if (_elapsed >= Interval)
+            if (_elapsed >= _interval)
             {
                 OnElapsed();
             }
@@ -55,7 +55,12 @@ namespace Axantum.AxCrypt.Core.Test
 
         private TimeSpan _elapsed = TimeSpan.MinValue;
 
-        public TimeSpan Interval { get; set; }
+        private TimeSpan _interval;
+
+        public void SetInterval(TimeSpan interval)
+        {
+            _interval = interval;
+        }
 
         public event EventHandler<EventArgs> Elapsed;
 

@@ -32,7 +32,7 @@ namespace Axantum.AxCrypt.Core.Runtime
 {
     public interface ISleep
     {
-        void Time(TimeSpan time);
+        void Time(TimeSpan value);
 
         event EventHandler<SleepEventArgs> Elapsed;
     }

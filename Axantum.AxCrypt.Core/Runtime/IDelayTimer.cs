@@ -32,7 +32,7 @@ namespace Axantum.AxCrypt.Core.Runtime
 {
     public interface IDelayTimer : IDisposable
     {
-        TimeSpan Interval { set; }
+        void SetInterval(TimeSpan interval);
 
         event EventHandler<EventArgs> Elapsed;
 

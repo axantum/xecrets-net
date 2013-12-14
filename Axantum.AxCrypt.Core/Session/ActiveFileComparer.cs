@@ -11,7 +11,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             public override int Compare(ActiveFile x, ActiveFile y)
             {
-                return (ReverseSort ? -1 : 1) * x.EncryptedFileInfo.FullName.CompareTo(y.EncryptedFileInfo.FullName);
+                return (ReverseSort ? -1 : 1) * String.Compare(x.EncryptedFileInfo.FullName, y.EncryptedFileInfo.FullName, StringComparison.OrdinalIgnoreCase);
             }
         }
 
@@ -19,7 +19,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             public override int Compare(ActiveFile x, ActiveFile y)
             {
-                return (ReverseSort ? -1 : 1) * Path.GetFileName(x.DecryptedFileInfo.FullName).CompareTo(Path.GetFileName(y.DecryptedFileInfo.FullName));
+                return (ReverseSort ? -1 : 1) * String.Compare(Path.GetFileName(x.DecryptedFileInfo.FullName), Path.GetFileName(y.DecryptedFileInfo.FullName), StringComparison.OrdinalIgnoreCase);
             }
         }
 

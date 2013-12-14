@@ -26,9 +26,7 @@
 #endregion Coypright and License
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
@@ -49,16 +47,16 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public string Verification { get { return GetProperty<string>("Verification"); } set { SetProperty("Verification", value); } }
 
-        public override string this[string propertyName]
+        public override string this[string columnName]
         {
             get
             {
-                string error = base[propertyName];
+                string error = base[columnName];
                 if (!String.IsNullOrEmpty(error))
                 {
                     return error;
                 }
-                switch (propertyName)
+                switch (columnName)
                 {
                     case "Passphrase":
                     case "Verification":

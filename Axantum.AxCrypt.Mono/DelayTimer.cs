@@ -56,13 +56,10 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        public TimeSpan Interval
+        public void SetInterval(TimeSpan interval)
         {
-            set
-            {
-                _timer.Enabled = false;
-                _timer.Interval = value.TotalMilliseconds;
-            }
+            _timer.Enabled = false;
+            _timer.Interval = interval.TotalMilliseconds;
         }
 
         public event EventHandler<EventArgs> Elapsed;
