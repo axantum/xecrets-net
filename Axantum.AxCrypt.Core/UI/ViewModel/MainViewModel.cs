@@ -413,7 +413,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public void EncryptFiles()
         {
-            FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs()
+            FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[0])
             {
                 FileSelectionType = FileSelectionType.Encrypt,
             };
@@ -432,7 +432,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public void DecryptFiles()
         {
-            FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs()
+            FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[0])
             {
                 FileSelectionType = FileSelectionType.Decrypt,
             };
@@ -457,10 +457,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
             {
-                FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs()
+                FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[] { e.SaveFileFullName })
                 {
                     FileSelectionType = FileSelectionType.SaveAsDecrypted,
-                    SelectedFiles = new string[] { e.SaveFileFullName },
                 };
                 OnSelectingFiles(fileSelectionArgs);
                 if (fileSelectionArgs.Cancel)
@@ -489,7 +488,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public void WipeFiles()
         {
-            FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs()
+            FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[0])
             {
                 FileSelectionType = FileSelectionType.Wipe,
             };
@@ -512,10 +511,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.WipeQueryConfirmation += (object sender, FileOperationEventArgs e) =>
             {
-                FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs()
+                FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[] { file.FullName, })
                 {
                     FileSelectionType = FileSelectionType.WipeConfirm,
-                    SelectedFiles = new string[] { file.FullName, },
                 };
                 OnSelectingFiles(fileSelectionArgs);
                 e.Cancel = fileSelectionArgs.Cancel;
@@ -541,10 +539,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public void OpenFileFromFolder(string folder)
         {
-            FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs()
+            FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[] { folder })
             {
                 FileSelectionType = FileSelectionType.Open,
-                SelectedFiles = new string[] { folder },
             };
             OnSelectingFiles(fileSelectionArgs);
             if (fileSelectionArgs.Cancel)
@@ -616,10 +613,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
             {
-                FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs()
+                FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[] { e.SaveFileFullName })
                 {
                     FileSelectionType = FileSelectionType.SaveAsEncrypted,
-                    SelectedFiles = new string[] { e.SaveFileFullName },
                 };
                 OnSelectingFiles(fileSelectionArgs);
                 if (fileSelectionArgs.Cancel)

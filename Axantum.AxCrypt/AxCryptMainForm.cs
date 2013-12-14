@@ -455,7 +455,11 @@ namespace Axantum.AxCrypt
                 }
                 DialogResult result = ofd.ShowDialog();
                 args.Cancel = result != DialogResult.OK;
-                args.SelectedFiles = new List<string>(ofd.FileNames);
+                args.SelectedFiles.Clear();
+                foreach (string fileName in ofd.FileNames)
+                {
+                    args.SelectedFiles.Add(fileName);
+                }
             }
         }
 

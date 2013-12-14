@@ -28,15 +28,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
     public class FileSelectionEventArgs : EventArgs
     {
-        public FileSelectionEventArgs()
+        public FileSelectionEventArgs(IEnumerable<string> files)
         {
-            SelectedFiles = new List<string>();
+            SelectedFiles = new List<string>(files);
         }
 
         public FileSelectionType FileSelectionType { get; set; }
@@ -47,6 +46,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool Skip { get; set; }
 
-        public IList<string> SelectedFiles { get; set; }
+        public IList<string> SelectedFiles { get; private set; }
     }
 }
