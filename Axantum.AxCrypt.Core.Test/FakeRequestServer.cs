@@ -14,14 +14,19 @@ namespace Axantum.AxCrypt.Core.Test
         {
         }
 
+        public void AcceptRequest(CommandServiceArgs command)
+        {
+            OnRequest(new RequestCommandArgs(command));
+        }
+
         public event EventHandler<RequestCommandArgs> Request;
 
-        protected virtual void OnRequest()
+        protected virtual void OnRequest(RequestCommandArgs e)
         {
             EventHandler<RequestCommandArgs> handler = Request;
             if (handler != null)
             {
-                handler(this, new RequestCommandArgs(String.Empty));
+                handler(this, e);
             }
         }
     }

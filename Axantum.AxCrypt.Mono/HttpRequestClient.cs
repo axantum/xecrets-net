@@ -26,8 +26,8 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Ipc;
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -37,12 +37,14 @@ namespace Axantum.AxCrypt.Mono
 {
     public class HttpRequestClient : IRequestClient
     {
-        public CommandStatus Dispatch(string method, string content)
+        public CommandStatus Dispatch(CommandServiceArgs command)
         {
+            string json = JsonConvert.SerializeObject(command, Formatting.None, new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Include, NullValueHandling = NullValueHandling.Ignore, });
+
             WebRequest request = HttpWebRequest.Create(HttpRequestServer.Url);
             try
             {
-                return DoRequestInternal(method, content, request);
+                return DoRequestInternal("POST", json, request);
             }
             catch (WebException wex)
             {

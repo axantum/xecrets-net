@@ -6,11 +6,11 @@ namespace Axantum.AxCrypt.Core.Test
 {
     internal class FakeRequestClient : IRequestClient
     {
-        public CommandStatus Dispatch(string method, string content)
+        public CommandStatus Dispatch(CommandServiceArgs command)
         {
-            return FakeDispatcher(method, content);
+            return FakeDispatcher(command);
         }
 
-        public Func<string, string, CommandStatus> FakeDispatcher { get; set; }
+        public Func<CommandServiceArgs, CommandStatus> FakeDispatcher { get; set; }
     }
 }

@@ -35,12 +35,19 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestCommandLine
     {
+        private static FakeRequestClient _fakeClient;
+
+        private static FakeRequestServer _fakeServer;
+
         [SetUp]
         public static void Setup()
         {
             SetupAssembly.AssemblySetup();
             FactoryRegistry.Instance.Singleton<FakeRequestClient>(() => new FakeRequestClient());
-            FactoryRegistry.Instance.Singleton<CommandService>(() => new CommandService(new FakeRequestServer(), FactoryRegistry.Instance.Singleton<FakeRequestClient>()));
+            FactoryRegistry.Instance.Singleton<FakeRequestServer>(() => new FakeRequestServer());
+            _fakeClient = FactoryRegistry.Instance.Singleton<FakeRequestClient>();
+            _fakeServer = FactoryRegistry.Instance.Singleton<FakeRequestServer>();
+            FactoryRegistry.Instance.Singleton<CommandService>(() => new CommandService(_fakeServer, _fakeClient));
         }
 
         [TearDown]
@@ -52,13 +59,53 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFailedOpen()
         {
-            FakeRequestClient client = FactoryRegistry.Instance.Singleton<FakeRequestClient>();
-            client.FakeDispatcher = (method, content) => { return CommandStatus.Error; };
+            _fakeClient.FakeDispatcher = (command) => { return CommandStatus.Error; };
             CommandLine cl = new CommandLine("axcrypt.exe", new string[] { "file.axx" });
             FakeRuntimeEnvironment.Instance.IsFirstInstanceRunning = true;
             cl.Execute();
 
             Assert.That(FakeRuntimeEnvironment.Instance.ExitCode, Is.EqualTo(1), "An error during Open shall return status code 1.");
+        }
+
+        [Test]
+        public static void TestExit()
+        {
+            bool wasExit = false;
+            _fakeServer.Request += (sender, e) =>
+            {
+                wasExit = e.Command.RequestCommand == CommandVerb.Exit;
+            };
+
+            _fakeClient.FakeDispatcher = (command) => { _fakeServer.AcceptRequest(command); return CommandStatus.Success; };
+
+            CommandLine cl = new CommandLine("axcrypt.exe", new string[] { "-x" });
+            FakeRuntimeEnvironment.Instance.IsFirstInstanceRunning = true;
+            cl.Execute();
+
+            Assert.That(wasExit, Is.True);
+        }
+
+        [Test]
+        public static void TestNeedToLaunchFirstInstance()
+        {
+            FakeRuntimeEnvironment.Instance.Launcher = (string path) => { FakeRuntimeEnvironment.Instance.IsFirstInstanceRunning = path == "axcrypt.exe"; return new FakeLauncher(path); };
+
+            _fakeClient.FakeDispatcher = (command) => { _fakeServer.AcceptRequest(command); return CommandStatus.Success; };
+            CommandLine cl = new CommandLine("axcrypt.exe", new string[0]);
+            Assert.That(FakeRuntimeEnvironment.Instance.IsFirstInstanceRunning, Is.False);
+            cl.Execute();
+            Assert.That(FakeRuntimeEnvironment.Instance.IsFirstInstanceRunning, Is.True);
+        }
+
+        [Test]
+        public static void TestFailedToLaunchFirstInstance()
+        {
+            _fakeClient.FakeDispatcher = (command) => { _fakeServer.AcceptRequest(command); return CommandStatus.Success; };
+            CommandLine cl = new CommandLine("axcrypt.exe", new string[0]);
+            Assert.That(FakeRuntimeEnvironment.Instance.IsFirstInstanceRunning, Is.False);
+            cl.Execute();
+            Assert.That(FakeRuntimeEnvironment.Instance.IsFirstInstanceRunning, Is.False);
+            Assert.That(FakeRuntimeEnvironment.Instance.ExitCode, Is.EqualTo(2), "Failed to start the first instance shall return status code 2.");
         }
     }
 }

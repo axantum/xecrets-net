@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Ipc;
+using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Linq;
@@ -60,7 +61,8 @@ namespace Axantum.AxCrypt.Mono
             using (TextReader reader = new StreamReader(request.InputStream, Encoding.UTF8))
             {
                 string requestJson = reader.ReadToEnd();
-                RequestCommandArgs args = new RequestCommandArgs(requestJson);
+                CommandServiceArgs requestArgs = JsonConvert.DeserializeObject<CommandServiceArgs>(requestJson);
+                RequestCommandArgs args = new RequestCommandArgs(requestArgs);
                 OnRequest(args);
             }
             using (HttpListenerResponse response = context.Response)

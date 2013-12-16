@@ -25,11 +25,9 @@
 
 #endregion Coypright and License
 
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Ipc
 {
@@ -48,8 +46,7 @@ namespace Axantum.AxCrypt.Core.Ipc
 
         private void HandleServerRequest(object sender, RequestCommandArgs e)
         {
-            CommandServiceArgs requestArgs = JsonConvert.DeserializeObject<CommandServiceArgs>(e.CommandMessage);
-            OnReceived(requestArgs);
+            OnReceived(e.Command);
         }
 
         public CommandStatus Call(CommandVerb verb, params string[] paths)
@@ -60,8 +57,7 @@ namespace Axantum.AxCrypt.Core.Ipc
         public CommandStatus Call(CommandVerb verb, IEnumerable<string> paths)
         {
             CommandStatus status;
-            string json = JsonConvert.SerializeObject(new CommandServiceArgs(verb, paths), Formatting.None, new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Include, NullValueHandling = NullValueHandling.Ignore, });
-            status = _client.Dispatch("POST", json);
+            status = _client.Dispatch(new CommandServiceArgs(verb, paths));
             return status;
         }
 
