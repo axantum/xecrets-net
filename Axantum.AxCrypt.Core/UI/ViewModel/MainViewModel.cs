@@ -43,7 +43,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     {
         private UpdateCheck _updateCheck;
 
-        public bool LogOnEnabled { get { return GetProperty<bool>("LogOnEnabled"); } set { SetProperty("LogOnEnabled", value); } }
+        public bool LoggedOn { get { return GetProperty<bool>("LoggedOn"); } set { SetProperty("LoggedOn", value); } }
 
         public bool EncryptFileEnabled { get { return GetProperty<bool>("EncryptFileEnabled"); } set { SetProperty("EncryptFileEnabled", value); } }
 
@@ -99,6 +99,28 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAction OpenSelectedFolder { get; private set; }
 
+        public IAction DecryptFiles { get; private set; }
+
+        public IAction EncryptFiles { get; private set; }
+
+        public IAction OpenFiles { get; private set; }
+
+        public IAction LogOnLogOff { get; private set; }
+
+        public IAction DecryptFolders { get; private set; }
+
+        public IAction UpdateCheck { get; private set; }
+
+        public IAction WipeFiles { get; private set; }
+
+        public IAction OpenFilesFromFolder { get; private set; }
+
+        public IAction AddRecentFiles { get; private set; }
+
+        public event EventHandler<FileSelectionEventArgs> SelectingFiles;
+
+        public event EventHandler<LogOnEventArgs> LoggingOn;
+
         public MainViewModel()
         {
             InitializePropertyValues();
@@ -108,7 +130,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void InitializePropertyValues()
         {
-            LogOnEnabled = true;
             WatchedFoldersEnabled = false;
             WatchedFolders = new string[0];
             DragAndDropFiles = new string[0];
@@ -122,6 +143,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             ClearPassphraseMemory = new DelegateAction<object>((parameter) => ClearPassphraseMemoryAction());
             RemoveWatchedFolders = new DelegateAction<IEnumerable<string>>((files) => RemoveWatchedFoldersAction(files));
             OpenSelectedFolder = new DelegateAction<string>((folder) => OpenSelectedFolderAction(folder));
+            DecryptFiles = new DelegateAction<IEnumerable<string>>((files) => DecryptFilesAction(files));
+            EncryptFiles = new DelegateAction<IEnumerable<string>>((files) => EncryptFilesAction(files));
+            OpenFiles = new DelegateAction<IEnumerable<string>>((files) => OpenFilesAction(files));
+            LogOnLogOff = new DelegateAction<object>((parameter) => LogOnLogOffAction());
+            DecryptFolders = new DelegateAction<IEnumerable<string>>((folders) => DecryptFoldersAction(folders));
+            UpdateCheck = new DelegateAction<DateTime>((lastUpdateCheckUtc) => UpdateCheckAction(lastUpdateCheckUtc));
+            WipeFiles = new DelegateAction<IEnumerable<string>>((files) => WipeFilesAction(files));
+            OpenFilesFromFolder = new DelegateAction<string>((folder) => OpenFilesFromFolderAction(folder));
+            AddRecentFiles = new DelegateAction<IEnumerable<string>>((files) => AddRecentFilesAction(files));
         }
 
         private void BindPropertyChangedEvents()
@@ -132,6 +162,30 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChanged("CurrentVersion", (Version cv) => { if (cv != null) UpdateUpdateCheck(cv); });
             BindPropertyChanged("DebugMode", (bool enabled) => { UpdateDebugMode(enabled); });
             BindPropertyChanged("RecentFilesComparer", (ActiveFileComparer comparer) => { SetRecentFiles(); });
+        }
+
+        private void SubscribeToModelEvents()
+        {
+            Instance.FileSystemState.SessionChanged += HandleSessionChanged;
+            Instance.FileSystemState.ActiveFileChanged += HandleActiveFileChangedEvent;
+        }
+
+        protected virtual void OnSelectingFiles(FileSelectionEventArgs e)
+        {
+            EventHandler<FileSelectionEventArgs> handler = SelectingFiles;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        protected virtual void OnLoggingOn(LogOnEventArgs e)
+        {
+            EventHandler<LogOnEventArgs> handler = LoggingOn;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
         }
 
         private static void UpdateDebugMode(bool enabled)
@@ -156,7 +210,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             DisposeUpdateCheck();
             _updateCheck = new UpdateCheck(currentVersion);
             _updateCheck.VersionUpdate += Handle_VersionUpdate;
-            UpdateCheck(Instance.UserSettings.LastUpdateCheckUtc);
+            UpdateCheckAction(Instance.UserSettings.LastUpdateCheckUtc);
         }
 
         private void Handle_VersionUpdate(object sender, VersionEventArgs e)
@@ -167,12 +221,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             UpdatedVersion = e.Version;
             VersionUpdateStatus = e.VersionUpdateStatus;
-        }
-
-        private void SubscribeToModelEvents()
-        {
-            Instance.FileSystemState.SessionChanged += HandleSessionChanged;
-            Instance.FileSystemState.ActiveFileChanged += HandleActiveFileChangedEvent;
         }
 
         private void HandleActiveFileChangedEvent(object sender, ActiveFileChangedEventArgs e)
@@ -292,11 +340,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             FilesAreOpen = openFiles.Count > 0;
         }
 
-        public void LogOnLogOff()
-        {
-            LogOnLogOffInternal();
-        }
-
         private void SetLogOnState(bool isLoggedOn)
         {
             string name = String.Empty;
@@ -306,14 +349,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 name = identity.Name;
             }
             LogOnName = name;
-            LogOnEnabled = !isLoggedOn;
+            LoggedOn = isLoggedOn;
             EncryptFileEnabled = isLoggedOn;
             DecryptFileEnabled = isLoggedOn;
             OpenEncryptedEnabled = isLoggedOn;
             WatchedFoldersEnabled = isLoggedOn;
         }
 
-        private void LogOnLogOffInternal()
+        private void LogOnLogOffAction()
         {
             if (Instance.KnownKeys.IsLoggedOn)
             {
@@ -395,61 +438,59 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             OS.Current.Launch(folder);
         }
 
-        public void DecryptWatchedFolders(IEnumerable<string> folders)
+        private void DecryptFoldersAction(IEnumerable<string> folders)
         {
-            Instance.ParallelBackground.DoFiles(folders.Select(f => OS.Current.FileInfo(f)).ToList(), DecryptWatchedFolder, (status) => { });
+            Instance.ParallelBackground.DoFiles(folders.Select(f => OS.Current.FileInfo(f)).ToList(), DecryptFolder, (status) => { });
         }
 
-        public void UpdateCheck(DateTime lastUpdateCheckUtc)
+        private void UpdateCheckAction(DateTime lastUpdateCheckUtc)
         {
             _updateCheck.CheckInBackground(lastUpdateCheckUtc, Instance.UserSettings.NewestKnownVersion, Instance.UserSettings.AxCrypt2VersionCheckUrl, Instance.UserSettings.UpdateUrl);
         }
 
-        private FileOperationStatus DecryptWatchedFolder(IRuntimeFileInfo folder, IProgressContext progress)
+        private FileOperationStatus DecryptFolder(IRuntimeFileInfo folder, IProgressContext progress)
         {
             Factory.AxCryptFile.DecryptFilesUniqueWithWipeOfOriginal(folder, Instance.KnownKeys.DefaultEncryptionKey, progress);
             return FileOperationStatus.Success;
         }
 
-        public void EncryptFiles()
+        private void EncryptFilesAction(IEnumerable<string> files)
         {
-            FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[0])
+            if (files == null)
             {
-                FileSelectionType = FileSelectionType.Encrypt,
-            };
-            OnSelectingFiles(fileSelectionArgs);
-            if (fileSelectionArgs.Cancel)
-            {
-                return;
+                FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[0])
+                {
+                    FileSelectionType = FileSelectionType.Encrypt,
+                };
+                OnSelectingFiles(fileSelectionArgs);
+                if (fileSelectionArgs.Cancel)
+                {
+                    return;
+                }
+                files = fileSelectionArgs.SelectedFiles;
             }
-            EncryptFiles(fileSelectionArgs.SelectedFiles);
-        }
-
-        public void EncryptFiles(IEnumerable<string> files)
-        {
             Instance.ParallelBackground.DoFiles(files.Select(f => OS.Current.FileInfo(f)).ToList(), EncryptFile, (status) => { });
         }
 
-        public void DecryptFiles()
+        private void DecryptFilesAction(IEnumerable<string> files)
         {
-            FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[0])
+            if (files == null)
             {
-                FileSelectionType = FileSelectionType.Decrypt,
-            };
-            OnSelectingFiles(fileSelectionArgs);
-            if (fileSelectionArgs.Cancel)
-            {
-                return;
+                FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[0])
+                {
+                    FileSelectionType = FileSelectionType.Decrypt,
+                };
+                OnSelectingFiles(fileSelectionArgs);
+                if (fileSelectionArgs.Cancel)
+                {
+                    return;
+                }
+                files = fileSelectionArgs.SelectedFiles;
             }
-            DecryptFiles(fileSelectionArgs.SelectedFiles);
-        }
-
-        public void DecryptFiles(IEnumerable<string> files)
-        {
             Instance.ParallelBackground.DoFiles(files.Select(f => OS.Current.FileInfo(f)).ToList(), DecryptFile, (status) => { });
         }
 
-        public FileOperationStatus DecryptFile(IRuntimeFileInfo file, IProgressContext progress)
+        private FileOperationStatus DecryptFile(IRuntimeFileInfo file, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(progress);
 
@@ -486,22 +527,21 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return operationsController.DecryptFile(file);
         }
 
-        public void WipeFiles()
+        private void WipeFilesAction(IEnumerable<string> files)
         {
-            FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[0])
+            if (files == null)
             {
-                FileSelectionType = FileSelectionType.Wipe,
-            };
-            OnSelectingFiles(fileSelectionArgs);
-            if (fileSelectionArgs.Cancel)
-            {
-                return;
+                FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[0])
+                {
+                    FileSelectionType = FileSelectionType.Wipe,
+                };
+                OnSelectingFiles(fileSelectionArgs);
+                if (fileSelectionArgs.Cancel)
+                {
+                    return;
+                }
+                files = fileSelectionArgs.SelectedFiles;
             }
-            WipeFiles(fileSelectionArgs.SelectedFiles);
-        }
-
-        public void WipeFiles(IEnumerable<string> files)
-        {
             Instance.ParallelBackground.DoFiles(files.Select(f => OS.Current.FileInfo(f)).ToList(), WipeFile, (status) => { });
         }
 
@@ -537,7 +577,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return operationsController.WipeFile(file);
         }
 
-        public void OpenFileFromFolder(string folder)
+        private void OpenFilesFromFolderAction(string folder)
         {
             FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[] { folder })
             {
@@ -548,15 +588,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return;
             }
-            OpenFiles(fileSelectionArgs.SelectedFiles);
+            OpenFilesAction(fileSelectionArgs.SelectedFiles);
         }
 
-        public void OpenFiles(IEnumerable<string> files)
+        private void OpenFilesAction(IEnumerable<string> files)
         {
             Instance.ParallelBackground.DoFiles(files.Select(f => OS.Current.FileInfo(f)).ToList(), OpenEncrypted, (status) => { });
         }
 
-        public FileOperationStatus OpenEncrypted(IRuntimeFileInfo file, IProgressContext progress)
+        private FileOperationStatus OpenEncrypted(IRuntimeFileInfo file, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(progress);
 
@@ -657,11 +697,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return operationsController.EncryptFile(file);
         }
 
-        public void DragAndDroppedRecentFiles()
+        private void AddRecentFilesAction(IEnumerable<string> files)
         {
-            IEnumerable<IRuntimeFileInfo> files = DragAndDropFiles.Select(f => OS.Current.FileInfo(f)).ToList();
-            ProcessEncryptableFilesDroppedInRecentList(files.Where(fileInfo => Instance.KnownKeys.IsLoggedOn && fileInfo.Type() == FileInfoTypes.EncryptableFile));
-            ProcessEncryptedFilesDroppedInRecentList(files.Where(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile));
+            IEnumerable<IRuntimeFileInfo> fileInfos = files.Select(f => OS.Current.FileInfo(f)).ToList();
+            ProcessEncryptableFilesDroppedInRecentList(fileInfos.Where(fileInfo => Instance.KnownKeys.IsLoggedOn && fileInfo.Type() == FileInfoTypes.EncryptableFile));
+            ProcessEncryptedFilesDroppedInRecentList(fileInfos.Where(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile));
         }
 
         private void ProcessEncryptedFilesDroppedInRecentList(IEnumerable<IRuntimeFileInfo> encryptedFiles)
@@ -669,7 +709,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             Instance.ParallelBackground.DoFiles(encryptedFiles, VerifyAndAddActive, (status) => { });
         }
 
-        public FileOperationStatus VerifyAndAddActive(IRuntimeFileInfo fullName, IProgressContext progress)
+        private FileOperationStatus VerifyAndAddActive(IRuntimeFileInfo fullName, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(progress);
 
@@ -704,7 +744,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             Instance.ParallelBackground.DoFiles(encryptableFiles, EncryptFileNonInteractive, (status) => { });
         }
 
-        public FileOperationStatus EncryptFileNonInteractive(IRuntimeFileInfo fullName, IProgressContext progress)
+        private FileOperationStatus EncryptFileNonInteractive(IRuntimeFileInfo fullName, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(progress);
 
@@ -726,28 +766,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             };
 
             return operationsController.EncryptFile(fullName);
-        }
-
-        public event EventHandler<FileSelectionEventArgs> SelectingFiles;
-
-        protected virtual void OnSelectingFiles(FileSelectionEventArgs e)
-        {
-            EventHandler<FileSelectionEventArgs> handler = SelectingFiles;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
-        }
-
-        public event EventHandler<LogOnEventArgs> LoggingOn;
-
-        protected virtual void OnLoggingOn(LogOnEventArgs e)
-        {
-            EventHandler<LogOnEventArgs> handler = LoggingOn;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
         }
 
         private string AskForLogOnPassphrase(PassphraseIdentity identity)
