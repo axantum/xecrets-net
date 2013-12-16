@@ -49,7 +49,7 @@ namespace Axantum.AxCrypt.Mono.Test
         [TearDown]
         public static void Teardown()
         {
-            FactoryRegistry.Instance.Clean();
+            FactoryRegistry.Instance.Clear();
         }
 
         [Test]

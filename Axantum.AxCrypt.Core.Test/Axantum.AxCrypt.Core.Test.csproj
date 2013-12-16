@@ -59,6 +59,7 @@
     <Compile Include="FakeRequestServer.cs" />
     <Compile Include="FakeProgressBackground.cs" />
     <Compile Include="FakeSleep.cs" />
+    <Compile Include="FakeStatusChecker.cs" />
     <Compile Include="FakeUIThread.cs" />
     <Compile Include="FakeLauncher.cs" />
     <Compile Include="FakeLogging.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="TestFileSystemState.cs" />
     <Compile Include="TestFileWatcher.cs" />
     <Compile Include="TestIdTagHeaderBlock.cs" />
+    <Compile Include="TestInstance.cs" />
     <Compile Include="TestIOStreams.cs" />
     <Compile Include="TestKeyWrap.cs" />
     <Compile Include="TestKeyWrap1HeaderBlock.cs" />
@@ -115,6 +117,7 @@
     <Compile Include="TestKeyWrapSalt.cs" />
     <Compile Include="TestKnownKeys.cs" />
     <Compile Include="TestLockingStreamTests.cs" />
+    <Compile Include="TestLogging.cs" />
     <Compile Include="TestPassphrase.cs" />
     <Compile Include="TestPreambleHeaderBlock.cs" />
     <Compile Include="TestProgressContext.cs" />

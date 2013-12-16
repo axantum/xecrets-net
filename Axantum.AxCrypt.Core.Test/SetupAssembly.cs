@@ -46,21 +46,25 @@ namespace Axantum.AxCrypt.Core.Test
             FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
             FactoryRegistry.Instance.Singleton<ILogging>(() => new FakeLogging());
             FactoryRegistry.Instance.Singleton<IUserSettings>(() => new UserSettings(UserSettings.DefaultPathInfo));
-            Instance.UserSettings.KeyWrapIterations = 1234;
-            Instance.UserSettings.ThumbprintSalt = KeyWrapSalt.Zero;
-            Instance.Log.SetLevel(LogLevel.Debug);
             FactoryRegistry.Instance.Singleton(() => new KnownKeys());
             FactoryRegistry.Instance.Singleton(() => new ProcessState());
             FactoryRegistry.Instance.Singleton<ISleep>(() => new FakeSleep());
-            FactoryRegistry.Instance.Register<IDelayTimer>(() => new FakeDelayTimer());
             FactoryRegistry.Instance.Singleton<IUIThread>(() => new FakeUIThread());
             FactoryRegistry.Instance.Singleton<IProgressBackground>(() => new FakeProgressBackground());
+
+            FactoryRegistry.Instance.Register<AxCryptFile>(() => new AxCryptFile());
+            FactoryRegistry.Instance.Register<FileSystemState, FileSystemStateActions>((fileSystemState) => new FileSystemStateActions(fileSystemState));
+            FactoryRegistry.Instance.Register<IDelayTimer>(() => new FakeDelayTimer());
+
+            Instance.UserSettings.KeyWrapIterations = 1234;
+            Instance.UserSettings.ThumbprintSalt = KeyWrapSalt.Zero;
+            Instance.Log.SetLevel(LogLevel.Debug);
         }
 
         public static void AssemblyTeardown()
         {
             FakeRuntimeFileInfo.ClearFiles();
-            FactoryRegistry.Instance.Clean();
+            FactoryRegistry.Instance.Clear();
         }
 
         internal static FakeRuntimeEnvironment FakeRuntimeEnvironment

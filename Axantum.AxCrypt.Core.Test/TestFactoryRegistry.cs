@@ -28,9 +28,7 @@
 using Axantum.AxCrypt.Core.Session;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -87,6 +85,46 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Assert.Throws<ArgumentException>(() => FactoryRegistry.Instance.Create<int>());
             Assert.Throws<ArgumentException>(() => FactoryRegistry.Instance.Create<int, int>(13));
+        }
+
+        [Test]
+        public static void TestNotRegisteredSingleton()
+        {
+            Assert.Throws<ArgumentException>(() => FactoryRegistry.Instance.Singleton<object>());
+        }
+
+        private class MyDisposable : IDisposable
+        {
+            public bool IsDisposed { get; set; }
+
+            public void Dispose()
+            {
+                IsDisposed = true;
+            }
+        }
+
+        [Test]
+        public static void TestClearDisposable()
+        {
+            FactoryRegistry.Instance.Singleton(() => new MyDisposable());
+
+            MyDisposable md = FactoryRegistry.Instance.Singleton<MyDisposable>();
+            Assert.That(md.IsDisposed, Is.False);
+
+            FactoryRegistry.Instance.Clear();
+            Assert.That(md.IsDisposed, Is.True);
+        }
+
+        [Test]
+        public static void TestSetDisposableSingletonTwice()
+        {
+            FactoryRegistry.Instance.Singleton(() => new MyDisposable());
+
+            MyDisposable md = FactoryRegistry.Instance.Singleton<MyDisposable>();
+            Assert.That(md.IsDisposed, Is.False);
+
+            FactoryRegistry.Instance.Singleton(() => new MyDisposable());
+            Assert.That(md.IsDisposed, Is.True);
         }
     }
 }

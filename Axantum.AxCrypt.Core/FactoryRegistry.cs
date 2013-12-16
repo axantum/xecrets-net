@@ -26,7 +26,6 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,19 +42,6 @@ namespace Axantum.AxCrypt.Core
 
         private FactoryRegistry()
         {
-            RegisterDefaults();
-        }
-
-        public void Clean()
-        {
-            Clear();
-            RegisterDefaults();
-        }
-
-        private void RegisterDefaults()
-        {
-            Register<AxCryptFile>(() => new AxCryptFile());
-            Register<FileSystemState, FileSystemStateActions>((fileSystemState) => new FileSystemStateActions(fileSystemState));
         }
 
         private static FactoryRegistry _instance = new FactoryRegistry();
@@ -107,21 +93,22 @@ namespace Axantum.AxCrypt.Core
 
         public T Singleton<T>() where T : class
         {
-            object o = _mapping[typeof(T)];
+            object o;
+            if (!_mapping.TryGetValue(typeof(T), out o))
+            {
+                throw new ArgumentException("Unregistered singleton. Initialize with 'FactoryRegistry.Singleton<{0}>(() => {{ return new {0}(); }});'".InvariantFormat(typeof(T)));
+            }
+
             T value = o as T;
             if (value != null)
             {
                 return value;
             }
 
-            Func<T> creator = o as Func<T>;
-            if (creator != null)
-            {
-                value = creator();
-                _mapping[typeof(T)] = value;
-                return value;
-            }
-            throw new ArgumentException("Unregistered singleton. Initialize with 'FactoryRegistry.Singleton<{0}>(() => {{ return new {0}(); }});'".InvariantFormat(typeof(T)));
+            Func<T> creator = (Func<T>)o;
+            value = creator();
+            _mapping[typeof(T)] = value;
+            return value;
         }
 
         /// <summary>

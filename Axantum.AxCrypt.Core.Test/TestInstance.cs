@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2013, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2012, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -25,21 +25,35 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.UI;
+using NUnit.Framework;
 using System;
 using System.Linq;
 
-namespace Axantum.AxCrypt.Core.UI
+namespace Axantum.AxCrypt.Core.Test
 {
-    public interface IStatusChecker
+    [TestFixture]
+    public static class TestInstance
     {
-        /// <summary>
-        /// Check if a status is deemed a success. If not, possibly display an interactive message
-        /// to a user, incorporating the displayContext-string in the message. This is typically
-        /// a file name or some other language independent context.
-        /// </summary>
-        /// <param name="status">The status to check.</param>
-        /// <param name="displayContext">A language independent context for the error, typically a file name.</param>
-        /// <returns>True if the status indicated success, false otherwise.</returns>
-        bool CheckStatusAndShowMessage(FileOperationStatus status, string displayContext);
+        [SetUp]
+        public static void Setup()
+        {
+            SetupAssembly.AssemblySetup();
+        }
+
+        [TearDown]
+        public static void Teardown()
+        {
+            SetupAssembly.AssemblyTeardown();
+        }
+
+        [Test]
+        public static void TestStatusChecker()
+        {
+            FactoryRegistry.Instance.Singleton<IStatusChecker>(() => new FakeStatusChecker());
+
+            IStatusChecker sc = Instance.StatusChecker;
+            Assert.That(sc is FakeStatusChecker, Is.True);
+        }
     }
 }

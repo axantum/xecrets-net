@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2013, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2012, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -25,12 +25,13 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Linq;
 
-namespace Axantum.AxCrypt.Core.UI
+namespace Axantum.AxCrypt.Core.Test
 {
-    public interface IStatusChecker
+    internal class FakeStatusChecker : IStatusChecker
     {
         /// <summary>
         /// Check if a status is deemed a success. If not, possibly display an interactive message
@@ -39,7 +40,12 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         /// <param name="status">The status to check.</param>
         /// <param name="displayContext">A language independent context for the error, typically a file name.</param>
-        /// <returns>True if the status indicated success, false otherwise.</returns>
-        bool CheckStatusAndShowMessage(FileOperationStatus status, string displayContext);
+        /// <returns>
+        /// True if the status indicated success, false otherwise.
+        /// </returns>
+        public bool CheckStatusAndShowMessage(FileOperationStatus status, string displayContext)
+        {
+            return status == FileOperationStatus.Success;
+        }
     }
 }

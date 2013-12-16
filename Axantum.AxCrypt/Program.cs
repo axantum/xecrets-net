@@ -47,7 +47,7 @@ namespace Axantum.AxCrypt
         [STAThread]
         private static void Main()
         {
-            RegisterSingletonImplementations();
+            RegisterTypeFactories();
             SetCulture();
 
             string[] commandLineArgs = Environment.GetCommandLineArgs();
@@ -63,14 +63,20 @@ namespace Axantum.AxCrypt
             FactoryRegistry.Instance.Clear();
         }
 
-        private static void RegisterSingletonImplementations()
+        private static void RegisterTypeFactories()
         {
             FactoryRegistry.Instance.Singleton<ILogging>(() => new Logging());
             FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment());
             FactoryRegistry.Instance.Singleton<CommandService>(() => new CommandService(new HttpRequestServer(), new HttpRequestClient()));
             FactoryRegistry.Instance.Singleton<IUserSettings>(() => new UserSettings(UserSettings.DefaultPathInfo));
-            FactoryRegistry.Instance.Register<IDelayTimer>(() => new DelayTimer());
             FactoryRegistry.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(FileSystemState.DefaultPathInfo));
+            FactoryRegistry.Instance.Singleton<KnownKeys>(() => new KnownKeys());
+            FactoryRegistry.Instance.Singleton<ParallelBackground>(() => new ParallelBackground());
+            FactoryRegistry.Instance.Singleton<ProcessState>(() => new ProcessState());
+
+            FactoryRegistry.Instance.Register<IDelayTimer>(() => new DelayTimer());
+            FactoryRegistry.Instance.Register<AxCryptFile>(() => new AxCryptFile());
+            FactoryRegistry.Instance.Register<FileSystemState, FileSystemStateActions>((fileSystemState) => new FileSystemStateActions(fileSystemState));
         }
 
         private static void SetCulture()

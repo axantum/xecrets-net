@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2013, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2012, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -25,21 +25,38 @@
 
 #endregion Coypright and License
 
+using NUnit.Framework;
 using System;
 using System.Linq;
 
-namespace Axantum.AxCrypt.Core.UI
+namespace Axantum.AxCrypt.Core.Test
 {
-    public interface IStatusChecker
+    [TestFixture]
+    public class TestLogging
     {
-        /// <summary>
-        /// Check if a status is deemed a success. If not, possibly display an interactive message
-        /// to a user, incorporating the displayContext-string in the message. This is typically
-        /// a file name or some other language independent context.
-        /// </summary>
-        /// <param name="status">The status to check.</param>
-        /// <param name="displayContext">A language independent context for the error, typically a file name.</param>
-        /// <returns>True if the status indicated success, false otherwise.</returns>
-        bool CheckStatusAndShowMessage(FileOperationStatus status, string displayContext);
+        [SetUp]
+        public static void Setup()
+        {
+            SetupAssembly.AssemblySetup();
+        }
+
+        [TearDown]
+        public static void Teardown()
+        {
+            SetupAssembly.AssemblyTeardown();
+        }
+
+        [Test]
+        public static void TestSimpleLogging()
+        {
+            string s = null;
+            Instance.Log.Logged += (sender, e) =>
+            {
+                s = e.Message;
+            };
+
+            Instance.Log.LogError("A Logging Message");
+            Assert.That(s, Is.EqualTo("A Logging Message"));
+        }
     }
 }
