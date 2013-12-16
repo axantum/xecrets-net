@@ -283,6 +283,7 @@ namespace Axantum.AxCrypt.Core.Test
                     }
                 };
                 threadWorker.Run();
+                threadWorker.Join();
             }
 
             Assert.That(didComplete, "Execution should continue here, with the flag set indicating that the progress event occurred.");

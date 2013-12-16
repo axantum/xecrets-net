@@ -29,10 +29,7 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -126,9 +123,9 @@ namespace Axantum.AxCrypt.Core.Test
 
             bool hasCompleted = false;
             Assert.Throws<ObjectDisposedException>(() => { worker.Run(); });
-            Assert.Throws<ObjectDisposedException>(() => { worker.Join(); });
-            Assert.Throws<ObjectDisposedException>(() => { hasCompleted = worker.HasCompleted; });
-            Assert.That(!hasCompleted, "Although the thread has completed, the variable should still be false since the attempt to set it is after Dispose().");
+            Assert.DoesNotThrow(() => { worker.Join(); });
+            Assert.DoesNotThrow(() => { hasCompleted = worker.HasCompleted; });
+            Assert.That(hasCompleted, "Even though the thread has completed, the variable should be set, since we allow calls to HasCompleted even after Dispose().");
             Assert.DoesNotThrow(() => { worker.Dispose(); });
         }
 
@@ -236,6 +233,27 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(!wasCompletedInCompleted, "Completion is not set as true until after the completed event.");
                 Assert.That(worker.HasCompleted, "Completion should be set as true when the thread is joined.");
             }
+        }
+
+        [Test]
+        public static void TestExceptionDuringWork()
+        {
+            FileOperationStatus status = FileOperationStatus.Unknown;
+            using (ThreadWorker worker = new ThreadWorker(new ProgressContext()))
+            {
+                worker.Work += (sender, e) =>
+                {
+                    throw new InvalidOperationException("Something went intentionally wrong.");
+                };
+                worker.Completed += (sender, e) =>
+                {
+                    status = e.Result;
+                };
+                worker.Run();
+                worker.Join();
+            }
+
+            Assert.That(status, Is.EqualTo(FileOperationStatus.Exception));
         }
     }
 }

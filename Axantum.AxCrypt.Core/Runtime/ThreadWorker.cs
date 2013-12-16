@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.ComponentModel;
@@ -46,8 +45,6 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private ThreadWorkerEventArgs _e;
 
-        private static readonly object _lock = new object();
-
         /// <summary>
         /// Create a thread worker.
         /// </summary>
@@ -65,7 +62,8 @@ namespace Axantum.AxCrypt.Core.Runtime
         }
 
         /// <summary>
-        /// Start the asynchronous execution of the work.
+        /// Start the asynchronous execution of the work. The instance will dispose of itself once it has
+        /// completed, thus allowing a fire-and-forget model.
         /// </summary>
         public void Run()
         {
@@ -78,15 +76,16 @@ namespace Axantum.AxCrypt.Core.Runtime
         }
 
         /// <summary>
-        /// Perform blocking wait until this thread has completed execution.
+        /// Perform blocking wait until this thread has completed execution. May be called even on a disposed object,
+        /// in which case it will return immediately.
         /// </summary>
         public void Join()
         {
-            if (_disposed)
+            ManualResetEvent joined = _joined;
+            if (joined != null)
             {
-                throw new ObjectDisposedException("ThreadWorker");
+                joined.WaitOne();
             }
-            _joined.WaitOne();
         }
 
         /// <summary>
@@ -100,17 +99,21 @@ namespace Axantum.AxCrypt.Core.Runtime
         }
 
         /// <summary>
-        /// Returns true if the thread has completed execution.
+        /// Returns true if the thread has completed execution. May be called even on a disposed
+        /// object.
         /// </summary>
         public bool HasCompleted
         {
             get
             {
-                if (_disposed)
+                lock (_disposeLock)
                 {
-                    throw new ObjectDisposedException("ThreadWorker");
+                    if (_joined == null)
+                    {
+                        return true;
+                    }
+                    return _joined.WaitOne(0, false);
                 }
-                return _joined.WaitOne(0, false);
             }
         }
 
@@ -126,37 +129,26 @@ namespace Axantum.AxCrypt.Core.Runtime
             {
                 e.Result = FileOperationStatus.Canceled;
             }
-            catch (Exception ex)
-            {
-                e.Result = FileOperationStatus.Exception;
-                if (Instance.Log.IsErrorEnabled)
-                {
-                    Instance.Log.LogError("Exception in DoWork: '{0}'".InvariantFormat(ex.Message));
-                }
-            }
             return;
         }
 
         private void _worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            lock (_lock)
+            try
             {
-                try
+                if (e.Error != null)
                 {
-                    if (e.Error != null)
-                    {
-                        _e.Result = FileOperationStatus.Exception;
-                    }
-                    else
-                    {
-                        _e.Result = (FileOperationStatus)e.Result;
-                    }
-                    OnCompleting(_e);
+                    _e.Result = FileOperationStatus.Exception;
                 }
-                finally
+                else
                 {
-                    CompleteWorker();
+                    _e.Result = (FileOperationStatus)e.Result;
                 }
+                OnCompleting(_e);
+            }
+            finally
+            {
+                CompleteWorker();
             }
             if (Instance.Log.IsInfoEnabled)
             {
@@ -236,52 +228,55 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private bool _disposed = false;
 
+        private readonly object _disposeLock = new object();
+
         protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                lock (_disposeLock)
+                {
+                    DisposeInternal();
+                }
+            }
+        }
+
+        private void DisposeInternal()
         {
             if (_disposed)
             {
                 return;
             }
-
-            if (disposing)
+            if (_worker != null)
             {
-                Join();
                 DisposeWorker();
-                if (_joined != null)
-                {
-                    _joined.Close();
-                    _joined = null;
-                }
+                _worker = null;
             }
-
+            if (_joined != null)
+            {
+                _joined.Set();
+                _joined.Close();
+                _joined = null;
+            }
             _disposed = true;
         }
 
         private void CompleteWorker()
         {
-            if (DisposeWorker())
-            {
-                _joined.Set();
-                OnCompleted(_e);
-            }
+            OnCompleted(_e);
+            Dispose(true);
         }
 
-        private bool DisposeWorker()
+        private void DisposeWorker()
         {
-            if (_worker != null)
-            {
-                _worker.DoWork -= _worker_DoWork;
-                _worker.RunWorkerCompleted -= _worker_RunWorkerCompleted;
+            _worker.DoWork -= _worker_DoWork;
+            _worker.RunWorkerCompleted -= _worker_RunWorkerCompleted;
 
-                IDisposable workerAsDisposibleWhichIsPlatformDependent = _worker as IDisposable;
-                if (workerAsDisposibleWhichIsPlatformDependent != null)
-                {
-                    workerAsDisposibleWhichIsPlatformDependent.Dispose();
-                }
-                _worker = null;
-                return true;
+            IDisposable workerAsDisposibleWhichIsPlatformDependent = _worker as IDisposable;
+            if (workerAsDisposibleWhichIsPlatformDependent != null)
+            {
+                workerAsDisposibleWhichIsPlatformDependent.Dispose();
             }
-            return false;
         }
     }
 }
