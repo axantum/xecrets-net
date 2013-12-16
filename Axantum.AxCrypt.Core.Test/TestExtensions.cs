@@ -424,5 +424,36 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That("VARIABLE".FolderFromEnvironment(), Is.EqualTo(expected));
             Assert.That("UNKNOWN".FolderFromEnvironment(), Is.EqualTo(String.Empty));
         }
+
+        [Test]
+        public static void TestFallbackExtension()
+        {
+            Assert.That(default(int).Fallback<int>(2), Is.EqualTo(2));
+            Assert.That(3.Fallback<int>(3), Is.EqualTo(3));
+        }
+
+        [Test]
+        public static void TestFileInfoTypeExtension()
+        {
+            FakeRuntimeFileInfo.AddFile(@"c:\test.txt", null);
+            IRuntimeFileInfo fileInfo = OS.Current.FileInfo(@"c:\test.txt");
+            Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.EncryptableFile));
+
+            FakeRuntimeFileInfo.AddFile(@"c:\test-txt.axx", null);
+            fileInfo = OS.Current.FileInfo(@"c:\test-txt.axx");
+            Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.EncryptedFile));
+
+            FakeRuntimeFileInfo.AddFolder(@"c:\test\");
+            fileInfo = OS.Current.FileInfo(@"c:\test\");
+            Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.Folder));
+
+            fileInfo = OS.Current.FileInfo(@"c:\not-there.txt");
+            Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.NonExisting));
+
+            OS.PathFilters.Add(new Regex(@"^C:\\Windows\\"));
+            FakeRuntimeFileInfo.AddFile(@"C:\Windows\System.drv", null);
+            fileInfo = OS.Current.FileInfo(@"C:\Windows\System.drv");
+            Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.OtherFile));
+        }
     }
 }
