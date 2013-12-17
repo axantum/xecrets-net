@@ -166,7 +166,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void SubscribeToModelEvents()
         {
-            Instance.FileSystemState.SessionChanged += HandleSessionChanged;
+            Instance.SessionEventQueue.Notification += HandleSessionChanged;
             Instance.FileSystemState.ActiveFileChanged += HandleActiveFileChangedEvent;
         }
 
@@ -270,51 +270,48 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return true;
         }
 
-        private void HandleSessionChanged(object sender, SessionEventArgs e)
+        private void HandleSessionChanged(object sender, SessionNotificationArgs e)
         {
-            foreach (SessionEvent sessionEvent in e.SessionEvents)
+            switch (e.Notification.NotificationType)
             {
-                switch (sessionEvent.SessionEventType)
-                {
-                    case SessionEventType.ActiveFileChange:
-                        break;
+                case SessionNotificationType.ActiveFileChange:
+                    break;
 
-                    case SessionEventType.WatchedFolderAdded:
-                        Instance.UIThread.RunOnUIThread(() => SetWatchedFolders());
-                        break;
+                case SessionNotificationType.WatchedFolderAdded:
+                    Instance.UIThread.RunOnUIThread(() => SetWatchedFolders());
+                    break;
 
-                    case SessionEventType.WatchedFolderRemoved:
-                        Instance.UIThread.RunOnUIThread(() => SetWatchedFolders());
-                        break;
+                case SessionNotificationType.WatchedFolderRemoved:
+                    Instance.UIThread.RunOnUIThread(() => SetWatchedFolders());
+                    break;
 
-                    case SessionEventType.LogOn:
-                        Instance.UIThread.RunOnUIThread(() => SetLogOnState(Instance.KnownKeys.IsLoggedOn));
-                        Instance.UIThread.RunOnUIThread(() => SetWatchedFolders());
-                        break;
+                case SessionNotificationType.LogOn:
+                    Instance.UIThread.RunOnUIThread(() => SetLogOnState(Instance.KnownKeys.IsLoggedOn));
+                    Instance.UIThread.RunOnUIThread(() => SetWatchedFolders());
+                    break;
 
-                    case SessionEventType.LogOff:
-                        Instance.UIThread.RunOnUIThread(() => SetLogOnState(Instance.KnownKeys.IsLoggedOn));
-                        Instance.UIThread.RunOnUIThread(() => SetWatchedFolders());
-                        break;
+                case SessionNotificationType.LogOff:
+                    Instance.UIThread.RunOnUIThread(() => SetLogOnState(Instance.KnownKeys.IsLoggedOn));
+                    Instance.UIThread.RunOnUIThread(() => SetWatchedFolders());
+                    break;
 
-                    case SessionEventType.ProcessExit:
-                        break;
+                case SessionNotificationType.ProcessExit:
+                    break;
 
-                    case SessionEventType.SessionChange:
-                        break;
+                case SessionNotificationType.SessionChange:
+                    break;
 
-                    case SessionEventType.SessionStart:
-                        break;
+                case SessionNotificationType.SessionStart:
+                    break;
 
-                    case SessionEventType.KnownKeyChange:
-                        break;
+                case SessionNotificationType.KnownKeyChange:
+                    break;
 
-                    case SessionEventType.WorkFolderChange:
-                        break;
+                case SessionNotificationType.WorkFolderChange:
+                    break;
 
-                    default:
-                        break;
-                }
+                default:
+                    break;
             }
         }
 
@@ -393,13 +390,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             AxCryptFile.Wipe(FileSystemState.DefaultPathInfo, new ProgressContext());
             FactoryRegistry.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(FileSystemState.DefaultPathInfo));
             FactoryRegistry.Instance.Singleton<KnownKeys>(() => new KnownKeys());
-            Instance.FileSystemState.NotifySessionChanged(new SessionEvent(SessionEventType.SessionStart));
+            Instance.SessionEventQueue.Notify(new SessionNotification(SessionNotificationType.SessionStart));
         }
 
         private void PurgeActiveFilesAction()
         {
-            Instance.FileSystemState.NotifySessionChanged(new SessionEvent(SessionEventType.PurgeActiveFiles));
-            Instance.FileSystemState.DoAllSessionEvents();
+            Instance.SessionEventQueue.Notify(new SessionNotification(SessionNotificationType.PurgeActiveFiles));
+            Instance.SessionEventQueue.DoAllNow();
             SetRecentFiles();
         }
 

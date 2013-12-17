@@ -131,13 +131,13 @@ namespace Axantum.AxCrypt.Core.Test
         {
             bool wasChanged = false;
             KnownKeys knownKeys = new KnownKeys();
-            Instance.FileSystemState.SessionChanged += (object sender, SessionEventArgs e) =>
+            Instance.SessionEventQueue.Notification += (object sender, SessionNotificationArgs e) =>
             {
-                wasChanged = e.SessionEvents.Any(s => s.SessionEventType == SessionEventType.KnownKeyChange);
+                wasChanged |= e.Notification.NotificationType == SessionNotificationType.KnownKeyChange;
             };
             AesKey key1 = new AesKey();
             knownKeys.Add(key1);
-            Instance.Sleep.Time(Instance.UserSettings.SessionChangedMinimumIdle);
+            Instance.Sleep.Time(Instance.UserSettings.SessionNotificationMinimumIdle);
             Assert.That(wasChanged, Is.True, "A new key should trigger the Changed event.");
             wasChanged = false;
             knownKeys.Add(key1);

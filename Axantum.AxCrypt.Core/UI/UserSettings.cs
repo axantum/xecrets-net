@@ -143,7 +143,7 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store("ThumbprintSalt", JsonConvert.SerializeObject(value)); }
         }
 
-        public TimeSpan SessionChangedMinimumIdle
+        public TimeSpan SessionNotificationMinimumIdle
         {
             get { return Load("WorkFolderMinimumIdle", TimeSpan.FromMilliseconds(500)); }
             set { Store("WorkFolderMinimumIdle", value); }

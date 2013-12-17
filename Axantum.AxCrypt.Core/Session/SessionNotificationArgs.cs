@@ -25,27 +25,22 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.UI;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Session
 {
-    public class SessionEventArgs : EventArgs
+    public class SessionNotificationArgs : EventArgs
     {
-        public IEnumerable<SessionEvent> SessionEvents { get; private set; }
+        public SessionNotification Notification { get; private set; }
 
-        public SessionEventArgs(IEnumerable<SessionEvent> sessionEvents)
-        {
-            SessionEvents = sessionEvents;
-        }
+        public IProgressContext Progress { get; private set; }
 
-        public SessionEventArgs(SessionEvent sessionEvent)
-            : this(new SessionEvent[] { sessionEvent })
+        public SessionNotificationArgs(SessionNotification notification, IProgressContext progress)
         {
+            Notification = notification;
+            Progress = progress;
         }
     }
 }

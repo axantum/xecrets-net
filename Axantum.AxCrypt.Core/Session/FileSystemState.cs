@@ -41,8 +41,6 @@ namespace Axantum.AxCrypt.Core.Session
     [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
     public class FileSystemState : IDisposable
     {
-        private DelayedAction _delayedSessionChanged;
-
         public FileSystemState()
         {
             Initialize(new StreamingContext());
@@ -62,51 +60,11 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        protected virtual void OnSessionChanged()
-        {
-            EventHandler<SessionEventArgs> handler = SessionChanged;
-            if (handler != null)
-            {
-                IEnumerable<SessionEvent> events;
-                lock (_sessionEvents)
-                {
-                    events = new List<SessionEvent>(_sessionEvents);
-                    _sessionEvents.Clear();
-                }
-                if (events.Any())
-                {
-                    handler(this, new SessionEventArgs(events));
-                }
-            }
-        }
-
-        public event EventHandler<SessionEventArgs> SessionChanged;
-
-        private HashSet<SessionEvent> _sessionEvents;
-
-        public void NotifySessionChanged(SessionEvent sessionEvent)
-        {
-            lock (_sessionEvents)
-            {
-                _sessionEvents.Add(sessionEvent);
-            }
-            _delayedSessionChanged.StartIdleTimer();
-        }
-
-        public void DoAllSessionEvents()
-        {
-            OnSessionChanged();
-        }
-
         [OnDeserializing]
         private void Initialize(StreamingContext context)
         {
             Identities = new List<PassphraseIdentity>();
             _activeFilesByEncryptedPath = new Dictionary<string, ActiveFile>();
-            _sessionEvents = new HashSet<SessionEvent>();
-            _delayedSessionChanged = new DelayedAction(OnSessionChanged, Instance.UserSettings.SessionChangedMinimumIdle);
-
-            SessionChanged += Actions.HandleSessionChangedEvent;
         }
 
         [OnDeserialized]
@@ -185,7 +143,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             if (AddWatchedFolderInternal(watchedFolder))
             {
-                Instance.FileSystemState.NotifySessionChanged(new SessionEvent(SessionEventType.WatchedFolderAdded, Instance.KnownKeys.DefaultEncryptionKey, watchedFolder.Path));
+                Instance.SessionEventQueue.Notify(new SessionNotification(SessionNotificationType.WatchedFolderAdded, Instance.KnownKeys.DefaultEncryptionKey, watchedFolder.Path));
             }
         }
 
@@ -209,7 +167,7 @@ namespace Axantum.AxCrypt.Core.Session
         public void RemoveWatchedFolder(IRuntimeFileInfo fileInfo)
         {
             WatchedFoldersInternal.Remove(new WatchedFolder(fileInfo.FullName, AesKeyThumbprint.Zero));
-            Instance.FileSystemState.NotifySessionChanged(new SessionEvent(SessionEventType.WatchedFolderRemoved, Instance.KnownKeys.DefaultEncryptionKey, fileInfo.FullName));
+            Instance.SessionEventQueue.Notify(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Instance.KnownKeys.DefaultEncryptionKey, fileInfo.FullName));
         }
 
         public event EventHandler<ActiveFileChangedEventArgs> ActiveFileChanged;
@@ -496,11 +454,6 @@ namespace Axantum.AxCrypt.Core.Session
                     watchedFolder.Dispose();
                 }
                 _watchedFolders = null;
-            }
-            if (_delayedSessionChanged != null)
-            {
-                _delayedSessionChanged.Dispose();
-                _delayedSessionChanged = null;
             }
         }
 

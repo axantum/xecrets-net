@@ -159,9 +159,10 @@
     <Compile Include="Runtime\ThreadWorkerEventArgs.cs" />
     <Compile Include="Session\PassphraseIdentity.cs" />
     <Compile Include="Session\ProcessState.cs" />
-    <Compile Include="Session\SessionEvent.cs" />
-    <Compile Include="Session\SessionEventType.cs" />
-    <Compile Include="Session\SessionEventArgs.cs" />
+    <Compile Include="Session\SessionNotification.cs" />
+    <Compile Include="Session\SessionNotificationMonitor.cs" />
+    <Compile Include="Session\SessionNotificationType.cs" />
+    <Compile Include="Session\SessionNotificationArgs.cs" />
     <Compile Include="Session\WatchedFolder.cs" />
     <Compile Include="Session\WatchedFolderChangedEventArgs.cs" />
     <Compile Include="UI\IUserSettings.cs" />

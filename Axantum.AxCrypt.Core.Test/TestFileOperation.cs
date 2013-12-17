@@ -323,11 +323,11 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
 
             bool changedWasRaised = false;
-            Instance.FileSystemState.SessionChanged += (object sender, SessionEventArgs e) => { changedWasRaised = true; };
+            Instance.SessionEventQueue.Notification += (object sender, SessionNotificationArgs e) => { changedWasRaised = true; };
             Assert.That(changedWasRaised, Is.False, "The global changed event should not have been raised yet.");
 
             launcher.RaiseExited();
-            Instance.Sleep.Time(Instance.UserSettings.SessionChangedMinimumIdle);
+            Instance.Sleep.Time(Instance.UserSettings.SessionNotificationMinimumIdle);
             Assert.That(changedWasRaised, Is.True, "The global changed event should be raised when the process exits.");
         }
 

@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     DefaultEncryptionKey = key;
                 }
-                Instance.FileSystemState.NotifySessionChanged(new SessionEvent(SessionEventType.KnownKeyChange, key));
+                Instance.SessionEventQueue.Notify(new SessionNotification(SessionNotificationType.KnownKeyChange, key));
             }
         }
 
@@ -90,7 +90,7 @@ namespace Axantum.AxCrypt.Core.UI
                 _keys.Clear();
             }
             LogOff();
-            Instance.FileSystemState.NotifySessionChanged(new SessionEvent(SessionEventType.KnownKeyChange));
+            Instance.SessionEventQueue.Notify(new SessionNotification(SessionNotificationType.KnownKeyChange));
         }
 
         public IEnumerable<AesKey> Keys
@@ -126,11 +126,11 @@ namespace Axantum.AxCrypt.Core.UI
                 }
                 if (IsLoggedOn)
                 {
-                    Instance.FileSystemState.NotifySessionChanged(new SessionEvent(SessionEventType.LogOff, _defaultEncryptionKey));
+                    Instance.SessionEventQueue.Notify(new SessionNotification(SessionNotificationType.LogOff, _defaultEncryptionKey));
                 }
                 if (value != null)
                 {
-                    Instance.FileSystemState.NotifySessionChanged(new SessionEvent(SessionEventType.LogOn, value));
+                    Instance.SessionEventQueue.Notify(new SessionNotification(SessionNotificationType.LogOn, value));
                 }
                 _defaultEncryptionKey = value;
                 if (value == null)

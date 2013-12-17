@@ -32,7 +32,7 @@ using System.Linq;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public class TestLogging
+    public static class TestLogging
     {
         [SetUp]
         public static void Setup()

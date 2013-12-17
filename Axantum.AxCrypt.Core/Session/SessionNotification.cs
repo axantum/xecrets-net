@@ -26,54 +26,51 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Session
 {
-    public class SessionEvent : IEquatable<SessionEvent>
+    public class SessionNotification : IEquatable<SessionNotification>
     {
         public AesKey Key { get; private set; }
 
         public string FullName { get; private set; }
 
-        public SessionEventType SessionEventType { get; private set; }
+        public SessionNotificationType NotificationType { get; private set; }
 
-        public SessionEvent(SessionEventType sessionEventType, AesKey key, string fullName)
+        public SessionNotification(SessionNotificationType notificationType, AesKey key, string fullName)
         {
-            SessionEventType = sessionEventType;
+            NotificationType = notificationType;
             Key = key;
             FullName = fullName;
         }
 
-        public SessionEvent(SessionEventType sessionEventType, string fullName)
-            : this(sessionEventType, null, fullName)
+        public SessionNotification(SessionNotificationType notificationType, string fullName)
+            : this(notificationType, null, fullName)
         {
         }
 
-        public SessionEvent(SessionEventType sessionEventType, AesKey key)
-            : this(sessionEventType, key, null)
+        public SessionNotification(SessionNotificationType notificationType, AesKey key)
+            : this(notificationType, key, null)
         {
         }
 
-        public SessionEvent(SessionEventType sessionEventType)
-            : this(sessionEventType, null, null)
+        public SessionNotification(SessionNotificationType notificationType)
+            : this(notificationType, null, null)
         {
         }
 
         #region IEquatable<AesKey> Members
 
-        public bool Equals(SessionEvent other)
+        public bool Equals(SessionNotification other)
         {
             if ((object)other == null)
             {
                 return false;
             }
 
-            if (other.SessionEventType != SessionEventType)
+            if (other.NotificationType != NotificationType)
             {
                 return false;
             }
@@ -95,11 +92,11 @@ namespace Axantum.AxCrypt.Core.Session
 
         public override bool Equals(object obj)
         {
-            if (obj == null || typeof(SessionEvent) != obj.GetType())
+            if (obj == null || typeof(SessionNotification) != obj.GetType())
             {
                 return false;
             }
-            SessionEvent other = (SessionEvent)obj;
+            SessionNotification other = (SessionNotification)obj;
 
             return Equals(other);
         }
@@ -110,12 +107,12 @@ namespace Axantum.AxCrypt.Core.Session
 
             hashcode = Key != null ? Key.GetHashCode() : 0;
             hashcode ^= FullName != null ? FullName.GetHashCode() : 0;
-            hashcode ^= SessionEventType.GetHashCode();
+            hashcode ^= NotificationType.GetHashCode();
 
             return hashcode;
         }
 
-        public static bool operator ==(SessionEvent left, SessionEvent right)
+        public static bool operator ==(SessionNotification left, SessionNotification right)
         {
             if (Object.ReferenceEquals(left, right))
             {
@@ -128,7 +125,7 @@ namespace Axantum.AxCrypt.Core.Session
             return left.Equals(right);
         }
 
-        public static bool operator !=(SessionEvent left, SessionEvent right)
+        public static bool operator !=(SessionNotification left, SessionNotification right)
         {
             return !(left == right);
         }

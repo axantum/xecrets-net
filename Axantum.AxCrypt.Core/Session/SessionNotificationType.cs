@@ -30,7 +30,7 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Session
 {
-    public enum SessionEventType
+    public enum SessionNotificationType
     {
         ActiveFileChange,
         WatchedFolderAdded,

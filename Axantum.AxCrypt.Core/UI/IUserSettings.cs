@@ -67,6 +67,6 @@ namespace Axantum.AxCrypt.Core.UI
 
         KeyWrapSalt ThumbprintSalt { get; set; }
 
-        TimeSpan SessionChangedMinimumIdle { get; set; }
+        TimeSpan SessionNotificationMinimumIdle { get; set; }
     }
 }

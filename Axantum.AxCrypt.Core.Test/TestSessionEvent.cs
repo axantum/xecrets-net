@@ -53,28 +53,28 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestConstructors()
         {
-            SessionEvent sessionEvent;
+            SessionNotification sessionEvent;
 
-            sessionEvent = new SessionEvent(SessionEventType.ProcessExit);
-            Assert.That(sessionEvent.SessionEventType, Is.EqualTo(SessionEventType.ProcessExit));
+            sessionEvent = new SessionNotification(SessionNotificationType.ProcessExit);
+            Assert.That(sessionEvent.NotificationType, Is.EqualTo(SessionNotificationType.ProcessExit));
             Assert.That(sessionEvent.FullName, Is.Null);
             Assert.That(sessionEvent.Key, Is.Null);
 
             AesKey key = new AesKey();
-            sessionEvent = new SessionEvent(SessionEventType.KnownKeyChange, key);
-            Assert.That(sessionEvent.SessionEventType, Is.EqualTo(SessionEventType.KnownKeyChange));
+            sessionEvent = new SessionNotification(SessionNotificationType.KnownKeyChange, key);
+            Assert.That(sessionEvent.NotificationType, Is.EqualTo(SessionNotificationType.KnownKeyChange));
             Assert.That(sessionEvent.FullName, Is.Null);
             Assert.That(sessionEvent.Key, Is.EqualTo(key));
 
             string fullName = @"C:\Test\Test.txt";
-            sessionEvent = new SessionEvent(SessionEventType.ActiveFileChange, fullName);
-            Assert.That(sessionEvent.SessionEventType, Is.EqualTo(SessionEventType.ActiveFileChange));
+            sessionEvent = new SessionNotification(SessionNotificationType.ActiveFileChange, fullName);
+            Assert.That(sessionEvent.NotificationType, Is.EqualTo(SessionNotificationType.ActiveFileChange));
             Assert.That(sessionEvent.FullName, Is.EqualTo(fullName));
             Assert.That(sessionEvent.Key, Is.Null);
 
             fullName = @"C:\Test\";
-            sessionEvent = new SessionEvent(SessionEventType.WatchedFolderAdded, key, fullName);
-            Assert.That(sessionEvent.SessionEventType, Is.EqualTo(SessionEventType.WatchedFolderAdded));
+            sessionEvent = new SessionNotification(SessionNotificationType.WatchedFolderAdded, key, fullName);
+            Assert.That(sessionEvent.NotificationType, Is.EqualTo(SessionNotificationType.WatchedFolderAdded));
             Assert.That(sessionEvent.FullName, Is.EqualTo(fullName));
             Assert.That(sessionEvent.Key, Is.EqualTo(key));
         }
@@ -85,25 +85,25 @@ namespace Axantum.AxCrypt.Core.Test
             AesKey key = new AesKey();
             string fullName = @"C:\Test\Test.txt";
 
-            SessionEvent sessionEventA1 = new SessionEvent(SessionEventType.ActiveFileChange);
-            SessionEvent sessionEventA2 = new SessionEvent(SessionEventType.ActiveFileChange);
-            SessionEvent sessionEventA3 = new SessionEvent(SessionEventType.KnownKeyChange);
+            SessionNotification sessionEventA1 = new SessionNotification(SessionNotificationType.ActiveFileChange);
+            SessionNotification sessionEventA2 = new SessionNotification(SessionNotificationType.ActiveFileChange);
+            SessionNotification sessionEventA3 = new SessionNotification(SessionNotificationType.KnownKeyChange);
 
-            SessionEvent sessionEventB1 = new SessionEvent(SessionEventType.ActiveFileChange, key);
-            SessionEvent sessionEventB2 = new SessionEvent(SessionEventType.ActiveFileChange, key);
-            SessionEvent sessionEventB3 = new SessionEvent(SessionEventType.ActiveFileChange, new AesKey());
+            SessionNotification sessionEventB1 = new SessionNotification(SessionNotificationType.ActiveFileChange, key);
+            SessionNotification sessionEventB2 = new SessionNotification(SessionNotificationType.ActiveFileChange, key);
+            SessionNotification sessionEventB3 = new SessionNotification(SessionNotificationType.ActiveFileChange, new AesKey());
 
-            SessionEvent sessionEventC1 = new SessionEvent(SessionEventType.ActiveFileChange, fullName);
-            SessionEvent sessionEventC2 = new SessionEvent(SessionEventType.ActiveFileChange, fullName);
-            SessionEvent sessionEventC3 = new SessionEvent(SessionEventType.ActiveFileChange, @"D:\Other\Different.txt");
+            SessionNotification sessionEventC1 = new SessionNotification(SessionNotificationType.ActiveFileChange, fullName);
+            SessionNotification sessionEventC2 = new SessionNotification(SessionNotificationType.ActiveFileChange, fullName);
+            SessionNotification sessionEventC3 = new SessionNotification(SessionNotificationType.ActiveFileChange, @"D:\Other\Different.txt");
 
-            SessionEvent sessionEventD1 = new SessionEvent(SessionEventType.ActiveFileChange, key, fullName);
-            SessionEvent sessionEventD2 = new SessionEvent(SessionEventType.ActiveFileChange, key, fullName);
-            SessionEvent sessionEventD3 = new SessionEvent(SessionEventType.ActiveFileChange, new AesKey(), fullName);
+            SessionNotification sessionEventD1 = new SessionNotification(SessionNotificationType.ActiveFileChange, key, fullName);
+            SessionNotification sessionEventD2 = new SessionNotification(SessionNotificationType.ActiveFileChange, key, fullName);
+            SessionNotification sessionEventD3 = new SessionNotification(SessionNotificationType.ActiveFileChange, new AesKey(), fullName);
 
-            SessionEvent nullSessionEvent = null;
-            SessionEvent sessionEventA1Alias = sessionEventA1;
-            SessionEvent nullSessionEvent2 = null;
+            SessionNotification nullSessionEvent = null;
+            SessionNotification sessionEventA1Alias = sessionEventA1;
+            SessionNotification nullSessionEvent2 = null;
 
             Assert.That(sessionEventD1.GetHashCode(), Is.EqualTo(sessionEventD2.GetHashCode()));
             Assert.That(sessionEventC1.GetHashCode(), Is.Not.EqualTo(sessionEventD1.GetHashCode()));

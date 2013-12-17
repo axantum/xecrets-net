@@ -45,6 +45,8 @@ namespace Axantum.AxCrypt.Core.Session
         public FileSystemStateActions(FileSystemState fileSystemState)
         {
             _fileSystemState = fileSystemState;
+
+            Instance.SessionEventQueue.Notification += HandleNotification;
         }
 
         /// <summary>
@@ -146,101 +148,57 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private bool _handleSessionChangedInProgress = false;
-
-        public void HandleSessionChangedEvent(object sender, SessionEventArgs e)
+        private void HandleNotification(object sender, SessionNotificationArgs e)
         {
-            Instance.UIThread.RunOnUIThread(() => SessionChangedInternal(e));
+            HandleNotification(e.Notification, e.Progress);
         }
 
-        private void SessionChangedInternal(SessionEventArgs e)
+        public virtual void HandleNotification(SessionNotification notification, IProgressContext progress)
         {
             if (Instance.Log.IsInfoEnabled)
             {
-                Instance.Log.LogInfo("Tick");
+                Instance.Log.LogInfo("Received notification type '{0}'.".InvariantFormat(notification.NotificationType));
             }
-
-            if (_handleSessionChangedInProgress)
+            switch (notification.NotificationType)
             {
-                Instance.FileSystemState.NotifySessionChanged(new SessionEvent(SessionEventType.SessionChange));
-                return;
-            }
-            _handleSessionChangedInProgress = true;
-
-            Instance.BackgroundWork.Work(
-                (IProgressContext progress) =>
-                {
-                    progress.NotifyLevelStart();
-                    try
-                    {
-                        HandleSessionEvents(e.SessionEvents, progress);
-                    }
-                    finally
-                    {
-                        progress.NotifyLevelFinished();
-                    }
-                    return FileOperationStatus.Success;
-                },
-                (FileOperationStatus status) =>
-                {
-                    _handleSessionChangedInProgress = false;
-                });
-        }
-
-        public virtual void HandleSessionEvents(IEnumerable<SessionEvent> events, IProgressContext progress)
-        {
-            foreach (SessionEvent sessionEvent in events)
-            {
-                HandleSessionEvent(sessionEvent, progress);
-            }
-            CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
-        }
-
-        public virtual void HandleSessionEvent(SessionEvent sessionEvent, IProgressContext progress)
-        {
-            if (Instance.Log.IsInfoEnabled)
-            {
-                Instance.Log.LogInfo("Received session event type '{0}'.".InvariantFormat(sessionEvent.SessionEventType));
-            }
-            switch (sessionEvent.SessionEventType)
-            {
-                case SessionEventType.ActiveFileChange:
+                case SessionNotificationType.ActiveFileChange:
+                    CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
                     break;
 
-                case SessionEventType.WatchedFolderAdded:
-                    IRuntimeFileInfo addedFolderInfo = OS.Current.FileInfo(sessionEvent.FullName);
-                    Factory.AxCryptFile.EncryptFilesUniqueWithBackupAndWipe(addedFolderInfo, sessionEvent.Key, progress);
+                case SessionNotificationType.WatchedFolderAdded:
+                    IRuntimeFileInfo addedFolderInfo = OS.Current.FileInfo(notification.FullName);
+                    Factory.AxCryptFile.EncryptFilesUniqueWithBackupAndWipe(addedFolderInfo, notification.Key, progress);
                     break;
 
-                case SessionEventType.WatchedFolderRemoved:
-                    IRuntimeFileInfo removedFolderInfo = OS.Current.FileInfo(sessionEvent.FullName);
-                    Factory.AxCryptFile.DecryptFilesUniqueWithWipeOfOriginal(removedFolderInfo, sessionEvent.Key, progress);
+                case SessionNotificationType.WatchedFolderRemoved:
+                    IRuntimeFileInfo removedFolderInfo = OS.Current.FileInfo(notification.FullName);
+                    Factory.AxCryptFile.DecryptFilesUniqueWithWipeOfOriginal(removedFolderInfo, notification.Key, progress);
                     break;
 
-                case SessionEventType.LogOn:
-                    EncryptFilesInWatchedFolders(sessionEvent.Key, progress);
+                case SessionNotificationType.LogOn:
+                    EncryptFilesInWatchedFolders(notification.Key, progress);
                     break;
 
-                case SessionEventType.LogOff:
-                    EncryptFilesInWatchedFolders(sessionEvent.Key, progress);
+                case SessionNotificationType.LogOff:
+                    EncryptFilesInWatchedFolders(notification.Key, progress);
                     break;
 
-                case SessionEventType.SessionStart:
+                case SessionNotificationType.SessionStart:
                     CheckActiveFiles(ChangedEventMode.RaiseAlways, progress);
                     break;
 
-                case SessionEventType.PurgeActiveFiles:
+                case SessionNotificationType.PurgeActiveFiles:
                     Instance.FileSystemState.Actions.PurgeActiveFiles(progress);
                     break;
 
-                case SessionEventType.KnownKeyChange:
-                case SessionEventType.ProcessExit:
-                case SessionEventType.SessionChange:
-                case SessionEventType.WorkFolderChange:
+                case SessionNotificationType.KnownKeyChange:
+                case SessionNotificationType.ProcessExit:
+                case SessionNotificationType.SessionChange:
+                case SessionNotificationType.WorkFolderChange:
                     break;
 
                 default:
-                    throw new InvalidOperationException("Unhandled SessionEvent recieved");
+                    throw new InvalidOperationException("Unhandled notification recieved");
             }
         }
 

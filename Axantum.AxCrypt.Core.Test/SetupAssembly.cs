@@ -51,6 +51,7 @@ namespace Axantum.AxCrypt.Core.Test
             FactoryRegistry.Instance.Singleton<ISleep>(() => new FakeSleep());
             FactoryRegistry.Instance.Singleton<IUIThread>(() => new FakeUIThread());
             FactoryRegistry.Instance.Singleton<IProgressBackground>(() => new FakeProgressBackground());
+            FactoryRegistry.Instance.Singleton<SessionNotificationMonitor>(() => new SessionNotificationMonitor());
 
             FactoryRegistry.Instance.Register<AxCryptFile>(() => new AxCryptFile());
             FactoryRegistry.Instance.Register<FileSystemState, FileSystemStateActions>((fileSystemState) => new FileSystemStateActions(fileSystemState));

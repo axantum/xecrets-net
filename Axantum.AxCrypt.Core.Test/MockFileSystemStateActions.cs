@@ -32,7 +32,6 @@ using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -44,8 +43,7 @@ namespace Axantum.AxCrypt.Core.Test
             CheckActiveFileMock = (activeFile, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
             CheckActiveFilesMock = (mode, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
             EncryptFilesInWatchedFoldersMock = (encryptionKey, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
-            HandleSessionEventMock = (sessionEvent, progress) => { base.HandleSessionEvent(sessionEvent, progress); };
-            HandleSessionEventsMock = (events, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
+            HandleSessionEventMock = (sessionEvent, progress) => { base.HandleNotification(sessionEvent, progress); };
             ListEncryptableInWatchedFoldersMock = () => { throw new InvalidOperationException("Unexpected call to this method."); };
             PurgeActiveFilesMock = (progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
             RemoveRecentFilesMock = (encryptedPaths, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
@@ -79,18 +77,11 @@ namespace Axantum.AxCrypt.Core.Test
             EncryptFilesInWatchedFoldersMock(encryptionKey, progress);
         }
 
-        public Action<SessionEvent, IProgressContext> HandleSessionEventMock { get; set; }
+        public Action<SessionNotification, IProgressContext> HandleSessionEventMock { get; set; }
 
-        public override void HandleSessionEvent(SessionEvent sessionEvent, IProgressContext progress)
+        public override void HandleNotification(SessionNotification sessionEvent, IProgressContext progress)
         {
             HandleSessionEventMock(sessionEvent, progress);
-        }
-
-        public Action<IEnumerable<SessionEvent>, IProgressContext> HandleSessionEventsMock { get; set; }
-
-        public override void HandleSessionEvents(IEnumerable<SessionEvent> events, IProgressContext progress)
-        {
-            HandleSessionEventsMock(events, progress);
         }
 
         public Func<IEnumerable<IRuntimeFileInfo>> ListEncryptableInWatchedFoldersMock { get; set; }

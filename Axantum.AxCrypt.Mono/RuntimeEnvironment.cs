@@ -59,7 +59,7 @@ namespace Axantum.AxCrypt.Mono
             {
                 return;
             }
-            Instance.FileSystemState.NotifySessionChanged(new SessionEvent(SessionEventType.WorkFolderChange, e.FullName));
+            Instance.SessionEventQueue.Notify(new SessionNotification(SessionNotificationType.WorkFolderChange, e.FullName));
         }
 
         public bool IsLittleEndian

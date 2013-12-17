@@ -660,7 +660,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             FactoryRegistry.Instance.Register<AxCryptFile>(() => mock);
 
-            Instance.FileSystemState.Actions.HandleSessionEvent(new SessionEvent(SessionEventType.WatchedFolderAdded, new AesKey(), @"C:\My Documents\"), new ProgressContext());
+            Instance.FileSystemState.Actions.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new AesKey(), @"C:\My Documents\"), new ProgressContext());
 
             Assert.That(called, Is.True);
         }
@@ -674,7 +674,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             FactoryRegistry.Instance.Register<AxCryptFile>(() => mock);
 
-            Instance.FileSystemState.Actions.HandleSessionEvent(new SessionEvent(SessionEventType.WatchedFolderRemoved, new AesKey(), @"C:\My Documents\"), new ProgressContext());
+            Instance.FileSystemState.Actions.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, new AesKey(), @"C:\My Documents\"), new ProgressContext());
 
             Assert.That(called, Is.True);
         }
@@ -688,7 +688,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             FactoryRegistry.Instance.Register<FileSystemState, FileSystemStateActions>((fileSystemState) => mock);
 
-            Instance.FileSystemState.Actions.HandleSessionEvent(new SessionEvent(SessionEventType.LogOn, new AesKey()), new ProgressContext());
+            Instance.FileSystemState.Actions.HandleNotification(new SessionNotification(SessionNotificationType.LogOn, new AesKey()), new ProgressContext());
 
             Assert.That(called, Is.True);
         }
@@ -702,7 +702,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             FactoryRegistry.Instance.Register<FileSystemState, FileSystemStateActions>((fileSystemState) => mock);
 
-            Instance.FileSystemState.Actions.HandleSessionEvent(new SessionEvent(SessionEventType.LogOff, new AesKey()), new ProgressContext());
+            Instance.FileSystemState.Actions.HandleNotification(new SessionNotification(SessionNotificationType.LogOff, new AesKey()), new ProgressContext());
 
             Assert.That(called, Is.True);
         }
@@ -716,10 +716,10 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.DoesNotThrow(() =>
             {
-                Instance.FileSystemState.Actions.HandleSessionEvent(new SessionEvent(SessionEventType.ProcessExit), new ProgressContext());
-                Instance.FileSystemState.Actions.HandleSessionEvent(new SessionEvent(SessionEventType.SessionChange), new ProgressContext());
-                Instance.FileSystemState.Actions.HandleSessionEvent(new SessionEvent(SessionEventType.KnownKeyChange), new ProgressContext());
-                Instance.FileSystemState.Actions.HandleSessionEvent(new SessionEvent(SessionEventType.WorkFolderChange), new ProgressContext());
+                Instance.FileSystemState.Actions.HandleNotification(new SessionNotification(SessionNotificationType.ProcessExit), new ProgressContext());
+                Instance.FileSystemState.Actions.HandleNotification(new SessionNotification(SessionNotificationType.SessionChange), new ProgressContext());
+                Instance.FileSystemState.Actions.HandleNotification(new SessionNotification(SessionNotificationType.KnownKeyChange), new ProgressContext());
+                Instance.FileSystemState.Actions.HandleNotification(new SessionNotification(SessionNotificationType.WorkFolderChange), new ProgressContext());
             });
         }
 
@@ -732,7 +732,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.Throws<InvalidOperationException>(() =>
             {
-                Instance.FileSystemState.Actions.HandleSessionEvent(new SessionEvent((SessionEventType)(-1)), new ProgressContext());
+                Instance.FileSystemState.Actions.HandleNotification(new SessionNotification((SessionNotificationType)(-1)), new ProgressContext());
             });
         }
 
@@ -744,12 +744,20 @@ namespace Axantum.AxCrypt.Core.Test
             mock.EncryptFilesUniqueWithBackupAndWipeMock = (IRuntimeFileInfo fileInfo, AesKey decryptionKey, IProgressContext progress) => { if (fileInfo.FullName == @"C:\My Documents\") ++callTimes; };
             FactoryRegistry.Instance.Register<AxCryptFile>(() => mock);
 
-            List<SessionEvent> sessionEvents = new List<SessionEvent>();
-            sessionEvents.Add(new SessionEvent(SessionEventType.WatchedFolderAdded, new AesKey(), @"C:\My Documents\"));
-            sessionEvents.Add(new SessionEvent(SessionEventType.WatchedFolderAdded, new AesKey(), @"C:\My Documents\"));
+            List<SessionNotification> sessionEvents = new List<SessionNotification>();
+            sessionEvents.Add(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new AesKey(), @"C:\My Documents\"));
+            sessionEvents.Add(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new AesKey(), @"C:\My Documents\"));
 
-            Instance.FileSystemState.Actions.HandleSessionEvents(sessionEvents, new ProgressContext());
+            foreach (SessionNotification sessionEvent in sessionEvents)
+            {
+                Instance.FileSystemState.Actions.HandleNotification(sessionEvent, new ProgressContext());
+            }
             Assert.That(callTimes, Is.EqualTo(2));
+        }
+
+        [Test]
+        public static void TestSessionEventWhileProcessingSessionEvents()
+        {
         }
     }
 }
