@@ -406,10 +406,6 @@ namespace Axantum.AxCrypt.Core.Session
 
         public void Save()
         {
-            if (_path == null)
-            {
-                return;
-            }
             lock (_activeFilesByEncryptedPath)
             {
                 using (Stream fileSystemStateStream = _path.OpenWrite())

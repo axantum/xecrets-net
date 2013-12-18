@@ -311,6 +311,27 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        public static void TestWatchedFolderChanged()
+        {
+            using (FileSystemState state = FileSystemState.Create(OS.Current.FileInfo(_mystateXmlPath)))
+            {
+                FakeRuntimeFileInfo.AddFolder(_rootPath);
+                state.AddWatchedFolder(new WatchedFolder(_rootPath, AesKeyThumbprint.Zero));
+
+                Assert.That(state.ActiveFileCount, Is.EqualTo(0));
+
+                FakeRuntimeFileInfo.AddFile(_encryptedAxxPath, null);
+                Assert.That(state.ActiveFileCount, Is.EqualTo(0));
+
+                state.Add(new ActiveFile(OS.Current.FileInfo(_encryptedAxxPath), OS.Current.FileInfo(_decryptedTxtPath), new AesKey(), ActiveFileStatus.NotDecrypted));
+                Assert.That(state.ActiveFileCount, Is.EqualTo(1));
+
+                OS.Current.FileInfo(_encryptedAxxPath).Delete();
+                Assert.That(state.ActiveFileCount, Is.EqualTo(0));
+            }
+        }
+
+        [Test]
         public static void TestChangedEvent()
         {
             bool wasHere = false;
