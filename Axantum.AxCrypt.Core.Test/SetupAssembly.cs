@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Core.Test
             FactoryRegistry.Instance.Singleton<SessionNotificationMonitor>(() => new SessionNotificationMonitor());
 
             FactoryRegistry.Instance.Register<AxCryptFile>(() => new AxCryptFile());
-            FactoryRegistry.Instance.Register<FileSystemState, FileSystemStateActions>((fileSystemState) => new FileSystemStateActions(fileSystemState));
+            FactoryRegistry.Instance.Register<FileSystemStateActions>(() => new FileSystemStateActions());
             FactoryRegistry.Instance.Register<IDelayTimer>(() => new FakeDelayTimer());
 
             Instance.UserSettings.KeyWrapIterations = 1234;

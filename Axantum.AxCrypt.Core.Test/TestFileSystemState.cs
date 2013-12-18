@@ -314,8 +314,8 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestChangedEvent()
         {
             bool wasHere = false;
-            Instance.SessionEventQueue.Notification += (object sender, SessionNotificationArgs e) => { wasHere = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange; };
-            Instance.SessionEventQueue.Notify(new SessionNotification(SessionNotificationType.ActiveFileChange));
+            Instance.SessionNotification.Notification += (object sender, SessionNotificationArgs e) => { wasHere = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange; };
+            Instance.SessionNotification.Notify(new SessionNotification(SessionNotificationType.ActiveFileChange));
 
             Assert.That(wasHere, Is.False, "The RaiseChanged() method should not raise the event immediately.");
 

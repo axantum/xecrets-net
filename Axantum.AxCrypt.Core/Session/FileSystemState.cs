@@ -77,7 +77,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                return FactoryRegistry.Instance.Create<FileSystemState, FileSystemStateActions>(this);
+                return FactoryRegistry.Instance.Create<FileSystemStateActions>();
             }
         }
 
@@ -143,7 +143,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             if (AddWatchedFolderInternal(watchedFolder))
             {
-                Instance.SessionEventQueue.Notify(new SessionNotification(SessionNotificationType.WatchedFolderAdded, Instance.KnownKeys.DefaultEncryptionKey, watchedFolder.Path));
+                Instance.SessionNotification.Notify(new SessionNotification(SessionNotificationType.WatchedFolderAdded, Instance.KnownKeys.DefaultEncryptionKey, watchedFolder.Path));
             }
         }
 
@@ -162,12 +162,22 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void watchedFolder_Changed(object sender, FileWatcherEventArgs e)
         {
+            IRuntimeFileInfo fileInfo = OS.Current.FileInfo(e.FullName);
+            if (fileInfo.Type() != FileInfoTypes.NonExisting)
+            {
+                return;
+            }
+            ActiveFile removed = FindEncryptedPath(e.FullName);
+            if (removed != null)
+            {
+                Remove(removed);
+            }
         }
 
         public void RemoveWatchedFolder(IRuntimeFileInfo fileInfo)
         {
             WatchedFoldersInternal.Remove(new WatchedFolder(fileInfo.FullName, AesKeyThumbprint.Zero));
-            Instance.SessionEventQueue.Notify(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Instance.KnownKeys.DefaultEncryptionKey, fileInfo.FullName));
+            Instance.SessionNotification.Notify(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Instance.KnownKeys.DefaultEncryptionKey, fileInfo.FullName));
         }
 
         public event EventHandler<ActiveFileChangedEventArgs> ActiveFileChanged;

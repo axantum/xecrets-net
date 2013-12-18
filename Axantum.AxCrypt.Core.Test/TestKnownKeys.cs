@@ -131,7 +131,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             bool wasChanged = false;
             KnownKeys knownKeys = new KnownKeys();
-            Instance.SessionEventQueue.Notification += (object sender, SessionNotificationArgs e) =>
+            Instance.SessionNotification.Notification += (object sender, SessionNotificationArgs e) =>
             {
                 wasChanged |= e.Notification.NotificationType == SessionNotificationType.KnownKeyChange;
             };

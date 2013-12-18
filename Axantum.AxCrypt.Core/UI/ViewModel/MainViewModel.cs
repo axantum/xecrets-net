@@ -166,7 +166,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void SubscribeToModelEvents()
         {
-            Instance.SessionEventQueue.Notification += HandleSessionChanged;
+            Instance.SessionNotification.Notification += HandleSessionChanged;
             Instance.FileSystemState.ActiveFileChanged += HandleActiveFileChangedEvent;
         }
 
@@ -390,13 +390,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             AxCryptFile.Wipe(FileSystemState.DefaultPathInfo, new ProgressContext());
             FactoryRegistry.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(FileSystemState.DefaultPathInfo));
             FactoryRegistry.Instance.Singleton<KnownKeys>(() => new KnownKeys());
-            Instance.SessionEventQueue.Notify(new SessionNotification(SessionNotificationType.SessionStart));
+            Instance.SessionNotification.Notify(new SessionNotification(SessionNotificationType.SessionStart));
         }
 
         private void PurgeActiveFilesAction()
         {
-            Instance.SessionEventQueue.Notify(new SessionNotification(SessionNotificationType.PurgeActiveFiles));
-            Instance.SessionEventQueue.DoAllNow();
+            Instance.SessionNotification.Notify(new SessionNotification(SessionNotificationType.PurgeActiveFiles));
+            Instance.SessionNotification.DoAllNow();
             SetRecentFiles();
         }
 

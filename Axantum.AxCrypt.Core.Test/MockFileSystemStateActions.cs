@@ -37,8 +37,8 @@ namespace Axantum.AxCrypt.Core.Test
 {
     internal class MockFileSystemStateActions : FileSystemStateActions
     {
-        public MockFileSystemStateActions(FileSystemState fileSystemState)
-            : base(fileSystemState)
+        public MockFileSystemStateActions()
+            : base()
         {
             CheckActiveFileMock = (activeFile, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
             CheckActiveFilesMock = (mode, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
@@ -47,7 +47,6 @@ namespace Axantum.AxCrypt.Core.Test
             ListEncryptableInWatchedFoldersMock = () => { throw new InvalidOperationException("Unexpected call to this method."); };
             PurgeActiveFilesMock = (progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
             RemoveRecentFilesMock = (encryptedPaths, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
-            TryFindDecryptionKeyMock = DefaultTryFindDecryptionKeyMock;
             UpdateActiveFileWithKeyIfKeyMatchesThumbprintMock = (key) => { throw new InvalidOperationException("Unexpected call to this method."); };
         }
 
@@ -103,15 +102,6 @@ namespace Axantum.AxCrypt.Core.Test
         public override void RemoveRecentFiles(IEnumerable<IRuntimeFileInfo> encryptedPaths, IProgressContext progress)
         {
             RemoveRecentFilesMock(encryptedPaths, progress);
-        }
-
-        public delegate TResult OutFunc<T1, T2, TResult>(T1 arg1, out T2 arg2);
-
-        public OutFunc<string, AesKey, bool> TryFindDecryptionKeyMock { get; set; }
-
-        public override bool TryFindDecryptionKey(string fullName, out AesKey key)
-        {
-            return TryFindDecryptionKeyMock(fullName, out key);
         }
 
         public Func<AesKey, bool> UpdateActiveFileWithKeyIfKeyMatchesThumbprintMock { get; set; }

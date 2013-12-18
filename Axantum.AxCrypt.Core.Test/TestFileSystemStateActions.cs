@@ -682,11 +682,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestHandleSessionEventLogOn()
         {
-            MockFileSystemStateActions mock = new MockFileSystemStateActions(Instance.FileSystemState);
+            MockFileSystemStateActions mock = new MockFileSystemStateActions();
             bool called = false;
             mock.EncryptFilesInWatchedFoldersMock = (AesKey encryptionKey, IProgressContext progress) => { called = true; };
 
-            FactoryRegistry.Instance.Register<FileSystemState, FileSystemStateActions>((fileSystemState) => mock);
+            FactoryRegistry.Instance.Register<FileSystemStateActions>(() => mock);
 
             Instance.FileSystemState.Actions.HandleNotification(new SessionNotification(SessionNotificationType.LogOn, new AesKey()), new ProgressContext());
 
@@ -696,11 +696,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestHandleSessionEventLogOff()
         {
-            MockFileSystemStateActions mock = new MockFileSystemStateActions(Instance.FileSystemState);
+            MockFileSystemStateActions mock = new MockFileSystemStateActions();
             bool called = false;
             mock.EncryptFilesInWatchedFoldersMock = (AesKey encryptionKey, IProgressContext progress) => { called = true; };
 
-            FactoryRegistry.Instance.Register<FileSystemState, FileSystemStateActions>((fileSystemState) => mock);
+            FactoryRegistry.Instance.Register<FileSystemStateActions>(() => mock);
 
             Instance.FileSystemState.Actions.HandleNotification(new SessionNotification(SessionNotificationType.LogOff, new AesKey()), new ProgressContext());
 
@@ -710,7 +710,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestHandleSessionEventThatCauseNoSpecificAction()
         {
-            MockFileSystemStateActions mock = new MockFileSystemStateActions(Instance.FileSystemState);
+            MockFileSystemStateActions mock = new MockFileSystemStateActions();
 
             FactoryRegistry.Instance.Register<FileSystemState, FileSystemStateActions>((fileSystemState) => mock);
 
@@ -726,7 +726,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestHandleSessionEventThatIsNotHandled()
         {
-            MockFileSystemStateActions mock = new MockFileSystemStateActions(Instance.FileSystemState);
+            MockFileSystemStateActions mock = new MockFileSystemStateActions();
 
             FactoryRegistry.Instance.Register<FileSystemState, FileSystemStateActions>((fileSystemState) => mock);
 

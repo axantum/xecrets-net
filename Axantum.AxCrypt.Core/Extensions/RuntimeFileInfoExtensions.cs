@@ -25,14 +25,15 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Axantum.AxCrypt.Core.Extensions
@@ -141,6 +142,23 @@ namespace Axantum.AxCrypt.Core.Extensions
             encryptedName += OS.Current.AxCryptExtension;
 
             return OS.Current.FileInfo(encryptedName);
+        }
+
+        public static bool TryFindDecryptionKey(this IRuntimeFileInfo fileInfo, out AesKey key)
+        {
+            foreach (AesKey knownKey in Instance.KnownKeys.Keys)
+            {
+                using (AxCryptDocument document = AxCryptFile.Document(fileInfo, knownKey, new ProgressContext()))
+                {
+                    if (document.PassphraseIsValid)
+                    {
+                        key = knownKey;
+                        return true;
+                    }
+                }
+            }
+            key = null;
+            return false;
         }
     }
 }

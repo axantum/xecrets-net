@@ -40,13 +40,9 @@ namespace Axantum.AxCrypt.Core.Session
 {
     public class FileSystemStateActions
     {
-        private FileSystemState _fileSystemState;
-
-        public FileSystemStateActions(FileSystemState fileSystemState)
+        public FileSystemStateActions()
         {
-            _fileSystemState = fileSystemState;
-
-            Instance.SessionEventQueue.Notification += HandleNotification;
+            Instance.SessionNotification.Notification += HandleNotification;
         }
 
         /// <summary>
@@ -58,7 +54,7 @@ namespace Axantum.AxCrypt.Core.Session
         public virtual void PurgeActiveFiles(IProgressContext progress)
         {
             progress.NotifyLevelStart();
-            _fileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFile) =>
+            Instance.FileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFile) =>
             {
                 if (FileLock.IsLocked(activeFile.DecryptedFileInfo))
                 {
@@ -95,8 +91,8 @@ namespace Axantum.AxCrypt.Core.Session
         public virtual void CheckActiveFiles(ChangedEventMode mode, IProgressContext progress)
         {
             progress.NotifyLevelStart();
-            progress.AddTotal(_fileSystemState.ActiveFileCount);
-            _fileSystemState.ForEach(mode, (ActiveFile activeFile) =>
+            progress.AddTotal(Instance.FileSystemState.ActiveFileCount);
+            Instance.FileSystemState.ForEach(mode, (ActiveFile activeFile) =>
             {
                 try
                 {
@@ -202,24 +198,6 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public virtual bool TryFindDecryptionKey(string fullName, out AesKey key)
-        {
-            IRuntimeFileInfo source = OS.Current.FileInfo(fullName);
-            foreach (AesKey knownKey in Instance.KnownKeys.Keys)
-            {
-                using (AxCryptDocument document = AxCryptFile.Document(source, knownKey, new ProgressContext()))
-                {
-                    if (document.PassphraseIsValid)
-                    {
-                        key = knownKey;
-                        return true;
-                    }
-                }
-            }
-            key = null;
-            return false;
-        }
-
         /// <summary>
         /// For each active file, check if provided key matches the thumbprint of an active file that does not yet have
         /// a known key. If so, update the active file with the now known key.
@@ -230,7 +208,7 @@ namespace Axantum.AxCrypt.Core.Session
         public virtual bool UpdateActiveFileWithKeyIfKeyMatchesThumbprint(AesKey key)
         {
             bool keyMatch = false;
-            _fileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFile) =>
+            Instance.FileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFile) =>
             {
                 if (activeFile.Key != null)
                 {
@@ -254,14 +232,14 @@ namespace Axantum.AxCrypt.Core.Session
             progress.AddTotal(encryptedPaths.Count());
             foreach (IRuntimeFileInfo encryptedPath in encryptedPaths)
             {
-                ActiveFile activeFile = _fileSystemState.FindEncryptedPath(encryptedPath.FullName);
+                ActiveFile activeFile = Instance.FileSystemState.FindEncryptedPath(encryptedPath.FullName);
                 if (activeFile != null)
                 {
-                    _fileSystemState.Remove(activeFile);
+                    Instance.FileSystemState.Remove(activeFile);
                 }
                 progress.AddCount(1);
             }
-            _fileSystemState.Save();
+            Instance.FileSystemState.Save();
             progress.NotifyLevelFinished();
         }
 
@@ -274,7 +252,7 @@ namespace Axantum.AxCrypt.Core.Session
         public virtual IEnumerable<IRuntimeFileInfo> ListEncryptableInWatchedFolders()
         {
             IEnumerable<IRuntimeFileInfo> newFiles = new List<IRuntimeFileInfo>();
-            foreach (WatchedFolder watchedFolder in _fileSystemState.WatchedFolders)
+            foreach (WatchedFolder watchedFolder in Instance.FileSystemState.WatchedFolders)
             {
                 newFiles = newFiles.Concat(OS.Current.FileInfo(watchedFolder.Path).ListEncryptable());
             }

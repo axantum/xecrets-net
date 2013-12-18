@@ -96,7 +96,7 @@ namespace Axantum.AxCrypt.Core
             get { return FactoryRegistry.Instance.Singleton<ILogging>(); }
         }
 
-        public static SessionNotificationMonitor SessionEventQueue
+        public static SessionNotificationMonitor SessionNotification
         {
             get { return FactoryRegistry.Instance.Singleton<SessionNotificationMonitor>(); }
         }
