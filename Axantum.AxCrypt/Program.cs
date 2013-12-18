@@ -77,7 +77,9 @@ namespace Axantum.AxCrypt
 
             FactoryRegistry.Instance.Register<IDelayTimer>(() => new DelayTimer());
             FactoryRegistry.Instance.Register<AxCryptFile>(() => new AxCryptFile());
-            FactoryRegistry.Instance.Register<FileSystemStateActions>(() => new FileSystemStateActions());
+            FactoryRegistry.Instance.Register<ActiveFileAction>(() => new ActiveFileAction());
+
+            Instance.SessionNotification.Notification += new SessionNotificationHandler(Instance.FileSystemState, Factory.ActiveFileAction, Factory.AxCryptFile).HandleNotification;
         }
 
         private static void SetCulture()

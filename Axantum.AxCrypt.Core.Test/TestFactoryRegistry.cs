@@ -75,9 +75,9 @@ namespace Axantum.AxCrypt.Core.Test
             AxCryptFile axCryptFile = FactoryRegistry.Instance.Create<AxCryptFile>();
             Assert.That(axCryptFile is AxCryptFile, Is.True);
 
-            FactoryRegistry.Instance.Singleton<FileSystemState>(() => new FileSystemState());
-            FileSystemStateActions actions = FactoryRegistry.Instance.Create<FileSystemStateActions>();
-            Assert.That(actions is FileSystemStateActions, Is.True);
+            FactoryRegistry.Instance.Register<FileSystemState>(() => new FileSystemState());
+            ActiveFileAction actions = FactoryRegistry.Instance.Create<ActiveFileAction>();
+            Assert.That(actions is ActiveFileAction, Is.True);
         }
 
         [Test]

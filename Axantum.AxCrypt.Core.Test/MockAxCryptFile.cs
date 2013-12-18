@@ -31,7 +31,6 @@ using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -54,11 +53,11 @@ namespace Axantum.AxCrypt.Core.Test
             EncryptMock(sourceFile, destinationFile, passphrase, options, progress);
         }
 
-        public Action<IRuntimeFileInfo, AesKey, IProgressContext> EncryptFilesUniqueWithBackupAndWipeMock { get; set; }
+        public Action<IEnumerable<IRuntimeFileInfo>, AesKey, IProgressContext> EncryptFilesUniqueWithBackupAndWipeMock { get; set; }
 
-        public override void EncryptFilesUniqueWithBackupAndWipe(IRuntimeFileInfo fileInfo, AesKey encryptionKey, IProgressContext progress)
+        public override void EncryptFilesUniqueWithBackupAndWipe(IEnumerable<IRuntimeFileInfo> folderInfos, AesKey encryptionKey, IProgressContext progress)
         {
-            EncryptFilesUniqueWithBackupAndWipeMock(fileInfo, encryptionKey, progress);
+            EncryptFilesUniqueWithBackupAndWipeMock(folderInfos, encryptionKey, progress);
         }
 
         public Action<IRuntimeFileInfo, AesKey, IProgressContext> EncryptFileUniqueWithBackupAndWipeMock { get; set; }

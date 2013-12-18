@@ -146,12 +146,22 @@ namespace Axantum.AxCrypt.Core
             EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, key, progress);
         }
 
-        public virtual void EncryptFilesUniqueWithBackupAndWipe(IRuntimeFileInfo fileInfo, AesKey encryptionKey, IProgressContext progress)
+        public virtual void EncryptFilesUniqueWithBackupAndWipe(IEnumerable<IRuntimeFileInfo> folderInfos, AesKey encryptionKey, IProgressContext progress)
         {
-            IEnumerable<IRuntimeFileInfo> files = fileInfo.ListEncryptable();
-            foreach (IRuntimeFileInfo file in files)
+            progress.NotifyLevelStart();
+            try
             {
-                EncryptFileUniqueWithBackupAndWipe(file, encryptionKey, progress);
+                IEnumerable<IRuntimeFileInfo> files = folderInfos.SelectMany((folder) => folder.ListEncryptable());
+                progress.AddTotal(files.Count());
+                foreach (IRuntimeFileInfo file in files)
+                {
+                    EncryptFileUniqueWithBackupAndWipe(file, encryptionKey, progress);
+                    progress.AddCount(1);
+                }
+            }
+            finally
+            {
+                progress.NotifyLevelFinished();
             }
         }
 
@@ -159,7 +169,7 @@ namespace Axantum.AxCrypt.Core
         {
             IRuntimeFileInfo destinationFileInfo = fileInfo.CreateEncryptedName();
             destinationFileInfo = OS.Current.FileInfo(destinationFileInfo.FullName.CreateUniqueFile());
-            AxCryptFile.EncryptFileWithBackupAndWipe(fileInfo, destinationFileInfo, encryptionKey, progress);
+            EncryptFileWithBackupAndWipe(fileInfo, destinationFileInfo, encryptionKey, progress);
         }
 
         public static void EncryptFileWithBackupAndWipe(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFileInfo, AesKey key, IProgressContext progress)

@@ -35,16 +35,13 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
-    internal class MockFileSystemStateActions : FileSystemStateActions
+    internal class MockFileSystemStateActions : ActiveFileAction
     {
         public MockFileSystemStateActions()
             : base()
         {
             CheckActiveFileMock = (activeFile, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
             CheckActiveFilesMock = (mode, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
-            EncryptFilesInWatchedFoldersMock = (encryptionKey, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
-            HandleSessionEventMock = (sessionEvent, progress) => { base.HandleNotification(sessionEvent, progress); };
-            ListEncryptableInWatchedFoldersMock = () => { throw new InvalidOperationException("Unexpected call to this method."); };
             PurgeActiveFilesMock = (progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
             RemoveRecentFilesMock = (encryptedPaths, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
             UpdateActiveFileWithKeyIfKeyMatchesThumbprintMock = (key) => { throw new InvalidOperationException("Unexpected call to this method."); };
@@ -67,27 +64,6 @@ namespace Axantum.AxCrypt.Core.Test
         public override void CheckActiveFiles(ChangedEventMode mode, IProgressContext progress)
         {
             CheckActiveFilesMock(mode, progress);
-        }
-
-        public Action<AesKey, IProgressContext> EncryptFilesInWatchedFoldersMock { get; set; }
-
-        public override void EncryptFilesInWatchedFolders(AesKey encryptionKey, IProgressContext progress)
-        {
-            EncryptFilesInWatchedFoldersMock(encryptionKey, progress);
-        }
-
-        public Action<SessionNotification, IProgressContext> HandleSessionEventMock { get; set; }
-
-        public override void HandleNotification(SessionNotification sessionEvent, IProgressContext progress)
-        {
-            HandleSessionEventMock(sessionEvent, progress);
-        }
-
-        public Func<IEnumerable<IRuntimeFileInfo>> ListEncryptableInWatchedFoldersMock { get; set; }
-
-        public override IEnumerable<IRuntimeFileInfo> ListEncryptableInWatchedFolders()
-        {
-            return ListEncryptableInWatchedFoldersMock();
         }
 
         public Action<IProgressContext> PurgeActiveFilesMock { get; set; }

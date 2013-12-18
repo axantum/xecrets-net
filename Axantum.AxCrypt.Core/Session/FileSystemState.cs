@@ -73,14 +73,6 @@ namespace Axantum.AxCrypt.Core.Session
             Identities = new List<PassphraseIdentity>(Identities);
         }
 
-        public FileSystemStateActions Actions
-        {
-            get
-            {
-                return FactoryRegistry.Instance.Create<FileSystemStateActions>();
-            }
-        }
-
         private Dictionary<string, ActiveFile> _activeFilesByEncryptedPath;
 
         private KeyWrapSalt _thumbprintSalt;

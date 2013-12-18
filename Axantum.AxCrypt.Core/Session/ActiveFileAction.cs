@@ -32,17 +32,15 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Session
 {
-    public class FileSystemStateActions
+    public class ActiveFileAction
     {
-        public FileSystemStateActions()
+        public ActiveFileAction()
         {
-            Instance.SessionNotification.Notification += HandleNotification;
         }
 
         /// <summary>
@@ -116,88 +114,6 @@ namespace Axantum.AxCrypt.Core.Session
             return activeFile;
         }
 
-        public virtual void EncryptFilesInWatchedFolders(AesKey encryptionKey, IProgressContext progress)
-        {
-            if (encryptionKey == null)
-            {
-                throw new ArgumentNullException("encryptionKey");
-            }
-            if (progress == null)
-            {
-                throw new ArgumentNullException("progress");
-            }
-
-            IEnumerable<IRuntimeFileInfo> encryptableFiles = ListEncryptableInWatchedFolders();
-            progress.NotifyLevelStart();
-            try
-            {
-                progress.AddTotal(encryptableFiles.Count());
-                foreach (IRuntimeFileInfo fileInfo in encryptableFiles)
-                {
-                    Factory.AxCryptFile.EncryptFileUniqueWithBackupAndWipe(fileInfo, encryptionKey, progress);
-                    progress.AddCount(1);
-                }
-            }
-            finally
-            {
-                progress.NotifyLevelFinished();
-            }
-        }
-
-        private void HandleNotification(object sender, SessionNotificationArgs e)
-        {
-            HandleNotification(e.Notification, e.Progress);
-        }
-
-        public virtual void HandleNotification(SessionNotification notification, IProgressContext progress)
-        {
-            if (Instance.Log.IsInfoEnabled)
-            {
-                Instance.Log.LogInfo("Received notification type '{0}'.".InvariantFormat(notification.NotificationType));
-            }
-            switch (notification.NotificationType)
-            {
-                case SessionNotificationType.ActiveFileChange:
-                    CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
-                    break;
-
-                case SessionNotificationType.WatchedFolderAdded:
-                    IRuntimeFileInfo addedFolderInfo = OS.Current.FileInfo(notification.FullName);
-                    Factory.AxCryptFile.EncryptFilesUniqueWithBackupAndWipe(addedFolderInfo, notification.Key, progress);
-                    break;
-
-                case SessionNotificationType.WatchedFolderRemoved:
-                    IRuntimeFileInfo removedFolderInfo = OS.Current.FileInfo(notification.FullName);
-                    Factory.AxCryptFile.DecryptFilesUniqueWithWipeOfOriginal(removedFolderInfo, notification.Key, progress);
-                    break;
-
-                case SessionNotificationType.LogOn:
-                    EncryptFilesInWatchedFolders(notification.Key, progress);
-                    break;
-
-                case SessionNotificationType.LogOff:
-                    EncryptFilesInWatchedFolders(notification.Key, progress);
-                    break;
-
-                case SessionNotificationType.SessionStart:
-                    CheckActiveFiles(ChangedEventMode.RaiseAlways, progress);
-                    break;
-
-                case SessionNotificationType.PurgeActiveFiles:
-                    Instance.FileSystemState.Actions.PurgeActiveFiles(progress);
-                    break;
-
-                case SessionNotificationType.KnownKeyChange:
-                case SessionNotificationType.ProcessExit:
-                case SessionNotificationType.SessionChange:
-                case SessionNotificationType.WorkFolderChange:
-                    break;
-
-                default:
-                    throw new InvalidOperationException("Unhandled notification recieved");
-            }
-        }
-
         /// <summary>
         /// For each active file, check if provided key matches the thumbprint of an active file that does not yet have
         /// a known key. If so, update the active file with the now known key.
@@ -241,22 +157,6 @@ namespace Axantum.AxCrypt.Core.Session
             }
             Instance.FileSystemState.Save();
             progress.NotifyLevelFinished();
-        }
-
-        /// <summary>
-        /// Enumerate all apparently encryptable plaintext files in the list of watched folders.
-        /// </summary>
-        /// <param name="_fileSystemState">The associated <see cref="FileSystemState"/>.</param>
-        /// <returns>An enumeration of found files.</returns>
-        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable is a word.")]
-        public virtual IEnumerable<IRuntimeFileInfo> ListEncryptableInWatchedFolders()
-        {
-            IEnumerable<IRuntimeFileInfo> newFiles = new List<IRuntimeFileInfo>();
-            foreach (WatchedFolder watchedFolder in Instance.FileSystemState.WatchedFolders)
-            {
-                newFiles = newFiles.Concat(OS.Current.FileInfo(watchedFolder.Path).ListEncryptable());
-            }
-            return newFiles;
         }
 
         private static ActiveFile CheckActiveFileActions(ActiveFile activeFile, IProgressContext progress)

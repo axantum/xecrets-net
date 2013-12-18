@@ -25,11 +25,8 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Ipc;
 using Axantum.AxCrypt.Core.Session;
-using Axantum.AxCrypt.Core.UI;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core
@@ -42,6 +39,11 @@ namespace Axantum.AxCrypt.Core
         public static AxCryptFile AxCryptFile
         {
             get { return FactoryRegistry.Instance.Create<AxCryptFile>(); }
+        }
+
+        public static ActiveFileAction ActiveFileAction
+        {
+            get { return FactoryRegistry.Instance.Create<ActiveFileAction>(); }
         }
     }
 }

@@ -152,7 +152,7 @@
     <Compile Include="Session\ActiveFile.cs" />
     <Compile Include="Session\ActiveFileCollection.cs" />
     <Compile Include="IO\FileInfoTypes.cs" />
-    <Compile Include="Session\FileSystemStateActions.cs" />
+    <Compile Include="Session\ActiveFileAction.cs" />
     <Compile Include="Session\ActiveFileStatus.cs" />
     <Compile Include="Session\FileSystemState.cs" />
     <Compile Include="Runtime\ThreadWorker.cs" />
@@ -160,6 +160,7 @@
     <Compile Include="Session\PassphraseIdentity.cs" />
     <Compile Include="Session\ProcessState.cs" />
     <Compile Include="Session\SessionNotification.cs" />
+    <Compile Include="Session\SessionNotificationHandler.cs" />
     <Compile Include="Session\SessionNotificationMonitor.cs" />
     <Compile Include="Session\SessionNotificationType.cs" />
     <Compile Include="Session\SessionNotificationArgs.cs" />

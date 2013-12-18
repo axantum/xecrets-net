@@ -34,7 +34,6 @@ using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -83,7 +82,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 changedWasRaised = true;
             });
-            Instance.FileSystemState.Actions.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+            Factory.ActiveFileAction.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "The file should be detected as decrypted being created.");
         }
 
@@ -105,12 +104,12 @@ namespace Axantum.AxCrypt.Core.Test
             });
             using (FileLock fileLock = FileLock.Lock(activeFile.EncryptedFileInfo))
             {
-                Instance.FileSystemState.Actions.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+                Factory.ActiveFileAction.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             }
             Assert.That(changedWasRaised, Is.False, "The file should be not be detected as decrypted being created because the encrypted file is locked.");
             using (FileLock fileLock = FileLock.Lock(activeFile.DecryptedFileInfo))
             {
-                Instance.FileSystemState.Actions.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+                Factory.ActiveFileAction.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             }
             Assert.That(changedWasRaised, Is.False, "The file should be not be detected as decrypted being created because the decrypted file is locked.");
         }
@@ -137,7 +136,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 changedWasRaised = true;
             });
-            Instance.FileSystemState.Actions.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+            Factory.ActiveFileAction.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "The file should be detected as modified, because it is considered open and decrypted, has a proper key, is modified, no running process so it should be re-encrypted and deleted.");
             activeFile = Instance.FileSystemState.FindEncryptedPath(_encryptedFile1);
             Assert.That(activeFile, Is.Not.Null, "The encrypted file should be found.");
@@ -170,7 +169,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(activeFile.Key, Is.Null, "The key should be null after loading of new FileSystemState");
 
             Instance.KnownKeys.Add(passphrase.DerivedPassphrase);
-            Instance.FileSystemState.Actions.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+            Factory.ActiveFileAction.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "The ActiveFile should be modified because there is now a known key.");
 
             activeFile = Instance.FileSystemState.FindEncryptedPath(_encryptedFile1);
@@ -204,12 +203,12 @@ namespace Axantum.AxCrypt.Core.Test
             activeFile = Instance.FileSystemState.FindEncryptedPath(_encryptedFile1);
             Assert.That(activeFile.Key, Is.Null, "The key should be null after loading of new FileSystemState");
 
-            Instance.FileSystemState.Actions.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+            Factory.ActiveFileAction.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because the file was modified as well and thus cannot be deleted.");
 
             Instance.KnownKeys.Add(Passphrase.Derive("x"));
             Instance.KnownKeys.Add(new Passphrase("y").DerivedPassphrase);
-            Instance.FileSystemState.Actions.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+            Factory.ActiveFileAction.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because the file was modified as well and thus cannot be deleted.");
 
             activeFile = Instance.FileSystemState.FindEncryptedPath(_encryptedFile1);
@@ -239,7 +238,7 @@ namespace Axantum.AxCrypt.Core.Test
             });
 
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
-            Instance.FileSystemState.Actions.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+            Factory.ActiveFileAction.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
 
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because it's already deleted.");
         }
@@ -263,14 +262,14 @@ namespace Axantum.AxCrypt.Core.Test
             });
 
             SetupAssembly.FakeRuntimeEnvironment.Platform = Platform.Unknown;
-            Instance.FileSystemState.Actions.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+            Factory.ActiveFileAction.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "No change should be raised when the file is not modified and not Desktop Windows.");
             activeFile = Instance.FileSystemState.FindEncryptedPath(_encryptedFile1);
             Assert.That(activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "Nothing should happen with the file when not running as Desktop Windows.");
 
             SetupAssembly.FakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
             changedWasRaised = false;
-            Instance.FileSystemState.Actions.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+            Factory.ActiveFileAction.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "Since the file should be deleted because running as Desktop Windows the changed event should be raised.");
             activeFile = Instance.FileSystemState.FindEncryptedPath(_encryptedFile1);
             Assert.That(activeFile.Status.HasMask(ActiveFileStatus.NotDecrypted), Is.True, "The file should be deleted and marked as Not Decrypted when running as Desktop Windows.");
@@ -310,7 +309,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.OpeningForRead += eventHandler;
             try
             {
-                Instance.FileSystemState.Actions.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+                Factory.ActiveFileAction.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             }
             finally
             {
@@ -342,7 +341,7 @@ namespace Axantum.AxCrypt.Core.Test
                 changedWasRaised = true;
             });
             SetupAssembly.FakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
-            Instance.FileSystemState.Actions.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+            Factory.ActiveFileAction.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
 
             activeFile = Instance.FileSystemState.FindEncryptedPath(_encryptedFile1);
             Assert.That(changedWasRaised, Is.False, "No changed event should be raised because no change should occur since the process is active.");
@@ -369,7 +368,7 @@ namespace Axantum.AxCrypt.Core.Test
             });
             SetupAssembly.FakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
             fakeLauncher.HasExited = true;
-            Instance.FileSystemState.Actions.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+            Factory.ActiveFileAction.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
 
             activeFile = Instance.FileSystemState.FindEncryptedPath(_encryptedFile1);
             Assert.That(changedWasRaised, Is.True, "A changed event should be raised because the process has exited.");
@@ -408,7 +407,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.OpeningForWrite += eventHandler;
             try
             {
-                Instance.FileSystemState.Actions.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+                Factory.ActiveFileAction.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             }
             finally
             {
@@ -442,7 +441,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             using (FileLock fileLock = FileLock.Lock(decryptedFileInfo))
             {
-                Instance.FileSystemState.Actions.PurgeActiveFiles(new ProgressContext());
+                Factory.ActiveFileAction.PurgeActiveFiles(new ProgressContext());
             }
 
             Assert.That(changedWasRaised, Is.False, "A changed event should not be raised because the decrypted file is locked.");
@@ -471,7 +470,7 @@ namespace Axantum.AxCrypt.Core.Test
                 changedWasRaised = true;
             });
 
-            Instance.FileSystemState.Actions.PurgeActiveFiles(new ProgressContext());
+            Factory.ActiveFileAction.PurgeActiveFiles(new ProgressContext());
 
             activeFile = Instance.FileSystemState.FindEncryptedPath(_encryptedFile1);
             Assert.That(changedWasRaised, Is.True, "A changed event should be raised because the decrypted file is modified.");
@@ -487,7 +486,7 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable);
             Instance.FileSystemState.Add(activeFile);
 
-            bool updateWasMade = Instance.FileSystemState.Actions.UpdateActiveFileWithKeyIfKeyMatchesThumbprint(key);
+            bool updateWasMade = Factory.ActiveFileAction.UpdateActiveFileWithKeyIfKeyMatchesThumbprint(key);
             Assert.That(updateWasMade, Is.False, "Since there are only ActiveFiles with known keys in the list, no update should be made.");
         }
 
@@ -504,7 +503,7 @@ namespace Axantum.AxCrypt.Core.Test
             FactoryRegistry.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(OS.Current.FileInfo(_fileSystemStateFilePath)));
 
             AesKey wrongKey = new AesKey();
-            bool updateWasMade = Instance.FileSystemState.Actions.UpdateActiveFileWithKeyIfKeyMatchesThumbprint(wrongKey);
+            bool updateWasMade = Factory.ActiveFileAction.UpdateActiveFileWithKeyIfKeyMatchesThumbprint(wrongKey);
             Assert.That(updateWasMade, Is.False, "Since there are only ActiveFiles with wrong keys in the list, no update should be made.");
         }
 
@@ -520,7 +519,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             FactoryRegistry.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(OS.Current.FileInfo(_fileSystemStateFilePath)));
 
-            bool updateWasMade = Instance.FileSystemState.Actions.UpdateActiveFileWithKeyIfKeyMatchesThumbprint(key);
+            bool updateWasMade = Factory.ActiveFileAction.UpdateActiveFileWithKeyIfKeyMatchesThumbprint(key);
             Assert.That(updateWasMade, Is.True, "Since there is an ActiveFile with the right thumbprint in the list, an update should be made.");
         }
 
@@ -540,7 +539,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     somethingWasChanged = true;
                 };
-            Instance.FileSystemState.Actions.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+            Factory.ActiveFileAction.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(somethingWasChanged, Is.False, "No event should be raised, because nothing should change.");
         }
 
@@ -560,7 +559,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 somethingWasChanged = true;
             };
-            Instance.FileSystemState.Actions.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+            Factory.ActiveFileAction.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(somethingWasChanged, Is.True, "An event should be raised, because status was NotShareable, but no process is active.");
         }
 
@@ -577,7 +576,7 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile beforeRemoval = Instance.FileSystemState.FindEncryptedPath(encryptedFileInfo.FullName);
             Assert.That(beforeRemoval, Is.Not.Null, "Before being removed, the ActiveFile should be possible to find.");
 
-            Instance.FileSystemState.Actions.RemoveRecentFiles(new IRuntimeFileInfo[] { OS.Current.FileInfo(encryptedFileInfo.FullName) }, new ProgressContext());
+            Factory.ActiveFileAction.RemoveRecentFiles(new IRuntimeFileInfo[] { OS.Current.FileInfo(encryptedFileInfo.FullName) }, new ProgressContext());
 
             ActiveFile afterRemoval = Instance.FileSystemState.FindEncryptedPath(encryptedFileInfo.FullName);
             Assert.That(afterRemoval, Is.Null, "After being removed, the ActiveFile should not be possible to find.");
@@ -596,59 +595,10 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile beforeRemoval = Instance.FileSystemState.FindEncryptedPath(encryptedFileInfo.FullName);
             Assert.That(beforeRemoval, Is.Not.Null, "Before being removed, the ActiveFile should be possible to find.");
 
-            Assert.DoesNotThrow(() => { Instance.FileSystemState.Actions.RemoveRecentFiles(new IRuntimeFileInfo[] { OS.Current.FileInfo(encryptedFileInfo.FullName + ".notfound") }, new ProgressContext()); });
+            Assert.DoesNotThrow(() => { Factory.ActiveFileAction.RemoveRecentFiles(new IRuntimeFileInfo[] { OS.Current.FileInfo(encryptedFileInfo.FullName + ".notfound") }, new ProgressContext()); });
 
             ActiveFile afterFailedRemoval = Instance.FileSystemState.FindEncryptedPath(encryptedFileInfo.FullName);
             Assert.That(afterFailedRemoval, Is.Not.Null, "After failed removal, the ActiveFile should still be possible to find.");
-        }
-
-        [Test]
-        public static void TestDecryptedFilesInWatchedFolders()
-        {
-            DateTime utcNow = OS.Current.UtcNow;
-            FakeRuntimeFileInfo.AddFolder(_documentsFolder);
-            FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
-            FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
-            FakeRuntimeFileInfo.AddFolder(_underDocumentsFolder);
-            FakeRuntimeFileInfo.AddFile(_encryptedFile11, utcNow, utcNow, utcNow, Stream.Null);
-            FakeRuntimeFileInfo.AddFile(_decryptedFile11, utcNow, utcNow, utcNow, Stream.Null);
-            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(_underDocumentsFolder, AesKeyThumbprint.Zero));
-
-            IEnumerable<IRuntimeFileInfo> encryptableFiles = Instance.FileSystemState.Actions.ListEncryptableInWatchedFolders();
-
-            Assert.That(encryptableFiles.Count(), Is.EqualTo(1), "There should be exactly one decrypted file here.");
-            Assert.That(encryptableFiles.First().FullName, Is.EqualTo(_decryptedFile11), "This is the file that is decrypted here.");
-        }
-
-        [Test]
-        public static void TestEncryptFilesInWatchedFoldersBadArguments()
-        {
-            AesKey NullAesKey = null;
-            ProgressContext NullProgressContext = null;
-
-            Assert.Throws<ArgumentNullException>(() => { Instance.FileSystemState.Actions.EncryptFilesInWatchedFolders(NullAesKey, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { Instance.FileSystemState.Actions.EncryptFilesInWatchedFolders(new AesKey(), NullProgressContext); });
-        }
-
-        [Test]
-        public static void TestEncryptFilesInWatchedFolders()
-        {
-            MockAxCryptFile mock = new MockAxCryptFile();
-            int callTimes = 0;
-            mock.EncryptFileUniqueWithBackupAndWipeMock = (IRuntimeFileInfo fileInfo, AesKey encryptionKey, IProgressContext progress) => { ++callTimes; };
-
-            FactoryRegistry.Instance.Register<AxCryptFile>(() => mock);
-
-            FakeRuntimeFileInfo.AddFolder(@"C:\My Documents\");
-            FakeRuntimeFileInfo.AddFile(@"C:\My Documents\Plaintext 1.txt", Stream.Null);
-            FakeRuntimeFileInfo.AddFile(@"C:\My Documents\Plaintext 2.txt", Stream.Null);
-            FakeRuntimeFileInfo.AddFile(@"C:\My Documents\Encrypted.axx", Stream.Null);
-
-            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\My Documents\", AesKeyThumbprint.Zero));
-
-            Instance.FileSystemState.Actions.EncryptFilesInWatchedFolders(new AesKey(), new ProgressContext());
-
-            Assert.That(callTimes, Is.EqualTo(2));
         }
 
         [Test]
@@ -656,11 +606,12 @@ namespace Axantum.AxCrypt.Core.Test
         {
             MockAxCryptFile mock = new MockAxCryptFile();
             bool called = false;
-            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IRuntimeFileInfo fileInfo, AesKey encryptionKey, IProgressContext progress) => { called = fileInfo.FullName == @"C:\My Documents\"; };
+            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IRuntimeFileInfo> folderInfos, AesKey encryptionKey, IProgressContext progress) => { called = folderInfos.First().FullName == @"C:\My Documents\"; };
 
-            FactoryRegistry.Instance.Register<AxCryptFile>(() => mock);
+            SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Factory.ActiveFileAction, mock);
+            Instance.SessionNotification.Notification += handler.HandleNotification;
 
-            Instance.FileSystemState.Actions.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new AesKey(), @"C:\My Documents\"), new ProgressContext());
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new AesKey(), @"C:\My Documents\"), new ProgressContext());
 
             Assert.That(called, Is.True);
         }
@@ -674,7 +625,10 @@ namespace Axantum.AxCrypt.Core.Test
 
             FactoryRegistry.Instance.Register<AxCryptFile>(() => mock);
 
-            Instance.FileSystemState.Actions.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, new AesKey(), @"C:\My Documents\"), new ProgressContext());
+            SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Factory.ActiveFileAction, mock);
+            Instance.SessionNotification.Notification += handler.HandleNotification;
+
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, new AesKey(), @"C:\My Documents\"), new ProgressContext());
 
             Assert.That(called, Is.True);
         }
@@ -682,13 +636,14 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestHandleSessionEventLogOn()
         {
-            MockFileSystemStateActions mock = new MockFileSystemStateActions();
+            MockAxCryptFile mock = new MockAxCryptFile();
             bool called = false;
-            mock.EncryptFilesInWatchedFoldersMock = (AesKey encryptionKey, IProgressContext progress) => { called = true; };
+            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IRuntimeFileInfo> folderInfos, AesKey encryptionKey, IProgressContext progress) => { called = true; };
 
-            FactoryRegistry.Instance.Register<FileSystemStateActions>(() => mock);
+            SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Factory.ActiveFileAction, mock);
+            Instance.SessionNotification.Notification += handler.HandleNotification;
 
-            Instance.FileSystemState.Actions.HandleNotification(new SessionNotification(SessionNotificationType.LogOn, new AesKey()), new ProgressContext());
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.LogOn, new AesKey()), new ProgressContext());
 
             Assert.That(called, Is.True);
         }
@@ -696,13 +651,14 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestHandleSessionEventLogOff()
         {
-            MockFileSystemStateActions mock = new MockFileSystemStateActions();
+            MockAxCryptFile mock = new MockAxCryptFile();
             bool called = false;
-            mock.EncryptFilesInWatchedFoldersMock = (AesKey encryptionKey, IProgressContext progress) => { called = true; };
+            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IRuntimeFileInfo> folderInfos, AesKey encryptionKey, IProgressContext progress) => { called = true; };
 
-            FactoryRegistry.Instance.Register<FileSystemStateActions>(() => mock);
+            SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Factory.ActiveFileAction, mock);
+            Instance.SessionNotification.Notification += handler.HandleNotification;
 
-            Instance.FileSystemState.Actions.HandleNotification(new SessionNotification(SessionNotificationType.LogOff, new AesKey()), new ProgressContext());
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.LogOff, new AesKey()), new ProgressContext());
 
             Assert.That(called, Is.True);
         }
@@ -712,14 +668,15 @@ namespace Axantum.AxCrypt.Core.Test
         {
             MockFileSystemStateActions mock = new MockFileSystemStateActions();
 
-            FactoryRegistry.Instance.Register<FileSystemState, FileSystemStateActions>((fileSystemState) => mock);
+            SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, mock, Factory.AxCryptFile);
+            Instance.SessionNotification.Notification += handler.HandleNotification;
 
             Assert.DoesNotThrow(() =>
             {
-                Instance.FileSystemState.Actions.HandleNotification(new SessionNotification(SessionNotificationType.ProcessExit), new ProgressContext());
-                Instance.FileSystemState.Actions.HandleNotification(new SessionNotification(SessionNotificationType.SessionChange), new ProgressContext());
-                Instance.FileSystemState.Actions.HandleNotification(new SessionNotification(SessionNotificationType.KnownKeyChange), new ProgressContext());
-                Instance.FileSystemState.Actions.HandleNotification(new SessionNotification(SessionNotificationType.WorkFolderChange), new ProgressContext());
+                handler.HandleNotification(new SessionNotification(SessionNotificationType.ProcessExit), new ProgressContext());
+                handler.HandleNotification(new SessionNotification(SessionNotificationType.SessionChange), new ProgressContext());
+                handler.HandleNotification(new SessionNotification(SessionNotificationType.KnownKeyChange), new ProgressContext());
+                handler.HandleNotification(new SessionNotification(SessionNotificationType.WorkFolderChange), new ProgressContext());
             });
         }
 
@@ -728,11 +685,12 @@ namespace Axantum.AxCrypt.Core.Test
         {
             MockFileSystemStateActions mock = new MockFileSystemStateActions();
 
-            FactoryRegistry.Instance.Register<FileSystemState, FileSystemStateActions>((fileSystemState) => mock);
+            SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, mock, Factory.AxCryptFile);
+            Instance.SessionNotification.Notification += handler.HandleNotification;
 
             Assert.Throws<InvalidOperationException>(() =>
             {
-                Instance.FileSystemState.Actions.HandleNotification(new SessionNotification((SessionNotificationType)(-1)), new ProgressContext());
+                handler.HandleNotification(new SessionNotification((SessionNotificationType)(-1)), new ProgressContext());
             });
         }
 
@@ -741,8 +699,10 @@ namespace Axantum.AxCrypt.Core.Test
         {
             MockAxCryptFile mock = new MockAxCryptFile();
             int callTimes = 0;
-            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IRuntimeFileInfo fileInfo, AesKey decryptionKey, IProgressContext progress) => { if (fileInfo.FullName == @"C:\My Documents\") ++callTimes; };
-            FactoryRegistry.Instance.Register<AxCryptFile>(() => mock);
+            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IRuntimeFileInfo> folderInfos, AesKey decryptionKey, IProgressContext progress) => { if (folderInfos.First().FullName == @"C:\My Documents\") ++callTimes; };
+
+            SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Factory.ActiveFileAction, mock);
+            Instance.SessionNotification.Notification += handler.HandleNotification;
 
             List<SessionNotification> sessionEvents = new List<SessionNotification>();
             sessionEvents.Add(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new AesKey(), @"C:\My Documents\"));
@@ -750,7 +710,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             foreach (SessionNotification sessionEvent in sessionEvents)
             {
-                Instance.FileSystemState.Actions.HandleNotification(sessionEvent, new ProgressContext());
+                handler.HandleNotification(sessionEvent, new ProgressContext());
             }
             Assert.That(callTimes, Is.EqualTo(2));
         }

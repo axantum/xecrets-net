@@ -69,6 +69,7 @@
     <Compile Include="FakeWebCaller.cs" />
     <Compile Include="MockAxCryptFile.cs" />
     <Compile Include="MockFileSystemStateActions.cs" />
+    <Compile Include="MockSessionNotificationHandler.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
