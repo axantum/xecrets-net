@@ -38,13 +38,13 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
-            FactoryRegistry.Instance.Singleton<ISleep>(() => new FakeSleep());
+            Factory.Instance.Singleton<ISleep>(() => new FakeSleep());
         }
 
         [TearDown]
         public static void Teardown()
         {
-            FactoryRegistry.Instance.Clear();
+            Factory.Instance.Clear();
         }
 
         [Test]

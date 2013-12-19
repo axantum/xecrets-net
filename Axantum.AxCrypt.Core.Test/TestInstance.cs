@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestStatusChecker()
         {
-            FactoryRegistry.Instance.Singleton<IStatusChecker>(() => new FakeStatusChecker());
+            Factory.Instance.Singleton<IStatusChecker>(() => new FakeStatusChecker());
 
             IStatusChecker sc = Instance.StatusChecker;
             Assert.That(sc is FakeStatusChecker, Is.True);

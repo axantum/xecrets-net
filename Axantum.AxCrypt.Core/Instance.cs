@@ -38,62 +38,62 @@ namespace Axantum.AxCrypt.Core
     {
         public static KnownKeys KnownKeys
         {
-            get { return FactoryRegistry.Instance.Singleton<KnownKeys>(); }
+            get { return Factory.Instance.Singleton<KnownKeys>(); }
         }
 
         public static IUIThread UIThread
         {
-            get { return FactoryRegistry.Instance.Singleton<IUIThread>(); }
+            get { return Factory.Instance.Singleton<IUIThread>(); }
         }
 
         public static IProgressBackground BackgroundWork
         {
-            get { return FactoryRegistry.Instance.Singleton<IProgressBackground>(); }
+            get { return Factory.Instance.Singleton<IProgressBackground>(); }
         }
 
         public static ParallelBackground ParallelBackground
         {
-            get { return FactoryRegistry.Instance.Singleton<ParallelBackground>(); }
+            get { return Factory.Instance.Singleton<ParallelBackground>(); }
         }
 
         public static IRuntimeEnvironment Environment
         {
-            get { return FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(); }
+            get { return Factory.Instance.Singleton<IRuntimeEnvironment>(); }
         }
 
         public static FileSystemState FileSystemState
         {
-            get { return FactoryRegistry.Instance.Singleton<FileSystemState>(); }
+            get { return Factory.Instance.Singleton<FileSystemState>(); }
         }
 
         public static ProcessState ProcessState
         {
-            get { return FactoryRegistry.Instance.Singleton<ProcessState>(); }
+            get { return Factory.Instance.Singleton<ProcessState>(); }
         }
 
         public static CommandService CommandService
         {
-            get { return FactoryRegistry.Instance.Singleton<CommandService>(); }
+            get { return Factory.Instance.Singleton<CommandService>(); }
         }
 
         public static IStatusChecker StatusChecker
         {
-            get { return FactoryRegistry.Instance.Singleton<IStatusChecker>(); }
+            get { return Factory.Instance.Singleton<IStatusChecker>(); }
         }
 
         public static IUserSettings UserSettings
         {
-            get { return FactoryRegistry.Instance.Singleton<IUserSettings>(); }
+            get { return Factory.Instance.Singleton<IUserSettings>(); }
         }
 
         public static ILogging Log
         {
-            get { return FactoryRegistry.Instance.Singleton<ILogging>(); }
+            get { return Factory.Instance.Singleton<ILogging>(); }
         }
 
         public static SessionNotificationMonitor SessionNotification
         {
-            get { return FactoryRegistry.Instance.Singleton<SessionNotificationMonitor>(); }
+            get { return Factory.Instance.Singleton<SessionNotificationMonitor>(); }
         }
     }
 }

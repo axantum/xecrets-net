@@ -43,18 +43,18 @@ namespace Axantum.AxCrypt.Core.Test
     {
         public static void AssemblySetup()
         {
-            FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
-            FactoryRegistry.Instance.Singleton<ILogging>(() => new FakeLogging());
-            FactoryRegistry.Instance.Singleton<IUserSettings>(() => new UserSettings(UserSettings.DefaultPathInfo));
-            FactoryRegistry.Instance.Singleton(() => new KnownKeys(Instance.FileSystemState, Instance.SessionNotification));
-            FactoryRegistry.Instance.Singleton(() => new ProcessState());
-            FactoryRegistry.Instance.Singleton<IUIThread>(() => new FakeUIThread());
-            FactoryRegistry.Instance.Singleton<IProgressBackground>(() => new FakeProgressBackground());
-            FactoryRegistry.Instance.Singleton<SessionNotificationMonitor>(() => new SessionNotificationMonitor(new DelayedAction(new FakeDelayTimer(new FakeSleep()), Instance.UserSettings.SessionNotificationMinimumIdle)));
+            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
+            Factory.Instance.Singleton<ILogging>(() => new FakeLogging());
+            Factory.Instance.Singleton<IUserSettings>(() => new UserSettings(UserSettings.DefaultPathInfo));
+            Factory.Instance.Singleton(() => new KnownKeys(Instance.FileSystemState, Instance.SessionNotification));
+            Factory.Instance.Singleton(() => new ProcessState());
+            Factory.Instance.Singleton<IUIThread>(() => new FakeUIThread());
+            Factory.Instance.Singleton<IProgressBackground>(() => new FakeProgressBackground());
+            Factory.Instance.Singleton<SessionNotificationMonitor>(() => new SessionNotificationMonitor(new DelayedAction(new FakeDelayTimer(new FakeSleep()), Instance.UserSettings.SessionNotificationMinimumIdle)));
 
-            FactoryRegistry.Instance.Register<AxCryptFile>(() => new AxCryptFile());
-            FactoryRegistry.Instance.Register<ActiveFileAction>(() => new ActiveFileAction());
-            FactoryRegistry.Instance.Register<FileOperation>(() => new FileOperation(Instance.FileSystemState, Instance.SessionNotification));
+            Factory.Instance.Register<AxCryptFile>(() => new AxCryptFile());
+            Factory.Instance.Register<ActiveFileAction>(() => new ActiveFileAction());
+            Factory.Instance.Register<FileOperation>(() => new FileOperation(Instance.FileSystemState, Instance.SessionNotification));
 
             Instance.UserSettings.KeyWrapIterations = 1234;
             Instance.UserSettings.ThumbprintSalt = KeyWrapSalt.Zero;
@@ -64,7 +64,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void AssemblyTeardown()
         {
             FakeRuntimeFileInfo.ClearFiles();
-            FactoryRegistry.Instance.Clear();
+            Factory.Instance.Clear();
         }
 
         internal static FakeRuntimeEnvironment FakeRuntimeEnvironment

@@ -87,9 +87,9 @@ namespace Axantum.AxCrypt
                 });
             };
 
-            FactoryRegistry.Instance.Singleton<IUIThread>(() => new UIThread(this));
-            FactoryRegistry.Instance.Singleton<IProgressBackground>(() => _progressBackgroundWorker);
-            FactoryRegistry.Instance.Singleton<IStatusChecker>(() => this);
+            Factory.Instance.Singleton<IUIThread>(() => new UIThread(this));
+            Factory.Instance.Singleton<IProgressBackground>(() => _progressBackgroundWorker);
+            Factory.Instance.Singleton<IStatusChecker>(() => this);
 
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
 

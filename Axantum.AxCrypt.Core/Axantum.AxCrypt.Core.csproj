@@ -58,9 +58,8 @@
     <Compile Include="Extensions\RuntimeFileInfoExtensions.cs" />
     <Compile Include="Extensions\StreamExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="Factory.cs" />
     <Compile Include="Crypto\KeyWrapIterationCalculator.cs" />
-    <Compile Include="FactoryRegistry.cs" />
+    <Compile Include="Factory.cs" />
     <Compile Include="Instance.cs" />
     <Compile Include="IO\FileWatcherEventArgs.cs" />
     <Compile Include="IO\IFileWatcher.cs" />

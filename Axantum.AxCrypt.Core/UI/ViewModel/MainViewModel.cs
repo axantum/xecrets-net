@@ -388,8 +388,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private static void ClearPassphraseMemoryAction()
         {
             AxCryptFile.Wipe(FileSystemState.DefaultPathInfo, new ProgressContext());
-            FactoryRegistry.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(FileSystemState.DefaultPathInfo));
-            FactoryRegistry.Instance.Singleton<KnownKeys>(() => new KnownKeys(Instance.FileSystemState, Instance.SessionNotification));
+            Factory.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(FileSystemState.DefaultPathInfo));
+            Factory.Instance.Singleton<KnownKeys>(() => new KnownKeys(Instance.FileSystemState, Instance.SessionNotification));
             Instance.SessionNotification.Notify(new SessionNotification(SessionNotificationType.SessionStart));
         }
 
@@ -447,7 +447,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private FileOperationStatus DecryptFolder(IRuntimeFileInfo folder, IProgressContext progress)
         {
-            Factory.AxCryptFile.DecryptFilesUniqueWithWipeOfOriginal(folder, Instance.KnownKeys.DefaultEncryptionKey, progress);
+            Factory.New<AxCryptFile>().DecryptFilesUniqueWithWipeOfOriginal(folder, Instance.KnownKeys.DefaultEncryptionKey, progress);
             return FileOperationStatus.Success;
         }
 
@@ -515,9 +515,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
             {
-                if (FactoryRegistry.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
+                if (Factory.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
                 {
-                    Factory.ActiveFileAction.RemoveRecentFiles(new IRuntimeFileInfo[] { OS.Current.FileInfo(e.OpenFileFullName) }, progress);
+                    Factory.New<ActiveFileAction>().RemoveRecentFiles(new IRuntimeFileInfo[] { OS.Current.FileInfo(e.OpenFileFullName) }, progress);
                 }
             };
 
@@ -567,7 +567,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 }
                 if (Instance.StatusChecker.CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
                 {
-                    Factory.ActiveFileAction.RemoveRecentFiles(new IRuntimeFileInfo[] { OS.Current.FileInfo(e.SaveFileFullName) }, progress);
+                    Factory.New<ActiveFileAction>().RemoveRecentFiles(new IRuntimeFileInfo[] { OS.Current.FileInfo(e.SaveFileFullName) }, progress);
                 }
             };
 
@@ -610,7 +610,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     return;
                 }
-                FactoryRegistry.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName);
+                Factory.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName);
             };
 
             return operationsController.DecryptAndLaunch(file);
@@ -681,7 +681,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     e.Status = FileOperationStatus.Success;
                     return;
                 }
-                if (FactoryRegistry.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
+                if (Factory.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
                 {
                     IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
                     IRuntimeFileInfo decryptedInfo = OS.Current.FileInfo(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
@@ -723,7 +723,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     return;
                 }
-                if (FactoryRegistry.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
+                if (Factory.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
                 {
                     IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.OpenFileFullName);
                     IRuntimeFileInfo decryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
@@ -752,7 +752,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
             {
-                if (FactoryRegistry.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
+                if (Factory.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
                 {
                     IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
                     IRuntimeFileInfo decryptedInfo = OS.Current.FileInfo(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));

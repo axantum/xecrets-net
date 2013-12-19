@@ -25,31 +25,146 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Session;
-using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Core.Extensions;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core
 {
     /// <summary>
-    /// Provides syntactically convenient access to the various class factories registered.
+    /// Map a type to a class factory creating instances of that type. This is used as a simple dependency injection vehicle
+    /// for types that this library depends on external implementations of for flexibility or unit testing purposes.
     /// </summary>
-    public static class Factory
+    public class Factory
     {
-        public static AxCryptFile AxCryptFile
+        private Dictionary<Type, object> _mapping = new Dictionary<Type, object>();
+
+        private Factory()
         {
-            get { return FactoryRegistry.Instance.Create<AxCryptFile>(); }
         }
 
-        public static ActiveFileAction ActiveFileAction
+        private static Factory _instance = new Factory();
+
+        /// <summary>
+        /// Gets the singleton instance of the Factory
+        /// </summary>
+        /// <value>
+        /// The instance. There can be only one.
+        /// </value>
+        public static Factory Instance
         {
-            get { return FactoryRegistry.Instance.Create<ActiveFileAction>(); }
+            get
+            {
+                return _instance;
+            }
         }
 
-        public static FileOperation FileOperation
+        /// <summary>
+        /// Register a method that creates an instance of the given type. A second registration of the same type
+        /// overwrites the first.
+        /// </summary>
+        /// <typeparam name="TResult">The type to register a factory for.</typeparam>
+        /// <param name="creator">The delegate that creates an instance.</param>
+        public void Register<TResult>(Func<TResult> creator)
         {
-            get { return FactoryRegistry.Instance.Create<FileOperation>(); }
+            SetAndDisposeIfDisposable(typeof(Func<TResult>), creator);
+        }
+
+        public void Register<TArgument, TResult>(Func<TArgument, TResult> creator)
+        {
+            SetAndDisposeIfDisposable(typeof(Func<TArgument, TResult>), creator);
+        }
+
+        public void Singleton<TArgument>(Func<TArgument> creator)
+        {
+            SetAndDisposeIfDisposable(typeof(TArgument), creator);
+        }
+
+        private void SetAndDisposeIfDisposable(Type type, object value)
+        {
+            object o;
+            if (_mapping.TryGetValue(type, out o))
+            {
+                DisposeIfDisposable(o);
+            }
+            _mapping[type] = value;
+        }
+
+        public TResult Singleton<TResult>() where TResult : class
+        {
+            object o;
+            if (!_mapping.TryGetValue(typeof(TResult), out o))
+            {
+                throw new ArgumentException("Unregistered singleton. Initialize with 'FactoryRegistry.Singleton<{0}>(() => {{ return new {0}(); }});'".InvariantFormat(typeof(TResult)));
+            }
+
+            TResult value = o as TResult;
+            if (value != null)
+            {
+                return value;
+            }
+
+            Func<TResult> creator = (Func<TResult>)o;
+            value = creator();
+            _mapping[typeof(TResult)] = value;
+            return value;
+        }
+
+        /// <summary>
+        /// Create an instance of a registered type.
+        /// </summary>
+        /// <typeparam name="TResult">The type to create an instance of.</typeparam>
+        /// <returns>An instance of the type, according to the rules of the factory. It may be a singleton.</returns>
+        public static TResult New<TResult>()
+        {
+            return Instance.CreateInternal<TResult>();
+        }
+
+        private TResult CreateInternal<TResult>()
+        {
+            object function;
+            if (!_mapping.TryGetValue(typeof(Func<TResult>), out function))
+            {
+                throw new ArgumentException("Unregistered type factory. Initialize with 'FactoryRegistry.Register<{0}>(() => {{ return new {0}(); }});'".InvariantFormat(typeof(TResult)));
+            }
+            return ((Func<TResult>)function)();
+        }
+
+        public static TResult New<TArgument, TResult>(TArgument argument)
+        {
+            return Instance.CreateInternal<TArgument, TResult>(argument);
+        }
+
+        private TResult CreateInternal<TArgument, TResult>(TArgument argument)
+        {
+            object function;
+            if (!_mapping.TryGetValue(typeof(Func<TArgument, TResult>), out function))
+            {
+                throw new ArgumentException("Unregistered type factory. Initialize with 'FactoryRegistry.Register<{0}, {1}>((argument) => {{ return new {0}(argument); }});'".InvariantFormat(typeof(TArgument), typeof(TResult)));
+            }
+            return ((Func<TArgument, TResult>)function)(argument);
+        }
+
+        /// <summary>
+        /// Unregister all factories and instances, dispose if required.
+        /// </summary>
+        public void Clear()
+        {
+            foreach (object o in _mapping.Values)
+            {
+                DisposeIfDisposable(o);
+            }
+            _mapping.Clear();
+        }
+
+        private static void DisposeIfDisposable(object o)
+        {
+            IDisposable disposable = o as IDisposable;
+            if (disposable != null)
+            {
+                disposable.Dispose();
+            }
         }
     }
 }

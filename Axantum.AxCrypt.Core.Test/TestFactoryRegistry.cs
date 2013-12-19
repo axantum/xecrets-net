@@ -51,9 +51,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestRegisterParameterless()
         {
             bool wasCalled = false;
-            FactoryRegistry.Instance.Register<int>(() => { wasCalled = true; return 13; });
+            Factory.Instance.Register<int>(() => { wasCalled = true; return 13; });
 
-            int value = FactoryRegistry.Instance.Create<int>();
+            int value = Factory.New<int>();
             Assert.That(value, Is.EqualTo(13));
             Assert.That(wasCalled, Is.True);
         }
@@ -62,9 +62,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestRegisterWithParameter()
         {
             bool wasCalled = false;
-            FactoryRegistry.Instance.Register<int, int>((argument) => { wasCalled = true; return argument; });
+            Factory.Instance.Register<int, int>((argument) => { wasCalled = true; return argument; });
 
-            int value = FactoryRegistry.Instance.Create<int, int>(27);
+            int value = Factory.New<int, int>(27);
             Assert.That(value, Is.EqualTo(27));
             Assert.That(wasCalled, Is.True);
         }
@@ -72,25 +72,25 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDefault()
         {
-            AxCryptFile axCryptFile = FactoryRegistry.Instance.Create<AxCryptFile>();
+            AxCryptFile axCryptFile = Factory.New<AxCryptFile>();
             Assert.That(axCryptFile is AxCryptFile, Is.True);
 
-            FactoryRegistry.Instance.Register<FileSystemState>(() => new FileSystemState());
-            ActiveFileAction actions = FactoryRegistry.Instance.Create<ActiveFileAction>();
+            Factory.Instance.Register<FileSystemState>(() => new FileSystemState());
+            ActiveFileAction actions = Factory.New<ActiveFileAction>();
             Assert.That(actions is ActiveFileAction, Is.True);
         }
 
         [Test]
         public static void TestNotRegistered()
         {
-            Assert.Throws<ArgumentException>(() => FactoryRegistry.Instance.Create<int>());
-            Assert.Throws<ArgumentException>(() => FactoryRegistry.Instance.Create<int, int>(13));
+            Assert.Throws<ArgumentException>(() => Factory.New<int>());
+            Assert.Throws<ArgumentException>(() => Factory.New<int, int>(13));
         }
 
         [Test]
         public static void TestNotRegisteredSingleton()
         {
-            Assert.Throws<ArgumentException>(() => FactoryRegistry.Instance.Singleton<object>());
+            Assert.Throws<ArgumentException>(() => Factory.Instance.Singleton<object>());
         }
 
         private class MyDisposable : IDisposable
@@ -106,24 +106,24 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestClearDisposable()
         {
-            FactoryRegistry.Instance.Singleton(() => new MyDisposable());
+            Factory.Instance.Singleton(() => new MyDisposable());
 
-            MyDisposable md = FactoryRegistry.Instance.Singleton<MyDisposable>();
+            MyDisposable md = Factory.Instance.Singleton<MyDisposable>();
             Assert.That(md.IsDisposed, Is.False);
 
-            FactoryRegistry.Instance.Clear();
+            Factory.Instance.Clear();
             Assert.That(md.IsDisposed, Is.True);
         }
 
         [Test]
         public static void TestSetDisposableSingletonTwice()
         {
-            FactoryRegistry.Instance.Singleton(() => new MyDisposable());
+            Factory.Instance.Singleton(() => new MyDisposable());
 
-            MyDisposable md = FactoryRegistry.Instance.Singleton<MyDisposable>();
+            MyDisposable md = Factory.Instance.Singleton<MyDisposable>();
             Assert.That(md.IsDisposed, Is.False);
 
-            FactoryRegistry.Instance.Singleton(() => new MyDisposable());
+            Factory.Instance.Singleton(() => new MyDisposable());
             Assert.That(md.IsDisposed, Is.True);
         }
     }

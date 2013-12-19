@@ -42,14 +42,14 @@ namespace Axantum.AxCrypt.Mono.Test
         [SetUp]
         public static void Setup()
         {
-            FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment());
-            FactoryRegistry.Instance.Singleton<ILogging>(() => new Logging());
+            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment());
+            Factory.Instance.Singleton<ILogging>(() => new Logging());
         }
 
         [TearDown]
         public static void Teardown()
         {
-            FactoryRegistry.Instance.Clear();
+            Factory.Instance.Clear();
         }
 
         [Test]

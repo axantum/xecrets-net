@@ -59,7 +59,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void Setup()
         {
             SetupAssembly.AssemblySetup();
-            FactoryRegistry.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(FileSystemState.DefaultPathInfo));
+            Factory.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(FileSystemState.DefaultPathInfo));
         }
 
         [TearDown]

@@ -80,10 +80,10 @@ namespace Axantum.AxCrypt.Core.Test
             string nullString = null;
             Action<Stream> nullStreamAction = null;
 
-            Assert.Throws<ArgumentNullException>(() => { Factory.AxCryptFile.Encrypt(nullFileInfo, destinationFileInfo, new Passphrase("axcrypt"), AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { Factory.AxCryptFile.Encrypt(sourceFileInfo, nullFileInfo, new Passphrase("axcrypt"), AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { Factory.AxCryptFile.Encrypt(sourceFileInfo, destinationFileInfo, nullPassphrase, AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { Factory.AxCryptFile.Encrypt(sourceFileInfo, destinationFileInfo, new Passphrase("axcrypt"), AxCryptOptions.EncryptWithCompression, nullProgress); });
+            Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Encrypt(nullFileInfo, destinationFileInfo, new Passphrase("axcrypt"), AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Encrypt(sourceFileInfo, nullFileInfo, new Passphrase("axcrypt"), AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Encrypt(sourceFileInfo, destinationFileInfo, nullPassphrase, AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Encrypt(sourceFileInfo, destinationFileInfo, new Passphrase("axcrypt"), AxCryptOptions.EncryptWithCompression, nullProgress); });
 
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(nullFileInfo, new MemoryStream(), new AesKey(), AxCryptOptions.None, new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(sourceFileInfo, nullStream, new AesKey(), AxCryptOptions.None, new ProgressContext()); });
@@ -122,7 +122,7 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(_testTextPath);
             IRuntimeFileInfo destinationFileInfo = sourceFileInfo.CreateEncryptedName();
             Assert.That(destinationFileInfo.Name, Is.EqualTo("test-txt.axx"), "Wrong encrypted file name based on the plain text file name.");
-            Factory.AxCryptFile.Encrypt(sourceFileInfo, destinationFileInfo, new Passphrase("axcrypt"), AxCryptOptions.EncryptWithCompression, new ProgressContext());
+            Factory.New<AxCryptFile>().Encrypt(sourceFileInfo, destinationFileInfo, new Passphrase("axcrypt"), AxCryptOptions.EncryptWithCompression, new ProgressContext());
             using (AxCryptDocument document = AxCryptFile.Document(destinationFileInfo, new Passphrase("axcrypt").DerivedPassphrase, new ProgressContext()))
             {
                 Assert.That(document.PassphraseIsValid, Is.True, "The passphrase should be ok.");
@@ -213,7 +213,7 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo destinationRuntimeFileInfo = sourceRuntimeFileInfo.CreateEncryptedName();
             Passphrase passphrase = new Passphrase("laDabled@tAmeopot33");
 
-            Factory.AxCryptFile.Encrypt(sourceRuntimeFileInfo, destinationRuntimeFileInfo, passphrase, AxCryptOptions.SetFileTimes | AxCryptOptions.EncryptWithCompression, new ProgressContext());
+            Factory.New<AxCryptFile>().Encrypt(sourceRuntimeFileInfo, destinationRuntimeFileInfo, passphrase, AxCryptOptions.SetFileTimes | AxCryptOptions.EncryptWithCompression, new ProgressContext());
 
             Assert.That(destinationRuntimeFileInfo.CreationTimeUtc, Is.EqualTo(sourceRuntimeFileInfo.CreationTimeUtc), "We're expecting file times to be set as the original from the headers.");
             Assert.That(destinationRuntimeFileInfo.LastAccessTimeUtc, Is.EqualTo(sourceRuntimeFileInfo.LastAccessTimeUtc), "We're expecting file times to be set as the original from the headers.");
@@ -247,7 +247,7 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(_testTextPath);
             IRuntimeFileInfo encryptedFileInfo = sourceFileInfo.CreateEncryptedName();
             Assert.That(encryptedFileInfo.Name, Is.EqualTo("test-txt.axx"), "Wrong encrypted file name based on the plain text file name.");
-            Factory.AxCryptFile.Encrypt(sourceFileInfo, encryptedFileInfo, new Passphrase("axcrypt"), AxCryptOptions.EncryptWithCompression, new ProgressContext());
+            Factory.New<AxCryptFile>().Encrypt(sourceFileInfo, encryptedFileInfo, new Passphrase("axcrypt"), AxCryptOptions.EncryptWithCompression, new ProgressContext());
 
             IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(Path.Combine(_rootPath, "decrypted.txt"));
             bool isPassphraseOk = AxCryptFile.Decrypt(encryptedFileInfo, decryptedFileInfo, new Passphrase("wrong").DerivedPassphrase, AxCryptOptions.None, new ProgressContext());
@@ -442,9 +442,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptFilesUniqueWithWipeOfOriginal()
         {
-            FactoryRegistry.Instance.Singleton<ParallelBackground>(() => new ParallelBackground());
-            FactoryRegistry.Instance.Singleton<IProgressBackground>(() => new FakeProgressBackground());
-            FactoryRegistry.Instance.Singleton<IUIThread>(() => new FakeUIThread());
+            Factory.Instance.Singleton<ParallelBackground>(() => new ParallelBackground());
+            Factory.Instance.Singleton<IProgressBackground>(() => new FakeProgressBackground());
+            Factory.Instance.Singleton<IUIThread>(() => new FakeUIThread());
             IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
             sourceFileInfo.CreateFolder();
             IRuntimeFileInfo sourceFolderInfo = OS.Current.FileInfo(Path.GetDirectoryName(sourceFileInfo.FullName));
@@ -454,7 +454,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(sourceFileInfo.Exists, Is.True, "The source should exist.");
             Assert.That(destinationFileInfo.Exists, Is.False, "The source should not exist yet.");
 
-            Factory.AxCryptFile.DecryptFilesUniqueWithWipeOfOriginal(sourceFolderInfo, passphrase.DerivedPassphrase, new ProgressContext());
+            Factory.New<AxCryptFile>().DecryptFilesUniqueWithWipeOfOriginal(sourceFolderInfo, passphrase.DerivedPassphrase, new ProgressContext());
 
             Assert.That(sourceFileInfo.Exists, Is.False, "The source should be wiped.");
             Assert.That(destinationFileInfo.Exists, Is.True, "The destination should be created and exist now.");
@@ -469,7 +469,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Passphrase passphrase = new Passphrase("allan");
 
-            Factory.AxCryptFile.EncryptFileUniqueWithBackupAndWipe(sourceFileInfo, passphrase.DerivedPassphrase, new ProgressContext());
+            Factory.New<AxCryptFile>().EncryptFileUniqueWithBackupAndWipe(sourceFileInfo, passphrase.DerivedPassphrase, new ProgressContext());
 
             Assert.That(sourceFileInfo.Exists, Is.False, "The source should be wiped.");
             Assert.That(destinationFileInfo.Exists, Is.True, "The destination should be created and exist now.");
@@ -487,7 +487,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Passphrase passphrase = new Passphrase("allan");
 
-            Factory.AxCryptFile.EncryptFileUniqueWithBackupAndWipe(sourceFileInfo, passphrase.DerivedPassphrase, new ProgressContext());
+            Factory.New<AxCryptFile>().EncryptFileUniqueWithBackupAndWipe(sourceFileInfo, passphrase.DerivedPassphrase, new ProgressContext());
 
             Assert.That(sourceFileInfo.Exists, Is.False, "The source should be wiped.");
             Assert.That(alternateDestinationFileInfo.Exists, Is.True, "The destination should be created and exist now.");
@@ -503,7 +503,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Passphrase passphrase = new Passphrase("allan");
 
-            Factory.AxCryptFile.EncryptFilesUniqueWithBackupAndWipe(new IRuntimeFileInfo[] { sourceFolderInfo }, passphrase.DerivedPassphrase, new ProgressContext());
+            Factory.New<AxCryptFile>().EncryptFilesUniqueWithBackupAndWipe(new IRuntimeFileInfo[] { sourceFolderInfo }, passphrase.DerivedPassphrase, new ProgressContext());
 
             Assert.That(sourceFileInfo.Exists, Is.False, "The source should be wiped.");
             Assert.That(destinationFileInfo.Exists, Is.True, "The destination should be created and exist now.");
@@ -522,7 +522,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Passphrase passphrase = new Passphrase("allan");
 
-            Factory.AxCryptFile.EncryptFilesUniqueWithBackupAndWipe(new IRuntimeFileInfo[] { sourceFolderInfo }, passphrase.DerivedPassphrase, new ProgressContext());
+            Factory.New<AxCryptFile>().EncryptFilesUniqueWithBackupAndWipe(new IRuntimeFileInfo[] { sourceFolderInfo }, passphrase.DerivedPassphrase, new ProgressContext());
 
             Assert.That(sourceFileInfo.Exists, Is.False, "The source should be wiped.");
             Assert.That(alternateDestinationFileInfo.Exists, Is.True, "The destination should be created and exist now.");

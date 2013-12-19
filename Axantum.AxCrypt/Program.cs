@@ -61,30 +61,30 @@ namespace Axantum.AxCrypt
                 new CommandLine(commandLineArgs[0], commandLineArgs.Skip(1)).Execute();
             }
 
-            FactoryRegistry.Instance.Clear();
+            Factory.Instance.Clear();
         }
 
         private static void RegisterTypeFactories()
         {
-            FactoryRegistry.Instance.Singleton<ILogging>(() => new Logging());
-            FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment());
-            FactoryRegistry.Instance.Singleton<CommandService>(() => new CommandService(new HttpRequestServer(), new HttpRequestClient()));
-            FactoryRegistry.Instance.Singleton<IUserSettings>(() => new UserSettings(UserSettings.DefaultPathInfo));
-            FactoryRegistry.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(FileSystemState.DefaultPathInfo));
-            FactoryRegistry.Instance.Singleton<KnownKeys>(() => new KnownKeys(Instance.FileSystemState, Instance.SessionNotification));
-            FactoryRegistry.Instance.Singleton<ParallelBackground>(() => new ParallelBackground());
-            FactoryRegistry.Instance.Singleton<ProcessState>(() => new ProcessState());
-            FactoryRegistry.Instance.Singleton<SessionNotificationMonitor>(() => new SessionNotificationMonitor(new DelayedAction(new DelayTimer(), Instance.UserSettings.SessionNotificationMinimumIdle)));
+            Factory.Instance.Singleton<ILogging>(() => new Logging());
+            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment());
+            Factory.Instance.Singleton<CommandService>(() => new CommandService(new HttpRequestServer(), new HttpRequestClient()));
+            Factory.Instance.Singleton<IUserSettings>(() => new UserSettings(UserSettings.DefaultPathInfo));
+            Factory.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(FileSystemState.DefaultPathInfo));
+            Factory.Instance.Singleton<KnownKeys>(() => new KnownKeys(Instance.FileSystemState, Instance.SessionNotification));
+            Factory.Instance.Singleton<ParallelBackground>(() => new ParallelBackground());
+            Factory.Instance.Singleton<ProcessState>(() => new ProcessState());
+            Factory.Instance.Singleton<SessionNotificationMonitor>(() => new SessionNotificationMonitor(new DelayedAction(new DelayTimer(), Instance.UserSettings.SessionNotificationMinimumIdle)));
 
-            FactoryRegistry.Instance.Register<AxCryptFile>(() => new AxCryptFile());
-            FactoryRegistry.Instance.Register<ActiveFileAction>(() => new ActiveFileAction());
-            FactoryRegistry.Instance.Register<FileOperation>(() => new FileOperation(Instance.FileSystemState, Instance.SessionNotification));
-            FactoryRegistry.Instance.Register<SessionNotificationHandler>(() => new SessionNotificationHandler(Instance.FileSystemState, Factory.ActiveFileAction, Factory.AxCryptFile));
+            Factory.Instance.Register<AxCryptFile>(() => new AxCryptFile());
+            Factory.Instance.Register<ActiveFileAction>(() => new ActiveFileAction());
+            Factory.Instance.Register<FileOperation>(() => new FileOperation(Instance.FileSystemState, Instance.SessionNotification));
+            Factory.Instance.Register<SessionNotificationHandler>(() => new SessionNotificationHandler(Instance.FileSystemState, Factory.New<ActiveFileAction>(), Factory.New<AxCryptFile>()));
         }
 
         private static void WireupEvents()
         {
-            Instance.SessionNotification.Notification += (sender, e) => FactoryRegistry.Instance.Create<SessionNotificationHandler>().HandleNotification(e.Notification, e.Progress);
+            Instance.SessionNotification.Notification += (sender, e) => Factory.New<SessionNotificationHandler>().HandleNotification(e.Notification, e.Progress);
         }
 
         private static void SetCulture()

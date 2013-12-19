@@ -43,11 +43,11 @@ namespace Axantum.AxCrypt.Core.Test
         public static void Setup()
         {
             SetupAssembly.AssemblySetup();
-            FactoryRegistry.Instance.Singleton<FakeRequestClient>(() => new FakeRequestClient());
-            FactoryRegistry.Instance.Singleton<FakeRequestServer>(() => new FakeRequestServer());
-            _fakeClient = FactoryRegistry.Instance.Singleton<FakeRequestClient>();
-            _fakeServer = FactoryRegistry.Instance.Singleton<FakeRequestServer>();
-            FactoryRegistry.Instance.Singleton<CommandService>(() => new CommandService(_fakeServer, _fakeClient));
+            Factory.Instance.Singleton<FakeRequestClient>(() => new FakeRequestClient());
+            Factory.Instance.Singleton<FakeRequestServer>(() => new FakeRequestServer());
+            _fakeClient = Factory.Instance.Singleton<FakeRequestClient>();
+            _fakeServer = Factory.Instance.Singleton<FakeRequestServer>();
+            Factory.Instance.Singleton<CommandService>(() => new CommandService(_fakeServer, _fakeClient));
         }
 
         [TearDown]
