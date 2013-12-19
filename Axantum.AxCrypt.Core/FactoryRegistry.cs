@@ -91,23 +91,23 @@ namespace Axantum.AxCrypt.Core
             _mapping[type] = value;
         }
 
-        public T Singleton<T>() where T : class
+        public TResult Singleton<TResult>() where TResult : class
         {
             object o;
-            if (!_mapping.TryGetValue(typeof(T), out o))
+            if (!_mapping.TryGetValue(typeof(TResult), out o))
             {
-                throw new ArgumentException("Unregistered singleton. Initialize with 'FactoryRegistry.Singleton<{0}>(() => {{ return new {0}(); }});'".InvariantFormat(typeof(T)));
+                throw new ArgumentException("Unregistered singleton. Initialize with 'FactoryRegistry.Singleton<{0}>(() => {{ return new {0}(); }});'".InvariantFormat(typeof(TResult)));
             }
 
-            T value = o as T;
+            TResult value = o as TResult;
             if (value != null)
             {
                 return value;
             }
 
-            Func<T> creator = (Func<T>)o;
+            Func<TResult> creator = (Func<TResult>)o;
             value = creator();
-            _mapping[typeof(T)] = value;
+            _mapping[typeof(TResult)] = value;
             return value;
         }
 

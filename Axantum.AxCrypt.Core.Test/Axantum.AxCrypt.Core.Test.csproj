@@ -128,6 +128,7 @@
     <Compile Include="TestResources.cs" />
     <Compile Include="FakeStream.cs" />
     <Compile Include="TestSessionEvent.cs" />
+    <Compile Include="TestSessionNotificationHandler.cs" />
     <Compile Include="TestSessionNotificationMonitor.cs" />
     <Compile Include="TestSubkey.cs">
       <SubType>Code</SubType>

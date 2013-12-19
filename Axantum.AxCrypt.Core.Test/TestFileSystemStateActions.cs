@@ -34,7 +34,6 @@ using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -596,120 +595,6 @@ namespace Axantum.AxCrypt.Core.Test
 
             ActiveFile afterFailedRemoval = Instance.FileSystemState.FindEncryptedPath(encryptedFileInfo.FullName);
             Assert.That(afterFailedRemoval, Is.Not.Null, "After failed removal, the ActiveFile should still be possible to find.");
-        }
-
-        [Test]
-        public static void TestHandleSessionEventWatchedFolderAdded()
-        {
-            MockAxCryptFile mock = new MockAxCryptFile();
-            bool called = false;
-            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IRuntimeFileInfo> folderInfos, AesKey encryptionKey, IProgressContext progress) => { called = folderInfos.First().FullName == @"C:\My Documents\"; };
-
-            SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Factory.ActiveFileAction, mock);
-            Instance.SessionNotification.Notification += handler.HandleNotification;
-
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new AesKey(), @"C:\My Documents\"), new ProgressContext());
-
-            Assert.That(called, Is.True);
-        }
-
-        [Test]
-        public static void TestHandleSessionEventWatchedFolderRemoved()
-        {
-            MockAxCryptFile mock = new MockAxCryptFile();
-            bool called = false;
-            mock.DecryptFilesUniqueWithWipeOfOriginalMock = (IRuntimeFileInfo fileInfo, AesKey decryptionKey, IProgressContext progress) => { called = fileInfo.FullName == @"C:\My Documents\"; };
-
-            FactoryRegistry.Instance.Register<AxCryptFile>(() => mock);
-
-            SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Factory.ActiveFileAction, mock);
-            Instance.SessionNotification.Notification += handler.HandleNotification;
-
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, new AesKey(), @"C:\My Documents\"), new ProgressContext());
-
-            Assert.That(called, Is.True);
-        }
-
-        [Test]
-        public static void TestHandleSessionEventLogOn()
-        {
-            MockAxCryptFile mock = new MockAxCryptFile();
-            bool called = false;
-            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IRuntimeFileInfo> folderInfos, AesKey encryptionKey, IProgressContext progress) => { called = true; };
-
-            SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Factory.ActiveFileAction, mock);
-            Instance.SessionNotification.Notification += handler.HandleNotification;
-
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.LogOn, new AesKey()), new ProgressContext());
-
-            Assert.That(called, Is.True);
-        }
-
-        [Test]
-        public static void TestHandleSessionEventLogOff()
-        {
-            MockAxCryptFile mock = new MockAxCryptFile();
-            bool called = false;
-            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IRuntimeFileInfo> folderInfos, AesKey encryptionKey, IProgressContext progress) => { called = true; };
-
-            SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Factory.ActiveFileAction, mock);
-            Instance.SessionNotification.Notification += handler.HandleNotification;
-
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.LogOff, new AesKey()), new ProgressContext());
-
-            Assert.That(called, Is.True);
-        }
-
-        [Test]
-        public static void TestHandleSessionEventThatCauseNoSpecificAction()
-        {
-            MockFileSystemStateActions mock = new MockFileSystemStateActions();
-
-            SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, mock, Factory.AxCryptFile);
-            Instance.SessionNotification.Notification += handler.HandleNotification;
-
-            Assert.DoesNotThrow(() =>
-            {
-                handler.HandleNotification(new SessionNotification(SessionNotificationType.ProcessExit), new ProgressContext());
-                handler.HandleNotification(new SessionNotification(SessionNotificationType.SessionChange), new ProgressContext());
-                handler.HandleNotification(new SessionNotification(SessionNotificationType.KnownKeyChange), new ProgressContext());
-                handler.HandleNotification(new SessionNotification(SessionNotificationType.WorkFolderChange), new ProgressContext());
-            });
-        }
-
-        [Test]
-        public static void TestHandleSessionEventThatIsNotHandled()
-        {
-            MockFileSystemStateActions mock = new MockFileSystemStateActions();
-
-            SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, mock, Factory.AxCryptFile);
-            Instance.SessionNotification.Notification += handler.HandleNotification;
-
-            Assert.Throws<InvalidOperationException>(() =>
-            {
-                handler.HandleNotification(new SessionNotification((SessionNotificationType)(-1)), new ProgressContext());
-            });
-        }
-
-        [Test]
-        public static void TestHandleSessionEvents()
-        {
-            MockAxCryptFile mock = new MockAxCryptFile();
-            int callTimes = 0;
-            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IRuntimeFileInfo> folderInfos, AesKey decryptionKey, IProgressContext progress) => { if (folderInfos.First().FullName == @"C:\My Documents\") ++callTimes; };
-
-            SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Factory.ActiveFileAction, mock);
-            Instance.SessionNotification.Notification += handler.HandleNotification;
-
-            List<SessionNotification> sessionEvents = new List<SessionNotification>();
-            sessionEvents.Add(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new AesKey(), @"C:\My Documents\"));
-            sessionEvents.Add(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new AesKey(), @"C:\My Documents\"));
-
-            foreach (SessionNotification sessionEvent in sessionEvents)
-            {
-                handler.HandleNotification(sessionEvent, new ProgressContext());
-            }
-            Assert.That(callTimes, Is.EqualTo(2));
         }
     }
 }

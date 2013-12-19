@@ -48,6 +48,7 @@ namespace Axantum.AxCrypt
         private static void Main()
         {
             RegisterTypeFactories();
+            WireupEvents();
             SetCulture();
 
             string[] commandLineArgs = Environment.GetCommandLineArgs();
@@ -78,8 +79,12 @@ namespace Axantum.AxCrypt
             FactoryRegistry.Instance.Register<AxCryptFile>(() => new AxCryptFile());
             FactoryRegistry.Instance.Register<ActiveFileAction>(() => new ActiveFileAction());
             FactoryRegistry.Instance.Register<FileOperation>(() => new FileOperation(Instance.FileSystemState, Instance.SessionNotification));
+            FactoryRegistry.Instance.Register<SessionNotificationHandler>(() => new SessionNotificationHandler(Instance.FileSystemState, Factory.ActiveFileAction, Factory.AxCryptFile));
+        }
 
-            Instance.SessionNotification.Notification += new SessionNotificationHandler(Instance.FileSystemState, Factory.ActiveFileAction, Factory.AxCryptFile).HandleNotification;
+        private static void WireupEvents()
+        {
+            Instance.SessionNotification.Notification += (sender, e) => FactoryRegistry.Instance.Create<SessionNotificationHandler>().HandleNotification(e.Notification, e.Progress);
         }
 
         private static void SetCulture()

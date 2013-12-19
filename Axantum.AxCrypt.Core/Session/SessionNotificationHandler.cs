@@ -21,11 +21,6 @@ namespace Axantum.AxCrypt.Core.Session
             _axCryptFile = axCryptFile;
         }
 
-        public void HandleNotification(object sender, SessionNotificationArgs e)
-        {
-            HandleNotification(e.Notification, e.Progress);
-        }
-
         public virtual void HandleNotification(SessionNotification notification, IProgressContext progress)
         {
             if (Instance.Log.IsInfoEnabled)
