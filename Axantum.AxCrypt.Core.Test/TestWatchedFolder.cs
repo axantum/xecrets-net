@@ -29,10 +29,7 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Session;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -51,11 +48,21 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        public static void TestConstructor()
+        {
+            WatchedFolder watchedFolder = new WatchedFolder(@"C:\folder");
+            Assert.That(watchedFolder.Thumbprint, Is.EqualTo(AesKeyThumbprint.Zero));
+        }
+
+        [Test]
         public static void TestArgumentNullConstructor()
         {
             string nullString = null;
             WatchedFolder watchedFolder = null;
+            AesKeyThumbprint nullThumbprint = null;
             Assert.Throws<ArgumentNullException>(() => { watchedFolder = new WatchedFolder(nullString, AesKeyThumbprint.Zero); });
+            Assert.Throws<ArgumentNullException>(() => { watchedFolder = new WatchedFolder(String.Empty, nullThumbprint); });
+            Assert.Throws<ArgumentNullException>(() => { watchedFolder = new WatchedFolder(nullString); });
             if (watchedFolder != null) { }
         }
 
