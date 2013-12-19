@@ -448,15 +448,6 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Inactive document.
-        /// </summary>
-        internal static string InactiveFileToolTip {
-            get {
-                return ResourceManager.GetString("InactiveFileToolTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Inconsistent state with &apos;{0}&apos;..
         /// </summary>
         internal static string InconsistentState {

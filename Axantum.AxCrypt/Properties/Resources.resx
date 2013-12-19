@@ -178,7 +178,8 @@ Includes software from http://www.bouncycastle.org/ .</value>
   </data>
   <data name="Exception" xml:space="preserve">
     <value>Exception during processing of '{0}'.</value>
-  <comment>@Invariant</comment></data>
+    <comment>@Invariant</comment>
+  </data>
   <data name="FileAlreadyEncrypted" xml:space="preserve">
     <value>The document '{0}' is already encrypted.</value>
   </data>
@@ -190,9 +191,6 @@ Includes software from http://www.bouncycastle.org/ .</value>
   </data>
   <data name="FileOperationFailed" xml:space="preserve">
     <value>Failed '{0}'.</value>
-  </data>
-  <data name="InactiveFileToolTip" xml:space="preserve">
-    <value>Inactive document</value>
   </data>
   <data name="InconsistentState" xml:space="preserve">
     <value>Inconsistent state with '{0}'.</value>
@@ -214,7 +212,8 @@ Includes software from http://www.bouncycastle.org/ .</value>
   </data>
   <data name="LoggedOnStatusText" xml:space="preserve">
     <value>'{0}' is Logged On</value>
-  <comment>Shown in the title bar to display the log on status.</comment></data>
+    <comment>Shown in the title bar to display the log on status.</comment>
+  </data>
   <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
     <value>Version {0} is available! Click to download.</value>
   </data>

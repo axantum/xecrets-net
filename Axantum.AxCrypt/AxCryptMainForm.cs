@@ -204,7 +204,6 @@ namespace Axantum.AxCrypt
             ImageList smallImageList = new ImageList();
 
             smallImageList.Images.Add("ActiveFile", Resources.activefilegreen16);
-            smallImageList.Images.Add("InactiveFile", Resources.inactivefilegreen16);
             smallImageList.Images.Add("Exclamation", Resources.exclamationgreen16);
             smallImageList.Images.Add("DecryptedFile", Resources.decryptedfilered16);
             smallImageList.Images.Add("DecryptedUnknownKeyFile", Resources.decryptedunknownkeyfilered16);
@@ -219,7 +218,6 @@ namespace Axantum.AxCrypt
             ImageList largeImageList = new ImageList();
 
             largeImageList.Images.Add("ActiveFile", Resources.opendocument32);
-            largeImageList.Images.Add("InactiveFile", Resources.helpquestiongreen32);
             largeImageList.Images.Add("Exclamation", Resources.exclamationgreen32);
             largeImageList.TransparentColor = System.Drawing.Color.Transparent;
 
@@ -711,11 +709,6 @@ namespace Axantum.AxCrypt
                 case ActiveFileVisualState.DecryptedWithoutKnownKey:
                     item.ImageKey = "DecryptedUnknownKeyFile";
                     item.ToolTipText = Resources.DecryptedUnknownKeyFileToolTip;
-                    break;
-
-                case ActiveFileVisualState.EncryptedNeverBeenDecrypted:
-                    item.ImageKey = "InactiveFile";
-                    item.ToolTipText = Resources.InactiveFileToolTip;
                     break;
 
                 case ActiveFileVisualState.EncryptedWithoutKnownKey:

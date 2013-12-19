@@ -28,18 +28,14 @@
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Test.Properties;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
-using System.Threading;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -177,6 +173,34 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo encryptedFileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new AesKey(), ActiveFileStatus.None);
             Assert.That(activeFile.IsModified, Is.False, "A non-existing decrypted file should not be treated as modified.");
+        }
+
+        [Test]
+        public static void TestVisualState()
+        {
+            ActiveFile activeFile;
+            AesKey key = new AesKey();
+
+            activeFile = new ActiveFile(OS.Current.FileInfo(@"C:\encrypted.axx"), OS.Current.FileInfo(@"C:\decrypted.txt"), key, ActiveFileStatus.NotDecrypted);
+            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.EncryptedWithKnownKey));
+
+            activeFile = new ActiveFile(activeFile);
+            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.EncryptedWithoutKnownKey));
+
+            activeFile = new ActiveFile(activeFile, ActiveFileStatus.DecryptedIsPendingDelete);
+            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.DecryptedWithoutKnownKey));
+
+            activeFile = new ActiveFile(activeFile, key);
+            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.DecryptedWithKnownKey));
+
+            activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted);
+            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.DecryptedWithKnownKey));
+
+            activeFile = new ActiveFile(activeFile);
+            Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.DecryptedWithoutKnownKey));
+
+            activeFile = new ActiveFile(activeFile, ActiveFileStatus.Error);
+            Assert.Throws<InvalidOperationException>(() => { if (activeFile.VisualState == ActiveFileVisualState.None) { } });
         }
     }
 }

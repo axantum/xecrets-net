@@ -280,13 +280,9 @@ namespace Axantum.AxCrypt.Core.Session
                 }
                 if (Status.HasMask(ActiveFileStatus.NotDecrypted))
                 {
-                    if (String.IsNullOrEmpty(DecryptedFileInfo.FullName))
-                    {
-                        return ActiveFileVisualState.EncryptedNeverBeenDecrypted;
-                    }
                     return Key != null ? ActiveFileVisualState.EncryptedWithKnownKey : ActiveFileVisualState.EncryptedWithoutKnownKey;
                 }
-                throw new InvalidOperationException("ActieFile in an unhandled visual state.");
+                throw new InvalidOperationException("ActiveFile in an unhandled visual state.");
             }
         }
     }
