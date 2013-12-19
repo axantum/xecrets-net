@@ -51,10 +51,11 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestShortDelayButNoStart()
         {
             bool wasHere = false;
-            using (DelayedAction delayedAction = new DelayedAction(new FakeDelayTimer(), new TimeSpan(0, 0, 0, 0, 1)))
+            FakeSleep fakeSleep = new FakeSleep();
+            using (DelayedAction delayedAction = new DelayedAction(new FakeDelayTimer(fakeSleep), new TimeSpan(0, 0, 0, 0, 1)))
             {
                 delayedAction.Action += (sender, e) => wasHere = true;
-                Instance.Sleep.Time(new TimeSpan(0, 0, 0, 0, 50));
+                fakeSleep.Time(new TimeSpan(0, 0, 0, 0, 50));
                 Assert.That(wasHere, Is.False, "The event should not be triggered until started.");
             }
         }
@@ -63,14 +64,15 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestShortDelayAndImmediateStart()
         {
             bool wasHere = false;
-            using (DelayedAction delayedAction = new DelayedAction(new FakeDelayTimer(), new TimeSpan(0, 0, 0, 0, 1)))
+            FakeSleep fakeSleep = new FakeSleep();
+            using (DelayedAction delayedAction = new DelayedAction(new FakeDelayTimer(fakeSleep), new TimeSpan(0, 0, 0, 0, 1)))
             {
                 delayedAction.Action += (sender, e) => wasHere = true;
                 delayedAction.StartIdleTimer();
-                Instance.Sleep.Time(new TimeSpan(0, 0, 0, 0, 50));
+                fakeSleep.Time(new TimeSpan(0, 0, 0, 0, 50));
                 Assert.That(wasHere, Is.True, "The event should be triggered once started.");
                 wasHere = false;
-                Instance.Sleep.Time(new TimeSpan(0, 0, 0, 0, 50));
+                fakeSleep.Time(new TimeSpan(0, 0, 0, 0, 50));
                 Assert.That(wasHere, Is.False, "The event should not be triggered more than once.");
             }
         }
@@ -79,16 +81,17 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestManyRestartsButOnlyOneEvent()
         {
             int eventCount = 0;
-            using (DelayedAction delayedAction = new DelayedAction(new FakeDelayTimer(), new TimeSpan(0, 0, 0, 0, 5)))
+            FakeSleep fakeSleep = new FakeSleep();
+            using (DelayedAction delayedAction = new DelayedAction(new FakeDelayTimer(fakeSleep), new TimeSpan(0, 0, 0, 0, 5)))
             {
                 delayedAction.Action += (sender, e) => ++eventCount;
                 for (int i = 0; i < 10; ++i)
                 {
                     delayedAction.StartIdleTimer();
                 }
-                Instance.Sleep.Time(new TimeSpan(0, 0, 0, 0, 5));
+                fakeSleep.Time(new TimeSpan(0, 0, 0, 0, 5));
                 Assert.That(eventCount, Is.EqualTo(1), "The event should be triggered exactly once.");
-                Instance.Sleep.Time(new TimeSpan(0, 0, 0, 0, 5));
+                fakeSleep.Time(new TimeSpan(0, 0, 0, 0, 5));
                 Assert.That(eventCount, Is.EqualTo(1), "The event should still be triggered exactly once.");
             }
         }
@@ -97,20 +100,22 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestEventAfterDispose()
         {
             bool wasHere = false;
-            using (DelayedAction delayedAction = new DelayedAction(new FakeDelayTimer(), new TimeSpan(0, 0, 0, 0, 1)))
+            FakeSleep fakeSleep = new FakeSleep();
+            using (DelayedAction delayedAction = new DelayedAction(new FakeDelayTimer(fakeSleep), new TimeSpan(0, 0, 0, 0, 1)))
             {
                 delayedAction.Action += (sender, e) => wasHere = true;
                 delayedAction.StartIdleTimer();
                 Assert.That(wasHere, Is.False, "The event should not be triggered immediately.");
             }
-            Instance.Sleep.Time(new TimeSpan(0, 0, 0, 0, 1));
+            fakeSleep.Time(new TimeSpan(0, 0, 0, 0, 1));
             Assert.That(wasHere, Is.False, "The event should be not be triggered once disposed.");
         }
 
         [Test]
         public static void TestObjectDisposedException()
         {
-            DelayedAction delayedAction = new DelayedAction(new FakeDelayTimer(), new TimeSpan(0, 0, 0, 0, 1));
+            FakeSleep fakeSleep = new FakeSleep();
+            DelayedAction delayedAction = new DelayedAction(new FakeDelayTimer(fakeSleep), new TimeSpan(0, 0, 0, 0, 1));
             delayedAction.Dispose();
             Assert.Throws<ObjectDisposedException>(() => { delayedAction.StartIdleTimer(); });
         }

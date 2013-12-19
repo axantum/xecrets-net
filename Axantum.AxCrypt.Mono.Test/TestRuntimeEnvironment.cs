@@ -43,7 +43,6 @@ namespace Axantum.AxCrypt.Mono.Test
         public static void Setup()
         {
             FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment());
-            FactoryRegistry.Instance.Singleton<ISleep>(() => new Sleep());
             FactoryRegistry.Instance.Singleton<ILogging>(() => new Logging());
         }
 
@@ -134,7 +133,7 @@ namespace Axantum.AxCrypt.Mono.Test
                     }
                     for (int i = 0; !wasHere && i < 20; ++i)
                     {
-                        Instance.Sleep.Time(new TimeSpan(0, 0, 0, 0, 100));
+                        new Sleep().Time(new TimeSpan(0, 0, 0, 0, 100));
                     }
                     Assert.That(wasHere, "The FileWatcher should have noticed the creation of a file.");
                 }
@@ -145,7 +144,7 @@ namespace Axantum.AxCrypt.Mono.Test
                 }
                 for (int i = 0; !wasHere && i < 20; ++i)
                 {
-                    Instance.Sleep.Time(new TimeSpan(0, 0, 0, 0, 100));
+                    new Sleep().Time(new TimeSpan(0, 0, 0, 0, 100));
                 }
                 Assert.That(wasHere, "The FileWatcher should have noticed the deletion of a file.");
             }

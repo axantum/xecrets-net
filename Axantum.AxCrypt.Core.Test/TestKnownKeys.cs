@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
@@ -54,7 +55,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestAddNewKnownKey()
         {
-            KnownKeys knownKeys = new KnownKeys();
+            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotification);
             AesKey key = new AesKey();
             knownKeys.Add(key);
             Assert.That(knownKeys.Keys.First(), Is.EqualTo(key), "The first and only key should be the one just added.");
@@ -63,7 +64,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestAddTwoNewKnownKeys()
         {
-            KnownKeys knownKeys = new KnownKeys();
+            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotification);
             AesKey key1 = new AesKey();
             knownKeys.Add(key1);
             AesKey key2 = new AesKey();
@@ -75,7 +76,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestAddSameKeyTwice()
         {
-            KnownKeys knownKeys = new KnownKeys();
+            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotification);
             AesKey key = new AesKey();
             knownKeys.Add(key);
             knownKeys.Add(key);
@@ -86,7 +87,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDefaultEncryptionKey()
         {
-            KnownKeys knownKeys = new KnownKeys();
+            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotification);
             AesKey key = new AesKey();
             knownKeys.DefaultEncryptionKey = key;
             Assert.That(knownKeys.DefaultEncryptionKey, Is.EqualTo(key), "The DefaultEncryptionKey should be the one just set as it.");
@@ -97,7 +98,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestClear()
         {
-            KnownKeys knownKeys = new KnownKeys();
+            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotification);
             AesKey key1 = new AesKey();
             knownKeys.Add(key1);
             AesKey key2 = new AesKey();
@@ -114,7 +115,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSettingNullDefaultEncryptionKey()
         {
-            KnownKeys knownKeys = new KnownKeys();
+            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotification);
             AesKey key1 = new AesKey();
             knownKeys.Add(key1);
             AesKey key2 = new AesKey();
@@ -130,14 +131,18 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestChangedEvent()
         {
             bool wasChanged = false;
-            KnownKeys knownKeys = new KnownKeys();
-            Instance.SessionNotification.Notification += (object sender, SessionNotificationArgs e) =>
+            FakeSleep fakeSleep = new FakeSleep();
+            FakeDelayTimer fakeDelayTimer = new FakeDelayTimer(fakeSleep);
+            DelayedAction delayedAction = new DelayedAction(fakeDelayTimer, new TimeSpan(0, 0, 10));
+            SessionNotificationMonitor notificationMonitor = new SessionNotificationMonitor(delayedAction);
+            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, notificationMonitor);
+            notificationMonitor.Notification += (object sender, SessionNotificationArgs e) =>
             {
                 wasChanged |= e.Notification.NotificationType == SessionNotificationType.KnownKeyChange;
             };
             AesKey key1 = new AesKey();
             knownKeys.Add(key1);
-            Instance.Sleep.Time(Instance.UserSettings.SessionNotificationMinimumIdle);
+            fakeSleep.Time(new TimeSpan(0, 0, 10));
             Assert.That(wasChanged, Is.True, "A new key should trigger the Changed event.");
             wasChanged = false;
             knownKeys.Add(key1);

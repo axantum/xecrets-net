@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using NUnit.Framework;
 using System;
@@ -335,12 +336,18 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestChangedEvent()
         {
             bool wasHere = false;
-            Instance.SessionNotification.Notification += (object sender, SessionNotificationArgs e) => { wasHere = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange; };
-            Instance.SessionNotification.Notify(new SessionNotification(SessionNotificationType.ActiveFileChange));
+
+            FakeSleep fakeSleep = new FakeSleep();
+            FakeDelayTimer fakeDelayTimer = new FakeDelayTimer(fakeSleep);
+            DelayedAction delayedAction = new DelayedAction(fakeDelayTimer, new TimeSpan(0, 0, 10));
+            SessionNotificationMonitor notificationMonitor = new SessionNotificationMonitor(delayedAction);
+
+            notificationMonitor.Notification += (object sender, SessionNotificationArgs e) => { wasHere = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange; };
+            notificationMonitor.Notify(new SessionNotification(SessionNotificationType.ActiveFileChange));
 
             Assert.That(wasHere, Is.False, "The RaiseChanged() method should not raise the event immediately.");
 
-            Instance.Sleep.Time(Instance.UserSettings.SessionNotificationMinimumIdle);
+            fakeSleep.Time(new TimeSpan(0, 0, 10));
 
             Assert.That(wasHere, Is.True, "The RaiseChanged() method should raise the event.");
         }

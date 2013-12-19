@@ -33,9 +33,12 @@ namespace Axantum.AxCrypt.Core.Test
 {
     internal class FakeDelayTimer : IDelayTimer
     {
-        public FakeDelayTimer()
+        private ISleep _sleep;
+
+        public FakeDelayTimer(ISleep sleep)
         {
-            Instance.Sleep.Elapsed += Sleep_Elapsed;
+            _sleep = sleep;
+            _sleep.Elapsed += Sleep_Elapsed;
         }
 
         private void Sleep_Elapsed(object sender, SleepEventArgs e)
@@ -87,7 +90,7 @@ namespace Axantum.AxCrypt.Core.Test
             if (!disposed)
             {
                 disposed = true;
-                Instance.Sleep.Elapsed -= Sleep_Elapsed;
+                _sleep.Elapsed -= Sleep_Elapsed;
             }
         }
     }

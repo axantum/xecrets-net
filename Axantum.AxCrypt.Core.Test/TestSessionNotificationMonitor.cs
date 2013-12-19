@@ -25,31 +25,28 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
-using Axantum.AxCrypt.Core.UI;
+using NUnit.Framework;
 using System;
 using System.Linq;
 
-namespace Axantum.AxCrypt.Core
+namespace Axantum.AxCrypt.Core.Test
 {
-    /// <summary>
-    /// Provides syntactically convenient access to the various class factories registered.
-    /// </summary>
-    public static class Factory
+    [TestFixture]
+    public static class TestSessionNotificationMonitor
     {
-        public static AxCryptFile AxCryptFile
+        [Test]
+        public static void TestNotificationDuringProcessingOfNotification()
         {
-            get { return FactoryRegistry.Instance.Create<AxCryptFile>(); }
-        }
+            FakeSleep fakeSleep = new FakeSleep();
+            FakeDelayTimer fakeTimer = new FakeDelayTimer(fakeSleep);
+            DelayedAction delayedAction = new DelayedAction(fakeTimer, new TimeSpan(0, 0, 10));
 
-        public static ActiveFileAction ActiveFileAction
-        {
-            get { return FactoryRegistry.Instance.Create<ActiveFileAction>(); }
-        }
-
-        public static FileOperation FileOperation
-        {
-            get { return FactoryRegistry.Instance.Create<FileOperation>(); }
+            SessionNotificationMonitor monitor = new SessionNotificationMonitor(delayedAction);
+            monitor.Notification += (sender, e) =>
+            {
+            };
         }
     }
 }

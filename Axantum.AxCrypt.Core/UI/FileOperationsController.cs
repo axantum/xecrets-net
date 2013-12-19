@@ -345,7 +345,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             try
             {
-                _eventArgs.Status = Instance.FileSystemState.OpenAndLaunchApplication(_eventArgs.OpenFileFullName, _eventArgs.AxCryptDocument, _progress);
+                _eventArgs.Status = Factory.FileOperation.OpenAndLaunchApplication(_eventArgs.OpenFileFullName, _eventArgs.AxCryptDocument, _progress);
             }
             finally
             {

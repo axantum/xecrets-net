@@ -389,7 +389,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             AxCryptFile.Wipe(FileSystemState.DefaultPathInfo, new ProgressContext());
             FactoryRegistry.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(FileSystemState.DefaultPathInfo));
-            FactoryRegistry.Instance.Singleton<KnownKeys>(() => new KnownKeys());
+            FactoryRegistry.Instance.Singleton<KnownKeys>(() => new KnownKeys(Instance.FileSystemState, Instance.SessionNotification));
             Instance.SessionNotification.Notify(new SessionNotification(SessionNotificationType.SessionStart));
         }
 

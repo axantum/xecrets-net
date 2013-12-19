@@ -45,7 +45,6 @@ namespace Axantum.AxCrypt.Mono.Test
         {
             FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment());
             FactoryRegistry.Instance.Singleton<ILogging>(() => new Logging());
-            FactoryRegistry.Instance.Singleton<ISleep>(() => new Sleep());
             _tempPath = Path.Combine(Path.GetTempPath(), "Axantum.AxCrypt.Core.Test.TestFileWatcher");
             Directory.CreateDirectory(_tempPath);
         }
@@ -69,7 +68,7 @@ namespace Axantum.AxCrypt.Mono.Test
                 }
                 for (int i = 0; String.IsNullOrEmpty(fileName) && i < 20; ++i)
                 {
-                    Instance.Sleep.Time(new TimeSpan(0, 0, 0, 0, 100));
+                    new Sleep().Time(new TimeSpan(0, 0, 0, 0, 100));
                 }
                 Assert.That(fileName, Is.EqualTo("CreatedFile.txt"), "The watcher should detect the newly created file.");
             }
@@ -87,13 +86,13 @@ namespace Axantum.AxCrypt.Mono.Test
                 }
                 for (int i = 0; String.IsNullOrEmpty(fileName) && i < 20; ++i)
                 {
-                    Instance.Sleep.Time(new TimeSpan(0, 0, 0, 0, 100));
+                    new Sleep().Time(new TimeSpan(0, 0, 0, 0, 100));
                 }
                 fileName = String.Empty;
                 File.Move(Path.Combine(_tempPath, "NewFile.txt"), Path.Combine(_tempPath, "MovedFile.txt"));
                 for (int i = 0; String.IsNullOrEmpty(fileName) && i < 20; ++i)
                 {
-                    Instance.Sleep.Time(new TimeSpan(0, 0, 0, 0, 100));
+                    new Sleep().Time(new TimeSpan(0, 0, 0, 0, 100));
                 }
                 Assert.That(fileName, Is.EqualTo("MovedFile.txt"), "The watcher should detect the newly created file.");
             }

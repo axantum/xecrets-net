@@ -46,15 +46,15 @@ namespace Axantum.AxCrypt.Core.Test
             FactoryRegistry.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
             FactoryRegistry.Instance.Singleton<ILogging>(() => new FakeLogging());
             FactoryRegistry.Instance.Singleton<IUserSettings>(() => new UserSettings(UserSettings.DefaultPathInfo));
-            FactoryRegistry.Instance.Singleton(() => new KnownKeys());
+            FactoryRegistry.Instance.Singleton(() => new KnownKeys(Instance.FileSystemState, Instance.SessionNotification));
             FactoryRegistry.Instance.Singleton(() => new ProcessState());
-            FactoryRegistry.Instance.Singleton<ISleep>(() => new FakeSleep());
             FactoryRegistry.Instance.Singleton<IUIThread>(() => new FakeUIThread());
             FactoryRegistry.Instance.Singleton<IProgressBackground>(() => new FakeProgressBackground());
-            FactoryRegistry.Instance.Singleton<SessionNotificationMonitor>(() => new SessionNotificationMonitor(new DelayedAction(new FakeDelayTimer(), Instance.UserSettings.SessionNotificationMinimumIdle)));
+            FactoryRegistry.Instance.Singleton<SessionNotificationMonitor>(() => new SessionNotificationMonitor(new DelayedAction(new FakeDelayTimer(new FakeSleep()), Instance.UserSettings.SessionNotificationMinimumIdle)));
 
             FactoryRegistry.Instance.Register<AxCryptFile>(() => new AxCryptFile());
             FactoryRegistry.Instance.Register<ActiveFileAction>(() => new ActiveFileAction());
+            FactoryRegistry.Instance.Register<FileOperation>(() => new FileOperation(Instance.FileSystemState, Instance.SessionNotification));
 
             Instance.UserSettings.KeyWrapIterations = 1234;
             Instance.UserSettings.ThumbprintSalt = KeyWrapSalt.Zero;

@@ -37,8 +37,14 @@ namespace Axantum.AxCrypt.Core.UI
     {
         private List<AesKey> _keys;
 
-        public KnownKeys()
+        private FileSystemState _fileSystemState;
+
+        private SessionNotificationMonitor _notificationMonitor;
+
+        public KnownKeys(FileSystemState fileSystemState, SessionNotificationMonitor notificationMonitor)
         {
+            _fileSystemState = fileSystemState;
+            _notificationMonitor = notificationMonitor;
             _keys = new List<AesKey>();
             _knownThumbprints = new List<AesKeyThumbprint>();
         }
@@ -71,11 +77,11 @@ namespace Axantum.AxCrypt.Core.UI
             changed |= AddKnownThumbprint(key);
             if (changed)
             {
-                if (Instance.FileSystemState.Identities.Any(i => i.Thumbprint == key.Thumbprint))
+                if (_fileSystemState.Identities.Any(i => i.Thumbprint == key.Thumbprint))
                 {
                     DefaultEncryptionKey = key;
                 }
-                Instance.SessionNotification.Notify(new SessionNotification(SessionNotificationType.KnownKeyChange, key));
+                _notificationMonitor.Notify(new SessionNotification(SessionNotificationType.KnownKeyChange, key));
             }
         }
 
@@ -90,7 +96,7 @@ namespace Axantum.AxCrypt.Core.UI
                 _keys.Clear();
             }
             LogOff();
-            Instance.SessionNotification.Notify(new SessionNotification(SessionNotificationType.KnownKeyChange));
+            _notificationMonitor.Notify(new SessionNotification(SessionNotificationType.KnownKeyChange));
         }
 
         public IEnumerable<AesKey> Keys
@@ -126,11 +132,11 @@ namespace Axantum.AxCrypt.Core.UI
                 }
                 if (IsLoggedOn)
                 {
-                    Instance.SessionNotification.Notify(new SessionNotification(SessionNotificationType.LogOff, _defaultEncryptionKey));
+                    _notificationMonitor.Notify(new SessionNotification(SessionNotificationType.LogOff, _defaultEncryptionKey));
                 }
                 if (value != null)
                 {
-                    Instance.SessionNotification.Notify(new SessionNotification(SessionNotificationType.LogOn, value));
+                    _notificationMonitor.Notify(new SessionNotification(SessionNotificationType.LogOn, value));
                 }
                 _defaultEncryptionKey = value;
                 if (value == null)
@@ -188,7 +194,7 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     return new WatchedFolder[0];
                 }
-                return Instance.FileSystemState.WatchedFolders.Where(wf => wf.Thumbprint == DefaultEncryptionKey.Thumbprint);
+                return _fileSystemState.WatchedFolders.Where(wf => wf.Thumbprint == DefaultEncryptionKey.Thumbprint);
             }
         }
     }

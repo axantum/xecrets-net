@@ -70,13 +70,14 @@ namespace Axantum.AxCrypt
             FactoryRegistry.Instance.Singleton<CommandService>(() => new CommandService(new HttpRequestServer(), new HttpRequestClient()));
             FactoryRegistry.Instance.Singleton<IUserSettings>(() => new UserSettings(UserSettings.DefaultPathInfo));
             FactoryRegistry.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(FileSystemState.DefaultPathInfo));
-            FactoryRegistry.Instance.Singleton<KnownKeys>(() => new KnownKeys());
+            FactoryRegistry.Instance.Singleton<KnownKeys>(() => new KnownKeys(Instance.FileSystemState, Instance.SessionNotification));
             FactoryRegistry.Instance.Singleton<ParallelBackground>(() => new ParallelBackground());
             FactoryRegistry.Instance.Singleton<ProcessState>(() => new ProcessState());
             FactoryRegistry.Instance.Singleton<SessionNotificationMonitor>(() => new SessionNotificationMonitor(new DelayedAction(new DelayTimer(), Instance.UserSettings.SessionNotificationMinimumIdle)));
 
             FactoryRegistry.Instance.Register<AxCryptFile>(() => new AxCryptFile());
             FactoryRegistry.Instance.Register<ActiveFileAction>(() => new ActiveFileAction());
+            FactoryRegistry.Instance.Register<FileOperation>(() => new FileOperation(Instance.FileSystemState, Instance.SessionNotification));
 
             Instance.SessionNotification.Notification += new SessionNotificationHandler(Instance.FileSystemState, Factory.ActiveFileAction, Factory.AxCryptFile).HandleNotification;
         }
