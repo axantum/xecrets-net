@@ -28,11 +28,8 @@
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
-using Axantum.AxCrypt.Properties;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -88,7 +85,7 @@ namespace Axantum.AxCrypt
         /// </summary>
         /// <param name="displayText">A text that may be used as a reference in various messages.</param>
         /// <param name="workFunction">A 'work' delegate, taking a ProgressContext and return a FileOperationStatus. Executed on a background thread. Not the calling/GUI thread.</param>
-        /// <param name="complete">A 'complete' delegate, taking the final status. Executed on the original caller thread, typically the GUI thread.</param>
+        /// <param name="complete">A 'complete' delegate, taking the final status. Executed on the GUI thread.</param>
         public void Work(Func<IProgressContext, FileOperationStatus> workFunction, Action<FileOperationStatus> complete)
         {
             Instance.UIThread.RunOnUIThread(() =>

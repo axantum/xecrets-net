@@ -36,9 +36,22 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestSessionNotificationMonitor
     {
+        [SetUp]
+        public static void Setup()
+        {
+            SetupAssembly.AssemblySetup();
+        }
+
+        [TearDown]
+        public static void Teardown()
+        {
+            SetupAssembly.AssemblyTeardown();
+        }
+
         [Test]
         public static void TestNotificationDuringProcessingOfNotification()
         {
+            int notificationCount = 0;
             FakeSleep fakeSleep = new FakeSleep();
             FakeDelayTimer fakeTimer = new FakeDelayTimer(fakeSleep);
             DelayedAction delayedAction = new DelayedAction(fakeTimer, new TimeSpan(0, 0, 10));
@@ -46,7 +59,58 @@ namespace Axantum.AxCrypt.Core.Test
             SessionNotificationMonitor monitor = new SessionNotificationMonitor(delayedAction);
             monitor.Notification += (sender, e) =>
             {
+                if (e.Notification.NotificationType == SessionNotificationType.LogOn)
+                {
+                    ++notificationCount;
+                    if (notificationCount == 1)
+                    {
+                        monitor.Notify(new SessionNotification(SessionNotificationType.LogOn));
+                        fakeSleep.Time(new TimeSpan(0, 0, 10));
+                    }
+                }
             };
+
+            monitor.Notify(new SessionNotification(SessionNotificationType.LogOn));
+            Assert.That(notificationCount, Is.EqualTo(0));
+
+            fakeSleep.Time(new TimeSpan(0, 0, 5));
+            Assert.That(notificationCount, Is.EqualTo(0));
+
+            fakeSleep.Time(new TimeSpan(0, 0, 5));
+            Assert.That(notificationCount, Is.EqualTo(1));
+
+            fakeSleep.Time(new TimeSpan(0, 0, 5));
+            Assert.That(notificationCount, Is.EqualTo(1));
+
+            fakeSleep.Time(new TimeSpan(0, 0, 5));
+            Assert.That(notificationCount, Is.EqualTo(2));
+        }
+
+        [Test]
+        public static void TestDoAllNow()
+        {
+            int notificationCount = 0;
+            FakeSleep fakeSleep = new FakeSleep();
+            FakeDelayTimer fakeTimer = new FakeDelayTimer(fakeSleep);
+            DelayedAction delayedAction = new DelayedAction(fakeTimer, new TimeSpan(0, 0, 10));
+
+            SessionNotificationMonitor monitor = new SessionNotificationMonitor(delayedAction);
+            monitor.Notification += (sender, e) =>
+            {
+                if (e.Notification.NotificationType == SessionNotificationType.LogOn)
+                {
+                    ++notificationCount;
+                }
+            };
+
+            monitor.Notify(new SessionNotification(SessionNotificationType.LogOn));
+            Assert.That(notificationCount, Is.EqualTo(0));
+
+            fakeSleep.Time(new TimeSpan(0, 0, 5));
+            Assert.That(notificationCount, Is.EqualTo(0));
+
+            monitor.DoAllNow();
+            Assert.That(notificationCount, Is.EqualTo(1));
         }
     }
 }

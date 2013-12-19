@@ -44,17 +44,26 @@ namespace Axantum.AxCrypt.Core.Session
             _delayedNotification.Action += (sender, e) => { OnDelayedNotification(); };
         }
 
+        private bool _handleSessionChangedInProgress = false;
+
         protected virtual void OnDelayedNotification()
         {
             IEnumerable<SessionNotification> notifications;
             lock (_notifications)
             {
+                if (_handleSessionChangedInProgress)
+                {
+                    _delayedNotification.StartIdleTimer();
+                    return;
+                }
                 notifications = new List<SessionNotification>(_notifications);
                 _notifications.Clear();
+
+                _handleSessionChangedInProgress = true;
             }
             if (notifications.Any())
             {
-                DoDelayedNotificationsOnUIThread(notifications);
+                DoDelayedNotificationsInBackground(notifications);
             }
         }
 
@@ -85,26 +94,12 @@ namespace Axantum.AxCrypt.Core.Session
             OnDelayedNotification();
         }
 
-        private bool _handleSessionChangedInProgress = false;
-
-        private void DoDelayedNotificationsOnUIThread(IEnumerable<SessionNotification> notifications)
-        {
-            Instance.UIThread.RunOnUIThread(() => DoDelayedNotificationsInBackground(notifications));
-        }
-
         private void DoDelayedNotificationsInBackground(IEnumerable<SessionNotification> notifications)
         {
             if (Instance.Log.IsInfoEnabled)
             {
                 Instance.Log.LogInfo("Tick");
             }
-
-            if (_handleSessionChangedInProgress)
-            {
-                _delayedNotification.StartIdleTimer();
-                return;
-            }
-            _handleSessionChangedInProgress = true;
 
             Instance.BackgroundWork.Work(
                 (IProgressContext progress) =>
