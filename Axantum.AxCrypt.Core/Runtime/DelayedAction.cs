@@ -36,24 +36,29 @@ namespace Axantum.AxCrypt.Core.Runtime
     /// </summary>
     public class DelayedAction : IDisposable
     {
-        private Action _action;
-
         private IDelayTimer _timer;
+
+        /// <summary>
+        /// The action to perform after the specified idle time.
+        /// </summary>
+        public event EventHandler Action;
+
+        protected virtual void OnAction()
+        {
+            EventHandler handler = Action;
+            if (handler != null)
+            {
+                handler(this, new EventArgs());
+            }
+        }
 
         /// <summary>
         /// Create an instance bound to an action delegate and a minimum idle time.
         /// </summary>
-        /// <param name="action">The action to perform after the specified idle time.</param>
         /// <param name="minimumIdleTime">The minium time of idle before actually performing the action.</param>
-        public DelayedAction(Action action, TimeSpan minimumIdleTime)
+        public DelayedAction(IDelayTimer timer, TimeSpan minimumIdleTime)
         {
-            if (action == null)
-            {
-                throw new ArgumentNullException("action");
-            }
-
-            _action = action;
-            _timer = FactoryRegistry.Instance.Create<IDelayTimer>();
+            _timer = timer;
             _timer.SetInterval(minimumIdleTime);
             _timer.Elapsed += HandleTimerElapsedEvent;
         }
@@ -62,7 +67,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
             if (_timer != null)
             {
-                _action();
+                OnAction();
             }
         }
 

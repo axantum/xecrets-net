@@ -47,11 +47,6 @@ namespace Axantum.AxCrypt.Core.Test
             UpdateActiveFileWithKeyIfKeyMatchesThumbprintMock = (key) => { throw new InvalidOperationException("Unexpected call to this method."); };
         }
 
-        private bool DefaultTryFindDecryptionKeyMock(string fullname, out AesKey key)
-        {
-            throw new InvalidOperationException("Unexpected call to this method.");
-        }
-
         public Func<ActiveFile, IProgressContext, ActiveFile> CheckActiveFileMock { get; set; }
 
         public override ActiveFile CheckActiveFile(ActiveFile activeFile, IProgressContext progress)

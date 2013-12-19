@@ -146,12 +146,12 @@ namespace Axantum.AxCrypt.Core
             EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, key, progress);
         }
 
-        public virtual void EncryptFilesUniqueWithBackupAndWipe(IEnumerable<IRuntimeFileInfo> folderInfos, AesKey encryptionKey, IProgressContext progress)
+        public virtual void EncryptFilesUniqueWithBackupAndWipe(IEnumerable<IRuntimeFileInfo> folders, AesKey encryptionKey, IProgressContext progress)
         {
             progress.NotifyLevelStart();
             try
             {
-                IEnumerable<IRuntimeFileInfo> files = folderInfos.SelectMany((folder) => folder.ListEncryptable());
+                IEnumerable<IRuntimeFileInfo> files = folders.SelectMany((folder) => folder.ListEncryptable());
                 progress.AddTotal(files.Count());
                 foreach (IRuntimeFileInfo file in files)
                 {

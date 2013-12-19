@@ -35,7 +35,7 @@ using System.Linq;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public class TestProcessState
+    public static class TestProcessState
     {
         [SetUp]
         public static void Setup()

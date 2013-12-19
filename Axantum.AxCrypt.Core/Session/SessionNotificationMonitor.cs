@@ -37,10 +37,11 @@ namespace Axantum.AxCrypt.Core.Session
     {
         private DelayedAction _delayedNotification;
 
-        public SessionNotificationMonitor()
+        public SessionNotificationMonitor(DelayedAction delayedAction)
         {
             _notifications = new HashSet<SessionNotification>();
-            _delayedNotification = new DelayedAction(OnDelayedNotification, Instance.UserSettings.SessionNotificationMinimumIdle);
+            _delayedNotification = delayedAction;
+            _delayedNotification.Action += (sender, e) => { OnDelayedNotification(); };
         }
 
         protected virtual void OnDelayedNotification()

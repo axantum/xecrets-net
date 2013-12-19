@@ -51,10 +51,9 @@ namespace Axantum.AxCrypt.Core.Test
             FactoryRegistry.Instance.Singleton<ISleep>(() => new FakeSleep());
             FactoryRegistry.Instance.Singleton<IUIThread>(() => new FakeUIThread());
             FactoryRegistry.Instance.Singleton<IProgressBackground>(() => new FakeProgressBackground());
-            FactoryRegistry.Instance.Singleton<SessionNotificationMonitor>(() => new SessionNotificationMonitor());
+            FactoryRegistry.Instance.Singleton<SessionNotificationMonitor>(() => new SessionNotificationMonitor(new DelayedAction(new FakeDelayTimer(), Instance.UserSettings.SessionNotificationMinimumIdle)));
 
             FactoryRegistry.Instance.Register<AxCryptFile>(() => new AxCryptFile());
-            FactoryRegistry.Instance.Register<IDelayTimer>(() => new FakeDelayTimer());
             FactoryRegistry.Instance.Register<ActiveFileAction>(() => new ActiveFileAction());
 
             Instance.UserSettings.KeyWrapIterations = 1234;

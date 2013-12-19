@@ -47,9 +47,6 @@ namespace Axantum.AxCrypt.Core.Test
         private static readonly string _documentsFolder = _pathRoot.PathCombine("Documents");
         private static readonly string _decryptedFile1 = _documentsFolder.PathCombine("test.txt");
         private static readonly string _encryptedFile1 = _documentsFolder.PathCombine("Uncompressed.axx");
-        private static readonly string _underDocumentsFolder = _documentsFolder.PathCombine("Under");
-        private static readonly string _decryptedFile11 = _underDocumentsFolder.PathCombine("undertest.txt");
-        private static readonly string _encryptedFile11 = _underDocumentsFolder.PathCombine("underUncompressed.axx");
         private static readonly string _fileSystemStateFilePath = Path.Combine(Path.GetTempPath(), "DummyFileSystemState.xml");
 
         [SetUp]
@@ -713,11 +710,6 @@ namespace Axantum.AxCrypt.Core.Test
                 handler.HandleNotification(sessionEvent, new ProgressContext());
             }
             Assert.That(callTimes, Is.EqualTo(2));
-        }
-
-        [Test]
-        public static void TestSessionEventWhileProcessingSessionEvents()
-        {
         }
     }
 }

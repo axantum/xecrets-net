@@ -73,9 +73,8 @@ namespace Axantum.AxCrypt
             FactoryRegistry.Instance.Singleton<KnownKeys>(() => new KnownKeys());
             FactoryRegistry.Instance.Singleton<ParallelBackground>(() => new ParallelBackground());
             FactoryRegistry.Instance.Singleton<ProcessState>(() => new ProcessState());
-            FactoryRegistry.Instance.Singleton<SessionNotificationMonitor>(() => new SessionNotificationMonitor());
+            FactoryRegistry.Instance.Singleton<SessionNotificationMonitor>(() => new SessionNotificationMonitor(new DelayedAction(new DelayTimer(), Instance.UserSettings.SessionNotificationMinimumIdle)));
 
-            FactoryRegistry.Instance.Register<IDelayTimer>(() => new DelayTimer());
             FactoryRegistry.Instance.Register<AxCryptFile>(() => new AxCryptFile());
             FactoryRegistry.Instance.Register<ActiveFileAction>(() => new ActiveFileAction());
 
