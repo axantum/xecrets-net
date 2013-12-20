@@ -26,9 +26,7 @@
 #endregion Coypright and License
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -36,30 +34,22 @@ namespace Axantum.AxCrypt.Core.UI
     {
         private IProgressContext _progress;
 
+        private long _totalCount;
+
+        private long _currentCount;
+
+        private bool _canceled;
+
         public CancelContext(IProgressContext progress)
         {
-            _progress = progress.Progress;
+            _progress = progress;
         }
-
-        public IProgressContext Progress
-        {
-            get
-            {
-                return _progress.Progress;
-            }
-        }
-
-        public long TotalCount { get; set; }
-
-        public long CurrentCount { get; set; }
-
-        public bool Canceled { get; set; }
 
         public void AddCount(long count)
         {
             ThrowIfCancelled();
 
-            CurrentCount += count;
+            _currentCount += count;
             _progress.AddCount(count);
         }
 
@@ -69,11 +59,11 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 return;
             }
-            if (!Canceled)
+            if (!_canceled)
             {
-                _progress.AddCount(TotalCount - CurrentCount);
-                CurrentCount = TotalCount;
-                Canceled = true;
+                _progress.AddCount(_totalCount - _currentCount);
+                _currentCount = _totalCount;
+                _canceled = true;
                 throw new OperationCanceledException("Operation canceled on request.");
             }
         }
@@ -111,7 +101,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             ThrowIfCancelled();
 
-            TotalCount += count;
+            _totalCount += count;
             _progress.AddTotal(count);
         }
 

@@ -27,7 +27,6 @@
 
 using Axantum.AxCrypt.Core.Runtime;
 using System;
-using System.Diagnostics;
 using System.Threading;
 
 namespace Axantum.AxCrypt.Core.UI
@@ -74,11 +73,6 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 _synchronizationContext = SynchronizationContext.Current;
             }
-        }
-
-        public IProgressContext Progress
-        {
-            get { return this; }
         }
 
         /// <summary>
