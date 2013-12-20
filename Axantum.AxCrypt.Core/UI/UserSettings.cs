@@ -42,9 +42,13 @@ namespace Axantum.AxCrypt.Core.UI
 
         private IRuntimeFileInfo _persistanceFileInfo;
 
-        public UserSettings(IRuntimeFileInfo fileInfo)
+        private KeyWrapIterationCalculator _keyWrapIterationCalculator;
+
+        public UserSettings(IRuntimeFileInfo fileInfo, KeyWrapIterationCalculator keyWrapIterationCalculator)
         {
             _persistanceFileInfo = fileInfo;
+
+            _keyWrapIterationCalculator = keyWrapIterationCalculator;
 
             if (_persistanceFileInfo.Exists)
             {
@@ -132,7 +136,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public long KeyWrapIterations
         {
-            get { return Load("KeyWrapIterations", () => KeyWrapIterationCalculator.CalculatedKeyWrapIterations); }
+            get { return Load("KeyWrapIterations", () => _keyWrapIterationCalculator.Iterations()); }
             set { Store("KeyWrapIterations", value); }
         }
 

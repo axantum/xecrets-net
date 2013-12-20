@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Ipc;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
@@ -69,7 +70,7 @@ namespace Axantum.AxCrypt
             Factory.Instance.Singleton<ILogging>(() => new Logging());
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment());
             Factory.Instance.Singleton<CommandService>(() => new CommandService(new HttpRequestServer(), new HttpRequestClient()));
-            Factory.Instance.Singleton<IUserSettings>(() => new UserSettings(UserSettings.DefaultPathInfo));
+            Factory.Instance.Singleton<IUserSettings>(() => new UserSettings(UserSettings.DefaultPathInfo, new KeyWrapIterationCalculator()));
             Factory.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(FileSystemState.DefaultPathInfo));
             Factory.Instance.Singleton<KnownKeys>(() => new KnownKeys(Instance.FileSystemState, Instance.SessionNotification));
             Factory.Instance.Singleton<ParallelFileOperation>(() => new ParallelFileOperation(Instance.UIThread));

@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.UI;
+using Moq;
 using NUnit.Framework;
 using System;
 using System.Linq;
@@ -52,20 +53,20 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSerializeDeserialize()
         {
-            UserSettings settings = new UserSettings(OS.Current.FileInfo(@"C:\Folder\UserSettings.txt"));
+            UserSettings settings = new UserSettings(OS.Current.FileInfo(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
 
             Assert.That(settings.DebugMode, Is.False, "The DebugMode is always false by default.");
             settings.DebugMode = true;
             Assert.That(settings.DebugMode, Is.True, "The DebugMode was set to true.");
 
-            settings = new UserSettings(OS.Current.FileInfo(@"C:\Folder\UserSettings.txt"));
+            settings = new UserSettings(OS.Current.FileInfo(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
             Assert.That(settings.DebugMode, Is.True, "The DebugMode was set to true, and should have been saved.");
         }
 
         [Test]
         public static void TestNamedStronglyTypedProperties()
         {
-            UserSettings settings = new UserSettings(OS.Current.FileInfo(@"C:\Folder\UserSettings.txt"));
+            UserSettings settings = new UserSettings(OS.Current.FileInfo(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
 
             settings.CultureName = "sv-SE";
             Assert.That(settings.CultureName, Is.EqualTo("sv-SE"), "The value should be this.");
@@ -103,6 +104,15 @@ namespace Axantum.AxCrypt.Core.Test
 
             settings.SessionNotificationMinimumIdle = new TimeSpan(1, 2, 3);
             Assert.That(settings.SessionNotificationMinimumIdle, Is.EqualTo(new TimeSpan(1, 2, 3)), "The value should be this.");
+        }
+
+        [Test]
+        public static void TestKeyWrapIterationCalculator()
+        {
+            KeyWrapIterationCalculator calculator = Mock.Of<KeyWrapIterationCalculator>(c => c.Iterations() == 666);
+
+            UserSettings settings = new UserSettings(OS.Current.FileInfo(@"C:\Folder\UserSettings.txt"), calculator);
+            Assert.That(settings.KeyWrapIterations, Is.EqualTo(666));
         }
     }
 }

@@ -28,9 +28,7 @@
 using Axantum.AxCrypt.Core.Crypto;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -72,7 +70,7 @@ namespace Axantum.AxCrypt.Core.Test
                 return now.AddMilliseconds(500);
             };
 
-            long iterations = KeyWrapIterationCalculator.CalculatedKeyWrapIterations;
+            long iterations = new KeyWrapIterationCalculator().Iterations();
 
             Assert.That(iterations, Is.EqualTo(20000), "The minimum guarantee should hold.");
         }
@@ -96,7 +94,7 @@ namespace Axantum.AxCrypt.Core.Test
                 return now.AddMilliseconds(callCounter * 4);
             };
 
-            long iterations = KeyWrapIterationCalculator.CalculatedKeyWrapIterations;
+            long iterations = new KeyWrapIterationCalculator().Iterations();
 
             Assert.That(iterations, Is.EqualTo(25000), "If we do 125000 iterations in 500ms, the result should be 25000 as default iterations.");
         }

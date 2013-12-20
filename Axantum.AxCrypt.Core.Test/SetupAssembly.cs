@@ -45,7 +45,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
             Factory.Instance.Singleton<ILogging>(() => new FakeLogging());
-            Factory.Instance.Singleton<IUserSettings>(() => new UserSettings(UserSettings.DefaultPathInfo));
+            Factory.Instance.Singleton<IUserSettings>(() => new UserSettings(UserSettings.DefaultPathInfo, new KeyWrapIterationCalculator()));
             Factory.Instance.Singleton(() => new KnownKeys(Instance.FileSystemState, Instance.SessionNotification));
             Factory.Instance.Singleton(() => new ProcessState());
             Factory.Instance.Singleton<IUIThread>(() => new FakeUIThread());
