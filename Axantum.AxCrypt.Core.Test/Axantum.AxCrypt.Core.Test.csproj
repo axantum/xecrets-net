@@ -84,6 +84,7 @@
     <Compile Include="TestActiveFileComparer.cs" />
     <Compile Include="TestCancelContext.cs" />
     <Compile Include="TestCommandLine.cs" />
+    <Compile Include="TestCommandService.cs" />
     <Compile Include="TestDelayedAction.cs" />
     <Compile Include="TestDelegateTraceListener.cs" />
     <Compile Include="TestFactoryRegistry.cs" />
