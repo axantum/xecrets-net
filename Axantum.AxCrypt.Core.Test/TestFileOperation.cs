@@ -339,7 +339,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             bool changedWasRaised = false;
 
-            notificationMonitor.Notification += (object sender, SessionNotificationArgs e) => { changedWasRaised = true; };
+            notificationMonitor.Notification += (object sender, SessionNotificationEventArgs e) => { changedWasRaised = true; };
             Assert.That(changedWasRaised, Is.False, "The global changed event should not have been raised yet.");
 
             launcher.RaiseExited();

@@ -44,7 +44,7 @@ namespace Axantum.AxCrypt.Core.Ipc
             _server.Request += HandleServerRequest;
         }
 
-        private void HandleServerRequest(object sender, RequestCommandArgs e)
+        private void HandleServerRequest(object sender, RequestCommandEventArgs e)
         {
             OnReceived(e.Command);
         }
@@ -57,7 +57,7 @@ namespace Axantum.AxCrypt.Core.Ipc
         public CommandStatus Call(CommandVerb verb, IEnumerable<string> paths)
         {
             CommandStatus status;
-            status = _client.Dispatch(new CommandServiceArgs(verb, paths));
+            status = _client.Dispatch(new CommandServiceEventArgs(verb, paths));
             return status;
         }
 
@@ -66,11 +66,11 @@ namespace Axantum.AxCrypt.Core.Ipc
             _server.Start();
         }
 
-        public event EventHandler<CommandServiceArgs> Received;
+        public event EventHandler<CommandServiceEventArgs> Received;
 
-        protected virtual void OnReceived(CommandServiceArgs e)
+        protected virtual void OnReceived(CommandServiceEventArgs e)
         {
-            EventHandler<CommandServiceArgs> handler = Received;
+            EventHandler<CommandServiceEventArgs> handler = Received;
             if (handler != null)
             {
                 handler(this, e);

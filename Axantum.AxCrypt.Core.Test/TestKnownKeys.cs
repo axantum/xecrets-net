@@ -137,7 +137,7 @@ namespace Axantum.AxCrypt.Core.Test
             DelayedAction delayedAction = new DelayedAction(fakeDelayTimer, new TimeSpan(0, 0, 10));
             SessionNotificationMonitor notificationMonitor = new SessionNotificationMonitor(delayedAction);
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, notificationMonitor);
-            notificationMonitor.Notification += (object sender, SessionNotificationArgs e) =>
+            notificationMonitor.Notification += (object sender, SessionNotificationEventArgs e) =>
             {
                 wasChanged |= e.Notification.NotificationType == SessionNotificationType.KnownKeyChange;
             };

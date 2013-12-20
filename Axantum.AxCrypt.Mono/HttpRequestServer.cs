@@ -61,8 +61,8 @@ namespace Axantum.AxCrypt.Mono
             using (TextReader reader = new StreamReader(request.InputStream, Encoding.UTF8))
             {
                 string requestJson = reader.ReadToEnd();
-                CommandServiceArgs requestArgs = JsonConvert.DeserializeObject<CommandServiceArgs>(requestJson);
-                RequestCommandArgs args = new RequestCommandArgs(requestArgs);
+                CommandServiceEventArgs requestArgs = JsonConvert.DeserializeObject<CommandServiceEventArgs>(requestJson);
+                RequestCommandEventArgs args = new RequestCommandEventArgs(requestArgs);
                 OnRequest(args);
             }
             using (HttpListenerResponse response = context.Response)
@@ -77,11 +77,11 @@ namespace Axantum.AxCrypt.Mono
             _listener.Stop();
         }
 
-        public event EventHandler<RequestCommandArgs> Request;
+        public event EventHandler<RequestCommandEventArgs> Request;
 
-        protected virtual void OnRequest(RequestCommandArgs e)
+        protected virtual void OnRequest(RequestCommandEventArgs e)
         {
-            EventHandler<RequestCommandArgs> handler = Request;
+            EventHandler<RequestCommandEventArgs> handler = Request;
             if (handler != null)
             {
                 handler(this, e);

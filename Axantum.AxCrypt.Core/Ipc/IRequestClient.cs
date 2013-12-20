@@ -32,6 +32,6 @@ namespace Axantum.AxCrypt.Core.Ipc
 {
     public interface IRequestClient
     {
-        CommandStatus Dispatch(CommandServiceArgs command);
+        CommandStatus Dispatch(CommandServiceEventArgs command);
     }
 }

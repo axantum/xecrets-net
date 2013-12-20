@@ -38,6 +38,6 @@ namespace Axantum.AxCrypt.Core.Ipc
 
         void Shutdown();
 
-        event EventHandler<RequestCommandArgs> Request;
+        event EventHandler<RequestCommandEventArgs> Request;
     }
 }

@@ -89,7 +89,7 @@
     <Compile Include="TestCancelContext.cs" />
     <Compile Include="TestCommandLine.cs" />
     <Compile Include="TestCommandService.cs" />
-    <Compile Include="TestCommandServiceArgs.cs" />
+    <Compile Include="TestCommandServiceEventArgsTest.cs" />
     <Compile Include="TestDelayedAction.cs" />
     <Compile Include="TestDelegateTraceListener.cs" />
     <Compile Include="TestFactoryRegistry.cs" />

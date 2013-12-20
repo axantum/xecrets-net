@@ -37,7 +37,7 @@ namespace Axantum.AxCrypt.Mono
 {
     public class HttpRequestClient : IRequestClient
     {
-        public CommandStatus Dispatch(CommandServiceArgs command)
+        public CommandStatus Dispatch(CommandServiceEventArgs command)
         {
             string json = JsonConvert.SerializeObject(command, Formatting.None, new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Include, NullValueHandling = NullValueHandling.Ignore, });
 

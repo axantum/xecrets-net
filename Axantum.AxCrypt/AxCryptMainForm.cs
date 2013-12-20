@@ -495,12 +495,12 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void AxCryptMainForm_Request(object sender, CommandServiceArgs e)
+        private void AxCryptMainForm_Request(object sender, CommandServiceEventArgs e)
         {
             Instance.UIThread.RunOnUIThread(() => DoRequest(e));
         }
 
-        private void DoRequest(CommandServiceArgs e)
+        private void DoRequest(CommandServiceEventArgs e)
         {
             switch (e.RequestCommand)
             {

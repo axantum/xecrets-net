@@ -31,13 +31,13 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Session
 {
-    public class SessionNotificationArgs : EventArgs
+    public class SessionNotificationEventArgs : EventArgs
     {
         public SessionNotification Notification { get; private set; }
 
         public IProgressContext Progress { get; private set; }
 
-        public SessionNotificationArgs(SessionNotification notification, IProgressContext progress)
+        public SessionNotificationEventArgs(SessionNotification notification, IProgressContext progress)
         {
             Notification = notification;
             Progress = progress;

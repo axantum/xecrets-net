@@ -270,7 +270,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return true;
         }
 
-        private void HandleSessionChanged(object sender, SessionNotificationArgs e)
+        private void HandleSessionChanged(object sender, SessionNotificationEventArgs e)
         {
             switch (e.Notification.NotificationType)
             {

@@ -67,11 +67,11 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public event EventHandler<SessionNotificationArgs> Notification;
+        public event EventHandler<SessionNotificationEventArgs> Notification;
 
-        protected virtual void OnNotification(SessionNotificationArgs e)
+        protected virtual void OnNotification(SessionNotificationEventArgs e)
         {
-            EventHandler<SessionNotificationArgs> handler = Notification;
+            EventHandler<SessionNotificationEventArgs> handler = Notification;
             if (handler != null)
             {
                 handler(this, e);
@@ -125,9 +125,9 @@ namespace Axantum.AxCrypt.Core.Session
         {
             foreach (SessionNotification notification in notifications)
             {
-                OnNotification(new SessionNotificationArgs(notification, progress));
+                OnNotification(new SessionNotificationEventArgs(notification, progress));
             }
-            OnNotification(new SessionNotificationArgs(new SessionNotification(SessionNotificationType.ActiveFileChange), progress));
+            OnNotification(new SessionNotificationEventArgs(new SessionNotification(SessionNotificationType.ActiveFileChange), progress));
         }
 
         public void Dispose()

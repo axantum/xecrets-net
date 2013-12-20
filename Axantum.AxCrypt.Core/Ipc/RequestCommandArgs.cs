@@ -30,11 +30,11 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Ipc
 {
-    public class RequestCommandArgs : EventArgs
+    public class RequestCommandEventArgs : EventArgs
     {
-        public CommandServiceArgs Command { get; private set; }
+        public CommandServiceEventArgs Command { get; private set; }
 
-        public RequestCommandArgs(CommandServiceArgs command)
+        public RequestCommandEventArgs(CommandServiceEventArgs command)
         {
             Command = command;
         }

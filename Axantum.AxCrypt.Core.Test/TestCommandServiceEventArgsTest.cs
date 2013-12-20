@@ -34,15 +34,15 @@ using System.Linq;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public static class TestCommandServiceArgs
+    public static class TestCommandServiceEventArgsTest
     {
         [Test]
         public static void TestJsonSerialization()
         {
-            CommandServiceArgs args = new CommandServiceArgs();
+            CommandServiceEventArgs args = new CommandServiceEventArgs();
             string json = JsonConvert.SerializeObject(args);
 
-            args = JsonConvert.DeserializeObject<CommandServiceArgs>(json);
+            args = JsonConvert.DeserializeObject<CommandServiceEventArgs>(json);
 
             Assert.That(args.RequestCommand, Is.EqualTo(CommandVerb.Unknown));
             Assert.That(args.Paths.Count(), Is.EqualTo(0));

@@ -342,7 +342,7 @@ namespace Axantum.AxCrypt.Core.Test
             DelayedAction delayedAction = new DelayedAction(fakeDelayTimer, new TimeSpan(0, 0, 10));
             SessionNotificationMonitor notificationMonitor = new SessionNotificationMonitor(delayedAction);
 
-            notificationMonitor.Notification += (object sender, SessionNotificationArgs e) => { wasHere = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange; };
+            notificationMonitor.Notification += (object sender, SessionNotificationEventArgs e) => { wasHere = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange; };
             notificationMonitor.Notify(new SessionNotification(SessionNotificationType.ActiveFileChange));
 
             Assert.That(wasHere, Is.False, "The RaiseChanged() method should not raise the event immediately.");
