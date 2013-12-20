@@ -25,13 +25,10 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -223,6 +220,23 @@ namespace Axantum.AxCrypt.Core.Test
             fakeEnvironment.CurrentTiming.CurrentTiming = TimeSpan.FromMilliseconds(2000);
             progress.AddCount(1);
             Assert.That(percent, Is.EqualTo(50), "1 of 2 is 50 percent.");
+        }
+
+        [Test]
+        public static void TestRemoveCount()
+        {
+            int percent = 0;
+            ProgressContext progress = new ProgressContext(TimeSpan.Zero);
+            progress.Progressing += (sender, e) => percent = e.Percent;
+            progress.AddTotal(100);
+            progress.AddCount(50);
+
+            Assert.That(percent, Is.EqualTo(50));
+
+            progress.RemoveCount(50, 50);
+            FakeRuntimeEnvironment.Instance.CurrentTiming.CurrentTiming = TimeSpan.FromMilliseconds(1000);
+            progress.AddCount(10);
+            Assert.That(percent, Is.EqualTo(20));
         }
 
         [Test]
