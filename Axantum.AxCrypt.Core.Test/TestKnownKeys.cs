@@ -31,6 +31,7 @@ using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -147,6 +148,41 @@ namespace Axantum.AxCrypt.Core.Test
             wasChanged = false;
             knownKeys.Add(key1);
             Assert.That(wasChanged, Is.False, "Re-adding an existing key should not trigger the Changed event.");
+        }
+
+        [Test]
+        public static void TestAddKeyForKnownIdentity()
+        {
+            Instance.FileSystemState.Identities.Add(new PassphraseIdentity("Unit Test", new Passphrase("a").DerivedPassphrase));
+            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotification);
+            knownKeys.Add(new Passphrase("a").DerivedPassphrase);
+
+            Assert.That(knownKeys.DefaultEncryptionKey, Is.EqualTo(new Passphrase("a").DerivedPassphrase), "When adding a key that is for a known identity it should be set as the default.");
+        }
+
+        [Test]
+        public static void TestWatchedFoldersNotLoggedOn()
+        {
+            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotification);
+            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder\"));
+            IEnumerable<WatchedFolder> watchedFolders = knownKeys.WatchedFolders;
+
+            Assert.That(watchedFolders.Count(), Is.EqualTo(0), "When not logged on, no watched folders should be known.");
+        }
+
+        [Test]
+        public static void TestWatchedFoldersWhenLoggedOn()
+        {
+            AesKey key1 = new AesKey();
+            AesKey key2 = new AesKey();
+            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotification);
+            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder1\", key1.Thumbprint));
+            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder2\", key2.Thumbprint));
+            knownKeys.DefaultEncryptionKey = key2;
+            IEnumerable<WatchedFolder> watchedFolders = knownKeys.WatchedFolders;
+
+            Assert.That(watchedFolders.Count(), Is.EqualTo(1), "Only one of the two watched folders should be shown.");
+            Assert.That(watchedFolders.First().Thumbprint, Is.EqualTo(key2.Thumbprint), "The returned watched folder should be number 2.");
         }
     }
 }

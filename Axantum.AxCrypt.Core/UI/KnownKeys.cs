@@ -149,25 +149,6 @@ namespace Axantum.AxCrypt.Core.UI
 
         private List<AesKeyThumbprint> _knownThumbprints;
 
-        public IEnumerable<AesKeyThumbprint> KnownThumbprints
-        {
-            get
-            {
-                lock (_knownThumbprints)
-                {
-                    return new List<AesKeyThumbprint>(_knownThumbprints);
-                }
-            }
-            set
-            {
-                lock (_knownThumbprints)
-                {
-                    _knownThumbprints.Clear();
-                    _knownThumbprints.AddRange(value);
-                }
-            }
-        }
-
         /// <summary>
         /// Add a thumb print to the list of known thumb prints
         /// </summary>
