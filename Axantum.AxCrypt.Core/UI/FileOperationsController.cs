@@ -269,7 +269,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private bool DecryptFilePreparation(IRuntimeFileInfo fileInfo)
         {
-            if (!OpenAxCryptDocument(fileInfo, _eventArgs))
+            if (!OpenAxCryptDocument(fileInfo, _eventArgs) || _eventArgs.Skip)
             {
                 return false;
             }

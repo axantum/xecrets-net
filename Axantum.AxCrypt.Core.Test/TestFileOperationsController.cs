@@ -313,6 +313,27 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        public static void TestDecryptWithSkipDuringQueryDecryptionPassphrase()
+        {
+            IRuntimeFileInfo expectedDestinationInfo = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
+            using (Stream stream = expectedDestinationInfo.OpenWrite())
+            {
+            }
+
+            FileOperationsController controller = new FileOperationsController();
+            controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
+            {
+                e.Skip = true;
+            };
+            bool saveAs = false;
+            controller.QuerySaveFileAs += (sender, e) => saveAs = true;
+            FileOperationStatus status = controller.DecryptFile(OS.Current.FileInfo(_helloWorldAxxPath));
+
+            Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
+            Assert.That(saveAs, Is.False, "No Save As should happen, since skip was indicated.");
+        }
+
+        [Test]
         public static void TestDecryptWithCancelDuringQuerySaveAs()
         {
             IRuntimeFileInfo expectedDestinationInfo = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
@@ -700,6 +721,45 @@ namespace Axantum.AxCrypt.Core.Test
 
             fileInfo = OS.Current.FileInfo(_davidCopperfieldTxtPath);
             Assert.That(!fileInfo.Exists, "The file should not exist after wiping.");
+        }
+
+        [Test]
+        public static void TestVerifyEncrypted()
+        {
+            FileOperationsController controller = new FileOperationsController();
+            bool passphraseWasQueried = false;
+            controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
+            {
+                passphraseWasQueried = true;
+                e.Cancel = true;
+            };
+            bool knownKeyWasAdded = false;
+            controller.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
+            {
+                knownKeyWasAdded = true;
+            };
+
+            FileOperationStatus status = controller.VerifyEncrypted(OS.Current.FileInfo(_helloWorldAxxPath));
+            Assert.That(status, Is.EqualTo(FileOperationStatus.Canceled));
+            Assert.That(knownKeyWasAdded, Is.False);
+            Assert.That(passphraseWasQueried, Is.True);
+
+            controller = new FileOperationsController();
+            controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
+            {
+                e.Passphrase = "a";
+            };
+            controller.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
+            {
+                knownKeyWasAdded = true;
+            };
+
+            Instance.KnownKeys.Add(new Passphrase("b").DerivedPassphrase);
+            Instance.KnownKeys.Add(new Passphrase("c").DerivedPassphrase);
+
+            status = controller.VerifyEncrypted(OS.Current.FileInfo(_helloWorldAxxPath));
+            Assert.That(status, Is.EqualTo(FileOperationStatus.Success));
+            Assert.That(knownKeyWasAdded, Is.True, "A known key should have been added.");
         }
     }
 }
