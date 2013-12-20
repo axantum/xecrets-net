@@ -78,6 +78,7 @@
     <Compile Include="SetupAssembly.cs" />
     <Compile Include="TestActiveFile.cs" />
     <Compile Include="TestActiveFileCollectionTests.cs" />
+    <Compile Include="TestActiveFileComparer.cs" />
     <Compile Include="TestCommandLine.cs" />
     <Compile Include="TestDelayedAction.cs" />
     <Compile Include="TestDelegateTraceListener.cs" />
