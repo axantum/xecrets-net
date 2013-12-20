@@ -47,5 +47,32 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(status, Is.EqualTo(CommandStatus.Success), "The call should indicate success.");
         }
+
+        [Test]
+        public static void TestStart()
+        {
+            IRequestServer serverMock = Mock.Of<IRequestServer>();
+            IRequestClient clientMock = Mock.Of<IRequestClient>();
+
+            CommandService service = new CommandService(serverMock, clientMock);
+            service.StartListening();
+
+            Assert.DoesNotThrow(() => Mock.Get(serverMock).Verify(s => s.Start()));
+        }
+
+        [Test]
+        public static void TestServerReceive()
+        {
+            IRequestServer serverMock = Mock.Of<IRequestServer>();
+            IRequestClient clientMock = Mock.Of<IRequestClient>();
+
+            CommandService service = new CommandService(serverMock, clientMock);
+            bool received = false;
+            service.Received += (sender, e) => received = e.RequestCommand == CommandVerb.Exit;
+
+            Mock.Get(serverMock).Raise(s => s.Request += null, new RequestCommandArgs(new CommandServiceArgs(CommandVerb.Exit)));
+
+            Assert.That(received, Is.True, "A command should be received.");
+        }
     }
 }

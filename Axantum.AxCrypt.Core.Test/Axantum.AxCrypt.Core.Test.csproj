@@ -45,6 +45,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\SolutionItems\Moq\lib\net35\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SolutionItems\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -85,6 +89,7 @@
     <Compile Include="TestCancelContext.cs" />
     <Compile Include="TestCommandLine.cs" />
     <Compile Include="TestCommandService.cs" />
+    <Compile Include="TestCommandServiceArgs.cs" />
     <Compile Include="TestDelayedAction.cs" />
     <Compile Include="TestDelegateTraceListener.cs" />
     <Compile Include="TestFactoryRegistry.cs" />
