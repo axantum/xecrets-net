@@ -175,7 +175,7 @@
     <Compile Include="UI\ViewModel\LogOnViewModel.cs" />
     <Compile Include="UI\ViewModel\MainViewModel.cs" />
     <Compile Include="UI\Options.cs" />
-    <Compile Include="UI\ParallelBackground.cs" />
+    <Compile Include="UI\ParallelFileOperation.cs" />
     <Compile Include="UI\CancelContext.cs" />
     <Compile Include="UI\FileOperation.cs" />
     <Compile Include="UI\FileOperationEventArgs.cs" />

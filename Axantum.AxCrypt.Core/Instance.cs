@@ -51,9 +51,9 @@ namespace Axantum.AxCrypt.Core
             get { return Factory.Instance.Singleton<IProgressBackground>(); }
         }
 
-        public static ParallelBackground ParallelBackground
+        public static ParallelFileOperation ParallelBackground
         {
-            get { return Factory.Instance.Singleton<ParallelBackground>(); }
+            get { return Factory.Instance.Singleton<ParallelFileOperation>(); }
         }
 
         public static IRuntimeEnvironment Environment

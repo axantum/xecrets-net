@@ -27,22 +27,24 @@
 
 using Axantum.AxCrypt.Core.UI;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
     internal class FakeUIThread : IUIThread
     {
-        public bool IsOnUIThread
+        public FakeUIThread()
         {
-            get { return false; }
+            RunOnUIThreadAction = (action) => action();
         }
+
+        public bool IsOnUIThread { get; set; }
+
+        public Action<Action> RunOnUIThreadAction { get; set; }
 
         public void RunOnUIThread(Action action)
         {
-            action();
+            RunOnUIThreadAction(action);
         }
     }
 }
