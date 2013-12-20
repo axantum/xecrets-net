@@ -142,7 +142,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public KeyWrapSalt ThumbprintSalt
         {
-            get { return Load("ThumbprintSalt", () => new KeyWrapSalt(AesKey.DefaultKeyLength)); }
+            get { return Load("ThumbprintSalt", () => Factory.New<int, KeyWrapSalt>(AesKey.DefaultKeyLength)); }
             set { Store("ThumbprintSalt", JsonConvert.SerializeObject(value)); }
         }
 
@@ -176,9 +176,9 @@ namespace Axantum.AxCrypt.Core.UI
 
         private void Save()
         {
-            JsonSerializer serializer = CreateSerializer();
             using (TextWriter writer = new StreamWriter(_persistanceFileInfo.OpenWrite()))
             {
+                JsonSerializer serializer = CreateSerializer();
                 serializer.Serialize(writer, _settings);
             }
         }

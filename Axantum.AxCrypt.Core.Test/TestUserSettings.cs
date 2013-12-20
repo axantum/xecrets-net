@@ -114,5 +114,74 @@ namespace Axantum.AxCrypt.Core.Test
             UserSettings settings = new UserSettings(OS.Current.FileInfo(@"C:\Folder\UserSettings.txt"), calculator);
             Assert.That(settings.KeyWrapIterations, Is.EqualTo(666));
         }
+
+        [Test]
+        public static void TestThumbprintSaltDefault()
+        {
+            KeyWrapSalt salt = new KeyWrapSalt(16);
+            Factory.Instance.Register((int n) => salt);
+            UserSettings settings = new UserSettings(OS.Current.FileInfo(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
+
+            Assert.That(settings.ThumbprintSalt.GetBytes(), Is.EqualTo(salt.GetBytes()), "The value should be this.");
+        }
+
+        [Test]
+        public static void TestUpdateToSameValueCausesNoSave()
+        {
+            UserSettings settings = new UserSettings(OS.Current.FileInfo(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
+            int writeCount = 0;
+            FakeRuntimeFileInfo.OpeningForWrite += (sender, e) => ++writeCount;
+
+            settings.CultureName = "sv-SE";
+            Assert.That(settings.CultureName, Is.EqualTo("sv-SE"), "The value should be this.");
+            Assert.That(writeCount, Is.EqualTo(1), "One opening for write should have happened.");
+
+            settings.CultureName = "sv-SE";
+            Assert.That(settings.CultureName, Is.EqualTo("sv-SE"), "The value should be this.");
+            Assert.That(writeCount, Is.EqualTo(1), "Still only one opening for write should have happened.");
+        }
+
+        [Test]
+        public static void TestLoadOfDefaultKeyedValues()
+        {
+            UserSettings settings = new UserSettings(OS.Current.FileInfo(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
+
+            int n = settings.Load<int>("MyKey");
+            Assert.That(n, Is.EqualTo(default(int)), "Since the key is unknown, the default value should be returned.");
+
+            settings.Store<int>("MyKey", 1234);
+            n = settings.Load<int>("MyKey");
+            Assert.That(n, Is.EqualTo(1234), "Since the value has been updated, this is what should be returned.");
+        }
+
+        [Test]
+        public static void TestLoadOfInvalidFormatKeyValueWithFallbackReturn()
+        {
+            UserSettings settings = new UserSettings(OS.Current.FileInfo(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
+            settings.Store<string>("MyKey", "NotANumber");
+
+            int n = settings.Load("MyKey", () => 555);
+            Assert.That(n, Is.EqualTo(555), "Since the value is invalid, but there is a fallback this should be returned.");
+        }
+
+        [Test]
+        public static void TestLoadOfInvalidFormatKeyWrapSaltWithFallbackReturn()
+        {
+            UserSettings settings = new UserSettings(OS.Current.FileInfo(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
+            settings.Store<string>("MyKey", "NotASalt");
+
+            KeyWrapSalt salt = new KeyWrapSalt(16);
+            KeyWrapSalt loadedSalt = settings.Load("MyKey", () => salt);
+            Assert.That(loadedSalt.GetBytes(), Is.EquivalentTo(salt.GetBytes()), "Since the value is invalid, but there is a fallback this should be returned.");
+        }
+
+        [Test]
+        public static void TestLoadOfUriWithFallbackReturn()
+        {
+            UserSettings settings = new UserSettings(OS.Current.FileInfo(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
+
+            Uri url = settings.Load("MyKey", new Uri("http://localhost/fallback"));
+            Assert.That(url, Is.EqualTo(new Uri("http://localhost/fallback")));
+        }
     }
 }
