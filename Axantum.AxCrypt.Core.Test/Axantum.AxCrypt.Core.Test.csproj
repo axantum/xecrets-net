@@ -140,6 +140,7 @@
     <Compile Include="TestUnicodeFileNameInfoHeaderBlock .cs" />
     <Compile Include="TestUnrecognizedHeaderBlock .cs" />
     <Compile Include="TestUpdateCheck.cs" />
+    <Compile Include="TestUserSettings.cs" />
     <Compile Include="TestVersionHeaderBlock .cs" />
     <Compile Include="TestWatchedFolder.cs" />
     <Compile Include="TestWatchedFolderChangedEventArgsTest.cs" />

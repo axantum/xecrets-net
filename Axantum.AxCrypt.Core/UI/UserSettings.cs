@@ -46,12 +46,11 @@ namespace Axantum.AxCrypt.Core.UI
         {
             _persistanceFileInfo = fileInfo;
 
-            JsonSerializer serializer = CreateSerializer();
-
             if (_persistanceFileInfo.Exists)
             {
                 using (JsonReader reader = new JsonTextReader(new StreamReader(_persistanceFileInfo.OpenRead())))
                 {
+                    JsonSerializer serializer = CreateSerializer();
                     _settings = serializer.Deserialize<Dictionary<string, string>>(reader);
                 }
             }
