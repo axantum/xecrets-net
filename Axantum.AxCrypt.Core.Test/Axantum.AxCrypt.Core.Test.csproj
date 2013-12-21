@@ -130,6 +130,7 @@
     <Compile Include="TestKnownKeys.cs" />
     <Compile Include="TestLockingStreamTests.cs" />
     <Compile Include="TestLogging.cs" />
+    <Compile Include="TestMainViewModel.cs" />
     <Compile Include="TestParallelFileOperation.cs" />
     <Compile Include="TestPassphrase.cs" />
     <Compile Include="TestPassphraseIdentity.cs" />

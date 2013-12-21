@@ -25,16 +25,15 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Diagnostics.CodeAnalysis;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
+using System;
 
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public class TestKeyWrap
+    public static class TestKeyWrap
     {
         private static AesKey _keyEncryptingKey;
         private static AesKey _keyData;
@@ -57,8 +56,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This is test, readability and coding ease is a concern, not performance.")]
-        public void TestUnwrap()
+        public static void TestUnwrap()
         {
             byte[] unwrapped;
             using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, 6, KeyWrapMode.Specification))
@@ -70,8 +68,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This is test, readability and coding ease is a concern, not performance.")]
-        public void TestWrap()
+        public static void TestWrap()
         {
             byte[] wrapped;
             using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, 6, KeyWrapMode.Specification))
@@ -91,8 +88,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This is test, readability and coding ease is a concern, not performance.")]
-        public void TestWrapAndUnwrapAxCryptMode()
+        public static void TestWrapAndUnwrapAxCryptMode()
         {
             AesKey keyToWrap = new AesKey(new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 });
             AesKey keyEncryptingKey = new AesKey(new byte[] { 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 });
@@ -113,8 +109,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This is test, readability and coding ease is a concern, not performance.")]
-        public void TestWrapAndUnwrapSpecificationMode()
+        public static void TestWrapAndUnwrapSpecificationMode()
         {
             AesKey keyToWrap = new AesKey(new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 });
             AesKey keyEncryptingKey = new AesKey(new byte[] { 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 });
@@ -135,8 +130,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This is test, readability and coding ease is a concern, not performance.")]
-        public void TestKeyWrapConstructorWithBadArgument()
+        public static void TestKeyWrapConstructorWithBadArgument()
         {
             using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, 6, KeyWrapMode.Specification))
             {
