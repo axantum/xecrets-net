@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// raised, regardless of response and result. If a check is already in progress, the
         /// later call is ignored and only one check is performed.
         /// </summary>
-        public void CheckInBackground(DateTime lastCheckTimeUtc, string newestKnownVersion, Uri webServiceUrl, Uri updateWebpageUrl)
+        public virtual void CheckInBackground(DateTime lastCheckTimeUtc, string newestKnownVersion, Uri webServiceUrl, Uri updateWebpageUrl)
         {
             if (newestKnownVersion == null)
             {

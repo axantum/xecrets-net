@@ -82,6 +82,7 @@ namespace Axantum.AxCrypt
             Factory.Instance.Register<FileOperation>(() => new FileOperation(Instance.FileSystemState, Instance.SessionNotification));
             Factory.Instance.Register<SessionNotificationHandler>(() => new SessionNotificationHandler(Instance.FileSystemState, Factory.New<ActiveFileAction>(), Factory.New<AxCryptFile>()));
             Factory.Instance.Register<int, KeyWrapSalt>((length) => new KeyWrapSalt(length));
+            Factory.Instance.Register<Version, UpdateCheck>((version) => new UpdateCheck(version));
         }
 
         private static void WireupEvents()

@@ -32,6 +32,7 @@ using Moq;
 using NUnit.Framework;
 using System;
 using System.Linq;
+using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -56,13 +57,25 @@ namespace Axantum.AxCrypt.Core.Test
         {
             string filePath = @"C:\Folder\File.txt";
 
-            var mockEnvironment = new Mock<FakeRuntimeEnvironment>() {CallBase = true};
+            var mockEnvironment = new Mock<FakeRuntimeEnvironment>() { CallBase = true };
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => mockEnvironment.Object);
 
             MainViewModel mvm = new MainViewModel();
             mvm.OpenSelectedFolder.Execute(filePath);
 
-            Assert.DoesNotThrow(() => mockEnvironment.Verify(r => r.Launch(filePath)));
+            mockEnvironment.Verify(r => r.Launch(filePath));
+        }
+
+        [Test]
+        public static void TestCurrentVersionPropertyBind()
+        {
+            MainViewModel mvm = new MainViewModel();
+            UpdateCheck mockedUpdateCheck = null;
+            Factory.Instance.Register<Version, UpdateCheck>((version) => mockedUpdateCheck = new Mock<UpdateCheck>(version).Object);
+            Version ourVersion = new Version(1, 2, 3, 4);
+            mvm.CurrentVersion = ourVersion;
+
+            Mock.Get<UpdateCheck>(mockedUpdateCheck).Verify(x => x.CheckInBackground(It.Is<DateTime>((d) => d == Instance.UserSettings.LastUpdateCheckUtc), It.IsAny<string>(), It.IsAny<Uri>(), It.IsAny<Uri>()));
         }
     }
 }

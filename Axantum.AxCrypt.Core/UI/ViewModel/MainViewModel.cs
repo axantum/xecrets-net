@@ -208,7 +208,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void UpdateUpdateCheck(Version currentVersion)
         {
             DisposeUpdateCheck();
-            _updateCheck = new UpdateCheck(currentVersion);
+            _updateCheck = Factory.New<Version, UpdateCheck>(currentVersion);
             _updateCheck.VersionUpdate += Handle_VersionUpdate;
             UpdateCheckAction(Instance.UserSettings.LastUpdateCheckUtc);
         }
