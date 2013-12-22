@@ -25,14 +25,17 @@
 
 #endregion Coypright and License
 
+using System;
+using System.Linq;
+using System.Security.Cryptography;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Moq;
 using NUnit.Framework;
-using System;
-using System.Linq;
-using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -76,6 +79,72 @@ namespace Axantum.AxCrypt.Core.Test
             mvm.CurrentVersion = ourVersion;
 
             Mock.Get<UpdateCheck>(mockedUpdateCheck).Verify(x => x.CheckInBackground(It.Is<DateTime>((d) => d == Instance.UserSettings.LastUpdateCheckUtc), It.IsAny<string>(), It.IsAny<Uri>(), It.IsAny<Uri>()));
+        }
+
+        [Test]
+        public static void TestDragAndDropFilesPropertyBindSetsDragAndDropFileTypes()
+        {
+            MainViewModel mvm = new MainViewModel();
+
+            string encryptedFilePath = @"C:\Folder\File-txt.axx";
+            mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
+            Assert.That(mvm.DragAndDropFilesTypes, Is.EqualTo(FileInfoTypes.None));
+
+            string decryptedFilePath = @"C:\Folder\File.txt";
+            mvm.DragAndDropFiles = new string[] { decryptedFilePath, };
+            Assert.That(mvm.DragAndDropFilesTypes, Is.EqualTo(FileInfoTypes.None));
+
+            FakeRuntimeFileInfo.AddFile(encryptedFilePath, null);
+            mvm.DragAndDropFiles = new string[] { encryptedFilePath, decryptedFilePath, };
+            Assert.That(mvm.DragAndDropFilesTypes, Is.EqualTo(FileInfoTypes.EncryptedFile));
+
+            FakeRuntimeFileInfo.AddFile(decryptedFilePath, null);
+            mvm.DragAndDropFiles = new string[] { encryptedFilePath, decryptedFilePath, };
+            Assert.That(mvm.DragAndDropFilesTypes, Is.EqualTo(FileInfoTypes.EncryptableFile | FileInfoTypes.EncryptedFile));
+
+            string folderPath = @"C:\Folder\";
+            mvm.DragAndDropFiles = new string[] { encryptedFilePath, decryptedFilePath, folderPath };
+            Assert.That(mvm.DragAndDropFilesTypes, Is.EqualTo(FileInfoTypes.EncryptableFile | FileInfoTypes.EncryptedFile));
+
+            FakeRuntimeFileInfo.AddFolder(folderPath);
+            mvm.DragAndDropFiles = new string[] { encryptedFilePath, decryptedFilePath, folderPath };
+            Assert.That(mvm.DragAndDropFilesTypes, Is.EqualTo(FileInfoTypes.EncryptableFile | FileInfoTypes.EncryptedFile));
+        }
+
+        [Test]
+        public static void TestDragAndDropFilesPropertyBindSetsDroppableAsRecent()
+        {
+            MainViewModel mvm = new MainViewModel();
+
+            string encryptedFilePath = @"C:\Folder\File-txt.axx";
+            mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
+            Assert.That(mvm.DroppableAsRecent, Is.False, "An encrypted file that does not exist is not a candidate for recent.");
+
+            Instance.KnownKeys.DefaultEncryptionKey = new AesKey();
+            mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
+            Assert.That(mvm.DroppableAsRecent, Is.False, "An encrypted file that does not exist, even when logged on, is not droppable as recent.");
+
+            FakeRuntimeFileInfo.AddFile(encryptedFilePath, null);
+            Instance.KnownKeys.DefaultEncryptionKey = null;
+            mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
+            Assert.That(mvm.DroppableAsRecent, Is.True, "An encrypted file that exist is droppable as recent even when not logged on.");
+
+            string decryptedFilePath = @"C:\Folder\File.txt";
+            mvm.DragAndDropFiles = new string[] { decryptedFilePath, };
+            Assert.That(mvm.DroppableAsRecent, Is.False, "An encryptable file that does not exist is not droppable as recent.");
+
+            FakeRuntimeFileInfo.AddFile(decryptedFilePath, null);
+            mvm.DragAndDropFiles = new string[] { decryptedFilePath, };
+            Assert.That(mvm.DroppableAsRecent, Is.False, "An encrpytable file without a valid log on is not droppable as recent.");
+
+            Instance.KnownKeys.DefaultEncryptionKey = new AesKey();
+            mvm.DragAndDropFiles = new string[] { decryptedFilePath, };
+            Assert.That(mvm.DroppableAsRecent, Is.True, "An encryptable existing file with a valid log on should be droppable as recent.");
+        }
+
+        [Test]
+        public static void TestDragAndDropFilesPropertyBindSetsDroppableAsWatchedFolder()
+        {
         }
     }
 }
