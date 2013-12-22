@@ -172,7 +172,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         public Func<string, ILauncher> Launcher { get; set; }
 
-        public ILauncher Launch(string path)
+        public virtual ILauncher Launch(string path)
         {
             if (Launcher != null)
             {

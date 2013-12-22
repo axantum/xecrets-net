@@ -51,19 +51,18 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.AssemblyTeardown();
         }
 
+        [Test]
         public static void TestOpenSelectedFolderAction()
         {
             string filePath = @"C:\Folder\File.txt";
-            ILauncher mockLauncher = Mock.Of<ILauncher>();
 
-            IRuntimeEnvironment mockEnvironment = Mock.Of<IRuntimeEnvironment>(r => r.Launch(It.Is<string>((path) => path == filePath)) == mockLauncher);
-
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => mockEnvironment);
+            var mockEnvironment = new Mock<FakeRuntimeEnvironment>() {CallBase = true};
+            Factory.Instance.Singleton<IRuntimeEnvironment>(() => mockEnvironment.Object);
 
             MainViewModel mvm = new MainViewModel();
             mvm.OpenSelectedFolder.Execute(filePath);
 
-            Assert.DoesNotThrow(() => Mock.Get(mockEnvironment).Verify(r => r.Launch(filePath)));
+            Assert.DoesNotThrow(() => mockEnvironment.Verify(r => r.Launch(filePath)));
         }
     }
 }

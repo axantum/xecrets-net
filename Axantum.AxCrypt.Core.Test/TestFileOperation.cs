@@ -39,6 +39,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Moq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -103,19 +104,16 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IEnumerable<AesKey> keys = new AesKey[] { new Passphrase("a").DerivedPassphrase };
 
-            FakeLauncher launcher = null;
-            SetupAssembly.FakeRuntimeEnvironment.Launcher = ((string path) =>
-            {
-                launcher = new FakeLauncher(path);
-                return launcher;
-            });
+            var mock = new Mock<FakeRuntimeEnvironment>() { CallBase = true };
+            string launcherPath = null;
+            mock.Setup(x => x.Launch(It.IsAny<string>())).Callback((string path) => launcherPath = path).Returns((string path) => new FakeLauncher(path));
+            Factory.Instance.Singleton<IRuntimeEnvironment>(() => mock.Object);
 
             FileOperation fileOperation = new FileOperation(Instance.FileSystemState, new SessionNotificationMonitor(new DelayedAction(new FakeDelayTimer(new FakeSleep()), TimeSpan.Zero)));
             FileOperationStatus status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, keys, new ProgressContext());
 
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
-            Assert.That(launcher, Is.Not.Null, "There should be a call to launch.");
-            Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
+            Assert.DoesNotThrow(() => mock.Verify(x => x.Launch(launcherPath)));
         }
 
         [Test]
