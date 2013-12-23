@@ -28,6 +28,7 @@
 using System;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Text.RegularExpressions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
@@ -145,6 +146,26 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDragAndDropFilesPropertyBindSetsDroppableAsWatchedFolder()
         {
+            MainViewModel mvm = new MainViewModel();
+
+            string folder1Path = @"C:\Folder1\FilesFolder\";
+            mvm.DragAndDropFiles = new string[] { folder1Path, };
+            Assert.That(mvm.DroppableAsWatchedFolder, Is.False, "A folder that does not exist is not a candidate for watched folders.");
+
+            FakeRuntimeFileInfo.AddFolder(folder1Path);
+            mvm.DragAndDropFiles = new string[] { folder1Path, };
+            Assert.That(mvm.DroppableAsWatchedFolder, Is.True, "This is a candidate for watched folders.");
+
+            OS.PathFilters.Add(new Regex(@"^C:\\Folder1\\"));
+            mvm.DragAndDropFiles = new string[] { folder1Path, };
+            Assert.That(mvm.DroppableAsWatchedFolder, Is.False, "A folder that matches a path filter is not a candidate for watched folders.");
+
+            string folder2Path = @"C:\Folder1\FilesFolder2\";
+            FakeRuntimeFileInfo.AddFolder(folder2Path);
+            OS.PathFilters.Clear();
+
+            mvm.DragAndDropFiles = new string[] { folder1Path, folder2Path, };
+            Assert.That(mvm.DroppableAsWatchedFolder, Is.False, "Although both folders are ok, only a single folder is a candidate for watched folders.");
         }
     }
 }
