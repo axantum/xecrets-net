@@ -822,7 +822,7 @@ namespace Axantum.AxCrypt
 
         private void SetSortOrder(int column)
         {
-            ActiveFileComparer comparer = GetComparer(column, Preferences.RecentFilesSortColumn == column ? !Preferences.RecentFilesAscending : false);
+            ActiveFileComparer comparer = GetComparer(column, Preferences.RecentFilesSortColumn == column ? Preferences.RecentFilesAscending : false);
             Preferences.RecentFilesAscending = !comparer.ReverseSort;
             Preferences.RecentFilesSortColumn = column;
             _mainViewModel.RecentFilesComparer = comparer;
