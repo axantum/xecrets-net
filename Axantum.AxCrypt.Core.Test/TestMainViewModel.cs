@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
@@ -166,6 +167,56 @@ namespace Axantum.AxCrypt.Core.Test
 
             mvm.DragAndDropFiles = new string[] { folder1Path, folder2Path, };
             Assert.That(mvm.DroppableAsWatchedFolder, Is.False, "Although both folders are ok, only a single folder is a candidate for watched folders.");
+        }
+
+        [Test]
+        public static void TestSetRecentFilesComparer()
+        {
+            MainViewModel mvm = new MainViewModel();
+
+            string file1 = @"C:\Folder\File3-txt.axx";
+            string decrypted1 = @"C:\Folder\File2.txt";
+            string file2 = @"C:\Folder\File2-txt.axx";
+            string decrypted2 = @"C:\Folder\File1.txt";
+            string file3 = @"C:\Folder\File1-txt.axx";
+            string decrypted3 = @"C:\Folder\File3.txt";
+
+            ActiveFile activeFile;
+
+            FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2001, 1, 1);
+            FakeRuntimeFileInfo.AddFile(file1, null);
+            activeFile = new ActiveFile(OS.Current.FileInfo(file1), OS.Current.FileInfo(decrypted1), new AesKey(), ActiveFileStatus.NotDecrypted);
+            Instance.FileSystemState.Add(activeFile);
+
+            FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2002, 2, 2);
+            FakeRuntimeFileInfo.AddFile(file2, null);
+            activeFile = new ActiveFile(OS.Current.FileInfo(file2), OS.Current.FileInfo(decrypted2), new AesKey(), ActiveFileStatus.NotDecrypted);
+            Instance.FileSystemState.Add(activeFile);
+
+            FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2003, 3, 3);
+            FakeRuntimeFileInfo.AddFile(file3, null);
+            activeFile = new ActiveFile(OS.Current.FileInfo(file3), OS.Current.FileInfo(decrypted3), new AesKey(), ActiveFileStatus.NotDecrypted);
+            Instance.FileSystemState.Add(activeFile);
+
+            ActiveFileComparer comparer;
+            List<ActiveFile> recentFiles;
+
+            comparer = ActiveFileComparer.DateComparer;
+            mvm.RecentFilesComparer = comparer;
+            recentFiles = mvm.RecentFiles.ToList();
+
+            Assert.That(recentFiles[0].EncryptedFileInfo.FullName, Is.EqualTo(file1), "Sorted by Date, this should be number 1.");
+            Assert.That(recentFiles[1].EncryptedFileInfo.FullName, Is.EqualTo(file2), "Sorted by Date, this should be number 2.");
+            Assert.That(recentFiles[2].EncryptedFileInfo.FullName, Is.EqualTo(file3), "Sorted by Date, this should be number 3.");
+
+            comparer = ActiveFileComparer.DateComparer;
+            comparer.ReverseSort = true;
+            mvm.RecentFilesComparer = comparer;
+            recentFiles = mvm.RecentFiles.ToList();
+
+            Assert.That(recentFiles[0].EncryptedFileInfo.FullName, Is.EqualTo(file3), "Sorted by Date in reverse, this should be number 1.");
+            Assert.That(recentFiles[1].EncryptedFileInfo.FullName, Is.EqualTo(file2), "Sorted by Date, this should be number 2.");
+            Assert.That(recentFiles[2].EncryptedFileInfo.FullName, Is.EqualTo(file1), "Sorted by Date, this should be number 3.");
         }
     }
 }
