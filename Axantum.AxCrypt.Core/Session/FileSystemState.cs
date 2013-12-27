@@ -25,16 +25,16 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Session
 {
@@ -131,7 +131,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public void AddWatchedFolder(WatchedFolder watchedFolder)
+        public virtual void AddWatchedFolder(WatchedFolder watchedFolder)
         {
             if (AddWatchedFolderInternal(watchedFolder))
             {
@@ -404,7 +404,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public void Save()
+        public virtual void Save()
         {
             lock (_activeFilesByEncryptedPath)
             {

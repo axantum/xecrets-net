@@ -31,6 +31,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public void Execute(object parameter)
         {
+            if (!CanExecute(parameter))
+            {
+                throw new InvalidOperationException("Execute() invoked when CanExecute() is false.");
+            }
             _executeMethod((T)parameter);
         }
 

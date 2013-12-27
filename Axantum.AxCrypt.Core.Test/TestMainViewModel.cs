@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Test
             var mockEnvironment = new Mock<FakeRuntimeEnvironment>() { CallBase = true };
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => mockEnvironment.Object);
 
-            MainViewModel mvm = new MainViewModel();
+            MainViewModel mvm = new MainViewModel(Instance.FileSystemState);
             mvm.OpenSelectedFolder.Execute(filePath);
 
             mockEnvironment.Verify(r => r.Launch(filePath));
@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestCurrentVersionPropertyBind()
         {
-            MainViewModel mvm = new MainViewModel();
+            MainViewModel mvm = new MainViewModel(Instance.FileSystemState);
             UpdateCheck mockedUpdateCheck = null;
             Factory.Instance.Register<Version, UpdateCheck>((version) => mockedUpdateCheck = new Mock<UpdateCheck>(version).Object);
             Version ourVersion = new Version(1, 2, 3, 4);
@@ -86,7 +86,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDragAndDropFilesPropertyBindSetsDragAndDropFileTypes()
         {
-            MainViewModel mvm = new MainViewModel();
+            MainViewModel mvm = new MainViewModel(Instance.FileSystemState);
 
             string encryptedFilePath = @"C:\Folder\File-txt.axx";
             mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
@@ -116,7 +116,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDragAndDropFilesPropertyBindSetsDroppableAsRecent()
         {
-            MainViewModel mvm = new MainViewModel();
+            MainViewModel mvm = new MainViewModel(Instance.FileSystemState);
 
             string encryptedFilePath = @"C:\Folder\File-txt.axx";
             mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
@@ -147,7 +147,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDragAndDropFilesPropertyBindSetsDroppableAsWatchedFolder()
         {
-            MainViewModel mvm = new MainViewModel();
+            MainViewModel mvm = new MainViewModel(Instance.FileSystemState);
 
             string folder1Path = @"C:\Folder1\FilesFolder\";
             mvm.DragAndDropFiles = new string[] { folder1Path, };
@@ -172,7 +172,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSetRecentFilesComparer()
         {
-            MainViewModel mvm = new MainViewModel();
+            MainViewModel mvm = new MainViewModel(Instance.FileSystemState);
 
             string file1 = @"C:\Folder\File3-txt.axx";
             string decrypted1 = @"C:\Folder\File2.txt";
@@ -217,6 +217,32 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(recentFiles[0].EncryptedFileInfo.FullName, Is.EqualTo(file3), "Sorted by Date in reverse, this should be number 1.");
             Assert.That(recentFiles[1].EncryptedFileInfo.FullName, Is.EqualTo(file2), "Sorted by Date, this should be number 2.");
             Assert.That(recentFiles[2].EncryptedFileInfo.FullName, Is.EqualTo(file1), "Sorted by Date, this should be number 3.");
+        }
+
+        [Test]
+        public static void TestAddWatchedFolder()
+        {
+            var mock = new Mock<FileSystemState>() { CallBase = true };
+            mock.Setup(x => x.AddWatchedFolder(It.IsAny<WatchedFolder>()));
+            mock.Setup(x => x.Save());
+
+            MainViewModel mvm = new MainViewModel(mock.Object);
+
+            Assert.Throws<InvalidOperationException>(() => mvm.AddWatchedFolders.Execute(new string[] { }));
+
+            PassphraseIdentity id = new PassphraseIdentity("Logged On User", new AesKey());
+            mock.Object.Identities.Add(id);
+            Instance.KnownKeys.DefaultEncryptionKey = id.Key;
+            Instance.SessionNotification.DoAllNow();
+
+            mvm.AddWatchedFolders.Execute(new string[] { });
+            mock.Verify(x => x.AddWatchedFolder(It.IsAny<WatchedFolder>()), Times.Never);
+            mock.Verify(x => x.Save(), Times.Never);
+
+            mock.ResetCalls();
+            mvm.AddWatchedFolders.Execute(new string[] { @"C:\Folder1\", @"C:\Folder2\" });
+            mock.Verify(x => x.AddWatchedFolder(It.IsAny<WatchedFolder>()), Times.Exactly(2));
+            mock.Verify(x => x.Save(), Times.Once);
         }
     }
 }

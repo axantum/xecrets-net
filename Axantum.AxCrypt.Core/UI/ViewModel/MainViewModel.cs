@@ -41,6 +41,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
     public class MainViewModel : ViewModelBase, IDisposable
     {
+        private FileSystemState _fileSystemState;
+
         private UpdateCheck _updateCheck;
 
         public bool LoggedOn { get { return GetProperty<bool>("LoggedOn"); } set { SetProperty("LoggedOn", value); } }
@@ -121,8 +123,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public event EventHandler<LogOnEventArgs> LoggingOn;
 
-        public MainViewModel()
+        public MainViewModel(FileSystemState fileSystemState)
         {
+            _fileSystemState = fileSystemState;
+
             InitializePropertyValues();
             BindPropertyChangedEvents();
             SubscribeToModelEvents();
@@ -137,7 +141,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             DebugMode = false;
             VersionUpdateStatus = UI.VersionUpdateStatus.Unknown;
 
-            AddWatchedFolders = new DelegateAction<IEnumerable<string>>((folders) => AddWatchedFoldersAction(folders));
+            AddWatchedFolders = new DelegateAction<IEnumerable<string>>((folders) => AddWatchedFoldersAction(folders), (folders) => LoggedOn);
             RemoveRecentFiles = new DelegateAction<IEnumerable<string>>((files) => RemoveRecentFilesAction(files));
             PurgeActiveFiles = new DelegateAction<object>((parameter) => PurgeActiveFilesAction());
             ClearPassphraseMemory = new DelegateAction<object>((parameter) => ClearPassphraseMemoryAction());
@@ -167,7 +171,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void SubscribeToModelEvents()
         {
             Instance.SessionNotification.Notification += HandleSessionChanged;
-            Instance.FileSystemState.ActiveFileChanged += HandleActiveFileChangedEvent;
+            _fileSystemState.ActiveFileChanged += HandleActiveFileChangedEvent;
         }
 
         protected virtual void OnSelectingFiles(FileSelectionEventArgs e)
@@ -322,18 +326,18 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void SetRecentFiles()
         {
-            List<ActiveFile> activeFiles = new List<ActiveFile>(Instance.FileSystemState.ActiveFiles);
+            List<ActiveFile> activeFiles = new List<ActiveFile>(_fileSystemState.ActiveFiles);
             if (RecentFilesComparer != null)
             {
                 activeFiles.Sort(RecentFilesComparer);
             }
             RecentFiles = activeFiles;
-            DecryptedFiles = Instance.FileSystemState.DecryptedActiveFiles;
+            DecryptedFiles = _fileSystemState.DecryptedActiveFiles;
         }
 
         private void SetFilesAreOpen()
         {
-            IList<ActiveFile> openFiles = Instance.FileSystemState.DecryptedActiveFiles;
+            IList<ActiveFile> openFiles = _fileSystemState.DecryptedActiveFiles;
             FilesAreOpen = openFiles.Count > 0;
         }
 
@@ -342,7 +346,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             string name = String.Empty;
             if (isLoggedOn)
             {
-                PassphraseIdentity identity = Instance.FileSystemState.Identities.First(i => i.Thumbprint == Instance.KnownKeys.DefaultEncryptionKey.Thumbprint);
+                PassphraseIdentity identity = _fileSystemState.Identities.First(i => i.Thumbprint == Instance.KnownKeys.DefaultEncryptionKey.Thumbprint);
                 name = identity.Name;
             }
             LogOnName = name;
@@ -361,7 +365,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return;
             }
 
-            if (Instance.FileSystemState.Identities.Any(identity => true))
+            if (_fileSystemState.Identities.Any(identity => true))
             {
                 TryLogOnToExistingIdentity();
                 return;
@@ -385,11 +389,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        private static void ClearPassphraseMemoryAction()
+        private void ClearPassphraseMemoryAction()
         {
             AxCryptFile.Wipe(FileSystemState.DefaultPathInfo, new ProgressContext());
             Factory.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(FileSystemState.DefaultPathInfo));
-            Factory.Instance.Singleton<KnownKeys>(() => new KnownKeys(Instance.FileSystemState, Instance.SessionNotification));
+            Factory.Instance.Singleton<KnownKeys>(() => new KnownKeys(_fileSystemState, Instance.SessionNotification));
             Instance.SessionNotification.Notify(new SessionNotification(SessionNotificationType.SessionStart));
         }
 
@@ -400,34 +404,38 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             SetRecentFiles();
         }
 
-        private static void RemoveRecentFilesAction(IEnumerable<string> files)
+        private void RemoveRecentFilesAction(IEnumerable<string> files)
         {
             foreach (string file in files)
             {
-                ActiveFile activeFile = Instance.FileSystemState.FindEncryptedPath(file);
+                ActiveFile activeFile = _fileSystemState.FindEncryptedPath(file);
                 if (activeFile != null)
                 {
-                    Instance.FileSystemState.Remove(activeFile);
+                    _fileSystemState.Remove(activeFile);
                 }
             }
         }
 
-        private static void AddWatchedFoldersAction(IEnumerable<string> folders)
+        private void AddWatchedFoldersAction(IEnumerable<string> folders)
         {
+            if (!folders.Any())
+            {
+                return;
+            }
             foreach (string folder in folders)
             {
-                Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(folder, Instance.KnownKeys.DefaultEncryptionKey.Thumbprint));
+                _fileSystemState.AddWatchedFolder(new WatchedFolder(folder, Instance.KnownKeys.DefaultEncryptionKey.Thumbprint));
             }
-            Instance.FileSystemState.Save();
+            _fileSystemState.Save();
         }
 
-        private static void RemoveWatchedFoldersAction(IEnumerable<string> folders)
+        private void RemoveWatchedFoldersAction(IEnumerable<string> folders)
         {
             foreach (string watchedFolderPath in folders)
             {
-                Instance.FileSystemState.RemoveWatchedFolder(OS.Current.FileInfo(watchedFolderPath));
+                _fileSystemState.RemoveWatchedFolder(OS.Current.FileInfo(watchedFolderPath));
             }
-            Instance.FileSystemState.Save();
+            _fileSystemState.Save();
         }
 
         private static void OpenSelectedFolderAction(string folder)
@@ -629,13 +637,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private string AskForLogOnOrDecryptPassphrase(string fullName)
         {
-            ActiveFile openFile = Instance.FileSystemState.FindEncryptedPath(fullName);
+            ActiveFile openFile = _fileSystemState.FindEncryptedPath(fullName);
             if (openFile == null || openFile.Thumbprint == null)
             {
                 return AskForLogOnPassphrase(PassphraseIdentity.Empty);
             }
 
-            PassphraseIdentity identity = Instance.FileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == openFile.Thumbprint);
+            PassphraseIdentity identity = _fileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == openFile.Thumbprint);
             if (identity == null)
             {
                 return AskForLogOnPassphrase(PassphraseIdentity.Empty);
@@ -686,8 +694,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
                     IRuntimeFileInfo decryptedInfo = OS.Current.FileInfo(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
                     ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key, ActiveFileStatus.NotDecrypted);
-                    Instance.FileSystemState.Add(activeFile);
-                    Instance.FileSystemState.Save();
+                    _fileSystemState.Add(activeFile);
+                    _fileSystemState.Save();
                 }
             };
 
@@ -728,8 +736,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.OpenFileFullName);
                     IRuntimeFileInfo decryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
                     ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key, ActiveFileStatus.NotDecrypted);
-                    Instance.FileSystemState.Add(activeFile);
-                    Instance.FileSystemState.Save();
+                    _fileSystemState.Add(activeFile);
+                    _fileSystemState.Save();
                 }
             };
 
@@ -757,8 +765,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
                     IRuntimeFileInfo decryptedInfo = OS.Current.FileInfo(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
                     ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key, ActiveFileStatus.NotDecrypted);
-                    Instance.FileSystemState.Add(activeFile);
-                    Instance.FileSystemState.Save();
+                    _fileSystemState.Add(activeFile);
+                    _fileSystemState.Save();
                 }
             };
 
@@ -819,15 +827,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             Instance.UserSettings.DisplayEncryptPassphrase = logOnArgs.DisplayPassphrase;
 
             Passphrase passphrase = new Passphrase(logOnArgs.Passphrase);
-            PassphraseIdentity identity = Instance.FileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == passphrase.DerivedPassphrase.Thumbprint);
+            PassphraseIdentity identity = _fileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == passphrase.DerivedPassphrase.Thumbprint);
             if (identity != null)
             {
                 return logOnArgs.Passphrase;
             }
 
             identity = new PassphraseIdentity(logOnArgs.Name, passphrase.DerivedPassphrase);
-            Instance.FileSystemState.Identities.Add(identity);
-            Instance.FileSystemState.Save();
+            _fileSystemState.Identities.Add(identity);
+            _fileSystemState.Save();
 
             return logOnArgs.Passphrase;
         }
