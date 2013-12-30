@@ -92,7 +92,17 @@ namespace Axantum.AxCrypt.Core.Session
 
         public void DoAllNow()
         {
+            WaitForIdle();
             OnDelayedNotification();
+            WaitForIdle();
+        }
+
+        private void WaitForIdle()
+        {
+            while (_handleSessionChangedInProgress)
+            {
+                Factory.New<ISleep>().Time(TimeSpan.Zero);
+            }
         }
 
         private void DoDelayedNotificationsInBackground(IEnumerable<SessionNotification> notifications)

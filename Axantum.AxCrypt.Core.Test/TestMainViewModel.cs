@@ -245,5 +245,64 @@ namespace Axantum.AxCrypt.Core.Test
             mock.Verify(x => x.AddWatchedFolder(It.IsAny<WatchedFolder>()), Times.Exactly(2));
             mock.Verify(x => x.Save(), Times.Once);
         }
+
+        [Test]
+        public static void TestRemoveRecentFiles()
+        {
+            var mockFileSystemState = new Mock<FileSystemState>() { CallBase = true };
+            mockFileSystemState.Setup(x => x.Save());
+
+            Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
+            MainViewModel mvm = new MainViewModel(mockFileSystemState.Object);
+
+            string file1 = @"C:\Folder\File3-txt.axx";
+            string decrypted1 = @"C:\Folder\File2.txt";
+            string file2 = @"C:\Folder\File2-txt.axx";
+            string decrypted2 = @"C:\Folder\File1.txt";
+            string file3 = @"C:\Folder\File1-txt.axx";
+            string decrypted3 = @"C:\Folder\File3.txt";
+
+            ActiveFile activeFile;
+
+            FakeRuntimeFileInfo.AddFile(file1, null);
+            activeFile = new ActiveFile(OS.Current.FileInfo(file1), OS.Current.FileInfo(decrypted1), new AesKey(), ActiveFileStatus.NotDecrypted);
+            Instance.FileSystemState.Add(activeFile);
+
+            FakeRuntimeFileInfo.AddFile(file2, null);
+            activeFile = new ActiveFile(OS.Current.FileInfo(file2), OS.Current.FileInfo(decrypted2), new AesKey(), ActiveFileStatus.NotDecrypted);
+            Instance.FileSystemState.Add(activeFile);
+
+            FakeRuntimeFileInfo.AddFile(file3, null);
+            activeFile = new ActiveFile(OS.Current.FileInfo(file3), OS.Current.FileInfo(decrypted3), new AesKey(), ActiveFileStatus.NotDecrypted);
+            Instance.FileSystemState.Add(activeFile);
+
+            Assert.That(mvm.RemoveRecentFiles.CanExecute(null), Is.True, "RemoveRecentFiles should be executable by default.");
+
+            mvm.RemoveRecentFiles.Execute(new string[] { file2 });
+            mockFileSystemState.Verify(x => x.Remove(It.IsAny<ActiveFile>()), Times.Once, "Exactly one recent file should be removed.");
+
+            mockFileSystemState.ResetCalls();
+            mvm.RemoveRecentFiles.Execute(new string[] { file2 });
+            mockFileSystemState.Verify(x => x.Remove(It.IsAny<ActiveFile>()), Times.Never, "There is no longer any matching file, so no call to remove should happen.");
+        }
+
+        [Test]
+        public static void TestPurgeRecentFiles()
+        {
+            var mockActiveFileAction = new Mock<ActiveFileAction>();
+
+            Factory.Instance.Register<ActiveFileAction>(() => mockActiveFileAction.Object);
+
+            Factory.Instance.Register<SessionNotificationHandler>(() => new SessionNotificationHandler(Instance.FileSystemState, Factory.New<ActiveFileAction>(), Factory.New<AxCryptFile>()));
+            Instance.SessionNotification.Notification += (sender, e) => Factory.New<SessionNotificationHandler>().HandleNotification(e.Notification, e.Progress);
+
+            MainViewModel mvm = new MainViewModel(Instance.FileSystemState);
+
+            Assert.That(mvm.PurgeActiveFiles.CanExecute(null), Is.True, "PuregRecentFiles should be executable by default.");
+
+            mvm.PurgeActiveFiles.Execute(null);
+            Instance.SessionNotification.DoAllNow();
+            mockActiveFileAction.Verify(x => x.PurgeActiveFiles(It.IsAny<IProgressContext>()), Times.Once, "Purge should be called.");
+        }
     }
 }
