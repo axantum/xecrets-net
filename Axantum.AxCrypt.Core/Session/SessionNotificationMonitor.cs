@@ -51,6 +51,10 @@ namespace Axantum.AxCrypt.Core.Session
             IEnumerable<SessionNotification> notifications;
             lock (_notifications)
             {
+                if (!_notifications.Any())
+                {
+                    return;
+                }
                 if (_handleSessionChangedInProgress)
                 {
                     _delayedNotification.StartIdleTimer();
@@ -61,10 +65,7 @@ namespace Axantum.AxCrypt.Core.Session
 
                 _handleSessionChangedInProgress = true;
             }
-            if (notifications.Any())
-            {
-                DoDelayedNotificationsInBackground(notifications);
-            }
+            DoDelayedNotificationsInBackground(notifications);
         }
 
         public event EventHandler<SessionNotificationEventArgs> Notification;

@@ -25,11 +25,6 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text.RegularExpressions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
@@ -38,6 +33,10 @@ using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Moq;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -223,9 +222,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestAddWatchedFolder()
         {
             var mock = new Mock<FileSystemState>() { CallBase = true };
-            mock.Setup(x => x.AddWatchedFolder(It.IsAny<WatchedFolder>()));
             mock.Setup(x => x.Save());
 
+            Factory.Instance.Singleton<FileSystemState>(() => mock.Object);
             MainViewModel mvm = new MainViewModel(mock.Object);
 
             Assert.Throws<InvalidOperationException>(() => mvm.AddWatchedFolders.Execute(new string[] { }));
@@ -236,11 +235,13 @@ namespace Axantum.AxCrypt.Core.Test
             Instance.SessionNotification.DoAllNow();
 
             mvm.AddWatchedFolders.Execute(new string[] { });
+            Instance.SessionNotification.DoAllNow();
             mock.Verify(x => x.AddWatchedFolder(It.IsAny<WatchedFolder>()), Times.Never);
             mock.Verify(x => x.Save(), Times.Never);
 
             mock.ResetCalls();
             mvm.AddWatchedFolders.Execute(new string[] { @"C:\Folder1\", @"C:\Folder2\" });
+            Instance.SessionNotification.DoAllNow();
             mock.Verify(x => x.AddWatchedFolder(It.IsAny<WatchedFolder>()), Times.Exactly(2));
             mock.Verify(x => x.Save(), Times.Once);
         }
