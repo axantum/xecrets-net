@@ -123,7 +123,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        public static void EncryptFileWithBackupAndWipe(string sourceFile, string destinationFile, AesKey key, IProgressContext progress)
+        public void EncryptFileWithBackupAndWipe(string sourceFile, string destinationFile, AesKey key, IProgressContext progress)
         {
             if (sourceFile == null)
             {
@@ -172,7 +172,7 @@ namespace Axantum.AxCrypt.Core
             EncryptFileWithBackupAndWipe(fileInfo, destinationFileInfo, encryptionKey, progress);
         }
 
-        public static void EncryptFileWithBackupAndWipe(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFileInfo, AesKey key, IProgressContext progress)
+        public void EncryptFileWithBackupAndWipe(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFileInfo, AesKey key, IProgressContext progress)
         {
             if (sourceFileInfo == null)
             {
@@ -209,7 +209,7 @@ namespace Axantum.AxCrypt.Core
         /// <param name="destinationFile">The destination file</param>
         /// <param name="passphrase">The passphrase</param>
         /// <returns>true if the passphrase was correct</returns>
-        public static bool Decrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, AesKey key, AxCryptOptions options, IProgressContext progress)
+        public bool Decrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, AesKey key, AxCryptOptions options, IProgressContext progress)
         {
             if (sourceFile == null)
             {
@@ -245,7 +245,7 @@ namespace Axantum.AxCrypt.Core
         /// <param name="destinationFile">The destination file</param>
         /// <param name="passphrase">The passphrase</param>
         /// <returns>true if the passphrase was correct</returns>
-        public static string Decrypt(IRuntimeFileInfo sourceFile, string destinationDirectory, AesKey key, AxCryptOptions options, IProgressContext progress)
+        public string Decrypt(IRuntimeFileInfo sourceFile, string destinationDirectory, AesKey key, AxCryptOptions options, IProgressContext progress)
         {
             if (sourceFile == null)
             {
@@ -282,7 +282,7 @@ namespace Axantum.AxCrypt.Core
         /// </summary>
         /// <param name="document">The loaded AxCryptDocument</param>
         /// <param name="destinationFile">The destination file</param>
-        public static void Decrypt(AxCryptDocument document, IRuntimeFileInfo destinationFile, AxCryptOptions options, IProgressContext progress)
+        public void Decrypt(AxCryptDocument document, IRuntimeFileInfo destinationFile, AxCryptOptions options, IProgressContext progress)
         {
             if (document == null)
             {
@@ -317,7 +317,7 @@ namespace Axantum.AxCrypt.Core
             {
                 if (destinationFile.Exists)
                 {
-                    AxCryptFile.Wipe(destinationFile, progress);
+                    Wipe(destinationFile, progress);
                 }
                 throw;
             }
@@ -338,7 +338,7 @@ namespace Axantum.AxCrypt.Core
             (status) => { });
         }
 
-        public static FileOperationStatus DecryptFileUniqueWithWipeOfOriginal(IRuntimeFileInfo fileInfo, AesKey decryptionKey, IProgressContext progress)
+        public FileOperationStatus DecryptFileUniqueWithWipeOfOriginal(IRuntimeFileInfo fileInfo, AesKey decryptionKey, IProgressContext progress)
         {
             progress.NotifyLevelStart();
             using (AxCryptDocument document = AxCryptFile.Document(fileInfo, decryptionKey, progress))
@@ -350,17 +350,17 @@ namespace Axantum.AxCrypt.Core
 
                 IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(fileInfo.FullName), document.DocumentHeaders.FileName));
                 destinationFileInfo = OS.Current.FileInfo(destinationFileInfo.FullName.CreateUniqueFile());
-                AxCryptFile.DecryptFile(document, destinationFileInfo.FullName, progress);
+                DecryptFile(document, destinationFileInfo.FullName, progress);
             }
-            AxCryptFile.Wipe(fileInfo, progress);
+            Wipe(fileInfo, progress);
             progress.NotifyLevelFinished();
             return FileOperationStatus.Success;
         }
 
-        public static void DecryptFile(AxCryptDocument document, string decryptedFileFullName, IProgressContext progress)
+        public void DecryptFile(AxCryptDocument document, string decryptedFileFullName, IProgressContext progress)
         {
             IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(decryptedFileFullName);
-            AxCryptFile.Decrypt(document, decryptedFileInfo, AxCryptOptions.SetFileTimes, progress);
+            Decrypt(document, decryptedFileInfo, AxCryptOptions.SetFileTimes, progress);
         }
 
         /// <summary>
@@ -391,7 +391,7 @@ namespace Axantum.AxCrypt.Core
             return document;
         }
 
-        public static void WriteToFileWithBackup(IRuntimeFileInfo destinationFileInfo, Action<Stream> writeFileStreamTo, IProgressContext progress)
+        public void WriteToFileWithBackup(IRuntimeFileInfo destinationFileInfo, Action<Stream> writeFileStreamTo, IProgressContext progress)
         {
             if (destinationFileInfo == null)
             {
@@ -416,7 +416,7 @@ namespace Axantum.AxCrypt.Core
             {
                 if (temporaryFileInfo.Exists)
                 {
-                    AxCryptFile.Wipe(temporaryFileInfo, progress);
+                    Wipe(temporaryFileInfo, progress);
                 }
                 throw;
             }
@@ -428,7 +428,7 @@ namespace Axantum.AxCrypt.Core
 
                 backupFileInfo.MoveTo(backupFilePath);
                 temporaryFileInfo.MoveTo(destinationFileInfo.FullName);
-                AxCryptFile.Wipe(backupFileInfo, progress);
+                Wipe(backupFileInfo, progress);
             }
             else
             {
@@ -456,12 +456,7 @@ namespace Axantum.AxCrypt.Core
             return axCryptFileName;
         }
 
-        public static void Wipe(string fullName, IProgressContext progress)
-        {
-            Wipe(OS.Current.FileInfo(fullName), progress);
-        }
-
-        public static void Wipe(IRuntimeFileInfo fileInfo, IProgressContext progress)
+        public virtual void Wipe(IRuntimeFileInfo fileInfo, IProgressContext progress)
         {
             if (fileInfo == null)
             {

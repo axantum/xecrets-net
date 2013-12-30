@@ -261,7 +261,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private bool EncryptFileOperation()
         {
-            AxCryptFile.EncryptFileWithBackupAndWipe(_eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, _eventArgs.Key, _progress);
+            Factory.New<AxCryptFile>().EncryptFileWithBackupAndWipe(_eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, _eventArgs.Key, _progress);
 
             _eventArgs.Status = FileOperationStatus.Success;
             return true;
@@ -294,14 +294,14 @@ namespace Axantum.AxCrypt.Core.UI
             _progress.NotifyLevelStart();
             try
             {
-                AxCryptFile.DecryptFile(_eventArgs.AxCryptDocument, _eventArgs.SaveFileFullName, _progress);
+                Factory.New<AxCryptFile>().DecryptFile(_eventArgs.AxCryptDocument, _eventArgs.SaveFileFullName, _progress);
             }
             finally
             {
                 _eventArgs.AxCryptDocument.Dispose();
                 _eventArgs.AxCryptDocument = null;
             }
-            AxCryptFile.Wipe(_eventArgs.OpenFileFullName, _progress);
+            Factory.New<AxCryptFile>().Wipe(OS.Current.FileInfo(_eventArgs.OpenFileFullName), _progress);
 
             _progress.NotifyLevelFinished();
 
@@ -388,7 +388,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
 
             _progress.NotifyLevelStart();
-            AxCryptFile.Wipe(OS.Current.FileInfo(_eventArgs.SaveFileFullName), _progress);
+            Factory.New<AxCryptFile>().Wipe(OS.Current.FileInfo(_eventArgs.SaveFileFullName), _progress);
             _progress.NotifyLevelFinished();
 
             _eventArgs.Status = FileOperationStatus.Success;

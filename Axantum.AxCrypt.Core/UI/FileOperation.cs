@@ -229,7 +229,7 @@ namespace Axantum.AxCrypt.Core.UI
             IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(destinationPath);
             using (FileLock fileLock = FileLock.Lock(destinationFileInfo))
             {
-                AxCryptFile.Decrypt(document, destinationFileInfo, AxCryptOptions.SetFileTimes, progress);
+                Factory.New<AxCryptFile>().Decrypt(document, destinationFileInfo, AxCryptOptions.SetFileTimes, progress);
             }
             ActiveFile destinationActiveFile = new ActiveFile(sourceFileInfo, destinationFileInfo, document.DocumentHeaders.KeyEncryptingKey, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.IgnoreChange);
             if (Instance.Log.IsInfoEnabled)

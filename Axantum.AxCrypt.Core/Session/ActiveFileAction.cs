@@ -259,7 +259,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 using (Stream activeFileStream = activeFile.DecryptedFileInfo.OpenRead())
                 {
-                    AxCryptFile.WriteToFileWithBackup(activeFile.EncryptedFileInfo, (Stream destination) =>
+                    Factory.New<AxCryptFile>().WriteToFileWithBackup(activeFile.EncryptedFileInfo, (Stream destination) =>
                     {
                         AxCryptFile.Encrypt(activeFile.DecryptedFileInfo, destination, activeFile.Key, AxCryptOptions.EncryptWithCompression, progress);
                     }, progress);
@@ -323,7 +323,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     Instance.Log.LogInfo("Deleting '{0}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                 }
-                AxCryptFile.Wipe(activeFile.DecryptedFileInfo, progress);
+                Factory.New<AxCryptFile>().Wipe(activeFile.DecryptedFileInfo, progress);
             }
             catch (IOException)
             {

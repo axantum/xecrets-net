@@ -304,5 +304,10 @@ namespace Axantum.AxCrypt.Core.Test
             Instance.SessionNotification.DoAllNow();
             mockActiveFileAction.Verify(x => x.PurgeActiveFiles(It.IsAny<IProgressContext>()), Times.Once, "Purge should be called.");
         }
+
+        [Test]
+        public static void TestClearPassphraseMemory()
+        {
+        }
     }
 }

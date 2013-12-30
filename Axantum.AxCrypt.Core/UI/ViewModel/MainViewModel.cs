@@ -25,17 +25,17 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.Session;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
@@ -391,7 +391,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void ClearPassphraseMemoryAction()
         {
-            AxCryptFile.Wipe(FileSystemState.DefaultPathInfo, new ProgressContext());
+            Factory.New<AxCryptFile>().Wipe(FileSystemState.DefaultPathInfo, new ProgressContext());
             Factory.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(FileSystemState.DefaultPathInfo));
             Factory.Instance.Singleton<KnownKeys>(() => new KnownKeys(_fileSystemState, Instance.SessionNotification));
             Instance.SessionNotification.Notify(new SessionNotification(SessionNotificationType.SessionStart));
