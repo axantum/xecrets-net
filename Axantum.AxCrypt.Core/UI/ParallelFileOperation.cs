@@ -73,7 +73,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// <param name="files">The files to operation on.</param>
         /// <param name="work">The work to do for each file.</param>
         /// <param name="allComplete">The completion callback after *all* files have been processed.</param>
-        public void DoFiles(IEnumerable<IRuntimeFileInfo> files, Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus> work, Action<FileOperationStatus> allComplete)
+        public virtual void DoFiles(IEnumerable<IRuntimeFileInfo> files, Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus> work, Action<FileOperationStatus> allComplete)
         {
             WorkerGroup workerGroup = null;
             Instance.BackgroundWork.Work(

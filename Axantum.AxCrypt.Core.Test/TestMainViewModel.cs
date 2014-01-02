@@ -349,5 +349,127 @@ namespace Axantum.AxCrypt.Core.Test
             mockFileSystemState.Verify(x => x.RemoveWatchedFolder(It.IsAny<IRuntimeFileInfo>()), Times.Exactly(2));
             mockFileSystemState.Verify(x => x.Save(), Times.Once);
         }
+
+        [Test]
+        public static void TestDecryptFilesInteractively()
+        {
+            var mockFileSystemState = new Mock<FileSystemState>();
+
+            MainViewModel mvm = new MainViewModel(mockFileSystemState.Object);
+            mvm.SelectingFiles += (sender, e) =>
+            {
+                e.SelectedFiles.Add(@"C:\Folder\File1.axx");
+                e.SelectedFiles.Add(@"C:\Folder\File2.axx");
+            };
+
+            var mockParallelFile = new Mock<ParallelFileOperation>(new FakeUIThread());
+            Factory.Instance.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
+            mockParallelFile.Setup(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()))
+                .Callback<IEnumerable<IRuntimeFileInfo>, Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>, Action<FileOperationStatus>>((files, work, allComplete) => allComplete(FileOperationStatus.Success));
+
+            mvm.DecryptFiles.Execute(null);
+
+            mockParallelFile.Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
+        }
+
+        [Test]
+        public static void TestDecryptFilesWithCancel()
+        {
+            var mockFileSystemState = new Mock<FileSystemState>();
+
+            MainViewModel mvm = new MainViewModel(mockFileSystemState.Object);
+            mvm.SelectingFiles += (sender, e) =>
+            {
+                e.Cancel = true;
+            };
+
+            var mockParallelFile = new Mock<ParallelFileOperation>(new FakeUIThread());
+            Factory.Instance.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
+
+            mvm.DecryptFiles.Execute(null);
+
+            mockParallelFile.Verify(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()), Times.Never);
+        }
+
+        [Test]
+        public static void TestDecryptFilesWithList()
+        {
+            var mockFileSystemState = new Mock<FileSystemState>();
+
+            MainViewModel mvm = new MainViewModel(mockFileSystemState.Object);
+            mvm.SelectingFiles += (sender, e) =>
+            {
+                e.SelectedFiles.Add(@"C:\Folder\File1.axx");
+                e.SelectedFiles.Add(@"C:\Folder\File2.axx");
+            };
+
+            var mockParallelFile = new Mock<ParallelFileOperation>(new FakeUIThread());
+            Factory.Instance.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
+
+            mvm.DecryptFiles.Execute(new string[] { @"C:\Folder\File3.axx" });
+
+            mockParallelFile.Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
+        }
+
+        [Test]
+        public static void TestEncryptFilesInteractively()
+        {
+            var mockFileSystemState = new Mock<FileSystemState>();
+
+            MainViewModel mvm = new MainViewModel(mockFileSystemState.Object);
+            mvm.SelectingFiles += (sender, e) =>
+            {
+                e.SelectedFiles.Add(@"C:\Folder\File1.txt");
+                e.SelectedFiles.Add(@"C:\Folder\File2.txt");
+            };
+
+            var mockParallelFile = new Mock<ParallelFileOperation>(new FakeUIThread());
+            Factory.Instance.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
+            mockParallelFile.Setup(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()))
+                .Callback<IEnumerable<IRuntimeFileInfo>, Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>, Action<FileOperationStatus>>((files, work, allComplete) => allComplete(FileOperationStatus.Success));
+
+            mvm.EncryptFiles.Execute(null);
+
+            mockParallelFile.Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
+        }
+
+        [Test]
+        public static void TestEncryptFilesWithCancel()
+        {
+            var mockFileSystemState = new Mock<FileSystemState>();
+
+            MainViewModel mvm = new MainViewModel(mockFileSystemState.Object);
+            mvm.SelectingFiles += (sender, e) =>
+            {
+                e.Cancel = true;
+            };
+
+            var mockParallelFile = new Mock<ParallelFileOperation>(new FakeUIThread());
+            Factory.Instance.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
+
+            mvm.EncryptFiles.Execute(null);
+
+            mockParallelFile.Verify(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()), Times.Never);
+        }
+
+        [Test]
+        public static void TestEncryptFilesWithList()
+        {
+            var mockFileSystemState = new Mock<FileSystemState>();
+
+            MainViewModel mvm = new MainViewModel(mockFileSystemState.Object);
+            mvm.SelectingFiles += (sender, e) =>
+            {
+                e.SelectedFiles.Add(@"C:\Folder\File1.txt");
+                e.SelectedFiles.Add(@"C:\Folder\File2.txt");
+            };
+
+            var mockParallelFile = new Mock<ParallelFileOperation>(new FakeUIThread());
+            Factory.Instance.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
+
+            mvm.EncryptFiles.Execute(new string[] { @"C:\Folder\File3.txt" });
+
+            mockParallelFile.Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
+        }
     }
 }
