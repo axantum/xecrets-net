@@ -471,5 +471,94 @@ namespace Axantum.AxCrypt.Core.Test
 
             mockParallelFile.Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
         }
+
+        [Test]
+        public static void TestOpenFilesWithList()
+        {
+            var mockFileSystemState = new Mock<FileSystemState>();
+
+            MainViewModel mvm = new MainViewModel(mockFileSystemState.Object);
+
+            var mockParallelFile = new Mock<ParallelFileOperation>(new FakeUIThread());
+            Factory.Instance.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
+            bool allCompleteCalled = false;
+            mockParallelFile.Setup(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()))
+                .Callback<IEnumerable<IRuntimeFileInfo>, Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>, Action<FileOperationStatus>>((files, work, allComplete) => { allComplete(FileOperationStatus.Success); allCompleteCalled = true; });
+
+            mvm.OpenFiles.Execute(new string[] { @"C:\Folder\File3.txt" });
+
+            Assert.That(allCompleteCalled, Is.True);
+            mockParallelFile.Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
+        }
+
+        [Test]
+        public static void TestLogOnLogOffWhenLoggedOn()
+        {
+            var mockFileSystemState = new Mock<FileSystemState>();
+            MainViewModel mvm = new MainViewModel(mockFileSystemState.Object);
+
+            Instance.KnownKeys.DefaultEncryptionKey = new AesKey();
+
+            mvm.LogOnLogOff.Execute(null);
+
+            Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(0));
+        }
+
+        [Test]
+        public static void TestLogOnLogOffWhenLoggedOffAndIdentityKnown()
+        {
+            MainViewModel mvm = new MainViewModel(Instance.FileSystemState);
+            Passphrase passphrase = new Passphrase("a");
+
+            PassphraseIdentity identity = new PassphraseIdentity("Name", passphrase.DerivedPassphrase);
+            Instance.FileSystemState.Identities.Add(identity);
+
+            mvm.LoggingOn += (sender, e) =>
+            {
+                e.Passphrase = "a";
+            };
+
+            mvm.LogOnLogOff.Execute(null);
+
+            Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(1));
+            Assert.That(Instance.KnownKeys.IsLoggedOn, Is.True);
+        }
+
+        [Test]
+        public static void TestLogOnLogOffWhenLoggedOffAndNoIdentityKnown()
+        {
+            MainViewModel mvm = new MainViewModel(Instance.FileSystemState);
+
+            mvm.LoggingOn += (sender, e) =>
+            {
+                e.Passphrase = "b";
+                e.Name = "Name";
+            };
+
+            mvm.LogOnLogOff.Execute(null);
+
+            Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(1));
+            Assert.That(Instance.KnownKeys.IsLoggedOn, Is.True);
+            Assert.That(Instance.FileSystemState.Identities.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public static void TestDecryptFolders()
+        {
+            var mockFileSystemState = new Mock<FileSystemState>();
+
+            MainViewModel mvm = new MainViewModel(mockFileSystemState.Object);
+
+            var mockParallelFile = new Mock<ParallelFileOperation>(new FakeUIThread());
+            Factory.Instance.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
+            bool allCompleteCalled = false;
+            mockParallelFile.Setup(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()))
+                .Callback<IEnumerable<IRuntimeFileInfo>, Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>, Action<FileOperationStatus>>((files, work, allComplete) => { allComplete(FileOperationStatus.Success); allCompleteCalled = true; });
+
+            mvm.DecryptFolders.Execute(new string[] { @"C:\Folder\" });
+
+            Assert.That(allCompleteCalled, Is.True);
+            mockParallelFile.Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
+        }
     }
 }

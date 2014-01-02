@@ -365,7 +365,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return;
             }
 
-            if (_fileSystemState.Identities.Any(identity => true))
+            if (_fileSystemState.Identities.Any())
             {
                 TryLogOnToExistingIdentity();
                 return;
