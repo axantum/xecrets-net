@@ -25,6 +25,15 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Ipc;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Core.UI.ViewModel;
+using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -38,15 +47,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
-using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Ipc;
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.Session;
-using Axantum.AxCrypt.Core.UI;
-using Axantum.AxCrypt.Core.UI.ViewModel;
-using Axantum.AxCrypt.Properties;
 
 namespace Axantum.AxCrypt
 {
@@ -313,108 +313,108 @@ namespace Axantum.AxCrypt
 
             _mainToolStrip.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForMainToolStrip(e); };
 
-            _mainViewModel.LoggingOn += (object me, LogOnEventArgs args) => { HandleLogOn(args); };
-            _mainViewModel.SelectingFiles += (object me, FileSelectionEventArgs args) => { HandleFileSelection(args); };
+            _mainViewModel.LoggingOn += (sender, e) => { HandleLogOn(e); };
+            _mainViewModel.SelectingFiles += (sender, e) => { HandleFileSelection(e); };
         }
 
-        private void HandleLogOn(LogOnEventArgs args)
+        private void HandleLogOn(LogOnEventArgs e)
         {
-            if (args.CreateNew)
+            if (e.CreateNew)
             {
-                HandleCreateNewLogOn(args);
+                HandleCreateNewLogOn(e);
             }
             else
             {
-                HandleExistingLogOn(args);
+                HandleExistingLogOn(e);
             }
         }
 
-        private void HandleCreateNewLogOn(LogOnEventArgs args)
+        private void HandleCreateNewLogOn(LogOnEventArgs e)
         {
-            using (NewPassphraseDialog passphraseDialog = new NewPassphraseDialog(args.Passphrase))
+            using (NewPassphraseDialog passphraseDialog = new NewPassphraseDialog(e.Passphrase))
             {
-                passphraseDialog.ShowPassphraseCheckBox.Checked = args.DisplayPassphrase;
+                passphraseDialog.ShowPassphraseCheckBox.Checked = e.DisplayPassphrase;
                 DialogResult dialogResult = passphraseDialog.ShowDialog(this);
                 if (dialogResult != DialogResult.OK || passphraseDialog.PassphraseTextBox.Text.Length == 0)
                 {
-                    args.Cancel = true;
+                    e.Cancel = true;
                     return;
                 }
-                args.DisplayPassphrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
-                args.Passphrase = passphraseDialog.PassphraseTextBox.Text;
-                args.Name = passphraseDialog.NameTextBox.Text;
+                e.DisplayPassphrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
+                e.Passphrase = passphraseDialog.PassphraseTextBox.Text;
+                e.Name = passphraseDialog.NameTextBox.Text;
             }
             return;
         }
 
-        private void HandleExistingLogOn(LogOnEventArgs args)
+        private void HandleExistingLogOn(LogOnEventArgs e)
         {
-            using (LogOnDialog logOnDialog = new LogOnDialog(args.Identity.Name))
+            using (LogOnDialog logOnDialog = new LogOnDialog(e.Identity.Name))
             {
-                logOnDialog.ShowPassphraseCheckBox.Checked = args.DisplayPassphrase;
+                logOnDialog.ShowPassphraseCheckBox.Checked = e.DisplayPassphrase;
                 DialogResult dialogResult = logOnDialog.ShowDialog(this);
                 if (dialogResult == DialogResult.Retry)
                 {
-                    args.CreateNew = true;
+                    e.CreateNew = true;
                     return;
                 }
 
                 if (dialogResult != DialogResult.OK || logOnDialog.PassphraseTextBox.Text.Length == 0)
                 {
-                    args.Cancel = true;
+                    e.Cancel = true;
                     return;
                 }
-                args.DisplayPassphrase = logOnDialog.ShowPassphraseCheckBox.Checked;
-                args.Passphrase = logOnDialog.PassphraseTextBox.Text;
+                e.DisplayPassphrase = logOnDialog.ShowPassphraseCheckBox.Checked;
+                e.Passphrase = logOnDialog.PassphraseTextBox.Text;
             }
             return;
         }
 
-        private static void HandleFileSelection(FileSelectionEventArgs args)
+        private static void HandleFileSelection(FileSelectionEventArgs e)
         {
-            switch (args.FileSelectionType)
+            switch (e.FileSelectionType)
             {
                 case FileSelectionType.SaveAsEncrypted:
                 case FileSelectionType.SaveAsDecrypted:
-                    HandleSaveAsFileSelection(args);
+                    HandleSaveAsFileSelection(e);
                     break;
 
                 case FileSelectionType.WipeConfirm:
-                    HandleWipeConfirm(args);
+                    HandleWipeConfirm(e);
                     break;
 
                 default:
-                    HandleOpenFileSelection(args);
+                    HandleOpenFileSelection(e);
                     break;
             }
         }
 
-        private static void HandleWipeConfirm(FileSelectionEventArgs args)
+        private static void HandleWipeConfirm(FileSelectionEventArgs e)
         {
             using (ConfirmWipeDialog cwd = new ConfirmWipeDialog())
             {
-                cwd.FileNameLabel.Text = Path.GetFileName(args.SelectedFiles[0]);
-                args.Skip = false;
+                cwd.FileNameLabel.Text = Path.GetFileName(e.SelectedFiles[0]);
+                e.Skip = false;
                 DialogResult confirmResult = cwd.ShowDialog();
-                args.ConfirmAll = cwd.ConfirmAllCheckBox.Checked;
-                args.Skip = confirmResult == DialogResult.No;
-                args.Cancel = confirmResult == DialogResult.Cancel;
+                e.ConfirmAll = cwd.ConfirmAllCheckBox.Checked;
+                e.Skip = confirmResult == DialogResult.No;
+                e.Cancel = confirmResult == DialogResult.Cancel;
             }
         }
 
-        private static void HandleOpenFileSelection(FileSelectionEventArgs args)
+        private static void HandleOpenFileSelection(FileSelectionEventArgs e)
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
-                if (args.SelectedFiles != null && args.SelectedFiles.Count > 0 && !String.IsNullOrEmpty(args.SelectedFiles[0]))
+                if (e.SelectedFiles != null && e.SelectedFiles.Count > 0 && !String.IsNullOrEmpty(e.SelectedFiles[0]))
                 {
-                    IRuntimeFileInfo initialFolder = OS.Current.FileInfo(args.SelectedFiles[0]);
+                    IRuntimeFileInfo initialFolder = OS.Current.FileInfo(e.SelectedFiles[0]);
                     if (initialFolder.IsFolder)
                     {
                         ofd.InitialDirectory = initialFolder.FullName;
                     }
                 }
-                switch (args.FileSelectionType)
+                switch (e.FileSelectionType)
                 {
                     case FileSelectionType.Decrypt:
                         ofd.Title = Resources.DecryptFileOpenDialogTitle;
@@ -453,20 +453,20 @@ namespace Axantum.AxCrypt
                         break;
                 }
                 DialogResult result = ofd.ShowDialog();
-                args.Cancel = result != DialogResult.OK;
-                args.SelectedFiles.Clear();
+                e.Cancel = result != DialogResult.OK;
+                e.SelectedFiles.Clear();
                 foreach (string fileName in ofd.FileNames)
                 {
-                    args.SelectedFiles.Add(fileName);
+                    e.SelectedFiles.Add(fileName);
                 }
             }
         }
 
-        private static void HandleSaveAsFileSelection(FileSelectionEventArgs args)
+        private static void HandleSaveAsFileSelection(FileSelectionEventArgs e)
         {
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
-                switch (args.FileSelectionType)
+                switch (e.FileSelectionType)
                 {
                     case FileSelectionType.SaveAsEncrypted:
                         sfd.Title = Resources.EncryptFileSaveAsDialogTitle;
@@ -476,7 +476,7 @@ namespace Axantum.AxCrypt
                         break;
 
                     case FileSelectionType.SaveAsDecrypted:
-                        string extension = Path.GetExtension(args.SelectedFiles[0]);
+                        string extension = Path.GetExtension(e.SelectedFiles[0]);
                         sfd.Title = Resources.DecryptedSaveAsFileDialogTitle;
                         sfd.DefaultExt = extension;
                         sfd.AddExtension = !String.IsNullOrEmpty(extension);
@@ -484,14 +484,14 @@ namespace Axantum.AxCrypt
                         break;
                 }
                 sfd.CheckPathExists = true;
-                sfd.FileName = Path.GetFileName(args.SelectedFiles[0]);
-                sfd.InitialDirectory = Path.GetDirectoryName(args.SelectedFiles[0]);
+                sfd.FileName = Path.GetFileName(e.SelectedFiles[0]);
+                sfd.InitialDirectory = Path.GetDirectoryName(e.SelectedFiles[0]);
                 sfd.ValidateNames = true;
                 sfd.OverwritePrompt = true;
                 sfd.RestoreDirectory = true;
                 DialogResult saveAsResult = sfd.ShowDialog();
-                args.Cancel = saveAsResult != DialogResult.OK;
-                args.SelectedFiles[0] = sfd.FileName;
+                e.Cancel = saveAsResult != DialogResult.OK;
+                e.SelectedFiles[0] = sfd.FileName;
             }
         }
 
