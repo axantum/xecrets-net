@@ -166,7 +166,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public void RemoveWatchedFolder(IRuntimeFileInfo fileInfo)
+        public virtual void RemoveWatchedFolder(IRuntimeFileInfo fileInfo)
         {
             WatchedFoldersInternal.Remove(new WatchedFolder(fileInfo.FullName, AesKeyThumbprint.Zero));
             Instance.SessionNotification.Notify(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Instance.KnownKeys.DefaultEncryptionKey, fileInfo.FullName));

@@ -81,7 +81,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private HashSet<SessionNotification> _notifications;
 
-        public void Notify(SessionNotification notification)
+        public virtual void Notify(SessionNotification notification)
         {
             lock (_notifications)
             {

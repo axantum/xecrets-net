@@ -308,6 +308,46 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestClearPassphraseMemory()
         {
+            string file1 = @"C:\Folder\File3-txt.axx";
+            string decrypted1 = @"C:\Folder\File2.txt";
+
+            ActiveFile activeFile;
+
+            FakeRuntimeFileInfo.AddFile(file1, null);
+            activeFile = new ActiveFile(OS.Current.FileInfo(file1), OS.Current.FileInfo(decrypted1), new AesKey(), ActiveFileStatus.NotDecrypted);
+            Instance.FileSystemState.Add(activeFile);
+
+            Instance.KnownKeys.Add(new AesKey());
+            Instance.KnownKeys.DefaultEncryptionKey = new AesKey();
+
+            Assert.That(Instance.FileSystemState.ActiveFileCount, Is.EqualTo(1), "One ActiveFile is expected.");
+            Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(2), "Two known keys are expected.");
+            Assert.That(Instance.KnownKeys.DefaultEncryptionKey, Is.Not.Null, "There should be a non-null default encryption key");
+
+            MainViewModel mvm = new MainViewModel(Instance.FileSystemState);
+            var sessionNotificationMonitorMock = new Mock<SessionNotificationMonitor>(new DelayedAction(new FakeDelayTimer(new FakeSleep()), Instance.UserSettings.SessionNotificationMinimumIdle));
+            Factory.Instance.Singleton<SessionNotificationMonitor>(() => sessionNotificationMonitorMock.Object);
+
+            mvm.ClearPassphraseMemory.Execute(null);
+
+            Assert.That(Instance.FileSystemState.ActiveFileCount, Is.EqualTo(0));
+            Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(0));
+            Assert.That(Instance.KnownKeys.DefaultEncryptionKey, Is.Null);
+
+            sessionNotificationMonitorMock.Verify(x => x.Notify(It.Is<SessionNotification>(sn => sn.NotificationType == SessionNotificationType.SessionStart)), Times.Once);
+        }
+
+        [Test]
+        public static void TestRemoveWatchedFolders()
+        {
+            var mockFileSystemState = new Mock<FileSystemState>();
+
+            MainViewModel mvm = new MainViewModel(mockFileSystemState.Object);
+
+            mvm.RemoveWatchedFolders.Execute(new string[] { "File1.txt", "file2.txt" });
+
+            mockFileSystemState.Verify(x => x.RemoveWatchedFolder(It.IsAny<IRuntimeFileInfo>()), Times.Exactly(2));
+            mockFileSystemState.Verify(x => x.Save(), Times.Once);
         }
     }
 }
