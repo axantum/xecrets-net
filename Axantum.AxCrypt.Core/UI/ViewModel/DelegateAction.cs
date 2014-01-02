@@ -26,7 +26,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool CanExecute(object parameter)
         {
-            return _canExecuteMethod((T)parameter);
+            return _canExecuteMethod(parameter != null ? (T)parameter : default(T));
         }
 
         public void Execute(object parameter)

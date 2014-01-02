@@ -152,7 +152,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             OpenFiles = new DelegateAction<IEnumerable<string>>((files) => OpenFilesAction(files));
             LogOnLogOff = new DelegateAction<object>((parameter) => LogOnLogOffAction());
             DecryptFolders = new DelegateAction<IEnumerable<string>>((folders) => DecryptFoldersAction(folders));
-            UpdateCheck = new DelegateAction<DateTime>((lastUpdateCheckUtc) => UpdateCheckAction(lastUpdateCheckUtc));
+            UpdateCheck = new DelegateAction<DateTime>((utc) => UpdateCheckAction(utc), (utc) => _updateCheck != null);
             WipeFiles = new DelegateAction<IEnumerable<string>>((files) => WipeFilesAction(files));
             OpenFilesFromFolder = new DelegateAction<string>((folder) => OpenFilesFromFolderAction(folder));
             AddRecentFiles = new DelegateAction<IEnumerable<string>>((files) => AddRecentFilesAction(files));
