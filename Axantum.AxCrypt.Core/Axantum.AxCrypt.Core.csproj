@@ -170,6 +170,7 @@
     <Compile Include="UI\ViewModel\FileSelectionEventArgs.cs" />
     <Compile Include="UI\ViewModel\FileSelectionType.cs" />
     <Compile Include="UI\ViewModel\IAction.cs" />
+    <Compile Include="UI\ViewModel\IdentityViewModel.cs" />
     <Compile Include="UI\ViewModel\LogOnEventArgs.cs" />
     <Compile Include="UI\ViewModel\IViewModel.cs" />
     <Compile Include="UI\ViewModel\LogOnViewModel.cs" />

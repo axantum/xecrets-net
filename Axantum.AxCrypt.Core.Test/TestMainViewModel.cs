@@ -64,7 +64,7 @@ namespace Axantum.AxCrypt.Core.Test
             var mockEnvironment = new Mock<FakeRuntimeEnvironment>() { CallBase = true };
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => mockEnvironment.Object);
 
-            MainViewModel mvm = new MainViewModel(Instance.FileSystemState);
+            MainViewModel mvm = Factory.New<MainViewModel>();
             mvm.OpenSelectedFolder.Execute(filePath);
 
             mockEnvironment.Verify(r => r.Launch(filePath));
@@ -73,7 +73,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestCurrentVersionPropertyBind()
         {
-            MainViewModel mvm = new MainViewModel(Instance.FileSystemState);
+            MainViewModel mvm = Factory.New<MainViewModel>();
             UpdateCheck mockedUpdateCheck = null;
             Factory.Instance.Register<Version, UpdateCheck>((version) => mockedUpdateCheck = new Mock<UpdateCheck>(version).Object);
             Version ourVersion = new Version(1, 2, 3, 4);
@@ -88,7 +88,7 @@ namespace Axantum.AxCrypt.Core.Test
             var mockUpdateCheck = new Mock<UpdateCheck>(new Version(1, 2, 3, 4));
             Factory.Instance.Register<Version, UpdateCheck>((version) => mockUpdateCheck.Object);
 
-            MainViewModel mvm = new MainViewModel(Instance.FileSystemState);
+            MainViewModel mvm = Factory.New<MainViewModel>();
             Assert.That(mvm.UpdateCheck.CanExecute(null), Is.False);
             Assert.Throws<InvalidOperationException>(() => mvm.UpdateCheck.Execute(new DateTime(2001, 2, 3)));
         }
@@ -100,7 +100,7 @@ namespace Axantum.AxCrypt.Core.Test
             var mockUpdateCheck = new Mock<UpdateCheck>(ourVersion);
             Factory.Instance.Register<Version, UpdateCheck>((version) => mockUpdateCheck.Object);
 
-            MainViewModel mvm = new MainViewModel(Instance.FileSystemState);
+            MainViewModel mvm = Factory.New<MainViewModel>();
             mvm.CurrentVersion = ourVersion;
             Assert.That(mvm.UpdateCheck.CanExecute(null), Is.True);
             mvm.UpdateCheck.Execute(new DateTime(2001, 2, 3));
@@ -111,7 +111,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDragAndDropFilesPropertyBindSetsDragAndDropFileTypes()
         {
-            MainViewModel mvm = new MainViewModel(Instance.FileSystemState);
+            MainViewModel mvm = Factory.New<MainViewModel>();
 
             string encryptedFilePath = @"C:\Folder\File-txt.axx";
             mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
@@ -141,7 +141,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDragAndDropFilesPropertyBindSetsDroppableAsRecent()
         {
-            MainViewModel mvm = new MainViewModel(Instance.FileSystemState);
+            MainViewModel mvm = Factory.New<MainViewModel>();
 
             string encryptedFilePath = @"C:\Folder\File-txt.axx";
             mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
@@ -172,7 +172,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDragAndDropFilesPropertyBindSetsDroppableAsWatchedFolder()
         {
-            MainViewModel mvm = new MainViewModel(Instance.FileSystemState);
+            MainViewModel mvm = Factory.New<MainViewModel>();
 
             string folder1Path = @"C:\Folder1\FilesFolder\";
             mvm.DragAndDropFiles = new string[] { folder1Path, };
@@ -197,7 +197,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSetRecentFilesComparer()
         {
-            MainViewModel mvm = new MainViewModel(Instance.FileSystemState);
+            MainViewModel mvm = Factory.New<MainViewModel>();
 
             string file1 = @"C:\Folder\File3-txt.axx";
             string decrypted1 = @"C:\Folder\File2.txt";
@@ -251,7 +251,7 @@ namespace Axantum.AxCrypt.Core.Test
             mock.Setup(x => x.Save());
 
             Factory.Instance.Singleton<FileSystemState>(() => mock.Object);
-            MainViewModel mvm = new MainViewModel(mock.Object);
+            MainViewModel mvm = Factory.New<MainViewModel>();
 
             Assert.Throws<InvalidOperationException>(() => mvm.AddWatchedFolders.Execute(new string[] { }));
 
@@ -279,7 +279,7 @@ namespace Axantum.AxCrypt.Core.Test
             mockFileSystemState.Setup(x => x.Save());
 
             Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
-            MainViewModel mvm = new MainViewModel(mockFileSystemState.Object);
+            MainViewModel mvm = Factory.New<MainViewModel>();
 
             string file1 = @"C:\Folder\File3-txt.axx";
             string decrypted1 = @"C:\Folder\File2.txt";
@@ -325,7 +325,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(decrypted1, null);
             FakeRuntimeFileInfo.AddFile(decrypted2, null);
 
-            MainViewModel mvm = new MainViewModel(Instance.FileSystemState);
+            MainViewModel mvm = Factory.New<MainViewModel>();
 
             var mockParallelFile = new Mock<ParallelFileOperation>(new FakeUIThread());
             Factory.Instance.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
@@ -347,7 +347,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Register<SessionNotificationHandler>(() => new SessionNotificationHandler(Instance.FileSystemState, Factory.New<ActiveFileAction>(), Factory.New<AxCryptFile>()));
             Instance.SessionNotification.Notification += (sender, e) => Factory.New<SessionNotificationHandler>().HandleNotification(e.Notification, e.Progress);
 
-            MainViewModel mvm = new MainViewModel(Instance.FileSystemState);
+            MainViewModel mvm = Factory.New<MainViewModel>();
 
             Assert.That(mvm.PurgeActiveFiles.CanExecute(null), Is.True, "PuregRecentFiles should be executable by default.");
 
@@ -375,7 +375,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(2), "Two known keys are expected.");
             Assert.That(Instance.KnownKeys.DefaultEncryptionKey, Is.Not.Null, "There should be a non-null default encryption key");
 
-            MainViewModel mvm = new MainViewModel(Instance.FileSystemState);
+            MainViewModel mvm = Factory.New<MainViewModel>();
             var sessionNotificationMonitorMock = new Mock<SessionNotificationMonitor>(new DelayedAction(new FakeDelayTimer(new FakeSleep()), Instance.UserSettings.SessionNotificationMinimumIdle));
             Factory.Instance.Singleton<SessionNotificationMonitor>(() => sessionNotificationMonitorMock.Object);
 
@@ -393,7 +393,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             var mockFileSystemState = new Mock<FileSystemState>();
 
-            MainViewModel mvm = new MainViewModel(mockFileSystemState.Object);
+            Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
+            MainViewModel mvm = Factory.New<MainViewModel>();
 
             mvm.RemoveWatchedFolders.Execute(new string[] { "File1.txt", "file2.txt" });
 
@@ -406,7 +407,9 @@ namespace Axantum.AxCrypt.Core.Test
         {
             var mockFileSystemState = new Mock<FileSystemState>();
 
-            MainViewModel mvm = new MainViewModel(mockFileSystemState.Object);
+            Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
+            MainViewModel mvm = Factory.New<MainViewModel>();
+
             mvm.SelectingFiles += (sender, e) =>
             {
                 e.SelectedFiles.Add(@"C:\Folder\File1.axx");
@@ -428,7 +431,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             var mockFileSystemState = new Mock<FileSystemState>();
 
-            MainViewModel mvm = new MainViewModel(mockFileSystemState.Object);
+            Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
+            MainViewModel mvm = Factory.New<MainViewModel>();
             mvm.SelectingFiles += (sender, e) =>
             {
                 e.Cancel = true;
@@ -447,7 +451,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             var mockFileSystemState = new Mock<FileSystemState>();
 
-            MainViewModel mvm = new MainViewModel(mockFileSystemState.Object);
+            Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
+            MainViewModel mvm = Factory.New<MainViewModel>();
             mvm.SelectingFiles += (sender, e) =>
             {
                 e.SelectedFiles.Add(@"C:\Folder\File1.axx");
@@ -467,7 +472,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             var mockFileSystemState = new Mock<FileSystemState>();
 
-            MainViewModel mvm = new MainViewModel(mockFileSystemState.Object);
+            Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
+            MainViewModel mvm = Factory.New<MainViewModel>();
             mvm.SelectingFiles += (sender, e) =>
             {
                 e.SelectedFiles.Add(@"C:\Folder\File1.txt");
@@ -489,7 +495,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             var mockFileSystemState = new Mock<FileSystemState>();
 
-            MainViewModel mvm = new MainViewModel(mockFileSystemState.Object);
+            Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
+            MainViewModel mvm = Factory.New<MainViewModel>();
             mvm.SelectingFiles += (sender, e) =>
             {
                 e.Cancel = true;
@@ -508,7 +515,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             var mockFileSystemState = new Mock<FileSystemState>();
 
-            MainViewModel mvm = new MainViewModel(mockFileSystemState.Object);
+            Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
+            MainViewModel mvm = Factory.New<MainViewModel>();
             mvm.SelectingFiles += (sender, e) =>
             {
                 e.SelectedFiles.Add(@"C:\Folder\File1.txt");
@@ -528,7 +536,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             var mockFileSystemState = new Mock<FileSystemState>();
 
-            MainViewModel mvm = new MainViewModel(mockFileSystemState.Object);
+            Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
+            MainViewModel mvm = Factory.New<MainViewModel>();
 
             var mockParallelFile = new Mock<ParallelFileOperation>(new FakeUIThread());
             Factory.Instance.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
@@ -546,11 +555,12 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestLogOnLogOffWhenLoggedOn()
         {
             var mockFileSystemState = new Mock<FileSystemState>();
-            MainViewModel mvm = new MainViewModel(mockFileSystemState.Object);
+            Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
+            MainViewModel mvm = Factory.New<MainViewModel>();
 
             Instance.KnownKeys.DefaultEncryptionKey = new AesKey();
 
-            mvm.LogOnLogOff.Execute(null);
+            mvm.IdentityViewModel.LogOnLogOff.Execute(null);
 
             Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(0));
         }
@@ -558,18 +568,18 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestLogOnLogOffWhenLoggedOffAndIdentityKnown()
         {
-            MainViewModel mvm = new MainViewModel(Instance.FileSystemState);
+            MainViewModel mvm = Factory.New<MainViewModel>();
             Passphrase passphrase = new Passphrase("a");
 
             PassphraseIdentity identity = new PassphraseIdentity("Name", passphrase.DerivedPassphrase);
             Instance.FileSystemState.Identities.Add(identity);
 
-            mvm.LoggingOn += (sender, e) =>
+            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
                 e.Passphrase = "a";
             };
 
-            mvm.LogOnLogOff.Execute(null);
+            mvm.IdentityViewModel.LogOnLogOff.Execute(null);
 
             Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(1));
             Assert.That(Instance.KnownKeys.IsLoggedOn, Is.True);
@@ -578,15 +588,15 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestLogOnLogOffWhenLoggedOffAndNoIdentityKnown()
         {
-            MainViewModel mvm = new MainViewModel(Instance.FileSystemState);
+            MainViewModel mvm = Factory.New<MainViewModel>();
 
-            mvm.LoggingOn += (sender, e) =>
+            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
                 e.Passphrase = "b";
                 e.Name = "Name";
             };
 
-            mvm.LogOnLogOff.Execute(null);
+            mvm.IdentityViewModel.LogOnLogOff.Execute(null);
 
             Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(1));
             Assert.That(Instance.KnownKeys.IsLoggedOn, Is.True);
@@ -596,14 +606,14 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestLogOnLogOffWhenLoggedOffAndNoIdentityKnownAndNoPassphraseGiven()
         {
-            MainViewModel mvm = new MainViewModel(Instance.FileSystemState);
+            MainViewModel mvm = Factory.New<MainViewModel>();
 
-            mvm.LoggingOn += (sender, e) =>
+            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
                 e.Passphrase = String.Empty;
             };
 
-            mvm.LogOnLogOff.Execute(null);
+            mvm.IdentityViewModel.LogOnLogOff.Execute(null);
 
             Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(0));
             Assert.That(Instance.KnownKeys.IsLoggedOn, Is.False);
@@ -615,7 +625,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             var mockFileSystemState = new Mock<FileSystemState>();
 
-            MainViewModel mvm = new MainViewModel(mockFileSystemState.Object);
+            Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
+            MainViewModel mvm = Factory.New<MainViewModel>();
 
             var mockParallelFile = new Mock<ParallelFileOperation>(new FakeUIThread());
             Factory.Instance.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
@@ -634,7 +645,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             var mockFileSystemState = new Mock<FileSystemState>();
 
-            MainViewModel mvm = new MainViewModel(mockFileSystemState.Object);
+            Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
+            MainViewModel mvm = Factory.New<MainViewModel>();
             mvm.SelectingFiles += (sender, e) =>
             {
                 e.SelectedFiles.Add(@"C:\Folder\File1.txt");
@@ -656,7 +668,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             var mockFileSystemState = new Mock<FileSystemState>();
 
-            MainViewModel mvm = new MainViewModel(mockFileSystemState.Object);
+            Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
+            MainViewModel mvm = Factory.New<MainViewModel>();
             mvm.SelectingFiles += (sender, e) =>
             {
                 e.Cancel = true;
@@ -675,7 +688,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             var mockFileSystemState = new Mock<FileSystemState>();
 
-            MainViewModel mvm = new MainViewModel(mockFileSystemState.Object);
+            Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
+            MainViewModel mvm = Factory.New<MainViewModel>();
             mvm.SelectingFiles += (sender, e) =>
             {
                 e.SelectedFiles.Add(@"C:\Folder\File1.txt");
@@ -695,7 +709,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             var mockFileSystemState = new Mock<FileSystemState>();
 
-            MainViewModel mvm = new MainViewModel(mockFileSystemState.Object);
+            Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
+            MainViewModel mvm = Factory.New<MainViewModel>();
             mvm.SelectingFiles += (sender, e) =>
             {
                 e.Cancel = true;
@@ -714,7 +729,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             var mockFileSystemState = new Mock<FileSystemState>();
 
-            MainViewModel mvm = new MainViewModel(mockFileSystemState.Object);
+            Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
+            MainViewModel mvm = Factory.New<MainViewModel>();
             mvm.SelectingFiles += (sender, e) =>
             {
                 e.SelectedFiles.Clear();

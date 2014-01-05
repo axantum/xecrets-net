@@ -29,6 +29,7 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Core.UI.ViewModel;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -55,6 +56,8 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Register<AxCryptFile>(() => new AxCryptFile());
             Factory.Instance.Register<ActiveFileAction>(() => new ActiveFileAction());
             Factory.Instance.Register<FileOperation>(() => new FileOperation(Instance.FileSystemState, Instance.SessionNotification));
+            Factory.Instance.Register<IdentityViewModel>(() => new IdentityViewModel(Instance.FileSystemState, Instance.KnownKeys, Instance.UserSettings));
+            Factory.Instance.Register<MainViewModel>(() => new MainViewModel(Instance.FileSystemState, Factory.New<IdentityViewModel>()));
 
             Instance.UserSettings.KeyWrapIterations = 1234;
             Instance.UserSettings.ThumbprintSalt = KeyWrapSalt.Zero;

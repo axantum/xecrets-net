@@ -287,7 +287,7 @@ namespace Axantum.AxCrypt
             _decryptAndRemoveFromListToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DecryptFiles.Execute(_mainViewModel.SelectedRecentFiles); };
             _decryptToolStripButton.Click += (sender, e) => { _mainViewModel.DecryptFiles.Execute(null); };
             _decryptToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DecryptFiles.Execute(null); };
-            _encryptionKeyToolStripButton.Click += (sender, e) => { _mainViewModel.LogOnLogOff.Execute(null); };
+            _encryptionKeyToolStripButton.Click += (sender, e) => { _mainViewModel.IdentityViewModel.LogOnLogOff.Execute(null); };
             _encryptToolStripButton.Click += (sender, e) => { _mainViewModel.EncryptFiles.Execute(null); };
             _encryptToolStripMenuItem.Click += (sender, e) => { _mainViewModel.EncryptFiles.Execute(null); };
             _openEncryptedToolStripButton.Click += (sender, e) => { _mainViewModel.OpenFilesFromFolder.Execute(String.Empty); };
@@ -313,7 +313,7 @@ namespace Axantum.AxCrypt
 
             _mainToolStrip.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForMainToolStrip(e); };
 
-            _mainViewModel.LoggingOn += (sender, e) => { HandleLogOn(e); };
+            _mainViewModel.IdentityViewModel.LoggingOn += (sender, e) => { HandleLogOn(e); };
             _mainViewModel.SelectingFiles += (sender, e) => { HandleFileSelection(e); };
         }
 

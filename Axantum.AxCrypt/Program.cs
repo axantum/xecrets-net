@@ -25,11 +25,6 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Globalization;
-using System.Linq;
-using System.Threading;
-using System.Windows.Forms;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Ipc;
@@ -38,6 +33,11 @@ using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Mono;
+using System;
+using System.Globalization;
+using System.Linq;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
 {
@@ -84,7 +84,8 @@ namespace Axantum.AxCrypt
             Factory.Instance.Register<SessionNotificationHandler>(() => new SessionNotificationHandler(Instance.FileSystemState, Factory.New<ActiveFileAction>(), Factory.New<AxCryptFile>()));
             Factory.Instance.Register<int, KeyWrapSalt>((length) => new KeyWrapSalt(length));
             Factory.Instance.Register<Version, UpdateCheck>((version) => new UpdateCheck(version));
-            Factory.Instance.Register<MainViewModel>(() => new MainViewModel(Instance.FileSystemState));
+            Factory.Instance.Register<IdentityViewModel>(() => new IdentityViewModel(Instance.FileSystemState, Instance.KnownKeys, Instance.UserSettings));
+            Factory.Instance.Register<MainViewModel>(() => new MainViewModel(Instance.FileSystemState, Factory.New<IdentityViewModel>()));
         }
 
         private static void WireupEvents()

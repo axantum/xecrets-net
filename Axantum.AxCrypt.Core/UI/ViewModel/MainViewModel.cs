@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
@@ -44,6 +43,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private FileSystemState _fileSystemState;
 
         private UpdateCheck _updateCheck;
+
+        public IdentityViewModel IdentityViewModel { get; private set; }
 
         public bool LoggedOn { get { return GetProperty<bool>("LoggedOn"); } set { SetProperty("LoggedOn", value); } }
 
@@ -107,8 +108,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAction OpenFiles { get; private set; }
 
-        public IAction LogOnLogOff { get; private set; }
-
         public IAction DecryptFolders { get; private set; }
 
         public IAction UpdateCheck { get; private set; }
@@ -121,11 +120,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public event EventHandler<FileSelectionEventArgs> SelectingFiles;
 
-        public event EventHandler<LogOnEventArgs> LoggingOn;
-
-        public MainViewModel(FileSystemState fileSystemState)
+        public MainViewModel(FileSystemState fileSystemState, IdentityViewModel identityViewModel)
         {
             _fileSystemState = fileSystemState;
+            IdentityViewModel = identityViewModel;
 
             InitializePropertyValues();
             BindPropertyChangedEvents();
@@ -150,7 +148,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             DecryptFiles = new DelegateAction<IEnumerable<string>>((files) => DecryptFilesAction(files));
             EncryptFiles = new DelegateAction<IEnumerable<string>>((files) => EncryptFilesAction(files));
             OpenFiles = new DelegateAction<IEnumerable<string>>((files) => OpenFilesAction(files));
-            LogOnLogOff = new DelegateAction<object>((parameter) => LogOnLogOffAction());
             DecryptFolders = new DelegateAction<IEnumerable<string>>((folders) => DecryptFoldersAction(folders));
             UpdateCheck = new DelegateAction<DateTime>((utc) => UpdateCheckAction(utc), (utc) => _updateCheck != null);
             WipeFiles = new DelegateAction<IEnumerable<string>>((files) => WipeFilesAction(files));
@@ -177,15 +174,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         protected virtual void OnSelectingFiles(FileSelectionEventArgs e)
         {
             EventHandler<FileSelectionEventArgs> handler = SelectingFiles;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
-        }
-
-        protected virtual void OnLoggingOn(LogOnEventArgs e)
-        {
-            EventHandler<LogOnEventArgs> handler = LoggingOn;
             if (handler != null)
             {
                 handler(this, e);
@@ -355,38 +343,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             DecryptFileEnabled = isLoggedOn;
             OpenEncryptedEnabled = isLoggedOn;
             WatchedFoldersEnabled = isLoggedOn;
-        }
-
-        private void LogOnLogOffAction()
-        {
-            if (Instance.KnownKeys.IsLoggedOn)
-            {
-                Instance.KnownKeys.Clear();
-                return;
-            }
-
-            if (_fileSystemState.Identities.Any())
-            {
-                TryLogOnToExistingIdentity();
-                return;
-            }
-
-            string passphrase = AskForNewEncryptionPassphrase(String.Empty);
-            if (String.IsNullOrEmpty(passphrase))
-            {
-                return;
-            }
-
-            Instance.KnownKeys.DefaultEncryptionKey = Passphrase.Derive(passphrase);
-        }
-
-        private void TryLogOnToExistingIdentity()
-        {
-            string passphrase = AskForLogOnPassphrase(PassphraseIdentity.Empty);
-            if (String.IsNullOrEmpty(passphrase))
-            {
-                return;
-            }
         }
 
         private void ClearPassphraseMemoryAction()
@@ -626,30 +582,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void HandleQueryDecryptionPassphraseEvent(object sender, FileOperationEventArgs e)
         {
-            string passphraseText = AskForLogOnOrDecryptPassphrase(e.OpenFileFullName);
-            if (String.IsNullOrEmpty(passphraseText))
+            IdentityViewModel.AskForLogOnOrDecryptPassphrase.Execute(e.OpenFileFullName);
+            if (String.IsNullOrEmpty(IdentityViewModel.PassphraseText))
             {
                 e.Cancel = true;
                 return;
             }
-            e.Passphrase = passphraseText;
-        }
-
-        private string AskForLogOnOrDecryptPassphrase(string fullName)
-        {
-            ActiveFile openFile = _fileSystemState.FindEncryptedPath(fullName);
-            if (openFile == null || openFile.Thumbprint == null)
-            {
-                return AskForLogOnPassphrase(PassphraseIdentity.Empty);
-            }
-
-            PassphraseIdentity identity = _fileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == openFile.Thumbprint);
-            if (identity == null)
-            {
-                return AskForLogOnPassphrase(PassphraseIdentity.Empty);
-            }
-
-            return AskForLogOnPassphrase(identity);
+            e.Passphrase = IdentityViewModel.PassphraseText;
         }
 
         private FileOperationStatus EncryptFile(IRuntimeFileInfo file, IProgressContext progress)
@@ -673,13 +612,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
             {
-                string passphrase = AskForLogOnPassphrase(PassphraseIdentity.Empty);
-                if (String.IsNullOrEmpty(passphrase))
+                IdentityViewModel.AskForLogOnPassphrase.Execute(PassphraseIdentity.Empty);
+                if (String.IsNullOrEmpty(IdentityViewModel.PassphraseText))
                 {
                     e.Cancel = true;
                     return;
                 }
-                e.Passphrase = passphrase;
+                e.Passphrase = IdentityViewModel.PassphraseText;
             };
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
@@ -771,73 +710,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             };
 
             return operationsController.EncryptFile(fullName);
-        }
-
-        private string AskForLogOnPassphrase(PassphraseIdentity identity)
-        {
-            string passphrase = AskForLogOnOrEncryptionPassphrase(identity);
-            if (passphrase.Length == 0)
-            {
-                return String.Empty;
-            }
-
-            Instance.KnownKeys.DefaultEncryptionKey = Passphrase.Derive(passphrase);
-            return passphrase;
-        }
-
-        private string AskForLogOnOrEncryptionPassphrase(PassphraseIdentity identity)
-        {
-            LogOnEventArgs logOnArgs = new LogOnEventArgs()
-            {
-                DisplayPassphrase = Instance.UserSettings.DisplayEncryptPassphrase,
-                Identity = identity,
-            };
-            OnLoggingOn(logOnArgs);
-
-            if (logOnArgs.CreateNew)
-            {
-                return AskForNewEncryptionPassphrase(logOnArgs.Passphrase);
-            }
-
-            if (logOnArgs.Cancel || logOnArgs.Passphrase.Length == 0)
-            {
-                return String.Empty;
-            }
-
-            Instance.UserSettings.DisplayEncryptPassphrase = logOnArgs.DisplayPassphrase;
-
-            return logOnArgs.Passphrase;
-        }
-
-        private string AskForNewEncryptionPassphrase(string defaultPassphrase)
-        {
-            LogOnEventArgs logOnArgs = new LogOnEventArgs()
-            {
-                CreateNew = true,
-                DisplayPassphrase = Instance.UserSettings.DisplayEncryptPassphrase,
-                Passphrase = defaultPassphrase
-            };
-            OnLoggingOn(logOnArgs);
-
-            if (logOnArgs.Cancel || logOnArgs.Passphrase.Length == 0)
-            {
-                return String.Empty;
-            }
-
-            Instance.UserSettings.DisplayEncryptPassphrase = logOnArgs.DisplayPassphrase;
-
-            Passphrase passphrase = new Passphrase(logOnArgs.Passphrase);
-            PassphraseIdentity identity = _fileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == passphrase.DerivedPassphrase.Thumbprint);
-            if (identity != null)
-            {
-                return logOnArgs.Passphrase;
-            }
-
-            identity = new PassphraseIdentity(logOnArgs.Name, passphrase.DerivedPassphrase);
-            _fileSystemState.Identities.Add(identity);
-            _fileSystemState.Save();
-
-            return logOnArgs.Passphrase;
         }
 
         public void Dispose()
