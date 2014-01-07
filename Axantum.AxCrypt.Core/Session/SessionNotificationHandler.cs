@@ -23,7 +23,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         public virtual void HandleNotification(SessionNotification notification)
         {
-            Instance.BackgroundWork.Work(
+            Instance.ProgressBackground.Work(
                 (IProgressContext progress) =>
                 {
                     progress.NotifyLevelStart();

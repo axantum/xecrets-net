@@ -135,7 +135,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             if (AddWatchedFolderInternal(watchedFolder))
             {
-                Instance.SessionNotification.Notify(new SessionNotification(SessionNotificationType.WatchedFolderAdded, Instance.KnownKeys.DefaultEncryptionKey, watchedFolder.Path));
+                Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderAdded, Instance.KnownKeys.DefaultEncryptionKey, watchedFolder.Path));
             }
         }
 
@@ -169,7 +169,7 @@ namespace Axantum.AxCrypt.Core.Session
         public virtual void RemoveWatchedFolder(IRuntimeFileInfo fileInfo)
         {
             WatchedFoldersInternal.Remove(new WatchedFolder(fileInfo.FullName, AesKeyThumbprint.Zero));
-            Instance.SessionNotification.Notify(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Instance.KnownKeys.DefaultEncryptionKey, fileInfo.FullName));
+            Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Instance.KnownKeys.DefaultEncryptionKey, fileInfo.FullName));
         }
 
         public event EventHandler<ActiveFileChangedEventArgs> ActiveFileChanged;

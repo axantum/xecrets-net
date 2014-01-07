@@ -389,7 +389,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Register<ActiveFileAction>(() => mockActiveFileAction.Object);
 
             Factory.Instance.Register<SessionNotificationHandler>(() => new SessionNotificationHandler(Instance.FileSystemState, Factory.New<ActiveFileAction>(), Factory.New<AxCryptFile>()));
-            Instance.SessionNotification.Notification += (sender, e) => Factory.New<SessionNotificationHandler>().HandleNotification(e.Notification);
+            Instance.SessionNotify.Notification += (sender, e) => Factory.New<SessionNotificationHandler>().HandleNotification(e.Notification);
 
             MainViewModel mvm = Factory.New<MainViewModel>();
 
@@ -421,8 +421,8 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(Instance.KnownKeys.DefaultEncryptionKey, Is.Not.Null, "There should be a non-null default encryption key");
 
             MainViewModel mvm = Factory.New<MainViewModel>();
-            var sessionNotificationMonitorMock = new Mock<SessionNotificationMonitor>();
-            Factory.Instance.Singleton<SessionNotificationMonitor>(() => sessionNotificationMonitorMock.Object);
+            var sessionNotificationMonitorMock = new Mock<SessionNotify>();
+            Factory.Instance.Singleton<SessionNotify>(() => sessionNotificationMonitorMock.Object);
 
             mvm.ClearPassphraseMemory.Execute(null);
 

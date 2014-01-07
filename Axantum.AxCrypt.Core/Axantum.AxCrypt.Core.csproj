@@ -161,7 +161,7 @@
     <Compile Include="Session\ProcessState.cs" />
     <Compile Include="Session\SessionNotification.cs" />
     <Compile Include="Session\SessionNotificationHandler.cs" />
-    <Compile Include="Session\SessionNotificationMonitor.cs" />
+    <Compile Include="Session\SessionNotify.cs" />
     <Compile Include="Session\SessionNotificationType.cs" />
     <Compile Include="Session\SessionNotificationEventArgs.cs" />
     <Compile Include="Session\WatchedFolder.cs" />

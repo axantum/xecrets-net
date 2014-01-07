@@ -41,9 +41,9 @@ namespace Axantum.AxCrypt.Core.UI
     public class FileOperation
     {
         private FileSystemState _fileSystemState;
-        private SessionNotificationMonitor _notificationMonitor;
+        private SessionNotify _notificationMonitor;
 
-        public FileOperation(FileSystemState fileSystemState, SessionNotificationMonitor notificationMonitor)
+        public FileOperation(FileSystemState fileSystemState, SessionNotify notificationMonitor)
         {
             _fileSystemState = fileSystemState;
             _notificationMonitor = notificationMonitor;

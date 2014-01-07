@@ -30,9 +30,9 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Session
 {
-    public class SessionNotificationMonitor
+    public class SessionNotify
     {
-        public SessionNotificationMonitor()
+        public SessionNotify()
         {
         }
 

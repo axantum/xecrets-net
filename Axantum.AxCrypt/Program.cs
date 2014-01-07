@@ -76,15 +76,15 @@ namespace Axantum.AxCrypt
             Factory.Instance.Singleton<CommandService>(() => new CommandService(new HttpRequestServer(), new HttpRequestClient()));
             Factory.Instance.Singleton<IUserSettings>(() => new UserSettings(Factory.New<IRuntimeFileInfo>(Path.Combine(workFolderPath, "UserSettings.txt")), new KeyWrapIterationCalculator()));
             Factory.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(Factory.New<IRuntimeFileInfo>(Path.Combine(workFolderPath, "FileSystemState.xml"))));
-            Factory.Instance.Singleton<KnownKeys>(() => new KnownKeys(Instance.FileSystemState, Instance.SessionNotification));
+            Factory.Instance.Singleton<KnownKeys>(() => new KnownKeys(Instance.FileSystemState, Instance.SessionNotify));
             Factory.Instance.Singleton<ParallelFileOperation>(() => new ParallelFileOperation(Instance.UIThread));
             Factory.Instance.Singleton<ProcessState>(() => new ProcessState());
-            Factory.Instance.Singleton<SessionNotificationMonitor>(() => new SessionNotificationMonitor());
+            Factory.Instance.Singleton<SessionNotify>(() => new SessionNotify());
 
             Factory.Instance.Register<AxCryptFile>(() => new AxCryptFile());
             Factory.Instance.Register<ActiveFileAction>(() => new ActiveFileAction());
             Factory.Instance.Register<ISleep>(() => new Sleep());
-            Factory.Instance.Register<FileOperation>(() => new FileOperation(Instance.FileSystemState, Instance.SessionNotification));
+            Factory.Instance.Register<FileOperation>(() => new FileOperation(Instance.FileSystemState, Instance.SessionNotify));
             Factory.Instance.Register<SessionNotificationHandler>(() => new SessionNotificationHandler(Instance.FileSystemState, Factory.New<ActiveFileAction>(), Factory.New<AxCryptFile>()));
             Factory.Instance.Register<int, KeyWrapSalt>((length) => new KeyWrapSalt(length));
             Factory.Instance.Register<Version, UpdateCheck>((version) => new UpdateCheck(version));
@@ -98,7 +98,7 @@ namespace Axantum.AxCrypt
 
         private static void WireupEvents()
         {
-            Instance.SessionNotification.Notification += (sender, e) => Factory.New<SessionNotificationHandler>().HandleNotification(e.Notification);
+            Instance.SessionNotify.Notification += (sender, e) => Factory.New<SessionNotificationHandler>().HandleNotification(e.Notification);
         }
 
         private static void SetCulture()

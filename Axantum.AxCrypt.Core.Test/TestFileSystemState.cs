@@ -333,7 +333,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             bool wasHere = false;
 
-            SessionNotificationMonitor notificationMonitor = new SessionNotificationMonitor();
+            SessionNotify notificationMonitor = new SessionNotify();
 
             notificationMonitor.Notification += (object sender, SessionNotificationEventArgs e) => { wasHere = e.Notification.NotificationType == SessionNotificationType.ActiveFileChange; };
             notificationMonitor.Notify(new SessionNotification(SessionNotificationType.ActiveFileChange));

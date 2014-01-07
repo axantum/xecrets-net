@@ -49,16 +49,16 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
             Factory.Instance.Singleton<ILogging>(() => new FakeLogging());
             Factory.Instance.Singleton<IUserSettings>(() => new UserSettings(Instance.WorkFolder.FileInfo.Combine("UserSettings.txt"), new KeyWrapIterationCalculator()));
-            Factory.Instance.Singleton(() => new KnownKeys(Instance.FileSystemState, Instance.SessionNotification));
+            Factory.Instance.Singleton(() => new KnownKeys(Instance.FileSystemState, Instance.SessionNotify));
             Factory.Instance.Singleton(() => new ProcessState());
             Factory.Instance.Singleton<IUIThread>(() => new FakeUIThread());
             Factory.Instance.Singleton<IProgressBackground>(() => new FakeProgressBackground());
-            Factory.Instance.Singleton<SessionNotificationMonitor>(() => new SessionNotificationMonitor());
+            Factory.Instance.Singleton<SessionNotify>(() => new SessionNotify());
             Factory.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(Instance.WorkFolder.FileInfo.Combine("FileSystemState.xml")));
 
             Factory.Instance.Register<AxCryptFile>(() => new AxCryptFile());
             Factory.Instance.Register<ActiveFileAction>(() => new ActiveFileAction());
-            Factory.Instance.Register<FileOperation>(() => new FileOperation(Instance.FileSystemState, Instance.SessionNotification));
+            Factory.Instance.Register<FileOperation>(() => new FileOperation(Instance.FileSystemState, Instance.SessionNotify));
             Factory.Instance.Register<IdentityViewModel>(() => new IdentityViewModel(Instance.FileSystemState, Instance.KnownKeys, Instance.UserSettings));
             Factory.Instance.Register<MainViewModel>(() => new MainViewModel(Instance.FileSystemState, Factory.New<IdentityViewModel>()));
             Factory.Instance.Register<string, IRuntimeFileInfo>((path) => new FakeRuntimeFileInfo(path));

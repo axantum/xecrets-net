@@ -52,7 +52,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             int notificationCount = 0;
 
-            SessionNotificationMonitor monitor = new SessionNotificationMonitor();
+            SessionNotify monitor = new SessionNotify();
             monitor.Notification += (sender, e) =>
             {
                 if (e.Notification.NotificationType == SessionNotificationType.LogOn)

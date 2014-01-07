@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestAddNewKnownKey()
         {
-            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotification);
+            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
             AesKey key = new AesKey();
             knownKeys.Add(key);
             Assert.That(knownKeys.Keys.First(), Is.EqualTo(key), "The first and only key should be the one just added.");
@@ -64,7 +64,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestAddTwoNewKnownKeys()
         {
-            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotification);
+            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
             AesKey key1 = new AesKey();
             knownKeys.Add(key1);
             AesKey key2 = new AesKey();
@@ -76,7 +76,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestAddSameKeyTwice()
         {
-            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotification);
+            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
             AesKey key = new AesKey();
             knownKeys.Add(key);
             knownKeys.Add(key);
@@ -87,7 +87,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDefaultEncryptionKey()
         {
-            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotification);
+            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
             AesKey key = new AesKey();
             knownKeys.DefaultEncryptionKey = key;
             Assert.That(knownKeys.DefaultEncryptionKey, Is.EqualTo(key), "The DefaultEncryptionKey should be the one just set as it.");
@@ -98,7 +98,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestClear()
         {
-            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotification);
+            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
             AesKey key1 = new AesKey();
             knownKeys.Add(key1);
             AesKey key2 = new AesKey();
@@ -115,7 +115,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSettingNullDefaultEncryptionKey()
         {
-            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotification);
+            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
             AesKey key1 = new AesKey();
             knownKeys.Add(key1);
             AesKey key2 = new AesKey();
@@ -131,7 +131,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestChangedEvent()
         {
             bool wasChanged = false;
-            SessionNotificationMonitor notificationMonitor = new SessionNotificationMonitor();
+            SessionNotify notificationMonitor = new SessionNotify();
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, notificationMonitor);
             notificationMonitor.Notification += (object sender, SessionNotificationEventArgs e) =>
             {
@@ -149,7 +149,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestAddKeyForKnownIdentity()
         {
             Instance.FileSystemState.Identities.Add(new PassphraseIdentity("Unit Test", new Passphrase("a").DerivedPassphrase));
-            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotification);
+            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
             knownKeys.Add(new Passphrase("a").DerivedPassphrase);
 
             Assert.That(knownKeys.DefaultEncryptionKey, Is.EqualTo(new Passphrase("a").DerivedPassphrase), "When adding a key that is for a known identity it should be set as the default.");
@@ -158,7 +158,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestWatchedFoldersNotLoggedOn()
         {
-            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotification);
+            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
             Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder\"));
             IEnumerable<WatchedFolder> watchedFolders = knownKeys.WatchedFolders;
 
@@ -170,7 +170,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             AesKey key1 = new AesKey();
             AesKey key2 = new AesKey();
-            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotification);
+            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
             Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder1\", key1.Thumbprint));
             Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder2\", key2.Thumbprint));
             knownKeys.DefaultEncryptionKey = key2;

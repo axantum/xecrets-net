@@ -34,6 +34,9 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core
 {
+    /// <summary>
+    /// Syntactic convenience methods for accessing well-known application singleton instances.
+    /// </summary>
     public static class Instance
     {
         public static KnownKeys KnownKeys
@@ -46,12 +49,12 @@ namespace Axantum.AxCrypt.Core
             get { return Factory.Instance.Singleton<IUIThread>(); }
         }
 
-        public static IProgressBackground BackgroundWork
+        public static IProgressBackground ProgressBackground
         {
             get { return Factory.Instance.Singleton<IProgressBackground>(); }
         }
 
-        public static ParallelFileOperation ParallelBackground
+        public static ParallelFileOperation ParallelFileOperation
         {
             get { return Factory.Instance.Singleton<ParallelFileOperation>(); }
         }
@@ -91,9 +94,9 @@ namespace Axantum.AxCrypt.Core
             get { return Factory.Instance.Singleton<ILogging>(); }
         }
 
-        public static SessionNotificationMonitor SessionNotification
+        public static SessionNotify SessionNotify
         {
-            get { return Factory.Instance.Singleton<SessionNotificationMonitor>(); }
+            get { return Factory.Instance.Singleton<SessionNotify>(); }
         }
 
         public static WorkFolder WorkFolder

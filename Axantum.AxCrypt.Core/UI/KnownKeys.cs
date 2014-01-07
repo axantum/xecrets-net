@@ -39,9 +39,9 @@ namespace Axantum.AxCrypt.Core.UI
 
         private FileSystemState _fileSystemState;
 
-        private SessionNotificationMonitor _notificationMonitor;
+        private SessionNotify _notificationMonitor;
 
-        public KnownKeys(FileSystemState fileSystemState, SessionNotificationMonitor notificationMonitor)
+        public KnownKeys(FileSystemState fileSystemState, SessionNotify notificationMonitor)
         {
             _fileSystemState = fileSystemState;
             _notificationMonitor = notificationMonitor;

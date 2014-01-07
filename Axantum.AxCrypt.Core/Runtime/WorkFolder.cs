@@ -25,7 +25,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             {
                 return;
             }
-            Instance.SessionNotification.Notify(new SessionNotification(SessionNotificationType.WorkFolderChange, e.FullName));
+            Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WorkFolderChange, e.FullName));
         }
 
         public void Dispose()
