@@ -33,12 +33,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security;
-using System.Security.Permissions;
 
 namespace Axantum.AxCrypt.Mono
 {
-    [PermissionSet(SecurityAction.LinkDemand, Name = "FullTrust"), PermissionSet(SecurityAction.InheritanceDemand, Name = "FullTrust")]
     public class FileWatcher : IFileWatcher
     {
         private FileSystemWatcher _fileSystemWatcher;

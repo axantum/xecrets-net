@@ -100,21 +100,6 @@ namespace Axantum.AxCrypt.Core.Test
             get { return 512; }
         }
 
-        internal void FileCreated(string path)
-        {
-            FakeFileWatcher.HandleFileChanged(path);
-        }
-
-        internal void FileDeleted(string path)
-        {
-            FakeFileWatcher.HandleFileChanged(path);
-        }
-
-        internal void FileMoved(string path)
-        {
-            FakeFileWatcher.HandleFileChanged(path);
-        }
-
         public DateTime UtcNow
         {
             get { return TimeFunction(); }
