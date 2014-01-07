@@ -146,7 +146,9 @@ namespace Axantum.AxCrypt.Core.Test
             mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
             Assert.That(mvm.DroppableAsRecent, Is.False, "An encrypted file that does not exist is not a candidate for recent.");
 
-            Instance.KnownKeys.DefaultEncryptionKey = new AesKey();
+            PassphraseIdentity id = new PassphraseIdentity("Test", new AesKey());
+            Instance.FileSystemState.Identities.Add(id);
+            Instance.KnownKeys.DefaultEncryptionKey = id.Key;
             mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
             Assert.That(mvm.DroppableAsRecent, Is.False, "An encrypted file that does not exist, even when logged on, is not droppable as recent.");
 
@@ -163,7 +165,9 @@ namespace Axantum.AxCrypt.Core.Test
             mvm.DragAndDropFiles = new string[] { decryptedFilePath, };
             Assert.That(mvm.DroppableAsRecent, Is.False, "An encrpytable file without a valid log on is not droppable as recent.");
 
-            Instance.KnownKeys.DefaultEncryptionKey = new AesKey();
+            id = new PassphraseIdentity("Test2", new AesKey());
+            Instance.FileSystemState.Identities.Add(id);
+            Instance.KnownKeys.DefaultEncryptionKey = id.Key;
             mvm.DragAndDropFiles = new string[] { decryptedFilePath, };
             Assert.That(mvm.DroppableAsRecent, Is.True, "An encryptable existing file with a valid log on should be droppable as recent.");
         }
@@ -303,7 +307,9 @@ namespace Axantum.AxCrypt.Core.Test
             mockParallelFile.Setup(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()))
                 .Callback<IEnumerable<IRuntimeFileInfo>, Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>, Action<FileOperationStatus>>((files, work, allComplete) => allComplete(FileOperationStatus.Success));
 
-            Instance.KnownKeys.DefaultEncryptionKey = new AesKey();
+            PassphraseIdentity id = new PassphraseIdentity("Test", new AesKey());
+            Instance.FileSystemState.Identities.Add(id);
+            Instance.KnownKeys.DefaultEncryptionKey = id.Key;
             mvm.AddRecentFiles.Execute(new string[] { file1, file2, decrypted1 });
 
             mockParallelFile.Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()), Times.Once);
@@ -318,17 +324,13 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Register<ActiveFileAction>(() => mockActiveFileAction.Object);
 
             Factory.Instance.Register<SessionNotificationHandler>(() => new SessionNotificationHandler(Instance.FileSystemState, Factory.New<ActiveFileAction>(), Factory.New<AxCryptFile>()));
-            Instance.SessionNotification.Notification += (sender, e) => Factory.New<SessionNotificationHandler>().HandleNotification(e.Notification, e.Progress);
+            Instance.SessionNotification.Notification += (sender, e) => Factory.New<SessionNotificationHandler>().HandleNotification(e.Notification);
 
             MainViewModel mvm = Factory.New<MainViewModel>();
 
             Assert.That(mvm.PurgeActiveFiles.CanExecute(null), Is.True, "PuregRecentFiles should be executable by default.");
 
             mvm.PurgeActiveFiles.Execute(null);
-            while (Instance.SessionNotification.NotifyPending)
-            {
-                Instance.SessionNotification.NotifyNow();
-            }
             mockActiveFileAction.Verify(x => x.PurgeActiveFiles(It.IsAny<IProgressContext>()), Times.Once, "Purge should be called.");
         }
 
@@ -345,14 +347,16 @@ namespace Axantum.AxCrypt.Core.Test
             Instance.FileSystemState.Add(activeFile);
 
             Instance.KnownKeys.Add(new AesKey());
-            Instance.KnownKeys.DefaultEncryptionKey = new AesKey();
+            PassphraseIdentity id = new PassphraseIdentity("Test", new AesKey());
+            Instance.FileSystemState.Identities.Add(id);
+            Instance.KnownKeys.DefaultEncryptionKey = id.Key;
 
             Assert.That(Instance.FileSystemState.ActiveFileCount, Is.EqualTo(1), "One ActiveFile is expected.");
             Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(2), "Two known keys are expected.");
             Assert.That(Instance.KnownKeys.DefaultEncryptionKey, Is.Not.Null, "There should be a non-null default encryption key");
 
             MainViewModel mvm = Factory.New<MainViewModel>();
-            var sessionNotificationMonitorMock = new Mock<SessionNotificationMonitor>(new DelayedAction(new FakeDelayTimer(new FakeSleep()), Instance.UserSettings.SessionNotificationMinimumIdle));
+            var sessionNotificationMonitorMock = new Mock<SessionNotificationMonitor>();
             Factory.Instance.Singleton<SessionNotificationMonitor>(() => sessionNotificationMonitorMock.Object);
 
             mvm.ClearPassphraseMemory.Execute(null);
@@ -376,10 +380,6 @@ namespace Axantum.AxCrypt.Core.Test
             PassphraseIdentity id = new PassphraseIdentity("Logged On User", new AesKey());
             mockFileSystemState.Object.Identities.Add(id);
             Instance.KnownKeys.DefaultEncryptionKey = id.Key;
-            while (Instance.SessionNotification.NotifyPending)
-            {
-                Instance.SessionNotification.NotifyNow();
-            }
 
             mvm.RemoveWatchedFolders.Execute(new string[] { "File1.txt", "file2.txt" });
 
@@ -543,7 +543,9 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
             MainViewModel mvm = Factory.New<MainViewModel>();
 
-            Instance.KnownKeys.DefaultEncryptionKey = new AesKey();
+            PassphraseIdentity id = new PassphraseIdentity("Test", new AesKey());
+            Instance.FileSystemState.Identities.Add(id);
+            Instance.KnownKeys.DefaultEncryptionKey = id.Key;
 
             mvm.IdentityViewModel.LogOnLogOff.Execute(null);
 
@@ -745,36 +747,20 @@ namespace Axantum.AxCrypt.Core.Test
             PassphraseIdentity id = new PassphraseIdentity("Logged On User", new AesKey());
             fileSystemStateMock.Object.Identities.Add(id);
             Instance.KnownKeys.DefaultEncryptionKey = id.Key;
-            while (Instance.SessionNotification.NotifyPending)
-            {
-                Instance.SessionNotification.NotifyNow();
-            }
 
             mvm.RemoveWatchedFolders.Execute(new string[] { });
-            while (Instance.SessionNotification.NotifyPending)
-            {
-                Instance.SessionNotification.NotifyNow();
-            }
 
             fileSystemStateMock.Verify(x => x.RemoveWatchedFolder(It.IsAny<IRuntimeFileInfo>()), Times.Never);
             fileSystemStateMock.Verify(x => x.Save(), Times.Never);
 
             fileSystemStateMock.ResetCalls();
             mvm.AddWatchedFolders.Execute(new string[] { @"C:\Folder1\", @"C:\Folder2\" });
-            while (Instance.SessionNotification.NotifyPending)
-            {
-                Instance.SessionNotification.NotifyNow();
-            }
 
             fileSystemStateMock.Verify(x => x.AddWatchedFolder(It.IsAny<WatchedFolder>()), Times.Exactly(2));
             fileSystemStateMock.Verify(x => x.Save(), Times.Once);
 
             fileSystemStateMock.ResetCalls();
             mvm.RemoveWatchedFolders.Execute(new string[] { @"C:\Folder1\" });
-            while (Instance.SessionNotification.NotifyPending)
-            {
-                Instance.SessionNotification.NotifyNow();
-            }
 
             fileSystemStateMock.Verify(x => x.RemoveWatchedFolder(It.IsAny<IRuntimeFileInfo>()), Times.Exactly(1));
             fileSystemStateMock.Verify(x => x.Save(), Times.Once);

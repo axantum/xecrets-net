@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using NUnit.Framework;
 using System;
@@ -52,49 +51,8 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestNotificationDuringProcessingOfNotification()
         {
             int notificationCount = 0;
-            FakeSleep fakeSleep = new FakeSleep();
-            FakeDelayTimer fakeTimer = new FakeDelayTimer(fakeSleep);
-            DelayedAction delayedAction = new DelayedAction(fakeTimer, new TimeSpan(0, 0, 10));
 
-            SessionNotificationMonitor monitor = new SessionNotificationMonitor(delayedAction);
-            monitor.Notification += (sender, e) =>
-            {
-                if (e.Notification.NotificationType == SessionNotificationType.LogOn)
-                {
-                    ++notificationCount;
-                    if (notificationCount == 1)
-                    {
-                        monitor.Notify(new SessionNotification(SessionNotificationType.LogOn));
-                        fakeSleep.Time(new TimeSpan(0, 0, 10));
-                    }
-                }
-            };
-
-            monitor.Notify(new SessionNotification(SessionNotificationType.LogOn));
-            Assert.That(notificationCount, Is.EqualTo(0));
-
-            fakeSleep.Time(new TimeSpan(0, 0, 5));
-            Assert.That(notificationCount, Is.EqualTo(0));
-
-            fakeSleep.Time(new TimeSpan(0, 0, 5));
-            Assert.That(notificationCount, Is.EqualTo(1));
-
-            fakeSleep.Time(new TimeSpan(0, 0, 5));
-            Assert.That(notificationCount, Is.EqualTo(1));
-
-            fakeSleep.Time(new TimeSpan(0, 0, 5));
-            Assert.That(notificationCount, Is.EqualTo(2));
-        }
-
-        [Test]
-        public static void TestDoAllNow()
-        {
-            int notificationCount = 0;
-            FakeSleep fakeSleep = new FakeSleep();
-            FakeDelayTimer fakeTimer = new FakeDelayTimer(fakeSleep);
-            DelayedAction delayedAction = new DelayedAction(fakeTimer, new TimeSpan(0, 0, 10));
-
-            SessionNotificationMonitor monitor = new SessionNotificationMonitor(delayedAction);
+            SessionNotificationMonitor monitor = new SessionNotificationMonitor();
             monitor.Notification += (sender, e) =>
             {
                 if (e.Notification.NotificationType == SessionNotificationType.LogOn)
@@ -104,15 +62,6 @@ namespace Axantum.AxCrypt.Core.Test
             };
 
             monitor.Notify(new SessionNotification(SessionNotificationType.LogOn));
-            Assert.That(notificationCount, Is.EqualTo(0));
-
-            fakeSleep.Time(new TimeSpan(0, 0, 5));
-            Assert.That(notificationCount, Is.EqualTo(0));
-
-            while (monitor.NotifyPending)
-            {
-                monitor.NotifyNow();
-            }
             Assert.That(notificationCount, Is.EqualTo(1));
         }
     }

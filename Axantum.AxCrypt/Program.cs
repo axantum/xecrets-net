@@ -79,7 +79,7 @@ namespace Axantum.AxCrypt
             Factory.Instance.Singleton<KnownKeys>(() => new KnownKeys(Instance.FileSystemState, Instance.SessionNotification));
             Factory.Instance.Singleton<ParallelFileOperation>(() => new ParallelFileOperation(Instance.UIThread));
             Factory.Instance.Singleton<ProcessState>(() => new ProcessState());
-            Factory.Instance.Singleton<SessionNotificationMonitor>(() => new SessionNotificationMonitor(new DelayedAction(new DelayTimer(), Instance.UserSettings.SessionNotificationMinimumIdle)));
+            Factory.Instance.Singleton<SessionNotificationMonitor>(() => new SessionNotificationMonitor());
 
             Factory.Instance.Register<AxCryptFile>(() => new AxCryptFile());
             Factory.Instance.Register<ActiveFileAction>(() => new ActiveFileAction());
@@ -98,7 +98,7 @@ namespace Axantum.AxCrypt
 
         private static void WireupEvents()
         {
-            Instance.SessionNotification.Notification += (sender, e) => Factory.New<SessionNotificationHandler>().HandleNotification(e.Notification, e.Progress);
+            Instance.SessionNotification.Notification += (sender, e) => Factory.New<SessionNotificationHandler>().HandleNotification(e.Notification);
         }
 
         private static void SetCulture()

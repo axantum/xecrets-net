@@ -26,9 +26,7 @@
 #endregion Coypright and License
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -37,5 +35,9 @@ namespace Axantum.AxCrypt.Core.UI
         void Work(Func<IProgressContext, FileOperationStatus> workFunction, Action<FileOperationStatus> complete);
 
         void WaitForIdle();
+
+        event EventHandler WorkStatusChanged;
+
+        bool Busy { get; }
     }
 }

@@ -21,7 +21,29 @@ namespace Axantum.AxCrypt.Core.Session
             _axCryptFile = axCryptFile;
         }
 
-        public virtual void HandleNotification(SessionNotification notification, IProgressContext progress)
+        public virtual void HandleNotification(SessionNotification notification)
+        {
+            Instance.BackgroundWork.Work(
+                (IProgressContext progress) =>
+                {
+                    progress.NotifyLevelStart();
+                    try
+                    {
+                        HandleNotificationInternal(notification, progress);
+                        _activeFileAction.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
+                    }
+                    finally
+                    {
+                        progress.NotifyLevelFinished();
+                    }
+                    return FileOperationStatus.Success;
+                },
+                (FileOperationStatus status) =>
+                {
+                });
+        }
+
+        private void HandleNotificationInternal(SessionNotification notification, IProgressContext progress)
         {
             if (Instance.Log.IsInfoEnabled)
             {
@@ -29,10 +51,6 @@ namespace Axantum.AxCrypt.Core.Session
             }
             switch (notification.NotificationType)
             {
-                case SessionNotificationType.ActiveFileChange:
-                    _activeFileAction.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, progress);
-                    break;
-
                 case SessionNotificationType.WatchedFolderAdded:
                     IRuntimeFileInfo addedFolderInfo = Factory.New<IRuntimeFileInfo>(notification.FullName);
                     _axCryptFile.EncryptFilesUniqueWithBackupAndWipe(new IRuntimeFileInfo[] { addedFolderInfo }, notification.Key, progress);
@@ -56,8 +74,9 @@ namespace Axantum.AxCrypt.Core.Session
                     _activeFileAction.PurgeActiveFiles(progress);
                     break;
 
-                case SessionNotificationType.KnownKeyChange:
                 case SessionNotificationType.ProcessExit:
+                case SessionNotificationType.ActiveFileChange:
+                case SessionNotificationType.KnownKeyChange:
                 case SessionNotificationType.SessionChange:
                 case SessionNotificationType.WorkFolderChange:
                     break;

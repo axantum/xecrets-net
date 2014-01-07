@@ -25,48 +25,15 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.UI;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Session
 {
-    public class SessionNotificationMonitor : IDisposable
+    public class SessionNotificationMonitor
     {
-        private DelayedAction _delayedNotification;
-
-        public SessionNotificationMonitor(DelayedAction delayedAction)
+        public SessionNotificationMonitor()
         {
-            _notifications = new HashSet<SessionNotification>();
-            _delayedNotification = delayedAction;
-            _delayedNotification.Action += (sender, e) => { OnDelayedNotification(); };
-        }
-
-        private bool _handleSessionChangedInProgress = false;
-
-        protected virtual void OnDelayedNotification()
-        {
-            IEnumerable<SessionNotification> notifications;
-            lock (_notifications)
-            {
-                if (!_notifications.Any())
-                {
-                    return;
-                }
-                if (_handleSessionChangedInProgress)
-                {
-                    _delayedNotification.StartIdleTimer();
-                    return;
-                }
-                notifications = new List<SessionNotification>(_notifications);
-                _notifications.Clear();
-
-                _handleSessionChangedInProgress = true;
-            }
-            OnWorkStatusChanged();
-            DoDelayedNotificationsInBackground(notifications);
         }
 
         public event EventHandler<SessionNotificationEventArgs> Notification;
@@ -80,103 +47,9 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public event EventHandler WorkStatusChanged;
-
-        protected virtual void OnWorkStatusChanged()
-        {
-            EventHandler handler = WorkStatusChanged;
-            if (handler != null)
-            {
-                handler(this, new EventArgs());
-            }
-        }
-
-        private HashSet<SessionNotification> _notifications;
-
         public virtual void Notify(SessionNotification notification)
         {
-            lock (_notifications)
-            {
-                _notifications.Add(notification);
-            }
-            OnWorkStatusChanged();
-            _delayedNotification.StartIdleTimer();
-        }
-
-        public bool NotifyPending
-        {
-            get
-            {
-                lock (_notifications)
-                {
-                    return _handleSessionChangedInProgress || _notifications.Count > 0;
-                }
-            }
-        }
-
-        public void NotifyNow()
-        {
-            OnDelayedNotification();
-        }
-
-        private void DoDelayedNotificationsInBackground(IEnumerable<SessionNotification> notifications)
-        {
-            if (Instance.Log.IsInfoEnabled)
-            {
-                Instance.Log.LogInfo("Tick");
-            }
-
-            Instance.BackgroundWork.Work(
-                (IProgressContext progress) =>
-                {
-                    progress.NotifyLevelStart();
-                    try
-                    {
-                        HandleSessionEvents(notifications, progress);
-                    }
-                    finally
-                    {
-                        progress.NotifyLevelFinished();
-                    }
-                    return FileOperationStatus.Success;
-                },
-                (FileOperationStatus status) =>
-                {
-                    _handleSessionChangedInProgress = false;
-                    OnWorkStatusChanged();
-                });
-        }
-
-        private void HandleSessionEvents(IEnumerable<SessionNotification> notifications, IProgressContext progress)
-        {
-            foreach (SessionNotification notification in notifications)
-            {
-                OnNotification(new SessionNotificationEventArgs(notification, progress));
-            }
-            OnNotification(new SessionNotificationEventArgs(new SessionNotification(SessionNotificationType.ActiveFileChange), progress));
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                DisposeInternal();
-            }
-        }
-
-        private void DisposeInternal()
-        {
-            if (_delayedNotification != null)
-            {
-                _delayedNotification.Dispose();
-                _delayedNotification = null;
-            }
+            OnNotification(new SessionNotificationEventArgs(notification));
         }
     }
 }

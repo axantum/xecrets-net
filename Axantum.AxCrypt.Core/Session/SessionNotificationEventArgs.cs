@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Linq;
 
@@ -35,12 +34,9 @@ namespace Axantum.AxCrypt.Core.Session
     {
         public SessionNotification Notification { get; private set; }
 
-        public IProgressContext Progress { get; private set; }
-
-        public SessionNotificationEventArgs(SessionNotification notification, IProgressContext progress)
+        public SessionNotificationEventArgs(SessionNotification notification)
         {
             Notification = notification;
-            Progress = progress;
         }
     }
 }

@@ -53,7 +53,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Singleton(() => new ProcessState());
             Factory.Instance.Singleton<IUIThread>(() => new FakeUIThread());
             Factory.Instance.Singleton<IProgressBackground>(() => new FakeProgressBackground());
-            Factory.Instance.Singleton<SessionNotificationMonitor>(() => new SessionNotificationMonitor(new DelayedAction(new FakeDelayTimer(new FakeSleep()), Instance.UserSettings.SessionNotificationMinimumIdle)));
+            Factory.Instance.Singleton<SessionNotificationMonitor>(() => new SessionNotificationMonitor());
             Factory.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(Instance.WorkFolder.FileInfo.Combine("FileSystemState.xml")));
 
             Factory.Instance.Register<AxCryptFile>(() => new AxCryptFile());

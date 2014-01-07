@@ -27,9 +27,7 @@
 
 using Axantum.AxCrypt.Core.UI;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -37,12 +35,33 @@ namespace Axantum.AxCrypt.Core.Test
     {
         public void Work(Func<IProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
         {
+            Busy = true;
+            OnWorkStatusChanged();
             FileOperationStatus status = work(new ProgressContext());
             complete(status);
+            Busy = false;
+            OnWorkStatusChanged();
         }
 
         public void WaitForIdle()
         {
+        }
+
+        public event EventHandler WorkStatusChanged;
+
+        protected virtual void OnWorkStatusChanged()
+        {
+            EventHandler handler = WorkStatusChanged;
+            if (handler != null)
+            {
+                handler(this, new EventArgs());
+            }
+        }
+
+        public bool Busy
+        {
+            get;
+            set;
         }
     }
 }

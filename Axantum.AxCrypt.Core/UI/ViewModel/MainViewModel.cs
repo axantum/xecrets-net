@@ -170,9 +170,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void SubscribeToModelEvents()
         {
             Instance.SessionNotification.Notification += HandleSessionChanged;
-            Instance.SessionNotification.WorkStatusChanged += (sender, e) =>
+            Instance.BackgroundWork.WorkStatusChanged += (sender, e) =>
                 {
-                    Working = Instance.SessionNotification.NotifyPending;
+                    Working = Instance.BackgroundWork.Busy;
                 };
             _fileSystemState.ActiveFileChanged += HandleActiveFileChangedEvent;
         }
@@ -328,7 +328,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             string name = String.Empty;
             if (isLoggedOn)
             {
-                PassphraseIdentity identity = _fileSystemState.Identities.First(i => i.Thumbprint == Instance.KnownKeys.DefaultEncryptionKey.Thumbprint);
+                PassphraseIdentity identity = _fileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == Instance.KnownKeys.DefaultEncryptionKey.Thumbprint);
+                if (identity == null)
+                {
+                    throw new InvalidOperationException("Attempt to log on without a matching identity being defined.");
+                }
                 name = identity.Name;
             }
             LogOnName = name;

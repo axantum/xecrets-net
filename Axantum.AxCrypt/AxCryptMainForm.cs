@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt
     {
         private NotifyIcon _notifyIcon = null;
 
-        private MainViewModel _mainViewModel = Factory.New<MainViewModel>();
+        private MainViewModel _mainViewModel;
 
         public static MessageBoxOptions MessageBoxOptions { get; private set; }
 
@@ -78,6 +78,10 @@ namespace Axantum.AxCrypt
                 return;
             }
 
+            RegisterTypeFactories();
+
+            _mainViewModel = Factory.New<MainViewModel>();
+
             Instance.Log.Logged += (logger, loggingEventArgs) =>
             {
                 Instance.UIThread.RunOnUIThread(() =>
@@ -86,10 +90,6 @@ namespace Axantum.AxCrypt
                     _logOutputTextBox.AppendText(formatted);
                 });
             };
-
-            Factory.Instance.Singleton<IUIThread>(() => new UIThread(this));
-            Factory.Instance.Singleton<IProgressBackground>(() => _progressBackgroundWorker);
-            Factory.Instance.Singleton<IStatusChecker>(() => this);
 
             MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
 
@@ -100,6 +100,13 @@ namespace Axantum.AxCrypt
 
             Instance.CommandService.Received += AxCryptMainForm_Request;
             Instance.CommandService.StartListening();
+        }
+
+        private void RegisterTypeFactories()
+        {
+            Factory.Instance.Singleton<IUIThread>(() => new UIThread(this));
+            Factory.Instance.Singleton<IProgressBackground>(() => _progressBackgroundWorker);
+            Factory.Instance.Singleton<IStatusChecker>(() => this);
         }
 
         private static void SetupPathFilters()

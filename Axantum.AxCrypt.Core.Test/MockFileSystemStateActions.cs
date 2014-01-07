@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt.Core.Test
             : base()
         {
             CheckActiveFileMock = (activeFile, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
-            CheckActiveFilesMock = (mode, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
+            CheckActiveFilesMock = (mode, progress) => { };
             PurgeActiveFilesMock = (progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
             RemoveRecentFilesMock = (encryptedPaths, progress) => { throw new InvalidOperationException("Unexpected call to this method."); };
             UpdateActiveFileWithKeyIfKeyMatchesThumbprintMock = (key) => { throw new InvalidOperationException("Unexpected call to this method."); };

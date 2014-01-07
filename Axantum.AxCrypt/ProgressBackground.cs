@@ -128,8 +128,10 @@ namespace Axantum.AxCrypt
                     disposable.Dispose();
                 }
                 Interlocked.Decrement(ref _workerCount);
+                OnWorkStatusChanged();
             };
             Interlocked.Increment(ref _workerCount);
+            OnWorkStatusChanged();
             threadWorker.Run();
         }
 
@@ -159,6 +161,25 @@ namespace Axantum.AxCrypt
             while (Interlocked.Read(ref _workerCount) > 0)
             {
                 Application.DoEvents();
+            }
+        }
+
+        public event EventHandler WorkStatusChanged;
+
+        protected virtual void OnWorkStatusChanged()
+        {
+            EventHandler handler = WorkStatusChanged;
+            if (handler != null)
+            {
+                handler(this, new EventArgs());
+            }
+        }
+
+        public bool Busy
+        {
+            get
+            {
+                return _workerCount > 0;
             }
         }
 

@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Factory.New<ActiveFileAction>(), mock);
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new AesKey(), @"C:\My Documents\"), new ProgressContext());
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new AesKey(), @"C:\My Documents\"));
 
             Assert.That(called, Is.True);
         }
@@ -81,7 +81,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Factory.New<ActiveFileAction>(), mock);
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, new AesKey(), @"C:\My Documents\"), new ProgressContext());
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, new AesKey(), @"C:\My Documents\"));
 
             Assert.That(called, Is.True);
         }
@@ -102,7 +102,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFolder(@"C:\WatchedFolder");
             Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder"));
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.LogOn, new AesKey()), new ProgressContext());
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.LogOn, new AesKey()));
 
             Assert.That(called, Is.True);
             Assert.That(folderCount, Is.EqualTo(1));
@@ -117,7 +117,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Factory.New<ActiveFileAction>(), mock);
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.LogOff, new AesKey()), new ProgressContext());
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.LogOff, new AesKey()));
 
             Assert.That(called, Is.True);
         }
@@ -131,7 +131,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, mock, Factory.New<AxCryptFile>());
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.ActiveFileChange, new AesKey()), new ProgressContext());
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.ActiveFileChange, new AesKey()));
 
             Assert.That(called, Is.True);
         }
@@ -145,7 +145,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, mock, Factory.New<AxCryptFile>());
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.SessionStart, new AesKey()), new ProgressContext());
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.SessionStart, new AesKey()));
 
             Assert.That(called, Is.True);
         }
@@ -159,7 +159,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, mock, Factory.New<AxCryptFile>());
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.PurgeActiveFiles, new AesKey()), new ProgressContext());
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.PurgeActiveFiles, new AesKey()));
 
             Assert.That(called, Is.True);
         }
@@ -173,10 +173,10 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.DoesNotThrow(() =>
             {
-                handler.HandleNotification(new SessionNotification(SessionNotificationType.ProcessExit), new ProgressContext());
-                handler.HandleNotification(new SessionNotification(SessionNotificationType.SessionChange), new ProgressContext());
-                handler.HandleNotification(new SessionNotification(SessionNotificationType.KnownKeyChange), new ProgressContext());
-                handler.HandleNotification(new SessionNotification(SessionNotificationType.WorkFolderChange), new ProgressContext());
+                handler.HandleNotification(new SessionNotification(SessionNotificationType.ProcessExit));
+                handler.HandleNotification(new SessionNotification(SessionNotificationType.SessionChange));
+                handler.HandleNotification(new SessionNotification(SessionNotificationType.KnownKeyChange));
+                handler.HandleNotification(new SessionNotification(SessionNotificationType.WorkFolderChange));
             });
         }
 
@@ -189,7 +189,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.Throws<InvalidOperationException>(() =>
             {
-                handler.HandleNotification(new SessionNotification((SessionNotificationType)(-1)), new ProgressContext());
+                handler.HandleNotification(new SessionNotification((SessionNotificationType)(-1)));
             });
         }
 
@@ -208,7 +208,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             foreach (SessionNotification sessionEvent in sessionEvents)
             {
-                handler.HandleNotification(sessionEvent, new ProgressContext());
+                handler.HandleNotification(sessionEvent);
             }
             Assert.That(callTimes, Is.EqualTo(2));
         }
