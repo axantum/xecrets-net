@@ -60,14 +60,6 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public static IRuntimeFileInfo DefaultPathInfo
-        {
-            get
-            {
-                return OS.Current.FileInfo(Path.Combine(OS.Current.WorkFolder.FullName, "UserSettings.txt"));
-            }
-        }
-
         private static JsonSerializer CreateSerializer()
         {
             JsonSerializerSettings serializerSettings = new JsonSerializerSettings()

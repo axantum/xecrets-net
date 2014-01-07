@@ -32,6 +32,7 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
+using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,6 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Moq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -71,8 +71,6 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(_davidCopperfieldTxtPath, FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate5Utc, FakeRuntimeFileInfo.TestDate6Utc, FakeRuntimeFileInfo.ExpandableMemoryStream(Encoding.GetEncoding(1252).GetBytes(Resources.david_copperfield)));
             FakeRuntimeFileInfo.AddFile(_uncompressedAxxPath, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.uncompressable_zip));
             FakeRuntimeFileInfo.AddFile(_helloWorldAxxPath, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
-
-            Factory.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(FileSystemState.DefaultPathInfo));
         }
 
         [TearDown]
@@ -131,7 +129,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             using (AxCryptDocument document = new AxCryptDocument())
             {
-                using (Stream stream = OS.Current.FileInfo(_helloWorldAxxPath).OpenRead())
+                using (Stream stream = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath).OpenRead())
                 {
                     document.Load(stream, new Passphrase("a").DerivedPassphrase);
                     status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, document, new ProgressContext());
@@ -159,7 +157,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperation fileOperation = new FileOperation(Instance.FileSystemState, new SessionNotificationMonitor(new DelayedAction(new FakeDelayTimer(new FakeSleep()), TimeSpan.Zero)));
             using (AxCryptDocument document = new AxCryptDocument())
             {
-                using (Stream stream = OS.Current.FileInfo(_helloWorldAxxPath).OpenRead())
+                using (Stream stream = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath).OpenRead())
                 {
                     document.Load(stream, new Passphrase("a").DerivedPassphrase);
                     status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, document, new ProgressContext());
@@ -206,7 +204,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
 
-            IRuntimeFileInfo fileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
+            IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
             ActiveFile destinationActiveFile = Instance.FileSystemState.FindEncryptedPath(fileInfo.FullName);
             Assert.That(destinationActiveFile.DecryptedFileInfo.LastWriteTimeUtc, Is.Not.EqualTo(utcNow), "The decryption should restore the time stamp of the original file, and this is not now.");
             destinationActiveFile.DecryptedFileInfo.SetFileTimes(utcNow, utcNow, utcNow);
@@ -228,7 +226,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
 
-            IRuntimeFileInfo fileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
+            IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
             ActiveFile destinationActiveFile = Instance.FileSystemState.FindEncryptedPath(fileInfo.FullName);
             Assert.That(destinationActiveFile.DecryptedFileInfo.LastWriteTimeUtc, Is.Not.EqualTo(utcNow), "The decryption should restore the time stamp of the original file, and this is not now.");
             destinationActiveFile.DecryptedFileInfo.SetFileTimes(utcNow, utcNow, utcNow);
@@ -355,7 +353,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
 
-            IRuntimeFileInfo fileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
+            IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
             ActiveFile destinationActiveFile = Instance.FileSystemState.FindEncryptedPath(fileInfo.FullName);
             destinationActiveFile.DecryptedFileInfo.Delete();
             destinationActiveFile = new ActiveFile(destinationActiveFile, ActiveFileStatus.NotDecrypted);
@@ -371,7 +369,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             string temporaryDestinationName = FileOperation.GetTemporaryDestinationName(_davidCopperfieldTxtPath);
 
-            Assert.That(temporaryDestinationName.StartsWith(Path.GetDirectoryName(OS.Current.WorkFolder.FullName), StringComparison.OrdinalIgnoreCase), "The temporary destination should be in the temporary directory.");
+            Assert.That(temporaryDestinationName.StartsWith(Path.GetDirectoryName(Factory.Instance.Singleton<WorkFolder>().FileInfo.FullName), StringComparison.OrdinalIgnoreCase), "The temporary destination should be in the temporary directory.");
             Assert.That(Path.GetFileName(temporaryDestinationName), Is.EqualTo(Path.GetFileName(_davidCopperfieldTxtPath)), "The temporary destination should have the same file name.");
         }
     }

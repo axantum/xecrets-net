@@ -29,7 +29,6 @@ using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -38,8 +37,6 @@ namespace Axantum.AxCrypt.Core.Test
         private byte _randomForTest = 0;
 
         private bool _isLittleEndian = BitConverter.IsLittleEndian;
-
-        private Dictionary<string, FakeFileWatcher> _fileWatchers = new Dictionary<string, FakeFileWatcher>();
 
         public Func<DateTime> TimeFunction { get; set; }
 
@@ -86,11 +83,6 @@ namespace Axantum.AxCrypt.Core.Test
             return bytes;
         }
 
-        public IRuntimeFileInfo FileInfo(string path)
-        {
-            return new FakeRuntimeFileInfo(path);
-        }
-
         public string AxCryptExtension
         {
             get;
@@ -108,61 +100,19 @@ namespace Axantum.AxCrypt.Core.Test
             get { return 512; }
         }
 
-        public IFileWatcher CreateFileWatcher(string path)
-        {
-            FakeFileWatcher fileWatcher;
-            if (_fileWatchers.TryGetValue(path, out fileWatcher))
-            {
-                return fileWatcher;
-            }
-
-            fileWatcher = new FakeFileWatcher(path);
-            _fileWatchers.Add(path, fileWatcher);
-            return fileWatcher;
-        }
-
-        private IRuntimeFileInfo _temporaryDirectoryInfo;
-
-        public IRuntimeFileInfo WorkFolder
-        {
-            get
-            {
-                if (_temporaryDirectoryInfo == null)
-                {
-                    string temporaryFolderPath = Path.Combine(Path.GetTempPath(), "AxCrypt");
-                    IRuntimeFileInfo temporaryFolderInfo = FileInfo(temporaryFolderPath);
-                    temporaryFolderInfo.CreateFolder();
-                    _temporaryDirectoryInfo = temporaryFolderInfo;
-                }
-
-                return _temporaryDirectoryInfo;
-            }
-        }
-
         internal void FileCreated(string path)
         {
-            HandleFileChanged(path);
+            FakeFileWatcher.HandleFileChanged(path);
         }
 
         internal void FileDeleted(string path)
         {
-            HandleFileChanged(path);
+            FakeFileWatcher.HandleFileChanged(path);
         }
 
         internal void FileMoved(string path)
         {
-            HandleFileChanged(path);
-        }
-
-        private void HandleFileChanged(string path)
-        {
-            foreach (FakeFileWatcher fileWatcher in _fileWatchers.Values)
-            {
-                if (Path.GetDirectoryName(path).StartsWith(fileWatcher.Path, StringComparison.Ordinal))
-                {
-                    fileWatcher.OnChanged(new FileWatcherEventArgs(path));
-                }
-            }
+            FakeFileWatcher.HandleFileChanged(path);
         }
 
         public DateTime UtcNow

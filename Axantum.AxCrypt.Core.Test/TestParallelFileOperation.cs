@@ -57,8 +57,8 @@ namespace Axantum.AxCrypt.Core.Test
             bool runOnUIThread = false;
             fakeUIThread.RunOnUIThreadAction = (action) => runOnUIThread = true;
 
-            IRuntimeFileInfo info1 = OS.Current.FileInfo(@"c:\file1.txt");
-            IRuntimeFileInfo info2 = OS.Current.FileInfo(@"c:\file2.txt");
+            IRuntimeFileInfo info1 = Factory.New<IRuntimeFileInfo>(@"c:\file1.txt");
+            IRuntimeFileInfo info2 = Factory.New<IRuntimeFileInfo>(@"c:\file2.txt");
             ParallelFileOperation pfo = new ParallelFileOperation(fakeUIThread);
             int callCount = 0;
             pfo.DoFiles(new IRuntimeFileInfo[] { info1, info2 },
@@ -83,8 +83,8 @@ namespace Axantum.AxCrypt.Core.Test
             bool runOnUIThread = false;
             fakeUIThread.RunOnUIThreadAction = (action) => { runOnUIThread = true; action(); };
 
-            IRuntimeFileInfo info1 = OS.Current.FileInfo(@"c:\file1.txt");
-            IRuntimeFileInfo info2 = OS.Current.FileInfo(@"c:\file2.txt");
+            IRuntimeFileInfo info1 = Factory.New<IRuntimeFileInfo>(@"c:\file1.txt");
+            IRuntimeFileInfo info2 = Factory.New<IRuntimeFileInfo>(@"c:\file2.txt");
             ParallelFileOperation pfo = new ParallelFileOperation(fakeUIThread);
             int callCount = 0;
             pfo.DoFiles(new IRuntimeFileInfo[] { info1, info2 },
@@ -117,10 +117,10 @@ namespace Axantum.AxCrypt.Core.Test
 
             FakeRuntimeEnvironment.Instance.MaxConcurrency = 2;
 
-            IRuntimeFileInfo info1 = OS.Current.FileInfo(@"c:\file1.txt");
-            IRuntimeFileInfo info2 = OS.Current.FileInfo(@"c:\file2.txt");
-            IRuntimeFileInfo info3 = OS.Current.FileInfo(@"c:\file3.txt");
-            IRuntimeFileInfo info4 = OS.Current.FileInfo(@"c:\file4.txt");
+            IRuntimeFileInfo info1 = Factory.New<IRuntimeFileInfo>(@"c:\file1.txt");
+            IRuntimeFileInfo info2 = Factory.New<IRuntimeFileInfo>(@"c:\file2.txt");
+            IRuntimeFileInfo info3 = Factory.New<IRuntimeFileInfo>(@"c:\file3.txt");
+            IRuntimeFileInfo info4 = Factory.New<IRuntimeFileInfo>(@"c:\file4.txt");
             ParallelFileOperation pfo = new ParallelFileOperation(fakeUIThread);
 
             int callCount = 0;

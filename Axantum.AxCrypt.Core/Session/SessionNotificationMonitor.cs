@@ -65,6 +65,7 @@ namespace Axantum.AxCrypt.Core.Session
 
                 _handleSessionChangedInProgress = true;
             }
+            OnWorkStatusChanged();
             DoDelayedNotificationsInBackground(notifications);
         }
 
@@ -79,6 +80,17 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
+        public event EventHandler WorkStatusChanged;
+
+        protected virtual void OnWorkStatusChanged()
+        {
+            EventHandler handler = WorkStatusChanged;
+            if (handler != null)
+            {
+                handler(this, new EventArgs());
+            }
+        }
+
         private HashSet<SessionNotification> _notifications;
 
         public virtual void Notify(SessionNotification notification)
@@ -87,22 +99,24 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 _notifications.Add(notification);
             }
+            OnWorkStatusChanged();
             _delayedNotification.StartIdleTimer();
         }
 
-        public void DoAllNow()
+        public bool NotifyPending
         {
-            WaitForIdle();
-            OnDelayedNotification();
-            WaitForIdle();
+            get
+            {
+                lock (_notifications)
+                {
+                    return _handleSessionChangedInProgress || _notifications.Count > 0;
+                }
+            }
         }
 
-        private void WaitForIdle()
+        public void NotifyNow()
         {
-            while (_handleSessionChangedInProgress)
-            {
-                Factory.New<ISleep>().Time(TimeSpan.Zero);
-            }
+            OnDelayedNotification();
         }
 
         private void DoDelayedNotificationsInBackground(IEnumerable<SessionNotification> notifications)
@@ -129,6 +143,7 @@ namespace Axantum.AxCrypt.Core.Session
                 (FileOperationStatus status) =>
                 {
                     _handleSessionChangedInProgress = false;
+                    OnWorkStatusChanged();
                 });
         }
 

@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.UI;
 using Moq;
 using NUnit.Framework;
@@ -53,20 +54,20 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSerializeDeserialize()
         {
-            UserSettings settings = new UserSettings(OS.Current.FileInfo(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
+            UserSettings settings = new UserSettings(Factory.New<IRuntimeFileInfo>(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
 
             Assert.That(settings.DebugMode, Is.False, "The DebugMode is always false by default.");
             settings.DebugMode = true;
             Assert.That(settings.DebugMode, Is.True, "The DebugMode was set to true.");
 
-            settings = new UserSettings(OS.Current.FileInfo(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
+            settings = new UserSettings(Factory.New<IRuntimeFileInfo>(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
             Assert.That(settings.DebugMode, Is.True, "The DebugMode was set to true, and should have been saved.");
         }
 
         [Test]
         public static void TestNamedStronglyTypedProperties()
         {
-            UserSettings settings = new UserSettings(OS.Current.FileInfo(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
+            UserSettings settings = new UserSettings(Factory.New<IRuntimeFileInfo>(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
 
             settings.CultureName = "sv-SE";
             Assert.That(settings.CultureName, Is.EqualTo("sv-SE"), "The value should be this.");
@@ -111,7 +112,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             KeyWrapIterationCalculator calculator = Mock.Of<KeyWrapIterationCalculator>(c => c.Iterations() == 666);
 
-            UserSettings settings = new UserSettings(OS.Current.FileInfo(@"C:\Folder\UserSettings.txt"), calculator);
+            UserSettings settings = new UserSettings(Factory.New<IRuntimeFileInfo>(@"C:\Folder\UserSettings.txt"), calculator);
             Assert.That(settings.KeyWrapIterations, Is.EqualTo(666));
         }
 
@@ -120,7 +121,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             KeyWrapSalt salt = new KeyWrapSalt(16);
             Factory.Instance.Register((int n) => salt);
-            UserSettings settings = new UserSettings(OS.Current.FileInfo(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
+            UserSettings settings = new UserSettings(Factory.New<IRuntimeFileInfo>(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
 
             Assert.That(settings.ThumbprintSalt.GetBytes(), Is.EqualTo(salt.GetBytes()), "The value should be this.");
         }
@@ -128,7 +129,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestUpdateToSameValueCausesNoSave()
         {
-            UserSettings settings = new UserSettings(OS.Current.FileInfo(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
+            UserSettings settings = new UserSettings(Factory.New<IRuntimeFileInfo>(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
             int writeCount = 0;
             FakeRuntimeFileInfo.OpeningForWrite += (sender, e) => ++writeCount;
 
@@ -144,7 +145,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestLoadOfDefaultKeyedValues()
         {
-            UserSettings settings = new UserSettings(OS.Current.FileInfo(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
+            UserSettings settings = new UserSettings(Factory.New<IRuntimeFileInfo>(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
 
             int n = settings.Load<int>("MyKey");
             Assert.That(n, Is.EqualTo(default(int)), "Since the key is unknown, the default value should be returned.");
@@ -157,7 +158,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestLoadOfInvalidFormatKeyValueWithFallbackReturn()
         {
-            UserSettings settings = new UserSettings(OS.Current.FileInfo(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
+            UserSettings settings = new UserSettings(Factory.New<IRuntimeFileInfo>(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
             settings.Store<string>("MyKey", "NotANumber");
 
             int n = settings.Load("MyKey", () => 555);
@@ -167,7 +168,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestLoadOfInvalidFormatKeyWrapSaltWithFallbackReturn()
         {
-            UserSettings settings = new UserSettings(OS.Current.FileInfo(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
+            UserSettings settings = new UserSettings(Factory.New<IRuntimeFileInfo>(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
             settings.Store<string>("MyKey", "NotASalt");
 
             KeyWrapSalt salt = new KeyWrapSalt(16);
@@ -178,7 +179,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestLoadOfUriWithFallbackReturn()
         {
-            UserSettings settings = new UserSettings(OS.Current.FileInfo(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
+            UserSettings settings = new UserSettings(Factory.New<IRuntimeFileInfo>(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
 
             Uri url = settings.Load("MyKey", new Uri("http://localhost/fallback"));
             Assert.That(url, Is.EqualTo(new Uri("http://localhost/fallback")));

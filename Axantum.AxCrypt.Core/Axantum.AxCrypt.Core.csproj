@@ -84,6 +84,7 @@
     <Compile Include="Runtime\LoggingEventArgs.cs" />
     <Compile Include="Runtime\SleepEventArgs.cs" />
     <Compile Include="Runtime\WorkerGroup.cs" />
+    <Compile Include="Runtime\WorkFolder.cs" />
     <Compile Include="Session\ActiveFileChangedEventArgs.cs" />
     <Compile Include="Session\ActiveFileComparer.cs" />
     <Compile Include="Session\ActiveFileVisualState.cs" />
@@ -162,7 +163,7 @@
     <Compile Include="Session\SessionNotificationHandler.cs" />
     <Compile Include="Session\SessionNotificationMonitor.cs" />
     <Compile Include="Session\SessionNotificationType.cs" />
-    <Compile Include="Session\SessionNotificationArgs.cs" />
+    <Compile Include="Session\SessionNotificationEventArgs.cs" />
     <Compile Include="Session\WatchedFolder.cs" />
     <Compile Include="Session\WatchedFolderChangedEventArgs.cs" />
     <Compile Include="UI\IUserSettings.cs" />

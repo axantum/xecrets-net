@@ -69,8 +69,8 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestInvalidArguments()
         {
             IRuntimeFileInfo nullFileInfo = null;
-            IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(_testTextPath);
-            IRuntimeFileInfo encryptedFileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
+            IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
+            IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
             AesKey key = new AesKey();
             AesKey nullKey = null;
             ActiveFile nullActiveFile = null;
@@ -90,8 +90,8 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestConstructor()
         {
             AesKey key = new AesKey();
-            IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(_testTextPath);
-            IRuntimeFileInfo encryptedFileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
+            IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
+            IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
 
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None);
             decryptedFileInfo = activeFile.DecryptedFileInfo;
@@ -118,8 +118,8 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestCopyConstructorWithKey()
         {
             AesKey key = new AesKey();
-            IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(_testTextPath);
-            IRuntimeFileInfo encryptedFileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
+            IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
+            IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None);
             AesKey newKey = new AesKey();
 
@@ -131,8 +131,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestThumbprint()
         {
-            IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(_testTextPath);
-            IRuntimeFileInfo encryptedFileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
+            IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
+            IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
 
             AesKey key = new AesKey();
 
@@ -151,8 +151,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestThumbprintNullKey()
         {
-            IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(_testTextPath);
-            IRuntimeFileInfo encryptedFileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
+            IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
+            IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
 
             AesKey key = new AesKey();
             using (MemoryStream stream = new MemoryStream())
@@ -169,8 +169,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestMethodIsModified()
         {
-            IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(Path.Combine(_rootPath, "doesnotexist.txt"));
-            IRuntimeFileInfo encryptedFileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
+            IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "doesnotexist.txt"));
+            IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new AesKey(), ActiveFileStatus.None);
             Assert.That(activeFile.IsModified, Is.False, "A non-existing decrypted file should not be treated as modified.");
         }
@@ -181,7 +181,7 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile;
             AesKey key = new AesKey();
 
-            activeFile = new ActiveFile(OS.Current.FileInfo(@"C:\encrypted.axx"), OS.Current.FileInfo(@"C:\decrypted.txt"), key, ActiveFileStatus.NotDecrypted);
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(@"C:\encrypted.axx"), Factory.New<IRuntimeFileInfo>(@"C:\decrypted.txt"), key, ActiveFileStatus.NotDecrypted);
             Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.EncryptedWithKnownKey));
 
             activeFile = new ActiveFile(activeFile);

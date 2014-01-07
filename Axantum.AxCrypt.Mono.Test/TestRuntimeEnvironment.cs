@@ -39,10 +39,18 @@ namespace Axantum.AxCrypt.Mono.Test
     [TestFixture]
     public static class TestRuntimeEnvironment
     {
+        private static string _workFolderPath;
+
         [SetUp]
         public static void Setup()
         {
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment());
+            _workFolderPath = Path.Combine(Path.GetTempPath(), @"Axantum.AxCrypt.Mono.Test.TestRuntimeEnvironment\");
+            Directory.CreateDirectory(_workFolderPath);
+
+            Factory.Instance.Register<string, IFileWatcher>((path) => new FileWatcher(path, new DelayedAction(new DelayTimer(), TimeSpan.FromMilliseconds(1))));
+            Factory.Instance.Register<string, IRuntimeFileInfo>((path) => new RuntimeFileInfo(path));
+            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
+            Factory.Instance.Singleton<WorkFolder>(() => new WorkFolder(_workFolderPath));
             Factory.Instance.Singleton<ILogging>(() => new Logging());
         }
 
@@ -50,6 +58,7 @@ namespace Axantum.AxCrypt.Mono.Test
         public static void Teardown()
         {
             Factory.Instance.Clear();
+            Directory.Delete(_workFolderPath, true);
         }
 
         [Test]
@@ -79,19 +88,19 @@ namespace Axantum.AxCrypt.Mono.Test
         [Test]
         public static void TestRuntimeFileInfo()
         {
-            IRuntimeFileInfo runtimeFileInfo = OS.Current.FileInfo(Path.Combine(Path.GetTempPath(), "A File.txt"));
+            IRuntimeFileInfo runtimeFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(Path.GetTempPath(), "A File.txt"));
             Assert.That(runtimeFileInfo is RuntimeFileInfo, "The instance returned should be of type RuntimeFileInfo");
             Assert.That(runtimeFileInfo.Name, Is.EqualTo("A File.txt"));
-            runtimeFileInfo = OS.Current.FileInfo(Path.Combine(Path.GetTempPath(), "A File.txt"));
+            runtimeFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(Path.GetTempPath(), "A File.txt"));
             Assert.That(runtimeFileInfo.Name, Is.EqualTo("A File.txt"));
         }
 
         [Test]
         public static void TestTemporaryDirectoryInfo()
         {
-            IRuntimeFileInfo tempInfo = OS.Current.WorkFolder;
+            IRuntimeFileInfo tempInfo = Factory.Instance.Singleton<WorkFolder>().FileInfo;
             Assert.That(tempInfo is RuntimeFileInfo, "The instance returned should be of type RuntimeFileInfo");
-            IRuntimeFileInfo tempFileInfo = OS.Current.FileInfo(Path.Combine(tempInfo.FullName, "AxCryptTestTemp.tmp"));
+            IRuntimeFileInfo tempFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(tempInfo.FullName, "AxCryptTestTemp.tmp"));
             Assert.DoesNotThrow(() =>
             {
                 try
@@ -119,13 +128,13 @@ namespace Axantum.AxCrypt.Mono.Test
         public static void TestFileWatcher()
         {
             bool wasHere = false;
-            using (IFileWatcher fileWatcher = OS.Current.CreateFileWatcher(OS.Current.WorkFolder.FullName))
+            using (IFileWatcher fileWatcher = Factory.New<IFileWatcher>(Instance.WorkFolder.FileInfo.FullName))
             {
                 fileWatcher.FileChanged += (object sender, FileWatcherEventArgs e) =>
                 {
                     wasHere = true;
                 };
-                IRuntimeFileInfo tempFileInfo = OS.Current.FileInfo(Path.Combine(OS.Current.WorkFolder.FullName, "AxCryptTestTemp.tmp"));
+                IRuntimeFileInfo tempFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(Instance.WorkFolder.FileInfo.FullName, "AxCryptTestTemp.tmp"));
                 try
                 {
                     using (Stream stream = tempFileInfo.OpenWrite())

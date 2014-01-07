@@ -25,21 +25,25 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Axantum.AxCrypt.Core.IO;
 
 namespace Axantum.AxCrypt.Core.Test
 {
     internal class FakeFileWatcher : IFileWatcher
     {
+        private bool disposed = false;
+
+        private static List<KeyValuePair<string, FakeFileWatcher>> _fileWatchers = new List<KeyValuePair<string, FakeFileWatcher>>();
+
         internal string Path { get; set; }
 
         public FakeFileWatcher(string path)
         {
             Path = path;
+            _fileWatchers.Add(new KeyValuePair<string, FakeFileWatcher>(path, this));
         }
 
         internal virtual void OnChanged(FileWatcherEventArgs eventArgs)
@@ -57,11 +61,27 @@ namespace Axantum.AxCrypt.Core.Test
 
         #endregion IFileWatcher Members
 
+        public static void HandleFileChanged(string path)
+        {
+            foreach (KeyValuePair<string, FakeFileWatcher> fileWatcher in _fileWatchers)
+            {
+                if (fileWatcher.Value.disposed)
+                {
+                    continue;
+                }
+                if ((System.IO.Path.GetDirectoryName(path) ?? String.Empty).StartsWith(fileWatcher.Key, StringComparison.Ordinal))
+                {
+                    fileWatcher.Value.OnChanged(new FileWatcherEventArgs(path));
+                }
+            }
+        }
+
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
             {
             }
+            disposed = true;
         }
 
         #region IDisposable Members

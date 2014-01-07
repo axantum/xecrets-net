@@ -115,8 +115,8 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void Initialize(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, DateTime lastWriteTimeUtc, AesKey key, AesKeyThumbprint thumbprint, ActiveFileStatus status)
         {
-            EncryptedFileInfo = OS.Current.FileInfo(encryptedFileInfo.FullName);
-            DecryptedFileInfo = OS.Current.FileInfo(decryptedFileInfo.FullName);
+            EncryptedFileInfo = Factory.New<IRuntimeFileInfo>(encryptedFileInfo.FullName);
+            DecryptedFileInfo = Factory.New<IRuntimeFileInfo>(decryptedFileInfo.FullName);
             Key = key;
             Thumbprint = thumbprint;
             Status = status;
@@ -198,7 +198,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
             set
             {
-                EncryptedFileInfo = OS.Current.FileInfo(value);
+                EncryptedFileInfo = Factory.New<IRuntimeFileInfo>(value);
             }
         }
 
@@ -217,7 +217,7 @@ namespace Axantum.AxCrypt.Core.Session
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context)
         {
-            DecryptedFileInfo = OS.Current.FileInfo(Path.Combine(_decryptedFolder, _decryptedName));
+            DecryptedFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(_decryptedFolder, _decryptedName));
         }
 
         private AesKey _key;

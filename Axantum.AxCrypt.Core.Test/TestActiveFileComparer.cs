@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
 using NUnit.Framework;
 using System;
@@ -52,10 +53,10 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestDateComparer()
         {
             FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2013, 01, 01);
-            ActiveFile activeFile1a = new ActiveFile(OS.Current.FileInfo((@"C:\encrypted1.axx")), OS.Current.FileInfo(@"C:\decrypted1.txt"), new AesKey(), ActiveFileStatus.NotDecrypted);
+            ActiveFile activeFile1a = new ActiveFile(Factory.New<IRuntimeFileInfo>((@"C:\encrypted1.axx")), Factory.New<IRuntimeFileInfo>(@"C:\decrypted1.txt"), new AesKey(), ActiveFileStatus.NotDecrypted);
 
             FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2013, 01, 01);
-            ActiveFile activeFile1b = new ActiveFile(OS.Current.FileInfo((@"C:\encrypted2.axx")), OS.Current.FileInfo(@"C:\decrypted2.txt"), new AesKey(), ActiveFileStatus.NotDecrypted);
+            ActiveFile activeFile1b = new ActiveFile(Factory.New<IRuntimeFileInfo>((@"C:\encrypted2.axx")), Factory.New<IRuntimeFileInfo>(@"C:\decrypted2.txt"), new AesKey(), ActiveFileStatus.NotDecrypted);
 
             ActiveFileComparer comparer = ActiveFileComparer.DateComparer;
             Assert.That(comparer.ReverseSort, Is.False);
@@ -68,7 +69,7 @@ namespace Axantum.AxCrypt.Core.Test
             comparer.ReverseSort = false;
 
             FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2013, 01, 02);
-            ActiveFile activeFile2 = new ActiveFile(OS.Current.FileInfo((@"C:\encrypted3.axx")), OS.Current.FileInfo(@"C:\decrypted3.txt"), new AesKey(), ActiveFileStatus.NotDecrypted);
+            ActiveFile activeFile2 = new ActiveFile(Factory.New<IRuntimeFileInfo>((@"C:\encrypted3.axx")), Factory.New<IRuntimeFileInfo>(@"C:\decrypted3.txt"), new AesKey(), ActiveFileStatus.NotDecrypted);
 
             Assert.That(comparer.Compare(activeFile1a, activeFile2), Is.LessThan(0));
             Assert.That(comparer.Compare(activeFile2, activeFile1a), Is.GreaterThan(0));
@@ -81,8 +82,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptedNameComparer()
         {
-            ActiveFile activeFile1a = new ActiveFile(OS.Current.FileInfo((@"C:\encrypted1.axx")), OS.Current.FileInfo(@"C:\decrypted1a.txt"), new AesKey(), ActiveFileStatus.NotDecrypted);
-            ActiveFile activeFile1b = new ActiveFile(OS.Current.FileInfo((@"C:\encrypted1.axx")), OS.Current.FileInfo(@"C:\decrypted1b.txt"), new AesKey(), ActiveFileStatus.NotDecrypted);
+            ActiveFile activeFile1a = new ActiveFile(Factory.New<IRuntimeFileInfo>((@"C:\encrypted1.axx")), Factory.New<IRuntimeFileInfo>(@"C:\decrypted1a.txt"), new AesKey(), ActiveFileStatus.NotDecrypted);
+            ActiveFile activeFile1b = new ActiveFile(Factory.New<IRuntimeFileInfo>((@"C:\encrypted1.axx")), Factory.New<IRuntimeFileInfo>(@"C:\decrypted1b.txt"), new AesKey(), ActiveFileStatus.NotDecrypted);
 
             ActiveFileComparer comparer = ActiveFileComparer.EncryptedNameComparer;
             Assert.That(comparer.ReverseSort, Is.False);
@@ -94,7 +95,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(comparer.Compare(activeFile1b, activeFile1a), Is.EqualTo(0));
             comparer.ReverseSort = false;
 
-            ActiveFile activeFile2 = new ActiveFile(OS.Current.FileInfo((@"C:\encrypted2.axx")), OS.Current.FileInfo(@"C:\decrypted1a.txt"), new AesKey(), ActiveFileStatus.NotDecrypted);
+            ActiveFile activeFile2 = new ActiveFile(Factory.New<IRuntimeFileInfo>((@"C:\encrypted2.axx")), Factory.New<IRuntimeFileInfo>(@"C:\decrypted1a.txt"), new AesKey(), ActiveFileStatus.NotDecrypted);
 
             Assert.That(comparer.Compare(activeFile1a, activeFile2), Is.LessThan(0));
             Assert.That(comparer.Compare(activeFile2, activeFile1a), Is.GreaterThan(0));
@@ -107,8 +108,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptedNameComparer()
         {
-            ActiveFile activeFile1a = new ActiveFile(OS.Current.FileInfo((@"C:\encrypted1a.axx")), OS.Current.FileInfo(@"C:\decrypted1.txt"), new AesKey(), ActiveFileStatus.NotDecrypted);
-            ActiveFile activeFile1b = new ActiveFile(OS.Current.FileInfo((@"C:\encrypted1b.axx")), OS.Current.FileInfo(@"C:\decrypted1.txt"), new AesKey(), ActiveFileStatus.NotDecrypted);
+            ActiveFile activeFile1a = new ActiveFile(Factory.New<IRuntimeFileInfo>((@"C:\encrypted1a.axx")), Factory.New<IRuntimeFileInfo>(@"C:\decrypted1.txt"), new AesKey(), ActiveFileStatus.NotDecrypted);
+            ActiveFile activeFile1b = new ActiveFile(Factory.New<IRuntimeFileInfo>((@"C:\encrypted1b.axx")), Factory.New<IRuntimeFileInfo>(@"C:\decrypted1.txt"), new AesKey(), ActiveFileStatus.NotDecrypted);
 
             ActiveFileComparer comparer = ActiveFileComparer.DecryptedNameComparer;
             Assert.That(comparer.ReverseSort, Is.False);
@@ -120,7 +121,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(comparer.Compare(activeFile1b, activeFile1a), Is.EqualTo(0));
             comparer.ReverseSort = false;
 
-            ActiveFile activeFile2 = new ActiveFile(OS.Current.FileInfo((@"C:\encrypted1a.axx")), OS.Current.FileInfo(@"C:\decrypted2.txt"), new AesKey(), ActiveFileStatus.NotDecrypted);
+            ActiveFile activeFile2 = new ActiveFile(Factory.New<IRuntimeFileInfo>((@"C:\encrypted1a.axx")), Factory.New<IRuntimeFileInfo>(@"C:\decrypted2.txt"), new AesKey(), ActiveFileStatus.NotDecrypted);
 
             Assert.That(comparer.Compare(activeFile1a, activeFile2), Is.LessThan(0));
             Assert.That(comparer.Compare(activeFile2, activeFile1a), Is.GreaterThan(0));

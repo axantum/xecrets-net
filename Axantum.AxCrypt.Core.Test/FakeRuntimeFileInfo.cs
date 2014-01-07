@@ -29,7 +29,6 @@ using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -376,8 +375,20 @@ namespace Axantum.AxCrypt.Core.Test
                     }
                     files.Add(kvp.Value);
                 }
-                return files.Select((FakeFileInfo fileInfo) => { return OS.Current.FileInfo(fileInfo.FullName); });
+                return files.Select((FakeFileInfo fileInfo) => { return Factory.New<IRuntimeFileInfo>(fileInfo.FullName); });
             }
+        }
+
+        /// <summary>
+        /// Combine the path of this instance with another path, creating a new instance.
+        /// </summary>
+        /// <param name="path">The path to combine with.</param>
+        /// <returns>
+        /// A new instance representing the combined path.
+        /// </returns>
+        public IRuntimeFileInfo Combine(string path)
+        {
+            return new FakeRuntimeFileInfo(Path.Combine(FullName, path));
         }
     }
 }

@@ -141,8 +141,8 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("progress");
             }
-            IRuntimeFileInfo sourceFileInfo = OS.Current.FileInfo(sourceFile);
-            IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(destinationFile);
+            IRuntimeFileInfo sourceFileInfo = Factory.New<IRuntimeFileInfo>(sourceFile);
+            IRuntimeFileInfo destinationFileInfo = Factory.New<IRuntimeFileInfo>(destinationFile);
             EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, key, progress);
         }
 
@@ -168,7 +168,7 @@ namespace Axantum.AxCrypt.Core
         public virtual void EncryptFileUniqueWithBackupAndWipe(IRuntimeFileInfo fileInfo, AesKey encryptionKey, IProgressContext progress)
         {
             IRuntimeFileInfo destinationFileInfo = fileInfo.CreateEncryptedName();
-            destinationFileInfo = OS.Current.FileInfo(destinationFileInfo.FullName.CreateUniqueFile());
+            destinationFileInfo = Factory.New<IRuntimeFileInfo>(destinationFileInfo.FullName.CreateUniqueFile());
             EncryptFileWithBackupAndWipe(fileInfo, destinationFileInfo, encryptionKey, progress);
         }
 
@@ -271,7 +271,7 @@ namespace Axantum.AxCrypt.Core
                     return destinationFileName;
                 }
                 destinationFileName = document.DocumentHeaders.FileName;
-                IRuntimeFileInfo destinationFullPath = OS.Current.FileInfo(Path.Combine(destinationDirectory, destinationFileName));
+                IRuntimeFileInfo destinationFullPath = Factory.New<IRuntimeFileInfo>(Path.Combine(destinationDirectory, destinationFileName));
                 Decrypt(document, destinationFullPath, options, progress);
             }
             return destinationFileName;
@@ -348,8 +348,8 @@ namespace Axantum.AxCrypt.Core
                     return FileOperationStatus.Canceled;
                 }
 
-                IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(fileInfo.FullName), document.DocumentHeaders.FileName));
-                destinationFileInfo = OS.Current.FileInfo(destinationFileInfo.FullName.CreateUniqueFile());
+                IRuntimeFileInfo destinationFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(fileInfo.FullName), document.DocumentHeaders.FileName));
+                destinationFileInfo = Factory.New<IRuntimeFileInfo>(destinationFileInfo.FullName.CreateUniqueFile());
                 DecryptFile(document, destinationFileInfo.FullName, progress);
             }
             Wipe(fileInfo, progress);
@@ -359,7 +359,7 @@ namespace Axantum.AxCrypt.Core
 
         public void DecryptFile(AxCryptDocument document, string decryptedFileFullName, IProgressContext progress)
         {
-            IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(decryptedFileFullName);
+            IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(decryptedFileFullName);
             Decrypt(document, decryptedFileInfo, AxCryptOptions.SetFileTimes, progress);
         }
 
@@ -403,7 +403,7 @@ namespace Axantum.AxCrypt.Core
             }
 
             string temporaryFilePath = MakeAlternatePath(destinationFileInfo, ".tmp");
-            IRuntimeFileInfo temporaryFileInfo = OS.Current.FileInfo(temporaryFilePath);
+            IRuntimeFileInfo temporaryFileInfo = Factory.New<IRuntimeFileInfo>(temporaryFilePath);
 
             try
             {
@@ -424,7 +424,7 @@ namespace Axantum.AxCrypt.Core
             if (destinationFileInfo.Exists)
             {
                 string backupFilePath = MakeAlternatePath(destinationFileInfo, ".bak");
-                IRuntimeFileInfo backupFileInfo = OS.Current.FileInfo(destinationFileInfo.FullName);
+                IRuntimeFileInfo backupFileInfo = Factory.New<IRuntimeFileInfo>(destinationFileInfo.FullName);
 
                 backupFileInfo.MoveTo(backupFilePath);
                 temporaryFileInfo.MoveTo(destinationFileInfo.FullName);
@@ -477,8 +477,8 @@ namespace Axantum.AxCrypt.Core
             do
             {
                 randomName = GenerateRandomFileName(fileInfo.FullName);
-            } while (OS.Current.FileInfo(randomName).Exists);
-            IRuntimeFileInfo moveToFileInfo = OS.Current.FileInfo(fileInfo.FullName);
+            } while (Factory.New<IRuntimeFileInfo>(randomName).Exists);
+            IRuntimeFileInfo moveToFileInfo = Factory.New<IRuntimeFileInfo>(fileInfo.FullName);
             moveToFileInfo.MoveTo(randomName);
 
             using (Stream stream = moveToFileInfo.OpenWrite())

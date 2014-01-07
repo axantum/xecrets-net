@@ -39,10 +39,17 @@ namespace Axantum.AxCrypt.Mono.Test
     [TestFixture]
     public static class TestRuntimeFileInfo
     {
+        private static string _tempPath;
+
         [SetUp]
         public static void Setup()
         {
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment());
+            _tempPath = Path.Combine(Path.GetTempPath(), "Axantum.AxCrypt.Mono.Test.TestRuntimeFileInfo");
+            Directory.CreateDirectory(_tempPath);
+            Factory.Instance.Register<string, IFileWatcher>((path) => new FileWatcher(path, new DelayedAction(new DelayTimer(), TimeSpan.FromMilliseconds(1))));
+            Factory.Instance.Register<string, IRuntimeFileInfo>((path) => new RuntimeFileInfo(path));
+            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
+            Factory.Instance.Singleton<WorkFolder>(() => new WorkFolder(_tempPath));
             Factory.Instance.Singleton<ILogging>(() => new Logging());
         }
 
@@ -50,6 +57,7 @@ namespace Axantum.AxCrypt.Mono.Test
         public static void Teardown()
         {
             Factory.Instance.Clear();
+            Directory.Delete(_tempPath, true);
         }
 
         [Test]

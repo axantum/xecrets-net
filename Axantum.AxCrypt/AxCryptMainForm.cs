@@ -149,6 +149,10 @@ namespace Axantum.AxCrypt
             FormClosing += (sender, e) =>
             {
                 PurgeActiveFiles();
+                while (_mainViewModel.Working)
+                {
+                    Application.DoEvents();
+                }
             };
 
             _encryptToolStripButton.Tag = FileInfoTypes.EncryptableFile;
@@ -408,7 +412,7 @@ namespace Axantum.AxCrypt
             {
                 if (e.SelectedFiles != null && e.SelectedFiles.Count > 0 && !String.IsNullOrEmpty(e.SelectedFiles[0]))
                 {
-                    IRuntimeFileInfo initialFolder = OS.Current.FileInfo(e.SelectedFiles[0]);
+                    IRuntimeFileInfo initialFolder = Factory.New<IRuntimeFileInfo>(e.SelectedFiles[0]);
                     if (initialFolder.IsFolder)
                     {
                         ofd.InitialDirectory = initialFolder.FullName;

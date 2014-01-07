@@ -26,15 +26,12 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.AccessControl;
-using System.Text.RegularExpressions;
 
 namespace Axantum.AxCrypt.Mono
 {
@@ -42,7 +39,7 @@ namespace Axantum.AxCrypt.Mono
     /// Provides properties and instance methods for the operations with files, and aids in the creation of Stream objects. The underlying file must not
     /// necessarily exist.
     /// </summary>
-    internal class RuntimeFileInfo : IRuntimeFileInfo
+    public class RuntimeFileInfo : IRuntimeFileInfo
     {
         private FileInfo _file;
 
@@ -200,7 +197,7 @@ namespace Axantum.AxCrypt.Mono
         /// <param name="destinationFileName">Name of the destination file.</param>
         public void MoveTo(string destinationFileName)
         {
-            IRuntimeFileInfo destination = OS.Current.FileInfo(destinationFileName);
+            IRuntimeFileInfo destination = Factory.New<IRuntimeFileInfo>(destinationFileName);
             if (destination.Exists)
             {
                 try
@@ -230,7 +227,7 @@ namespace Axantum.AxCrypt.Mono
         /// </summary>
         public void CreateFolder()
         {
-            Directory.CreateDirectory(Path.GetDirectoryName(_file.FullName));
+            Directory.CreateDirectory(_file.FullName);
         }
 
         /// <summary>
@@ -281,6 +278,19 @@ namespace Axantum.AxCrypt.Mono
                 DirectoryInfo di = new DirectoryInfo(_file.FullName);
                 return di.GetFiles().Select((FileInfo fi) => { return (IRuntimeFileInfo)new RuntimeFileInfo(fi); });
             }
+        }
+
+        /// <summary>
+        /// Combine the path of this instance with another path, creating a new instance.
+        /// </summary>
+        /// <param name="path">The path to combine with.</param>
+        /// <returns>
+        /// A new instance representing the combined path.
+        /// </returns>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public IRuntimeFileInfo Combine(string path)
+        {
+            return new RuntimeFileInfo(Path.Combine(FullName, path));
         }
     }
 }

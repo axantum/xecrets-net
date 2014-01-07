@@ -36,17 +36,11 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         byte[] GetRandomBytes(int count);
 
-        IRuntimeFileInfo FileInfo(string path);
-
         string AxCryptExtension { get; }
 
         Platform Platform { get; }
 
         int StreamBufferSize { get; }
-
-        IFileWatcher CreateFileWatcher(string path);
-
-        IRuntimeFileInfo WorkFolder { get; }
 
         DateTime UtcNow { get; }
 

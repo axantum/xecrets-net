@@ -121,6 +121,31 @@ namespace Axantum.AxCrypt.Core
             return Instance.CreateInternal<TResult>();
         }
 
+        /// <summary>
+        /// Create an instance of a registered type.
+        /// </summary>
+        /// <typeparam name="TResult">The type to create an instance of.</typeparam>
+        /// <param name="argument">The argument to the constructor.</param>
+        /// <returns>
+        /// An instance of the type, according to the rules of the factory. It may be a singleton.
+        /// </returns>
+        public static TResult New<TResult>(string argument)
+        {
+            return Instance.CreateInternal<string, TResult>(argument);
+        }
+
+        /// <summary>
+        /// Create an instance of a registered type with an argument to the constructor.
+        /// </summary>
+        /// <typeparam name="TArgument">The type of the argument to the constructor.</typeparam>
+        /// <typeparam name="TResult">The type to create an instance of.</typeparam>
+        /// <param name="argument">The argument.</param>
+        /// <returns>An instance of the type, according to the rules of the factory. It may be a singleton.</returns>
+        public static TResult New<TArgument, TResult>(TArgument argument)
+        {
+            return Instance.CreateInternal<TArgument, TResult>(argument);
+        }
+
         private TResult CreateInternal<TResult>()
         {
             object function;
@@ -129,11 +154,6 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentException("Unregistered type factory. Initialize with 'FactoryRegistry.Register<{0}>(() => {{ return new {0}(); }});'".InvariantFormat(typeof(TResult)));
             }
             return ((Func<TResult>)function)();
-        }
-
-        public static TResult New<TArgument, TResult>(TArgument argument)
-        {
-            return Instance.CreateInternal<TArgument, TResult>(argument);
         }
 
         private TResult CreateInternal<TArgument, TResult>(TArgument argument)

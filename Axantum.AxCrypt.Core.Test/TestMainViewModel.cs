@@ -47,7 +47,6 @@ namespace Axantum.AxCrypt.Core.Test
         public static void Setup()
         {
             SetupAssembly.AssemblySetup();
-            Factory.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(FileSystemState.DefaultPathInfo));
         }
 
         [TearDown]
@@ -210,17 +209,17 @@ namespace Axantum.AxCrypt.Core.Test
 
             FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2001, 1, 1);
             FakeRuntimeFileInfo.AddFile(file1, null);
-            activeFile = new ActiveFile(OS.Current.FileInfo(file1), OS.Current.FileInfo(decrypted1), new AesKey(), ActiveFileStatus.NotDecrypted);
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new AesKey(), ActiveFileStatus.NotDecrypted);
             Instance.FileSystemState.Add(activeFile);
 
             FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2002, 2, 2);
             FakeRuntimeFileInfo.AddFile(file2, null);
-            activeFile = new ActiveFile(OS.Current.FileInfo(file2), OS.Current.FileInfo(decrypted2), new AesKey(), ActiveFileStatus.NotDecrypted);
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file2), Factory.New<IRuntimeFileInfo>(decrypted2), new AesKey(), ActiveFileStatus.NotDecrypted);
             Instance.FileSystemState.Add(activeFile);
 
             FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2003, 3, 3);
             FakeRuntimeFileInfo.AddFile(file3, null);
-            activeFile = new ActiveFile(OS.Current.FileInfo(file3), OS.Current.FileInfo(decrypted3), new AesKey(), ActiveFileStatus.NotDecrypted);
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file3), Factory.New<IRuntimeFileInfo>(decrypted3), new AesKey(), ActiveFileStatus.NotDecrypted);
             Instance.FileSystemState.Add(activeFile);
 
             ActiveFileComparer comparer;
@@ -258,16 +257,27 @@ namespace Axantum.AxCrypt.Core.Test
             PassphraseIdentity id = new PassphraseIdentity("Logged On User", new AesKey());
             mock.Object.Identities.Add(id);
             Instance.KnownKeys.DefaultEncryptionKey = id.Key;
-            Instance.SessionNotification.DoAllNow();
+            while (Instance.SessionNotification.NotifyPending)
+            {
+                Instance.SessionNotification.NotifyNow();
+            }
 
             mvm.AddWatchedFolders.Execute(new string[] { });
-            Instance.SessionNotification.DoAllNow();
+            while (Instance.SessionNotification.NotifyPending)
+            {
+                Instance.SessionNotification.NotifyNow();
+            }
+
             mock.Verify(x => x.AddWatchedFolder(It.IsAny<WatchedFolder>()), Times.Never);
             mock.Verify(x => x.Save(), Times.Never);
 
             mock.ResetCalls();
             mvm.AddWatchedFolders.Execute(new string[] { @"C:\Folder1\", @"C:\Folder2\" });
-            Instance.SessionNotification.DoAllNow();
+            while (Instance.SessionNotification.NotifyPending)
+            {
+                Instance.SessionNotification.NotifyNow();
+            }
+
             mock.Verify(x => x.AddWatchedFolder(It.IsAny<WatchedFolder>()), Times.Exactly(2));
             mock.Verify(x => x.Save(), Times.Once);
         }
@@ -291,15 +301,15 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile;
 
             FakeRuntimeFileInfo.AddFile(file1, null);
-            activeFile = new ActiveFile(OS.Current.FileInfo(file1), OS.Current.FileInfo(decrypted1), new AesKey(), ActiveFileStatus.NotDecrypted);
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new AesKey(), ActiveFileStatus.NotDecrypted);
             Instance.FileSystemState.Add(activeFile);
 
             FakeRuntimeFileInfo.AddFile(file2, null);
-            activeFile = new ActiveFile(OS.Current.FileInfo(file2), OS.Current.FileInfo(decrypted2), new AesKey(), ActiveFileStatus.NotDecrypted);
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file2), Factory.New<IRuntimeFileInfo>(decrypted2), new AesKey(), ActiveFileStatus.NotDecrypted);
             Instance.FileSystemState.Add(activeFile);
 
             FakeRuntimeFileInfo.AddFile(file3, null);
-            activeFile = new ActiveFile(OS.Current.FileInfo(file3), OS.Current.FileInfo(decrypted3), new AesKey(), ActiveFileStatus.NotDecrypted);
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file3), Factory.New<IRuntimeFileInfo>(decrypted3), new AesKey(), ActiveFileStatus.NotDecrypted);
             Instance.FileSystemState.Add(activeFile);
 
             Assert.That(mvm.RemoveRecentFiles.CanExecute(null), Is.True, "RemoveRecentFiles should be executable by default.");
@@ -352,7 +362,10 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(mvm.PurgeActiveFiles.CanExecute(null), Is.True, "PuregRecentFiles should be executable by default.");
 
             mvm.PurgeActiveFiles.Execute(null);
-            Instance.SessionNotification.DoAllNow();
+            while (Instance.SessionNotification.NotifyPending)
+            {
+                Instance.SessionNotification.NotifyNow();
+            }
             mockActiveFileAction.Verify(x => x.PurgeActiveFiles(It.IsAny<IProgressContext>()), Times.Once, "Purge should be called.");
         }
 
@@ -365,7 +378,7 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile;
 
             FakeRuntimeFileInfo.AddFile(file1, null);
-            activeFile = new ActiveFile(OS.Current.FileInfo(file1), OS.Current.FileInfo(decrypted1), new AesKey(), ActiveFileStatus.NotDecrypted);
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new AesKey(), ActiveFileStatus.NotDecrypted);
             Instance.FileSystemState.Add(activeFile);
 
             Instance.KnownKeys.Add(new AesKey());

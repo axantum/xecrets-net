@@ -90,6 +90,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool DebugMode { get { return GetProperty<bool>("DebugMode"); } set { SetProperty("DebugMode", value); } }
 
+        public bool Working { get { return GetProperty<bool>("Working"); } set { SetProperty("Working", value); } }
+
         public IAction RemoveRecentFiles { get; private set; }
 
         public IAction AddWatchedFolders { get; private set; }
@@ -157,9 +159,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DragAndDropFilesTypes = DetermineFileTypes(files.Select(f => OS.Current.FileInfo(f))); });
-            BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsRecent = DetermineDroppableAsRecent(files.Select(f => OS.Current.FileInfo(f))); });
-            BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => OS.Current.FileInfo(f))); });
+            BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DragAndDropFilesTypes = DetermineFileTypes(files.Select(f => Factory.New<IRuntimeFileInfo>(f))); });
+            BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsRecent = DetermineDroppableAsRecent(files.Select(f => Factory.New<IRuntimeFileInfo>(f))); });
+            BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => Factory.New<IRuntimeFileInfo>(f))); });
             BindPropertyChanged("CurrentVersion", (Version cv) => { if (cv != null) UpdateUpdateCheck(cv); });
             BindPropertyChanged("DebugMode", (bool enabled) => { UpdateDebugMode(enabled); });
             BindPropertyChanged("RecentFilesComparer", (ActiveFileComparer comparer) => { SetRecentFiles(); });
@@ -168,6 +170,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void SubscribeToModelEvents()
         {
             Instance.SessionNotification.Notification += HandleSessionChanged;
+            Instance.SessionNotification.WorkStatusChanged += (sender, e) =>
+                {
+                    Working = Instance.SessionNotification.NotifyPending;
+                };
             _fileSystemState.ActiveFileChanged += HandleActiveFileChangedEvent;
         }
 
@@ -347,8 +353,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void ClearPassphraseMemoryAction()
         {
-            Factory.New<AxCryptFile>().Wipe(FileSystemState.DefaultPathInfo, new ProgressContext());
-            Factory.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(FileSystemState.DefaultPathInfo));
+            IRuntimeFileInfo fileSystemStateInfo = Instance.FileSystemState.PathInfo;
+            Factory.New<AxCryptFile>().Wipe(fileSystemStateInfo, new ProgressContext());
+            Factory.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(fileSystemStateInfo));
             Factory.Instance.Singleton<KnownKeys>(() => new KnownKeys(_fileSystemState, Instance.SessionNotification));
             Instance.SessionNotification.Notify(new SessionNotification(SessionNotificationType.SessionStart));
         }
@@ -356,7 +363,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void PurgeActiveFilesAction()
         {
             Instance.SessionNotification.Notify(new SessionNotification(SessionNotificationType.PurgeActiveFiles));
-            Instance.SessionNotification.DoAllNow();
             SetRecentFiles();
         }
 
@@ -389,7 +395,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             foreach (string watchedFolderPath in folders)
             {
-                _fileSystemState.RemoveWatchedFolder(OS.Current.FileInfo(watchedFolderPath));
+                _fileSystemState.RemoveWatchedFolder(Factory.New<IRuntimeFileInfo>(watchedFolderPath));
             }
             _fileSystemState.Save();
         }
@@ -401,7 +407,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void DecryptFoldersAction(IEnumerable<string> folders)
         {
-            Instance.ParallelBackground.DoFiles(folders.Select(f => OS.Current.FileInfo(f)).ToList(), DecryptFolder, (status) => { });
+            Instance.ParallelBackground.DoFiles(folders.Select(f => Factory.New<IRuntimeFileInfo>(f)).ToList(), DecryptFolder, (status) => { });
         }
 
         private void UpdateCheckAction(DateTime lastUpdateCheckUtc)
@@ -430,7 +436,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 }
                 files = fileSelectionArgs.SelectedFiles;
             }
-            Instance.ParallelBackground.DoFiles(files.Select(f => OS.Current.FileInfo(f)).ToList(), EncryptFile, (status) => { });
+            Instance.ParallelBackground.DoFiles(files.Select(f => Factory.New<IRuntimeFileInfo>(f)).ToList(), EncryptFile, (status) => { });
         }
 
         private void DecryptFilesAction(IEnumerable<string> files)
@@ -448,7 +454,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 }
                 files = fileSelectionArgs.SelectedFiles;
             }
-            Instance.ParallelBackground.DoFiles(files.Select(f => OS.Current.FileInfo(f)).ToList(), DecryptFile, (status) => { });
+            Instance.ParallelBackground.DoFiles(files.Select(f => Factory.New<IRuntimeFileInfo>(f)).ToList(), DecryptFile, (status) => { });
         }
 
         private FileOperationStatus DecryptFile(IRuntimeFileInfo file, IProgressContext progress)
@@ -481,7 +487,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 if (Factory.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
                 {
-                    Factory.New<ActiveFileAction>().RemoveRecentFiles(new IRuntimeFileInfo[] { OS.Current.FileInfo(e.OpenFileFullName) }, progress);
+                    Factory.New<ActiveFileAction>().RemoveRecentFiles(new IRuntimeFileInfo[] { Factory.New<IRuntimeFileInfo>(e.OpenFileFullName) }, progress);
                 }
             };
 
@@ -503,7 +509,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 }
                 files = fileSelectionArgs.SelectedFiles;
             }
-            Instance.ParallelBackground.DoFiles(files.Select(f => OS.Current.FileInfo(f)).ToList(), WipeFile, (status) => { });
+            Instance.ParallelBackground.DoFiles(files.Select(f => Factory.New<IRuntimeFileInfo>(f)).ToList(), WipeFile, (status) => { });
         }
 
         private FileOperationStatus WipeFile(IRuntimeFileInfo file, IProgressContext progress)
@@ -531,7 +537,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 }
                 if (Instance.StatusChecker.CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
                 {
-                    Factory.New<ActiveFileAction>().RemoveRecentFiles(new IRuntimeFileInfo[] { OS.Current.FileInfo(e.SaveFileFullName) }, progress);
+                    Factory.New<ActiveFileAction>().RemoveRecentFiles(new IRuntimeFileInfo[] { Factory.New<IRuntimeFileInfo>(e.SaveFileFullName) }, progress);
                 }
             };
 
@@ -554,7 +560,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void OpenFilesAction(IEnumerable<string> files)
         {
-            Instance.ParallelBackground.DoFiles(files.Select(f => OS.Current.FileInfo(f)).ToList(), OpenEncrypted, (status) => { });
+            Instance.ParallelBackground.DoFiles(files.Select(f => Factory.New<IRuntimeFileInfo>(f)).ToList(), OpenEncrypted, (status) => { });
         }
 
         private FileOperationStatus OpenEncrypted(IRuntimeFileInfo file, IProgressContext progress)
@@ -630,8 +636,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 }
                 if (Factory.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
                 {
-                    IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
-                    IRuntimeFileInfo decryptedInfo = OS.Current.FileInfo(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
+                    IRuntimeFileInfo encryptedInfo = Factory.New<IRuntimeFileInfo>(e.SaveFileFullName);
+                    IRuntimeFileInfo decryptedInfo = Factory.New<IRuntimeFileInfo>(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
                     ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key, ActiveFileStatus.NotDecrypted);
                     _fileSystemState.Add(activeFile);
                     _fileSystemState.Save();
@@ -643,7 +649,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void AddRecentFilesAction(IEnumerable<string> files)
         {
-            IEnumerable<IRuntimeFileInfo> fileInfos = files.Select(f => OS.Current.FileInfo(f)).ToList();
+            IEnumerable<IRuntimeFileInfo> fileInfos = files.Select(f => Factory.New<IRuntimeFileInfo>(f)).ToList();
             ProcessEncryptableFilesDroppedInRecentList(fileInfos.Where(fileInfo => Instance.KnownKeys.IsLoggedOn && fileInfo.Type() == FileInfoTypes.EncryptableFile));
             ProcessEncryptedFilesDroppedInRecentList(fileInfos.Where(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile));
         }
@@ -672,8 +678,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 }
                 if (Factory.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
                 {
-                    IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.OpenFileFullName);
-                    IRuntimeFileInfo decryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
+                    IRuntimeFileInfo encryptedInfo = Factory.New<IRuntimeFileInfo>(e.OpenFileFullName);
+                    IRuntimeFileInfo decryptedInfo = Factory.New<IRuntimeFileInfo>(e.SaveFileFullName);
                     ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key, ActiveFileStatus.NotDecrypted);
                     _fileSystemState.Add(activeFile);
                     _fileSystemState.Save();
@@ -694,15 +700,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
             {
-                e.SaveFileFullName = OS.Current.FileInfo(e.SaveFileFullName).FullName.CreateUniqueFile();
+                e.SaveFileFullName = Factory.New<IRuntimeFileInfo>(e.SaveFileFullName).FullName.CreateUniqueFile();
             };
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
             {
                 if (Factory.Instance.Singleton<IStatusChecker>().CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
                 {
-                    IRuntimeFileInfo encryptedInfo = OS.Current.FileInfo(e.SaveFileFullName);
-                    IRuntimeFileInfo decryptedInfo = OS.Current.FileInfo(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
+                    IRuntimeFileInfo encryptedInfo = Factory.New<IRuntimeFileInfo>(e.SaveFileFullName);
+                    IRuntimeFileInfo decryptedInfo = Factory.New<IRuntimeFileInfo>(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
                     ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key, ActiveFileStatus.NotDecrypted);
                     _fileSystemState.Add(activeFile);
                     _fileSystemState.Save();

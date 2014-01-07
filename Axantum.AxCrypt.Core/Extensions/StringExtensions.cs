@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static string CreateUniqueFile(this string fullName)
         {
-            IRuntimeFileInfo pathInfo = OS.Current.FileInfo(fullName);
+            IRuntimeFileInfo pathInfo = Factory.New<IRuntimeFileInfo>(fullName);
             string extension = Path.GetExtension(fullName);
             int version = 0;
             while (true)
@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                 {
                     string alternateExtension = (version > 0 ? "." + version.ToString(CultureInfo.InvariantCulture) : String.Empty) + extension;
                     string alternatePath = Path.Combine(Path.GetDirectoryName(pathInfo.FullName), Path.GetFileNameWithoutExtension(pathInfo.Name) + alternateExtension);
-                    IRuntimeFileInfo alternateFileInfo = OS.Current.FileInfo(alternatePath);
+                    IRuntimeFileInfo alternateFileInfo = Factory.New<IRuntimeFileInfo>(alternatePath);
                     alternateFileInfo.CreateNewFile();
                     return alternateFileInfo.FullName;
                 }
@@ -134,7 +134,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
 
             value = value.Replace(Path.DirectorySeparatorChar == '/' ? '\\' : '/', Path.DirectorySeparatorChar);
-            return OS.Current.FileInfo(value).NormalizeFolder().FullName;
+            return Factory.New<IRuntimeFileInfo>(value).NormalizeFolder().FullName;
         }
     }
 }

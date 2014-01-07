@@ -47,7 +47,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             SetupAssembly.AssemblySetup();
 
-            Factory.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(OS.Current.FileInfo(_fileSystemStateFilePath)));
+            Factory.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(Factory.New<IRuntimeFileInfo>(_fileSystemStateFilePath)));
         }
 
         [TearDown]

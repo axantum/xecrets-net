@@ -109,7 +109,10 @@ namespace Axantum.AxCrypt.Core.Test
             fakeSleep.Time(new TimeSpan(0, 0, 5));
             Assert.That(notificationCount, Is.EqualTo(0));
 
-            monitor.DoAllNow();
+            while (monitor.NotifyPending)
+            {
+                monitor.NotifyNow();
+            }
             Assert.That(notificationCount, Is.EqualTo(1));
         }
     }

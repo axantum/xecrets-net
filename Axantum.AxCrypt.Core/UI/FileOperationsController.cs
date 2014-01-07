@@ -228,7 +228,7 @@ namespace Axantum.AxCrypt.Core.UI
                 _eventArgs.Status = FileOperationStatus.FileAlreadyEncrypted;
                 return false;
             }
-            IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
+            IRuntimeFileInfo destinationFileInfo = Factory.New<IRuntimeFileInfo>(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
             _eventArgs.SaveFileFullName = destinationFileInfo.FullName;
             _eventArgs.OpenFileFullName = sourceFileInfo.FullName;
             if (destinationFileInfo.Exists)
@@ -274,7 +274,7 @@ namespace Axantum.AxCrypt.Core.UI
                 return false;
             }
 
-            IRuntimeFileInfo destination = OS.Current.FileInfo(Path.Combine(Path.GetDirectoryName(fileInfo.FullName), _eventArgs.AxCryptDocument.DocumentHeaders.FileName));
+            IRuntimeFileInfo destination = Factory.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(fileInfo.FullName), _eventArgs.AxCryptDocument.DocumentHeaders.FileName));
             _eventArgs.SaveFileFullName = destination.FullName;
             if (destination.Exists)
             {
@@ -301,7 +301,7 @@ namespace Axantum.AxCrypt.Core.UI
                 _eventArgs.AxCryptDocument.Dispose();
                 _eventArgs.AxCryptDocument = null;
             }
-            Factory.New<AxCryptFile>().Wipe(OS.Current.FileInfo(_eventArgs.OpenFileFullName), _progress);
+            Factory.New<AxCryptFile>().Wipe(Factory.New<IRuntimeFileInfo>(_eventArgs.OpenFileFullName), _progress);
 
             _progress.NotifyLevelFinished();
 
@@ -388,7 +388,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
 
             _progress.NotifyLevelStart();
-            Factory.New<AxCryptFile>().Wipe(OS.Current.FileInfo(_eventArgs.SaveFileFullName), _progress);
+            Factory.New<AxCryptFile>().Wipe(Factory.New<IRuntimeFileInfo>(_eventArgs.SaveFileFullName), _progress);
             _progress.NotifyLevelFinished();
 
             _eventArgs.Status = FileOperationStatus.Success;

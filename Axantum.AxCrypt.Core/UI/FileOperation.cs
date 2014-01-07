@@ -64,7 +64,7 @@ namespace Axantum.AxCrypt.Core.UI
                 throw new ArgumentNullException("progress");
             }
 
-            IRuntimeFileInfo fileInfo = OS.Current.FileInfo(file);
+            IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(file);
             if (!fileInfo.Exists)
             {
                 if (Instance.Log.IsWarningEnabled)
@@ -113,7 +113,7 @@ namespace Axantum.AxCrypt.Core.UI
                 throw new ArgumentNullException("progress");
             }
 
-            IRuntimeFileInfo fileInfo = OS.Current.FileInfo(file);
+            IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(file);
 
             ActiveFile destinationActiveFile = _fileSystemState.FindEncryptedPath(fileInfo.FullName);
             if (destinationActiveFile == null || !destinationActiveFile.DecryptedFileInfo.Exists)
@@ -226,7 +226,7 @@ namespace Axantum.AxCrypt.Core.UI
             string destinationName = document.DocumentHeaders.FileName;
             string destinationPath = Path.Combine(destinationFolderInfo.FullName, destinationName);
 
-            IRuntimeFileInfo destinationFileInfo = OS.Current.FileInfo(destinationPath);
+            IRuntimeFileInfo destinationFileInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
             using (FileLock fileLock = FileLock.Lock(destinationFileInfo))
             {
                 Factory.New<AxCryptFile>().Decrypt(document, destinationFileInfo, AxCryptOptions.SetFileTimes, progress);
@@ -248,16 +248,16 @@ namespace Axantum.AxCrypt.Core.UI
             }
             else
             {
-                destinationFolder = Path.Combine(OS.Current.WorkFolder.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + Path.DirectorySeparatorChar);
+                destinationFolder = Path.Combine(Factory.Instance.Singleton<WorkFolder>().FileInfo.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + Path.DirectorySeparatorChar);
             }
-            IRuntimeFileInfo destinationFolderInfo = OS.Current.FileInfo(destinationFolder);
+            IRuntimeFileInfo destinationFolderInfo = Factory.New<IRuntimeFileInfo>(destinationFolder);
             destinationFolderInfo.CreateFolder();
             return destinationFolderInfo;
         }
 
         public static string GetTemporaryDestinationName(string fileName)
         {
-            string destinationFolder = Path.Combine(OS.Current.WorkFolder.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + Path.DirectorySeparatorChar);
+            string destinationFolder = Path.Combine(Factory.Instance.Singleton<WorkFolder>().FileInfo.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + Path.DirectorySeparatorChar);
             return Path.Combine(destinationFolder, Path.GetFileName(fileName));
         }
 

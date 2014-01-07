@@ -95,5 +95,10 @@ namespace Axantum.AxCrypt.Core
         {
             get { return Factory.Instance.Singleton<SessionNotificationMonitor>(); }
         }
+
+        public static WorkFolder WorkFolder
+        {
+            get { return Factory.Instance.Singleton<WorkFolder>(); }
+        }
     }
 }

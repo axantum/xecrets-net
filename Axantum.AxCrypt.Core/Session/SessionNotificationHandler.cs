@@ -34,18 +34,18 @@ namespace Axantum.AxCrypt.Core.Session
                     break;
 
                 case SessionNotificationType.WatchedFolderAdded:
-                    IRuntimeFileInfo addedFolderInfo = OS.Current.FileInfo(notification.FullName);
+                    IRuntimeFileInfo addedFolderInfo = Factory.New<IRuntimeFileInfo>(notification.FullName);
                     _axCryptFile.EncryptFilesUniqueWithBackupAndWipe(new IRuntimeFileInfo[] { addedFolderInfo }, notification.Key, progress);
                     break;
 
                 case SessionNotificationType.WatchedFolderRemoved:
-                    IRuntimeFileInfo removedFolderInfo = OS.Current.FileInfo(notification.FullName);
+                    IRuntimeFileInfo removedFolderInfo = Factory.New<IRuntimeFileInfo>(notification.FullName);
                     _axCryptFile.DecryptFilesUniqueWithWipeOfOriginal(removedFolderInfo, notification.Key, progress);
                     break;
 
                 case SessionNotificationType.LogOn:
                 case SessionNotificationType.LogOff:
-                    _axCryptFile.EncryptFilesUniqueWithBackupAndWipe(_fileSystemState.WatchedFolders.Select((wf) => OS.Current.FileInfo(wf.Path)), notification.Key, progress);
+                    _axCryptFile.EncryptFilesUniqueWithBackupAndWipe(_fileSystemState.WatchedFolders.Select((wf) => Factory.New<IRuntimeFileInfo>(wf.Path)), notification.Key, progress);
                     break;
 
                 case SessionNotificationType.SessionStart:

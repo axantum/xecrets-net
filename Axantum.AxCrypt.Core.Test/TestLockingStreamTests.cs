@@ -27,11 +27,9 @@
 
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Test.Properties;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -46,8 +44,6 @@ namespace Axantum.AxCrypt.Core.Test
         private static readonly string _uncompressedAxxPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Uncompressed.axx");
         private static readonly string _helloWorldAxxPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "HelloWorld.axx");
 
-        private static FileSystemState _fileSystemState;
-
         [SetUp]
         public static void Setup()
         {
@@ -56,14 +52,11 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(_davidCopperfieldTxtPath, FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate5Utc, FakeRuntimeFileInfo.TestDate6Utc, FakeRuntimeFileInfo.ExpandableMemoryStream(Encoding.GetEncoding(1252).GetBytes(Resources.david_copperfield)));
             FakeRuntimeFileInfo.AddFile(_uncompressedAxxPath, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.uncompressable_zip));
             FakeRuntimeFileInfo.AddFile(_helloWorldAxxPath, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
-
-            _fileSystemState = FileSystemState.Create(FileSystemState.DefaultPathInfo);
         }
 
         [TearDown]
         public static void Teardown()
         {
-            _fileSystemState.Dispose();
             SetupAssembly.AssemblyTeardown();
         }
 
@@ -72,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (MemoryStream stream = FakeRuntimeFileInfo.ExpandableMemoryStream(Encoding.UTF8.GetBytes("A short dummy stream")))
             {
-                IRuntimeFileInfo fileInfo = OS.Current.FileInfo(_davidCopperfieldTxtPath);
+                IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath);
                 using (LockingStream lockingStream = new LockingStream(fileInfo, stream))
                 {
                     Assert.That(FileLock.IsLocked(fileInfo), "The file should be locked now.");

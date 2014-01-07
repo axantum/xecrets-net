@@ -28,7 +28,9 @@
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security;
@@ -37,21 +39,48 @@ using System.Security.Permissions;
 namespace Axantum.AxCrypt.Mono
 {
     [PermissionSet(SecurityAction.LinkDemand, Name = "FullTrust"), PermissionSet(SecurityAction.InheritanceDemand, Name = "FullTrust")]
-    internal class FileWatcher : IFileWatcher
+    public class FileWatcher : IFileWatcher
     {
         private FileSystemWatcher _fileSystemWatcher;
 
-        public FileWatcher(string path)
+        private DelayedAction _delayedAction;
+
+        private HashSet<string> _notifications = new HashSet<string>();
+
+        public FileWatcher(string path, DelayedAction delayedAction)
         {
+            _delayedAction = delayedAction;
+            _delayedAction.Action += (sender, e) => { OnDelayedNotification(); };
+
             _fileSystemWatcher = new FileSystemWatcher(path);
-            _fileSystemWatcher.Changed += TemporaryDirectoryWatcher_Changed;
-            _fileSystemWatcher.Created += TemporaryDirectoryWatcher_Changed;
-            _fileSystemWatcher.Deleted += TemporaryDirectoryWatcher_Changed;
-            _fileSystemWatcher.Renamed += new RenamedEventHandler(_temporaryDirectoryWatcher_Renamed);
+            _fileSystemWatcher.Changed += (sender, e) => FileSystemChanged(e.FullPath);
+            _fileSystemWatcher.Created += (sender, e) => FileSystemChanged(e.FullPath);
+            _fileSystemWatcher.Deleted += (sender, e) => FileSystemChanged(e.FullPath);
+            _fileSystemWatcher.Renamed += (sender, e) => FileSystemChanged(e.FullPath);
+
             _fileSystemWatcher.IncludeSubdirectories = true;
             _fileSystemWatcher.Filter = String.Empty;
             _fileSystemWatcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.CreationTime;
             _fileSystemWatcher.EnableRaisingEvents = true;
+        }
+
+        protected virtual void OnDelayedNotification()
+        {
+            List<string> notifications;
+            lock (_notifications)
+            {
+                if (!_notifications.Any())
+                {
+                    return;
+                }
+                notifications = new List<string>(_notifications);
+                _notifications.Clear();
+            }
+
+            foreach (string fullPath in notifications)
+            {
+                OnChanged(new FileWatcherEventArgs(fullPath));
+            }
         }
 
         protected virtual void OnChanged(FileWatcherEventArgs eventArgs)
@@ -63,23 +92,17 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        private void _temporaryDirectoryWatcher_Renamed(object sender, RenamedEventArgs e)
-        {
-            FileSystemChanged(e.FullPath);
-        }
-
-        private void TemporaryDirectoryWatcher_Changed(object sender, FileSystemEventArgs e)
-        {
-            FileSystemChanged(e.FullPath);
-        }
-
         private void FileSystemChanged(string fullPath)
         {
             if (Instance.Log.IsInfoEnabled)
             {
                 Instance.Log.LogInfo("Watcher says '{0}' changed.".InvariantFormat(fullPath));
             }
-            OnChanged(new FileWatcherEventArgs(fullPath));
+            lock (_notifications)
+            {
+                _notifications.Add(fullPath);
+            }
+            _delayedAction.StartIdleTimer();
         }
 
         #region IFileWatcher Members
@@ -101,8 +124,13 @@ namespace Axantum.AxCrypt.Mono
                 if (_fileSystemWatcher != null)
                 {
                     _fileSystemWatcher.Dispose();
+                    _fileSystemWatcher = null;
                 }
-                _fileSystemWatcher = null;
+                if (_delayedAction != null)
+                {
+                    _delayedAction.Dispose();
+                    _delayedAction = null;
+                }
             }
             _disposed = true;
         }

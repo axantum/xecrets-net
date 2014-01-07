@@ -52,11 +52,11 @@ namespace Axantum.AxCrypt.Core.Session
             _path = path;
         }
 
-        public static IRuntimeFileInfo DefaultPathInfo
+        public IRuntimeFileInfo PathInfo
         {
             get
             {
-                return OS.Current.FileInfo(Path.Combine(OS.Current.WorkFolder.FullName, "FileSystemState.xml"));
+                return _path;
             }
         }
 
@@ -154,7 +154,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void watchedFolder_Changed(object sender, FileWatcherEventArgs e)
         {
-            IRuntimeFileInfo fileInfo = OS.Current.FileInfo(e.FullName);
+            IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(e.FullName);
             if (fileInfo.Type() != FileInfoTypes.NonExisting)
             {
                 return;

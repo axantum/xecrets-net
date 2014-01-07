@@ -27,7 +27,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
 namespace Axantum.AxCrypt.Core.IO
@@ -132,5 +131,12 @@ namespace Axantum.AxCrypt.Core.IO
         /// Enumerate all files (not folders) in this folder, if it's a folder.
         /// </summary>
         IEnumerable<IRuntimeFileInfo> Files { get; }
+
+        /// <summary>
+        /// Combine the path of this instance with another path, creating a new instance.
+        /// </summary>
+        /// <param name="path">The path to combine with.</param>
+        /// <returns>A new instance representing the combined path.</returns>
+        IRuntimeFileInfo Combine(string path);
     }
 }

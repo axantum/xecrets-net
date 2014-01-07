@@ -28,10 +28,8 @@
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Session
 {
@@ -88,9 +86,9 @@ namespace Axantum.AxCrypt.Core.Session
         [OnDeserialized]
         private void Initialize(StreamingContext context)
         {
-            if (OS.Current.FileInfo(Path).IsFolder)
+            if (Factory.New<IRuntimeFileInfo>(Path).IsFolder)
             {
-                _fileWatcher = OS.Current.CreateFileWatcher(Path);
+                _fileWatcher = Factory.New<IFileWatcher>(Path);
                 _fileWatcher.FileChanged += _fileWatcher_FileChanged;
             }
         }

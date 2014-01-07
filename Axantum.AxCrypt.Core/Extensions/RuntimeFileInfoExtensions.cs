@@ -100,9 +100,9 @@ namespace Axantum.AxCrypt.Core.Extensions
 
             if (directorySeparatorChars == 0)
             {
-                return OS.Current.FileInfo(normalizedFolder + Path.DirectorySeparatorChar);
+                return Factory.New<IRuntimeFileInfo>(normalizedFolder + Path.DirectorySeparatorChar);
             }
-            return OS.Current.FileInfo(normalizedFolder.Substring(0, normalizedFolder.Length - (directorySeparatorChars - 1)));
+            return Factory.New<IRuntimeFileInfo>(normalizedFolder.Substring(0, normalizedFolder.Length - (directorySeparatorChars - 1)));
         }
 
         public static bool IsEncrypted(this IRuntimeFileInfo fullName)
@@ -141,7 +141,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             encryptedName += extension.Replace('.', '-');
             encryptedName += OS.Current.AxCryptExtension;
 
-            return OS.Current.FileInfo(encryptedName);
+            return Factory.New<IRuntimeFileInfo>(encryptedName);
         }
 
         public static bool TryFindDecryptionKey(this IRuntimeFileInfo fileInfo, out AesKey key)

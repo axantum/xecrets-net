@@ -28,12 +28,10 @@
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Test.Properties;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -71,8 +69,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             ActiveFileCollection collection = new ActiveFileCollection();
 
-            IRuntimeFileInfo decryptedFileInfo = OS.Current.FileInfo(_testTextPath);
-            IRuntimeFileInfo encryptedFileInfo = OS.Current.FileInfo(_helloWorldAxxPath);
+            IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
+            IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new AesKey(), ActiveFileStatus.None);
 
             collection.Add(activeFile);
@@ -88,10 +86,10 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestActiveFileCollectionEnumerationConstructor()
         {
-            IRuntimeFileInfo decryptedFileInfo1 = OS.Current.FileInfo(Path.Combine(_rootPath, "test1.txt"));
-            IRuntimeFileInfo encryptedFileInfo1 = OS.Current.FileInfo(Path.Combine(_rootPath, "test1-txt.axx"));
-            IRuntimeFileInfo decryptedFileInfo2 = OS.Current.FileInfo(Path.Combine(_rootPath, "test2.txt"));
-            IRuntimeFileInfo encryptedFileInfo2 = OS.Current.FileInfo(Path.Combine(_rootPath, "test2-text.axx"));
+            IRuntimeFileInfo decryptedFileInfo1 = Factory.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "test1.txt"));
+            IRuntimeFileInfo encryptedFileInfo1 = Factory.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "test1-txt.axx"));
+            IRuntimeFileInfo decryptedFileInfo2 = Factory.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "test2.txt"));
+            IRuntimeFileInfo encryptedFileInfo2 = Factory.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "test2-text.axx"));
             ActiveFile activeFile1 = new ActiveFile(encryptedFileInfo1, decryptedFileInfo1, new AesKey(), ActiveFileStatus.None);
             ActiveFile activeFile2 = new ActiveFile(encryptedFileInfo2, decryptedFileInfo2, new AesKey(), ActiveFileStatus.None);
 

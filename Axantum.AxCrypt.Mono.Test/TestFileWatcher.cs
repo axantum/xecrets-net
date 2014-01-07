@@ -43,23 +43,26 @@ namespace Axantum.AxCrypt.Mono.Test
         [SetUp]
         public static void Setup()
         {
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment());
-            Factory.Instance.Singleton<ILogging>(() => new Logging());
-            _tempPath = Path.Combine(Path.GetTempPath(), "Axantum.AxCrypt.Core.Test.TestFileWatcher");
+            _tempPath = Path.Combine(Path.GetTempPath(), @"Axantum.AxCrypt.Mono.Test.TestFileWatcher\");
             Directory.CreateDirectory(_tempPath);
+
+            Factory.Instance.Register<string, IFileWatcher>((path) => new FileWatcher(path, new DelayedAction(new DelayTimer(), TimeSpan.FromMilliseconds(1))));
+            Factory.Instance.Register<string, IRuntimeFileInfo>((path) => new RuntimeFileInfo(path));
+            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
+            Factory.Instance.Singleton<ILogging>(() => new Logging());
         }
 
         [TearDown]
         public static void Teardown()
         {
-            Directory.Delete(_tempPath, true);
             Factory.Instance.Clear();
+            Directory.Delete(_tempPath, true);
         }
 
         [Test]
         public static void TestCreated()
         {
-            using (IFileWatcher fileWatcher = OS.Current.CreateFileWatcher(_tempPath))
+            using (IFileWatcher fileWatcher = Factory.New<IFileWatcher>(_tempPath))
             {
                 string fileName = String.Empty;
                 fileWatcher.FileChanged += (object sender, FileWatcherEventArgs e) => { fileName = Path.GetFileName(e.FullName); };
@@ -77,7 +80,7 @@ namespace Axantum.AxCrypt.Mono.Test
         [Test]
         public static void TestMoved()
         {
-            using (IFileWatcher fileWatcher = OS.Current.CreateFileWatcher(_tempPath))
+            using (IFileWatcher fileWatcher = Factory.New<IFileWatcher>(_tempPath))
             {
                 string fileName = String.Empty;
                 fileWatcher.FileChanged += (object sender, FileWatcherEventArgs e) => { fileName = Path.GetFileName(e.FullName); };
@@ -103,7 +106,7 @@ namespace Axantum.AxCrypt.Mono.Test
         {
             Assert.DoesNotThrow(() =>
             {
-                using (IFileWatcher fileWatcher = OS.Current.CreateFileWatcher(_tempPath))
+                using (IFileWatcher fileWatcher = Factory.New<IFileWatcher>(_tempPath))
                 {
                     fileWatcher.Dispose();
                 }

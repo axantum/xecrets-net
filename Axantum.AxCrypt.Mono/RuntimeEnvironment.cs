@@ -25,12 +25,9 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.Session;
 using System;
-using System.IO;
 using System.Security.Cryptography;
 using System.Threading;
 
@@ -40,26 +37,9 @@ namespace Axantum.AxCrypt.Mono
     {
         private IFileWatcher _workFolderWatcher;
 
-        public RuntimeEnvironment()
-            : this(".axx")
-        {
-        }
-
         public RuntimeEnvironment(string extension)
         {
             AxCryptExtension = extension;
-
-            _workFolderWatcher = CreateFileWatcher(WorkFolder.FullName);
-            _workFolderWatcher.FileChanged += HandleWorkFolderFileChangedEvent;
-        }
-
-        private void HandleWorkFolderFileChangedEvent(object sender, FileWatcherEventArgs e)
-        {
-            if (e.FullName == FileSystemState.DefaultPathInfo.FullName)
-            {
-                return;
-            }
-            Instance.SessionNotification.Notify(new SessionNotification(SessionNotificationType.WorkFolderChange, e.FullName));
         }
 
         public bool IsLittleEndian
@@ -82,11 +62,6 @@ namespace Axantum.AxCrypt.Mono
             byte[] data = new byte[count];
             _rng.GetBytes(data);
             return data;
-        }
-
-        public IRuntimeFileInfo FileInfo(string path)
-        {
-            return new RuntimeFileInfo(path);
         }
 
         public string AxCryptExtension
@@ -129,29 +104,6 @@ namespace Axantum.AxCrypt.Mono
         public int StreamBufferSize
         {
             get { return 65536; }
-        }
-
-        public IFileWatcher CreateFileWatcher(string path)
-        {
-            return new FileWatcher(path);
-        }
-
-        private IRuntimeFileInfo _temporaryDirectoryInfo;
-
-        public IRuntimeFileInfo WorkFolder
-        {
-            get
-            {
-                if (_temporaryDirectoryInfo == null)
-                {
-                    string temporaryFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"AxCrypt" + Path.DirectorySeparatorChar);
-                    IRuntimeFileInfo temporaryFolderInfo = FileInfo(temporaryFolderPath);
-                    temporaryFolderInfo.CreateFolder();
-                    _temporaryDirectoryInfo = temporaryFolderInfo;
-                }
-
-                return _temporaryDirectoryInfo;
-            }
         }
 
         public DateTime UtcNow
