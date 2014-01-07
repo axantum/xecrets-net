@@ -273,21 +273,21 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             switch (e.Notification.NotificationType)
             {
                 case SessionNotificationType.WatchedFolderAdded:
-                    Instance.UIThread.RunOnUIThread(() => SetWatchedFolders());
+                    SetWatchedFolders();
                     break;
 
                 case SessionNotificationType.WatchedFolderRemoved:
-                    Instance.UIThread.RunOnUIThread(() => SetWatchedFolders());
+                    SetWatchedFolders();
                     break;
 
                 case SessionNotificationType.LogOn:
-                    Instance.UIThread.RunOnUIThread(() => SetLogOnState(Instance.KnownKeys.IsLoggedOn));
-                    Instance.UIThread.RunOnUIThread(() => SetWatchedFolders());
+                    SetLogOnState(Instance.KnownKeys.IsLoggedOn);
+                    SetWatchedFolders();
                     break;
 
                 case SessionNotificationType.LogOff:
-                    Instance.UIThread.RunOnUIThread(() => SetLogOnState(Instance.KnownKeys.IsLoggedOn));
-                    Instance.UIThread.RunOnUIThread(() => SetWatchedFolders());
+                    SetLogOnState(Instance.KnownKeys.IsLoggedOn);
+                    SetWatchedFolders();
                     break;
 
                 case SessionNotificationType.ProcessExit:
