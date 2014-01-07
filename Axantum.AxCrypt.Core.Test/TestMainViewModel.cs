@@ -49,6 +49,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void Setup()
         {
             SetupAssembly.AssemblySetup();
+            Factory.Instance.Singleton<ParallelFileOperation>(() => new ParallelFileOperation(Factory.Instance.Singleton<IUIThread>()));
         }
 
         [TearDown]
@@ -228,8 +229,6 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSetRecentFilesComparer()
         {
-            MainViewModel mvm = Factory.New<MainViewModel>();
-
             string file1 = @"C:\Folder\File3-txt.axx";
             string decrypted1 = @"C:\Folder\File2.txt";
             string file2 = @"C:\Folder\File2-txt.axx";
@@ -258,17 +257,20 @@ namespace Axantum.AxCrypt.Core.Test
             List<ActiveFile> recentFiles;
 
             comparer = ActiveFileComparer.DateComparer;
-            mvm.RecentFilesComparer = comparer;
-            recentFiles = mvm.RecentFiles.ToList();
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                mvm.RecentFilesComparer = comparer;
+                recentFiles = mvm.RecentFiles.ToList();
 
-            Assert.That(recentFiles[0].EncryptedFileInfo.FullName, Is.EqualTo(file1), "Sorted by Date, this should be number 1.");
-            Assert.That(recentFiles[1].EncryptedFileInfo.FullName, Is.EqualTo(file2), "Sorted by Date, this should be number 2.");
-            Assert.That(recentFiles[2].EncryptedFileInfo.FullName, Is.EqualTo(file3), "Sorted by Date, this should be number 3.");
+                Assert.That(recentFiles[0].EncryptedFileInfo.FullName, Is.EqualTo(file1), "Sorted by Date, this should be number 1.");
+                Assert.That(recentFiles[1].EncryptedFileInfo.FullName, Is.EqualTo(file2), "Sorted by Date, this should be number 2.");
+                Assert.That(recentFiles[2].EncryptedFileInfo.FullName, Is.EqualTo(file3), "Sorted by Date, this should be number 3.");
 
-            comparer = ActiveFileComparer.DateComparer;
-            comparer.ReverseSort = true;
-            mvm.RecentFilesComparer = comparer;
-            recentFiles = mvm.RecentFiles.ToList();
+                comparer = ActiveFileComparer.DateComparer;
+                comparer.ReverseSort = true;
+                mvm.RecentFilesComparer = comparer;
+                recentFiles = mvm.RecentFiles.ToList();
+            }
 
             Assert.That(recentFiles[0].EncryptedFileInfo.FullName, Is.EqualTo(file3), "Sorted by Date in reverse, this should be number 1.");
             Assert.That(recentFiles[1].EncryptedFileInfo.FullName, Is.EqualTo(file2), "Sorted by Date, this should be number 2.");
@@ -278,8 +280,6 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestOpenFiles()
         {
-            MainViewModel mvm = Factory.New<MainViewModel>();
-
             string file1 = @"C:\Folder\File3-txt.axx";
             string decrypted1 = @"C:\Folder\File2.txt";
             string file2 = @"C:\Folder\File2-txt.axx";
@@ -289,27 +289,30 @@ namespace Axantum.AxCrypt.Core.Test
 
             ActiveFile activeFile;
 
-            FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2001, 1, 1);
-            FakeRuntimeFileInfo.AddFile(file1, null);
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted);
-            Instance.FileSystemState.Add(activeFile);
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2001, 1, 1);
+                FakeRuntimeFileInfo.AddFile(file1, null);
+                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted);
+                Instance.FileSystemState.Add(activeFile);
 
-            FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2002, 2, 2);
-            FakeRuntimeFileInfo.AddFile(file2, null);
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file2), Factory.New<IRuntimeFileInfo>(decrypted2), new AesKey(), ActiveFileStatus.NotDecrypted);
-            Instance.FileSystemState.Add(activeFile);
+                FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2002, 2, 2);
+                FakeRuntimeFileInfo.AddFile(file2, null);
+                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file2), Factory.New<IRuntimeFileInfo>(decrypted2), new AesKey(), ActiveFileStatus.NotDecrypted);
+                Instance.FileSystemState.Add(activeFile);
 
-            FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2003, 3, 3);
-            FakeRuntimeFileInfo.AddFile(file3, null);
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file3), Factory.New<IRuntimeFileInfo>(decrypted3), new AesKey(), ActiveFileStatus.NotDecrypted);
-            Instance.FileSystemState.Add(activeFile);
+                FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2003, 3, 3);
+                FakeRuntimeFileInfo.AddFile(file3, null);
+                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file3), Factory.New<IRuntimeFileInfo>(decrypted3), new AesKey(), ActiveFileStatus.NotDecrypted);
+                Instance.FileSystemState.Add(activeFile);
 
-            Assert.That(mvm.FilesAreOpen, Is.True);
+                Assert.That(mvm.FilesAreOpen, Is.True);
 
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new AesKey(), ActiveFileStatus.NotDecrypted);
-            Instance.FileSystemState.Add(activeFile);
+                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new AesKey(), ActiveFileStatus.NotDecrypted);
+                Instance.FileSystemState.Add(activeFile);
 
-            Assert.That(mvm.FilesAreOpen, Is.False);
+                Assert.That(mvm.FilesAreOpen, Is.False);
+            }
         }
 
         [Test]
@@ -319,7 +322,6 @@ namespace Axantum.AxCrypt.Core.Test
             mockFileSystemState.Setup(x => x.Save());
 
             Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
-            MainViewModel mvm = Factory.New<MainViewModel>();
 
             string file1 = @"C:\Folder\File3-txt.axx";
             string decrypted1 = @"C:\Folder\File2.txt";
@@ -342,13 +344,16 @@ namespace Axantum.AxCrypt.Core.Test
             activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file3), Factory.New<IRuntimeFileInfo>(decrypted3), new AesKey(), ActiveFileStatus.NotDecrypted);
             Instance.FileSystemState.Add(activeFile);
 
-            Assert.That(mvm.RemoveRecentFiles.CanExecute(null), Is.True, "RemoveRecentFiles should be executable by default.");
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                Assert.That(mvm.RemoveRecentFiles.CanExecute(null), Is.True, "RemoveRecentFiles should be executable by default.");
 
-            mvm.RemoveRecentFiles.Execute(new string[] { file2 });
-            mockFileSystemState.Verify(x => x.Remove(It.IsAny<ActiveFile>()), Times.Once, "Exactly one recent file should be removed.");
+                mvm.RemoveRecentFiles.Execute(new string[] { file2 });
+                mockFileSystemState.Verify(x => x.Remove(It.IsAny<ActiveFile>()), Times.Once, "Exactly one recent file should be removed.");
 
-            mockFileSystemState.ResetCalls();
-            mvm.RemoveRecentFiles.Execute(new string[] { file2 });
+                mockFileSystemState.ResetCalls();
+                mvm.RemoveRecentFiles.Execute(new string[] { file2 });
+            }
             mockFileSystemState.Verify(x => x.Remove(It.IsAny<ActiveFile>()), Times.Never, "There is no longer any matching file, so no call to remove should happen.");
         }
 
@@ -365,18 +370,18 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(decrypted1, null);
             FakeRuntimeFileInfo.AddFile(decrypted2, null);
 
-            MainViewModel mvm = Factory.New<MainViewModel>();
-
             var mockParallelFile = new Mock<ParallelFileOperation>(new FakeUIThread());
             Factory.Instance.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
             mockParallelFile.Setup(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()))
                 .Callback<IEnumerable<IRuntimeFileInfo>, Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>, Action<FileOperationStatus>>((files, work, allComplete) => allComplete(FileOperationStatus.Success));
 
-            PassphraseIdentity id = new PassphraseIdentity("Test", new AesKey());
-            Instance.FileSystemState.Identities.Add(id);
-            Instance.KnownKeys.DefaultEncryptionKey = id.Key;
-            mvm.AddRecentFiles.Execute(new string[] { file1, file2, decrypted1 });
-
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                PassphraseIdentity id = new PassphraseIdentity("Test", new AesKey());
+                Instance.FileSystemState.Identities.Add(id);
+                Instance.KnownKeys.DefaultEncryptionKey = id.Key;
+                mvm.AddRecentFiles.Execute(new string[] { file1, file2, decrypted1 });
+            }
             mockParallelFile.Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()), Times.Once);
             mockParallelFile.Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()), Times.Once);
         }
@@ -391,11 +396,13 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Register<SessionNotificationHandler>(() => new SessionNotificationHandler(Instance.FileSystemState, Factory.New<ActiveFileAction>(), Factory.New<AxCryptFile>()));
             Instance.SessionNotify.Notification += (sender, e) => Factory.New<SessionNotificationHandler>().HandleNotification(e.Notification);
 
-            MainViewModel mvm = Factory.New<MainViewModel>();
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                Assert.That(mvm.PurgeActiveFiles.CanExecute(null), Is.True, "PuregRecentFiles should be executable by default.");
 
-            Assert.That(mvm.PurgeActiveFiles.CanExecute(null), Is.True, "PuregRecentFiles should be executable by default.");
+                mvm.PurgeActiveFiles.Execute(null);
+            }
 
-            mvm.PurgeActiveFiles.Execute(null);
             mockActiveFileAction.Verify(x => x.PurgeActiveFiles(It.IsAny<IProgressContext>()), Times.Once, "Purge should be called.");
         }
 
@@ -420,11 +427,12 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(2), "Two known keys are expected.");
             Assert.That(Instance.KnownKeys.DefaultEncryptionKey, Is.Not.Null, "There should be a non-null default encryption key");
 
-            MainViewModel mvm = Factory.New<MainViewModel>();
             var sessionNotificationMonitorMock = new Mock<SessionNotify>();
             Factory.Instance.Singleton<SessionNotify>(() => sessionNotificationMonitorMock.Object);
-
-            mvm.ClearPassphraseMemory.Execute(null);
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                mvm.ClearPassphraseMemory.Execute(null);
+            }
 
             Assert.That(Instance.FileSystemState.ActiveFileCount, Is.EqualTo(0));
             Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(0));
@@ -440,13 +448,15 @@ namespace Axantum.AxCrypt.Core.Test
             mockFileSystemState.Setup(x => x.Save());
 
             Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
-            MainViewModel mvm = Factory.New<MainViewModel>();
 
-            PassphraseIdentity id = new PassphraseIdentity("Logged On User", new AesKey());
-            mockFileSystemState.Object.Identities.Add(id);
-            Instance.KnownKeys.DefaultEncryptionKey = id.Key;
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                PassphraseIdentity id = new PassphraseIdentity("Logged On User", new AesKey());
+                mockFileSystemState.Object.Identities.Add(id);
+                Instance.KnownKeys.DefaultEncryptionKey = id.Key;
 
-            mvm.RemoveWatchedFolders.Execute(new string[] { "File1.txt", "file2.txt" });
+                mvm.RemoveWatchedFolders.Execute(new string[] { "File1.txt", "file2.txt" });
+            }
 
             mockFileSystemState.Verify(x => x.RemoveWatchedFolder(It.IsAny<IRuntimeFileInfo>()), Times.Exactly(2));
             mockFileSystemState.Verify(x => x.Save(), Times.Once);
@@ -458,20 +468,20 @@ namespace Axantum.AxCrypt.Core.Test
             var mockFileSystemState = new Mock<FileSystemState>();
 
             Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
-            MainViewModel mvm = Factory.New<MainViewModel>();
-
-            mvm.SelectingFiles += (sender, e) =>
-            {
-                e.SelectedFiles.Add(@"C:\Folder\File1.axx");
-                e.SelectedFiles.Add(@"C:\Folder\File2.axx");
-            };
-
             var mockParallelFile = new Mock<ParallelFileOperation>(new FakeUIThread());
             Factory.Instance.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
             mockParallelFile.Setup(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()))
                 .Callback<IEnumerable<IRuntimeFileInfo>, Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>, Action<FileOperationStatus>>((files, work, allComplete) => allComplete(FileOperationStatus.Success));
 
-            mvm.DecryptFiles.Execute(null);
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                mvm.FileOperationViewModel.SelectingFiles += (sender, e) =>
+                {
+                    e.SelectedFiles.Add(@"C:\Folder\File1.axx");
+                    e.SelectedFiles.Add(@"C:\Folder\File2.axx");
+                };
+                mvm.FileOperationViewModel.DecryptFiles.Execute(null);
+            }
 
             mockParallelFile.Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
         }
@@ -482,16 +492,18 @@ namespace Axantum.AxCrypt.Core.Test
             var mockFileSystemState = new Mock<FileSystemState>();
 
             Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
-            MainViewModel mvm = Factory.New<MainViewModel>();
-            mvm.SelectingFiles += (sender, e) =>
-            {
-                e.Cancel = true;
-            };
-
             var mockParallelFile = new Mock<ParallelFileOperation>(new FakeUIThread());
             Factory.Instance.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
 
-            mvm.DecryptFiles.Execute(null);
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                mvm.FileOperationViewModel.SelectingFiles += (sender, e) =>
+                {
+                    e.Cancel = true;
+                };
+
+                mvm.FileOperationViewModel.DecryptFiles.Execute(null);
+            }
 
             mockParallelFile.Verify(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()), Times.Never);
         }
@@ -502,17 +514,19 @@ namespace Axantum.AxCrypt.Core.Test
             var mockFileSystemState = new Mock<FileSystemState>();
 
             Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
-            MainViewModel mvm = Factory.New<MainViewModel>();
-            mvm.SelectingFiles += (sender, e) =>
-            {
-                e.SelectedFiles.Add(@"C:\Folder\File1.axx");
-                e.SelectedFiles.Add(@"C:\Folder\File2.axx");
-            };
-
             var mockParallelFile = new Mock<ParallelFileOperation>(new FakeUIThread());
             Factory.Instance.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
 
-            mvm.DecryptFiles.Execute(new string[] { @"C:\Folder\File3.axx" });
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                mvm.FileOperationViewModel.SelectingFiles += (sender, e) =>
+                {
+                    e.SelectedFiles.Add(@"C:\Folder\File1.axx");
+                    e.SelectedFiles.Add(@"C:\Folder\File2.axx");
+                };
+
+                mvm.FileOperationViewModel.DecryptFiles.Execute(new string[] { @"C:\Folder\File3.axx" });
+            }
 
             mockParallelFile.Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
         }
@@ -523,19 +537,21 @@ namespace Axantum.AxCrypt.Core.Test
             var mockFileSystemState = new Mock<FileSystemState>();
 
             Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
-            MainViewModel mvm = Factory.New<MainViewModel>();
-            mvm.SelectingFiles += (sender, e) =>
-            {
-                e.SelectedFiles.Add(@"C:\Folder\File1.txt");
-                e.SelectedFiles.Add(@"C:\Folder\File2.txt");
-            };
-
             var mockParallelFile = new Mock<ParallelFileOperation>(new FakeUIThread());
             Factory.Instance.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
             mockParallelFile.Setup(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()))
                 .Callback<IEnumerable<IRuntimeFileInfo>, Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>, Action<FileOperationStatus>>((files, work, allComplete) => allComplete(FileOperationStatus.Success));
 
-            mvm.EncryptFiles.Execute(null);
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                mvm.FileOperationViewModel.SelectingFiles += (sender, e) =>
+                {
+                    e.SelectedFiles.Add(@"C:\Folder\File1.txt");
+                    e.SelectedFiles.Add(@"C:\Folder\File2.txt");
+                };
+
+                mvm.FileOperationViewModel.EncryptFiles.Execute(null);
+            }
 
             mockParallelFile.Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
         }
@@ -546,16 +562,18 @@ namespace Axantum.AxCrypt.Core.Test
             var mockFileSystemState = new Mock<FileSystemState>();
 
             Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
-            MainViewModel mvm = Factory.New<MainViewModel>();
-            mvm.SelectingFiles += (sender, e) =>
-            {
-                e.Cancel = true;
-            };
-
             var mockParallelFile = new Mock<ParallelFileOperation>(new FakeUIThread());
             Factory.Instance.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
 
-            mvm.EncryptFiles.Execute(null);
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                mvm.FileOperationViewModel.SelectingFiles += (sender, e) =>
+                {
+                    e.Cancel = true;
+                };
+
+                mvm.FileOperationViewModel.EncryptFiles.Execute(null);
+            }
 
             mockParallelFile.Verify(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()), Times.Never);
         }
@@ -566,17 +584,19 @@ namespace Axantum.AxCrypt.Core.Test
             var mockFileSystemState = new Mock<FileSystemState>();
 
             Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
-            MainViewModel mvm = Factory.New<MainViewModel>();
-            mvm.SelectingFiles += (sender, e) =>
-            {
-                e.SelectedFiles.Add(@"C:\Folder\File1.txt");
-                e.SelectedFiles.Add(@"C:\Folder\File2.txt");
-            };
-
             var mockParallelFile = new Mock<ParallelFileOperation>(new FakeUIThread());
             Factory.Instance.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
 
-            mvm.EncryptFiles.Execute(new string[] { @"C:\Folder\File3.txt" });
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                mvm.FileOperationViewModel.SelectingFiles += (sender, e) =>
+                {
+                    e.SelectedFiles.Add(@"C:\Folder\File1.txt");
+                    e.SelectedFiles.Add(@"C:\Folder\File2.txt");
+                };
+
+                mvm.FileOperationViewModel.EncryptFiles.Execute(new string[] { @"C:\Folder\File3.txt" });
+            }
 
             mockParallelFile.Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
         }
@@ -587,7 +607,6 @@ namespace Axantum.AxCrypt.Core.Test
             var mockFileSystemState = new Mock<FileSystemState>();
 
             Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
-            MainViewModel mvm = Factory.New<MainViewModel>();
 
             var mockParallelFile = new Mock<ParallelFileOperation>(new FakeUIThread());
             Factory.Instance.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
@@ -595,8 +614,10 @@ namespace Axantum.AxCrypt.Core.Test
             mockParallelFile.Setup(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()))
                 .Callback<IEnumerable<IRuntimeFileInfo>, Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>, Action<FileOperationStatus>>((files, work, allComplete) => { allComplete(FileOperationStatus.Success); allCompleteCalled = true; });
 
-            mvm.OpenFiles.Execute(new string[] { @"C:\Folder\File3.txt" });
-
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                mvm.FileOperationViewModel.OpenFiles.Execute(new string[] { @"C:\Folder\File3.txt" });
+            }
             Assert.That(allCompleteCalled, Is.True);
             mockParallelFile.Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
         }
@@ -606,13 +627,15 @@ namespace Axantum.AxCrypt.Core.Test
         {
             var mockFileSystemState = new Mock<FileSystemState>();
             Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
-            MainViewModel mvm = Factory.New<MainViewModel>();
 
             PassphraseIdentity id = new PassphraseIdentity("Test", new AesKey());
             Instance.FileSystemState.Identities.Add(id);
             Instance.KnownKeys.DefaultEncryptionKey = id.Key;
 
-            mvm.IdentityViewModel.LogOnLogOff.Execute(null);
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                mvm.FileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(null);
+            }
 
             Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(0));
         }
@@ -620,18 +643,20 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestLogOnLogOffWhenLoggedOffAndIdentityKnown()
         {
-            MainViewModel mvm = Factory.New<MainViewModel>();
             Passphrase passphrase = new Passphrase("a");
 
             PassphraseIdentity identity = new PassphraseIdentity("Name", passphrase.DerivedPassphrase);
             Instance.FileSystemState.Identities.Add(identity);
 
-            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
             {
-                e.Passphrase = "a";
-            };
+                mvm.FileOperationViewModel.IdentityViewModel.LoggingOn += (sender, e) =>
+                {
+                    e.Passphrase = "a";
+                };
 
-            mvm.IdentityViewModel.LogOnLogOff.Execute(null);
+                mvm.FileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(null);
+            }
 
             Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(1));
             Assert.That(Instance.KnownKeys.IsLoggedOn, Is.True);
@@ -640,15 +665,15 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestLogOnLogOffWhenLoggedOffAndNoIdentityKnown()
         {
-            MainViewModel mvm = Factory.New<MainViewModel>();
-
-            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
             {
-                e.Passphrase = "b";
-                e.Name = "Name";
-            };
-
-            mvm.IdentityViewModel.LogOnLogOff.Execute(null);
+                mvm.FileOperationViewModel.IdentityViewModel.LoggingOn += (sender, e) =>
+                {
+                    e.Passphrase = "b";
+                    e.Name = "Name";
+                };
+                mvm.FileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(null);
+            }
 
             Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(1));
             Assert.That(Instance.KnownKeys.IsLoggedOn, Is.True);
@@ -658,14 +683,15 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestLogOnLogOffWhenLoggedOffAndNoIdentityKnownAndNoPassphraseGiven()
         {
-            MainViewModel mvm = Factory.New<MainViewModel>();
-
-            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
             {
-                e.Passphrase = String.Empty;
-            };
+                mvm.FileOperationViewModel.IdentityViewModel.LoggingOn += (sender, e) =>
+                {
+                    e.Passphrase = String.Empty;
+                };
 
-            mvm.IdentityViewModel.LogOnLogOff.Execute(null);
+                mvm.FileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(null);
+            }
 
             Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(0));
             Assert.That(Instance.KnownKeys.IsLoggedOn, Is.False);
@@ -678,15 +704,17 @@ namespace Axantum.AxCrypt.Core.Test
             var mockFileSystemState = new Mock<FileSystemState>();
 
             Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
-            MainViewModel mvm = Factory.New<MainViewModel>();
 
+            bool allCompleteCalled = false;
             var mockParallelFile = new Mock<ParallelFileOperation>(new FakeUIThread());
             Factory.Instance.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
-            bool allCompleteCalled = false;
             mockParallelFile.Setup(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()))
                 .Callback<IEnumerable<IRuntimeFileInfo>, Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>, Action<FileOperationStatus>>((files, work, allComplete) => { allComplete(FileOperationStatus.Success); allCompleteCalled = true; });
 
-            mvm.DecryptFolders.Execute(new string[] { @"C:\Folder\" });
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                mvm.FileOperationViewModel.DecryptFolders.Execute(new string[] { @"C:\Folder\" });
+            }
 
             Assert.That(allCompleteCalled, Is.True);
             mockParallelFile.Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
@@ -698,19 +726,21 @@ namespace Axantum.AxCrypt.Core.Test
             var mockFileSystemState = new Mock<FileSystemState>();
 
             Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
-            MainViewModel mvm = Factory.New<MainViewModel>();
-            mvm.SelectingFiles += (sender, e) =>
-            {
-                e.SelectedFiles.Add(@"C:\Folder\File1.txt");
-                e.SelectedFiles.Add(@"C:\Folder\File2.txt");
-            };
-
             var mockParallelFile = new Mock<ParallelFileOperation>(new FakeUIThread());
             Factory.Instance.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
             mockParallelFile.Setup(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()))
                 .Callback<IEnumerable<IRuntimeFileInfo>, Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>, Action<FileOperationStatus>>((files, work, allComplete) => allComplete(FileOperationStatus.Success));
 
-            mvm.WipeFiles.Execute(null);
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                mvm.FileOperationViewModel.SelectingFiles += (sender, e) =>
+                {
+                    e.SelectedFiles.Add(@"C:\Folder\File1.txt");
+                    e.SelectedFiles.Add(@"C:\Folder\File2.txt");
+                };
+
+                mvm.FileOperationViewModel.WipeFiles.Execute(null);
+            }
 
             mockParallelFile.Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
         }
@@ -721,16 +751,18 @@ namespace Axantum.AxCrypt.Core.Test
             var mockFileSystemState = new Mock<FileSystemState>();
 
             Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
-            MainViewModel mvm = Factory.New<MainViewModel>();
-            mvm.SelectingFiles += (sender, e) =>
-            {
-                e.Cancel = true;
-            };
-
             var mockParallelFile = new Mock<ParallelFileOperation>(new FakeUIThread());
             Factory.Instance.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
 
-            mvm.WipeFiles.Execute(null);
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                mvm.FileOperationViewModel.SelectingFiles += (sender, e) =>
+                {
+                    e.Cancel = true;
+                };
+
+                mvm.FileOperationViewModel.WipeFiles.Execute(null);
+            }
 
             mockParallelFile.Verify(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()), Times.Never);
         }
@@ -741,17 +773,19 @@ namespace Axantum.AxCrypt.Core.Test
             var mockFileSystemState = new Mock<FileSystemState>();
 
             Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
-            MainViewModel mvm = Factory.New<MainViewModel>();
-            mvm.SelectingFiles += (sender, e) =>
-            {
-                e.SelectedFiles.Add(@"C:\Folder\File1.txt");
-                e.SelectedFiles.Add(@"C:\Folder\File2.txt");
-            };
-
             var mockParallelFile = new Mock<ParallelFileOperation>(new FakeUIThread());
             Factory.Instance.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
 
-            mvm.WipeFiles.Execute(new string[] { @"C:\Folder\File3.txt" });
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                mvm.FileOperationViewModel.SelectingFiles += (sender, e) =>
+                {
+                    e.SelectedFiles.Add(@"C:\Folder\File1.txt");
+                    e.SelectedFiles.Add(@"C:\Folder\File2.txt");
+                };
+
+                mvm.FileOperationViewModel.WipeFiles.Execute(new string[] { @"C:\Folder\File3.txt" });
+            }
 
             mockParallelFile.Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
         }
@@ -762,16 +796,18 @@ namespace Axantum.AxCrypt.Core.Test
             var mockFileSystemState = new Mock<FileSystemState>();
 
             Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
-            MainViewModel mvm = Factory.New<MainViewModel>();
-            mvm.SelectingFiles += (sender, e) =>
-            {
-                e.Cancel = true;
-            };
-
             var mockParallelFile = new Mock<ParallelFileOperation>(new FakeUIThread());
             Factory.Instance.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
 
-            mvm.OpenFilesFromFolder.Execute(@"C:\Folder\");
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                mvm.FileOperationViewModel.SelectingFiles += (sender, e) =>
+                {
+                    e.Cancel = true;
+                };
+
+                mvm.FileOperationViewModel.OpenFilesFromFolder.Execute(@"C:\Folder\");
+            }
 
             mockParallelFile.Verify(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()), Times.Never);
         }
@@ -782,18 +818,20 @@ namespace Axantum.AxCrypt.Core.Test
             var mockFileSystemState = new Mock<FileSystemState>();
 
             Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
-            MainViewModel mvm = Factory.New<MainViewModel>();
-            mvm.SelectingFiles += (sender, e) =>
-            {
-                e.SelectedFiles.Clear();
-                e.SelectedFiles.Add(@"C:\Folder\File1.axx");
-                e.SelectedFiles.Add(@"C:\Folder\File2.axx");
-            };
-
             var mockParallelFile = new Mock<ParallelFileOperation>(new FakeUIThread());
             Factory.Instance.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
 
-            mvm.OpenFilesFromFolder.Execute(@"C:\Folder\");
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                mvm.FileOperationViewModel.SelectingFiles += (sender, e) =>
+                {
+                    e.SelectedFiles.Clear();
+                    e.SelectedFiles.Add(@"C:\Folder\File1.axx");
+                    e.SelectedFiles.Add(@"C:\Folder\File2.axx");
+                };
+
+                mvm.FileOperationViewModel.OpenFilesFromFolder.Execute(@"C:\Folder\");
+            }
 
             mockParallelFile.Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(files => files.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()), Times.Once);
         }
@@ -805,31 +843,32 @@ namespace Axantum.AxCrypt.Core.Test
             fileSystemStateMock.Setup(x => x.Save());
 
             Factory.Instance.Singleton<FileSystemState>(() => fileSystemStateMock.Object);
-            MainViewModel mvm = Factory.New<MainViewModel>();
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                Assert.Throws<InvalidOperationException>(() => mvm.RemoveWatchedFolders.Execute(new string[] { }));
 
-            Assert.Throws<InvalidOperationException>(() => mvm.RemoveWatchedFolders.Execute(new string[] { }));
+                PassphraseIdentity id = new PassphraseIdentity("Logged On User", new AesKey());
+                fileSystemStateMock.Object.Identities.Add(id);
+                Instance.KnownKeys.DefaultEncryptionKey = id.Key;
 
-            PassphraseIdentity id = new PassphraseIdentity("Logged On User", new AesKey());
-            fileSystemStateMock.Object.Identities.Add(id);
-            Instance.KnownKeys.DefaultEncryptionKey = id.Key;
+                mvm.RemoveWatchedFolders.Execute(new string[] { });
 
-            mvm.RemoveWatchedFolders.Execute(new string[] { });
+                fileSystemStateMock.Verify(x => x.RemoveWatchedFolder(It.IsAny<IRuntimeFileInfo>()), Times.Never);
+                fileSystemStateMock.Verify(x => x.Save(), Times.Never);
 
-            fileSystemStateMock.Verify(x => x.RemoveWatchedFolder(It.IsAny<IRuntimeFileInfo>()), Times.Never);
-            fileSystemStateMock.Verify(x => x.Save(), Times.Never);
+                fileSystemStateMock.ResetCalls();
+                mvm.AddWatchedFolders.Execute(new string[] { });
+                fileSystemStateMock.Verify(x => x.AddWatchedFolder(It.IsAny<WatchedFolder>()), Times.Never);
+                fileSystemStateMock.Verify(x => x.Save(), Times.Never);
 
-            fileSystemStateMock.ResetCalls();
-            mvm.AddWatchedFolders.Execute(new string[] { });
-            fileSystemStateMock.Verify(x => x.AddWatchedFolder(It.IsAny<WatchedFolder>()), Times.Never);
-            fileSystemStateMock.Verify(x => x.Save(), Times.Never);
+                mvm.AddWatchedFolders.Execute(new string[] { @"C:\Folder1\", @"C:\Folder2\" });
 
-            mvm.AddWatchedFolders.Execute(new string[] { @"C:\Folder1\", @"C:\Folder2\" });
+                fileSystemStateMock.Verify(x => x.AddWatchedFolder(It.IsAny<WatchedFolder>()), Times.Exactly(2));
+                fileSystemStateMock.Verify(x => x.Save(), Times.Once);
 
-            fileSystemStateMock.Verify(x => x.AddWatchedFolder(It.IsAny<WatchedFolder>()), Times.Exactly(2));
-            fileSystemStateMock.Verify(x => x.Save(), Times.Once);
-
-            fileSystemStateMock.ResetCalls();
-            mvm.RemoveWatchedFolders.Execute(new string[] { @"C:\Folder1\" });
+                fileSystemStateMock.ResetCalls();
+                mvm.RemoveWatchedFolders.Execute(new string[] { @"C:\Folder1\" });
+            }
 
             fileSystemStateMock.Verify(x => x.RemoveWatchedFolder(It.IsAny<IRuntimeFileInfo>()), Times.Exactly(1));
             fileSystemStateMock.Verify(x => x.Save(), Times.Once);
@@ -842,8 +881,9 @@ namespace Axantum.AxCrypt.Core.Test
             fileSystemStateMock.Setup(x => x.Save());
 
             Factory.Instance.Singleton<FileSystemState>(() => fileSystemStateMock.Object);
-            MainViewModel mvm = Factory.New<MainViewModel>();
-
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+            }
             Assert.Throws<InvalidOperationException>(() => Instance.KnownKeys.DefaultEncryptionKey = new AesKey(), "Should fail since there is no matching identity.");
         }
 
@@ -856,18 +896,19 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Singleton<FileSystemState>(() => fileSystemStateMock.Object);
             Factory.Instance.Singleton<ILogging>(() => logMock.Object);
 
-            MainViewModel mvm = Factory.New<MainViewModel>();
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                logMock.ResetCalls();
 
-            logMock.ResetCalls();
+                mvm.DebugMode = true;
+                logMock.Verify(x => x.SetLevel(It.Is<LogLevel>(ll => ll == LogLevel.Debug)));
+                Assert.That(ServicePointManager.ServerCertificateValidationCallback, Is.Not.Null);
+                Assert.That(ServicePointManager.ServerCertificateValidationCallback(null, null, null, SslPolicyErrors.RemoteCertificateChainErrors | SslPolicyErrors.RemoteCertificateNameMismatch | SslPolicyErrors.RemoteCertificateNotAvailable), Is.True);
 
-            mvm.DebugMode = true;
-            logMock.Verify(x => x.SetLevel(It.Is<LogLevel>(ll => ll == LogLevel.Debug)));
-            Assert.That(ServicePointManager.ServerCertificateValidationCallback, Is.Not.Null);
-            Assert.That(ServicePointManager.ServerCertificateValidationCallback(null, null, null, SslPolicyErrors.RemoteCertificateChainErrors | SslPolicyErrors.RemoteCertificateNameMismatch | SslPolicyErrors.RemoteCertificateNotAvailable), Is.True);
+                logMock.ResetCalls();
 
-            logMock.ResetCalls();
-
-            mvm.DebugMode = false;
+                mvm.DebugMode = false;
+            }
             logMock.Verify(x => x.SetLevel(It.Is<LogLevel>(ll => ll == LogLevel.Error)));
             Assert.That(ServicePointManager.ServerCertificateValidationCallback, Is.Null);
         }

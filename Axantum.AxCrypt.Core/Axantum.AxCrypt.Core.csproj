@@ -168,6 +168,7 @@
     <Compile Include="Session\WatchedFolderChangedEventArgs.cs" />
     <Compile Include="UI\IUserSettings.cs" />
     <Compile Include="UI\ViewModel\DelegateAction.cs" />
+    <Compile Include="UI\ViewModel\FileOperationViewModel.cs" />
     <Compile Include="UI\ViewModel\FileSelectionEventArgs.cs" />
     <Compile Include="UI\ViewModel\FileSelectionType.cs" />
     <Compile Include="UI\ViewModel\IAction.cs" />
