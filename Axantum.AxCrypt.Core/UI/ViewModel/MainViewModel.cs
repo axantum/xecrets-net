@@ -145,7 +145,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             RemoveRecentFiles = new DelegateAction<IEnumerable<string>>((files) => RemoveRecentFilesAction(files));
             PurgeActiveFiles = new DelegateAction<object>((parameter) => PurgeActiveFilesAction());
             ClearPassphraseMemory = new DelegateAction<object>((parameter) => ClearPassphraseMemoryAction());
-            RemoveWatchedFolders = new DelegateAction<IEnumerable<string>>((files) => RemoveWatchedFoldersAction(files));
+            RemoveWatchedFolders = new DelegateAction<IEnumerable<string>>((folders) => RemoveWatchedFoldersAction(folders), (folders) => LoggedOn);
             OpenSelectedFolder = new DelegateAction<string>((folder) => OpenSelectedFolderAction(folder));
             DecryptFiles = new DelegateAction<IEnumerable<string>>((files) => DecryptFilesAction(files));
             EncryptFiles = new DelegateAction<IEnumerable<string>>((files) => EncryptFilesAction(files));
@@ -272,9 +272,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             switch (e.Notification.NotificationType)
             {
-                case SessionNotificationType.ActiveFileChange:
-                    break;
-
                 case SessionNotificationType.WatchedFolderAdded:
                     Instance.UIThread.RunOnUIThread(() => SetWatchedFolders());
                     break;
@@ -294,20 +291,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     break;
 
                 case SessionNotificationType.ProcessExit:
-                    break;
-
                 case SessionNotificationType.SessionChange:
-                    break;
-
                 case SessionNotificationType.SessionStart:
-                    break;
-
                 case SessionNotificationType.KnownKeyChange:
-                    break;
-
                 case SessionNotificationType.WorkFolderChange:
-                    break;
-
+                case SessionNotificationType.ActiveFileChange:
                 default:
                     break;
             }
@@ -393,6 +381,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void RemoveWatchedFoldersAction(IEnumerable<string> folders)
         {
+            if (!folders.Any())
+            {
+                return;
+            }
             foreach (string watchedFolderPath in folders)
             {
                 _fileSystemState.RemoveWatchedFolder(Factory.New<IRuntimeFileInfo>(watchedFolderPath));

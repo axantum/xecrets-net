@@ -244,45 +244,6 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestAddWatchedFolder()
-        {
-            var mock = new Mock<FileSystemState>() { CallBase = true };
-            mock.Setup(x => x.Save());
-
-            Factory.Instance.Singleton<FileSystemState>(() => mock.Object);
-            MainViewModel mvm = Factory.New<MainViewModel>();
-
-            Assert.Throws<InvalidOperationException>(() => mvm.AddWatchedFolders.Execute(new string[] { }));
-
-            PassphraseIdentity id = new PassphraseIdentity("Logged On User", new AesKey());
-            mock.Object.Identities.Add(id);
-            Instance.KnownKeys.DefaultEncryptionKey = id.Key;
-            while (Instance.SessionNotification.NotifyPending)
-            {
-                Instance.SessionNotification.NotifyNow();
-            }
-
-            mvm.AddWatchedFolders.Execute(new string[] { });
-            while (Instance.SessionNotification.NotifyPending)
-            {
-                Instance.SessionNotification.NotifyNow();
-            }
-
-            mock.Verify(x => x.AddWatchedFolder(It.IsAny<WatchedFolder>()), Times.Never);
-            mock.Verify(x => x.Save(), Times.Never);
-
-            mock.ResetCalls();
-            mvm.AddWatchedFolders.Execute(new string[] { @"C:\Folder1\", @"C:\Folder2\" });
-            while (Instance.SessionNotification.NotifyPending)
-            {
-                Instance.SessionNotification.NotifyNow();
-            }
-
-            mock.Verify(x => x.AddWatchedFolder(It.IsAny<WatchedFolder>()), Times.Exactly(2));
-            mock.Verify(x => x.Save(), Times.Once);
-        }
-
-        [Test]
         public static void TestRemoveRecentFiles()
         {
             var mockFileSystemState = new Mock<FileSystemState>() { CallBase = true };
@@ -339,6 +300,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             var mockParallelFile = new Mock<ParallelFileOperation>(new FakeUIThread());
             Factory.Instance.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
+            mockParallelFile.Setup(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()))
+                .Callback<IEnumerable<IRuntimeFileInfo>, Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>, Action<FileOperationStatus>>((files, work, allComplete) => allComplete(FileOperationStatus.Success));
 
             Instance.KnownKeys.DefaultEncryptionKey = new AesKey();
             mvm.AddRecentFiles.Execute(new string[] { file1, file2, decrypted1 });
@@ -404,10 +367,19 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestRemoveWatchedFolders()
         {
-            var mockFileSystemState = new Mock<FileSystemState>();
+            var mockFileSystemState = new Mock<FileSystemState>() { CallBase = true };
+            mockFileSystemState.Setup(x => x.Save());
 
             Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
             MainViewModel mvm = Factory.New<MainViewModel>();
+
+            PassphraseIdentity id = new PassphraseIdentity("Logged On User", new AesKey());
+            mockFileSystemState.Object.Identities.Add(id);
+            Instance.KnownKeys.DefaultEncryptionKey = id.Key;
+            while (Instance.SessionNotification.NotifyPending)
+            {
+                Instance.SessionNotification.NotifyNow();
+            }
 
             mvm.RemoveWatchedFolders.Execute(new string[] { "File1.txt", "file2.txt" });
 
@@ -757,6 +729,55 @@ namespace Axantum.AxCrypt.Core.Test
             mvm.OpenFilesFromFolder.Execute(@"C:\Folder\");
 
             mockParallelFile.Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(files => files.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()), Times.Once);
+        }
+
+        [Test]
+        public static void TestAddAndRemoveWatchedFolderState()
+        {
+            var fileSystemStateMock = new Mock<FileSystemState>() { CallBase = true };
+            fileSystemStateMock.Setup(x => x.Save());
+
+            Factory.Instance.Singleton<FileSystemState>(() => fileSystemStateMock.Object);
+            MainViewModel mvm = Factory.New<MainViewModel>();
+
+            Assert.Throws<InvalidOperationException>(() => mvm.RemoveWatchedFolders.Execute(new string[] { }));
+
+            PassphraseIdentity id = new PassphraseIdentity("Logged On User", new AesKey());
+            fileSystemStateMock.Object.Identities.Add(id);
+            Instance.KnownKeys.DefaultEncryptionKey = id.Key;
+            while (Instance.SessionNotification.NotifyPending)
+            {
+                Instance.SessionNotification.NotifyNow();
+            }
+
+            mvm.RemoveWatchedFolders.Execute(new string[] { });
+            while (Instance.SessionNotification.NotifyPending)
+            {
+                Instance.SessionNotification.NotifyNow();
+            }
+
+            fileSystemStateMock.Verify(x => x.RemoveWatchedFolder(It.IsAny<IRuntimeFileInfo>()), Times.Never);
+            fileSystemStateMock.Verify(x => x.Save(), Times.Never);
+
+            fileSystemStateMock.ResetCalls();
+            mvm.AddWatchedFolders.Execute(new string[] { @"C:\Folder1\", @"C:\Folder2\" });
+            while (Instance.SessionNotification.NotifyPending)
+            {
+                Instance.SessionNotification.NotifyNow();
+            }
+
+            fileSystemStateMock.Verify(x => x.AddWatchedFolder(It.IsAny<WatchedFolder>()), Times.Exactly(2));
+            fileSystemStateMock.Verify(x => x.Save(), Times.Once);
+
+            fileSystemStateMock.ResetCalls();
+            mvm.RemoveWatchedFolders.Execute(new string[] { @"C:\Folder1\" });
+            while (Instance.SessionNotification.NotifyPending)
+            {
+                Instance.SessionNotification.NotifyNow();
+            }
+
+            fileSystemStateMock.Verify(x => x.RemoveWatchedFolder(It.IsAny<IRuntimeFileInfo>()), Times.Exactly(1));
+            fileSystemStateMock.Verify(x => x.Save(), Times.Once);
         }
     }
 }
