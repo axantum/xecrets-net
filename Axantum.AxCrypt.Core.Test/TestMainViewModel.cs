@@ -36,6 +36,8 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Security;
 using System.Text.RegularExpressions;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -63,20 +65,23 @@ namespace Axantum.AxCrypt.Core.Test
             var mockEnvironment = new Mock<FakeRuntimeEnvironment>() { CallBase = true };
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => mockEnvironment.Object);
 
-            MainViewModel mvm = Factory.New<MainViewModel>();
-            mvm.OpenSelectedFolder.Execute(filePath);
-
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                mvm.OpenSelectedFolder.Execute(filePath);
+            }
             mockEnvironment.Verify(r => r.Launch(filePath));
         }
 
         [Test]
         public static void TestCurrentVersionPropertyBind()
         {
-            MainViewModel mvm = Factory.New<MainViewModel>();
             UpdateCheck mockedUpdateCheck = null;
             Factory.Instance.Register<Version, UpdateCheck>((version) => mockedUpdateCheck = new Mock<UpdateCheck>(version).Object);
             Version ourVersion = new Version(1, 2, 3, 4);
-            mvm.CurrentVersion = ourVersion;
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                mvm.CurrentVersion = ourVersion;
+            }
 
             Mock.Get<UpdateCheck>(mockedUpdateCheck).Verify(x => x.CheckInBackground(It.Is<DateTime>((d) => d == Instance.UserSettings.LastUpdateCheckUtc), It.IsAny<string>(), It.IsAny<Uri>(), It.IsAny<Uri>()));
         }
@@ -87,9 +92,11 @@ namespace Axantum.AxCrypt.Core.Test
             var mockUpdateCheck = new Mock<UpdateCheck>(new Version(1, 2, 3, 4));
             Factory.Instance.Register<Version, UpdateCheck>((version) => mockUpdateCheck.Object);
 
-            MainViewModel mvm = Factory.New<MainViewModel>();
-            Assert.That(mvm.UpdateCheck.CanExecute(null), Is.False);
-            Assert.Throws<InvalidOperationException>(() => mvm.UpdateCheck.Execute(new DateTime(2001, 2, 3)));
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                Assert.That(mvm.UpdateCheck.CanExecute(null), Is.False);
+                Assert.Throws<InvalidOperationException>(() => mvm.UpdateCheck.Execute(new DateTime(2001, 2, 3)));
+            }
         }
 
         [Test]
@@ -99,102 +106,123 @@ namespace Axantum.AxCrypt.Core.Test
             var mockUpdateCheck = new Mock<UpdateCheck>(ourVersion);
             Factory.Instance.Register<Version, UpdateCheck>((version) => mockUpdateCheck.Object);
 
-            MainViewModel mvm = Factory.New<MainViewModel>();
-            mvm.CurrentVersion = ourVersion;
-            Assert.That(mvm.UpdateCheck.CanExecute(null), Is.True);
-            mvm.UpdateCheck.Execute(new DateTime(2001, 2, 3));
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                mvm.CurrentVersion = ourVersion;
+                Assert.That(mvm.UpdateCheck.CanExecute(null), Is.True);
+                mvm.UpdateCheck.Execute(new DateTime(2001, 2, 3));
+            }
 
             mockUpdateCheck.Verify(x => x.CheckInBackground(It.Is<DateTime>(d => d == new DateTime(2001, 2, 3)), It.IsAny<string>(), It.IsAny<Uri>(), It.IsAny<Uri>()));
         }
 
         [Test]
+        public static void TestVersionUpdate()
+        {
+            Version ourVersion = new Version(1, 2, 3, 4);
+            var mockUpdateCheck = new Mock<UpdateCheck>(ourVersion);
+            Factory.Instance.Register<Version, UpdateCheck>((version) => mockUpdateCheck.Object);
+
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                mvm.CurrentVersion = ourVersion;
+
+                mockUpdateCheck.Raise(m => m.VersionUpdate += null, new VersionEventArgs(new Version(1, 2, 4, 4), new Uri("http://localhost/"), VersionUpdateStatus.NewerVersionIsAvailable));
+                Assert.That(mvm.VersionUpdateStatus, Is.EqualTo(VersionUpdateStatus.NewerVersionIsAvailable));
+            }
+        }
+
+        [Test]
         public static void TestDragAndDropFilesPropertyBindSetsDragAndDropFileTypes()
         {
-            MainViewModel mvm = Factory.New<MainViewModel>();
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                string encryptedFilePath = @"C:\Folder\File-txt.axx";
+                mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
+                Assert.That(mvm.DragAndDropFilesTypes, Is.EqualTo(FileInfoTypes.None));
 
-            string encryptedFilePath = @"C:\Folder\File-txt.axx";
-            mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
-            Assert.That(mvm.DragAndDropFilesTypes, Is.EqualTo(FileInfoTypes.None));
+                string decryptedFilePath = @"C:\Folder\File.txt";
+                mvm.DragAndDropFiles = new string[] { decryptedFilePath, };
+                Assert.That(mvm.DragAndDropFilesTypes, Is.EqualTo(FileInfoTypes.None));
 
-            string decryptedFilePath = @"C:\Folder\File.txt";
-            mvm.DragAndDropFiles = new string[] { decryptedFilePath, };
-            Assert.That(mvm.DragAndDropFilesTypes, Is.EqualTo(FileInfoTypes.None));
+                FakeRuntimeFileInfo.AddFile(encryptedFilePath, null);
+                mvm.DragAndDropFiles = new string[] { encryptedFilePath, decryptedFilePath, };
+                Assert.That(mvm.DragAndDropFilesTypes, Is.EqualTo(FileInfoTypes.EncryptedFile));
 
-            FakeRuntimeFileInfo.AddFile(encryptedFilePath, null);
-            mvm.DragAndDropFiles = new string[] { encryptedFilePath, decryptedFilePath, };
-            Assert.That(mvm.DragAndDropFilesTypes, Is.EqualTo(FileInfoTypes.EncryptedFile));
+                FakeRuntimeFileInfo.AddFile(decryptedFilePath, null);
+                mvm.DragAndDropFiles = new string[] { encryptedFilePath, decryptedFilePath, };
+                Assert.That(mvm.DragAndDropFilesTypes, Is.EqualTo(FileInfoTypes.EncryptableFile | FileInfoTypes.EncryptedFile));
 
-            FakeRuntimeFileInfo.AddFile(decryptedFilePath, null);
-            mvm.DragAndDropFiles = new string[] { encryptedFilePath, decryptedFilePath, };
-            Assert.That(mvm.DragAndDropFilesTypes, Is.EqualTo(FileInfoTypes.EncryptableFile | FileInfoTypes.EncryptedFile));
+                string folderPath = @"C:\Folder\";
+                mvm.DragAndDropFiles = new string[] { encryptedFilePath, decryptedFilePath, folderPath };
+                Assert.That(mvm.DragAndDropFilesTypes, Is.EqualTo(FileInfoTypes.EncryptableFile | FileInfoTypes.EncryptedFile));
 
-            string folderPath = @"C:\Folder\";
-            mvm.DragAndDropFiles = new string[] { encryptedFilePath, decryptedFilePath, folderPath };
-            Assert.That(mvm.DragAndDropFilesTypes, Is.EqualTo(FileInfoTypes.EncryptableFile | FileInfoTypes.EncryptedFile));
-
-            FakeRuntimeFileInfo.AddFolder(folderPath);
-            mvm.DragAndDropFiles = new string[] { encryptedFilePath, decryptedFilePath, folderPath };
-            Assert.That(mvm.DragAndDropFilesTypes, Is.EqualTo(FileInfoTypes.EncryptableFile | FileInfoTypes.EncryptedFile));
+                FakeRuntimeFileInfo.AddFolder(folderPath);
+                mvm.DragAndDropFiles = new string[] { encryptedFilePath, decryptedFilePath, folderPath };
+                Assert.That(mvm.DragAndDropFilesTypes, Is.EqualTo(FileInfoTypes.EncryptableFile | FileInfoTypes.EncryptedFile));
+            }
         }
 
         [Test]
         public static void TestDragAndDropFilesPropertyBindSetsDroppableAsRecent()
         {
-            MainViewModel mvm = Factory.New<MainViewModel>();
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                string encryptedFilePath = @"C:\Folder\File-txt.axx";
+                mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
+                Assert.That(mvm.DroppableAsRecent, Is.False, "An encrypted file that does not exist is not a candidate for recent.");
 
-            string encryptedFilePath = @"C:\Folder\File-txt.axx";
-            mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
-            Assert.That(mvm.DroppableAsRecent, Is.False, "An encrypted file that does not exist is not a candidate for recent.");
+                PassphraseIdentity id = new PassphraseIdentity("Test", new AesKey());
+                Instance.FileSystemState.Identities.Add(id);
+                Instance.KnownKeys.DefaultEncryptionKey = id.Key;
+                mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
+                Assert.That(mvm.DroppableAsRecent, Is.False, "An encrypted file that does not exist, even when logged on, is not droppable as recent.");
 
-            PassphraseIdentity id = new PassphraseIdentity("Test", new AesKey());
-            Instance.FileSystemState.Identities.Add(id);
-            Instance.KnownKeys.DefaultEncryptionKey = id.Key;
-            mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
-            Assert.That(mvm.DroppableAsRecent, Is.False, "An encrypted file that does not exist, even when logged on, is not droppable as recent.");
+                FakeRuntimeFileInfo.AddFile(encryptedFilePath, null);
+                Instance.KnownKeys.DefaultEncryptionKey = null;
+                mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
+                Assert.That(mvm.DroppableAsRecent, Is.True, "An encrypted file that exist is droppable as recent even when not logged on.");
 
-            FakeRuntimeFileInfo.AddFile(encryptedFilePath, null);
-            Instance.KnownKeys.DefaultEncryptionKey = null;
-            mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
-            Assert.That(mvm.DroppableAsRecent, Is.True, "An encrypted file that exist is droppable as recent even when not logged on.");
+                string decryptedFilePath = @"C:\Folder\File.txt";
+                mvm.DragAndDropFiles = new string[] { decryptedFilePath, };
+                Assert.That(mvm.DroppableAsRecent, Is.False, "An encryptable file that does not exist is not droppable as recent.");
 
-            string decryptedFilePath = @"C:\Folder\File.txt";
-            mvm.DragAndDropFiles = new string[] { decryptedFilePath, };
-            Assert.That(mvm.DroppableAsRecent, Is.False, "An encryptable file that does not exist is not droppable as recent.");
+                FakeRuntimeFileInfo.AddFile(decryptedFilePath, null);
+                mvm.DragAndDropFiles = new string[] { decryptedFilePath, };
+                Assert.That(mvm.DroppableAsRecent, Is.False, "An encrpytable file without a valid log on is not droppable as recent.");
 
-            FakeRuntimeFileInfo.AddFile(decryptedFilePath, null);
-            mvm.DragAndDropFiles = new string[] { decryptedFilePath, };
-            Assert.That(mvm.DroppableAsRecent, Is.False, "An encrpytable file without a valid log on is not droppable as recent.");
-
-            id = new PassphraseIdentity("Test2", new AesKey());
-            Instance.FileSystemState.Identities.Add(id);
-            Instance.KnownKeys.DefaultEncryptionKey = id.Key;
-            mvm.DragAndDropFiles = new string[] { decryptedFilePath, };
-            Assert.That(mvm.DroppableAsRecent, Is.True, "An encryptable existing file with a valid log on should be droppable as recent.");
+                id = new PassphraseIdentity("Test2", new AesKey());
+                Instance.FileSystemState.Identities.Add(id);
+                Instance.KnownKeys.DefaultEncryptionKey = id.Key;
+                mvm.DragAndDropFiles = new string[] { decryptedFilePath, };
+                Assert.That(mvm.DroppableAsRecent, Is.True, "An encryptable existing file with a valid log on should be droppable as recent.");
+            }
         }
 
         [Test]
         public static void TestDragAndDropFilesPropertyBindSetsDroppableAsWatchedFolder()
         {
-            MainViewModel mvm = Factory.New<MainViewModel>();
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                string folder1Path = @"C:\Folder1\FilesFolder\";
+                mvm.DragAndDropFiles = new string[] { folder1Path, };
+                Assert.That(mvm.DroppableAsWatchedFolder, Is.False, "A folder that does not exist is not a candidate for watched folders.");
 
-            string folder1Path = @"C:\Folder1\FilesFolder\";
-            mvm.DragAndDropFiles = new string[] { folder1Path, };
-            Assert.That(mvm.DroppableAsWatchedFolder, Is.False, "A folder that does not exist is not a candidate for watched folders.");
+                FakeRuntimeFileInfo.AddFolder(folder1Path);
+                mvm.DragAndDropFiles = new string[] { folder1Path, };
+                Assert.That(mvm.DroppableAsWatchedFolder, Is.True, "This is a candidate for watched folders.");
 
-            FakeRuntimeFileInfo.AddFolder(folder1Path);
-            mvm.DragAndDropFiles = new string[] { folder1Path, };
-            Assert.That(mvm.DroppableAsWatchedFolder, Is.True, "This is a candidate for watched folders.");
+                OS.PathFilters.Add(new Regex(@"^C:\\Folder1\\"));
+                mvm.DragAndDropFiles = new string[] { folder1Path, };
+                Assert.That(mvm.DroppableAsWatchedFolder, Is.False, "A folder that matches a path filter is not a candidate for watched folders.");
 
-            OS.PathFilters.Add(new Regex(@"^C:\\Folder1\\"));
-            mvm.DragAndDropFiles = new string[] { folder1Path, };
-            Assert.That(mvm.DroppableAsWatchedFolder, Is.False, "A folder that matches a path filter is not a candidate for watched folders.");
+                string folder2Path = @"C:\Folder1\FilesFolder2\";
+                FakeRuntimeFileInfo.AddFolder(folder2Path);
+                OS.PathFilters.Clear();
 
-            string folder2Path = @"C:\Folder1\FilesFolder2\";
-            FakeRuntimeFileInfo.AddFolder(folder2Path);
-            OS.PathFilters.Clear();
-
-            mvm.DragAndDropFiles = new string[] { folder1Path, folder2Path, };
-            Assert.That(mvm.DroppableAsWatchedFolder, Is.False, "Although both folders are ok, only a single folder is a candidate for watched folders.");
+                mvm.DragAndDropFiles = new string[] { folder1Path, folder2Path, };
+                Assert.That(mvm.DroppableAsWatchedFolder, Is.False, "Although both folders are ok, only a single folder is a candidate for watched folders.");
+            }
         }
 
         [Test]
@@ -245,6 +273,43 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(recentFiles[0].EncryptedFileInfo.FullName, Is.EqualTo(file3), "Sorted by Date in reverse, this should be number 1.");
             Assert.That(recentFiles[1].EncryptedFileInfo.FullName, Is.EqualTo(file2), "Sorted by Date, this should be number 2.");
             Assert.That(recentFiles[2].EncryptedFileInfo.FullName, Is.EqualTo(file1), "Sorted by Date, this should be number 3.");
+        }
+
+        [Test]
+        public static void TestOpenFiles()
+        {
+            MainViewModel mvm = Factory.New<MainViewModel>();
+
+            string file1 = @"C:\Folder\File3-txt.axx";
+            string decrypted1 = @"C:\Folder\File2.txt";
+            string file2 = @"C:\Folder\File2-txt.axx";
+            string decrypted2 = @"C:\Folder\File1.txt";
+            string file3 = @"C:\Folder\File1-txt.axx";
+            string decrypted3 = @"C:\Folder\File3.txt";
+
+            ActiveFile activeFile;
+
+            FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2001, 1, 1);
+            FakeRuntimeFileInfo.AddFile(file1, null);
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new AesKey(), ActiveFileStatus.AssumedOpenAndDecrypted);
+            Instance.FileSystemState.Add(activeFile);
+
+            FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2002, 2, 2);
+            FakeRuntimeFileInfo.AddFile(file2, null);
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file2), Factory.New<IRuntimeFileInfo>(decrypted2), new AesKey(), ActiveFileStatus.NotDecrypted);
+            Instance.FileSystemState.Add(activeFile);
+
+            FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2003, 3, 3);
+            FakeRuntimeFileInfo.AddFile(file3, null);
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file3), Factory.New<IRuntimeFileInfo>(decrypted3), new AesKey(), ActiveFileStatus.NotDecrypted);
+            Instance.FileSystemState.Add(activeFile);
+
+            Assert.That(mvm.FilesAreOpen, Is.True);
+
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new AesKey(), ActiveFileStatus.NotDecrypted);
+            Instance.FileSystemState.Add(activeFile);
+
+            Assert.That(mvm.FilesAreOpen, Is.False);
         }
 
         [Test]
@@ -754,6 +819,10 @@ namespace Axantum.AxCrypt.Core.Test
             fileSystemStateMock.Verify(x => x.Save(), Times.Never);
 
             fileSystemStateMock.ResetCalls();
+            mvm.AddWatchedFolders.Execute(new string[] { });
+            fileSystemStateMock.Verify(x => x.AddWatchedFolder(It.IsAny<WatchedFolder>()), Times.Never);
+            fileSystemStateMock.Verify(x => x.Save(), Times.Never);
+
             mvm.AddWatchedFolders.Execute(new string[] { @"C:\Folder1\", @"C:\Folder2\" });
 
             fileSystemStateMock.Verify(x => x.AddWatchedFolder(It.IsAny<WatchedFolder>()), Times.Exactly(2));
@@ -764,6 +833,43 @@ namespace Axantum.AxCrypt.Core.Test
 
             fileSystemStateMock.Verify(x => x.RemoveWatchedFolder(It.IsAny<IRuntimeFileInfo>()), Times.Exactly(1));
             fileSystemStateMock.Verify(x => x.Save(), Times.Once);
+        }
+
+        [Test]
+        public static void TestSetDefaultEncryptionKeyWithoutIdentity()
+        {
+            var fileSystemStateMock = new Mock<FileSystemState>() { CallBase = true };
+            fileSystemStateMock.Setup(x => x.Save());
+
+            Factory.Instance.Singleton<FileSystemState>(() => fileSystemStateMock.Object);
+            MainViewModel mvm = Factory.New<MainViewModel>();
+
+            Assert.Throws<InvalidOperationException>(() => Instance.KnownKeys.DefaultEncryptionKey = new AesKey(), "Should fail since there is no matching identity.");
+        }
+
+        [Test]
+        public static void TestSetDebugMode()
+        {
+            var fileSystemStateMock = new Mock<FileSystemState>();
+            var logMock = new Mock<ILogging>();
+
+            Factory.Instance.Singleton<FileSystemState>(() => fileSystemStateMock.Object);
+            Factory.Instance.Singleton<ILogging>(() => logMock.Object);
+
+            MainViewModel mvm = Factory.New<MainViewModel>();
+
+            logMock.ResetCalls();
+
+            mvm.DebugMode = true;
+            logMock.Verify(x => x.SetLevel(It.Is<LogLevel>(ll => ll == LogLevel.Debug)));
+            Assert.That(ServicePointManager.ServerCertificateValidationCallback, Is.Not.Null);
+            Assert.That(ServicePointManager.ServerCertificateValidationCallback(null, null, null, SslPolicyErrors.RemoteCertificateChainErrors | SslPolicyErrors.RemoteCertificateNameMismatch | SslPolicyErrors.RemoteCertificateNotAvailable), Is.True);
+
+            logMock.ResetCalls();
+
+            mvm.DebugMode = false;
+            logMock.Verify(x => x.SetLevel(It.Is<LogLevel>(ll => ll == LogLevel.Error)));
+            Assert.That(ServicePointManager.ServerCertificateValidationCallback, Is.Null);
         }
     }
 }

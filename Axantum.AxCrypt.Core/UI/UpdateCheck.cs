@@ -59,7 +59,7 @@ namespace Axantum.AxCrypt.Core.UI
             _currentVersion = currentVersion;
         }
 
-        public event EventHandler<VersionEventArgs> VersionUpdate;
+        public virtual event EventHandler<VersionEventArgs> VersionUpdate;
 
         private ManualResetEvent _done = new ManualResetEvent(true);
 

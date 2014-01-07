@@ -223,8 +223,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void HandleActiveFileChangedEvent(object sender, ActiveFileChangedEventArgs e)
         {
-            Instance.UIThread.RunOnUIThread(() => SetFilesAreOpen());
-            Instance.UIThread.RunOnUIThread(() => SetRecentFiles());
+            SetFilesAreOpen();
+            SetRecentFiles();
         }
 
         private static FileInfoTypes DetermineFileTypes(IEnumerable<IRuntimeFileInfo> files)
