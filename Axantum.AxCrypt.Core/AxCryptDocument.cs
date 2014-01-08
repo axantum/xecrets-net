@@ -33,7 +33,6 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using Org.BouncyCastle.Utilities.Zlib;
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Security.Cryptography;
 
