@@ -45,7 +45,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             PropertyChanged += HandlePropertyChanged;
         }
 
-        public virtual ValidationError ValidationError { get { return GetProperty<ValidationError>("ValidationError"); } set { SetProperty("ValidationError", value); } }
+        public virtual int ValidationError { get { return GetProperty<int>("ValidationError"); } set { SetProperty("ValidationError", value); } }
 
         private void HandlePropertyChanged(object sender, PropertyChangedEventArgs e)
         {

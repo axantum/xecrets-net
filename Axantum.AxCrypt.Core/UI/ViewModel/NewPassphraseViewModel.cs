@@ -64,7 +64,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                         {
                             return String.Empty;
                         }
-                        ValidationError = ValidationError.VerificationPassphraseWrong;
+                        ValidationError = (int)ViewModel.ValidationError.VerificationPassphraseWrong;
                         break;
 
                     case "IdentityName":
@@ -72,7 +72,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                         {
                             return String.Empty;
                         }
-                        ValidationError = ValidationError.IdentityExistsAlready;
+                        ValidationError = (int)ViewModel.ValidationError.IdentityExistsAlready;
                         break;
 
                     default:

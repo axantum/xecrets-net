@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                         {
                             return String.Empty;
                         }
-                        ValidationError = ValidationError.WrongPassphrase;
+                        ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
                         break;
 
                     default:

@@ -154,6 +154,7 @@
     <Compile Include="TestUpdateCheck.cs" />
     <Compile Include="TestUserSettings.cs" />
     <Compile Include="TestVersionHeaderBlock .cs" />
+    <Compile Include="TestViewModelBaseTest.cs" />
     <Compile Include="TestWatchedFolder.cs" />
     <Compile Include="TestWatchedFolderChangedEventArgsTest.cs" />
     <Compile Include="TestWorkerGroup.cs" />
