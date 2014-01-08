@@ -253,7 +253,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private FileOperationStatus EncryptFileWork(IRuntimeFileInfo file, IProgressContext progress)
         {
-            FileOperationsController operationsController = new FileOperationsController(progress);
+            FileOperationsController operationsController = Factory.New<IProgressContext, FileOperationsController>(progress);
 
             operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
             {
