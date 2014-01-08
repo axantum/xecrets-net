@@ -66,8 +66,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             DecryptFolders = new DelegateAction<IEnumerable<string>>((folders) => DecryptFoldersAction(folders));
             WipeFiles = new DelegateAction<IEnumerable<string>>((files) => WipeFilesAction(files));
             OpenFilesFromFolder = new DelegateAction<string>((folder) => OpenFilesFromFolderAction(folder));
-            VerifyAndAddActive = new DelegateAction<IEnumerable<IRuntimeFileInfo>>((files) => VerifyAndAddActiveAction(files));
-            EncryptFileNonInteractive = new DelegateAction<IEnumerable<IRuntimeFileInfo>>((files) => EncryptFileNonInteractiveAction(files));
+            AddRecentFiles = new DelegateAction<IEnumerable<string>>((files) => AddRecentFilesAction(files));
         }
 
         public IAction DecryptFiles { get; private set; }
@@ -82,9 +81,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAction OpenFilesFromFolder { get; private set; }
 
-        public IAction VerifyAndAddActive { get; private set; }
-
-        public IAction EncryptFileNonInteractive { get; private set; }
+        public IAction AddRecentFiles { get; private set; }
 
         public event EventHandler<FileSelectionEventArgs> SelectingFiles;
 
@@ -314,11 +311,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return operationsController.EncryptFile(file);
         }
 
-        private void EncryptFileNonInteractiveAction(IEnumerable<IRuntimeFileInfo> encryptableFiles)
-        {
-            _fileOperation.DoFiles(encryptableFiles, EncryptFileNonInteractiveWork, (status) => { });
-        }
-
         private FileOperationStatus EncryptFileNonInteractiveWork(IRuntimeFileInfo fullName, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(progress);
@@ -341,11 +333,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             };
 
             return operationsController.EncryptFile(fullName);
-        }
-
-        private void VerifyAndAddActiveAction(IEnumerable<IRuntimeFileInfo> encryptedFiles)
-        {
-            _fileOperation.DoFiles(encryptedFiles, VerifyAndAddActiveWork, (status) => { });
         }
 
         private FileOperationStatus VerifyAndAddActiveWork(IRuntimeFileInfo fullName, IProgressContext progress)
@@ -396,6 +383,23 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             Factory.New<AxCryptFile>().DecryptFilesUniqueWithWipeOfOriginal(folder, _knownKeys.DefaultEncryptionKey, progress);
             return FileOperationStatus.Success;
+        }
+
+        private void AddRecentFilesAction(IEnumerable<string> files)
+        {
+            IEnumerable<IRuntimeFileInfo> fileInfos = files.Select(f => Factory.New<IRuntimeFileInfo>(f)).ToList();
+            ProcessEncryptableFilesDroppedInRecentList(fileInfos.Where(fileInfo => Instance.KnownKeys.IsLoggedOn && fileInfo.Type() == FileInfoTypes.EncryptableFile));
+            ProcessEncryptedFilesDroppedInRecentList(fileInfos.Where(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile));
+        }
+
+        private void ProcessEncryptedFilesDroppedInRecentList(IEnumerable<IRuntimeFileInfo> encryptedFiles)
+        {
+            _fileOperation.DoFiles(encryptedFiles, VerifyAndAddActiveWork, (status) => { });
+        }
+
+        private void ProcessEncryptableFilesDroppedInRecentList(IEnumerable<IRuntimeFileInfo> encryptableFiles)
+        {
+            _fileOperation.DoFiles(encryptableFiles, EncryptFileNonInteractiveWork, (status) => { });
         }
     }
 }

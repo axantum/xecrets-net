@@ -38,6 +38,19 @@ namespace Axantum.AxCrypt.Core
     /// </summary>
     public class Factory
     {
+        private class Creator<T>
+        {
+            public Func<T> CreateFunc { get; set; }
+
+            public Action PostAction { get; set; }
+
+            public Creator(Func<T> creator, Action postAction)
+            {
+                CreateFunc = creator;
+                PostAction = postAction;
+            }
+        }
+
         private Dictionary<Type, object> _mapping = new Dictionary<Type, object>();
 
         private Factory()
@@ -78,7 +91,12 @@ namespace Axantum.AxCrypt.Core
 
         public void Singleton<TArgument>(Func<TArgument> creator)
         {
-            SetAndDisposeIfDisposable(typeof(TArgument), creator);
+            Singleton(creator, () => { });
+        }
+
+        public void Singleton<TArgument>(Func<TArgument> creator, Action postAction)
+        {
+            SetAndDisposeIfDisposable(typeof(TArgument), new Creator<TArgument>(creator, postAction));
         }
 
         private void SetAndDisposeIfDisposable(Type type, object value)
@@ -105,9 +123,11 @@ namespace Axantum.AxCrypt.Core
                 return value;
             }
 
-            Func<TResult> creator = (Func<TResult>)o;
-            value = creator();
+            Creator<TResult> creator = (Creator<TResult>)o;
+            value = creator.CreateFunc();
             _mapping[typeof(TResult)] = value;
+
+            creator.PostAction();
             return value;
         }
 

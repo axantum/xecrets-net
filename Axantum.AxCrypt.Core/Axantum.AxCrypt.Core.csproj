@@ -85,6 +85,7 @@
     <Compile Include="Runtime\SleepEventArgs.cs" />
     <Compile Include="Runtime\WorkerGroup.cs" />
     <Compile Include="Runtime\WorkFolder.cs" />
+    <Compile Include="Runtime\WorkFolderWatcher.cs" />
     <Compile Include="Session\ActiveFileChangedEventArgs.cs" />
     <Compile Include="Session\ActiveFileComparer.cs" />
     <Compile Include="Session\ActiveFileVisualState.cs" />

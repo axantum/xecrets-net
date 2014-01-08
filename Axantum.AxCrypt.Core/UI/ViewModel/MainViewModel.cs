@@ -44,8 +44,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private UpdateCheck _updateCheck;
 
-        public FileOperationViewModel FileOperationViewModel { get; private set; }
-
         public bool LoggedOn { get { return GetProperty<bool>("LoggedOn"); } set { SetProperty("LoggedOn", value); } }
 
         public bool EncryptFileEnabled { get { return GetProperty<bool>("EncryptFileEnabled"); } set { SetProperty("EncryptFileEnabled", value); } }
@@ -106,12 +104,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAction UpdateCheck { get; private set; }
 
-        public IAction AddRecentFiles { get; private set; }
-
-        public MainViewModel(FileSystemState fileSystemState, FileOperationViewModel fileOperationViewModel)
+        public MainViewModel(FileSystemState fileSystemState)
         {
             _fileSystemState = fileSystemState;
-            FileOperationViewModel = fileOperationViewModel;
 
             InitializePropertyValues();
             BindPropertyChangedEvents();
@@ -134,7 +129,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             RemoveWatchedFolders = new DelegateAction<IEnumerable<string>>((folders) => RemoveWatchedFoldersAction(folders), (folders) => LoggedOn);
             OpenSelectedFolder = new DelegateAction<string>((folder) => OpenSelectedFolderAction(folder));
             UpdateCheck = new DelegateAction<DateTime>((utc) => UpdateCheckAction(utc), (utc) => _updateCheck != null);
-            AddRecentFiles = new DelegateAction<IEnumerable<string>>((files) => AddRecentFilesAction(files));
         }
 
         private void BindPropertyChangedEvents()
@@ -375,23 +369,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void UpdateCheckAction(DateTime lastUpdateCheckUtc)
         {
             _updateCheck.CheckInBackground(lastUpdateCheckUtc, Instance.UserSettings.NewestKnownVersion, Instance.UserSettings.AxCrypt2VersionCheckUrl, Instance.UserSettings.UpdateUrl);
-        }
-
-        private void AddRecentFilesAction(IEnumerable<string> files)
-        {
-            IEnumerable<IRuntimeFileInfo> fileInfos = files.Select(f => Factory.New<IRuntimeFileInfo>(f)).ToList();
-            ProcessEncryptableFilesDroppedInRecentList(fileInfos.Where(fileInfo => Instance.KnownKeys.IsLoggedOn && fileInfo.Type() == FileInfoTypes.EncryptableFile));
-            ProcessEncryptedFilesDroppedInRecentList(fileInfos.Where(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile));
-        }
-
-        private void ProcessEncryptedFilesDroppedInRecentList(IEnumerable<IRuntimeFileInfo> encryptedFiles)
-        {
-            FileOperationViewModel.VerifyAndAddActive.Execute(encryptedFiles);
-        }
-
-        private void ProcessEncryptableFilesDroppedInRecentList(IEnumerable<IRuntimeFileInfo> encryptableFiles)
-        {
-            FileOperationViewModel.EncryptFileNonInteractive.Execute(encryptableFiles);
         }
 
         public void Dispose()

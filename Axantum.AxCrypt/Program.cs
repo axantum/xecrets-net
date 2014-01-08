@@ -32,7 +32,6 @@ using Axantum.AxCrypt.Core.Ipc;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
-using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Mono;
 using System;
 using System.Globalization;
@@ -72,10 +71,12 @@ namespace Axantum.AxCrypt
         {
             string workFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"AxCrypt" + Path.DirectorySeparatorChar);
 
+            Factory.Instance.Singleton<WorkFolderWatcher>(() => new WorkFolderWatcher());
+            Factory.Instance.Singleton<WorkFolder>(() => new WorkFolder(workFolderPath), () => Factory.Instance.Singleton<WorkFolderWatcher>());
             Factory.Instance.Singleton<ILogging>(() => new Logging());
             Factory.Instance.Singleton<CommandService>(() => new CommandService(new HttpRequestServer(), new HttpRequestClient()));
-            Factory.Instance.Singleton<IUserSettings>(() => new UserSettings(Factory.New<IRuntimeFileInfo>(Path.Combine(workFolderPath, "UserSettings.txt")), new KeyWrapIterationCalculator()));
-            Factory.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(Factory.New<IRuntimeFileInfo>(Path.Combine(workFolderPath, "FileSystemState.xml"))));
+            Factory.Instance.Singleton<IUserSettings>(() => new UserSettings(Factory.Instance.Singleton<WorkFolder>().FileInfo.Combine("UserSettings.txt"), new KeyWrapIterationCalculator()));
+            Factory.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(Factory.Instance.Singleton<WorkFolder>().FileInfo.Combine("FileSystemState.xml")));
             Factory.Instance.Singleton<KnownKeys>(() => new KnownKeys(Instance.FileSystemState, Instance.SessionNotify));
             Factory.Instance.Singleton<ParallelFileOperation>(() => new ParallelFileOperation(Instance.UIThread));
             Factory.Instance.Singleton<ProcessState>(() => new ProcessState());
@@ -88,9 +89,6 @@ namespace Axantum.AxCrypt
             Factory.Instance.Register<SessionNotificationHandler>(() => new SessionNotificationHandler(Instance.FileSystemState, Factory.New<ActiveFileAction>(), Factory.New<AxCryptFile>()));
             Factory.Instance.Register<int, KeyWrapSalt>((length) => new KeyWrapSalt(length));
             Factory.Instance.Register<Version, UpdateCheck>((version) => new UpdateCheck(version));
-            Factory.Instance.Register<IdentityViewModel>(() => new IdentityViewModel(Instance.FileSystemState, Instance.KnownKeys, Instance.UserSettings));
-            Factory.Instance.Register<FileOperationViewModel>(() => new FileOperationViewModel(Instance.FileSystemState, Instance.KnownKeys, Instance.ParallelFileOperation, Factory.Instance.Singleton<IStatusChecker>(), Factory.New<IdentityViewModel>()));
-            Factory.Instance.Register<MainViewModel>(() => new MainViewModel(Instance.FileSystemState, Factory.New<FileOperationViewModel>()));
 
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
             Factory.Instance.Register<string, IFileWatcher>((path) => new FileWatcher(path, new DelayedAction(new DelayTimer(), Instance.UserSettings.SessionNotificationMinimumIdle)));
