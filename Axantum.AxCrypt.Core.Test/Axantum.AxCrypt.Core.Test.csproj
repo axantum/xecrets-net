@@ -95,6 +95,7 @@
     <Compile Include="TestFactoryRegistry.cs" />
     <Compile Include="TestFileOperation.cs" />
     <Compile Include="TestFileOperationsController.cs" />
+    <Compile Include="TestFileOperationViewModel.cs" />
     <Compile Include="TestFileSystemStateActions.cs" />
     <Compile Include="TestAesCrypto.cs" />
     <Compile Include="TestAesIV.cs" />
