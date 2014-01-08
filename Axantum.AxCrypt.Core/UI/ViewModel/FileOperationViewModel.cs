@@ -101,56 +101,46 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void EncryptFilesAction(IEnumerable<string> files)
         {
-            if (files == null)
+            files = files ?? SelectFiles(FileSelectionType.Encrypt);
+            if (!files.Any())
             {
-                FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[0])
-                {
-                    FileSelectionType = FileSelectionType.Encrypt,
-                };
-                OnSelectingFiles(fileSelectionArgs);
-                if (fileSelectionArgs.Cancel)
-                {
-                    return;
-                }
-                files = fileSelectionArgs.SelectedFiles;
+                return;
             }
             _fileOperation.DoFiles(files.Select(f => Factory.New<IRuntimeFileInfo>(f)).ToList(), EncryptFileWork, (status) => { });
         }
 
         private void DecryptFilesAction(IEnumerable<string> files)
         {
-            if (files == null)
+            files = files ?? SelectFiles(FileSelectionType.Decrypt);
+            if (!files.Any())
             {
-                FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[0])
-                {
-                    FileSelectionType = FileSelectionType.Decrypt,
-                };
-                OnSelectingFiles(fileSelectionArgs);
-                if (fileSelectionArgs.Cancel)
-                {
-                    return;
-                }
-                files = fileSelectionArgs.SelectedFiles;
+                return;
             }
             _fileOperation.DoFiles(files.Select(f => Factory.New<IRuntimeFileInfo>(f)).ToList(), DecryptFileWork, (status) => { });
         }
 
         private void WipeFilesAction(IEnumerable<string> files)
         {
-            if (files == null)
+            files = files ?? SelectFiles(FileSelectionType.Wipe);
+            if (!files.Any())
             {
-                FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[0])
-                {
-                    FileSelectionType = FileSelectionType.Wipe,
-                };
-                OnSelectingFiles(fileSelectionArgs);
-                if (fileSelectionArgs.Cancel)
-                {
-                    return;
-                }
-                files = fileSelectionArgs.SelectedFiles;
+                return;
             }
             _fileOperation.DoFiles(files.Select(f => Factory.New<IRuntimeFileInfo>(f)).ToList(), WipeFileWork, (status) => { });
+        }
+
+        private IEnumerable<string> SelectFiles(FileSelectionType fileSelectionType)
+        {
+            FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[0])
+            {
+                FileSelectionType = fileSelectionType,
+            };
+            OnSelectingFiles(fileSelectionArgs);
+            if (fileSelectionArgs.Cancel)
+            {
+                return new string[0];
+            }
+            return fileSelectionArgs.SelectedFiles;
         }
 
         private void OpenFilesAction(IEnumerable<string> files)
