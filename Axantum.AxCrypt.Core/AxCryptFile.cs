@@ -341,7 +341,7 @@ namespace Axantum.AxCrypt.Core
         public FileOperationStatus DecryptFileUniqueWithWipeOfOriginal(IRuntimeFileInfo fileInfo, AesKey decryptionKey, IProgressContext progress)
         {
             progress.NotifyLevelStart();
-            using (AxCryptDocument document = AxCryptFile.Document(fileInfo, decryptionKey, progress))
+            using (AxCryptDocument document = Factory.New<AxCryptFile>().Document(fileInfo, decryptionKey, progress))
             {
                 if (!document.PassphraseIsValid)
                 {
@@ -357,7 +357,7 @@ namespace Axantum.AxCrypt.Core
             return FileOperationStatus.Success;
         }
 
-        public void DecryptFile(AxCryptDocument document, string decryptedFileFullName, IProgressContext progress)
+        public virtual void DecryptFile(AxCryptDocument document, string decryptedFileFullName, IProgressContext progress)
         {
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(decryptedFileFullName);
             Decrypt(document, decryptedFileInfo, AxCryptOptions.SetFileTimes, progress);
@@ -369,7 +369,7 @@ namespace Axantum.AxCrypt.Core
         /// <param name="sourceFile">The source file</param>
         /// <param name="passphrase">The passphrase</param>
         /// <returns>An instance of AxCryptDocument. Use IsPassphraseValid property to determine validity.</returns>
-        public static AxCryptDocument Document(IRuntimeFileInfo sourceFile, AesKey key, IProgressContext progress)
+        public virtual AxCryptDocument Document(IRuntimeFileInfo sourceFile, AesKey key, IProgressContext progress)
         {
             if (sourceFile == null)
             {

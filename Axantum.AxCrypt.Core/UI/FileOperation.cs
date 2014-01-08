@@ -206,7 +206,7 @@ namespace Axantum.AxCrypt.Core.UI
                 }
                 using (FileLock sourceLock = FileLock.Lock(sourceFileInfo))
                 {
-                    using (AxCryptDocument document = AxCryptFile.Document(sourceFileInfo, key, new ProgressContext()))
+                    using (AxCryptDocument document = Factory.New<AxCryptFile>().Document(sourceFileInfo, key, new ProgressContext()))
                     {
                         if (!document.PassphraseIsValid)
                         {
@@ -265,7 +265,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             foreach (AesKey key in keys)
             {
-                using (AxCryptDocument document = AxCryptFile.Document(destinationActiveFile.EncryptedFileInfo, key, progress))
+                using (AxCryptDocument document = Factory.New<AxCryptFile>().Document(destinationActiveFile.EncryptedFileInfo, key, progress))
                 {
                     if (document.PassphraseIsValid)
                     {

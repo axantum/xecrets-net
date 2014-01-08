@@ -404,7 +404,7 @@ namespace Axantum.AxCrypt.Core.UI
                 AesKey key;
                 if (sourceFileInfo.TryFindDecryptionKey(out key))
                 {
-                    e.AxCryptDocument = AxCryptFile.Document(sourceFileInfo, key, new ProgressContext());
+                    e.AxCryptDocument = Factory.New<AxCryptFile>().Document(sourceFileInfo, key, new ProgressContext());
                     e.Key = key;
                 }
 
@@ -423,7 +423,7 @@ namespace Axantum.AxCrypt.Core.UI
                         return true;
                     }
                     passphrase = new Passphrase(e.Passphrase);
-                    e.AxCryptDocument = AxCryptFile.Document(sourceFileInfo, passphrase.DerivedPassphrase, new ProgressContext());
+                    e.AxCryptDocument = Factory.New<AxCryptFile>().Document(sourceFileInfo, passphrase.DerivedPassphrase, new ProgressContext());
                     if (!e.AxCryptDocument.PassphraseIsValid)
                     {
                         e.AxCryptDocument.Dispose();
