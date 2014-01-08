@@ -876,5 +876,44 @@ namespace Axantum.AxCrypt.Core.Test
             logMock.Verify(x => x.SetLevel(It.Is<LogLevel>(ll => ll == LogLevel.Error)));
             Assert.That(ServicePointManager.ServerCertificateValidationCallback, Is.Null);
         }
+
+        [Test]
+        public static void TestSelectedRecentFiles()
+        {
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                Assert.That(mvm.SelectedRecentFiles.Any(), Is.False);
+
+                mvm.SelectedRecentFiles = new string[] { @"C:\Folder\Test1.axx", @"C:\Folder\Test2.axx" };
+
+                Assert.That(mvm.SelectedRecentFiles.Count(), Is.EqualTo(2));
+            }
+        }
+
+        [Test]
+        public static void TestSelectedWatchedFolders()
+        {
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                Assert.That(mvm.SelectedWatchedFolders.Any(), Is.False);
+
+                mvm.SelectedWatchedFolders = new string[] { @"C:\Folder1\", @"C:\Folder2\" };
+
+                Assert.That(mvm.SelectedWatchedFolders.Count(), Is.EqualTo(2));
+            }
+        }
+
+        [Test]
+        public static void TestTitle()
+        {
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                Assert.That(mvm.Title.Length, Is.EqualTo(0));
+
+                mvm.Title = "AxCrypt Title";
+
+                Assert.That(mvm.Title, Is.EqualTo("AxCrypt Title"));
+            }
+        }
     }
 }

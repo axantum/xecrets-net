@@ -119,7 +119,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             WatchedFolders = new string[0];
             DragAndDropFiles = new string[0];
             RecentFiles = new ActiveFile[0];
+            SelectedRecentFiles = new string[0];
+            SelectedWatchedFolders = new string[0];
             DebugMode = false;
+            Title = String.Empty;
             VersionUpdateStatus = UI.VersionUpdateStatus.Unknown;
 
             AddWatchedFolders = new DelegateAction<IEnumerable<string>>((folders) => AddWatchedFoldersAction(folders), (folders) => LoggedOn);
