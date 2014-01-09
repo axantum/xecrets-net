@@ -59,14 +59,13 @@ namespace Axantum.AxCrypt.Core.UI
                         foreach (IRuntimeFileInfo file in files)
                         {
                             IThreadWorker worker = workerGroup.CreateWorker();
-                            IRuntimeFileInfo closureOverCopyOfLoopVariableFile = file;
-
                             if (workerGroup.FirstError != FileOperationStatus.Success)
                             {
                                 worker.Abort();
                                 break;
                             }
 
+                            IRuntimeFileInfo closureOverCopyOfLoopVariableFile = file;
                             worker.Work += (sender, e) =>
                             {
                                 e.Result = work(closureOverCopyOfLoopVariableFile, new CancelContext(progress));
