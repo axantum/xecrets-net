@@ -28,7 +28,6 @@
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 
@@ -117,7 +116,6 @@ namespace Axantum.AxCrypt.Core.Runtime
             }
         }
 
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Here we really do want to catch everything, and report to the user.")]
         private void _worker_DoWork(object sender, DoWorkEventArgs e)
         {
             try

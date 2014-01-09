@@ -128,5 +128,10 @@ namespace Axantum.AxCrypt.Core.UI
                 _progress.Progressing -= value;
             }
         }
+
+        public void SerializeOnUIThread(Action action)
+        {
+            _progress.SerializeOnUIThread(action);
+        }
     }
 }

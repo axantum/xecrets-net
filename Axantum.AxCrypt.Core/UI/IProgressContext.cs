@@ -47,5 +47,7 @@ namespace Axantum.AxCrypt.Core.UI
         bool Cancel { get; set; }
 
         bool AllItemsConfirmed { get; set; }
+
+        void SerializeOnUIThread(Action action);
     }
 }

@@ -57,6 +57,8 @@ namespace Axantum.AxCrypt.Core.UI
 
         private int _progressLevel = 0;
 
+        private Semaphore _interactionSemaphore = new Semaphore(1, 1);
+
         public ProgressContext()
             : this(TimeToFirstProgress)
         {
@@ -238,6 +240,28 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 throw new InvalidOperationException("Out-of-sequence call, cannot call after being finished.");
             }
+        }
+
+        public void SerializeOnUIThread(Action action)
+        {
+            if (Instance.UIThread.IsOnUIThread)
+            {
+                action();
+                return;
+            }
+            _interactionSemaphore.WaitOne();
+            Action extendedAction = () =>
+            {
+                try
+                {
+                    action();
+                }
+                finally
+                {
+                    _interactionSemaphore.Release();
+                }
+            };
+            Instance.UIThread.RunOnUIThread(extendedAction);
         }
     }
 }

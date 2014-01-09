@@ -37,7 +37,15 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Busy = true;
             OnWorkStatusChanged();
-            FileOperationStatus status = work(new ProgressContext());
+            FileOperationStatus status = FileOperationStatus.Unknown;
+            try
+            {
+                status = work(new ProgressContext());
+            }
+            catch (OperationCanceledException)
+            {
+                status = FileOperationStatus.Canceled;
+            }
             complete(status);
             Busy = false;
             OnWorkStatusChanged();

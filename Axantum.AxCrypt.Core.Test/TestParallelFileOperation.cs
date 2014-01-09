@@ -82,6 +82,7 @@ namespace Axantum.AxCrypt.Core.Test
             fakeUIThread.IsOnUIThread = false;
             bool runOnUIThread = false;
             fakeUIThread.RunOnUIThreadAction = (action) => { runOnUIThread = true; action(); };
+            Factory.Instance.Singleton<IUIThread>(() => fakeUIThread);
 
             IRuntimeFileInfo info1 = Factory.New<IRuntimeFileInfo>(@"c:\file1.txt");
             IRuntimeFileInfo info2 = Factory.New<IRuntimeFileInfo>(@"c:\file2.txt");
@@ -90,7 +91,10 @@ namespace Axantum.AxCrypt.Core.Test
             pfo.DoFiles(new IRuntimeFileInfo[] { info1, info2 },
                 (info, progress) =>
                 {
-                    ++callCount;
+                    progress.SerializeOnUIThread(() =>
+                    {
+                        ++callCount;
+                    });
                     return FileOperationStatus.Success;
                 },
                 (status) =>
@@ -102,18 +106,11 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDoubleDispose()
-        {
-            ParallelFileOperation pfo = new ParallelFileOperation(new FakeUIThread());
-            pfo.Dispose();
-            Assert.DoesNotThrow(() => pfo.Dispose());
-        }
-
-        [Test]
         public static void TestQuitAllOnError()
         {
             FakeUIThread fakeUIThread = new FakeUIThread();
             fakeUIThread.IsOnUIThread = true;
+            Factory.Instance.Singleton<IUIThread>(() => fakeUIThread);
 
             FakeRuntimeEnvironment.Instance.MaxConcurrency = 2;
 

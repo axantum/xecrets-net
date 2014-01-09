@@ -30,41 +30,16 @@ using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 
 namespace Axantum.AxCrypt.Core.UI
 {
-    public class ParallelFileOperation : IDisposable
+    public class ParallelFileOperation
     {
         private IUIThread _uiThread;
 
         public ParallelFileOperation(IUIThread uiThread)
         {
             _uiThread = uiThread;
-        }
-
-        private Semaphore _interactionSemaphore = new Semaphore(1, 1);
-
-        private void SerializedOnUIThread(Action action)
-        {
-            if (_uiThread.IsOnUIThread)
-            {
-                action();
-                return;
-            }
-            _interactionSemaphore.WaitOne();
-            Action extendedAction = () =>
-            {
-                try
-                {
-                    action();
-                }
-                finally
-                {
-                    _interactionSemaphore.Release();
-                }
-            };
-            _uiThread.RunOnUIThread(extendedAction);
         }
 
         /// <summary>
@@ -85,23 +60,18 @@ namespace Axantum.AxCrypt.Core.UI
                         {
                             IThreadWorker worker = workerGroup.CreateWorker();
                             IRuntimeFileInfo closureOverCopyOfLoopVariableFile = file;
-                            SerializedOnUIThread(() =>
-                            {
-                                if (workerGroup.FirstError != FileOperationStatus.Success)
-                                {
-                                    worker.Abort();
-                                    return;
-                                }
-                                worker.Work += (sender, e) =>
-                                {
-                                    e.Result = work(closureOverCopyOfLoopVariableFile, new CancelContext(progress));
-                                };
-                                worker.Run();
-                            });
+
                             if (workerGroup.FirstError != FileOperationStatus.Success)
                             {
+                                worker.Abort();
                                 break;
                             }
+
+                            worker.Work += (sender, e) =>
+                            {
+                                e.Result = work(closureOverCopyOfLoopVariableFile, new CancelContext(progress));
+                            };
+                            worker.Run();
                         }
                         workerGroup.WaitAllAndFinish();
                         return workerGroup.FirstError;
@@ -111,29 +81,6 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     allComplete(status);
                 });
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                DisposeInternal();
-            }
-        }
-
-        private void DisposeInternal()
-        {
-            if (_interactionSemaphore != null)
-            {
-                _interactionSemaphore.Close();
-                _interactionSemaphore = null;
-            }
         }
     }
 }

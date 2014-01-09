@@ -451,9 +451,18 @@ namespace Axantum.AxCrypt.Core.UI
         private FileOperationStatus DoFile(IRuntimeFileInfo fileInfo, Func<IRuntimeFileInfo, bool> preparation, Func<bool> operation)
         {
             bool ok = false;
-            Instance.UIThread.RunOnUIThread(() =>
+            _progress.SerializeOnUIThread(() =>
             {
+                if (_progress.Cancel)
+                {
+                    _eventArgs.Status = FileOperationStatus.Canceled;
+                    return;
+                }
                 ok = preparation(fileInfo);
+                if (_eventArgs.Status == FileOperationStatus.Canceled)
+                {
+                    _progress.Cancel = true;
+                }
             });
             if (ok)
             {
