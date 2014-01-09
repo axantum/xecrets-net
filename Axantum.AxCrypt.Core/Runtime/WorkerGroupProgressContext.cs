@@ -31,23 +31,16 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
-    /// <summary>
-    /// An IProgressContext wrapper intended to be unique for each thread, thus enabling managing
-    /// how interaction with the UI thread is handled. The requirement is that a thread should be
-    /// able to be guaranteed to start in a serialized and determininstic order withing the larger
-    /// context of a group threads.
-    /// The scenario is for example encrypting many files, and ensuring that user prompts are
-    /// presented in order, and if for example a cancel occurs no more prompts are issued.
-    /// </summary>
-    public class ThreadProgressContext : IProgressContext
+    internal class WorkerGroupProgressContext : IProgressContext
     {
         private IProgressContext _progress;
 
-        private bool _isSingleActiveThread;
+        private SingleThread _singleThread;
 
-        public ThreadProgressContext(IProgressContext progress)
+        public WorkerGroupProgressContext(IProgressContext progress, SingleThread singleThread)
         {
             _progress = progress;
+            _singleThread = singleThread;
         }
 
         public event EventHandler<ProgressEventArgs> Progressing
@@ -113,22 +106,12 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         public void EnterSingleThread()
         {
-            if (_isSingleActiveThread)
-            {
-                return;
-            }
-            _progress.EnterSingleThread();
-            _isSingleActiveThread = true;
+            _singleThread.Enter();
         }
 
         public void LeaveSingleThread()
         {
-            if (!_isSingleActiveThread)
-            {
-                return;
-            }
-            _progress.LeaveSingleThread();
-            _isSingleActiveThread = false;
+            _singleThread.Leave();
         }
     }
 }

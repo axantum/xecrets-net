@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             _worker.DoWork += new DoWorkEventHandler(_worker_DoWork);
             _worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(_worker_RunWorkerCompleted);
 
-            _e = new ThreadWorkerEventArgs(new ThreadProgressContext(progress));
+            _e = new ThreadWorkerEventArgs(new ThreadWorkerProgressContext(progress));
         }
 
         /// <summary>

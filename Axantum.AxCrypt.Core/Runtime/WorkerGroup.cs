@@ -121,6 +121,8 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private bool _finished = false;
 
+        private SingleThread _singleThread;
+
         private readonly object _finishedLock = new object();
 
         /// <summary>
@@ -142,7 +144,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
         }
 
-        public WorkerGroup(ProgressContext progress)
+        public WorkerGroup(IProgressContext progress)
             : this(1, progress)
         {
         }
@@ -157,9 +159,10 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
             _concurrencyControlSemaphore = new Semaphore(maxConcurrent, maxConcurrent);
             _maxConcurrencyCount = maxConcurrent;
+            _singleThread = new SingleThread();
             FirstError = FileOperationStatus.Success;
             progress.NotifyLevelStart();
-            Progress = progress;
+            Progress = new WorkerGroupProgressContext(progress, _singleThread);
         }
 
         /// <summary>
@@ -291,14 +294,24 @@ namespace Axantum.AxCrypt.Core.Runtime
 
             if (disposing)
             {
-                NotifyFinishedInternal();
-                if (_concurrencyControlSemaphore != null)
-                {
-                    _concurrencyControlSemaphore.Close();
-                    _concurrencyControlSemaphore = null;
-                }
+                DisposeInternal();
             }
             _disposed = true;
+        }
+
+        private void DisposeInternal()
+        {
+            NotifyFinishedInternal();
+            if (_concurrencyControlSemaphore != null)
+            {
+                _concurrencyControlSemaphore.Close();
+                _concurrencyControlSemaphore = null;
+            }
+            if (_singleThread != null)
+            {
+                _singleThread.Dispose();
+                _singleThread = null;
+            }
         }
     }
 }

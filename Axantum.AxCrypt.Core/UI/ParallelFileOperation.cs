@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt.Core.UI
                             IRuntimeFileInfo closureOverCopyOfLoopVariableFile = file;
                             worker.Work += (sender, e) =>
                             {
-                                e.Result = work(closureOverCopyOfLoopVariableFile, new CancelContext(e.Progress));
+                                e.Result = work(closureOverCopyOfLoopVariableFile, new CancelProgressContext(e.Progress));
                             };
                             worker.Run();
                         }

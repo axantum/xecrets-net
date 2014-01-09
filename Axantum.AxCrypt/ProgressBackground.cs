@@ -96,7 +96,7 @@ namespace Axantum.AxCrypt
 
         private void BackgroundWorkWithProgressOnUIThread(Func<IProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
         {
-            IProgressContext progress = new CancelContext(new ProgressContext());
+            IProgressContext progress = new CancelProgressContext(new ProgressContext());
             ProgressBar progressBar = CreateProgressBar(progress);
             OnProgressBarCreated(new ControlEventArgs(progressBar));
             progress.Progressing += (object sender, ProgressEventArgs e) =>

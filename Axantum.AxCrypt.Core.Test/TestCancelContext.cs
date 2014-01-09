@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestAddRemoveProgressingEvent()
         {
-            CancelContext progress = new CancelContext(new ProgressContext(TimeSpan.Zero));
+            CancelProgressContext progress = new CancelProgressContext(new ProgressContext(TimeSpan.Zero));
             int percent = -1;
 
             EventHandler<ProgressEventArgs> handler = (object sender, ProgressEventArgs e) =>
@@ -78,7 +78,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestAllItemsConfirmed()
         {
             ProgressContext progressContext = new ProgressContext(TimeSpan.Zero);
-            CancelContext cancelContext = new CancelContext(progressContext);
+            CancelProgressContext cancelContext = new CancelProgressContext(progressContext);
 
             Assert.That(progressContext.AllItemsConfirmed, Is.False, "The default value is false.");
             Assert.That(cancelContext.AllItemsConfirmed, Is.EqualTo(progressContext.AllItemsConfirmed), "The cancel context should have the same value as the progressContext.");
@@ -92,7 +92,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestRemoveCount()
         {
             ProgressContext progressContext = new ProgressContext(TimeSpan.Zero);
-            CancelContext cancelContext = new CancelContext(progressContext);
+            CancelProgressContext cancelContext = new CancelProgressContext(progressContext);
             int percent = 0;
             cancelContext.Progressing += (sender, e) =>
             {

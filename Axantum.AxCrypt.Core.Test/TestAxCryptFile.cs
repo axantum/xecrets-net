@@ -193,7 +193,7 @@ namespace Axantum.AxCrypt.Core.Test
                     Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                     IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(_rootPath.PathCombine("Destination", "Decrypted.txt"));
 
-                    IProgressContext progress = new CancelContext(new ProgressContext(TimeSpan.Zero));
+                    IProgressContext progress = new CancelProgressContext(new ProgressContext(TimeSpan.Zero));
                     progress.Progressing += (object sender, ProgressEventArgs e) =>
                     {
                         progress.Cancel = true;
@@ -550,7 +550,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath);
 
-            IProgressContext progress = new CancelContext(new ProgressContext(TimeSpan.Zero));
+            IProgressContext progress = new CancelProgressContext(new ProgressContext(TimeSpan.Zero));
             progress.Progressing += (object sender, ProgressEventArgs e) =>
             {
                 ((IProgressContext)sender).Cancel = true;

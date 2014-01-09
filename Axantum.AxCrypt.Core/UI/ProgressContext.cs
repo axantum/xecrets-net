@@ -57,8 +57,6 @@ namespace Axantum.AxCrypt.Core.UI
 
         private int _progressLevel = 0;
 
-        private Semaphore _singleThreadSemaphore = new Semaphore(1, 1);
-
         public ProgressContext()
             : this(TimeToFirstProgress)
         {
@@ -244,12 +242,10 @@ namespace Axantum.AxCrypt.Core.UI
 
         public void EnterSingleThread()
         {
-            _singleThreadSemaphore.WaitOne();
         }
 
         public void LeaveSingleThread()
         {
-            _singleThreadSemaphore.Release();
         }
     }
 }

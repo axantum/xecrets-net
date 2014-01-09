@@ -82,7 +82,7 @@ namespace Axantum.AxCrypt.Mono.Test
 
             randomBytes = OS.Current.GetRandomBytes(1000);
             double average = randomBytes.Average(b => b);
-            Assert.That(average >= 120 && average <= 135, "Unscientific, but the sample sequence should not vary much from a mean of 127.5, but was {0}".InvariantFormat(average));
+            Assert.That(average >= 115 && average <= 140, "Unscientific, but the sample sequence should not vary much from a mean of 127.5, but was {0}".InvariantFormat(average));
         }
 
         [Test]

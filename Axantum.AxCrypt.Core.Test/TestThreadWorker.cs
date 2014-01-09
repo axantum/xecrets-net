@@ -155,7 +155,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             bool wasCanceled = false;
             FakeRuntimeEnvironment environment = (FakeRuntimeEnvironment)OS.Current;
-            using (ThreadWorker worker = new ThreadWorker(new CancelContext(new ProgressContext())))
+            using (ThreadWorker worker = new ThreadWorker(new CancelProgressContext(new ProgressContext())))
             {
                 worker.Work += (object sender, ThreadWorkerEventArgs e) =>
                 {

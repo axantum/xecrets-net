@@ -82,9 +82,11 @@
     <Compile Include="Runtime\ISleep.cs" />
     <Compile Include="Runtime\IThreadWorker.cs" />
     <Compile Include="Runtime\LoggingEventArgs.cs" />
+    <Compile Include="Runtime\SingleThread.cs" />
     <Compile Include="Runtime\SleepEventArgs.cs" />
-    <Compile Include="Runtime\ThreadProgressContext.cs" />
+    <Compile Include="Runtime\ThreadWorkerProgressContext.cs" />
     <Compile Include="Runtime\WorkerGroup.cs" />
+    <Compile Include="Runtime\WorkerGroupProgressContext.cs" />
     <Compile Include="Runtime\WorkFolder.cs" />
     <Compile Include="Runtime\WorkFolderWatcher.cs" />
     <Compile Include="Session\ActiveFileChangedEventArgs.cs" />
@@ -181,7 +183,7 @@
     <Compile Include="UI\ViewModel\MainViewModel.cs" />
     <Compile Include="UI\Options.cs" />
     <Compile Include="UI\ParallelFileOperation.cs" />
-    <Compile Include="UI\CancelContext.cs" />
+    <Compile Include="UI\CancelProgressContext.cs" />
     <Compile Include="UI\FileOperation.cs" />
     <Compile Include="UI\FileOperationEventArgs.cs" />
     <Compile Include="UI\FileOperationsController.cs" />

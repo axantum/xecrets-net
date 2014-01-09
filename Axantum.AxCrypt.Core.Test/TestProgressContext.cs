@@ -308,7 +308,7 @@ namespace Axantum.AxCrypt.Core.Test
             progress.NotifyLevelStart();
             progress.AddTotal(100);
             progress.AddCount(10);
-            progress = new CancelContext(progress);
+            progress = new CancelProgressContext(progress);
             progress.Cancel = true;
             Assert.Throws<OperationCanceledException>(() => { progress.NotifyLevelStart(); });
             Assert.DoesNotThrow(() => { progress.AddTotal(50); });
@@ -323,7 +323,7 @@ namespace Axantum.AxCrypt.Core.Test
             progress.NotifyLevelStart();
             progress.AddTotal(100);
             progress.AddCount(10);
-            progress = new CancelContext(progress);
+            progress = new CancelProgressContext(progress);
             Assert.DoesNotThrow(() => { progress.NotifyLevelStart(); });
             Assert.DoesNotThrow(() => { progress.AddTotal(50); });
             Assert.DoesNotThrow(() => { progress.AddCount(10); });
@@ -338,7 +338,7 @@ namespace Axantum.AxCrypt.Core.Test
             progress.NotifyLevelStart();
             progress.AddTotal(100);
             progress.AddCount(10);
-            progress = new CancelContext(progress);
+            progress = new CancelProgressContext(progress);
             Assert.DoesNotThrow(() => { progress.NotifyLevelStart(); });
             progress.Cancel = true;
             Assert.Throws<OperationCanceledException>(() => { progress.AddTotal(50); });
@@ -353,7 +353,7 @@ namespace Axantum.AxCrypt.Core.Test
             progress.NotifyLevelStart();
             progress.AddTotal(100);
             progress.AddCount(10);
-            progress = new CancelContext(progress);
+            progress = new CancelProgressContext(progress);
             Assert.DoesNotThrow(() => { progress.NotifyLevelStart(); });
             Assert.DoesNotThrow(() => { progress.AddTotal(50); });
             progress.Cancel = true;

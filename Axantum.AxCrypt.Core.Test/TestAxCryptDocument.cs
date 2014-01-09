@@ -184,7 +184,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 using (MemoryStream plaintextStream = new MemoryStream())
                 {
-                    IProgressContext progress = new CancelContext(new ProgressContext(TimeSpan.Zero));
+                    IProgressContext progress = new CancelProgressContext(new ProgressContext(TimeSpan.Zero));
                     progress.Progressing += (object sender, ProgressEventArgs e) =>
                     {
                         progress.Cancel = true;
@@ -249,7 +249,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 using (MemoryStream plaintextStream = new MemoryStream())
                 {
-                    IProgressContext progress = new CancelContext(new ProgressContext(TimeSpan.Zero));
+                    IProgressContext progress = new CancelProgressContext(new ProgressContext(TimeSpan.Zero));
                     progress.Progressing += (object sender, ProgressEventArgs e) =>
                     {
                         progress.Cancel = true;
