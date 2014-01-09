@@ -44,20 +44,28 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private ThreadWorkerEventArgs _e;
 
+        private bool _startOnUIThread;
+
+        public ThreadWorker(IProgressContext progress)
+            : this(progress, false)
+        {
+        }
+
         /// <summary>
         /// Create a thread worker.
         /// </summary>
         /// <param name="displayText">A text that may be used in messages as a reference for users.</param>
         /// <param name="work">A 'work' delegate. Executed on a separate thread, not the GUI thread.</param>
         /// <param name="complete">A 'complete' delegate. Executed on the original thread, typically the GUI thread.</param>
-        public ThreadWorker(IProgressContext progress)
+        public ThreadWorker(IProgressContext progress, bool startOnUIThread)
         {
+            _startOnUIThread = startOnUIThread;
             _worker = new BackgroundWorker();
 
             _worker.DoWork += new DoWorkEventHandler(_worker_DoWork);
             _worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(_worker_RunWorkerCompleted);
 
-            _e = new ThreadWorkerEventArgs(progress);
+            _e = new ThreadWorkerEventArgs(new ThreadProgressContext(progress));
         }
 
         /// <summary>
@@ -69,6 +77,10 @@ namespace Axantum.AxCrypt.Core.Runtime
             if (_disposed)
             {
                 throw new ObjectDisposedException("ThreadWorker");
+            }
+            if (_startOnUIThread)
+            {
+                _e.Progress.SerializeOnUIThread(true);
             }
             OnPrepare(_e);
             _worker.RunWorkerAsync();
@@ -127,7 +139,6 @@ namespace Axantum.AxCrypt.Core.Runtime
             {
                 e.Result = FileOperationStatus.Canceled;
             }
-            return;
         }
 
         private void _worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -269,6 +280,10 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
             _worker.DoWork -= _worker_DoWork;
             _worker.RunWorkerCompleted -= _worker_RunWorkerCompleted;
+            if (_e.Progress.IsSerializedOnUIThread)
+            {
+                _e.Progress.SerializeOnUIThread(false);
+            }
 
             IDisposable workerAsDisposibleWhichIsPlatformDependent = _worker as IDisposable;
             if (workerAsDisposibleWhichIsPlatformDependent != null)

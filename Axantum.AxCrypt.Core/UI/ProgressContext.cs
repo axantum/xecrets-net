@@ -242,6 +242,20 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
+        public void SerializeOnUIThread(bool getUIThread)
+        {
+            if (getUIThread)
+            {
+                _interactionSemaphore.WaitOne();
+                IsSerializedOnUIThread = true;
+            }
+            else
+            {
+                _interactionSemaphore.Release();
+                IsSerializedOnUIThread = false;
+            }
+        }
+
         public void SerializeOnUIThread(Action action)
         {
             if (Instance.UIThread.IsOnUIThread)
@@ -263,5 +277,7 @@ namespace Axantum.AxCrypt.Core.UI
             };
             Instance.UIThread.RunOnUIThread(extendedAction);
         }
+
+        public bool IsSerializedOnUIThread { get; set; }
     }
 }

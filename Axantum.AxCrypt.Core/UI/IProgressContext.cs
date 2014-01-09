@@ -48,6 +48,21 @@ namespace Axantum.AxCrypt.Core.UI
 
         bool AllItemsConfirmed { get; set; }
 
-        void SerializeOnUIThread(Action action);
+        /// <summary>
+        /// Ensure sequenced serial access to the UI thread within the scope provided by this instance.
+        /// </summary>
+        /// <param name="getUIThread">if set to <c>true</c> Block until serial access to UI thread is granted,  otherwise release access to the UI thread.</param>
+        void SerializeOnUIThread(bool getUIThread);
+
+        /// <summary>
+        /// Gets a value indicating whether the thread this instance is assocated with has acquired serial access to the UI thread.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if [is serialized on UI thread]; otherwise, <c>false</c>.
+        /// </value>
+        /// <remarks>
+        /// The instantiating code must ensure that this is a per-thread value.
+        /// </remarks>
+        bool IsSerializedOnUIThread { get; }
     }
 }

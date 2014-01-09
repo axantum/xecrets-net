@@ -33,6 +33,13 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.UI
 {
+    /// <summary>
+    /// Performs file operations with controlled degree of parallelism, supporting deterministic sequenced access
+    /// to the GUI thread for optional user interaction for each thread. Each worker thread will start with sequenced
+    /// access to the GUI thread within the work group handled by this instance, and will not run fully asynchronously
+    /// until the worker thread relinquishes control of the UI thread.
+    /// Synchronization is managed by a thread-unique IProgressContext wrapper passed to each worker thread.
+    /// </summary>
     public class ParallelFileOperation
     {
         private IUIThread _uiThread;
@@ -58,7 +65,7 @@ namespace Axantum.AxCrypt.Core.UI
                     {
                         foreach (IRuntimeFileInfo file in files)
                         {
-                            IThreadWorker worker = workerGroup.CreateWorker();
+                            IThreadWorker worker = workerGroup.CreateWorker(true);
                             if (workerGroup.FirstError != FileOperationStatus.Success)
                             {
                                 worker.Abort();
@@ -68,7 +75,7 @@ namespace Axantum.AxCrypt.Core.UI
                             IRuntimeFileInfo closureOverCopyOfLoopVariableFile = file;
                             worker.Work += (sender, e) =>
                             {
-                                e.Result = work(closureOverCopyOfLoopVariableFile, new CancelContext(progress));
+                                e.Result = work(closureOverCopyOfLoopVariableFile, new CancelContext(e.Progress));
                             };
                             worker.Run();
                         }

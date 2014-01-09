@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2013, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -25,58 +25,63 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Linq;
 
-namespace Axantum.AxCrypt.Core.UI
+namespace Axantum.AxCrypt.Core.Runtime
 {
-    public class CancelContext : IProgressContext
+    /// <summary>
+    /// An IProgressContext wrapper intended to be unique for each thread, thus enabling managing
+    /// how interaction with the UI thread is handled. The requirement is that a thread should be
+    /// able to be guaranteed to start in a serialized and determininstic order withing the larger
+    /// context of a group threads.
+    /// The scenario is for example encrypting many files, and ensuring that user prompts are
+    /// presented in order, and if for example a cancel occurs no more prompts are issued.
+    /// </summary>
+    public class ThreadProgressContext : IProgressContext
     {
         private IProgressContext _progress;
 
-        private long _totalCount;
-
-        private long _currentCount;
-
-        private bool _canceled;
-
-        public CancelContext(IProgressContext progress)
+        public ThreadProgressContext(IProgressContext progress)
         {
             _progress = progress;
         }
 
-        public void AddCount(long count)
+        public event EventHandler<ProgressEventArgs> Progressing
         {
-            ThrowIfCancelled();
-
-            _currentCount += count;
-            _progress.AddCount(count);
+            add
+            {
+                _progress.Progressing += value;
+            }
+            remove
+            {
+                _progress.Progressing -= value;
+            }
         }
 
-        private void ThrowIfCancelled()
+        public void RemoveCount(long totalCount, long progressCount)
         {
-            if (!Cancel)
-            {
-                return;
-            }
-            if (!_canceled)
-            {
-                _progress.AddCount(_totalCount - _currentCount);
-                _currentCount = _totalCount;
-                _canceled = true;
-                throw new OperationCanceledException("Operation canceled on request.");
-            }
+            _progress.RemoveCount(totalCount, progressCount);
+        }
+
+        public void AddTotal(long count)
+        {
+            _progress.AddTotal(count);
+        }
+
+        public void AddCount(long count)
+        {
+            _progress.AddCount(count);
         }
 
         public void NotifyLevelStart()
         {
-            ThrowIfCancelled();
             _progress.NotifyLevelStart();
         }
 
         public void NotifyLevelFinished()
         {
-            ThrowIfCancelled();
             _progress.NotifyLevelFinished();
         }
 
@@ -92,19 +97,6 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public void RemoveCount(long totalCount, long progressCount)
-        {
-            _progress.RemoveCount(totalCount, progressCount);
-        }
-
-        public void AddTotal(long count)
-        {
-            ThrowIfCancelled();
-
-            _totalCount += count;
-            _progress.AddTotal(count);
-        }
-
         public bool AllItemsConfirmed
         {
             get
@@ -117,26 +109,12 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public event EventHandler<ProgressEventArgs> Progressing
-        {
-            add
-            {
-                _progress.Progressing += value;
-            }
-            remove
-            {
-                _progress.Progressing -= value;
-            }
-        }
-
         public void SerializeOnUIThread(bool getUIThread)
         {
             _progress.SerializeOnUIThread(getUIThread);
+            IsSerializedOnUIThread = getUIThread;
         }
 
-        public bool IsSerializedOnUIThread
-        {
-            get { return _progress.IsSerializedOnUIThread; }
-        }
+        public bool IsSerializedOnUIThread { get; set; }
     }
 }

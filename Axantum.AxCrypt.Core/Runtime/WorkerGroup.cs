@@ -27,9 +27,7 @@
 
 using Axantum.AxCrypt.Core.UI;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 
 namespace Axantum.AxCrypt.Core.Runtime
@@ -213,6 +211,11 @@ namespace Axantum.AxCrypt.Core.Runtime
             Progress.NotifyLevelFinished();
         }
 
+        public IThreadWorker CreateWorker()
+        {
+            return CreateWorker(false);
+        }
+
         /// <summary>
         /// Create a ThreadWorker for background work. Concurrency limitations are effective, so this call may block.
         /// </summary>
@@ -220,14 +223,14 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// Since this call may block, it should not be called from the GUI thread if there is a risk of blocking.
         /// </remarks>
         /// <returns></returns>
-        public IThreadWorker CreateWorker()
+        public IThreadWorker CreateWorker(bool startSerializedOnUIThread)
         {
             if (_disposed)
             {
                 throw new ObjectDisposedException("WorkerGroup");
             }
             AcquireOneConcurrencyRight();
-            ThreadWorker threadWorker = new ThreadWorker(Progress);
+            ThreadWorker threadWorker = new ThreadWorker(Progress, startSerializedOnUIThread);
             threadWorker.Completed += new EventHandler<ThreadWorkerEventArgs>(HandleThreadWorkerCompletedEvent);
             return new ThreadWorkerWrapper(threadWorker);
         }

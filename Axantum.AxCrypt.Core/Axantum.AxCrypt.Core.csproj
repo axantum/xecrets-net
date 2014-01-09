@@ -83,6 +83,7 @@
     <Compile Include="Runtime\IThreadWorker.cs" />
     <Compile Include="Runtime\LoggingEventArgs.cs" />
     <Compile Include="Runtime\SleepEventArgs.cs" />
+    <Compile Include="Runtime\ThreadProgressContext.cs" />
     <Compile Include="Runtime\WorkerGroup.cs" />
     <Compile Include="Runtime\WorkFolder.cs" />
     <Compile Include="Runtime\WorkFolderWatcher.cs" />

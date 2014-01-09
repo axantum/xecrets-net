@@ -37,6 +37,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -660,7 +661,7 @@ namespace Axantum.AxCrypt.Core.Test
             Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()), Times.Once);
             Assert.That(Instance.KnownKeys.IsLoggedOn, Is.False);
             Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(0));
-            Assert.That(logonTries, Is.EqualTo(1));
+            Assert.That(logonTries, Is.EqualTo(1), "There should be only one logon try, since the first one cancels.");
         }
 
         [Test]
@@ -723,10 +724,16 @@ namespace Axantum.AxCrypt.Core.Test
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
             Factory.Instance.Register<AxCryptFile>(() => axCryptFileMock.Object);
 
+            int callTimes = 0;
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
             mvm.SelectingFiles += (sender, e) =>
             {
-                e.Cancel = true;
+                ++callTimes;
+                if (e.SelectedFiles[0].Contains("File2"))
+                {
+                    SimulateDelayOfUserInteractionAllowingEarlierThreadsToReallyStartTheAsyncPart();
+                    e.Cancel = true;
+                }
             };
 
             FakeRuntimeFileInfo.AddFile(@"C:\Folder\File1-txt.axx", null);
@@ -734,8 +741,17 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(@"C:\Folder\File3-txt.axx", null);
             mvm.WipeFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx", @"C:\Folder\File3-txt.axx" });
 
+            Assert.That(callTimes, Is.EqualTo(2), "Only the first two calls should be made.");
             Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 3), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()), Times.Once);
-            axCryptFileMock.Verify(m => m.Wipe(It.IsAny<IRuntimeFileInfo>(), It.IsAny<IProgressContext>()), Times.Never);
+            axCryptFileMock.Verify(m => m.Wipe(It.IsAny<IRuntimeFileInfo>(), It.IsAny<IProgressContext>()), Times.Once);
+            axCryptFileMock.Verify(m => m.Wipe(It.Is<IRuntimeFileInfo>(r => r.FullName == @"C:\Folder\File1-txt.axx"), It.IsAny<IProgressContext>()), Times.Once);
+            axCryptFileMock.Verify(m => m.Wipe(It.Is<IRuntimeFileInfo>(r => r.FullName == @"C:\Folder\File2-txt.axx"), It.IsAny<IProgressContext>()), Times.Never);
+            axCryptFileMock.Verify(m => m.Wipe(It.Is<IRuntimeFileInfo>(r => r.FullName == @"C:\Folder\File3-txt.axx"), It.IsAny<IProgressContext>()), Times.Never);
+        }
+
+        private static void SimulateDelayOfUserInteractionAllowingEarlierThreadsToReallyStartTheAsyncPart()
+        {
+            Thread.Sleep(1);
         }
     }
 }

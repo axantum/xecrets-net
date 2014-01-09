@@ -450,20 +450,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private FileOperationStatus DoFile(IRuntimeFileInfo fileInfo, Func<IRuntimeFileInfo, bool> preparation, Func<bool> operation)
         {
-            bool ok = false;
-            _progress.SerializeOnUIThread(() =>
-            {
-                if (_progress.Cancel)
-                {
-                    _eventArgs.Status = FileOperationStatus.Canceled;
-                    return;
-                }
-                ok = preparation(fileInfo);
-                if (_eventArgs.Status == FileOperationStatus.Canceled)
-                {
-                    _progress.Cancel = true;
-                }
-            });
+            bool ok = RunOnUIThread(fileInfo, preparation);
             if (ok)
             {
                 operation();
@@ -471,6 +458,33 @@ namespace Axantum.AxCrypt.Core.UI
             OnCompleted(_eventArgs);
 
             return _eventArgs.Status;
+        }
+
+        private bool RunOnUIThread(IRuntimeFileInfo fileInfo, Func<IRuntimeFileInfo, bool> preparation)
+        {
+            bool ok = false;
+            if (!_progress.IsSerializedOnUIThread)
+            {
+                _progress.SerializeOnUIThread(true);
+            }
+            try
+            {
+                if (_progress.Cancel)
+                {
+                    _eventArgs.Status = FileOperationStatus.Canceled;
+                    return ok;
+                }
+                Instance.UIThread.RunOnUIThread(() => ok = preparation(fileInfo));
+                if (_eventArgs.Status == FileOperationStatus.Canceled)
+                {
+                    _progress.Cancel = true;
+                }
+            }
+            finally
+            {
+                _progress.SerializeOnUIThread(false);
+            }
+            return ok;
         }
 
         #endregion Private Methods

@@ -333,6 +333,7 @@ namespace Axantum.AxCrypt.Core
             IEnumerable<IRuntimeFileInfo> files = fileInfo.ListEncrypted();
             Instance.ParallelFileOperation.DoFiles(files, (file, context) =>
             {
+                context.SerializeOnUIThread(false);
                 return DecryptFileUniqueWithWipeOfOriginal(file, decryptionKey, context);
             },
             (status) => { });

@@ -50,16 +50,11 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestRunningOnUIThread()
+        public static void TestParallelFileOperationSimple()
         {
-            FakeUIThread fakeUIThread = new FakeUIThread();
-            fakeUIThread.IsOnUIThread = true;
-            bool runOnUIThread = false;
-            fakeUIThread.RunOnUIThreadAction = (action) => runOnUIThread = true;
-
             IRuntimeFileInfo info1 = Factory.New<IRuntimeFileInfo>(@"c:\file1.txt");
             IRuntimeFileInfo info2 = Factory.New<IRuntimeFileInfo>(@"c:\file2.txt");
-            ParallelFileOperation pfo = new ParallelFileOperation(fakeUIThread);
+            ParallelFileOperation pfo = new ParallelFileOperation(Instance.UIThread);
             int callCount = 0;
             pfo.DoFiles(new IRuntimeFileInfo[] { info1, info2 },
                 (info, progress) =>
@@ -71,37 +66,6 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                 });
 
-            Assert.That(runOnUIThread, Is.False, "Since the operation is performed on the UI Thread there should be no need to further marshall to the UI Thread.");
-            Assert.That(callCount, Is.EqualTo(2), "There are two files, so there should be two calls.");
-        }
-
-        [Test]
-        public static void TestNotRunningOnUIThread()
-        {
-            FakeUIThread fakeUIThread = new FakeUIThread();
-            fakeUIThread.IsOnUIThread = false;
-            bool runOnUIThread = false;
-            fakeUIThread.RunOnUIThreadAction = (action) => { runOnUIThread = true; action(); };
-            Factory.Instance.Singleton<IUIThread>(() => fakeUIThread);
-
-            IRuntimeFileInfo info1 = Factory.New<IRuntimeFileInfo>(@"c:\file1.txt");
-            IRuntimeFileInfo info2 = Factory.New<IRuntimeFileInfo>(@"c:\file2.txt");
-            ParallelFileOperation pfo = new ParallelFileOperation(fakeUIThread);
-            int callCount = 0;
-            pfo.DoFiles(new IRuntimeFileInfo[] { info1, info2 },
-                (info, progress) =>
-                {
-                    progress.SerializeOnUIThread(() =>
-                    {
-                        ++callCount;
-                    });
-                    return FileOperationStatus.Success;
-                },
-                (status) =>
-                {
-                });
-
-            Assert.That(runOnUIThread, Is.True, "Since the operation is not performed on the UI Thread there should be a need to further marshall to the UI Thread.");
             Assert.That(callCount, Is.EqualTo(2), "There are two files, so there should be two calls.");
         }
 
