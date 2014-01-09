@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Core.Test
             var mockFileSystemState = new Mock<FileSystemState>();
             Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
 
-            var mockParallelFile = new Mock<ParallelFileOperation>(Instance.UIThread);
+            var mockParallelFile = new Mock<ParallelFileOperation>();
             _allCompleted = false;
             mockParallelFile.Setup(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()))
                 .Callback<IEnumerable<IRuntimeFileInfo>, Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>, Action<FileOperationStatus>>((files, work, allComplete) => { allComplete(FileOperationStatus.Success); _allCompleted = true; });
@@ -337,7 +337,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptFilesAction()
         {
-            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>(Instance.UIThread) { CallBase = true }.Object);
+            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
@@ -365,7 +365,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptFilesWithSaveAsAction()
         {
-            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>(Instance.UIThread) { CallBase = true }.Object);
+            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
@@ -392,7 +392,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptFilesWithAlreadyEncryptedFile()
         {
-            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>(new FakeUIThread()) { CallBase = true }.Object);
+            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
@@ -407,9 +407,9 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFilesWithSaveAsCancelledAction()
+        public static void TestEncryptFilesWithSaveAsCanceledAction()
         {
-            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>(Instance.UIThread) { CallBase = true }.Object);
+            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
@@ -436,9 +436,9 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFilesWithCancelledLoggingOnAction()
+        public static void TestEncryptFilesWithCanceledLoggingOnAction()
         {
-            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>(Instance.UIThread) { CallBase = true }.Object);
+            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
@@ -460,7 +460,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptFileAction()
         {
-            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>(Instance.UIThread) { CallBase = true }.Object);
+            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
@@ -499,7 +499,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptFileFileSaveAsAction()
         {
-            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>(Instance.UIThread) { CallBase = true }.Object);
+            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
@@ -536,9 +536,9 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptFileFileSaveAsCancelledAction()
+        public static void TestDecryptFileFileSaveAsCanceledAction()
         {
-            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>(Instance.UIThread) { CallBase = true }.Object);
+            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
@@ -574,9 +574,9 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptLoggingOnCancelledAction()
+        public static void TestDecryptLoggingOnCanceledAction()
         {
-            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>(Instance.UIThread) { CallBase = true }.Object);
+            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
@@ -601,7 +601,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestAddRecentFilesActionAddingEncryptedWithWork()
         {
-            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>(Instance.UIThread) { CallBase = true }.Object);
+            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
@@ -630,9 +630,9 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestAddRecentFilesActionAddingEncryptedButCancellingWithWork()
+        public static void TestAddRecentFilesActionAddingEncryptedButCancelingWithWork()
         {
-            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>(Instance.UIThread) { CallBase = true }.Object);
+            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
@@ -667,7 +667,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestWipeFilesWithWork()
         {
-            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>(Instance.UIThread) { CallBase = true }.Object);
+            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
@@ -689,7 +689,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestWipeFilesSkippingOneWithWork()
         {
-            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>(Instance.UIThread) { CallBase = true }.Object);
+            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
@@ -716,9 +716,9 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWipeFilesCancellingAfterOneWithWork()
+        public static void TestWipeFilesCancelingAfterOneWithWork()
         {
-            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>(Instance.UIThread) { CallBase = true }.Object);
+            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();

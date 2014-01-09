@@ -442,7 +442,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptFilesUniqueWithWipeOfOriginal()
         {
-            Factory.Instance.Singleton<ParallelFileOperation>(() => new ParallelFileOperation(new FakeUIThread()));
+            Factory.Instance.Singleton<ParallelFileOperation>(() => new ParallelFileOperation());
             Factory.Instance.Singleton<IProgressBackground>(() => new FakeProgressBackground());
             Factory.Instance.Singleton<IUIThread>(() => new FakeUIThread());
             IRuntimeFileInfo sourceFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);

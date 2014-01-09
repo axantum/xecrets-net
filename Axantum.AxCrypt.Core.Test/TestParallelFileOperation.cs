@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IRuntimeFileInfo info1 = Factory.New<IRuntimeFileInfo>(@"c:\file1.txt");
             IRuntimeFileInfo info2 = Factory.New<IRuntimeFileInfo>(@"c:\file2.txt");
-            ParallelFileOperation pfo = new ParallelFileOperation(Instance.UIThread);
+            ParallelFileOperation pfo = new ParallelFileOperation();
             int callCount = 0;
             pfo.DoFiles(new IRuntimeFileInfo[] { info1, info2 },
                 (info, progress) =>
@@ -82,7 +82,7 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo info2 = Factory.New<IRuntimeFileInfo>(@"c:\file2.txt");
             IRuntimeFileInfo info3 = Factory.New<IRuntimeFileInfo>(@"c:\file3.txt");
             IRuntimeFileInfo info4 = Factory.New<IRuntimeFileInfo>(@"c:\file4.txt");
-            ParallelFileOperation pfo = new ParallelFileOperation(fakeUIThread);
+            ParallelFileOperation pfo = new ParallelFileOperation();
 
             int callCount = 0;
             pfo.DoFiles(new IRuntimeFileInfo[] { info1, info2, info3, info4 },

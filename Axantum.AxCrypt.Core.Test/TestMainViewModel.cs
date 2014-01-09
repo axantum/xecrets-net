@@ -49,7 +49,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void Setup()
         {
             SetupAssembly.AssemblySetup();
-            Factory.Instance.Singleton<ParallelFileOperation>(() => new ParallelFileOperation(Factory.Instance.Singleton<IUIThread>()));
+            Factory.Instance.Singleton<ParallelFileOperation>(() => new ParallelFileOperation());
         }
 
         [TearDown]

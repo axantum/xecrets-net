@@ -34,19 +34,12 @@ using System.Linq;
 namespace Axantum.AxCrypt.Core.UI
 {
     /// <summary>
-    /// Performs file operations with controlled degree of parallelism, supporting deterministic sequenced access
-    /// to the GUI thread for optional user interaction for each thread. Each worker thread will start with sequenced
-    /// access to the GUI thread within the work group handled by this instance, and will not run fully asynchronously
-    /// until the worker thread relinquishes control of the UI thread.
-    /// Synchronization is managed by a thread-unique IProgressContext wrapper passed to each worker thread.
+    /// Performs file operations with controlled degree of parallelism.
     /// </summary>
     public class ParallelFileOperation
     {
-        private IUIThread _uiThread;
-
-        public ParallelFileOperation(IUIThread uiThread)
+        public ParallelFileOperation()
         {
-            _uiThread = uiThread;
         }
 
         /// <summary>

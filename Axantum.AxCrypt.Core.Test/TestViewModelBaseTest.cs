@@ -128,11 +128,12 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestErrorNonexistingProperty()
+        public static void TestErrorNonExistingProperty()
         {
             TestViewModel tvm = new TestViewModel();
 
-            Assert.Throws<ArgumentException>(() => { string s = tvm["NonExisting"]; });
+            string s;
+            Assert.Throws<ArgumentException>(() => { s = tvm["NonExisting"]; });
         }
 
         [Test]

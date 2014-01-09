@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using System;
+using System.Globalization;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
@@ -69,7 +70,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     default:
                         return String.Empty;
                 }
-                return ValidationError.ToString();
+                return ValidationError.ToString(CultureInfo.InvariantCulture);
             }
         }
     }

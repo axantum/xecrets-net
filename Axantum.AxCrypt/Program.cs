@@ -78,7 +78,7 @@ namespace Axantum.AxCrypt
             Factory.Instance.Singleton<IUserSettings>(() => new UserSettings(Factory.Instance.Singleton<WorkFolder>().FileInfo.Combine("UserSettings.txt"), new KeyWrapIterationCalculator()));
             Factory.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(Factory.Instance.Singleton<WorkFolder>().FileInfo.Combine("FileSystemState.xml")));
             Factory.Instance.Singleton<KnownKeys>(() => new KnownKeys(Instance.FileSystemState, Instance.SessionNotify));
-            Factory.Instance.Singleton<ParallelFileOperation>(() => new ParallelFileOperation(Instance.UIThread));
+            Factory.Instance.Singleton<ParallelFileOperation>(() => new ParallelFileOperation());
             Factory.Instance.Singleton<ProcessState>(() => new ProcessState());
             Factory.Instance.Singleton<SessionNotify>(() => new SessionNotify());
 
