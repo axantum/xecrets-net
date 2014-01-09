@@ -43,6 +43,8 @@ namespace Axantum.AxCrypt.Core.Runtime
     {
         private IProgressContext _progress;
 
+        private bool _isSingleActiveThread;
+
         public ThreadProgressContext(IProgressContext progress)
         {
             _progress = progress;
@@ -109,12 +111,24 @@ namespace Axantum.AxCrypt.Core.Runtime
             }
         }
 
-        public void SerializeOnUIThread(bool getUIThread)
+        public void EnterSingleThread()
         {
-            _progress.SerializeOnUIThread(getUIThread);
-            IsSerializedOnUIThread = getUIThread;
+            if (_isSingleActiveThread)
+            {
+                return;
+            }
+            _progress.EnterSingleThread();
+            _isSingleActiveThread = true;
         }
 
-        public bool IsSerializedOnUIThread { get; set; }
+        public void LeaveSingleThread()
+        {
+            if (!_isSingleActiveThread)
+            {
+                return;
+            }
+            _progress.LeaveSingleThread();
+            _isSingleActiveThread = false;
+        }
     }
 }

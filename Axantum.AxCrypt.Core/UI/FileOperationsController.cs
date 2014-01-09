@@ -463,10 +463,7 @@ namespace Axantum.AxCrypt.Core.UI
         private bool RunOnUIThread(IRuntimeFileInfo fileInfo, Func<IRuntimeFileInfo, bool> preparation)
         {
             bool ok = false;
-            if (!_progress.IsSerializedOnUIThread)
-            {
-                _progress.SerializeOnUIThread(true);
-            }
+            _progress.EnterSingleThread();
             try
             {
                 if (_progress.Cancel)
@@ -482,7 +479,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
             finally
             {
-                _progress.SerializeOnUIThread(false);
+                _progress.LeaveSingleThread();
             }
             return ok;
         }

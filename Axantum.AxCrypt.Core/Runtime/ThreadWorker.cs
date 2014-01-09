@@ -80,7 +80,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             }
             if (_startOnUIThread)
             {
-                _e.Progress.SerializeOnUIThread(true);
+                _e.Progress.EnterSingleThread();
             }
             OnPrepare(_e);
             _worker.RunWorkerAsync();
@@ -280,10 +280,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
             _worker.DoWork -= _worker_DoWork;
             _worker.RunWorkerCompleted -= _worker_RunWorkerCompleted;
-            if (_e.Progress.IsSerializedOnUIThread)
-            {
-                _e.Progress.SerializeOnUIThread(false);
-            }
+            _e.Progress.LeaveSingleThread();
 
             IDisposable workerAsDisposibleWhichIsPlatformDependent = _worker as IDisposable;
             if (workerAsDisposibleWhichIsPlatformDependent != null)

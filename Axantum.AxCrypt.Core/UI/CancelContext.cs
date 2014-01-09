@@ -129,14 +129,14 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public void SerializeOnUIThread(bool getUIThread)
+        public void EnterSingleThread()
         {
-            _progress.SerializeOnUIThread(getUIThread);
+            _progress.EnterSingleThread();
         }
 
-        public bool IsSerializedOnUIThread
+        public void LeaveSingleThread()
         {
-            get { return _progress.IsSerializedOnUIThread; }
+            _progress.LeaveSingleThread();
         }
     }
 }

@@ -57,7 +57,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private int _progressLevel = 0;
 
-        private Semaphore _interactionSemaphore = new Semaphore(1, 1);
+        private Semaphore _singleThreadSemaphore = new Semaphore(1, 1);
 
         public ProgressContext()
             : this(TimeToFirstProgress)
@@ -242,42 +242,14 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public void SerializeOnUIThread(bool getUIThread)
+        public void EnterSingleThread()
         {
-            if (getUIThread)
-            {
-                _interactionSemaphore.WaitOne();
-                IsSerializedOnUIThread = true;
-            }
-            else
-            {
-                _interactionSemaphore.Release();
-                IsSerializedOnUIThread = false;
-            }
+            _singleThreadSemaphore.WaitOne();
         }
 
-        public void SerializeOnUIThread(Action action)
+        public void LeaveSingleThread()
         {
-            if (Instance.UIThread.IsOnUIThread)
-            {
-                action();
-                return;
-            }
-            _interactionSemaphore.WaitOne();
-            Action extendedAction = () =>
-            {
-                try
-                {
-                    action();
-                }
-                finally
-                {
-                    _interactionSemaphore.Release();
-                }
-            };
-            Instance.UIThread.RunOnUIThread(extendedAction);
+            _singleThreadSemaphore.Release();
         }
-
-        public bool IsSerializedOnUIThread { get; set; }
     }
 }
