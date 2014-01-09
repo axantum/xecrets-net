@@ -338,10 +338,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
             {
-                if (e.Skip)
-                {
-                    return;
-                }
                 if (_statusChecker.CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
                 {
                     IRuntimeFileInfo encryptedInfo = Factory.New<IRuntimeFileInfo>(e.OpenFileFullName);
