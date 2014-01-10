@@ -69,7 +69,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     continue;
                 }
-                if ((System.IO.Path.GetDirectoryName(path) ?? String.Empty).StartsWith(fileWatcher.Key, StringComparison.Ordinal))
+                if (((System.IO.Path.GetDirectoryName(path) ?? String.Empty) + @"\").StartsWith(fileWatcher.Key, StringComparison.Ordinal))
                 {
                     fileWatcher.Value.OnChanged(new FileWatcherEventArgs(path));
                 }

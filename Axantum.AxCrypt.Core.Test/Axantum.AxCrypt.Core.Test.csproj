@@ -149,6 +149,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TestThreadWorker.cs" />
+    <Compile Include="TestThreadWorkerProgressContext.cs" />
     <Compile Include="TestUnicodeFileNameInfoHeaderBlock .cs" />
     <Compile Include="TestUnrecognizedHeaderBlock .cs" />
     <Compile Include="TestUpdateCheck.cs" />
@@ -159,6 +160,7 @@
     <Compile Include="TestWatchedFolderChangedEventArgsTest.cs" />
     <Compile Include="TestWorkerGroup.cs" />
     <Compile Include="TestWorkerGroupProgressContext.cs" />
+    <Compile Include="TestWorkFolderWatcher.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />
