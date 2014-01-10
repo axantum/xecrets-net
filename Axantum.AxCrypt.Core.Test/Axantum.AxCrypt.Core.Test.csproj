@@ -120,6 +120,7 @@
     <Compile Include="TestFileNameInfoHeaderBlock.cs" />
     <Compile Include="TestFileSystemState.cs" />
     <Compile Include="TestFileWatcher.cs" />
+    <Compile Include="TestIdentityViewModel.cs" />
     <Compile Include="TestIdTagHeaderBlock.cs" />
     <Compile Include="TestInstance.cs" />
     <Compile Include="TestIOStreams.cs" />

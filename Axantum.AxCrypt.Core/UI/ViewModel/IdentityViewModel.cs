@@ -19,7 +19,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             _knownKeys = knownKeys;
             _userSettings = userSettings;
 
-            LogOnLogOff = new DelegateAction<object>((parameter) => LogOnLogOffAction());
+            PassphraseText = String.Empty;
+
+            LogOnLogOff = new DelegateAction<object>((parameter) => PassphraseText = LogOnLogOffAction());
             AskForLogOnOrDecryptPassphrase = new DelegateAction<string>((name) => PassphraseText = AskForLogOnOrDecryptPassphraseAction(name));
             AskForLogOnPassphrase = new DelegateAction<PassphraseIdentity>((id) => PassphraseText = AskForLogOnPassphraseAction(id));
         }
@@ -43,32 +45,32 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        private void LogOnLogOffAction()
+        private string LogOnLogOffAction()
         {
             if (_knownKeys.IsLoggedOn)
             {
                 _knownKeys.Clear();
-                return;
+                return String.Empty;
             }
 
             if (_fileSystemState.Identities.Any())
             {
-                TryLogOnToExistingIdentity();
-                return;
+                return AskForLogOnPassphraseAction(PassphraseIdentity.Empty);
             }
 
             string passphrase = AskForNewEncryptionPassphrase(String.Empty);
             if (String.IsNullOrEmpty(passphrase))
             {
-                return;
+                return String.Empty;
             }
 
             _knownKeys.DefaultEncryptionKey = Passphrase.Derive(passphrase);
+            return passphrase;
         }
 
-        private string AskForLogOnOrDecryptPassphraseAction(string fullName)
+        private string AskForLogOnOrDecryptPassphraseAction(string encryptedFileFullName)
         {
-            ActiveFile openFile = _fileSystemState.FindEncryptedPath(fullName);
+            ActiveFile openFile = _fileSystemState.FindEncryptedPath(encryptedFileFullName);
             if (openFile == null || openFile.Thumbprint == null)
             {
                 return AskForLogOnPassphraseAction(PassphraseIdentity.Empty);
@@ -81,15 +83,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
 
             return AskForLogOnPassphraseAction(identity);
-        }
-
-        private void TryLogOnToExistingIdentity()
-        {
-            string passphrase = AskForLogOnPassphraseAction(PassphraseIdentity.Empty);
-            if (String.IsNullOrEmpty(passphrase))
-            {
-                return;
-            }
         }
 
         private string AskForLogOnPassphraseAction(PassphraseIdentity identity)
