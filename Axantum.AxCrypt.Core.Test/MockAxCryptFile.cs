@@ -69,7 +69,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         public Action<IRuntimeFileInfo, AesKey, IProgressContext> DecryptFilesUniqueWithWipeOfOriginalMock { get; set; }
 
-        public override void DecryptFilesUniqueWithWipeOfOriginal(IRuntimeFileInfo fileInfo, AesKey decryptionKey, IProgressContext progress)
+        public override void DecryptFilesInFolderUniqueWithWipeOfOriginal(IRuntimeFileInfo fileInfo, AesKey decryptionKey, IProgressContext progress)
         {
             DecryptFilesUniqueWithWipeOfOriginalMock(fileInfo, decryptionKey, progress);
         }

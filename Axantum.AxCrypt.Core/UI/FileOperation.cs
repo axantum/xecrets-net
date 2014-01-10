@@ -41,12 +41,12 @@ namespace Axantum.AxCrypt.Core.UI
     public class FileOperation
     {
         private FileSystemState _fileSystemState;
-        private SessionNotify _notificationMonitor;
+        private SessionNotify _sessionNotify;
 
-        public FileOperation(FileSystemState fileSystemState, SessionNotify notificationMonitor)
+        public FileOperation(FileSystemState fileSystemState, SessionNotify sessionNotify)
         {
             _fileSystemState = fileSystemState;
-            _notificationMonitor = notificationMonitor;
+            _sessionNotify = sessionNotify;
         }
 
         public FileOperationStatus OpenAndLaunchApplication(string file, IEnumerable<AesKey> keys, IProgressContext progress)
@@ -98,9 +98,9 @@ namespace Axantum.AxCrypt.Core.UI
             return status;
         }
 
-        public FileOperationStatus OpenAndLaunchApplication(string file, AxCryptDocument document, IProgressContext progress)
+        public virtual FileOperationStatus OpenAndLaunchApplication(string encryptedFile, AxCryptDocument document, IProgressContext progress)
         {
-            if (file == null)
+            if (encryptedFile == null)
             {
                 throw new ArgumentNullException("file");
             }
@@ -113,23 +113,23 @@ namespace Axantum.AxCrypt.Core.UI
                 throw new ArgumentNullException("progress");
             }
 
-            IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(file);
+            IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(encryptedFile);
 
-            ActiveFile destinationActiveFile = _fileSystemState.FindEncryptedPath(fileInfo.FullName);
-            if (destinationActiveFile == null || !destinationActiveFile.DecryptedFileInfo.Exists)
+            ActiveFile encryptedActiveFile = _fileSystemState.FindEncryptedPath(encryptedFileInfo.FullName);
+            if (encryptedActiveFile == null || !encryptedActiveFile.DecryptedFileInfo.Exists)
             {
-                IRuntimeFileInfo destinationFolderInfo = GetTemporaryDestinationFolder(destinationActiveFile);
-                destinationActiveFile = DecryptActiveFileDocument(fileInfo, destinationFolderInfo, document, progress);
+                IRuntimeFileInfo destinationFolderInfo = GetTemporaryDestinationFolder(encryptedActiveFile);
+                encryptedActiveFile = DecryptActiveFileDocument(encryptedFileInfo, destinationFolderInfo, document, progress);
             }
             else
             {
-                destinationActiveFile = new ActiveFile(destinationActiveFile, document.DocumentHeaders.KeyEncryptingKey);
+                encryptedActiveFile = new ActiveFile(encryptedActiveFile, document.DocumentHeaders.KeyEncryptingKey);
             }
 
-            _fileSystemState.Add(destinationActiveFile);
+            _fileSystemState.Add(encryptedActiveFile);
             _fileSystemState.Save();
 
-            FileOperationStatus status = LaunchApplicationForDocument(destinationActiveFile);
+            FileOperationStatus status = LaunchApplicationForDocument(encryptedActiveFile);
             return status;
         }
 
@@ -192,7 +192,7 @@ namespace Axantum.AxCrypt.Core.UI
                 Instance.Log.LogInfo("Process exit event for '{0}'.".InvariantFormat(path));
             }
 
-            _notificationMonitor.Notify(new SessionNotification(SessionNotificationType.ProcessExit, path));
+            _sessionNotify.Notify(new SessionNotification(SessionNotificationType.ProcessExit, path));
         }
 
         private static ActiveFile TryDecrypt(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFolderInfo, IEnumerable<AesKey> keys, IProgressContext progress)

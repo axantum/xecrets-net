@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Core.Session
 
                 case SessionNotificationType.WatchedFolderRemoved:
                     IRuntimeFileInfo removedFolderInfo = Factory.New<IRuntimeFileInfo>(notification.FullName);
-                    _axCryptFile.DecryptFilesUniqueWithWipeOfOriginal(removedFolderInfo, notification.Key, progress);
+                    _axCryptFile.DecryptFilesInFolderUniqueWithWipeOfOriginal(removedFolderInfo, notification.Key, progress);
                     break;
 
                 case SessionNotificationType.LogOn:

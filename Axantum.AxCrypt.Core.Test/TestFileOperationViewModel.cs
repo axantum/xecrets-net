@@ -251,13 +251,24 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptFolders()
+        public static void TestDecryptFoldersWhenLoggedIn()
         {
+            PassphraseIdentity id = new PassphraseIdentity("Test", new AesKey());
+            Instance.FileSystemState.Identities.Add(id);
+            Instance.KnownKeys.DefaultEncryptionKey = id.Key;
+
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
             mvm.DecryptFolders.Execute(new string[] { @"C:\Folder\" });
 
             Assert.That(_allCompleted, Is.True);
             Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
+        }
+
+        [Test]
+        public static void TestDecryptFoldersWhenNotLoggedIn()
+        {
+            FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
+            Assert.Throws<InvalidOperationException>(() => mvm.DecryptFolders.Execute(new string[] { @"C:\Folder\" }));
         }
 
         [Test]
@@ -782,6 +793,115 @@ namespace Axantum.AxCrypt.Core.Test
             Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
             axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IRuntimeFileInfo>(), It.Is<IRuntimeFileInfo>(r => r.FullName == @"C:\Folder\File1-txt.1.axx"), It.IsAny<AesKey>(), It.IsAny<IProgressContext>()), Times.Once);
             axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IRuntimeFileInfo>(), It.Is<IRuntimeFileInfo>(r => r.FullName == @"C:\Folder\File2-txt.axx"), It.IsAny<AesKey>(), It.IsAny<IProgressContext>()), Times.Once);
+        }
+
+        [Test]
+        public static void TestOpenFilesActionWithWork()
+        {
+            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
+            Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
+
+            Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
+            axCryptFileMock.Setup<AxCryptDocument>(m => m.Document(It.IsAny<IRuntimeFileInfo>(), It.IsAny<AesKey>(), It.IsAny<IProgressContext>())).Returns((IRuntimeFileInfo fileInfo, AesKey key, IProgressContext progress) =>
+            {
+                AxCryptDocument acd = new AxCryptDocument();
+                acd.PassphraseIsValid = true;
+                acd.DocumentHeaders = new DocumentHeaders(key);
+                acd.DocumentHeaders.FileName = fileInfo.FullName.Replace("-txt.axx", ".txt");
+                return acd;
+            });
+            Factory.Instance.Register<AxCryptFile>(() => axCryptFileMock.Object);
+
+            Mock<FileOperation> fileOperationMock = new Mock<FileOperation>(Instance.FileSystemState, Instance.SessionNotify);
+            Factory.Instance.Register<FileOperation>(() => fileOperationMock.Object);
+
+            FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
+            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            {
+                e.Passphrase = "b";
+            };
+
+            FakeRuntimeFileInfo.AddFile(@"C:\Folder\File1-txt.axx", null);
+            FakeRuntimeFileInfo.AddFile(@"C:\Folder\File2-txt.axx", null);
+            mvm.OpenFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx" });
+
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
+            fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.Is<string>(s => s == @"C:\Folder\File1-txt.axx"), It.IsAny<AxCryptDocument>(), It.IsAny<IProgressContext>()), Times.Once);
+            fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.Is<string>(s => s == @"C:\Folder\File2-txt.axx"), It.IsAny<AxCryptDocument>(), It.IsAny<IProgressContext>()), Times.Once);
+            Assert.That(Instance.KnownKeys.IsLoggedOn, Is.True);
+            Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(1));
+        }
+
+        [Test]
+        public static void TestOpenFilesActionCancelingWithWork()
+        {
+            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
+            Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
+
+            int count = 0;
+            Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
+            axCryptFileMock.Setup<AxCryptDocument>(m => m.Document(It.IsAny<IRuntimeFileInfo>(), It.IsAny<AesKey>(), It.IsAny<IProgressContext>())).Returns((IRuntimeFileInfo fileInfo, AesKey key, IProgressContext progress) =>
+            {
+                AxCryptDocument acd = new AxCryptDocument();
+                if (++count == 2)
+                {
+                    acd.PassphraseIsValid = false;
+                    return acd;
+                }
+                acd.PassphraseIsValid = true;
+                acd.DocumentHeaders = new DocumentHeaders(key);
+                acd.DocumentHeaders.FileName = fileInfo.FullName.Replace("-txt.axx", ".txt");
+                return acd;
+            });
+            Factory.Instance.Register<AxCryptFile>(() => axCryptFileMock.Object);
+
+            Mock<FileOperation> fileOperationMock = new Mock<FileOperation>(Instance.FileSystemState, Instance.SessionNotify);
+            Factory.Instance.Register<FileOperation>(() => fileOperationMock.Object);
+
+            FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
+            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            {
+                if (count == 2)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+                e.Passphrase = "b";
+            };
+
+            FakeRuntimeFileInfo.AddFile(@"C:\Folder\File1-txt.axx", null);
+            FakeRuntimeFileInfo.AddFile(@"C:\Folder\File2-txt.axx", null);
+            mvm.OpenFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx" });
+
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
+            fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.Is<string>(s => s == @"C:\Folder\File1-txt.axx"), It.IsAny<AxCryptDocument>(), It.IsAny<IProgressContext>()), Times.Once);
+            fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.Is<string>(s => s == @"C:\Folder\File2-txt.axx"), It.IsAny<AxCryptDocument>(), It.IsAny<IProgressContext>()), Times.Never);
+            Assert.That(Instance.KnownKeys.IsLoggedOn, Is.True);
+            Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(1));
+        }
+
+        [Test]
+        public static void TestDecryptFoldersWithWork()
+        {
+            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
+            Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
+
+            Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
+            Factory.Instance.Register<AxCryptFile>(() => axCryptFileMock.Object);
+
+            PassphraseIdentity id = new PassphraseIdentity("Test", new AesKey());
+            Instance.FileSystemState.Identities.Add(id);
+            Instance.KnownKeys.DefaultEncryptionKey = id.Key;
+
+            FakeRuntimeFileInfo.AddFile(@"C:\Folder1\File1-txt.axx", null);
+            FakeRuntimeFileInfo.AddFile(@"C:\Folder1\File2-txt.axx", null);
+            FakeRuntimeFileInfo.AddFile(@"C:\Folder2\File1-txt.axx", null);
+
+            FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
+            mvm.DecryptFolders.Execute(new string[] { @"C:\Folder1\", @"C:\Folder2\" });
+
+            axCryptFileMock.Verify(m => m.DecryptFilesInFolderUniqueWithWipeOfOriginal(It.Is<IRuntimeFileInfo>(r => r.FullName == @"C:\Folder1\"), It.IsAny<AesKey>(), It.IsAny<IProgressContext>()), Times.Once);
+            axCryptFileMock.Verify(m => m.DecryptFilesInFolderUniqueWithWipeOfOriginal(It.Is<IRuntimeFileInfo>(r => r.FullName == @"C:\Folder2\"), It.IsAny<AesKey>(), It.IsAny<IProgressContext>()), Times.Once);
         }
     }
 }

@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             DecryptFiles = new DelegateAction<IEnumerable<string>>((files) => DecryptFilesAction(files));
             EncryptFiles = new DelegateAction<IEnumerable<string>>((files) => EncryptFilesAction(files));
             OpenFiles = new DelegateAction<IEnumerable<string>>((files) => OpenFilesAction(files));
-            DecryptFolders = new DelegateAction<IEnumerable<string>>((folders) => DecryptFoldersAction(folders));
+            DecryptFolders = new DelegateAction<IEnumerable<string>>((folders) => DecryptFoldersAction(folders), (folders) => _knownKeys.IsLoggedOn);
             WipeFiles = new DelegateAction<IEnumerable<string>>((files) => WipeFilesAction(files));
             OpenFilesFromFolder = new DelegateAction<string>((folder) => OpenFilesFromFolderAction(folder));
             AddRecentFiles = new DelegateAction<IEnumerable<string>>((files) => AddRecentFilesAction(files));
@@ -367,7 +367,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private FileOperationStatus DecryptFolderWork(IRuntimeFileInfo folder, IProgressContext progress)
         {
-            Factory.New<AxCryptFile>().DecryptFilesUniqueWithWipeOfOriginal(folder, _knownKeys.DefaultEncryptionKey, progress);
+            Factory.New<AxCryptFile>().DecryptFilesInFolderUniqueWithWipeOfOriginal(folder, _knownKeys.DefaultEncryptionKey, progress);
             return FileOperationStatus.Success;
         }
 
