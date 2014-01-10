@@ -31,7 +31,7 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
-    internal class ThreadWorkerProgressContext : IProgressContext
+    public class ThreadWorkerProgressContext : IProgressContext
     {
         private IProgressContext _progress;
 

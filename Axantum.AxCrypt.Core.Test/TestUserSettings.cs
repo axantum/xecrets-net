@@ -184,5 +184,14 @@ namespace Axantum.AxCrypt.Core.Test
             Uri url = settings.Load("MyKey", new Uri("http://localhost/fallback"));
             Assert.That(url, Is.EqualTo(new Uri("http://localhost/fallback")));
         }
+
+        [Test]
+        public static void TestLoadOfTimeSpanWithFallbackReturn()
+        {
+            UserSettings settings = new UserSettings(Factory.New<IRuntimeFileInfo>(@"C:\Folder\UserSettings.txt"), new KeyWrapIterationCalculator());
+
+            TimeSpan timeSpan = settings.Load("MyKey", new TimeSpan(1, 2, 3));
+            Assert.That(timeSpan, Is.EqualTo(new TimeSpan(1, 2, 3)));
+        }
     }
 }

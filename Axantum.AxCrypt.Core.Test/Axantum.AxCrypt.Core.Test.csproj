@@ -158,6 +158,7 @@
     <Compile Include="TestWatchedFolder.cs" />
     <Compile Include="TestWatchedFolderChangedEventArgsTest.cs" />
     <Compile Include="TestWorkerGroup.cs" />
+    <Compile Include="TestWorkerGroupProgressContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />

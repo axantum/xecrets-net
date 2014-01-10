@@ -35,12 +35,12 @@ namespace Axantum.AxCrypt.Core.Runtime
     {
         private Semaphore _singleThreadSemaphore = new Semaphore(1, 1);
 
-        public void Enter()
+        public virtual void Enter()
         {
             _singleThreadSemaphore.WaitOne();
         }
 
-        public void Leave()
+        public virtual void Leave()
         {
             _singleThreadSemaphore.Release();
         }

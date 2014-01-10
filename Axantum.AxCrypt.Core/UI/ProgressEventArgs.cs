@@ -31,7 +31,7 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public class ProgressEventArgs : EventArgs
     {
-        internal ProgressEventArgs(int percent)
+        public ProgressEventArgs(int percent)
         {
             Percent = percent;
         }
