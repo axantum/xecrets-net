@@ -95,7 +95,7 @@ namespace Axantum.AxCrypt.Core.Session
         }
 
         [DataMember(Name = "PassphraseIdentities")]
-        public IList<PassphraseIdentity> Identities
+        public virtual IList<PassphraseIdentity> Identities
         {
             get;
             private set;

@@ -51,9 +51,6 @@ namespace Axantum.AxCrypt.Core.Test
         {
             SetupAssembly.AssemblySetup();
 
-            var mockFileSystemState = new Mock<FileSystemState>();
-            Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
-
             var mockParallelFile = new Mock<ParallelFileOperation>();
             _allCompleted = false;
             mockParallelFile.Setup(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()))

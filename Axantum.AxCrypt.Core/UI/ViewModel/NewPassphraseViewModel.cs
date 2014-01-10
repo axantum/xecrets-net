@@ -53,34 +53,39 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             get
             {
                 string error = base[columnName];
-                if (!String.IsNullOrEmpty(error))
+                if (String.IsNullOrEmpty(error))
                 {
-                    return error;
+                    error = Validate(columnName);
                 }
-                switch (columnName)
-                {
-                    case "Passphrase":
-                    case "Verification":
-                        if (String.Compare(Passphrase, Verification, StringComparison.Ordinal) == 0)
-                        {
-                            return String.Empty;
-                        }
-                        ValidationError = (int)ViewModel.ValidationError.VerificationPassphraseWrong;
-                        break;
-
-                    case "IdentityName":
-                        if (!Instance.FileSystemState.Identities.Any(i => i.Name == IdentityName))
-                        {
-                            return String.Empty;
-                        }
-                        ValidationError = (int)ViewModel.ValidationError.IdentityExistsAlready;
-                        break;
-
-                    default:
-                        return String.Empty;
-                }
-                return ValidationError.ToString(CultureInfo.InvariantCulture);
+                return error;
             }
+        }
+
+        private string Validate(string columnName)
+        {
+            switch (columnName)
+            {
+                case "Passphrase":
+                case "Verification":
+                    if (String.Compare(Passphrase, Verification, StringComparison.Ordinal) == 0)
+                    {
+                        return String.Empty;
+                    }
+                    ValidationError = (int)ViewModel.ValidationError.VerificationPassphraseWrong;
+                    break;
+
+                case "IdentityName":
+                    if (!Instance.FileSystemState.Identities.Any(i => i.Name == IdentityName))
+                    {
+                        return String.Empty;
+                    }
+                    ValidationError = (int)ViewModel.ValidationError.IdentityExistsAlready;
+                    break;
+
+                default:
+                    throw new ArgumentException("Cannot validate property.", columnName);
+            }
+            return ValidationError.ToString(CultureInfo.InvariantCulture);
         }
     }
 }
