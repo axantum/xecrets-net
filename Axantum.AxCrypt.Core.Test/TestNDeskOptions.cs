@@ -31,6 +31,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -218,6 +220,53 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        public static void TestStronglyTypedKeyValuePair()
+        {
+            int k = 0, v = 0;
+            OptionSetCollection options = new OptionSetCollection()
+            {
+                {"D=", (int key, int value) => {k = key; v = value;}},
+            };
+            options.Parse(new string[] { "-D1=2" });
+            Assert.That(k, Is.EqualTo(1));
+            Assert.That(v, Is.EqualTo(2));
+        }
+
+        [Test]
+        public static void TestStronglyTypedKeyValuePairWithNullActionThrows()
+        {
+            OptionAction<int, int> action = null;
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                OptionSetCollection options = new OptionSetCollection()
+                {
+                    {"D=", action},
+                };
+            });
+        }
+
+        [Test]
+        public static void TestRedefineOption()
+        {
+            bool first = false;
+            bool second = false;
+            OptionSetCollection options = new OptionSetCollection()
+            {
+                {"a|b", v => first = true },
+            };
+            OptionSetCollection options2 = new OptionSetCollection()
+            {
+                {"a|b", v => second = true }
+            };
+
+            options[0] = options2[0];
+
+            options.Parse(new string[] { "-b" });
+            Assert.That(first, Is.False);
+            Assert.That(second, Is.True);
+        }
+
+        [Test]
         public static void TestMultipleValuesWithSpecifiedStringSeparator()
         {
             IDictionary<string, string> dictionary = new Dictionary<string, string>();
@@ -271,6 +320,138 @@ namespace Axantum.AxCrypt.Core.Test
                 options.WriteOptionDescriptions(writer);
                 string s = writer.ToString();
                 Assert.That(s, Is.EqualTo(description));
+            }
+        }
+
+        [Test]
+        public static void TestWriteOptionDescriptionsWithTwoValues()
+        {
+            string k = null;
+            int i = 0;
+            OptionSetCollection options = new OptionSetCollection()
+            {
+                {"name=", "Description", (string key, int value) => {i = value; k=key;} },
+            };
+            string description = "      --name=VALUE1:VALUE2   Description\r\n";
+            using (StringWriter writer = new StringWriter())
+            {
+                options.WriteOptionDescriptions(writer);
+                string s = writer.ToString();
+                Assert.That(s, Is.EqualTo(description));
+            }
+        }
+
+        [Test]
+        public static void TestWriteOptionDescriptionsWithInsertedValueNamesForSingleArgument()
+        {
+            int i = 0;
+            OptionSetCollection options = new OptionSetCollection()
+            {
+                {"name=", "Description {Key} and {1:Value}", (int value) => {i = value;} },
+            };
+            string description = "      --name=Key             Description Key and Value\r\n";
+            using (StringWriter writer = new StringWriter())
+            {
+                options.WriteOptionDescriptions(writer);
+                string s = writer.ToString();
+                Assert.That(s, Is.EqualTo(description));
+            }
+        }
+
+        [Test]
+        public static void TestWriteOptionDescriptionsWithInsertedValueNamesIgnoredBecauseOfUnterminatedPlaceholderMarkerAndDescriptionBug()
+        {
+            int i = 0;
+            OptionSetCollection options = new OptionSetCollection()
+            {
+                {"name=", "Description {Key and value", (int value) => {i = value;} },
+            };
+            string description = "      --name=VALUE           Description \r\n";
+            using (StringWriter writer = new StringWriter())
+            {
+                options.WriteOptionDescriptions(writer);
+                string s = writer.ToString();
+                Assert.That(s, Is.EqualTo(description));
+            }
+        }
+
+        [Test]
+        public static void TestWriteOptionDescriptionsWithInsertedValueNamesForMultiArgument()
+        {
+            string k = null;
+            int i = 0;
+            OptionSetCollection options = new OptionSetCollection()
+            {
+                {"name=", "Description {Key} and {1:Value}", (string key, int value) => {i = value; k=key;} },
+            };
+            string description = "      --name=VALUE1:Value    Description Key and Value\r\n";
+            using (StringWriter writer = new StringWriter())
+            {
+                options.WriteOptionDescriptions(writer);
+                string s = writer.ToString();
+                Assert.That(s, Is.EqualTo(description));
+            }
+        }
+
+        [Test]
+        public static void TestWriteOptionDescriptionsWithLeftCurlyBraceEscape()
+        {
+            int i = 0;
+            OptionSetCollection options = new OptionSetCollection()
+            {
+                {"name=", "A {{ Description", (int value) => i = value },
+            };
+            string description = "      --name=VALUE           A { Description\r\n";
+            using (StringWriter writer = new StringWriter())
+            {
+                options.WriteOptionDescriptions(writer);
+                string s = writer.ToString();
+                Assert.That(s, Is.EqualTo(description));
+            }
+        }
+
+        [Test]
+        public static void TestWriteOptionDescriptionsWithRightCurlyBraceEscape()
+        {
+            int i = 0;
+            OptionSetCollection options = new OptionSetCollection()
+            {
+                {"name=", "A }} Description", (int value) => i = value },
+            };
+            string description = "      --name=VALUE           A } Description\r\n";
+            using (StringWriter writer = new StringWriter())
+            {
+                options.WriteOptionDescriptions(writer);
+                string s = writer.ToString();
+                Assert.That(s, Is.EqualTo(description));
+            }
+        }
+
+        [Test]
+        public static void TestWriteOptionDescriptionsWithBadRightCurlyBraceEscape()
+        {
+            int i = 0;
+            OptionSetCollection options = new OptionSetCollection()
+            {
+                {"name=", "A }x Description", (int value) => i = value },
+            };
+            using (StringWriter writer = new StringWriter())
+            {
+                Assert.Throws<InvalidOperationException>(() => options.WriteOptionDescriptions(writer));
+            }
+        }
+
+        [Test]
+        public static void TestWriteOptionDescriptionsWithUnterminatedRightCurlyBraceEscape()
+        {
+            int i = 0;
+            OptionSetCollection options = new OptionSetCollection()
+            {
+                {"name=", "A Description }", (int value) => i = value },
+            };
+            using (StringWriter writer = new StringWriter())
+            {
+                Assert.Throws<InvalidOperationException>(() => options.WriteOptionDescriptions(writer));
             }
         }
 
@@ -330,6 +511,64 @@ namespace Axantum.AxCrypt.Core.Test
                 string s = writer.ToString();
                 Assert.That(s, Is.EqualTo(expectedDescription));
             }
+        }
+
+        [Test]
+        public static void TestWriteOptionDescriptionsWithValueArguments()
+        {
+            string value;
+            OptionSetCollection options = new OptionSetCollection()
+            {
+                {"a=", s => value = s},
+                {"b:|c:", s => value = s},
+                {"d={=>}", (s, v) => value = s + v},
+                {"e={}", (s, v) => value = s + v},
+                {"f", s => value = s},
+            };
+
+            string expectedDescription = "  -a=VALUE                   \r\n" +
+                                         "  -b, -c[=VALUE]             \r\n" +
+                                         "  -d=VALUE1=>VALUE2          \r\n" +
+                                         "  -e=VALUE1 VALUE2           \r\n" +
+                                         "  -f                         \r\n";
+            using (StringWriter writer = new StringWriter())
+            {
+                options.WriteOptionDescriptions(writer);
+                string s = writer.ToString();
+                Assert.That(s, Is.EqualTo(expectedDescription));
+            }
+        }
+
+        [Test]
+        public static void TestWriteOoptionDescriptionsWithDescriptionThatMustBeBroken()
+        {
+            string d;
+            OptionSetCollection options = new OptionSetCollection()
+            {
+                {"x", "The_desciption_is_too_long_to_fit_on_a_single_line_so_the_code-must_break_it_up", s => d = s},
+            };
+
+            string expectedDescription = "  -x                         The_desciption_is_too_long_to_fit_on_a_single_li-\r\n" +
+                                         "                               ne_so_the_code-must_break_it_up\r\n";
+            using (StringWriter writer = new StringWriter())
+            {
+                options.WriteOptionDescriptions(writer);
+                string s = writer.ToString();
+                Assert.That(s, Is.EqualTo(expectedDescription));
+            }
+        }
+
+        [Test]
+        public static void TestCannotUseTwoValuesWithSimpleArgumentThrows()
+        {
+            string value;
+            Assert.Throws<ArgumentException>(() =>
+            {
+                OptionSetCollection options = new OptionSetCollection()
+                {
+                    {"f", (s, v) => value = s + v},
+                };
+            });
         }
 
         [Test]
@@ -705,6 +944,43 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.Throws<ArgumentException>(() => new TestOptionsForConstructorExceptions("x", "Description", 2));
             Assert.Throws<ArgumentException>(() => new TestOptionsForConstructorExceptions("x=|<>", "Description", 2));
+        }
+
+        [Test]
+        public static void TestOptionExceptionSerialization()
+        {
+            OptionException oe = new OptionException("A Message", "OptionName");
+            IFormatter oeFormatter = new BinaryFormatter();
+            using (Stream stream = new MemoryStream())
+            {
+                oeFormatter.Serialize(stream, oe);
+                stream.Position = 0;
+                OptionException deserializedFfe = (OptionException)oeFormatter.Deserialize(stream);
+                Assert.That(deserializedFfe.OptionName, Is.EqualTo("OptionName"), "The deserialized option name should be the same as the original.");
+                Assert.That(deserializedFfe.Message, Is.EqualTo("A Message"), "The deserialized message should be the same as the original.");
+            }
+        }
+
+        [Test]
+        public static void TestOptionException()
+        {
+            OptionException oe = new OptionException();
+
+            Assert.That(oe.Message, Is.EqualTo("Exception of type 'NDesk.Options.OptionException' was thrown."));
+            Assert.That(oe.OptionName, Is.Null);
+            Assert.That(oe.InnerException, Is.Null);
+
+            oe = new OptionException("My Message");
+
+            Assert.That(oe.Message, Is.EqualTo("My Message"));
+            Assert.That(oe.OptionName, Is.Null);
+            Assert.That(oe.InnerException, Is.Null);
+
+            oe = new OptionException("My Message", oe);
+
+            Assert.That(oe.Message, Is.EqualTo("My Message"));
+            Assert.That(oe.OptionName, Is.Null);
+            Assert.That(oe.InnerException, Is.Not.Null);
         }
     }
 }

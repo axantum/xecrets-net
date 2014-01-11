@@ -655,8 +655,8 @@ namespace NDesk.Options
 
         protected override void RemoveItem(int index)
         {
-            base.RemoveItem(index);
             OptionBase p = Items[index];
+            base.RemoveItem(index);
             // KeyedCollection.RemoveItem() handles the 0th item
             for (int i = 1; i < p.Names.Length; ++i)
             {
