@@ -379,11 +379,6 @@ namespace NDesk.Options
         private int count;
         private string[] separators;
 
-        protected OptionBase(string prototype, string description)
-            : this(prototype, description, 1)
-        {
-        }
-
         protected OptionBase(string prototype, string description, int maxValueCount)
         {
             if (prototype == null)
@@ -711,8 +706,6 @@ namespace NDesk.Options
             public ActionOption(string prototype, string description, int count, Action<OptionValueCollection> action)
                 : base(prototype, description, count)
             {
-                if (action == null)
-                    throw new ArgumentNullException("action");
                 this.action = action;
             }
 

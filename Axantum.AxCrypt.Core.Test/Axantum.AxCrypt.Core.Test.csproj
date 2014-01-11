@@ -135,6 +135,7 @@
     <Compile Include="TestLogging.cs" />
     <Compile Include="TestLogOnViewModel.cs" />
     <Compile Include="TestMainViewModel.cs" />
+    <Compile Include="TestNDeskOptions.cs" />
     <Compile Include="TestNewPassphraseViewModel.cs" />
     <Compile Include="TestParallelFileOperation.cs" />
     <Compile Include="TestPassphrase.cs" />
