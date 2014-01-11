@@ -988,7 +988,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             OptionSetCollection optionSet = new OptionSetCollection()
             {
-                { "x", v => {}},
+                { "x=", (k, v) => {}},
             };
             OptionContext oc = new OptionContext(optionSet);
             return oc;
@@ -1032,11 +1032,190 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IList ilist = CreateOptionValueCollection() as IList;
 
+            Assert.That(ilist.IsReadOnly, Is.False);
+            Assert.That(ilist.IsFixedSize, Is.False);
+            Assert.That(ilist.IsSynchronized, Is.False);
+            Assert.That(ilist.SyncRoot, Is.Not.Null);
+
             ilist.Add("first");
             Assert.That(ilist[0], Is.EqualTo("first"));
 
             ilist[0] = "second";
             Assert.That(ilist[0], Is.EqualTo("second"));
+
+            ilist.Add("third");
+            Assert.That(ilist.ToString(), Is.EqualTo("second, third"));
+
+            Assert.That(ilist.IndexOf("third"), Is.EqualTo(1));
+            Assert.That(ilist.Contains("second"));
+            Assert.That(ilist.Contains("first"), Is.False);
+
+            string v = String.Empty;
+            foreach (string s in ilist)
+            {
+                v += s;
+            }
+            Assert.That(v, Is.EqualTo("secondthird"));
+
+            ilist.RemoveAt(0);
+            Assert.That(ilist.Count, Is.EqualTo(1));
+            Assert.That(ilist[0], Is.EqualTo("third"));
+
+            ilist.Insert(1, "forth");
+            Assert.That(ilist.Count, Is.EqualTo(2));
+            Assert.That(ilist[0], Is.EqualTo("third"));
+            Assert.That(ilist[1], Is.EqualTo("forth"));
+
+            ilist.Remove("third");
+            Assert.That(ilist.Count, Is.EqualTo(1));
+            Assert.That(ilist[0], Is.EqualTo("forth"));
+        }
+
+        [Test]
+        public static void TestOptionValueCollectionGetEnumerator()
+        {
+            OptionValueCollection ovc = CreateOptionValueCollection();
+
+            ovc.Add("first");
+            ovc.Add("second");
+
+            string v = String.Empty;
+            foreach (string s in ovc)
+            {
+                v += s;
+            }
+            Assert.That(v, Is.EqualTo("firstsecond"));
+        }
+
+        [Test]
+        public static void TestOptionValueCollectionRemove()
+        {
+            OptionValueCollection ovc = CreateOptionValueCollection();
+
+            ovc.Add("first");
+            ovc.Add("second");
+
+            ovc.Remove("second");
+
+            Assert.That(ovc.Count, Is.EqualTo(1));
+            Assert.That(ovc[0], Is.EqualTo("first"));
+        }
+
+        [Test]
+        public static void TestOptionValueCollectionContains()
+        {
+            OptionValueCollection ovc = CreateOptionValueCollection();
+
+            ovc.Add("first");
+            ovc.Add("second");
+
+            Assert.That(ovc.Contains("first"));
+            Assert.That(ovc.Contains("first"));
+            Assert.That(ovc.Contains("third"), Is.False);
+        }
+
+        [Test]
+        public static void TestOptionValueCollectionCopyTo()
+        {
+            OptionValueCollection ovc = CreateOptionValueCollection();
+
+            ovc.Add("first");
+            ovc.Add("second");
+
+            string[] array = new string[] { "one", "two", "three" };
+            ovc.CopyTo(array, 1);
+
+            Assert.That(array.Length, Is.EqualTo(3));
+            Assert.That(array[0], Is.EqualTo("one"));
+            Assert.That(array[1], Is.EqualTo("first"));
+            Assert.That(array[2], Is.EqualTo("second"));
+        }
+
+        [Test]
+        public static void TestOptionValueCollectionICollectionCopyTo()
+        {
+            OptionValueCollection ovc = CreateOptionValueCollection();
+
+            ovc.Add("first");
+            ovc.Add("second");
+
+            ICollection collection = ovc as ICollection;
+
+            string[] array = new string[] { "one", "two", "three" };
+            collection.CopyTo(array, 1);
+
+            Assert.That(array.Length, Is.EqualTo(3));
+            Assert.That(array[0], Is.EqualTo("one"));
+            Assert.That(array[1], Is.EqualTo("first"));
+            Assert.That(array[2], Is.EqualTo("second"));
+        }
+
+        [Test]
+        public static void TestOptionValueCollectionToArray()
+        {
+            OptionValueCollection ovc = CreateOptionValueCollection();
+
+            ovc.Add("first");
+            ovc.Add("second");
+
+            string[] array = ovc.ToArray();
+
+            Assert.That(array.Length, Is.EqualTo(2));
+            Assert.That(array[0], Is.EqualTo("first"));
+            Assert.That(array[1], Is.EqualTo("second"));
+        }
+
+        [Test]
+        public static void TestOptionValueCollectionToList()
+        {
+            OptionValueCollection ovc = CreateOptionValueCollection();
+
+            ovc.Add("first");
+            ovc.Add("second");
+
+            List<string> list = ovc.ToList();
+
+            Assert.That(list.Count, Is.EqualTo(2));
+            Assert.That(list[0], Is.EqualTo("first"));
+            Assert.That(list[1], Is.EqualTo("second"));
+        }
+
+        [Test]
+        public static void TestOptionValueCollectionRemoveAt()
+        {
+            OptionValueCollection ovc = CreateOptionValueCollection();
+
+            ovc.Add("first");
+            ovc.Add("second");
+
+            ovc.RemoveAt(0);
+
+            Assert.That(ovc.Count, Is.EqualTo(1));
+            Assert.That(ovc[0], Is.EqualTo("second"));
+        }
+
+        [Test]
+        public static void TestOptionValueCollectionInsert()
+        {
+            OptionValueCollection ovc = CreateOptionValueCollection();
+
+            ovc.Add("first");
+            ovc.Insert(0, "half");
+
+            Assert.That(ovc.Count, Is.EqualTo(2));
+            Assert.That(ovc[0], Is.EqualTo("half"));
+            Assert.That(ovc[1], Is.EqualTo("first"));
+        }
+
+        [Test]
+        public static void TestOptionValueCollectionIndexOf()
+        {
+            OptionValueCollection ovc = CreateOptionValueCollection();
+
+            ovc.Add("first");
+            ovc.Add("Second");
+
+            Assert.That(ovc.IndexOf("Second"), Is.EqualTo(1));
         }
     }
 }
