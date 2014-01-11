@@ -625,26 +625,7 @@ namespace NDesk.Options
         {
             if (item == null)
                 throw new ArgumentNullException("item");
-            if (item.Names != null && item.Names.Length > 0)
-                return item.Names[0];
-            // This should never happen, as it's invalid for Option to be
-            // constructed w/o any names.
-            throw new InvalidOperationException("Option has no names!");
-        }
-
-        [Obsolete("Use KeyedCollection.this[string]")]
-        protected OptionBase GetOptionForName(string option)
-        {
-            if (option == null)
-                throw new ArgumentNullException("option");
-            try
-            {
-                return base[option];
-            }
-            catch (KeyNotFoundException)
-            {
-                return null;
-            }
+            return item.Names[0];
         }
 
         protected override void InsertItem(int index, OptionBase item)
@@ -673,8 +654,6 @@ namespace NDesk.Options
 
         private void AddImpl(OptionBase option)
         {
-            if (option == null)
-                throw new ArgumentNullException("option");
             List<string> added = new List<string>(option.Names.Length);
             try
             {
@@ -1023,8 +1002,6 @@ namespace NDesk.Options
                             ParseValue(v.Length != 0 ? v : null, c);
                             return true;
                         }
-                    default:
-                        throw new InvalidOperationException("Unknown OptionValueType: " + p.OptionValueType);
                 }
             }
             return true;
