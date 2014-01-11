@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2013, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -27,11 +27,9 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Session
 {

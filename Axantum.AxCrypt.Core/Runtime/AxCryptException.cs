@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2012, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -26,7 +26,6 @@
 #endregion Coypright and License
 
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 using System.Security.Permissions;
 

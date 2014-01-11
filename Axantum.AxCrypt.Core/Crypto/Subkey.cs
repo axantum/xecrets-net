@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2012, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -25,8 +25,8 @@
 
 #endregion Coypright and License
 
-using System;
 using Axantum.AxCrypt.Core.Runtime;
+using System;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -57,15 +57,19 @@ namespace Axantum.AxCrypt.Core.Crypto
                 case HeaderSubkey.Hmac:
                     subKeyValue = 0;
                     break;
+
                 case HeaderSubkey.Validator:
                     subKeyValue = 1;
                     break;
+
                 case HeaderSubkey.Headers:
                     subKeyValue = 2;
                     break;
+
                 case HeaderSubkey.Data:
                     subKeyValue = 3;
                     break;
+
                 default:
                     throw new InternalErrorException("headerSubkey");
             }

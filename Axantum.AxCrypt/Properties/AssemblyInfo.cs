@@ -1,7 +1,7 @@
 #region Coypright and License
 
 /*
- * AxCrypt - Copyright 2012, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -40,7 +40,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCompany("Axantum Software AB")]
 [assembly: AssemblyDescription("Beta")]
 [assembly: AssemblyProduct("AxCrypt")]
-[assembly: AssemblyCopyright("Copyright © 2012 Svante Seleborg")]
+[assembly: AssemblyCopyright("Copyright © 2014 Svante Seleborg")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

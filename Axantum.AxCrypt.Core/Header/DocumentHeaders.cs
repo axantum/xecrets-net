@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2012, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -25,12 +25,12 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.IO;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
@@ -89,6 +89,7 @@ namespace Axantum.AxCrypt.Core.Reader
                     case AxCryptItemType.HeaderBlock:
                         headerBlocks.Add(axCryptReader.CurrentHeaderBlock);
                         break;
+
                     case AxCryptItemType.Data:
                         headerBlocks.Add(axCryptReader.CurrentHeaderBlock);
                         _headerBlocks = headerBlocks;
@@ -99,6 +100,7 @@ namespace Axantum.AxCrypt.Core.Reader
                             return true;
                         }
                         return false;
+
                     default:
                         throw new InternalErrorException("The reader returned an AxCryptItemType it should not be possible for it to return.");
                 }

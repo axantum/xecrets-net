@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2012, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -26,11 +26,11 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Ipc;
+using Axantum.AxCrypt.Core.Runtime;
+using Moq;
 using NUnit.Framework;
 using System;
 using System.Linq;
-using Moq;
-using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -90,7 +90,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestNeedToLaunchFirstInstance()
         {
-            var mock = new Mock<FakeRuntimeEnvironment>() { CallBase = true};
+            var mock = new Mock<FakeRuntimeEnvironment>() { CallBase = true };
             mock.Setup<ILauncher>(x => x.Launch(It.IsAny<string>()))
                 .Returns((string path) =>
                 {
@@ -98,7 +98,7 @@ namespace Axantum.AxCrypt.Core.Test
                     return new FakeLauncher(path);
                 });
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => mock.Object);
-            
+
             _fakeClient.FakeDispatcher = (command) => { _fakeServer.AcceptRequest(command); return CommandStatus.Success; };
             CommandLine cl = new CommandLine("axcrypt.exe", new string[0]);
             Assert.That(FakeRuntimeEnvironment.Instance.IsFirstInstanceRunning, Is.False);
