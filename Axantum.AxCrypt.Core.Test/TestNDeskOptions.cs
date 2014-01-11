@@ -30,6 +30,7 @@ using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -104,7 +105,6 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestStopProcessingMarker()
         {
             int verbose = 0;
-            List<string> names = new List<string>();
             OptionSetCollection options = new OptionSetCollection()
             {
                 {"v", v => ++verbose}
@@ -131,6 +131,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(verbose, Is.EqualTo(3));
             Assert.That(names[0], Is.EqualTo("-y"));
             Assert.That(names[1], Is.EqualTo("-v"));
+            Assert.That(extra.Count, Is.EqualTo(0));
         }
 
         [Test]
@@ -239,7 +240,7 @@ namespace Axantum.AxCrypt.Core.Test
             OptionAction<int, int> action = null;
             Assert.Throws<ArgumentNullException>(() =>
             {
-                OptionSetCollection options = new OptionSetCollection()
+                new OptionSetCollection()
                 {
                     {"D=", action},
                 };
@@ -316,7 +317,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {"name=", "Description", (int value) => i = value },
             };
             string description = "      --name=VALUE           Description\r\n";
-            using (StringWriter writer = new StringWriter())
+            using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
             {
                 options.WriteOptionDescriptions(writer);
                 string s = writer.ToString();
@@ -334,7 +335,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {"name=", "Description", (string key, int value) => {i = value; k=key;} },
             };
             string description = "      --name=VALUE1:VALUE2   Description\r\n";
-            using (StringWriter writer = new StringWriter())
+            using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
             {
                 options.WriteOptionDescriptions(writer);
                 string s = writer.ToString();
@@ -351,7 +352,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {"name=", "Description {Key} and {1:Value}", (int value) => {i = value;} },
             };
             string description = "      --name=Key             Description Key and Value\r\n";
-            using (StringWriter writer = new StringWriter())
+            using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
             {
                 options.WriteOptionDescriptions(writer);
                 string s = writer.ToString();
@@ -368,7 +369,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {"name=", "Description {Key and value", (int value) => {i = value;} },
             };
             string description = "      --name=VALUE           Description \r\n";
-            using (StringWriter writer = new StringWriter())
+            using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
             {
                 options.WriteOptionDescriptions(writer);
                 string s = writer.ToString();
@@ -377,7 +378,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWriteOptionDescriptionsWithInsertedValueNamesForMultiArgument()
+        public static void TestWriteOptionDescriptionsWithInsertedValueNamesForMultipleValueArgument()
         {
             string k = null;
             int i = 0;
@@ -386,7 +387,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {"name=", "Description {Key} and {1:Value}", (string key, int value) => {i = value; k=key;} },
             };
             string description = "      --name=VALUE1:Value    Description Key and Value\r\n";
-            using (StringWriter writer = new StringWriter())
+            using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
             {
                 options.WriteOptionDescriptions(writer);
                 string s = writer.ToString();
@@ -403,7 +404,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {"name=", "A {{ Description", (int value) => i = value },
             };
             string description = "      --name=VALUE           A { Description\r\n";
-            using (StringWriter writer = new StringWriter())
+            using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
             {
                 options.WriteOptionDescriptions(writer);
                 string s = writer.ToString();
@@ -420,7 +421,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {"name=", "A }} Description", (int value) => i = value },
             };
             string description = "      --name=VALUE           A } Description\r\n";
-            using (StringWriter writer = new StringWriter())
+            using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
             {
                 options.WriteOptionDescriptions(writer);
                 string s = writer.ToString();
@@ -436,7 +437,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 {"name=", "A }x Description", (int value) => i = value },
             };
-            using (StringWriter writer = new StringWriter())
+            using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
             {
                 Assert.Throws<InvalidOperationException>(() => options.WriteOptionDescriptions(writer));
             }
@@ -450,7 +451,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 {"name=", "A Description }", (int value) => i = value },
             };
-            using (StringWriter writer = new StringWriter())
+            using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
             {
                 Assert.Throws<InvalidOperationException>(() => options.WriteOptionDescriptions(writer));
             }
@@ -469,7 +470,7 @@ namespace Axantum.AxCrypt.Core.Test
                                  "                               new line to boot! It's also so long it has to be \r\n" +
                                  "                               broken into another line.\r\n";
 
-            using (StringWriter writer = new StringWriter())
+            using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
             {
                 options.WriteOptionDescriptions(writer);
                 string s = writer.ToString();
@@ -487,7 +488,7 @@ namespace Axantum.AxCrypt.Core.Test
             };
 
             string expectedDescription = String.Empty;
-            using (StringWriter writer = new StringWriter())
+            using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
             {
                 options.WriteOptionDescriptions(writer);
                 string s = writer.ToString();
@@ -506,7 +507,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             string expectedDescription = "      --averylongoption, --anotherverlongoption, --athirdverylongoption, --yetanotherverylongoption\r\n" +
                                          "                             The Description\r\n";
-            using (StringWriter writer = new StringWriter())
+            using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
             {
                 options.WriteOptionDescriptions(writer);
                 string s = writer.ToString();
@@ -532,7 +533,7 @@ namespace Axantum.AxCrypt.Core.Test
                                          "  -d=VALUE1=>VALUE2          \r\n" +
                                          "  -e=VALUE1 VALUE2           \r\n" +
                                          "  -f                         \r\n";
-            using (StringWriter writer = new StringWriter())
+            using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
             {
                 options.WriteOptionDescriptions(writer);
                 string s = writer.ToString();
@@ -541,7 +542,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWriteOoptionDescriptionsWithDescriptionThatMustBeBroken()
+        public static void TestWriteOptionDescriptionsWithDescriptionThatMustBeBroken()
         {
             string d;
             OptionSetCollection options = new OptionSetCollection()
@@ -551,7 +552,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             string expectedDescription = "  -x                         The_desciption_is_too_long_to_fit_on_a_single_li-\r\n" +
                                          "                               ne_so_the_code-must_break_it_up\r\n";
-            using (StringWriter writer = new StringWriter())
+            using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
             {
                 options.WriteOptionDescriptions(writer);
                 string s = writer.ToString();
@@ -562,12 +563,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestCannotUseTwoValuesWithSimpleArgumentThrows()
         {
-            string value;
             Assert.Throws<ArgumentException>(() =>
             {
-                OptionSetCollection options = new OptionSetCollection()
+                new OptionSetCollection()
                 {
-                    {"f", (s, v) => value = s + v},
+                    {"f", (s, v) => {}},
                 };
             });
         }
@@ -663,12 +663,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestKeyValuePairsThrowsWhenDelegateOnlyTakesOneArgument()
         {
-            string s;
             Assert.Throws<InvalidOperationException>(() =>
             {
-                OptionSetCollection options = new OptionSetCollection()
+                new OptionSetCollection()
                 {
-                    {"name=-", v => s = v },
+                    {"name=-", v => {} },
                 };
             });
         }
@@ -676,12 +675,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDuplicateOptionNameThrows()
         {
-            string s;
             Assert.Throws<ArgumentException>(() =>
             {
-                OptionSetCollection options = new OptionSetCollection()
+                new OptionSetCollection()
                 {
-                    {"b|a|a", v => s = v },
+                    {"b|a|a", v => {} },
                 };
             });
         }
@@ -689,12 +687,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEmptyOptionNameThrows()
         {
-            string s;
             Assert.Throws<ArgumentException>(() =>
             {
-                OptionSetCollection options = new OptionSetCollection()
+                new OptionSetCollection()
                 {
-                    {"", v => s = v },
+                    {"", v => {} },
                 };
             });
         }
@@ -702,12 +699,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestNullOptionNameThrows()
         {
-            string s;
             Assert.Throws<ArgumentNullException>(() =>
             {
-                OptionSetCollection options = new OptionSetCollection()
+                new OptionSetCollection()
                 {
-                    {null, v => s = v },
+                    {null, v => {} },
                 };
             });
         }
@@ -715,12 +711,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestZeroLengthOptionNameThrows()
         {
-            string s;
             Assert.Throws<InvalidOperationException>(() =>
             {
-                OptionSetCollection options = new OptionSetCollection()
+                new OptionSetCollection()
                 {
-                    {"a|", v => s = v },
+                    {"a|", v => {} },
                 };
             });
         }
@@ -728,12 +723,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDoubleKeyValuePairStartThrows()
         {
-            IDictionary<string, string> dictionary = new Dictionary<string, string>();
             Assert.Throws<ArgumentException>(() =>
             {
-                OptionSetCollection options = new OptionSetCollection()
+                new OptionSetCollection()
                 {
-                    {"a={{=>}", (key, value) => dictionary.Add(key, value) },
+                    {"a={{=>}", (key, value) => {} },
                 };
             });
         }
@@ -752,12 +746,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestOnlyEndKeyValuePairStartThrows()
         {
-            IDictionary<string, string> dictionary = new Dictionary<string, string>();
             Assert.Throws<ArgumentException>(() =>
             {
-                OptionSetCollection options = new OptionSetCollection()
+                new OptionSetCollection()
                 {
-                    {"a=>}", (key, value) => dictionary.Add(key, value) },
+                    {"a=>}", (key, value) => {} },
                 };
             });
         }
@@ -765,12 +758,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestMissingEndKeyValuePairStartThrows()
         {
-            IDictionary<string, string> dictionary = new Dictionary<string, string>();
             Assert.Throws<ArgumentException>(() =>
             {
-                OptionSetCollection options = new OptionSetCollection()
+                new OptionSetCollection()
                 {
-                    {"a={=>", (key, value) => dictionary.Add(key, value) },
+                    {"a={=>", (key, value) => {} },
                 };
             });
         }
@@ -778,12 +770,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestConflictingOptionTypesThrows()
         {
-            string s;
             Assert.Throws<InvalidOperationException>(() =>
             {
-                OptionSetCollection options = new OptionSetCollection()
+                new OptionSetCollection()
                 {
-                    {"a:|b=", v => s = v },
+                    {"a:|b=", v => {} },
                 };
             });
         }
@@ -794,7 +785,7 @@ namespace Axantum.AxCrypt.Core.Test
             Action<string> nullAction = null;
             Assert.Throws<ArgumentNullException>(() =>
             {
-                OptionSetCollection options = new OptionSetCollection()
+                new OptionSetCollection()
                 {
                     {"a=", "Description", nullAction}
                 };
@@ -807,7 +798,7 @@ namespace Axantum.AxCrypt.Core.Test
             Action<int> nullAction = null;
             Assert.Throws<ArgumentNullException>(() =>
             {
-                OptionSetCollection options = new OptionSetCollection()
+                new OptionSetCollection()
                 {
                     {"a=", "Description", nullAction}
                 };
@@ -820,7 +811,7 @@ namespace Axantum.AxCrypt.Core.Test
             OptionAction<string, string> nullAction = null;
             Assert.Throws<ArgumentNullException>(() =>
             {
-                OptionSetCollection options = new OptionSetCollection()
+                new OptionSetCollection()
                 {
                     {"a={}", "Description", nullAction}
                 };
@@ -882,7 +873,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestBundledOptionWithNonMinusFlagWhichApparentlyIsNotSupported()
+        public static void TestBundledOptionWithNonMinusSwitchWhichApparentlyIsNotSupported()
         {
             bool x = false;
             bool y = false;
@@ -935,16 +926,19 @@ namespace Axantum.AxCrypt.Core.Test
         {
             string nullString = null;
 
-            Assert.Throws<ArgumentNullException>(() => new TestOptionsForConstructorExceptions(nullString, "Description", 0));
-            Assert.Throws<ArgumentException>(() => new TestOptionsForConstructorExceptions("", "Description", 0));
-            Assert.Throws<ArgumentOutOfRangeException>(() => new TestOptionsForConstructorExceptions("prototype", "Description", -1));
+            OptionBase option = null;
+            Assert.Throws<ArgumentNullException>(() => option = new TestOptionsForConstructorExceptions(nullString, "Description", 0));
+            Assert.Throws<ArgumentException>(() => option = new TestOptionsForConstructorExceptions("", "Description", 0));
+            Assert.Throws<ArgumentOutOfRangeException>(() => option = new TestOptionsForConstructorExceptions("prototype", "Description", -1));
 
-            Assert.Throws<ArgumentException>(() => new TestOptionsForConstructorExceptions("x=", "Description", 0));
-            Assert.Throws<ArgumentException>(() => new TestOptionsForConstructorExceptions("x:", "Description", 0));
-            Assert.DoesNotThrow(() => new TestOptionsForConstructorExceptions("x:", "Description", 1));
+            Assert.Throws<ArgumentException>(() => option = new TestOptionsForConstructorExceptions("x=", "Description", 0));
+            Assert.Throws<ArgumentException>(() => option = new TestOptionsForConstructorExceptions("x:", "Description", 0));
+            Assert.DoesNotThrow(() => option = new TestOptionsForConstructorExceptions("x:", "Description", 1));
 
-            Assert.Throws<ArgumentException>(() => new TestOptionsForConstructorExceptions("x", "Description", 2));
-            Assert.Throws<ArgumentException>(() => new TestOptionsForConstructorExceptions("x=|<>", "Description", 2));
+            Assert.Throws<ArgumentException>(() => option = new TestOptionsForConstructorExceptions("x", "Description", 2));
+            Assert.Throws<ArgumentException>(() => option = new TestOptionsForConstructorExceptions("x=|<>", "Description", 2));
+
+            Assert.That(option, Is.Not.Null, "Should not reach here. Only here to make FxCop believe we're using the instantiated object.");
         }
 
         [Test]

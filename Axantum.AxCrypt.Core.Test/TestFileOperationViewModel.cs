@@ -35,6 +35,7 @@ using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -762,6 +763,7 @@ namespace Axantum.AxCrypt.Core.Test
             Thread.Sleep(1);
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable *is* a word.")]
         [Test]
         public static void TestAddRecentFilesActionWithEncryptableFilesNonInteractive()
         {
@@ -897,8 +899,8 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
             mvm.DecryptFolders.Execute(new string[] { @"C:\Folder1\", @"C:\Folder2\" });
 
-            axCryptFileMock.Verify(m => m.DecryptFilesInFolderUniqueWithWipeOfOriginal(It.Is<IRuntimeFileInfo>(r => r.FullName == @"C:\Folder1\"), It.IsAny<AesKey>(), It.IsAny<IProgressContext>()), Times.Once);
-            axCryptFileMock.Verify(m => m.DecryptFilesInFolderUniqueWithWipeOfOriginal(It.Is<IRuntimeFileInfo>(r => r.FullName == @"C:\Folder2\"), It.IsAny<AesKey>(), It.IsAny<IProgressContext>()), Times.Once);
+            axCryptFileMock.Verify(m => m.DecryptFilesInsideFolderUniqueWithWipeOfOriginal(It.Is<IRuntimeFileInfo>(r => r.FullName == @"C:\Folder1\"), It.IsAny<AesKey>(), It.IsAny<IProgressContext>()), Times.Once);
+            axCryptFileMock.Verify(m => m.DecryptFilesInsideFolderUniqueWithWipeOfOriginal(It.Is<IRuntimeFileInfo>(r => r.FullName == @"C:\Folder2\"), It.IsAny<AesKey>(), It.IsAny<IProgressContext>()), Times.Once);
         }
     }
 }

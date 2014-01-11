@@ -102,7 +102,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             if (encryptedFile == null)
             {
-                throw new ArgumentNullException("file");
+                throw new ArgumentNullException("encryptedFile");
             }
             if (document == null)
             {

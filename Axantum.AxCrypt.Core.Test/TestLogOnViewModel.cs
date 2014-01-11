@@ -83,7 +83,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestValidatePropertyThatCannotBeValidated()
         {
             LogOnViewModel lovm = new LogOnViewModel("Me");
-            Assert.Throws<ArgumentException>(() => { string s = lovm["ShowPassphrase"]; });
+            string s = null;
+            Assert.Throws<ArgumentException>(() => { s = lovm["ShowPassphrase"]; });
+            Assert.That(s, Is.Null, "Not a real assertion, only to make the variable used for FxCop.");
         }
 
         [Test]
@@ -134,7 +136,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestValidateNonExistingPropertyName()
         {
             LogOnViewModel lovm = new LogOnViewModel("Me");
-            Assert.Throws<ArgumentException>(() => { string s = lovm["NonExisting"]; });
+            string s = null;
+            Assert.Throws<ArgumentException>(() => { s = lovm["NonExisting"]; });
+            Assert.That(s, Is.Null, "Not a real assertion, only to make the variable used for FxCop.");
         }
     }
 }

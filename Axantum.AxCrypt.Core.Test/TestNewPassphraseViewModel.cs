@@ -110,7 +110,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestValidatePropertyThatCannotBeValidated()
         {
             NewPassphraseViewModel npvm = new NewPassphraseViewModel(Environment.UserName);
-            Assert.Throws<ArgumentException>(() => { string s = npvm["ShowPassphrase"]; });
+            string s = null;
+            Assert.Throws<ArgumentException>(() => { s = npvm["ShowPassphrase"]; });
+            Assert.That(s, Is.Null, "Not a real assertion, only to make the variable used for FxCop.");
         }
 
         [Test]
@@ -143,7 +145,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestValidateNonExistingPropertyName()
         {
             NewPassphraseViewModel npvm = new NewPassphraseViewModel(Environment.UserName);
-            Assert.Throws<ArgumentException>(() => { string s = npvm["NonExisting"]; });
+            string s = null;
+            Assert.Throws<ArgumentException>(() => { s = npvm["NonExisting"]; });
+            Assert.That(s, Is.Null, "Not a real assertion, only to make the variable used for FxCop.");
         }
     }
 }

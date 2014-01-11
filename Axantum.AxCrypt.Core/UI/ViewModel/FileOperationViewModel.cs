@@ -367,7 +367,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private FileOperationStatus DecryptFolderWork(IRuntimeFileInfo folder, IProgressContext progress)
         {
-            Factory.New<AxCryptFile>().DecryptFilesInFolderUniqueWithWipeOfOriginal(folder, _knownKeys.DefaultEncryptionKey, progress);
+            Factory.New<AxCryptFile>().DecryptFilesInsideFolderUniqueWithWipeOfOriginal(folder, _knownKeys.DefaultEncryptionKey, progress);
             return FileOperationStatus.Success;
         }
 
