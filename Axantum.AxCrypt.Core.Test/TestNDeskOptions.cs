@@ -28,6 +28,7 @@
 using NDesk.Options;
 using NUnit.Framework;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -981,6 +982,61 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(oe.Message, Is.EqualTo("My Message"));
             Assert.That(oe.OptionName, Is.Null);
             Assert.That(oe.InnerException, Is.Not.Null);
+        }
+
+        private static OptionContext CreateOptionContext()
+        {
+            OptionSetCollection optionSet = new OptionSetCollection()
+            {
+                { "x", v => {}},
+            };
+            OptionContext oc = new OptionContext(optionSet);
+            return oc;
+        }
+
+        private static OptionValueCollection CreateOptionValueCollection()
+        {
+            OptionContext oc = CreateOptionContext();
+            oc.Option = oc.OptionSet[0];
+
+            OptionValueCollection ovc = oc.OptionValues;
+
+            return ovc;
+        }
+
+        [Test]
+        public static void TestOptionValueCollectionAssertValid()
+        {
+            OptionContext oc = CreateOptionContext();
+            string s;
+
+            Assert.Throws<InvalidOperationException>(() => s = oc.OptionValues[0]);
+
+            oc.Option = oc.OptionSet[0];
+            Assert.Throws<ArgumentOutOfRangeException>(() => s = oc.OptionValues[99]);
+        }
+
+        [Test]
+        public static void TestOptionValueCollectionItemSetter()
+        {
+            OptionValueCollection ovc = CreateOptionValueCollection();
+
+            ovc.Add("first");
+            ovc[0] = "value";
+
+            Assert.That(ovc[0], Is.EqualTo("value"));
+        }
+
+        [Test]
+        public static void TestOptionValueCollectionIListImplementation()
+        {
+            IList ilist = CreateOptionValueCollection() as IList;
+
+            ilist.Add("first");
+            Assert.That(ilist[0], Is.EqualTo("first"));
+
+            ilist[0] = "second";
+            Assert.That(ilist[0], Is.EqualTo("second"));
         }
     }
 }
