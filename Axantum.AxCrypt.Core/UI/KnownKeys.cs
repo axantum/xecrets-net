@@ -130,13 +130,17 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     return;
                 }
-                AesKey oldKey = _defaultEncryptionKey;
-                _defaultEncryptionKey = value;
-                if (_defaultEncryptionKey == null)
+                if (_defaultEncryptionKey != null)
                 {
+                    AesKey oldKey = _defaultEncryptionKey;
+                    _defaultEncryptionKey = null;
                     _notificationMonitor.Notify(new SessionNotification(SessionNotificationType.LogOff, oldKey));
+                }
+                if (value == null)
+                {
                     return;
                 }
+                _defaultEncryptionKey = value;
                 Add(_defaultEncryptionKey);
                 _notificationMonitor.Notify(new SessionNotification(SessionNotificationType.LogOn, value));
             }

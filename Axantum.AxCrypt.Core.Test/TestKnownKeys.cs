@@ -146,6 +146,38 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        public static void TestLoggingOffWhenLogginOnWhenAlreadyLoggedOn()
+        {
+            int wasLoggedOnCount = 0;
+            int wasLoggedOffCount = 0;
+            SessionNotify notificationMonitor = new SessionNotify();
+            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, notificationMonitor);
+            notificationMonitor.Notification += (object sender, SessionNotificationEventArgs e) =>
+            {
+                if (e.Notification.NotificationType == SessionNotificationType.LogOn)
+                {
+                    Assert.That(knownKeys.IsLoggedOn, Is.True, "The state of the IsLoggedOn property should be consistent with the event.");
+                    ++wasLoggedOnCount;
+                }
+                if (e.Notification.NotificationType == SessionNotificationType.LogOff)
+                {
+                    Assert.That(knownKeys.IsLoggedOn, Is.False, "The state of the IsLoggedOn property should be consistent with the event.");
+                    ++wasLoggedOffCount;
+                }
+            };
+
+            knownKeys.DefaultEncryptionKey = new AesKey();
+            Assert.That(wasLoggedOnCount, Is.EqualTo(1));
+            Assert.That(wasLoggedOffCount, Is.EqualTo(0));
+            Assert.That(knownKeys.IsLoggedOn, Is.True);
+
+            knownKeys.DefaultEncryptionKey = new AesKey();
+            Assert.That(wasLoggedOnCount, Is.EqualTo(2));
+            Assert.That(wasLoggedOffCount, Is.EqualTo(1));
+            Assert.That(knownKeys.IsLoggedOn, Is.True);
+        }
+
+        [Test]
         public static void TestAddKeyForKnownIdentity()
         {
             Instance.FileSystemState.Identities.Add(new PassphraseIdentity("Unit Test", new Passphrase("a").DerivedPassphrase));
