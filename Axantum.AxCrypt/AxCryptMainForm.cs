@@ -332,7 +332,7 @@ namespace Axantum.AxCrypt
             _watchedFoldersdecryptTemporarilyMenuItem.Click += (sender, e) => { _fileOperationViewModel.DecryptFolders.Execute(_mainViewModel.SelectedWatchedFolders); };
 
             _recentFilesListView.MouseDoubleClick += (sender, e) => { _fileOperationViewModel.OpenFiles.Execute(_mainViewModel.SelectedRecentFiles); };
-            _recentFilesListView.DragDrop += (sender, e) => { _fileOperationViewModel.AddRecentFiles.Execute(_mainViewModel.DragAndDropFiles); };
+            _recentFilesListView.DragDrop += (sender, e) => { DropFilesOrFoldersInRecentFilesListView(); };
 
             _fileOperationViewModel.IdentityViewModel.LoggingOn += (sender, e) => { HandleLogOn(e); };
             _fileOperationViewModel.SelectingFiles += (sender, e) => { HandleFileSelection(e); };
@@ -340,6 +340,19 @@ namespace Axantum.AxCrypt
             _decryptToolStripButton.Tag = _fileOperationViewModel.DecryptFiles;
             _openEncryptedToolStripButton.Tag = _fileOperationViewModel.OpenFiles;
             _encryptToolStripButton.Tag = _fileOperationViewModel.EncryptFiles;
+        }
+
+        private void DropFilesOrFoldersInRecentFilesListView()
+        {
+            if (_mainViewModel.DroppableAsRecent)
+            {
+                _fileOperationViewModel.AddRecentFiles.Execute(_mainViewModel.DragAndDropFiles);
+            }
+            if (_mainViewModel.DroppableAsWatchedFolder)
+            {
+                _mainViewModel.AddWatchedFolders.Execute(_mainViewModel.DragAndDropFiles);
+                _statusTabControl.SelectedTab = _watchedFoldersTabPage;
+            }
         }
 
         private void HandleLogOn(LogOnEventArgs e)
@@ -588,7 +601,7 @@ namespace Axantum.AxCrypt
 
         private DragDropEffects GetEffectsForRecentFiles(DragEventArgs e)
         {
-            if (!_mainViewModel.DroppableAsRecent)
+            if (!_mainViewModel.DroppableAsRecent && !_mainViewModel.DroppableAsWatchedFolder)
             {
                 return DragDropEffects.None;
             }
