@@ -27,7 +27,7 @@
             this._closeAndRemoveOpenFilesToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this._updateToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this._toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this._knownFoldersSeparator = new System.Windows.Forms.ToolStripSeparator();
             this._helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this._fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,6 +74,7 @@
             this._watchedFoldersdecryptTemporarilyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._watchedFoldersOpenExplorerHereMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._progressBackgroundWorker = new Axantum.AxCrypt.ProgressBackground(this.components);
+            this._toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this._mainToolStrip.SuspendLayout();
             this._mainMenuStrip.SuspendLayout();
             this._recentFilesContextMenuStrip.SuspendLayout();
@@ -102,7 +103,8 @@
             this._closeAndRemoveOpenFilesToolStripButton,
             this._toolStripSeparator4,
             this._updateToolStripButton,
-            this._toolStripSeparator5,
+            this._knownFoldersSeparator,
+            this._toolStripSeparator8,
             this._helpToolStripButton});
             this._mainToolStrip.Name = "_mainToolStrip";
             this._mainToolStrip.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainToolStrip_DragDrop);
@@ -165,10 +167,10 @@
             this._updateToolStripButton.Name = "_updateToolStripButton";
             this._updateToolStripButton.Click += new System.EventHandler(this.UpdateToolStripButton_Click);
             // 
-            // _toolStripSeparator5
+            // _knownFoldersSeparator
             // 
-            this._toolStripSeparator5.Name = "_toolStripSeparator5";
-            resources.ApplyResources(this._toolStripSeparator5, "_toolStripSeparator5");
+            this._knownFoldersSeparator.Name = "_knownFoldersSeparator";
+            resources.ApplyResources(this._knownFoldersSeparator, "_knownFoldersSeparator");
             // 
             // _helpToolStripButton
             // 
@@ -424,7 +426,6 @@
             this._recentFilesListView.FullRowSelect = true;
             this._recentFilesListView.Name = "_recentFilesListView";
             this._recentFilesListView.ShowItemToolTips = true;
-            this._recentFilesListView.Sorting = System.Windows.Forms.SortOrder.None;
             this._recentFilesListView.UseCompatibleStateImageBehavior = false;
             this._recentFilesListView.View = System.Windows.Forms.View.Details;
             // 
@@ -477,6 +478,11 @@
             // 
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
+            // 
+            // _toolStripSeparator8
+            // 
+            this._toolStripSeparator8.Name = "_toolStripSeparator8";
+            resources.ApplyResources(this._toolStripSeparator8, "_toolStripSeparator8");
             // 
             // AxCryptMainForm
             // 
@@ -535,7 +541,7 @@
         private System.Windows.Forms.ToolStripMenuItem _languageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _englishLanguageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _swedishLanguageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator _toolStripSeparator5;
+        private System.Windows.Forms.ToolStripSeparator _knownFoldersSeparator;
         private System.Windows.Forms.ToolStripButton _updateToolStripButton;
         private System.Windows.Forms.ToolStripMenuItem _debugToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _setUpdateCheckUrlToolStripMenuItem;
@@ -565,6 +571,7 @@
         private System.Windows.Forms.ToolStripMenuItem _watchedFoldersOpenExplorerHereMenuItem;
         private System.Windows.Forms.TabPage _watchedFoldersTabPage;
         private System.Windows.Forms.ToolStripMenuItem _clearPassphraseMemoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator _toolStripSeparator8;
     }
 }
 

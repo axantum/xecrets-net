@@ -284,6 +284,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(state.WatchedFolders, Is.Not.Null, "There should be a Watched Folders instance.");
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(0), "There should be no Watched folders.");
 
+                FakeRuntimeFileInfo.AddFolder(_rootPath);
                 state.AddWatchedFolder(new WatchedFolder(_rootPath, AesKeyThumbprint.Zero));
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(1), "There should be one Watched Folder.");
 

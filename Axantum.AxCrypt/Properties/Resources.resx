@@ -321,4 +321,20 @@ Includes software from http://www.bouncycastle.org/ .</value>
   <data name="EnterPassphraseForIdentityPrompt" xml:space="preserve">
     <value>Enter passphrase for '{0}'</value>
   </data>
+  <data name="DocumentsLibrary" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\DocumentsLibrary.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DropBox" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\dropbox.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GoogleDrive" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\GoogleDrive.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MyAxCryptFolderName" xml:space="preserve">
+    <value>My AxCrypt</value>
+    <comment>The folder name used for default watching</comment>
+  </data>
+  <data name="SkyDrive" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\SkyDrive.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

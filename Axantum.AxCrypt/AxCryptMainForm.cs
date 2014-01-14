@@ -62,6 +62,8 @@ namespace Axantum.AxCrypt
 
         private FileOperationViewModel _fileOperationViewModel;
 
+        private KnownFoldersViewModel _knownFoldersViewModel;
+
         public static MessageBoxOptions MessageBoxOptions { get; private set; }
 
         private TabPage _hiddenLogTabPage;
@@ -84,6 +86,7 @@ namespace Axantum.AxCrypt
 
             _mainViewModel = Factory.New<MainViewModel>();
             _fileOperationViewModel = Factory.New<FileOperationViewModel>();
+            _knownFoldersViewModel = Factory.New<KnownFoldersViewModel>();
 
             Instance.Log.Logged += (logger, loggingEventArgs) =>
             {
@@ -99,9 +102,10 @@ namespace Axantum.AxCrypt
             SetupPathFilters();
             IntializeControls();
             RestoreUserPreferences();
-            BindToMainViewModel();
+            BindToViewModels();
             BindToFileOperationViewModel();
 
+            Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.SessionStart));
             Instance.CommandService.Received += AxCryptMainForm_Request;
             Instance.CommandService.StartListening();
         }
@@ -113,8 +117,9 @@ namespace Axantum.AxCrypt
             Factory.Instance.Singleton<IStatusChecker>(() => this);
 
             Factory.Instance.Register<IdentityViewModel>(() => new IdentityViewModel(Instance.FileSystemState, Instance.KnownKeys, Instance.UserSettings));
-            Factory.Instance.Register<FileOperationViewModel>(() => new FileOperationViewModel(Instance.FileSystemState, Instance.KnownKeys, Instance.ParallelFileOperation, Factory.Instance.Singleton<IStatusChecker>(), Factory.New<IdentityViewModel>()));
+            Factory.Instance.Register<FileOperationViewModel>(() => new FileOperationViewModel(Instance.FileSystemState, Instance.SessionNotify, Instance.KnownKeys, Instance.ParallelFileOperation, Factory.Instance.Singleton<IStatusChecker>(), Factory.New<IdentityViewModel>()));
             Factory.Instance.Register<MainViewModel>(() => new MainViewModel(Instance.FileSystemState));
+            Factory.Instance.Register<KnownFoldersViewModel>(() => new KnownFoldersViewModel(Instance.FileSystemState, Instance.SessionNotify, Instance.KnownKeys));
         }
 
         private static void SetupPathFilters()
@@ -275,7 +280,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.RecentFilesComparer = GetComparer(Preferences.RecentFilesSortColumn, !Preferences.RecentFilesAscending);
         }
 
-        private void BindToMainViewModel()
+        private void BindToViewModels()
         {
             _mainViewModel.Title = "{0} {1}{2}".InvariantFormat(Application.ProductName, Application.ProductVersion, String.IsNullOrEmpty(AboutBox.AssemblyDescription) ? String.Empty : " " + AboutBox.AssemblyDescription);
             _mainViewModel.CurrentVersion = Assembly.GetExecutingAssembly().GetName().Version;
@@ -314,6 +319,9 @@ namespace Axantum.AxCrypt
             _recentFilesListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForRecentFiles(e); };
 
             _mainToolStrip.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForMainToolStrip(e); };
+
+            _knownFoldersViewModel.BindPropertyChanged("KnownFolders", (IEnumerable<KnownFolder> folders) => UpdateKnownFolders(folders));
+            _knownFoldersViewModel.KnownFolders = new KnownFoldersDiscovery().Discover();
         }
 
         private void BindToFileOperationViewModel()
@@ -724,6 +732,47 @@ namespace Axantum.AxCrypt
             {
                 _recentFilesListView.EndUpdate();
             }
+        }
+
+        private void UpdateKnownFolders(IEnumerable<KnownFolder> folders)
+        {
+            GetKnownFoldersToolItems().Skip(1).ToList().ForEach(f => _mainToolStrip.Items.Remove(f));
+
+            bool anyFolders = folders.Any();
+            GetKnownFoldersToolItems().First().Visible = anyFolders;
+
+            if (!anyFolders)
+            {
+                return;
+            }
+
+            int i = _mainToolStrip.Items.IndexOf(GetKnownFoldersToolItems().First()) + 1;
+            foreach (KnownFolder knownFolder in folders)
+            {
+                ToolStripButton button = new ToolStripButton((Image)knownFolder.Image);
+                button.Tag = knownFolder;
+                button.Click += (sender, e) =>
+                {
+                    ToolStripItem item = sender as ToolStripItem;
+                    _fileOperationViewModel.OpenFilesFromFolder.Execute(((KnownFolder)item.Tag).MyFullPath.FullName);
+                };
+                button.Image = (Image)knownFolder.Image;
+                button.Enabled = knownFolder.Enabled;
+                _mainToolStrip.Items.Insert(i, button);
+                ++i;
+            }
+        }
+
+        private List<ToolStripItem> GetKnownFoldersToolItems()
+        {
+            List<ToolStripItem> buttons = new List<ToolStripItem>();
+            int i = _mainToolStrip.Items.IndexOf(_knownFoldersSeparator);
+            buttons.Add(_mainToolStrip.Items[i++]);
+            while (_mainToolStrip.Items[i] is ToolStripButton)
+            {
+                buttons.Add(_mainToolStrip.Items[i++]);
+            }
+            return buttons;
         }
 
         private static void UpdateListViewItem(ListViewItem item, ActiveFile activeFile)

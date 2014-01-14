@@ -249,17 +249,17 @@ namespace Axantum.AxCrypt.Mono
         }
 
         /// <summary>
-        /// Gets a value indicating whether this instance is folder.
+        /// Gets a value indicating whether this instance is a folder that exists.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if this instance is folder; otherwise, <c>false</c>.
+        ///   <c>true</c> if this instance is folder that exists; otherwise, <c>false</c>.
         /// </value>
         /// <exception cref="System.NotImplementedException"></exception>
         public bool IsFolder
         {
             get
             {
-                return (_file.Attributes & FileAttributes.Directory) == FileAttributes.Directory;
+                return (int)_file.Attributes != -1 && (_file.Attributes & FileAttributes.Directory) == FileAttributes.Directory;
             }
         }
 

@@ -120,7 +120,8 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                return WatchedFoldersInternal;
+                IEnumerable<WatchedFolder> folders = WatchedFoldersInternal.Where(folder => Factory.New<IRuntimeFileInfo>(folder.Path).IsFolder).ToList();
+                return folders;
             }
             private set
             {
@@ -145,6 +146,10 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return false;
             }
+            if (!Factory.New<IRuntimeFileInfo>(watchedFolder.Path).IsFolder)
+            {
+                return false;
+            }
 
             WatchedFolder copy = new WatchedFolder(watchedFolder);
             copy.Changed += watchedFolder_Changed;
@@ -154,7 +159,14 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void watchedFolder_Changed(object sender, FileWatcherEventArgs e)
         {
+            WatchedFolder watchedFolder = (WatchedFolder)sender;
             IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(e.FullName);
+            if (watchedFolder.Path == e.FullName && !fileInfo.IsFolder)
+            {
+                RemoveWatchedFolder(fileInfo);
+                Save();
+                return;
+            }
             if (fileInfo.Type() != FileInfoTypes.NonExisting)
             {
                 return;
@@ -163,6 +175,7 @@ namespace Axantum.AxCrypt.Core.Session
             if (removed != null)
             {
                 Remove(removed);
+                Save();
             }
         }
 

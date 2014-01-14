@@ -38,6 +38,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     {
         private FileSystemState _fileSystemState;
 
+        private SessionNotify _sessionNotify;
+
         private KnownKeys _knownKeys;
 
         private ParallelFileOperation _fileOperation;
@@ -46,9 +48,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IdentityViewModel IdentityViewModel { get; private set; }
 
-        public FileOperationViewModel(FileSystemState fileSystemState, KnownKeys knownKeys, ParallelFileOperation fileOperation, IStatusChecker statusChecker, IdentityViewModel identityViewModel)
+        public FileOperationViewModel(FileSystemState fileSystemState, SessionNotify sessionNotify, KnownKeys knownKeys, ParallelFileOperation fileOperation, IStatusChecker statusChecker, IdentityViewModel identityViewModel)
         {
             _fileSystemState = fileSystemState;
+            _sessionNotify = sessionNotify;
             _knownKeys = knownKeys;
             _fileOperation = fileOperation;
             _statusChecker = statusChecker;
@@ -56,6 +59,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             IdentityViewModel = identityViewModel;
 
             InitializePropertyValues();
+            SubscribeToModelEvents();
+        }
+
+        private void SubscribeToModelEvents()
+        {
+            _sessionNotify.Notification += HandleSessionChanged;
         }
 
         private void InitializePropertyValues()
@@ -65,7 +74,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             OpenFiles = new DelegateAction<IEnumerable<string>>((files) => OpenFilesAction(files));
             DecryptFolders = new DelegateAction<IEnumerable<string>>((folders) => DecryptFoldersAction(folders), (folders) => _knownKeys.IsLoggedOn);
             WipeFiles = new DelegateAction<IEnumerable<string>>((files) => WipeFilesAction(files));
-            OpenFilesFromFolder = new DelegateAction<string>((folder) => OpenFilesFromFolderAction(folder));
+            OpenFilesFromFolder = new DelegateAction<string>((folder) => OpenFilesFromFolderAction(folder), (folder) => _knownKeys.IsLoggedOn);
             AddRecentFiles = new DelegateAction<IEnumerable<string>>((files) => AddRecentFilesAction(files));
         }
 
@@ -386,6 +395,18 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void ProcessEncryptableFilesDroppedInRecentList(IEnumerable<IRuntimeFileInfo> encryptableFiles)
         {
             _fileOperation.DoFiles(encryptableFiles, EncryptFileNonInteractiveWork, (status) => { });
+        }
+
+        private void HandleSessionChanged(object sender, SessionNotificationEventArgs e)
+        {
+            switch (e.Notification.NotificationType)
+            {
+                case SessionNotificationType.LogOff:
+                case SessionNotificationType.LogOn:
+                case SessionNotificationType.SessionStart:
+                    ((DelegateAction<string>)OpenFilesFromFolder).RaiseCanExecuteChanged();
+                    break;
+            }
         }
     }
 }

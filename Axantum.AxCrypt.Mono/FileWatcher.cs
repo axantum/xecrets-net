@@ -38,6 +38,8 @@ namespace Axantum.AxCrypt.Mono
 {
     public class FileWatcher : IFileWatcher
     {
+        private IRuntimeFileInfo _fileInfo;
+
         private FileSystemWatcher _fileSystemWatcher;
 
         private DelayedAction _delayedAction;
@@ -49,11 +51,13 @@ namespace Axantum.AxCrypt.Mono
             _delayedAction = delayedAction;
             _delayedAction.Action += (sender, e) => { OnDelayedNotification(); };
 
-            _fileSystemWatcher = new FileSystemWatcher(path);
+            _fileInfo = Factory.New<IRuntimeFileInfo>(path);
+            _fileSystemWatcher = new FileSystemWatcher(_fileInfo.FullName);
             _fileSystemWatcher.Changed += (sender, e) => FileSystemChanged(e.FullPath);
             _fileSystemWatcher.Created += (sender, e) => FileSystemChanged(e.FullPath);
             _fileSystemWatcher.Deleted += (sender, e) => FileSystemChanged(e.FullPath);
             _fileSystemWatcher.Renamed += (sender, e) => FileSystemChanged(e.FullPath);
+            _fileSystemWatcher.Error += (sender, e) => FileSystemChanged(_fileInfo.FullName);
 
             _fileSystemWatcher.IncludeSubdirectories = true;
             _fileSystemWatcher.Filter = String.Empty;

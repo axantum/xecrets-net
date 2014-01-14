@@ -191,6 +191,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestWatchedFoldersNotLoggedOn()
         {
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
+            FakeRuntimeFileInfo.AddFolder(@"C:\WatchedFolder\");
             Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder\"));
             IEnumerable<WatchedFolder> watchedFolders = knownKeys.WatchedFolders;
 
@@ -203,6 +204,8 @@ namespace Axantum.AxCrypt.Core.Test
             AesKey key1 = new AesKey();
             AesKey key2 = new AesKey();
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
+            FakeRuntimeFileInfo.AddFolder(@"C:\WatchedFolder1\");
+            FakeRuntimeFileInfo.AddFolder(@"C:\WatchedFolder2\");
             Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder1\", key1.Thumbprint));
             Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder2\", key2.Thumbprint));
             knownKeys.DefaultEncryptionKey = key2;

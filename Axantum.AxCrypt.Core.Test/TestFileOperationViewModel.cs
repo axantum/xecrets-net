@@ -314,8 +314,10 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestOpenFilesFromFolderWithCancel()
+        public static void TestOpenFilesFromFolderWithCancelWhenLoggedOn()
         {
+            Instance.KnownKeys.DefaultEncryptionKey = new AesKey();
+
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
             mvm.SelectingFiles += (sender, e) =>
             {
@@ -328,8 +330,10 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestOpenFilesFromFolder()
+        public static void TestOpenFilesFromFolderWhenLoggedOn()
         {
+            Instance.KnownKeys.DefaultEncryptionKey = new AesKey();
+
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
             mvm.SelectingFiles += (sender, e) =>
             {

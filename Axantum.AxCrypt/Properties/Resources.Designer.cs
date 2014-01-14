@@ -278,6 +278,26 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon DocumentsLibrary {
+            get {
+                object obj = ResourceManager.GetObject("DocumentsLibrary", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon DropBox {
+            get {
+                object obj = ResourceManager.GetObject("DropBox", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt Documents (*{0})|*{0}|All files (*.*)|*.*.
         /// </summary>
         internal static string EncryptedFileDialogFilterPattern {
@@ -428,6 +448,16 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon GoogleDrive {
+            get {
+                object obj = ResourceManager.GetObject("GoogleDrive", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap helpquestiongreen32 {
@@ -516,6 +546,15 @@ namespace Axantum.AxCrypt.Properties {
         internal static string LogOnExists {
             get {
                 return ResourceManager.GetString("LogOnExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My AxCrypt.
+        /// </summary>
+        internal static string MyAxCryptFolderName {
+            get {
+                return ResourceManager.GetString("MyAxCryptFolderName", resourceCulture);
             }
         }
         
@@ -618,6 +657,16 @@ namespace Axantum.AxCrypt.Properties {
             get {
                 object obj = ResourceManager.GetObject("refreshred", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon SkyDrive {
+            get {
+                object obj = ResourceManager.GetObject("SkyDrive", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         

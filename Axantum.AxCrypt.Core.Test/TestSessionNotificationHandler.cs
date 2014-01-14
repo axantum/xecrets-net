@@ -73,6 +73,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestHandleSessionEventWatchedFolderRemoved()
         {
+            FakeRuntimeFileInfo.AddFolder(@"C:\My Documents\");
             MockAxCryptFile mock = new MockAxCryptFile();
             bool called = false;
             mock.DecryptFilesUniqueWithWipeOfOriginalMock = (IRuntimeFileInfo fileInfo, AesKey decryptionKey, IProgressContext progress) => { called = fileInfo.FullName == @"C:\My Documents\"; };
