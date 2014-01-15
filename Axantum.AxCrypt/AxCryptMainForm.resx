@@ -520,7 +520,7 @@
     <value>1</value>
   </data>
   <data name="_progressTableLayoutPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 255</value>
+    <value>0, 262</value>
   </data>
   <data name="_progressTableLayoutPanel.RowCount" type="System.Int32, mscorlib">
     <value>1</value>
@@ -601,7 +601,7 @@
     <value>Vertical</value>
   </data>
   <data name="_logOutputTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>810, 157</value>
+    <value>810, 154</value>
   </data>
   <data name="_logOutputTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -625,7 +625,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="_logTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>816, 163</value>
+    <value>816, 160</value>
   </data>
   <data name="_logTabPage.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -727,7 +727,7 @@
     <value>3, 3</value>
   </data>
   <data name="_recentFilesListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>810, 157</value>
+    <value>810, 154</value>
   </data>
   <data name="_recentFilesListView.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -751,7 +751,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="_recentFilesTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>816, 163</value>
+    <value>816, 160</value>
   </data>
   <data name="_recentFilesTabPage.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -775,10 +775,10 @@
     <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="_statusTabControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 67</value>
+    <value>0, 77</value>
   </data>
   <data name="_statusTabControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>824, 189</value>
+    <value>824, 186</value>
   </data>
   <data name="_statusTabControl.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -838,7 +838,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>824, 272</value>
+    <value>824, 279</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1282,6 +1282,12 @@
   <data name="&gt;&gt;_knownFoldersSeparator.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;_toolStripSeparator8.Name" xml:space="preserve">
+    <value>_toolStripSeparator8</value>
+  </data>
+  <data name="&gt;&gt;_toolStripSeparator8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;_helpToolStripButton.Name" xml:space="preserve">
     <value>_helpToolStripButton</value>
   </data>
@@ -1484,13 +1490,7 @@
     <value>_progressBackgroundWorker</value>
   </data>
   <data name="&gt;&gt;_progressBackgroundWorker.Type" xml:space="preserve">
-    <value>Axantum.AxCrypt.ProgressBackground, Axantum.AxCrypt, Version=2.0.789.1, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
-  </data>
-  <data name="&gt;&gt;_toolStripSeparator8.Name" xml:space="preserve">
-    <value>_toolStripSeparator8</value>
-  </data>
-  <data name="&gt;&gt;_toolStripSeparator8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>Axantum.AxCrypt.ProgressBackground, Axantum.AxCrypt, Version=2.0.794.1, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AxCryptMainForm</value>

@@ -28,6 +28,7 @@
             this._toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this._updateToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._knownFoldersSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this._toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this._helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this._mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this._fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,7 +75,6 @@
             this._watchedFoldersdecryptTemporarilyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._watchedFoldersOpenExplorerHereMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._progressBackgroundWorker = new Axantum.AxCrypt.ProgressBackground(this.components);
-            this._toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this._mainToolStrip.SuspendLayout();
             this._mainMenuStrip.SuspendLayout();
             this._recentFilesContextMenuStrip.SuspendLayout();
@@ -171,6 +171,11 @@
             // 
             this._knownFoldersSeparator.Name = "_knownFoldersSeparator";
             resources.ApplyResources(this._knownFoldersSeparator, "_knownFoldersSeparator");
+            // 
+            // _toolStripSeparator8
+            // 
+            this._toolStripSeparator8.Name = "_toolStripSeparator8";
+            resources.ApplyResources(this._toolStripSeparator8, "_toolStripSeparator8");
             // 
             // _helpToolStripButton
             // 
@@ -478,11 +483,6 @@
             // 
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
-            // 
-            // _toolStripSeparator8
-            // 
-            this._toolStripSeparator8.Name = "_toolStripSeparator8";
-            resources.ApplyResources(this._toolStripSeparator8, "_toolStripSeparator8");
             // 
             // AxCryptMainForm
             // 
