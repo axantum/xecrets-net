@@ -78,7 +78,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool DroppableAsWatchedFolder { get { return GetProperty<bool>("DroppableAsWatchedFolder"); } set { SetProperty("DroppableAsWatchedFolder", value); } }
 
-        public bool FilesAreOpen { get { return GetProperty<bool>("FilesAreOpen"); } set { SetProperty("FilesAreOpen", value); } }
+        public bool FilesArePending { get { return GetProperty<bool>("FilesArePending"); } set { SetProperty("FilesArePending", value); } }
 
         public Version CurrentVersion { get { return GetProperty<Version>("CurrentVersion"); } set { SetProperty("CurrentVersion", value); } }
 
@@ -94,7 +94,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAction AddWatchedFolders { get; private set; }
 
-        public IAction PurgeActiveFiles { get; private set; }
+        public IAction EncryptPendingFiles { get; private set; }
 
         public IAction ClearPassphraseMemory { get; private set; }
 
@@ -127,7 +127,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             AddWatchedFolders = new DelegateAction<IEnumerable<string>>((folders) => AddWatchedFoldersAction(folders), (folders) => LoggedOn);
             RemoveRecentFiles = new DelegateAction<IEnumerable<string>>((files) => RemoveRecentFilesAction(files));
-            PurgeActiveFiles = new DelegateAction<object>((parameter) => PurgeActiveFilesAction());
+            EncryptPendingFiles = new DelegateAction<object>((parameter) => EncryptPendingFilesAction());
             ClearPassphraseMemory = new DelegateAction<object>((parameter) => ClearPassphraseMemoryAction());
             RemoveWatchedFolders = new DelegateAction<IEnumerable<string>>((folders) => RemoveWatchedFoldersAction(folders), (folders) => LoggedOn);
             OpenSelectedFolder = new DelegateAction<string>((folder) => OpenSelectedFolderAction(folder));
@@ -191,7 +191,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void HandleActiveFileChangedEvent(object sender, ActiveFileChangedEventArgs e)
         {
-            SetFilesAreOpen();
+            SetFilesArePending();
             SetRecentFiles();
         }
 
@@ -258,11 +258,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     SetWatchedFolders();
                     break;
 
+                case SessionNotificationType.WatchedFolderChange:
+                    SetFilesArePending();
+                    break;
+
+                case SessionNotificationType.WorkFolderChange:
                 case SessionNotificationType.ProcessExit:
                 case SessionNotificationType.SessionChange:
                 case SessionNotificationType.SessionStart:
                 case SessionNotificationType.KnownKeyChange:
-                case SessionNotificationType.WorkFolderChange:
                 case SessionNotificationType.ActiveFileChange:
                 default:
                     break;
@@ -285,10 +289,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             DecryptedFiles = _fileSystemState.DecryptedActiveFiles;
         }
 
-        private void SetFilesAreOpen()
+        private void SetFilesArePending()
         {
             IList<ActiveFile> openFiles = _fileSystemState.DecryptedActiveFiles;
-            FilesAreOpen = openFiles.Count > 0;
+            FilesArePending = openFiles.Count > 0 || Instance.KnownKeys.WatchedFolders.SelectMany(wf => Factory.New<IRuntimeFileInfo>(wf.Path).ListEncryptable()).Any();
         }
 
         private void SetLogOnState(bool isLoggedOn)
@@ -320,9 +324,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.SessionStart));
         }
 
-        private void PurgeActiveFilesAction()
+        private void EncryptPendingFilesAction()
         {
-            Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.PurgeActiveFiles));
+            Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.EncryptPendingFiles));
             SetRecentFiles();
         }
 

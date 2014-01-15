@@ -161,17 +161,30 @@ namespace Axantum.AxCrypt.Core.Session
         {
             WatchedFolder watchedFolder = (WatchedFolder)sender;
             IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(e.FullName);
-            if (watchedFolder.Path == e.FullName && !fileInfo.IsFolder)
+            HandleWatchedFolderChanges(watchedFolder, fileInfo);
+            Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderChange, fileInfo.FullName));
+        }
+
+        private void HandleWatchedFolderChanges(WatchedFolder watchedFolder, IRuntimeFileInfo fileInfo)
+        {
+            if (watchedFolder.Path == fileInfo.FullName && !fileInfo.IsFolder)
             {
                 RemoveWatchedFolder(fileInfo);
                 Save();
                 return;
             }
+            if (fileInfo.Type() == FileInfoTypes.EncryptableFile)
+            {
+                if (!Instance.KnownKeys.WatchedFolders.Any(f => f.Path == watchedFolder.Path))
+                {
+                    return;
+                }
+            }
             if (fileInfo.Type() != FileInfoTypes.NonExisting)
             {
                 return;
             }
-            ActiveFile removed = FindEncryptedPath(e.FullName);
+            ActiveFile removed = FindEncryptedPath(fileInfo.FullName);
             if (removed != null)
             {
                 Remove(removed);

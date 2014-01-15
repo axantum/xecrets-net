@@ -126,6 +126,7 @@ namespace Axantum.AxCrypt
         {
             OS.PathFilters.Add(new Regex(@"\\\.dropbox$"));
             OS.PathFilters.Add(new Regex(@"\\desktop\.ini$"));
+            OS.PathFilters.Add(new Regex(@".*\.tmp$"));
             AddEnvironmentVariableBasedPathFilter(@"^{0}(?!Temp$)", "SystemRoot");
             AddEnvironmentVariableBasedPathFilter(@"^{0}(?!Temp$)", "windir");
             AddEnvironmentVariableBasedPathFilter(@"^{0}", "ProgramFiles");
@@ -168,7 +169,7 @@ namespace Axantum.AxCrypt
             };
             FormClosing += (sender, e) =>
             {
-                PurgeActiveFiles();
+                EncryptPendingFiles();
                 while (_mainViewModel.Working)
                 {
                     Application.DoEvents();
@@ -294,7 +295,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged("DecryptFileEnabled", (bool enabled) => { _decryptToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("OpenEncryptedEnabled", (bool enabled) => { _openEncryptedToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("OpenEncryptedEnabled", (bool enabled) => { _openEncryptedToolStripMenuItem.Enabled = enabled; });
-            _mainViewModel.BindPropertyChanged("FilesAreOpen", (bool filesAreOpen) => { _closeAndRemoveOpenFilesToolStripButton.Enabled = filesAreOpen; });
+            _mainViewModel.BindPropertyChanged("FilesArePending", (bool filesArePending) => { _closeAndRemoveOpenFilesToolStripButton.Enabled = filesArePending; });
             _mainViewModel.BindPropertyChanged("WatchedFolders", (IEnumerable<string> folders) => { UpdateWatchedFolders(folders); });
             _mainViewModel.BindPropertyChanged("WatchedFoldersEnabled", (bool enabled) => { if (enabled) _statusTabControl.TabPages.Add(_hiddenWatchedFoldersTabPage); else _statusTabControl.TabPages.Remove(_hiddenWatchedFoldersTabPage); });
             _mainViewModel.BindPropertyChanged("RecentFiles", (IEnumerable<ActiveFile> files) => { UpdateRecentFiles(files); });
@@ -891,9 +892,9 @@ namespace Axantum.AxCrypt
 
         #endregion ToolStrip
 
-        private void PurgeActiveFiles()
+        private void EncryptPendingFiles()
         {
-            _mainViewModel.PurgeActiveFiles.Execute(null);
+            _mainViewModel.EncryptPendingFiles.Execute(null);
             IEnumerable<ActiveFile> openFiles = _mainViewModel.DecryptedFiles;
             if (!openFiles.Any())
             {
@@ -950,12 +951,12 @@ namespace Axantum.AxCrypt
 
         private void CloseOpenFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PurgeActiveFiles();
+            EncryptPendingFiles();
         }
 
         private void CloseAndRemoveOpenFilesToolStripButton_Click(object sender, EventArgs e)
         {
-            PurgeActiveFiles();
+            EncryptPendingFiles();
         }
 
         private void ProgressBackgroundWorker_ProgressBarClicked(object sender, MouseEventArgs e)

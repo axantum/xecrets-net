@@ -42,6 +42,7 @@ namespace Axantum.AxCrypt.Core.Session
         SessionStart,
         KnownKeyChange,
         WorkFolderChange,
-        PurgeActiveFiles,
+        EncryptPendingFiles,
+        WatchedFolderChange,
     }
 }

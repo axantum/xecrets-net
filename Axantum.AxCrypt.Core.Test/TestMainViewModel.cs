@@ -306,12 +306,12 @@ namespace Axantum.AxCrypt.Core.Test
                 activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file3), Factory.New<IRuntimeFileInfo>(decrypted3), new AesKey(), ActiveFileStatus.NotDecrypted);
                 Instance.FileSystemState.Add(activeFile);
 
-                Assert.That(mvm.FilesAreOpen, Is.True);
+                Assert.That(mvm.FilesArePending, Is.True);
 
                 activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new AesKey(), ActiveFileStatus.NotDecrypted);
                 Instance.FileSystemState.Add(activeFile);
 
-                Assert.That(mvm.FilesAreOpen, Is.False);
+                Assert.That(mvm.FilesArePending, Is.False);
             }
         }
 
@@ -364,14 +364,14 @@ namespace Axantum.AxCrypt.Core.Test
 
             Factory.Instance.Register<ActiveFileAction>(() => mockActiveFileAction.Object);
 
-            Factory.Instance.Register<SessionNotificationHandler>(() => new SessionNotificationHandler(Instance.FileSystemState, Factory.New<ActiveFileAction>(), Factory.New<AxCryptFile>()));
+            Factory.Instance.Register<SessionNotificationHandler>(() => new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, Factory.New<ActiveFileAction>(), Factory.New<AxCryptFile>()));
             Instance.SessionNotify.Notification += (sender, e) => Factory.New<SessionNotificationHandler>().HandleNotification(e.Notification);
 
             using (MainViewModel mvm = Factory.New<MainViewModel>())
             {
-                Assert.That(mvm.PurgeActiveFiles.CanExecute(null), Is.True, "PuregRecentFiles should be executable by default.");
+                Assert.That(mvm.EncryptPendingFiles.CanExecute(null), Is.True, "PuregRecentFiles should be executable by default.");
 
-                mvm.PurgeActiveFiles.Execute(null);
+                mvm.EncryptPendingFiles.Execute(null);
             }
 
             mockActiveFileAction.Verify(x => x.PurgeActiveFiles(It.IsAny<IProgressContext>()), Times.Once, "Purge should be called.");

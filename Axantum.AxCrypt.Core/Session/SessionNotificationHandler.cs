@@ -37,13 +37,16 @@ namespace Axantum.AxCrypt.Core.Session
     {
         private FileSystemState _fileSystemState;
 
+        private KnownKeys _knownKeys;
+
         private ActiveFileAction _activeFileAction;
 
         private AxCryptFile _axCryptFile;
 
-        public SessionNotificationHandler(FileSystemState fileSystemState, ActiveFileAction activeFileAction, AxCryptFile axCryptFile)
+        public SessionNotificationHandler(FileSystemState fileSystemState, KnownKeys knownKeys, ActiveFileAction activeFileAction, AxCryptFile axCryptFile)
         {
             _fileSystemState = fileSystemState;
+            _knownKeys = knownKeys;
             _activeFileAction = activeFileAction;
             _axCryptFile = axCryptFile;
         }
@@ -93,17 +96,19 @@ namespace Axantum.AxCrypt.Core.Session
 
                 case SessionNotificationType.LogOn:
                 case SessionNotificationType.LogOff:
-                    _axCryptFile.EncryptFilesUniqueWithBackupAndWipe(_fileSystemState.WatchedFolders.Select((wf) => Factory.New<IRuntimeFileInfo>(wf.Path)), notification.Key, progress);
+                    _axCryptFile.EncryptFilesUniqueWithBackupAndWipe(_fileSystemState.WatchedFolders.Where(wf => wf.Thumbprint == notification.Key.Thumbprint).Select(wf => Factory.New<IRuntimeFileInfo>(wf.Path)), notification.Key, progress);
                     break;
 
                 case SessionNotificationType.SessionStart:
                     _activeFileAction.CheckActiveFiles(ChangedEventMode.RaiseAlways, progress);
                     break;
 
-                case SessionNotificationType.PurgeActiveFiles:
+                case SessionNotificationType.EncryptPendingFiles:
                     _activeFileAction.PurgeActiveFiles(progress);
+                    _axCryptFile.EncryptFilesUniqueWithBackupAndWipe(_knownKeys.WatchedFolders.Select(wf => Factory.New<IRuntimeFileInfo>(wf.Path)), _knownKeys.DefaultEncryptionKey, progress);
                     break;
 
+                case SessionNotificationType.WatchedFolderChange:
                 case SessionNotificationType.ProcessExit:
                 case SessionNotificationType.ActiveFileChange:
                 case SessionNotificationType.KnownKeyChange:
