@@ -25,15 +25,15 @@
 
 #endregion Coypright and License
 
+using System;
+using System.IO;
+using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
-using System;
-using System.IO;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IRuntimeFileInfo sourceFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
             IRuntimeFileInfo destinationFileInfo = sourceFileInfo.CreateEncryptedName();
-            AxCryptDocument document = new AxCryptDocument();
+            AxCryptDocument document = new AxCryptDocument(new AesKey());
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "decrypted test.txt"));
 
             AxCryptDocument nullDocument = null;
@@ -184,12 +184,12 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestDecryptWithCancel()
         {
             IRuntimeFileInfo sourceFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
-            using (AxCryptDocument document = new AxCryptDocument())
+            Passphrase passphrase = new Passphrase("a");
+            using (AxCryptDocument document = new AxCryptDocument(passphrase.DerivedPassphrase))
             {
-                Passphrase passphrase = new Passphrase("a");
                 using (Stream sourceStream = sourceFileInfo.OpenRead())
                 {
-                    bool keyIsOk = document.Load(sourceStream, passphrase.DerivedPassphrase);
+                    bool keyIsOk = document.Load(sourceStream);
                     Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                     IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(_rootPath.PathCombine("Destination", "Decrypted.txt"));
 
@@ -260,9 +260,9 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo sourceRuntimeFileInfo = Factory.New<IRuntimeFileInfo>(_uncompressedAxxPath);
             IRuntimeFileInfo destinationRuntimeFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(_uncompressedAxxPath), "Uncompressed.zip"));
             Passphrase passphrase = new Passphrase("Uncompressable");
-            using (AxCryptDocument document = new AxCryptDocument())
+            using (AxCryptDocument document = new AxCryptDocument(passphrase.DerivedPassphrase))
             {
-                bool isOk = document.Load(sourceRuntimeFileInfo.OpenRead(), passphrase.DerivedPassphrase);
+                bool isOk = document.Load(sourceRuntimeFileInfo.OpenRead());
                 Assert.That(isOk, Is.True, "The document should load ok.");
                 Factory.New<AxCryptFile>().Decrypt(document, destinationRuntimeFileInfo, AxCryptOptions.None, new ProgressContext());
                 Assert.That(document.DocumentHeaders.UncompressedLength, Is.EqualTo(0), "Since the data is not compressed, there should not be a CompressionInfo, but in 1.x there is, with value zero.");

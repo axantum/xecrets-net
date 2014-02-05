@@ -134,20 +134,6 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        private class DocumentHeadersForTest : DocumentHeaders
-        {
-            public DocumentHeadersForTest(AesKey keyEncryptingKey)
-                : base(keyEncryptingKey)
-            {
-            }
-
-            public void SetNextFileVersionMajor()
-            {
-                VersionHeaderBlock versionHeaderBlock = VersionHeaderBlock;
-                versionHeaderBlock.FileVersionMajor = (byte)(versionHeaderBlock.FileVersionMajor + 1);
-            }
-        }
-
         [Test]
         public static void TestDecryptOfTooNewFileVersion()
         {
@@ -158,23 +144,21 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 using (Stream outputStream = new MemoryStream())
                 {
-                    using (AxCryptDocument document = new AxCryptDocument())
+                    Passphrase passphrase = new Passphrase("a");
+                    using (AxCryptDocument document = new AxCryptDocument(passphrase.DerivedPassphrase))
                     {
-                        Passphrase passphrase = new Passphrase("a");
-                        DocumentHeadersForTest headers = new DocumentHeadersForTest(passphrase.DerivedPassphrase);
-                        headers.FileName = "MyFile.txt";
-                        headers.CreationTimeUtc = creationTimeUtc;
-                        headers.LastAccessTimeUtc = lastAccessTimeUtc;
-                        headers.LastWriteTimeUtc = lastWriteTimeUtc;
-                        headers.SetNextFileVersionMajor();
-                        document.DocumentHeaders = headers;
-                        document.EncryptTo(headers, inputStream, outputStream, AxCryptOptions.EncryptWithoutCompression, new ProgressContext());
+                        document.DocumentHeaders.FileName = "MyFile.txt";
+                        document.DocumentHeaders.CreationTimeUtc = creationTimeUtc;
+                        document.DocumentHeaders.LastAccessTimeUtc = lastAccessTimeUtc;
+                        document.DocumentHeaders.LastWriteTimeUtc = lastWriteTimeUtc;
+                        VersionHeaderBlock versionHeaderBlock = document.DocumentHeaders.VersionHeaderBlock;
+                        versionHeaderBlock.FileVersionMajor = (byte)(versionHeaderBlock.FileVersionMajor + 1);
+                        document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithoutCompression, new ProgressContext());
                     }
                     outputStream.Position = 0;
-                    using (AxCryptDocument document = new AxCryptDocument())
+                    using (AxCryptDocument document = new AxCryptDocument(passphrase.DerivedPassphrase))
                     {
-                        Passphrase passphrase = new Passphrase("a");
-                        Assert.Throws<FileFormatException>(() => { document.Load(outputStream, passphrase.DerivedPassphrase); });
+                        Assert.Throws<FileFormatException>(() => { document.Load(outputStream); });
                     }
                 }
             }

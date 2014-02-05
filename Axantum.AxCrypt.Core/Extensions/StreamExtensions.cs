@@ -30,6 +30,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core.Extensions
 {
@@ -56,6 +57,43 @@ namespace Axantum.AxCrypt.Core.Extensions
             {
                 destination.Write(buffer, 0, read);
             }
+        }
+
+        public static long CopyToWithCount(this Stream inputStream, Stream outputStream, Stream realInputStream, IProgressContext progress)
+        {
+            progress.NotifyLevelStart();
+
+            if (realInputStream.CanSeek)
+            {
+                progress.AddTotal(realInputStream.Length - realInputStream.Position);
+            }
+
+            long totalDone = 0;
+            byte[] buffer = new byte[OS.Current.StreamBufferSize];
+            int bufferWrittenCount = 0;
+            int bufferRemainingCount = buffer.Length;
+            while (true)
+            {
+                int readCount = inputStream.Read(buffer, bufferWrittenCount, bufferRemainingCount);
+                bufferWrittenCount += readCount;
+                bufferRemainingCount -= readCount;
+                if (bufferRemainingCount > 0 && readCount > 0)
+                {
+                    continue;
+                }
+                if (bufferWrittenCount == 0)
+                {
+                    break;
+                }
+                outputStream.Write(buffer, 0, bufferWrittenCount);
+                outputStream.Flush();
+                progress.AddCount(bufferWrittenCount);
+                totalDone += bufferWrittenCount;
+                bufferWrittenCount = 0;
+                bufferRemainingCount = buffer.Length;
+            }
+            progress.NotifyLevelFinished();
+            return totalDone;
         }
     }
 }

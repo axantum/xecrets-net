@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AxCryptDocument.cs" />
+    <Compile Include="AxCryptDocumentVersion4.cs" />
     <Compile Include="CommandLine.cs" />
     <Compile Include="Extensions\ByteArrayExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />

@@ -25,6 +25,9 @@
 
 #endregion Coypright and License
 
+using System;
+using System.IO;
+using System.Security.Cryptography;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
@@ -32,9 +35,6 @@ using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using Org.BouncyCastle.Utilities.Zlib;
-using System;
-using System.IO;
-using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -44,11 +44,12 @@ namespace Axantum.AxCrypt.Core
     /// </summary>
     public class AxCryptDocument : IDisposable
     {
-        public AxCryptDocument()
+        public AxCryptDocument(AesKey keyEncryptingKey)
         {
+            DocumentHeaders = new DocumentHeaders(keyEncryptingKey);
         }
 
-        public DocumentHeaders DocumentHeaders { get; set; }
+        public DocumentHeaders DocumentHeaders { get; private set; }
 
         private AxCryptReader _reader;
 
@@ -60,15 +61,11 @@ namespace Axantum.AxCrypt.Core
         /// </summary>
         /// <param name="stream">The stream to read from. Will be disposed when this instance is disposed.</param>
         /// <returns>True if the key was valid, false if it was wrong.</returns>
-        public bool Load(Stream stream, AesKey key)
+        public bool Load(Stream stream)
         {
             _reader = AxCryptReader.Create(stream);
-            DocumentHeaders documentHeaders = new DocumentHeaders(key);
-            PassphraseIsValid = documentHeaders.Load(_reader);
-            if (PassphraseIsValid)
-            {
-                DocumentHeaders = documentHeaders;
-            }
+            PassphraseIsValid = DocumentHeaders.Load(_reader);
+
             return PassphraseIsValid;
         }
 
@@ -79,12 +76,8 @@ namespace Axantum.AxCrypt.Core
         /// <param name="outputDocumentHeaders"></param>
         /// <param name="inputStream"></param>
         /// <param name="outputStream"></param>
-        public void EncryptTo(DocumentHeaders outputDocumentHeaders, Stream inputStream, Stream outputStream, AxCryptOptions options, IProgressContext progress)
+        public void EncryptTo(Stream inputStream, Stream outputStream, AxCryptOptions options, IProgressContext progress)
         {
-            if (outputDocumentHeaders == null)
-            {
-                throw new ArgumentNullException("outputDocumentHeaders");
-            }
             if (inputStream == null)
             {
                 throw new ArgumentNullException("inputStream");
@@ -110,8 +103,8 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentException("Invalid options, must specify either with or without compression.");
             }
             bool isCompressed = options.HasMask(AxCryptOptions.EncryptWithCompression);
-            outputDocumentHeaders.IsCompressed = isCompressed;
-            outputDocumentHeaders.WriteWithoutHmac(outputStream);
+            DocumentHeaders.IsCompressed = isCompressed;
+            DocumentHeaders.WriteWithoutHmac(outputStream);
             using (ICryptoTransform encryptor = DataCrypto.CreateEncryptingTransform())
             {
                 long outputStartPosition = outputStream.Position;
@@ -119,24 +112,24 @@ namespace Axantum.AxCrypt.Core
                 {
                     if (isCompressed)
                     {
-                        EncryptWithCompressionInternal(outputDocumentHeaders, inputStream, encryptingStream, progress);
+                        EncryptWithCompressionInternal(DocumentHeaders, inputStream, encryptingStream, progress);
                     }
                     else
                     {
-                        outputDocumentHeaders.PlaintextLength = CopyToWithCount(inputStream, encryptingStream, progress);
+                        DocumentHeaders.PlaintextLength = CopyToWithCount(inputStream, encryptingStream, progress);
                     }
                 }
                 outputStream.Flush();
-                outputDocumentHeaders.CipherTextLength = outputStream.Position - outputStartPosition;
-                using (HmacStream outputHmacStream = new HmacStream(outputDocumentHeaders.HmacSubkey.Key, outputStream))
+                DocumentHeaders.CipherTextLength = outputStream.Position - outputStartPosition;
+                using (HmacStream outputHmacStream = new HmacStream(DocumentHeaders.HmacSubkey.Key, outputStream))
                 {
-                    outputDocumentHeaders.WriteWithHmac(outputHmacStream);
+                    DocumentHeaders.WriteWithHmac(outputHmacStream);
                     outputHmacStream.ReadFrom(outputStream);
-                    outputDocumentHeaders.Hmac = outputHmacStream.HmacResult;
+                    DocumentHeaders.Hmac = outputHmacStream.HmacResult;
                 }
 
                 // Rewind and rewrite the headers, now with the updated HMAC
-                outputDocumentHeaders.WriteWithoutHmac(outputStream);
+                DocumentHeaders.WriteWithoutHmac(outputStream);
                 outputStream.Position = outputStream.Length;
             }
         }
@@ -157,44 +150,7 @@ namespace Axantum.AxCrypt.Core
 
         private static long CopyToWithCount(Stream inputStream, Stream outputStream, IProgressContext progress)
         {
-            return CopyToWithCount(inputStream, outputStream, inputStream, progress);
-        }
-
-        private static long CopyToWithCount(Stream inputStream, Stream outputStream, Stream realInputStream, IProgressContext progress)
-        {
-            progress.NotifyLevelStart();
-
-            if (realInputStream.CanSeek)
-            {
-                progress.AddTotal(realInputStream.Length - realInputStream.Position);
-            }
-
-            long totalDone = 0;
-            byte[] buffer = new byte[OS.Current.StreamBufferSize];
-            int bufferWrittenCount = 0;
-            int bufferRemainingCount = buffer.Length;
-            while (true)
-            {
-                int readCount = inputStream.Read(buffer, bufferWrittenCount, bufferRemainingCount);
-                bufferWrittenCount += readCount;
-                bufferRemainingCount -= readCount;
-                if (bufferRemainingCount > 0 && readCount > 0)
-                {
-                    continue;
-                }
-                if (bufferWrittenCount == 0)
-                {
-                    break;
-                }
-                outputStream.Write(buffer, 0, bufferWrittenCount);
-                outputStream.Flush();
-                progress.AddCount(bufferWrittenCount);
-                totalDone += bufferWrittenCount;
-                bufferWrittenCount = 0;
-                bufferRemainingCount = buffer.Length;
-            }
-            progress.NotifyLevelFinished();
-            return totalDone;
+            return inputStream.CopyToWithCount(outputStream, inputStream, progress);
         }
 
         /// <summary>
@@ -216,9 +172,9 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentException("The output stream must support seek in order to back-track and write the HMAC.");
             }
-            if (DocumentHeaders == null)
+            if (!PassphraseIsValid)
             {
-                throw new InternalErrorException("Document headers are not loaded");
+                throw new InternalErrorException("Passphrase is not valid.");
             }
 
             using (HmacStream hmacStreamOutput = new HmacStream(outputDocumentHeaders.HmacSubkey.Key, cipherStream))
@@ -260,9 +216,9 @@ namespace Axantum.AxCrypt.Core
         /// <param name="outputPlaintextStream">The resulting plain text stream.</param>
         public void DecryptTo(Stream outputPlaintextStream, IProgressContext progress)
         {
-            if (DocumentHeaders == null)
+            if (!PassphraseIsValid)
             {
-                throw new InternalErrorException("Document headers are not loaded");
+                throw new InternalErrorException("Passsphrase is not valid!");
             }
 
             using (ICryptoTransform decryptor = DataCrypto.CreateDecryptingTransform())
@@ -292,7 +248,7 @@ namespace Axantum.AxCrypt.Core
                         {
                             try
                             {
-                                CopyToWithCount(inflatedPlaintextStream, outputPlaintextStream, encryptedDataStream, progress);
+                                inflatedPlaintextStream.CopyToWithCount(outputPlaintextStream, encryptedDataStream, progress);
                             }
                             catch (Exception ex)
                             {
@@ -308,7 +264,7 @@ namespace Axantum.AxCrypt.Core
                     {
                         try
                         {
-                            CopyToWithCount(plainStream, outputPlaintextStream, encryptedDataStream, progress);
+                            plainStream.CopyToWithCount(outputPlaintextStream, encryptedDataStream, progress);
                         }
                         catch (Exception ex)
                         {

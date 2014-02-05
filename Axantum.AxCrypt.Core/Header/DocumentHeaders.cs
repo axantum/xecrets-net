@@ -25,12 +25,12 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
@@ -441,7 +441,7 @@ namespace Axantum.AxCrypt.Core.Reader
             versionHeaderBlock.SetCurrentVersion();
         }
 
-        protected VersionHeaderBlock VersionHeaderBlock
+        public VersionHeaderBlock VersionHeaderBlock
         {
             get
             {

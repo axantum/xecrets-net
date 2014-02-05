@@ -25,17 +25,17 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Reader;
-using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Reader;
+using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -71,15 +71,13 @@ namespace Axantum.AxCrypt.Core
             {
                 using (Stream destinationStream = destinationFile.OpenWrite())
                 {
-                    using (AxCryptDocument document = new AxCryptDocument())
+                    using (AxCryptDocument document = new AxCryptDocument(passphrase.DerivedPassphrase))
                     {
-                        DocumentHeaders headers = new DocumentHeaders(passphrase.DerivedPassphrase);
-                        headers.FileName = sourceFile.Name;
-                        headers.CreationTimeUtc = sourceFile.CreationTimeUtc;
-                        headers.LastAccessTimeUtc = sourceFile.LastAccessTimeUtc;
-                        headers.LastWriteTimeUtc = sourceFile.LastWriteTimeUtc;
-                        document.DocumentHeaders = headers;
-                        document.EncryptTo(headers, sourceStream, destinationStream, options, progress);
+                        document.DocumentHeaders.FileName = sourceFile.Name;
+                        document.DocumentHeaders.CreationTimeUtc = sourceFile.CreationTimeUtc;
+                        document.DocumentHeaders.LastAccessTimeUtc = sourceFile.LastAccessTimeUtc;
+                        document.DocumentHeaders.LastWriteTimeUtc = sourceFile.LastWriteTimeUtc;
+                        document.EncryptTo(sourceStream, destinationStream, options, progress);
                     }
                 }
                 if (options.HasMask(AxCryptOptions.SetFileTimes))
@@ -110,15 +108,13 @@ namespace Axantum.AxCrypt.Core
 
             using (Stream sourceStream = sourceFile.OpenRead())
             {
-                using (AxCryptDocument document = new AxCryptDocument())
+                using (AxCryptDocument document = new AxCryptDocument(key))
                 {
-                    DocumentHeaders headers = new DocumentHeaders(key);
-                    headers.FileName = sourceFile.Name;
-                    headers.CreationTimeUtc = sourceFile.CreationTimeUtc;
-                    headers.LastAccessTimeUtc = sourceFile.LastAccessTimeUtc;
-                    headers.LastWriteTimeUtc = sourceFile.LastWriteTimeUtc;
-                    document.DocumentHeaders = headers;
-                    document.EncryptTo(headers, sourceStream, destinationStream, options, progress);
+                    document.DocumentHeaders.FileName = sourceFile.Name;
+                    document.DocumentHeaders.CreationTimeUtc = sourceFile.CreationTimeUtc;
+                    document.DocumentHeaders.LastAccessTimeUtc = sourceFile.LastAccessTimeUtc;
+                    document.DocumentHeaders.LastWriteTimeUtc = sourceFile.LastWriteTimeUtc;
+                    document.EncryptTo(sourceStream, destinationStream, options, progress);
                 }
             }
         }
@@ -385,10 +381,10 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("progress");
             }
 
-            AxCryptDocument document = new AxCryptDocument();
+            AxCryptDocument document = new AxCryptDocument(key);
             Stream stream = new ProgressStream(sourceFile.OpenRead(), progress);
             progress.AddTotal(stream.Length);
-            document.Load(stream, key);
+            document.Load(stream);
             return document;
         }
 
