@@ -52,8 +52,6 @@ namespace Axantum.AxCrypt.Core
 
         public V1DocumentHeaders DocumentHeaders { get; private set; }
 
-        //private AxCryptReader _reader;
-
         public bool PassphraseIsValid { get; set; }
 
         /// <summary>

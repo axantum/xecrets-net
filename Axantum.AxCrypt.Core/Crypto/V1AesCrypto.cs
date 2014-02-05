@@ -33,19 +33,9 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// <summary>
     /// Wrap an AES implementation with key and parameters. Instances of this class are immutable.
     /// </summary>
-    public class AesCrypto : IDisposable
+    public class V1AesCrypto : ICrypto
     {
         private Aes _aes = null;
-
-        /// <summary>
-        /// The default key size, in bits
-        /// </summary>
-        public static readonly int KeyBits = 128;
-
-        /// <summary>
-        /// The default key size in bytes
-        /// </summary>
-        public static readonly int KeyBytes = KeyBits / 8;
 
         /// <summary>
         /// Instantiate a transformation
@@ -54,7 +44,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <param name="iv">Initial Vector</param>
         /// <param name="cipherMode">Mode of operation, typically CBC</param>
         /// <param name="paddingMode">Padding mode, typically PCS7</param>
-        public AesCrypto(AesKey key, AesIV iv, CipherMode cipherMode, PaddingMode paddingMode)
+        public V1AesCrypto(AesKey key, AesIV iv, CipherMode cipherMode, PaddingMode paddingMode)
         {
             if (key == null)
             {
@@ -75,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// Instantiate an AES transform with zero IV, CBC and no padding.
         /// </summary>
         /// <param name="key">The key</param>
-        public AesCrypto(AesKey key)
+        public V1AesCrypto(AesKey key)
             : this(key, AesIV.Zero, CipherMode.CBC, PaddingMode.None)
         {
         }

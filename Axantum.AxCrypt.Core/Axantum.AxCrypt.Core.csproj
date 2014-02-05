@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Crypto\ICrypto.cs" />
+    <Compile Include="Crypto\V2AesCrypto.cs" />
     <Compile Include="V1AxCryptDocument.cs" />
     <Compile Include="V2AxCryptDocument.cs" />
     <Compile Include="CommandLine.cs" />
@@ -98,7 +100,7 @@
     <Compile Include="Runtime\AxCryptException.cs" />
     <Compile Include="AxCryptFile.cs" />
     <Compile Include="AxCryptOptions.cs" />
-    <Compile Include="Crypto\AesCrypto.cs" />
+    <Compile Include="Crypto\V1AesCrypto.cs" />
     <Compile Include="Crypto\AesIV.cs" />
     <Compile Include="Crypto\AesKey.cs" />
     <Compile Include="Crypto\AesKeyThumbprint.cs" />

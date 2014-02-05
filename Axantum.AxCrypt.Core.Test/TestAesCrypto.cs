@@ -55,22 +55,22 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.Throws<ArgumentNullException>(() =>
             {
-                if (new AesCrypto(null) == null) { }
+                if (new V1AesCrypto(null) == null) { }
             });
 
             Assert.Throws<ArgumentNullException>(() =>
             {
-                if (new AesCrypto(null, iv, CipherMode.CBC, PaddingMode.None) == null) { }
+                if (new V1AesCrypto(null, iv, CipherMode.CBC, PaddingMode.None) == null) { }
             });
 
             Assert.Throws<ArgumentNullException>(() =>
             {
-                if (new AesCrypto(key, null, CipherMode.CBC, PaddingMode.None) == null) { }
+                if (new V1AesCrypto(key, null, CipherMode.CBC, PaddingMode.None) == null) { }
             });
 
             Assert.DoesNotThrow(() =>
             {
-                if (new AesCrypto(key, iv, CipherMode.CBC, PaddingMode.None) == null) { }
+                if (new V1AesCrypto(key, iv, CipherMode.CBC, PaddingMode.None) == null) { }
             });
         }
 
@@ -80,7 +80,7 @@ namespace Axantum.AxCrypt.Core.Test
             AesKey key = new AesKey(128);
             AesIV iv = new AesIV();
 
-            AesCrypto crypto = new AesCrypto(key, iv, CipherMode.CBC, PaddingMode.None);
+            V1AesCrypto crypto = new V1AesCrypto(key, iv, CipherMode.CBC, PaddingMode.None);
             crypto.Dispose();
             Assert.Throws<ObjectDisposedException>(() =>
             {
@@ -99,7 +99,7 @@ namespace Axantum.AxCrypt.Core.Test
             AesKey key = new AesKey(128);
             AesIV iv = new AesIV();
 
-            AesCrypto crypto = new AesCrypto(key, iv, CipherMode.CBC, PaddingMode.None);
+            V1AesCrypto crypto = new V1AesCrypto(key, iv, CipherMode.CBC, PaddingMode.None);
             crypto.Dispose();
 
             Assert.Throws<ObjectDisposedException>(() =>

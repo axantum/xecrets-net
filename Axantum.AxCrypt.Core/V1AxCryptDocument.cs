@@ -199,13 +199,13 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        private AesCrypto _dataCrypto;
+        private ICrypto _dataCrypto;
 
-        private AesCrypto DataCrypto
+        private ICrypto DataCrypto
         {
             get
             {
-                _dataCrypto = new AesCrypto(DocumentHeaders.DataSubkey.Key, DocumentHeaders.IV, CipherMode.CBC, PaddingMode.PKCS7);
+                _dataCrypto = new V1AesCrypto(DocumentHeaders.DataSubkey.Key, DocumentHeaders.IV, CipherMode.CBC, PaddingMode.PKCS7);
 
                 return _dataCrypto;
             }

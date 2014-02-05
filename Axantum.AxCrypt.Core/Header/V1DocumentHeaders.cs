@@ -103,7 +103,7 @@ namespace Axantum.AxCrypt.Core.Header
 
         private void SetMasterKeyForEncryptedHeaderBlocks(IList<HeaderBlock> headerBlocks)
         {
-            AesCrypto headerCrypto = new AesCrypto(HeadersSubkey.Key);
+            ICrypto headerCrypto = new V1AesCrypto(HeadersSubkey.Key);
 
             foreach (HeaderBlock headerBlock in headerBlocks)
             {
@@ -260,7 +260,7 @@ namespace Axantum.AxCrypt.Core.Header
                 if (compressionInfo == null)
                 {
                     compressionInfo = new V1CompressionInfoHeaderBlock();
-                    compressionInfo.HeaderCrypto = new AesCrypto(HeadersSubkey.Key);
+                    compressionInfo.HeaderCrypto = new V1AesCrypto(HeadersSubkey.Key);
                     _headers.HeaderBlocks.Add(compressionInfo);
                 }
                 compressionInfo.UncompressedLength = value;

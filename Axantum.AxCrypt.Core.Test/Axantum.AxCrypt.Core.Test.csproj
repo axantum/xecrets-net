@@ -159,6 +159,7 @@
     <Compile Include="TestUnrecognizedHeaderBlock .cs" />
     <Compile Include="TestUpdateCheck.cs" />
     <Compile Include="TestUserSettings.cs" />
+    <Compile Include="TestV2AesCrypto.cs" />
     <Compile Include="TestVersionHeaderBlock .cs" />
     <Compile Include="TestViewModelBaseTest.cs" />
     <Compile Include="TestWatchedFolder.cs" />

@@ -25,8 +25,8 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Runtime;
 using System;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
 
             block[0] = subKeyValue;
-            using (AesCrypto aesCrypto = new AesCrypto(masterKey))
+            using (ICrypto aesCrypto = new V1AesCrypto(masterKey))
             {
                 _subKey = new AesKey(aesCrypto.Encrypt(block));
             }

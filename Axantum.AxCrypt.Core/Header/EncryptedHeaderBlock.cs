@@ -31,7 +31,7 @@ namespace Axantum.AxCrypt.Core.Header
 {
     public abstract class EncryptedHeaderBlock : HeaderBlock
     {
-        public AesCrypto HeaderCrypto { get; set; }
+        public ICrypto HeaderCrypto { get; set; }
 
         protected EncryptedHeaderBlock(HeaderBlockType headerBlockType, byte[] dataBlock)
             : base(headerBlockType, dataBlock)

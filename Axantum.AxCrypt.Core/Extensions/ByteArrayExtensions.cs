@@ -86,7 +86,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             return -1;
         }
 
-        public static void Xor(this byte[] buffer, byte[] other)
+        public static byte[] Xor(this byte[] buffer, byte[] other)
         {
             if (buffer == null)
             {
@@ -98,9 +98,10 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
             int bytesToXor = buffer.Length < other.Length ? buffer.Length : other.Length;
             buffer.Xor(0, other, 0, bytesToXor);
+            return buffer;
         }
 
-        public static void Xor(this byte[] buffer, int bufferIndex, byte[] other, int otherIndex, int length)
+        public static byte[] Xor(this byte[] buffer, int bufferIndex, byte[] other, int otherIndex, int length)
         {
             if (buffer == null)
             {
@@ -122,6 +123,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             {
                 buffer[bufferIndex + i] ^= other[otherIndex + i];
             }
+            return buffer;
         }
 
         public static byte[] Append(this byte[] left, params byte[][] arrays)
