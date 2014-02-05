@@ -44,9 +44,9 @@ namespace Axantum.AxCrypt.Core
     /// in-memory. File Format Version 4 is only supported by AxCrypt 2.x or higher. It builds on, and is similar to, File Format
     /// Version 3. See the specification titled "AxCrypt Version 2 Algorithms and File Format" for details.
     /// </summary>
-    public class AxCryptDocumentVersion4
+    public class AxCryptDocumentV2
     {
-        public AxCryptDocumentVersion4()
+        public AxCryptDocumentV2()
         {
         }
 
