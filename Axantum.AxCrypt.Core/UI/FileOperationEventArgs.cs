@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public AesKey Key { get; set; }
 
-        public AxCryptDocument AxCryptDocument { get; set; }
+        public V1AxCryptDocument AxCryptDocument { get; set; }
 
         public FileOperationStatus Status { get; set; }
     }

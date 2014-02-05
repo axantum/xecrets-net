@@ -28,7 +28,7 @@
 using System;
 using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Reader;
+using Axantum.AxCrypt.Core.Header;
 using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -36,7 +36,7 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestFileNameInfoHeaderBlock
     {
-        private class FileNameInfoHeaderBlockForTest : FileNameInfoHeaderBlock
+        private class FileNameInfoHeaderBlockForTest : V1FileNameInfoHeaderBlock
         {
             public void SetBadNameWithoutEndingNul()
             {

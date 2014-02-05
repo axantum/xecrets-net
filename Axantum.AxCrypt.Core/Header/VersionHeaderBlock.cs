@@ -27,19 +27,12 @@
 
 using System;
 
-namespace Axantum.AxCrypt.Core.Reader
+namespace Axantum.AxCrypt.Core.Header
 {
     public class VersionHeaderBlock : HeaderBlock
     {
-        private static readonly byte[] _version = new byte[] { 3, 2, 2, 0, 0 };
-
         public VersionHeaderBlock(byte[] dataBlock)
-            : base(HeaderBlockType.Version, dataBlock)
-        {
-        }
-
-        public VersionHeaderBlock()
-            : this((byte[])_version.Clone())
+            : base(HeaderBlockType.Version, (byte[])dataBlock.Clone())
         {
         }
 
@@ -49,9 +42,9 @@ namespace Axantum.AxCrypt.Core.Reader
             return block;
         }
 
-        public void SetCurrentVersion()
+        public void SetCurrentVersion(byte[] version)
         {
-            Array.Copy(_version, GetDataBlockBytesReference(), _version.Length);
+            Array.Copy(version, GetDataBlockBytesReference(), version.Length);
         }
 
         /// <summary>

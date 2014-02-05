@@ -28,17 +28,18 @@
 using System;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Header;
 
-namespace Axantum.AxCrypt.Core.Reader
+namespace Axantum.AxCrypt.Core.Header
 {
-    public class KeyWrap1HeaderBlock : HeaderBlock
+    public class V1KeyWrap1HeaderBlock : HeaderBlock
     {
-        public KeyWrap1HeaderBlock(byte[] dataBlock)
+        public V1KeyWrap1HeaderBlock(byte[] dataBlock)
             : base(HeaderBlockType.KeyWrap1, dataBlock)
         {
         }
 
-        public KeyWrap1HeaderBlock(AesKey keyEncryptingKey)
+        public V1KeyWrap1HeaderBlock(AesKey keyEncryptingKey)
             : this(new byte[44])
         {
             Initialize(keyEncryptingKey);
@@ -46,7 +47,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
         public override object Clone()
         {
-            KeyWrap1HeaderBlock block = new KeyWrap1HeaderBlock((byte[])GetDataBlockBytesReference().Clone());
+            V1KeyWrap1HeaderBlock block = new V1KeyWrap1HeaderBlock((byte[])GetDataBlockBytesReference().Clone());
             return block;
         }
 

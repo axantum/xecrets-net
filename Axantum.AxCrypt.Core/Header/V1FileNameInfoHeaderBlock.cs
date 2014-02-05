@@ -25,47 +25,52 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Extensions;
 using System;
+using System.Text;
 
-namespace Axantum.AxCrypt.Core.Reader
+namespace Axantum.AxCrypt.Core.Header
 {
-    public class CompressionInfoHeaderBlock : EncryptedHeaderBlock
+    public class V1FileNameInfoHeaderBlock : EncryptedHeaderBlock
     {
-        public CompressionInfoHeaderBlock(byte[] dataBlock)
-            : base(HeaderBlockType.CompressionInfo, dataBlock)
+        public V1FileNameInfoHeaderBlock(byte[] dataBlock)
+            : base(HeaderBlockType.FileNameInfo, dataBlock)
         {
         }
 
-        public CompressionInfoHeaderBlock()
-            : this(OS.Current.GetRandomBytes(16))
+        public V1FileNameInfoHeaderBlock()
+            : this(new byte[0])
         {
         }
 
         public override object Clone()
         {
-            CompressionInfoHeaderBlock block = new CompressionInfoHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
+            V1FileNameInfoHeaderBlock block = new V1FileNameInfoHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
             return block;
         }
 
-        /// <summary>
-        /// The uncompressed size of the data
-        /// </summary>
-        public long UncompressedLength
+        public string FileName
         {
             get
             {
-                byte[] rawBlock = HeaderCrypto.Decrypt(GetDataBlockBytesReference());
-                long normalSize = rawBlock.GetLittleEndianValue(0, sizeof(long));
-                return normalSize;
+                byte[] rawFileName = HeaderCrypto.Decrypt(GetDataBlockBytesReference());
+
+                int end = Array.IndexOf<byte>(rawFileName, 0);
+                if (end == -1)
+                {
+                    throw new InvalidOperationException("Could not find terminating nul byte in file name");
+                }
+
+                string fileName = Encoding.ASCII.GetString(rawFileName, 0, end);
+
+                return fileName;
             }
 
             set
             {
-                byte[] normalSizeBytes = value.GetLittleEndianBytes();
-                Array.Copy(normalSizeBytes, 0, GetDataBlockBytesReference(), 0, normalSizeBytes.Length);
-                byte[] encryptedBlock = HeaderCrypto.Encrypt(GetDataBlockBytesReference());
-                SetDataBlockBytesReference(encryptedBlock);
+                byte[] rawFileName = Encoding.ASCII.GetBytes(value);
+                byte[] dataBlock = new byte[rawFileName.Length + 1 + 15 - (rawFileName.Length + 1 + 15) % 16];
+                rawFileName.CopyTo(dataBlock, 0);
+                SetDataBlockBytesReference(HeaderCrypto.Encrypt(dataBlock));
             }
         }
     }

@@ -29,83 +29,76 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 
-namespace Axantum.AxCrypt.Core.Reader
+namespace Axantum.AxCrypt.Core.Header
 {
-    public class DocumentHeaders
+    public class V1DocumentHeaders
     {
-        private IList<HeaderBlock> _headerBlocks;
+        private static readonly byte[] _version = new byte[] { 3, 2, 2, 0, 0 };
+
+        private DocumentHeadersCommon _headers;
 
         private AesKey _keyEncryptingKey;
 
-        public DocumentHeaders(AesKey keyEncryptingKey)
+        public V1DocumentHeaders(AesKey keyEncryptingKey)
         {
             _keyEncryptingKey = keyEncryptingKey;
+            _headers = new DocumentHeadersCommon(_version);
 
-            _headerBlocks = new List<HeaderBlock>();
-            _headerBlocks.Add(new PreambleHeaderBlock());
-            _headerBlocks.Add(new VersionHeaderBlock());
-            _headerBlocks.Add(new KeyWrap1HeaderBlock(keyEncryptingKey));
-            _headerBlocks.Add(new EncryptionInfoHeaderBlock());
-            _headerBlocks.Add(new CompressionHeaderBlock());
-            _headerBlocks.Add(new FileInfoHeaderBlock());
-            _headerBlocks.Add(new UnicodeFileNameInfoHeaderBlock());
-            _headerBlocks.Add(new FileNameInfoHeaderBlock());
-            _headerBlocks.Add(new DataHeaderBlock());
+            _headers.HeaderBlocks.Add(new V1KeyWrap1HeaderBlock(keyEncryptingKey));
+            _headers.HeaderBlocks.Add(new V1EncryptionInfoHeaderBlock());
+            _headers.HeaderBlocks.Add(new CompressionHeaderBlock());
+            _headers.HeaderBlocks.Add(new FileInfoHeaderBlock());
+            _headers.HeaderBlocks.Add(new UnicodeFileNameInfoHeaderBlock());
+            _headers.HeaderBlocks.Add(new V1FileNameInfoHeaderBlock());
+            _headers.HeaderBlocks.Add(new DataHeaderBlock());
 
-            SetMasterKeyForEncryptedHeaderBlocks(_headerBlocks);
+            SetMasterKeyForEncryptedHeaderBlocks(_headers.HeaderBlocks);
 
-            EncryptionInfoHeaderBlock encryptionInfoHeaderBlock = FindHeaderBlock<EncryptionInfoHeaderBlock>();
+            V1EncryptionInfoHeaderBlock encryptionInfoHeaderBlock = _headers.FindHeaderBlock<V1EncryptionInfoHeaderBlock>();
             encryptionInfoHeaderBlock.IV = new AesIV();
             encryptionInfoHeaderBlock.PlaintextLength = 0;
         }
 
-        public DocumentHeaders(DocumentHeaders documentHeaders)
+        public V1DocumentHeaders(V1DocumentHeaders documentHeaders)
         {
-            List<HeaderBlock> headerBlocks = new List<HeaderBlock>();
-            foreach (HeaderBlock headerBlock in documentHeaders._headerBlocks)
+            DocumentHeadersCommon headers = new DocumentHeadersCommon(_version);
+            foreach (HeaderBlock headerBlock in documentHeaders._headers.HeaderBlocks)
             {
-                headerBlocks.Add((HeaderBlock)headerBlock.Clone());
+                headers.HeaderBlocks.Add((HeaderBlock)headerBlock.Clone());
             }
-            _headerBlocks = headerBlocks;
-
+            _headers = headers;
             _keyEncryptingKey = documentHeaders._keyEncryptingKey;
         }
 
         public bool Load(AxCryptReader axCryptReader)
         {
-            axCryptReader.Read();
-            if (axCryptReader.CurrentItemType != AxCryptItemType.MagicGuid)
-            {
-                throw new FileFormatException("No magic Guid was found.", ErrorStatus.MagicGuidMissing);
-            }
-            List<HeaderBlock> headerBlocks = new List<HeaderBlock>();
-            while (axCryptReader.Read())
-            {
-                switch (axCryptReader.CurrentItemType)
-                {
-                    case AxCryptItemType.HeaderBlock:
-                        headerBlocks.Add(axCryptReader.CurrentHeaderBlock);
-                        break;
+            _headers.Load(axCryptReader);
 
-                    case AxCryptItemType.Data:
-                        headerBlocks.Add(axCryptReader.CurrentHeaderBlock);
-                        _headerBlocks = headerBlocks;
-                        EnsureFileFormatVersion();
-                        if (GetMasterKey() != null)
-                        {
-                            SetMasterKeyForEncryptedHeaderBlocks(headerBlocks);
-                            return true;
-                        }
-                        return false;
-
-                    default:
-                        throw new InternalErrorException("The reader returned an AxCryptItemType it should not be possible for it to return.");
-                }
+            EnsureFileFormatVersion();
+            if (GetMasterKey() != null)
+            {
+                SetMasterKeyForEncryptedHeaderBlocks(_headers.HeaderBlocks);
+                return true;
             }
-            throw new FileFormatException("Premature end of stream.", ErrorStatus.EndOfStream);
+            return false;
+        }
+
+        public void SetCurrentVersion()
+        {
+            _headers.SetCurrentVersion(_version);
+        }
+
+        public VersionHeaderBlock VersionHeaderBlock
+        {
+            get
+            {
+                return _headers.VersionHeaderBlock;
+            }
         }
 
         private void SetMasterKeyForEncryptedHeaderBlocks(IList<HeaderBlock> headerBlocks)
@@ -146,9 +139,9 @@ namespace Axantum.AxCrypt.Core.Reader
         {
             cipherStream.Position = 0;
             AxCrypt1Guid.Write(cipherStream);
-            PreambleHeaderBlock preambleHaderBlock = FindHeaderBlock<PreambleHeaderBlock>();
+            PreambleHeaderBlock preambleHaderBlock = _headers.FindHeaderBlock<PreambleHeaderBlock>();
             preambleHaderBlock.Write(cipherStream);
-            foreach (HeaderBlock headerBlock in _headerBlocks)
+            foreach (HeaderBlock headerBlock in _headers.HeaderBlocks)
             {
                 if (headerBlock is DataHeaderBlock)
                 {
@@ -160,7 +153,7 @@ namespace Axantum.AxCrypt.Core.Reader
                 }
                 headerBlock.Write(hmacStream);
             }
-            DataHeaderBlock dataHeaderBlock = FindHeaderBlock<DataHeaderBlock>();
+            DataHeaderBlock dataHeaderBlock = _headers.FindHeaderBlock<DataHeaderBlock>();
             dataHeaderBlock.Write(hmacStream);
         }
 
@@ -174,8 +167,8 @@ namespace Axantum.AxCrypt.Core.Reader
 
         private AesKey GetMasterKey()
         {
-            KeyWrap1HeaderBlock keyHeaderBlock = FindHeaderBlock<KeyWrap1HeaderBlock>();
-            VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();
+            V1KeyWrap1HeaderBlock keyHeaderBlock = _headers.FindHeaderBlock<V1KeyWrap1HeaderBlock>();
+            VersionHeaderBlock versionHeaderBlock = _headers.FindHeaderBlock<VersionHeaderBlock>();
             byte[] unwrappedKeyData = keyHeaderBlock.UnwrapMasterKey(_keyEncryptingKey, versionHeaderBlock.FileVersionMajor);
             if (unwrappedKeyData.Length == 0)
             {
@@ -186,7 +179,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
         public void RewrapMasterKey(AesKey keyEncryptingKey)
         {
-            KeyWrap1HeaderBlock keyHeaderBlock = FindHeaderBlock<KeyWrap1HeaderBlock>();
+            V1KeyWrap1HeaderBlock keyHeaderBlock = _headers.FindHeaderBlock<V1KeyWrap1HeaderBlock>();
             keyHeaderBlock.RewrapMasterKey(GetMasterKey(), keyEncryptingKey);
             _keyEncryptingKey = keyEncryptingKey;
         }
@@ -234,7 +227,7 @@ namespace Axantum.AxCrypt.Core.Reader
         {
             get
             {
-                PreambleHeaderBlock headerBlock = FindHeaderBlock<PreambleHeaderBlock>();
+                PreambleHeaderBlock headerBlock = _headers.FindHeaderBlock<PreambleHeaderBlock>();
 
                 return headerBlock.Hmac;
             }
@@ -244,7 +237,7 @@ namespace Axantum.AxCrypt.Core.Reader
                 {
                     throw new ArgumentNullException("value");
                 }
-                PreambleHeaderBlock headerBlock = FindHeaderBlock<PreambleHeaderBlock>();
+                PreambleHeaderBlock headerBlock = _headers.FindHeaderBlock<PreambleHeaderBlock>();
                 headerBlock.Hmac = value;
             }
         }
@@ -253,7 +246,7 @@ namespace Axantum.AxCrypt.Core.Reader
         {
             get
             {
-                CompressionInfoHeaderBlock compressionInfo = FindHeaderBlock<CompressionInfoHeaderBlock>();
+                V1CompressionInfoHeaderBlock compressionInfo = _headers.FindHeaderBlock<V1CompressionInfoHeaderBlock>();
                 if (compressionInfo == null)
                 {
                     return -1;
@@ -263,12 +256,12 @@ namespace Axantum.AxCrypt.Core.Reader
 
             set
             {
-                CompressionInfoHeaderBlock compressionInfo = FindHeaderBlock<CompressionInfoHeaderBlock>();
+                V1CompressionInfoHeaderBlock compressionInfo = _headers.FindHeaderBlock<V1CompressionInfoHeaderBlock>();
                 if (compressionInfo == null)
                 {
-                    compressionInfo = new CompressionInfoHeaderBlock();
+                    compressionInfo = new V1CompressionInfoHeaderBlock();
                     compressionInfo.HeaderCrypto = new AesCrypto(HeadersSubkey.Key);
-                    _headerBlocks.Add(compressionInfo);
+                    _headers.HeaderBlocks.Add(compressionInfo);
                 }
                 compressionInfo.UncompressedLength = value;
             }
@@ -278,13 +271,13 @@ namespace Axantum.AxCrypt.Core.Reader
         {
             get
             {
-                FileNameInfoHeaderBlock headerBlock = FindHeaderBlock<FileNameInfoHeaderBlock>();
+                V1FileNameInfoHeaderBlock headerBlock = _headers.FindHeaderBlock<V1FileNameInfoHeaderBlock>();
                 return headerBlock.FileName;
             }
 
             set
             {
-                FileNameInfoHeaderBlock headerBlock = FindHeaderBlock<FileNameInfoHeaderBlock>();
+                V1FileNameInfoHeaderBlock headerBlock = _headers.FindHeaderBlock<V1FileNameInfoHeaderBlock>();
                 headerBlock.FileName = value;
             }
         }
@@ -293,7 +286,7 @@ namespace Axantum.AxCrypt.Core.Reader
         {
             get
             {
-                UnicodeFileNameInfoHeaderBlock headerBlock = FindHeaderBlock<UnicodeFileNameInfoHeaderBlock>();
+                UnicodeFileNameInfoHeaderBlock headerBlock = _headers.FindHeaderBlock<UnicodeFileNameInfoHeaderBlock>();
                 if (headerBlock == null)
                 {
                     // Unicode file name was added in 1.6.3.3 - if we can't find it signal it's absence with null.
@@ -305,7 +298,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
             set
             {
-                UnicodeFileNameInfoHeaderBlock headerBlock = FindHeaderBlock<UnicodeFileNameInfoHeaderBlock>();
+                UnicodeFileNameInfoHeaderBlock headerBlock = _headers.FindHeaderBlock<UnicodeFileNameInfoHeaderBlock>();
                 headerBlock.FileName = value;
             }
         }
@@ -328,7 +321,7 @@ namespace Axantum.AxCrypt.Core.Reader
         {
             get
             {
-                CompressionHeaderBlock headerBlock = FindHeaderBlock<CompressionHeaderBlock>();
+                CompressionHeaderBlock headerBlock = _headers.FindHeaderBlock<CompressionHeaderBlock>();
                 if (headerBlock == null)
                 {
                     // Conditional compression was added in 1.2.2, before then it was always compressed.
@@ -338,7 +331,7 @@ namespace Axantum.AxCrypt.Core.Reader
             }
             set
             {
-                CompressionHeaderBlock headerBlock = FindHeaderBlock<CompressionHeaderBlock>();
+                CompressionHeaderBlock headerBlock = _headers.FindHeaderBlock<CompressionHeaderBlock>();
                 headerBlock.IsCompressed = value;
                 if (value)
                 {
@@ -352,12 +345,12 @@ namespace Axantum.AxCrypt.Core.Reader
         {
             get
             {
-                FileInfoHeaderBlock headerBlock = FindHeaderBlock<FileInfoHeaderBlock>();
+                FileInfoHeaderBlock headerBlock = _headers.FindHeaderBlock<FileInfoHeaderBlock>();
                 return headerBlock.CreationTimeUtc;
             }
             set
             {
-                FileInfoHeaderBlock headerBlock = FindHeaderBlock<FileInfoHeaderBlock>();
+                FileInfoHeaderBlock headerBlock = _headers.FindHeaderBlock<FileInfoHeaderBlock>();
                 headerBlock.CreationTimeUtc = value;
             }
         }
@@ -366,12 +359,12 @@ namespace Axantum.AxCrypt.Core.Reader
         {
             get
             {
-                FileInfoHeaderBlock headerBlock = FindHeaderBlock<FileInfoHeaderBlock>();
+                FileInfoHeaderBlock headerBlock = _headers.FindHeaderBlock<FileInfoHeaderBlock>();
                 return headerBlock.LastAccessTimeUtc;
             }
             set
             {
-                FileInfoHeaderBlock headerBlock = FindHeaderBlock<FileInfoHeaderBlock>();
+                FileInfoHeaderBlock headerBlock = _headers.FindHeaderBlock<FileInfoHeaderBlock>();
                 headerBlock.LastAccessTimeUtc = value;
             }
         }
@@ -380,12 +373,12 @@ namespace Axantum.AxCrypt.Core.Reader
         {
             get
             {
-                FileInfoHeaderBlock headerBlock = FindHeaderBlock<FileInfoHeaderBlock>();
+                FileInfoHeaderBlock headerBlock = _headers.FindHeaderBlock<FileInfoHeaderBlock>();
                 return headerBlock.LastWriteTimeUtc;
             }
             set
             {
-                FileInfoHeaderBlock headerBlock = FindHeaderBlock<FileInfoHeaderBlock>();
+                FileInfoHeaderBlock headerBlock = _headers.FindHeaderBlock<FileInfoHeaderBlock>();
                 headerBlock.LastWriteTimeUtc = value;
             }
         }
@@ -398,7 +391,7 @@ namespace Axantum.AxCrypt.Core.Reader
         {
             get
             {
-                EncryptionInfoHeaderBlock headerBlock = FindHeaderBlock<EncryptionInfoHeaderBlock>();
+                V1EncryptionInfoHeaderBlock headerBlock = _headers.FindHeaderBlock<V1EncryptionInfoHeaderBlock>();
                 return headerBlock.IV;
             }
         }
@@ -410,13 +403,13 @@ namespace Axantum.AxCrypt.Core.Reader
         {
             get
             {
-                EncryptionInfoHeaderBlock headerBlock = FindHeaderBlock<EncryptionInfoHeaderBlock>();
+                V1EncryptionInfoHeaderBlock headerBlock = _headers.FindHeaderBlock<V1EncryptionInfoHeaderBlock>();
                 return headerBlock.PlaintextLength;
             }
 
             set
             {
-                EncryptionInfoHeaderBlock headerBlock = FindHeaderBlock<EncryptionInfoHeaderBlock>();
+                V1EncryptionInfoHeaderBlock headerBlock = _headers.FindHeaderBlock<V1EncryptionInfoHeaderBlock>();
                 headerBlock.PlaintextLength = value;
             }
         }
@@ -425,51 +418,23 @@ namespace Axantum.AxCrypt.Core.Reader
         {
             get
             {
-                DataHeaderBlock headerBlock = FindHeaderBlock<DataHeaderBlock>();
+                DataHeaderBlock headerBlock = _headers.FindHeaderBlock<DataHeaderBlock>();
                 return headerBlock.CipherTextLength;
             }
             set
             {
-                DataHeaderBlock headerBlock = FindHeaderBlock<DataHeaderBlock>();
+                DataHeaderBlock headerBlock = _headers.FindHeaderBlock<DataHeaderBlock>();
                 headerBlock.CipherTextLength = value;
-            }
-        }
-
-        public void SetCurrentVersion()
-        {
-            VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();
-            versionHeaderBlock.SetCurrentVersion();
-        }
-
-        public VersionHeaderBlock VersionHeaderBlock
-        {
-            get
-            {
-                VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();
-                return versionHeaderBlock;
             }
         }
 
         private void EnsureFileFormatVersion()
         {
-            VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();
+            VersionHeaderBlock versionHeaderBlock = _headers.FindHeaderBlock<VersionHeaderBlock>();
             if (versionHeaderBlock.FileVersionMajor > 3)
             {
                 throw new FileFormatException("Too new file format.", ErrorStatus.TooNewFileFormatVersion);
             }
-        }
-
-        private T FindHeaderBlock<T>() where T : HeaderBlock
-        {
-            foreach (HeaderBlock headerBlock in _headerBlocks)
-            {
-                T typedHeaderHeaderBlock = headerBlock as T;
-                if (typedHeaderHeaderBlock != null)
-                {
-                    return typedHeaderHeaderBlock;
-                }
-            }
-            return null;
         }
     }
 }

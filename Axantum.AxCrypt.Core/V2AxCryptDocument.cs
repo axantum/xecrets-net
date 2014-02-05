@@ -32,8 +32,8 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.UI;
 using Org.BouncyCastle.Utilities.Zlib;
 
@@ -44,13 +44,13 @@ namespace Axantum.AxCrypt.Core
     /// in-memory. File Format Version 4 is only supported by AxCrypt 2.x or higher. It builds on, and is similar to, File Format
     /// Version 3. See the specification titled "AxCrypt Version 2 Algorithms and File Format" for details.
     /// </summary>
-    public class AxCryptDocumentV2
+    public class V2AxCryptDocument
     {
-        public AxCryptDocumentV2()
+        public V2AxCryptDocument()
         {
         }
 
-        public DocumentHeaders DocumentHeaders { get; private set; }
+        public V1DocumentHeaders DocumentHeaders { get; private set; }
 
         //private AxCryptReader _reader;
 
@@ -121,7 +121,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        private static void EncryptWithCompressionInternal(DocumentHeaders outputDocumentHeaders, Stream inputStream, CryptoStream encryptingStream, IProgressContext progress)
+        private static void EncryptWithCompressionInternal(V1DocumentHeaders outputDocumentHeaders, Stream inputStream, CryptoStream encryptingStream, IProgressContext progress)
         {
             using (ZOutputStream deflatingStream = new ZOutputStream(encryptingStream, -1))
             {

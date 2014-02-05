@@ -27,7 +27,7 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 
-namespace Axantum.AxCrypt.Core.Reader
+namespace Axantum.AxCrypt.Core.Header
 {
     public abstract class EncryptedHeaderBlock : HeaderBlock
     {

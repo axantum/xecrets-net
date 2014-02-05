@@ -25,16 +25,17 @@
 
 #endregion Coypright and License
 
+using System;
+using System.IO;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
-using System;
-using System.IO;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -151,7 +152,7 @@ namespace Axantum.AxCrypt.Core.Test
                     }, "The reader is not positioned properly to get the HMAC.");
 
                     Passphrase passphrase = new Passphrase("a");
-                    DocumentHeaders documentHeaders = new DocumentHeaders(passphrase.DerivedPassphrase);
+                    V1DocumentHeaders documentHeaders = new V1DocumentHeaders(passphrase.DerivedPassphrase);
                     bool keyIsOk = documentHeaders.Load(axCryptReader);
                     Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
 
@@ -390,7 +391,7 @@ namespace Axantum.AxCrypt.Core.Test
                 AxCrypt1Guid.Write(inputStream);
                 PreambleHeaderBlock preambleHeaderBlock = new PreambleHeaderBlock();
                 preambleHeaderBlock.Write(inputStream);
-                KeyWrap2HeaderBlock keyWrap2HeaderBlock = new KeyWrap2HeaderBlock(new byte[0]);
+                V1KeyWrap2HeaderBlock keyWrap2HeaderBlock = new V1KeyWrap2HeaderBlock(new byte[0]);
                 keyWrap2HeaderBlock.Write(inputStream);
                 inputStream.Position = 0;
                 using (AxCryptReader axCryptReader = AxCryptReader.Create(inputStream))

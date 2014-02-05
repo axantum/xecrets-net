@@ -25,7 +25,7 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Reader;
+using Axantum.AxCrypt.Core.Header;
 using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -48,8 +48,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestClone()
         {
-            KeyWrap2HeaderBlock keyWrap2HeaderBlock = new KeyWrap2HeaderBlock(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
-            KeyWrap2HeaderBlock cloned = (KeyWrap2HeaderBlock)keyWrap2HeaderBlock.Clone();
+            V1KeyWrap2HeaderBlock keyWrap2HeaderBlock = new V1KeyWrap2HeaderBlock(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
+            V1KeyWrap2HeaderBlock cloned = (V1KeyWrap2HeaderBlock)keyWrap2HeaderBlock.Clone();
             Assert.That(keyWrap2HeaderBlock, Is.Not.SameAs(cloned), "The clone should not be the same reference.");
             Assert.That(cloned.GetDataBlockBytes(), Is.EquivalentTo(keyWrap2HeaderBlock.GetDataBlockBytes()), "The clone should have equivalent data block bytes as the original.");
         }

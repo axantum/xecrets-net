@@ -28,6 +28,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Test.Properties;
 using NUnit.Framework;
@@ -55,7 +56,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (Stream testStream = FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
             {
-                KeyWrap1HeaderBlock keyWrapHeaderBlock = null;
+                V1KeyWrap1HeaderBlock keyWrapHeaderBlock = null;
                 using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
                 {
                     int headers = 0;
@@ -72,7 +73,7 @@ namespace Axantum.AxCrypt.Core.Test
                             case AxCryptItemType.HeaderBlock:
                                 if (axCryptReader.CurrentHeaderBlock.HeaderBlockType == HeaderBlockType.KeyWrap1)
                                 {
-                                    keyWrapHeaderBlock = (KeyWrap1HeaderBlock)axCryptReader.CurrentHeaderBlock;
+                                    keyWrapHeaderBlock = (V1KeyWrap1HeaderBlock)axCryptReader.CurrentHeaderBlock;
                                     ++headers;
                                 }
                                 break;
@@ -82,6 +83,7 @@ namespace Axantum.AxCrypt.Core.Test
 
                             case AxCryptItemType.EndOfStream:
                                 break;
+
                             default:
                                 break;
                         }

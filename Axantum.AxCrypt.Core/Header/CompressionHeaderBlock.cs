@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Extensions;
 using System;
+using Axantum.AxCrypt.Core.Extensions;
 
-namespace Axantum.AxCrypt.Core.Reader
+namespace Axantum.AxCrypt.Core.Header
 {
     public class CompressionHeaderBlock : EncryptedHeaderBlock
     {

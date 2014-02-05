@@ -25,7 +25,7 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Reader;
+using Axantum.AxCrypt.Core.Header;
 using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -48,8 +48,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestClone()
         {
-            IdTagHeaderBlock idTagHeaderBlock = new IdTagHeaderBlock("This is my tag!");
-            IdTagHeaderBlock cloned = (IdTagHeaderBlock)idTagHeaderBlock.Clone();
+            V1IdTagHeaderBlock idTagHeaderBlock = new V1IdTagHeaderBlock("This is my tag!");
+            V1IdTagHeaderBlock cloned = (V1IdTagHeaderBlock)idTagHeaderBlock.Clone();
             Assert.That(idTagHeaderBlock, Is.Not.SameAs(cloned), "The clone should not be the same reference.");
             Assert.That(cloned.IdTag, Is.EqualTo(idTagHeaderBlock.IdTag), "The clone should have the same id tag as the original.");
         }

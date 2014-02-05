@@ -50,8 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AxCryptDocument.cs" />
-    <Compile Include="AxCryptDocumentV2.cs" />
+    <Compile Include="V1AxCryptDocument.cs" />
+    <Compile Include="V2AxCryptDocument.cs" />
     <Compile Include="CommandLine.cs" />
     <Compile Include="Extensions\ByteArrayExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
@@ -61,6 +61,7 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Crypto\KeyWrapIterationCalculator.cs" />
     <Compile Include="Factory.cs" />
+    <Compile Include="Header\DocumentHeadersCommon.cs" />
     <Compile Include="Instance.cs" />
     <Compile Include="IO\FileWatcherEventArgs.cs" />
     <Compile Include="IO\IFileWatcher.cs" />
@@ -115,16 +116,16 @@
     <Compile Include="Runtime\FileFormatException.cs" />
     <Compile Include="Header\AxCrypt1Guid.cs" />
     <Compile Include="Header\CompressionHeaderBlock.cs" />
-    <Compile Include="Header\CompressionInfoHeaderBlock.cs" />
+    <Compile Include="Header\V1CompressionInfoHeaderBlock.cs" />
     <Compile Include="Header\DataHeaderBlock.cs" />
-    <Compile Include="Header\DocumentHeaders.cs" />
+    <Compile Include="Header\V1DocumentHeaders.cs" />
     <Compile Include="Header\EncryptedHeaderBlock.cs" />
-    <Compile Include="Header\EncryptionInfoHeaderBlock.cs" />
+    <Compile Include="Header\V1EncryptionInfoHeaderBlock.cs" />
     <Compile Include="Header\FileInfoHeaderBlock.cs" />
-    <Compile Include="Header\FileNameInfoHeaderBlock.cs" />
-    <Compile Include="Header\IdTagHeaderBlock.cs" />
-    <Compile Include="Header\KeyWrap1HeaderBlock.cs" />
-    <Compile Include="Header\KeyWrap2HeaderBlock.cs" />
+    <Compile Include="Header\V1FileNameInfoHeaderBlock.cs" />
+    <Compile Include="Header\V1IdTagHeaderBlock.cs" />
+    <Compile Include="Header\V1KeyWrap1HeaderBlock.cs" />
+    <Compile Include="Header\V1KeyWrap2HeaderBlock.cs" />
     <Compile Include="Header\PreambleHeaderBlock.cs" />
     <Compile Include="Header\UnicodeFileNameInfoHeaderBlock.cs" />
     <Compile Include="Header\UnrecognizedHeaderBlock.cs" />

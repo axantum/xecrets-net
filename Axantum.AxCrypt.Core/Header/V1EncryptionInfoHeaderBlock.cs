@@ -25,27 +25,27 @@
 
 #endregion Coypright and License
 
+using System;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
-using System;
 
-namespace Axantum.AxCrypt.Core.Reader
+namespace Axantum.AxCrypt.Core.Header
 {
-    public class EncryptionInfoHeaderBlock : EncryptedHeaderBlock
+    public class V1EncryptionInfoHeaderBlock : EncryptedHeaderBlock
     {
-        public EncryptionInfoHeaderBlock(byte[] dataBlock)
+        public V1EncryptionInfoHeaderBlock(byte[] dataBlock)
             : base(HeaderBlockType.EncryptionInfo, dataBlock)
         {
         }
 
-        public EncryptionInfoHeaderBlock()
+        public V1EncryptionInfoHeaderBlock()
             : this(new byte[0])
         {
         }
 
         public override object Clone()
         {
-            EncryptionInfoHeaderBlock block = new EncryptionInfoHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
+            V1EncryptionInfoHeaderBlock block = new V1EncryptionInfoHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
             return block;
         }
 

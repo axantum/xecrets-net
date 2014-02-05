@@ -27,19 +27,19 @@
 
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Reader
+namespace Axantum.AxCrypt.Core.Header
 {
     /// <summary>
     /// An arbitrary string encoded as Ansi Code Page 1252, with a C-style terminating 'nul' character.
     /// </summary>
-    public class IdTagHeaderBlock : HeaderBlock
+    public class V1IdTagHeaderBlock : HeaderBlock
     {
-        public IdTagHeaderBlock(byte[] dataBlock)
+        public V1IdTagHeaderBlock(byte[] dataBlock)
             : base(HeaderBlockType.IdTag, dataBlock)
         {
         }
 
-        public IdTagHeaderBlock(string idTag)
+        public V1IdTagHeaderBlock(string idTag)
             : base(HeaderBlockType.IdTag)
         {
             IdTag = idTag;
@@ -47,7 +47,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
         public override object Clone()
         {
-            IdTagHeaderBlock block = new IdTagHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
+            V1IdTagHeaderBlock block = new V1IdTagHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
             return block;
         }
 

@@ -25,13 +25,13 @@
 
 #endregion Coypright and License
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -146,7 +146,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestLoggingOffWhenLogginOnWhenAlreadyLoggedOn()
+        public static void TestLoggingOffWhenLoggingOnWhenAlreadyLoggedOn()
         {
             int wasLoggedOnCount = 0;
             int wasLoggedOffCount = 0;

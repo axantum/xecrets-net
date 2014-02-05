@@ -31,7 +31,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 using System.Security.Cryptography;
 using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Reader;
+using Axantum.AxCrypt.Core.Header;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {

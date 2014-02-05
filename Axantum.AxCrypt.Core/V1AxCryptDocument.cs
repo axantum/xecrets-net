@@ -30,6 +30,7 @@ using System.IO;
 using System.Security.Cryptography;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
@@ -42,14 +43,14 @@ namespace Axantum.AxCrypt.Core
     /// Enables a single point of interaction for an AxCrypt encrypted stream with all but the data available
     /// in-memory.
     /// </summary>
-    public class AxCryptDocument : IDisposable
+    public class V1AxCryptDocument : IDisposable
     {
-        public AxCryptDocument(AesKey keyEncryptingKey)
+        public V1AxCryptDocument(AesKey keyEncryptingKey)
         {
-            DocumentHeaders = new DocumentHeaders(keyEncryptingKey);
+            DocumentHeaders = new V1DocumentHeaders(keyEncryptingKey);
         }
 
-        public DocumentHeaders DocumentHeaders { get; private set; }
+        public V1DocumentHeaders DocumentHeaders { get; private set; }
 
         private AxCryptReader _reader;
 
@@ -134,7 +135,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        private static void EncryptWithCompressionInternal(DocumentHeaders outputDocumentHeaders, Stream inputStream, CryptoStream encryptingStream, IProgressContext progress)
+        private static void EncryptWithCompressionInternal(V1DocumentHeaders outputDocumentHeaders, Stream inputStream, CryptoStream encryptingStream, IProgressContext progress)
         {
             using (ZOutputStream deflatingStream = new ZOutputStream(encryptingStream, -1))
             {
@@ -158,7 +159,7 @@ namespace Axantum.AxCrypt.Core
         /// and encryption key(s) etc.
         /// </summary>
         /// <param name="outputStream"></param>
-        public void CopyEncryptedTo(DocumentHeaders outputDocumentHeaders, Stream cipherStream, IProgressContext progress)
+        public void CopyEncryptedTo(V1DocumentHeaders outputDocumentHeaders, Stream cipherStream, IProgressContext progress)
         {
             if (outputDocumentHeaders == null)
             {

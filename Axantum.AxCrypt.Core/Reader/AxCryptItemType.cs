@@ -34,22 +34,27 @@ namespace Axantum.AxCrypt.Core.Reader
         /// what was expected was not found.
         /// </summary>
         None,
+
         /// <summary>
         /// We have seen the AxCrypt Guid
         /// </summary>
         MagicGuid,
+
         /// <summary>
         /// A header block of HeaderBlockType has been found
         /// </summary>
         HeaderBlock,
+
         /// <summary>
         /// A (part) of Encrypted and possibly Compressed data has been found
         /// </summary>
         Data,
+
         /// <summary>
         /// The end of the stream has been reached
         /// </summary>
         EndOfStream,
+
         /// <summary>
         /// An undefined item type that should never occur, used for unit testing.
         /// </summary>

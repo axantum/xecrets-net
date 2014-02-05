@@ -25,7 +25,7 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Reader;
+using Axantum.AxCrypt.Core.Header;
 using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestVersionValues()
         {
-            VersionHeaderBlock versionHeaderBlock = new VersionHeaderBlock();
+            VersionHeaderBlock versionHeaderBlock = new VersionHeaderBlock(new byte[] { 3, 2, 2, 0, 0 });
 
             Assert.That(versionHeaderBlock.FileVersionMajor, Is.EqualTo(3), "This is the current default version number");
             Assert.That(versionHeaderBlock.FileVersionMinor, Is.EqualTo(2), "This is the current default version number");

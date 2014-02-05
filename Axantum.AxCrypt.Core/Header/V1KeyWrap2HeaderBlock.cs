@@ -25,18 +25,18 @@
 
 #endregion Coypright and License
 
-namespace Axantum.AxCrypt.Core.Reader
+namespace Axantum.AxCrypt.Core.Header
 {
-    public class KeyWrap2HeaderBlock : HeaderBlock
+    public class V1KeyWrap2HeaderBlock : HeaderBlock
     {
-        public KeyWrap2HeaderBlock(byte[] dataBlock)
+        public V1KeyWrap2HeaderBlock(byte[] dataBlock)
             : base(HeaderBlockType.KeyWrap2, dataBlock)
         {
         }
 
         public override object Clone()
         {
-            KeyWrap2HeaderBlock block = new KeyWrap2HeaderBlock((byte[])GetDataBlockBytesReference().Clone());
+            V1KeyWrap2HeaderBlock block = new V1KeyWrap2HeaderBlock((byte[])GetDataBlockBytesReference().Clone());
             return block;
         }
     }

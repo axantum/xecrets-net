@@ -27,7 +27,7 @@
 
 using System;
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Reader;
+using Axantum.AxCrypt.Core.Header;
 using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -35,7 +35,7 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestKeyWrap1HeaderBlock
     {
-        private class KeyWrap1HeaderBlockForTest : KeyWrap1HeaderBlock
+        private class KeyWrap1HeaderBlockForTest : V1KeyWrap1HeaderBlock
         {
             public KeyWrap1HeaderBlockForTest(AesKey key)
                 : base(key)

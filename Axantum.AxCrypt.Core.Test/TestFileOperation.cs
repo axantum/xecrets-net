@@ -127,7 +127,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationStatus status;
             FileOperation fileOperation = new FileOperation(Instance.FileSystemState, new SessionNotify());
 
-            using (AxCryptDocument document = new AxCryptDocument(new Passphrase("a").DerivedPassphrase))
+            using (V1AxCryptDocument document = new V1AxCryptDocument(new Passphrase("a").DerivedPassphrase))
             {
                 using (Stream stream = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath).OpenRead())
                 {
@@ -155,7 +155,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             FileOperationStatus status;
             FileOperation fileOperation = new FileOperation(Instance.FileSystemState, new SessionNotify());
-            using (AxCryptDocument document = new AxCryptDocument(new Passphrase("a").DerivedPassphrase))
+            using (V1AxCryptDocument document = new V1AxCryptDocument(new Passphrase("a").DerivedPassphrase))
             {
                 using (Stream stream = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath).OpenRead())
                 {
@@ -173,13 +173,13 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestOpenAndLaunchOfAxCryptDocumentArgumentNullException()
         {
             string nullString = null;
-            AxCryptDocument nullDocument = null;
+            V1AxCryptDocument nullDocument = null;
             ProgressContext nullProgressContext = null;
             FileOperation fileOperation = new FileOperation(Instance.FileSystemState, new SessionNotify());
 
-            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(nullString, new AxCryptDocument(new AesKey(128)), new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(nullString, new V1AxCryptDocument(new AesKey(128)), new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, nullDocument, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, new AxCryptDocument(new AesKey(128)), nullProgressContext); });
+            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, new V1AxCryptDocument(new AesKey(128)), nullProgressContext); });
         }
 
         [Test]

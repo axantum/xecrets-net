@@ -28,7 +28,7 @@
 using Axantum.AxCrypt.Core.Extensions;
 using System;
 
-namespace Axantum.AxCrypt.Core.Reader
+namespace Axantum.AxCrypt.Core.Header
 {
     public class FileInfoHeaderBlock : EncryptedHeaderBlock
     {

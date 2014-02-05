@@ -27,6 +27,7 @@
 
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Test.Properties;
@@ -79,7 +80,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (MemoryStream testStream = new MemoryStream())
             {
                 AxCrypt1Guid.Write(testStream);
-                VersionHeaderBlock versionHeaderBlock = new VersionHeaderBlock();
+                VersionHeaderBlock versionHeaderBlock = new VersionHeaderBlock(new byte[] { 3, 2, 2, 0, 0 });
                 versionHeaderBlock.Write(testStream);
                 PreambleHeaderBlock preambleHeaderBlock = new PreambleHeaderBlock();
                 preambleHeaderBlock.Write(testStream);
@@ -130,6 +131,7 @@ namespace Axantum.AxCrypt.Core.Test
 
                             case AxCryptItemType.EndOfStream:
                                 break;
+
                             default:
                                 break;
                         }

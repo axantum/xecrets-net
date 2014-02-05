@@ -25,7 +25,7 @@
 
 #endregion Coypright and License
 
-namespace Axantum.AxCrypt.Core.Reader
+namespace Axantum.AxCrypt.Core.Header
 {
     public class UnrecognizedHeaderBlock : HeaderBlock
     {

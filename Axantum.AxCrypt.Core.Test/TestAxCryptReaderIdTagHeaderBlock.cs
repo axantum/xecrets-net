@@ -27,6 +27,7 @@
 
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Reader;
 using NUnit.Framework;
 
@@ -55,7 +56,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 AxCrypt1Guid.Write(testStream);
                 new PreambleHeaderBlock().Write(testStream);
-                new IdTagHeaderBlock("A test").Write(testStream);
+                new V1IdTagHeaderBlock("A test").Write(testStream);
                 testStream.Position = 0;
                 using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
                 {
@@ -67,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Test
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the next HeaderBlock");
                     Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.HeaderBlock), "This should be a header block");
                     Assert.That(axCryptReader.CurrentHeaderBlock.HeaderBlockType, Is.EqualTo(HeaderBlockType.IdTag), "This should be an IdTag block");
-                    IdTagHeaderBlock idTagHeaderBlock = (IdTagHeaderBlock)axCryptReader.CurrentHeaderBlock;
+                    V1IdTagHeaderBlock idTagHeaderBlock = (V1IdTagHeaderBlock)axCryptReader.CurrentHeaderBlock;
                     Assert.That(idTagHeaderBlock.IdTag, Is.EqualTo("A test"), "We're expecting to be able to read the same tag we wrote");
                 }
             }

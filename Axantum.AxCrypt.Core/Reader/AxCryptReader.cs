@@ -25,13 +25,14 @@
 
 #endregion Coypright and License
 
+using System;
+using System.IO;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
-using System;
-using System.IO;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
@@ -272,15 +273,15 @@ namespace Axantum.AxCrypt.Core.Reader
                     break;
 
                 case HeaderBlockType.KeyWrap1:
-                    CurrentHeaderBlock = new KeyWrap1HeaderBlock(dataBlock);
+                    CurrentHeaderBlock = new V1KeyWrap1HeaderBlock(dataBlock);
                     break;
 
                 case HeaderBlockType.KeyWrap2:
-                    CurrentHeaderBlock = new KeyWrap2HeaderBlock(dataBlock);
+                    CurrentHeaderBlock = new V1KeyWrap2HeaderBlock(dataBlock);
                     break;
 
                 case HeaderBlockType.IdTag:
-                    CurrentHeaderBlock = new IdTagHeaderBlock(dataBlock);
+                    CurrentHeaderBlock = new V1IdTagHeaderBlock(dataBlock);
                     break;
 
                 case HeaderBlockType.Data:
@@ -288,15 +289,15 @@ namespace Axantum.AxCrypt.Core.Reader
                     break;
 
                 case HeaderBlockType.FileNameInfo:
-                    CurrentHeaderBlock = new FileNameInfoHeaderBlock(dataBlock);
+                    CurrentHeaderBlock = new V1FileNameInfoHeaderBlock(dataBlock);
                     break;
 
                 case HeaderBlockType.EncryptionInfo:
-                    CurrentHeaderBlock = new EncryptionInfoHeaderBlock(dataBlock);
+                    CurrentHeaderBlock = new V1EncryptionInfoHeaderBlock(dataBlock);
                     break;
 
                 case HeaderBlockType.CompressionInfo:
-                    CurrentHeaderBlock = new CompressionInfoHeaderBlock(dataBlock);
+                    CurrentHeaderBlock = new V1CompressionInfoHeaderBlock(dataBlock);
                     break;
 
                 case HeaderBlockType.FileInfo:

@@ -98,7 +98,7 @@ namespace Axantum.AxCrypt.Core.UI
             return status;
         }
 
-        public virtual FileOperationStatus OpenAndLaunchApplication(string encryptedFile, AxCryptDocument document, IProgressContext progress)
+        public virtual FileOperationStatus OpenAndLaunchApplication(string encryptedFile, V1AxCryptDocument document, IProgressContext progress)
         {
             if (encryptedFile == null)
             {
@@ -206,7 +206,7 @@ namespace Axantum.AxCrypt.Core.UI
                 }
                 using (FileLock sourceLock = FileLock.Lock(sourceFileInfo))
                 {
-                    using (AxCryptDocument document = Factory.New<AxCryptFile>().Document(sourceFileInfo, key, new ProgressContext()))
+                    using (V1AxCryptDocument document = Factory.New<AxCryptFile>().Document(sourceFileInfo, key, new ProgressContext()))
                     {
                         if (!document.PassphraseIsValid)
                         {
@@ -221,7 +221,7 @@ namespace Axantum.AxCrypt.Core.UI
             return destinationActiveFile;
         }
 
-        private static ActiveFile DecryptActiveFileDocument(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFolderInfo, AxCryptDocument document, IProgressContext progress)
+        private static ActiveFile DecryptActiveFileDocument(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFolderInfo, V1AxCryptDocument document, IProgressContext progress)
         {
             string destinationName = document.DocumentHeaders.FileName;
             string destinationPath = Path.Combine(destinationFolderInfo.FullName, destinationName);
@@ -265,7 +265,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             foreach (AesKey key in keys)
             {
-                using (AxCryptDocument document = Factory.New<AxCryptFile>().Document(destinationActiveFile.EncryptedFileInfo, key, progress))
+                using (V1AxCryptDocument document = Factory.New<AxCryptFile>().Document(destinationActiveFile.EncryptedFileInfo, key, progress))
                 {
                     if (document.PassphraseIsValid)
                     {
