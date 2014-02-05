@@ -16,3 +16,4 @@ Axantum.AxCrypt.Core/Properties/AssemblyInfo.cs
 test-results/*
 *.DotSettings
 packages/*
+Axantum.AxCrypt.Core.Test/*.tmp
