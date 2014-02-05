@@ -134,7 +134,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public KeyWrapSalt ThumbprintSalt
         {
-            get { return Load("ThumbprintSalt", () => Factory.New<int, KeyWrapSalt>(AesKey.MaxKeyLength)); }
+            get { return Load("ThumbprintSalt", () => Factory.New<int, KeyWrapSalt>(64)); }
             set { Store("ThumbprintSalt", JsonConvert.SerializeObject(value)); }
         }
 

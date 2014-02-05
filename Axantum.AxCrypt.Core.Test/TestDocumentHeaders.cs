@@ -80,7 +80,7 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (AxCryptReaderForTest axCryptReader = new AxCryptReaderForTest(inputStream))
                 {
-                    DocumentHeaders documentHeaders = new DocumentHeaders(new AesKey());
+                    DocumentHeaders documentHeaders = new DocumentHeaders(new AesKey(128));
                     Assert.Throws<InternalErrorException>(() =>
                     {
                         documentHeaders.Load(axCryptReader);
@@ -92,7 +92,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestBadArguments()
         {
-            DocumentHeaders documentHeaders = new DocumentHeaders(new AesKey());
+            DocumentHeaders documentHeaders = new DocumentHeaders(new AesKey(128));
             Assert.Throws<ArgumentNullException>(() =>
             {
                 documentHeaders.WriteWithHmac(null);
@@ -110,7 +110,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestKeyEncryptingKey()
         {
-            AesKey keyEncryptingKey = new AesKey();
+            AesKey keyEncryptingKey = new AesKey(128);
             DocumentHeaders headers = new DocumentHeaders(keyEncryptingKey);
             Assert.That(headers.KeyEncryptingKey, Is.EqualTo(keyEncryptingKey), "Unexpected key encrypting key retrieved.");
         }

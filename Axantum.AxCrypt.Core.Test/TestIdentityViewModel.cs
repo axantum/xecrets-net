@@ -166,7 +166,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(ivm.PassphraseText, Is.EqualTo("p"));
             Assert.That(Instance.KnownKeys.DefaultEncryptionKey.Thumbprint, Is.EqualTo(new Passphrase("p").DerivedPassphrase.Thumbprint));
-            Assert.That(id.Thumbprint, Is.EqualTo(AesKey.Zero.Thumbprint));
+            Assert.That(id.Thumbprint, Is.EqualTo(AesKey.Zero128.Thumbprint));
         }
 
         [Test]
@@ -189,7 +189,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(ivm.PassphraseText, Is.EqualTo("p"));
             Assert.That(Instance.KnownKeys.DefaultEncryptionKey.Thumbprint, Is.EqualTo(key.Thumbprint));
-            Assert.That(id.Thumbprint, Is.EqualTo(AesKey.Zero.Thumbprint));
+            Assert.That(id.Thumbprint, Is.EqualTo(AesKey.Zero128.Thumbprint));
         }
 
         [Test]

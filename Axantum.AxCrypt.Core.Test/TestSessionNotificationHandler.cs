@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, Factory.New<ActiveFileAction>(), mock);
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new AesKey(), @"C:\My Documents\"));
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new AesKey(128), @"C:\My Documents\"));
 
             Assert.That(called, Is.True);
         }
@@ -82,7 +82,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, Factory.New<ActiveFileAction>(), mock);
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, new AesKey(), @"C:\My Documents\"));
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, new AesKey(128), @"C:\My Documents\"));
 
             Assert.That(called, Is.True);
         }
@@ -101,7 +101,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, Factory.New<ActiveFileAction>(), mock);
             FakeRuntimeFileInfo.AddFolder(@"C:\WatchedFolder");
-            AesKey key = new AesKey();
+            AesKey key = new AesKey(128);
             Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder", key.Thumbprint));
 
             handler.HandleNotification(new SessionNotification(SessionNotificationType.LogOn, key));
@@ -119,7 +119,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, Factory.New<ActiveFileAction>(), mock);
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.LogOff, new AesKey()));
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.LogOff, new AesKey(128)));
 
             Assert.That(called, Is.True);
         }
@@ -133,7 +133,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, mock, Factory.New<AxCryptFile>());
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.ActiveFileChange, new AesKey()));
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.ActiveFileChange, new AesKey(128)));
 
             Assert.That(called, Is.True);
         }
@@ -147,7 +147,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, mock, Factory.New<AxCryptFile>());
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.SessionStart, new AesKey()));
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.SessionStart, new AesKey(128)));
 
             Assert.That(called, Is.True);
         }
@@ -161,7 +161,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, mock, Factory.New<AxCryptFile>());
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.EncryptPendingFiles, new AesKey()));
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.EncryptPendingFiles, new AesKey(128)));
 
             Assert.That(called, Is.True);
         }
@@ -205,8 +205,8 @@ namespace Axantum.AxCrypt.Core.Test
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, Factory.New<ActiveFileAction>(), mock);
 
             List<SessionNotification> sessionEvents = new List<SessionNotification>();
-            sessionEvents.Add(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new AesKey(), @"C:\My Documents\"));
-            sessionEvents.Add(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new AesKey(), @"C:\My Documents\"));
+            sessionEvents.Add(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new AesKey(128), @"C:\My Documents\"));
+            sessionEvents.Add(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new AesKey(128), @"C:\My Documents\"));
 
             foreach (SessionNotification sessionEvent in sessionEvents)
             {

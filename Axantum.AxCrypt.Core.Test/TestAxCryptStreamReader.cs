@@ -120,19 +120,19 @@ namespace Axantum.AxCrypt.Core.Test
 
                     Assert.Throws<ArgumentNullException>(() =>
                     {
-                        axCryptReader.CreateEncryptedDataStream(new AesKey(), 0, null);
+                        axCryptReader.CreateEncryptedDataStream(new AesKey(128), 0, null);
                     }, "A non-null ProgresContext must be specified.");
 
                     Assert.Throws<InvalidOperationException>(() =>
                     {
-                        axCryptReader.CreateEncryptedDataStream(new AesKey(), 0, new ProgressContext());
+                        axCryptReader.CreateEncryptedDataStream(new AesKey(128), 0, new ProgressContext());
                     }, "The reader is not positioned properly to read encrypted data.");
 
                     axCryptReader.Dispose();
 
                     Assert.Throws<ObjectDisposedException>(() =>
                     {
-                        axCryptReader.CreateEncryptedDataStream(new AesKey(), 0, new ProgressContext());
+                        axCryptReader.CreateEncryptedDataStream(new AesKey(128), 0, new ProgressContext());
                     }, "The reader is disposed.");
                 }
             }

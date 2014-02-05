@@ -39,16 +39,12 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// </summary>
     public class AesKey : IEquatable<AesKey>
     {
-        public static readonly int DefaultKeyLength = 16;
-
-        public static readonly int MaxKeyLength = 64;
-
         private static ICollection<int> _validAesKeySizes = ValidAesKeySizes();
 
         private byte[] _aesKey;
 
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "This type is immutable.")]
-        public static readonly AesKey Zero = new AesKey(new byte[DefaultKeyLength], AesKeyThumbprint.Zero);
+        public static readonly AesKey Zero128 = new AesKey(new byte[16], AesKeyThumbprint.Zero);
 
         private AesKey(byte[] key, AesKeyThumbprint thumbprint)
             : this(key)
@@ -59,8 +55,8 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <summary>
         /// Instantiate a random key.
         /// </summary>
-        public AesKey()
-            : this(OS.Current.GetRandomBytes(DefaultKeyLength))
+        public AesKey(int keyBits)
+            : this(OS.Current.GetRandomBytes(keyBits / 8))
         {
         }
 

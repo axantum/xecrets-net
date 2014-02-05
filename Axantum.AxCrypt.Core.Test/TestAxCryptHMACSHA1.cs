@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestMethods()
         {
-            AesKey key = new AesKey();
+            AesKey key = new AesKey(128);
             HMAC hmac = AxCryptHMACSHA1.Create(key);
 
             Assert.That(hmac.Key, Is.EquivalentTo(key.GetBytes()), "Ensure that we're using the specified key.");

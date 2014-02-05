@@ -25,9 +25,9 @@
 
 #endregion Coypright and License
 
+using System;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
-using System;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
@@ -130,7 +130,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
         private void Initialize(AesKey keyEncryptingKey)
         {
-            AesKey masterKey = new AesKey();
+            AesKey masterKey = new AesKey(128);
             long iterations = Instance.UserSettings.KeyWrapIterations;
             KeyWrapSalt salt = new KeyWrapSalt(keyEncryptingKey.Length);
             using (KeyWrap keyWrap = new KeyWrap(keyEncryptingKey, salt, iterations, KeyWrapMode.AxCrypt))

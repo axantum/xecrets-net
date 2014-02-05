@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt.Core.Session
     public class PassphraseIdentity
     {
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "This type is immutable.")]
-        public static readonly PassphraseIdentity Empty = new PassphraseIdentity(String.Empty, AesKey.Zero);
+        public static readonly PassphraseIdentity Empty = new PassphraseIdentity(String.Empty, AesKey.Zero128);
 
         public PassphraseIdentity(string name)
         {

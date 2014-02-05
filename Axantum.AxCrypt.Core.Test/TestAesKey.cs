@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
+using System;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
-using System;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -81,7 +81,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestMethods()
         {
-            AesKey key = new AesKey();
+            AesKey key = new AesKey(128);
             Assert.That(key.GetBytes().Length, Is.EqualTo(16), "The default key length is 128 bits.");
             Assert.That(key.GetBytes(), Is.Not.EquivalentTo(new byte[16]), "A random key cannot be expected to be all zeros.");
 
@@ -94,7 +94,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             AesKey key1 = new AesKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
             AesKey key2 = new AesKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
-            AesKey key3 = new AesKey();
+            AesKey key3 = new AesKey(128);
 
             Assert.That(!key1.Equals(null), "A key is never equal to a null reference.");
             Assert.That(key1.Equals(key2), "Two different, but equivalent keys should compare equal.");
@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             object key1 = new AesKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
             object key2 = new AesKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
-            object key3 = new AesKey();
+            object key3 = new AesKey(128);
 
             Assert.That(!key1.Equals(null), "A key is never equal to a null reference.");
             Assert.That(key1.Equals(key2), "Two different, but equivalent keys should compare equal.");
@@ -120,7 +120,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             AesKey key1 = new AesKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
             AesKey key2 = new AesKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
-            AesKey key3 = new AesKey();
+            AesKey key3 = new AesKey(128);
             AesKey key3alias = key3;
             AesKey nullKey = null;
 
@@ -139,7 +139,7 @@ namespace Axantum.AxCrypt.Core.Test
             AesKeyThumbprint originalThumbprint = key1.Thumbprint;
             Assert.That(originalThumbprint, Is.EqualTo(key1.Thumbprint), "The thumbprints should be the same.");
 
-            key1.Thumbprint = new AesKeyThumbprint(key1, new KeyWrapSalt(AesKey.DefaultKeyLength), Instance.UserSettings.KeyWrapIterations);
+            key1.Thumbprint = new AesKeyThumbprint(key1, new KeyWrapSalt(16), Instance.UserSettings.KeyWrapIterations);
 
             Assert.That(originalThumbprint, Is.Not.EqualTo(key1.Thumbprint), "The thumbprints should differ.");
         }

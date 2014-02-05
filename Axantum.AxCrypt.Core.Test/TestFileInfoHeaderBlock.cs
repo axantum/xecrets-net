@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestNonUtcFileTimes()
         {
             FileInfoHeaderBlock fileInfoHeaderBlock = new FileInfoHeaderBlock();
-            fileInfoHeaderBlock.HeaderCrypto = new AesCrypto(new AesKey());
+            fileInfoHeaderBlock.HeaderCrypto = new AesCrypto(new AesKey(128));
 
             DateTime utcNow = OS.Current.UtcNow;
             DateTime localNow = utcNow.ToLocalTime();

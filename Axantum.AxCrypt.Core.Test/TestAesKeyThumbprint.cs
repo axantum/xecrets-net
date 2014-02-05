@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Core.Test
             AesKey nullKey = null;
             KeyWrapSalt nullSalt = null;
             Assert.Throws<ArgumentNullException>(() => { if (new AesKeyThumbprint(nullKey, new KeyWrapSalt(16), 10) == null) { } });
-            Assert.Throws<ArgumentNullException>(() => { if (new AesKeyThumbprint(new AesKey(), nullSalt, 10) == null) { } });
+            Assert.Throws<ArgumentNullException>(() => { if (new AesKeyThumbprint(new AesKey(128), nullSalt, 10) == null) { } });
         }
 
         [Test]
@@ -71,7 +71,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(thumbprint1 == thumbprint2, "Two thumb prints made from the same key and salt bytes, although different AesKey instances should be equivalent.");
 
-            AesKeyThumbprint thumbprint3 = new AesKeyThumbprint(new AesKey(), new KeyWrapSalt(AesKey.DefaultKeyLength), 10);
+            AesKeyThumbprint thumbprint3 = new AesKeyThumbprint(new AesKey(128), new KeyWrapSalt(16), 10);
             Assert.That(thumbprint2 != thumbprint3, "Two very different keys and salts should not be equivalent.");
         }
 
@@ -80,8 +80,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             AesKey key1 = new AesKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
             AesKey key2 = new AesKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
-            KeyWrapSalt salt1 = new KeyWrapSalt(AesKey.DefaultKeyLength);
-            KeyWrapSalt salt2 = new KeyWrapSalt(AesKey.DefaultKeyLength);
+            KeyWrapSalt salt1 = new KeyWrapSalt(16);
+            KeyWrapSalt salt2 = new KeyWrapSalt(16);
 
             AesKeyThumbprint thumbprint1a = new AesKeyThumbprint(key1, salt1, 13);
             AesKeyThumbprint thumbprint1a_alias = thumbprint1a;
@@ -112,8 +112,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             AesKey key1 = new AesKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
             AesKey key2 = new AesKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
-            KeyWrapSalt salt1 = new KeyWrapSalt(AesKey.DefaultKeyLength);
-            KeyWrapSalt salt2 = new KeyWrapSalt(AesKey.DefaultKeyLength);
+            KeyWrapSalt salt1 = new KeyWrapSalt(16);
+            KeyWrapSalt salt2 = new KeyWrapSalt(16);
 
             AesKeyThumbprint thumbprint1a = new AesKeyThumbprint(key1, salt1, 17);
             AesKeyThumbprint thumbprint1b = new AesKeyThumbprint(key1, salt2, 17);

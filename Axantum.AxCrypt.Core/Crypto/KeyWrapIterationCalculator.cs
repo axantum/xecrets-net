@@ -39,7 +39,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         public virtual long Iterations()
         {
-            AesKey dummyKey = new AesKey();
+            AesKey dummyKey = new AesKey(128);
             KeyWrapSalt dummySalt = new KeyWrapSalt(dummyKey.Length);
             DateTime startTime = OS.Current.UtcNow;
             DateTime endTime;

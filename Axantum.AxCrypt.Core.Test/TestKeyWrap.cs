@@ -187,7 +187,7 @@ namespace Axantum.AxCrypt.Core.Test
             keyWrap.Dispose();
             Assert.Throws<ObjectDisposedException>(() =>
             {
-                keyWrap.Wrap(new AesKey());
+                keyWrap.Wrap(new AesKey(128));
             });
 
             Assert.Throws<ObjectDisposedException>(() =>

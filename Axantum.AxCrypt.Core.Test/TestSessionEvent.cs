@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(sessionEvent.FullName, Is.Null);
             Assert.That(sessionEvent.Key, Is.Null);
 
-            AesKey key = new AesKey();
+            AesKey key = new AesKey(128);
             sessionEvent = new SessionNotification(SessionNotificationType.KnownKeyChange, key);
             Assert.That(sessionEvent.NotificationType, Is.EqualTo(SessionNotificationType.KnownKeyChange));
             Assert.That(sessionEvent.FullName, Is.Null);
@@ -80,7 +80,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEquality()
         {
-            AesKey key = new AesKey();
+            AesKey key = new AesKey(128);
             string fullName = @"C:\Test\Test.txt";
 
             SessionNotification sessionEventA1 = new SessionNotification(SessionNotificationType.ActiveFileChange);
@@ -89,7 +89,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotification sessionEventB1 = new SessionNotification(SessionNotificationType.ActiveFileChange, key);
             SessionNotification sessionEventB2 = new SessionNotification(SessionNotificationType.ActiveFileChange, key);
-            SessionNotification sessionEventB3 = new SessionNotification(SessionNotificationType.ActiveFileChange, new AesKey());
+            SessionNotification sessionEventB3 = new SessionNotification(SessionNotificationType.ActiveFileChange, new AesKey(128));
 
             SessionNotification sessionEventC1 = new SessionNotification(SessionNotificationType.ActiveFileChange, fullName);
             SessionNotification sessionEventC2 = new SessionNotification(SessionNotificationType.ActiveFileChange, fullName);
@@ -97,7 +97,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotification sessionEventD1 = new SessionNotification(SessionNotificationType.ActiveFileChange, key, fullName);
             SessionNotification sessionEventD2 = new SessionNotification(SessionNotificationType.ActiveFileChange, key, fullName);
-            SessionNotification sessionEventD3 = new SessionNotification(SessionNotificationType.ActiveFileChange, new AesKey(), fullName);
+            SessionNotification sessionEventD3 = new SessionNotification(SessionNotificationType.ActiveFileChange, new AesKey(128), fullName);
 
             SessionNotification nullSessionEvent = null;
             SessionNotification sessionEventA1Alias = sessionEventA1;
@@ -128,7 +128,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(objectSessionEventD1.Equals(sessionEventD1));
             Assert.That(!objectSessionEventD1.Equals(objectSessionEventD3));
-            Assert.That(!objectSessionEventD1.Equals(new AesKey()));
+            Assert.That(!objectSessionEventD1.Equals(new AesKey(128)));
         }
     }
 }

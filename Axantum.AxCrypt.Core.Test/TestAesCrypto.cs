@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestInvalidArguments()
         {
-            AesKey key = new AesKey();
+            AesKey key = new AesKey(128);
             AesIV iv = new AesIV();
 
             Assert.Throws<ArgumentNullException>(() =>
@@ -77,7 +77,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDoubleDispose()
         {
-            AesKey key = new AesKey();
+            AesKey key = new AesKey(128);
             AesIV iv = new AesIV();
 
             AesCrypto crypto = new AesCrypto(key, iv, CipherMode.CBC, PaddingMode.None);
@@ -96,7 +96,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestObjectDisposed()
         {
-            AesKey key = new AesKey();
+            AesKey key = new AesKey(128);
             AesIV iv = new AesIV();
 
             AesCrypto crypto = new AesCrypto(key, iv, CipherMode.CBC, PaddingMode.None);
