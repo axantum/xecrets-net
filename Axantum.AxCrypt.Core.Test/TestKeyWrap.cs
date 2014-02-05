@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
+using System;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
-using System;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -136,13 +136,6 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 Assert.Throws<InternalErrorException>(() => { keyWrap.Unwrap(_keyData.GetBytes()); }, "Calling with too short wrapped data.");
             }
-
-            Assert.Throws<InternalErrorException>(() =>
-            {
-                using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, new KeyWrapSalt(32), 6, KeyWrapMode.AxCrypt))
-                {
-                }
-            }, "Calling with too long salt.");
 
             Assert.Throws<InternalErrorException>(() =>
             {

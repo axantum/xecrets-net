@@ -25,14 +25,14 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
+using Newtonsoft.Json;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -134,7 +134,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public KeyWrapSalt ThumbprintSalt
         {
-            get { return Load("ThumbprintSalt", () => Factory.New<int, KeyWrapSalt>(AesKey.DefaultKeyLength)); }
+            get { return Load("ThumbprintSalt", () => Factory.New<int, KeyWrapSalt>(AesKey.MaxKeyLength)); }
             set { Store("ThumbprintSalt", JsonConvert.SerializeObject(value)); }
         }
 

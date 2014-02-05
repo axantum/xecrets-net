@@ -25,12 +25,12 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -40,6 +40,8 @@ namespace Axantum.AxCrypt.Core.Crypto
     public class AesKey : IEquatable<AesKey>
     {
         public static readonly int DefaultKeyLength = 16;
+
+        public static readonly int MaxKeyLength = 64;
 
         private static ICollection<int> _validAesKeySizes = ValidAesKeySizes();
 

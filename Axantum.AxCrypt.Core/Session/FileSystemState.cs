@@ -25,16 +25,16 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Session
 {
@@ -74,25 +74,6 @@ namespace Axantum.AxCrypt.Core.Session
         }
 
         private Dictionary<string, ActiveFile> _activeFilesByEncryptedPath;
-
-        private KeyWrapSalt _thumbprintSalt;
-
-        [DataMember(Name = "ThumbprintSalt")]
-        public KeyWrapSalt ThumbprintSalt
-        {
-            get
-            {
-                if (_thumbprintSalt == null)
-                {
-                    _thumbprintSalt = new KeyWrapSalt(AesKey.DefaultKeyLength);
-                }
-                return _thumbprintSalt;
-            }
-            private set
-            {
-                _thumbprintSalt = value;
-            }
-        }
 
         [DataMember(Name = "PassphraseIdentities")]
         public virtual IList<PassphraseIdentity> Identities

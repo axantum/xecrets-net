@@ -25,11 +25,11 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -41,7 +41,6 @@ namespace Axantum.AxCrypt.Core.Crypto
         private static readonly byte[] A = new byte[] { 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6 };
 
         private AesKey _key;
-        private KeyWrapSalt _salt;
         private long _iterations;
         private readonly KeyWrapMode _mode;
         private AesManaged _aes = new AesManaged();
@@ -74,7 +73,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new ArgumentNullException("salt");
             }
-            if (salt.Length != 0 && salt.Length != key.Length)
+            if (salt.Length != 0 && salt.Length < key.Length)
             {
                 throw new InternalErrorException("salt length is incorrect");
             }
@@ -89,12 +88,10 @@ namespace Axantum.AxCrypt.Core.Crypto
             _mode = mode;
 
             _key = key;
-            _salt = salt;
-
             _iterations = iterations;
 
             byte[] saltedKey = _key.GetBytes();
-            saltedKey.Xor(_salt.GetBytes());
+            saltedKey.Xor(salt.GetBytes().Reduce(key.Length));
 
             _aes.Mode = CipherMode.ECB;
             _aes.KeySize = _key.Length * 8;

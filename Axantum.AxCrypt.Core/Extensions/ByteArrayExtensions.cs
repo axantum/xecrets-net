@@ -215,5 +215,23 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
             return value;
         }
+
+        public static byte[] Reduce(this byte[] bytes, int length)
+        {
+            if (bytes.Length == 0)
+            {
+                return bytes;
+            }
+            if (bytes.Length < length)
+            {
+                throw new ArgumentException("Can't reduce a byte array that is already shorter than the target length.");
+            }
+            byte[] reduced = new byte[length];
+            for (int i = 0; i < bytes.Length; ++i)
+            {
+                reduced[i % length] ^= bytes[i];
+            }
+            return reduced;
+        }
     }
 }
