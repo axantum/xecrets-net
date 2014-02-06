@@ -74,5 +74,19 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             return (byte[])_iv.Clone();
         }
+
+        /// <summary>
+        /// Gets the length of the IV.
+        /// </summary>
+        /// <value>
+        /// The length.
+        /// </value>
+        public int Length
+        {
+            get
+            {
+                return _iv.Length;
+            }
+        }
     }
 }

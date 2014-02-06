@@ -218,6 +218,17 @@ namespace Axantum.AxCrypt.Core.Extensions
             return value;
         }
 
+        public static long GetBigEndianValue(this byte[] left, int offset, int length)
+        {
+            long value = 0;
+            for (int i = 0; i < length; ++i)
+            {
+                value <<= 8;
+                value |= left[offset + i];
+            }
+            return value;
+        }
+
         public static byte[] Reduce(this byte[] value, int length)
         {
             if (value.Length == 0)

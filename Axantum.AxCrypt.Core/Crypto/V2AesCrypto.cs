@@ -12,16 +12,26 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// </summary>
     public class V2AesCrypto : ICrypto
     {
-        private Aes _aes = null;
+        private Aes _aes;
 
-        private long _keyStreamIndex = 0;
+        private long _blockCounter;
+
+        private int _blockByteSize;
+
+        private int _blockOffset;
 
         /// <summary>
         /// Instantiate a transformation
         /// </summary>
         /// <param name="key">The key</param>
         /// <param name="iv">Initial Vector</param>
-        public V2AesCrypto(AesKey key, AesIV iv, long keyStreamIndex)
+        /// <param name="blockCounter">The block counter.</param>
+        /// <exception cref="System.ArgumentNullException">
+        /// key
+        /// or
+        /// iv
+        /// </exception>
+        public V2AesCrypto(AesKey key, AesIV iv, long blockCounter, int blockOffset)
         {
             if (key == null)
             {
@@ -31,12 +41,21 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new ArgumentNullException("iv");
             }
-            _keyStreamIndex = keyStreamIndex;
+
             _aes = new AesManaged();
             _aes.Key = key.GetBytes();
             _aes.Mode = CipherMode.ECB;
             _aes.IV = iv.GetBytes();
             _aes.Padding = PaddingMode.None;
+
+            _blockByteSize = _aes.BlockSize / 8;
+            _blockCounter = blockCounter;
+            _blockOffset = blockOffset;
+        }
+
+        public V2AesCrypto(AesKey key, AesIV iv, long keyStreamByteIndex)
+            : this(key, iv, keyStreamByteIndex / iv.Length, (int)(keyStreamByteIndex % iv.Length))
+        {
         }
 
         /// <summary>
@@ -48,7 +67,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </returns>
         public byte[] Decrypt(byte[] ciphertext)
         {
-            return KeyStream(_keyStreamIndex, ciphertext.Length).Xor(ciphertext);
+            return KeyStream(ciphertext.Length).Xor(ciphertext);
         }
 
         /// <summary>
@@ -60,34 +79,33 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </returns>
         public byte[] Encrypt(byte[] plaintext)
         {
-            return KeyStream(_keyStreamIndex, plaintext.Length).Xor(plaintext);
+            return KeyStream(plaintext.Length).Xor(plaintext);
         }
 
-        private byte[] KeyStream(long keyStreamIndex, int length)
+        private byte[] KeyStream(int length)
         {
             byte[] keyStream = new byte[length];
 
-            int blockOffset = (int)(keyStreamIndex % (_aes.BlockSize / 8));
             using (ICryptoTransform encryptor = _aes.CreateEncryptor())
             {
-                byte[] counterBlock = encryptor.TransformFinalBlock(GetCounterBlock(_keyStreamIndex), 0, _aes.BlockSize / 8);
+                byte[] counterBlock = encryptor.TransformFinalBlock(GetCounterBlock(_blockCounter), 0, _blockByteSize);
                 for (int i = 0; i < length; )
                 {
-                    if (blockOffset == (_aes.BlockSize / 8))
+                    if (_blockOffset == _blockByteSize)
                     {
-                        blockOffset = 0;
-                        counterBlock = encryptor.TransformFinalBlock(GetCounterBlock(_keyStreamIndex + i), 0, _aes.BlockSize / 8);
+                        _blockOffset = 0;
+                        ++_blockCounter;
+                        counterBlock = encryptor.TransformFinalBlock(GetCounterBlock(_blockCounter), 0, _blockByteSize);
                     }
-                    keyStream[i++] = counterBlock[blockOffset++];
+                    keyStream[i++] = counterBlock[_blockOffset++];
                 }
             }
             return keyStream;
         }
 
-        private byte[] GetCounterBlock(long keyStreamIndex)
+        private byte[] GetCounterBlock(long blockCounter)
         {
-            long counter = keyStreamIndex / (_aes.BlockSize / 8);
-            byte[] counterBytes = counter.GetBigEndianBytes();
+            byte[] counterBytes = blockCounter.GetBigEndianBytes();
             byte[] counterBlock = ((byte[])_aes.IV.Clone()).Xor(_aes.IV.Length - counterBytes.Length, counterBytes, 0, counterBytes.Length);
             return counterBlock;
         }
