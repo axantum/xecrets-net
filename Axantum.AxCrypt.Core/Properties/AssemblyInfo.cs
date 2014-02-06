@@ -72,3 +72,4 @@ using System.Runtime.InteropServices;
 #endif
 
 [module: SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", Scope = "namespace", Target = "Axantum.AxCrypt.Core.Ipc", MessageId = "Ipc")]
+[module: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "Axantum.AxCrypt.Core.Reader")]

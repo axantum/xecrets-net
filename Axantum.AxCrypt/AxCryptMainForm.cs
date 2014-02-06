@@ -25,15 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Ipc;
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.Session;
-using Axantum.AxCrypt.Core.UI;
-using Axantum.AxCrypt.Core.UI.ViewModel;
-using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -47,6 +38,15 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
+using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Ipc;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Core.UI.ViewModel;
+using Axantum.AxCrypt.Properties;
 
 namespace Axantum.AxCrypt
 {
@@ -322,7 +322,7 @@ namespace Axantum.AxCrypt
             _mainToolStrip.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForMainToolStrip(e); };
 
             _knownFoldersViewModel.BindPropertyChanged("KnownFolders", (IEnumerable<KnownFolder> folders) => UpdateKnownFolders(folders));
-            _knownFoldersViewModel.KnownFolders = new KnownFoldersDiscovery().Discover();
+            _knownFoldersViewModel.KnownFolders = KnownFoldersDiscovery.Discover();
         }
 
         private void BindToFileOperationViewModel()

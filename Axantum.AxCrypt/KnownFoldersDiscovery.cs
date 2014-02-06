@@ -25,20 +25,20 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.UI;
-using Axantum.AxCrypt.Properties;
-using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Properties;
+using Microsoft.Win32;
 
 namespace Axantum.AxCrypt
 {
-    internal class KnownFoldersDiscovery
+    internal static class KnownFoldersDiscovery
     {
-        public IEnumerable<KnownFolder> Discover()
+        public static IEnumerable<KnownFolder> Discover()
         {
             List<KnownFolder> knownFolders = new List<KnownFolder>();
 
@@ -50,14 +50,14 @@ namespace Axantum.AxCrypt
             return knownFolders;
         }
 
-        private void CheckDocumentsLibrary(IList<KnownFolder> knownFolders)
+        private static void CheckDocumentsLibrary(IList<KnownFolder> knownFolders)
         {
             Icon icon = Resources.DocumentsLibrary;
             KnownFolder windowsDesktopFolder = new KnownFolder(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), Resources.MyAxCryptFolderName, icon.ToBitmap(), null);
             knownFolders.Add(windowsDesktopFolder);
         }
 
-        private void CheckDropBox(IList<KnownFolder> knownFolders)
+        private static void CheckDropBox(IList<KnownFolder> knownFolders)
         {
             RegistryKey dropBoxKey = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Uninstall\Dropbox");
             if (dropBoxKey == null)
@@ -84,7 +84,7 @@ namespace Axantum.AxCrypt
             knownFolders.Add(knownFolder);
         }
 
-        private void CheckSkyDrive(IList<KnownFolder> knownFolders)
+        private static void CheckSkyDrive(IList<KnownFolder> knownFolders)
         {
             RegistryKey skyDriveKey = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\SkyDrive");
             if (skyDriveKey == null)
@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt
             knownFolders.Add(knownFolder);
         }
 
-        private void CheckGoogleDrive(IList<KnownFolder> knownFolders)
+        private static void CheckGoogleDrive(IList<KnownFolder> knownFolders)
         {
             RegistryKey googleDriveKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{56D4499E-AC3E-4B8D-91C9-C700C148C44B}");
             if (googleDriveKey == null)

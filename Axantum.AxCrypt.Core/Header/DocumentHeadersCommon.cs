@@ -55,7 +55,6 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 throw new FileFormatException("No magic Guid was found.", ErrorStatus.MagicGuidMissing);
             }
-            List<HeaderBlock> headerBlocks = new List<HeaderBlock>();
             while (axCryptReader.Read())
             {
                 switch (axCryptReader.CurrentItemType)

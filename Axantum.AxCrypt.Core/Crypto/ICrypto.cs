@@ -40,7 +40,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         /// <param name="ciphertext">The complete cipher text</param>
         /// <returns>The decrypted result minus any padding</returns>
-        byte[] Decrypt(byte[] ciphertext);
+        byte[] Decrypt(byte[] cipherText);
 
         /// <summary>
         /// Encrypt in one operation

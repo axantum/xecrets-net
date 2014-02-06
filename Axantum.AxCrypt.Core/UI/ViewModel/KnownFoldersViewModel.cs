@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Axantum.AxCrypt.Core.Session;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
@@ -47,7 +47,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             _knownKeys = knownKeys;
 
             InitializePropertyValues();
-            BindPropertyChangedEvents();
             SubscribeToModelEvents();
         }
 
@@ -57,10 +56,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         }
 
         public IEnumerable<KnownFolder> KnownFolders { get { return GetProperty<IEnumerable<KnownFolder>>("KnownFolders"); } set { SetProperty("KnownFolders", value.ToList()); } }
-
-        private void BindPropertyChangedEvents()
-        {
-        }
 
         private void InitializePropertyValues()
         {

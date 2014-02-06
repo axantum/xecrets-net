@@ -24,13 +24,12 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// Instantiate a transformation
         /// </summary>
         /// <param name="key">The key</param>
-        /// <param name="iv">Initial Vector</param>
+        /// <param name="iv">Initial Vector, will be XOR:ed with the counter value</param>
         /// <param name="blockCounter">The block counter.</param>
-        /// <exception cref="System.ArgumentNullException">
-        /// key
+        /// <param name="blockOffset">The block offset.</param>
+        /// <exception cref="System.ArgumentNullException">key
         /// or
-        /// iv
-        /// </exception>
+        /// iv</exception>
         public V2AesCrypto(AesKey key, AesIV iv, long blockCounter, int blockOffset)
         {
             if (key == null)
@@ -53,21 +52,21 @@ namespace Axantum.AxCrypt.Core.Crypto
             _blockOffset = blockOffset;
         }
 
-        public V2AesCrypto(AesKey key, AesIV iv, long keyStreamByteIndex)
-            : this(key, iv, keyStreamByteIndex / iv.Length, (int)(keyStreamByteIndex % iv.Length))
+        public V2AesCrypto(AesKey key, AesIV iv, long keyStreamOctetIndex)
+            : this(key, iv, keyStreamOctetIndex / iv.Length, (int)(keyStreamOctetIndex % iv.Length))
         {
         }
 
         /// <summary>
         /// Decrypt in one operation.
         /// </summary>
-        /// <param name="ciphertext">The complete cipher text</param>
+        /// <param name="cipherText">The complete cipher text</param>
         /// <returns>
         /// The decrypted result minus any padding
         /// </returns>
-        public byte[] Decrypt(byte[] ciphertext)
+        public byte[] Decrypt(byte[] cipherText)
         {
-            return KeyStream(ciphertext.Length).Xor(ciphertext);
+            return KeyStream(cipherText.Length).Xor(cipherText);
         }
 
         /// <summary>
@@ -137,7 +136,25 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         public void Dispose()
         {
-            throw new NotImplementedException();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                DisposeInternal();
+            }
+        }
+
+        private void DisposeInternal()
+        {
+            if (_aes != null)
+            {
+                _aes.Clear();
+                _aes = null;
+            }
         }
     }
 }
