@@ -1,4 +1,31 @@
-﻿using System;
+﻿#region Coypright and License
+
+/*
+ * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
+ *
+ * This file is part of AxCrypt.
+ *
+ * AxCrypt is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * AxCrypt is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with AxCrypt.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * The source is maintained at http://bitbucket.org/axantum/axcrypt-net please visit for
+ * updates, contributions and contact with the author. You may also visit
+ * http://www.axantum.com for more information about the author.
+*/
+
+#endregion Coypright and License
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -16,7 +43,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private long _blockCounter;
 
-        private int _blockByteSize;
+        private int _blockLength;
 
         private int _blockOffset;
 
@@ -42,18 +69,23 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
 
             _aes = new AesManaged();
+            _blockLength = _aes.BlockSize / 8;
+            if (iv.Length != _blockLength)
+            {
+                throw new ArgumentException("The IV length must be the same as the algorithm block length.");
+            }
+
             _aes.Key = key.GetBytes();
             _aes.Mode = CipherMode.ECB;
             _aes.IV = iv.GetBytes();
             _aes.Padding = PaddingMode.None;
 
-            _blockByteSize = _aes.BlockSize / 8;
             _blockCounter = blockCounter;
             _blockOffset = blockOffset;
         }
 
-        public V2AesCrypto(AesKey key, AesIV iv, long keyStreamOctetIndex)
-            : this(key, iv, keyStreamOctetIndex / iv.Length, (int)(keyStreamOctetIndex % iv.Length))
+        public V2AesCrypto(AesKey key, AesIV iv, long keyStreamOffset)
+            : this(key, iv, keyStreamOffset / iv.Length, (int)(keyStreamOffset % iv.Length))
         {
         }
 
@@ -66,7 +98,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </returns>
         public byte[] Decrypt(byte[] cipherText)
         {
-            return KeyStream(cipherText.Length).Xor(cipherText);
+            return Transform(cipherText);
         }
 
         /// <summary>
@@ -78,35 +110,22 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </returns>
         public byte[] Encrypt(byte[] plaintext)
         {
-            return KeyStream(plaintext.Length).Xor(plaintext);
+            return Transform(plaintext);
         }
 
-        private byte[] KeyStream(int length)
+        private byte[] Transform(byte[] plaintext)
         {
-            byte[] keyStream = new byte[length];
-
-            using (ICryptoTransform encryptor = _aes.CreateEncryptor())
+            using (ICryptoTransform transform = new CounterModeCryptoTransform(_aes, _blockCounter, _blockOffset))
             {
-                byte[] counterBlock = encryptor.TransformFinalBlock(GetCounterBlock(_blockCounter), 0, _blockByteSize);
-                for (int i = 0; i < length; )
+                _blockCounter += plaintext.Length / _blockLength;
+                _blockOffset += plaintext.Length % _blockLength;
+                if (_blockOffset == _blockLength)
                 {
-                    if (_blockOffset == _blockByteSize)
-                    {
-                        _blockOffset = 0;
-                        ++_blockCounter;
-                        counterBlock = encryptor.TransformFinalBlock(GetCounterBlock(_blockCounter), 0, _blockByteSize);
-                    }
-                    keyStream[i++] = counterBlock[_blockOffset++];
+                    _blockCounter += 1;
+                    _blockOffset = 0;
                 }
+                return transform.TransformFinalBlock(plaintext, 0, plaintext.Length);
             }
-            return keyStream;
-        }
-
-        private byte[] GetCounterBlock(long blockCounter)
-        {
-            byte[] counterBytes = blockCounter.GetBigEndianBytes();
-            byte[] counterBlock = ((byte[])_aes.IV.Clone()).Xor(_aes.IV.Length - counterBytes.Length, counterBytes, 0, counterBytes.Length);
-            return counterBlock;
         }
 
         /// <summary>
@@ -117,7 +136,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </returns>
         public ICryptoTransform CreateDecryptingTransform()
         {
-            throw new NotImplementedException();
+            return new CounterModeCryptoTransform(_aes, _blockCounter, _blockOffset);
         }
 
         /// <summary>
@@ -128,7 +147,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </returns>
         public ICryptoTransform CreateEncryptingTransform()
         {
-            throw new NotImplementedException();
+            return new CounterModeCryptoTransform(_aes, _blockCounter, _blockOffset);
         }
 
         /// <summary>

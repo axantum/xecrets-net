@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Crypto\CounterModeCryptoTransform.cs" />
     <Compile Include="Crypto\ICrypto.cs" />
     <Compile Include="Crypto\V2AesCrypto.cs" />
     <Compile Include="V1AxCryptDocument.cs" />
