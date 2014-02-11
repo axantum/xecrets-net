@@ -82,7 +82,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 Assert.Throws<ArgumentNullException>(() =>
                 {
-                    wrapped = keyWrap.Wrap(null);
+                    wrapped = keyWrap.Wrap((AesKey)null);
                 });
             }
         }

@@ -99,6 +99,15 @@ namespace Axantum.AxCrypt.Core.Crypto
             _aes.Padding = PaddingMode.None;
         }
 
+        public byte[] Wrap(byte[] keyMaterial)
+        {
+            if (keyMaterial == null)
+            {
+                throw new ArgumentNullException("keyMaterial");
+            }
+            return null;
+        }
+
         /// <summary>
         /// Wrap key data using the AES Key Wrap specification
         /// </summary>

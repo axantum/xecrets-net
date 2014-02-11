@@ -53,6 +53,8 @@
     <Compile Include="Crypto\CounterModeCryptoTransform.cs" />
     <Compile Include="Crypto\ICrypto.cs" />
     <Compile Include="Crypto\V2AesCrypto.cs" />
+    <Compile Include="Header\V2DocumentHeaders.cs" />
+    <Compile Include="Header\V2KeyWrapHeaderBlock.cs" />
     <Compile Include="V1AxCryptDocument.cs" />
     <Compile Include="V2AxCryptDocument.cs" />
     <Compile Include="CommandLine.cs" />

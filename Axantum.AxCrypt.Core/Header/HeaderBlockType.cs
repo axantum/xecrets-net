@@ -33,70 +33,91 @@ namespace Axantum.AxCrypt.Core.Header
         /// Matches no type.
         /// </summary>
         None = 0,
+
         /// <summary>
         /// Matches any type.
         /// </summary>
         Any = 1,
+
         /// <summary>
         /// Must be first.
         /// </summary>
-        Preamble,
+        Preamble = 2,
+
         /// <summary>
         /// Version information etc.
         /// </summary>
-        Version,
+        Version = 3,
+
         /// <summary>
         /// A 128-bit Data Enc Key and IV wrapped with 128-bit KEK
         /// </summary>
-        KeyWrap1,
+        KeyWrap1 = 4,
+
         /// <summary>
         /// Some other kind of KEK, DEK, IV scheme... Future use.
         /// </summary>
-        KeyWrap2,
+        KeyWrap2 = 5,
+
         /// <summary>
         /// An arbitrary string encoded as Ansi Code Page 1252 defined by the caller.
         /// </summary>
-        IdTag,
+        IdTag = 6,
+
+        /// <summary>
+        /// NIST Key Wrap Algorithm wrap of the Master Data Encrypting Key, IV, Derviation Salt & Iterations etc.
+        /// </summary>
+        V2KeyWrap = 13,
+
         /// <summary>
         /// The code should accept and skip header block types that are defined later. This is here to simulate that
         /// condition for tests.
         /// </summary>
         Unrecognized = 61,
+
         /// <summary>
         /// An undefined header block type, used for tests
         /// </summary>
         Undefined = 62,
+
         /// <summary>
         /// The data, compressed and/or encrypted.
         /// </summary>
         Data = 63,
+
         /// <summary>
         /// Start of headers containing encrypted header data
         /// </summary>
         Encrypted = 64,
+
         /// <summary>
         /// Original file name
         /// </summary>
-        FileNameInfo,
+        FileNameInfo = 65,
+
         /// <summary>
         /// Sizes of the original data file before encryption
         /// </summary>
-        EncryptionInfo,
+        EncryptionInfo = 66,
+
         /// <summary>
         /// Indicates that the data is compressed and the sizes.
         /// </summary>
-        CompressionInfo,
+        CompressionInfo = 67,
+
         /// <summary>
         /// Time stamps and size of the original file
         /// </summary>
-        FileInfo,
+        FileInfo = 68,
+
         /// <summary>
         /// Indicates if the data is compressed. 1.2.2.
         /// </summary>
-        Compression,
+        Compression = 69,
+
         /// <summary>
         /// Original file name in Unicode. 1.6.3.3
         /// </summary>
-        UnicodeFileNameInfo,
+        UnicodeFileNameInfo = 70,
     }
 }
