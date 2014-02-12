@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
@@ -52,6 +53,7 @@ namespace Axantum.AxCrypt.Mono.Test
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
             Factory.Instance.Singleton<WorkFolder>(() => new WorkFolder(_workFolderPath));
             Factory.Instance.Singleton<ILogging>(() => new Logging());
+            Factory.Instance.Singleton<IRandomGenerator>(() => new RandomGenerator());
         }
 
         [TearDown]
@@ -76,11 +78,11 @@ namespace Axantum.AxCrypt.Mono.Test
         [Test]
         public static void TestRandomBytes()
         {
-            byte[] randomBytes = OS.Current.GetRandomBytes(100);
+            byte[] randomBytes = Instance.RandomGenerator.Generate(100);
             Assert.That(randomBytes.Length, Is.EqualTo(100), "Ensuring we really got the right number of bytes.");
             Assert.That(randomBytes, Is.Not.EquivalentTo(new byte[100]), "It is not in practice possible that all zero bytes are returned by GetRandomBytes().");
 
-            randomBytes = OS.Current.GetRandomBytes(1000);
+            randomBytes = Instance.RandomGenerator.Generate(1000);
             double average = randomBytes.Average(b => b);
             Assert.That(average >= 115 && average <= 140, "Unscientific, but the sample sequence should not vary much from a mean of 127.5, but was {0}".InvariantFormat(average));
         }

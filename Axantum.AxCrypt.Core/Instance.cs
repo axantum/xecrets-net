@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Ipc;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
@@ -102,6 +103,11 @@ namespace Axantum.AxCrypt.Core
         public static WorkFolder WorkFolder
         {
             get { return Factory.Instance.Singleton<WorkFolder>(); }
+        }
+
+        public static IRandomGenerator RandomGenerator
+        {
+            get { return Factory.Instance.Singleton<IRandomGenerator>(); }
         }
     }
 }

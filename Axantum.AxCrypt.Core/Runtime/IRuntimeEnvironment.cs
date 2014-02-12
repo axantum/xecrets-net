@@ -34,8 +34,6 @@ namespace Axantum.AxCrypt.Core.Runtime
     {
         bool IsLittleEndian { get; }
 
-        byte[] GetRandomBytes(int count);
-
         string AxCryptExtension { get; }
 
         Platform Platform { get; }

@@ -28,7 +28,6 @@
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
-using System.Security.Cryptography;
 using System.Threading;
 
 namespace Axantum.AxCrypt.Mono
@@ -48,20 +47,6 @@ namespace Axantum.AxCrypt.Mono
             {
                 return BitConverter.IsLittleEndian;
             }
-        }
-
-        private RandomNumberGenerator _rng;
-
-        public byte[] GetRandomBytes(int count)
-        {
-            if (_rng == null)
-            {
-                _rng = RandomNumberGenerator.Create();
-            }
-
-            byte[] data = new byte[count];
-            _rng.GetBytes(data);
-            return data;
         }
 
         public string AxCryptExtension

@@ -25,8 +25,8 @@
 
 #endregion Coypright and License
 
-using System;
 using Axantum.AxCrypt.Core.Extensions;
+using System;
 
 namespace Axantum.AxCrypt.Core.Header
 {
@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt.Core.Header
         }
 
         public V1CompressionInfoHeaderBlock()
-            : this(OS.Current.GetRandomBytes(16))
+            : this(Instance.RandomGenerator.Generate(16))
         {
         }
 

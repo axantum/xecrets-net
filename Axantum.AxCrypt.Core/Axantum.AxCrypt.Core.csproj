@@ -52,6 +52,8 @@
   <ItemGroup>
     <Compile Include="Crypto\CounterModeCryptoTransform.cs" />
     <Compile Include="Crypto\ICrypto.cs" />
+    <Compile Include="Crypto\IRandomGenerator.cs" />
+    <Compile Include="Crypto\RandomGenerator.cs" />
     <Compile Include="Crypto\V2AesCrypto.cs" />
     <Compile Include="Header\V2DocumentHeaders.cs" />
     <Compile Include="Header\V2KeyWrapHeaderBlock.cs" />

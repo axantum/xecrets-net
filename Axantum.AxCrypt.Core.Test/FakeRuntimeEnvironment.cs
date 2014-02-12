@@ -34,8 +34,6 @@ namespace Axantum.AxCrypt.Core.Test
 {
     internal class FakeRuntimeEnvironment : IRuntimeEnvironment, IDisposable
     {
-        private byte _randomForTest = 0;
-
         private bool _isLittleEndian = BitConverter.IsLittleEndian;
 
         public Func<DateTime> TimeFunction { get; set; }
@@ -71,16 +69,6 @@ namespace Axantum.AxCrypt.Core.Test
         public bool IsLittleEndian
         {
             get { return _isLittleEndian; }
-        }
-
-        public byte[] GetRandomBytes(int count)
-        {
-            byte[] bytes = new byte[count];
-            for (int i = 0; i < count; ++i)
-            {
-                bytes[i] = _randomForTest++;
-            }
-            return bytes;
         }
 
         public string AxCryptExtension

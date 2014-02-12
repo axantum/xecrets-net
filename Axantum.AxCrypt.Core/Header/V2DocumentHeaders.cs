@@ -25,33 +25,27 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Axantum.AxCrypt.Core.Crypto;
 
 namespace Axantum.AxCrypt.Core.Header
 {
     public class V2DocumentHeaders
     {
-        private static readonly byte[] _version = new byte[] { 3, 2, 2, 0, 0 };
+        private static readonly byte[] _version = new byte[] { 4, 0, 0, 0, 0 };
 
         private DocumentHeadersCommon _headers;
 
         private AesKey _keyEncryptingKey;
 
-        public V2DocumentHeaders(AesKey keyEncryptingKey)
+        public V2DocumentHeaders(AesKey keyEncryptingKey, long iterations)
         {
             _keyEncryptingKey = keyEncryptingKey;
             _headers = new DocumentHeadersCommon(_version);
 
-            _headers.HeaderBlocks.Add(new V1KeyWrap1HeaderBlock(keyEncryptingKey));
-            _headers.HeaderBlocks.Add(new V1EncryptionInfoHeaderBlock());
-            _headers.HeaderBlocks.Add(new CompressionHeaderBlock());
-            _headers.HeaderBlocks.Add(new FileInfoHeaderBlock());
-            _headers.HeaderBlocks.Add(new UnicodeFileNameInfoHeaderBlock());
-            _headers.HeaderBlocks.Add(new V1FileNameInfoHeaderBlock());
+            _headers.HeaderBlocks.Add(new V2KeyWrapHeaderBlock(keyEncryptingKey, iterations));
             _headers.HeaderBlocks.Add(new DataHeaderBlock());
 
             SetMasterKeyForEncryptedHeaderBlocks(_headers.HeaderBlocks);
@@ -77,9 +71,8 @@ namespace Axantum.AxCrypt.Core.Header
 
         private AesKey GetMasterKey()
         {
-            V1KeyWrap1HeaderBlock keyHeaderBlock = _headers.FindHeaderBlock<V1KeyWrap1HeaderBlock>();
-            VersionHeaderBlock versionHeaderBlock = _headers.FindHeaderBlock<VersionHeaderBlock>();
-            byte[] unwrappedKeyData = keyHeaderBlock.UnwrapMasterKey(_keyEncryptingKey, versionHeaderBlock.FileVersionMajor);
+            V2KeyWrapHeaderBlock keyHeaderBlock = _headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
+            byte[] unwrappedKeyData = keyHeaderBlock.UnwrapMasterKey(_keyEncryptingKey);
             if (unwrappedKeyData.Length == 0)
             {
                 return null;

@@ -61,7 +61,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new InternalErrorException("A key wrap salt length must at least be equal to a valid AES key length.");
             }
-            _salt = OS.Current.GetRandomBytes(length);
+            _salt = Instance.RandomGenerator.Generate(length);
         }
 
         /// <summary>

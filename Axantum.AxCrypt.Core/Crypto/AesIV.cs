@@ -25,9 +25,9 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -46,7 +46,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         public AesIV()
         {
-            _iv = OS.Current.GetRandomBytes(16);
+            _iv = Instance.RandomGenerator.Generate(16);
         }
 
         /// <summary>

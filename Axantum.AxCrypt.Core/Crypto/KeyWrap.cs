@@ -25,11 +25,11 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// </summary>
     public class KeyWrap : IDisposable
     {
-        private static readonly byte[] A = new byte[] { 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6, 0x0a6 };
+        private readonly byte[] _A;
 
         private AesKey _key;
         private long _iterations;
@@ -97,6 +97,17 @@ namespace Axantum.AxCrypt.Core.Crypto
             _aes.KeySize = _key.Length * 8;
             _aes.Key = saltedKey;
             _aes.Padding = PaddingMode.None;
+
+            _A = new byte[_aes.BlockSize / 8 / 2];
+            for (int i = 0; i < _A.Length; ++i)
+            {
+                _A[i] = 0xA6;
+            }
+        }
+
+        public int BlockSize
+        {
+            get { return _aes.BlockSize / 8; }
         }
 
         public byte[] Wrap(byte[] keyMaterial)
@@ -105,29 +116,15 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new ArgumentNullException("keyMaterial");
             }
-            return null;
-        }
-
-        /// <summary>
-        /// Wrap key data using the AES Key Wrap specification
-        /// </summary>
-        /// <param name="keyToWrap">The key to wrap</param>
-        /// <returns>The wrapped key data, 8 bytes longer than the key</returns>
-        public byte[] Wrap(AesKey keyToWrap)
-        {
-            if (keyToWrap == null)
-            {
-                throw new ArgumentNullException("keyToWrap");
-            }
             if (_aes == null)
             {
                 throw new ObjectDisposedException("_aes");
             }
 
-            byte[] wrapped = new byte[keyToWrap.Length + A.Length];
-            A.CopyTo(wrapped, 0);
+            byte[] wrapped = new byte[keyMaterial.Length + _A.Length];
+            _A.CopyTo(wrapped, 0);
 
-            Array.Copy(keyToWrap.GetBytes(), 0, wrapped, A.Length, keyToWrap.Length);
+            Array.Copy(keyMaterial, 0, wrapped, _A.Length, keyMaterial.Length);
 
             ICryptoTransform encryptor = _aes.CreateEncryptor();
 
@@ -137,14 +134,14 @@ namespace Axantum.AxCrypt.Core.Crypto
             // the rest is 'Key Data'. We do the transform in-place.
             for (int j = 0; j < _iterations; j++)
             {
-                for (int i = 1; i <= keyToWrap.Length / 8; i++)
+                for (int i = 1; i <= keyMaterial.Length / 8; i++)
                 {
                     // B = AESE(K, A | R[i])
                     Array.Copy(wrapped, 0, block, 0, 8);
                     Array.Copy(wrapped, i * 8, block, 8, 8);
                     byte[] b = encryptor.TransformFinalBlock(block, 0, encryptor.InputBlockSize);
                     // A = MSB64(B) XOR t where t = (n * j) + i
-                    long t = ((keyToWrap.Length / 8) * j) + i;
+                    long t = ((keyMaterial.Length / 8) * j) + i;
                     switch (_mode)
                     {
                         case KeyWrapMode.Specification:
@@ -165,6 +162,24 @@ namespace Axantum.AxCrypt.Core.Crypto
         }
 
         /// <summary>
+        /// Wrap key data using the AES Key Wrap specification
+        /// </summary>
+        /// <param name="keyToWrap">The key to wrap</param>
+        /// <returns>The wrapped key data, 8 bytes longer than the key</returns>
+        public byte[] Wrap(AesKey keyToWrap)
+        {
+            if (keyToWrap == null)
+            {
+                throw new ArgumentNullException("keyToWrap");
+            }
+            if (_aes == null)
+            {
+                throw new ObjectDisposedException("_aes");
+            }
+            return Wrap(keyToWrap.GetBytes());
+        }
+
+        /// <summary>
         /// Unwrap an AES Key Wrapped-key
         /// </summary>
         /// <param name="wrapped">The full wrapped data, the length of a key + 8 bytes</param>
@@ -176,7 +191,7 @@ namespace Axantum.AxCrypt.Core.Crypto
                 throw new ObjectDisposedException("_aes");
             }
 
-            int wrappedKeyLength = wrapped.Length - A.Length;
+            int wrappedKeyLength = wrapped.Length - _A.Length;
             if (!AesKey.IsValidKeyLength(wrappedKeyLength))
             {
                 throw new InternalErrorException("The length of the wrapped data must be exactly the length of a valid key length plus 8 bytes");
@@ -217,13 +232,13 @@ namespace Axantum.AxCrypt.Core.Crypto
                 }
             }
 
-            if (!wrapped.IsEquivalentTo(0, A, 0, A.Length))
+            if (!wrapped.IsEquivalentTo(0, _A, 0, _A.Length))
             {
                 return new byte[0];
             }
 
             byte[] unwrapped = new byte[_key.Length];
-            Array.Copy(wrapped, A.Length, unwrapped, 0, unwrapped.Length);
+            Array.Copy(wrapped, _A.Length, unwrapped, 0, unwrapped.Length);
             return unwrapped;
         }
 

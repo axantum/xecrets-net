@@ -25,17 +25,17 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Header;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -484,7 +484,7 @@ namespace Axantum.AxCrypt.Core
                 progress.AddTotal(length);
                 for (long position = 0; position < length; position += OS.Current.StreamBufferSize)
                 {
-                    byte[] random = OS.Current.GetRandomBytes(OS.Current.StreamBufferSize);
+                    byte[] random = Instance.RandomGenerator.Generate(OS.Current.StreamBufferSize);
                     stream.Write(random, 0, random.Length);
                     stream.Flush();
                     try
@@ -516,7 +516,7 @@ namespace Axantum.AxCrypt.Core
 
             int randomLength = fileName.Length < 8 ? 8 : fileName.Length;
             StringBuilder randomName = new StringBuilder(randomLength + 4);
-            byte[] random = OS.Current.GetRandomBytes(randomLength);
+            byte[] random = Instance.RandomGenerator.Generate(randomLength);
             for (int i = 0; i < randomLength; ++i)
             {
                 randomName.Append(validFileNameChars[random[i] % validFileNameChars.Length]);

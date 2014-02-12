@@ -25,12 +25,12 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// Instantiate a random key.
         /// </summary>
         public AesKey(int keyBits)
-            : this(OS.Current.GetRandomBytes(keyBits / 8))
+            : this(Instance.RandomGenerator.Generate(keyBits / 8))
         {
         }
 
