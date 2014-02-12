@@ -69,15 +69,18 @@ namespace Axantum.AxCrypt.Core.Header
             }
         }
 
-        private AesKey GetMasterKey()
+        public AesKey MasterKey
         {
-            V2KeyWrapHeaderBlock keyHeaderBlock = _headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
-            byte[] unwrappedKeyData = keyHeaderBlock.UnwrapMasterKey(_keyEncryptingKey);
-            if (unwrappedKeyData.Length == 0)
+            get
             {
-                return null;
+                V2KeyWrapHeaderBlock keyHeaderBlock = _headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
+                byte[] unwrappedKeyData = keyHeaderBlock.UnwrapMasterKey(_keyEncryptingKey);
+                if (unwrappedKeyData.Length == 0)
+                {
+                    return null;
+                }
+                return new AesKey(unwrappedKeyData);
             }
-            return new AesKey(unwrappedKeyData);
         }
     }
 }

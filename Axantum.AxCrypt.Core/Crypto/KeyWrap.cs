@@ -190,12 +190,16 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new ObjectDisposedException("_aes");
             }
+            if (wrapped.Length % 8 != 0)
+            {
+                throw new InternalErrorException("The length of the wrapped data must a multiple of 8 bytes.");
+            }
+            if (wrapped.Length < 24)
+            {
+                throw new InternalErrorException("The length of the wrapped data must be large enough to accomdate at least a 128-bit key.");
+            }
 
             int wrappedKeyLength = wrapped.Length - _A.Length;
-            if (!AesKey.IsValidKeyLength(wrappedKeyLength))
-            {
-                throw new InternalErrorException("The length of the wrapped data must be exactly the length of a valid key length plus 8 bytes");
-            }
 
             wrapped = (byte[])wrapped.Clone();
             ICryptoTransform decryptor = _aes.CreateDecryptor();
@@ -237,8 +241,8 @@ namespace Axantum.AxCrypt.Core.Crypto
                 return new byte[0];
             }
 
-            byte[] unwrapped = new byte[_key.Length];
-            Array.Copy(wrapped, _A.Length, unwrapped, 0, unwrapped.Length);
+            byte[] unwrapped = new byte[wrapped.Length - _A.Length];
+            Array.Copy(wrapped, _A.Length, unwrapped, 0, wrapped.Length - _A.Length);
             return unwrapped;
         }
 

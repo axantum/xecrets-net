@@ -80,7 +80,6 @@ namespace Axantum.AxCrypt.Core.Test
             var mock = new Mock<IRandomGenerator>();
             mock.Setup<byte[]>(x => x.Generate(It.Is<int>(v => v == 248))).Returns(new byte[248]);
             mock.Setup<byte[]>(x => x.Generate(It.Is<int>(v => v == (16 + 16)))).Returns(_keyData128.GetBytes());
-
             Factory.Instance.Singleton<IRandomGenerator>(() => mock.Object);
 
             V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(_keyEncryptingKey128, 6);
@@ -98,7 +97,6 @@ namespace Axantum.AxCrypt.Core.Test
             var mock = new Mock<IRandomGenerator>();
             mock.Setup<byte[]>(x => x.Generate(It.Is<int>(v => v == 248))).Returns(new byte[248]);
             mock.Setup<byte[]>(x => x.Generate(It.Is<int>(v => v == (32 + 16)))).Returns(_keyData256);
-
             Factory.Instance.Singleton<IRandomGenerator>(() => mock.Object);
 
             V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(_keyEncryptingKey256, 6);
@@ -108,6 +106,43 @@ namespace Axantum.AxCrypt.Core.Test
             Array.Copy(bytes, 0, wrapped, 0, wrapped.Length);
 
             Assert.That(wrapped, Is.EquivalentTo(_wrapped256));
+        }
+
+        [Test]
+        public static void TestUnwrapMasterKeyAndIV256WithZeroRNG()
+        {
+            var mock = new Mock<IRandomGenerator>();
+            mock.Setup<byte[]>(x => x.Generate(It.IsAny<int>())).Returns<int>(v => new byte[v]);
+            Factory.Instance.Singleton<IRandomGenerator>(() => mock.Object);
+
+            AesKey keyEncryptingKey = new AesKey(256);
+            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(keyEncryptingKey, 250);
+
+            byte[] keyData = header.UnwrapMasterKey(keyEncryptingKey);
+            Assert.That(keyData.Length, Is.EqualTo(48));
+
+            byte[] expectedOriginalKeyData = new byte[48];
+            Assert.That(keyData, Is.EquivalentTo(expectedOriginalKeyData));
+        }
+
+        [Test]
+        public static void TestUnwrapMasterKeyAndIV256WithNonZeroRNG()
+        {
+            Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
+
+            AesKey keyEncryptingKey = new AesKey(256);
+            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(keyEncryptingKey, 125);
+
+            byte[] keyData = header.UnwrapMasterKey(keyEncryptingKey);
+            Assert.That(keyData.Length, Is.EqualTo(48));
+
+            byte[] expectedOriginalKeyData = new byte[48];
+            expectedOriginalKeyData[0] = keyData[0];
+            for (int i = 1; i < expectedOriginalKeyData.Length; ++i)
+            {
+                expectedOriginalKeyData[i] = (byte)(expectedOriginalKeyData[i - 1] + 1);
+            }
+            Assert.That(keyData, Is.EquivalentTo(expectedOriginalKeyData));
         }
     }
 }
