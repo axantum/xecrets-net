@@ -117,6 +117,30 @@ namespace Axantum.AxCrypt.Core.Header
             return unwrappedKeyData;
         }
 
+        public AesKey MasterKey(AesKey keyEncryptingKey)
+        {
+            byte[] unwrappedKeyData = UnwrapMasterKey(keyEncryptingKey);
+            if (unwrappedKeyData.Length == 0)
+            {
+                return null;
+            }
+            byte[] masterKeyBytes = new byte[keyEncryptingKey.Length];
+            Array.Copy(unwrappedKeyData, 0, masterKeyBytes, 0, masterKeyBytes.Length);
+            return new AesKey(masterKeyBytes);
+        }
+
+        public AesIV MasterIV(AesKey keyEncryptingKey)
+        {
+            byte[] unwrappedKeyData = UnwrapMasterKey(keyEncryptingKey);
+            if (unwrappedKeyData.Length == 0)
+            {
+                return null;
+            }
+            byte[] masterIVBytes = new byte[16];
+            Array.Copy(unwrappedKeyData, 0, masterIVBytes, 0, masterIVBytes.Length);
+            return new AesIV(masterIVBytes);
+        }
+
         private void Set(byte[] wrapped, KeyWrapSalt salt, long iterations)
         {
             Array.Copy(wrapped, 0, GetDataBlockBytesReference(), 0, wrapped.Length);

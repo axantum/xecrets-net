@@ -57,14 +57,26 @@ namespace Axantum.AxCrypt.Core.Header
 
         private void SetMasterKeyForEncryptedHeaderBlocks(IList<HeaderBlock> headerBlocks)
         {
-            ICrypto headerCrypto = new V2AesCrypto(_keyEncryptingKey, new AesIV(), 0);
-
             foreach (HeaderBlock headerBlock in headerBlocks)
             {
                 EncryptedHeaderBlock encryptedHeaderBlock = headerBlock as EncryptedHeaderBlock;
-                if (encryptedHeaderBlock != null)
+                if (encryptedHeaderBlock == null)
                 {
-                    encryptedHeaderBlock.HeaderCrypto = headerCrypto;
+                    continue;
+                }
+                switch (encryptedHeaderBlock.HeaderBlockType)
+                {
+                    case HeaderBlockType.FileInfo:
+                        encryptedHeaderBlock.HeaderCrypto = new V2AesCrypto(MasterKey, MasterIV, 256);
+                        break;
+
+                    case HeaderBlockType.Compression:
+                        encryptedHeaderBlock.HeaderCrypto = new V2AesCrypto(MasterKey, MasterIV, 512);
+                        break;
+
+                    case HeaderBlockType.UnicodeFileNameInfo:
+                        encryptedHeaderBlock.HeaderCrypto = new V2AesCrypto(MasterKey, MasterIV, 768);
+                        break;
                 }
             }
         }
@@ -74,12 +86,16 @@ namespace Axantum.AxCrypt.Core.Header
             get
             {
                 V2KeyWrapHeaderBlock keyHeaderBlock = _headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
-                byte[] unwrappedKeyData = keyHeaderBlock.UnwrapMasterKey(_keyEncryptingKey);
-                if (unwrappedKeyData.Length == 0)
-                {
-                    return null;
-                }
-                return new AesKey(unwrappedKeyData);
+                return keyHeaderBlock.MasterKey(_keyEncryptingKey);
+            }
+        }
+
+        public AesIV MasterIV
+        {
+            get
+            {
+                V2KeyWrapHeaderBlock keyHeaderBlock = _headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
+                return keyHeaderBlock.MasterIV(_keyEncryptingKey);
             }
         }
     }
