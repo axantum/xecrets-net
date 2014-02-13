@@ -40,10 +40,9 @@ namespace Axantum.AxCrypt.Core.Crypto
     {
         private readonly byte[] _A;
 
-        private AesKey _key;
         private long _iterations;
         private readonly KeyWrapMode _mode;
-        private AesManaged _aes = new AesManaged();
+        private SymmetricAlgorithm _aes = new AesManaged();
 
         /// <summary>
         /// Create a KeyWrap instance for wrapping or unwrapping
@@ -51,8 +50,8 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <param name="key">The key wrapping key</param>
         /// <param name="iterations">The number of wrapping iterations, at least 6</param>
         /// <param name="mode">Use original specification mode or AxCrypt mode (only difference is that 't' is little endian in AxCrypt mode)</param>
-        public KeyWrap(AesKey key, long iterations, KeyWrapMode mode)
-            : this(key, KeyWrapSalt.Zero, iterations, mode)
+        public KeyWrap(ICrypto crypto, long iterations, KeyWrapMode mode)
+            : this(crypto, KeyWrapSalt.Zero, iterations, mode)
         {
         }
 
@@ -63,17 +62,18 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <param name="salt">An optional salt, or null if none. AxCrypt uses a salt.</param>
         /// <param name="iterations">The number of wrapping iterations, at least 6</param>
         /// <param name="mode">Use original specification mode or AxCrypt mode (only difference is that 't' is little endian in AxCrypt mode)</param>
-        public KeyWrap(AesKey key, KeyWrapSalt salt, long iterations, KeyWrapMode mode)
+        public KeyWrap(ICrypto crypto, KeyWrapSalt salt, long iterations, KeyWrapMode mode)
         {
-            if (key == null)
+            if (crypto == null)
             {
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException("crypto");
             }
             if (salt == null)
             {
                 throw new ArgumentNullException("salt");
             }
-            if (salt.Length != 0 && salt.Length < key.Length)
+            _aes = crypto.CreateAlgorithm();
+            if (salt.Length != 0 && salt.Length < _aes.Key.Length)
             {
                 throw new InternalErrorException("salt length is incorrect");
             }
@@ -87,14 +87,13 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
             _mode = mode;
 
-            _key = key;
             _iterations = iterations;
 
-            byte[] saltedKey = _key.GetBytes();
-            saltedKey.Xor(salt.GetBytes().Reduce(key.Length));
+            byte[] saltedKey = _aes.Key;
+            saltedKey.Xor(salt.GetBytes().Reduce(_aes.Key.Length));
 
             _aes.Mode = CipherMode.ECB;
-            _aes.KeySize = _key.Length * 8;
+            _aes.KeySize = saltedKey.Length * 8;
             _aes.Key = saltedKey;
             _aes.Padding = PaddingMode.None;
 

@@ -25,10 +25,9 @@
 
 #endregion Coypright and License
 
-using System;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Header;
+using System;
 
 namespace Axantum.AxCrypt.Core.Header
 {
@@ -122,7 +121,7 @@ namespace Axantum.AxCrypt.Core.Header
             }
 
             byte[] unwrappedKeyData;
-            using (KeyWrap keyWrap = new KeyWrap(keyEncryptingKey, salt, Iterations, KeyWrapMode.AxCrypt))
+            using (KeyWrap keyWrap = new KeyWrap(new V1AesCrypto(keyEncryptingKey), salt, Iterations, KeyWrapMode.AxCrypt))
             {
                 unwrappedKeyData = keyWrap.Unwrap(wrappedKeyData);
             }
@@ -134,7 +133,7 @@ namespace Axantum.AxCrypt.Core.Header
             AesKey masterKey = new AesKey(128);
             long iterations = Instance.UserSettings.KeyWrapIterations;
             KeyWrapSalt salt = new KeyWrapSalt(keyEncryptingKey.Length);
-            using (KeyWrap keyWrap = new KeyWrap(keyEncryptingKey, salt, iterations, KeyWrapMode.AxCrypt))
+            using (KeyWrap keyWrap = new KeyWrap(new V1AesCrypto(keyEncryptingKey), salt, iterations, KeyWrapMode.AxCrypt))
             {
                 byte[] wrappedKeyData = keyWrap.Wrap(masterKey);
                 Set(wrappedKeyData, salt, iterations);
@@ -144,7 +143,7 @@ namespace Axantum.AxCrypt.Core.Header
         public void RewrapMasterKey(AesKey masterKey, AesKey keyEncryptingKey)
         {
             KeyWrapSalt salt = new KeyWrapSalt(keyEncryptingKey.Length);
-            using (KeyWrap keyWrap = new KeyWrap(keyEncryptingKey, salt, Iterations, KeyWrapMode.AxCrypt))
+            using (KeyWrap keyWrap = new KeyWrap(new V1AesCrypto(keyEncryptingKey), salt, Iterations, KeyWrapMode.AxCrypt))
             {
                 byte[] wrappedKeyData = keyWrap.Wrap(masterKey);
                 Set(wrappedKeyData, salt, Iterations);

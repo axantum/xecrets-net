@@ -26,11 +26,8 @@
 #endregion Coypright and License
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
-using Axantum.AxCrypt.Core.Extensions;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -39,7 +36,7 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// </summary>
     public class V2AesCrypto : ICrypto
     {
-        private Aes _aes;
+        private SymmetricAlgorithm _aes;
 
         private long _blockCounter;
 
@@ -68,16 +65,16 @@ namespace Axantum.AxCrypt.Core.Crypto
                 throw new ArgumentNullException("iv");
             }
 
-            _aes = new AesManaged();
+            Key = key;
+            _aes = CreateAlgorithm();
             _blockLength = _aes.BlockSize / 8;
             if (iv.Length != _blockLength)
             {
                 throw new ArgumentException("The IV length must be the same as the algorithm block length.");
             }
-
-            _aes.Key = key.GetBytes();
-            _aes.Mode = CipherMode.ECB;
             _aes.IV = iv.GetBytes();
+
+            _aes.Mode = CipherMode.ECB;
             _aes.Padding = PaddingMode.None;
 
             _blockCounter = blockCounter;
@@ -87,6 +84,47 @@ namespace Axantum.AxCrypt.Core.Crypto
         public V2AesCrypto(AesKey key, AesIV iv, long keyStreamOffset)
             : this(key, iv, keyStreamOffset / iv.Length, (int)(keyStreamOffset % iv.Length))
         {
+        }
+
+        public V2AesCrypto(AesKey key)
+        {
+            if (key == null)
+            {
+                throw new ArgumentNullException("key");
+            }
+
+            Key = key;
+            _aes = CreateAlgorithm();
+        }
+
+        public AesKey Key { get; private set; }
+
+        /// <summary>
+        /// Gets the unique name of the algorithm implementation.
+        /// </summary>
+        /// <value>
+        /// The name. This must be a short, language independent name usable both as an internal identifier, and as a display name.
+        /// Typical values are "AES-128", "AES-256". The UI may use these as indexes for localized or clearer names, but if unknown
+        /// the UI must be able to fallback and actually display this identifier as a selector for example in the UI. This is to
+        /// support plug-in algorithm implementations in the future.
+        /// </value>
+        public string Name
+        {
+            get { return "AES-256"; }
+        }
+
+        /// <summary>
+        /// Create an instance of the underlying symmetric algorithm.
+        /// </summary>
+        /// <returns></returns>
+        /// <value>
+        /// An instance of the algorithm.
+        /// </value>
+        public SymmetricAlgorithm CreateAlgorithm()
+        {
+            SymmetricAlgorithm algorithm = new AesManaged();
+            algorithm.Key = Key.GetBytes();
+            return algorithm;
         }
 
         /// <summary>

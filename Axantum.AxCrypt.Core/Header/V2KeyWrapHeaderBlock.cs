@@ -94,7 +94,7 @@ namespace Axantum.AxCrypt.Core.Header
         private void Initialize(AesKey keyEncryptingKey, long iterations)
         {
             KeyWrapSalt salt = new KeyWrapSalt(keyEncryptingKey.Length);
-            using (KeyWrap keyWrap = new KeyWrap(keyEncryptingKey, salt, iterations, KeyWrapMode.Specification))
+            using (KeyWrap keyWrap = new KeyWrap(new V2AesCrypto(keyEncryptingKey), salt, iterations, KeyWrapMode.Specification))
             {
                 byte[] keyMaterial = Instance.RandomGenerator.Generate(keyEncryptingKey.Length + keyWrap.BlockSize);
                 byte[] wrappedKeyData = keyWrap.Wrap(keyMaterial);
@@ -109,7 +109,7 @@ namespace Axantum.AxCrypt.Core.Header
             KeyWrapSalt salt = new KeyWrapSalt(saltBytes);
 
             byte[] unwrappedKeyData;
-            using (KeyWrap keyWrap = new KeyWrap(keyEncryptingKey, salt, Iterations, KeyWrapMode.Specification))
+            using (KeyWrap keyWrap = new KeyWrap(new V2AesCrypto(keyEncryptingKey), salt, Iterations, KeyWrapMode.Specification))
             {
                 byte[] wrappedKeyData = GetKeyData(keyWrap.BlockSize, keyEncryptingKey.Length);
                 unwrappedKeyData = keyWrap.Unwrap(wrappedKeyData);

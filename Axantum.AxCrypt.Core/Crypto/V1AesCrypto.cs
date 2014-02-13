@@ -31,11 +31,11 @@ using System.Security.Cryptography;
 namespace Axantum.AxCrypt.Core.Crypto
 {
     /// <summary>
-    /// Wrap an AES implementation with key and parameters. Instances of this class are immutable.
+    /// Wrap an AES implementation with key and parameters.
     /// </summary>
     public class V1AesCrypto : ICrypto
     {
-        private Aes _aes = null;
+        private SymmetricAlgorithm _aes = null;
 
         /// <summary>
         /// Instantiate a transformation
@@ -54,12 +54,14 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new ArgumentNullException("iv");
             }
-            _aes = new AesManaged();
-            _aes.Key = key.GetBytes();
+            Key = key;
+            _aes = CreateAlgorithm();
             _aes.Mode = cipherMode;
             _aes.IV = iv.GetBytes();
             _aes.Padding = paddingMode;
         }
+
+        public AesKey Key { get; private set; }
 
         /// <summary>
         /// Instantiate an AES transform with zero IV, CBC and no padding.
@@ -68,6 +70,25 @@ namespace Axantum.AxCrypt.Core.Crypto
         public V1AesCrypto(AesKey key)
             : this(key, AesIV.Zero, CipherMode.CBC, PaddingMode.None)
         {
+        }
+
+        public string Name
+        {
+            get { return "AES-128"; }
+        }
+
+        /// <summary>
+        /// Create an instance of the underlying symmetric algorithm.
+        /// </summary>
+        /// <returns></returns>
+        /// <value>
+        /// An instance of the algorithm.
+        /// </value>
+        public SymmetricAlgorithm CreateAlgorithm()
+        {
+            SymmetricAlgorithm algorithm = new AesManaged();
+            algorithm.Key = Key.GetBytes();
+            return algorithm;
         }
 
         /// <summary>

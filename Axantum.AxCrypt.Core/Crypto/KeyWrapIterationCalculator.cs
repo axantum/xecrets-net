@@ -39,17 +39,17 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         public virtual long Iterations()
         {
-            AesKey dummyKey = new AesKey(128);
-            KeyWrapSalt dummySalt = new KeyWrapSalt(dummyKey.Length);
+            ICrypto dummyCrypto = new V1AesCrypto(new AesKey(128));
+            KeyWrapSalt dummySalt = new KeyWrapSalt(16);
             DateTime startTime = OS.Current.UtcNow;
             DateTime endTime;
             long totalIterations = 0;
             int iterationsIncrement = 1000;
-            using (KeyWrap keyWrap = new KeyWrap(dummyKey, dummySalt, iterationsIncrement, KeyWrapMode.AxCrypt))
+            using (KeyWrap keyWrap = new KeyWrap(dummyCrypto, dummySalt, iterationsIncrement, KeyWrapMode.AxCrypt))
             {
                 do
                 {
-                    keyWrap.Wrap(dummyKey);
+                    keyWrap.Wrap(new AesKey(128));
                     totalIterations += iterationsIncrement;
                     endTime = OS.Current.UtcNow;
                 } while ((endTime - startTime).TotalMilliseconds < 500);

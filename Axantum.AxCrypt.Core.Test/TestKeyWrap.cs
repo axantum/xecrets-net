@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
-using System;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
+using System;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -59,7 +59,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestUnwrap()
         {
             byte[] unwrapped;
-            using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, 6, KeyWrapMode.Specification))
+            using (KeyWrap keyWrap = new KeyWrap(new V1AesCrypto(_keyEncryptingKey), 6, KeyWrapMode.Specification))
             {
                 unwrapped = keyWrap.Unwrap(_wrapped);
             }
@@ -71,14 +71,14 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestWrap()
         {
             byte[] wrapped;
-            using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, 6, KeyWrapMode.Specification))
+            using (KeyWrap keyWrap = new KeyWrap(new V1AesCrypto(_keyEncryptingKey), 6, KeyWrapMode.Specification))
             {
                 wrapped = keyWrap.Wrap(_keyData);
             }
 
             Assert.That(wrapped, Is.EquivalentTo(_wrapped), "The wrapped data is not correct according to specification.");
 
-            using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, 6, KeyWrapMode.Specification))
+            using (KeyWrap keyWrap = new KeyWrap(new V1AesCrypto(_keyEncryptingKey), 6, KeyWrapMode.Specification))
             {
                 Assert.Throws<ArgumentNullException>(() =>
                 {
@@ -95,12 +95,12 @@ namespace Axantum.AxCrypt.Core.Test
             KeyWrapSalt salt = new KeyWrapSalt(new byte[] { 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 });
             long iterations = 12345;
             byte[] wrapped;
-            using (KeyWrap keyWrap = new KeyWrap(keyEncryptingKey, salt, iterations, KeyWrapMode.AxCrypt))
+            using (KeyWrap keyWrap = new KeyWrap(new V1AesCrypto(keyEncryptingKey), salt, iterations, KeyWrapMode.AxCrypt))
             {
                 wrapped = keyWrap.Wrap(keyToWrap);
             }
             byte[] unwrapped;
-            using (KeyWrap keyWrap = new KeyWrap(keyEncryptingKey, salt, iterations, KeyWrapMode.AxCrypt))
+            using (KeyWrap keyWrap = new KeyWrap(new V1AesCrypto(keyEncryptingKey), salt, iterations, KeyWrapMode.AxCrypt))
             {
                 unwrapped = keyWrap.Unwrap(wrapped);
             }
@@ -116,12 +116,12 @@ namespace Axantum.AxCrypt.Core.Test
             KeyWrapSalt salt = new KeyWrapSalt(new byte[] { 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 });
             long iterations = 23456;
             byte[] wrapped;
-            using (KeyWrap keyWrap = new KeyWrap(keyEncryptingKey, salt, iterations, KeyWrapMode.Specification))
+            using (KeyWrap keyWrap = new KeyWrap(new V1AesCrypto(keyEncryptingKey), salt, iterations, KeyWrapMode.Specification))
             {
                 wrapped = keyWrap.Wrap(keyToWrap);
             }
             byte[] unwrapped;
-            using (KeyWrap keyWrap = new KeyWrap(keyEncryptingKey, salt, iterations, KeyWrapMode.Specification))
+            using (KeyWrap keyWrap = new KeyWrap(new V1AesCrypto(keyEncryptingKey), salt, iterations, KeyWrapMode.Specification))
             {
                 unwrapped = keyWrap.Unwrap(wrapped);
             }
@@ -132,35 +132,35 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestKeyWrapConstructorWithBadArgument()
         {
-            using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, 6, KeyWrapMode.Specification))
+            using (KeyWrap keyWrap = new KeyWrap(new V1AesCrypto(_keyEncryptingKey), 6, KeyWrapMode.Specification))
             {
                 Assert.Throws<InternalErrorException>(() => { keyWrap.Unwrap(_keyData.GetBytes()); }, "Calling with too short wrapped data.");
             }
 
             Assert.Throws<InternalErrorException>(() =>
             {
-                using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, 5, KeyWrapMode.AxCrypt))
+                using (KeyWrap keyWrap = new KeyWrap(new V1AesCrypto(_keyEncryptingKey), 5, KeyWrapMode.AxCrypt))
                 {
                 }
             }, "Calling with too few iterations.");
 
             Assert.Throws<InternalErrorException>(() =>
             {
-                using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, 0, KeyWrapMode.AxCrypt))
+                using (KeyWrap keyWrap = new KeyWrap(new V1AesCrypto(_keyEncryptingKey), 0, KeyWrapMode.AxCrypt))
                 {
                 }
             }, "Calling with zero (too few) iterations.");
 
             Assert.Throws<InternalErrorException>(() =>
             {
-                using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, -100, KeyWrapMode.AxCrypt))
+                using (KeyWrap keyWrap = new KeyWrap(new V1AesCrypto(_keyEncryptingKey), -100, KeyWrapMode.AxCrypt))
                 {
                 }
             }, "Calling with negative number of iterations.");
 
             Assert.Throws<InternalErrorException>(() =>
             {
-                using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, 6, (KeyWrapMode)9999))
+                using (KeyWrap keyWrap = new KeyWrap(new V1AesCrypto(_keyEncryptingKey), 6, (KeyWrapMode)9999))
                 {
                 }
             }, "Calling with bogus KeyWrapMode.");
@@ -174,7 +174,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.Throws<ArgumentNullException>(() =>
             {
-                using (KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, null, 6, KeyWrapMode.Specification))
+                using (KeyWrap keyWrap = new KeyWrap(new V1AesCrypto(_keyEncryptingKey), null, 6, KeyWrapMode.Specification))
                 {
                 }
             }, "Calling with null salt argument.");
@@ -183,7 +183,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDispose()
         {
-            KeyWrap keyWrap = new KeyWrap(_keyEncryptingKey, 6, KeyWrapMode.Specification);
+            KeyWrap keyWrap = new KeyWrap(new V1AesCrypto(_keyEncryptingKey), 6, KeyWrapMode.Specification);
             keyWrap.Dispose();
             Assert.Throws<ObjectDisposedException>(() =>
             {
