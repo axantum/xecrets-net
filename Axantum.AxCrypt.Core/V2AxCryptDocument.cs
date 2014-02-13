@@ -44,11 +44,15 @@ namespace Axantum.AxCrypt.Core
     /// </summary>
     public class V2AxCryptDocument
     {
+        private long _plainTextLength;
+
+        private long _compressedPlainTextLength;
+
         public V2AxCryptDocument()
         {
         }
 
-        public V1DocumentHeaders DocumentHeaders { get; private set; }
+        public V2DocumentHeaders DocumentHeaders { get; private set; }
 
         public bool PassphraseIsValid { get; set; }
 
@@ -73,10 +77,6 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("progress");
             }
-            if (!outputStream.CanSeek)
-            {
-                throw new ArgumentException("The output stream must support seek in order to back-track and write the HMAC.");
-            }
             if (options.HasMask(AxCryptOptions.EncryptWithCompression) && options.HasMask(AxCryptOptions.EncryptWithoutCompression))
             {
                 throw new ArgumentException("Invalid options, cannot specify both with and without compression.");
@@ -87,37 +87,29 @@ namespace Axantum.AxCrypt.Core
             }
             bool isCompressed = options.HasMask(AxCryptOptions.EncryptWithCompression);
             DocumentHeaders.IsCompressed = isCompressed;
-            DocumentHeaders.WriteWithoutHmac(outputStream);
-            using (ICryptoTransform encryptor = CreateEncryptingTransform())
+            using (V2HmacStream outputHmacStream = new V2HmacStream(null, outputStream))
             {
-                long outputStartPosition = outputStream.Position;
-                using (CryptoStream encryptingStream = new CryptoStream(new NonClosingStream(outputStream), encryptor, CryptoStreamMode.Write))
+                DocumentHeaders.WriteStartWithHmac(outputHmacStream);
+                using (ICryptoTransform encryptor = CreateEncryptingTransform())
                 {
-                    if (isCompressed)
+                    long outputStartPosition = outputStream.Position;
+                    using (CryptoStream encryptingStream = new CryptoStream(new NonClosingStream(outputHmacStream), encryptor, CryptoStreamMode.Write))
                     {
-                        EncryptWithCompressionInternal(DocumentHeaders, inputStream, encryptingStream, progress);
-                    }
-                    else
-                    {
-                        DocumentHeaders.PlaintextLength = inputStream.CopyToWithCount(encryptingStream, inputStream, progress);
+                        if (isCompressed)
+                        {
+                            EncryptWithCompressionInternal(DocumentHeaders, inputStream, encryptingStream, progress);
+                        }
+                        else
+                        {
+                            _compressedPlainTextLength = _plainTextLength = inputStream.CopyToWithCount(encryptingStream, inputStream, progress);
+                        }
                     }
                 }
-                outputStream.Flush();
-                DocumentHeaders.CipherTextLength = outputStream.Position - outputStartPosition;
-                using (V1HmacStream outputHmacStream = new V1HmacStream(DocumentHeaders.HmacSubkey.Key, outputStream))
-                {
-                    DocumentHeaders.WriteWithHmac(outputHmacStream);
-                    outputHmacStream.ReadFrom(outputStream);
-                    DocumentHeaders.Hmac = outputHmacStream.HmacResult;
-                }
-
-                // Rewind and rewrite the headers, now with the updated HMAC
-                DocumentHeaders.WriteWithoutHmac(outputStream);
-                outputStream.Position = outputStream.Length;
+                DocumentHeaders.WriteEndWithHmac(outputHmacStream, _plainTextLength, _compressedPlainTextLength);
             }
         }
 
-        private static void EncryptWithCompressionInternal(V1DocumentHeaders outputDocumentHeaders, Stream inputStream, CryptoStream encryptingStream, IProgressContext progress)
+        private void EncryptWithCompressionInternal(V2DocumentHeaders outputDocumentHeaders, Stream inputStream, CryptoStream encryptingStream, IProgressContext progress)
         {
             using (ZOutputStream deflatingStream = new ZOutputStream(encryptingStream, -1))
             {
@@ -126,8 +118,8 @@ namespace Axantum.AxCrypt.Core
                 deflatingStream.FlushMode = JZlib.Z_FINISH;
                 deflatingStream.Finish();
 
-                outputDocumentHeaders.UncompressedLength = deflatingStream.TotalIn;
-                outputDocumentHeaders.PlaintextLength = deflatingStream.TotalOut;
+                _plainTextLength = deflatingStream.TotalIn;
+                _compressedPlainTextLength = deflatingStream.TotalOut;
             }
         }
 

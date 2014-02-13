@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,6 +78,50 @@ namespace Axantum.AxCrypt.Core.Header
                         encryptedHeaderBlock.HeaderCrypto = new V2AesCrypto(DataEncryptingKey, DataEncryptingIV, 768);
                         break;
                 }
+            }
+        }
+
+        public void WriteStartWithHmac(V2HmacStream hmacStream)
+        {
+            if (hmacStream == null)
+            {
+                throw new ArgumentNullException("hmacStream");
+            }
+
+            AxCrypt1Guid.Write(hmacStream);
+
+            PreambleHeaderBlock preambleHaderBlock = _headers.FindHeaderBlock<PreambleHeaderBlock>();
+            preambleHaderBlock.Write(hmacStream);
+
+            WriteGeneralHeaders(hmacStream);
+
+            DataHeaderBlock dataHeaderBlock = _headers.FindHeaderBlock<DataHeaderBlock>();
+            dataHeaderBlock.Write(hmacStream);
+        }
+
+        public void WriteEndWithHmac(V2HmacStream hmacStream, long plainTextLength, long compressedPlainTextLength)
+        {
+            WriteGeneralHeaders(hmacStream);
+
+            V2PlainTextLengthsHeaderBlock lengths = new V2PlainTextLengthsHeaderBlock();
+            lengths.HeaderCrypto = new V2AesCrypto(DataEncryptingKey, DataEncryptingIV, 2048);
+            lengths.PlainTextLength = plainTextLength;
+            lengths.CompressedPlainTextLength = compressedPlainTextLength;
+            lengths.Write(hmacStream);
+        }
+
+        private void WriteGeneralHeaders(V2HmacStream hmacStream)
+        {
+            foreach (HeaderBlock headerBlock in _headers.HeaderBlocks)
+            {
+                switch (headerBlock.HeaderBlockType)
+                {
+                    case HeaderBlockType.Data:
+                    case HeaderBlockType.Preamble:
+                    case HeaderBlockType.PlainTextLengths:
+                        continue;
+                }
+                headerBlock.Write(hmacStream);
             }
         }
 

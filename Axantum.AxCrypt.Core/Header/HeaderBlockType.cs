@@ -119,5 +119,9 @@ namespace Axantum.AxCrypt.Core.Header
         /// Original file name in Unicode. 1.6.3.3
         /// </summary>
         UnicodeFileNameInfo = 70,
+
+        EncryptedDataPart = 100,
+
+        PlainTextLengths = 101,
     }
 }

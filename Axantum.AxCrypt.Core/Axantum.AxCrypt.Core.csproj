@@ -59,6 +59,7 @@
     <Compile Include="Header\V2CompressionHeaderBlock.cs" />
     <Compile Include="Header\V2DocumentHeaders.cs" />
     <Compile Include="Header\V2KeyWrapHeaderBlock.cs" />
+    <Compile Include="Header\V2PlainTextLengthsHeaderBlock.cs" />
     <Compile Include="Header\V2UnicodeFileNameInfoHeaderBlock.cs" />
     <Compile Include="IO\V2HmacStream.cs" />
     <Compile Include="V1AxCryptDocument.cs" />
