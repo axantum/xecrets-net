@@ -25,14 +25,13 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.IO;
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Axantum.AxCrypt.Core.Header
 {
@@ -42,14 +41,14 @@ namespace Axantum.AxCrypt.Core.Header
 
         private DocumentHeadersCommon _headers;
 
-        private AesKey _keyEncryptingKey;
+        private ICrypto _keyEncryptingCrypto;
 
-        public V1DocumentHeaders(AesKey keyEncryptingKey)
+        public V1DocumentHeaders(ICrypto keyEncryptingCrypto)
         {
-            _keyEncryptingKey = keyEncryptingKey;
+            _keyEncryptingCrypto = keyEncryptingCrypto;
             _headers = new DocumentHeadersCommon(_version);
 
-            _headers.HeaderBlocks.Add(new V1KeyWrap1HeaderBlock(keyEncryptingKey));
+            _headers.HeaderBlocks.Add(new V1KeyWrap1HeaderBlock(keyEncryptingCrypto));
             _headers.HeaderBlocks.Add(new V1EncryptionInfoHeaderBlock());
             _headers.HeaderBlocks.Add(new CompressionHeaderBlock());
             _headers.HeaderBlocks.Add(new FileInfoHeaderBlock());
@@ -72,7 +71,7 @@ namespace Axantum.AxCrypt.Core.Header
                 headers.HeaderBlocks.Add((HeaderBlock)headerBlock.Clone());
             }
             _headers = headers;
-            _keyEncryptingKey = documentHeaders._keyEncryptingKey;
+            _keyEncryptingCrypto = documentHeaders._keyEncryptingCrypto;
         }
 
         public bool Load(AxCryptReader axCryptReader)
@@ -161,7 +160,7 @@ namespace Axantum.AxCrypt.Core.Header
         {
             get
             {
-                return _keyEncryptingKey;
+                return _keyEncryptingCrypto.Key;
             }
         }
 
@@ -169,7 +168,7 @@ namespace Axantum.AxCrypt.Core.Header
         {
             V1KeyWrap1HeaderBlock keyHeaderBlock = _headers.FindHeaderBlock<V1KeyWrap1HeaderBlock>();
             VersionHeaderBlock versionHeaderBlock = _headers.FindHeaderBlock<VersionHeaderBlock>();
-            byte[] unwrappedKeyData = keyHeaderBlock.UnwrapMasterKey(_keyEncryptingKey, versionHeaderBlock.FileVersionMajor);
+            byte[] unwrappedKeyData = keyHeaderBlock.UnwrapMasterKey(_keyEncryptingCrypto, versionHeaderBlock.FileVersionMajor);
             if (unwrappedKeyData.Length == 0)
             {
                 return null;
@@ -177,11 +176,11 @@ namespace Axantum.AxCrypt.Core.Header
             return new AesKey(unwrappedKeyData);
         }
 
-        public void RewrapMasterKey(AesKey keyEncryptingKey)
+        public void RewrapMasterKey(ICrypto keyEncryptingCrypto)
         {
             V1KeyWrap1HeaderBlock keyHeaderBlock = _headers.FindHeaderBlock<V1KeyWrap1HeaderBlock>();
-            keyHeaderBlock.RewrapMasterKey(GetMasterKey(), keyEncryptingKey);
-            _keyEncryptingKey = keyEncryptingKey;
+            keyHeaderBlock.RewrapMasterKey(GetMasterKey(), keyEncryptingCrypto.Key);
+            _keyEncryptingCrypto = keyEncryptingCrypto;
         }
 
         public Subkey HmacSubkey

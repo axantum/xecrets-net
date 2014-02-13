@@ -25,12 +25,6 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
@@ -40,6 +34,12 @@ using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using Moq;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -127,7 +127,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationStatus status;
             FileOperation fileOperation = new FileOperation(Instance.FileSystemState, new SessionNotify());
 
-            using (V1AxCryptDocument document = new V1AxCryptDocument(new Passphrase("a").DerivedPassphrase))
+            using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(new Passphrase("a").DerivedPassphrase)))
             {
                 using (Stream stream = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath).OpenRead())
                 {
@@ -155,7 +155,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             FileOperationStatus status;
             FileOperation fileOperation = new FileOperation(Instance.FileSystemState, new SessionNotify());
-            using (V1AxCryptDocument document = new V1AxCryptDocument(new Passphrase("a").DerivedPassphrase))
+            using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(new Passphrase("a").DerivedPassphrase)))
             {
                 using (Stream stream = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath).OpenRead())
                 {
@@ -177,9 +177,9 @@ namespace Axantum.AxCrypt.Core.Test
             ProgressContext nullProgressContext = null;
             FileOperation fileOperation = new FileOperation(Instance.FileSystemState, new SessionNotify());
 
-            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(nullString, new V1AxCryptDocument(new AesKey(128)), new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(nullString, new V1AxCryptDocument(new V1AesCrypto(new AesKey(128))), new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, nullDocument, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, new V1AxCryptDocument(new AesKey(128)), nullProgressContext); });
+            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, new V1AxCryptDocument(new V1AesCrypto(new AesKey(128))), nullProgressContext); });
         }
 
         [Test]

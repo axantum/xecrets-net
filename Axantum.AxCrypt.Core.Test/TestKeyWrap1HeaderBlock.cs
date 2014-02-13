@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
-using System;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using NUnit.Framework;
+using System;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -37,8 +37,8 @@ namespace Axantum.AxCrypt.Core.Test
     {
         private class KeyWrap1HeaderBlockForTest : V1KeyWrap1HeaderBlock
         {
-            public KeyWrap1HeaderBlockForTest(AesKey key)
-                : base(key)
+            public KeyWrap1HeaderBlockForTest(ICrypto crypto)
+                : base(crypto)
             {
             }
 
@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSetBadArguments()
         {
-            KeyWrap1HeaderBlockForTest keyWrap1HeaderBlock = new KeyWrap1HeaderBlockForTest(new AesKey(128));
+            KeyWrap1HeaderBlockForTest keyWrap1HeaderBlock = new KeyWrap1HeaderBlockForTest(new V1AesCrypto(new AesKey(128)));
 
             KeyWrapSalt okSalt = new KeyWrapSalt(16);
             KeyWrapSalt badSalt = new KeyWrapSalt(32);

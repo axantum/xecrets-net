@@ -62,7 +62,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             _iv = iv;
             _cipherMode = cipherMode;
             _paddingMode = paddingMode;
-            using (SymmetricAlgorithm algorithm = CreateAlgorithm())
+            using (SymmetricAlgorithm algorithm = CreateAlgorithm(null))
             {
                 BlockLength = algorithm.BlockSize / 8;
             }
@@ -89,12 +89,12 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <value>
         /// An instance of the algorithm.
         /// </value>
-        public override SymmetricAlgorithm CreateAlgorithm()
+        public override SymmetricAlgorithm CreateAlgorithm(AesKey key)
         {
             SymmetricAlgorithm algorithm = new AesManaged();
-            if (Key != null)
+            if (key != null)
             {
-                algorithm.Key = Key.GetBytes();
+                algorithm.Key = key.GetBytes();
             }
             return algorithm;
         }
@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>The decrypted result minus any padding</returns>
         public override byte[] Decrypt(byte[] cipherText)
         {
-            using (SymmetricAlgorithm aes = CreateAlgorithm())
+            using (SymmetricAlgorithm aes = CreateAlgorithm(Key))
             {
                 aes.Key = Key.GetBytes();
                 aes.IV = _iv.GetBytes();
@@ -127,7 +127,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>The cipher text, complete with any padding</returns>
         public override byte[] Encrypt(byte[] plaintext)
         {
-            using (SymmetricAlgorithm aes = CreateAlgorithm())
+            using (SymmetricAlgorithm aes = CreateAlgorithm(Key))
             {
                 aes.Key = Key.GetBytes();
                 aes.IV = _iv.GetBytes();
@@ -147,7 +147,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>A new decrypting transformation instance</returns>
         public override ICryptoTransform CreateDecryptingTransform()
         {
-            using (SymmetricAlgorithm aes = CreateAlgorithm())
+            using (SymmetricAlgorithm aes = CreateAlgorithm(Key))
             {
                 aes.Key = Key.GetBytes();
                 aes.IV = _iv.GetBytes();
@@ -164,7 +164,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>A new encrypting transformation instance</returns>
         public override ICryptoTransform CreateEncryptingTransform()
         {
-            using (SymmetricAlgorithm aes = CreateAlgorithm())
+            using (SymmetricAlgorithm aes = CreateAlgorithm(Key))
             {
                 aes.Key = Key.GetBytes();
                 aes.IV = _iv.GetBytes();

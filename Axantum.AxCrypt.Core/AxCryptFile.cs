@@ -71,7 +71,7 @@ namespace Axantum.AxCrypt.Core
             {
                 using (Stream destinationStream = destinationFile.OpenWrite())
                 {
-                    using (V1AxCryptDocument document = new V1AxCryptDocument(passphrase.DerivedPassphrase))
+                    using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase.DerivedPassphrase)))
                     {
                         document.DocumentHeaders.FileName = sourceFile.Name;
                         document.DocumentHeaders.CreationTimeUtc = sourceFile.CreationTimeUtc;
@@ -108,7 +108,7 @@ namespace Axantum.AxCrypt.Core
 
             using (Stream sourceStream = sourceFile.OpenRead())
             {
-                using (V1AxCryptDocument document = new V1AxCryptDocument(key))
+                using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(key)))
                 {
                     document.DocumentHeaders.FileName = sourceFile.Name;
                     document.DocumentHeaders.CreationTimeUtc = sourceFile.CreationTimeUtc;
@@ -381,7 +381,7 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("progress");
             }
 
-            V1AxCryptDocument document = new V1AxCryptDocument(key);
+            V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(key));
             Stream stream = new ProgressStream(sourceFile.OpenRead(), progress);
             progress.AddTotal(stream.Length);
             document.Load(stream);

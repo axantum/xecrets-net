@@ -36,7 +36,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             protected set;
         }
 
-        public abstract SymmetricAlgorithm CreateAlgorithm();
+        public abstract SymmetricAlgorithm CreateAlgorithm(AesKey key);
 
         public abstract byte[] Decrypt(byte[] cipherText);
 
@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         private ICollection<int> ValidKeyLengths()
         {
             List<int> validKeyLengths = new List<int>();
-            using (SymmetricAlgorithm algorithm = CreateAlgorithm())
+            using (SymmetricAlgorithm algorithm = CreateAlgorithm(null))
             {
                 foreach (KeySizes keySizes in algorithm.LegalKeySizes)
                 {

@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             Key = key;
             _iv = iv;
 
-            using (SymmetricAlgorithm aes = CreateAlgorithm())
+            using (SymmetricAlgorithm aes = CreateAlgorithm(Key))
             {
                 BlockLength = aes.BlockSize / 8;
                 if (iv.Length != BlockLength)
@@ -92,7 +92,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
 
             Key = key;
-            using (SymmetricAlgorithm aes = CreateAlgorithm())
+            using (SymmetricAlgorithm aes = CreateAlgorithm(Key))
             {
                 BlockLength = aes.BlockSize / 8;
             }
@@ -119,12 +119,12 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <value>
         /// An instance of the algorithm.
         /// </value>
-        public override SymmetricAlgorithm CreateAlgorithm()
+        public override SymmetricAlgorithm CreateAlgorithm(AesKey key)
         {
             SymmetricAlgorithm algorithm = new AesManaged();
-            if (Key != null)
+            if (key != null)
             {
-                algorithm.Key = Key.GetBytes();
+                algorithm.Key = key.GetBytes();
             }
             if (_iv != null)
             {
@@ -161,7 +161,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private byte[] Transform(byte[] plaintext)
         {
-            using (SymmetricAlgorithm algorithm = CreateAlgorithm())
+            using (SymmetricAlgorithm algorithm = CreateAlgorithm(Key))
             {
                 using (ICryptoTransform transform = new CounterModeCryptoTransform(algorithm, _blockCounter, _blockOffset))
                 {
@@ -185,7 +185,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </returns>
         public override ICryptoTransform CreateDecryptingTransform()
         {
-            using (SymmetricAlgorithm algorithm = CreateAlgorithm())
+            using (SymmetricAlgorithm algorithm = CreateAlgorithm(Key))
             {
                 return new CounterModeCryptoTransform(algorithm, _blockCounter, _blockOffset);
             }
@@ -199,7 +199,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </returns>
         public override ICryptoTransform CreateEncryptingTransform()
         {
-            using (SymmetricAlgorithm algorithm = CreateAlgorithm())
+            using (SymmetricAlgorithm algorithm = CreateAlgorithm(Key))
             {
                 return new CounterModeCryptoTransform(algorithm, _blockCounter, _blockOffset);
             }

@@ -25,16 +25,16 @@
 
 #endregion Coypright and License
 
-using System;
-using System.IO;
-using System.Linq;
-using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
+using System;
+using System.IO;
+using System.Linq;
+using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -83,7 +83,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
             Assert.That(destinationInfo.Exists, "After encryption the destination file should be created.");
-            using (V1AxCryptDocument document = new V1AxCryptDocument(new Passphrase("allan").DerivedPassphrase))
+            using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(new Passphrase("allan").DerivedPassphrase)))
             {
                 using (Stream stream = destinationInfo.OpenRead())
                 {
@@ -114,7 +114,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
             Assert.That(destinationInfo.Exists, "After encryption the destination file should be created.");
-            using (V1AxCryptDocument document = new V1AxCryptDocument(new Passphrase("allan").DerivedPassphrase))
+            using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(new Passphrase("allan").DerivedPassphrase)))
             {
                 using (Stream stream = destinationInfo.OpenRead())
                 {
@@ -146,7 +146,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
             Assert.That(destinationInfo.Exists, "After encryption the destination file should be created.");
-            using (V1AxCryptDocument document = new V1AxCryptDocument(new Passphrase("default").DerivedPassphrase))
+            using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(new Passphrase("default").DerivedPassphrase)))
             {
                 using (Stream stream = destinationInfo.OpenRead())
                 {
@@ -186,7 +186,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(Path.GetFileName(destinationPath), Is.EqualTo("alternative-name.axx"), "The alternative name should be used, since the default existed.");
             IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
             Assert.That(destinationInfo.Exists, "After encryption the destination file should be created.");
-            using (V1AxCryptDocument document = new V1AxCryptDocument(new Passphrase("allan").DerivedPassphrase))
+            using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(new Passphrase("allan").DerivedPassphrase)))
             {
                 using (Stream stream = destinationInfo.OpenRead())
                 {

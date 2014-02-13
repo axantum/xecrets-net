@@ -45,9 +45,9 @@ namespace Axantum.AxCrypt.Core
     /// </summary>
     public class V1AxCryptDocument : IDisposable
     {
-        public V1AxCryptDocument(AesKey keyEncryptingKey)
+        public V1AxCryptDocument(ICrypto keyEncryptingCrypto)
         {
-            DocumentHeaders = new V1DocumentHeaders(keyEncryptingKey);
+            DocumentHeaders = new V1DocumentHeaders(keyEncryptingCrypto);
         }
 
         public V1DocumentHeaders DocumentHeaders { get; private set; }

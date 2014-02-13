@@ -25,9 +25,6 @@
 
 #endregion Coypright and License
 
-using System;
-using System.IO;
-using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Reader;
@@ -35,6 +32,9 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
+using System;
+using System.IO;
+using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -81,7 +81,7 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (AxCryptReaderForTest axCryptReader = new AxCryptReaderForTest(inputStream))
                 {
-                    V1DocumentHeaders documentHeaders = new V1DocumentHeaders(new AesKey(128));
+                    V1DocumentHeaders documentHeaders = new V1DocumentHeaders(new V1AesCrypto(new AesKey(128)));
                     Assert.Throws<InternalErrorException>(() =>
                     {
                         documentHeaders.Load(axCryptReader);
@@ -93,7 +93,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestBadArguments()
         {
-            V1DocumentHeaders documentHeaders = new V1DocumentHeaders(new AesKey(128));
+            V1DocumentHeaders documentHeaders = new V1DocumentHeaders(new V1AesCrypto(new AesKey(128)));
             Assert.Throws<ArgumentNullException>(() =>
             {
                 documentHeaders.WriteWithHmac(null);
@@ -112,7 +112,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestKeyEncryptingKey()
         {
             AesKey keyEncryptingKey = new AesKey(128);
-            V1DocumentHeaders headers = new V1DocumentHeaders(keyEncryptingKey);
+            V1DocumentHeaders headers = new V1DocumentHeaders(new V1AesCrypto(keyEncryptingKey));
             Assert.That(headers.KeyEncryptingKey, Is.EqualTo(keyEncryptingKey), "Unexpected key encrypting key retrieved.");
         }
 
@@ -124,7 +124,7 @@ namespace Axantum.AxCrypt.Core.Test
                 using (AxCryptReader reader = AxCryptReader.Create(testStream))
                 {
                     Passphrase passphrase = new Passphrase("b");
-                    V1DocumentHeaders documentHeaders = new V1DocumentHeaders(passphrase.DerivedPassphrase);
+                    V1DocumentHeaders documentHeaders = new V1DocumentHeaders(new V1AesCrypto(passphrase.DerivedPassphrase));
                     bool isPassphraseValid = documentHeaders.Load(reader);
 
                     Assert.That(isPassphraseValid, Is.False, "The passphrase is intentionally wrong for this test case.");
@@ -146,7 +146,7 @@ namespace Axantum.AxCrypt.Core.Test
                 using (Stream outputStream = new MemoryStream())
                 {
                     Passphrase passphrase = new Passphrase("a");
-                    using (V1AxCryptDocument document = new V1AxCryptDocument(passphrase.DerivedPassphrase))
+                    using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase.DerivedPassphrase)))
                     {
                         document.DocumentHeaders.FileName = "MyFile.txt";
                         document.DocumentHeaders.CreationTimeUtc = creationTimeUtc;
@@ -157,7 +157,7 @@ namespace Axantum.AxCrypt.Core.Test
                         document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithoutCompression, new ProgressContext());
                     }
                     outputStream.Position = 0;
-                    using (V1AxCryptDocument document = new V1AxCryptDocument(passphrase.DerivedPassphrase))
+                    using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase.DerivedPassphrase)))
                     {
                         Assert.Throws<FileFormatException>(() => { document.Load(outputStream); });
                     }

@@ -38,10 +38,10 @@ namespace Axantum.AxCrypt.Core.Header
         {
         }
 
-        public V1KeyWrap1HeaderBlock(AesKey keyEncryptingKey)
+        public V1KeyWrap1HeaderBlock(ICrypto keyEncryptingCrypto)
             : this(new byte[44])
         {
-            Initialize(keyEncryptingKey);
+            Initialize(keyEncryptingCrypto);
         }
 
         public override object Clone()
@@ -103,16 +103,17 @@ namespace Axantum.AxCrypt.Core.Header
             }
         }
 
-        public byte[] UnwrapMasterKey(AesKey keyEncryptingKey, byte fileVersionMajor)
+        public byte[] UnwrapMasterKey(ICrypto keyEncryptingCrypto, byte fileVersionMajor)
         {
             byte[] wrappedKeyData = GetKeyData();
             KeyWrapSalt salt = Salt;
+            AesKey keyEncryptingKey = keyEncryptingCrypto.Key;
             if (fileVersionMajor <= 1)
             {
                 // Due to a bug in 1.1 and earlier we only used a truncated part of the key and salt :-(
                 // Compensate for this here. Users should be warned if FileVersionMajor <= 1 .
                 byte[] badKey = new byte[keyEncryptingKey.Length];
-                Array.Copy(keyEncryptingKey.GetBytes(), 0, badKey, 0, 4);
+                Array.Copy(keyEncryptingCrypto.Key.GetBytes(), 0, badKey, 0, 4);
                 keyEncryptingKey = new AesKey(badKey);
 
                 byte[] badSalt = new byte[salt.Length];
@@ -128,12 +129,12 @@ namespace Axantum.AxCrypt.Core.Header
             return unwrappedKeyData;
         }
 
-        private void Initialize(AesKey keyEncryptingKey)
+        private void Initialize(ICrypto keyEncryptingCrypto)
         {
-            AesKey masterKey = new AesKey(128);
+            AesKey masterKey = new AesKey(keyEncryptingCrypto.Key.Length * 8);
             long iterations = Instance.UserSettings.KeyWrapIterations;
-            KeyWrapSalt salt = new KeyWrapSalt(keyEncryptingKey.Length);
-            using (KeyWrap keyWrap = new KeyWrap(new V1AesCrypto(keyEncryptingKey), salt, iterations, KeyWrapMode.AxCrypt))
+            KeyWrapSalt salt = new KeyWrapSalt(masterKey.Length);
+            using (KeyWrap keyWrap = new KeyWrap(keyEncryptingCrypto, salt, iterations, KeyWrapMode.AxCrypt))
             {
                 byte[] wrappedKeyData = keyWrap.Wrap(masterKey);
                 Set(wrappedKeyData, salt, iterations);

@@ -25,15 +25,15 @@
 
 #endregion Coypright and License
 
-using System;
-using System.IO;
-using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
+using System;
+using System.IO;
+using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IRuntimeFileInfo sourceFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
             IRuntimeFileInfo destinationFileInfo = sourceFileInfo.CreateEncryptedName();
-            V1AxCryptDocument document = new V1AxCryptDocument(new AesKey(128));
+            V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(new AesKey(128)));
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "decrypted test.txt"));
 
             V1AxCryptDocument nullDocument = null;
@@ -185,7 +185,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IRuntimeFileInfo sourceFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
             Passphrase passphrase = new Passphrase("a");
-            using (V1AxCryptDocument document = new V1AxCryptDocument(passphrase.DerivedPassphrase))
+            using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase.DerivedPassphrase)))
             {
                 using (Stream sourceStream = sourceFileInfo.OpenRead())
                 {
@@ -260,7 +260,7 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo sourceRuntimeFileInfo = Factory.New<IRuntimeFileInfo>(_uncompressedAxxPath);
             IRuntimeFileInfo destinationRuntimeFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(_uncompressedAxxPath), "Uncompressed.zip"));
             Passphrase passphrase = new Passphrase("Uncompressable");
-            using (V1AxCryptDocument document = new V1AxCryptDocument(passphrase.DerivedPassphrase))
+            using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase.DerivedPassphrase)))
             {
                 bool isOk = document.Load(sourceRuntimeFileInfo.OpenRead());
                 Assert.That(isOk, Is.True, "The document should load ok.");
