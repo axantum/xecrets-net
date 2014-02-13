@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileTimes()
         {
-            V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new AesKey(256)), 10);
+            V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new AesKey(256), new AesIV()), 10);
 
             DateTime now = DateTime.UtcNow;
             headers.LastAccessTimeUtc = now;
@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestCompression()
         {
-            V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new AesKey(256)), 10);
+            V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new AesKey(256), new AesIV()), 10);
 
             headers.IsCompressed = true;
             Assert.That(headers.IsCompressed, Is.True);
@@ -78,7 +78,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestUnicodeFileNameShort()
         {
-            V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new AesKey(256)), 10);
+            V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new AesKey(256), new AesIV()), 10);
 
             headers.FileName = "My Secret Document.txt";
             Assert.That(headers.FileName, Is.EqualTo("My Secret Document.txt"));
@@ -87,7 +87,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestUnicodeFileNameLong()
         {
-            V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new AesKey(256)), 10);
+            V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new AesKey(256), new AesIV()), 10);
 
             string longName = "When in the Course of human events, it becomes necessary for one people to dissolve the political bands which have connected them with another, and to assume among the powers of the earth, the separate and equal station to which the Laws of Nature and of Nature's God entitle them, a decent respect to the opinions of mankind requires that they should declare the causes which impel them to the separation.";
             Assert.That(longName.Length, Is.GreaterThan(256));

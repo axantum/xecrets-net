@@ -72,7 +72,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new ArgumentNullException("salt");
             }
-            _aes = crypto.CreateAlgorithm(crypto.Key);
+            _aes = crypto.CreateAlgorithm();
             if (salt.Length != 0 && salt.Length < _aes.Key.Length)
             {
                 throw new InternalErrorException("salt length is incorrect");

@@ -41,6 +41,14 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private AesIV _iv;
 
+        static V1AesCrypto()
+        {
+            using (SymmetricAlgorithm algorithm = CreateRawAlgorithm())
+            {
+                SetBlockLength(algorithm.BlockSize / 8);
+            }
+        }
+
         /// <summary>
         /// Instantiate a transformation
         /// </summary>
@@ -58,14 +66,11 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new ArgumentNullException("iv");
             }
+
             Key = key;
             _iv = iv;
             _cipherMode = cipherMode;
             _paddingMode = paddingMode;
-            using (SymmetricAlgorithm algorithm = CreateAlgorithm(null))
-            {
-                BlockLength = algorithm.BlockSize / 8;
-            }
         }
 
         /// <summary>
@@ -89,14 +94,20 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <value>
         /// An instance of the algorithm.
         /// </value>
-        public override SymmetricAlgorithm CreateAlgorithm(AesKey key)
+        public override SymmetricAlgorithm CreateAlgorithm()
         {
-            SymmetricAlgorithm algorithm = new AesManaged();
-            if (key != null)
-            {
-                algorithm.Key = key.GetBytes();
-            }
+            SymmetricAlgorithm algorithm = CreateRawAlgorithm();
+            algorithm.Key = Key.GetBytes();
+            algorithm.IV = _iv.GetBytes();
+            algorithm.Mode = _cipherMode;
+            algorithm.Padding = _paddingMode;
+
             return algorithm;
+        }
+
+        private static SymmetricAlgorithm CreateRawAlgorithm()
+        {
+            return new AesManaged();
         }
 
         /// <summary>
@@ -106,12 +117,8 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>The decrypted result minus any padding</returns>
         public override byte[] Decrypt(byte[] cipherText)
         {
-            using (SymmetricAlgorithm aes = CreateAlgorithm(Key))
+            using (SymmetricAlgorithm aes = CreateAlgorithm())
             {
-                aes.Key = Key.GetBytes();
-                aes.IV = _iv.GetBytes();
-                aes.Mode = _cipherMode;
-                aes.Padding = _paddingMode;
                 using (ICryptoTransform decryptor = aes.CreateDecryptor())
                 {
                     byte[] plainText = decryptor.TransformFinalBlock(cipherText, 0, cipherText.Length);
@@ -127,12 +134,8 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>The cipher text, complete with any padding</returns>
         public override byte[] Encrypt(byte[] plaintext)
         {
-            using (SymmetricAlgorithm aes = CreateAlgorithm(Key))
+            using (SymmetricAlgorithm aes = CreateAlgorithm())
             {
-                aes.Key = Key.GetBytes();
-                aes.IV = _iv.GetBytes();
-                aes.Mode = _cipherMode;
-                aes.Padding = _paddingMode;
                 using (ICryptoTransform encryptor = aes.CreateEncryptor())
                 {
                     byte[] cipherText = encryptor.TransformFinalBlock(plaintext, 0, plaintext.Length);
@@ -147,13 +150,8 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>A new decrypting transformation instance</returns>
         public override ICryptoTransform CreateDecryptingTransform()
         {
-            using (SymmetricAlgorithm aes = CreateAlgorithm(Key))
+            using (SymmetricAlgorithm aes = CreateAlgorithm())
             {
-                aes.Key = Key.GetBytes();
-                aes.IV = _iv.GetBytes();
-                aes.Mode = _cipherMode;
-                aes.Padding = _paddingMode;
-
                 return aes.CreateDecryptor();
             }
         }
@@ -164,13 +162,8 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>A new encrypting transformation instance</returns>
         public override ICryptoTransform CreateEncryptingTransform()
         {
-            using (SymmetricAlgorithm aes = CreateAlgorithm(Key))
+            using (SymmetricAlgorithm aes = CreateAlgorithm())
             {
-                aes.Key = Key.GetBytes();
-                aes.IV = _iv.GetBytes();
-                aes.Mode = _cipherMode;
-                aes.Padding = _paddingMode;
-
                 return aes.CreateEncryptor();
             }
         }

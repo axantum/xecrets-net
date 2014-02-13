@@ -70,8 +70,10 @@ namespace Axantum.AxCrypt.Core.Test
             V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(datablock);
             Assert.That(header.GetDataBlockBytes(), Is.EquivalentTo(datablock));
 
-            Assert.Throws<ArgumentException>(() => new V2KeyWrapHeaderBlock(new byte[247]));
-            Assert.Throws<ArgumentNullException>(() => new V2KeyWrapHeaderBlock(null));
+            header = null;
+            Assert.Throws<ArgumentException>(() => header = new V2KeyWrapHeaderBlock(new byte[247]));
+            Assert.Throws<ArgumentNullException>(() => header = new V2KeyWrapHeaderBlock(null));
+            Assert.That(header, Is.Null);
         }
 
         [Test]
@@ -82,7 +84,7 @@ namespace Axantum.AxCrypt.Core.Test
             mock.Setup<byte[]>(x => x.Generate(It.Is<int>(v => v == (16 + 16)))).Returns(_keyData128.GetBytes());
             Factory.Instance.Singleton<IRandomGenerator>(() => mock.Object);
 
-            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(_keyEncryptingKey128), 6);
+            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(_keyEncryptingKey128, AesIV.Zero), 6);
 
             byte[] bytes = header.GetDataBlockBytes();
             byte[] wrapped = new byte[24];
@@ -99,7 +101,7 @@ namespace Axantum.AxCrypt.Core.Test
             mock.Setup<byte[]>(x => x.Generate(It.Is<int>(v => v == (32 + 16)))).Returns(_keyData256);
             Factory.Instance.Singleton<IRandomGenerator>(() => mock.Object);
 
-            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(_keyEncryptingKey256), 6);
+            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(_keyEncryptingKey256, AesIV.Zero), 6);
 
             byte[] bytes = header.GetDataBlockBytes();
             byte[] wrapped = new byte[40];
@@ -109,16 +111,16 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestUnwrapMasterKeyAndIV256WithZeroRNG()
+        public static void TestUnwrapMasterKeyAndIV256WithZeroRandomNumbers()
         {
             var mock = new Mock<IRandomGenerator>();
             mock.Setup<byte[]>(x => x.Generate(It.IsAny<int>())).Returns<int>(v => new byte[v]);
             Factory.Instance.Singleton<IRandomGenerator>(() => mock.Object);
 
             AesKey keyEncryptingKey = new AesKey(256);
-            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(keyEncryptingKey), 250);
+            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(keyEncryptingKey, new AesIV()), 250);
 
-            byte[] keyData = header.UnwrapMasterKey(new V2AesCrypto(keyEncryptingKey));
+            byte[] keyData = header.UnwrapMasterKey(new V2AesCrypto(keyEncryptingKey, new AesIV()));
             Assert.That(keyData.Length, Is.EqualTo(48));
 
             byte[] expectedOriginalKeyData = new byte[48];
@@ -126,14 +128,14 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestUnwrapMasterKeyAndIV256WithNonZeroRNG()
+        public static void TestUnwrapMasterKeyAndIV256WithNonzeroRandomNumbers()
         {
             Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
 
             AesKey keyEncryptingKey = new AesKey(256);
-            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(keyEncryptingKey), 125);
+            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(keyEncryptingKey, new AesIV()), 125);
 
-            byte[] keyData = header.UnwrapMasterKey(new V2AesCrypto(keyEncryptingKey));
+            byte[] keyData = header.UnwrapMasterKey(new V2AesCrypto(keyEncryptingKey, new AesIV()));
             Assert.That(keyData.Length, Is.EqualTo(48));
 
             byte[] expectedOriginalKeyData = new byte[48];

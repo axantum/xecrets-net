@@ -62,7 +62,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <value>
         /// An instance of the algorithm.
         /// </value>
-        SymmetricAlgorithm CreateAlgorithm(AesKey key);
+        SymmetricAlgorithm CreateAlgorithm();
 
         /// <summary>
         /// Decrypt in one operation.

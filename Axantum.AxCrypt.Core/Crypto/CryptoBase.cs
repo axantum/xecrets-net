@@ -7,7 +7,9 @@ namespace Axantum.AxCrypt.Core.Crypto
 {
     public abstract class CryptoBase : ICrypto
     {
-        private ICollection<int> _validKeyLengths;
+        private static ICollection<int> _validKeyLengths;
+
+        private static int _blockLength;
 
         public abstract string Name { get; }
 
@@ -22,21 +24,16 @@ namespace Axantum.AxCrypt.Core.Crypto
 
             protected set
             {
-                if (!IsValidKeyLength(value.Length))
-                {
-                    throw new ArgumentException("Key length is invalid.");
-                }
                 _key = value;
             }
         }
 
         public int BlockLength
         {
-            get;
-            protected set;
+            get { return _blockLength; }
         }
 
-        public abstract SymmetricAlgorithm CreateAlgorithm(AesKey key);
+        public abstract SymmetricAlgorithm CreateAlgorithm();
 
         public abstract byte[] Decrypt(byte[] cipherText);
 
@@ -51,29 +48,27 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         /// <param name="length">The length in bytes</param>
         /// <returns>true if the length in bytes is a valid key length for AES</returns>
-        public virtual bool IsValidKeyLength(int length)
+        public bool IsValidKeyLength(int length)
         {
-            if (_validKeyLengths == null)
-            {
-                _validKeyLengths = ValidKeyLengths();
-            }
             return _validKeyLengths.Contains(length);
         }
 
-        private ICollection<int> ValidKeyLengths()
+        protected static void SetValidKeyLengths(KeySizes[] legalKeySizes)
         {
             List<int> validKeyLengths = new List<int>();
-            using (SymmetricAlgorithm algorithm = CreateAlgorithm(null))
+            foreach (KeySizes keySizes in legalKeySizes)
             {
-                foreach (KeySizes keySizes in algorithm.LegalKeySizes)
+                for (int validKeySizeInBits = keySizes.MinSize; validKeySizeInBits <= keySizes.MaxSize; validKeySizeInBits += keySizes.SkipSize)
                 {
-                    for (int validKeySizeInBits = keySizes.MinSize; validKeySizeInBits <= keySizes.MaxSize; validKeySizeInBits += keySizes.SkipSize)
-                    {
-                        validKeyLengths.Add(validKeySizeInBits / 8);
-                    }
+                    validKeyLengths.Add(validKeySizeInBits / 8);
                 }
             }
-            return validKeyLengths;
+            _validKeyLengths = validKeyLengths;
+        }
+
+        protected static void SetBlockLength(int blockLength)
+        {
+            _blockLength = blockLength;
         }
     }
 }

@@ -42,6 +42,15 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private int _blockOffset;
 
+        static V2AesCrypto()
+        {
+            using (SymmetricAlgorithm algorithm = CreateRawAlgorithm())
+            {
+                SetValidKeyLengths(algorithm.LegalKeySizes);
+                SetBlockLength(algorithm.BlockSize / 8);
+            }
+        }
+
         /// <summary>
         /// Instantiate a transformation
         /// </summary>
@@ -53,28 +62,8 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// or
         /// iv</exception>
         public V2AesCrypto(AesKey key, AesIV iv, long blockCounter, int blockOffset)
+            : this(key, iv)
         {
-            if (key == null)
-            {
-                throw new ArgumentNullException("key");
-            }
-            if (iv == null)
-            {
-                throw new ArgumentNullException("iv");
-            }
-
-            Key = key;
-            _iv = iv;
-
-            using (SymmetricAlgorithm aes = CreateAlgorithm(Key))
-            {
-                BlockLength = aes.BlockSize / 8;
-                if (iv.Length != BlockLength)
-                {
-                    throw new ArgumentException("The IV length must be the same as the algorithm block length.");
-                }
-            }
-
             _blockCounter = blockCounter;
             _blockOffset = blockOffset;
         }
@@ -84,18 +73,27 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
         }
 
-        public V2AesCrypto(AesKey key)
+        public V2AesCrypto(AesKey key, AesIV iv)
         {
             if (key == null)
             {
                 throw new ArgumentNullException("key");
             }
+            if (!IsValidKeyLength(key.Length))
+            {
+                throw new ArgumentException("Key length is invalid.");
+            }
+            if (iv == null)
+            {
+                throw new ArgumentNullException("iv");
+            }
+            if (iv.Length != BlockLength)
+            {
+                throw new ArgumentException("The IV length must be the same as the algorithm block length.");
+            }
 
             Key = key;
-            using (SymmetricAlgorithm aes = CreateAlgorithm(Key))
-            {
-                BlockLength = aes.BlockSize / 8;
-            }
+            _iv = iv;
         }
 
         /// <summary>
@@ -119,20 +117,20 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <value>
         /// An instance of the algorithm.
         /// </value>
-        public override SymmetricAlgorithm CreateAlgorithm(AesKey key)
+        public override SymmetricAlgorithm CreateAlgorithm()
         {
-            SymmetricAlgorithm algorithm = new AesManaged();
-            if (key != null)
-            {
-                algorithm.Key = key.GetBytes();
-            }
-            if (_iv != null)
-            {
-                algorithm.IV = _iv.GetBytes();
-            }
+            SymmetricAlgorithm algorithm = CreateRawAlgorithm();
+            algorithm.Key = Key.GetBytes();
+            algorithm.IV = _iv.GetBytes();
             algorithm.Mode = CipherMode.ECB;
             algorithm.Padding = PaddingMode.None;
+
             return algorithm;
+        }
+
+        private static SymmetricAlgorithm CreateRawAlgorithm()
+        {
+            return new AesManaged();
         }
 
         /// <summary>
@@ -161,7 +159,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private byte[] Transform(byte[] plaintext)
         {
-            using (SymmetricAlgorithm algorithm = CreateAlgorithm(Key))
+            using (SymmetricAlgorithm algorithm = CreateAlgorithm())
             {
                 using (ICryptoTransform transform = new CounterModeCryptoTransform(algorithm, _blockCounter, _blockOffset))
                 {
@@ -178,7 +176,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </returns>
         public override ICryptoTransform CreateDecryptingTransform()
         {
-            using (SymmetricAlgorithm algorithm = CreateAlgorithm(Key))
+            using (SymmetricAlgorithm algorithm = CreateAlgorithm())
             {
                 return new CounterModeCryptoTransform(algorithm, _blockCounter, _blockOffset);
             }
@@ -192,7 +190,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </returns>
         public override ICryptoTransform CreateEncryptingTransform()
         {
-            using (SymmetricAlgorithm algorithm = CreateAlgorithm(Key))
+            using (SymmetricAlgorithm algorithm = CreateAlgorithm())
             {
                 return new CounterModeCryptoTransform(algorithm, _blockCounter, _blockOffset);
             }
