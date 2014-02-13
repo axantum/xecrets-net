@@ -56,6 +56,7 @@
     <Compile Include="Crypto\IRandomGenerator.cs" />
     <Compile Include="Crypto\RandomGenerator.cs" />
     <Compile Include="Crypto\V2AesCrypto.cs" />
+    <Compile Include="Header\V2CompressionHeaderBlock.cs" />
     <Compile Include="Header\V2DocumentHeaders.cs" />
     <Compile Include="Header\V2KeyWrapHeaderBlock.cs" />
     <Compile Include="V1AxCryptDocument.cs" />
@@ -123,7 +124,7 @@
     <Compile Include="ErrorStatus.cs" />
     <Compile Include="Runtime\FileFormatException.cs" />
     <Compile Include="Header\AxCrypt1Guid.cs" />
-    <Compile Include="Header\CompressionHeaderBlock.cs" />
+    <Compile Include="Header\V1CompressionHeaderBlock.cs" />
     <Compile Include="Header\V1CompressionInfoHeaderBlock.cs" />
     <Compile Include="Header\DataHeaderBlock.cs" />
     <Compile Include="Header\V1DocumentHeaders.cs" />

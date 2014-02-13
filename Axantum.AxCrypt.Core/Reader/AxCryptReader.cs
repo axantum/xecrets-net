@@ -25,14 +25,14 @@
 
 #endregion Coypright and License
 
-using System;
-using System.IO;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
+using System;
+using System.IO;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
@@ -305,7 +305,7 @@ namespace Axantum.AxCrypt.Core.Reader
                     break;
 
                 case HeaderBlockType.Compression:
-                    CurrentHeaderBlock = new CompressionHeaderBlock(dataBlock);
+                    CurrentHeaderBlock = new V1CompressionHeaderBlock(dataBlock);
                     break;
 
                 case HeaderBlockType.UnicodeFileNameInfo:

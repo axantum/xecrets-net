@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core.Header
 
             _headers.HeaderBlocks.Add(new V1KeyWrap1HeaderBlock(keyEncryptingCrypto));
             _headers.HeaderBlocks.Add(new V1EncryptionInfoHeaderBlock());
-            _headers.HeaderBlocks.Add(new CompressionHeaderBlock());
+            _headers.HeaderBlocks.Add(new V1CompressionHeaderBlock());
             _headers.HeaderBlocks.Add(new FileInfoHeaderBlock());
             _headers.HeaderBlocks.Add(new UnicodeFileNameInfoHeaderBlock());
             _headers.HeaderBlocks.Add(new V1FileNameInfoHeaderBlock());
@@ -320,7 +320,7 @@ namespace Axantum.AxCrypt.Core.Header
         {
             get
             {
-                CompressionHeaderBlock headerBlock = _headers.FindHeaderBlock<CompressionHeaderBlock>();
+                V1CompressionHeaderBlock headerBlock = _headers.FindHeaderBlock<V1CompressionHeaderBlock>();
                 if (headerBlock == null)
                 {
                     // Conditional compression was added in 1.2.2, before then it was always compressed.
@@ -330,7 +330,7 @@ namespace Axantum.AxCrypt.Core.Header
             }
             set
             {
-                CompressionHeaderBlock headerBlock = _headers.FindHeaderBlock<CompressionHeaderBlock>();
+                V1CompressionHeaderBlock headerBlock = _headers.FindHeaderBlock<V1CompressionHeaderBlock>();
                 headerBlock.IsCompressed = value;
                 if (value)
                 {

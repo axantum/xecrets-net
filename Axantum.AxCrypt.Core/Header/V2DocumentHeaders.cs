@@ -46,16 +46,14 @@ namespace Axantum.AxCrypt.Core.Header
             _headers = new DocumentHeadersCommon(_version);
 
             _headers.HeaderBlocks.Add(new V2KeyWrapHeaderBlock(keyEncryptingCrypto, iterations));
+            _headers.HeaderBlocks.Add(new FileInfoHeaderBlock());
+            _headers.HeaderBlocks.Add(new V2CompressionHeaderBlock());
             _headers.HeaderBlocks.Add(new DataHeaderBlock());
 
-            SetMasterKeyForEncryptedHeaderBlocks(_headers.HeaderBlocks);
-
-            V1EncryptionInfoHeaderBlock encryptionInfoHeaderBlock = _headers.FindHeaderBlock<V1EncryptionInfoHeaderBlock>();
-            encryptionInfoHeaderBlock.IV = new AesIV();
-            encryptionInfoHeaderBlock.PlaintextLength = 0;
+            SetDataEncryptingCryptoForEncryptedHeaderBlocks(_headers.HeaderBlocks);
         }
 
-        private void SetMasterKeyForEncryptedHeaderBlocks(IList<HeaderBlock> headerBlocks)
+        private void SetDataEncryptingCryptoForEncryptedHeaderBlocks(IList<HeaderBlock> headerBlocks)
         {
             foreach (HeaderBlock headerBlock in headerBlocks)
             {
@@ -67,21 +65,21 @@ namespace Axantum.AxCrypt.Core.Header
                 switch (encryptedHeaderBlock.HeaderBlockType)
                 {
                     case HeaderBlockType.FileInfo:
-                        encryptedHeaderBlock.HeaderCrypto = new V2AesCrypto(MasterKey, MasterIV, 256);
+                        encryptedHeaderBlock.HeaderCrypto = new V2AesCrypto(DataEncryptingKey, DataEncryptingIV, 256);
                         break;
 
                     case HeaderBlockType.Compression:
-                        encryptedHeaderBlock.HeaderCrypto = new V2AesCrypto(MasterKey, MasterIV, 512);
+                        encryptedHeaderBlock.HeaderCrypto = new V2AesCrypto(DataEncryptingKey, DataEncryptingIV, 512);
                         break;
 
                     case HeaderBlockType.UnicodeFileNameInfo:
-                        encryptedHeaderBlock.HeaderCrypto = new V2AesCrypto(MasterKey, MasterIV, 768);
+                        encryptedHeaderBlock.HeaderCrypto = new V2AesCrypto(DataEncryptingKey, DataEncryptingIV, 768);
                         break;
                 }
             }
         }
 
-        public AesKey MasterKey
+        public AesKey DataEncryptingKey
         {
             get
             {
@@ -90,12 +88,68 @@ namespace Axantum.AxCrypt.Core.Header
             }
         }
 
-        public AesIV MasterIV
+        public AesIV DataEncryptingIV
         {
             get
             {
                 V2KeyWrapHeaderBlock keyHeaderBlock = _headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
                 return keyHeaderBlock.MasterIV(_keyEncryptingCrypto);
+            }
+        }
+
+        public DateTime CreationTimeUtc
+        {
+            get
+            {
+                FileInfoHeaderBlock headerBlock = _headers.FindHeaderBlock<FileInfoHeaderBlock>();
+                return headerBlock.CreationTimeUtc;
+            }
+            set
+            {
+                FileInfoHeaderBlock headerBlock = _headers.FindHeaderBlock<FileInfoHeaderBlock>();
+                headerBlock.CreationTimeUtc = value;
+            }
+        }
+
+        public DateTime LastAccessTimeUtc
+        {
+            get
+            {
+                FileInfoHeaderBlock headerBlock = _headers.FindHeaderBlock<FileInfoHeaderBlock>();
+                return headerBlock.LastAccessTimeUtc;
+            }
+            set
+            {
+                FileInfoHeaderBlock headerBlock = _headers.FindHeaderBlock<FileInfoHeaderBlock>();
+                headerBlock.LastAccessTimeUtc = value;
+            }
+        }
+
+        public DateTime LastWriteTimeUtc
+        {
+            get
+            {
+                FileInfoHeaderBlock headerBlock = _headers.FindHeaderBlock<FileInfoHeaderBlock>();
+                return headerBlock.LastWriteTimeUtc;
+            }
+            set
+            {
+                FileInfoHeaderBlock headerBlock = _headers.FindHeaderBlock<FileInfoHeaderBlock>();
+                headerBlock.LastWriteTimeUtc = value;
+            }
+        }
+
+        public bool IsCompressed
+        {
+            get
+            {
+                V2CompressionHeaderBlock headerBlock = _headers.FindHeaderBlock<V2CompressionHeaderBlock>();
+                return headerBlock.IsCompressed;
+            }
+            set
+            {
+                V2CompressionHeaderBlock headerBlock = _headers.FindHeaderBlock<V2CompressionHeaderBlock>();
+                headerBlock.IsCompressed = value;
             }
         }
     }

@@ -165,13 +165,6 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 using (ICryptoTransform transform = new CounterModeCryptoTransform(algorithm, _blockCounter, _blockOffset))
                 {
-                    _blockCounter += plaintext.Length / BlockLength;
-                    _blockOffset += plaintext.Length % BlockLength;
-                    if (_blockOffset == BlockLength)
-                    {
-                        _blockCounter += 1;
-                        _blockOffset = 0;
-                    }
                     return transform.TransformFinalBlock(plaintext, 0, plaintext.Length);
                 }
             }
