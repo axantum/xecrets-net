@@ -34,7 +34,7 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// <summary>
     /// Implements V2 AES Cryptography, briefly AES-256 in CTR-Mode.
     /// </summary>
-    public class V2AesCrypto : ICrypto
+    public class V2AesCrypto : CryptoBase
     {
         private AesIV _iv;
 
@@ -98,10 +98,6 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
         }
 
-        public int BlockLength { get; private set; }
-
-        public AesKey Key { get; private set; }
-
         /// <summary>
         /// Gets the unique name of the algorithm implementation.
         /// </summary>
@@ -111,7 +107,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// the UI must be able to fallback and actually display this identifier as a selector for example in the UI. This is to
         /// support plug-in algorithm implementations in the future.
         /// </value>
-        public string Name
+        public override string Name
         {
             get { return "AES-256"; }
         }
@@ -123,10 +119,13 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <value>
         /// An instance of the algorithm.
         /// </value>
-        public SymmetricAlgorithm CreateAlgorithm()
+        public override SymmetricAlgorithm CreateAlgorithm()
         {
             SymmetricAlgorithm algorithm = new AesManaged();
-            algorithm.Key = Key.GetBytes();
+            if (Key != null)
+            {
+                algorithm.Key = Key.GetBytes();
+            }
             if (_iv != null)
             {
                 algorithm.IV = _iv.GetBytes();
@@ -143,7 +142,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>
         /// The decrypted result minus any padding
         /// </returns>
-        public byte[] Decrypt(byte[] cipherText)
+        public override byte[] Decrypt(byte[] cipherText)
         {
             return Transform(cipherText);
         }
@@ -155,7 +154,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>
         /// The cipher text, complete with any padding
         /// </returns>
-        public byte[] Encrypt(byte[] plaintext)
+        public override byte[] Encrypt(byte[] plaintext)
         {
             return Transform(plaintext);
         }
@@ -184,7 +183,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>
         /// A new decrypting transformation instance
         /// </returns>
-        public ICryptoTransform CreateDecryptingTransform()
+        public override ICryptoTransform CreateDecryptingTransform()
         {
             using (SymmetricAlgorithm algorithm = CreateAlgorithm())
             {
@@ -198,7 +197,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>
         /// A new encrypting transformation instance
         /// </returns>
-        public ICryptoTransform CreateEncryptingTransform()
+        public override ICryptoTransform CreateEncryptingTransform()
         {
             using (SymmetricAlgorithm algorithm = CreateAlgorithm())
             {

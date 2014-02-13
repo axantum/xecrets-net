@@ -33,7 +33,7 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// <summary>
     /// Wrap an AES implementation with key and parameters.
     /// </summary>
-    public class V1AesCrypto : ICrypto
+    public class V1AesCrypto : CryptoBase
     {
         private CipherMode _cipherMode;
 
@@ -68,10 +68,6 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
         }
 
-        public AesKey Key { get; private set; }
-
-        public int BlockLength { get; private set; }
-
         /// <summary>
         /// Instantiate an AES transform with zero IV, CBC and no padding.
         /// </summary>
@@ -81,7 +77,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
         }
 
-        public string Name
+        public override string Name
         {
             get { return "AES-128"; }
         }
@@ -93,10 +89,13 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <value>
         /// An instance of the algorithm.
         /// </value>
-        public SymmetricAlgorithm CreateAlgorithm()
+        public override SymmetricAlgorithm CreateAlgorithm()
         {
             SymmetricAlgorithm algorithm = new AesManaged();
-            algorithm.Key = Key.GetBytes();
+            if (Key != null)
+            {
+                algorithm.Key = Key.GetBytes();
+            }
             return algorithm;
         }
 
@@ -105,7 +104,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         /// <param name="cipherText">The complete cipher text</param>
         /// <returns>The decrypted result minus any padding</returns>
-        public byte[] Decrypt(byte[] cipherText)
+        public override byte[] Decrypt(byte[] cipherText)
         {
             using (SymmetricAlgorithm aes = CreateAlgorithm())
             {
@@ -126,7 +125,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         /// <param name="plaintext">The complete plaintext bytes</param>
         /// <returns>The cipher text, complete with any padding</returns>
-        public byte[] Encrypt(byte[] plaintext)
+        public override byte[] Encrypt(byte[] plaintext)
         {
             using (SymmetricAlgorithm aes = CreateAlgorithm())
             {
@@ -146,7 +145,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// Using this instances parameters, create a decryptor
         /// </summary>
         /// <returns>A new decrypting transformation instance</returns>
-        public ICryptoTransform CreateDecryptingTransform()
+        public override ICryptoTransform CreateDecryptingTransform()
         {
             using (SymmetricAlgorithm aes = CreateAlgorithm())
             {
@@ -163,7 +162,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// Using this instances parameters, create an encryptor
         /// </summary>
         /// <returns>A new encrypting transformation instance</returns>
-        public ICryptoTransform CreateEncryptingTransform()
+        public override ICryptoTransform CreateEncryptingTransform()
         {
             using (SymmetricAlgorithm aes = CreateAlgorithm())
             {

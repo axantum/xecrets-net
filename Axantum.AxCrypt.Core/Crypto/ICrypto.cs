@@ -54,6 +54,8 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         int BlockLength { get; }
 
+        bool IsValidKeyLength(int length);
+
         /// <summary>
         /// Create an instance of the underlying symmetric algorithm.
         /// </summary>

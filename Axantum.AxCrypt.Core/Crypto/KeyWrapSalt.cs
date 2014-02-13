@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
@@ -54,12 +53,12 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <summary>
         /// Initializes a new instance of the <see cref="KeyWrapSalt"/> class.
         /// </summary>
-        /// <param name="length">The length of the salt in bytes. It must be a valid AES key length.</param>
+        /// <param name="length">The length of the salt in bytes.</param>
         public KeyWrapSalt(int length)
         {
-            if (!AesKey.IsValidKeyLength(length))
+            if (length < 0)
             {
-                throw new InternalErrorException("A key wrap salt length must at least be equal to a valid AES key length.");
+                throw new ArgumentOutOfRangeException("length");
             }
             _salt = Instance.RandomGenerator.Generate(length);
         }
@@ -73,10 +72,6 @@ namespace Axantum.AxCrypt.Core.Crypto
             if (salt == null)
             {
                 throw new ArgumentNullException("salt");
-            }
-            if (salt.Length != 0 && !AesKey.IsValidKeyLength(salt.Length))
-            {
-                throw new InternalErrorException("A key wrap salt length must at least be equal to a valid AES key length.");
             }
             _salt = (byte[])salt.Clone();
         }

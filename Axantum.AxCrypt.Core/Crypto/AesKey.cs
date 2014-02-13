@@ -26,11 +26,8 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Runtime;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -39,8 +36,6 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// </summary>
     public class AesKey : IEquatable<AesKey>
     {
-        private static ICollection<int> _validAesKeySizes = ValidAesKeySizes();
-
         private byte[] _aesKey;
 
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "This type is immutable.")]
@@ -70,10 +65,6 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new ArgumentNullException("key");
             }
-            if (!IsValidKeyLength(key.Length))
-            {
-                throw new InternalErrorException("Invalid AES key size");
-            }
             _aesKey = (byte[])key.Clone();
         }
 
@@ -84,16 +75,6 @@ namespace Axantum.AxCrypt.Core.Crypto
         public byte[] GetBytes()
         {
             return (byte[])_aesKey.Clone();
-        }
-
-        /// <summary>
-        /// Check if a key length is valid for AES
-        /// </summary>
-        /// <param name="length">The length in bytes</param>
-        /// <returns>true if the length in bytes is a valid key length for AES</returns>
-        public static bool IsValidKeyLength(int length)
-        {
-            return _validAesKeySizes.Contains(length);
         }
 
         public int Length
@@ -120,22 +101,6 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 _thumbprint = value;
             }
-        }
-
-        private static ICollection<int> ValidAesKeySizes()
-        {
-            List<int> validAesKeySizes = new List<int>();
-            using (AesManaged aes = new AesManaged())
-            {
-                foreach (KeySizes keySizes in aes.LegalKeySizes)
-                {
-                    for (int validKeySizeInBits = keySizes.MinSize; validKeySizeInBits <= keySizes.MaxSize; validKeySizeInBits += keySizes.SkipSize)
-                    {
-                        validAesKeySizes.Add(validKeySizeInBits / 8);
-                    }
-                }
-            }
-            return validAesKeySizes;
         }
 
         #region IEquatable<AesKey> Members

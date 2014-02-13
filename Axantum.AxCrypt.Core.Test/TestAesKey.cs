@@ -25,10 +25,9 @@
 
 #endregion Coypright and License
 
-using System;
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
+using System;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -62,11 +61,6 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.DoesNotThrow(() =>
             {
                 key = new AesKey(new byte[32]);
-            });
-
-            Assert.Throws<InternalErrorException>(() =>
-            {
-                key = new AesKey(new byte[0]);
             });
 
             Assert.Throws<ArgumentNullException>(() =>

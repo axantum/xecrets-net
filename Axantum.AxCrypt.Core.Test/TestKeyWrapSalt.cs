@@ -25,10 +25,9 @@
 
 #endregion Coypright and License
 
-using System;
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
+using System;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -53,6 +52,9 @@ namespace Axantum.AxCrypt.Core.Test
             KeyWrapSalt salt = null;
             Assert.DoesNotThrow(() =>
             {
+                salt = new KeyWrapSalt(0);
+                Assert.That(salt.Length, Is.EqualTo(0), "As a special case, zero length salt is supported - equivalent to no salt.");
+
                 salt = new KeyWrapSalt(16);
                 Assert.That(salt.Length, Is.EqualTo(16), "The length should be what was asked for.");
                 Assert.That(salt.GetBytes(), Is.Not.EquivalentTo(new byte[16]), "A random salt is not likely to be all zeros.");
@@ -84,24 +86,9 @@ namespace Axantum.AxCrypt.Core.Test
                 salt = new KeyWrapSalt(null);
             });
 
-            Assert.Throws<InternalErrorException>(() =>
-            {
-                salt = new KeyWrapSalt(0);
-            });
-
-            Assert.Throws<InternalErrorException>(() =>
+            Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
                 salt = new KeyWrapSalt(-16);
-            });
-
-            Assert.Throws<InternalErrorException>(() =>
-            {
-                salt = new KeyWrapSalt(48);
-            });
-
-            Assert.Throws<InternalErrorException>(() =>
-            {
-                salt = new KeyWrapSalt(new byte[12]);
             });
         }
     }

@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Crypto\CounterModeCryptoTransform.cs" />
+    <Compile Include="Crypto\CryptoBase.cs" />
     <Compile Include="Crypto\ICrypto.cs" />
     <Compile Include="Crypto\IRandomGenerator.cs" />
     <Compile Include="Crypto\RandomGenerator.cs" />
