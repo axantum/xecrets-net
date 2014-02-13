@@ -25,9 +25,6 @@
 
 #endregion Coypright and License
 
-using System;
-using System.IO;
-using System.Security.Cryptography;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Header;
@@ -36,6 +33,9 @@ using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using Org.BouncyCastle.Utilities.Zlib;
+using System;
+using System.IO;
+using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -298,11 +298,6 @@ namespace Axantum.AxCrypt.Core
 
             if (disposing)
             {
-                if (_dataCrypto != null)
-                {
-                    _dataCrypto.Dispose();
-                    _dataCrypto = null;
-                }
                 if (_reader != null)
                 {
                     _reader.Dispose();

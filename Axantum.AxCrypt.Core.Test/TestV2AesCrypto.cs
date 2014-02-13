@@ -25,14 +25,12 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
+using System;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -88,30 +86,27 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestEncrypt()
         {
             AesKey key = new AesKey(testKey);
-            using (ICrypto crypto = new V2AesCrypto(key, new AesIV(testPlaintext), 0))
-            {
-                byte[] zeroPlain = new byte[testCipertext.Length];
+            ICrypto crypto = new V2AesCrypto(key, new AesIV(testPlaintext), 0);
 
-                byte[] cipherText = crypto.Encrypt(zeroPlain);
+            byte[] zeroPlain = new byte[testCipertext.Length];
 
-                Assert.That(cipherText.IsEquivalentTo(testCipertext));
-            }
+            byte[] cipherText = crypto.Encrypt(zeroPlain);
+
+            Assert.That(cipherText.IsEquivalentTo(testCipertext));
         }
 
         [Test]
         public static void TestEncryptPartialBlock()
         {
             AesKey key = new AesKey(testKey);
-            using (ICrypto crypto = new V2AesCrypto(key, new AesIV(testPlaintext), 3))
-            {
-                byte[] zeroPlain = new byte[5];
+            ICrypto crypto = new V2AesCrypto(key, new AesIV(testPlaintext), 3);
+            byte[] zeroPlain = new byte[5];
 
-                byte[] cipherText = crypto.Encrypt(zeroPlain);
-                byte[] partOfTestCipherText = new byte[5];
-                Array.Copy(testCipertext, 3, partOfTestCipherText, 0, 5);
+            byte[] cipherText = crypto.Encrypt(zeroPlain);
+            byte[] partOfTestCipherText = new byte[5];
+            Array.Copy(testCipertext, 3, partOfTestCipherText, 0, 5);
 
-                Assert.That(cipherText.IsEquivalentTo(partOfTestCipherText));
-            }
+            Assert.That(cipherText.IsEquivalentTo(partOfTestCipherText));
         }
 
         [Test]
@@ -124,20 +119,18 @@ namespace Axantum.AxCrypt.Core.Test
 
             long blockCounter = nistInitCounter.GetBigEndianValue(8, 8);
 
-            using (ICrypto crypto = new V2AesCrypto(key, new AesIV(iv), blockCounter, 0))
-            {
-                byte[] cipherText1 = crypto.Encrypt(nistPlaintext1);
-                Assert.That(cipherText1.IsEquivalentTo(nistCiphertext1));
+            ICrypto crypto = new V2AesCrypto(key, new AesIV(iv), blockCounter, 0);
+            byte[] cipherText1 = crypto.Encrypt(nistPlaintext1);
+            Assert.That(cipherText1.IsEquivalentTo(nistCiphertext1));
 
-                byte[] cipherText2 = crypto.Encrypt(nistPlaintext2);
-                Assert.That(cipherText2.IsEquivalentTo(nistCiphertext2));
+            byte[] cipherText2 = crypto.Encrypt(nistPlaintext2);
+            Assert.That(cipherText2.IsEquivalentTo(nistCiphertext2));
 
-                byte[] cipherText3 = crypto.Encrypt(nistPlaintext3);
-                Assert.That(cipherText3.IsEquivalentTo(nistCiphertext3));
+            byte[] cipherText3 = crypto.Encrypt(nistPlaintext3);
+            Assert.That(cipherText3.IsEquivalentTo(nistCiphertext3));
 
-                byte[] cipherText4 = crypto.Encrypt(nistPlaintext4);
-                Assert.That(cipherText4.IsEquivalentTo(nistCiphertext4));
-            }
+            byte[] cipherText4 = crypto.Encrypt(nistPlaintext4);
+            Assert.That(cipherText4.IsEquivalentTo(nistCiphertext4));
         }
     }
 }

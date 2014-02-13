@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Security.Cryptography;
 using Axantum.AxCrypt.Core.Crypto;
 using NUnit.Framework;
+using System;
+using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -71,55 +71,6 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.DoesNotThrow(() =>
             {
                 if (new V1AesCrypto(key, iv, CipherMode.CBC, PaddingMode.None) == null) { }
-            });
-        }
-
-        [Test]
-        public static void TestDoubleDispose()
-        {
-            AesKey key = new AesKey(128);
-            AesIV iv = new AesIV();
-
-            V1AesCrypto crypto = new V1AesCrypto(key, iv, CipherMode.CBC, PaddingMode.None);
-            crypto.Dispose();
-            Assert.Throws<ObjectDisposedException>(() =>
-            {
-                crypto.CreateDecryptingTransform();
-            });
-            crypto.Dispose();
-            Assert.Throws<ObjectDisposedException>(() =>
-            {
-                crypto.CreateDecryptingTransform();
-            });
-        }
-
-        [Test]
-        public static void TestObjectDisposed()
-        {
-            AesKey key = new AesKey(128);
-            AesIV iv = new AesIV();
-
-            V1AesCrypto crypto = new V1AesCrypto(key, iv, CipherMode.CBC, PaddingMode.None);
-            crypto.Dispose();
-
-            Assert.Throws<ObjectDisposedException>(() =>
-            {
-                crypto.Decrypt(new byte[16]);
-            });
-
-            Assert.Throws<ObjectDisposedException>(() =>
-            {
-                crypto.Encrypt(new byte[16]);
-            });
-
-            Assert.Throws<ObjectDisposedException>(() =>
-            {
-                crypto.CreateDecryptingTransform();
-            });
-
-            Assert.Throws<ObjectDisposedException>(() =>
-            {
-                crypto.CreateEncryptingTransform();
             });
         }
     }

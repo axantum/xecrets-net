@@ -35,7 +35,11 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// </summary>
     public class V1AesCrypto : ICrypto
     {
-        private SymmetricAlgorithm _aes = null;
+        private CipherMode _cipherMode;
+
+        private PaddingMode _paddingMode;
+
+        private AesIV _iv;
 
         /// <summary>
         /// Instantiate a transformation
@@ -55,10 +59,9 @@ namespace Axantum.AxCrypt.Core.Crypto
                 throw new ArgumentNullException("iv");
             }
             Key = key;
-            _aes = CreateAlgorithm();
-            _aes.Mode = cipherMode;
-            _aes.IV = iv.GetBytes();
-            _aes.Padding = paddingMode;
+            _iv = iv;
+            _cipherMode = cipherMode;
+            _paddingMode = paddingMode;
         }
 
         public AesKey Key { get; private set; }
@@ -98,14 +101,17 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>The decrypted result minus any padding</returns>
         public byte[] Decrypt(byte[] cipherText)
         {
-            if (_aes == null)
+            using (SymmetricAlgorithm aes = CreateAlgorithm())
             {
-                throw new ObjectDisposedException("_aes");
-            }
-            using (ICryptoTransform decryptor = _aes.CreateDecryptor())
-            {
-                byte[] plainText = decryptor.TransformFinalBlock(cipherText, 0, cipherText.Length);
-                return plainText;
+                aes.Key = Key.GetBytes();
+                aes.IV = _iv.GetBytes();
+                aes.Mode = _cipherMode;
+                aes.Padding = _paddingMode;
+                using (ICryptoTransform decryptor = aes.CreateDecryptor())
+                {
+                    byte[] plainText = decryptor.TransformFinalBlock(cipherText, 0, cipherText.Length);
+                    return plainText;
+                }
             }
         }
 
@@ -116,14 +122,17 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>The cipher text, complete with any padding</returns>
         public byte[] Encrypt(byte[] plaintext)
         {
-            if (_aes == null)
+            using (SymmetricAlgorithm aes = CreateAlgorithm())
             {
-                throw new ObjectDisposedException("_aes");
-            }
-            using (ICryptoTransform encryptor = _aes.CreateEncryptor())
-            {
-                byte[] cipherText = encryptor.TransformFinalBlock(plaintext, 0, plaintext.Length);
-                return cipherText;
+                aes.Key = Key.GetBytes();
+                aes.IV = _iv.GetBytes();
+                aes.Mode = _cipherMode;
+                aes.Padding = _paddingMode;
+                using (ICryptoTransform encryptor = aes.CreateEncryptor())
+                {
+                    byte[] cipherText = encryptor.TransformFinalBlock(plaintext, 0, plaintext.Length);
+                    return cipherText;
+                }
             }
         }
 
@@ -133,11 +142,15 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>A new decrypting transformation instance</returns>
         public ICryptoTransform CreateDecryptingTransform()
         {
-            if (_aes == null)
+            using (SymmetricAlgorithm aes = CreateAlgorithm())
             {
-                throw new ObjectDisposedException("_aes");
+                aes.Key = Key.GetBytes();
+                aes.IV = _iv.GetBytes();
+                aes.Mode = _cipherMode;
+                aes.Padding = _paddingMode;
+
+                return aes.CreateDecryptor();
             }
-            return _aes.CreateDecryptor();
         }
 
         /// <summary>
@@ -146,33 +159,14 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>A new encrypting transformation instance</returns>
         public ICryptoTransform CreateEncryptingTransform()
         {
-            if (_aes == null)
+            using (SymmetricAlgorithm aes = CreateAlgorithm())
             {
-                throw new ObjectDisposedException("_aes");
-            }
-            return _aes.CreateEncryptor();
-        }
+                aes.Key = Key.GetBytes();
+                aes.IV = _iv.GetBytes();
+                aes.Mode = _cipherMode;
+                aes.Padding = _paddingMode;
 
-        /// <summary>
-        /// Dispose this instances resources
-        /// </summary>
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (_aes == null)
-            {
-                return;
-            }
-
-            if (disposing)
-            {
-                _aes.Clear();
-                _aes = null;
+                return aes.CreateEncryptor();
             }
         }
     }

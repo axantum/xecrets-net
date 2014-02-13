@@ -36,7 +36,7 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// </summary>
     public class V2AesCrypto : ICrypto
     {
-        private SymmetricAlgorithm _aes;
+        private AesIV _iv;
 
         private long _blockCounter;
 
@@ -66,16 +66,16 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
 
             Key = key;
-            _aes = CreateAlgorithm();
-            _blockLength = _aes.BlockSize / 8;
-            if (iv.Length != _blockLength)
-            {
-                throw new ArgumentException("The IV length must be the same as the algorithm block length.");
-            }
-            _aes.IV = iv.GetBytes();
+            _iv = iv;
 
-            _aes.Mode = CipherMode.ECB;
-            _aes.Padding = PaddingMode.None;
+            using (SymmetricAlgorithm aes = CreateAlgorithm())
+            {
+                _blockLength = aes.BlockSize / 8;
+                if (iv.Length != _blockLength)
+                {
+                    throw new ArgumentException("The IV length must be the same as the algorithm block length.");
+                }
+            }
 
             _blockCounter = blockCounter;
             _blockOffset = blockOffset;
@@ -94,7 +94,6 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
 
             Key = key;
-            _aes = CreateAlgorithm();
         }
 
         public AesKey Key { get; private set; }
@@ -124,6 +123,12 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             SymmetricAlgorithm algorithm = new AesManaged();
             algorithm.Key = Key.GetBytes();
+            if (_iv != null)
+            {
+                algorithm.IV = _iv.GetBytes();
+            }
+            algorithm.Mode = CipherMode.ECB;
+            algorithm.Padding = PaddingMode.None;
             return algorithm;
         }
 
@@ -153,16 +158,19 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private byte[] Transform(byte[] plaintext)
         {
-            using (ICryptoTransform transform = new CounterModeCryptoTransform(_aes, _blockCounter, _blockOffset))
+            using (SymmetricAlgorithm algorithm = CreateAlgorithm())
             {
-                _blockCounter += plaintext.Length / _blockLength;
-                _blockOffset += plaintext.Length % _blockLength;
-                if (_blockOffset == _blockLength)
+                using (ICryptoTransform transform = new CounterModeCryptoTransform(algorithm, _blockCounter, _blockOffset))
                 {
-                    _blockCounter += 1;
-                    _blockOffset = 0;
+                    _blockCounter += plaintext.Length / _blockLength;
+                    _blockOffset += plaintext.Length % _blockLength;
+                    if (_blockOffset == _blockLength)
+                    {
+                        _blockCounter += 1;
+                        _blockOffset = 0;
+                    }
+                    return transform.TransformFinalBlock(plaintext, 0, plaintext.Length);
                 }
-                return transform.TransformFinalBlock(plaintext, 0, plaintext.Length);
             }
         }
 
@@ -174,7 +182,10 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </returns>
         public ICryptoTransform CreateDecryptingTransform()
         {
-            return new CounterModeCryptoTransform(_aes, _blockCounter, _blockOffset);
+            using (SymmetricAlgorithm algorithm = CreateAlgorithm())
+            {
+                return new CounterModeCryptoTransform(algorithm, _blockCounter, _blockOffset);
+            }
         }
 
         /// <summary>
@@ -185,32 +196,9 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </returns>
         public ICryptoTransform CreateEncryptingTransform()
         {
-            return new CounterModeCryptoTransform(_aes, _blockCounter, _blockOffset);
-        }
-
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
+            using (SymmetricAlgorithm algorithm = CreateAlgorithm())
             {
-                DisposeInternal();
-            }
-        }
-
-        private void DisposeInternal()
-        {
-            if (_aes != null)
-            {
-                _aes.Clear();
-                _aes = null;
+                return new CounterModeCryptoTransform(algorithm, _blockCounter, _blockOffset);
             }
         }
     }

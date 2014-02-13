@@ -31,7 +31,7 @@ using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
-    public interface ICrypto : IDisposable
+    public interface ICrypto
     {
         /// <summary>
         /// Gets the unique name of the algorithm implementation.
