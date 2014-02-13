@@ -52,6 +52,8 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </value>
         AesKey Key { get; }
 
+        int BlockLength { get; }
+
         /// <summary>
         /// Create an instance of the underlying symmetric algorithm.
         /// </summary>

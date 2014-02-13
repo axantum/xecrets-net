@@ -40,8 +40,6 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private long _blockCounter;
 
-        private int _blockLength;
-
         private int _blockOffset;
 
         /// <summary>
@@ -70,8 +68,8 @@ namespace Axantum.AxCrypt.Core.Crypto
 
             using (SymmetricAlgorithm aes = CreateAlgorithm())
             {
-                _blockLength = aes.BlockSize / 8;
-                if (iv.Length != _blockLength)
+                BlockLength = aes.BlockSize / 8;
+                if (iv.Length != BlockLength)
                 {
                     throw new ArgumentException("The IV length must be the same as the algorithm block length.");
                 }
@@ -94,7 +92,13 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
 
             Key = key;
+            using (SymmetricAlgorithm aes = CreateAlgorithm())
+            {
+                BlockLength = aes.BlockSize / 8;
+            }
         }
+
+        public int BlockLength { get; private set; }
 
         public AesKey Key { get; private set; }
 
@@ -162,9 +166,9 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 using (ICryptoTransform transform = new CounterModeCryptoTransform(algorithm, _blockCounter, _blockOffset))
                 {
-                    _blockCounter += plaintext.Length / _blockLength;
-                    _blockOffset += plaintext.Length % _blockLength;
-                    if (_blockOffset == _blockLength)
+                    _blockCounter += plaintext.Length / BlockLength;
+                    _blockOffset += plaintext.Length % BlockLength;
+                    if (_blockOffset == BlockLength)
                     {
                         _blockCounter += 1;
                         _blockOffset = 0;

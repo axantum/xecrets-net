@@ -38,14 +38,14 @@ namespace Axantum.AxCrypt.Core.Header
 
         private DocumentHeadersCommon _headers;
 
-        private AesKey _keyEncryptingKey;
+        private ICrypto _keyEncryptingCrypto;
 
-        public V2DocumentHeaders(AesKey keyEncryptingKey, long iterations)
+        public V2DocumentHeaders(ICrypto keyEncryptingCrypto, long iterations)
         {
-            _keyEncryptingKey = keyEncryptingKey;
+            _keyEncryptingCrypto = keyEncryptingCrypto;
             _headers = new DocumentHeadersCommon(_version);
 
-            _headers.HeaderBlocks.Add(new V2KeyWrapHeaderBlock(keyEncryptingKey, iterations));
+            _headers.HeaderBlocks.Add(new V2KeyWrapHeaderBlock(keyEncryptingCrypto, iterations));
             _headers.HeaderBlocks.Add(new DataHeaderBlock());
 
             SetMasterKeyForEncryptedHeaderBlocks(_headers.HeaderBlocks);
@@ -86,7 +86,7 @@ namespace Axantum.AxCrypt.Core.Header
             get
             {
                 V2KeyWrapHeaderBlock keyHeaderBlock = _headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
-                return keyHeaderBlock.MasterKey(_keyEncryptingKey);
+                return keyHeaderBlock.MasterKey(_keyEncryptingCrypto);
             }
         }
 
@@ -95,7 +95,7 @@ namespace Axantum.AxCrypt.Core.Header
             get
             {
                 V2KeyWrapHeaderBlock keyHeaderBlock = _headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
-                return keyHeaderBlock.MasterIV(_keyEncryptingKey);
+                return keyHeaderBlock.MasterIV(_keyEncryptingCrypto);
             }
         }
     }

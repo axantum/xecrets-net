@@ -62,9 +62,15 @@ namespace Axantum.AxCrypt.Core.Crypto
             _iv = iv;
             _cipherMode = cipherMode;
             _paddingMode = paddingMode;
+            using (SymmetricAlgorithm algorithm = CreateAlgorithm())
+            {
+                BlockLength = algorithm.BlockSize / 8;
+            }
         }
 
         public AesKey Key { get; private set; }
+
+        public int BlockLength { get; private set; }
 
         /// <summary>
         /// Instantiate an AES transform with zero IV, CBC and no padding.

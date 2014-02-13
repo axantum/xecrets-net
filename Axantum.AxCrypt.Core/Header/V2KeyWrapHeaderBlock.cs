@@ -61,10 +61,10 @@ namespace Axantum.AxCrypt.Core.Header
             }
         }
 
-        public V2KeyWrapHeaderBlock(AesKey keyEncryptingKey, long iterations)
+        public V2KeyWrapHeaderBlock(ICrypto keyEncryptingCrypto, long iterations)
             : this(Instance.RandomGenerator.Generate(DATABLOCK_LENGTH))
         {
-            Initialize(keyEncryptingKey, iterations);
+            Initialize(keyEncryptingCrypto, iterations);
         }
 
         public override object Clone()
@@ -91,52 +91,52 @@ namespace Axantum.AxCrypt.Core.Header
             return keyData;
         }
 
-        private void Initialize(AesKey keyEncryptingKey, long iterations)
+        private void Initialize(ICrypto keyEncryptingCrypto, long iterations)
         {
-            KeyWrapSalt salt = new KeyWrapSalt(keyEncryptingKey.Length);
-            using (KeyWrap keyWrap = new KeyWrap(new V2AesCrypto(keyEncryptingKey), salt, iterations, KeyWrapMode.Specification))
+            KeyWrapSalt salt = new KeyWrapSalt(keyEncryptingCrypto.Key.Length);
+            using (KeyWrap keyWrap = new KeyWrap(keyEncryptingCrypto, salt, iterations, KeyWrapMode.Specification))
             {
-                byte[] keyMaterial = Instance.RandomGenerator.Generate(keyEncryptingKey.Length + keyWrap.BlockSize);
+                byte[] keyMaterial = Instance.RandomGenerator.Generate(keyEncryptingCrypto.Key.Length + keyWrap.BlockSize);
                 byte[] wrappedKeyData = keyWrap.Wrap(keyMaterial);
                 Set(wrappedKeyData, salt, iterations);
             }
         }
 
-        public byte[] UnwrapMasterKey(AesKey keyEncryptingKey)
+        public byte[] UnwrapMasterKey(ICrypto keyEncryptingCrypto)
         {
-            byte[] saltBytes = new byte[keyEncryptingKey.Length];
+            byte[] saltBytes = new byte[keyEncryptingCrypto.Key.Length];
             Array.Copy(GetDataBlockBytesReference(), WRAP_SALT_OFFSET, saltBytes, 0, saltBytes.Length);
             KeyWrapSalt salt = new KeyWrapSalt(saltBytes);
 
             byte[] unwrappedKeyData;
-            using (KeyWrap keyWrap = new KeyWrap(new V2AesCrypto(keyEncryptingKey), salt, Iterations, KeyWrapMode.Specification))
+            using (KeyWrap keyWrap = new KeyWrap(keyEncryptingCrypto, salt, Iterations, KeyWrapMode.Specification))
             {
-                byte[] wrappedKeyData = GetKeyData(keyWrap.BlockSize, keyEncryptingKey.Length);
+                byte[] wrappedKeyData = GetKeyData(keyWrap.BlockSize, keyEncryptingCrypto.Key.Length);
                 unwrappedKeyData = keyWrap.Unwrap(wrappedKeyData);
             }
             return unwrappedKeyData;
         }
 
-        public AesKey MasterKey(AesKey keyEncryptingKey)
+        public AesKey MasterKey(ICrypto keyEncryptingCrypto)
         {
-            byte[] unwrappedKeyData = UnwrapMasterKey(keyEncryptingKey);
+            byte[] unwrappedKeyData = UnwrapMasterKey(keyEncryptingCrypto);
             if (unwrappedKeyData.Length == 0)
             {
                 return null;
             }
-            byte[] masterKeyBytes = new byte[keyEncryptingKey.Length];
+            byte[] masterKeyBytes = new byte[keyEncryptingCrypto.Key.Length];
             Array.Copy(unwrappedKeyData, 0, masterKeyBytes, 0, masterKeyBytes.Length);
             return new AesKey(masterKeyBytes);
         }
 
-        public AesIV MasterIV(AesKey keyEncryptingKey)
+        public AesIV MasterIV(ICrypto keyEncryptingCrypto)
         {
-            byte[] unwrappedKeyData = UnwrapMasterKey(keyEncryptingKey);
+            byte[] unwrappedKeyData = UnwrapMasterKey(keyEncryptingCrypto);
             if (unwrappedKeyData.Length == 0)
             {
                 return null;
             }
-            byte[] masterIVBytes = new byte[16];
+            byte[] masterIVBytes = new byte[keyEncryptingCrypto.BlockLength];
             Array.Copy(unwrappedKeyData, 0, masterIVBytes, 0, masterIVBytes.Length);
             return new AesIV(masterIVBytes);
         }
