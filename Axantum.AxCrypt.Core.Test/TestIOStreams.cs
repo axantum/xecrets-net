@@ -129,11 +129,11 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Assert.Throws<ArgumentNullException>(() =>
             {
-                using (HmacStream hmacStream = new HmacStream(null)) { }
+                using (V1HmacStream hmacStream = new V1HmacStream(null)) { }
             });
 
             AesKey key = new AesKey(new byte[16]);
-            using (HmacStream hmacStream = new HmacStream(key))
+            using (V1HmacStream hmacStream = new V1HmacStream(key))
             {
                 Assert.That(hmacStream.CanRead, Is.False, "HmacStream does not support reading.");
                 Assert.That(hmacStream.CanSeek, Is.False, "HmacStream does not support seeking.");

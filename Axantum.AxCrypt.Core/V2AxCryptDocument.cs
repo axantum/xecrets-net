@@ -25,17 +25,15 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.UI;
 using Org.BouncyCastle.Utilities.Zlib;
+using System;
+using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -106,7 +104,7 @@ namespace Axantum.AxCrypt.Core
                 }
                 outputStream.Flush();
                 DocumentHeaders.CipherTextLength = outputStream.Position - outputStartPosition;
-                using (HmacStream outputHmacStream = new HmacStream(DocumentHeaders.HmacSubkey.Key, outputStream))
+                using (V1HmacStream outputHmacStream = new V1HmacStream(DocumentHeaders.HmacSubkey.Key, outputStream))
                 {
                     DocumentHeaders.WriteWithHmac(outputHmacStream);
                     outputHmacStream.ReadFrom(outputStream);

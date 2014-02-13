@@ -124,7 +124,7 @@ namespace Axantum.AxCrypt.Core.Header
             WriteInternal(cipherStream, cipherStream);
         }
 
-        public void WriteWithHmac(HmacStream hmacStream)
+        public void WriteWithHmac(V1HmacStream hmacStream)
         {
             if (hmacStream == null)
             {

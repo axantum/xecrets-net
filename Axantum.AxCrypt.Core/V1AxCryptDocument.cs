@@ -122,7 +122,7 @@ namespace Axantum.AxCrypt.Core
                 }
                 outputStream.Flush();
                 DocumentHeaders.CipherTextLength = outputStream.Position - outputStartPosition;
-                using (HmacStream outputHmacStream = new HmacStream(DocumentHeaders.HmacSubkey.Key, outputStream))
+                using (V1HmacStream outputHmacStream = new V1HmacStream(DocumentHeaders.HmacSubkey.Key, outputStream))
                 {
                     DocumentHeaders.WriteWithHmac(outputHmacStream);
                     outputHmacStream.ReadFrom(outputStream);
@@ -178,7 +178,7 @@ namespace Axantum.AxCrypt.Core
                 throw new InternalErrorException("Passphrase is not valid.");
             }
 
-            using (HmacStream hmacStreamOutput = new HmacStream(outputDocumentHeaders.HmacSubkey.Key, cipherStream))
+            using (V1HmacStream hmacStreamOutput = new V1HmacStream(outputDocumentHeaders.HmacSubkey.Key, cipherStream))
             {
                 outputDocumentHeaders.WriteWithHmac(hmacStreamOutput);
                 using (AxCryptDataStream encryptedDataStream = _reader.CreateEncryptedDataStream(DocumentHeaders.HmacSubkey.Key, DocumentHeaders.CipherTextLength, progress))

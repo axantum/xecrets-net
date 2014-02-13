@@ -25,14 +25,14 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.IO;
 using System.Security.Cryptography;
-using Axantum.AxCrypt.Core.Crypto;
 
 namespace Axantum.AxCrypt.Core.IO
 {
-    public class HmacStream : Stream
+    public class V1HmacStream : Stream
     {
         private HashAlgorithm _hmac;
 
@@ -46,7 +46,7 @@ namespace Axantum.AxCrypt.Core.IO
         /// A AxCrypt HMAC-calculating stream. This uses the AxCrypt variant with a block size of 20 for the key.
         /// </summary>
         /// <param name="key">The key for the HMAC</param>
-        public HmacStream(AesKey key)
+        public V1HmacStream(AesKey key)
             : this(key, Stream.Null)
         {
         }
@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Core.IO
         /// </summary>
         /// <param name="key">The key for the HMAC</param>
         /// <param name="chainedStream">A stream where data is chain-written to. This stream is not disposed of when this instance is disposed.</param>
-        public HmacStream(AesKey key, Stream chainedStream)
+        public V1HmacStream(AesKey key, Stream chainedStream)
         {
             if (key == null)
             {

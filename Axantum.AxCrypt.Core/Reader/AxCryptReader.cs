@@ -72,7 +72,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
         public HeaderBlock CurrentHeaderBlock { get; private set; }
 
-        private HmacStream _hmacStream;
+        private V1HmacStream _hmacStream;
 
         public AxCryptDataStream CreateEncryptedDataStream(AesKey hmacKey, long cipherTextLength, IProgressContext progress)
         {
@@ -95,7 +95,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
             CurrentItemType = AxCryptItemType.EndOfStream;
 
-            _hmacStream = new HmacStream(hmacKey);
+            _hmacStream = new V1HmacStream(hmacKey);
             _hmacBufferStream.Position = 0;
             _hmacBufferStream.CopyTo(_hmacStream, OS.Current.StreamBufferSize);
 

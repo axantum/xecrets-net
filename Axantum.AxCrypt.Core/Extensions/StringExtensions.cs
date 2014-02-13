@@ -28,11 +28,9 @@
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Extensions
 {
@@ -135,6 +133,26 @@ namespace Axantum.AxCrypt.Core.Extensions
 
             value = value.Replace(Path.DirectorySeparatorChar == '/' ? '\\' : '/', Path.DirectorySeparatorChar);
             return Factory.New<IRuntimeFileInfo>(value).NormalizeFolder().FullName;
+        }
+
+        public static byte[] FromHex(this string hex)
+        {
+            if (hex == null)
+            {
+                throw new ArgumentNullException("hex");
+            }
+            hex = hex.Replace(" ", String.Empty);
+            if (hex.Length % 2 != 0)
+            {
+                throw new ArgumentException("Odd number of characters is not allowed in a hex string.");
+            }
+
+            byte[] bytes = new byte[hex.Length / 2];
+            for (int i = 0; i < bytes.Length; ++i)
+            {
+                bytes[i] = Byte.Parse(hex.Substring(i + i, 2), NumberStyles.HexNumber, CultureInfo.InvariantCulture);
+            }
+            return bytes;
         }
     }
 }
