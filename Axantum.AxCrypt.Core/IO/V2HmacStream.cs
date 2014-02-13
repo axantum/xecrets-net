@@ -73,20 +73,17 @@ namespace Axantum.AxCrypt.Core.IO
         /// Get the calculated HMAC
         /// </summary>
         /// <returns>The HMAC</returns>
-        public byte[] HmacResult
+        public byte[] GetHmacResult()
         {
-            get
+            EnsureNotDisposed();
+            if (_hmacResult == null)
             {
-                EnsureNotDisposed();
-                if (_hmacResult == null)
-                {
-                    _hmac.TransformFinalBlock(new byte[] { }, 0, 0);
-                    byte[] result = new byte[_hmac.HashSize / 8];
-                    Array.Copy(_hmac.Hash, 0, result, 0, result.Length);
-                    _hmacResult = result;
-                }
-                return _hmacResult;
+                _hmac.TransformFinalBlock(new byte[] { }, 0, 0);
+                byte[] result = new byte[_hmac.HashSize / 8];
+                Array.Copy(_hmac.Hash, 0, result, 0, result.Length);
+                _hmacResult = result;
             }
+            return _hmacResult;
         }
 
         public override bool CanRead

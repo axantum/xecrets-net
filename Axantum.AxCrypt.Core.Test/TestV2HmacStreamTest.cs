@@ -2,13 +2,14 @@
 using Axantum.AxCrypt.Core.IO;
 using NUnit.Framework;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public class TestV2HmacStream
+    public static class TestV2HmacStreamTest
     {
         [SetUp]
         public static void Setup()
@@ -21,7 +22,8 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void Rfc431TestCase1()
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Rfc", Justification = "This is well-known acronymn")]
+        public static void Rfc4231TestCase1()
         {
             byte[] key = "0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b".FromHex();
             byte[] data = "4869205468657265".FromHex();
@@ -31,14 +33,15 @@ namespace Axantum.AxCrypt.Core.Test
             using (V2HmacStream stream = new V2HmacStream(key))
             {
                 stream.Write(data, 0, data.Length);
-                result = stream.HmacResult;
+                result = stream.GetHmacResult();
             }
 
             Assert.That(result, Is.EquivalentTo(hmac_sha_512));
         }
 
         [Test]
-        public static void Rfc431TestCase2()
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Rfc", Justification = "This is well-known acronymn")]
+        public static void Rfc4231TestCase2()
         {
             byte[] key = "4a656665".FromHex();
             byte[] data = "7768617420646f2079612077616e7420666f72206e6f7468696e673f".FromHex();
@@ -48,14 +51,15 @@ namespace Axantum.AxCrypt.Core.Test
             using (V2HmacStream stream = new V2HmacStream(key))
             {
                 stream.Write(data, 0, data.Length);
-                result = stream.HmacResult;
+                result = stream.GetHmacResult();
             }
 
             Assert.That(result, Is.EquivalentTo(hmac_sha_512));
         }
 
         [Test]
-        public static void Rfc431TestCase3()
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Rfc", Justification = "This is well-known acronymn")]
+        public static void Rfc4231TestCase3()
         {
             byte[] key = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa".FromHex();
             byte[] data = "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd".FromHex();
@@ -65,14 +69,15 @@ namespace Axantum.AxCrypt.Core.Test
             using (V2HmacStream stream = new V2HmacStream(key))
             {
                 stream.Write(data, 0, data.Length);
-                result = stream.HmacResult;
+                result = stream.GetHmacResult();
             }
 
             Assert.That(result, Is.EquivalentTo(hmac_sha_512));
         }
 
         [Test]
-        public static void Rfc431TestCase4()
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Rfc", Justification = "This is well-known acronymn")]
+        public static void Rfc4231TestCase4()
         {
             byte[] key = "0102030405060708090a0b0c0d0e0f10 111213141516171819".FromHex();
             byte[] data = "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd cdcd".FromHex();
@@ -82,14 +87,15 @@ namespace Axantum.AxCrypt.Core.Test
             using (V2HmacStream stream = new V2HmacStream(key))
             {
                 stream.Write(data, 0, data.Length);
-                result = stream.HmacResult;
+                result = stream.GetHmacResult();
             }
 
             Assert.That(result, Is.EquivalentTo(hmac_sha_512));
         }
 
         [Test]
-        public static void Rfc431TestCase5()
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Rfc", Justification = "This is well-known acronymn")]
+        public static void Rfc4231TestCase5()
         {
             byte[] key = "0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c 0c0c0c0c".FromHex();
             byte[] data = "546573742057697468205472756e6361 74696f6e".FromHex();
@@ -100,14 +106,15 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 stream.Write(data, 0, data.Length);
                 result = new byte[16];
-                Array.Copy(stream.HmacResult, 0, result, 0, 16);
+                Array.Copy(stream.GetHmacResult(), 0, result, 0, 16);
             }
 
             Assert.That(result, Is.EquivalentTo(hmac_sha_512));
         }
 
         [Test]
-        public static void Rfc431TestCase6()
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Rfc", Justification = "This is well-known acronymn")]
+        public static void Rfc4231TestCase6()
         {
             byte[] key = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaa".FromHex();
             byte[] data = "54657374205573696e67204c61726765 72205468616e20426c6f636b2d53697a 65204b6579202d2048617368204b6579 204669727374".FromHex();
@@ -117,14 +124,15 @@ namespace Axantum.AxCrypt.Core.Test
             using (V2HmacStream stream = new V2HmacStream(key))
             {
                 stream.Write(data, 0, data.Length);
-                result = stream.HmacResult;
+                result = stream.GetHmacResult();
             }
 
             Assert.That(result, Is.EquivalentTo(hmac_sha_512));
         }
 
         [Test]
-        public static void Rfc431TestCase7()
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Rfc", Justification = "This is well-known acronymn")]
+        public static void Rfc4231TestCase7()
         {
             byte[] key = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaa".FromHex();
             byte[] data = "54686973206973206120746573742075 73696e672061206c6172676572207468 616e20626c6f636b2d73697a65206b65 7920616e642061206c61726765722074 68616e20626c6f636b2d73697a652064 6174612e20546865206b6579206e6565 647320746f2062652068617368656420 6265666f7265206265696e6720757365 642062792074686520484d414320616c 676f726974686d2e".FromHex();
@@ -134,14 +142,15 @@ namespace Axantum.AxCrypt.Core.Test
             using (V2HmacStream stream = new V2HmacStream(key))
             {
                 stream.Write(data, 0, data.Length);
-                result = stream.HmacResult;
+                result = stream.GetHmacResult();
             }
 
             Assert.That(result, Is.EquivalentTo(hmac_sha_512));
         }
 
         [Test]
-        public static void Rfc431TestCase7WithChaining()
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Rfc", Justification = "This is well-known acronymn")]
+        public static void Rfc4231TestCase7WithChaining()
         {
             byte[] key = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaa".FromHex();
             byte[] data = "54686973206973206120746573742075 73696e672061206c6172676572207468 616e20626c6f636b2d73697a65206b65 7920616e642061206c61726765722074 68616e20626c6f636b2d73697a652064 6174612e20546865206b6579206e6565 647320746f2062652068617368656420 6265666f7265206265696e6720757365 642062792074686520484d414320616c 676f726974686d2e".FromHex();
@@ -153,7 +162,7 @@ namespace Axantum.AxCrypt.Core.Test
                 using (V2HmacStream stream = new V2HmacStream(key, output))
                 {
                     stream.Write(data, 0, data.Length);
-                    result = stream.HmacResult;
+                    result = stream.GetHmacResult();
                 }
                 byte[] chained = output.ToArray();
                 Assert.That(chained, Is.EquivalentTo(data));
