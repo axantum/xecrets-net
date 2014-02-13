@@ -59,6 +59,7 @@
     <Compile Include="Header\V2CompressionHeaderBlock.cs" />
     <Compile Include="Header\V2DocumentHeaders.cs" />
     <Compile Include="Header\V2KeyWrapHeaderBlock.cs" />
+    <Compile Include="Header\V2UnicodeFileNameInfoHeaderBlock.cs" />
     <Compile Include="V1AxCryptDocument.cs" />
     <Compile Include="V2AxCryptDocument.cs" />
     <Compile Include="CommandLine.cs" />
@@ -136,7 +137,7 @@
     <Compile Include="Header\V1KeyWrap1HeaderBlock.cs" />
     <Compile Include="Header\V1KeyWrap2HeaderBlock.cs" />
     <Compile Include="Header\PreambleHeaderBlock.cs" />
-    <Compile Include="Header\UnicodeFileNameInfoHeaderBlock.cs" />
+    <Compile Include="Header\V1UnicodeFileNameInfoHeaderBlock.cs" />
     <Compile Include="Header\UnrecognizedHeaderBlock.cs" />
     <Compile Include="IO\ProgressStream.cs" />
     <Compile Include="Runtime\IDataProtection.cs" />

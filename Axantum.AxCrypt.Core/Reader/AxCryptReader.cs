@@ -309,7 +309,7 @@ namespace Axantum.AxCrypt.Core.Reader
                     break;
 
                 case HeaderBlockType.UnicodeFileNameInfo:
-                    CurrentHeaderBlock = new UnicodeFileNameInfoHeaderBlock(dataBlock);
+                    CurrentHeaderBlock = new V1UnicodeFileNameInfoHeaderBlock(dataBlock);
                     break;
 
                 case HeaderBlockType.Encrypted:

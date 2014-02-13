@@ -48,6 +48,7 @@ namespace Axantum.AxCrypt.Core.Header
             _headers.HeaderBlocks.Add(new V2KeyWrapHeaderBlock(keyEncryptingCrypto, iterations));
             _headers.HeaderBlocks.Add(new FileInfoHeaderBlock());
             _headers.HeaderBlocks.Add(new V2CompressionHeaderBlock());
+            _headers.HeaderBlocks.Add(new V2UnicodeFileNameInfoHeaderBlock());
             _headers.HeaderBlocks.Add(new DataHeaderBlock());
 
             SetDataEncryptingCryptoForEncryptedHeaderBlocks(_headers.HeaderBlocks);
@@ -150,6 +151,21 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 V2CompressionHeaderBlock headerBlock = _headers.FindHeaderBlock<V2CompressionHeaderBlock>();
                 headerBlock.IsCompressed = value;
+            }
+        }
+
+        public string FileName
+        {
+            get
+            {
+                V2UnicodeFileNameInfoHeaderBlock headerBlock = _headers.FindHeaderBlock<V2UnicodeFileNameInfoHeaderBlock>();
+                return headerBlock.FileName;
+            }
+
+            set
+            {
+                V2UnicodeFileNameInfoHeaderBlock headerBlock = _headers.FindHeaderBlock<V2UnicodeFileNameInfoHeaderBlock>();
+                headerBlock.FileName = value;
             }
         }
     }

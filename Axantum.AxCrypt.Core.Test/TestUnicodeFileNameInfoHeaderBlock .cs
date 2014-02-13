@@ -36,7 +36,7 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestUnicodeFileNameInfoHeaderBlock
     {
-        private class UnicodeFileNameInfoHeaderBlockForTest : UnicodeFileNameInfoHeaderBlock
+        private class UnicodeFileNameInfoHeaderBlockForTest : V1UnicodeFileNameInfoHeaderBlock
         {
             public void SetBadNameWithoutEndingNul()
             {

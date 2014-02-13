@@ -52,7 +52,7 @@ namespace Axantum.AxCrypt.Core.Header
             _headers.HeaderBlocks.Add(new V1EncryptionInfoHeaderBlock());
             _headers.HeaderBlocks.Add(new V1CompressionHeaderBlock());
             _headers.HeaderBlocks.Add(new FileInfoHeaderBlock());
-            _headers.HeaderBlocks.Add(new UnicodeFileNameInfoHeaderBlock());
+            _headers.HeaderBlocks.Add(new V1UnicodeFileNameInfoHeaderBlock());
             _headers.HeaderBlocks.Add(new V1FileNameInfoHeaderBlock());
             _headers.HeaderBlocks.Add(new DataHeaderBlock());
 
@@ -285,7 +285,7 @@ namespace Axantum.AxCrypt.Core.Header
         {
             get
             {
-                UnicodeFileNameInfoHeaderBlock headerBlock = _headers.FindHeaderBlock<UnicodeFileNameInfoHeaderBlock>();
+                V1UnicodeFileNameInfoHeaderBlock headerBlock = _headers.FindHeaderBlock<V1UnicodeFileNameInfoHeaderBlock>();
                 if (headerBlock == null)
                 {
                     // Unicode file name was added in 1.6.3.3 - if we can't find it signal it's absence with null.
@@ -297,7 +297,7 @@ namespace Axantum.AxCrypt.Core.Header
 
             set
             {
-                UnicodeFileNameInfoHeaderBlock headerBlock = _headers.FindHeaderBlock<UnicodeFileNameInfoHeaderBlock>();
+                V1UnicodeFileNameInfoHeaderBlock headerBlock = _headers.FindHeaderBlock<V1UnicodeFileNameInfoHeaderBlock>();
                 headerBlock.FileName = value;
             }
         }
