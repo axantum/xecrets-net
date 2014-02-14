@@ -33,7 +33,7 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Header
 {
-    internal class DocumentHeadersCommon
+    public class DocumentHeadersCommon
     {
         public IList<HeaderBlock> HeaderBlocks { get; private set; }
 
@@ -53,6 +53,7 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 throw new FileFormatException("No magic Guid was found.", ErrorStatus.MagicGuidMissing);
             }
+
             while (axCryptReader.Read())
             {
                 switch (axCryptReader.CurrentItemType)

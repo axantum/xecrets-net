@@ -25,14 +25,11 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Test.Properties;
-using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
 using System;
 using System.IO;
@@ -103,79 +100,6 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
                     Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");
-                }
-            }
-        }
-
-        [Test]
-        public static void TestCreateEncryptedDataStreamErrorChecks()
-        {
-            using (MemoryStream inputStream = new MemoryStream())
-            {
-                using (AxCryptReader axCryptReader = new AxCryptStreamReader(inputStream))
-                {
-                    Assert.Throws<ArgumentNullException>(() =>
-                    {
-                        axCryptReader.CreateEncryptedDataStream(null, 0, new ProgressContext());
-                    }, "A non-null HMAC key must be specified.");
-
-                    Assert.Throws<ArgumentNullException>(() =>
-                    {
-                        axCryptReader.CreateEncryptedDataStream(new AesKey(128), 0, null);
-                    }, "A non-null ProgresContext must be specified.");
-
-                    Assert.Throws<InvalidOperationException>(() =>
-                    {
-                        axCryptReader.CreateEncryptedDataStream(new AesKey(128), 0, new ProgressContext());
-                    }, "The reader is not positioned properly to read encrypted data.");
-
-                    axCryptReader.Dispose();
-
-                    Assert.Throws<ObjectDisposedException>(() =>
-                    {
-                        axCryptReader.CreateEncryptedDataStream(new AesKey(128), 0, new ProgressContext());
-                    }, "The reader is disposed.");
-                }
-            }
-        }
-
-        [Test]
-        public static void TestHmac()
-        {
-            using (Stream inputStream = FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
-            {
-                using (AxCryptReader axCryptReader = new AxCryptStreamReader(inputStream))
-                {
-                    Assert.Throws<InvalidOperationException>(() =>
-                    {
-                        if (axCryptReader.Hmac == null) { }
-                    }, "The reader is not positioned properly to get the HMAC.");
-
-                    Passphrase passphrase = new Passphrase("a");
-                    V1DocumentHeaders documentHeaders = new V1DocumentHeaders(new V1AesCrypto(passphrase.DerivedPassphrase));
-                    bool keyIsOk = documentHeaders.Load(axCryptReader);
-                    Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-
-                    using (Stream encrypedDataStream = axCryptReader.CreateEncryptedDataStream(documentHeaders.HmacSubkey.Key, documentHeaders.CipherTextLength, new ProgressContext()))
-                    {
-                        Assert.Throws<InvalidOperationException>(() =>
-                        {
-                            if (axCryptReader.Hmac == null) { }
-                        }, "We have not read the encrypted data yet.");
-
-                        Assert.That(axCryptReader.Read(), Is.False, "The reader should be at end of stream now, and Read() should return false.");
-
-                        encrypedDataStream.CopyTo(Stream.Null, 4096);
-                        Assert.That(documentHeaders.Hmac, Is.EqualTo(axCryptReader.Hmac), "The HMAC should be correct.");
-
-                        axCryptReader.Dispose();
-
-                        Assert.Throws<ObjectDisposedException>(() =>
-                        {
-                            V1Hmac disposedHmac = axCryptReader.Hmac;
-                            Object.Equals(disposedHmac, null);
-                        }, "The reader is disposed.");
-                    }
                 }
             }
         }

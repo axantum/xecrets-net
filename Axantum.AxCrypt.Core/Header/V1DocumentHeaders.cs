@@ -78,6 +78,7 @@ namespace Axantum.AxCrypt.Core.Header
             _headers.Load(axCryptReader);
 
             _headers.EnsureFileFormatVersion(0, 3);
+
             if (GetMasterKey() != null)
             {
                 SetMasterKeyForEncryptedHeaderBlocks(_headers.HeaderBlocks);
@@ -89,6 +90,11 @@ namespace Axantum.AxCrypt.Core.Header
         public void SetCurrentVersion()
         {
             _headers.SetCurrentVersion(_version);
+        }
+
+        public DocumentHeadersCommon Headers
+        {
+            get { return _headers; }
         }
 
         public VersionHeaderBlock VersionHeaderBlock

@@ -25,9 +25,9 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.IO;
 using System;
 using System.IO;
-using Axantum.AxCrypt.Core.IO;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Core.Reader
             {
                 lookAheadStream = new LookAheadStream(inputStream);
             }
-            SetInputStream(lookAheadStream);
+            InputStream = lookAheadStream;
         }
     }
 }

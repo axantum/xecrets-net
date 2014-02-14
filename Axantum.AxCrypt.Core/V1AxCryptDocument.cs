@@ -45,14 +45,18 @@ namespace Axantum.AxCrypt.Core
     /// </summary>
     public class V1AxCryptDocument : IDisposable
     {
+        private AxCryptReader _reader;
+
+        private V1HmacStream _hmacStream;
+
+        private long _expectedTotalHmacLength = 0;
+
         public V1AxCryptDocument(ICrypto keyEncryptingCrypto)
         {
             DocumentHeaders = new V1DocumentHeaders(keyEncryptingCrypto);
         }
 
         public V1DocumentHeaders DocumentHeaders { get; private set; }
-
-        private AxCryptReader _reader;
 
         public bool PassphraseIsValid { get; set; }
 
@@ -66,8 +70,20 @@ namespace Axantum.AxCrypt.Core
         {
             _reader = AxCryptReader.Create(stream);
             PassphraseIsValid = DocumentHeaders.Load(_reader);
+            if (!PassphraseIsValid)
+            {
+                return false;
+            }
 
-            return PassphraseIsValid;
+            _hmacStream = new V1HmacStream(DocumentHeaders.HmacSubkey.Key);
+            foreach (HeaderBlock header in DocumentHeaders.Headers.HeaderBlocks)
+            {
+                if (header.HeaderBlockType != HeaderBlockType.Preamble)
+                {
+                    header.Write(_hmacStream);
+                }
+            }
+            return true;
         }
 
         /// <summary>
@@ -181,11 +197,11 @@ namespace Axantum.AxCrypt.Core
             using (V1HmacStream hmacStreamOutput = new V1HmacStream(outputDocumentHeaders.HmacSubkey.Key, cipherStream))
             {
                 outputDocumentHeaders.WriteWithHmac(hmacStreamOutput);
-                using (AxCryptDataStream encryptedDataStream = _reader.CreateEncryptedDataStream(DocumentHeaders.HmacSubkey.Key, DocumentHeaders.CipherTextLength, progress))
+                using (AxCryptDataStream encryptedDataStream = CreateEncryptedDataStream(_reader.InputStream, DocumentHeaders.CipherTextLength, progress))
                 {
                     CopyToWithCount(encryptedDataStream, hmacStreamOutput, progress);
 
-                    if (_reader.Hmac != DocumentHeaders.Hmac)
+                    if (Hmac != DocumentHeaders.Hmac)
                     {
                         throw new Axantum.AxCrypt.Core.Runtime.InvalidDataException("HMAC validation error in the input stream.", ErrorStatus.HmacValidationError);
                     }
@@ -224,13 +240,13 @@ namespace Axantum.AxCrypt.Core
 
             using (ICryptoTransform decryptor = DataCrypto.CreateDecryptingTransform())
             {
-                using (AxCryptDataStream encryptedDataStream = _reader.CreateEncryptedDataStream(DocumentHeaders.HmacSubkey.Key, DocumentHeaders.CipherTextLength, progress))
+                using (AxCryptDataStream encryptedDataStream = CreateEncryptedDataStream(_reader.InputStream, DocumentHeaders.CipherTextLength, progress))
                 {
                     DecryptEncryptedDataStream(outputPlaintextStream, decryptor, encryptedDataStream, progress);
                 }
             }
 
-            if (_reader.Hmac != DocumentHeaders.Hmac)
+            if (Hmac != DocumentHeaders.Hmac)
             {
                 throw new Axantum.AxCrypt.Core.Runtime.InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
             }
@@ -281,6 +297,41 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
+        private AxCryptDataStream CreateEncryptedDataStream(Stream inputStream, long cipherTextLength, IProgressContext progress)
+        {
+            if (_reader.CurrentItemType != AxCryptItemType.Data)
+            {
+                throw new InvalidOperationException("GetEncryptedDataStream() was called when the reader is not positioned at the data.");
+            }
+
+            _reader.SetEndOfStream();
+
+            _expectedTotalHmacLength = _hmacStream.Position + cipherTextLength;
+
+            AxCryptDataStream encryptedDataStream = new AxCryptDataStream(inputStream, _hmacStream, cipherTextLength);
+            return encryptedDataStream;
+        }
+
+        public V1Hmac Hmac
+        {
+            get
+            {
+                if (_disposed)
+                {
+                    throw new ObjectDisposedException(GetType().FullName);
+                }
+                if (_reader.CurrentItemType != AxCryptItemType.EndOfStream)
+                {
+                    throw new InvalidOperationException("There is no valid HMAC until the encrypted data stream is read to end.");
+                }
+                if (_hmacStream.Length != _expectedTotalHmacLength)
+                {
+                    throw new InvalidOperationException("There is no valid HMAC until the encrypted data stream is read to end.");
+                }
+                return _hmacStream.HmacResult;
+            }
+        }
+
         private bool _disposed = false;
 
         public void Dispose()
@@ -302,6 +353,11 @@ namespace Axantum.AxCrypt.Core
                 {
                     _reader.Dispose();
                     _reader = null;
+                }
+                if (_hmacStream != null)
+                {
+                    _hmacStream.Dispose();
+                    _hmacStream = null;
                 }
             }
 
