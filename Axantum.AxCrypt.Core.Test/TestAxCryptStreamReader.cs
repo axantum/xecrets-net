@@ -172,7 +172,7 @@ namespace Axantum.AxCrypt.Core.Test
 
                         Assert.Throws<ObjectDisposedException>(() =>
                         {
-                            DataHmac disposedHmac = axCryptReader.Hmac;
+                            V1Hmac disposedHmac = axCryptReader.Hmac;
                             Object.Equals(disposedHmac, null);
                         }, "The reader is disposed.");
                     }

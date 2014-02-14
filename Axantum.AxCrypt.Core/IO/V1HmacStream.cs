@@ -66,13 +66,13 @@ namespace Axantum.AxCrypt.Core.IO
             ChainedStream = chainedStream;
         }
 
-        private DataHmac _hmacResult = null;
+        private V1Hmac _hmacResult = null;
 
         /// <summary>
         /// Get the calculated HMAC
         /// </summary>
         /// <returns>A HMAC truncated to 128 bits</returns>
-        public DataHmac HmacResult
+        public V1Hmac HmacResult
         {
             get
             {
@@ -82,7 +82,7 @@ namespace Axantum.AxCrypt.Core.IO
                     _hmac.TransformFinalBlock(new byte[] { }, 0, 0);
                     byte[] result = new byte[16];
                     Array.Copy(_hmac.Hash, 0, result, 0, result.Length);
-                    _hmacResult = new DataHmac(result);
+                    _hmacResult = new V1Hmac(result);
                 }
                 return _hmacResult;
             }

@@ -137,7 +137,7 @@ namespace Axantum.AxCrypt.Core.Header
                 return null;
             }
             byte[] masterIVBytes = new byte[keyEncryptingCrypto.BlockLength];
-            Array.Copy(unwrappedKeyData, 0, masterIVBytes, 0, masterIVBytes.Length);
+            Array.Copy(unwrappedKeyData, keyEncryptingCrypto.Key.Length, masterIVBytes, 0, masterIVBytes.Length);
             return new AesIV(masterIVBytes);
         }
 

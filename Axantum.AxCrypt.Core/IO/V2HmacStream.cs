@@ -148,7 +148,7 @@ namespace Axantum.AxCrypt.Core.IO
         {
             if (_hmacResult != null)
             {
-                throw new InvalidOperationException("Cannot add to the HMAC once it has been finalized.");
+                return;
             }
             _hmac.TransformBlock(buffer, offset, count, null, 0);
             _count += count;

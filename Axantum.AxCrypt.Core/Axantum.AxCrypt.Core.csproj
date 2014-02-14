@@ -52,12 +52,14 @@
   <ItemGroup>
     <Compile Include="Crypto\CounterModeCryptoTransform.cs" />
     <Compile Include="Crypto\CryptoBase.cs" />
+    <Compile Include="Crypto\HmacBase.cs" />
     <Compile Include="Crypto\ICrypto.cs" />
     <Compile Include="Crypto\IRandomGenerator.cs" />
     <Compile Include="Crypto\RandomGenerator.cs" />
     <Compile Include="Crypto\V2AesCrypto.cs" />
     <Compile Include="Header\V2CompressionHeaderBlock.cs" />
     <Compile Include="Header\V2DocumentHeaders.cs" />
+    <Compile Include="Header\V2HmacHeaderBlock.cs" />
     <Compile Include="Header\V2KeyWrapHeaderBlock.cs" />
     <Compile Include="Header\V2PlainTextLengthsHeaderBlock.cs" />
     <Compile Include="Header\V2UnicodeFileNameInfoHeaderBlock.cs" />
@@ -115,7 +117,7 @@
     <Compile Include="Crypto\AesKey.cs" />
     <Compile Include="Crypto\AesKeyThumbprint.cs" />
     <Compile Include="Crypto\AxCryptHMACSHA1.cs" />
-    <Compile Include="Crypto\DataHmac.cs" />
+    <Compile Include="Crypto\V1Hmac.cs" />
     <Compile Include="Crypto\HeaderSubkey.cs" />
     <Compile Include="Crypto\KeyWrap.cs" />
     <Compile Include="Crypto\KeyWrapMode.cs" />
@@ -157,6 +159,7 @@
     <Compile Include="Header\HeaderBlockType.cs" />
     <Compile Include="Header\VersionHeaderBlock.cs" />
     <Compile Include="Runtime\ITiming.cs" />
+    <Compile Include="Crypto\V2Hmac.cs" />
     <None Include="Properties\AssemblyInfo.template" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reader\AxCryptReader.cs" />

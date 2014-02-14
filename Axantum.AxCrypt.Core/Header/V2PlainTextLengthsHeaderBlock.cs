@@ -36,9 +36,10 @@ namespace Axantum.AxCrypt.Core.Header
 
             set
             {
+                byte[] rawBlock = HeaderCrypto.Decrypt(GetDataBlockBytesReference());
                 byte[] plainTextLength = value.GetLittleEndianBytes();
-                Array.Copy(plainTextLength, 0, GetDataBlockBytesReference(), 0, plainTextLength.Length);
-                byte[] encryptedBlock = HeaderCrypto.Encrypt(GetDataBlockBytesReference());
+                Array.Copy(plainTextLength, 0, rawBlock, 0, plainTextLength.Length);
+                byte[] encryptedBlock = HeaderCrypto.Encrypt(rawBlock);
                 SetDataBlockBytesReference(encryptedBlock);
             }
         }
@@ -57,9 +58,10 @@ namespace Axantum.AxCrypt.Core.Header
 
             set
             {
+                byte[] rawBlock = HeaderCrypto.Decrypt(GetDataBlockBytesReference());
                 byte[] compressedPlainTextLength = value.GetLittleEndianBytes();
-                Array.Copy(compressedPlainTextLength, 0, GetDataBlockBytesReference(), sizeof(long), compressedPlainTextLength.Length);
-                byte[] encryptedBlock = HeaderCrypto.Encrypt(GetDataBlockBytesReference());
+                Array.Copy(compressedPlainTextLength, 0, rawBlock, sizeof(long), compressedPlainTextLength.Length);
+                byte[] encryptedBlock = HeaderCrypto.Encrypt(rawBlock);
                 SetDataBlockBytesReference(encryptedBlock);
             }
         }

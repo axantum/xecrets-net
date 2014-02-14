@@ -222,7 +222,7 @@ namespace Axantum.AxCrypt.Core.Header
             }
         }
 
-        public DataHmac Hmac
+        public V1Hmac Hmac
         {
             get
             {

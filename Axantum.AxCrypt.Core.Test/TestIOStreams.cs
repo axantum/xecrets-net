@@ -178,7 +178,7 @@ namespace Axantum.AxCrypt.Core.Test
                     hmacStream.Position = 0;
                 }, "Position is not supported.");
 
-                DataHmac dataHmac = hmacStream.HmacResult;
+                V1Hmac dataHmac = hmacStream.HmacResult;
                 Assert.That(dataHmac.GetBytes(), Is.EquivalentTo(new byte[] { 0x62, 0x6f, 0x2c, 0x61, 0xc7, 0x68, 0x00, 0xb3, 0xa6, 0x8d, 0xf9, 0x55, 0x95, 0xbc, 0x1f, 0xd1 }), "The HMAC of 20 bytes of zero with 128-bit AesKey all zero should be this.");
 
                 Assert.Throws<InvalidOperationException>(() =>
@@ -191,7 +191,7 @@ namespace Axantum.AxCrypt.Core.Test
 
                 Assert.Throws<ObjectDisposedException>(() =>
                 {
-                    DataHmac invalidDataHmac = hmacStream.HmacResult;
+                    V1Hmac invalidDataHmac = hmacStream.HmacResult;
 
                     // Remove FxCop warning
                     Object.Equals(invalidDataHmac, null);

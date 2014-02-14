@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt.Core.Reader
             return encryptedDataStream;
         }
 
-        public DataHmac Hmac
+        public V1Hmac Hmac
         {
             get
             {

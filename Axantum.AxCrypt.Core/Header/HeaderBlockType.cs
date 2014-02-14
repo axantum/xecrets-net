@@ -65,6 +65,11 @@ namespace Axantum.AxCrypt.Core.Header
         IdTag = 6,
 
         /// <summary>
+        /// HMAC-SHA-512 and end of file marker. Key stream index 0 generates the key.
+        /// </summary>
+        V2Hmac = 11,
+
+        /// <summary>
         /// NIST Key Wrap Algorithm wrap of the Master Data Encrypting Key, IV, Derviation Salt & Iterations etc.
         /// </summary>
         V2KeyWrap = 13,

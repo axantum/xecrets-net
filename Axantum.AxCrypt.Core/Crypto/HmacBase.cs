@@ -34,23 +34,19 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// <summary>
     /// The HMAC of AxCrypt encrypted data. Instances of this class are immutable.
     /// </summary>
-    public class DataHmac
+    public abstract class HmacBase
     {
         private byte[] _hmac;
 
-        /// <summary>
-        /// Initializes an instance of DataHmac with the provided bytes.
-        /// </summary>
-        /// <param name="hmac">The bytes of the DataHmac</param>
-        public DataHmac(byte[] hmac)
+        protected void Initialize(byte[] hmac, int requiredLength)
         {
             if (hmac == null)
             {
                 throw new ArgumentNullException("hmac");
             }
-            if (hmac.Length != 16)
+            if (hmac.Length != requiredLength)
             {
-                throw new InternalErrorException("HMAC must be exactly 16 bytes.");
+                throw new InternalErrorException("HMAC must be exactly {0} bytes.".InvariantFormat(requiredLength));
             }
             _hmac = (byte[])hmac.Clone();
         }
@@ -88,7 +84,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 return false;
             }
-            DataHmac right = (DataHmac)obj;
+            HmacBase right = (HmacBase)obj;
             return this == right;
         }
 
@@ -116,7 +112,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>
         /// True if the two instances compare as equivalent, false otherwise.
         /// </returns>
-        public static bool operator ==(DataHmac left, DataHmac right)
+        public static bool operator ==(HmacBase left, HmacBase right)
         {
             if (Object.ReferenceEquals(left, right))
             {
@@ -137,7 +133,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>
         /// True if the two instances do not compare as equivalent, false otherwise.
         /// </returns>
-        public static bool operator !=(DataHmac left, DataHmac right)
+        public static bool operator !=(HmacBase left, HmacBase right)
         {
             return !(left == right);
         }

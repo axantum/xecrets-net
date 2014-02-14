@@ -25,41 +25,43 @@
 
 #endregion Coypright and License
 
-using System;
 using Axantum.AxCrypt.Core.Crypto;
+using System;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Header
 {
-    public class PreambleHeaderBlock : HeaderBlock
+    public class V2HmacHeaderBlock : HeaderBlock
     {
-        public PreambleHeaderBlock(byte[] dataBlock)
-            : base(HeaderBlockType.Preamble, dataBlock)
+        public V2HmacHeaderBlock(byte[] dataBlock)
+            : base(HeaderBlockType.V2Hmac, dataBlock)
         {
+            if (dataBlock == null)
+            {
+                throw new ArgumentNullException("dataBlock");
+            }
         }
 
-        public PreambleHeaderBlock()
-            : base(HeaderBlockType.Preamble, new byte[16])
+        public V2HmacHeaderBlock()
+            : this(new byte[V2Hmac.RequiredLength])
         {
         }
 
         public override object Clone()
         {
-            PreambleHeaderBlock block = new PreambleHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
+            V2HmacHeaderBlock block = new V2HmacHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
             return block;
         }
 
-        public V1Hmac Hmac
+        public HmacBase Hmac
         {
             get
             {
-                return new V1Hmac(GetDataBlockBytesReference());
+                V2Hmac hmac = new V2Hmac(GetDataBlockBytesReference());
+                return hmac;
             }
             set
             {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("value");
-                }
                 SetDataBlockBytesReference(value.GetBytes());
             }
         }

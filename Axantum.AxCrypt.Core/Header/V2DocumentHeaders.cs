@@ -35,6 +35,13 @@ namespace Axantum.AxCrypt.Core.Header
 {
     public class V2DocumentHeaders
     {
+        private const int HMACKEY_KEYSTREAM_INDEX = 0;
+        private const int FILEINFO_KEYSTREAM_INDEX = 256;
+        private const int COMPRESSIONINFO_KEYSTREAM_INDEX = 512;
+        private const int FILENAMEINFO_KEYSTREAM_INDEX = 768;
+        private const int LENGTHSINFO_KEYSTREAM_INDEX = 2048;
+        private const int DATA_KEYSTREAM_INDEX = 1048576;
+
         private static readonly byte[] _version = new byte[] { 4, 0, 0, 0, 0 };
 
         private DocumentHeadersCommon _headers;
@@ -67,15 +74,15 @@ namespace Axantum.AxCrypt.Core.Header
                 switch (encryptedHeaderBlock.HeaderBlockType)
                 {
                     case HeaderBlockType.FileInfo:
-                        encryptedHeaderBlock.HeaderCrypto = new V2AesCrypto(DataEncryptingKey, DataEncryptingIV, 256);
+                        encryptedHeaderBlock.HeaderCrypto = new V2AesCrypto(DataEncryptingKey, DataEncryptingIV, FILEINFO_KEYSTREAM_INDEX);
                         break;
 
                     case HeaderBlockType.Compression:
-                        encryptedHeaderBlock.HeaderCrypto = new V2AesCrypto(DataEncryptingKey, DataEncryptingIV, 512);
+                        encryptedHeaderBlock.HeaderCrypto = new V2AesCrypto(DataEncryptingKey, DataEncryptingIV, COMPRESSIONINFO_KEYSTREAM_INDEX);
                         break;
 
                     case HeaderBlockType.UnicodeFileNameInfo:
-                        encryptedHeaderBlock.HeaderCrypto = new V2AesCrypto(DataEncryptingKey, DataEncryptingIV, 768);
+                        encryptedHeaderBlock.HeaderCrypto = new V2AesCrypto(DataEncryptingKey, DataEncryptingIV, FILENAMEINFO_KEYSTREAM_INDEX);
                         break;
                 }
             }
@@ -104,10 +111,14 @@ namespace Axantum.AxCrypt.Core.Header
             WriteGeneralHeaders(hmacStream);
 
             V2PlainTextLengthsHeaderBlock lengths = new V2PlainTextLengthsHeaderBlock();
-            lengths.HeaderCrypto = new V2AesCrypto(DataEncryptingKey, DataEncryptingIV, 2048);
+            lengths.HeaderCrypto = new V2AesCrypto(DataEncryptingKey, DataEncryptingIV, LENGTHSINFO_KEYSTREAM_INDEX);
             lengths.PlainTextLength = plainTextLength;
             lengths.CompressedPlainTextLength = compressedPlainTextLength;
             lengths.Write(hmacStream);
+
+            V2HmacHeaderBlock hmac = new V2HmacHeaderBlock();
+            hmac.Hmac = new V2Hmac(hmacStream.GetHmacResult());
+            hmac.Write(hmacStream);
         }
 
         private void WriteGeneralHeaders(V2HmacStream hmacStream)
@@ -141,6 +152,20 @@ namespace Axantum.AxCrypt.Core.Header
                 V2KeyWrapHeaderBlock keyHeaderBlock = _headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
                 return keyHeaderBlock.MasterIV(_keyEncryptingCrypto);
             }
+        }
+
+        public ICrypto GetDataCrypto()
+        {
+            return new V2AesCrypto(DataEncryptingKey, DataEncryptingIV, DATA_KEYSTREAM_INDEX);
+        }
+
+        public byte[] GetHmacKey()
+        {
+            ICrypto hmacKeyCrypto = new V2AesCrypto(DataEncryptingKey, DataEncryptingIV, HMACKEY_KEYSTREAM_INDEX);
+            byte[] key = new byte[V2Hmac.RequiredLength];
+            key = hmacKeyCrypto.Encrypt(key);
+
+            return key;
         }
 
         public DateTime CreationTimeUtc

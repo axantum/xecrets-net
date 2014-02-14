@@ -26,42 +26,23 @@
 #endregion Coypright and License
 
 using System;
-using Axantum.AxCrypt.Core.Crypto;
 
-namespace Axantum.AxCrypt.Core.Header
+namespace Axantum.AxCrypt.Core.Crypto
 {
-    public class PreambleHeaderBlock : HeaderBlock
+    /// <summary>
+    /// The HMAC of AxCrypt encrypted data. Instances of this class are immutable.
+    /// </summary>
+    public class V2Hmac : HmacBase
     {
-        public PreambleHeaderBlock(byte[] dataBlock)
-            : base(HeaderBlockType.Preamble, dataBlock)
-        {
-        }
+        public static readonly int RequiredLength = 64;
 
-        public PreambleHeaderBlock()
-            : base(HeaderBlockType.Preamble, new byte[16])
+        /// <summary>
+        /// Initializes an instance of DataHmac with the provided bytes.
+        /// </summary>
+        /// <param name="hmac">The bytes of the DataHmac</param>
+        public V2Hmac(byte[] hmac)
         {
-        }
-
-        public override object Clone()
-        {
-            PreambleHeaderBlock block = new PreambleHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
-            return block;
-        }
-
-        public V1Hmac Hmac
-        {
-            get
-            {
-                return new V1Hmac(GetDataBlockBytesReference());
-            }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("value");
-                }
-                SetDataBlockBytesReference(value.GetBytes());
-            }
+            Initialize(hmac, RequiredLength);
         }
     }
 }

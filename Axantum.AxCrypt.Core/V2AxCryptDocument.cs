@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
@@ -48,8 +49,9 @@ namespace Axantum.AxCrypt.Core
 
         private long _compressedPlainTextLength;
 
-        public V2AxCryptDocument()
+        public V2AxCryptDocument(ICrypto keyEncryptingCrypto, long iterations)
         {
+            DocumentHeaders = new V2DocumentHeaders(keyEncryptingCrypto, iterations);
         }
 
         public V2DocumentHeaders DocumentHeaders { get; private set; }
@@ -85,17 +87,16 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentException("Invalid options, must specify either with or without compression.");
             }
-            bool isCompressed = options.HasMask(AxCryptOptions.EncryptWithCompression);
-            DocumentHeaders.IsCompressed = isCompressed;
-            using (V2HmacStream outputHmacStream = new V2HmacStream(null, outputStream))
+            DocumentHeaders.IsCompressed = options.HasMask(AxCryptOptions.EncryptWithCompression);
+            using (V2HmacStream outputHmacStream = new V2HmacStream(DocumentHeaders.GetHmacKey(), outputStream))
             {
                 DocumentHeaders.WriteStartWithHmac(outputHmacStream);
-                using (ICryptoTransform encryptor = CreateEncryptingTransform())
+                using (ICryptoTransform encryptor = DocumentHeaders.GetDataCrypto().CreateEncryptingTransform())
                 {
                     long outputStartPosition = outputStream.Position;
                     using (CryptoStream encryptingStream = new CryptoStream(new NonClosingStream(outputHmacStream), encryptor, CryptoStreamMode.Write))
                     {
-                        if (isCompressed)
+                        if (DocumentHeaders.IsCompressed)
                         {
                             EncryptWithCompressionInternal(DocumentHeaders, inputStream, encryptingStream, progress);
                         }
@@ -121,11 +122,6 @@ namespace Axantum.AxCrypt.Core
                 _plainTextLength = deflatingStream.TotalIn;
                 _compressedPlainTextLength = deflatingStream.TotalOut;
             }
-        }
-
-        private ICryptoTransform CreateEncryptingTransform()
-        {
-            return null;
         }
     }
 }

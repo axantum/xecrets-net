@@ -106,13 +106,13 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestHmacFromSimpleFile()
         {
-            DataHmac expectedHmac = new DataHmac(new byte[] { 0xF9, 0xAF, 0x2E, 0x67, 0x7D, 0xCF, 0xC9, 0xFE, 0x06, 0x4B, 0x39, 0x08, 0xE7, 0x5A, 0x87, 0x81 });
+            V1Hmac expectedHmac = new V1Hmac(new byte[] { 0xF9, 0xAF, 0x2E, 0x67, 0x7D, 0xCF, 0xC9, 0xFE, 0x06, 0x4B, 0x39, 0x08, 0xE7, 0x5A, 0x87, 0x81 });
             Passphrase passphrase = new Passphrase("a");
             using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase.DerivedPassphrase)))
             {
                 bool keyIsOk = document.Load(FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                DataHmac hmac = document.DocumentHeaders.Hmac;
+                V1Hmac hmac = document.DocumentHeaders.Hmac;
                 Assert.That(hmac.GetBytes(), Is.EqualTo(expectedHmac.GetBytes()), "Wrong HMAC");
             }
         }
@@ -350,7 +350,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 bool keyIsOk = document.Load(FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                document.DocumentHeaders.Hmac = new DataHmac(new byte[document.DocumentHeaders.Hmac.Length]);
+                document.DocumentHeaders.Hmac = new V1Hmac(new byte[V1Hmac.RequiredLength]);
                 Assert.Throws<Axantum.AxCrypt.Core.Runtime.InvalidDataException>(() =>
                 {
                     document.DecryptTo(Stream.Null, new ProgressContext());
@@ -626,7 +626,7 @@ namespace Axantum.AxCrypt.Core.Test
 
                     byte[] modifiedHmacBytes = document.DocumentHeaders.Hmac.GetBytes();
                     modifiedHmacBytes[0] += 1;
-                    document.DocumentHeaders.Hmac = new DataHmac(modifiedHmacBytes);
+                    document.DocumentHeaders.Hmac = new V1Hmac(modifiedHmacBytes);
                     Assert.Throws<Axantum.AxCrypt.Core.Runtime.InvalidDataException>(() =>
                     {
                         document.CopyEncryptedTo(outputDocumentHeaders, changedStream, new ProgressContext());

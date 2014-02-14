@@ -27,9 +27,12 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.IO;
 using NUnit.Framework;
 using System;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -94,6 +97,36 @@ namespace Axantum.AxCrypt.Core.Test
 
             headers.FileName = longName;
             Assert.That(headers.FileName, Is.EqualTo(longName));
+        }
+
+        [Test]
+        public static void TestWriteWithHmac()
+        {
+            V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new AesKey(256), new AesIV()), 20);
+
+            byte[] output;
+            using (MemoryStream outputStream = new MemoryStream())
+            {
+                using (V2HmacStream hmacStream = new V2HmacStream(headers.GetHmacKey(), outputStream))
+                {
+                    headers.WriteStartWithHmac(hmacStream);
+                    headers.WriteEndWithHmac(hmacStream, 0, 0);
+                }
+                output = outputStream.ToArray();
+            }
+
+            byte[] hmacBytesFromHeaders = new byte[V2Hmac.RequiredLength];
+            Array.Copy(output, output.Length - V2Hmac.RequiredLength, hmacBytesFromHeaders, 0, V2Hmac.RequiredLength);
+            V2Hmac hmacFromHeaders = new V2Hmac(hmacBytesFromHeaders);
+
+            byte[] dataToHmac = new byte[output.Length - (V2Hmac.RequiredLength + 5)];
+            Array.Copy(output, 0, dataToHmac, 0, dataToHmac.Length);
+
+            HMACSHA512 hmac = new HMACSHA512(headers.GetHmacKey());
+            hmac.TransformFinalBlock(dataToHmac, 0, dataToHmac.Length);
+            V2Hmac hmacFromCalculation = new V2Hmac(hmac.Hash);
+
+            Assert.That(hmacFromHeaders, Is.EqualTo(hmacFromCalculation));
         }
     }
 }
