@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Reader;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,7 +43,7 @@ namespace Axantum.AxCrypt.Core.Header
         private const int LENGTHSINFO_KEYSTREAM_INDEX = 2048;
         private const int DATA_KEYSTREAM_INDEX = 1048576;
 
-        private static readonly byte[] _version = new byte[] { 4, 0, 0, 0, 0 };
+        private static readonly byte[] _version = new byte[] { 4, 0, 2, 0, 0 };
 
         private DocumentHeadersCommon _headers;
 
@@ -60,6 +61,20 @@ namespace Axantum.AxCrypt.Core.Header
             _headers.HeaderBlocks.Add(new DataHeaderBlock());
 
             SetDataEncryptingCryptoForEncryptedHeaderBlocks(_headers.HeaderBlocks);
+        }
+
+        public bool Load(AxCryptReader axCryptReader)
+        {
+            _headers.Load(axCryptReader);
+
+            _headers.EnsureFileFormatVersion(4, 4);
+            if (DataEncryptingKey == null)
+            {
+                return false;
+            }
+
+            SetDataEncryptingCryptoForEncryptedHeaderBlocks(_headers.HeaderBlocks);
+            return true;
         }
 
         private void SetDataEncryptingCryptoForEncryptedHeaderBlocks(IList<HeaderBlock> headerBlocks)
@@ -86,6 +101,11 @@ namespace Axantum.AxCrypt.Core.Header
                         break;
                 }
             }
+        }
+
+        public void SetCurrentVersion()
+        {
+            _headers.SetCurrentVersion(_version);
         }
 
         public void WriteStartWithHmac(V2HmacStream hmacStream)

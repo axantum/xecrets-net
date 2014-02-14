@@ -35,6 +35,7 @@ namespace Axantum.AxCrypt.Core
         InternalError,
         EndOfStream,
         TooNewFileFormatVersion,
+        TooOldFileFormatVersion,
         FileFormatError,
         HmacValidationError,
         DataError,

@@ -28,7 +28,6 @@
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
-using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -78,7 +77,7 @@ namespace Axantum.AxCrypt.Core.Header
         {
             _headers.Load(axCryptReader);
 
-            EnsureFileFormatVersion();
+            _headers.EnsureFileFormatVersion(0, 3);
             if (GetMasterKey() != null)
             {
                 SetMasterKeyForEncryptedHeaderBlocks(_headers.HeaderBlocks);
@@ -424,15 +423,6 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 DataHeaderBlock headerBlock = _headers.FindHeaderBlock<DataHeaderBlock>();
                 headerBlock.CipherTextLength = value;
-            }
-        }
-
-        private void EnsureFileFormatVersion()
-        {
-            VersionHeaderBlock versionHeaderBlock = _headers.FindHeaderBlock<VersionHeaderBlock>();
-            if (versionHeaderBlock.FileVersionMajor > 3)
-            {
-                throw new FileFormatException("Too new file format.", ErrorStatus.TooNewFileFormatVersion);
             }
         }
     }

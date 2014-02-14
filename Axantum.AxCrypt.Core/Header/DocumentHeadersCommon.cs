@@ -25,13 +25,11 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Reader;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Axantum.AxCrypt.Core.Header;
-using Axantum.AxCrypt.Core.Reader;
-using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Header
 {
@@ -100,6 +98,19 @@ namespace Axantum.AxCrypt.Core.Header
                 }
             }
             return null;
+        }
+
+        public void EnsureFileFormatVersion(int lowestMajorVersion, int highestMajorVersion)
+        {
+            VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();
+            if (versionHeaderBlock.FileVersionMajor > highestMajorVersion)
+            {
+                throw new FileFormatException("Too new file format.", ErrorStatus.TooNewFileFormatVersion);
+            }
+            if (versionHeaderBlock.FileVersionMajor < lowestMajorVersion)
+            {
+                throw new FileFormatException("Too old file format.", ErrorStatus.TooOldFileFormatVersion);
+            }
         }
     }
 }

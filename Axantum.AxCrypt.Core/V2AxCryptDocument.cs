@@ -29,6 +29,8 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Reader;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using Org.BouncyCastle.Utilities.Zlib;
 using System;
@@ -56,7 +58,23 @@ namespace Axantum.AxCrypt.Core
 
         public V2DocumentHeaders DocumentHeaders { get; private set; }
 
+        private AxCryptReader _reader;
+
         public bool PassphraseIsValid { get; set; }
+
+        /// <summary>
+        /// Loads an AxCrypt file from the specified reader. After this, the reader is positioned to
+        /// read encrypted data.
+        /// </summary>
+        /// <param name="stream">The stream to read from. Will be disposed when this instance is disposed.</param>
+        /// <returns>True if the key was valid, false if it was wrong.</returns>
+        public bool Load(Stream stream)
+        {
+            _reader = AxCryptReader.Create(stream);
+            PassphraseIsValid = DocumentHeaders.Load(_reader);
+
+            return PassphraseIsValid;
+        }
 
         /// <summary>
         /// Encrypt a stream with a given set of headers and write to an output stream. The caller is responsible for consistency and completeness
@@ -121,6 +139,76 @@ namespace Axantum.AxCrypt.Core
 
                 _plainTextLength = deflatingStream.TotalIn;
                 _compressedPlainTextLength = deflatingStream.TotalOut;
+            }
+        }
+
+        /// <summary>
+        /// Decrypts the encrypted data to the given stream
+        /// </summary>
+        /// <param name="outputPlaintextStream">The resulting plain text stream.</param>
+        public void DecryptTo(Stream outputPlaintextStream, IProgressContext progress)
+        {
+            if (!PassphraseIsValid)
+            {
+                throw new InternalErrorException("Passsphrase is not valid!");
+            }
+
+            //using (ICryptoTransform decryptor = DocumentHeaders.GetDataCrypto().CreateDecryptingTransform())
+            //{
+            //    using (AxCryptDataStream encryptedDataStream = _reader.CreateEncryptedDataStream(DocumentHeaders.HmacSubkey.Key, DocumentHeaders.CipherTextLength, progress))
+            //    {
+            //        DecryptEncryptedDataStream(outputPlaintextStream, decryptor, encryptedDataStream, progress);
+            //    }
+            //}
+
+            //if (_reader.Hmac != DocumentHeaders.Hmac)
+            //{
+            //    throw new Axantum.AxCrypt.Core.Runtime.InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
+            //}
+        }
+
+        private void DecryptEncryptedDataStream(Stream outputPlaintextStream, ICryptoTransform decryptor, AxCryptDataStream encryptedDataStream, IProgressContext progress)
+        {
+            Exception savedExceptionIfCloseCausesCryptographicException = null;
+            try
+            {
+                if (DocumentHeaders.IsCompressed)
+                {
+                    using (CryptoStream deflatedPlaintextStream = new CryptoStream(encryptedDataStream, decryptor, CryptoStreamMode.Read))
+                    {
+                        using (ZInputStream inflatedPlaintextStream = new ZInputStream(deflatedPlaintextStream))
+                        {
+                            try
+                            {
+                                inflatedPlaintextStream.CopyToWithCount(outputPlaintextStream, encryptedDataStream, progress);
+                            }
+                            catch (Exception ex)
+                            {
+                                savedExceptionIfCloseCausesCryptographicException = ex;
+                                throw;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    using (Stream plainStream = new CryptoStream(encryptedDataStream, decryptor, CryptoStreamMode.Read))
+                    {
+                        try
+                        {
+                            plainStream.CopyToWithCount(outputPlaintextStream, encryptedDataStream, progress);
+                        }
+                        catch (Exception ex)
+                        {
+                            savedExceptionIfCloseCausesCryptographicException = ex;
+                            throw;
+                        }
+                    }
+                }
+            }
+            catch (CryptographicException)
+            {
+                throw savedExceptionIfCloseCausesCryptographicException;
             }
         }
     }
