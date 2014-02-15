@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core.Header
             SetDataEncryptingCryptoForEncryptedHeaderBlocks(_headers.HeaderBlocks);
         }
 
-        public bool Load(AxCryptReader axCryptReader)
+        public bool Load(V1AxCryptReader axCryptReader)
         {
             _headers.Load(axCryptReader);
 

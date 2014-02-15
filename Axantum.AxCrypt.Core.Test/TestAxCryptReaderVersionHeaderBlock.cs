@@ -25,11 +25,11 @@
 
 #endregion Coypright and License
 
-using System.IO;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Test.Properties;
 using NUnit.Framework;
+using System.IO;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -53,7 +53,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (Stream testStream = FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
             {
-                using (AxCryptReader axCryptReader = AxCryptReader.Create(testStream))
+                using (AxCryptReaderBase axCryptReader = new V1AxCryptReader(testStream))
                 {
                     bool blockFound = false;
                     int headers = 0;

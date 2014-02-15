@@ -45,7 +45,7 @@ namespace Axantum.AxCrypt.Core
     /// </summary>
     public class V1AxCryptDocument : IDisposable
     {
-        private AxCryptReader _reader;
+        private AxCryptReaderBase _reader;
 
         private V1HmacStream _hmacStream;
 
@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core
         /// <returns>True if the key was valid, false if it was wrong.</returns>
         public bool Load(Stream stream)
         {
-            _reader = AxCryptReader.Create(stream);
+            _reader = new V1AxCryptReader(stream);
             PassphraseIsValid = DocumentHeaders.Load(_reader);
             if (!PassphraseIsValid)
             {

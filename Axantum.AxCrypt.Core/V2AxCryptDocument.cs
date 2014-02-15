@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Core
 
         public V2DocumentHeaders DocumentHeaders { get; private set; }
 
-        private AxCryptReader _reader;
+        private V1AxCryptReader _reader;
 
         public bool PassphraseIsValid { get; set; }
 
@@ -70,7 +70,7 @@ namespace Axantum.AxCrypt.Core
         /// <returns>True if the key was valid, false if it was wrong.</returns>
         public bool Load(Stream stream)
         {
-            _reader = AxCryptReader.Create(stream);
+            _reader = new V1AxCryptReader(stream);
             PassphraseIsValid = DocumentHeaders.Load(_reader);
 
             return PassphraseIsValid;

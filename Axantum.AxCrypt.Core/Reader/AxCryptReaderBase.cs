@@ -34,27 +34,27 @@ using System.IO;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
-    public abstract class AxCryptReader : IDisposable
+    public abstract class AxCryptReaderBase : IDisposable
     {
         public LookAheadStream InputStream { get; set; }
 
-        private bool _disposed;
-
         /// <summary>
-        /// Instantiate an AxCryptReader from a stream.
+        /// Implement an AxCryptReader based on a Stream.
         /// </summary>
-        /// <param name="inputStream">The stream to read from, will be disposed when this instance is disposed.</param>
-        /// <returns></returns>
-        public static AxCryptReader Create(Stream inputStream)
+        /// <param name="inputStream">The stream. Will be disposed when this instance is disposed.</param>
+        protected AxCryptReaderBase(Stream inputStream)
         {
             if (inputStream == null)
             {
                 throw new ArgumentNullException("inputStream");
             }
-            AxCryptReader reader = new AxCryptStreamReader(inputStream);
-            reader.CurrentItemType = AxCryptItemType.None;
-
-            return reader;
+            LookAheadStream lookAheadStream = inputStream as LookAheadStream;
+            if (lookAheadStream == null)
+            {
+                lookAheadStream = new LookAheadStream(inputStream);
+            }
+            InputStream = lookAheadStream;
+            CurrentItemType = AxCryptItemType.None;
         }
 
         /// <summary>
@@ -64,6 +64,8 @@ namespace Axantum.AxCrypt.Core.Reader
 
         public HeaderBlock CurrentHeaderBlock { get; private set; }
 
+        protected abstract HeaderBlock HeaderBlockFactory(HeaderBlockType headerBlockType, byte[] dataBlock);
+
         /// <summary>
         /// Read the next item from the stream.
         /// </summary>
@@ -71,7 +73,7 @@ namespace Axantum.AxCrypt.Core.Reader
         /// <exception cref="Axantum.AxCrypt.Core.AxCryptException">Any error except premature end of stream will throw.</exception>
         public virtual bool Read()
         {
-            if (_disposed)
+            if (InputStream == null)
             {
                 throw new ObjectDisposedException(GetType().FullName);
             }
@@ -205,59 +207,13 @@ namespace Axantum.AxCrypt.Core.Reader
 
             switch (headerBlockType)
             {
-                case HeaderBlockType.Version:
-                    CurrentHeaderBlock = new VersionHeaderBlock(dataBlock);
-                    break;
-
-                case HeaderBlockType.KeyWrap1:
-                    CurrentHeaderBlock = new V1KeyWrap1HeaderBlock(dataBlock);
-                    break;
-
-                case HeaderBlockType.KeyWrap2:
-                    CurrentHeaderBlock = new V1KeyWrap2HeaderBlock(dataBlock);
-                    break;
-
-                case HeaderBlockType.IdTag:
-                    CurrentHeaderBlock = new V1IdTagHeaderBlock(dataBlock);
-                    break;
-
-                case HeaderBlockType.Data:
-                    CurrentHeaderBlock = new DataHeaderBlock(dataBlock);
-                    break;
-
-                case HeaderBlockType.FileNameInfo:
-                    CurrentHeaderBlock = new V1FileNameInfoHeaderBlock(dataBlock);
-                    break;
-
-                case HeaderBlockType.EncryptionInfo:
-                    CurrentHeaderBlock = new V1EncryptionInfoHeaderBlock(dataBlock);
-                    break;
-
-                case HeaderBlockType.CompressionInfo:
-                    CurrentHeaderBlock = new V1CompressionInfoHeaderBlock(dataBlock);
-                    break;
-
-                case HeaderBlockType.FileInfo:
-                    CurrentHeaderBlock = new FileInfoHeaderBlock(dataBlock);
-                    break;
-
-                case HeaderBlockType.Compression:
-                    CurrentHeaderBlock = new V1CompressionHeaderBlock(dataBlock);
-                    break;
-
-                case HeaderBlockType.UnicodeFileNameInfo:
-                    CurrentHeaderBlock = new V1UnicodeFileNameInfoHeaderBlock(dataBlock);
-                    break;
-
                 case HeaderBlockType.Encrypted:
                 case HeaderBlockType.None:
                 case HeaderBlockType.Any:
                     throw new FileFormatException("Illegal header block type.", ErrorStatus.FileFormatError);
-                default:
-                    CurrentHeaderBlock = new UnrecognizedHeaderBlock(headerBlockType, dataBlock);
-                    break;
             }
 
+            CurrentHeaderBlock = HeaderBlockFactory(headerBlockType, dataBlock);
             return;
         }
 
@@ -271,18 +227,18 @@ namespace Axantum.AxCrypt.Core.Reader
 
         private void Dispose(bool disposing)
         {
-            if (_disposed)
-            {
-                return;
-            }
             if (disposing)
             {
-                if (InputStream != null)
-                {
-                    InputStream.Dispose();
-                    InputStream = null;
-                }
-                _disposed = true;
+                DisposeInternal();
+            }
+        }
+
+        private void DisposeInternal()
+        {
+            if (InputStream != null)
+            {
+                InputStream.Dispose();
+                InputStream = null;
             }
         }
 

@@ -64,6 +64,7 @@
     <Compile Include="Header\V2PlainTextLengthsHeaderBlock.cs" />
     <Compile Include="Header\V2UnicodeFileNameInfoHeaderBlock.cs" />
     <Compile Include="IO\V2HmacStream.cs" />
+    <Compile Include="Reader\AxCryptReaderBase.cs" />
     <Compile Include="V1AxCryptDocument.cs" />
     <Compile Include="V2AxCryptDocument.cs" />
     <Compile Include="CommandLine.cs" />
@@ -162,11 +163,8 @@
     <Compile Include="Crypto\V2Hmac.cs" />
     <None Include="Properties\AssemblyInfo.template" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reader\AxCryptReader.cs" />
+    <Compile Include="Reader\V1AxCryptReader.cs" />
     <Compile Include="Reader\AxCryptItemType.cs" />
-    <Compile Include="Reader\AxCryptStreamReader.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Runtime\LogLevel.cs" />
     <Compile Include="Runtime\Platform.cs" />
     <Compile Include="IO\FileLock.cs" />

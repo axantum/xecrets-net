@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestDocumentHeaders
     {
-        private class AxCryptReaderForTest : AxCryptStreamReader
+        private class AxCryptReaderForTest : V1AxCryptReader
         {
             public AxCryptReaderForTest(Stream inputStream)
                 : base(inputStream)
@@ -121,7 +121,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (Stream testStream = FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
             {
-                using (AxCryptReader reader = AxCryptReader.Create(testStream))
+                using (AxCryptReaderBase reader = new V1AxCryptReader(testStream))
                 {
                     Passphrase passphrase = new Passphrase("b");
                     V1DocumentHeaders documentHeaders = new V1DocumentHeaders(new V1AesCrypto(passphrase.DerivedPassphrase));

@@ -73,7 +73,7 @@ namespace Axantum.AxCrypt.Core.Header
             _keyEncryptingCrypto = documentHeaders._keyEncryptingCrypto;
         }
 
-        public bool Load(AxCryptReader axCryptReader)
+        public bool Load(AxCryptReaderBase axCryptReader)
         {
             _headers.Load(axCryptReader);
 
