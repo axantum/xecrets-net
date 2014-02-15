@@ -64,7 +64,8 @@
     <Compile Include="Header\V2PlainTextLengthsHeaderBlock.cs" />
     <Compile Include="Header\V2UnicodeFileNameInfoHeaderBlock.cs" />
     <Compile Include="IO\V2HmacStream.cs" />
-    <Compile Include="Reader\AxCryptReaderBase.cs" />
+    <Compile Include="Reader\AxCryptReader.cs" />
+    <Compile Include="Reader\V2AxCryptReader.cs" />
     <Compile Include="V1AxCryptDocument.cs" />
     <Compile Include="V2AxCryptDocument.cs" />
     <Compile Include="CommandLine.cs" />

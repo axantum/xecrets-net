@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core.Header
             SetDataEncryptingCryptoForEncryptedHeaderBlocks(_headers.HeaderBlocks);
         }
 
-        public bool Load(V1AxCryptReader axCryptReader)
+        public bool Load(AxCryptReader axCryptReader)
         {
             _headers.Load(axCryptReader);
 
@@ -117,8 +117,8 @@ namespace Axantum.AxCrypt.Core.Header
 
             AxCrypt1Guid.Write(hmacStream);
 
-            PreambleHeaderBlock preambleHaderBlock = _headers.FindHeaderBlock<PreambleHeaderBlock>();
-            preambleHaderBlock.Write(hmacStream);
+            PreambleHeaderBlock preambleHeaderBlock = _headers.FindHeaderBlock<PreambleHeaderBlock>();
+            preambleHeaderBlock.Write(hmacStream);
 
             WriteGeneralHeaders(hmacStream);
 

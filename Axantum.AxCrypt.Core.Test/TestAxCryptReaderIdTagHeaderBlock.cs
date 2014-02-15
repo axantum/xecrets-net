@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Core.Test
                 new PreambleHeaderBlock().Write(testStream);
                 new V1IdTagHeaderBlock("A test").Write(testStream);
                 testStream.Position = 0;
-                using (AxCryptReaderBase axCryptReader = new V1AxCryptReader(testStream))
+                using (AxCryptReader axCryptReader = new V1AxCryptReader(testStream))
                 {
                     Assert.That(axCryptReader.Read(), Is.True, "We should be able to read the Guid");
                     Assert.That(axCryptReader.CurrentItemType, Is.EqualTo(AxCryptItemType.MagicGuid), "We're expecting to have found a MagicGuid");

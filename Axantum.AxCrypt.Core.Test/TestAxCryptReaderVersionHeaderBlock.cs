@@ -53,7 +53,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (Stream testStream = FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
             {
-                using (AxCryptReaderBase axCryptReader = new V1AxCryptReader(testStream))
+                using (AxCryptReader axCryptReader = new V1AxCryptReader(testStream))
                 {
                     bool blockFound = false;
                     int headers = 0;

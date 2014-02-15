@@ -34,7 +34,7 @@ using System.IO;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
-    public abstract class AxCryptReaderBase : IDisposable
+    public abstract class AxCryptReader : IDisposable
     {
         public LookAheadStream InputStream { get; set; }
 
@@ -42,7 +42,7 @@ namespace Axantum.AxCrypt.Core.Reader
         /// Implement an AxCryptReader based on a Stream.
         /// </summary>
         /// <param name="inputStream">The stream. Will be disposed when this instance is disposed.</param>
-        protected AxCryptReaderBase(Stream inputStream)
+        protected AxCryptReader(Stream inputStream)
         {
             if (inputStream == null)
             {

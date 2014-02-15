@@ -31,14 +31,14 @@ using System.IO;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
-    public class V1AxCryptReader : AxCryptReader
+    public class V2AxCryptReader : AxCryptReader
     {
         /// <summary>
         /// Instantiate an AxCryptReader from a stream.
         /// </summary>
         /// <param name="inputStream">The stream to read from, will be disposed when this instance is disposed.</param>
         /// <returns></returns>
-        public V1AxCryptReader(Stream inputStream)
+        public V2AxCryptReader(Stream inputStream)
             : base(inputStream)
         {
         }
@@ -50,35 +50,26 @@ namespace Axantum.AxCrypt.Core.Reader
                 case HeaderBlockType.Version:
                     return new VersionHeaderBlock(dataBlock);
 
-                case HeaderBlockType.KeyWrap1:
-                    return new V1KeyWrap1HeaderBlock(dataBlock);
-
-                case HeaderBlockType.KeyWrap2:
-                    return new V1KeyWrap2HeaderBlock(dataBlock);
-
-                case HeaderBlockType.IdTag:
-                    return new V1IdTagHeaderBlock(dataBlock);
+                case HeaderBlockType.V2KeyWrap:
+                    return new V2KeyWrapHeaderBlock(dataBlock);
 
                 case HeaderBlockType.Data:
                     return new DataHeaderBlock(dataBlock);
-
-                case HeaderBlockType.FileNameInfo:
-                    return new V1FileNameInfoHeaderBlock(dataBlock);
-
-                case HeaderBlockType.EncryptionInfo:
-                    return new V1EncryptionInfoHeaderBlock(dataBlock);
-
-                case HeaderBlockType.CompressionInfo:
-                    return new V1CompressionInfoHeaderBlock(dataBlock);
 
                 case HeaderBlockType.FileInfo:
                     return new FileInfoHeaderBlock(dataBlock);
 
                 case HeaderBlockType.Compression:
-                    return new V1CompressionHeaderBlock(dataBlock);
+                    return new V2CompressionHeaderBlock(dataBlock);
 
                 case HeaderBlockType.UnicodeFileNameInfo:
-                    return new V1UnicodeFileNameInfoHeaderBlock(dataBlock);
+                    return new V2UnicodeFileNameInfoHeaderBlock(dataBlock);
+
+                case HeaderBlockType.PlainTextLengths:
+                    return new V2PlainTextLengthsHeaderBlock(dataBlock);
+
+                case HeaderBlockType.V2Hmac:
+                    return new V2HmacHeaderBlock(dataBlock);
             }
             return new UnrecognizedHeaderBlock(headerBlockType, dataBlock);
         }

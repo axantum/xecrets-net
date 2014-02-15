@@ -45,7 +45,7 @@ namespace Axantum.AxCrypt.Core.Header
             HeaderBlocks.Add(new VersionHeaderBlock(version));
         }
 
-        public void Load(AxCryptReaderBase axCryptReader)
+        public void Load(AxCryptReader axCryptReader)
         {
             HeaderBlocks.Clear();
             axCryptReader.Read();

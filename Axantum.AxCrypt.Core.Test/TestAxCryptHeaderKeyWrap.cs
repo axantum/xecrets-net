@@ -57,7 +57,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (Stream testStream = FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
             {
                 V1KeyWrap1HeaderBlock keyWrapHeaderBlock = null;
-                using (AxCryptReaderBase axCryptReader = new V1AxCryptReader(testStream))
+                using (AxCryptReader axCryptReader = new V1AxCryptReader(testStream))
                 {
                     int headers = 0;
                     while (axCryptReader.Read())

@@ -45,7 +45,7 @@ namespace Axantum.AxCrypt.Core
     /// </summary>
     public class V1AxCryptDocument : IDisposable
     {
-        private AxCryptReaderBase _reader;
+        private AxCryptReader _reader;
 
         private V1HmacStream _hmacStream;
 
