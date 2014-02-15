@@ -77,7 +77,7 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Crypto\KeyWrapIterationCalculator.cs" />
     <Compile Include="Factory.cs" />
-    <Compile Include="Header\DocumentHeadersCommon.cs" />
+    <Compile Include="Header\DocumentHeaders.cs" />
     <Compile Include="Instance.cs" />
     <Compile Include="IO\FileWatcherEventArgs.cs" />
     <Compile Include="IO\IFileWatcher.cs" />

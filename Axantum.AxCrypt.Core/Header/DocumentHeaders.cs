@@ -33,11 +33,11 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Header
 {
-    public class DocumentHeadersCommon
+    public class DocumentHeaders
     {
         public IList<HeaderBlock> HeaderBlocks { get; private set; }
 
-        public DocumentHeadersCommon(byte[] version)
+        public DocumentHeaders(byte[] version)
         {
             HeaderBlocks = new List<HeaderBlock>();
 
@@ -58,16 +58,18 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 switch (axCryptReader.CurrentItemType)
                 {
-                    case AxCryptItemType.HeaderBlock:
-                        HeaderBlocks.Add(axCryptReader.CurrentHeaderBlock);
-                        break;
-
                     case AxCryptItemType.Data:
-                        HeaderBlocks.Add(axCryptReader.CurrentHeaderBlock);
-                        return;
+                    case AxCryptItemType.HeaderBlock:
+                        break;
 
                     default:
                         throw new InternalErrorException("The reader returned an AxCryptItemType it should not be possible for it to return.");
+                }
+
+                HeaderBlocks.Add(axCryptReader.CurrentHeaderBlock);
+                if (axCryptReader.CurrentItemType == AxCryptItemType.Data)
+                {
+                    return;
                 }
             }
             throw new FileFormatException("Premature end of stream.", ErrorStatus.EndOfStream);

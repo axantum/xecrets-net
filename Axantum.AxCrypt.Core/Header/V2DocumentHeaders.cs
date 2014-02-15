@@ -45,14 +45,14 @@ namespace Axantum.AxCrypt.Core.Header
 
         private static readonly byte[] _version = new byte[] { 4, 0, 2, 0, 0 };
 
-        private DocumentHeadersCommon _headers;
+        private DocumentHeaders _headers;
 
         private ICrypto _keyEncryptingCrypto;
 
         public V2DocumentHeaders(ICrypto keyEncryptingCrypto, long iterations)
         {
             _keyEncryptingCrypto = keyEncryptingCrypto;
-            _headers = new DocumentHeadersCommon(_version);
+            _headers = new DocumentHeaders(_version);
 
             _headers.HeaderBlocks.Add(new V2KeyWrapHeaderBlock(keyEncryptingCrypto, iterations));
             _headers.HeaderBlocks.Add(new FileInfoHeaderBlock());
