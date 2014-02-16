@@ -33,11 +33,11 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Header
 {
-    public class DocumentHeaders
+    public class Headers
     {
         public IList<HeaderBlock> HeaderBlocks { get; private set; }
 
-        public DocumentHeaders(byte[] version)
+        public Headers(byte[] version)
         {
             HeaderBlocks = new List<HeaderBlock>();
 

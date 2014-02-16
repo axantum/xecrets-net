@@ -38,14 +38,14 @@ namespace Axantum.AxCrypt.Core.Header
     {
         private static readonly byte[] _version = new byte[] { 3, 2, 2, 0, 0 };
 
-        private DocumentHeaders _headers;
+        private Headers _headers;
 
         private ICrypto _keyEncryptingCrypto;
 
         public V1DocumentHeaders(ICrypto keyEncryptingCrypto)
         {
             _keyEncryptingCrypto = keyEncryptingCrypto;
-            _headers = new DocumentHeaders(_version);
+            _headers = new Headers(_version);
 
             _headers.HeaderBlocks.Add(new V1KeyWrap1HeaderBlock(keyEncryptingCrypto));
             _headers.HeaderBlocks.Add(new V1EncryptionInfoHeaderBlock());
@@ -64,7 +64,7 @@ namespace Axantum.AxCrypt.Core.Header
 
         public V1DocumentHeaders(V1DocumentHeaders documentHeaders)
         {
-            DocumentHeaders headers = new DocumentHeaders(_version);
+            Headers headers = new Headers(_version);
             foreach (HeaderBlock headerBlock in documentHeaders._headers.HeaderBlocks)
             {
                 headers.HeaderBlocks.Add((HeaderBlock)headerBlock.Clone());
@@ -92,7 +92,7 @@ namespace Axantum.AxCrypt.Core.Header
             _headers.SetCurrentVersion(_version);
         }
 
-        public DocumentHeaders Headers
+        public Headers Headers
         {
             get { return _headers; }
         }
