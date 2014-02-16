@@ -142,7 +142,7 @@ namespace Axantum.AxCrypt.Core
                 {
                     DocumentHeaders.WriteWithHmac(outputHmacStream);
                     outputHmacStream.ReadFrom(outputStream);
-                    DocumentHeaders.Hmac = outputHmacStream.HmacResult;
+                    DocumentHeaders.Headers.Hmac = outputHmacStream.HmacResult;
                 }
 
                 // Rewind and rewrite the headers, now with the updated HMAC
@@ -197,17 +197,17 @@ namespace Axantum.AxCrypt.Core
             using (V1HmacStream hmacStreamOutput = new V1HmacStream(outputDocumentHeaders.HmacSubkey.Key, cipherStream))
             {
                 outputDocumentHeaders.WriteWithHmac(hmacStreamOutput);
-                using (AxCryptDataStream encryptedDataStream = CreateEncryptedDataStream(_reader.InputStream, DocumentHeaders.CipherTextLength, progress))
+                using (V1AxCryptDataStream encryptedDataStream = CreateEncryptedDataStream(_reader.InputStream, DocumentHeaders.CipherTextLength, progress))
                 {
                     CopyToWithCount(encryptedDataStream, hmacStreamOutput, progress);
 
-                    if (Hmac != DocumentHeaders.Hmac)
+                    if (Hmac != DocumentHeaders.Headers.Hmac)
                     {
                         throw new Axantum.AxCrypt.Core.Runtime.InvalidDataException("HMAC validation error in the input stream.", ErrorStatus.HmacValidationError);
                     }
                 }
 
-                outputDocumentHeaders.Hmac = hmacStreamOutput.HmacResult;
+                outputDocumentHeaders.Headers.Hmac = hmacStreamOutput.HmacResult;
 
                 // Rewind and rewrite the headers, now with the updated HMAC
                 outputDocumentHeaders.WriteWithoutHmac(cipherStream);
@@ -240,19 +240,19 @@ namespace Axantum.AxCrypt.Core
 
             using (ICryptoTransform decryptor = DataCrypto.CreateDecryptingTransform())
             {
-                using (AxCryptDataStream encryptedDataStream = CreateEncryptedDataStream(_reader.InputStream, DocumentHeaders.CipherTextLength, progress))
+                using (V1AxCryptDataStream encryptedDataStream = CreateEncryptedDataStream(_reader.InputStream, DocumentHeaders.CipherTextLength, progress))
                 {
                     DecryptEncryptedDataStream(outputPlaintextStream, decryptor, encryptedDataStream, progress);
                 }
             }
 
-            if (Hmac != DocumentHeaders.Hmac)
+            if (Hmac != DocumentHeaders.Headers.Hmac)
             {
                 throw new Axantum.AxCrypt.Core.Runtime.InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
             }
         }
 
-        private void DecryptEncryptedDataStream(Stream outputPlaintextStream, ICryptoTransform decryptor, AxCryptDataStream encryptedDataStream, IProgressContext progress)
+        private void DecryptEncryptedDataStream(Stream outputPlaintextStream, ICryptoTransform decryptor, Stream encryptedDataStream, IProgressContext progress)
         {
             Exception savedExceptionIfCloseCausesCryptographicException = null;
             try
@@ -297,7 +297,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        private AxCryptDataStream CreateEncryptedDataStream(Stream inputStream, long cipherTextLength, IProgressContext progress)
+        private V1AxCryptDataStream CreateEncryptedDataStream(Stream inputStream, long cipherTextLength, IProgressContext progress)
         {
             if (_reader.CurrentItemType != AxCryptItemType.Data)
             {
@@ -308,11 +308,11 @@ namespace Axantum.AxCrypt.Core
 
             _expectedTotalHmacLength = _hmacStream.Position + cipherTextLength;
 
-            AxCryptDataStream encryptedDataStream = new AxCryptDataStream(inputStream, _hmacStream, cipherTextLength);
+            V1AxCryptDataStream encryptedDataStream = new V1AxCryptDataStream(inputStream, _hmacStream, cipherTextLength);
             return encryptedDataStream;
         }
 
-        public V1Hmac Hmac
+        public Hmac Hmac
         {
             get
             {

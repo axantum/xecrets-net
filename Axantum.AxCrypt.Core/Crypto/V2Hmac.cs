@@ -32,7 +32,7 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// <summary>
     /// The HMAC of AxCrypt encrypted data. Instances of this class are immutable.
     /// </summary>
-    public class V2Hmac : HmacBase
+    public class V2Hmac : Hmac
     {
         public static readonly int RequiredLength = 64;
 

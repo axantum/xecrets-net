@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
@@ -37,10 +38,17 @@ namespace Axantum.AxCrypt.Core.Header
     {
         public IList<HeaderBlock> HeaderBlocks { get; private set; }
 
-        public Headers(byte[] version)
+        public IList<HeaderBlock> TrailerBlocks { get; private set; }
+
+        public Headers()
         {
             HeaderBlocks = new List<HeaderBlock>();
+            TrailerBlocks = new List<HeaderBlock>();
+        }
 
+        public Headers(byte[] version)
+            : this()
+        {
             HeaderBlocks.Add(new PreambleHeaderBlock());
             HeaderBlocks.Add(new VersionHeaderBlock(version));
         }
@@ -54,6 +62,17 @@ namespace Axantum.AxCrypt.Core.Header
                 throw new FileFormatException("No magic Guid was found.", ErrorStatus.MagicGuidMissing);
             }
 
+            ReadHeadersToLast(HeaderBlocks, axCryptReader, HeaderBlockType.Data);
+        }
+
+        public void Trailers(AxCryptReader reader)
+        {
+            TrailerBlocks.Add(reader.CurrentHeaderBlock);
+            ReadHeadersToLast(TrailerBlocks, reader, HeaderBlockType.V2Hmac);
+        }
+
+        private void ReadHeadersToLast(IList<HeaderBlock> headerBlocks, AxCryptReader axCryptReader, HeaderBlockType last)
+        {
             while (axCryptReader.Read())
             {
                 switch (axCryptReader.CurrentItemType)
@@ -66,8 +85,9 @@ namespace Axantum.AxCrypt.Core.Header
                         throw new InternalErrorException("The reader returned an AxCryptItemType it should not be possible for it to return.");
                 }
 
-                HeaderBlocks.Add(axCryptReader.CurrentHeaderBlock);
-                if (axCryptReader.CurrentItemType == AxCryptItemType.Data)
+                headerBlocks.Add(axCryptReader.CurrentHeaderBlock);
+
+                if (axCryptReader.CurrentHeaderBlock.HeaderBlockType == last)
                 {
                     return;
                 }
@@ -92,7 +112,12 @@ namespace Axantum.AxCrypt.Core.Header
 
         public T FindHeaderBlock<T>() where T : HeaderBlock
         {
-            foreach (HeaderBlock headerBlock in HeaderBlocks)
+            return FindHeaderBlock<T>(HeaderBlocks);
+        }
+
+        public T FindHeaderBlock<T>(IEnumerable<HeaderBlock> headerBlocks) where T : HeaderBlock
+        {
+            foreach (HeaderBlock headerBlock in headerBlocks)
             {
                 T typedHeaderHeaderBlock = headerBlock as T;
                 if (typedHeaderHeaderBlock != null)
@@ -113,6 +138,25 @@ namespace Axantum.AxCrypt.Core.Header
             if (versionHeaderBlock.FileVersionMajor < lowestMajorVersion)
             {
                 throw new FileFormatException("Too old file format.", ErrorStatus.TooOldFileFormatVersion);
+            }
+        }
+
+        public Hmac Hmac
+        {
+            get
+            {
+                PreambleHeaderBlock headerBlock = FindHeaderBlock<PreambleHeaderBlock>();
+
+                return headerBlock.Hmac;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("value");
+                }
+                PreambleHeaderBlock headerBlock = FindHeaderBlock<PreambleHeaderBlock>();
+                headerBlock.Hmac = value;
             }
         }
     }

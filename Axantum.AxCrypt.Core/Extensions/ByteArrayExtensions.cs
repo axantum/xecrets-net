@@ -26,9 +26,7 @@
 #endregion Coypright and License
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Extensions
 {
@@ -204,7 +202,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             {
                 return false;
             }
-            return left.IsEquivalentTo(0, right, 0, right.Length);
+            return left.IsEquivalentToInternal(0, right, 0, right.Length);
         }
 
         public static long GetLittleEndianValue(this byte[] left, int offset, int length)

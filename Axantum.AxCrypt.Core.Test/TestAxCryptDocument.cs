@@ -112,7 +112,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 bool keyIsOk = document.Load(FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                V1Hmac hmac = document.DocumentHeaders.Hmac;
+                Hmac hmac = document.DocumentHeaders.Headers.Hmac;
                 Assert.That(hmac.GetBytes(), Is.EqualTo(expectedHmac.GetBytes()), "Wrong HMAC");
             }
         }
@@ -350,7 +350,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 bool keyIsOk = document.Load(FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                document.DocumentHeaders.Hmac = new V1Hmac(new byte[V1Hmac.RequiredLength]);
+                document.DocumentHeaders.Headers.Hmac = new V1Hmac(new byte[V1Hmac.RequiredLength]);
                 Assert.Throws<Axantum.AxCrypt.Core.Runtime.InvalidDataException>(() =>
                 {
                     document.DecryptTo(Stream.Null, new ProgressContext());
@@ -624,9 +624,9 @@ namespace Axantum.AxCrypt.Core.Test
                     outputDocumentHeaders.SetCurrentVersion();
                     outputDocumentHeaders.RewrapMasterKey(new V1AesCrypto(newPassphrase.DerivedPassphrase));
 
-                    byte[] modifiedHmacBytes = document.DocumentHeaders.Hmac.GetBytes();
+                    byte[] modifiedHmacBytes = document.DocumentHeaders.Headers.Hmac.GetBytes();
                     modifiedHmacBytes[0] += 1;
-                    document.DocumentHeaders.Hmac = new V1Hmac(modifiedHmacBytes);
+                    document.DocumentHeaders.Headers.Hmac = new V1Hmac(modifiedHmacBytes);
                     Assert.Throws<Axantum.AxCrypt.Core.Runtime.InvalidDataException>(() =>
                     {
                         document.CopyEncryptedTo(outputDocumentHeaders, changedStream, new ProgressContext());

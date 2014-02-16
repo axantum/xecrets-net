@@ -72,7 +72,7 @@ namespace Axantum.AxCrypt.Core.IO
         /// Get the calculated HMAC
         /// </summary>
         /// <returns>A HMAC truncated to 128 bits</returns>
-        public V1Hmac HmacResult
+        public Hmac HmacResult
         {
             get
             {

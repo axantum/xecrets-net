@@ -25,8 +25,8 @@
 
 #endregion Coypright and License
 
-using System;
 using Axantum.AxCrypt.Core.Crypto;
+using System;
 
 namespace Axantum.AxCrypt.Core.Header
 {
@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Core.Header
             return block;
         }
 
-        public V1Hmac Hmac
+        public Hmac Hmac
         {
             get
             {

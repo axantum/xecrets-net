@@ -25,12 +25,13 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.IO;
 
 namespace Axantum.AxCrypt.Core.Header
 {
-    public abstract class HeaderBlock : ICloneable
+    public abstract class HeaderBlock : ICloneable, IEquatable<HeaderBlock>
     {
         private byte[] _dataBlock;
 
@@ -96,5 +97,53 @@ namespace Axantum.AxCrypt.Core.Header
         }
 
         public abstract object Clone();
+
+        public bool Equals(HeaderBlock other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            return GetDataBlockBytesReference().IsEquivalentTo(other.GetDataBlockBytesReference());
+        }
+
+        public override bool Equals(object obj)
+        {
+            HeaderBlock other = obj as HeaderBlock;
+            if (other == null)
+            {
+                return false;
+            }
+
+            return Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            int hashcode = 0;
+            foreach (byte b in GetDataBlockBytesReference())
+            {
+                hashcode += b;
+            }
+            return hashcode;
+        }
+
+        public static bool operator ==(HeaderBlock left, HeaderBlock right)
+        {
+            if (Object.ReferenceEquals(left, right))
+            {
+                return true;
+            }
+            if ((object)left == null)
+            {
+                return false;
+            }
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(HeaderBlock left, HeaderBlock right)
+        {
+            return !(left == right);
+        }
     }
 }

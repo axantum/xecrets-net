@@ -75,6 +75,14 @@ namespace Axantum.AxCrypt.Core.Header
         V2KeyWrap = 13,
 
         /// <summary>
+        /// A block of encrypted data in the data stream.
+        /// </summary>
+        /// <remarks>
+        /// Technically it's encrypted, but it's not an encrypted header, therefore it's not classified as such.
+        /// </remarks>
+        EncryptedDataPart = 20,
+
+        /// <summary>
         /// The code should accept and skip header block types that are defined later. This is here to simulate that
         /// condition for tests.
         /// </summary>
@@ -124,8 +132,6 @@ namespace Axantum.AxCrypt.Core.Header
         /// Original file name in Unicode. 1.6.3.3
         /// </summary>
         UnicodeFileNameInfo = 70,
-
-        EncryptedDataPart = 100,
 
         PlainTextLengths = 101,
     }

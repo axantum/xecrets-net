@@ -25,12 +25,10 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
-using Axantum.AxCrypt.Core.Extensions;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -54,10 +52,12 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             if (algorithm.Mode != CipherMode.ECB)
             {
+                algorithm.Clear();
                 throw new ArgumentException("The algorithm must be in ECB mode.");
             }
             if (algorithm.Padding != PaddingMode.None)
             {
+                algorithm.Clear();
                 throw new ArgumentException("The algorithm must be set to work without padding.");
             }
             _algorithm = algorithm;
@@ -168,6 +168,11 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 _cryptoTransform.Dispose();
                 _cryptoTransform = null;
+            }
+            if (_algorithm != null)
+            {
+                _algorithm.Clear();
+                _algorithm = null;
             }
         }
     }

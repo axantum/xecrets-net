@@ -34,7 +34,7 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// <summary>
     /// The HMAC of AxCrypt encrypted data. Instances of this class are immutable.
     /// </summary>
-    public abstract class HmacBase
+    public abstract class Hmac
     {
         private byte[] _hmac;
 
@@ -84,7 +84,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 return false;
             }
-            HmacBase right = (HmacBase)obj;
+            Hmac right = (Hmac)obj;
             return this == right;
         }
 
@@ -112,7 +112,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>
         /// True if the two instances compare as equivalent, false otherwise.
         /// </returns>
-        public static bool operator ==(HmacBase left, HmacBase right)
+        public static bool operator ==(Hmac left, Hmac right)
         {
             if (Object.ReferenceEquals(left, right))
             {
@@ -133,7 +133,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>
         /// True if the two instances do not compare as equivalent, false otherwise.
         /// </returns>
-        public static bool operator !=(HmacBase left, HmacBase right)
+        public static bool operator !=(Hmac left, Hmac right)
         {
             return !(left == right);
         }

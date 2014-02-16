@@ -46,6 +46,7 @@ namespace Axantum.AxCrypt.Core.Header
         private static readonly byte[] _version = new byte[] { 4, 0, 2, 0, 0 };
 
         private Headers _headers;
+        private V2HmacStream _hmacStream;
 
         private ICrypto _keyEncryptingCrypto;
 
@@ -63,6 +64,22 @@ namespace Axantum.AxCrypt.Core.Header
             SetDataEncryptingCryptoForEncryptedHeaderBlocks(_headers.HeaderBlocks);
         }
 
+        public V2DocumentHeaders(ICrypto keyEncryptingCrypto)
+        {
+            _keyEncryptingCrypto = keyEncryptingCrypto;
+            _headers = new Headers();
+        }
+
+        public Headers Headers
+        {
+            get { return _headers; }
+        }
+
+        public V2HmacStream HmacStream
+        {
+            get { return _hmacStream; }
+        }
+
         public bool Load(AxCryptReader axCryptReader)
         {
             _headers.Load(axCryptReader);
@@ -73,8 +90,28 @@ namespace Axantum.AxCrypt.Core.Header
                 return false;
             }
 
+            _hmacStream = new V2HmacStream(GetHmacKey());
+            AxCrypt1Guid.Write(_hmacStream);
+            foreach (HeaderBlock header in _headers.HeaderBlocks)
+            {
+                header.Write(_hmacStream);
+            }
+
             SetDataEncryptingCryptoForEncryptedHeaderBlocks(_headers.HeaderBlocks);
             return true;
+        }
+
+        public void Trailers(AxCryptReader axCryptReader)
+        {
+            _headers.Trailers(axCryptReader);
+            foreach (HeaderBlock header in _headers.TrailerBlocks)
+            {
+                if (header.HeaderBlockType == HeaderBlockType.V2Hmac)
+                {
+                    continue;
+                }
+                header.Write(_hmacStream);
+            }
         }
 
         private void SetDataEncryptingCryptoForEncryptedHeaderBlocks(IList<HeaderBlock> headerBlocks)
@@ -137,7 +174,7 @@ namespace Axantum.AxCrypt.Core.Header
             lengths.Write(hmacStream);
 
             V2HmacHeaderBlock hmac = new V2HmacHeaderBlock();
-            hmac.Hmac = new V2Hmac(hmacStream.GetHmacResult());
+            hmac.Hmac = hmacStream.Hmac;
             hmac.Write(hmacStream);
         }
 
@@ -256,6 +293,15 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 V2UnicodeFileNameInfoHeaderBlock headerBlock = _headers.FindHeaderBlock<V2UnicodeFileNameInfoHeaderBlock>();
                 headerBlock.FileName = value;
+            }
+        }
+
+        public Hmac Hmac
+        {
+            get
+            {
+                V2HmacHeaderBlock hmacHeaderBlock = _headers.FindHeaderBlock<V2HmacHeaderBlock>(_headers.TrailerBlocks);
+                return hmacHeaderBlock.Hmac;
             }
         }
     }

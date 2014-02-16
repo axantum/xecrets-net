@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.IO;
 using System.Security.Cryptography;
@@ -73,17 +74,20 @@ namespace Axantum.AxCrypt.Core.IO
         /// Get the calculated HMAC
         /// </summary>
         /// <returns>The HMAC</returns>
-        public byte[] GetHmacResult()
+        public Hmac Hmac
         {
-            EnsureNotDisposed();
-            if (_hmacResult == null)
+            get
             {
-                _hmac.TransformFinalBlock(new byte[] { }, 0, 0);
-                byte[] result = new byte[_hmac.HashSize / 8];
-                Array.Copy(_hmac.Hash, 0, result, 0, result.Length);
-                _hmacResult = result;
+                EnsureNotDisposed();
+                if (_hmacResult == null)
+                {
+                    _hmac.TransformFinalBlock(new byte[] { }, 0, 0);
+                    byte[] result = new byte[_hmac.HashSize / 8];
+                    Array.Copy(_hmac.Hash, 0, result, 0, result.Length);
+                    _hmacResult = result;
+                }
+                return new V2Hmac(_hmacResult);
             }
-            return _hmacResult;
         }
 
         public override bool CanRead

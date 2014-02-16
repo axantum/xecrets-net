@@ -176,10 +176,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </returns>
         public override ICryptoTransform CreateDecryptingTransform()
         {
-            using (SymmetricAlgorithm algorithm = CreateAlgorithm())
-            {
-                return new CounterModeCryptoTransform(algorithm, _blockCounter, _blockOffset);
-            }
+            return new CounterModeCryptoTransform(CreateAlgorithm(), _blockCounter, _blockOffset);
         }
 
         /// <summary>
@@ -190,10 +187,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </returns>
         public override ICryptoTransform CreateEncryptingTransform()
         {
-            using (SymmetricAlgorithm algorithm = CreateAlgorithm())
-            {
-                return new CounterModeCryptoTransform(algorithm, _blockCounter, _blockOffset);
-            }
+            return new CounterModeCryptoTransform(CreateAlgorithm(), _blockCounter, _blockOffset);
         }
     }
 }

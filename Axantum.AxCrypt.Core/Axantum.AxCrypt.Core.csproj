@@ -52,17 +52,19 @@
   <ItemGroup>
     <Compile Include="Crypto\CounterModeCryptoTransform.cs" />
     <Compile Include="Crypto\CryptoBase.cs" />
-    <Compile Include="Crypto\HmacBase.cs" />
+    <Compile Include="Crypto\Hmac.cs" />
     <Compile Include="Crypto\ICrypto.cs" />
     <Compile Include="Crypto\IRandomGenerator.cs" />
     <Compile Include="Crypto\RandomGenerator.cs" />
     <Compile Include="Crypto\V2AesCrypto.cs" />
+    <Compile Include="Header\EncryptedDataPartBlock.cs" />
     <Compile Include="Header\V2CompressionHeaderBlock.cs" />
     <Compile Include="Header\V2DocumentHeaders.cs" />
     <Compile Include="Header\V2HmacHeaderBlock.cs" />
     <Compile Include="Header\V2KeyWrapHeaderBlock.cs" />
     <Compile Include="Header\V2PlainTextLengthsHeaderBlock.cs" />
     <Compile Include="Header\V2UnicodeFileNameInfoHeaderBlock.cs" />
+    <Compile Include="IO\V2AxCryptDataStream.cs" />
     <Compile Include="IO\V2HmacStream.cs" />
     <Compile Include="Reader\AxCryptReader.cs" />
     <Compile Include="Reader\V2AxCryptReader.cs" />
@@ -152,7 +154,7 @@
     <Compile Include="Runtime\IRuntimeEnvironment.cs" />
     <Compile Include="Runtime\InternalErrorException.cs" />
     <Compile Include="Runtime\InvalidDataException.cs" />
-    <Compile Include="IO\AxCryptDataStream.cs" />
+    <Compile Include="IO\V1AxCryptDataStream.cs" />
     <Compile Include="IO\V1HmacStream.cs" />
     <Compile Include="IO\IRuntimeFileInfo.cs" />
     <Compile Include="IO\LookAheadStream.cs" />

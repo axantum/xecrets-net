@@ -92,6 +92,11 @@ namespace Axantum.AxCrypt.Core.Reader
             CurrentItemType = AxCryptItemType.EndOfStream;
         }
 
+        public void SetStartOfData()
+        {
+            CurrentItemType = AxCryptItemType.HeaderBlock;
+        }
+
         private bool ReadInternal()
         {
             switch (CurrentItemType)
@@ -106,7 +111,6 @@ namespace Axantum.AxCrypt.Core.Reader
                     return CurrentItemType != AxCryptItemType.EndOfStream;
 
                 case AxCryptItemType.Data:
-                    CurrentItemType = AxCryptItemType.EndOfStream;
                     return false;
 
                 case AxCryptItemType.EndOfStream:

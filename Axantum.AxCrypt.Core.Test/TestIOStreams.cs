@@ -25,13 +25,13 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
+using NUnit.Framework;
 using System;
 using System.IO;
 using System.IO.Compression;
 using System.Text;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
-using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -63,19 +63,19 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     Assert.Throws<ArgumentNullException>(() =>
                     {
-                        using (AxCryptDataStream axCryptDataStream = new AxCryptDataStream(null, hmacStream, inputStream.Length)) { }
+                        using (V1AxCryptDataStream axCryptDataStream = new V1AxCryptDataStream(null, hmacStream, inputStream.Length)) { }
                     }, "An input stream must be given, it cannot be null.");
                     Assert.Throws<ArgumentNullException>(() =>
                     {
-                        using (AxCryptDataStream axCryptDataStream = new AxCryptDataStream(inputStream, null, inputStream.Length)) { }
+                        using (V1AxCryptDataStream axCryptDataStream = new V1AxCryptDataStream(inputStream, null, inputStream.Length)) { }
                     }, "An HmacStream must be given, it cannot be null.");
                     Assert.Throws<ArgumentOutOfRangeException>(() =>
                     {
-                        using (AxCryptDataStream axCryptDataStream = new AxCryptDataStream(inputStream, hmacStream, -inputStream.Length)) { }
+                        using (V1AxCryptDataStream axCryptDataStream = new V1AxCryptDataStream(inputStream, hmacStream, -inputStream.Length)) { }
                     }, "Negative length is not allowed.");
 
                     inputStream.Position = 0;
-                    using (AxCryptDataStream axCryptDataStream = new AxCryptDataStream(inputStream, hmacStream, inputStream.Length - 5))
+                    using (V1AxCryptDataStream axCryptDataStream = new V1AxCryptDataStream(inputStream, hmacStream, inputStream.Length - 5))
                     {
                         Assert.Throws<NotSupportedException>(() =>
                         {
@@ -178,7 +178,7 @@ namespace Axantum.AxCrypt.Core.Test
                     hmacStream.Position = 0;
                 }, "Position is not supported.");
 
-                V1Hmac dataHmac = hmacStream.HmacResult;
+                Hmac dataHmac = hmacStream.HmacResult;
                 Assert.That(dataHmac.GetBytes(), Is.EquivalentTo(new byte[] { 0x62, 0x6f, 0x2c, 0x61, 0xc7, 0x68, 0x00, 0xb3, 0xa6, 0x8d, 0xf9, 0x55, 0x95, 0xbc, 0x1f, 0xd1 }), "The HMAC of 20 bytes of zero with 128-bit AesKey all zero should be this.");
 
                 Assert.Throws<InvalidOperationException>(() =>
@@ -191,7 +191,7 @@ namespace Axantum.AxCrypt.Core.Test
 
                 Assert.Throws<ObjectDisposedException>(() =>
                 {
-                    V1Hmac invalidDataHmac = hmacStream.HmacResult;
+                    Hmac invalidDataHmac = hmacStream.HmacResult;
 
                     // Remove FxCop warning
                     Object.Equals(invalidDataHmac, null);

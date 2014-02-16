@@ -227,25 +227,6 @@ namespace Axantum.AxCrypt.Core.Header
             }
         }
 
-        public V1Hmac Hmac
-        {
-            get
-            {
-                PreambleHeaderBlock headerBlock = _headers.FindHeaderBlock<PreambleHeaderBlock>();
-
-                return headerBlock.Hmac;
-            }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("value");
-                }
-                PreambleHeaderBlock headerBlock = _headers.FindHeaderBlock<PreambleHeaderBlock>();
-                headerBlock.Hmac = value;
-            }
-        }
-
         public long UncompressedLength
         {
             get

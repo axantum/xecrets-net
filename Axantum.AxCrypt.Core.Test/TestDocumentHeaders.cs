@@ -104,7 +104,7 @@ namespace Axantum.AxCrypt.Core.Test
             });
             Assert.Throws<ArgumentNullException>(() =>
             {
-                documentHeaders.Hmac = null;
+                documentHeaders.Headers.Hmac = null;
             });
         }
 

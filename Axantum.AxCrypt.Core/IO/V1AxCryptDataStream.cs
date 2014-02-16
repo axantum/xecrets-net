@@ -35,7 +35,7 @@ namespace Axantum.AxCrypt.Core.IO
     /// stream in fact may be longer.
     /// </summary>
     /// <remarks>Does not dispose of the input stream or the hmac stream when disposed!</remarks>
-    public class AxCryptDataStream : Stream
+    public class V1AxCryptDataStream : Stream
     {
         private Stream _inputStream;
         private Stream _hmacStream;
@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core.IO
         /// <param name="inputStream">A stream positioned at the first byte of data</param>
         /// <param name="hmacStream">A stream where all data read is mirrored, presumably to calculate an HMAC. If null, ignored.</param>
         /// <param name="length">The exact number of bytes to expect and read from the input stream</param>
-        public AxCryptDataStream(Stream inputStream, Stream hmacStream, long length)
+        public V1AxCryptDataStream(Stream inputStream, Stream hmacStream, long length)
         {
             if (inputStream == null)
             {

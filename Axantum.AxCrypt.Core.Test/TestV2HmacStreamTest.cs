@@ -33,7 +33,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (V2HmacStream stream = new V2HmacStream(key))
             {
                 stream.Write(data, 0, data.Length);
-                result = stream.GetHmacResult();
+                result = stream.Hmac.GetBytes();
             }
 
             Assert.That(result, Is.EquivalentTo(hmac_sha_512));
@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (V2HmacStream stream = new V2HmacStream(key))
             {
                 stream.Write(data, 0, data.Length);
-                result = stream.GetHmacResult();
+                result = stream.Hmac.GetBytes();
             }
 
             Assert.That(result, Is.EquivalentTo(hmac_sha_512));
@@ -69,7 +69,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (V2HmacStream stream = new V2HmacStream(key))
             {
                 stream.Write(data, 0, data.Length);
-                result = stream.GetHmacResult();
+                result = stream.Hmac.GetBytes();
             }
 
             Assert.That(result, Is.EquivalentTo(hmac_sha_512));
@@ -87,7 +87,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (V2HmacStream stream = new V2HmacStream(key))
             {
                 stream.Write(data, 0, data.Length);
-                result = stream.GetHmacResult();
+                result = stream.Hmac.GetBytes();
             }
 
             Assert.That(result, Is.EquivalentTo(hmac_sha_512));
@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 stream.Write(data, 0, data.Length);
                 result = new byte[16];
-                Array.Copy(stream.GetHmacResult(), 0, result, 0, 16);
+                Array.Copy(stream.Hmac.GetBytes(), 0, result, 0, 16);
             }
 
             Assert.That(result, Is.EquivalentTo(hmac_sha_512));
@@ -124,7 +124,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (V2HmacStream stream = new V2HmacStream(key))
             {
                 stream.Write(data, 0, data.Length);
-                result = stream.GetHmacResult();
+                result = stream.Hmac.GetBytes();
             }
 
             Assert.That(result, Is.EquivalentTo(hmac_sha_512));
@@ -142,7 +142,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (V2HmacStream stream = new V2HmacStream(key))
             {
                 stream.Write(data, 0, data.Length);
-                result = stream.GetHmacResult();
+                result = stream.Hmac.GetBytes();
             }
 
             Assert.That(result, Is.EquivalentTo(hmac_sha_512));
@@ -162,7 +162,7 @@ namespace Axantum.AxCrypt.Core.Test
                 using (V2HmacStream stream = new V2HmacStream(key, output))
                 {
                     stream.Write(data, 0, data.Length);
-                    result = stream.GetHmacResult();
+                    result = stream.Hmac.GetBytes();
                 }
                 byte[] chained = output.ToArray();
                 Assert.That(chained, Is.EquivalentTo(data));

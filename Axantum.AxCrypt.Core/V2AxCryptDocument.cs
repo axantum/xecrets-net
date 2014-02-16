@@ -51,6 +51,11 @@ namespace Axantum.AxCrypt.Core
 
         private long _compressedPlainTextLength;
 
+        public V2AxCryptDocument(ICrypto keyEncryptingCrypto)
+        {
+            DocumentHeaders = new V2DocumentHeaders(keyEncryptingCrypto);
+        }
+
         public V2AxCryptDocument(ICrypto keyEncryptingCrypto, long iterations)
         {
             DocumentHeaders = new V2DocumentHeaders(keyEncryptingCrypto, iterations);
@@ -72,8 +77,12 @@ namespace Axantum.AxCrypt.Core
         {
             _reader = new V2AxCryptReader(stream);
             PassphraseIsValid = DocumentHeaders.Load(_reader);
+            if (!PassphraseIsValid)
+            {
+                return false;
+            }
 
-            return PassphraseIsValid;
+            return true;
         }
 
         /// <summary>
@@ -111,16 +120,18 @@ namespace Axantum.AxCrypt.Core
                 DocumentHeaders.WriteStartWithHmac(outputHmacStream);
                 using (ICryptoTransform encryptor = DocumentHeaders.GetDataCrypto().CreateEncryptingTransform())
                 {
-                    long outputStartPosition = outputStream.Position;
-                    using (CryptoStream encryptingStream = new CryptoStream(new NonClosingStream(outputHmacStream), encryptor, CryptoStreamMode.Write))
+                    using (Stream axCryptDataStream = new V2AxCryptDataStream(outputHmacStream))
                     {
-                        if (DocumentHeaders.IsCompressed)
+                        using (CryptoStream encryptingStream = new CryptoStream(new NonClosingStream(axCryptDataStream), encryptor, CryptoStreamMode.Write))
                         {
-                            EncryptWithCompressionInternal(DocumentHeaders, inputStream, encryptingStream, progress);
-                        }
-                        else
-                        {
-                            _compressedPlainTextLength = _plainTextLength = inputStream.CopyToWithCount(encryptingStream, inputStream, progress);
+                            if (DocumentHeaders.IsCompressed)
+                            {
+                                EncryptWithCompressionInternal(DocumentHeaders, inputStream, encryptingStream, progress);
+                            }
+                            else
+                            {
+                                _compressedPlainTextLength = _plainTextLength = inputStream.CopyToWithCount(encryptingStream, inputStream, progress);
+                            }
                         }
                     }
                 }
@@ -153,21 +164,34 @@ namespace Axantum.AxCrypt.Core
                 throw new InternalErrorException("Passsphrase is not valid!");
             }
 
-            //using (ICryptoTransform decryptor = DocumentHeaders.GetDataCrypto().CreateDecryptingTransform())
-            //{
-            //    using (AxCryptDataStream encryptedDataStream = _reader.CreateEncryptedDataStream(DocumentHeaders.HmacSubkey.Key, DocumentHeaders.CipherTextLength, progress))
-            //    {
-            //        DecryptEncryptedDataStream(outputPlaintextStream, decryptor, encryptedDataStream, progress);
-            //    }
-            //}
+            using (ICryptoTransform decryptor = DocumentHeaders.GetDataCrypto().CreateDecryptingTransform())
+            {
+                using (Stream encryptedDataStream = CreateEncryptedDataStream())
+                {
+                    DecryptEncryptedDataStream(outputPlaintextStream, decryptor, encryptedDataStream, progress);
+                }
+            }
 
-            //if (_reader.Hmac != DocumentHeaders.Hmac)
-            //{
-            //    throw new Axantum.AxCrypt.Core.Runtime.InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
-            //}
+            DocumentHeaders.Trailers(_reader);
+            if (DocumentHeaders.HmacStream.Hmac != DocumentHeaders.Hmac)
+            {
+                throw new Axantum.AxCrypt.Core.Runtime.InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
+            }
         }
 
-        private void DecryptEncryptedDataStream(Stream outputPlaintextStream, ICryptoTransform decryptor, AxCryptDataStream encryptedDataStream, IProgressContext progress)
+        private Stream CreateEncryptedDataStream()
+        {
+            if (_reader.CurrentItemType != AxCryptItemType.Data)
+            {
+                throw new InvalidOperationException("GetEncryptedDataStream() was called when the reader is not positioned at the data.");
+            }
+
+            _reader.SetStartOfData();
+            V2AxCryptDataStream encryptedDataStream = new V2AxCryptDataStream(_reader, DocumentHeaders.HmacStream);
+            return encryptedDataStream;
+        }
+
+        private void DecryptEncryptedDataStream(Stream outputPlaintextStream, ICryptoTransform decryptor, Stream encryptedDataStream, IProgressContext progress)
         {
             Exception savedExceptionIfCloseCausesCryptographicException = null;
             try
