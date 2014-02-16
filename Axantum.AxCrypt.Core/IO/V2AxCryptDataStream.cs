@@ -8,6 +8,8 @@ namespace Axantum.AxCrypt.Core.IO
 {
     public class V2AxCryptDataStream : Stream
     {
+        private const int WRITE_CHUNK_SIZE = 65536;
+
         private AxCryptReader _reader;
 
         private Stream _hmacStream;
@@ -44,6 +46,28 @@ namespace Axantum.AxCrypt.Core.IO
 
         public override void Flush()
         {
+            if (CanRead || _buffer == null || _offset == 0)
+            {
+                return;
+            }
+
+            byte[] buffer = _buffer;
+            if (_offset != _buffer.Length)
+            {
+                byte[] partBuffer = new byte[_offset];
+                Array.Copy(_buffer, 0, partBuffer, 0, _offset);
+                buffer = partBuffer;
+            }
+            _offset = 0;
+
+            EncryptedDataPartBlock dataPart = new EncryptedDataPartBlock(buffer);
+            dataPart.Write(_hmacStream);
+        }
+
+        public override void Close()
+        {
+            Flush();
+            base.Close();
         }
 
         public override long Length
@@ -130,14 +154,33 @@ namespace Axantum.AxCrypt.Core.IO
 
         public override void Write(byte[] buffer, int offset, int count)
         {
-            if (offset != 0 || count != buffer.Length)
+            while (count > 0)
             {
-                byte[] partBuffer = new byte[buffer.Length - offset];
-                Array.Copy(buffer, offset, partBuffer, 0, buffer.Length - offset);
-                buffer = partBuffer;
+                int written = WriteToBuffer(buffer, offset, count);
+                count -= written;
+                offset += written;
             }
-            EncryptedDataPartBlock dataPart = new EncryptedDataPartBlock(buffer);
-            dataPart.Write(_hmacStream);
+        }
+
+        private int WriteToBuffer(byte[] buffer, int offset, int count)
+        {
+            if (_buffer == null)
+            {
+                _buffer = new byte[WRITE_CHUNK_SIZE];
+                _offset = 0;
+            }
+
+            int room = _buffer.Length - _offset;
+            int written = room > count ? count : room;
+            Array.Copy(buffer, offset, _buffer, _offset, written);
+
+            _offset += written;
+            if (_offset == _buffer.Length)
+            {
+                Flush();
+            }
+
+            return written;
         }
     }
 }
