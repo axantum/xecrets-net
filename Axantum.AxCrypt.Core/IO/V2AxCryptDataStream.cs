@@ -1,14 +1,14 @@
-﻿using Axantum.AxCrypt.Core.Header;
-using Axantum.AxCrypt.Core.Reader;
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
+using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.Reader;
 
 namespace Axantum.AxCrypt.Core.IO
 {
     public class V2AxCryptDataStream : Stream
     {
-        public static readonly int WRITE_CHUNK_SIZE = 32;
+        public static readonly int WRITE_CHUNK_SIZE = 65536;
 
         private AxCryptReader _reader;
 
@@ -87,10 +87,13 @@ namespace Axantum.AxCrypt.Core.IO
             }
         }
 
+        private bool _eof = false;
+
         public override int Read(byte[] buffer, int offset, int count)
         {
-            if (!DataInBuffer())
+            if (_eof || !DataInBuffer())
             {
+                _eof = true;
                 return 0;
             }
 

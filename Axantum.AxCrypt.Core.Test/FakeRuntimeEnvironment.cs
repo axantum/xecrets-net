@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -85,7 +85,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         public int StreamBufferSize
         {
-            get { return 30; }
+            get { return 512; }
         }
 
         public DateTime UtcNow

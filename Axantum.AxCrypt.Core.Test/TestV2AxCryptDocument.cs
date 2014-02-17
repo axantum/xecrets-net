@@ -25,14 +25,15 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.UI;
-using NUnit.Framework;
 using System;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.UI;
+using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -125,11 +126,11 @@ namespace Axantum.AxCrypt.Core.Test
             TestEncryptDecryptHelper(V2AxCryptDataStream.WRITE_CHUNK_SIZE - 1, AxCryptOptions.EncryptWithoutCompression);
         }
 
-        //[Test]
-        //public static void TestEncryptDecryptChunkSize()
-        //{
-        //    TestEncryptDecryptHelper(V2AxCryptDataStream.WRITE_CHUNK_SIZE, AxCryptOptions.EncryptWithoutCompression);
-        //}
+        [Test]
+        public static void TestEncryptDecryptChunkSize()
+        {
+            TestEncryptDecryptHelper(V2AxCryptDataStream.WRITE_CHUNK_SIZE, AxCryptOptions.EncryptWithoutCompression);
+        }
 
         [Test]
         public static void TestEncryptDecryptChunkSizePlusOne()
@@ -137,11 +138,11 @@ namespace Axantum.AxCrypt.Core.Test
             TestEncryptDecryptHelper(V2AxCryptDataStream.WRITE_CHUNK_SIZE + 1, AxCryptOptions.EncryptWithoutCompression);
         }
 
-        //[Test]
-        //public static void TestEncryptDecryptSeveralChunkSizes()
-        //{
-        //    TestEncryptDecryptHelper(V2AxCryptDataStream.WRITE_CHUNK_SIZE * 5, AxCryptOptions.EncryptWithoutCompression);
-        //}
+        [Test]
+        public static void TestEncryptDecryptSeveralChunkSizes()
+        {
+            TestEncryptDecryptHelper(V2AxCryptDataStream.WRITE_CHUNK_SIZE * 5, AxCryptOptions.EncryptWithoutCompression);
+        }
 
         [Test]
         public static void TestEncryptDecryptIncompleteChunk()
@@ -173,7 +174,7 @@ namespace Axantum.AxCrypt.Core.Test
                         plain = decryptedStream.ToArray();
                     }
 
-                    Assert.That(plain, Is.EquivalentTo(text));
+                    Assert.That(plain.IsEquivalentTo(text));
                 }
             }
         }
