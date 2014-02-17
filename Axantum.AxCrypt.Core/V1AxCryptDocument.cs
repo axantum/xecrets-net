@@ -312,7 +312,7 @@ namespace Axantum.AxCrypt.Core
             return encryptedDataStream;
         }
 
-        public Hmac Hmac
+        private Hmac Hmac
         {
             get
             {

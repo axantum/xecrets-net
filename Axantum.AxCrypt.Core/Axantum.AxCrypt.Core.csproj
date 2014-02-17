@@ -64,6 +64,7 @@
     <Compile Include="Header\V2KeyWrapHeaderBlock.cs" />
     <Compile Include="Header\V2PlainTextLengthsHeaderBlock.cs" />
     <Compile Include="Header\V2UnicodeFileNameInfoHeaderBlock.cs" />
+    <Compile Include="IAxCryptDocument.cs" />
     <Compile Include="IO\V2AxCryptDataStream.cs" />
     <Compile Include="IO\V2HmacStream.cs" />
     <Compile Include="Reader\AxCryptReader.cs" />
