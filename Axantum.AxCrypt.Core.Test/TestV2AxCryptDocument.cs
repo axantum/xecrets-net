@@ -25,15 +25,15 @@
 
 #endregion Coypright and License
 
-using System;
-using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
+using System;
+using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -80,6 +80,36 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestEncryptWithHmacIncompleteChunkSizes()
         {
             TestEncryptWithHmacHelper(V2AxCryptDataStream.WRITE_CHUNK_SIZE * 3 + V2AxCryptDataStream.WRITE_CHUNK_SIZE / 2, AxCryptOptions.EncryptWithoutCompression);
+        }
+
+        [Test]
+        public static void TestEncryptWithHmacSmallWithCompression()
+        {
+            TestEncryptWithHmacHelper(23, AxCryptOptions.EncryptWithCompression);
+        }
+
+        [Test]
+        public static void TestEncryptWithHmacAlmostChunkSizeWithCompression()
+        {
+            TestEncryptWithHmacHelper(V2AxCryptDataStream.WRITE_CHUNK_SIZE - 1, AxCryptOptions.EncryptWithCompression);
+        }
+
+        [Test]
+        public static void TestEncryptWithHmacChunkSizeWithCompression()
+        {
+            TestEncryptWithHmacHelper(V2AxCryptDataStream.WRITE_CHUNK_SIZE, AxCryptOptions.EncryptWithCompression);
+        }
+
+        [Test]
+        public static void TestEncryptWithHmacSeveralChunkSizesWithCompression()
+        {
+            TestEncryptWithHmacHelper(V2AxCryptDataStream.WRITE_CHUNK_SIZE * 5, AxCryptOptions.EncryptWithCompression);
+        }
+
+        [Test]
+        public static void TestEncryptWithHmacIncompleteChunkSizesWithCompression()
+        {
+            TestEncryptWithHmacHelper(V2AxCryptDataStream.WRITE_CHUNK_SIZE * 3 + V2AxCryptDataStream.WRITE_CHUNK_SIZE / 2, AxCryptOptions.EncryptWithCompression);
         }
 
         private static void TestEncryptWithHmacHelper(int length, AxCryptOptions options)
@@ -148,6 +178,42 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestEncryptDecryptIncompleteChunk()
         {
             TestEncryptDecryptHelper(V2AxCryptDataStream.WRITE_CHUNK_SIZE * 3 + V2AxCryptDataStream.WRITE_CHUNK_SIZE / 2, AxCryptOptions.EncryptWithoutCompression);
+        }
+
+        [Test]
+        public static void TestEncryptDecryptSmallWithCompression()
+        {
+            TestEncryptDecryptHelper(15, AxCryptOptions.EncryptWithCompression);
+        }
+
+        [Test]
+        public static void TestEncryptDecryptAlmostChunkSizeWithCompression()
+        {
+            TestEncryptDecryptHelper(V2AxCryptDataStream.WRITE_CHUNK_SIZE - 1, AxCryptOptions.EncryptWithCompression);
+        }
+
+        [Test]
+        public static void TestEncryptDecryptChunkSizeWithCompression()
+        {
+            TestEncryptDecryptHelper(V2AxCryptDataStream.WRITE_CHUNK_SIZE, AxCryptOptions.EncryptWithCompression);
+        }
+
+        [Test]
+        public static void TestEncryptDecryptChunkSizePlusOneWithCompression()
+        {
+            TestEncryptDecryptHelper(V2AxCryptDataStream.WRITE_CHUNK_SIZE + 1, AxCryptOptions.EncryptWithCompression);
+        }
+
+        [Test]
+        public static void TestEncryptDecryptSeveralChunkSizesWithCompression()
+        {
+            TestEncryptDecryptHelper(V2AxCryptDataStream.WRITE_CHUNK_SIZE * 5, AxCryptOptions.EncryptWithCompression);
+        }
+
+        [Test]
+        public static void TestEncryptDecryptIncompleteChunkWithCompression()
+        {
+            TestEncryptDecryptHelper(V2AxCryptDataStream.WRITE_CHUNK_SIZE * 3 + V2AxCryptDataStream.WRITE_CHUNK_SIZE / 2, AxCryptOptions.EncryptWithCompression);
         }
 
         private static void TestEncryptDecryptHelper(int length, AxCryptOptions options)
