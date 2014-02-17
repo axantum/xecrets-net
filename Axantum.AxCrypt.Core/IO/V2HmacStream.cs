@@ -124,6 +124,7 @@ namespace Axantum.AxCrypt.Core.IO
 
         public override void Flush()
         {
+            ChainedStream.Flush();
         }
 
         public override int Read(byte[] buffer, int offset, int count)

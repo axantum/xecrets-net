@@ -26,13 +26,13 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
 using System;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -52,19 +52,48 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWriteWithHmac()
+        public static void TestEncryptWithHmacSmall()
+        {
+            TestEncryptWithHmacHelper(23, AxCryptOptions.EncryptWithoutCompression);
+        }
+
+        [Test]
+        public static void TestEncryptWithHmacAlmostChunkSize()
+        {
+            TestEncryptWithHmacHelper(V2AxCryptDataStream.WRITE_CHUNK_SIZE - 1, AxCryptOptions.EncryptWithoutCompression);
+        }
+
+        [Test]
+        public static void TestEncryptWithHmacChunkSize()
+        {
+            TestEncryptWithHmacHelper(V2AxCryptDataStream.WRITE_CHUNK_SIZE, AxCryptOptions.EncryptWithoutCompression);
+        }
+
+        [Test]
+        public static void TestEncryptWithHmacSeveralChunkSizes()
+        {
+            TestEncryptWithHmacHelper(V2AxCryptDataStream.WRITE_CHUNK_SIZE * 5, AxCryptOptions.EncryptWithoutCompression);
+        }
+
+        [Test]
+        public static void TestEncryptWithHmacIncompleteChunkSizes()
+        {
+            TestEncryptWithHmacHelper(V2AxCryptDataStream.WRITE_CHUNK_SIZE * 3 + V2AxCryptDataStream.WRITE_CHUNK_SIZE / 2, AxCryptOptions.EncryptWithoutCompression);
+        }
+
+        private static void TestEncryptWithHmacHelper(int length, AxCryptOptions options)
         {
             byte[] output;
             byte[] hmacKey;
             using (MemoryStream inputStream = new MemoryStream())
             {
-                byte[] text = Encoding.UTF8.GetBytes("Just a few bytes testing!");
+                byte[] text = Instance.RandomGenerator.Generate(length);
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
                     V2AxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(new AesKey(256), new AesIV()), 100);
-                    document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithoutCompression, new ProgressContext());
+                    document.EncryptTo(inputStream, outputStream, options, new ProgressContext());
                     output = outputStream.ToArray();
                     hmacKey = document.DocumentHeaders.GetHmacKey();
                 }
@@ -85,31 +114,66 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptWithHmac()
+        public static void TestEncryptDecryptSmall()
+        {
+            TestEncryptDecryptHelper(15, AxCryptOptions.EncryptWithoutCompression);
+        }
+
+        [Test]
+        public static void TestEncryptDecryptAlmostChunkSize()
+        {
+            TestEncryptDecryptHelper(V2AxCryptDataStream.WRITE_CHUNK_SIZE - 1, AxCryptOptions.EncryptWithoutCompression);
+        }
+
+        //[Test]
+        //public static void TestEncryptDecryptChunkSize()
+        //{
+        //    TestEncryptDecryptHelper(V2AxCryptDataStream.WRITE_CHUNK_SIZE, AxCryptOptions.EncryptWithoutCompression);
+        //}
+
+        [Test]
+        public static void TestEncryptDecryptChunkSizePlusOne()
+        {
+            TestEncryptDecryptHelper(V2AxCryptDataStream.WRITE_CHUNK_SIZE + 1, AxCryptOptions.EncryptWithoutCompression);
+        }
+
+        //[Test]
+        //public static void TestEncryptDecryptSeveralChunkSizes()
+        //{
+        //    TestEncryptDecryptHelper(V2AxCryptDataStream.WRITE_CHUNK_SIZE * 5, AxCryptOptions.EncryptWithoutCompression);
+        //}
+
+        [Test]
+        public static void TestEncryptDecryptIncompleteChunk()
+        {
+            TestEncryptDecryptHelper(V2AxCryptDataStream.WRITE_CHUNK_SIZE * 3 + V2AxCryptDataStream.WRITE_CHUNK_SIZE / 2, AxCryptOptions.EncryptWithoutCompression);
+        }
+
+        private static void TestEncryptDecryptHelper(int length, AxCryptOptions options)
         {
             AesKey key = new AesKey(256);
             AesIV iv = new AesIV();
             using (MemoryStream inputStream = new MemoryStream())
             {
-                byte[] text = Encoding.UTF8.GetBytes("Just a few more bytes testing!");
+                byte[] text = Instance.RandomGenerator.Generate(length);
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
                     V2AxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(key, iv), 113);
-                    document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithoutCompression, new ProgressContext());
+                    document.EncryptTo(inputStream, outputStream, options, new ProgressContext());
 
                     outputStream.Position = 0;
                     document = new V2AxCryptDocument(new V2AesCrypto(key, iv));
                     Assert.That(document.Load(outputStream), Is.True);
-                    string plain;
+                    byte[] plain;
                     using (MemoryStream decryptedStream = new MemoryStream())
                     {
                         document.DecryptTo(decryptedStream, new ProgressContext());
-                        plain = Encoding.UTF8.GetString(decryptedStream.ToArray());
+                        plain = decryptedStream.ToArray();
                     }
 
-                    Assert.That(plain, Is.EqualTo("Just a few more bytes testing!"));
+                    Assert.That(plain, Is.EquivalentTo(text));
                 }
             }
         }

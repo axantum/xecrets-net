@@ -85,7 +85,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         public int StreamBufferSize
         {
-            get { return 512; }
+            get { return 30; }
         }
 
         public DateTime UtcNow

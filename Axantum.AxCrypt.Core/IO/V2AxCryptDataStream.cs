@@ -8,7 +8,7 @@ namespace Axantum.AxCrypt.Core.IO
 {
     public class V2AxCryptDataStream : Stream
     {
-        private const int WRITE_CHUNK_SIZE = 65536;
+        public static readonly int WRITE_CHUNK_SIZE = 32;
 
         private AxCryptReader _reader;
 
