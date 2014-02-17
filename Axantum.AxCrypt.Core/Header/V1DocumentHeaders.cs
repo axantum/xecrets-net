@@ -38,15 +38,16 @@ namespace Axantum.AxCrypt.Core.Header
     {
         private static readonly byte[] _version = new byte[] { 3, 2, 2, 0, 0 };
 
-        private Headers _headers;
+        private Headers _headers = new Headers();
 
         private ICrypto _keyEncryptingCrypto;
 
         public V1DocumentHeaders(ICrypto keyEncryptingCrypto)
         {
             _keyEncryptingCrypto = keyEncryptingCrypto;
-            _headers = new Headers(_version);
 
+            _headers.HeaderBlocks.Add(new PreambleHeaderBlock());
+            _headers.HeaderBlocks.Add(new VersionHeaderBlock(_version));
             _headers.HeaderBlocks.Add(new V1KeyWrap1HeaderBlock(keyEncryptingCrypto));
             _headers.HeaderBlocks.Add(new V1EncryptionInfoHeaderBlock());
             _headers.HeaderBlocks.Add(new V1CompressionHeaderBlock());
@@ -64,13 +65,11 @@ namespace Axantum.AxCrypt.Core.Header
 
         public V1DocumentHeaders(V1DocumentHeaders documentHeaders)
         {
-            Headers headers = new Headers(_version);
+            _keyEncryptingCrypto = documentHeaders._keyEncryptingCrypto;
             foreach (HeaderBlock headerBlock in documentHeaders._headers.HeaderBlocks)
             {
-                headers.HeaderBlocks.Add((HeaderBlock)headerBlock.Clone());
+                _headers.HeaderBlocks.Add((HeaderBlock)headerBlock.Clone());
             }
-            _headers = headers;
-            _keyEncryptingCrypto = documentHeaders._keyEncryptingCrypto;
         }
 
         public bool Load(AxCryptReader axCryptReader)

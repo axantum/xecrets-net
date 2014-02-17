@@ -53,8 +53,10 @@ namespace Axantum.AxCrypt.Core.Header
         public V2DocumentHeaders(ICrypto keyEncryptingCrypto, long iterations)
         {
             _keyEncryptingCrypto = keyEncryptingCrypto;
-            _headers = new Headers(_version);
+            _headers = new Headers();
 
+            _headers.HeaderBlocks.Add(new PreambleHeaderBlock());
+            _headers.HeaderBlocks.Add(new VersionHeaderBlock(_version));
             _headers.HeaderBlocks.Add(new V2KeyWrapHeaderBlock(keyEncryptingCrypto, iterations));
             _headers.HeaderBlocks.Add(new FileInfoHeaderBlock());
             _headers.HeaderBlocks.Add(new V2CompressionHeaderBlock());

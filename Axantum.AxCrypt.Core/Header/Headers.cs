@@ -46,13 +46,6 @@ namespace Axantum.AxCrypt.Core.Header
             TrailerBlocks = new List<HeaderBlock>();
         }
 
-        public Headers(byte[] version)
-            : this()
-        {
-            HeaderBlocks.Add(new PreambleHeaderBlock());
-            HeaderBlocks.Add(new VersionHeaderBlock(version));
-        }
-
         public void Load(AxCryptReader axCryptReader)
         {
             HeaderBlocks.Clear();
