@@ -99,10 +99,10 @@
     <Compile Include="TestFileOperationsController.cs" />
     <Compile Include="TestFileOperationViewModel.cs" />
     <Compile Include="TestFileSystemStateActions.cs" />
-    <Compile Include="TestAesCrypto.cs" />
-    <Compile Include="TestAesIV.cs" />
-    <Compile Include="TestAesKey.cs" />
-    <Compile Include="TestAesKeyThumbprint.cs" />
+    <Compile Include="TestV1AesCrypto.cs" />
+    <Compile Include="TestSymmetricIV.cs" />
+    <Compile Include="TestSymmetricKey.cs" />
+    <Compile Include="TestSymmetricKeyThumbprint.cs" />
     <Compile Include="TestAxCryptDocument.cs" />
     <Compile Include="TestAxCryptFile.cs" />
     <Compile Include="TestAxCryptHeaderKeyWrap.cs" />

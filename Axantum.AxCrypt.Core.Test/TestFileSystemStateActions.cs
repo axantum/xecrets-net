@@ -70,7 +70,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
             FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcYesterday, utcYesterday, utcYesterday, Stream.Null);
 
-            ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), new AesKey(128), ActiveFileStatus.NotDecrypted);
+            ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), new SymmetricKey(128), ActiveFileStatus.NotDecrypted);
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(10); });
             bool changedWasRaised = false;
             Instance.FileSystemState.Add(activeFile);
@@ -90,7 +90,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
             FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcYesterday, utcYesterday, utcYesterday, Stream.Null);
 
-            ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), new AesKey(128), ActiveFileStatus.NotDecrypted);
+            ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), new SymmetricKey(128), ActiveFileStatus.NotDecrypted);
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(10); });
             bool changedWasRaised = false;
             Instance.FileSystemState.Add(activeFile);
@@ -119,7 +119,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcJustNow, utcJustNow, utcJustNow, Stream.Null);
 
             ActiveFile activeFile;
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), new AesKey(128), ActiveFileStatus.AssumedOpenAndDecrypted);
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), new SymmetricKey(128), ActiveFileStatus.AssumedOpenAndDecrypted);
             Instance.FileSystemState.Add(activeFile);
             Instance.KnownKeys.Add(activeFile.Key);
 
@@ -221,7 +221,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
             FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
 
-            ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), new AesKey(128), ActiveFileStatus.AssumedOpenAndDecrypted);
+            ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), new SymmetricKey(128), ActiveFileStatus.AssumedOpenAndDecrypted);
             Factory.New<IRuntimeFileInfo>(_decryptedFile1).Delete();
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.NotDecrypted);
             Instance.FileSystemState.Add(activeFile);
@@ -246,7 +246,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
             FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
 
-            ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), new AesKey(128), ActiveFileStatus.AssumedOpenAndDecrypted);
+            ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), new SymmetricKey(128), ActiveFileStatus.AssumedOpenAndDecrypted);
             Instance.FileSystemState.Add(activeFile);
             Instance.KnownKeys.Add(activeFile.Key);
 
@@ -325,7 +325,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
 
             FakeLauncher fakeLauncher = new FakeLauncher(_decryptedFile1);
-            ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), new AesKey(128), ActiveFileStatus.NotDecrypted);
+            ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), new SymmetricKey(128), ActiveFileStatus.NotDecrypted);
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted);
             Instance.FileSystemState.Add(activeFile, fakeLauncher);
             Instance.KnownKeys.Add(activeFile.Key);
@@ -352,7 +352,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
 
             FakeLauncher fakeLauncher = new FakeLauncher(_decryptedFile1);
-            ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), new AesKey(128), ActiveFileStatus.NotDecrypted);
+            ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), new SymmetricKey(128), ActiveFileStatus.NotDecrypted);
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable);
             Instance.FileSystemState.Add(activeFile, fakeLauncher);
 
@@ -379,7 +379,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
             FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
 
-            ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), new AesKey(128), ActiveFileStatus.AssumedOpenAndDecrypted);
+            ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), new SymmetricKey(128), ActiveFileStatus.AssumedOpenAndDecrypted);
             Instance.FileSystemState.Add(activeFile);
 
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
@@ -426,7 +426,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_encryptedFile1);
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_decryptedFile1);
-            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new AesKey(128), ActiveFileStatus.AssumedOpenAndDecrypted);
+            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new SymmetricKey(128), ActiveFileStatus.AssumedOpenAndDecrypted);
             Instance.FileSystemState.Add(activeFile);
 
             bool changedWasRaised = false;
@@ -452,7 +452,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_encryptedFile1);
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_decryptedFile1);
-            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new AesKey(128), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable);
+            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new SymmetricKey(128), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable);
             Instance.FileSystemState.Add(activeFile);
 
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = (() => { return utcNow.AddMinutes(1); });
@@ -478,7 +478,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_encryptedFile1);
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_decryptedFile1);
-            AesKey key = new AesKey(128);
+            SymmetricKey key = new SymmetricKey(128);
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable);
             Instance.FileSystemState.Add(activeFile);
 
@@ -491,14 +491,14 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_encryptedFile1);
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_decryptedFile1);
-            AesKey key = new AesKey(128);
+            SymmetricKey key = new SymmetricKey(128);
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable);
             Instance.FileSystemState.Add(activeFile);
             Instance.FileSystemState.Save();
 
             Factory.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(Factory.New<IRuntimeFileInfo>(_fileSystemStateFilePath)));
 
-            AesKey wrongKey = new AesKey(128);
+            SymmetricKey wrongKey = new SymmetricKey(128);
             bool updateWasMade = Factory.New<ActiveFileAction>().UpdateActiveFileWithKeyIfKeyMatchesThumbprint(wrongKey);
             Assert.That(updateWasMade, Is.False, "Since there are only ActiveFiles with wrong keys in the list, no update should be made.");
         }
@@ -508,7 +508,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_encryptedFile1);
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_decryptedFile1);
-            AesKey key = new AesKey(128);
+            SymmetricKey key = new SymmetricKey(128);
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable);
             Instance.FileSystemState.Add(activeFile);
             Instance.FileSystemState.Save();
@@ -524,7 +524,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_encryptedFile1);
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_decryptedFile1);
-            AesKey key = new AesKey(128);
+            SymmetricKey key = new SymmetricKey(128);
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None);
             Instance.FileSystemState.Add(activeFile);
 
@@ -544,7 +544,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_encryptedFile1);
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_decryptedFile1);
-            AesKey key = new AesKey(128);
+            SymmetricKey key = new SymmetricKey(128);
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.NotShareable);
             Instance.FileSystemState.Add(activeFile);
 
@@ -564,7 +564,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_encryptedFile1);
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_decryptedFile1);
-            AesKey key = new AesKey(128);
+            SymmetricKey key = new SymmetricKey(128);
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable);
             Instance.FileSystemState.Add(activeFile);
             Instance.FileSystemState.Save();
@@ -583,7 +583,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_encryptedFile1);
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_decryptedFile1);
-            AesKey key = new AesKey(128);
+            SymmetricKey key = new SymmetricKey(128);
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable);
             Instance.FileSystemState.Add(activeFile);
             Instance.FileSystemState.Save();

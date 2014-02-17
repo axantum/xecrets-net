@@ -41,26 +41,26 @@ namespace Axantum.AxCrypt.Core.Session
     public class PassphraseIdentity
     {
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "This type is immutable.")]
-        public static readonly PassphraseIdentity Empty = new PassphraseIdentity(String.Empty, AesKey.Zero128);
+        public static readonly PassphraseIdentity Empty = new PassphraseIdentity(String.Empty, SymmetricKey.Zero128);
 
         public PassphraseIdentity(string name)
         {
             Name = name;
         }
 
-        public PassphraseIdentity(string name, AesKey key)
+        public PassphraseIdentity(string name, SymmetricKey key)
             : this(name)
         {
             Key = key;
             Thumbprint = Key.Thumbprint;
         }
 
-        public AesKey Key { get; private set; }
+        public SymmetricKey Key { get; private set; }
 
         [DataMember(Name = "Name")]
         public string Name { get; private set; }
 
         [DataMember(Name = "Thumbprint")]
-        public AesKeyThumbprint Thumbprint { get; private set; }
+        public SymmetricKeyThumbprint Thumbprint { get; private set; }
     }
 }

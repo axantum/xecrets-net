@@ -25,13 +25,13 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestAddNewKnownKey()
         {
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
-            AesKey key = new AesKey(128);
+            SymmetricKey key = new SymmetricKey(128);
             knownKeys.Add(key);
             Assert.That(knownKeys.Keys.First(), Is.EqualTo(key), "The first and only key should be the one just added.");
         }
@@ -65,9 +65,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestAddTwoNewKnownKeys()
         {
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
-            AesKey key1 = new AesKey(128);
+            SymmetricKey key1 = new SymmetricKey(128);
             knownKeys.Add(key1);
-            AesKey key2 = new AesKey(128);
+            SymmetricKey key2 = new SymmetricKey(128);
             knownKeys.Add(key2);
             Assert.That(knownKeys.Keys.First(), Is.EqualTo(key2), "The first key should be the last one added.");
             Assert.That(knownKeys.Keys.Last(), Is.EqualTo(key1), "The last key should be the first one added.");
@@ -77,7 +77,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestAddSameKeyTwice()
         {
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
-            AesKey key = new AesKey(128);
+            SymmetricKey key = new SymmetricKey(128);
             knownKeys.Add(key);
             knownKeys.Add(key);
             Assert.That(knownKeys.Keys.Count(), Is.EqualTo(1), "Only one key should be in the collection even if added twice.");
@@ -88,7 +88,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestDefaultEncryptionKey()
         {
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
-            AesKey key = new AesKey(128);
+            SymmetricKey key = new SymmetricKey(128);
             knownKeys.DefaultEncryptionKey = key;
             Assert.That(knownKeys.DefaultEncryptionKey, Is.EqualTo(key), "The DefaultEncryptionKey should be the one just set as it.");
             Assert.That(knownKeys.Keys.Count(), Is.EqualTo(1), "Only one key should be in the collection.");
@@ -99,9 +99,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestClear()
         {
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
-            AesKey key1 = new AesKey(128);
+            SymmetricKey key1 = new SymmetricKey(128);
             knownKeys.Add(key1);
-            AesKey key2 = new AesKey(128);
+            SymmetricKey key2 = new SymmetricKey(128);
             knownKeys.Add(key2);
             Assert.That(knownKeys.Keys.Count(), Is.EqualTo(2), "There should be two keys in the collection.");
 
@@ -116,9 +116,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestSettingNullDefaultEncryptionKey()
         {
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
-            AesKey key1 = new AesKey(128);
+            SymmetricKey key1 = new SymmetricKey(128);
             knownKeys.Add(key1);
-            AesKey key2 = new AesKey(128);
+            SymmetricKey key2 = new SymmetricKey(128);
             knownKeys.DefaultEncryptionKey = key2;
 
             Assert.That(knownKeys.Keys.Count(), Is.EqualTo(2), "Setting the DefaultEncryptionKey should also add it as a known key.");
@@ -137,7 +137,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 wasChanged |= e.Notification.NotificationType == SessionNotificationType.KnownKeyChange;
             };
-            AesKey key1 = new AesKey(128);
+            SymmetricKey key1 = new SymmetricKey(128);
             knownKeys.Add(key1);
             Assert.That(wasChanged, Is.True, "A new key should trigger the Changed event.");
             wasChanged = false;
@@ -166,12 +166,12 @@ namespace Axantum.AxCrypt.Core.Test
                 }
             };
 
-            knownKeys.DefaultEncryptionKey = new AesKey(128);
+            knownKeys.DefaultEncryptionKey = new SymmetricKey(128);
             Assert.That(wasLoggedOnCount, Is.EqualTo(1));
             Assert.That(wasLoggedOffCount, Is.EqualTo(0));
             Assert.That(knownKeys.IsLoggedOn, Is.True);
 
-            knownKeys.DefaultEncryptionKey = new AesKey(128);
+            knownKeys.DefaultEncryptionKey = new SymmetricKey(128);
             Assert.That(wasLoggedOnCount, Is.EqualTo(2));
             Assert.That(wasLoggedOffCount, Is.EqualTo(1));
             Assert.That(knownKeys.IsLoggedOn, Is.True);
@@ -201,8 +201,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestWatchedFoldersWhenLoggedOn()
         {
-            AesKey key1 = new AesKey(128);
-            AesKey key2 = new AesKey(128);
+            SymmetricKey key1 = new SymmetricKey(128);
+            SymmetricKey key2 = new SymmetricKey(128);
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
             FakeRuntimeFileInfo.AddFolder(@"C:\WatchedFolder1\");
             FakeRuntimeFileInfo.AddFolder(@"C:\WatchedFolder2\");

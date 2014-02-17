@@ -68,12 +68,12 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IRuntimeFileInfo sourceFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
             IRuntimeFileInfo destinationFileInfo = sourceFileInfo.CreateEncryptedName();
-            V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(new AesKey(128)));
+            V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(new SymmetricKey(128)));
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "decrypted test.txt"));
 
             V1AxCryptDocument nullDocument = null;
             IRuntimeFileInfo nullFileInfo = null;
-            AesKey nullKey = null;
+            SymmetricKey nullKey = null;
             ProgressContext nullProgress = null;
             Passphrase nullPassphrase = null;
             Stream nullStream = null;
@@ -85,28 +85,28 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Encrypt(sourceFileInfo, destinationFileInfo, nullPassphrase, AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Encrypt(sourceFileInfo, destinationFileInfo, new Passphrase("axcrypt"), AxCryptOptions.EncryptWithCompression, nullProgress); });
 
-            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(nullFileInfo, new MemoryStream(), new AesKey(128), AxCryptOptions.None, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(sourceFileInfo, nullStream, new AesKey(128), AxCryptOptions.None, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(nullFileInfo, new MemoryStream(), new SymmetricKey(128), AxCryptOptions.None, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(sourceFileInfo, nullStream, new SymmetricKey(128), AxCryptOptions.None, new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(sourceFileInfo, new MemoryStream(), nullKey, AxCryptOptions.None, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(sourceFileInfo, new MemoryStream(), new AesKey(128), AxCryptOptions.None, nullProgress); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(sourceFileInfo, new MemoryStream(), new SymmetricKey(128), AxCryptOptions.None, nullProgress); });
 
             Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Decrypt(nullDocument, decryptedFileInfo, AxCryptOptions.SetFileTimes, new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Decrypt(document, nullFileInfo, AxCryptOptions.SetFileTimes, new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Decrypt(document, decryptedFileInfo, AxCryptOptions.SetFileTimes, nullProgress); });
 
-            Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Decrypt(nullFileInfo, decryptedFileInfo, new AesKey(128), AxCryptOptions.SetFileTimes, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Decrypt(sourceFileInfo, nullFileInfo, new AesKey(128), AxCryptOptions.SetFileTimes, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Decrypt(nullFileInfo, decryptedFileInfo, new SymmetricKey(128), AxCryptOptions.SetFileTimes, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Decrypt(sourceFileInfo, nullFileInfo, new SymmetricKey(128), AxCryptOptions.SetFileTimes, new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Decrypt(sourceFileInfo, decryptedFileInfo, nullKey, AxCryptOptions.SetFileTimes, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Decrypt(sourceFileInfo, decryptedFileInfo, new AesKey(128), AxCryptOptions.SetFileTimes, nullProgress); });
+            Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Decrypt(sourceFileInfo, decryptedFileInfo, new SymmetricKey(128), AxCryptOptions.SetFileTimes, nullProgress); });
 
-            Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Decrypt(nullFileInfo, Path.Combine(_rootPath, "Directory"), new AesKey(128), AxCryptOptions.SetFileTimes, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Decrypt(sourceFileInfo, nullString, new AesKey(128), AxCryptOptions.SetFileTimes, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Decrypt(nullFileInfo, Path.Combine(_rootPath, "Directory"), new SymmetricKey(128), AxCryptOptions.SetFileTimes, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Decrypt(sourceFileInfo, nullString, new SymmetricKey(128), AxCryptOptions.SetFileTimes, new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Decrypt(sourceFileInfo, Path.Combine(_rootPath, "Directory"), nullKey, AxCryptOptions.SetFileTimes, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Decrypt(sourceFileInfo, Path.Combine(_rootPath, "Directory"), new AesKey(128), AxCryptOptions.SetFileTimes, nullProgress); });
+            Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Decrypt(sourceFileInfo, Path.Combine(_rootPath, "Directory"), new SymmetricKey(128), AxCryptOptions.SetFileTimes, nullProgress); });
 
-            Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Document(nullFileInfo, new AesKey(128), new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Document(nullFileInfo, new SymmetricKey(128), new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Document(sourceFileInfo, nullKey, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Document(sourceFileInfo, new AesKey(128), nullProgress); });
+            Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().Document(sourceFileInfo, new SymmetricKey(128), nullProgress); });
 
             Assert.Throws<ArgumentNullException>(() => { Factory.New<AxCryptFile>().WriteToFileWithBackup(null, (Stream stream) => { }, new ProgressContext()); });
             IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
@@ -355,8 +355,8 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo destinationFileInfo = Factory.New<IRuntimeFileInfo>(destinationFilePath);
             IRuntimeFileInfo nullFileInfo = null;
 
-            AesKey key = new AesKey(128);
-            AesKey nullKey = null;
+            SymmetricKey key = new SymmetricKey(128);
+            SymmetricKey nullKey = null;
 
             ProgressContext progress = new ProgressContext();
             ProgressContext nullProgress = null;
@@ -376,7 +376,7 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo sourceFileInfo = Factory.New<IRuntimeFileInfo>(sourceFilePath);
             IRuntimeFileInfo destinationFileInfo = Factory.New<IRuntimeFileInfo>(destinationFilePath);
 
-            AesKey key = new AesKey(128);
+            SymmetricKey key = new SymmetricKey(128);
 
             ProgressContext progress = new ProgressContext();
 
@@ -394,8 +394,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             string nullFileName = null;
 
-            AesKey key = new AesKey(128);
-            AesKey nullKey = null;
+            SymmetricKey key = new SymmetricKey(128);
+            SymmetricKey nullKey = null;
 
             ProgressContext progress = new ProgressContext();
             ProgressContext nullProgress = null;
@@ -412,7 +412,7 @@ namespace Axantum.AxCrypt.Core.Test
             string sourceFilePath = _davidCopperfieldTxtPath;
             string destinationFilePath = Path.Combine(Path.GetDirectoryName(sourceFilePath), "David Copperfield-txt.axx");
 
-            AesKey key = new AesKey(128);
+            SymmetricKey key = new SymmetricKey(128);
             ProgressContext progress = new ProgressContext();
 
             Factory.New<AxCryptFile>().EncryptFileWithBackupAndWipe(sourceFilePath, destinationFilePath, key, progress);

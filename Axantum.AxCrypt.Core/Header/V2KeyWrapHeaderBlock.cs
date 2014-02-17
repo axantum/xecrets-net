@@ -117,7 +117,7 @@ namespace Axantum.AxCrypt.Core.Header
             return unwrappedKeyData;
         }
 
-        public AesKey MasterKey(ICrypto keyEncryptingCrypto)
+        public SymmetricKey MasterKey(ICrypto keyEncryptingCrypto)
         {
             byte[] unwrappedKeyData = UnwrapMasterKey(keyEncryptingCrypto);
             if (unwrappedKeyData.Length == 0)
@@ -126,10 +126,10 @@ namespace Axantum.AxCrypt.Core.Header
             }
             byte[] masterKeyBytes = new byte[keyEncryptingCrypto.Key.Length];
             Array.Copy(unwrappedKeyData, 0, masterKeyBytes, 0, masterKeyBytes.Length);
-            return new AesKey(masterKeyBytes);
+            return new SymmetricKey(masterKeyBytes);
         }
 
-        public AesIV MasterIV(ICrypto keyEncryptingCrypto)
+        public SymmetricIV MasterIV(ICrypto keyEncryptingCrypto)
         {
             byte[] unwrappedKeyData = UnwrapMasterKey(keyEncryptingCrypto);
             if (unwrappedKeyData.Length == 0)
@@ -138,7 +138,7 @@ namespace Axantum.AxCrypt.Core.Header
             }
             byte[] masterIVBytes = new byte[keyEncryptingCrypto.BlockLength];
             Array.Copy(unwrappedKeyData, keyEncryptingCrypto.Key.Length, masterIVBytes, 0, masterIVBytes.Length);
-            return new AesIV(masterIVBytes);
+            return new SymmetricIV(masterIVBytes);
         }
 
         private void Set(byte[] wrapped, KeyWrapSalt salt, long iterations)

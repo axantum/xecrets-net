@@ -36,9 +36,9 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// </summary>
     public class Passphrase
     {
-        private readonly AesKey _derivedPassphrase;
+        private readonly SymmetricKey _derivedPassphrase;
 
-        public static AesKey Derive(string passphrase)
+        public static SymmetricKey Derive(string passphrase)
         {
             return new Passphrase(passphrase).DerivedPassphrase;
         }
@@ -60,13 +60,13 @@ namespace Axantum.AxCrypt.Core.Crypto
             byte[] derivedPassphrase = new byte[16];
             Array.Copy(hash, derivedPassphrase, derivedPassphrase.Length);
 
-            _derivedPassphrase = new AesKey(derivedPassphrase);
+            _derivedPassphrase = new SymmetricKey(derivedPassphrase);
         }
 
         /// <summary>
         /// Gets the derived passphrase AesKey instance.
         /// </summary>
-        public AesKey DerivedPassphrase
+        public SymmetricKey DerivedPassphrase
         {
             get
             {

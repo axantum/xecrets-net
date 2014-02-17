@@ -35,7 +35,7 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public class KnownKeys
     {
-        private List<AesKey> _keys;
+        private List<SymmetricKey> _keys;
 
         private FileSystemState _fileSystemState;
 
@@ -45,8 +45,8 @@ namespace Axantum.AxCrypt.Core.UI
         {
             _fileSystemState = fileSystemState;
             _notificationMonitor = notificationMonitor;
-            _keys = new List<AesKey>();
-            _knownThumbprints = new List<AesKeyThumbprint>();
+            _keys = new List<SymmetricKey>();
+            _knownThumbprints = new List<SymmetricKeyThumbprint>();
         }
 
         public bool IsLoggedOn
@@ -62,7 +62,7 @@ namespace Axantum.AxCrypt.Core.UI
             DefaultEncryptionKey = null;
         }
 
-        public void Add(AesKey key)
+        public void Add(SymmetricKey key)
         {
             bool changed = false;
             lock (_keys)
@@ -99,18 +99,18 @@ namespace Axantum.AxCrypt.Core.UI
             _notificationMonitor.Notify(new SessionNotification(SessionNotificationType.KnownKeyChange));
         }
 
-        public IEnumerable<AesKey> Keys
+        public IEnumerable<SymmetricKey> Keys
         {
             get
             {
                 lock (_keys)
                 {
-                    return new List<AesKey>(_keys);
+                    return new List<SymmetricKey>(_keys);
                 }
             }
         }
 
-        private AesKey _defaultEncryptionKey;
+        private SymmetricKey _defaultEncryptionKey;
 
         /// <summary>
         /// Gets or sets the default encryption key.
@@ -118,7 +118,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// <value>
         /// The default encryption key, or null if none is known.
         /// </value>
-        public AesKey DefaultEncryptionKey
+        public SymmetricKey DefaultEncryptionKey
         {
             get
             {
@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Core.UI
                 }
                 if (_defaultEncryptionKey != null)
                 {
-                    AesKey oldKey = _defaultEncryptionKey;
+                    SymmetricKey oldKey = _defaultEncryptionKey;
                     _defaultEncryptionKey = null;
                     _notificationMonitor.Notify(new SessionNotification(SessionNotificationType.LogOff, oldKey));
                 }
@@ -146,14 +146,14 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        private List<AesKeyThumbprint> _knownThumbprints;
+        private List<SymmetricKeyThumbprint> _knownThumbprints;
 
         /// <summary>
         /// Add a thumb print to the list of known thumb prints
         /// </summary>
         /// <param name="thumbprint">The key to add the fingerprint of</param>
         /// <returns>True if a new thumb print was added, false if it was already known.</returns>
-        private bool AddKnownThumbprint(AesKey key)
+        private bool AddKnownThumbprint(SymmetricKey key)
         {
             lock (_knownThumbprints)
             {

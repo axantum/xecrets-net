@@ -33,7 +33,7 @@ using System.Security.Cryptography;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public static class TestAesCrypto
+    public static class TestV1AesCrypto
     {
         [SetUp]
         public static void Setup()
@@ -50,8 +50,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestInvalidArguments()
         {
-            AesKey key = new AesKey(128);
-            AesIV iv = new AesIV();
+            SymmetricKey key = new SymmetricKey(128);
+            SymmetricIV iv = new SymmetricIV(128);
 
             Assert.Throws<ArgumentNullException>(() =>
             {

@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Core.Test
                 using (V1HmacStream hmacStream = new V1HmacStream(null)) { }
             });
 
-            AesKey key = new AesKey(new byte[16]);
+            SymmetricKey key = new SymmetricKey(new byte[16]);
             using (V1HmacStream hmacStream = new V1HmacStream(key))
             {
                 Assert.That(hmacStream.CanRead, Is.False, "HmacStream does not support reading.");

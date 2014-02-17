@@ -33,19 +33,19 @@ using System.Runtime.Serialization;
 namespace Axantum.AxCrypt.Core.Crypto
 {
     /// <summary>
-    /// Represent a salted thumb print for a AES key. Instances of this class are immutable. A thumb print is
+    /// Represent a salted thumb print for a symmetric key. Instances of this class are immutable. A thumb print is
     /// typically only valid and comparable on the same computer and log on where it was created.
     /// </summary>
     [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
-    public class AesKeyThumbprint : IEquatable<AesKeyThumbprint>
+    public class SymmetricKeyThumbprint : IEquatable<SymmetricKeyThumbprint>
     {
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "This class is immutable.")]
-        public static readonly AesKeyThumbprint Zero = new AesKeyThumbprint();
+        public static readonly SymmetricKeyThumbprint Zero = new SymmetricKeyThumbprint();
 
         [DataMember(Name = "Thumbprint")]
         private byte[] _bytes;
 
-        private AesKeyThumbprint()
+        private SymmetricKeyThumbprint()
         {
             _bytes = new byte[8];
         }
@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         /// <param name="key">The key to thumbprint.</param>
         /// <param name="salt">The salt to use.</param>
-        public AesKeyThumbprint(AesKey key, KeyWrapSalt salt, long iterations)
+        public SymmetricKeyThumbprint(SymmetricKey key, KeyWrapSalt salt, long iterations)
         {
             if (key == null)
             {
@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         #region IEquatable<AesKeyThumbprint> Members
 
-        public bool Equals(AesKeyThumbprint other)
+        public bool Equals(SymmetricKeyThumbprint other)
         {
             if ((object)other == null)
             {
@@ -89,11 +89,11 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public override bool Equals(object obj)
         {
-            if (obj == null || typeof(AesKeyThumbprint) != obj.GetType())
+            if (obj == null || typeof(SymmetricKeyThumbprint) != obj.GetType())
             {
                 return false;
             }
-            AesKeyThumbprint other = (AesKeyThumbprint)obj;
+            SymmetricKeyThumbprint other = (SymmetricKeyThumbprint)obj;
 
             return Equals(other);
         }
@@ -108,7 +108,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             return hashcode;
         }
 
-        public static bool operator ==(AesKeyThumbprint left, AesKeyThumbprint right)
+        public static bool operator ==(SymmetricKeyThumbprint left, SymmetricKeyThumbprint right)
         {
             if (Object.ReferenceEquals(left, right))
             {
@@ -121,7 +121,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             return left.Equals(right);
         }
 
-        public static bool operator !=(AesKeyThumbprint left, AesKeyThumbprint right)
+        public static bool operator !=(SymmetricKeyThumbprint left, SymmetricKeyThumbprint right)
         {
             return !(left == right);
         }

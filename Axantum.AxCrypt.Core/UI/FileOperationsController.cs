@@ -401,7 +401,7 @@ namespace Axantum.AxCrypt.Core.UI
             try
             {
                 e.OpenFileFullName = sourceFileInfo.FullName;
-                AesKey key;
+                SymmetricKey key;
                 if (sourceFileInfo.TryFindDecryptionKey(out key))
                 {
                     e.AxCryptDocument = Factory.New<AxCryptFile>().Document(sourceFileInfo, key, new ProgressContext());

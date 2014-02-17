@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             ProcessState ps = new ProcessState();
 
-            ActiveFile activeFile1 = new ActiveFile(Factory.New<IRuntimeFileInfo>(@"C:\encrypted.axx"), Factory.New<IRuntimeFileInfo>(@"C:\decrypted.txt"), new AesKey(128), ActiveFileStatus.NotDecrypted);
+            ActiveFile activeFile1 = new ActiveFile(Factory.New<IRuntimeFileInfo>(@"C:\encrypted.axx"), Factory.New<IRuntimeFileInfo>(@"C:\decrypted.txt"), new SymmetricKey(128), ActiveFileStatus.NotDecrypted);
             ILauncher launcher1 = OS.Current.Launch(activeFile1.EncryptedFileInfo.FullName);
             ps.Add(launcher1, activeFile1);
 
@@ -80,7 +80,7 @@ namespace Axantum.AxCrypt.Core.Test
             fakeLauncher1.HasExited = true;
             Assert.That(ps.HasActiveProcess(activeFile1), Is.False);
 
-            ActiveFile activeFile2 = new ActiveFile(Factory.New<IRuntimeFileInfo>(@"C:\encrypted2.axx"), Factory.New<IRuntimeFileInfo>(@"C:\decrypted2.txt"), new AesKey(128), ActiveFileStatus.NotDecrypted);
+            ActiveFile activeFile2 = new ActiveFile(Factory.New<IRuntimeFileInfo>(@"C:\encrypted2.axx"), Factory.New<IRuntimeFileInfo>(@"C:\decrypted2.txt"), new SymmetricKey(128), ActiveFileStatus.NotDecrypted);
             ILauncher launcher2 = OS.Current.Launch(activeFile2.EncryptedFileInfo.FullName);
             ps.Add(launcher2, activeFile2);
 

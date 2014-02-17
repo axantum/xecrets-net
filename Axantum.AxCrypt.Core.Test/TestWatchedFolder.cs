@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestConstructor()
         {
             WatchedFolder watchedFolder = new WatchedFolder(@"C:\folder");
-            Assert.That(watchedFolder.Thumbprint, Is.EqualTo(AesKeyThumbprint.Zero));
+            Assert.That(watchedFolder.Thumbprint, Is.EqualTo(SymmetricKeyThumbprint.Zero));
         }
 
         [Test]
@@ -59,8 +59,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             string nullString = null;
             WatchedFolder watchedFolder = null;
-            AesKeyThumbprint nullThumbprint = null;
-            Assert.Throws<ArgumentNullException>(() => { watchedFolder = new WatchedFolder(nullString, AesKeyThumbprint.Zero); });
+            SymmetricKeyThumbprint nullThumbprint = null;
+            Assert.Throws<ArgumentNullException>(() => { watchedFolder = new WatchedFolder(nullString, SymmetricKeyThumbprint.Zero); });
             Assert.Throws<ArgumentNullException>(() => { watchedFolder = new WatchedFolder(String.Empty, nullThumbprint); });
             Assert.Throws<ArgumentNullException>(() => { watchedFolder = new WatchedFolder(nullString); });
             if (watchedFolder != null) { }
@@ -69,10 +69,10 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEquals()
         {
-            WatchedFolder watchedFolder1a = new WatchedFolder(@"c:\test1", AesKeyThumbprint.Zero);
+            WatchedFolder watchedFolder1a = new WatchedFolder(@"c:\test1", SymmetricKeyThumbprint.Zero);
             WatchedFolder watchedFolder1aReference = watchedFolder1a;
-            WatchedFolder watchedFolder1b = new WatchedFolder(@"c:\test1", AesKeyThumbprint.Zero);
-            WatchedFolder watchedFolder2 = new WatchedFolder(@"c:\test2", AesKeyThumbprint.Zero);
+            WatchedFolder watchedFolder1b = new WatchedFolder(@"c:\test1", SymmetricKeyThumbprint.Zero);
+            WatchedFolder watchedFolder2 = new WatchedFolder(@"c:\test2", SymmetricKeyThumbprint.Zero);
             WatchedFolder nullWatchedFolder = null;
 
             Assert.That(watchedFolder1a.Equals(watchedFolder1aReference), "Reference equality should make them equal.");
@@ -84,9 +84,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestGetHashCode()
         {
-            WatchedFolder watchedFolder1a = new WatchedFolder(@"c:\test1", AesKeyThumbprint.Zero);
-            WatchedFolder watchedFolder1b = new WatchedFolder(@"c:\test1", AesKeyThumbprint.Zero);
-            WatchedFolder watchedFolder2 = new WatchedFolder(@"c:\test2", AesKeyThumbprint.Zero);
+            WatchedFolder watchedFolder1a = new WatchedFolder(@"c:\test1", SymmetricKeyThumbprint.Zero);
+            WatchedFolder watchedFolder1b = new WatchedFolder(@"c:\test1", SymmetricKeyThumbprint.Zero);
+            WatchedFolder watchedFolder2 = new WatchedFolder(@"c:\test2", SymmetricKeyThumbprint.Zero);
 
             Assert.That(watchedFolder1a.GetHashCode(), Is.EqualTo(watchedFolder1b.GetHashCode()), "Different instances - same hash code.");
             Assert.That(watchedFolder1a.GetHashCode(), Is.Not.EqualTo(watchedFolder2.GetHashCode()), "Different values - different hash code.");
@@ -95,9 +95,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestOperatorOverloads()
         {
-            WatchedFolder watchedFolder1a = new WatchedFolder(@"c:\test1", AesKeyThumbprint.Zero);
-            WatchedFolder watchedFolder1b = new WatchedFolder(@"c:\test1", AesKeyThumbprint.Zero);
-            WatchedFolder watchedFolder2 = new WatchedFolder(@"c:\test2", AesKeyThumbprint.Zero);
+            WatchedFolder watchedFolder1a = new WatchedFolder(@"c:\test1", SymmetricKeyThumbprint.Zero);
+            WatchedFolder watchedFolder1b = new WatchedFolder(@"c:\test1", SymmetricKeyThumbprint.Zero);
+            WatchedFolder watchedFolder2 = new WatchedFolder(@"c:\test2", SymmetricKeyThumbprint.Zero);
 
             Assert.That(watchedFolder1a == watchedFolder1b, Is.True, "Different instances, same value.");
             Assert.That(watchedFolder1a != watchedFolder2, Is.True, "Different values, not same.");
@@ -106,9 +106,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestObjectEquals()
         {
-            object watchedFolder1a = new WatchedFolder(@"c:\test1", AesKeyThumbprint.Zero);
+            object watchedFolder1a = new WatchedFolder(@"c:\test1", SymmetricKeyThumbprint.Zero);
             object watchedFolder1aReference = watchedFolder1a;
-            object watchedFolder1b = new WatchedFolder(@"c:\test1", AesKeyThumbprint.Zero);
+            object watchedFolder1b = new WatchedFolder(@"c:\test1", SymmetricKeyThumbprint.Zero);
             object watchedFolder2 = @"c:\test1";
             object nullObject = null;
 
@@ -122,7 +122,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDispose()
         {
-            WatchedFolder watchedFolder = new WatchedFolder(@"c:\test1", AesKeyThumbprint.Zero);
+            WatchedFolder watchedFolder = new WatchedFolder(@"c:\test1", SymmetricKeyThumbprint.Zero);
 
             Assert.DoesNotThrow(() => watchedFolder.Dispose());
             Assert.DoesNotThrow(() => watchedFolder.Dispose());

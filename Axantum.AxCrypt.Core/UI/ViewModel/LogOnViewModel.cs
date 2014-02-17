@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             switch (columnName)
             {
                 case "Passphrase":
-                    AesKeyThumbprint thumbprint = Axantum.AxCrypt.Core.Crypto.Passphrase.Derive(Passphrase).Thumbprint;
+                    SymmetricKeyThumbprint thumbprint = Axantum.AxCrypt.Core.Crypto.Passphrase.Derive(Passphrase).Thumbprint;
                     if (Instance.FileSystemState.Identities.Any(identity => (String.IsNullOrEmpty(IdentityName) || IdentityName == identity.Name) && identity.Thumbprint == thumbprint))
                     {
                         return String.Empty;

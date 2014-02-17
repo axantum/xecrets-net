@@ -39,7 +39,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private PaddingMode _paddingMode;
 
-        private AesIV _iv;
+        private SymmetricIV _iv;
 
         static V1AesCrypto()
         {
@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <param name="iv">Initial Vector</param>
         /// <param name="cipherMode">Mode of operation, typically CBC</param>
         /// <param name="paddingMode">Padding mode, typically PCS7</param>
-        public V1AesCrypto(AesKey key, AesIV iv, CipherMode cipherMode, PaddingMode paddingMode)
+        public V1AesCrypto(SymmetricKey key, SymmetricIV iv, CipherMode cipherMode, PaddingMode paddingMode)
         {
             if (key == null)
             {
@@ -77,8 +77,8 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// Instantiate an AES transform with zero IV, CBC and no padding.
         /// </summary>
         /// <param name="key">The key</param>
-        public V1AesCrypto(AesKey key)
-            : this(key, AesIV.Zero, CipherMode.CBC, PaddingMode.None)
+        public V1AesCrypto(SymmetricKey key)
+            : this(key, SymmetricIV.Zero128, CipherMode.CBC, PaddingMode.None)
         {
         }
 

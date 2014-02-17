@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestNonTerminatingFileName()
         {
             UnicodeFileNameInfoHeaderBlockForTest unicodeFileInfoHeaderBlock = new UnicodeFileNameInfoHeaderBlockForTest();
-            unicodeFileInfoHeaderBlock.HeaderCrypto = new V1AesCrypto(new AesKey(128));
+            unicodeFileInfoHeaderBlock.HeaderCrypto = new V1AesCrypto(new SymmetricKey(128));
 
             unicodeFileInfoHeaderBlock.FileName = "ABCDEFGHIJ.LMN";
             unicodeFileInfoHeaderBlock.SetBadNameWithoutEndingNul();

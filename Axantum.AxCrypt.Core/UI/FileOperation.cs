@@ -49,7 +49,7 @@ namespace Axantum.AxCrypt.Core.UI
             _sessionNotify = sessionNotify;
         }
 
-        public FileOperationStatus OpenAndLaunchApplication(string file, IEnumerable<AesKey> keys, IProgressContext progress)
+        public FileOperationStatus OpenAndLaunchApplication(string file, IEnumerable<SymmetricKey> keys, IProgressContext progress)
         {
             if (file == null)
             {
@@ -195,10 +195,10 @@ namespace Axantum.AxCrypt.Core.UI
             _sessionNotify.Notify(new SessionNotification(SessionNotificationType.ProcessExit, path));
         }
 
-        private static ActiveFile TryDecrypt(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFolderInfo, IEnumerable<AesKey> keys, IProgressContext progress)
+        private static ActiveFile TryDecrypt(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFolderInfo, IEnumerable<SymmetricKey> keys, IProgressContext progress)
         {
             ActiveFile destinationActiveFile = null;
-            foreach (AesKey key in keys)
+            foreach (SymmetricKey key in keys)
             {
                 if (Instance.Log.IsInfoEnabled)
                 {
@@ -261,9 +261,9 @@ namespace Axantum.AxCrypt.Core.UI
             return Path.Combine(destinationFolder, Path.GetFileName(fileName));
         }
 
-        private static ActiveFile CheckKeysForAlreadyDecryptedFile(ActiveFile destinationActiveFile, IEnumerable<AesKey> keys, IProgressContext progress)
+        private static ActiveFile CheckKeysForAlreadyDecryptedFile(ActiveFile destinationActiveFile, IEnumerable<SymmetricKey> keys, IProgressContext progress)
         {
-            foreach (AesKey key in keys)
+            foreach (SymmetricKey key in keys)
             {
                 using (V1AxCryptDocument document = Factory.New<AxCryptFile>().Document(destinationActiveFile.EncryptedFileInfo, key, progress))
                 {

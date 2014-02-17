@@ -195,7 +195,7 @@ namespace Axantum.AxCrypt.Core.Header
             }
         }
 
-        public AesKey DataEncryptingKey
+        public SymmetricKey DataEncryptingKey
         {
             get
             {
@@ -204,7 +204,7 @@ namespace Axantum.AxCrypt.Core.Header
             }
         }
 
-        public AesIV DataEncryptingIV
+        public SymmetricIV DataEncryptingIV
         {
             get
             {

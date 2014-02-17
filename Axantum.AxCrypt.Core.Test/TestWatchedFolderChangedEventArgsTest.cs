@@ -54,9 +54,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestConstructor()
         {
             List<WatchedFolder> addedFolders = new List<WatchedFolder>();
-            addedFolders.Add(new WatchedFolder(@"C:\Folder1\", AesKeyThumbprint.Zero));
+            addedFolders.Add(new WatchedFolder(@"C:\Folder1\", SymmetricKeyThumbprint.Zero));
             List<WatchedFolder> removedFolders = new List<WatchedFolder>();
-            removedFolders.Add(new WatchedFolder(@"C:\Folder2\", AesKeyThumbprint.Zero));
+            removedFolders.Add(new WatchedFolder(@"C:\Folder2\", SymmetricKeyThumbprint.Zero));
 
             WatchedFolderChangedEventArgs e = new WatchedFolderChangedEventArgs(addedFolders, removedFolders);
 

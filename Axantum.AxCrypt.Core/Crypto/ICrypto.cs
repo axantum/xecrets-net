@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <value>
         /// The key.
         /// </value>
-        AesKey Key { get; }
+        SymmetricKey Key { get; }
 
         int BlockLength { get; }
 

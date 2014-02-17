@@ -49,7 +49,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public bool Skip { get; set; }
 
-        public AesKey Key { get; set; }
+        public SymmetricKey Key { get; set; }
 
         public V1AxCryptDocument AxCryptDocument { get; set; }
 

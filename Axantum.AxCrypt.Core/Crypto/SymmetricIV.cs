@@ -25,43 +25,38 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
     /// <summary>
-    /// An Initial Vector for CBC chaining with AES. Instances of this class are immutable.
+    /// An Initial Vector for block chaining with a symmetric algorithm. Instances of this class are immutable.
     /// </summary>
-    public class AesIV
+    public class SymmetricIV
     {
         private byte[] _iv;
 
-        [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "The reference type 'AesIV' is, in fact, immutable.")]
-        public static readonly AesIV Zero = new AesIV(new byte[16]);
+        [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "The reference type 'SymmetricIV' is, in fact, immutable.")]
+        public static readonly SymmetricIV Zero128 = new SymmetricIV(new byte[128 / 8]);
 
         /// <summary>
         /// Instantiate a new random IV
         /// </summary>
-        public AesIV()
+        public SymmetricIV(int blockBits)
         {
-            _iv = Instance.RandomGenerator.Generate(16);
+            _iv = Instance.RandomGenerator.Generate(blockBits / 8);
         }
 
         /// <summary>
         /// Instantiate a new IV
         /// </summary>
         /// <param name="iv">The Initial Vector to use</param>
-        public AesIV(byte[] iv)
+        public SymmetricIV(byte[] iv)
         {
             if (iv == null)
             {
                 throw new ArgumentNullException("iv");
-            }
-            if (iv.Length != 16)
-            {
-                throw new InternalErrorException("AesIv must be exactly 16 bytes long.");
             }
             _iv = (byte[])iv.Clone();
         }

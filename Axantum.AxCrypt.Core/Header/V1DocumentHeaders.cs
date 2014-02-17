@@ -59,7 +59,7 @@ namespace Axantum.AxCrypt.Core.Header
             SetMasterKeyForEncryptedHeaderBlocks(_headers.HeaderBlocks);
 
             V1EncryptionInfoHeaderBlock encryptionInfoHeaderBlock = _headers.FindHeaderBlock<V1EncryptionInfoHeaderBlock>();
-            encryptionInfoHeaderBlock.IV = new AesIV();
+            encryptionInfoHeaderBlock.IV = new SymmetricIV(128);
             encryptionInfoHeaderBlock.PlaintextLength = 0;
         }
 
@@ -160,7 +160,7 @@ namespace Axantum.AxCrypt.Core.Header
             dataHeaderBlock.Write(hmacStream);
         }
 
-        public AesKey KeyEncryptingKey
+        public SymmetricKey KeyEncryptingKey
         {
             get
             {
@@ -168,7 +168,7 @@ namespace Axantum.AxCrypt.Core.Header
             }
         }
 
-        private AesKey GetMasterKey()
+        private SymmetricKey GetMasterKey()
         {
             V1KeyWrap1HeaderBlock keyHeaderBlock = _headers.FindHeaderBlock<V1KeyWrap1HeaderBlock>();
             VersionHeaderBlock versionHeaderBlock = _headers.FindHeaderBlock<VersionHeaderBlock>();
@@ -177,7 +177,7 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 return null;
             }
-            return new AesKey(unwrappedKeyData);
+            return new SymmetricKey(unwrappedKeyData);
         }
 
         public void RewrapMasterKey(ICrypto keyEncryptingCrypto)
@@ -191,7 +191,7 @@ namespace Axantum.AxCrypt.Core.Header
         {
             get
             {
-                AesKey masterKey = GetMasterKey();
+                SymmetricKey masterKey = GetMasterKey();
                 if (masterKey == null)
                 {
                     return null;
@@ -204,7 +204,7 @@ namespace Axantum.AxCrypt.Core.Header
         {
             get
             {
-                AesKey masterKey = GetMasterKey();
+                SymmetricKey masterKey = GetMasterKey();
                 if (masterKey == null)
                 {
                     return null;
@@ -217,7 +217,7 @@ namespace Axantum.AxCrypt.Core.Header
         {
             get
             {
-                AesKey masterKey = GetMasterKey();
+                SymmetricKey masterKey = GetMasterKey();
                 if (masterKey == null)
                 {
                     return null;
@@ -371,7 +371,7 @@ namespace Axantum.AxCrypt.Core.Header
         /// The Initial Vector used for CBC encryption of the data
         /// </summary>
         /// <returns>The Initial Vector</returns>
-        public AesIV IV
+        public SymmetricIV IV
         {
             get
             {

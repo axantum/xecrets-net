@@ -25,15 +25,14 @@
 
 #endregion Coypright and License
 
-using System;
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
+using System;
 
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public static class TestAesIV
+    public static class TestSymmetricIV
     {
         [SetUp]
         public static void Setup()
@@ -50,20 +49,10 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestInvalidArguments()
         {
-            AesIV iv = null;
+            SymmetricIV iv = null;
             Assert.Throws<ArgumentNullException>(() =>
             {
-                iv = new AesIV(null);
-            });
-
-            Assert.Throws<InternalErrorException>(() =>
-            {
-                iv = new AesIV(new byte[0]);
-            });
-
-            Assert.Throws<InternalErrorException>(() =>
-            {
-                iv = new AesIV(new byte[32]);
+                iv = new SymmetricIV(null);
             });
 
             // Use the instance to avoid FxCop errors.
@@ -73,13 +62,13 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestMethods()
         {
-            AesIV zeroIV = AesIV.Zero;
+            SymmetricIV zeroIV = SymmetricIV.Zero128;
             Assert.That(zeroIV.GetBytes(), Is.EquivalentTo(new byte[16]), "The IV 'zero' should consist of all zeros.");
 
-            AesIV iv = new AesIV(new byte[16] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
+            SymmetricIV iv = new SymmetricIV(new byte[16] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
             Assert.That(iv.GetBytes(), Is.EquivalentTo(new byte[16] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }), "An IV specified should consist of just those bytes.");
 
-            iv = new AesIV();
+            iv = new SymmetricIV(128);
             Assert.That(iv.GetBytes(), Is.Not.EquivalentTo(new byte[16]), "A random iv will in practice never be all zeros.");
         }
     }

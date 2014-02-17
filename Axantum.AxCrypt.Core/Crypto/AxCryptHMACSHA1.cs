@@ -53,7 +53,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// with a provided key.
         /// </summary>
         /// <param name="key">The key</param>
-        public static HMAC Create(AesKey key)
+        public static HMAC Create(SymmetricKey key)
         {
             if (key == null)
             {

@@ -83,7 +83,7 @@ namespace Axantum.AxCrypt.Core.Header
             }
         }
 
-        public AesIV IV
+        public SymmetricIV IV
         {
             get
             {
@@ -93,7 +93,7 @@ namespace Axantum.AxCrypt.Core.Header
                 byte[] iv = new byte[16];
                 Array.Copy(rawData, 8, iv, 0, iv.Length);
 
-                return new AesIV(iv);
+                return new SymmetricIV(iv);
             }
 
             set

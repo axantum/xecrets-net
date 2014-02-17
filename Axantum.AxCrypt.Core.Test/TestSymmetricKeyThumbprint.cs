@@ -25,17 +25,15 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using NUnit.Framework;
+using System;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public static class TestAesKeyThumbprint
+    public static class TestSymmetricKeyThumbprint
     {
         [SetUp]
         public static void Setup()
@@ -52,43 +50,43 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestInvalidArguments()
         {
-            AesKey nullKey = null;
+            SymmetricKey nullKey = null;
             KeyWrapSalt nullSalt = null;
-            Assert.Throws<ArgumentNullException>(() => { if (new AesKeyThumbprint(nullKey, new KeyWrapSalt(16), 10) == null) { } });
-            Assert.Throws<ArgumentNullException>(() => { if (new AesKeyThumbprint(new AesKey(128), nullSalt, 10) == null) { } });
+            Assert.Throws<ArgumentNullException>(() => { if (new SymmetricKeyThumbprint(nullKey, new KeyWrapSalt(16), 10) == null) { } });
+            Assert.Throws<ArgumentNullException>(() => { if (new SymmetricKeyThumbprint(new SymmetricKey(128), nullSalt, 10) == null) { } });
         }
 
         [Test]
         public static void TestAesKeyThumbprintMethods()
         {
-            AesKey key1 = new AesKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
-            AesKey key2 = new AesKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
+            SymmetricKey key1 = new SymmetricKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
+            SymmetricKey key2 = new SymmetricKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
             KeyWrapSalt salt1 = new KeyWrapSalt(16);
             KeyWrapSalt salt2 = new KeyWrapSalt(salt1.GetBytes());
 
-            AesKeyThumbprint thumbprint1 = new AesKeyThumbprint(key1, salt1, 10);
-            AesKeyThumbprint thumbprint2 = new AesKeyThumbprint(key2, salt2, 10);
+            SymmetricKeyThumbprint thumbprint1 = new SymmetricKeyThumbprint(key1, salt1, 10);
+            SymmetricKeyThumbprint thumbprint2 = new SymmetricKeyThumbprint(key2, salt2, 10);
 
             Assert.That(thumbprint1 == thumbprint2, "Two thumb prints made from the same key and salt bytes, although different AesKey instances should be equivalent.");
 
-            AesKeyThumbprint thumbprint3 = new AesKeyThumbprint(new AesKey(128), new KeyWrapSalt(16), 10);
+            SymmetricKeyThumbprint thumbprint3 = new SymmetricKeyThumbprint(new SymmetricKey(128), new KeyWrapSalt(16), 10);
             Assert.That(thumbprint2 != thumbprint3, "Two very different keys and salts should not be equivalent.");
         }
 
         [Test]
         public static void TestComparisons()
         {
-            AesKey key1 = new AesKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
-            AesKey key2 = new AesKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
+            SymmetricKey key1 = new SymmetricKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
+            SymmetricKey key2 = new SymmetricKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
             KeyWrapSalt salt1 = new KeyWrapSalt(16);
             KeyWrapSalt salt2 = new KeyWrapSalt(16);
 
-            AesKeyThumbprint thumbprint1a = new AesKeyThumbprint(key1, salt1, 13);
-            AesKeyThumbprint thumbprint1a_alias = thumbprint1a;
-            AesKeyThumbprint thumbprint1b = new AesKeyThumbprint(key1, salt2, 25);
-            AesKeyThumbprint thumbprint2a = new AesKeyThumbprint(key2, salt2, 25);
-            AesKeyThumbprint thumbprint2b = new AesKeyThumbprint(key2, salt1, 13);
-            AesKeyThumbprint nullThumbprint = null;
+            SymmetricKeyThumbprint thumbprint1a = new SymmetricKeyThumbprint(key1, salt1, 13);
+            SymmetricKeyThumbprint thumbprint1a_alias = thumbprint1a;
+            SymmetricKeyThumbprint thumbprint1b = new SymmetricKeyThumbprint(key1, salt2, 25);
+            SymmetricKeyThumbprint thumbprint2a = new SymmetricKeyThumbprint(key2, salt2, 25);
+            SymmetricKeyThumbprint thumbprint2b = new SymmetricKeyThumbprint(key2, salt1, 13);
+            SymmetricKeyThumbprint nullThumbprint = null;
 
             Assert.That(thumbprint1a == thumbprint1a_alias, "Same instance should of course compare equal.");
             Assert.That(nullThumbprint != thumbprint1a, "A null should not compare equal to any other instance.");
@@ -110,14 +108,14 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestGetHashCode()
         {
-            AesKey key1 = new AesKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
-            AesKey key2 = new AesKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
+            SymmetricKey key1 = new SymmetricKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
+            SymmetricKey key2 = new SymmetricKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
             KeyWrapSalt salt1 = new KeyWrapSalt(16);
             KeyWrapSalt salt2 = new KeyWrapSalt(16);
 
-            AesKeyThumbprint thumbprint1a = new AesKeyThumbprint(key1, salt1, 17);
-            AesKeyThumbprint thumbprint1b = new AesKeyThumbprint(key1, salt2, 17);
-            AesKeyThumbprint thumbprint2a = new AesKeyThumbprint(key2, salt2, 17);
+            SymmetricKeyThumbprint thumbprint1a = new SymmetricKeyThumbprint(key1, salt1, 17);
+            SymmetricKeyThumbprint thumbprint1b = new SymmetricKeyThumbprint(key1, salt2, 17);
+            SymmetricKeyThumbprint thumbprint2a = new SymmetricKeyThumbprint(key2, salt2, 17);
 
             Assert.That(thumbprint1a.GetHashCode() != thumbprint1b.GetHashCode(), "The salt is different, so the hash code should be different.");
             Assert.That(thumbprint1b.GetHashCode() == thumbprint2a.GetHashCode(), "The keys are equivalent, and the salt the same, so the hash code should be different.");

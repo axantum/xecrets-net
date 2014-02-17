@@ -32,7 +32,7 @@ using System;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public static class TestAesKey
+    public static class TestSymmetricKey
     {
         [SetUp]
         public static void Setup()
@@ -49,23 +49,23 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestInvalidArguments()
         {
-            AesKey key = null;
+            SymmetricKey key = null;
             Assert.DoesNotThrow(() =>
             {
-                key = new AesKey(new byte[16]);
+                key = new SymmetricKey(new byte[16]);
             });
             Assert.DoesNotThrow(() =>
             {
-                key = new AesKey(new byte[24]);
+                key = new SymmetricKey(new byte[24]);
             });
             Assert.DoesNotThrow(() =>
             {
-                key = new AesKey(new byte[32]);
+                key = new SymmetricKey(new byte[32]);
             });
 
             Assert.Throws<ArgumentNullException>(() =>
             {
-                key = new AesKey((byte[])null);
+                key = new SymmetricKey((byte[])null);
             });
 
             // Use the instance to avoid FxCop errors.
@@ -75,20 +75,20 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestMethods()
         {
-            AesKey key = new AesKey(128);
+            SymmetricKey key = new SymmetricKey(128);
             Assert.That(key.GetBytes().Length, Is.EqualTo(16), "The default key length is 128 bits.");
             Assert.That(key.GetBytes(), Is.Not.EquivalentTo(new byte[16]), "A random key cannot be expected to be all zeros.");
 
-            AesKey specifiedKey = new AesKey(key.GetBytes());
+            SymmetricKey specifiedKey = new SymmetricKey(key.GetBytes());
             Assert.That(specifiedKey.GetBytes(), Is.EquivalentTo(key.GetBytes()), "The specified key should contain the bits given to it.");
         }
 
         [Test]
         public static void TestEquals()
         {
-            AesKey key1 = new AesKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
-            AesKey key2 = new AesKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
-            AesKey key3 = new AesKey(128);
+            SymmetricKey key1 = new SymmetricKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
+            SymmetricKey key2 = new SymmetricKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
+            SymmetricKey key3 = new SymmetricKey(128);
 
             Assert.That(!key1.Equals(null), "A key is never equal to a null reference.");
             Assert.That(key1.Equals(key2), "Two different, but equivalent keys should compare equal.");
@@ -98,9 +98,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestObjectEquals()
         {
-            object key1 = new AesKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
-            object key2 = new AesKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
-            object key3 = new AesKey(128);
+            object key1 = new SymmetricKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
+            object key2 = new SymmetricKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
+            object key3 = new SymmetricKey(128);
 
             Assert.That(!key1.Equals(null), "A key is never equal to a null reference.");
             Assert.That(key1.Equals(key2), "Two different, but equivalent keys should compare equal.");
@@ -112,11 +112,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestOperatorEquals()
         {
-            AesKey key1 = new AesKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
-            AesKey key2 = new AesKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
-            AesKey key3 = new AesKey(128);
-            AesKey key3alias = key3;
-            AesKey nullKey = null;
+            SymmetricKey key1 = new SymmetricKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
+            SymmetricKey key2 = new SymmetricKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
+            SymmetricKey key3 = new SymmetricKey(128);
+            SymmetricKey key3alias = key3;
+            SymmetricKey nullKey = null;
 
             Assert.That(key3 == key3alias, "A key is always equal to itself.");
             Assert.That(key1 != nullKey, "A key is never equal to a null reference.");
@@ -128,12 +128,12 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestThumbprint()
         {
-            AesKey key1 = new AesKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
+            SymmetricKey key1 = new SymmetricKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
 
-            AesKeyThumbprint originalThumbprint = key1.Thumbprint;
+            SymmetricKeyThumbprint originalThumbprint = key1.Thumbprint;
             Assert.That(originalThumbprint, Is.EqualTo(key1.Thumbprint), "The thumbprints should be the same.");
 
-            key1.Thumbprint = new AesKeyThumbprint(key1, new KeyWrapSalt(16), Instance.UserSettings.KeyWrapIterations);
+            key1.Thumbprint = new SymmetricKeyThumbprint(key1, new KeyWrapSalt(16), Instance.UserSettings.KeyWrapIterations);
 
             Assert.That(originalThumbprint, Is.Not.EqualTo(key1.Thumbprint), "The thumbprints should differ.");
         }

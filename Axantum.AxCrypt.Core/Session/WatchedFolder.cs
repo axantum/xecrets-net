@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         public event EventHandler<FileWatcherEventArgs> Changed;
 
-        public WatchedFolder(string path, AesKeyThumbprint thumbprint)
+        public WatchedFolder(string path, SymmetricKeyThumbprint thumbprint)
         {
             if (path == null)
             {
@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Session
         }
 
         public WatchedFolder(string fullName)
-            : this(fullName, AesKeyThumbprint.Zero)
+            : this(fullName, SymmetricKeyThumbprint.Zero)
         {
         }
 
@@ -77,7 +77,7 @@ namespace Axantum.AxCrypt.Core.Session
         }
 
         [DataMember(Name = "Thumbprint")]
-        public AesKeyThumbprint Thumbprint
+        public SymmetricKeyThumbprint Thumbprint
         {
             get;
             private set;

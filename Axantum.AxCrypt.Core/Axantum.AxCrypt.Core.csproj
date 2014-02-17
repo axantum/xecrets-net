@@ -118,9 +118,9 @@
     <Compile Include="AxCryptFile.cs" />
     <Compile Include="AxCryptOptions.cs" />
     <Compile Include="Crypto\V1AesCrypto.cs" />
-    <Compile Include="Crypto\AesIV.cs" />
-    <Compile Include="Crypto\AesKey.cs" />
-    <Compile Include="Crypto\AesKeyThumbprint.cs" />
+    <Compile Include="Crypto\SymmetricIV.cs" />
+    <Compile Include="Crypto\SymmetricKey.cs" />
+    <Compile Include="Crypto\SymmetricKeyThumbprint.cs" />
     <Compile Include="Crypto\AxCryptHMACSHA1.cs" />
     <Compile Include="Crypto\V1Hmac.cs" />
     <Compile Include="Crypto\HeaderSubkey.cs" />

@@ -32,7 +32,7 @@ using System.Runtime.Serialization;
 namespace Axantum.AxCrypt.Core.Crypto
 {
     /// <summary>
-    /// A salt for the AES Key Wrap. Instances of this class are immutable.
+    /// A salt for the Symmetrical Key Wrap. Instances of this class are immutable.
     /// </summary>
     [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
     public class KeyWrapSalt
@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <summary>
         /// Initializes a new instance of the <see cref="KeyWrapSalt"/> class.
         /// </summary>
-        /// <param name="length">The salt. It must be a valid AES key length.</param>
+        /// <param name="length">The salt. It must be a valid symmetric key length.</param>
         public KeyWrapSalt(byte[] salt)
         {
             if (salt == null)

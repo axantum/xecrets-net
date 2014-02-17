@@ -166,13 +166,13 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(ivm.PassphraseText, Is.EqualTo("p"));
             Assert.That(Instance.KnownKeys.DefaultEncryptionKey.Thumbprint, Is.EqualTo(new Passphrase("p").DerivedPassphrase.Thumbprint));
-            Assert.That(id.Thumbprint, Is.EqualTo(AesKey.Zero128.Thumbprint));
+            Assert.That(id.Thumbprint, Is.EqualTo(SymmetricKey.Zero128.Thumbprint));
         }
 
         [Test]
         public static void AskForLogOnOrDecryptPassphraseActionActiveFile()
         {
-            AesKey key = new Passphrase("p").DerivedPassphrase;
+            SymmetricKey key = new Passphrase("p").DerivedPassphrase;
 
             ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(@"C:\Folder\File1-txt.axx"), Factory.New<IRuntimeFileInfo>(@"C:\Folder\File1.txt"), key, ActiveFileStatus.NotDecrypted);
             Instance.FileSystemState.Add(activeFile);
@@ -189,13 +189,13 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(ivm.PassphraseText, Is.EqualTo("p"));
             Assert.That(Instance.KnownKeys.DefaultEncryptionKey.Thumbprint, Is.EqualTo(key.Thumbprint));
-            Assert.That(id.Thumbprint, Is.EqualTo(AesKey.Zero128.Thumbprint));
+            Assert.That(id.Thumbprint, Is.EqualTo(SymmetricKey.Zero128.Thumbprint));
         }
 
         [Test]
         public static void AskForLogOnOrDecryptPassphraseActionActiveFileWithExistingIdentity()
         {
-            AesKey key = new Passphrase("p").DerivedPassphrase;
+            SymmetricKey key = new Passphrase("p").DerivedPassphrase;
 
             ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(@"C:\Folder\File1-txt.axx"), Factory.New<IRuntimeFileInfo>(@"C:\Folder\File1.txt"), key, ActiveFileStatus.NotDecrypted);
             Instance.FileSystemState.Add(activeFile);
@@ -221,7 +221,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void AskForLogOnPassphraseAction()
         {
-            AesKey key = new Passphrase("ppp").DerivedPassphrase;
+            SymmetricKey key = new Passphrase("ppp").DerivedPassphrase;
 
             PassphraseIdentity id = new PassphraseIdentity("Test User", key);
 
@@ -240,7 +240,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void AskForLogOnPassphraseActionWithCancel()
         {
-            AesKey key = new Passphrase("ppp").DerivedPassphrase;
+            SymmetricKey key = new Passphrase("ppp").DerivedPassphrase;
 
             PassphraseIdentity id = new PassphraseIdentity("Test User", key);
 

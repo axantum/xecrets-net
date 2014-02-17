@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSubkeyMethods()
         {
-            AesKey key = new AesKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
+            SymmetricKey key = new SymmetricKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
             Subkey subkey = null;
             Assert.Throws<ArgumentNullException>(() =>
             {

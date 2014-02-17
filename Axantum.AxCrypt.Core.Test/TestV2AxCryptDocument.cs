@@ -123,7 +123,7 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
-                    V2AxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(new AesKey(256), new AesIV()), 100);
+                    V2AxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(new SymmetricKey(256), new SymmetricIV(128)), 100);
                     document.EncryptTo(inputStream, outputStream, options, new ProgressContext());
                     output = outputStream.ToArray();
                     hmacKey = document.DocumentHeaders.GetHmacKey();
@@ -218,8 +218,8 @@ namespace Axantum.AxCrypt.Core.Test
 
         private static void TestEncryptDecryptHelper(int length, AxCryptOptions options)
         {
-            AesKey key = new AesKey(256);
-            AesIV iv = new AesIV();
+            SymmetricKey key = new SymmetricKey(256);
+            SymmetricIV iv = new SymmetricIV(128);
             using (MemoryStream inputStream = new MemoryStream())
             {
                 byte[] text = Instance.RandomGenerator.Generate(length);

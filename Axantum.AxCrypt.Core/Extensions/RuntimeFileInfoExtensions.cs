@@ -144,9 +144,9 @@ namespace Axantum.AxCrypt.Core.Extensions
             return Factory.New<IRuntimeFileInfo>(encryptedName);
         }
 
-        public static bool TryFindDecryptionKey(this IRuntimeFileInfo fileInfo, out AesKey key)
+        public static bool TryFindDecryptionKey(this IRuntimeFileInfo fileInfo, out SymmetricKey key)
         {
-            foreach (AesKey knownKey in Instance.KnownKeys.Keys)
+            foreach (SymmetricKey knownKey in Instance.KnownKeys.Keys)
             {
                 using (V1AxCryptDocument document = Factory.New<AxCryptFile>().Document(fileInfo, knownKey, new ProgressContext()))
                 {

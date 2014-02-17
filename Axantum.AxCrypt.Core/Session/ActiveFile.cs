@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Core.Session
             Key = null;
         }
 
-        public ActiveFile(ActiveFile activeFile, AesKey key)
+        public ActiveFile(ActiveFile activeFile, SymmetricKey key)
         {
             if (activeFile == null)
             {
@@ -91,7 +91,7 @@ namespace Axantum.AxCrypt.Core.Session
             Status = status;
         }
 
-        public ActiveFile(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, AesKey key, ActiveFileStatus status)
+        public ActiveFile(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, SymmetricKey key, ActiveFileStatus status)
         {
             if (encryptedFileInfo == null)
             {
@@ -113,7 +113,7 @@ namespace Axantum.AxCrypt.Core.Session
             Initialize(other.EncryptedFileInfo, other.DecryptedFileInfo, other.LastEncryptionWriteTimeUtc, other.Key, other.Thumbprint, other.Status);
         }
 
-        private void Initialize(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, DateTime lastWriteTimeUtc, AesKey key, AesKeyThumbprint thumbprint, ActiveFileStatus status)
+        private void Initialize(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, DateTime lastWriteTimeUtc, SymmetricKey key, SymmetricKeyThumbprint thumbprint, ActiveFileStatus status)
         {
             EncryptedFileInfo = Factory.New<IRuntimeFileInfo>(encryptedFileInfo.FullName);
             DecryptedFileInfo = Factory.New<IRuntimeFileInfo>(decryptedFileInfo.FullName);
@@ -136,10 +136,10 @@ namespace Axantum.AxCrypt.Core.Session
             private set;
         }
 
-        private AesKeyThumbprint _thumbprint;
+        private SymmetricKeyThumbprint _thumbprint;
 
         [DataMember(Name = "Thumbprint")]
-        public AesKeyThumbprint Thumbprint
+        public SymmetricKeyThumbprint Thumbprint
         {
             get
             {
@@ -220,9 +220,9 @@ namespace Axantum.AxCrypt.Core.Session
             DecryptedFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(_decryptedFolder, _decryptedName));
         }
 
-        private AesKey _key;
+        private SymmetricKey _key;
 
-        public AesKey Key
+        public SymmetricKey Key
         {
             get
             {
@@ -239,7 +239,7 @@ namespace Axantum.AxCrypt.Core.Session
         /// </summary>
         /// <param name="key">A key to check against this instances thumbprint.</param>
         /// <returns>true if the thumbprint matches the provided key.</returns>
-        public bool ThumbprintMatch(AesKey key)
+        public bool ThumbprintMatch(SymmetricKey key)
         {
             if (key == null)
             {

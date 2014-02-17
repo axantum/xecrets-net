@@ -165,7 +165,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         /// <param name="keyToWrap">The key to wrap</param>
         /// <returns>The wrapped key data, 8 bytes longer than the key</returns>
-        public byte[] Wrap(AesKey keyToWrap)
+        public byte[] Wrap(SymmetricKey keyToWrap)
         {
             if (keyToWrap == null)
             {

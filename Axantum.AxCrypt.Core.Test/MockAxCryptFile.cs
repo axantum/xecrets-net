@@ -53,23 +53,23 @@ namespace Axantum.AxCrypt.Core.Test
             EncryptMock(sourceFile, destinationFile, passphrase, options, progress);
         }
 
-        public Action<IEnumerable<IRuntimeFileInfo>, AesKey, IProgressContext> EncryptFilesUniqueWithBackupAndWipeMock { get; set; }
+        public Action<IEnumerable<IRuntimeFileInfo>, SymmetricKey, IProgressContext> EncryptFilesUniqueWithBackupAndWipeMock { get; set; }
 
-        public override void EncryptFilesUniqueWithBackupAndWipe(IEnumerable<IRuntimeFileInfo> folderInfos, AesKey encryptionKey, IProgressContext progress)
+        public override void EncryptFilesUniqueWithBackupAndWipe(IEnumerable<IRuntimeFileInfo> folderInfos, SymmetricKey encryptionKey, IProgressContext progress)
         {
             EncryptFilesUniqueWithBackupAndWipeMock(folderInfos, encryptionKey, progress);
         }
 
-        public Action<IRuntimeFileInfo, AesKey, IProgressContext> EncryptFileUniqueWithBackupAndWipeMock { get; set; }
+        public Action<IRuntimeFileInfo, SymmetricKey, IProgressContext> EncryptFileUniqueWithBackupAndWipeMock { get; set; }
 
-        public override void EncryptFileUniqueWithBackupAndWipe(IRuntimeFileInfo fileInfo, AesKey encryptionKey, IProgressContext progress)
+        public override void EncryptFileUniqueWithBackupAndWipe(IRuntimeFileInfo fileInfo, SymmetricKey encryptionKey, IProgressContext progress)
         {
             EncryptFileUniqueWithBackupAndWipeMock(fileInfo, encryptionKey, progress);
         }
 
-        public Action<IRuntimeFileInfo, AesKey, IProgressContext> DecryptFilesUniqueWithWipeOfOriginalMock { get; set; }
+        public Action<IRuntimeFileInfo, SymmetricKey, IProgressContext> DecryptFilesUniqueWithWipeOfOriginalMock { get; set; }
 
-        public override void DecryptFilesInsideFolderUniqueWithWipeOfOriginal(IRuntimeFileInfo fileInfo, AesKey decryptionKey, IProgressContext progress)
+        public override void DecryptFilesInsideFolderUniqueWithWipeOfOriginal(IRuntimeFileInfo fileInfo, SymmetricKey decryptionKey, IProgressContext progress)
         {
             DecryptFilesUniqueWithWipeOfOriginalMock(fileInfo, decryptionKey, progress);
         }

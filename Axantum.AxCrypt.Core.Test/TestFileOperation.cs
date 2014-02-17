@@ -85,8 +85,8 @@ namespace Axantum.AxCrypt.Core.Test
             string file = _helloWorldAxxPath;
             string nullFile = null;
 
-            IEnumerable<AesKey> keys = new AesKey[] { new Passphrase("a").DerivedPassphrase };
-            IEnumerable<AesKey> nullKeys = null;
+            IEnumerable<SymmetricKey> keys = new SymmetricKey[] { new Passphrase("a").DerivedPassphrase };
+            IEnumerable<SymmetricKey> nullKeys = null;
 
             ProgressContext context = new ProgressContext();
             ProgressContext nullContext = null;
@@ -100,7 +100,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSimpleOpenAndLaunch()
         {
-            IEnumerable<AesKey> keys = new AesKey[] { new Passphrase("a").DerivedPassphrase };
+            IEnumerable<SymmetricKey> keys = new SymmetricKey[] { new Passphrase("a").DerivedPassphrase };
 
             var mock = new Mock<FakeRuntimeEnvironment>() { CallBase = true };
             string launcherPath = null;
@@ -177,15 +177,15 @@ namespace Axantum.AxCrypt.Core.Test
             ProgressContext nullProgressContext = null;
             FileOperation fileOperation = new FileOperation(Instance.FileSystemState, new SessionNotify());
 
-            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(nullString, new V1AxCryptDocument(new V1AesCrypto(new AesKey(128))), new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(nullString, new V1AxCryptDocument(new V1AesCrypto(new SymmetricKey(128))), new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, nullDocument, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, new V1AxCryptDocument(new V1AesCrypto(new AesKey(128))), nullProgressContext); });
+            Assert.Throws<ArgumentNullException>(() => { fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, new V1AxCryptDocument(new V1AesCrypto(new SymmetricKey(128))), nullProgressContext); });
         }
 
         [Test]
         public static void TestFileDoesNotExist()
         {
-            IEnumerable<AesKey> keys = new AesKey[] { new Passphrase("a").DerivedPassphrase };
+            IEnumerable<SymmetricKey> keys = new SymmetricKey[] { new Passphrase("a").DerivedPassphrase };
             FileOperation fileOperation = new FileOperation(Instance.FileSystemState, new SessionNotify());
 
             FileOperationStatus status = fileOperation.OpenAndLaunchApplication(_rootPath.PathCombine("Documents", "HelloWorld-NotThere.axx"), keys, new ProgressContext());
@@ -195,7 +195,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileAlreadyDecryptedWithKnownKey()
         {
-            IEnumerable<AesKey> keys = new AesKey[] { new Passphrase("a").DerivedPassphrase };
+            IEnumerable<SymmetricKey> keys = new SymmetricKey[] { new Passphrase("a").DerivedPassphrase };
 
             DateTime utcNow = DateTime.UtcNow;
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
@@ -217,7 +217,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileAlreadyDecryptedButWithUnknownKey()
         {
-            IEnumerable<AesKey> keys = new AesKey[] { new Passphrase("a").DerivedPassphrase };
+            IEnumerable<SymmetricKey> keys = new SymmetricKey[] { new Passphrase("a").DerivedPassphrase };
 
             DateTime utcNow = DateTime.UtcNow;
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
@@ -231,7 +231,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(destinationActiveFile.DecryptedFileInfo.LastWriteTimeUtc, Is.Not.EqualTo(utcNow), "The decryption should restore the time stamp of the original file, and this is not now.");
             destinationActiveFile.DecryptedFileInfo.SetFileTimes(utcNow, utcNow, utcNow);
 
-            IEnumerable<AesKey> badKeys = new AesKey[] { new Passphrase("b").DerivedPassphrase };
+            IEnumerable<SymmetricKey> badKeys = new SymmetricKey[] { new Passphrase("b").DerivedPassphrase };
 
             status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, badKeys, new ProgressContext());
             Assert.That(status, Is.EqualTo(FileOperationStatus.InvalidKey), "The launch should fail this time, since the key is not known.");
@@ -242,7 +242,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestInvalidKey()
         {
-            IEnumerable<AesKey> keys = new AesKey[] { new Passphrase("b").DerivedPassphrase };
+            IEnumerable<SymmetricKey> keys = new SymmetricKey[] { new Passphrase("b").DerivedPassphrase };
             FileOperation fileOperation = new FileOperation(Instance.FileSystemState, new SessionNotify());
 
             FileOperationStatus status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, keys, new ProgressContext());
@@ -252,7 +252,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestNoProcessLaunched()
         {
-            IEnumerable<AesKey> keys = new AesKey[] { new Passphrase("a").DerivedPassphrase };
+            IEnumerable<SymmetricKey> keys = new SymmetricKey[] { new Passphrase("a").DerivedPassphrase };
 
             FakeLauncher launcher = null;
             SetupAssembly.FakeRuntimeEnvironment.Launcher = ((string path) =>
@@ -273,7 +273,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestWin32Exception()
         {
-            IEnumerable<AesKey> keys = new AesKey[] { new Passphrase("a").DerivedPassphrase };
+            IEnumerable<SymmetricKey> keys = new SymmetricKey[] { new Passphrase("a").DerivedPassphrase };
 
             SetupAssembly.FakeRuntimeEnvironment.Launcher = ((string path) =>
             {
@@ -289,7 +289,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestImmediateExit()
         {
-            IEnumerable<AesKey> keys = new AesKey[] { new Passphrase("a").DerivedPassphrase };
+            IEnumerable<SymmetricKey> keys = new SymmetricKey[] { new Passphrase("a").DerivedPassphrase };
 
             FakeLauncher launcher = null;
             SetupAssembly.FakeRuntimeEnvironment.Launcher = ((string path) =>
@@ -311,7 +311,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestExitEvent()
         {
-            IEnumerable<AesKey> keys = new AesKey[] { new Passphrase("a").DerivedPassphrase };
+            IEnumerable<SymmetricKey> keys = new SymmetricKey[] { new Passphrase("a").DerivedPassphrase };
 
             FakeLauncher launcher = null;
             SetupAssembly.FakeRuntimeEnvironment.Launcher = ((string path) =>
@@ -342,7 +342,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileContainedByActiveFilesButNotDecrypted()
         {
-            IEnumerable<AesKey> keys = new AesKey[] { new Passphrase("a").DerivedPassphrase };
+            IEnumerable<SymmetricKey> keys = new SymmetricKey[] { new Passphrase("a").DerivedPassphrase };
 
             FileOperation fileOperation = new FileOperation(Instance.FileSystemState, new SessionNotify());
             FileOperationStatus status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, keys, new ProgressContext());

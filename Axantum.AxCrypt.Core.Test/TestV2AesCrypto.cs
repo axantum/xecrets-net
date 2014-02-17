@@ -73,8 +73,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncrypt()
         {
-            AesKey key = new AesKey(testKey);
-            ICrypto crypto = new V2AesCrypto(key, new AesIV(testPlaintext), 0);
+            SymmetricKey key = new SymmetricKey(testKey);
+            ICrypto crypto = new V2AesCrypto(key, new SymmetricIV(testPlaintext), 0);
 
             byte[] zeroPlain = new byte[testCipertext.Length];
 
@@ -86,8 +86,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptPartialBlock()
         {
-            AesKey key = new AesKey(testKey);
-            ICrypto crypto = new V2AesCrypto(key, new AesIV(testPlaintext), 3);
+            SymmetricKey key = new SymmetricKey(testKey);
+            ICrypto crypto = new V2AesCrypto(key, new SymmetricIV(testPlaintext), 3);
             byte[] zeroPlain = new byte[5];
 
             byte[] cipherText = crypto.Encrypt(zeroPlain);
@@ -100,7 +100,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptSeveralBlocks()
         {
-            AesKey key = new AesKey(nistKey);
+            SymmetricKey key = new SymmetricKey(nistKey);
 
             byte[] iv = new byte[16];
             Array.Copy(nistInitCounter, iv, 8);
@@ -108,19 +108,19 @@ namespace Axantum.AxCrypt.Core.Test
             long blockCounter = nistInitCounter.GetBigEndianValue(8, 8);
             ICrypto crypto;
 
-            crypto = new V2AesCrypto(key, new AesIV(iv), blockCounter, 0);
+            crypto = new V2AesCrypto(key, new SymmetricIV(iv), blockCounter, 0);
             byte[] cipherText1 = crypto.Encrypt(nistPlaintext1);
             Assert.That(cipherText1.IsEquivalentTo(nistCiphertext1));
 
-            crypto = new V2AesCrypto(key, new AesIV(iv), ++blockCounter, 0);
+            crypto = new V2AesCrypto(key, new SymmetricIV(iv), ++blockCounter, 0);
             byte[] cipherText2 = crypto.Encrypt(nistPlaintext2);
             Assert.That(cipherText2.IsEquivalentTo(nistCiphertext2));
 
-            crypto = new V2AesCrypto(key, new AesIV(iv), ++blockCounter, 0);
+            crypto = new V2AesCrypto(key, new SymmetricIV(iv), ++blockCounter, 0);
             byte[] cipherText3 = crypto.Encrypt(nistPlaintext3);
             Assert.That(cipherText3.IsEquivalentTo(nistCiphertext3));
 
-            crypto = new V2AesCrypto(key, new AesIV(iv), ++blockCounter, 0);
+            crypto = new V2AesCrypto(key, new SymmetricIV(iv), ++blockCounter, 0);
             byte[] cipherText4 = crypto.Encrypt(nistPlaintext4);
             Assert.That(cipherText4.IsEquivalentTo(nistCiphertext4));
         }

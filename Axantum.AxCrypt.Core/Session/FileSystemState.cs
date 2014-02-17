@@ -25,16 +25,16 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Session
 {
@@ -175,7 +175,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         public virtual void RemoveWatchedFolder(IRuntimeFileInfo fileInfo)
         {
-            WatchedFoldersInternal.Remove(new WatchedFolder(fileInfo.FullName, AesKeyThumbprint.Zero));
+            WatchedFoldersInternal.Remove(new WatchedFolder(fileInfo.FullName, SymmetricKeyThumbprint.Zero));
             Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Instance.KnownKeys.DefaultEncryptionKey, fileInfo.FullName));
         }
 

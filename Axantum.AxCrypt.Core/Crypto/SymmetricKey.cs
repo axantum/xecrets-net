@@ -32,16 +32,16 @@ using System.Diagnostics.CodeAnalysis;
 namespace Axantum.AxCrypt.Core.Crypto
 {
     /// <summary>
-    /// Hold a key for AES. Instances of this class are immutable.
+    /// Hold a key for a symmetric algorithm. Instances of this class are immutable.
     /// </summary>
-    public class AesKey : IEquatable<AesKey>
+    public class SymmetricKey : IEquatable<SymmetricKey>
     {
-        private byte[] _aesKey;
+        private byte[] _symmetricKey;
 
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "This type is immutable.")]
-        public static readonly AesKey Zero128 = new AesKey(new byte[16], AesKeyThumbprint.Zero);
+        public static readonly SymmetricKey Zero128 = new SymmetricKey(new byte[16], SymmetricKeyThumbprint.Zero);
 
-        private AesKey(byte[] key, AesKeyThumbprint thumbprint)
+        private SymmetricKey(byte[] key, SymmetricKeyThumbprint thumbprint)
             : this(key)
         {
             Thumbprint = thumbprint;
@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <summary>
         /// Instantiate a random key.
         /// </summary>
-        public AesKey(int keyBits)
+        public SymmetricKey(int keyBits)
             : this(Instance.RandomGenerator.Generate(keyBits / 8))
         {
         }
@@ -59,13 +59,13 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// Instantiate a key.
         /// </summary>
         /// <param name="key">The key to use. The length can be any that is valid for the algorithm.</param>
-        public AesKey(byte[] key)
+        public SymmetricKey(byte[] key)
         {
             if (key == null)
             {
                 throw new ArgumentNullException("key");
             }
-            _aesKey = (byte[])key.Clone();
+            _symmetricKey = (byte[])key.Clone();
         }
 
         /// <summary>
@@ -74,26 +74,26 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns></returns>
         public byte[] GetBytes()
         {
-            return (byte[])_aesKey.Clone();
+            return (byte[])_symmetricKey.Clone();
         }
 
         public int Length
         {
             get
             {
-                return _aesKey.Length;
+                return _symmetricKey.Length;
             }
         }
 
-        private AesKeyThumbprint _thumbprint;
+        private SymmetricKeyThumbprint _thumbprint;
 
-        public AesKeyThumbprint Thumbprint
+        public SymmetricKeyThumbprint Thumbprint
         {
             get
             {
                 if (_thumbprint == null)
                 {
-                    _thumbprint = new AesKeyThumbprint(this, Instance.UserSettings.ThumbprintSalt, Instance.UserSettings.KeyWrapIterations);
+                    _thumbprint = new SymmetricKeyThumbprint(this, Instance.UserSettings.ThumbprintSalt, Instance.UserSettings.KeyWrapIterations);
                 }
                 return _thumbprint;
             }
@@ -103,31 +103,31 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
         }
 
-        #region IEquatable<AesKey> Members
+        #region IEquatable<SymmetricKey> Members
 
         /// <summary>
         /// Check if one instance is equivalent to another.
         /// </summary>
         /// <param name="other">The instance to compare to</param>
         /// <returns>true if the keys are equivalent</returns>
-        public bool Equals(AesKey other)
+        public bool Equals(SymmetricKey other)
         {
             if ((object)other == null)
             {
                 return false;
             }
-            return _aesKey.IsEquivalentTo(other._aesKey);
+            return _symmetricKey.IsEquivalentTo(other._symmetricKey);
         }
 
-        #endregion IEquatable<AesKey> Members
+        #endregion IEquatable<SymmetricKey> Members
 
         public override bool Equals(object obj)
         {
-            if (obj == null || typeof(AesKey) != obj.GetType())
+            if (obj == null || typeof(SymmetricKey) != obj.GetType())
             {
                 return false;
             }
-            AesKey other = (AesKey)obj;
+            SymmetricKey other = (SymmetricKey)obj;
 
             return Equals(other);
         }
@@ -135,14 +135,14 @@ namespace Axantum.AxCrypt.Core.Crypto
         public override int GetHashCode()
         {
             int hashcode = 0;
-            foreach (byte b in _aesKey)
+            foreach (byte b in _symmetricKey)
             {
                 hashcode += b;
             }
             return hashcode;
         }
 
-        public static bool operator ==(AesKey left, AesKey right)
+        public static bool operator ==(SymmetricKey left, SymmetricKey right)
         {
             if (Object.ReferenceEquals(left, right))
             {
@@ -155,7 +155,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             return left.Equals(right);
         }
 
-        public static bool operator !=(AesKey left, AesKey right)
+        public static bool operator !=(SymmetricKey left, SymmetricKey right)
         {
             return !(left == right);
         }

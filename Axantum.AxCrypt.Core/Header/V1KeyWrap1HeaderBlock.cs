@@ -107,14 +107,14 @@ namespace Axantum.AxCrypt.Core.Header
         {
             byte[] wrappedKeyData = GetKeyData();
             KeyWrapSalt salt = Salt;
-            AesKey keyEncryptingKey = keyEncryptingCrypto.Key;
+            SymmetricKey keyEncryptingKey = keyEncryptingCrypto.Key;
             if (fileVersionMajor <= 1)
             {
                 // Due to a bug in 1.1 and earlier we only used a truncated part of the key and salt :-(
                 // Compensate for this here. Users should be warned if FileVersionMajor <= 1 .
                 byte[] badKey = new byte[keyEncryptingKey.Length];
                 Array.Copy(keyEncryptingCrypto.Key.GetBytes(), 0, badKey, 0, 4);
-                keyEncryptingKey = new AesKey(badKey);
+                keyEncryptingKey = new SymmetricKey(badKey);
 
                 byte[] badSalt = new byte[salt.Length];
                 Array.Copy(salt.GetBytes(), 0, badSalt, 0, 4);
@@ -131,7 +131,7 @@ namespace Axantum.AxCrypt.Core.Header
 
         private void Initialize(ICrypto keyEncryptingCrypto)
         {
-            AesKey masterKey = new AesKey(keyEncryptingCrypto.Key.Length * 8);
+            SymmetricKey masterKey = new SymmetricKey(keyEncryptingCrypto.Key.Length * 8);
             long iterations = Instance.UserSettings.KeyWrapIterations;
             KeyWrapSalt salt = new KeyWrapSalt(masterKey.Length);
             using (KeyWrap keyWrap = new KeyWrap(keyEncryptingCrypto, salt, iterations, KeyWrapMode.AxCrypt))
@@ -141,7 +141,7 @@ namespace Axantum.AxCrypt.Core.Header
             }
         }
 
-        public void RewrapMasterKey(AesKey masterKey, AesKey keyEncryptingKey)
+        public void RewrapMasterKey(SymmetricKey masterKey, SymmetricKey keyEncryptingKey)
         {
             KeyWrapSalt salt = new KeyWrapSalt(keyEncryptingKey.Length);
             using (KeyWrap keyWrap = new KeyWrap(new V1AesCrypto(keyEncryptingKey), salt, Iterations, KeyWrapMode.AxCrypt))

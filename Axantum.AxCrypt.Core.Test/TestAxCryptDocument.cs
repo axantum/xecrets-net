@@ -282,7 +282,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptWithoutLoadFirstFromEmptyFile()
         {
-            using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(new AesKey(128))))
+            using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(new SymmetricKey(128))))
             {
                 using (MemoryStream plaintextStream = new MemoryStream())
                 {
@@ -579,7 +579,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 using (Stream outputStream = new MemoryStream())
                 {
-                    using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(new AesKey(128))))
+                    using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(new SymmetricKey(128))))
                     {
                         Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(null, outputStream, AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
                         Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(inputStream, null, AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
@@ -603,7 +603,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDoubleDispose()
         {
-            V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(new AesKey(128)));
+            V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(new SymmetricKey(128)));
             document.Dispose();
             document.Dispose();
         }

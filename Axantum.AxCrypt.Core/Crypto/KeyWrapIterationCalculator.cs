@@ -39,7 +39,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         public virtual long Iterations()
         {
-            ICrypto dummyCrypto = new V1AesCrypto(new AesKey(128));
+            ICrypto dummyCrypto = new V1AesCrypto(new SymmetricKey(128));
             KeyWrapSalt dummySalt = new KeyWrapSalt(16);
             DateTime startTime = OS.Current.UtcNow;
             DateTime endTime;
@@ -49,7 +49,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 do
                 {
-                    keyWrap.Wrap(new AesKey(128));
+                    keyWrap.Wrap(new SymmetricKey(128));
                     totalIterations += iterationsIncrement;
                     endTime = OS.Current.UtcNow;
                 } while ((endTime - startTime).TotalMilliseconds < 500);

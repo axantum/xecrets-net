@@ -46,7 +46,7 @@ namespace Axantum.AxCrypt.Core.IO
         /// A AxCrypt HMAC-calculating stream. This uses the AxCrypt variant with a block size of 20 for the key.
         /// </summary>
         /// <param name="key">The key for the HMAC</param>
-        public V1HmacStream(AesKey key)
+        public V1HmacStream(SymmetricKey key)
             : this(key, Stream.Null)
         {
         }
@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Core.IO
         /// </summary>
         /// <param name="key">The key for the HMAC</param>
         /// <param name="chainedStream">A stream where data is chain-written to. This stream is not disposed of when this instance is disposed.</param>
-        public V1HmacStream(AesKey key, Stream chainedStream)
+        public V1HmacStream(SymmetricKey key, Stream chainedStream)
         {
             if (key == null)
             {

@@ -36,7 +36,7 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// </summary>
     public class V2AesCrypto : CryptoBase
     {
-        private AesIV _iv;
+        private SymmetricIV _iv;
 
         private long _blockCounter;
 
@@ -61,19 +61,19 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <exception cref="System.ArgumentNullException">key
         /// or
         /// iv</exception>
-        public V2AesCrypto(AesKey key, AesIV iv, long blockCounter, int blockOffset)
+        public V2AesCrypto(SymmetricKey key, SymmetricIV iv, long blockCounter, int blockOffset)
             : this(key, iv)
         {
             _blockCounter = blockCounter;
             _blockOffset = blockOffset;
         }
 
-        public V2AesCrypto(AesKey key, AesIV iv, long keyStreamOffset)
+        public V2AesCrypto(SymmetricKey key, SymmetricIV iv, long keyStreamOffset)
             : this(key, iv, keyStreamOffset / iv.Length, (int)(keyStreamOffset % iv.Length))
         {
         }
 
-        public V2AesCrypto(AesKey key, AesIV iv)
+        public V2AesCrypto(SymmetricKey key, SymmetricIV iv)
         {
             if (key == null)
             {
