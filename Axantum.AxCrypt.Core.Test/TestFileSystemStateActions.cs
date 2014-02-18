@@ -145,7 +145,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             DateTime utcNow = OS.Current.UtcNow;
             FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
-            Passphrase passphrase = new Passphrase("a");
+            V1Passphrase passphrase = new V1Passphrase("a");
             Factory.New<AxCryptFile>().Decrypt(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), passphrase.DerivedPassphrase, AxCryptOptions.None, new ProgressContext());
 
             ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), passphrase.DerivedPassphrase, ActiveFileStatus.AssumedOpenAndDecrypted);
@@ -177,7 +177,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             DateTime utcNow = OS.Current.UtcNow;
             FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
-            Passphrase passphrase = new Passphrase("a");
+            V1Passphrase passphrase = new V1Passphrase("a");
             Factory.New<AxCryptFile>().Decrypt(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), passphrase.DerivedPassphrase, AxCryptOptions.None, new ProgressContext());
 
             ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), passphrase.DerivedPassphrase, ActiveFileStatus.AssumedOpenAndDecrypted);
@@ -202,8 +202,8 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because the file was modified as well and thus cannot be deleted.");
 
-            Instance.KnownKeys.Add(Passphrase.Derive("x"));
-            Instance.KnownKeys.Add(new Passphrase("y").DerivedPassphrase);
+            Instance.KnownKeys.Add(new V1Passphrase("x").DerivedPassphrase);
+            Instance.KnownKeys.Add(new V1Passphrase("y").DerivedPassphrase);
             Factory.New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because the file was modified as well and thus cannot be deleted.");
 
@@ -276,7 +276,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             DateTime utcNow = OS.Current.UtcNow;
             FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
-            Passphrase passphrase = new Passphrase("a");
+            V1Passphrase passphrase = new V1Passphrase("a");
             Factory.New<AxCryptFile>().Decrypt(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), passphrase.DerivedPassphrase, AxCryptOptions.None, new ProgressContext());
 
             ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), passphrase.DerivedPassphrase, ActiveFileStatus.AssumedOpenAndDecrypted);

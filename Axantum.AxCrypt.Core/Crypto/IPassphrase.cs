@@ -25,38 +25,13 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
-using NUnit.Framework;
 using System;
+using System.Linq;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Core.Crypto
 {
-    [TestFixture]
-    public static class TestPassphrase
+    public interface IPassphrase
     {
-        [SetUp]
-        public static void Setup()
-        {
-            SetupAssembly.AssemblySetup();
-        }
-
-        [TearDown]
-        public static void Teardown()
-        {
-            SetupAssembly.AssemblyTeardown();
-        }
-
-        [Test]
-        public static void TestPassphraseConstructor()
-        {
-            V1Passphrase passphrase = new V1Passphrase("A Passphrase");
-            SymmetricKey derivedKey = passphrase.DerivedPassphrase;
-            Assert.That(derivedKey.Length, Is.EqualTo(16), "The default derived key is 128 bits.");
-
-            Assert.Throws<ArgumentNullException>(() =>
-            {
-                passphrase = new V1Passphrase(null);
-            });
-        }
+        SymmetricKey DerivedPassphrase { get; }
     }
 }

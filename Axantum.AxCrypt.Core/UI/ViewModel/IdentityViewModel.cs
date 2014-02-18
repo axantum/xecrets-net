@@ -91,7 +91,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return String.Empty;
             }
 
-            _knownKeys.DefaultEncryptionKey = Passphrase.Derive(passphrase);
+            _knownKeys.DefaultEncryptionKey = new V1Passphrase(passphrase).DerivedPassphrase;
             return passphrase;
         }
 
@@ -120,7 +120,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return String.Empty;
             }
 
-            _knownKeys.DefaultEncryptionKey = Passphrase.Derive(passphrase);
+            _knownKeys.DefaultEncryptionKey = new V1Passphrase(passphrase).DerivedPassphrase;
             return passphrase;
         }
 
@@ -165,7 +165,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             _userSettings.DisplayEncryptPassphrase = logOnArgs.DisplayPassphrase;
 
-            Passphrase passphrase = new Passphrase(logOnArgs.Passphrase);
+            V1Passphrase passphrase = new V1Passphrase(logOnArgs.Passphrase);
             PassphraseIdentity identity = _fileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == passphrase.DerivedPassphrase.Thumbprint);
             if (identity != null)
             {

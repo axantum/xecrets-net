@@ -122,7 +122,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 using (AxCryptReader reader = new V1AxCryptReader(testStream))
                 {
-                    Passphrase passphrase = new Passphrase("b");
+                    V1Passphrase passphrase = new V1Passphrase("b");
                     V1DocumentHeaders documentHeaders = new V1DocumentHeaders(new V1AesCrypto(passphrase.DerivedPassphrase), 73);
                     bool isPassphraseValid = documentHeaders.Load(reader);
 
@@ -144,7 +144,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 using (Stream outputStream = new MemoryStream())
                 {
-                    Passphrase passphrase = new Passphrase("a");
+                    V1Passphrase passphrase = new V1Passphrase("a");
                     using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase.DerivedPassphrase), 101))
                     {
                         document.FileName = "MyFile.txt";

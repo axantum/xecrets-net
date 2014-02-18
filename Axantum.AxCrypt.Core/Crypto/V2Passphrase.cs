@@ -25,47 +25,28 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
 using System;
-using System.Security.Cryptography;
-using System.Text;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
     /// <summary>
-    /// Derive a AesKey from a string passphrase representation for AxCrypt. Instances of this class are immutable.
+    /// Derive a SymmetricKey from a string passphrase representation for AxCrypt V2. Instances of this class are immutable.
     /// </summary>
-    public class Passphrase
+    public class V2Passphrase : IPassphrase
     {
         private readonly SymmetricKey _derivedPassphrase;
 
-        public static SymmetricKey Derive(string passphrase)
-        {
-            return new Passphrase(passphrase).DerivedPassphrase;
-        }
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="Passphrase"/> class.
+        /// Initializes a new instance of the <see cref="V1Passphrase"/> class.
         /// </summary>
         /// <param name="passphrase">The passphrase.</param>
-        public Passphrase(string passphrase)
+        public V2Passphrase(string passphrase, byte[] salt, int iterations, int keySize)
         {
-            if (passphrase == null)
-            {
-                throw new ArgumentNullException("passphrase");
-            }
-
-            HashAlgorithm hashAlgorithm = new SHA1Managed();
-            byte[] ansiBytes = Encoding.GetEncoding(1252).GetBytes(passphrase);
-            byte[] hash = hashAlgorithm.ComputeHash(ansiBytes);
-            byte[] derivedPassphrase = new byte[16];
-            Array.Copy(hash, derivedPassphrase, derivedPassphrase.Length);
-
-            _derivedPassphrase = new SymmetricKey(derivedPassphrase);
+            _derivedPassphrase = new SymmetricKey(new Pbkdf2HmacSha512(passphrase, salt, iterations).GetBytes().Reduce(keySize / 8));
         }
 
-        /// <summary>
-        /// Gets the derived passphrase AesKey instance.
-        /// </summary>
         public SymmetricKey DerivedPassphrase
         {
             get

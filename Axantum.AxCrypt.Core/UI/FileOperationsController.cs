@@ -249,7 +249,7 @@ namespace Axantum.AxCrypt.Core.UI
                     _eventArgs.Status = FileOperationStatus.Canceled;
                     return false;
                 }
-                _eventArgs.Key = Passphrase.Derive(_eventArgs.Passphrase);
+                _eventArgs.Key = new V1Passphrase(_eventArgs.Passphrase).DerivedPassphrase;
             }
             else
             {
@@ -409,7 +409,7 @@ namespace Axantum.AxCrypt.Core.UI
                     e.Key = key;
                 }
 
-                Passphrase passphrase;
+                V1Passphrase passphrase;
                 while (e.AxCryptDocument == null)
                 {
                     OnQueryDecryptionPassphrase(e);
@@ -423,7 +423,7 @@ namespace Axantum.AxCrypt.Core.UI
                         e.Status = FileOperationStatus.Success;
                         return true;
                     }
-                    passphrase = new Passphrase(e.Passphrase);
+                    passphrase = new V1Passphrase(e.Passphrase);
                     e.AxCryptDocument = Factory.New<AxCryptFile>().Document(sourceFileInfo, passphrase.DerivedPassphrase, _progress);
                     if (!e.AxCryptDocument.PassphraseIsValid)
                     {

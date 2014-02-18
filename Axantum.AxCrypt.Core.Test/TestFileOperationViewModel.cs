@@ -198,7 +198,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestLogOnLogOffWhenLoggedOffAndIdentityKnown()
         {
-            Passphrase passphrase = new Passphrase("a");
+            V1Passphrase passphrase = new V1Passphrase("a");
 
             PassphraseIdentity identity = new PassphraseIdentity("Name", passphrase.DerivedPassphrase);
             Instance.FileSystemState.Identities.Add(identity);

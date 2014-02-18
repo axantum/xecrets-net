@@ -83,6 +83,23 @@ namespace Axantum.AxCrypt.Core.Extensions
             return bytes;
         }
 
+        public static byte[] GetBigEndianBytes(this int value)
+        {
+            if (!OS.Current.IsLittleEndian)
+            {
+                return BitConverter.GetBytes(value);
+            }
+
+            byte[] bytes = new byte[sizeof(int)];
+
+            for (int i = bytes.Length - 1; value != 0 && i >= 0; --i)
+            {
+                bytes[i] = (byte)value;
+                value >>= 8;
+            }
+            return bytes;
+        }
+
         public static T Fallback<T>(this T value, T fallbackValue) where T : IEquatable<T>
         {
             return !value.Equals(default(T)) ? value : fallbackValue;

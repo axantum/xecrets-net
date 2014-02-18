@@ -46,9 +46,9 @@ namespace Axantum.AxCrypt.Core.Test
 
         public delegate void Action<T1, T2, T3, T4, T5>(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5);
 
-        public Action<IRuntimeFileInfo, IRuntimeFileInfo, Passphrase, AxCryptOptions, IProgressContext> EncryptMock { get; set; }
+        public Action<IRuntimeFileInfo, IRuntimeFileInfo, V1Passphrase, AxCryptOptions, IProgressContext> EncryptMock { get; set; }
 
-        public override void Encrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, Passphrase passphrase, AxCryptOptions options, IProgressContext progress)
+        public override void Encrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, V1Passphrase passphrase, AxCryptOptions options, IProgressContext progress)
         {
             EncryptMock(sourceFile, destinationFile, passphrase, options, progress);
         }

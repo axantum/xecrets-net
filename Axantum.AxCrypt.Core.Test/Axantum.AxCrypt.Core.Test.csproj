@@ -99,6 +99,7 @@
     <Compile Include="TestFileOperationsController.cs" />
     <Compile Include="TestFileOperationViewModel.cs" />
     <Compile Include="TestFileSystemStateActions.cs" />
+    <Compile Include="TestPbkdf2HmacSha512.cs" />
     <Compile Include="TestV1AesCrypto.cs" />
     <Compile Include="TestSymmetricIV.cs" />
     <Compile Include="TestSymmetricKey.cs" />

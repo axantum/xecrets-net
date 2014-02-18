@@ -26,13 +26,16 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
 using NUnit.Framework;
 using System;
+using System.Linq;
+using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public static class TestPassphrase
+    public static class TestPbkdf2HmacSha512
     {
         [SetUp]
         public static void Setup()
@@ -47,16 +50,13 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestPassphraseConstructor()
+        public static void TestCase1StackOverflow()
         {
-            V1Passphrase passphrase = new V1Passphrase("A Passphrase");
-            SymmetricKey derivedKey = passphrase.DerivedPassphrase;
-            Assert.That(derivedKey.Length, Is.EqualTo(16), "The default derived key is 128 bits.");
+            byte[] expected = "d197b1b33db0143e018b12f3d1d1479e6cdebdcc97c5c0f87f6902e072f457b5143f30602641b3d55cd335988cb36b84376060ecd532e039b742a239434af2d5".FromHex();
 
-            Assert.Throws<ArgumentNullException>(() =>
-            {
-                passphrase = new V1Passphrase(null);
-            });
+            byte[] actual = new Pbkdf2HmacSha512("password", Encoding.ASCII.GetBytes("salt"), 4096).GetBytes();
+
+            Assert.That(actual.IsEquivalentTo(expected));
         }
     }
 }

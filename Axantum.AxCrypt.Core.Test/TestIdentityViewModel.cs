@@ -53,7 +53,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestLogOnExistingIdentity()
         {
-            Passphrase passphrase = new Passphrase("p");
+            V1Passphrase passphrase = new V1Passphrase("p");
 
             PassphraseIdentity id = new PassphraseIdentity("Test", passphrase.DerivedPassphrase);
             Instance.FileSystemState.Identities.Add(id);
@@ -72,7 +72,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestLogOnExistingIdentityWithCancel()
         {
-            Passphrase passphrase = new Passphrase("p");
+            V1Passphrase passphrase = new V1Passphrase("p");
 
             PassphraseIdentity id = new PassphraseIdentity("Test", passphrase.DerivedPassphrase);
             Instance.FileSystemState.Identities.Add(id);
@@ -92,7 +92,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestLogOnLogOffWhenLoggedOn()
         {
-            Passphrase passphrase = new Passphrase("p");
+            V1Passphrase passphrase = new V1Passphrase("p");
 
             PassphraseIdentity id = new PassphraseIdentity("Test", passphrase.DerivedPassphrase);
             Instance.FileSystemState.Identities.Add(id);
@@ -129,7 +129,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(wasCreateNew, Is.True, "Logging on event should be with Create New set.");
             Assert.That(Instance.KnownKeys.IsLoggedOn, Is.True, "Should be logged on.");
-            Assert.That(Instance.KnownKeys.DefaultEncryptionKey.Thumbprint, Is.EqualTo(new Passphrase("ccc").DerivedPassphrase.Thumbprint));
+            Assert.That(Instance.KnownKeys.DefaultEncryptionKey.Thumbprint, Is.EqualTo(new V1Passphrase("ccc").DerivedPassphrase.Thumbprint));
             Assert.That(Instance.FileSystemState.Identities.Count(), Is.EqualTo(1));
             Assert.That(Instance.FileSystemState.Identities.First().Name, Is.EqualTo("New User Passphrase"));
         }
@@ -165,14 +165,14 @@ namespace Axantum.AxCrypt.Core.Test
             ivm.AskForLogOnOrDecryptPassphrase.Execute(@"C:\Folder\File1-txt.axx");
 
             Assert.That(ivm.PassphraseText, Is.EqualTo("p"));
-            Assert.That(Instance.KnownKeys.DefaultEncryptionKey.Thumbprint, Is.EqualTo(new Passphrase("p").DerivedPassphrase.Thumbprint));
+            Assert.That(Instance.KnownKeys.DefaultEncryptionKey.Thumbprint, Is.EqualTo(new V1Passphrase("p").DerivedPassphrase.Thumbprint));
             Assert.That(id.Thumbprint, Is.EqualTo(SymmetricKey.Zero128.Thumbprint));
         }
 
         [Test]
         public static void AskForLogOnOrDecryptPassphraseActionActiveFile()
         {
-            SymmetricKey key = new Passphrase("p").DerivedPassphrase;
+            SymmetricKey key = new V1Passphrase("p").DerivedPassphrase;
 
             ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(@"C:\Folder\File1-txt.axx"), Factory.New<IRuntimeFileInfo>(@"C:\Folder\File1.txt"), key, ActiveFileStatus.NotDecrypted);
             Instance.FileSystemState.Add(activeFile);
@@ -195,7 +195,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void AskForLogOnOrDecryptPassphraseActionActiveFileWithExistingIdentity()
         {
-            SymmetricKey key = new Passphrase("p").DerivedPassphrase;
+            SymmetricKey key = new V1Passphrase("p").DerivedPassphrase;
 
             ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(@"C:\Folder\File1-txt.axx"), Factory.New<IRuntimeFileInfo>(@"C:\Folder\File1.txt"), key, ActiveFileStatus.NotDecrypted);
             Instance.FileSystemState.Add(activeFile);
@@ -221,7 +221,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void AskForLogOnPassphraseAction()
         {
-            SymmetricKey key = new Passphrase("ppp").DerivedPassphrase;
+            SymmetricKey key = new V1Passphrase("ppp").DerivedPassphrase;
 
             PassphraseIdentity id = new PassphraseIdentity("Test User", key);
 
@@ -240,7 +240,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void AskForLogOnPassphraseActionWithCancel()
         {
-            SymmetricKey key = new Passphrase("ppp").DerivedPassphrase;
+            SymmetricKey key = new V1Passphrase("ppp").DerivedPassphrase;
 
             PassphraseIdentity id = new PassphraseIdentity("Test User", key);
 
@@ -278,7 +278,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(defaultPassphrase, Is.EqualTo("xxx"));
             Assert.That(ivm.PassphraseText, Is.EqualTo("aaa"));
-            Assert.That(Instance.KnownKeys.DefaultEncryptionKey.Thumbprint, Is.EqualTo(new Passphrase("aaa").DerivedPassphrase.Thumbprint));
+            Assert.That(Instance.KnownKeys.DefaultEncryptionKey.Thumbprint, Is.EqualTo(new V1Passphrase("aaa").DerivedPassphrase.Thumbprint));
 
             PassphraseIdentity id = Instance.FileSystemState.Identities.FirstOrDefault(i => i.Name == "New User Passphrase");
             Assert.That(id.Thumbprint, Is.EqualTo(Instance.KnownKeys.DefaultEncryptionKey.Thumbprint));
@@ -314,7 +314,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void AskForNewLogOnPassphraseWithKnownIdentity()
         {
-            Passphrase passphrase = new Passphrase("aaa");
+            V1Passphrase passphrase = new V1Passphrase("aaa");
             PassphraseIdentity id = new PassphraseIdentity("Test User", passphrase.DerivedPassphrase);
             Instance.FileSystemState.Identities.Add(id);
 
