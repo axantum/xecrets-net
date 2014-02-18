@@ -55,6 +55,11 @@ namespace Axantum.AxCrypt.Core
             DocumentHeaders = new V1DocumentHeaders(keyEncryptingCrypto, iterations);
         }
 
+        public V1AxCryptDocument(ICrypto keyEncryptingCrypto)
+        {
+            DocumentHeaders = new V1DocumentHeaders(keyEncryptingCrypto);
+        }
+
         public V1DocumentHeaders DocumentHeaders { get; private set; }
 
         public bool PassphraseIsValid { get; set; }

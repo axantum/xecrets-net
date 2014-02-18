@@ -43,24 +43,29 @@ namespace Axantum.AxCrypt.Core.Header
         private ICrypto _keyEncryptingCrypto;
 
         public V1DocumentHeaders(ICrypto keyEncryptingCrypto, long iterations)
+            : this(keyEncryptingCrypto)
         {
-            _keyEncryptingCrypto = keyEncryptingCrypto;
-
-            _headers.HeaderBlocks.Add(new PreambleHeaderBlock());
-            _headers.HeaderBlocks.Add(new VersionHeaderBlock(_version));
             _headers.HeaderBlocks.Add(new V1KeyWrap1HeaderBlock(keyEncryptingCrypto, iterations));
-            _headers.HeaderBlocks.Add(new V1EncryptionInfoHeaderBlock());
-            _headers.HeaderBlocks.Add(new V1CompressionHeaderBlock());
-            _headers.HeaderBlocks.Add(new FileInfoHeaderBlock());
-            _headers.HeaderBlocks.Add(new V1UnicodeFileNameInfoHeaderBlock());
-            _headers.HeaderBlocks.Add(new V1FileNameInfoHeaderBlock());
-            _headers.HeaderBlocks.Add(new DataHeaderBlock());
 
             SetMasterKeyForEncryptedHeaderBlocks(_headers.HeaderBlocks);
 
             V1EncryptionInfoHeaderBlock encryptionInfoHeaderBlock = _headers.FindHeaderBlock<V1EncryptionInfoHeaderBlock>();
             encryptionInfoHeaderBlock.IV = new SymmetricIV(128);
             encryptionInfoHeaderBlock.PlaintextLength = 0;
+        }
+
+        public V1DocumentHeaders(ICrypto keyEncryptingCrypto)
+        {
+            _keyEncryptingCrypto = keyEncryptingCrypto;
+
+            _headers.HeaderBlocks.Add(new PreambleHeaderBlock());
+            _headers.HeaderBlocks.Add(new VersionHeaderBlock(_version));
+            _headers.HeaderBlocks.Add(new V1EncryptionInfoHeaderBlock());
+            _headers.HeaderBlocks.Add(new V1CompressionHeaderBlock());
+            _headers.HeaderBlocks.Add(new FileInfoHeaderBlock());
+            _headers.HeaderBlocks.Add(new V1UnicodeFileNameInfoHeaderBlock());
+            _headers.HeaderBlocks.Add(new V1FileNameInfoHeaderBlock());
+            _headers.HeaderBlocks.Add(new DataHeaderBlock());
         }
 
         public V1DocumentHeaders(V1DocumentHeaders documentHeaders)
