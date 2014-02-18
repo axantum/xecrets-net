@@ -148,11 +148,6 @@ namespace Axantum.AxCrypt.Core.Header
             }
         }
 
-        public void SetCurrentVersion()
-        {
-            _headers.SetCurrentVersion(_version);
-        }
-
         public void WriteStartWithHmac(V2HmacStream hmacStream)
         {
             if (hmacStream == null)

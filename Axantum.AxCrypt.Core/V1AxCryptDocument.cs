@@ -50,9 +50,9 @@ namespace Axantum.AxCrypt.Core
 
         private long _expectedTotalHmacLength = 0;
 
-        public V1AxCryptDocument(ICrypto keyEncryptingCrypto)
+        public V1AxCryptDocument(ICrypto keyEncryptingCrypto, long iterations)
         {
-            DocumentHeaders = new V1DocumentHeaders(keyEncryptingCrypto);
+            DocumentHeaders = new V1DocumentHeaders(keyEncryptingCrypto, iterations);
         }
 
         public V1DocumentHeaders DocumentHeaders { get; private set; }

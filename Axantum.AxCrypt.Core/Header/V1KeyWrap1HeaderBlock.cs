@@ -38,10 +38,10 @@ namespace Axantum.AxCrypt.Core.Header
         {
         }
 
-        public V1KeyWrap1HeaderBlock(ICrypto keyEncryptingCrypto)
+        public V1KeyWrap1HeaderBlock(ICrypto keyEncryptingCrypto, long iterations)
             : this(new byte[44])
         {
-            Initialize(keyEncryptingCrypto);
+            Initialize(keyEncryptingCrypto, iterations);
         }
 
         public override object Clone()
@@ -129,10 +129,9 @@ namespace Axantum.AxCrypt.Core.Header
             return unwrappedKeyData;
         }
 
-        private void Initialize(ICrypto keyEncryptingCrypto)
+        private void Initialize(ICrypto keyEncryptingCrypto, long iterations)
         {
             SymmetricKey masterKey = new SymmetricKey(keyEncryptingCrypto.Key.Length * 8);
-            long iterations = Instance.UserSettings.KeyWrapIterations;
             KeyWrapSalt salt = new KeyWrapSalt(masterKey.Length);
             using (KeyWrap keyWrap = new KeyWrap(keyEncryptingCrypto, salt, iterations, KeyWrapMode.AxCrypt))
             {

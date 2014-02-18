@@ -478,7 +478,7 @@ namespace Axantum.AxCrypt.Core.Test
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
             axCryptFileMock.Setup<IAxCryptDocument>(m => m.Document(It.IsAny<IRuntimeFileInfo>(), It.IsAny<SymmetricKey>(), It.IsAny<IProgressContext>())).Returns((IRuntimeFileInfo fileInfo, SymmetricKey key, IProgressContext progress) =>
             {
-                V1AxCryptDocument acd = new V1AxCryptDocument(new V1AesCrypto(key));
+                V1AxCryptDocument acd = new V1AxCryptDocument(new V1AesCrypto(key), 31);
                 acd.PassphraseIsValid = true;
                 acd.FileName = fileInfo.FullName.Replace("-txt.axx", ".txt");
                 return acd;
@@ -516,7 +516,7 @@ namespace Axantum.AxCrypt.Core.Test
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
             axCryptFileMock.Setup<IAxCryptDocument>(m => m.Document(It.IsAny<IRuntimeFileInfo>(), It.IsAny<SymmetricKey>(), It.IsAny<IProgressContext>())).Returns((IRuntimeFileInfo fileInfo, SymmetricKey key, IProgressContext progress) =>
             {
-                V1AxCryptDocument acd = new V1AxCryptDocument(new V1AesCrypto(key));
+                V1AxCryptDocument acd = new V1AxCryptDocument(new V1AesCrypto(key), 53);
                 acd.PassphraseIsValid = true;
                 acd.DocumentHeaders.FileName = Path.GetFileName(fileInfo.FullName.Replace("-txt.axx", ".txt"));
                 return acd;
@@ -554,7 +554,7 @@ namespace Axantum.AxCrypt.Core.Test
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
             axCryptFileMock.Setup<IAxCryptDocument>(m => m.Document(It.IsAny<IRuntimeFileInfo>(), It.IsAny<SymmetricKey>(), It.IsAny<IProgressContext>())).Returns((IRuntimeFileInfo fileInfo, SymmetricKey key, IProgressContext progress) =>
             {
-                V1AxCryptDocument acd = new V1AxCryptDocument(new V1AesCrypto(key));
+                V1AxCryptDocument acd = new V1AxCryptDocument(new V1AesCrypto(key), 71);
                 acd.PassphraseIsValid = true;
                 acd.DocumentHeaders.FileName = Path.GetFileName(fileInfo.FullName.Replace("-txt.axx", ".txt"));
                 return acd;
@@ -616,7 +616,7 @@ namespace Axantum.AxCrypt.Core.Test
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
             axCryptFileMock.Setup<IAxCryptDocument>(m => m.Document(It.IsAny<IRuntimeFileInfo>(), It.IsAny<SymmetricKey>(), It.IsAny<IProgressContext>())).Returns((IRuntimeFileInfo fileInfo, SymmetricKey key, IProgressContext progress) =>
             {
-                V1AxCryptDocument acd = new V1AxCryptDocument(new V1AesCrypto(key));
+                V1AxCryptDocument acd = new V1AxCryptDocument(new V1AesCrypto(key), 97);
                 acd.PassphraseIsValid = true;
                 acd.DocumentHeaders.FileName = Path.GetFileName(fileInfo.FullName.Replace("-txt.axx", ".txt"));
                 return acd;
@@ -646,7 +646,7 @@ namespace Axantum.AxCrypt.Core.Test
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
             axCryptFileMock.Setup<IAxCryptDocument>(m => m.Document(It.IsAny<IRuntimeFileInfo>(), It.IsAny<SymmetricKey>(), It.IsAny<IProgressContext>())).Returns((IRuntimeFileInfo fileInfo, SymmetricKey key, IProgressContext progress) =>
             {
-                V1AxCryptDocument acd = new V1AxCryptDocument(new V1AesCrypto(key));
+                V1AxCryptDocument acd = new V1AxCryptDocument(new V1AesCrypto(key), 113);
                 acd.PassphraseIsValid = true;
                 acd.DocumentHeaders.FileName = Path.GetFileName(fileInfo.FullName.Replace("-txt.axx", ".txt"));
                 return acd;
@@ -801,7 +801,7 @@ namespace Axantum.AxCrypt.Core.Test
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
             axCryptFileMock.Setup<IAxCryptDocument>(m => m.Document(It.IsAny<IRuntimeFileInfo>(), It.IsAny<SymmetricKey>(), It.IsAny<IProgressContext>())).Returns((IRuntimeFileInfo fileInfo, SymmetricKey key, IProgressContext progress) =>
             {
-                V1AxCryptDocument acd = new V1AxCryptDocument(new V1AesCrypto(key));
+                V1AxCryptDocument acd = new V1AxCryptDocument(new V1AesCrypto(key), 123);
                 acd.PassphraseIsValid = true;
                 acd.DocumentHeaders.FileName = fileInfo.FullName.Replace("-txt.axx", ".txt");
                 return acd;
@@ -838,7 +838,7 @@ namespace Axantum.AxCrypt.Core.Test
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
             axCryptFileMock.Setup<IAxCryptDocument>(m => m.Document(It.IsAny<IRuntimeFileInfo>(), It.IsAny<SymmetricKey>(), It.IsAny<IProgressContext>())).Returns((IRuntimeFileInfo fileInfo, SymmetricKey key, IProgressContext progress) =>
             {
-                V1AxCryptDocument acd = new V1AxCryptDocument(new V1AesCrypto(key));
+                V1AxCryptDocument acd = new V1AxCryptDocument(new V1AesCrypto(key), 129);
                 if (++count == 2)
                 {
                     acd.PassphraseIsValid = false;

@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt.Core.Test
         private class KeyWrap1HeaderBlockForTest : V1KeyWrap1HeaderBlock
         {
             public KeyWrap1HeaderBlockForTest(ICrypto crypto)
-                : base(crypto)
+                : base(crypto, 13)
             {
             }
 

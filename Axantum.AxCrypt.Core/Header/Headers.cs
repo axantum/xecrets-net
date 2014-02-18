@@ -88,12 +88,6 @@ namespace Axantum.AxCrypt.Core.Header
             throw new FileFormatException("Premature end of stream.", ErrorStatus.EndOfStream);
         }
 
-        public void SetCurrentVersion(byte[] version)
-        {
-            VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();
-            versionHeaderBlock.SetCurrentVersion(version);
-        }
-
         public VersionHeaderBlock VersionHeaderBlock
         {
             get
