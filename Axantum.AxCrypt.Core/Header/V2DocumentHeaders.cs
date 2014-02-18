@@ -34,7 +34,7 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Header
 {
-    public class V2DocumentHeaders
+    public class V2DocumentHeaders : IDisposable
     {
         private const int HMACKEY_KEYSTREAM_INDEX = 0;
         private const int FILEINFO_KEYSTREAM_INDEX = 256;
@@ -46,6 +46,7 @@ namespace Axantum.AxCrypt.Core.Header
         private static readonly byte[] _version = new byte[] { 4, 0, 2, 0, 0 };
 
         private Headers _headers;
+
         private V2HmacStream _hmacStream;
 
         private ICrypto _keyEncryptingCrypto;
@@ -170,14 +171,14 @@ namespace Axantum.AxCrypt.Core.Header
             dataHeaderBlock.Write(hmacStream);
         }
 
-        public void WriteEndWithHmac(V2HmacStream hmacStream, long plainTextLength, long compressedPlainTextLength)
+        public void WriteEndWithHmac(V2HmacStream hmacStream, long plaintextLength, long compressedPlaintextLength)
         {
             WriteGeneralHeaders(hmacStream);
 
-            V2PlainTextLengthsHeaderBlock lengths = new V2PlainTextLengthsHeaderBlock();
+            V2PlaintextLengthsHeaderBlock lengths = new V2PlaintextLengthsHeaderBlock();
             lengths.HeaderCrypto = new V2AesCrypto(DataEncryptingKey, DataEncryptingIV, LENGTHSINFO_KEYSTREAM_INDEX);
-            lengths.PlainTextLength = plainTextLength;
-            lengths.CompressedPlainTextLength = compressedPlainTextLength;
+            lengths.PlaintextLength = plaintextLength;
+            lengths.CompressedPlaintextLength = compressedPlaintextLength;
             lengths.Write(hmacStream);
 
             V2HmacHeaderBlock hmac = new V2HmacHeaderBlock();
@@ -193,7 +194,7 @@ namespace Axantum.AxCrypt.Core.Header
                 {
                     case HeaderBlockType.Data:
                     case HeaderBlockType.Preamble:
-                    case HeaderBlockType.PlainTextLengths:
+                    case HeaderBlockType.PlaintextLengths:
                         continue;
                 }
                 headerBlock.Write(hmacStream);
@@ -218,7 +219,7 @@ namespace Axantum.AxCrypt.Core.Header
             }
         }
 
-        public ICrypto GetDataCrypto()
+        public ICrypto CreateDataCrypto()
         {
             return new V2AesCrypto(DataEncryptingKey, DataEncryptingIV, DATA_KEYSTREAM_INDEX);
         }
@@ -307,9 +308,33 @@ namespace Axantum.AxCrypt.Core.Header
         {
             get
             {
-                V2HmacHeaderBlock hmacHeaderBlock = _headers.FindHeaderBlock<V2HmacHeaderBlock>(_headers.TrailerBlocks);
+                V2HmacHeaderBlock hmacHeaderBlock = _headers.FindTrailerBlock<V2HmacHeaderBlock>();
                 return hmacHeaderBlock.Hmac;
             }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                DisposeInternal();
+            }
+        }
+
+        private void DisposeInternal()
+        {
+            if (_hmacStream == null)
+            {
+                return;
+            }
+            _hmacStream.Dispose();
+            _hmacStream = null;
         }
     }
 }

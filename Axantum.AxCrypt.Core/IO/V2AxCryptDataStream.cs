@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.Reader;
+using System;
 using System.IO;
 using System.Linq;
-using Axantum.AxCrypt.Core.Header;
-using Axantum.AxCrypt.Core.Reader;
 
 namespace Axantum.AxCrypt.Core.IO
 {
     public class V2AxCryptDataStream : Stream
     {
-        public static readonly int WRITE_CHUNK_SIZE = 65536;
+        public static readonly int WriteChunkSize = 65536;
 
         private AxCryptReader _reader;
 
@@ -72,18 +72,17 @@ namespace Axantum.AxCrypt.Core.IO
 
         public override long Length
         {
-            get { throw new NotImplementedException(); }
+            get { return 0; }
         }
 
         public override long Position
         {
             get
             {
-                throw new NotImplementedException();
+                return 0;
             }
             set
             {
-                throw new NotImplementedException();
             }
         }
 
@@ -169,7 +168,7 @@ namespace Axantum.AxCrypt.Core.IO
         {
             if (_buffer == null)
             {
-                _buffer = new byte[WRITE_CHUNK_SIZE];
+                _buffer = new byte[WriteChunkSize];
                 _offset = 0;
             }
 

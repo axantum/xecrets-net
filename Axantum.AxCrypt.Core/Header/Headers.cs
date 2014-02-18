@@ -64,7 +64,7 @@ namespace Axantum.AxCrypt.Core.Header
             ReadHeadersToLast(TrailerBlocks, reader, HeaderBlockType.V2Hmac);
         }
 
-        private void ReadHeadersToLast(IList<HeaderBlock> headerBlocks, AxCryptReader axCryptReader, HeaderBlockType last)
+        private static void ReadHeadersToLast(IList<HeaderBlock> headerBlocks, AxCryptReader axCryptReader, HeaderBlockType last)
         {
             while (axCryptReader.Read())
             {
@@ -108,7 +108,12 @@ namespace Axantum.AxCrypt.Core.Header
             return FindHeaderBlock<T>(HeaderBlocks);
         }
 
-        public T FindHeaderBlock<T>(IEnumerable<HeaderBlock> headerBlocks) where T : HeaderBlock
+        public T FindTrailerBlock<T>() where T : HeaderBlock
+        {
+            return FindHeaderBlock<T>(TrailerBlocks);
+        }
+
+        private static T FindHeaderBlock<T>(IEnumerable<HeaderBlock> headerBlocks) where T : HeaderBlock
         {
             foreach (HeaderBlock headerBlock in headerBlocks)
             {

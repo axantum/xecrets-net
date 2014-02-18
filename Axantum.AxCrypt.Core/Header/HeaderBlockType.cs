@@ -133,6 +133,6 @@ namespace Axantum.AxCrypt.Core.Header
         /// </summary>
         UnicodeFileNameInfo = 70,
 
-        PlainTextLengths = 101,
+        PlaintextLengths = 101,
     }
 }

@@ -54,79 +54,84 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileTimes()
         {
-            V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new SymmetricKey(256), new SymmetricIV(128)), 10);
+            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new SymmetricKey(256), new SymmetricIV(128)), 10))
+            {
+                DateTime now = DateTime.UtcNow;
+                headers.LastAccessTimeUtc = now;
+                headers.LastWriteTimeUtc = now.AddHours(1);
+                headers.CreationTimeUtc = now.AddHours(2);
 
-            DateTime now = DateTime.UtcNow;
-            headers.LastAccessTimeUtc = now;
-            headers.LastWriteTimeUtc = now.AddHours(1);
-            headers.CreationTimeUtc = now.AddHours(2);
-
-            Assert.That(headers.LastAccessTimeUtc, Is.EqualTo(now));
-            Assert.That(headers.LastWriteTimeUtc, Is.EqualTo(now.AddHours(1)));
-            Assert.That(headers.CreationTimeUtc, Is.EqualTo(now.AddHours(2)));
+                Assert.That(headers.LastAccessTimeUtc, Is.EqualTo(now));
+                Assert.That(headers.LastWriteTimeUtc, Is.EqualTo(now.AddHours(1)));
+                Assert.That(headers.CreationTimeUtc, Is.EqualTo(now.AddHours(2)));
+            }
         }
 
         [Test]
         public static void TestCompression()
         {
-            V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new SymmetricKey(256), new SymmetricIV(128)), 10);
+            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new SymmetricKey(256), new SymmetricIV(128)), 10))
+            {
+                headers.IsCompressed = true;
+                Assert.That(headers.IsCompressed, Is.True);
 
-            headers.IsCompressed = true;
-            Assert.That(headers.IsCompressed, Is.True);
-
-            headers.IsCompressed = false;
-            Assert.That(headers.IsCompressed, Is.False);
+                headers.IsCompressed = false;
+                Assert.That(headers.IsCompressed, Is.False);
+            }
         }
 
         [Test]
         public static void TestUnicodeFileNameShort()
         {
-            V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new SymmetricKey(256), new SymmetricIV(128)), 10);
-
-            headers.FileName = "My Secret Document.txt";
-            Assert.That(headers.FileName, Is.EqualTo("My Secret Document.txt"));
+            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new SymmetricKey(256), new SymmetricIV(128)), 10))
+            {
+                headers.FileName = "My Secret Document.txt";
+                Assert.That(headers.FileName, Is.EqualTo("My Secret Document.txt"));
+            }
         }
 
         [Test]
         public static void TestUnicodeFileNameLong()
         {
-            V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new SymmetricKey(256), new SymmetricIV(128)), 10);
+            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new SymmetricKey(256), new SymmetricIV(128)), 10))
+            {
+                string longName = "When in the Course of human events, it becomes necessary for one people to dissolve the political bands which have connected them with another, and to assume among the powers of the earth, the separate and equal station to which the Laws of Nature and of Nature's God entitle them, a decent respect to the opinions of mankind requires that they should declare the causes which impel them to the separation.";
+                Assert.That(longName.Length, Is.GreaterThan(256));
 
-            string longName = "When in the Course of human events, it becomes necessary for one people to dissolve the political bands which have connected them with another, and to assume among the powers of the earth, the separate and equal station to which the Laws of Nature and of Nature's God entitle them, a decent respect to the opinions of mankind requires that they should declare the causes which impel them to the separation.";
-            Assert.That(longName.Length, Is.GreaterThan(256));
-
-            headers.FileName = longName;
-            Assert.That(headers.FileName, Is.EqualTo(longName));
+                headers.FileName = longName;
+                Assert.That(headers.FileName, Is.EqualTo(longName));
+            }
         }
 
         [Test]
         public static void TestWriteWithHmac()
         {
-            V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new SymmetricKey(256), new SymmetricIV(128)), 20);
-
-            byte[] output;
-            using (MemoryStream outputStream = new MemoryStream())
+            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new SymmetricKey(256), new SymmetricIV(128)), 20))
             {
-                using (V2HmacStream hmacStream = new V2HmacStream(headers.GetHmacKey(), outputStream))
+                byte[] output;
+                using (MemoryStream outputStream = new MemoryStream())
                 {
-                    headers.WriteStartWithHmac(hmacStream);
-                    headers.WriteEndWithHmac(hmacStream, 0, 0);
+                    using (V2HmacStream hmacStream = new V2HmacStream(headers.GetHmacKey(), outputStream))
+                    {
+                        headers.WriteStartWithHmac(hmacStream);
+                        headers.WriteEndWithHmac(hmacStream, 0, 0);
+                    }
+                    output = outputStream.ToArray();
                 }
-                output = outputStream.ToArray();
+
+                byte[] hmacBytesFromHeaders = new byte[V2Hmac.RequiredLength];
+                Array.Copy(output, output.Length - V2Hmac.RequiredLength, hmacBytesFromHeaders, 0, V2Hmac.RequiredLength);
+                V2Hmac hmacFromHeaders = new V2Hmac(hmacBytesFromHeaders);
+
+                byte[] dataToHmac = new byte[output.Length - (V2Hmac.RequiredLength + 5)];
+                Array.Copy(output, 0, dataToHmac, 0, dataToHmac.Length);
+
+                HMACSHA512 hmac = new HMACSHA512(headers.GetHmacKey());
+                hmac.TransformFinalBlock(dataToHmac, 0, dataToHmac.Length);
+                V2Hmac hmacFromCalculation = new V2Hmac(hmac.Hash);
+
+                Assert.That(hmacFromHeaders, Is.EqualTo(hmacFromCalculation));
             }
-
-            byte[] hmacBytesFromHeaders = new byte[V2Hmac.RequiredLength];
-            Array.Copy(output, output.Length - V2Hmac.RequiredLength, hmacBytesFromHeaders, 0, V2Hmac.RequiredLength);
-            V2Hmac hmacFromHeaders = new V2Hmac(hmacBytesFromHeaders);
-
-            byte[] dataToHmac = new byte[output.Length - (V2Hmac.RequiredLength + 5)];
-            Array.Copy(output, 0, dataToHmac, 0, dataToHmac.Length);
-
-            HMACSHA512 hmac = new HMACSHA512(headers.GetHmacKey());
-            hmac.TransformFinalBlock(dataToHmac, 0, dataToHmac.Length);
-            V2Hmac hmacFromCalculation = new V2Hmac(hmac.Hash);
-
-            Assert.That(hmacFromHeaders, Is.EqualTo(hmacFromCalculation));
         }
     }
 }

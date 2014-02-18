@@ -121,8 +121,8 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 using (ICryptoTransform decryptor = aes.CreateDecryptor())
                 {
-                    byte[] plainText = decryptor.TransformFinalBlock(cipherText, 0, cipherText.Length);
-                    return plainText;
+                    byte[] plaintext = decryptor.TransformFinalBlock(cipherText, 0, cipherText.Length);
+                    return plaintext;
                 }
             }
         }

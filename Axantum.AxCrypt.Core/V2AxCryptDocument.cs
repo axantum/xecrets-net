@@ -46,9 +46,9 @@ namespace Axantum.AxCrypt.Core
     /// </summary>
     public class V2AxCryptDocument : IAxCryptDocument
     {
-        private long _plainTextLength;
+        private long _plaintextLength;
 
-        private long _compressedPlainTextLength;
+        private long _compressedPlaintextLength;
 
         public V2AxCryptDocument(ICrypto keyEncryptingCrypto)
         {
@@ -72,9 +72,9 @@ namespace Axantum.AxCrypt.Core
         /// </summary>
         /// <param name="stream">The stream to read from. Will be disposed when this instance is disposed.</param>
         /// <returns>True if the key was valid, false if it was wrong.</returns>
-        public bool Load(Stream stream)
+        public bool Load(Stream inputStream)
         {
-            _reader = new V2AxCryptReader(stream);
+            _reader = new V2AxCryptReader(inputStream);
             PassphraseIsValid = DocumentHeaders.Load(_reader);
             if (!PassphraseIsValid)
             {
@@ -113,7 +113,7 @@ namespace Axantum.AxCrypt.Core
             using (V2HmacStream outputHmacStream = new V2HmacStream(DocumentHeaders.GetHmacKey(), outputStream))
             {
                 DocumentHeaders.WriteStartWithHmac(outputHmacStream);
-                using (ICryptoTransform encryptor = DocumentHeaders.GetDataCrypto().CreateEncryptingTransform())
+                using (ICryptoTransform encryptor = DocumentHeaders.CreateDataCrypto().CreateEncryptingTransform())
                 {
                     using (Stream axCryptDataStream = new V2AxCryptDataStream(outputHmacStream))
                     {
@@ -121,20 +121,20 @@ namespace Axantum.AxCrypt.Core
                         {
                             if (DocumentHeaders.IsCompressed)
                             {
-                                EncryptWithCompressionInternal(DocumentHeaders, inputStream, encryptingStream);
+                                EncryptWithCompressionInternal(inputStream, encryptingStream);
                             }
                             else
                             {
-                                _compressedPlainTextLength = _plainTextLength = inputStream.CopyTo(encryptingStream);
+                                _compressedPlaintextLength = _plaintextLength = inputStream.CopyTo(encryptingStream);
                             }
                         }
                     }
                 }
-                DocumentHeaders.WriteEndWithHmac(outputHmacStream, _plainTextLength, _compressedPlainTextLength);
+                DocumentHeaders.WriteEndWithHmac(outputHmacStream, _plaintextLength, _compressedPlaintextLength);
             }
         }
 
-        private void EncryptWithCompressionInternal(V2DocumentHeaders outputDocumentHeaders, Stream inputStream, CryptoStream encryptingStream)
+        private void EncryptWithCompressionInternal(Stream inputStream, CryptoStream encryptingStream)
         {
             using (ZOutputStream deflatingStream = new ZOutputStream(encryptingStream, -1))
             {
@@ -143,8 +143,8 @@ namespace Axantum.AxCrypt.Core
                 deflatingStream.FlushMode = JZlib.Z_FINISH;
                 deflatingStream.Finish();
 
-                _plainTextLength = deflatingStream.TotalIn;
-                _compressedPlainTextLength = deflatingStream.TotalOut;
+                _plaintextLength = deflatingStream.TotalIn;
+                _compressedPlaintextLength = deflatingStream.TotalOut;
             }
         }
 
@@ -159,7 +159,7 @@ namespace Axantum.AxCrypt.Core
                 throw new InternalErrorException("Passsphrase is not valid!");
             }
 
-            using (ICryptoTransform decryptor = DocumentHeaders.GetDataCrypto().CreateDecryptingTransform())
+            using (ICryptoTransform decryptor = DocumentHeaders.CreateDataCrypto().CreateDecryptingTransform())
             {
                 using (Stream encryptedDataStream = CreateEncryptedDataStream())
                 {
@@ -276,12 +276,16 @@ namespace Axantum.AxCrypt.Core
 
         private void DisposeInternal()
         {
-            if (_reader == null)
+            if (_reader != null)
             {
-                return;
+                _reader.Dispose();
+                _reader = null;
             }
-            _reader.Dispose();
-            _reader = null;
+            if (DocumentHeaders != null)
+            {
+                DocumentHeaders.Dispose();
+                DocumentHeaders = null;
+            }
         }
     }
 }
