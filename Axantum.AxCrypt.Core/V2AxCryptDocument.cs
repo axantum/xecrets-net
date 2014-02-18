@@ -31,7 +31,6 @@ using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.UI;
 using Org.BouncyCastle.Utilities.Zlib;
 using System;
 using System.IO;
@@ -45,7 +44,7 @@ namespace Axantum.AxCrypt.Core
     /// in-memory. File Format Version 4 is only supported by AxCrypt 2.x or higher. It builds on, and is similar to, File Format
     /// Version 3. See the specification titled "AxCrypt Version 2 Algorithms and File Format" for details.
     /// </summary>
-    public class V2AxCryptDocument
+    public class V2AxCryptDocument : IAxCryptDocument
     {
         private long _plainTextLength;
 
@@ -153,7 +152,7 @@ namespace Axantum.AxCrypt.Core
         /// Decrypts the encrypted data to the given stream
         /// </summary>
         /// <param name="outputPlaintextStream">The resulting plain text stream.</param>
-        public void DecryptTo(Stream outputPlaintextStream, IProgressContext progress)
+        public void DecryptTo(Stream outputPlaintextStream)
         {
             if (!PassphraseIsValid)
             {
@@ -164,7 +163,7 @@ namespace Axantum.AxCrypt.Core
             {
                 using (Stream encryptedDataStream = CreateEncryptedDataStream())
                 {
-                    DecryptEncryptedDataStream(outputPlaintextStream, decryptor, encryptedDataStream, progress);
+                    DecryptEncryptedDataStream(outputPlaintextStream, decryptor, encryptedDataStream);
                 }
             }
 
@@ -187,7 +186,7 @@ namespace Axantum.AxCrypt.Core
             return encryptedDataStream;
         }
 
-        private void DecryptEncryptedDataStream(Stream outputPlaintextStream, ICryptoTransform decryptor, Stream encryptedDataStream, IProgressContext progress)
+        private void DecryptEncryptedDataStream(Stream outputPlaintextStream, ICryptoTransform decryptor, Stream encryptedDataStream)
         {
             Exception savedExceptionIfCloseCausesCryptographicException = null;
             try
@@ -230,6 +229,59 @@ namespace Axantum.AxCrypt.Core
             {
                 throw savedExceptionIfCloseCausesCryptographicException;
             }
+        }
+
+        public string FileName
+        {
+            get { return DocumentHeaders.FileName; }
+            set { DocumentHeaders.FileName = value; }
+        }
+
+        public DateTime CreationTimeUtc
+        {
+            get { return DocumentHeaders.CreationTimeUtc; }
+            set { DocumentHeaders.CreationTimeUtc = value; }
+        }
+
+        public DateTime LastAccessTimeUtc
+        {
+            get { return DocumentHeaders.LastAccessTimeUtc; }
+            set { DocumentHeaders.LastAccessTimeUtc = value; }
+        }
+
+        public DateTime LastWriteTimeUtc
+        {
+            get { return DocumentHeaders.LastWriteTimeUtc; }
+            set { DocumentHeaders.LastWriteTimeUtc = value; }
+        }
+
+        public ICrypto KeyEncryptingCrypto
+        {
+            get { return DocumentHeaders.KeyEncryptingCrypto; }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                DisposeInternal();
+            }
+        }
+
+        private void DisposeInternal()
+        {
+            if (_reader == null)
+            {
+                return;
+            }
+            _reader.Dispose();
+            _reader = null;
         }
     }
 }

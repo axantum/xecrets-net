@@ -77,6 +77,11 @@ namespace Axantum.AxCrypt.Core.Header
             get { return _headers; }
         }
 
+        public ICrypto KeyEncryptingCrypto
+        {
+            get { return _keyEncryptingCrypto; }
+        }
+
         public V2HmacStream HmacStream
         {
             get { return _hmacStream; }

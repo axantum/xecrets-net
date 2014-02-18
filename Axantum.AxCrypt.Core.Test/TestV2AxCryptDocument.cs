@@ -28,7 +28,6 @@
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
 using System;
 using System.IO;
@@ -123,10 +122,12 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
-                    V2AxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(new SymmetricKey(256), new SymmetricIV(128)), 100);
-                    document.EncryptTo(inputStream, outputStream, options);
-                    output = outputStream.ToArray();
-                    hmacKey = document.DocumentHeaders.GetHmacKey();
+                    using (V2AxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(new SymmetricKey(256), new SymmetricIV(128)), 100))
+                    {
+                        document.EncryptTo(inputStream, outputStream, options);
+                        output = outputStream.ToArray();
+                        hmacKey = document.DocumentHeaders.GetHmacKey();
+                    }
                 }
             }
 
@@ -227,20 +228,24 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
-                    V2AxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(key, iv), 113);
-                    document.EncryptTo(inputStream, outputStream, options);
-
-                    outputStream.Position = 0;
-                    document = new V2AxCryptDocument(new V2AesCrypto(key, iv));
-                    Assert.That(document.Load(outputStream), Is.True);
-                    byte[] plain;
-                    using (MemoryStream decryptedStream = new MemoryStream())
+                    using (IAxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(key, iv), 113))
                     {
-                        document.DecryptTo(decryptedStream, new ProgressContext());
-                        plain = decryptedStream.ToArray();
-                    }
+                        document.EncryptTo(inputStream, outputStream, options);
 
-                    Assert.That(plain.IsEquivalentTo(text));
+                        outputStream.Position = 0;
+                        using (IAxCryptDocument decryptedDocument = new V2AxCryptDocument(new V2AesCrypto(key, iv)))
+                        {
+                            Assert.That(decryptedDocument.Load(outputStream), Is.True);
+                            byte[] plain;
+                            using (MemoryStream decryptedStream = new MemoryStream())
+                            {
+                                decryptedDocument.DecryptTo(decryptedStream);
+                                plain = decryptedStream.ToArray();
+                            }
+
+                            Assert.That(plain.IsEquivalentTo(text));
+                        }
+                    }
                 }
             }
         }
