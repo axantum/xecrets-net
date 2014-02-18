@@ -378,7 +378,7 @@ namespace Axantum.AxCrypt.Core
         public DateTime LastWriteTimeUtc
         {
             get { return DocumentHeaders.LastWriteTimeUtc; }
-            set { DocumentHeaders.LastAccessTimeUtc = value; }
+            set { DocumentHeaders.LastWriteTimeUtc = value; }
         }
 
         public ICrypto KeyEncryptingCrypto

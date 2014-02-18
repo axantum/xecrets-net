@@ -98,7 +98,7 @@ namespace Axantum.AxCrypt.Core.UI
             return status;
         }
 
-        public virtual FileOperationStatus OpenAndLaunchApplication(string encryptedFile, V1AxCryptDocument document, IProgressContext progress)
+        public virtual FileOperationStatus OpenAndLaunchApplication(string encryptedFile, IAxCryptDocument document, IProgressContext progress)
         {
             if (encryptedFile == null)
             {
@@ -123,7 +123,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
             else
             {
-                encryptedActiveFile = new ActiveFile(encryptedActiveFile, document.DocumentHeaders.KeyEncryptingCrypto.Key);
+                encryptedActiveFile = new ActiveFile(encryptedActiveFile, document.KeyEncryptingCrypto.Key);
             }
 
             _fileSystemState.Add(encryptedActiveFile);
@@ -206,7 +206,7 @@ namespace Axantum.AxCrypt.Core.UI
                 }
                 using (FileLock sourceLock = FileLock.Lock(sourceFileInfo))
                 {
-                    using (V1AxCryptDocument document = Factory.New<AxCryptFile>().Document(sourceFileInfo, key, new ProgressContext()))
+                    using (IAxCryptDocument document = Factory.New<AxCryptFile>().Document(sourceFileInfo, key, new ProgressContext()))
                     {
                         if (!document.PassphraseIsValid)
                         {
@@ -221,9 +221,9 @@ namespace Axantum.AxCrypt.Core.UI
             return destinationActiveFile;
         }
 
-        private static ActiveFile DecryptActiveFileDocument(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFolderInfo, V1AxCryptDocument document, IProgressContext progress)
+        private static ActiveFile DecryptActiveFileDocument(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFolderInfo, IAxCryptDocument document, IProgressContext progress)
         {
-            string destinationName = document.DocumentHeaders.FileName;
+            string destinationName = document.FileName;
             string destinationPath = Path.Combine(destinationFolderInfo.FullName, destinationName);
 
             IRuntimeFileInfo destinationFileInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
@@ -231,7 +231,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 Factory.New<AxCryptFile>().Decrypt(document, destinationFileInfo, AxCryptOptions.SetFileTimes, progress);
             }
-            ActiveFile destinationActiveFile = new ActiveFile(sourceFileInfo, destinationFileInfo, document.DocumentHeaders.KeyEncryptingCrypto.Key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.IgnoreChange);
+            ActiveFile destinationActiveFile = new ActiveFile(sourceFileInfo, destinationFileInfo, document.KeyEncryptingCrypto.Key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.IgnoreChange);
             if (Instance.Log.IsInfoEnabled)
             {
                 Instance.Log.LogInfo("File decrypted from '{0}' to '{1}'".InvariantFormat(sourceFileInfo.FullName, destinationActiveFile.DecryptedFileInfo.FullName));
@@ -265,7 +265,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             foreach (SymmetricKey key in keys)
             {
-                using (V1AxCryptDocument document = Factory.New<AxCryptFile>().Document(destinationActiveFile.EncryptedFileInfo, key, progress))
+                using (IAxCryptDocument document = Factory.New<AxCryptFile>().Document(destinationActiveFile.EncryptedFileInfo, key, progress))
                 {
                     if (document.PassphraseIsValid)
                     {

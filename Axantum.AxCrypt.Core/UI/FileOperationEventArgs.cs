@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public SymmetricKey Key { get; set; }
 
-        public V1AxCryptDocument AxCryptDocument { get; set; }
+        public IAxCryptDocument AxCryptDocument { get; set; }
 
         public FileOperationStatus Status { get; set; }
     }

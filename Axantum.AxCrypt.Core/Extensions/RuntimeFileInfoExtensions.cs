@@ -148,7 +148,7 @@ namespace Axantum.AxCrypt.Core.Extensions
         {
             foreach (SymmetricKey knownKey in Instance.KnownKeys.Keys)
             {
-                using (V1AxCryptDocument document = Factory.New<AxCryptFile>().Document(fileInfo, knownKey, new ProgressContext()))
+                using (IAxCryptDocument document = Factory.New<AxCryptFile>().Document(fileInfo, knownKey, new ProgressContext()))
                 {
                     if (document.PassphraseIsValid)
                     {

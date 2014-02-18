@@ -127,7 +127,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationStatus status;
             FileOperation fileOperation = new FileOperation(Instance.FileSystemState, new SessionNotify());
 
-            using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(new Passphrase("a").DerivedPassphrase)))
+            using (IAxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(new Passphrase("a").DerivedPassphrase)))
             {
                 using (Stream stream = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath).OpenRead())
                 {
@@ -155,7 +155,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             FileOperationStatus status;
             FileOperation fileOperation = new FileOperation(Instance.FileSystemState, new SessionNotify());
-            using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(new Passphrase("a").DerivedPassphrase)))
+            using (IAxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(new Passphrase("a").DerivedPassphrase)))
             {
                 using (Stream stream = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath).OpenRead())
                 {
@@ -173,7 +173,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestOpenAndLaunchOfAxCryptDocumentArgumentNullException()
         {
             string nullString = null;
-            V1AxCryptDocument nullDocument = null;
+            IAxCryptDocument nullDocument = null;
             ProgressContext nullProgressContext = null;
             FileOperation fileOperation = new FileOperation(Instance.FileSystemState, new SessionNotify());
 

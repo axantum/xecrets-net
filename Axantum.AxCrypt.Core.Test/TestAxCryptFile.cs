@@ -68,10 +68,10 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IRuntimeFileInfo sourceFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
             IRuntimeFileInfo destinationFileInfo = sourceFileInfo.CreateEncryptedName();
-            V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(new SymmetricKey(128)));
+            IAxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(new SymmetricKey(128)));
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "decrypted test.txt"));
 
-            V1AxCryptDocument nullDocument = null;
+            IAxCryptDocument nullDocument = null;
             IRuntimeFileInfo nullFileInfo = null;
             SymmetricKey nullKey = null;
             ProgressContext nullProgress = null;
@@ -154,7 +154,7 @@ namespace Axantum.AxCrypt.Core.Test
                 AxCryptFile.Encrypt(sourceFileInfo, destinationStream, new Passphrase("axcrypt").DerivedPassphrase, AxCryptOptions.EncryptWithCompression, new ProgressContext());
             }
 
-            using (V1AxCryptDocument document = Factory.New<AxCryptFile>().Document(destinationFileInfo, new Passphrase("axcrypt").DerivedPassphrase, new ProgressContext()))
+            using (IAxCryptDocument document = Factory.New<AxCryptFile>().Document(destinationFileInfo, new Passphrase("axcrypt").DerivedPassphrase, new ProgressContext()))
             {
                 Assert.That(document.PassphraseIsValid, Is.True, "The passphrase should be ok.");
             }
@@ -185,7 +185,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IRuntimeFileInfo sourceFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
             Passphrase passphrase = new Passphrase("a");
-            using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase.DerivedPassphrase)))
+            using (IAxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase.DerivedPassphrase)))
             {
                 IProgressContext progress = new CancelProgressContext(new ProgressContext(new TimeSpan(0, 0, 0, 0, 100)));
                 progress.Progressing += (object sender, ProgressEventArgs e) =>

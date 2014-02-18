@@ -70,12 +70,12 @@ namespace Axantum.AxCrypt.Core
             {
                 using (Stream destinationStream = destinationFile.OpenWrite())
                 {
-                    using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase.DerivedPassphrase)))
+                    using (IAxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase.DerivedPassphrase)))
                     {
-                        document.DocumentHeaders.FileName = sourceFile.Name;
-                        document.DocumentHeaders.CreationTimeUtc = sourceFile.CreationTimeUtc;
-                        document.DocumentHeaders.LastAccessTimeUtc = sourceFile.LastAccessTimeUtc;
-                        document.DocumentHeaders.LastWriteTimeUtc = sourceFile.LastWriteTimeUtc;
+                        document.FileName = sourceFile.Name;
+                        document.CreationTimeUtc = sourceFile.CreationTimeUtc;
+                        document.LastAccessTimeUtc = sourceFile.LastAccessTimeUtc;
+                        document.LastWriteTimeUtc = sourceFile.LastWriteTimeUtc;
                         document.EncryptTo(sourceStream, destinationStream, options);
                     }
                 }
@@ -107,12 +107,12 @@ namespace Axantum.AxCrypt.Core
 
             using (Stream sourceStream = new ProgressStream(sourceFile.OpenRead(), progress))
             {
-                using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(key)))
+                using (IAxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(key)))
                 {
-                    document.DocumentHeaders.FileName = sourceFile.Name;
-                    document.DocumentHeaders.CreationTimeUtc = sourceFile.CreationTimeUtc;
-                    document.DocumentHeaders.LastAccessTimeUtc = sourceFile.LastAccessTimeUtc;
-                    document.DocumentHeaders.LastWriteTimeUtc = sourceFile.LastWriteTimeUtc;
+                    document.FileName = sourceFile.Name;
+                    document.CreationTimeUtc = sourceFile.CreationTimeUtc;
+                    document.LastAccessTimeUtc = sourceFile.LastAccessTimeUtc;
+                    document.LastWriteTimeUtc = sourceFile.LastWriteTimeUtc;
                     document.EncryptTo(sourceStream, destinationStream, options);
                 }
             }
@@ -222,7 +222,7 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("progress");
             }
-            using (V1AxCryptDocument document = Document(sourceFile, key, new ProgressContext()))
+            using (IAxCryptDocument document = Document(sourceFile, key, new ProgressContext()))
             {
                 if (!document.PassphraseIsValid)
                 {
@@ -259,13 +259,13 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("progress");
             }
             string destinationFileName = null;
-            using (V1AxCryptDocument document = Document(sourceFile, key, new ProgressContext()))
+            using (IAxCryptDocument document = Document(sourceFile, key, new ProgressContext()))
             {
                 if (!document.PassphraseIsValid)
                 {
                     return destinationFileName;
                 }
-                destinationFileName = document.DocumentHeaders.FileName;
+                destinationFileName = document.FileName;
                 IRuntimeFileInfo destinationFullPath = Factory.New<IRuntimeFileInfo>(Path.Combine(destinationDirectory, destinationFileName));
                 Decrypt(document, destinationFullPath, options, progress);
             }
@@ -336,14 +336,14 @@ namespace Axantum.AxCrypt.Core
         public FileOperationStatus DecryptFileUniqueWithWipeOfOriginal(IRuntimeFileInfo fileInfo, SymmetricKey decryptionKey, IProgressContext progress)
         {
             progress.NotifyLevelStart();
-            using (V1AxCryptDocument document = Factory.New<AxCryptFile>().Document(fileInfo, decryptionKey, progress))
+            using (IAxCryptDocument document = Factory.New<AxCryptFile>().Document(fileInfo, decryptionKey, progress))
             {
                 if (!document.PassphraseIsValid)
                 {
                     return FileOperationStatus.Canceled;
                 }
 
-                IRuntimeFileInfo destinationFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(fileInfo.FullName), document.DocumentHeaders.FileName));
+                IRuntimeFileInfo destinationFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(fileInfo.FullName), document.FileName));
                 destinationFileInfo = Factory.New<IRuntimeFileInfo>(destinationFileInfo.FullName.CreateUniqueFile());
                 DecryptFile(document, destinationFileInfo.FullName, progress);
             }
@@ -352,7 +352,7 @@ namespace Axantum.AxCrypt.Core
             return FileOperationStatus.Success;
         }
 
-        public virtual void DecryptFile(V1AxCryptDocument document, string decryptedFileFullName, IProgressContext progress)
+        public virtual void DecryptFile(IAxCryptDocument document, string decryptedFileFullName, IProgressContext progress)
         {
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(decryptedFileFullName);
             Decrypt(document, decryptedFileInfo, AxCryptOptions.SetFileTimes, progress);
@@ -364,7 +364,7 @@ namespace Axantum.AxCrypt.Core
         /// <param name="sourceFile">The source file</param>
         /// <param name="passphrase">The passphrase</param>
         /// <returns>An instance of AxCryptDocument. Use IsPassphraseValid property to determine validity.</returns>
-        public virtual V1AxCryptDocument Document(IRuntimeFileInfo sourceFile, SymmetricKey key, IProgressContext progress)
+        public virtual IAxCryptDocument Document(IRuntimeFileInfo sourceFile, SymmetricKey key, IProgressContext progress)
         {
             if (sourceFile == null)
             {
@@ -379,10 +379,8 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("progress");
             }
 
-            V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(key));
-            Stream stream = new ProgressStream(sourceFile.OpenRead(), progress);
-            progress.AddTotal(stream.Length);
-            document.Load(stream);
+            IAxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(key));
+            document.Load(new ProgressStream(sourceFile.OpenRead(), progress));
             return document;
         }
 

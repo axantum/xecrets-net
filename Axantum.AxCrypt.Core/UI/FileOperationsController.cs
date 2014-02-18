@@ -274,7 +274,7 @@ namespace Axantum.AxCrypt.Core.UI
                 return false;
             }
 
-            IRuntimeFileInfo destination = Factory.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(fileInfo.FullName), _eventArgs.AxCryptDocument.DocumentHeaders.FileName));
+            IRuntimeFileInfo destination = Factory.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(fileInfo.FullName), _eventArgs.AxCryptDocument.FileName));
             _eventArgs.SaveFileFullName = destination.FullName;
             if (destination.Exists)
             {
@@ -325,7 +325,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 if (!_eventArgs.Skip)
                 {
-                    _eventArgs.SaveFileFullName = _eventArgs.AxCryptDocument.DocumentHeaders.FileName;
+                    _eventArgs.SaveFileFullName = _eventArgs.AxCryptDocument.FileName;
                 }
             }
             finally

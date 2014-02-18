@@ -147,16 +147,16 @@ namespace Axantum.AxCrypt.Core.Test
                     Passphrase passphrase = new Passphrase("a");
                     using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase.DerivedPassphrase)))
                     {
-                        document.DocumentHeaders.FileName = "MyFile.txt";
-                        document.DocumentHeaders.CreationTimeUtc = creationTimeUtc;
-                        document.DocumentHeaders.LastAccessTimeUtc = lastAccessTimeUtc;
-                        document.DocumentHeaders.LastWriteTimeUtc = lastWriteTimeUtc;
+                        document.FileName = "MyFile.txt";
+                        document.CreationTimeUtc = creationTimeUtc;
+                        document.LastAccessTimeUtc = lastAccessTimeUtc;
+                        document.LastWriteTimeUtc = lastWriteTimeUtc;
                         VersionHeaderBlock versionHeaderBlock = document.DocumentHeaders.VersionHeaderBlock;
                         versionHeaderBlock.FileVersionMajor = (byte)(versionHeaderBlock.FileVersionMajor + 1);
                         document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithoutCompression);
                     }
                     outputStream.Position = 0;
-                    using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase.DerivedPassphrase)))
+                    using (IAxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase.DerivedPassphrase)))
                     {
                         Assert.Throws<FileFormatException>(() => { document.Load(outputStream); });
                     }
