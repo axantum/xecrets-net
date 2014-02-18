@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.UI;
 using System;
 using System.IO;
 using System.Linq;
@@ -57,15 +56,8 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
         }
 
-        public static long CopyToWithCount(this Stream inputStream, Stream outputStream, Stream realInputStream, IProgressContext progress)
+        public static long CopyTo(this Stream inputStream, Stream outputStream)
         {
-            progress.NotifyLevelStart();
-
-            if (realInputStream.CanSeek)
-            {
-                progress.AddTotal(realInputStream.Length - realInputStream.Position);
-            }
-
             long totalDone = 0;
             byte[] buffer = new byte[OS.Current.StreamBufferSize];
             int bufferWrittenCount = 0;
@@ -85,12 +77,10 @@ namespace Axantum.AxCrypt.Core.Extensions
                 }
                 outputStream.Write(buffer, 0, bufferWrittenCount);
                 outputStream.Flush();
-                progress.AddCount(bufferWrittenCount);
                 totalDone += bufferWrittenCount;
                 bufferWrittenCount = 0;
                 bufferRemainingCount = buffer.Length;
             }
-            progress.NotifyLevelFinished();
             return totalDone;
         }
     }

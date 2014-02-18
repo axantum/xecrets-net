@@ -124,7 +124,7 @@ namespace Axantum.AxCrypt.Core.Test
                 using (MemoryStream outputStream = new MemoryStream())
                 {
                     V2AxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(new SymmetricKey(256), new SymmetricIV(128)), 100);
-                    document.EncryptTo(inputStream, outputStream, options, new ProgressContext());
+                    document.EncryptTo(inputStream, outputStream, options);
                     output = outputStream.ToArray();
                     hmacKey = document.DocumentHeaders.GetHmacKey();
                 }
@@ -228,7 +228,7 @@ namespace Axantum.AxCrypt.Core.Test
                 using (MemoryStream outputStream = new MemoryStream())
                 {
                     V2AxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(key, iv), 113);
-                    document.EncryptTo(inputStream, outputStream, options, new ProgressContext());
+                    document.EncryptTo(inputStream, outputStream, options);
 
                     outputStream.Position = 0;
                     document = new V2AxCryptDocument(new V2AesCrypto(key, iv));

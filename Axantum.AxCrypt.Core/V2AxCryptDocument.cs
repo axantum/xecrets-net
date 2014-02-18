@@ -92,7 +92,7 @@ namespace Axantum.AxCrypt.Core
         /// <param name="outputDocumentHeaders"></param>
         /// <param name="inputStream"></param>
         /// <param name="outputStream"></param>
-        public void EncryptTo(Stream inputStream, Stream outputStream, AxCryptOptions options, IProgressContext progress)
+        public void EncryptTo(Stream inputStream, Stream outputStream, AxCryptOptions options)
         {
             if (inputStream == null)
             {
@@ -101,10 +101,6 @@ namespace Axantum.AxCrypt.Core
             if (outputStream == null)
             {
                 throw new ArgumentNullException("outputStream");
-            }
-            if (progress == null)
-            {
-                throw new ArgumentNullException("progress");
             }
             if (options.HasMask(AxCryptOptions.EncryptWithCompression) && options.HasMask(AxCryptOptions.EncryptWithoutCompression))
             {
@@ -126,11 +122,11 @@ namespace Axantum.AxCrypt.Core
                         {
                             if (DocumentHeaders.IsCompressed)
                             {
-                                EncryptWithCompressionInternal(DocumentHeaders, inputStream, encryptingStream, progress);
+                                EncryptWithCompressionInternal(DocumentHeaders, inputStream, encryptingStream);
                             }
                             else
                             {
-                                _compressedPlainTextLength = _plainTextLength = inputStream.CopyToWithCount(encryptingStream, inputStream, progress);
+                                _compressedPlainTextLength = _plainTextLength = inputStream.CopyTo(encryptingStream);
                             }
                         }
                     }
@@ -139,12 +135,12 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        private void EncryptWithCompressionInternal(V2DocumentHeaders outputDocumentHeaders, Stream inputStream, CryptoStream encryptingStream, IProgressContext progress)
+        private void EncryptWithCompressionInternal(V2DocumentHeaders outputDocumentHeaders, Stream inputStream, CryptoStream encryptingStream)
         {
             using (ZOutputStream deflatingStream = new ZOutputStream(encryptingStream, -1))
             {
                 deflatingStream.FlushMode = JZlib.Z_SYNC_FLUSH;
-                inputStream.CopyToWithCount(deflatingStream, inputStream, progress);
+                inputStream.CopyTo(deflatingStream);
                 deflatingStream.FlushMode = JZlib.Z_FINISH;
                 deflatingStream.Finish();
 
@@ -204,7 +200,7 @@ namespace Axantum.AxCrypt.Core
                         {
                             try
                             {
-                                inflatedPlaintextStream.CopyToWithCount(outputPlaintextStream, encryptedDataStream, progress);
+                                inflatedPlaintextStream.CopyTo(outputPlaintextStream);
                             }
                             catch (Exception ex)
                             {
@@ -220,7 +216,7 @@ namespace Axantum.AxCrypt.Core
                     {
                         try
                         {
-                            plainStream.CopyToWithCount(outputPlaintextStream, encryptedDataStream, progress);
+                            plainStream.CopyTo(outputPlaintextStream);
                         }
                         catch (Exception ex)
                         {

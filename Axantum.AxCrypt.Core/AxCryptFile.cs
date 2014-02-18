@@ -27,7 +27,6 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.UI;
 using System;
@@ -67,7 +66,7 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("progress");
             }
 
-            using (Stream sourceStream = sourceFile.OpenRead())
+            using (Stream sourceStream = new ProgressStream(sourceFile.OpenRead(), progress))
             {
                 using (Stream destinationStream = destinationFile.OpenWrite())
                 {
@@ -77,7 +76,7 @@ namespace Axantum.AxCrypt.Core
                         document.DocumentHeaders.CreationTimeUtc = sourceFile.CreationTimeUtc;
                         document.DocumentHeaders.LastAccessTimeUtc = sourceFile.LastAccessTimeUtc;
                         document.DocumentHeaders.LastWriteTimeUtc = sourceFile.LastWriteTimeUtc;
-                        document.EncryptTo(sourceStream, destinationStream, options, progress);
+                        document.EncryptTo(sourceStream, destinationStream, options);
                     }
                 }
                 if (options.HasMask(AxCryptOptions.SetFileTimes))
@@ -106,7 +105,7 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("progress");
             }
 
-            using (Stream sourceStream = sourceFile.OpenRead())
+            using (Stream sourceStream = new ProgressStream(sourceFile.OpenRead(), progress))
             {
                 using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(key)))
                 {
@@ -114,7 +113,7 @@ namespace Axantum.AxCrypt.Core
                     document.DocumentHeaders.CreationTimeUtc = sourceFile.CreationTimeUtc;
                     document.DocumentHeaders.LastAccessTimeUtc = sourceFile.LastAccessTimeUtc;
                     document.DocumentHeaders.LastWriteTimeUtc = sourceFile.LastWriteTimeUtc;
-                    document.EncryptTo(sourceStream, destinationStream, options, progress);
+                    document.EncryptTo(sourceStream, destinationStream, options);
                 }
             }
         }
@@ -278,7 +277,7 @@ namespace Axantum.AxCrypt.Core
         /// </summary>
         /// <param name="document">The loaded AxCryptDocument</param>
         /// <param name="destinationFile">The destination file</param>
-        public void Decrypt(V1AxCryptDocument document, IRuntimeFileInfo destinationFile, AxCryptOptions options, IProgressContext progress)
+        public void Decrypt(IAxCryptDocument document, IRuntimeFileInfo destinationFile, AxCryptOptions options, IProgressContext progress)
         {
             if (document == null)
             {
@@ -301,7 +300,7 @@ namespace Axantum.AxCrypt.Core
 
                 using (Stream destinationStream = destinationFile.OpenWrite())
                 {
-                    document.DecryptTo(destinationStream, progress);
+                    document.DecryptTo(destinationStream);
                 }
 
                 if (Instance.Log.IsInfoEnabled)
@@ -319,8 +318,7 @@ namespace Axantum.AxCrypt.Core
             }
             if (options.HasMask(AxCryptOptions.SetFileTimes))
             {
-                V1DocumentHeaders headers = document.DocumentHeaders;
-                destinationFile.SetFileTimes(headers.CreationTimeUtc, headers.LastAccessTimeUtc, headers.LastWriteTimeUtc);
+                destinationFile.SetFileTimes(document.CreationTimeUtc, document.LastAccessTimeUtc, document.LastWriteTimeUtc);
             }
         }
 

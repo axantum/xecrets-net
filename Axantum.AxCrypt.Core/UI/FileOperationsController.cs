@@ -400,11 +400,12 @@ namespace Axantum.AxCrypt.Core.UI
             e.AxCryptDocument = null;
             try
             {
+                _progress.NotifyLevelStart();
                 e.OpenFileFullName = sourceFileInfo.FullName;
                 SymmetricKey key;
                 if (sourceFileInfo.TryFindDecryptionKey(out key))
                 {
-                    e.AxCryptDocument = Factory.New<AxCryptFile>().Document(sourceFileInfo, key, new ProgressContext());
+                    e.AxCryptDocument = Factory.New<AxCryptFile>().Document(sourceFileInfo, key, _progress);
                     e.Key = key;
                 }
 
@@ -423,7 +424,7 @@ namespace Axantum.AxCrypt.Core.UI
                         return true;
                     }
                     passphrase = new Passphrase(e.Passphrase);
-                    e.AxCryptDocument = Factory.New<AxCryptFile>().Document(sourceFileInfo, passphrase.DerivedPassphrase, new ProgressContext());
+                    e.AxCryptDocument = Factory.New<AxCryptFile>().Document(sourceFileInfo, passphrase.DerivedPassphrase, _progress);
                     if (!e.AxCryptDocument.PassphraseIsValid)
                     {
                         e.AxCryptDocument.Dispose();
@@ -444,6 +445,10 @@ namespace Axantum.AxCrypt.Core.UI
                 FileOperationStatus status = ioex is FileNotFoundException ? FileOperationStatus.FileDoesNotExist : FileOperationStatus.Exception;
                 e.Status = status;
                 return false;
+            }
+            finally
+            {
+                _progress.NotifyLevelFinished();
             }
             return true;
         }

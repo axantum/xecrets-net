@@ -26,14 +26,13 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.UI;
 using System;
 using System.IO;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core
 {
-    public interface IAxCryptDocument
+    public interface IAxCryptDocument : IDisposable
     {
         bool PassphraseIsValid { get; }
 
@@ -47,10 +46,10 @@ namespace Axantum.AxCrypt.Core
 
         ICrypto KeyEncryptingCrypto { get; }
 
-        bool Load(Stream stream);
+        bool Load(Stream inputStream);
 
-        void EncryptTo(Stream inputStream, Stream outputStream, AxCryptOptions options, IProgressContext progress);
+        void EncryptTo(Stream inputStream, Stream outputStream, AxCryptOptions options);
 
-        void DecryptTo(Stream outputPlaintextStream, IProgressContext progress);
+        void DecryptTo(Stream outputPlaintextStream);
     }
 }

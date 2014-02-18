@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
@@ -41,7 +42,7 @@ using System.Text;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public static class TestAxCryptDocument
+    public static class TestV1AxCryptDocument
     {
         [SetUp]
         public static void Setup()
@@ -167,7 +168,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 using (MemoryStream plaintextStream = new MemoryStream())
                 {
-                    document.DecryptTo(plaintextStream, new ProgressContext());
+                    document.DecryptTo(plaintextStream);
                     Assert.That(Encoding.ASCII.GetString(plaintextStream.GetBuffer(), 0, (int)plaintextStream.Length), Is.EqualTo("HelloWorld"), "Unexpected result of decryption.");
                     Assert.That(document.DocumentHeaders.PlaintextLength, Is.EqualTo(10), "'HelloWorld' should be 10 bytes uncompressed plaintext.");
                 }
@@ -180,17 +181,18 @@ namespace Axantum.AxCrypt.Core.Test
             Passphrase passphrase = new Passphrase("a");
             using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase.DerivedPassphrase)))
             {
-                bool keyIsOk = document.Load(FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
+                IProgressContext progress = new CancelProgressContext(new ProgressContext(new TimeSpan(0, 0, 0, 0, 100)));
+                progress.Progressing += (object sender, ProgressEventArgs e) =>
+                {
+                    progress.Cancel = true;
+                };
+                bool keyIsOk = document.Load(new ProgressStream(FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt), progress));
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 using (MemoryStream plaintextStream = new MemoryStream())
                 {
-                    IProgressContext progress = new CancelProgressContext(new ProgressContext(TimeSpan.Zero));
-                    progress.Progressing += (object sender, ProgressEventArgs e) =>
-                    {
-                        progress.Cancel = true;
-                    };
-
-                    Assert.Throws<OperationCanceledException>(() => { document.DecryptTo(plaintextStream, progress); });
+                    FakeRuntimeEnvironment environment = (FakeRuntimeEnvironment)OS.Current;
+                    environment.CurrentTiming.CurrentTiming = new TimeSpan(0, 0, 0, 0, 100);
+                    Assert.Throws<OperationCanceledException>(() => { document.DecryptTo(plaintextStream); });
                 }
             }
         }
@@ -213,7 +215,7 @@ namespace Axantum.AxCrypt.Core.Test
                     Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                     using (MemoryStream plaintextStream = new MemoryStream())
                     {
-                        Assert.Throws<CryptographicException>(() => { document.DecryptTo(plaintextStream, new ProgressContext()); });
+                        Assert.Throws<CryptographicException>(() => { document.DecryptTo(plaintextStream); });
                     }
                 }
             }
@@ -233,7 +235,7 @@ namespace Axantum.AxCrypt.Core.Test
                     Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                     using (MemoryStream plaintextStream = new MemoryStream())
                     {
-                        Assert.That(() => { document.DecryptTo(plaintextStream, new ProgressContext()); }, Throws.InstanceOf<Exception>());
+                        Assert.That(() => { document.DecryptTo(plaintextStream); }, Throws.InstanceOf<Exception>());
                     }
                 }
             }
@@ -245,17 +247,18 @@ namespace Axantum.AxCrypt.Core.Test
             Passphrase passphrase = new Passphrase("Å ä Ö");
             using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase.DerivedPassphrase)))
             {
-                bool keyIsOk = document.Load(FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.david_copperfield_key__aa_ae_oe__ulu_txt));
+                IProgressContext progress = new CancelProgressContext(new ProgressContext(new TimeSpan(0, 0, 0, 0, 100)));
+                bool keyIsOk = document.Load(new ProgressStream(FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.david_copperfield_key__aa_ae_oe__ulu_txt), progress));
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 using (MemoryStream plaintextStream = new MemoryStream())
                 {
-                    IProgressContext progress = new CancelProgressContext(new ProgressContext(TimeSpan.Zero));
                     progress.Progressing += (object sender, ProgressEventArgs e) =>
                     {
                         progress.Cancel = true;
                     };
-
-                    Assert.Throws<OperationCanceledException>(() => { document.DecryptTo(plaintextStream, progress); });
+                    FakeRuntimeEnvironment environment = (FakeRuntimeEnvironment)OS.Current;
+                    environment.CurrentTiming.CurrentTiming = new TimeSpan(0, 0, 0, 0, 100);
+                    Assert.Throws<OperationCanceledException>(() => { document.DecryptTo(plaintextStream); });
                 }
             }
         }
@@ -272,7 +275,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(document.DocumentHeaders.FileName, Is.EqualTo("readme.html"), "The file name should be 'readme.html'.");
                 using (MemoryStream plaintextStream = new MemoryStream())
                 {
-                    document.DecryptTo(plaintextStream, new ProgressContext());
+                    document.DecryptTo(plaintextStream);
                     Assert.That(document.DocumentHeaders.PlaintextLength, Is.EqualTo(3736), "The compressed content should be recorded as 3736 bytes in the headers.");
                     Assert.That(plaintextStream.Length, Is.EqualTo(9528), "The file should be 9528 bytes uncompressed plaintext in actual fact.");
                 }
@@ -286,7 +289,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 using (MemoryStream plaintextStream = new MemoryStream())
                 {
-                    Assert.Throws<InternalErrorException>(() => { document.DecryptTo(plaintextStream, new ProgressContext()); });
+                    Assert.Throws<InternalErrorException>(() => { document.DecryptTo(plaintextStream); });
                 }
             }
         }
@@ -304,7 +307,7 @@ namespace Axantum.AxCrypt.Core.Test
                     Assert.Throws<FileFormatException>(() => { document.Load(testStream); });
                     using (MemoryStream plaintextStream = new MemoryStream())
                     {
-                        Assert.Throws<InternalErrorException>(() => { document.DecryptTo(plaintextStream, new ProgressContext()); });
+                        Assert.Throws<InternalErrorException>(() => { document.DecryptTo(plaintextStream); });
                     }
                 }
             }
@@ -320,7 +323,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 using (MemoryStream plaintextStream = new MemoryStream())
                 {
-                    document.DecryptTo(plaintextStream, new ProgressContext());
+                    document.DecryptTo(plaintextStream);
                     string text = Encoding.UTF8.GetString(plaintextStream.GetBuffer(), 0, (int)plaintextStream.Length);
                     Assert.That(text, Is.StringStarting("The Project Gutenberg EBook of David Copperfield, by Charles Dickens"), "Unexpected start of David Copperfield.");
                     Assert.That(text, Is.StringEnding("subscribe to our email newsletter to hear about new eBooks." + (Char)13 + (Char)10), "Unexpected end of David Copperfield.");
@@ -338,7 +341,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 bool keyIsOk = document.Load(FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-                document.DecryptTo(Stream.Null, new ProgressContext());
+                document.DecryptTo(Stream.Null);
             }
         }
 
@@ -353,7 +356,7 @@ namespace Axantum.AxCrypt.Core.Test
                 document.DocumentHeaders.Headers.Hmac = new V1Hmac(new byte[V1Hmac.RequiredLength]);
                 Assert.Throws<Axantum.AxCrypt.Core.Runtime.InvalidDataException>(() =>
                 {
-                    document.DecryptTo(Stream.Null, new ProgressContext());
+                    document.DecryptTo(Stream.Null);
                 });
             }
         }
@@ -418,7 +421,7 @@ namespace Axantum.AxCrypt.Core.Test
                     outputDocumentHeaders.SetCurrentVersion();
                     outputDocumentHeaders.RewrapMasterKey(new V1AesCrypto(newPassphrase.DerivedPassphrase));
 
-                    document.CopyEncryptedTo(outputDocumentHeaders, changedStream, new ProgressContext());
+                    document.CopyEncryptedTo(outputDocumentHeaders, changedStream);
                     changedStream.Position = 0;
                     using (V1AxCryptDocument changedDocument = new V1AxCryptDocument(new V1AesCrypto(newPassphrase.DerivedPassphrase)))
                     {
@@ -427,7 +430,7 @@ namespace Axantum.AxCrypt.Core.Test
 
                         using (MemoryStream plaintextStream = new MemoryStream())
                         {
-                            changedDocument.DecryptTo(plaintextStream, new ProgressContext());
+                            changedDocument.DecryptTo(plaintextStream);
                             Assert.That(Encoding.ASCII.GetString(plaintextStream.GetBuffer(), 0, (int)plaintextStream.Length), Is.EqualTo("HelloWorld"), "Unexpected result of decryption.");
                             Assert.That(changedDocument.DocumentHeaders.PlaintextLength, Is.EqualTo(10), "'HelloWorld' should be 10 bytes uncompressed plaintext.");
                         }
@@ -453,7 +456,7 @@ namespace Axantum.AxCrypt.Core.Test
                         document.DocumentHeaders.CreationTimeUtc = creationTimeUtc;
                         document.DocumentHeaders.LastAccessTimeUtc = lastAccessTimeUtc;
                         document.DocumentHeaders.LastWriteTimeUtc = lastWriteTimeUtc;
-                        document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithCompression, new ProgressContext());
+                        document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithCompression);
                     }
                     outputStream.Position = 0;
                     using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase.DerivedPassphrase)))
@@ -466,7 +469,7 @@ namespace Axantum.AxCrypt.Core.Test
                         Assert.That(document.DocumentHeaders.LastWriteTimeUtc, Is.EqualTo(lastWriteTimeUtc));
                         using (MemoryStream plaintextStream = new MemoryStream())
                         {
-                            document.DecryptTo(plaintextStream, new ProgressContext());
+                            document.DecryptTo(plaintextStream);
                             Assert.That(document.DocumentHeaders.UncompressedLength, Is.EqualTo(17), "'AxCrypt is Great!' should be 17 bytes uncompressed plaintext.");
                             Assert.That(Encoding.ASCII.GetString(plaintextStream.GetBuffer(), 0, (int)plaintextStream.Length), Is.EqualTo("AxCrypt is Great!"), "Unexpected result of decryption.");
                         }
@@ -492,7 +495,7 @@ namespace Axantum.AxCrypt.Core.Test
                         document.DocumentHeaders.CreationTimeUtc = creationTimeUtc;
                         document.DocumentHeaders.LastAccessTimeUtc = lastAccessTimeUtc;
                         document.DocumentHeaders.LastWriteTimeUtc = lastWriteTimeUtc;
-                        document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithoutCompression, new ProgressContext());
+                        document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithoutCompression);
                     }
                     outputStream.Position = 0;
                     using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase.DerivedPassphrase)))
@@ -505,7 +508,7 @@ namespace Axantum.AxCrypt.Core.Test
                         Assert.That(document.DocumentHeaders.LastWriteTimeUtc, Is.EqualTo(lastWriteTimeUtc));
                         using (MemoryStream plaintextStream = new MemoryStream())
                         {
-                            document.DecryptTo(plaintextStream, new ProgressContext());
+                            document.DecryptTo(plaintextStream);
                             Assert.That(document.DocumentHeaders.UncompressedLength, Is.EqualTo(-1), "'AxCrypt is Great!' should not return a value at all for uncompressed, since it was not compressed.");
                             Assert.That(document.DocumentHeaders.PlaintextLength, Is.EqualTo(17), "'AxCrypt is Great!' is 17 bytes plaintext length.");
                             Assert.That(Encoding.ASCII.GetString(plaintextStream.GetBuffer(), 0, (int)plaintextStream.Length), Is.EqualTo("AxCrypt is Great!"), "Unexpected result of decryption.");
@@ -581,20 +584,19 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(new SymmetricKey(128))))
                     {
-                        Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(null, outputStream, AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
-                        Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(inputStream, null, AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
-                        Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithCompression, null); });
-                        Assert.Throws<ArgumentException>(() => { document.EncryptTo(inputStream, new NonSeekableStream(), AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
-                        Assert.Throws<ArgumentException>(() => { document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithCompression | AxCryptOptions.EncryptWithoutCompression, new ProgressContext()); });
-                        Assert.Throws<ArgumentException>(() => { document.EncryptTo(inputStream, outputStream, AxCryptOptions.None, new ProgressContext()); });
+                        Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(inputStream, null, AxCryptOptions.EncryptWithCompression); });
+                        Assert.Throws<ArgumentNullException>(() => { document.EncryptTo(null, outputStream, AxCryptOptions.EncryptWithCompression); });
+                        Assert.Throws<ArgumentException>(() => { document.EncryptTo(inputStream, new NonSeekableStream(), AxCryptOptions.EncryptWithCompression); });
+                        Assert.Throws<ArgumentException>(() => { document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithCompression | AxCryptOptions.EncryptWithoutCompression); });
+                        Assert.Throws<ArgumentException>(() => { document.EncryptTo(inputStream, outputStream, AxCryptOptions.None); });
 
                         Passphrase passphrase = new Passphrase("a");
                         V1DocumentHeaders headers = new V1DocumentHeaders(new V1AesCrypto(passphrase.DerivedPassphrase));
 
-                        Assert.Throws<ArgumentNullException>(() => { document.CopyEncryptedTo(null, outputStream, new ProgressContext()); });
-                        Assert.Throws<ArgumentNullException>(() => { document.CopyEncryptedTo(headers, null, new ProgressContext()); });
-                        Assert.Throws<ArgumentException>(() => { document.CopyEncryptedTo(headers, new NonSeekableStream(), new ProgressContext()); });
-                        Assert.Throws<InternalErrorException>(() => { document.CopyEncryptedTo(headers, outputStream, new ProgressContext()); });
+                        Assert.Throws<ArgumentNullException>(() => { document.CopyEncryptedTo(null, outputStream); });
+                        Assert.Throws<ArgumentNullException>(() => { document.CopyEncryptedTo(headers, null); });
+                        Assert.Throws<ArgumentException>(() => { document.CopyEncryptedTo(headers, new NonSeekableStream()); });
+                        Assert.Throws<InternalErrorException>(() => { document.CopyEncryptedTo(headers, outputStream); });
                     }
                 }
             }
@@ -629,7 +631,7 @@ namespace Axantum.AxCrypt.Core.Test
                     document.DocumentHeaders.Headers.Hmac = new V1Hmac(modifiedHmacBytes);
                     Assert.Throws<Axantum.AxCrypt.Core.Runtime.InvalidDataException>(() =>
                     {
-                        document.CopyEncryptedTo(outputDocumentHeaders, changedStream, new ProgressContext());
+                        document.CopyEncryptedTo(outputDocumentHeaders, changedStream);
                     });
                 }
             }

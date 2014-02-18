@@ -123,13 +123,13 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo destinationFileInfo = sourceFileInfo.CreateEncryptedName();
             Assert.That(destinationFileInfo.Name, Is.EqualTo("test-txt.axx"), "Wrong encrypted file name based on the plain text file name.");
             Factory.New<AxCryptFile>().Encrypt(sourceFileInfo, destinationFileInfo, new Passphrase("axcrypt"), AxCryptOptions.EncryptWithCompression, new ProgressContext());
-            using (V1AxCryptDocument document = Factory.New<AxCryptFile>().Document(destinationFileInfo, new Passphrase("axcrypt").DerivedPassphrase, new ProgressContext()))
+            using (IAxCryptDocument document = Factory.New<AxCryptFile>().Document(destinationFileInfo, new Passphrase("axcrypt").DerivedPassphrase, new ProgressContext()))
             {
                 Assert.That(document.PassphraseIsValid, Is.True, "The passphrase should be ok.");
-                Assert.That(document.DocumentHeaders.FileName, Is.EqualTo("test.txt"), "Unexpected file name in headers.");
-                Assert.That(document.DocumentHeaders.CreationTimeUtc, Is.EqualTo(FakeRuntimeFileInfo.TestDate1Utc));
-                Assert.That(document.DocumentHeaders.LastAccessTimeUtc, Is.EqualTo(FakeRuntimeFileInfo.TestDate2Utc));
-                Assert.That(document.DocumentHeaders.LastWriteTimeUtc, Is.EqualTo(FakeRuntimeFileInfo.TestDate3Utc));
+                Assert.That(document.FileName, Is.EqualTo("test.txt"), "Unexpected file name in headers.");
+                Assert.That(document.CreationTimeUtc, Is.EqualTo(FakeRuntimeFileInfo.TestDate1Utc));
+                Assert.That(document.LastAccessTimeUtc, Is.EqualTo(FakeRuntimeFileInfo.TestDate2Utc));
+                Assert.That(document.LastWriteTimeUtc, Is.EqualTo(FakeRuntimeFileInfo.TestDate3Utc));
                 IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "decrypted test.txt"));
                 Factory.New<AxCryptFile>().Decrypt(document, decryptedFileInfo, AxCryptOptions.SetFileTimes, new ProgressContext());
                 using (Stream decryptedStream = decryptedFileInfo.OpenRead())
@@ -137,9 +137,9 @@ namespace Axantum.AxCrypt.Core.Test
                     string decrypted = new StreamReader(decryptedStream, Encoding.UTF8).ReadToEnd();
                     Assert.That(decrypted, Is.EqualTo("This is a short file"));
                 }
-                Assert.That(decryptedFileInfo.CreationTimeUtc, Is.EqualTo(document.DocumentHeaders.CreationTimeUtc), "We're expecting file times to be set as the original from the headers.");
-                Assert.That(decryptedFileInfo.LastAccessTimeUtc, Is.EqualTo(document.DocumentHeaders.LastAccessTimeUtc), "We're expecting file times to be set as the original from the headers.");
-                Assert.That(decryptedFileInfo.LastWriteTimeUtc, Is.EqualTo(document.DocumentHeaders.LastWriteTimeUtc), "We're expecting file times to be set as the original from the headers.");
+                Assert.That(decryptedFileInfo.CreationTimeUtc, Is.EqualTo(document.CreationTimeUtc), "We're expecting file times to be set as the original from the headers.");
+                Assert.That(decryptedFileInfo.LastAccessTimeUtc, Is.EqualTo(document.LastAccessTimeUtc), "We're expecting file times to be set as the original from the headers.");
+                Assert.That(decryptedFileInfo.LastWriteTimeUtc, Is.EqualTo(document.LastWriteTimeUtc), "We're expecting file times to be set as the original from the headers.");
             }
         }
 
@@ -187,18 +187,19 @@ namespace Axantum.AxCrypt.Core.Test
             Passphrase passphrase = new Passphrase("a");
             using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase.DerivedPassphrase)))
             {
-                using (Stream sourceStream = sourceFileInfo.OpenRead())
+                IProgressContext progress = new CancelProgressContext(new ProgressContext(new TimeSpan(0, 0, 0, 0, 100)));
+                progress.Progressing += (object sender, ProgressEventArgs e) =>
+                {
+                    progress.Cancel = true;
+                };
+                using (Stream sourceStream = new ProgressStream(sourceFileInfo.OpenRead(), progress))
                 {
                     bool keyIsOk = document.Load(sourceStream);
                     Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                     IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(_rootPath.PathCombine("Destination", "Decrypted.txt"));
 
-                    IProgressContext progress = new CancelProgressContext(new ProgressContext(TimeSpan.Zero));
-                    progress.Progressing += (object sender, ProgressEventArgs e) =>
-                    {
-                        progress.Cancel = true;
-                    };
-
+                    FakeRuntimeEnvironment environment = (FakeRuntimeEnvironment)OS.Current;
+                    environment.CurrentTiming.CurrentTiming = new TimeSpan(0, 0, 0, 0, 100);
                     Assert.Throws<OperationCanceledException>(() => { Factory.New<AxCryptFile>().Decrypt(document, destinationInfo, AxCryptOptions.None, progress); });
                 }
             }

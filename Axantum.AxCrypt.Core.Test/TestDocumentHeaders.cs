@@ -30,7 +30,6 @@ using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Test.Properties;
-using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
 using System;
 using System.IO;
@@ -113,7 +112,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             SymmetricKey keyEncryptingKey = new SymmetricKey(128);
             V1DocumentHeaders headers = new V1DocumentHeaders(new V1AesCrypto(keyEncryptingKey));
-            Assert.That(headers.KeyEncryptingKey, Is.EqualTo(keyEncryptingKey), "Unexpected key encrypting key retrieved.");
+            Assert.That(headers.KeyEncryptingCrypto.Key, Is.EqualTo(keyEncryptingKey), "Unexpected key encrypting key retrieved.");
         }
 
         [Test]
@@ -154,7 +153,7 @@ namespace Axantum.AxCrypt.Core.Test
                         document.DocumentHeaders.LastWriteTimeUtc = lastWriteTimeUtc;
                         VersionHeaderBlock versionHeaderBlock = document.DocumentHeaders.VersionHeaderBlock;
                         versionHeaderBlock.FileVersionMajor = (byte)(versionHeaderBlock.FileVersionMajor + 1);
-                        document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithoutCompression, new ProgressContext());
+                        document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithoutCompression);
                     }
                     outputStream.Position = 0;
                     using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase.DerivedPassphrase)))

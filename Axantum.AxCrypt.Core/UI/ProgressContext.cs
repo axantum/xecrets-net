@@ -148,7 +148,7 @@ namespace Axantum.AxCrypt.Core.UI
         public void AddCount(long count)
         {
             Invariant();
-            if (count <= 0)
+            if (count < 0)
             {
                 return;
             }

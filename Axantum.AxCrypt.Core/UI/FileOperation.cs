@@ -123,7 +123,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
             else
             {
-                encryptedActiveFile = new ActiveFile(encryptedActiveFile, document.DocumentHeaders.KeyEncryptingKey);
+                encryptedActiveFile = new ActiveFile(encryptedActiveFile, document.DocumentHeaders.KeyEncryptingCrypto.Key);
             }
 
             _fileSystemState.Add(encryptedActiveFile);
@@ -231,7 +231,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 Factory.New<AxCryptFile>().Decrypt(document, destinationFileInfo, AxCryptOptions.SetFileTimes, progress);
             }
-            ActiveFile destinationActiveFile = new ActiveFile(sourceFileInfo, destinationFileInfo, document.DocumentHeaders.KeyEncryptingKey, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.IgnoreChange);
+            ActiveFile destinationActiveFile = new ActiveFile(sourceFileInfo, destinationFileInfo, document.DocumentHeaders.KeyEncryptingCrypto.Key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.IgnoreChange);
             if (Instance.Log.IsInfoEnabled)
             {
                 Instance.Log.LogInfo("File decrypted from '{0}' to '{1}'".InvariantFormat(sourceFileInfo.FullName, destinationActiveFile.DecryptedFileInfo.FullName));

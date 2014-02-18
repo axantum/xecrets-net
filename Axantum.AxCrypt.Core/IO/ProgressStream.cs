@@ -49,6 +49,12 @@ namespace Axantum.AxCrypt.Core.IO
             }
             _stream = stream;
             _progress = progress;
+
+            _progress.NotifyLevelStart();
+            if (stream.CanSeek)
+            {
+                _progress.AddTotal(_stream.Length - _stream.Position);
+            }
         }
 
         public override bool CanRead
@@ -121,24 +127,25 @@ namespace Axantum.AxCrypt.Core.IO
             _progress.AddCount(count);
         }
 
-        private bool _disposed = false;
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                if (_disposed)
-                {
-                    return;
-                }
-                if (_stream != null)
-                {
-                    _stream.Close();
-                    _stream = null;
-                }
-                _disposed = true;
+                DisposeInternal();
             }
             base.Dispose(disposing);
+        }
+
+        private void DisposeInternal()
+        {
+            if (_stream == null)
+            {
+                return;
+            }
+
+            _stream.Close();
+            _stream = null;
+            _progress.NotifyLevelFinished();
         }
     }
 }

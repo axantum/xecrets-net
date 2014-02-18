@@ -160,11 +160,11 @@ namespace Axantum.AxCrypt.Core.Header
             dataHeaderBlock.Write(hmacStream);
         }
 
-        public SymmetricKey KeyEncryptingKey
+        public ICrypto KeyEncryptingCrypto
         {
             get
             {
-                return _keyEncryptingCrypto.Key;
+                return _keyEncryptingCrypto;
             }
         }
 

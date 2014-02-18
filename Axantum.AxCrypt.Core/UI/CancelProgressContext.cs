@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private long _currentCount;
 
-        private bool _canceled;
+        private bool _canceledExceptionThrown;
 
         public CancelProgressContext(IProgressContext progress)
         {
@@ -47,25 +47,23 @@ namespace Axantum.AxCrypt.Core.UI
 
         public void AddCount(long count)
         {
-            ThrowIfCancelled();
-
             _currentCount += count;
             _progress.AddCount(count);
+
+            ThrowIfCancelled();
         }
 
         private void ThrowIfCancelled()
         {
-            if (!Cancel)
+            if (!Cancel || _canceledExceptionThrown)
             {
                 return;
             }
-            if (!_canceled)
-            {
-                _progress.AddCount(_totalCount - _currentCount);
-                _currentCount = _totalCount;
-                _canceled = true;
-                throw new OperationCanceledException("Operation canceled on request.");
-            }
+
+            _progress.AddCount(_totalCount - _currentCount);
+            _currentCount = _totalCount;
+            _canceledExceptionThrown = true;
+            throw new OperationCanceledException("Operation canceled on request.");
         }
 
         public void NotifyLevelStart()

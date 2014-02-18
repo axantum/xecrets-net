@@ -103,7 +103,7 @@
     <Compile Include="TestSymmetricIV.cs" />
     <Compile Include="TestSymmetricKey.cs" />
     <Compile Include="TestSymmetricKeyThumbprint.cs" />
-    <Compile Include="TestAxCryptDocument.cs" />
+    <Compile Include="TestV1AxCryptDocument.cs" />
     <Compile Include="TestAxCryptFile.cs" />
     <Compile Include="TestAxCryptHeaderKeyWrap.cs" />
     <Compile Include="TestAxCryptHMACSHA1.cs" />
