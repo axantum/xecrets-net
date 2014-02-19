@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using System;
 using System.IO;
@@ -71,6 +72,16 @@ namespace Axantum.AxCrypt.Core.Reader
         private void PreventInputStreamDispose()
         {
             InputStream = null;
+        }
+
+        public override ICrypto Crypto(SymmetricKey key)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override ICrypto Crypto(Headers headers, string passphrase)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using System;
 using System.IO;
@@ -78,6 +79,19 @@ namespace Axantum.AxCrypt.Core.Reader
                     return new EncryptedDataPartBlock(dataBlock);
             }
             return new UnrecognizedHeaderBlock(headerBlockType, dataBlock);
+        }
+
+        public override ICrypto Crypto(SymmetricKey key)
+        {
+            return new V2AesCrypto(key);
+        }
+
+        public override ICrypto Crypto(Headers headers, string passphrase)
+        {
+            V2KeyWrapHeaderBlock keyWrap = headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
+            SymmetricKey key = new V2Passphrase(passphrase, keyWrap.GetDerivationSalt(), keyWrap.DerivationIterations, 256).DerivedPassphrase;
+
+            return Crypto(key);
         }
     }
 }

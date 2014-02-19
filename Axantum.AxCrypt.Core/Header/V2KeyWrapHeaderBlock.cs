@@ -83,12 +83,30 @@ namespace Axantum.AxCrypt.Core.Header
             }
         }
 
+        public int DerivationIterations
+        {
+            get
+            {
+                long iterations = GetDataBlockBytesReference().GetLittleEndianValue(PASSPHRASE_DERIVATION_ITERATIONS_OFFSET, PASSPHRASE_DERIVATION_ITERATIONS_LENGTH);
+
+                return (int)iterations;
+            }
+        }
+
         public byte[] GetKeyData(int blockSize, int keyLength)
         {
             byte[] keyData = new byte[keyLength + blockSize + blockSize / 2];
             Array.Copy(GetDataBlockBytesReference(), WRAP_OFFSET, keyData, 0, keyData.Length);
 
             return keyData;
+        }
+
+        public byte[] GetDerivationSalt()
+        {
+            byte[] derivationSalt = new byte[PASSPHRASE_DERIVATION_SALT_MAX_LENGTH];
+            Array.Copy(GetDataBlockBytesReference(), PASSPHRASE_DERIVATION_SALT_OFFSET, derivationSalt, 0, derivationSalt.Length);
+
+            return derivationSalt;
         }
 
         private void Initialize(ICrypto keyEncryptingCrypto, long iterations)

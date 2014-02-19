@@ -50,9 +50,8 @@ namespace Axantum.AxCrypt.Core
 
         private long _compressedPlaintextLength;
 
-        public V2AxCryptDocument(ICrypto keyEncryptingCrypto)
+        public V2AxCryptDocument()
         {
-            DocumentHeaders = new V2DocumentHeaders(keyEncryptingCrypto);
         }
 
         public V2AxCryptDocument(ICrypto keyEncryptingCrypto, long iterations)
@@ -66,12 +65,12 @@ namespace Axantum.AxCrypt.Core
 
         public bool PassphraseIsValid { get; set; }
 
-        public bool Load(Stream inputStream)
+        public bool Load(SymmetricKey key, Stream inputStream)
         {
             Headers headers = new Headers();
             AxCryptReader reader = headers.Load(inputStream);
 
-            return Load(reader, headers);
+            return Load(key, reader, headers);
         }
 
         /// <summary>
@@ -80,9 +79,10 @@ namespace Axantum.AxCrypt.Core
         /// </summary>
         /// <param name="stream">The stream to read from. Will be disposed when this instance is disposed.</param>
         /// <returns>True if the key was valid, false if it was wrong.</returns>
-        public bool Load(AxCryptReader reader, Headers headers)
+        public bool Load(SymmetricKey key, AxCryptReader reader, Headers headers)
         {
             _reader = reader;
+            DocumentHeaders = new V2DocumentHeaders(new V2AesCrypto(key));
             PassphraseIsValid = DocumentHeaders.Load(headers);
             if (!PassphraseIsValid)
             {

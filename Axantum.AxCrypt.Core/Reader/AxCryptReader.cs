@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
@@ -67,6 +68,10 @@ namespace Axantum.AxCrypt.Core.Reader
             }
             CurrentItemType = AxCryptItemType.Data;
         }
+
+        public abstract ICrypto Crypto(SymmetricKey key);
+
+        public abstract ICrypto Crypto(Headers headers, string passphrase);
 
         /// <summary>
         /// Gets the type of the current item

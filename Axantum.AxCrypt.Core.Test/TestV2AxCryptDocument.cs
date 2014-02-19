@@ -122,7 +122,7 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
-                    using (V2AxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(new SymmetricKey(256), new SymmetricIV(128)), 100))
+                    using (V2AxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(new SymmetricKey(256)), 100))
                     {
                         document.EncryptTo(inputStream, outputStream, options);
                         output = outputStream.ToArray();
@@ -220,7 +220,6 @@ namespace Axantum.AxCrypt.Core.Test
         private static void TestEncryptDecryptHelper(int length, AxCryptOptions options)
         {
             SymmetricKey key = new SymmetricKey(256);
-            SymmetricIV iv = new SymmetricIV(128);
             using (MemoryStream inputStream = new MemoryStream())
             {
                 byte[] text = Instance.RandomGenerator.Generate(length);
@@ -228,14 +227,14 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
-                    using (IAxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(key, iv), 113))
+                    using (IAxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(key), 113))
                     {
                         document.EncryptTo(inputStream, outputStream, options);
 
                         outputStream.Position = 0;
-                        using (IAxCryptDocument decryptedDocument = new V2AxCryptDocument(new V2AesCrypto(key, iv)))
+                        using (IAxCryptDocument decryptedDocument = new V2AxCryptDocument())
                         {
-                            Assert.That(decryptedDocument.Load(outputStream), Is.True);
+                            Assert.That(decryptedDocument.Load(key, outputStream), Is.True);
                             byte[] plain;
                             using (MemoryStream decryptedStream = new MemoryStream())
                             {

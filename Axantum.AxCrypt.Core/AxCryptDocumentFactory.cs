@@ -27,10 +27,10 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
-using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
+using System.IO;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core
@@ -40,28 +40,48 @@ namespace Axantum.AxCrypt.Core
         /// <summary>
         /// Instantiate an instance of IAxCryptDocument appropriate for the file provided, i.e. V1 or V2.
         /// </summary>
-        /// <param name="fileInfo"></param>
+        /// <param name="passphrase">The passphrase.</param>
+        /// <param name="fileInfo">The file to use.</param>
         /// <returns></returns>
-        public IAxCryptDocument Create(ICrypto keyEncryptingCrypto, IRuntimeFileInfo fileInfo)
+        public IAxCryptDocument Create(string passphrase, Stream inputStream)
         {
             Headers headers = new Headers();
-            AxCryptReader reader = headers.Load(fileInfo.OpenRead());
-            VersionHeaderBlock versionHeader = headers.FindHeaderBlock<VersionHeaderBlock>();
+            AxCryptReader reader = headers.Load(inputStream);
 
+            SymmetricKey key = reader.Crypto(headers, passphrase).Key;
+            return Create(key, headers, reader);
+        }
+
+        /// <summary>
+        /// Instantiate an instance of IAxCryptDocument appropriate for the file provided, i.e. V1 or V2.
+        /// </summary>
+        /// <param name="fileInfo"></param>
+        /// <returns></returns>
+        public IAxCryptDocument Create(SymmetricKey key, Stream inputStream)
+        {
+            Headers headers = new Headers();
+            AxCryptReader reader = headers.Load(inputStream);
+
+            return Create(key, headers, reader);
+        }
+
+        private static IAxCryptDocument Create(SymmetricKey key, Headers headers, AxCryptReader reader)
+        {
+            VersionHeaderBlock versionHeader = headers.FindHeaderBlock<VersionHeaderBlock>();
             IAxCryptDocument document;
             switch (versionHeader.FileVersionMajor)
             {
                 case 1:
                 case 2:
                 case 3:
-                    V1AxCryptDocument v1Document = new V1AxCryptDocument(keyEncryptingCrypto);
-                    v1Document.Load(reader, headers);
+                    V1AxCryptDocument v1Document = new V1AxCryptDocument();
+                    v1Document.Load(key, reader, headers);
                     document = v1Document;
                     break;
 
                 case 4:
-                    V2AxCryptDocument v2Document = new V2AxCryptDocument(keyEncryptingCrypto);
-                    v2Document.Load(reader, headers);
+                    V2AxCryptDocument v2Document = new V2AxCryptDocument();
+                    v2Document.Load(key, reader, headers);
                     document = v2Document;
                     break;
 

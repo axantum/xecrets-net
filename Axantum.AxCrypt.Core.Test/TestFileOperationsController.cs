@@ -83,11 +83,12 @@ namespace Axantum.AxCrypt.Core.Test
 
             IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
             Assert.That(destinationInfo.Exists, "After encryption the destination file should be created.");
-            using (IAxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(new V1Passphrase("allan").DerivedPassphrase)))
+            SymmetricKey key = new V1Passphrase("allan").DerivedPassphrase;
+            using (IAxCryptDocument document = new V1AxCryptDocument())
             {
                 using (Stream stream = destinationInfo.OpenRead())
                 {
-                    document.Load(stream);
+                    document.Load(key, stream);
                     Assert.That(document.PassphraseIsValid, "The encrypted document should be valid and encrypted with the passphrase given.");
                 }
             }
@@ -114,11 +115,12 @@ namespace Axantum.AxCrypt.Core.Test
 
             IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
             Assert.That(destinationInfo.Exists, "After encryption the destination file should be created.");
-            using (IAxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(new V1Passphrase("allan").DerivedPassphrase)))
+            SymmetricKey key = new V1Passphrase("allan").DerivedPassphrase;
+            using (IAxCryptDocument document = new V1AxCryptDocument())
             {
                 using (Stream stream = destinationInfo.OpenRead())
                 {
-                    document.Load(stream);
+                    document.Load(key, stream);
                     Assert.That(document.PassphraseIsValid, "The encrypted document should be valid and encrypted with the passphrase given.");
                 }
             }
@@ -146,11 +148,12 @@ namespace Axantum.AxCrypt.Core.Test
 
             IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
             Assert.That(destinationInfo.Exists, "After encryption the destination file should be created.");
-            using (IAxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(new V1Passphrase("default").DerivedPassphrase)))
+            SymmetricKey key = new V1Passphrase("default").DerivedPassphrase;
+            using (IAxCryptDocument document = new V1AxCryptDocument())
             {
                 using (Stream stream = destinationInfo.OpenRead())
                 {
-                    document.Load(stream);
+                    document.Load(key, stream);
                     Assert.That(document.PassphraseIsValid, "The encrypted document should be valid and encrypted with the default passphrase given.");
                 }
             }
@@ -186,11 +189,12 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(Path.GetFileName(destinationPath), Is.EqualTo("alternative-name.axx"), "The alternative name should be used, since the default existed.");
             IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
             Assert.That(destinationInfo.Exists, "After encryption the destination file should be created.");
-            using (IAxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(new V1Passphrase("allan").DerivedPassphrase)))
+            SymmetricKey key = new V1Passphrase("allan").DerivedPassphrase;
+            using (IAxCryptDocument document = new V1AxCryptDocument())
             {
                 using (Stream stream = destinationInfo.OpenRead())
                 {
-                    document.Load(stream);
+                    document.Load(key, stream);
                     Assert.That(document.PassphraseIsValid, "The encrypted document should be valid and encrypted with the passphrase given.");
                 }
             }

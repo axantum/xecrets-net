@@ -358,6 +358,25 @@ namespace Axantum.AxCrypt.Core
             Decrypt(document, decryptedFileInfo, AxCryptOptions.SetFileTimes, progress);
         }
 
+        public virtual IAxCryptDocument Document(IRuntimeFileInfo sourceFile, string passphrase, IProgressContext progress)
+        {
+            if (sourceFile == null)
+            {
+                throw new ArgumentNullException("sourceFile");
+            }
+            if (passphrase == null)
+            {
+                throw new ArgumentNullException("passphrase");
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
+
+            IAxCryptDocument document = new AxCryptDocumentFactory().Create(passphrase, new ProgressStream(sourceFile.OpenRead(), progress));
+            return document;
+        }
+
         /// <summary>
         /// Load an AxCryptDocument from a source file with a passphrase
         /// </summary>
@@ -379,8 +398,7 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("progress");
             }
 
-            IAxCryptDocument document = new AxCryptDocumentFactory().Create(new V1AesCrypto(key), sourceFile);
-            document.Load(new ProgressStream(sourceFile.OpenRead(), progress));
+            IAxCryptDocument document = new AxCryptDocumentFactory().Create(key, new ProgressStream(sourceFile.OpenRead(), progress));
             return document;
         }
 

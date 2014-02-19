@@ -156,9 +156,10 @@ namespace Axantum.AxCrypt.Core.Test
                         document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithoutCompression);
                     }
                     outputStream.Position = 0;
-                    using (IAxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase.DerivedPassphrase)))
+                    SymmetricKey key = passphrase.DerivedPassphrase;
+                    using (IAxCryptDocument document = new V1AxCryptDocument())
                     {
-                        Assert.Throws<FileFormatException>(() => { document.Load(outputStream); });
+                        Assert.Throws<FileFormatException>(() => { document.Load(key, outputStream); });
                     }
                 }
             }

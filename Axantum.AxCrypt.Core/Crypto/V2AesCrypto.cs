@@ -96,6 +96,11 @@ namespace Axantum.AxCrypt.Core.Crypto
             _iv = iv;
         }
 
+        public V2AesCrypto(SymmetricKey key)
+            : this(key, SymmetricIV.Zero128)
+        {
+        }
+
         /// <summary>
         /// Gets the unique name of the algorithm implementation.
         /// </summary>
