@@ -132,6 +132,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 changedWasRaised = true;
             });
+            FakeRuntimeEnvironment.Instance.TimeFunction = () => DateTime.UtcNow;
             Factory.New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "The file should be detected as modified, because it is considered open and decrypted, has a proper key, is modified, no running process so it should be re-encrypted and deleted.");
             activeFile = Instance.FileSystemState.FindEncryptedPath(_encryptedFile1);
@@ -146,9 +147,9 @@ namespace Axantum.AxCrypt.Core.Test
             DateTime utcNow = OS.Current.UtcNow;
             FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
             V1Passphrase passphrase = new V1Passphrase("a");
-            Factory.New<AxCryptFile>().Decrypt(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), passphrase.DerivedPassphrase, AxCryptOptions.None, new ProgressContext());
+            Factory.New<AxCryptFile>().Decrypt(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), passphrase.DerivedKey, AxCryptOptions.None, new ProgressContext());
 
-            ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), passphrase.DerivedPassphrase, ActiveFileStatus.AssumedOpenAndDecrypted);
+            ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), passphrase.DerivedKey, ActiveFileStatus.AssumedOpenAndDecrypted);
             Instance.FileSystemState.Add(activeFile);
             Instance.FileSystemState.Save();
 
@@ -164,7 +165,7 @@ namespace Axantum.AxCrypt.Core.Test
             activeFile = Instance.FileSystemState.FindEncryptedPath(_encryptedFile1);
             Assert.That(activeFile.Key, Is.Null, "The key should be null after loading of new FileSystemState");
 
-            Instance.KnownKeys.Add(passphrase.DerivedPassphrase);
+            Instance.KnownKeys.Add(passphrase.DerivedKey);
             Factory.New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "The ActiveFile should be modified because there is now a known key.");
 
@@ -178,9 +179,9 @@ namespace Axantum.AxCrypt.Core.Test
             DateTime utcNow = OS.Current.UtcNow;
             FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
             V1Passphrase passphrase = new V1Passphrase("a");
-            Factory.New<AxCryptFile>().Decrypt(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), passphrase.DerivedPassphrase, AxCryptOptions.None, new ProgressContext());
+            Factory.New<AxCryptFile>().Decrypt(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), passphrase.DerivedKey, AxCryptOptions.None, new ProgressContext());
 
-            ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), passphrase.DerivedPassphrase, ActiveFileStatus.AssumedOpenAndDecrypted);
+            ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), passphrase.DerivedKey, ActiveFileStatus.AssumedOpenAndDecrypted);
             Instance.FileSystemState.Add(activeFile);
             Instance.FileSystemState.Save();
 
@@ -202,8 +203,8 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because the file was modified as well and thus cannot be deleted.");
 
-            Instance.KnownKeys.Add(new V1Passphrase("x").DerivedPassphrase);
-            Instance.KnownKeys.Add(new V1Passphrase("y").DerivedPassphrase);
+            Instance.KnownKeys.Add(new V1Passphrase("x").DerivedKey);
+            Instance.KnownKeys.Add(new V1Passphrase("y").DerivedKey);
             Factory.New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because the file was modified as well and thus cannot be deleted.");
 
@@ -211,7 +212,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(activeFile.Key, Is.Null, "The key should still be null after the checking of active files.");
 
             Assert.That(activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "The file should still be there.");
-            Assert.That(activeFile.ThumbprintMatch(passphrase.DerivedPassphrase), Is.True, "The active file should still be known to be decryptable with the original passphrase.");
+            Assert.That(activeFile.ThumbprintMatch(passphrase.DerivedKey), Is.True, "The active file should still be known to be decryptable with the original passphrase.");
         }
 
         [Test]
@@ -277,9 +278,9 @@ namespace Axantum.AxCrypt.Core.Test
             DateTime utcNow = OS.Current.UtcNow;
             FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
             V1Passphrase passphrase = new V1Passphrase("a");
-            Factory.New<AxCryptFile>().Decrypt(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), passphrase.DerivedPassphrase, AxCryptOptions.None, new ProgressContext());
+            Factory.New<AxCryptFile>().Decrypt(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), passphrase.DerivedKey, AxCryptOptions.None, new ProgressContext());
 
-            ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), passphrase.DerivedPassphrase, ActiveFileStatus.AssumedOpenAndDecrypted);
+            ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), passphrase.DerivedKey, ActiveFileStatus.AssumedOpenAndDecrypted);
             Instance.FileSystemState.Add(activeFile);
 
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_decryptedFile1);
@@ -292,7 +293,7 @@ namespace Axantum.AxCrypt.Core.Test
                 changedWasRaised = true;
             });
 
-            Instance.KnownKeys.Add(passphrase.DerivedPassphrase);
+            Instance.KnownKeys.Add(passphrase.DerivedKey);
 
             EventHandler eventHandler = ((object sender, EventArgs e) =>
             {

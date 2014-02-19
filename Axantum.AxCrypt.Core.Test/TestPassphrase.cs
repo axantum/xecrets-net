@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestPassphraseConstructor()
         {
             V1Passphrase passphrase = new V1Passphrase("A Passphrase");
-            SymmetricKey derivedKey = passphrase.DerivedPassphrase;
+            SymmetricKey derivedKey = passphrase.DerivedKey;
             Assert.That(derivedKey.Length, Is.EqualTo(16), "The default derived key is 128 bits.");
 
             Assert.Throws<ArgumentNullException>(() =>

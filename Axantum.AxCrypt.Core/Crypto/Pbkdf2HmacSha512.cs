@@ -45,7 +45,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <param name="salt">The key salt used to derive the key.</param>
         /// <param name="iterations">The number of iterations for the operation. </param>
         /// <exception cref="T:System.ArgumentNullException">The password or salt is null. </exception>
-        public Pbkdf2HmacSha512(string password, byte[] salt, int iterations)
+        public Pbkdf2HmacSha512(string password, byte[] salt, long iterations)
         {
             if (password == null)
             {
@@ -79,7 +79,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private static readonly byte[] _empty = new byte[0];
 
-        private byte[] F(string password, byte[] salt, int iterations)
+        private byte[] F(string password, byte[] salt, long iterations)
         {
             HMACSHA512 hmacsha512 = new HMACSHA512(new UTF8Encoding(false).GetBytes(password));
 

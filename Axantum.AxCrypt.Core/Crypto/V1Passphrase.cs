@@ -36,7 +36,7 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// </summary>
     public class V1Passphrase : IPassphrase
     {
-        private readonly SymmetricKey _derivedPassphrase;
+        private readonly SymmetricKey _derivedKey;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="V1Passphrase"/> class.
@@ -52,21 +52,29 @@ namespace Axantum.AxCrypt.Core.Crypto
             HashAlgorithm hashAlgorithm = new SHA1Managed();
             byte[] ansiBytes = Encoding.GetEncoding(1252).GetBytes(passphrase);
             byte[] hash = hashAlgorithm.ComputeHash(ansiBytes);
-            byte[] derivedPassphrase = new byte[16];
-            Array.Copy(hash, derivedPassphrase, derivedPassphrase.Length);
+            byte[] derivedKey = new byte[16];
+            Array.Copy(hash, derivedKey, derivedKey.Length);
 
-            _derivedPassphrase = new SymmetricKey(derivedPassphrase);
+            _derivedKey = new SymmetricKey(derivedKey);
+            Iterations = 1;
         }
 
         /// <summary>
-        /// Gets the derived passphrase AesKey instance.
+        /// Gets the derived key instance.
         /// </summary>
-        public SymmetricKey DerivedPassphrase
+        public SymmetricKey DerivedKey
         {
             get
             {
-                return _derivedPassphrase;
+                return _derivedKey;
             }
+        }
+
+        public long Iterations { get; private set; }
+
+        public byte[] GetSalt()
+        {
+            return new byte[0];
         }
     }
 }

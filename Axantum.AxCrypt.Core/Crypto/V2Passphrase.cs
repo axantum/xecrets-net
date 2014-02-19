@@ -36,23 +36,39 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// </summary>
     public class V2Passphrase : IPassphrase
     {
-        private readonly SymmetricKey _derivedPassphrase;
+        private readonly SymmetricKey _derivedKey;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="V1Passphrase"/> class.
+        /// Initializes a new instance of the <see cref="V2Passphrase"/> class.
         /// </summary>
         /// <param name="passphrase">The passphrase.</param>
-        public V2Passphrase(string passphrase, byte[] salt, int iterations, int keySize)
+        public V2Passphrase(string passphrase, byte[] salt, long iterations, int keySize)
         {
-            _derivedPassphrase = new SymmetricKey(new Pbkdf2HmacSha512(passphrase, salt, iterations).GetBytes().Reduce(keySize / 8));
+            _derivedKey = new SymmetricKey(new Pbkdf2HmacSha512(passphrase, salt, iterations).GetBytes().Reduce(keySize / 8));
+            _salt = (byte[])salt.Clone();
+            Iterations = iterations;
         }
 
-        public SymmetricKey DerivedPassphrase
+        public V2Passphrase(string passphrase, int keySize)
+            : this(passphrase, Instance.RandomGenerator.Generate(32), Instance.UserSettings.V2KeyDerivationIterations, keySize)
+        {
+        }
+
+        public SymmetricKey DerivedKey
         {
             get
             {
-                return _derivedPassphrase;
+                return _derivedKey;
             }
+        }
+
+        public long Iterations { get; private set; }
+
+        private byte[] _salt;
+
+        public byte[] GetSalt()
+        {
+            return (byte[])_salt.Clone();
         }
     }
 }

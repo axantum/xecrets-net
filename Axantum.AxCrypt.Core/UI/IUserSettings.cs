@@ -63,7 +63,11 @@ namespace Axantum.AxCrypt.Core.UI
 
         bool DisplayDecryptPassphrase { get; set; }
 
-        long KeyWrapIterations { get; set; }
+        long V1KeyWrapIterations { get; set; }
+
+        long V2KeyWrapIterations { get; set; }
+
+        long V2KeyDerivationIterations { get; set; }
 
         KeyWrapSalt ThumbprintSalt { get; set; }
 

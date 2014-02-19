@@ -35,21 +35,27 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core
 {
-    public class AxCryptDocumentFactory
+    public class AxCryptFactory
     {
+        public IAxCryptDocument CreateDocument(SymmetricKey key)
+        {
+            IAxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(key), Instance.UserSettings.V1KeyWrapIterations);
+            return document;
+        }
+
         /// <summary>
         /// Instantiate an instance of IAxCryptDocument appropriate for the file provided, i.e. V1 or V2.
         /// </summary>
         /// <param name="passphrase">The passphrase.</param>
         /// <param name="fileInfo">The file to use.</param>
         /// <returns></returns>
-        public IAxCryptDocument Create(string passphrase, Stream inputStream)
+        public IAxCryptDocument CreateDocument(string passphrase, Stream inputStream)
         {
             Headers headers = new Headers();
             AxCryptReader reader = headers.Load(inputStream);
 
             SymmetricKey key = reader.Crypto(headers, passphrase).Key;
-            return Create(key, headers, reader);
+            return CreateDocument(key, headers, reader);
         }
 
         /// <summary>
@@ -57,15 +63,15 @@ namespace Axantum.AxCrypt.Core
         /// </summary>
         /// <param name="fileInfo"></param>
         /// <returns></returns>
-        public IAxCryptDocument Create(SymmetricKey key, Stream inputStream)
+        public IAxCryptDocument CreateDocument(SymmetricKey key, Stream inputStream)
         {
             Headers headers = new Headers();
             AxCryptReader reader = headers.Load(inputStream);
 
-            return Create(key, headers, reader);
+            return CreateDocument(key, headers, reader);
         }
 
-        private static IAxCryptDocument Create(SymmetricKey key, Headers headers, AxCryptReader reader)
+        private static IAxCryptDocument CreateDocument(SymmetricKey key, Headers headers, AxCryptReader reader)
         {
             VersionHeaderBlock versionHeader = headers.FindHeaderBlock<VersionHeaderBlock>();
             IAxCryptDocument document;

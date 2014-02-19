@@ -123,7 +123,7 @@ namespace Axantum.AxCrypt.Core.Test
                 using (AxCryptReader reader = new V1AxCryptReader(testStream))
                 {
                     V1Passphrase passphrase = new V1Passphrase("b");
-                    V1DocumentHeaders documentHeaders = new V1DocumentHeaders(new V1AesCrypto(passphrase.DerivedPassphrase), 73);
+                    V1DocumentHeaders documentHeaders = new V1DocumentHeaders(new V1AesCrypto(passphrase.DerivedKey), 73);
                     bool isPassphraseValid = documentHeaders.Load(reader);
 
                     Assert.That(isPassphraseValid, Is.False, "The passphrase is intentionally wrong for this test case.");
@@ -145,7 +145,7 @@ namespace Axantum.AxCrypt.Core.Test
                 using (Stream outputStream = new MemoryStream())
                 {
                     V1Passphrase passphrase = new V1Passphrase("a");
-                    using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase.DerivedPassphrase), 101))
+                    using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase.DerivedKey), 101))
                     {
                         document.FileName = "MyFile.txt";
                         document.CreationTimeUtc = creationTimeUtc;
@@ -156,7 +156,7 @@ namespace Axantum.AxCrypt.Core.Test
                         document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithoutCompression);
                     }
                     outputStream.Position = 0;
-                    SymmetricKey key = passphrase.DerivedPassphrase;
+                    SymmetricKey key = passphrase.DerivedKey;
                     using (IAxCryptDocument document = new V1AxCryptDocument())
                     {
                         Assert.Throws<FileFormatException>(() => { document.Load(key, outputStream); });

@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Singleton<WorkFolder>(() => new WorkFolder(@"C:\WorkFolder\"));
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
             Factory.Instance.Singleton<ILogging>(() => new FakeLogging());
-            Factory.Instance.Singleton<IUserSettings>(() => new UserSettings(Instance.WorkFolder.FileInfo.Combine("UserSettings.txt"), new KeyWrapIterationCalculator()));
+            Factory.Instance.Singleton<IUserSettings>(() => new UserSettings(Instance.WorkFolder.FileInfo.Combine("UserSettings.txt"), new IterationCalculator()));
             Factory.Instance.Singleton<KnownKeys>(() => new KnownKeys(Instance.FileSystemState, Instance.SessionNotify));
             Factory.Instance.Singleton<ProcessState>(() => new ProcessState());
             Factory.Instance.Singleton<IUIThread>(() => new FakeUIThread());
@@ -67,7 +67,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Register<string, IRuntimeFileInfo>((path) => new FakeRuntimeFileInfo(path));
             Factory.Instance.Register<string, IFileWatcher>((path) => new FakeFileWatcher(path));
 
-            Instance.UserSettings.KeyWrapIterations = 1234;
+            Instance.UserSettings.V1KeyWrapIterations = 1234;
             Instance.UserSettings.ThumbprintSalt = KeyWrapSalt.Zero;
             Instance.Log.SetLevel(LogLevel.Debug);
         }

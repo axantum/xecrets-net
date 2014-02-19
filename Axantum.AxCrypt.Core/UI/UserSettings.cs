@@ -25,14 +25,14 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
-using Newtonsoft.Json;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -42,9 +42,9 @@ namespace Axantum.AxCrypt.Core.UI
 
         private IRuntimeFileInfo _persistanceFileInfo;
 
-        private KeyWrapIterationCalculator _keyWrapIterationCalculator;
+        private IterationCalculator _keyWrapIterationCalculator;
 
-        public UserSettings(IRuntimeFileInfo fileInfo, KeyWrapIterationCalculator keyWrapIterationCalculator)
+        public UserSettings(IRuntimeFileInfo fileInfo, IterationCalculator keyWrapIterationCalculator)
         {
             _persistanceFileInfo = fileInfo;
 
@@ -126,10 +126,22 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store("DisplayDecryptPassphrase", value); }
         }
 
-        public long KeyWrapIterations
+        public long V1KeyWrapIterations
         {
-            get { return Load("KeyWrapIterations", () => _keyWrapIterationCalculator.Iterations()); }
-            set { Store("KeyWrapIterations", value); }
+            get { return Load("V1KeyWrapIterations", () => _keyWrapIterationCalculator.V1KeyWrapIterations()); }
+            set { Store("V1KeyWrapIterations", value); }
+        }
+
+        public long V2KeyWrapIterations
+        {
+            get { return Load("V2KeyWrapIterations", () => _keyWrapIterationCalculator.V2KeyWrapIterations()); }
+            set { Store("V2KeyWrapIterations", value); }
+        }
+
+        public long V2KeyDerivationIterations
+        {
+            get { return Load("V2KeyDerivationIterations", () => _keyWrapIterationCalculator.V2KeyDerivationIterations()); }
+            set { Store("V2KeyDerivationIterations", value); }
         }
 
         public KeyWrapSalt ThumbprintSalt

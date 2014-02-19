@@ -249,7 +249,7 @@ namespace Axantum.AxCrypt.Core.UI
                     _eventArgs.Status = FileOperationStatus.Canceled;
                     return false;
                 }
-                _eventArgs.Key = new V1Passphrase(_eventArgs.Passphrase).DerivedPassphrase;
+                _eventArgs.Key = new V1Passphrase(_eventArgs.Passphrase).DerivedKey;
             }
             else
             {

@@ -94,7 +94,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
         public override ICrypto Crypto(Headers headers, string passphrase)
         {
-            return new V1AesCrypto(new V1Passphrase(passphrase).DerivedPassphrase);
+            return new V1AesCrypto(new V1Passphrase(passphrase).DerivedKey);
         }
     }
 }

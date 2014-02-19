@@ -32,6 +32,10 @@ namespace Axantum.AxCrypt.Core.Crypto
 {
     public interface IPassphrase
     {
-        SymmetricKey DerivedPassphrase { get; }
+        SymmetricKey DerivedKey { get; }
+
+        long Iterations { get; }
+
+        byte[] GetSalt();
     }
 }

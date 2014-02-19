@@ -47,7 +47,7 @@ namespace Axantum.AxCrypt.Core
         /// <param name="destination">The destination file</param>
         /// <remarks>It is the callers responsibility to ensure that the source file exists, that the destination file
         /// does not exist and can be created etc.</remarks>
-        public virtual void Encrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, V1Passphrase passphrase, AxCryptOptions options, IProgressContext progress)
+        public virtual void Encrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, IPassphrase passphrase, AxCryptOptions options, IProgressContext progress)
         {
             if (sourceFile == null)
             {
@@ -70,7 +70,7 @@ namespace Axantum.AxCrypt.Core
             {
                 using (Stream destinationStream = destinationFile.OpenWrite())
                 {
-                    using (IAxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase.DerivedPassphrase), Instance.UserSettings.KeyWrapIterations))
+                    using (IAxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase.DerivedKey), Instance.UserSettings.V1KeyWrapIterations))
                     {
                         document.FileName = sourceFile.Name;
                         document.CreationTimeUtc = sourceFile.CreationTimeUtc;
@@ -107,7 +107,7 @@ namespace Axantum.AxCrypt.Core
 
             using (Stream sourceStream = new ProgressStream(sourceFile.OpenRead(), progress))
             {
-                using (IAxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(key), Instance.UserSettings.KeyWrapIterations))
+                using (IAxCryptDocument document = new AxCryptFactory().CreateDocument(key))
                 {
                     document.FileName = sourceFile.Name;
                     document.CreationTimeUtc = sourceFile.CreationTimeUtc;
@@ -373,7 +373,7 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("progress");
             }
 
-            IAxCryptDocument document = new AxCryptDocumentFactory().Create(passphrase, new ProgressStream(sourceFile.OpenRead(), progress));
+            IAxCryptDocument document = new AxCryptFactory().CreateDocument(passphrase, new ProgressStream(sourceFile.OpenRead(), progress));
             return document;
         }
 
@@ -398,7 +398,7 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("progress");
             }
 
-            IAxCryptDocument document = new AxCryptDocumentFactory().Create(key, new ProgressStream(sourceFile.OpenRead(), progress));
+            IAxCryptDocument document = new AxCryptFactory().CreateDocument(key, new ProgressStream(sourceFile.OpenRead(), progress));
             return document;
         }
 

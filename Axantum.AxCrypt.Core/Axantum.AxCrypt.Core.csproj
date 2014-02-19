@@ -50,7 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AxCryptDocumentFactory.cs" />
+    <Compile Include="AxCryptFactory.cs" />
     <Compile Include="Crypto\CounterModeCryptoTransform.cs" />
     <Compile Include="Crypto\CryptoBase.cs" />
     <Compile Include="Crypto\Hmac.cs" />
@@ -83,7 +83,7 @@
     <Compile Include="Extensions\RuntimeFileInfoExtensions.cs" />
     <Compile Include="Extensions\StreamExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="Crypto\KeyWrapIterationCalculator.cs" />
+    <Compile Include="Crypto\IterationCalculator.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="Header\Headers.cs" />
     <Compile Include="Instance.cs" />

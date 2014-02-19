@@ -130,7 +130,7 @@
     <Compile Include="TestKeyWrap.cs" />
     <Compile Include="TestKeyWrap1HeaderBlock.cs" />
     <Compile Include="TestKeyWrap2HeaderBlock.cs" />
-    <Compile Include="TestKeyWrapIterationCalculator.cs" />
+    <Compile Include="TestIterationCalculator.cs" />
     <Compile Include="TestKeyWrapSalt.cs" />
     <Compile Include="TestKnownKeys.cs" />
     <Compile Include="TestLockingStreamTests.cs" />

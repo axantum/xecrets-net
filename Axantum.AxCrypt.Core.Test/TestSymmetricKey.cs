@@ -133,7 +133,7 @@ namespace Axantum.AxCrypt.Core.Test
             SymmetricKeyThumbprint originalThumbprint = key1.Thumbprint;
             Assert.That(originalThumbprint, Is.EqualTo(key1.Thumbprint), "The thumbprints should be the same.");
 
-            key1.Thumbprint = new SymmetricKeyThumbprint(key1, new KeyWrapSalt(16), Instance.UserSettings.KeyWrapIterations);
+            key1.Thumbprint = new SymmetricKeyThumbprint(key1, new KeyWrapSalt(16), Instance.UserSettings.V1KeyWrapIterations);
 
             Assert.That(originalThumbprint, Is.Not.EqualTo(key1.Thumbprint), "The thumbprints should differ.");
         }

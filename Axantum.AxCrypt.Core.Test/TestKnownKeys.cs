@@ -180,11 +180,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestAddKeyForKnownIdentity()
         {
-            Instance.FileSystemState.Identities.Add(new PassphraseIdentity("Unit Test", new V1Passphrase("a").DerivedPassphrase));
+            Instance.FileSystemState.Identities.Add(new PassphraseIdentity("Unit Test", new V1Passphrase("a").DerivedKey));
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
-            knownKeys.Add(new V1Passphrase("a").DerivedPassphrase);
+            knownKeys.Add(new V1Passphrase("a").DerivedKey);
 
-            Assert.That(knownKeys.DefaultEncryptionKey, Is.EqualTo(new V1Passphrase("a").DerivedPassphrase), "When adding a key that is for a known identity it should be set as the default.");
+            Assert.That(knownKeys.DefaultEncryptionKey, Is.EqualTo(new V1Passphrase("a").DerivedKey), "When adding a key that is for a known identity it should be set as the default.");
         }
 
         [Test]

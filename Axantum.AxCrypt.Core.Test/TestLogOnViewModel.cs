@@ -93,7 +93,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Mock<IUserSettings> userSettingsMock = new Mock<IUserSettings>();
             userSettingsMock.Setup<KeyWrapSalt>(f => f.ThumbprintSalt).Returns(KeyWrapSalt.Zero);
-            userSettingsMock.Setup<long>(f => f.KeyWrapIterations).Returns(10);
+            userSettingsMock.Setup<long>(f => f.V1KeyWrapIterations).Returns(10);
             Factory.Instance.Singleton<IUserSettings>(() => userSettingsMock.Object);
 
             Mock<IRuntimeEnvironment> environmentMock = new Mock<IRuntimeEnvironment>();
@@ -102,7 +102,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             LogOnViewModel lovm = new LogOnViewModel("Me");
 
-            _identities.Add(new PassphraseIdentity("Me", new V1Passphrase("abc1234").DerivedPassphrase));
+            _identities.Add(new PassphraseIdentity("Me", new V1Passphrase("abc1234").DerivedKey));
 
             lovm.Passphrase = "abc1234";
 
@@ -115,7 +115,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Mock<IUserSettings> userSettingsMock = new Mock<IUserSettings>();
             userSettingsMock.Setup<KeyWrapSalt>(f => f.ThumbprintSalt).Returns(KeyWrapSalt.Zero);
-            userSettingsMock.Setup<long>(f => f.KeyWrapIterations).Returns(10);
+            userSettingsMock.Setup<long>(f => f.V1KeyWrapIterations).Returns(10);
             Factory.Instance.Singleton<IUserSettings>(() => userSettingsMock.Object);
 
             Mock<IRuntimeEnvironment> environmentMock = new Mock<IRuntimeEnvironment>();
@@ -124,7 +124,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             LogOnViewModel lovm = new LogOnViewModel("Me");
 
-            _identities.Add(new PassphraseIdentity("Me", new V1Passphrase("abc1234").DerivedPassphrase));
+            _identities.Add(new PassphraseIdentity("Me", new V1Passphrase("abc1234").DerivedKey));
 
             lovm.Passphrase = "abc12345";
 
