@@ -122,7 +122,7 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
-                    using (V2AxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(new SymmetricKey(256)), 100))
+                    using (V2AxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(new GenericPassphrase(new SymmetricKey(256))), 100))
                     {
                         document.EncryptTo(inputStream, outputStream, options);
                         output = outputStream.ToArray();
@@ -219,7 +219,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         private static void TestEncryptDecryptHelper(int length, AxCryptOptions options)
         {
-            SymmetricKey key = new SymmetricKey(256);
+            IPassphrase key = new GenericPassphrase(new SymmetricKey(256));
             using (MemoryStream inputStream = new MemoryStream())
             {
                 byte[] text = Instance.RandomGenerator.Generate(length);

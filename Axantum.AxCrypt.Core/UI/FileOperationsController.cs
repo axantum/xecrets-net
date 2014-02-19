@@ -249,7 +249,7 @@ namespace Axantum.AxCrypt.Core.UI
                     _eventArgs.Status = FileOperationStatus.Canceled;
                     return false;
                 }
-                _eventArgs.Key = new V1Passphrase(_eventArgs.Passphrase).DerivedKey;
+                _eventArgs.Key = new V1Passphrase(_eventArgs.Passphrase);
             }
             else
             {
@@ -402,7 +402,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 _progress.NotifyLevelStart();
                 e.OpenFileFullName = sourceFileInfo.FullName;
-                SymmetricKey key;
+                IPassphrase key;
                 if (sourceFileInfo.TryFindDecryptionKey(out key))
                 {
                     e.AxCryptDocument = Factory.New<AxCryptFile>().Document(sourceFileInfo, key, _progress);

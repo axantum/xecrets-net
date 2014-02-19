@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Core.Session
             Key = null;
         }
 
-        public ActiveFile(ActiveFile activeFile, SymmetricKey key)
+        public ActiveFile(ActiveFile activeFile, IPassphrase key)
         {
             if (activeFile == null)
             {
@@ -91,7 +91,7 @@ namespace Axantum.AxCrypt.Core.Session
             Status = status;
         }
 
-        public ActiveFile(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, SymmetricKey key, ActiveFileStatus status)
+        public ActiveFile(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, IPassphrase key, ActiveFileStatus status)
         {
             if (encryptedFileInfo == null)
             {
@@ -113,7 +113,7 @@ namespace Axantum.AxCrypt.Core.Session
             Initialize(other.EncryptedFileInfo, other.DecryptedFileInfo, other.LastEncryptionWriteTimeUtc, other.Key, other.Thumbprint, other.Status);
         }
 
-        private void Initialize(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, DateTime lastWriteTimeUtc, SymmetricKey key, SymmetricKeyThumbprint thumbprint, ActiveFileStatus status)
+        private void Initialize(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, DateTime lastWriteTimeUtc, IPassphrase key, SymmetricKeyThumbprint thumbprint, ActiveFileStatus status)
         {
             EncryptedFileInfo = Factory.New<IRuntimeFileInfo>(encryptedFileInfo.FullName);
             DecryptedFileInfo = Factory.New<IRuntimeFileInfo>(decryptedFileInfo.FullName);
@@ -145,7 +145,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 if (_thumbprint == null && Key != null)
                 {
-                    _thumbprint = Key.Thumbprint;
+                    _thumbprint = Key.DerivedKey.Thumbprint;
                 }
                 return _thumbprint;
             }
@@ -220,9 +220,9 @@ namespace Axantum.AxCrypt.Core.Session
             DecryptedFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(_decryptedFolder, _decryptedName));
         }
 
-        private SymmetricKey _key;
+        private IPassphrase _key;
 
-        public SymmetricKey Key
+        public IPassphrase Key
         {
             get
             {

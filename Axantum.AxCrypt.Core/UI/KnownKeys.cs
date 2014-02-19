@@ -35,7 +35,7 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public class KnownKeys
     {
-        private List<SymmetricKey> _keys;
+        private List<IPassphrase> _keys;
 
         private FileSystemState _fileSystemState;
 
@@ -45,7 +45,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             _fileSystemState = fileSystemState;
             _notificationMonitor = notificationMonitor;
-            _keys = new List<SymmetricKey>();
+            _keys = new List<IPassphrase>();
             _knownThumbprints = new List<SymmetricKeyThumbprint>();
         }
 
@@ -62,7 +62,7 @@ namespace Axantum.AxCrypt.Core.UI
             DefaultEncryptionKey = null;
         }
 
-        public void Add(SymmetricKey key)
+        public void Add(IPassphrase key)
         {
             bool changed = false;
             lock (_keys)
@@ -74,10 +74,10 @@ namespace Axantum.AxCrypt.Core.UI
                     changed = true;
                 }
             }
-            changed |= AddKnownThumbprint(key);
+            changed |= AddKnownThumbprint(key.DerivedKey);
             if (changed)
             {
-                if (_fileSystemState.Identities.Any(i => i.Thumbprint == key.Thumbprint))
+                if (_fileSystemState.Identities.Any(i => i.Thumbprint == key.DerivedKey.Thumbprint))
                 {
                     DefaultEncryptionKey = key;
                 }
@@ -99,18 +99,18 @@ namespace Axantum.AxCrypt.Core.UI
             _notificationMonitor.Notify(new SessionNotification(SessionNotificationType.KnownKeyChange));
         }
 
-        public IEnumerable<SymmetricKey> Keys
+        public IEnumerable<IPassphrase> Keys
         {
             get
             {
                 lock (_keys)
                 {
-                    return new List<SymmetricKey>(_keys);
+                    return new List<IPassphrase>(_keys);
                 }
             }
         }
 
-        private SymmetricKey _defaultEncryptionKey;
+        private IPassphrase _defaultEncryptionKey;
 
         /// <summary>
         /// Gets or sets the default encryption key.
@@ -118,7 +118,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// <value>
         /// The default encryption key, or null if none is known.
         /// </value>
-        public SymmetricKey DefaultEncryptionKey
+        public IPassphrase DefaultEncryptionKey
         {
             get
             {
@@ -126,13 +126,13 @@ namespace Axantum.AxCrypt.Core.UI
             }
             set
             {
-                if (_defaultEncryptionKey == value)
+                if (_defaultEncryptionKey != null && value != null && _defaultEncryptionKey.DerivedKey == value.DerivedKey)
                 {
                     return;
                 }
                 if (_defaultEncryptionKey != null)
                 {
-                    SymmetricKey oldKey = _defaultEncryptionKey;
+                    IPassphrase oldKey = _defaultEncryptionKey;
                     _defaultEncryptionKey = null;
                     _notificationMonitor.Notify(new SessionNotification(SessionNotificationType.LogOff, oldKey));
                 }
@@ -174,7 +174,7 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     return new WatchedFolder[0];
                 }
-                return _fileSystemState.WatchedFolders.Where(wf => wf.Thumbprint == DefaultEncryptionKey.Thumbprint);
+                return _fileSystemState.WatchedFolders.Where(wf => wf.Thumbprint == DefaultEncryptionKey.DerivedKey.Thumbprint);
             }
         }
     }

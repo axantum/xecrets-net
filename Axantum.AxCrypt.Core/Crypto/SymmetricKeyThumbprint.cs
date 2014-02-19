@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         /// <param name="key">The key to thumbprint.</param>
         /// <param name="salt">The salt to use.</param>
-        public SymmetricKeyThumbprint(SymmetricKey key, KeyWrapSalt salt, long iterations)
+        public SymmetricKeyThumbprint(IPassphrase key, KeyWrapSalt salt, long iterations)
         {
             if (key == null)
             {
@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
             ICrypto crypto = new V1AesCrypto(key);
             KeyWrap keyWrap = new KeyWrap(crypto, salt, iterations, KeyWrapMode.Specification);
-            byte[] wrap = keyWrap.Wrap(key);
+            byte[] wrap = keyWrap.Wrap(key.DerivedKey);
 
             _bytes = wrap.Reduce(8);
         }

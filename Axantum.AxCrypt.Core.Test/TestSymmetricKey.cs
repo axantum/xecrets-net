@@ -128,14 +128,14 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestThumbprint()
         {
-            SymmetricKey key1 = new SymmetricKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 });
+            IPassphrase key1 = new GenericPassphrase(new SymmetricKey(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }));
 
-            SymmetricKeyThumbprint originalThumbprint = key1.Thumbprint;
-            Assert.That(originalThumbprint, Is.EqualTo(key1.Thumbprint), "The thumbprints should be the same.");
+            SymmetricKeyThumbprint originalThumbprint = key1.DerivedKey.Thumbprint;
+            Assert.That(originalThumbprint, Is.EqualTo(key1.DerivedKey.Thumbprint), "The thumbprints should be the same.");
 
-            key1.Thumbprint = new SymmetricKeyThumbprint(key1, new KeyWrapSalt(16), Instance.UserSettings.V1KeyWrapIterations);
+            key1.DerivedKey.Thumbprint = new SymmetricKeyThumbprint(key1, new KeyWrapSalt(16), Instance.UserSettings.V1KeyWrapIterations);
 
-            Assert.That(originalThumbprint, Is.Not.EqualTo(key1.Thumbprint), "The thumbprints should differ.");
+            Assert.That(originalThumbprint, Is.Not.EqualTo(key1.DerivedKey.Thumbprint), "The thumbprints should differ.");
         }
     }
 }

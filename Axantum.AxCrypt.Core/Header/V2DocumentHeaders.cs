@@ -133,15 +133,15 @@ namespace Axantum.AxCrypt.Core.Header
                 switch (encryptedHeaderBlock.HeaderBlockType)
                 {
                     case HeaderBlockType.FileInfo:
-                        encryptedHeaderBlock.HeaderCrypto = new V2AesCrypto(DataEncryptingKey, DataEncryptingIV, FILEINFO_KEYSTREAM_INDEX);
+                        encryptedHeaderBlock.HeaderCrypto = new V2AesCrypto(new GenericPassphrase(DataEncryptingKey), DataEncryptingIV, FILEINFO_KEYSTREAM_INDEX);
                         break;
 
                     case HeaderBlockType.Compression:
-                        encryptedHeaderBlock.HeaderCrypto = new V2AesCrypto(DataEncryptingKey, DataEncryptingIV, COMPRESSIONINFO_KEYSTREAM_INDEX);
+                        encryptedHeaderBlock.HeaderCrypto = new V2AesCrypto(new GenericPassphrase(DataEncryptingKey), DataEncryptingIV, COMPRESSIONINFO_KEYSTREAM_INDEX);
                         break;
 
                     case HeaderBlockType.UnicodeFileNameInfo:
-                        encryptedHeaderBlock.HeaderCrypto = new V2AesCrypto(DataEncryptingKey, DataEncryptingIV, FILENAMEINFO_KEYSTREAM_INDEX);
+                        encryptedHeaderBlock.HeaderCrypto = new V2AesCrypto(new GenericPassphrase(DataEncryptingKey), DataEncryptingIV, FILENAMEINFO_KEYSTREAM_INDEX);
                         break;
                 }
             }
@@ -170,7 +170,7 @@ namespace Axantum.AxCrypt.Core.Header
             WriteGeneralHeaders(hmacStream);
 
             V2PlaintextLengthsHeaderBlock lengths = new V2PlaintextLengthsHeaderBlock();
-            lengths.HeaderCrypto = new V2AesCrypto(DataEncryptingKey, DataEncryptingIV, LENGTHSINFO_KEYSTREAM_INDEX);
+            lengths.HeaderCrypto = new V2AesCrypto(new GenericPassphrase(DataEncryptingKey), DataEncryptingIV, LENGTHSINFO_KEYSTREAM_INDEX);
             lengths.PlaintextLength = plaintextLength;
             lengths.CompressedPlaintextLength = compressedPlaintextLength;
             lengths.Write(hmacStream);
@@ -215,12 +215,12 @@ namespace Axantum.AxCrypt.Core.Header
 
         public ICrypto CreateDataCrypto()
         {
-            return new V2AesCrypto(DataEncryptingKey, DataEncryptingIV, DATA_KEYSTREAM_INDEX);
+            return new V2AesCrypto(new GenericPassphrase(DataEncryptingKey), DataEncryptingIV, DATA_KEYSTREAM_INDEX);
         }
 
         public byte[] GetHmacKey()
         {
-            ICrypto hmacKeyCrypto = new V2AesCrypto(DataEncryptingKey, DataEncryptingIV, HMACKEY_KEYSTREAM_INDEX);
+            ICrypto hmacKeyCrypto = new V2AesCrypto(new GenericPassphrase(DataEncryptingKey), DataEncryptingIV, HMACKEY_KEYSTREAM_INDEX);
             byte[] key = new byte[V2Hmac.RequiredLength];
             key = hmacKeyCrypto.Encrypt(key);
 

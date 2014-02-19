@@ -50,17 +50,17 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestInvalidArguments()
         {
-            SymmetricKey nullKey = null;
+            IPassphrase nullKey = null;
             KeyWrapSalt nullSalt = null;
             Assert.Throws<ArgumentNullException>(() => { if (new SymmetricKeyThumbprint(nullKey, new KeyWrapSalt(16), 10) == null) { } });
-            Assert.Throws<ArgumentNullException>(() => { if (new SymmetricKeyThumbprint(new SymmetricKey(128), nullSalt, 10) == null) { } });
+            Assert.Throws<ArgumentNullException>(() => { if (new SymmetricKeyThumbprint(new GenericPassphrase(new SymmetricKey(128)), nullSalt, 10) == null) { } });
         }
 
         [Test]
         public static void TestAesKeyThumbprintMethods()
         {
-            SymmetricKey key1 = new SymmetricKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
-            SymmetricKey key2 = new SymmetricKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
+            IPassphrase key1 = new GenericPassphrase(new SymmetricKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 }));
+            IPassphrase key2 = new GenericPassphrase(new SymmetricKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 }));
             KeyWrapSalt salt1 = new KeyWrapSalt(16);
             KeyWrapSalt salt2 = new KeyWrapSalt(salt1.GetBytes());
 
@@ -69,15 +69,15 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(thumbprint1 == thumbprint2, "Two thumb prints made from the same key and salt bytes, although different AesKey instances should be equivalent.");
 
-            SymmetricKeyThumbprint thumbprint3 = new SymmetricKeyThumbprint(new SymmetricKey(128), new KeyWrapSalt(16), 10);
+            SymmetricKeyThumbprint thumbprint3 = new SymmetricKeyThumbprint(new GenericPassphrase(new SymmetricKey(128)), new KeyWrapSalt(16), 10);
             Assert.That(thumbprint2 != thumbprint3, "Two very different keys and salts should not be equivalent.");
         }
 
         [Test]
         public static void TestComparisons()
         {
-            SymmetricKey key1 = new SymmetricKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
-            SymmetricKey key2 = new SymmetricKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
+            IPassphrase key1 = new GenericPassphrase(new SymmetricKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 }));
+            IPassphrase key2 = new GenericPassphrase(new SymmetricKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 }));
             KeyWrapSalt salt1 = new KeyWrapSalt(16);
             KeyWrapSalt salt2 = new KeyWrapSalt(16);
 
@@ -108,8 +108,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestGetHashCode()
         {
-            SymmetricKey key1 = new SymmetricKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
-            SymmetricKey key2 = new SymmetricKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 });
+            GenericPassphrase key1 = new GenericPassphrase(new SymmetricKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 }));
+            GenericPassphrase key2 = new GenericPassphrase(new SymmetricKey(new byte[] { 5, 6, 7, 8, 2, 4, 55, 77, 34, 65, 89, 12, 45, 87, 54, 255 }));
             KeyWrapSalt salt1 = new KeyWrapSalt(16);
             KeyWrapSalt salt2 = new KeyWrapSalt(16);
 

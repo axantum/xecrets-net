@@ -25,11 +25,11 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using NUnit.Framework;
+using System;
+using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestNonTerminatingFileName()
         {
             UnicodeFileNameInfoHeaderBlockForTest unicodeFileInfoHeaderBlock = new UnicodeFileNameInfoHeaderBlockForTest();
-            unicodeFileInfoHeaderBlock.HeaderCrypto = new V1AesCrypto(new SymmetricKey(128));
+            unicodeFileInfoHeaderBlock.HeaderCrypto = new V1AesCrypto(new GenericPassphrase(new SymmetricKey(128)));
 
             unicodeFileInfoHeaderBlock.FileName = "ABCDEFGHIJ.LMN";
             unicodeFileInfoHeaderBlock.SetBadNameWithoutEndingNul();

@@ -37,7 +37,7 @@ namespace Axantum.AxCrypt.Core
 {
     public class AxCryptFactory
     {
-        public IAxCryptDocument CreateDocument(SymmetricKey key)
+        public IAxCryptDocument CreateDocument(IPassphrase key)
         {
             IAxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(key), Instance.UserSettings.V1KeyWrapIterations);
             return document;
@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Core
             Headers headers = new Headers();
             AxCryptReader reader = headers.Load(inputStream);
 
-            SymmetricKey key = reader.Crypto(headers, passphrase).Key;
+            IPassphrase key = reader.Crypto(headers, passphrase).Key;
             return CreateDocument(key, headers, reader);
         }
 
@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core
         /// </summary>
         /// <param name="fileInfo"></param>
         /// <returns></returns>
-        public IAxCryptDocument CreateDocument(SymmetricKey key, Stream inputStream)
+        public IAxCryptDocument CreateDocument(IPassphrase key, Stream inputStream)
         {
             Headers headers = new Headers();
             AxCryptReader reader = headers.Load(inputStream);
@@ -71,7 +71,7 @@ namespace Axantum.AxCrypt.Core
             return CreateDocument(key, headers, reader);
         }
 
-        private static IAxCryptDocument CreateDocument(SymmetricKey key, Headers headers, AxCryptReader reader)
+        private static IAxCryptDocument CreateDocument(IPassphrase key, Headers headers, AxCryptReader reader)
         {
             VersionHeaderBlock versionHeader = headers.FindHeaderBlock<VersionHeaderBlock>();
             IAxCryptDocument document;

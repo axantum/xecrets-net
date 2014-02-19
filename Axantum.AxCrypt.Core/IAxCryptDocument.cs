@@ -46,7 +46,7 @@ namespace Axantum.AxCrypt.Core
 
         ICrypto KeyEncryptingCrypto { get; }
 
-        bool Load(SymmetricKey key, Stream inputStream);
+        bool Load(IPassphrase key, Stream inputStream);
 
         void EncryptTo(Stream inputStream, Stream outputStream, AxCryptOptions options);
 

@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
-using System;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using NUnit.Framework;
+using System;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestNonUtcFileTimes()
         {
             FileInfoHeaderBlock fileInfoHeaderBlock = new FileInfoHeaderBlock();
-            fileInfoHeaderBlock.HeaderCrypto = new V1AesCrypto(new SymmetricKey(128));
+            fileInfoHeaderBlock.HeaderCrypto = new V1AesCrypto(new GenericPassphrase(new SymmetricKey(128)));
 
             DateTime utcNow = OS.Current.UtcNow;
             DateTime localNow = utcNow.ToLocalTime();

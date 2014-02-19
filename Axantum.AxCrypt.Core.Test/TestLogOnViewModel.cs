@@ -102,7 +102,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             LogOnViewModel lovm = new LogOnViewModel("Me");
 
-            _identities.Add(new PassphraseIdentity("Me", new V1Passphrase("abc1234").DerivedKey));
+            _identities.Add(new PassphraseIdentity("Me", new V1Passphrase("abc1234")));
 
             lovm.Passphrase = "abc1234";
 
@@ -124,7 +124,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             LogOnViewModel lovm = new LogOnViewModel("Me");
 
-            _identities.Add(new PassphraseIdentity("Me", new V1Passphrase("abc1234").DerivedKey));
+            _identities.Add(new PassphraseIdentity("Me", new V1Passphrase("abc1234")));
 
             lovm.Passphrase = "abc12345";
 

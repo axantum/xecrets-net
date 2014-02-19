@@ -73,7 +73,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncrypt()
         {
-            SymmetricKey key = new SymmetricKey(testKey);
+            IPassphrase key = new GenericPassphrase(new SymmetricKey(testKey));
             ICrypto crypto = new V2AesCrypto(key, new SymmetricIV(testPlaintext), 0);
 
             byte[] zeroPlain = new byte[testCipertext.Length];
@@ -86,7 +86,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptPartialBlock()
         {
-            SymmetricKey key = new SymmetricKey(testKey);
+            IPassphrase key = new GenericPassphrase(new SymmetricKey(testKey));
             ICrypto crypto = new V2AesCrypto(key, new SymmetricIV(testPlaintext), 3);
             byte[] zeroPlain = new byte[5];
 
@@ -100,7 +100,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptSeveralBlocks()
         {
-            SymmetricKey key = new SymmetricKey(nistKey);
+            IPassphrase key = new GenericPassphrase(new SymmetricKey(nistKey));
 
             byte[] iv = new byte[16];
             Array.Copy(nistInitCounter, iv, 8);

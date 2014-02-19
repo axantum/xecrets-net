@@ -25,17 +25,17 @@
 
 #endregion Coypright and License
 
-using System;
-using System.IO;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Test.Properties;
 using NUnit.Framework;
+using System;
+using System.IO;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -71,8 +71,8 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo nullFileInfo = null;
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
             IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
-            SymmetricKey key = new SymmetricKey(128);
-            SymmetricKey nullKey = null;
+            IPassphrase key = new GenericPassphrase(new SymmetricKey(128));
+            IPassphrase nullKey = null;
             ActiveFile nullActiveFile = null;
 
             ActiveFile originalActiveFile = new ActiveFile(decryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None);
@@ -81,15 +81,15 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(originalActiveFile, nullKey) == null) { } });
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullActiveFile, ActiveFileStatus.None) == null) { } });
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullActiveFile, DateTime.MinValue, ActiveFileStatus.None) == null) { } });
-            Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullFileInfo, decryptedFileInfo, new SymmetricKey(128), ActiveFileStatus.None) == null) { } });
-            Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(encryptedFileInfo, nullFileInfo, new SymmetricKey(128), ActiveFileStatus.None) == null) { } });
+            Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullFileInfo, decryptedFileInfo, new GenericPassphrase(new SymmetricKey(128)), ActiveFileStatus.None) == null) { } });
+            Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(encryptedFileInfo, nullFileInfo, new GenericPassphrase(new SymmetricKey(128)), ActiveFileStatus.None) == null) { } });
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(encryptedFileInfo, decryptedFileInfo, nullKey, ActiveFileStatus.None) == null) { } });
         }
 
         [Test]
         public static void TestConstructor()
         {
-            SymmetricKey key = new SymmetricKey(128);
+            IPassphrase key = new GenericPassphrase(new SymmetricKey(128));
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
             IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
 
@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(otherFile.EncryptedFileInfo.FullName, Is.EqualTo(activeFile.EncryptedFileInfo.FullName), "This should be copied from the original instance.");
             Assert.That(otherFile.Key, Is.EqualTo(activeFile.Key), "This should be copied from the original instance.");
             Assert.That(otherFile.LastActivityTimeUtc, Is.GreaterThan(activeFile.LastActivityTimeUtc), "This should not be copied from the original instance, but should be a later time.");
-            Assert.That(otherFile.ThumbprintMatch(activeFile.Key), Is.True, "The thumbprints should match.");
+            Assert.That(otherFile.ThumbprintMatch(activeFile.Key.DerivedKey), Is.True, "The thumbprints should match.");
 
             activeFile.DecryptedFileInfo.LastWriteTimeUtc = activeFile.DecryptedFileInfo.LastWriteTimeUtc.AddDays(1);
             otherFile = new ActiveFile(activeFile, OS.Current.UtcNow, ActiveFileStatus.AssumedOpenAndDecrypted);
@@ -117,11 +117,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestCopyConstructorWithKey()
         {
-            SymmetricKey key = new SymmetricKey(128);
+            IPassphrase key = new GenericPassphrase(new SymmetricKey(128));
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
             IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None);
-            SymmetricKey newKey = new SymmetricKey(128);
+            IPassphrase newKey = new GenericPassphrase(new SymmetricKey(128));
 
             ActiveFile newActiveFile = new ActiveFile(activeFile, newKey);
             Assert.That(activeFile.Key, Is.Not.EqualTo(newKey), "Ensure that it's really a different key.");
@@ -134,7 +134,7 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
             IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
 
-            SymmetricKey key = new SymmetricKey(128);
+            IPassphrase key = new GenericPassphrase(new SymmetricKey(128));
 
             using (MemoryStream stream = new MemoryStream())
             {
@@ -144,7 +144,7 @@ namespace Axantum.AxCrypt.Core.Test
                 stream.Position = 0;
                 ActiveFile deserializedActiveFile = (ActiveFile)serializer.ReadObject(stream);
 
-                Assert.That(deserializedActiveFile.ThumbprintMatch(key), Is.True, "The deserialized object should match the thumbprint with the key.");
+                Assert.That(deserializedActiveFile.ThumbprintMatch(key.DerivedKey), Is.True, "The deserialized object should match the thumbprint with the key.");
             }
         }
 
@@ -154,7 +154,7 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
             IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
 
-            SymmetricKey key = new SymmetricKey(128);
+            IPassphrase key = new GenericPassphrase(new SymmetricKey(128));
             using (MemoryStream stream = new MemoryStream())
             {
                 ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None);
@@ -171,7 +171,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "doesnotexist.txt"));
             IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
-            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new SymmetricKey(128), ActiveFileStatus.None);
+            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new GenericPassphrase(new SymmetricKey(128)), ActiveFileStatus.None);
             Assert.That(activeFile.IsModified, Is.False, "A non-existing decrypted file should not be treated as modified.");
         }
 
@@ -179,7 +179,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestVisualState()
         {
             ActiveFile activeFile;
-            SymmetricKey key = new SymmetricKey(128);
+            IPassphrase key = new GenericPassphrase(new SymmetricKey(128));
 
             activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(@"C:\encrypted.axx"), Factory.New<IRuntimeFileInfo>(@"C:\decrypted.txt"), key, ActiveFileStatus.NotDecrypted);
             Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.EncryptedWithKnownKey));

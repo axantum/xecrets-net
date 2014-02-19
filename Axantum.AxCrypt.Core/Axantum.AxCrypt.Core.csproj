@@ -57,6 +57,8 @@
     <Compile Include="Crypto\ICrypto.cs" />
     <Compile Include="Crypto\IPassphrase.cs" />
     <Compile Include="Crypto\IRandomGenerator.cs" />
+    <Compile Include="Crypto\GenericPassphrase.cs" />
+    <Compile Include="Crypto\PassphraseBase.cs" />
     <Compile Include="Crypto\Pbkdf2HmacSha512.cs" />
     <Compile Include="Crypto\RandomGenerator.cs" />
     <Compile Include="Crypto\V2AesCrypto.cs" />

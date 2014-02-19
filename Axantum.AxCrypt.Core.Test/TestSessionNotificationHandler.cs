@@ -61,11 +61,11 @@ namespace Axantum.AxCrypt.Core.Test
         {
             MockAxCryptFile mock = new MockAxCryptFile();
             bool called = false;
-            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IRuntimeFileInfo> folderInfos, SymmetricKey encryptionKey, IProgressContext progress) => { called = folderInfos.First().FullName == @"C:\My Documents\"; };
+            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IRuntimeFileInfo> folderInfos, IPassphrase encryptionKey, IProgressContext progress) => { called = folderInfos.First().FullName == @"C:\My Documents\"; };
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, Factory.New<ActiveFileAction>(), mock);
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new SymmetricKey(128), @"C:\My Documents\"));
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new GenericPassphrase(new SymmetricKey(128)), @"C:\My Documents\"));
 
             Assert.That(called, Is.True);
         }
@@ -76,13 +76,13 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFolder(@"C:\My Documents\");
             MockAxCryptFile mock = new MockAxCryptFile();
             bool called = false;
-            mock.DecryptFilesUniqueWithWipeOfOriginalMock = (IRuntimeFileInfo fileInfo, SymmetricKey decryptionKey, IProgressContext progress) => { called = fileInfo.FullName == @"C:\My Documents\"; };
+            mock.DecryptFilesUniqueWithWipeOfOriginalMock = (IRuntimeFileInfo fileInfo, IPassphrase decryptionKey, IProgressContext progress) => { called = fileInfo.FullName == @"C:\My Documents\"; };
 
             Factory.Instance.Register<AxCryptFile>(() => mock);
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, Factory.New<ActiveFileAction>(), mock);
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, new SymmetricKey(128), @"C:\My Documents\"));
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, new GenericPassphrase(new SymmetricKey(128)), @"C:\My Documents\"));
 
             Assert.That(called, Is.True);
         }
@@ -93,7 +93,7 @@ namespace Axantum.AxCrypt.Core.Test
             MockAxCryptFile mock = new MockAxCryptFile();
             bool called = false;
             int folderCount = -1;
-            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IRuntimeFileInfo> folderInfos, SymmetricKey encryptionKey, IProgressContext progress) =>
+            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IRuntimeFileInfo> folderInfos, IPassphrase encryptionKey, IProgressContext progress) =>
             {
                 folderCount = folderInfos.Count();
                 called = true;
@@ -101,8 +101,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, Factory.New<ActiveFileAction>(), mock);
             FakeRuntimeFileInfo.AddFolder(@"C:\WatchedFolder");
-            SymmetricKey key = new SymmetricKey(128);
-            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder", key.Thumbprint));
+            IPassphrase key = new GenericPassphrase(new SymmetricKey(128));
+            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder", key.DerivedKey.Thumbprint));
 
             handler.HandleNotification(new SessionNotification(SessionNotificationType.LogOn, key));
 
@@ -115,11 +115,11 @@ namespace Axantum.AxCrypt.Core.Test
         {
             MockAxCryptFile mock = new MockAxCryptFile();
             bool called = false;
-            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IRuntimeFileInfo> folderInfos, SymmetricKey encryptionKey, IProgressContext progress) => { called = true; };
+            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IRuntimeFileInfo> folderInfos, IPassphrase encryptionKey, IProgressContext progress) => { called = true; };
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, Factory.New<ActiveFileAction>(), mock);
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.LogOff, new SymmetricKey(128)));
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.LogOff, new GenericPassphrase(new SymmetricKey(128))));
 
             Assert.That(called, Is.True);
         }
@@ -133,7 +133,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, mock, Factory.New<AxCryptFile>());
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.ActiveFileChange, new SymmetricKey(128)));
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.ActiveFileChange, new GenericPassphrase(new SymmetricKey(128))));
 
             Assert.That(called, Is.True);
         }
@@ -147,7 +147,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, mock, Factory.New<AxCryptFile>());
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.SessionStart, new SymmetricKey(128)));
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.SessionStart, new GenericPassphrase(new SymmetricKey(128))));
 
             Assert.That(called, Is.True);
         }
@@ -161,7 +161,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, mock, Factory.New<AxCryptFile>());
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.EncryptPendingFiles, new SymmetricKey(128)));
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.EncryptPendingFiles, new GenericPassphrase(new SymmetricKey(128))));
 
             Assert.That(called, Is.True);
         }
@@ -200,13 +200,13 @@ namespace Axantum.AxCrypt.Core.Test
         {
             MockAxCryptFile mock = new MockAxCryptFile();
             int callTimes = 0;
-            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IRuntimeFileInfo> folderInfos, SymmetricKey decryptionKey, IProgressContext progress) => { if (folderInfos.First().FullName == @"C:\My Documents\") ++callTimes; };
+            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IRuntimeFileInfo> folderInfos, IPassphrase decryptionKey, IProgressContext progress) => { if (folderInfos.First().FullName == @"C:\My Documents\") ++callTimes; };
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, Factory.New<ActiveFileAction>(), mock);
 
             List<SessionNotification> sessionEvents = new List<SessionNotification>();
-            sessionEvents.Add(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new SymmetricKey(128), @"C:\My Documents\"));
-            sessionEvents.Add(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new SymmetricKey(128), @"C:\My Documents\"));
+            sessionEvents.Add(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new GenericPassphrase(new SymmetricKey(128)), @"C:\My Documents\"));
+            sessionEvents.Add(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new GenericPassphrase(new SymmetricKey(128)), @"C:\My Documents\"));
 
             foreach (SessionNotification sessionEvent in sessionEvents)
             {

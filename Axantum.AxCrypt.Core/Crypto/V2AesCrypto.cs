@@ -61,25 +61,25 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <exception cref="System.ArgumentNullException">key
         /// or
         /// iv</exception>
-        public V2AesCrypto(SymmetricKey key, SymmetricIV iv, long blockCounter, int blockOffset)
+        public V2AesCrypto(IPassphrase key, SymmetricIV iv, long blockCounter, int blockOffset)
             : this(key, iv)
         {
             _blockCounter = blockCounter;
             _blockOffset = blockOffset;
         }
 
-        public V2AesCrypto(SymmetricKey key, SymmetricIV iv, long keyStreamOffset)
+        public V2AesCrypto(IPassphrase key, SymmetricIV iv, long keyStreamOffset)
             : this(key, iv, keyStreamOffset / iv.Length, (int)(keyStreamOffset % iv.Length))
         {
         }
 
-        public V2AesCrypto(SymmetricKey key, SymmetricIV iv)
+        public V2AesCrypto(IPassphrase key, SymmetricIV iv)
         {
             if (key == null)
             {
                 throw new ArgumentNullException("key");
             }
-            if (!IsValidKeyLength(key.Length))
+            if (!IsValidKeyLength(key.DerivedKey.Length))
             {
                 throw new ArgumentException("Key length is invalid.");
             }
@@ -96,7 +96,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             _iv = iv;
         }
 
-        public V2AesCrypto(SymmetricKey key)
+        public V2AesCrypto(IPassphrase key)
             : this(key, SymmetricIV.Zero128)
         {
         }
@@ -125,7 +125,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         public override SymmetricAlgorithm CreateAlgorithm()
         {
             SymmetricAlgorithm algorithm = CreateRawAlgorithm();
-            algorithm.Key = Key.GetBytes();
+            algorithm.Key = Key.DerivedKey.GetBytes();
             algorithm.IV = _iv.GetBytes();
             algorithm.Mode = CipherMode.ECB;
             algorithm.Padding = PaddingMode.None;

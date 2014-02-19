@@ -33,13 +33,13 @@ namespace Axantum.AxCrypt.Core.Session
 {
     public class SessionNotification : IEquatable<SessionNotification>
     {
-        public SymmetricKey Key { get; private set; }
+        public IPassphrase Key { get; private set; }
 
         public string FullName { get; private set; }
 
         public SessionNotificationType NotificationType { get; private set; }
 
-        public SessionNotification(SessionNotificationType notificationType, SymmetricKey key, string fullName)
+        public SessionNotification(SessionNotificationType notificationType, IPassphrase key, string fullName)
         {
             NotificationType = notificationType;
             Key = key;
@@ -47,17 +47,17 @@ namespace Axantum.AxCrypt.Core.Session
         }
 
         public SessionNotification(SessionNotificationType notificationType, string fullName)
-            : this(notificationType, null, fullName)
+            : this(notificationType, new GenericPassphrase(SymmetricKey.Zero128), fullName)
         {
         }
 
-        public SessionNotification(SessionNotificationType notificationType, SymmetricKey key)
-            : this(notificationType, key, null)
+        public SessionNotification(SessionNotificationType notificationType, IPassphrase key)
+            : this(notificationType, key, String.Empty)
         {
         }
 
         public SessionNotification(SessionNotificationType notificationType)
-            : this(notificationType, null, null)
+            : this(notificationType, new GenericPassphrase(SymmetricKey.Zero128), String.Empty)
         {
         }
 
@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt.Core.Session
                 return false;
             }
 
-            if (other.Key != Key)
+            if (!other.Key.Equals(Key))
             {
                 return false;
             }

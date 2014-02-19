@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt.Core.Reader
             InputStream = null;
         }
 
-        public override ICrypto Crypto(SymmetricKey key)
+        public override ICrypto Crypto(IPassphrase key)
         {
             throw new NotImplementedException();
         }

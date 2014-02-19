@@ -190,7 +190,7 @@ namespace Axantum.AxCrypt.Core.Header
         public void RewrapMasterKey(ICrypto keyEncryptingCrypto)
         {
             V1KeyWrap1HeaderBlock keyHeaderBlock = _headers.FindHeaderBlock<V1KeyWrap1HeaderBlock>();
-            keyHeaderBlock.RewrapMasterKey(GetMasterKey(), keyEncryptingCrypto.Key);
+            keyHeaderBlock.RewrapMasterKey(GetMasterKey(), keyEncryptingCrypto.Key.DerivedKey);
             _keyEncryptingCrypto = keyEncryptingCrypto;
         }
 
@@ -203,7 +203,7 @@ namespace Axantum.AxCrypt.Core.Header
                 {
                     return null;
                 }
-                return new Subkey(masterKey, HeaderSubkey.Hmac);
+                return new Subkey(new GenericPassphrase(masterKey), HeaderSubkey.Hmac);
             }
         }
 
@@ -216,7 +216,7 @@ namespace Axantum.AxCrypt.Core.Header
                 {
                     return null;
                 }
-                return new Subkey(masterKey, HeaderSubkey.Data);
+                return new Subkey(new GenericPassphrase(masterKey), HeaderSubkey.Data);
             }
         }
 
@@ -229,7 +229,7 @@ namespace Axantum.AxCrypt.Core.Header
                 {
                     return null;
                 }
-                return new Subkey(masterKey, HeaderSubkey.Headers);
+                return new Subkey(new GenericPassphrase(masterKey), HeaderSubkey.Headers);
             }
         }
 

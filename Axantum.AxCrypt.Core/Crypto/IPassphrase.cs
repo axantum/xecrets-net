@@ -30,12 +30,10 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
-    public interface IPassphrase
+    public interface IPassphrase : IEquatable<IPassphrase>
     {
         SymmetricKey DerivedKey { get; }
 
-        long Iterations { get; }
-
-        byte[] GetSalt();
+        string Passphrase { get; }
     }
 }

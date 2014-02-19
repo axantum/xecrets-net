@@ -70,7 +70,7 @@ namespace Axantum.AxCrypt.Core
             {
                 using (Stream destinationStream = destinationFile.OpenWrite())
                 {
-                    using (IAxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase.DerivedKey), Instance.UserSettings.V1KeyWrapIterations))
+                    using (IAxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase), Instance.UserSettings.V1KeyWrapIterations))
                     {
                         document.FileName = sourceFile.Name;
                         document.CreationTimeUtc = sourceFile.CreationTimeUtc;
@@ -86,7 +86,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        public static void Encrypt(IRuntimeFileInfo sourceFile, Stream destinationStream, SymmetricKey key, AxCryptOptions options, IProgressContext progress)
+        public static void Encrypt(IRuntimeFileInfo sourceFile, Stream destinationStream, IPassphrase key, AxCryptOptions options, IProgressContext progress)
         {
             if (sourceFile == null)
             {
@@ -118,7 +118,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        public void EncryptFileWithBackupAndWipe(string sourceFile, string destinationFile, SymmetricKey key, IProgressContext progress)
+        public void EncryptFileWithBackupAndWipe(string sourceFile, string destinationFile, IPassphrase key, IProgressContext progress)
         {
             if (sourceFile == null)
             {
@@ -141,7 +141,7 @@ namespace Axantum.AxCrypt.Core
             EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, key, progress);
         }
 
-        public virtual void EncryptFilesUniqueWithBackupAndWipe(IEnumerable<IRuntimeFileInfo> folders, SymmetricKey encryptionKey, IProgressContext progress)
+        public virtual void EncryptFilesUniqueWithBackupAndWipe(IEnumerable<IRuntimeFileInfo> folders, IPassphrase encryptionKey, IProgressContext progress)
         {
             progress.NotifyLevelStart();
             try
@@ -160,14 +160,14 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        public virtual void EncryptFileUniqueWithBackupAndWipe(IRuntimeFileInfo fileInfo, SymmetricKey encryptionKey, IProgressContext progress)
+        public virtual void EncryptFileUniqueWithBackupAndWipe(IRuntimeFileInfo fileInfo, IPassphrase encryptionKey, IProgressContext progress)
         {
             IRuntimeFileInfo destinationFileInfo = fileInfo.CreateEncryptedName();
             destinationFileInfo = Factory.New<IRuntimeFileInfo>(destinationFileInfo.FullName.CreateUniqueFile());
             EncryptFileWithBackupAndWipe(fileInfo, destinationFileInfo, encryptionKey, progress);
         }
 
-        public virtual void EncryptFileWithBackupAndWipe(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFileInfo, SymmetricKey key, IProgressContext progress)
+        public virtual void EncryptFileWithBackupAndWipe(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFileInfo, IPassphrase key, IProgressContext progress)
         {
             if (sourceFileInfo == null)
             {
@@ -204,7 +204,7 @@ namespace Axantum.AxCrypt.Core
         /// <param name="destinationFile">The destination file</param>
         /// <param name="passphrase">The passphrase</param>
         /// <returns>true if the passphrase was correct</returns>
-        public bool Decrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, SymmetricKey key, AxCryptOptions options, IProgressContext progress)
+        public bool Decrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, IPassphrase key, AxCryptOptions options, IProgressContext progress)
         {
             if (sourceFile == null)
             {
@@ -240,7 +240,7 @@ namespace Axantum.AxCrypt.Core
         /// <param name="destinationFile">The destination file</param>
         /// <param name="passphrase">The passphrase</param>
         /// <returns>true if the passphrase was correct</returns>
-        public string Decrypt(IRuntimeFileInfo sourceFile, string destinationDirectory, SymmetricKey key, AxCryptOptions options, IProgressContext progress)
+        public string Decrypt(IRuntimeFileInfo sourceFile, string destinationDirectory, IPassphrase key, AxCryptOptions options, IProgressContext progress)
         {
             if (sourceFile == null)
             {
@@ -322,7 +322,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        public virtual void DecryptFilesInsideFolderUniqueWithWipeOfOriginal(IRuntimeFileInfo folderInfo, SymmetricKey decryptionKey, IProgressContext progress)
+        public virtual void DecryptFilesInsideFolderUniqueWithWipeOfOriginal(IRuntimeFileInfo folderInfo, IPassphrase decryptionKey, IProgressContext progress)
         {
             IEnumerable<IRuntimeFileInfo> files = folderInfo.ListEncrypted();
             Instance.ParallelFileOperation.DoFiles(files, (file, context) =>
@@ -333,7 +333,7 @@ namespace Axantum.AxCrypt.Core
             (status) => { });
         }
 
-        public FileOperationStatus DecryptFileUniqueWithWipeOfOriginal(IRuntimeFileInfo fileInfo, SymmetricKey decryptionKey, IProgressContext progress)
+        public FileOperationStatus DecryptFileUniqueWithWipeOfOriginal(IRuntimeFileInfo fileInfo, IPassphrase decryptionKey, IProgressContext progress)
         {
             progress.NotifyLevelStart();
             using (IAxCryptDocument document = Factory.New<AxCryptFile>().Document(fileInfo, decryptionKey, progress))
@@ -383,7 +383,7 @@ namespace Axantum.AxCrypt.Core
         /// <param name="sourceFile">The source file</param>
         /// <param name="passphrase">The passphrase</param>
         /// <returns>An instance of AxCryptDocument. Use IsPassphraseValid property to determine validity.</returns>
-        public virtual IAxCryptDocument Document(IRuntimeFileInfo sourceFile, SymmetricKey key, IProgressContext progress)
+        public virtual IAxCryptDocument Document(IRuntimeFileInfo sourceFile, IPassphrase key, IProgressContext progress)
         {
             if (sourceFile == null)
             {

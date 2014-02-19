@@ -35,7 +35,7 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestKeyWrap
     {
-        private static SymmetricKey _keyEncryptingKey;
+        private static IPassphrase _keyEncryptingKey;
         private static SymmetricKey _keyData;
         private static byte[] _wrapped;
 
@@ -44,7 +44,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             SetupAssembly.AssemblySetup();
 
-            _keyEncryptingKey = new SymmetricKey(new byte[] { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F });
+            _keyEncryptingKey = new GenericPassphrase(new SymmetricKey(new byte[] { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F }));
             _keyData = new SymmetricKey(new byte[] { 0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99, 0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF });
             _wrapped = new byte[] { 0x1F, 0xA6, 0x8B, 0x0A, 0x81, 0x12, 0xB4, 0x47, 0xAE, 0xF3, 0x4B, 0xD8, 0xFB, 0x5A, 0x7B, 0x82, 0x9D, 0x3E, 0x86, 0x23, 0x71, 0xD2, 0xCF, 0xE5 };
         }
@@ -91,7 +91,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestWrapAndUnwrapAxCryptMode()
         {
             SymmetricKey keyToWrap = new SymmetricKey(new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 });
-            SymmetricKey keyEncryptingKey = new SymmetricKey(new byte[] { 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 });
+            IPassphrase keyEncryptingKey = new GenericPassphrase(new SymmetricKey(new byte[] { 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 }));
             KeyWrapSalt salt = new KeyWrapSalt(new byte[] { 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 });
             long iterations = 12345;
             byte[] wrapped;
@@ -112,7 +112,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestWrapAndUnwrapSpecificationMode()
         {
             SymmetricKey keyToWrap = new SymmetricKey(new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 });
-            SymmetricKey keyEncryptingKey = new SymmetricKey(new byte[] { 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 });
+            IPassphrase keyEncryptingKey = new GenericPassphrase(new SymmetricKey(new byte[] { 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 }));
             KeyWrapSalt salt = new KeyWrapSalt(new byte[] { 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 });
             long iterations = 23456;
             byte[] wrapped;

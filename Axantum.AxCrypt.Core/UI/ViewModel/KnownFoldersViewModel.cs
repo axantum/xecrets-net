@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Axantum.AxCrypt.Core.Session;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
@@ -78,7 +78,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     knownFolder.MyFullPath.CreateFolder();
                 }
-                _fileSystemState.AddWatchedFolder(new WatchedFolder(knownFolder.MyFullPath.FullName, _knownKeys.DefaultEncryptionKey.Thumbprint));
+                _fileSystemState.AddWatchedFolder(new WatchedFolder(knownFolder.MyFullPath.FullName, _knownKeys.DefaultEncryptionKey.DerivedKey.Thumbprint));
             }
         }
 

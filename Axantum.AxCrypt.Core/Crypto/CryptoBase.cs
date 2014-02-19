@@ -13,9 +13,9 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public abstract string Name { get; }
 
-        private SymmetricKey _key;
+        private IPassphrase _key;
 
-        public SymmetricKey Key
+        public IPassphrase Key
         {
             get
             {

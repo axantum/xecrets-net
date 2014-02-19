@@ -121,7 +121,7 @@ namespace Axantum.AxCrypt.Core.Session
         /// <param name="_fileSystemState">The FileSystemState that contains the list of active files.</param>
         /// <param name="key">The newly added key to check the files for a match with.</param>
         /// <returns>True if any file was updated with the new key, False otherwise.</returns>
-        public virtual bool UpdateActiveFileWithKeyIfKeyMatchesThumbprint(SymmetricKey key)
+        public virtual bool UpdateActiveFileWithKeyIfKeyMatchesThumbprint(IPassphrase key)
         {
             bool keyMatch = false;
             Instance.FileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFile) =>
@@ -130,7 +130,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     return activeFile;
                 }
-                if (!activeFile.ThumbprintMatch(key))
+                if (!activeFile.ThumbprintMatch(key.DerivedKey))
                 {
                     return activeFile;
                 }
@@ -176,7 +176,7 @@ namespace Axantum.AxCrypt.Core.Session
                 return activeFile;
             }
 
-            SymmetricKey key = FindKnownKeyOrNull(activeFile);
+            IPassphrase key = FindKnownKeyOrNull(activeFile);
             if (activeFile.Key != null)
             {
                 if (key != null)
@@ -193,11 +193,11 @@ namespace Axantum.AxCrypt.Core.Session
             return activeFile;
         }
 
-        private static SymmetricKey FindKnownKeyOrNull(ActiveFile activeFile)
+        private static IPassphrase FindKnownKeyOrNull(ActiveFile activeFile)
         {
-            foreach (SymmetricKey key in Instance.KnownKeys.Keys)
+            foreach (IPassphrase key in Instance.KnownKeys.Keys)
             {
-                if (activeFile.ThumbprintMatch(key))
+                if (activeFile.ThumbprintMatch(key.DerivedKey))
                 {
                     return key;
                 }

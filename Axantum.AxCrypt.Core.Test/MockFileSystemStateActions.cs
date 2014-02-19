@@ -75,9 +75,9 @@ namespace Axantum.AxCrypt.Core.Test
             RemoveRecentFilesMock(encryptedPaths, progress);
         }
 
-        public Func<SymmetricKey, bool> UpdateActiveFileWithKeyIfKeyMatchesThumbprintMock { get; set; }
+        public Func<IPassphrase, bool> UpdateActiveFileWithKeyIfKeyMatchesThumbprintMock { get; set; }
 
-        public override bool UpdateActiveFileWithKeyIfKeyMatchesThumbprint(SymmetricKey key)
+        public override bool UpdateActiveFileWithKeyIfKeyMatchesThumbprint(IPassphrase key)
         {
             return UpdateActiveFileWithKeyIfKeyMatchesThumbprintMock(key);
         }

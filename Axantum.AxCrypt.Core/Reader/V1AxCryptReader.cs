@@ -87,14 +87,14 @@ namespace Axantum.AxCrypt.Core.Reader
             return new UnrecognizedHeaderBlock(headerBlockType, dataBlock);
         }
 
-        public override ICrypto Crypto(SymmetricKey key)
+        public override ICrypto Crypto(IPassphrase key)
         {
             return new V1AesCrypto(key);
         }
 
         public override ICrypto Crypto(Headers headers, string passphrase)
         {
-            return new V1AesCrypto(new V1Passphrase(passphrase).DerivedKey);
+            return new V1AesCrypto(new V1Passphrase(passphrase));
         }
     }
 }

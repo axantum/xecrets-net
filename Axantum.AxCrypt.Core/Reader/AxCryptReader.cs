@@ -69,7 +69,7 @@ namespace Axantum.AxCrypt.Core.Reader
             CurrentItemType = AxCryptItemType.Data;
         }
 
-        public abstract ICrypto Crypto(SymmetricKey key);
+        public abstract ICrypto Crypto(IPassphrase key);
 
         public abstract ICrypto Crypto(Headers headers, string passphrase);
 

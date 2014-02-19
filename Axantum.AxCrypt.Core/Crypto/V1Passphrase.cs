@@ -34,10 +34,8 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// <summary>
     /// Derive a SymmetricKey from a string passphrase representation for AxCrypt. Instances of this class are immutable.
     /// </summary>
-    public class V1Passphrase : IPassphrase
+    public class V1Passphrase : PassphraseBase
     {
-        private readonly SymmetricKey _derivedKey;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="V1Passphrase"/> class.
         /// </summary>
@@ -55,26 +53,8 @@ namespace Axantum.AxCrypt.Core.Crypto
             byte[] derivedKey = new byte[16];
             Array.Copy(hash, derivedKey, derivedKey.Length);
 
-            _derivedKey = new SymmetricKey(derivedKey);
-            Iterations = 1;
-        }
-
-        /// <summary>
-        /// Gets the derived key instance.
-        /// </summary>
-        public SymmetricKey DerivedKey
-        {
-            get
-            {
-                return _derivedKey;
-            }
-        }
-
-        public long Iterations { get; private set; }
-
-        public byte[] GetSalt()
-        {
-            return new byte[0];
+            DerivedKey = new SymmetricKey(derivedKey);
+            Passphrase = passphrase;
         }
     }
 }

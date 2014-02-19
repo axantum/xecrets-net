@@ -94,7 +94,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private static object V1KeyWrapIterate(int iterations)
         {
-            ICrypto dummyCrypto = new V1AesCrypto(new SymmetricKey(128));
+            ICrypto dummyCrypto = new V1AesCrypto(new GenericPassphrase(new SymmetricKey(128)));
             KeyWrapSalt dummySalt = new KeyWrapSalt(16);
             using (KeyWrap keyWrap = new KeyWrap(dummyCrypto, dummySalt, iterations, KeyWrapMode.AxCrypt))
             {
@@ -110,7 +110,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private static object V2KeyWrapIterate(int iterations)
         {
-            ICrypto dummyCrypto = new V2AesCrypto(new SymmetricKey(256));
+            ICrypto dummyCrypto = new V2AesCrypto(new GenericPassphrase(new SymmetricKey(256)));
             KeyWrapSalt dummySalt = new KeyWrapSalt(32);
             using (KeyWrap keyWrap = new KeyWrap(dummyCrypto, dummySalt, iterations, KeyWrapMode.AxCrypt))
             {

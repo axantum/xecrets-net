@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core
 
         public bool PassphraseIsValid { get; set; }
 
-        public bool Load(SymmetricKey key, Stream inputStream)
+        public bool Load(IPassphrase key, Stream inputStream)
         {
             Headers headers = new Headers();
             AxCryptReader reader = headers.Load(inputStream);
@@ -77,7 +77,7 @@ namespace Axantum.AxCrypt.Core
         /// </summary>
         /// <param name="inputStream">The stream to read from. Will be disposed when this instance is disposed.</param>
         /// <returns>True if the key was valid, false if it was wrong.</returns>
-        public bool Load(SymmetricKey key, AxCryptReader reader, Headers headers)
+        public bool Load(IPassphrase key, AxCryptReader reader, Headers headers)
         {
             _reader = reader;
             DocumentHeaders = new V1DocumentHeaders(new V1AesCrypto(key));
@@ -87,7 +87,7 @@ namespace Axantum.AxCrypt.Core
                 return false;
             }
 
-            _hmacStream = new V1HmacStream(DocumentHeaders.HmacSubkey.Key);
+            _hmacStream = new V1HmacStream(DocumentHeaders.HmacSubkey.Key.DerivedKey);
             foreach (HeaderBlock header in DocumentHeaders.Headers.HeaderBlocks)
             {
                 if (header.HeaderBlockType != HeaderBlockType.Preamble)
@@ -145,7 +145,7 @@ namespace Axantum.AxCrypt.Core
                 }
                 outputStream.Flush();
                 DocumentHeaders.CipherTextLength = outputStream.Position - outputStartPosition;
-                using (V1HmacStream outputHmacStream = new V1HmacStream(DocumentHeaders.HmacSubkey.Key, outputStream))
+                using (V1HmacStream outputHmacStream = new V1HmacStream(DocumentHeaders.HmacSubkey.Key.DerivedKey, outputStream))
                 {
                     DocumentHeaders.WriteWithHmac(outputHmacStream);
                     outputHmacStream.ReadFrom(outputStream);
@@ -196,7 +196,7 @@ namespace Axantum.AxCrypt.Core
                 throw new InternalErrorException("Passphrase is not valid.");
             }
 
-            using (V1HmacStream hmacStreamOutput = new V1HmacStream(outputDocumentHeaders.HmacSubkey.Key, cipherStream))
+            using (V1HmacStream hmacStreamOutput = new V1HmacStream(outputDocumentHeaders.HmacSubkey.Key.DerivedKey, cipherStream))
             {
                 outputDocumentHeaders.WriteWithHmac(hmacStreamOutput);
                 using (V1AxCryptDataStream encryptedDataStream = CreateEncryptedDataStream(_reader.InputStream, DocumentHeaders.CipherTextLength))

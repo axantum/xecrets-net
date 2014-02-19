@@ -81,7 +81,7 @@ namespace Axantum.AxCrypt.Core.Reader
             return new UnrecognizedHeaderBlock(headerBlockType, dataBlock);
         }
 
-        public override ICrypto Crypto(SymmetricKey key)
+        public override ICrypto Crypto(IPassphrase key)
         {
             return new V2AesCrypto(key);
         }
@@ -89,7 +89,7 @@ namespace Axantum.AxCrypt.Core.Reader
         public override ICrypto Crypto(Headers headers, string passphrase)
         {
             V2KeyWrapHeaderBlock keyWrap = headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
-            SymmetricKey key = new V2Passphrase(passphrase, keyWrap.GetDerivationSalt(), keyWrap.DerivationIterations, 256).DerivedKey;
+            IPassphrase key = new V2Passphrase(passphrase, keyWrap.GetDerivationSalt(), keyWrap.DerivationIterations, 256);
 
             return Crypto(key);
         }

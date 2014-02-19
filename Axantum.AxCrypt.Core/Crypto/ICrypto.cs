@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <value>
         /// The key.
         /// </value>
-        SymmetricKey Key { get; }
+        IPassphrase Key { get; }
 
         int BlockLength { get; }
 

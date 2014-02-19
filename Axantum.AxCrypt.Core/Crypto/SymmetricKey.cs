@@ -93,7 +93,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 if (_thumbprint == null)
                 {
-                    _thumbprint = new SymmetricKeyThumbprint(this, Instance.UserSettings.ThumbprintSalt, Instance.UserSettings.V1KeyWrapIterations);
+                    _thumbprint = new SymmetricKeyThumbprint(new GenericPassphrase(this), Instance.UserSettings.ThumbprintSalt, Instance.UserSettings.V1KeyWrapIterations);
                 }
                 return _thumbprint;
             }

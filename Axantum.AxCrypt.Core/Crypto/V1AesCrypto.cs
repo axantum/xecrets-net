@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <param name="iv">Initial Vector</param>
         /// <param name="cipherMode">Mode of operation, typically CBC</param>
         /// <param name="paddingMode">Padding mode, typically PCS7</param>
-        public V1AesCrypto(SymmetricKey key, SymmetricIV iv, CipherMode cipherMode, PaddingMode paddingMode)
+        public V1AesCrypto(IPassphrase key, SymmetricIV iv, CipherMode cipherMode, PaddingMode paddingMode)
         {
             if (key == null)
             {
@@ -77,7 +77,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// Instantiate an AES transform with zero IV, CBC and no padding.
         /// </summary>
         /// <param name="key">The key</param>
-        public V1AesCrypto(SymmetricKey key)
+        public V1AesCrypto(IPassphrase key)
             : this(key, SymmetricIV.Zero128, CipherMode.CBC, PaddingMode.None)
         {
         }
@@ -97,7 +97,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         public override SymmetricAlgorithm CreateAlgorithm()
         {
             SymmetricAlgorithm algorithm = CreateRawAlgorithm();
-            algorithm.Key = Key.GetBytes();
+            algorithm.Key = Key.DerivedKey.GetBytes();
             algorithm.IV = _iv.GetBytes();
             algorithm.Mode = _cipherMode;
             algorithm.Padding = _paddingMode;
