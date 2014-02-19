@@ -30,6 +30,7 @@ using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Axantum.AxCrypt.Core.Reader
@@ -55,6 +56,16 @@ namespace Axantum.AxCrypt.Core.Reader
             }
             InputStream = lookAheadStream;
             CurrentItemType = AxCryptItemType.None;
+        }
+
+        public virtual void Reinterpret(IList<HeaderBlock> inputHeaders, IList<HeaderBlock> outputHeaders)
+        {
+            outputHeaders.Clear();
+            foreach (HeaderBlock header in inputHeaders)
+            {
+                outputHeaders.Add(HeaderBlockFactory(header.HeaderBlockType, header.GetDataBlockBytes()));
+            }
+            CurrentItemType = AxCryptItemType.Data;
         }
 
         /// <summary>
@@ -121,7 +132,7 @@ namespace Axantum.AxCrypt.Core.Reader
             }
         }
 
-        private static byte[] _axCrypt1GuidBytes = AxCrypt1Guid.GetBytes();
+        private static readonly byte[] _axCrypt1GuidBytes = AxCrypt1Guid.GetBytes();
 
         private void LookForMagicGuid()
         {
@@ -229,7 +240,7 @@ namespace Axantum.AxCrypt.Core.Reader
             GC.SuppressFinalize(this);
         }
 
-        private void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (disposing)
             {

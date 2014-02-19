@@ -77,10 +77,17 @@ namespace Axantum.AxCrypt.Core.Header
             }
         }
 
-        public bool Load(AxCryptReader axCryptReader)
+        public bool Load(AxCryptReader reader)
         {
-            _headers.Load(axCryptReader);
+            Headers headers = new Headers();
+            headers.Load(reader);
 
+            return Load(headers);
+        }
+
+        public bool Load(Headers headers)
+        {
+            _headers = headers;
             _headers.EnsureFileFormatVersion(0, 3);
 
             if (GetMasterKey() != null)

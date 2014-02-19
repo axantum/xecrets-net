@@ -64,16 +64,24 @@ namespace Axantum.AxCrypt.Core
 
         public bool PassphraseIsValid { get; set; }
 
+        public bool Load(Stream inputStream)
+        {
+            Headers headers = new Headers();
+            AxCryptReader reader = headers.Load(inputStream);
+
+            return Load(reader, headers);
+        }
+
         /// <summary>
         /// Loads an AxCrypt file from the specified reader. After this, the reader is positioned to
         /// read encrypted data.
         /// </summary>
         /// <param name="inputStream">The stream to read from. Will be disposed when this instance is disposed.</param>
         /// <returns>True if the key was valid, false if it was wrong.</returns>
-        public bool Load(Stream inputStream)
+        public bool Load(AxCryptReader reader, Headers headers)
         {
-            _reader = new V1AxCryptReader(inputStream);
-            PassphraseIsValid = DocumentHeaders.Load(_reader);
+            _reader = reader;
+            PassphraseIsValid = DocumentHeaders.Load(headers);
             if (!PassphraseIsValid)
             {
                 return false;

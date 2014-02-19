@@ -47,6 +47,9 @@ namespace Axantum.AxCrypt.Core.Reader
         {
             switch (headerBlockType)
             {
+                case HeaderBlockType.Preamble:
+                    return new PreambleHeaderBlock(dataBlock);
+
                 case HeaderBlockType.Version:
                     return new VersionHeaderBlock(dataBlock);
 

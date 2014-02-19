@@ -26,10 +26,12 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Header
@@ -46,16 +48,63 @@ namespace Axantum.AxCrypt.Core.Header
             TrailerBlocks = new List<HeaderBlock>();
         }
 
-        public void Load(AxCryptReader axCryptReader)
+        public AxCryptReader Load(Stream inputStream)
         {
-            HeaderBlocks.Clear();
-            axCryptReader.Read();
-            if (axCryptReader.CurrentItemType != AxCryptItemType.MagicGuid)
+            inputStream = new LookAheadStream(inputStream);
+
+            IList<HeaderBlock> headers = LoadUnversionedHeaders(inputStream);
+            AxCryptReader reader = CreateVersionedReader(inputStream, headers);
+            reader.Reinterpret(headers, HeaderBlocks);
+
+            return reader;
+        }
+
+        public void Load(AxCryptReader reader)
+        {
+            HeaderBlocks = LoadFromReader(reader);
+        }
+
+        private static IList<HeaderBlock> LoadUnversionedHeaders(Stream inputStream)
+        {
+            using (VxAxCryptReader vxReader = new VxAxCryptReader(inputStream))
+            {
+                return LoadFromReader(vxReader);
+            }
+        }
+
+        private static IList<HeaderBlock> LoadFromReader(AxCryptReader vxReader)
+        {
+            List<HeaderBlock> headers = new List<HeaderBlock>();
+            vxReader.Read();
+            if (vxReader.CurrentItemType != AxCryptItemType.MagicGuid)
             {
                 throw new FileFormatException("No magic Guid was found.", ErrorStatus.MagicGuidMissing);
             }
 
-            ReadHeadersToLast(HeaderBlocks, axCryptReader, HeaderBlockType.Data);
+            ReadHeadersToLast(headers, vxReader, HeaderBlockType.Data);
+            return headers;
+        }
+
+        private static AxCryptReader CreateVersionedReader(Stream inputStream, IList<HeaderBlock> headers)
+        {
+            AxCryptReader reader;
+            VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>(headers);
+            switch (versionHeaderBlock.FileVersionMajor)
+            {
+                case 1:
+                case 2:
+                case 3:
+                    reader = new V1AxCryptReader(inputStream);
+                    break;
+
+                case 4:
+                    reader = new V2AxCryptReader(inputStream);
+                    break;
+
+                default:
+                    throw new FileFormatException("Too new file format. You need a more recent version.");
+            }
+            return reader;
         }
 
         public void Trailers(AxCryptReader reader)

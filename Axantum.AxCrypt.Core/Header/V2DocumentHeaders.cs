@@ -88,10 +88,9 @@ namespace Axantum.AxCrypt.Core.Header
             get { return _hmacStream; }
         }
 
-        public bool Load(AxCryptReader axCryptReader)
+        public bool Load(Headers headers)
         {
-            _headers.Load(axCryptReader);
-
+            _headers = headers;
             _headers.EnsureFileFormatVersion(4, 4);
             if (DataEncryptingKey == null)
             {

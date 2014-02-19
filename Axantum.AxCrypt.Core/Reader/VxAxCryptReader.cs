@@ -28,17 +28,17 @@
 using Axantum.AxCrypt.Core.Header;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
-    public class V2AxCryptReader : AxCryptReader
+    public class VxAxCryptReader : AxCryptReader
     {
         /// <summary>
-        /// Instantiate an AxCryptReader from a stream.
+        /// Initializes a new instance of the <see cref="VxAxCryptReader"/> class.
         /// </summary>
-        /// <param name="inputStream">The stream to read from, will be disposed when this instance is disposed.</param>
-        /// <returns></returns>
-        public V2AxCryptReader(Stream inputStream)
+        /// <param name="inputStream">The stream. Will NOT be disposed when this instance is disposed.</param>
+        public VxAxCryptReader(Stream inputStream)
             : base(inputStream)
         {
         }
@@ -53,31 +53,24 @@ namespace Axantum.AxCrypt.Core.Reader
                 case HeaderBlockType.Version:
                     return new VersionHeaderBlock(dataBlock);
 
-                case HeaderBlockType.V2KeyWrap:
-                    return new V2KeyWrapHeaderBlock(dataBlock);
-
                 case HeaderBlockType.Data:
                     return new DataHeaderBlock(dataBlock);
-
-                case HeaderBlockType.FileInfo:
-                    return new FileInfoHeaderBlock(dataBlock);
-
-                case HeaderBlockType.Compression:
-                    return new V2CompressionHeaderBlock(dataBlock);
-
-                case HeaderBlockType.UnicodeFileNameInfo:
-                    return new V2UnicodeFileNameInfoHeaderBlock(dataBlock);
-
-                case HeaderBlockType.PlaintextLengths:
-                    return new V2PlaintextLengthsHeaderBlock(dataBlock);
-
-                case HeaderBlockType.V2Hmac:
-                    return new V2HmacHeaderBlock(dataBlock);
-
-                case HeaderBlockType.EncryptedDataPart:
-                    return new EncryptedDataPartBlock(dataBlock);
             }
             return new UnrecognizedHeaderBlock(headerBlockType, dataBlock);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                PreventInputStreamDispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private void PreventInputStreamDispose()
+        {
+            InputStream = null;
         }
     }
 }

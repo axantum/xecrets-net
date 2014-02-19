@@ -379,7 +379,7 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("progress");
             }
 
-            IAxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(key));
+            IAxCryptDocument document = new AxCryptDocumentFactory().Create(new V1AesCrypto(key), sourceFile);
             document.Load(new ProgressStream(sourceFile.OpenRead(), progress));
             return document;
         }
