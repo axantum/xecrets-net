@@ -42,10 +42,10 @@ namespace Axantum.AxCrypt.Core.Header
 
         private ICrypto _keyEncryptingCrypto;
 
-        public V1DocumentHeaders(ICrypto keyEncryptingCrypto, long iterations)
+        public V1DocumentHeaders(ICrypto keyEncryptingCrypto, long keyWrapIterations)
             : this(keyEncryptingCrypto)
         {
-            _headers.HeaderBlocks.Add(new V1KeyWrap1HeaderBlock(keyEncryptingCrypto, iterations));
+            _headers.HeaderBlocks.Add(new V1KeyWrap1HeaderBlock(keyEncryptingCrypto, keyWrapIterations));
 
             SetMasterKeyForEncryptedHeaderBlocks(_headers.HeaderBlocks);
 

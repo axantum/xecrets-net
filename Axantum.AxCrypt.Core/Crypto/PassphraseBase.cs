@@ -17,6 +17,20 @@ namespace Axantum.AxCrypt.Core.Crypto
             protected set;
         }
 
+        private byte[] _derivationSalt;
+
+        public byte[] GetDerivationSalt()
+        {
+            return (byte[])_derivationSalt.Clone();
+        }
+
+        protected void SetDeriviationSalt(byte[] derivationSalt)
+        {
+            _derivationSalt = (byte[])derivationSalt.Clone();
+        }
+
+        public long DerivationIterations { get; protected set; }
+
         #region IEquatable<SymmetricKey> Members
 
         /// <summary>

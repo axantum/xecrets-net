@@ -117,7 +117,7 @@ namespace Axantum.AxCrypt.Core.Test
             mock.Setup<byte[]>(x => x.Generate(It.IsAny<int>())).Returns<int>(v => new byte[v]);
             Factory.Instance.Singleton<IRandomGenerator>(() => mock.Object);
 
-            IPassphrase keyEncryptingKey = new GenericPassphrase(new SymmetricKey(256));
+            IPassphrase keyEncryptingKey = new V2Passphrase("secret", Instance.RandomGenerator.Generate(32), 100, 256);
             V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(keyEncryptingKey, new SymmetricIV(128)), 250);
 
             byte[] keyData = header.UnwrapMasterKey(new V2AesCrypto(keyEncryptingKey, new SymmetricIV(128)));
@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
 
-            IPassphrase keyEncryptingKey = new GenericPassphrase(new SymmetricKey(256));
+            IPassphrase keyEncryptingKey = new V2Passphrase("secret", Instance.RandomGenerator.Generate(32), 100, 256);
             V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(keyEncryptingKey, new SymmetricIV(128)), 125);
 
             byte[] keyData = header.UnwrapMasterKey(new V2AesCrypto(keyEncryptingKey, new SymmetricIV(128)));

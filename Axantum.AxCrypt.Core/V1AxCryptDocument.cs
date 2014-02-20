@@ -54,9 +54,9 @@ namespace Axantum.AxCrypt.Core
         {
         }
 
-        public V1AxCryptDocument(ICrypto keyEncryptingCrypto, long iterations)
+        public V1AxCryptDocument(ICrypto keyEncryptingCrypto, long keyWrapIterations)
         {
-            DocumentHeaders = new V1DocumentHeaders(keyEncryptingCrypto, iterations);
+            DocumentHeaders = new V1DocumentHeaders(keyEncryptingCrypto, keyWrapIterations);
         }
 
         public V1DocumentHeaders DocumentHeaders { get; private set; }

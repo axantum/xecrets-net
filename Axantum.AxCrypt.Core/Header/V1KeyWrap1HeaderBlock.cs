@@ -38,10 +38,10 @@ namespace Axantum.AxCrypt.Core.Header
         {
         }
 
-        public V1KeyWrap1HeaderBlock(ICrypto keyEncryptingCrypto, long iterations)
+        public V1KeyWrap1HeaderBlock(ICrypto keyEncryptingCrypto, long keyWrapIterations)
             : this(new byte[44])
         {
-            Initialize(keyEncryptingCrypto, iterations);
+            Initialize(keyEncryptingCrypto, keyWrapIterations);
         }
 
         public override object Clone()
@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Core.Header
             return keyData;
         }
 
-        protected void Set(byte[] wrapped, KeyWrapSalt salt, long iterations)
+        protected void Set(byte[] wrapped, KeyWrapSalt salt, long keyWrapIterations)
         {
             if (wrapped == null)
             {
@@ -78,7 +78,7 @@ namespace Axantum.AxCrypt.Core.Header
             }
             Array.Copy(wrapped, 0, GetDataBlockBytesReference(), 0, wrapped.Length);
             Array.Copy(salt.GetBytes(), 0, GetDataBlockBytesReference(), 16 + 8, salt.Length);
-            byte[] iterationsBytes = iterations.GetLittleEndianBytes();
+            byte[] iterationsBytes = keyWrapIterations.GetLittleEndianBytes();
             Array.Copy(iterationsBytes, 0, GetDataBlockBytesReference(), 16 + 8 + 16, sizeof(uint));
         }
 
@@ -129,14 +129,14 @@ namespace Axantum.AxCrypt.Core.Header
             return unwrappedKeyData;
         }
 
-        private void Initialize(ICrypto keyEncryptingCrypto, long iterations)
+        private void Initialize(ICrypto keyEncryptingCrypto, long keyWrapIterations)
         {
             SymmetricKey masterKey = new SymmetricKey(keyEncryptingCrypto.Key.DerivedKey.Length * 8);
             KeyWrapSalt salt = new KeyWrapSalt(masterKey.Length);
-            using (KeyWrap keyWrap = new KeyWrap(keyEncryptingCrypto, salt, iterations, KeyWrapMode.AxCrypt))
+            using (KeyWrap keyWrap = new KeyWrap(keyEncryptingCrypto, salt, keyWrapIterations, KeyWrapMode.AxCrypt))
             {
                 byte[] wrappedKeyData = keyWrap.Wrap(masterKey);
-                Set(wrappedKeyData, salt, iterations);
+                Set(wrappedKeyData, salt, keyWrapIterations);
             }
         }
 

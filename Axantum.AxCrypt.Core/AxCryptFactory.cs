@@ -37,6 +37,11 @@ namespace Axantum.AxCrypt.Core
 {
     public class AxCryptFactory
     {
+        public IPassphrase CreatePassphrase(string passphrase)
+        {
+            return new V2Passphrase(passphrase, 256);
+        }
+
         public IAxCryptDocument CreateDocument(IPassphrase key)
         {
             IAxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(key), Instance.UserSettings.V1KeyWrapIterations);
