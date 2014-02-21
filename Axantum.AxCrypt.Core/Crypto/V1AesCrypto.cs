@@ -82,9 +82,14 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
         }
 
+        public V1AesCrypto()
+            : this(new GenericPassphrase(SymmetricKey.Zero128))
+        {
+        }
+
         public override string Name
         {
-            get { return "AES-128"; }
+            get { return "AES-128-V1"; }
         }
 
         /// <summary>

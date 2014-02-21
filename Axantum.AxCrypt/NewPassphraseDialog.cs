@@ -25,17 +25,17 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.Session;
-using Axantum.AxCrypt.Core.UI.ViewModel;
-using Axantum.AxCrypt.Properties;
 using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Security.Principal;
 using System.Windows.Forms;
+using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.UI.ViewModel;
+using Axantum.AxCrypt.Properties;
 
 namespace Axantum.AxCrypt
 {

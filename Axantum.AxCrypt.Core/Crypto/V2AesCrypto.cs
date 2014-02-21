@@ -101,6 +101,11 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
         }
 
+        public V2AesCrypto()
+            : this(new GenericPassphrase(SymmetricKey.Zero256))
+        {
+        }
+
         /// <summary>
         /// Gets the unique name of the algorithm implementation.
         /// </summary>

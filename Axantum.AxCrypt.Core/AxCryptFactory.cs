@@ -25,18 +25,50 @@
 
 #endregion Coypright and License
 
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
-using System;
-using System.IO;
-using System.Linq;
 
 namespace Axantum.AxCrypt.Core
 {
     public class AxCryptFactory
     {
+        public IEnumerable<string> CryptographicModes
+        {
+            get { return new string[] { "AES-128-V1", "AES-256" }; }
+        }
+
+        public ICrypto CreateCrypto(IPassphrase key)
+        {
+            if (key == null)
+            {
+                throw new ArgumentNullException("key");
+            }
+
+            if (key.CryptoName == "AES-128-V1")
+            {
+                return new V1AesCrypto(key);
+            }
+            if (key.CryptoName == "AES-256")
+            {
+                return new V2AesCrypto(key);
+            }
+            if (key.CryptoName.Length == 0 && key.DerivedKey.Length == 16)
+            {
+                return new V1AesCrypto(key);
+            }
+            if (key.CryptoName.Length == 0 && key.DerivedKey.Length == 32)
+            {
+                return new V2AesCrypto(key);
+            }
+            throw new InternalErrorException("Invalid CryptoName in parameter 'key'.");
+        }
+
         public IPassphrase CreatePassphrase(string passphrase)
         {
             return new V2Passphrase(passphrase, 256);

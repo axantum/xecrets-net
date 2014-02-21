@@ -25,13 +25,13 @@
 
 #endregion Coypright and License
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Moq;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {

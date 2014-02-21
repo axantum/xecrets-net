@@ -11,6 +11,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             DerivationIterations = 1;
             DerivedKey = key;
             Passphrase = String.Empty;
+            CryptoName = String.Empty;
         }
     }
 }

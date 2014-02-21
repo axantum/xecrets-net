@@ -39,5 +39,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         byte[] GetDerivationSalt();
 
         long DerivationIterations { get; }
+
+        string CryptoName { get; }
     }
 }

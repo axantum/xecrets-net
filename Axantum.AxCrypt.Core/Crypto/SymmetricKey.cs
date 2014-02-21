@@ -25,9 +25,9 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Diagnostics.CodeAnalysis;
+using Axantum.AxCrypt.Core.Extensions;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -40,6 +40,9 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "This type is immutable.")]
         public static readonly SymmetricKey Zero128 = new SymmetricKey(new byte[16], SymmetricKeyThumbprint.Zero);
+
+        [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "This type is immutable.")]
+        public static readonly SymmetricKey Zero256 = new SymmetricKey(new byte[32], SymmetricKeyThumbprint.Zero);
 
         private SymmetricKey(byte[] key, SymmetricKeyThumbprint thumbprint)
             : this(key)

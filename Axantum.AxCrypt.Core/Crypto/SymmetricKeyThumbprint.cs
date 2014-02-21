@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
+using Axantum.AxCrypt.Core.Extensions;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Core.Crypto
                 throw new ArgumentNullException("salt");
             }
 
-            ICrypto crypto = new V1AesCrypto(key);
+            ICrypto crypto = new AxCryptFactory().CreateCrypto(key);
             KeyWrap keyWrap = new KeyWrap(crypto, salt, iterations, KeyWrapMode.Specification);
             byte[] wrap = keyWrap.Wrap(key.DerivedKey);
 

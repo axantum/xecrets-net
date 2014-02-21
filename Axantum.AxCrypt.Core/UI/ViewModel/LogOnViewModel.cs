@@ -25,16 +25,22 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Axantum.AxCrypt.Core.Crypto;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
     public class LogOnViewModel : ViewModelBase
     {
         public LogOnViewModel(string identityName)
+        {
+            InitializePropertyValues(identityName);
+        }
+
+        private void InitializePropertyValues(string identityName)
         {
             IdentityName = identityName;
             Passphrase = String.Empty;
