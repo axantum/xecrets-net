@@ -59,7 +59,7 @@
         <_AxIsBuildServerBuild>false</_AxIsBuildServerBuild>
         <_AxIsBuildServerBuild Condition=" Exists('$(_AxBuildserverDistinguishingPath)') ">true</_AxIsBuildServerBuild>
         <_AxTimeStampUrl>http://timestamp.comodoca.com/authenticode</_AxTimeStampUrl>
-        <_AxCertificateThumbprint>f19b4539765c80c0a1e56586132b06d5a96a2400</_AxCertificateThumbprint>
+        <_AxCertificateThumbprint>‎fc898fdc88b037ff88ea154ff25a24aea11eda9c</_AxCertificateThumbprint>
     </PropertyGroup>
     <PropertyGroup>
         <UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>
