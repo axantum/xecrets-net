@@ -25,14 +25,14 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -40,7 +40,7 @@ namespace Axantum.AxCrypt.Core
     {
         public IEnumerable<string> CryptographicModes
         {
-            get { return new string[] { "AES-128-V1", "AES-256" }; }
+            get { return new string[] { V1AesCrypto.InternalName, V2AesCrypto.InternalName }; }
         }
 
         public ICrypto CreateCrypto(IPassphrase key)
@@ -50,11 +50,11 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("key");
             }
 
-            if (key.CryptoName == "AES-128-V1")
+            if (key.CryptoName == V1AesCrypto.InternalName)
             {
                 return new V1AesCrypto(key);
             }
-            if (key.CryptoName == "AES-256")
+            if (key.CryptoName == V2AesCrypto.InternalName)
             {
                 return new V2AesCrypto(key);
             }
@@ -69,6 +69,19 @@ namespace Axantum.AxCrypt.Core
             throw new InternalErrorException("Invalid CryptoName in parameter 'key'.");
         }
 
+        public IPassphrase CreatePassphrase(string passphrase, string cryptoName)
+        {
+            switch (cryptoName)
+            {
+                case V2AesCrypto.InternalName:
+                    return new V2Passphrase(passphrase, 256);
+
+                case V1AesCrypto.InternalName:
+                    return new V1Passphrase(passphrase);
+            }
+            throw new InternalErrorException("Invalid CryptoName in parameter 'cryptoName'.");
+        }
+
         public IPassphrase CreatePassphrase(string passphrase)
         {
             return new V2Passphrase(passphrase, 256);
@@ -76,7 +89,20 @@ namespace Axantum.AxCrypt.Core
 
         public IAxCryptDocument CreateDocument(IPassphrase key)
         {
-            IAxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(key), Instance.UserSettings.V1KeyWrapIterations);
+            IAxCryptDocument document;
+            switch (key.CryptoName)
+            {
+                case V1AesCrypto.InternalName:
+                    document = new V1AxCryptDocument(new V1AesCrypto(key), Instance.UserSettings.V1KeyWrapIterations);
+                    break;
+
+                case V2AesCrypto.InternalName:
+                    document = new V2AxCryptDocument(new V2AesCrypto(key), Instance.UserSettings.V2KeyWrapIterations, Instance.UserSettings.V2KeyDerivationIterations);
+                    break;
+
+                default:
+                    throw new InternalErrorException("Invalid CryptoName in parameter 'cryptoName'.");
+            }
             return document;
         }
 

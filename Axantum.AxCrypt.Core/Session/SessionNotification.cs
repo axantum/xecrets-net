@@ -47,7 +47,7 @@ namespace Axantum.AxCrypt.Core.Session
         }
 
         public SessionNotification(SessionNotificationType notificationType, string fullName)
-            : this(notificationType, new GenericPassphrase(SymmetricKey.Zero128), fullName)
+            : this(notificationType, new GenericPassphrase(String.Empty), fullName)
         {
         }
 
@@ -57,7 +57,7 @@ namespace Axantum.AxCrypt.Core.Session
         }
 
         public SessionNotification(SessionNotificationType notificationType)
-            : this(notificationType, new GenericPassphrase(SymmetricKey.Zero128), String.Empty)
+            : this(notificationType, new GenericPassphrase(String.Empty), String.Empty)
         {
         }
 

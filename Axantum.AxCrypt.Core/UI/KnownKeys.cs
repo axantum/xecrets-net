@@ -74,13 +74,10 @@ namespace Axantum.AxCrypt.Core.UI
                     changed = true;
                 }
             }
-            changed |= AddKnownThumbprint(key.DerivedKey);
+            changed |= AddKnownThumbprint(key);
             if (changed)
             {
-                if (_fileSystemState.Identities.Any(i => i.Thumbprint == key.DerivedKey.Thumbprint))
-                {
-                    DefaultEncryptionKey = key;
-                }
+                DefaultEncryptionKey = key;
                 _notificationMonitor.Notify(new SessionNotification(SessionNotificationType.KnownKeyChange, key));
             }
         }
@@ -126,7 +123,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
             set
             {
-                if (_defaultEncryptionKey != null && value != null && _defaultEncryptionKey.DerivedKey == value.DerivedKey)
+                if (_defaultEncryptionKey != null && value != null && _defaultEncryptionKey == value)
                 {
                     return;
                 }
@@ -153,7 +150,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         /// <param name="thumbprint">The key to add the fingerprint of</param>
         /// <returns>True if a new thumb print was added, false if it was already known.</returns>
-        private bool AddKnownThumbprint(SymmetricKey key)
+        private bool AddKnownThumbprint(IPassphrase key)
         {
             lock (_knownThumbprints)
             {
@@ -174,7 +171,7 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     return new WatchedFolder[0];
                 }
-                return _fileSystemState.WatchedFolders.Where(wf => wf.Thumbprint == DefaultEncryptionKey.DerivedKey.Thumbprint);
+                return _fileSystemState.WatchedFolders.Where(wf => wf.Thumbprint == DefaultEncryptionKey.Thumbprint);
             }
         }
     }

@@ -252,12 +252,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void HandleQueryDecryptionPassphraseEvent(object sender, FileOperationEventArgs e)
         {
             IdentityViewModel.AskForLogOnOrDecryptPassphrase.Execute(e.OpenFileFullName);
-            if (String.IsNullOrEmpty(IdentityViewModel.PassphraseText))
+            if (IdentityViewModel.Passphrase == null)
             {
                 e.Cancel = true;
                 return;
             }
-            e.Passphrase = IdentityViewModel.PassphraseText;
+            e.Passphrase = IdentityViewModel.Passphrase.Passphrase;
         }
 
         private FileOperationStatus EncryptFileWork(IRuntimeFileInfo file, IProgressContext progress)
@@ -282,12 +282,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             operationsController.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
             {
                 IdentityViewModel.AskForLogOnPassphrase.Execute(PassphraseIdentity.Empty);
-                if (String.IsNullOrEmpty(IdentityViewModel.PassphraseText))
+                if (IdentityViewModel.Passphrase == null)
                 {
                     e.Cancel = true;
                     return;
                 }
-                e.Passphrase = IdentityViewModel.PassphraseText;
+                e.Passphrase = IdentityViewModel.Passphrase.Passphrase;
             };
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>

@@ -78,7 +78,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(decrypted2, null);
 
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
-            PassphraseIdentity id = new PassphraseIdentity("Test", new GenericPassphrase(new SymmetricKey(128)));
+            PassphraseIdentity id = new PassphraseIdentity("Test", new GenericPassphrase("asdf"));
             Instance.FileSystemState.Identities.Add(id);
             Instance.KnownKeys.DefaultEncryptionKey = id.Key;
             mvm.AddRecentFiles.Execute(new string[] { file1, file2, decrypted1 });
@@ -185,7 +185,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestLogOnLogOffWhenLoggedOn()
         {
-            PassphraseIdentity id = new PassphraseIdentity("Test", new GenericPassphrase(new SymmetricKey(128)));
+            PassphraseIdentity id = new PassphraseIdentity("Test", new GenericPassphrase("logonwhenloggedon"));
             Instance.FileSystemState.Identities.Add(id);
             Instance.KnownKeys.DefaultEncryptionKey = id.Key;
 
@@ -204,6 +204,7 @@ namespace Axantum.AxCrypt.Core.Test
             Instance.FileSystemState.Identities.Add(identity);
 
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
+            mvm.IdentityViewModel.CryptoName = new V1AesCrypto().Name;
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
                 e.Passphrase = "a";
@@ -250,7 +251,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptFoldersWhenLoggedIn()
         {
-            PassphraseIdentity id = new PassphraseIdentity("Test", new GenericPassphrase(new SymmetricKey(128)));
+            PassphraseIdentity id = new PassphraseIdentity("Test", new GenericPassphrase("a"));
             Instance.FileSystemState.Identities.Add(id);
             Instance.KnownKeys.DefaultEncryptionKey = id.Key;
 
@@ -315,7 +316,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestOpenFilesFromFolderWithCancelWhenLoggedOn()
         {
-            Instance.KnownKeys.DefaultEncryptionKey = new GenericPassphrase(new SymmetricKey(128));
+            Instance.KnownKeys.DefaultEncryptionKey = new GenericPassphrase("b");
 
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
             mvm.SelectingFiles += (sender, e) =>
@@ -331,7 +332,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestOpenFilesFromFolderWhenLoggedOn()
         {
-            Instance.KnownKeys.DefaultEncryptionKey = new GenericPassphrase(new SymmetricKey(128));
+            Instance.KnownKeys.DefaultEncryptionKey = new GenericPassphrase("c");
 
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
             mvm.SelectingFiles += (sender, e) =>
@@ -493,6 +494,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Register<AxCryptFile>(() => axCryptFileMock.Object);
 
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
+            mvm.IdentityViewModel.CryptoName = new V1AesCrypto().Name;
             mvm.SelectingFiles += (sender, e) =>
             {
                 e.SelectedFiles.Add(@"C:\Folder\File1-txt.axx");
@@ -531,6 +533,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Register<AxCryptFile>(() => axCryptFileMock.Object);
 
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
+            mvm.IdentityViewModel.CryptoName = new V1AesCrypto().Name;
             mvm.SelectingFiles += (sender, e) =>
             {
                 e.SelectedFiles.Clear();
@@ -559,9 +562,9 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
-            axCryptFileMock.Setup<IAxCryptDocument>(m => m.Document(It.IsAny<IRuntimeFileInfo>(), It.IsAny<IPassphrase>(), It.IsAny<IProgressContext>())).Returns((IRuntimeFileInfo fileInfo, IPassphrase key, IProgressContext progress) =>
+            axCryptFileMock.Setup<IAxCryptDocument>(m => m.Document(It.IsAny<IRuntimeFileInfo>(), It.IsAny<string>(), It.IsAny<IProgressContext>())).Returns((IRuntimeFileInfo fileInfo, string passphrase, IProgressContext progress) =>
             {
-                V1AxCryptDocument acd = new V1AxCryptDocument();
+                V1AxCryptDocument acd = new V1AxCryptDocument(new V1AesCrypto(new V1Passphrase(passphrase)), 10);
                 acd.PassphraseIsValid = true;
                 acd.DocumentHeaders.FileName = Path.GetFileName(fileInfo.FullName.Replace("-txt.axx", ".txt"));
                 return acd;
@@ -569,6 +572,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Register<AxCryptFile>(() => axCryptFileMock.Object);
 
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
+            mvm.IdentityViewModel.CryptoName = new V1AesCrypto().Name;
             mvm.SelectingFiles += (sender, e) =>
             {
                 e.Cancel = true;
@@ -621,9 +625,9 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
-            axCryptFileMock.Setup<IAxCryptDocument>(m => m.Document(It.IsAny<IRuntimeFileInfo>(), It.IsAny<IPassphrase>(), It.IsAny<IProgressContext>())).Returns((IRuntimeFileInfo fileInfo, IPassphrase key, IProgressContext progress) =>
+            axCryptFileMock.Setup<IAxCryptDocument>(m => m.Document(It.IsAny<IRuntimeFileInfo>(), It.IsAny<string>(), It.IsAny<IProgressContext>())).Returns((IRuntimeFileInfo fileInfo, string passphrase, IProgressContext progress) =>
             {
-                V1AxCryptDocument acd = new V1AxCryptDocument();
+                V1AxCryptDocument acd = new V1AxCryptDocument(new V1AesCrypto(new V1Passphrase(passphrase)), 10);
                 acd.PassphraseIsValid = true;
                 acd.DocumentHeaders.FileName = Path.GetFileName(fileInfo.FullName.Replace("-txt.axx", ".txt"));
                 return acd;
@@ -631,6 +635,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Register<AxCryptFile>(() => axCryptFileMock.Object);
 
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
+            mvm.IdentityViewModel.CryptoName = new V1AesCrypto().Name;
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
                 e.Passphrase = "b";
@@ -775,7 +780,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
-            PassphraseIdentity id = new PassphraseIdentity("Test", new GenericPassphrase(new SymmetricKey(128)));
+            PassphraseIdentity id = new PassphraseIdentity("Test", new GenericPassphrase("d"));
             Instance.FileSystemState.Identities.Add(id);
             Instance.KnownKeys.DefaultEncryptionKey = id.Key;
 
@@ -826,6 +831,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Register<FileOperation>(() => fileOperationMock.Object);
 
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
+            mvm.IdentityViewModel.CryptoName = new V1AesCrypto().Name;
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
                 e.Passphrase = "b";
@@ -868,6 +874,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Register<FileOperation>(() => fileOperationMock.Object);
 
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
+            mvm.IdentityViewModel.CryptoName = new V1AesCrypto().Name;
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
                 if (count == 2)
@@ -898,7 +905,7 @@ namespace Axantum.AxCrypt.Core.Test
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
             Factory.Instance.Register<AxCryptFile>(() => axCryptFileMock.Object);
 
-            PassphraseIdentity id = new PassphraseIdentity("Test", new GenericPassphrase(new SymmetricKey(128)));
+            PassphraseIdentity id = new PassphraseIdentity("Test", new GenericPassphrase("e"));
             Instance.FileSystemState.Identities.Add(id);
             Instance.KnownKeys.DefaultEncryptionKey = id.Key;
 

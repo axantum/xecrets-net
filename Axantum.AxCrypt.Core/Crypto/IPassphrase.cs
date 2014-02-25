@@ -41,5 +41,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         long DerivationIterations { get; }
 
         string CryptoName { get; }
+
+        SymmetricKeyThumbprint Thumbprint { get; }
     }
 }

@@ -56,31 +56,31 @@ namespace Axantum.AxCrypt.Core.Test
             sessionEvent = new SessionNotification(SessionNotificationType.ProcessExit);
             Assert.That(sessionEvent.NotificationType, Is.EqualTo(SessionNotificationType.ProcessExit));
             Assert.That(sessionEvent.FullName, Is.EqualTo(String.Empty));
-            Assert.That(sessionEvent.Key.Equals(new GenericPassphrase(SymmetricKey.Zero128)));
+            Assert.That(sessionEvent.Key.Equals(new GenericPassphrase(String.Empty)));
 
-            SymmetricKey key = new SymmetricKey(128);
-            sessionEvent = new SessionNotification(SessionNotificationType.KnownKeyChange, new GenericPassphrase(key));
+            IPassphrase key = new GenericPassphrase("key");
+            sessionEvent = new SessionNotification(SessionNotificationType.KnownKeyChange, key);
             Assert.That(sessionEvent.NotificationType, Is.EqualTo(SessionNotificationType.KnownKeyChange));
             Assert.That(sessionEvent.FullName, Is.EqualTo(String.Empty));
-            Assert.That(sessionEvent.Key.DerivedKey, Is.EqualTo(key));
+            Assert.That(sessionEvent.Key, Is.EqualTo(key));
 
             string fullName = @"C:\Test\Test.txt";
             sessionEvent = new SessionNotification(SessionNotificationType.ActiveFileChange, fullName);
             Assert.That(sessionEvent.NotificationType, Is.EqualTo(SessionNotificationType.ActiveFileChange));
             Assert.That(sessionEvent.FullName, Is.EqualTo(fullName));
-            Assert.That(sessionEvent.Key.Equals(new GenericPassphrase(SymmetricKey.Zero128)));
+            Assert.That(sessionEvent.Key.Equals(new GenericPassphrase(String.Empty)));
 
             fullName = @"C:\Test\";
-            sessionEvent = new SessionNotification(SessionNotificationType.WatchedFolderAdded, new GenericPassphrase(key), fullName);
+            sessionEvent = new SessionNotification(SessionNotificationType.WatchedFolderAdded, key, fullName);
             Assert.That(sessionEvent.NotificationType, Is.EqualTo(SessionNotificationType.WatchedFolderAdded));
             Assert.That(sessionEvent.FullName, Is.EqualTo(fullName));
-            Assert.That(sessionEvent.Key.DerivedKey, Is.EqualTo(key));
+            Assert.That(sessionEvent.Key, Is.EqualTo(key));
         }
 
         [Test]
         public static void TestEquality()
         {
-            IPassphrase key = new GenericPassphrase(new SymmetricKey(128));
+            IPassphrase key = new GenericPassphrase("passphrase1");
             string fullName = @"C:\Test\Test.txt";
 
             SessionNotification sessionEventA1 = new SessionNotification(SessionNotificationType.ActiveFileChange);
@@ -89,7 +89,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotification sessionEventB1 = new SessionNotification(SessionNotificationType.ActiveFileChange, key);
             SessionNotification sessionEventB2 = new SessionNotification(SessionNotificationType.ActiveFileChange, key);
-            SessionNotification sessionEventB3 = new SessionNotification(SessionNotificationType.ActiveFileChange, new GenericPassphrase(new SymmetricKey(128)));
+            SessionNotification sessionEventB3 = new SessionNotification(SessionNotificationType.ActiveFileChange, new GenericPassphrase("passphrase2"));
 
             SessionNotification sessionEventC1 = new SessionNotification(SessionNotificationType.ActiveFileChange, fullName);
             SessionNotification sessionEventC2 = new SessionNotification(SessionNotificationType.ActiveFileChange, fullName);
@@ -97,7 +97,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotification sessionEventD1 = new SessionNotification(SessionNotificationType.ActiveFileChange, key, fullName);
             SessionNotification sessionEventD2 = new SessionNotification(SessionNotificationType.ActiveFileChange, key, fullName);
-            SessionNotification sessionEventD3 = new SessionNotification(SessionNotificationType.ActiveFileChange, new GenericPassphrase(new SymmetricKey(128)), fullName);
+            SessionNotification sessionEventD3 = new SessionNotification(SessionNotificationType.ActiveFileChange, new GenericPassphrase("passphrase"), fullName);
 
             SessionNotification nullSessionEvent = null;
             SessionNotification sessionEventA1Alias = sessionEventA1;

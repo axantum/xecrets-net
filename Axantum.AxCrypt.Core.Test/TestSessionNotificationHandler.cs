@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, Factory.New<ActiveFileAction>(), mock);
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new GenericPassphrase(new SymmetricKey(128)), @"C:\My Documents\"));
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new GenericPassphrase("passphrase"), @"C:\My Documents\"));
 
             Assert.That(called, Is.True);
         }
@@ -82,7 +82,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, Factory.New<ActiveFileAction>(), mock);
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, new GenericPassphrase(new SymmetricKey(128)), @"C:\My Documents\"));
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, new GenericPassphrase("passphrase"), @"C:\My Documents\"));
 
             Assert.That(called, Is.True);
         }
@@ -101,8 +101,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, Factory.New<ActiveFileAction>(), mock);
             FakeRuntimeFileInfo.AddFolder(@"C:\WatchedFolder");
-            IPassphrase key = new GenericPassphrase(new SymmetricKey(128));
-            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder", key.DerivedKey.Thumbprint));
+            IPassphrase key = new GenericPassphrase("passphrase");
+            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder", key.Thumbprint));
 
             handler.HandleNotification(new SessionNotification(SessionNotificationType.LogOn, key));
 
@@ -119,7 +119,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, Factory.New<ActiveFileAction>(), mock);
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.LogOff, new GenericPassphrase(new SymmetricKey(128))));
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.LogOff, new GenericPassphrase("passphrase")));
 
             Assert.That(called, Is.True);
         }
@@ -133,7 +133,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, mock, Factory.New<AxCryptFile>());
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.ActiveFileChange, new GenericPassphrase(new SymmetricKey(128))));
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.ActiveFileChange, new GenericPassphrase("passphrase")));
 
             Assert.That(called, Is.True);
         }
@@ -147,7 +147,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, mock, Factory.New<AxCryptFile>());
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.SessionStart, new GenericPassphrase(new SymmetricKey(128))));
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.SessionStart, new GenericPassphrase("passphrase")));
 
             Assert.That(called, Is.True);
         }
@@ -161,7 +161,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, mock, Factory.New<AxCryptFile>());
 
-            handler.HandleNotification(new SessionNotification(SessionNotificationType.EncryptPendingFiles, new GenericPassphrase(new SymmetricKey(128))));
+            handler.HandleNotification(new SessionNotification(SessionNotificationType.EncryptPendingFiles, new GenericPassphrase("passphrase")));
 
             Assert.That(called, Is.True);
         }
@@ -205,8 +205,8 @@ namespace Axantum.AxCrypt.Core.Test
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, Factory.New<ActiveFileAction>(), mock);
 
             List<SessionNotification> sessionEvents = new List<SessionNotification>();
-            sessionEvents.Add(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new GenericPassphrase(new SymmetricKey(128)), @"C:\My Documents\"));
-            sessionEvents.Add(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new GenericPassphrase(new SymmetricKey(128)), @"C:\My Documents\"));
+            sessionEvents.Add(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new GenericPassphrase("passphrase1"), @"C:\My Documents\"));
+            sessionEvents.Add(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new GenericPassphrase("passphrase"), @"C:\My Documents\"));
 
             foreach (SessionNotification sessionEvent in sessionEvents)
             {

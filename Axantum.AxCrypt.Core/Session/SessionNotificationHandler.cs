@@ -96,7 +96,7 @@ namespace Axantum.AxCrypt.Core.Session
 
                 case SessionNotificationType.LogOn:
                 case SessionNotificationType.LogOff:
-                    _axCryptFile.EncryptFilesUniqueWithBackupAndWipe(_fileSystemState.WatchedFolders.Where(wf => wf.Thumbprint == notification.Key.DerivedKey.Thumbprint).Select(wf => Factory.New<IRuntimeFileInfo>(wf.Path)), notification.Key, progress);
+                    _axCryptFile.EncryptFilesUniqueWithBackupAndWipe(_fileSystemState.WatchedFolders.Where(wf => wf.Thumbprint == notification.Key.Thumbprint).Select(wf => Factory.New<IRuntimeFileInfo>(wf.Path)), notification.Key, progress);
                     break;
 
                 case SessionNotificationType.SessionStart:

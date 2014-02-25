@@ -25,16 +25,18 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
-using Axantum.AxCrypt.Core.Extensions;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
     /// <summary>
     /// Represent a salted thumb print for a symmetric key. Instances of this class are immutable. A thumb print is
-    /// typically only valid and comparable on the same computer and log on where it was created.
+    /// typically only valid and comparable on the same computer and log on where it was created. However, it *is*
+    /// only based on the passphrase, and some user-specific values. It always uses the same crypto, the same
+    /// passphrase will have the same thumbprint regardless of which crypto is actually used.
     /// </summary>
     [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
     public class SymmetricKeyThumbprint : IEquatable<SymmetricKeyThumbprint>
@@ -66,9 +68,9 @@ namespace Axantum.AxCrypt.Core.Crypto
                 throw new ArgumentNullException("salt");
             }
 
-            ICrypto crypto = new AxCryptFactory().CreateCrypto(key);
+            ICrypto crypto = new V1AesCrypto(new V1Passphrase(key.Passphrase));
             KeyWrap keyWrap = new KeyWrap(crypto, salt, iterations, KeyWrapMode.Specification);
-            byte[] wrap = keyWrap.Wrap(key.DerivedKey);
+            byte[] wrap = keyWrap.Wrap(new V1Passphrase(key.Passphrase).DerivedKey);
 
             _bytes = wrap.Reduce(8);
         }

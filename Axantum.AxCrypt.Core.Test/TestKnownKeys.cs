@@ -56,53 +56,53 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestAddNewKnownKey()
         {
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
-            SymmetricKey key = new SymmetricKey(128);
-            knownKeys.Add(new GenericPassphrase(key));
-            Assert.That(knownKeys.Keys.First().DerivedKey, Is.EqualTo(key), "The first and only key should be the one just added.");
+            IPassphrase passphrase = new GenericPassphrase("a");
+            knownKeys.Add(passphrase);
+            Assert.That(knownKeys.Keys.First(), Is.EqualTo(passphrase), "The first and only key should be the one just added.");
         }
 
         [Test]
         public static void TestAddTwoNewKnownKeys()
         {
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
-            SymmetricKey key1 = new SymmetricKey(128);
-            knownKeys.Add(new GenericPassphrase(key1));
-            SymmetricKey key2 = new SymmetricKey(128);
-            knownKeys.Add(new GenericPassphrase(key2));
-            Assert.That(knownKeys.Keys.First().DerivedKey, Is.EqualTo(key2), "The first key should be the last one added.");
-            Assert.That(knownKeys.Keys.Last().DerivedKey, Is.EqualTo(key1), "The last key should be the first one added.");
+            IPassphrase key1 = new GenericPassphrase("key1");
+            knownKeys.Add(key1);
+            IPassphrase key2 = new GenericPassphrase("key2");
+            knownKeys.Add(key2);
+            Assert.That(knownKeys.Keys.First(), Is.EqualTo(key2), "The first key should be the last one added.");
+            Assert.That(knownKeys.Keys.Last(), Is.EqualTo(key1), "The last key should be the first one added.");
         }
 
         [Test]
         public static void TestAddSameKeyTwice()
         {
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
-            SymmetricKey key = new SymmetricKey(128);
-            knownKeys.Add(new GenericPassphrase(key));
-            knownKeys.Add(new GenericPassphrase(key));
+            IPassphrase key = new GenericPassphrase(String.Empty);
+            knownKeys.Add(key);
+            knownKeys.Add(key);
             Assert.That(knownKeys.Keys.Count(), Is.EqualTo(1), "Only one key should be in the collection even if added twice.");
-            Assert.That(knownKeys.Keys.First().DerivedKey, Is.EqualTo(key), "The first and only key should be the one just added.");
+            Assert.That(knownKeys.Keys.First(), Is.EqualTo(key), "The first and only key should be the one just added.");
         }
 
         [Test]
         public static void TestDefaultEncryptionKey()
         {
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
-            SymmetricKey key = new SymmetricKey(128);
-            knownKeys.DefaultEncryptionKey = new GenericPassphrase(key);
-            Assert.That(knownKeys.DefaultEncryptionKey.DerivedKey, Is.EqualTo(key), "The DefaultEncryptionKey should be the one just set as it.");
+            GenericPassphrase key = new GenericPassphrase(String.Empty);
+            knownKeys.DefaultEncryptionKey = key;
+            Assert.That(knownKeys.DefaultEncryptionKey, Is.EqualTo(key), "The DefaultEncryptionKey should be the one just set as it.");
             Assert.That(knownKeys.Keys.Count(), Is.EqualTo(1), "Only one key should be in the collection.");
-            Assert.That(knownKeys.Keys.First().DerivedKey, Is.EqualTo(key), "The first and only key should be the one just set as DefaultEncryptionKey.");
+            Assert.That(knownKeys.Keys.First(), Is.EqualTo(key), "The first and only key should be the one just set as DefaultEncryptionKey.");
         }
 
         [Test]
         public static void TestClear()
         {
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
-            SymmetricKey key1 = new SymmetricKey(128);
-            knownKeys.Add(new GenericPassphrase(key1));
-            SymmetricKey key2 = new SymmetricKey(128);
-            knownKeys.Add(new GenericPassphrase(key2));
+            GenericPassphrase key1 = new GenericPassphrase("key1");
+            knownKeys.Add(key1);
+            GenericPassphrase key2 = new GenericPassphrase("key2");
+            knownKeys.Add(key2);
             Assert.That(knownKeys.Keys.Count(), Is.EqualTo(2), "There should be two keys in the collection.");
 
             knownKeys.Clear();
@@ -116,10 +116,10 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestSettingNullDefaultEncryptionKey()
         {
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
-            SymmetricKey key1 = new SymmetricKey(128);
-            knownKeys.Add(new GenericPassphrase(key1));
-            SymmetricKey key2 = new SymmetricKey(128);
-            knownKeys.DefaultEncryptionKey = new GenericPassphrase(key2);
+            IPassphrase key1 = new GenericPassphrase("a");
+            knownKeys.Add(key1);
+            IPassphrase key2 = new GenericPassphrase("B");
+            knownKeys.DefaultEncryptionKey = key2;
 
             Assert.That(knownKeys.Keys.Count(), Is.EqualTo(2), "Setting the DefaultEncryptionKey should also add it as a known key.");
 
@@ -137,11 +137,11 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 wasChanged |= e.Notification.NotificationType == SessionNotificationType.KnownKeyChange;
             };
-            SymmetricKey key1 = new SymmetricKey(128);
-            knownKeys.Add(new GenericPassphrase(key1));
+            GenericPassphrase key1 = new GenericPassphrase(String.Empty);
+            knownKeys.Add(key1);
             Assert.That(wasChanged, Is.True, "A new key should trigger the Changed event.");
             wasChanged = false;
-            knownKeys.Add(new GenericPassphrase(key1));
+            knownKeys.Add(key1);
             Assert.That(wasChanged, Is.False, "Re-adding an existing key should not trigger the Changed event.");
         }
 
@@ -166,12 +166,12 @@ namespace Axantum.AxCrypt.Core.Test
                 }
             };
 
-            knownKeys.DefaultEncryptionKey = new GenericPassphrase(new SymmetricKey(128));
+            knownKeys.DefaultEncryptionKey = new GenericPassphrase("passphrase1");
             Assert.That(wasLoggedOnCount, Is.EqualTo(1));
             Assert.That(wasLoggedOffCount, Is.EqualTo(0));
             Assert.That(knownKeys.IsLoggedOn, Is.True);
 
-            knownKeys.DefaultEncryptionKey = new GenericPassphrase(new SymmetricKey(128));
+            knownKeys.DefaultEncryptionKey = new GenericPassphrase("passphrase");
             Assert.That(wasLoggedOnCount, Is.EqualTo(2));
             Assert.That(wasLoggedOffCount, Is.EqualTo(1));
             Assert.That(knownKeys.IsLoggedOn, Is.True);
@@ -201,18 +201,18 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestWatchedFoldersWhenLoggedOn()
         {
-            SymmetricKey key1 = new SymmetricKey(128);
-            IPassphrase key2 = new GenericPassphrase(new SymmetricKey(128));
+            IPassphrase key1 = new GenericPassphrase("a");
+            IPassphrase key2 = new GenericPassphrase("b");
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
             FakeRuntimeFileInfo.AddFolder(@"C:\WatchedFolder1\");
             FakeRuntimeFileInfo.AddFolder(@"C:\WatchedFolder2\");
             Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder1\", key1.Thumbprint));
-            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder2\", key2.DerivedKey.Thumbprint));
+            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder2\", key2.Thumbprint));
             knownKeys.DefaultEncryptionKey = key2;
             IEnumerable<WatchedFolder> watchedFolders = knownKeys.WatchedFolders;
 
             Assert.That(watchedFolders.Count(), Is.EqualTo(1), "Only one of the two watched folders should be shown.");
-            Assert.That(watchedFolders.First().Thumbprint, Is.EqualTo(key2.DerivedKey.Thumbprint), "The returned watched folder should be number 2.");
+            Assert.That(watchedFolders.First().Thumbprint, Is.EqualTo(key2.Thumbprint), "The returned watched folder should be number 2.");
         }
     }
 }

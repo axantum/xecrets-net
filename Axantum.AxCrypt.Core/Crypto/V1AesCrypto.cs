@@ -35,6 +35,8 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// </summary>
     public class V1AesCrypto : CryptoBase
     {
+        internal const string InternalName = "AES-128-V1";
+
         private CipherMode _cipherMode;
 
         private PaddingMode _paddingMode;
@@ -89,7 +91,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public override string Name
         {
-            get { return "AES-128-V1"; }
+            get { return InternalName; }
         }
 
         /// <summary>

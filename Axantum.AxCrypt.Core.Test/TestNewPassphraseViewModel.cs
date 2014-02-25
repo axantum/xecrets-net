@@ -25,13 +25,14 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Moq;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -67,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestConstructorWithKnownDefaultIdentity()
         {
-            _identities.Add(new PassphraseIdentity(Environment.UserName));
+            _identities.Add(new PassphraseIdentity(Environment.UserName, new V1AesCrypto().Name));
             NewPassphraseViewModel npvm = new NewPassphraseViewModel(Environment.UserName);
 
             Assert.That(npvm.IdentityName, Is.EqualTo(""));
@@ -98,7 +99,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestValidateIdentityAlreadyExistsFails()
         {
-            _identities.Add(new PassphraseIdentity("Identity"));
+            _identities.Add(new PassphraseIdentity("Identity", new V2AesCrypto().Name));
             NewPassphraseViewModel npvm = new NewPassphraseViewModel(Environment.UserName);
             npvm.IdentityName = "Identity";
 

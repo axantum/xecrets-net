@@ -145,7 +145,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 if (_thumbprint == null && Key != null)
                 {
-                    _thumbprint = Key.DerivedKey.Thumbprint;
+                    _thumbprint = Key.Thumbprint;
                 }
                 return _thumbprint;
             }
@@ -239,7 +239,7 @@ namespace Axantum.AxCrypt.Core.Session
         /// </summary>
         /// <param name="key">A key to check against this instances thumbprint.</param>
         /// <returns>true if the thumbprint matches the provided key.</returns>
-        public bool ThumbprintMatch(SymmetricKey key)
+        public bool ThumbprintMatch(IPassphrase key)
         {
             if (key == null)
             {

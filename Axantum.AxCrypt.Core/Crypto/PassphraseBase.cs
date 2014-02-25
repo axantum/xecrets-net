@@ -37,6 +37,24 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public long DerivationIterations { get; protected set; }
 
+        private SymmetricKeyThumbprint _thumbprint;
+
+        public SymmetricKeyThumbprint Thumbprint
+        {
+            get
+            {
+                if (_thumbprint == null)
+                {
+                    _thumbprint = new SymmetricKeyThumbprint(this, Instance.UserSettings.ThumbprintSalt, Instance.UserSettings.V1KeyWrapIterations);
+                }
+                return _thumbprint;
+            }
+            set
+            {
+                _thumbprint = value;
+            }
+        }
+
         #region IEquatable<SymmetricKey> Members
 
         /// <summary>

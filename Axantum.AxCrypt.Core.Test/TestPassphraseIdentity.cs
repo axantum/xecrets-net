@@ -51,8 +51,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEmptyField()
         {
-            PassphraseIdentity zero = new PassphraseIdentity(String.Empty, new GenericPassphrase(SymmetricKey.Zero128));
-            PassphraseIdentity nonzero = new PassphraseIdentity("id", new GenericPassphrase(new SymmetricKey(128)));
+            PassphraseIdentity zero = new PassphraseIdentity(String.Empty, new GenericPassphrase(String.Empty));
+            PassphraseIdentity nonzero = new PassphraseIdentity("id", new GenericPassphrase("something"));
 
             Assert.That(zero.Key.Equals(PassphraseIdentity.Empty.Key));
             Assert.That(zero.Name, Is.EqualTo(PassphraseIdentity.Empty.Name));

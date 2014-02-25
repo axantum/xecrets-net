@@ -25,11 +25,11 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.Serialization;
-using Axantum.AxCrypt.Core.Crypto;
 
 namespace Axantum.AxCrypt.Core.Session
 {
@@ -41,18 +41,19 @@ namespace Axantum.AxCrypt.Core.Session
     public class PassphraseIdentity
     {
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "This type is immutable.")]
-        public static readonly PassphraseIdentity Empty = new PassphraseIdentity(String.Empty, new GenericPassphrase(SymmetricKey.Zero128));
+        public static readonly PassphraseIdentity Empty = new PassphraseIdentity(String.Empty, new GenericPassphrase(String.Empty));
 
-        public PassphraseIdentity(string name)
+        public PassphraseIdentity(string name, string cryptoName)
         {
             Name = name;
+            CryptoName = cryptoName;
         }
 
         public PassphraseIdentity(string name, IPassphrase key)
-            : this(name)
+            : this(name, key.CryptoName)
         {
             Key = key;
-            Thumbprint = Key.DerivedKey.Thumbprint;
+            Thumbprint = Key.Thumbprint;
         }
 
         public IPassphrase Key { get; private set; }
@@ -62,5 +63,8 @@ namespace Axantum.AxCrypt.Core.Session
 
         [DataMember(Name = "Thumbprint")]
         public SymmetricKeyThumbprint Thumbprint { get; private set; }
+
+        [DataMember(Name = "CryptoName")]
+        public string CryptoName { get; private set; }
     }
 }
