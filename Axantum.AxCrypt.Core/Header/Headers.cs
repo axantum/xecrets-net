@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Core.Header
 
         private static IList<HeaderBlock> LoadUnversionedHeaders(Stream inputStream)
         {
-            using (VxAxCryptReader vxReader = new VxAxCryptReader(inputStream))
+            using (VXAxCryptReader vxReader = new VXAxCryptReader(inputStream))
             {
                 return LoadFromReader(vxReader);
             }

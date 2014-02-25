@@ -33,13 +33,13 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
-    public class VxAxCryptReader : AxCryptReader
+    public class VXAxCryptReader : AxCryptReader
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="VxAxCryptReader"/> class.
+        /// Initializes a new instance of the <see cref="VXAxCryptReader"/> class.
         /// </summary>
         /// <param name="inputStream">The stream. Will NOT be disposed when this instance is disposed.</param>
-        public VxAxCryptReader(Stream inputStream)
+        public VXAxCryptReader(Stream inputStream)
             : base(inputStream)
         {
         }

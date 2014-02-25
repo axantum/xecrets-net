@@ -75,7 +75,7 @@
     <Compile Include="IO\V2HmacStream.cs" />
     <Compile Include="Reader\AxCryptReader.cs" />
     <Compile Include="Reader\V2AxCryptReader.cs" />
-    <Compile Include="Reader\VxAxCryptReader.cs" />
+    <Compile Include="Reader\VXAxCryptReader.cs" />
     <Compile Include="V1AxCryptDocument.cs" />
     <Compile Include="V2AxCryptDocument.cs" />
     <Compile Include="CommandLine.cs" />

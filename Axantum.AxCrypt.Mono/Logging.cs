@@ -31,7 +31,6 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Security.Permissions;
 
 namespace Axantum.AxCrypt.Mono
 {
@@ -39,7 +38,6 @@ namespace Axantum.AxCrypt.Mono
     {
         private TraceSwitch _switch = InitializeTraceSwitch();
 
-        [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.UnmanagedCode)]
         public Logging()
         {
             Trace.Listeners.Add(new DelegateTraceListener("ILoggingListener", TraceMessage));
@@ -159,7 +157,6 @@ namespace Axantum.AxCrypt.Mono
 
         #endregion ILogging Members
 
-        [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.UnmanagedCode)]
         private static TraceSwitch InitializeTraceSwitch()
         {
             TraceSwitch traceSwitch = new TraceSwitch("axCryptSwitch", "Logging levels for AxCrypt");

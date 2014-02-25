@@ -122,7 +122,7 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
-                    using (V2AxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(new V2Passphrase("Secret", 256)), 100, 131))
+                    using (V2AxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(new V2Passphrase("Secret", 256)), 100))
                     {
                         document.EncryptTo(inputStream, outputStream, options);
                         output = outputStream.ToArray();
@@ -227,7 +227,7 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
-                    using (IAxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(key), 113, 117))
+                    using (IAxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(key), 113))
                     {
                         document.EncryptTo(inputStream, outputStream, options);
 

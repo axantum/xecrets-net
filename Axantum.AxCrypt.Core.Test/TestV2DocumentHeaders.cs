@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileTimes()
         {
-            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("v2passx", 256), new SymmetricIV(128)), 10, 15))
+            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("v2passx", 256), new SymmetricIV(128)), 10))
             {
                 DateTime now = DateTime.UtcNow;
                 headers.LastAccessTimeUtc = now;
@@ -70,7 +70,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestCompression()
         {
-            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("v2pass", 256), new SymmetricIV(128)), 10, 17))
+            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("v2pass", 256), new SymmetricIV(128)), 10))
             {
                 headers.IsCompressed = true;
                 Assert.That(headers.IsCompressed, Is.True);
@@ -83,7 +83,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestUnicodeFileNameShort()
         {
-            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("v2passz", 256), new SymmetricIV(128)), 10, 19))
+            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("v2passz", 256), new SymmetricIV(128)), 10))
             {
                 headers.FileName = "My Secret Document.txt";
                 Assert.That(headers.FileName, Is.EqualTo("My Secret Document.txt"));
@@ -93,7 +93,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestUnicodeFileNameLong()
         {
-            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("v2passy", 256), new SymmetricIV(128)), 10, 23))
+            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("v2passy", 256), new SymmetricIV(128)), 10))
             {
                 string longName = "When in the Course of human events, it becomes necessary for one people to dissolve the political bands which have connected them with another, and to assume among the powers of the earth, the separate and equal station to which the Laws of Nature and of Nature's God entitle them, a decent respect to the opinions of mankind requires that they should declare the causes which impel them to the separation.";
                 Assert.That(longName.Length, Is.GreaterThan(256));
@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestWriteWithHmac()
         {
-            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("v2passzz", 256), new SymmetricIV(128)), 20, 30))
+            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("v2passzz", 256), new SymmetricIV(128)), 20))
             {
                 byte[] output;
                 using (MemoryStream outputStream = new MemoryStream())

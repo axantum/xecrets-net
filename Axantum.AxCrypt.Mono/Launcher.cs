@@ -28,16 +28,11 @@
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Security.Permissions;
-using System.Text;
 
 namespace Axantum.AxCrypt.Mono
 {
-    [HostProtection(SecurityAction.LinkDemand, SharedState = true, Synchronization = true, ExternalProcessMgmt = true, SelfAffectingProcessMgmt = true), PermissionSet(SecurityAction.LinkDemand, Name = "FullTrust"), PermissionSet(SecurityAction.InheritanceDemand, Name = "FullTrust")]
     internal class Launcher : ILauncher
     {
         private Process _process;

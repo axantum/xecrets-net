@@ -257,7 +257,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 return fallback;
             }
-            return TimeSpan.Parse(value);
+            return TimeSpan.Parse(value, CultureInfo.InvariantCulture);
         }
 
         public void Store<T>(string key, T value)

@@ -31,6 +31,7 @@ using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 
@@ -38,11 +39,13 @@ namespace Axantum.AxCrypt.Core
 {
     public class AxCryptFactory
     {
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public IEnumerable<string> CryptographicModes
         {
             get { return new string[] { V1AesCrypto.InternalName, V2AesCrypto.InternalName }; }
         }
 
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public ICrypto CreateCrypto(IPassphrase key)
         {
             if (key == null)
@@ -69,6 +72,7 @@ namespace Axantum.AxCrypt.Core
             throw new InternalErrorException("Invalid CryptoName in parameter 'key'.");
         }
 
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public IPassphrase CreatePassphrase(string passphrase, string cryptoName)
         {
             switch (cryptoName)
@@ -82,11 +86,13 @@ namespace Axantum.AxCrypt.Core
             throw new InternalErrorException("Invalid CryptoName in parameter 'cryptoName'.");
         }
 
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public IPassphrase CreatePassphrase(string passphrase)
         {
             return new V2Passphrase(passphrase, 256);
         }
 
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public IAxCryptDocument CreateDocument(IPassphrase key)
         {
             IAxCryptDocument document;
@@ -97,7 +103,7 @@ namespace Axantum.AxCrypt.Core
                     break;
 
                 case V2AesCrypto.InternalName:
-                    document = new V2AxCryptDocument(new V2AesCrypto(key), Instance.UserSettings.V2KeyWrapIterations, Instance.UserSettings.V2KeyDerivationIterations);
+                    document = new V2AxCryptDocument(new V2AesCrypto(key), Instance.UserSettings.V2KeyWrapIterations);
                     break;
 
                 default:
@@ -112,6 +118,7 @@ namespace Axantum.AxCrypt.Core
         /// <param name="passphrase">The passphrase.</param>
         /// <param name="fileInfo">The file to use.</param>
         /// <returns></returns>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public IAxCryptDocument CreateDocument(string passphrase, Stream inputStream)
         {
             Headers headers = new Headers();
@@ -126,6 +133,7 @@ namespace Axantum.AxCrypt.Core
         /// </summary>
         /// <param name="fileInfo"></param>
         /// <returns></returns>
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public IAxCryptDocument CreateDocument(IPassphrase key, Stream inputStream)
         {
             Headers headers = new Headers();

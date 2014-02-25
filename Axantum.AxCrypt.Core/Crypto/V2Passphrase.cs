@@ -42,7 +42,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <param name="passphrase">The passphrase.</param>
         public V2Passphrase(string passphrase, byte[] salt, long iterations, int keySize)
         {
-            SetDeriviationSalt(salt);
+            SetDerivationSalt(salt);
             DerivationIterations = iterations;
             DerivedKey = new SymmetricKey(new Pbkdf2HmacSha512(passphrase, salt, iterations).GetBytes().Reduce(keySize / 8));
             Passphrase = passphrase;

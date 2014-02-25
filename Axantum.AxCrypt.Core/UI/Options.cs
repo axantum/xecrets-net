@@ -133,7 +133,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Runtime.Serialization;
-using System.Security.Permissions;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -592,7 +591,6 @@ namespace NDesk.Options
             get { return this.option; }
         }
 
-        [SecurityPermission(SecurityAction.LinkDemand, SerializationFormatter = true)]
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             base.GetObjectData(info, context);

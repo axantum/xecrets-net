@@ -30,7 +30,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             return (byte[])_derivationSalt.Clone();
         }
 
-        protected void SetDeriviationSalt(byte[] derivationSalt)
+        protected void SetDerivationSalt(byte[] derivationSalt)
         {
             _derivationSalt = (byte[])derivationSalt.Clone();
         }

@@ -28,14 +28,15 @@
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
-using System.Runtime.InteropServices;
+using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
     /// <summary>Implements password-based key derivation functionality, PBKDF2, by using a pseudo-random number generator based on <see cref="T:System.Security.Cryptography.HMACSHA512" />.</summary>
-    [ComVisible(true)]
+    [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Pbkdf")]
+    [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Sha")]
     public class Pbkdf2HmacSha512
     {
         private byte[] _bytes;
@@ -79,7 +80,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private static readonly byte[] _empty = new byte[0];
 
-        private byte[] F(string password, byte[] salt, long iterations)
+        private static byte[] F(string password, byte[] salt, long iterations)
         {
             HMACSHA512 hmacsha512 = new HMACSHA512(new UTF8Encoding(false).GetBytes(password));
 

@@ -53,7 +53,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             byte[] derivedKey = new byte[16];
             Array.Copy(hash, derivedKey, derivedKey.Length);
 
-            SetDeriviationSalt(new byte[0]);
+            SetDerivationSalt(new byte[0]);
             DerivationIterations = 0;
             DerivedKey = new SymmetricKey(derivedKey);
             Passphrase = passphrase;
