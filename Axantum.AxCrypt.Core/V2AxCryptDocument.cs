@@ -133,7 +133,7 @@ namespace Axantum.AxCrypt.Core
                             }
                             else
                             {
-                                _compressedPlaintextLength = _plaintextLength = inputStream.CopyTo(encryptingStream);
+                                _compressedPlaintextLength = _plaintextLength = StreamExtensions.CopyTo(inputStream, encryptingStream);
                             }
                         }
                     }

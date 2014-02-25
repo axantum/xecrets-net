@@ -140,7 +140,7 @@ namespace Axantum.AxCrypt.Core
                     }
                     else
                     {
-                        DocumentHeaders.PlaintextLength = inputStream.CopyTo(encryptingStream);
+                        DocumentHeaders.PlaintextLength = StreamExtensions.CopyTo(inputStream, encryptingStream);
                     }
                 }
                 outputStream.Flush();
