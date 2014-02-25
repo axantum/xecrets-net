@@ -25,9 +25,9 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Linq;
-using Axantum.AxCrypt.Core.Extensions;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -46,7 +46,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             DerivationIterations = iterations;
             DerivedKey = new SymmetricKey(new Pbkdf2HmacSha512(passphrase, salt, iterations).GetBytes().Reduce(keySize / 8));
             Passphrase = passphrase;
-            CryptoName = new V2AesCrypto().Name;
+            CryptoName = V2AesCrypto.InternalName;
         }
 
         public V2Passphrase(string passphrase, int keySize)

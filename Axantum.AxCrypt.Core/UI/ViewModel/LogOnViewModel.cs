@@ -25,11 +25,10 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using Axantum.AxCrypt.Core.Crypto;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
@@ -71,7 +70,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             switch (columnName)
             {
                 case "Passphrase":
-                    SymmetricKeyThumbprint thumbprint = new V1Passphrase(Passphrase).DerivedKey.Thumbprint;
+                    SymmetricKeyThumbprint thumbprint = new V1Passphrase(Passphrase).Thumbprint;
                     if (Instance.FileSystemState.Identities.Any(identity => (String.IsNullOrEmpty(IdentityName) || IdentityName == identity.Name) && identity.Thumbprint == thumbprint))
                     {
                         return String.Empty;

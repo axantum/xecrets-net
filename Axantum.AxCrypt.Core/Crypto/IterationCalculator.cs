@@ -94,7 +94,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private static object V1KeyWrapIterate(int iterations)
         {
-            ICrypto dummyCrypto = new V1AesCrypto(new GenericPassphrase(new SymmetricKey(128)));
+            ICrypto dummyCrypto = new V1AesCrypto(new GenericPassphrase("A dummy passphrase"));
             KeyWrapSalt dummySalt = new KeyWrapSalt(16);
             using (KeyWrap keyWrap = new KeyWrap(dummyCrypto, dummySalt, iterations, KeyWrapMode.AxCrypt))
             {

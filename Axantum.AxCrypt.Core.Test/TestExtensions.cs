@@ -332,10 +332,10 @@ namespace Axantum.AxCrypt.Core.Test
             Stream nullStream = null;
             using (Stream stream = new MemoryStream())
             {
-                Assert.Throws<ArgumentNullException>(() => { nullStream.CopyTo(stream, 100); });
-                Assert.Throws<ArgumentNullException>(() => { stream.CopyTo(nullStream, 100); });
-                Assert.Throws<ArgumentOutOfRangeException>(() => { stream.CopyTo(stream, 0); });
-                Assert.Throws<ArgumentOutOfRangeException>(() => { stream.CopyTo(stream, -1); });
+                Assert.Throws<ArgumentNullException>(() => { StreamExtensions.CopyTo(nullStream, stream, 100); });
+                Assert.Throws<ArgumentNullException>(() => { StreamExtensions.CopyTo(stream, nullStream, 100); });
+                Assert.Throws<ArgumentOutOfRangeException>(() => { StreamExtensions.CopyTo(stream, stream, 0); });
+                Assert.Throws<ArgumentOutOfRangeException>(() => { StreamExtensions.CopyTo(stream, stream, -1); });
             }
         }
 

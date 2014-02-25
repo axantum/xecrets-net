@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestInvalidArguments()
         {
-            IPassphrase key = new GenericPassphrase(new SymmetricKey(128));
+            IPassphrase key = new GenericPassphrase("passphrase");
             SymmetricIV iv = new SymmetricIV(128);
 
             Assert.Throws<ArgumentNullException>(() =>

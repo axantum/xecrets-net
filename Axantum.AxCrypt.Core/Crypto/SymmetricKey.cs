@@ -25,9 +25,9 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Axantum.AxCrypt.Core.Extensions;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -39,16 +39,10 @@ namespace Axantum.AxCrypt.Core.Crypto
         private byte[] _symmetricKey;
 
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "This type is immutable.")]
-        public static readonly SymmetricKey Zero128 = new SymmetricKey(new byte[16], SymmetricKeyThumbprint.Zero);
+        public static readonly SymmetricKey Zero128 = new SymmetricKey(new byte[16]);
 
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "This type is immutable.")]
-        public static readonly SymmetricKey Zero256 = new SymmetricKey(new byte[32], SymmetricKeyThumbprint.Zero);
-
-        private SymmetricKey(byte[] key, SymmetricKeyThumbprint thumbprint)
-            : this(key)
-        {
-            Thumbprint = thumbprint;
-        }
+        public static readonly SymmetricKey Zero256 = new SymmetricKey(new byte[32]);
 
         /// <summary>
         /// Instantiate a random key.
@@ -85,24 +79,6 @@ namespace Axantum.AxCrypt.Core.Crypto
             get
             {
                 return _symmetricKey.Length;
-            }
-        }
-
-        private SymmetricKeyThumbprint _thumbprint;
-
-        public SymmetricKeyThumbprint Thumbprint
-        {
-            get
-            {
-                if (_thumbprint == null)
-                {
-                    _thumbprint = new SymmetricKeyThumbprint(new GenericPassphrase(this), Instance.UserSettings.ThumbprintSalt, Instance.UserSettings.V1KeyWrapIterations);
-                }
-                return _thumbprint;
-            }
-            set
-            {
-                _thumbprint = value;
             }
         }
 

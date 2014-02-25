@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 byte[] rawFileName = HeaderCrypto.Decrypt(GetDataBlockBytesReference());
 
-                int end = rawFileName.Locate(new byte[] { 0, 0, }, 0, rawFileName.Length, 2);
+                int end = rawFileName.Locate(new byte[] { 0, 0, }, 0, rawFileName.Length, 1);
                 if (end == -1)
                 {
                     throw new InvalidOperationException("Could not find terminating double nul byte in file name");

@@ -36,6 +36,8 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// </summary>
     public class V2AesCrypto : CryptoBase
     {
+        internal const string InternalName = "AES-256";
+
         private SymmetricIV _iv;
 
         private long _blockCounter;
@@ -117,7 +119,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </value>
         public override string Name
         {
-            get { return "AES-256"; }
+            get { return InternalName; }
         }
 
         /// <summary>

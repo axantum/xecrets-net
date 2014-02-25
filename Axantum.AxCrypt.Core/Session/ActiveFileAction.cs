@@ -130,7 +130,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     return activeFile;
                 }
-                if (!activeFile.ThumbprintMatch(key.DerivedKey))
+                if (!activeFile.ThumbprintMatch(key))
                 {
                     return activeFile;
                 }
@@ -197,7 +197,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             foreach (IPassphrase key in Instance.KnownKeys.Keys)
             {
-                if (activeFile.ThumbprintMatch(key.DerivedKey))
+                if (activeFile.ThumbprintMatch(key))
                 {
                     return key;
                 }

@@ -6,11 +6,17 @@ namespace Axantum.AxCrypt.Core.Crypto
     public class GenericPassphrase : PassphraseBase
     {
         public GenericPassphrase(SymmetricKey key)
+            : this((string)null)
+        {
+            DerivedKey = key;
+        }
+
+        public GenericPassphrase(string passphrase)
         {
             SetDeriviationSalt(new byte[0]);
             DerivationIterations = 1;
-            DerivedKey = key;
-            Passphrase = String.Empty;
+            DerivedKey = SymmetricKey.Zero128;
+            Passphrase = passphrase;
             CryptoName = String.Empty;
         }
     }
