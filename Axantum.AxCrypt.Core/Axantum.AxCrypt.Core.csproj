@@ -11,7 +11,6 @@
     <RootNamespace>Axantum.AxCrypt.Core</RootNamespace>
     <AssemblyName>Axantum.AxCrypt.Core</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <AssemblyOriginatorKeyFile>AxantumStrongName.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -32,9 +31,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
-  </PropertyGroup>
-  <PropertyGroup>
-    <DelaySign>false</DelaySign>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

@@ -15,5 +15,7 @@ Axantum.AxCrypt.Core/Properties/AssemblyInfo.cs
 *.pidb
 test-results/*
 *.DotSettings
+.git
+*.gitignore
 packages/*
 Axantum.AxCrypt.Core.Test/*.tmp

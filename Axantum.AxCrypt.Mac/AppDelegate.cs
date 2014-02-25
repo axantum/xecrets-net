@@ -10,16 +10,18 @@ using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.Runtime;
 using System.Diagnostics;
 using Axantum.AxCrypt.Mono;
+using Axantum.AxCrypt.Mac.Windows;
 
 namespace Axantum.AxCrypt.Mac
 {
 	public partial class AppDelegate : NSApplicationDelegate
 	{
 		NSWindowController mainWindowController;
+		OpenFileFromFinderController openFile;
 
 		public AppDelegate ()
 		{
-			OS.Current = new RuntimeEnvironment();
+			OS.Current = new AxCrypt.Core.MacOsx.RuntimeEnvironment();
 
 			UpdateCheck updatecheck = new UpdateCheck(UpdateCheck.VersionUnknown);
 			Uri restApiUri = new Uri("https://www.axantum.com/Xecrets/RestApi.ashx/axcrypt2version/mac");
@@ -45,9 +47,17 @@ namespace Axantum.AxCrypt.Mac
 
 		public override void FinishedLaunching (NSObject notification)
 		{
-			// You can put any code here after your app launched.
-			mainWindowController = new MainWindowController(); 
-			mainWindowController.ShowWindow(this);
+			AppController.Initialize ();
+			mainWindowController = new MainWindowController ();
+			mainWindowController.ShowWindow (this);
+			if (openFile != null)
+				mainWindowController.Window.Miniaturize (this);
+			else {
+				if (VersionInformationWindowController.ShouldShowVersionInformation) {
+					VersionInformationWindowController versionInfo = new VersionInformationWindowController ();
+					versionInfo.ShowWindow (this);
+				}
+			}
 		}
 
 		partial void about (NSObject sender)
@@ -75,15 +85,28 @@ namespace Axantum.AxCrypt.Mac
 			AppController.DecryptAndOpenFile(new ProgressContext(), AppController.OperationFailureHandler);
 		}
 
-		public override bool OpenFile (NSApplication sender, string filename)
+		public override void OpenFiles (NSApplication sender, string[] filenames)
 		{
-			if (!filename.EndsWith(".axx"))
-				return false;
+			openFile = new OpenFileFromFinderController ();
+			openFile.UserChoseOpen += (string passphrase) => {
+				AppController.DecryptAndOpenFile(
+					OS.Current.FileInfo(filenames[0]),
+					new Passphrase(passphrase),
+					new ProgressContext(),
+					AppController.OperationFailureHandler);
+				ReleaseOpenFileController();
+			};
+			openFile.UserChoseCancel += () => {
+				ReleaseOpenFileController();
+			};
+			openFile.ShowWindow (sender);
+		}
 
-			NSAlert.WithMessage("Enter password", "OK", null, null, "Ah, you'd like to open " + filename + "!")
-				.RunModal();
-					
-			return true;
+		void ReleaseOpenFileController ()
+		{
+			openFile.Close ();
+			openFile.Dispose ();
+			openFile = null;
 		}
 	}
 }

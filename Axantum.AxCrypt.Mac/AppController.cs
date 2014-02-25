@@ -11,13 +11,21 @@ using System.Drawing;
 using System.Threading;
 using Axantum.AxCrypt.Mono;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Mac.Views;
+using Axantum.AxCrypt.Mac.Windows;
+using Axantum.AxCrypt.Core.MacOsx;
+using Axantum.AxCrypt.Core.Session;
 
 namespace Axantum.AxCrypt.Mac
 {
 	public class AppController
 	{
-		const string APP_NAME = "AxCrypt for Mac";
-		const string VERSION = "2.0.1.0";
+		public const string APP_NAME = "AxCrypt for Mac";
+		public const string VERSION = "2.0.2.1";
+		public const string PUBLISH_DATE = "May 2013";
+
+		private static AesKey lastUsedKey;
+		private static FileSystemState fileSystemState;
 
 		public static string FullApplicationName {
 			get {
@@ -25,14 +33,33 @@ namespace Axantum.AxCrypt.Mac
 			}
 		}
 
-		public AppController ()
+		public static string VersionInformation {
+			get {
+				return String.Concat ("Version ", VERSION, "(", PUBLISH_DATE ,")");
+			}
+		}
+
+		public static string VersionInformationUrl {
+			get {
+				return String.Concat ("http://monodeveloper.org/axcrypt-osx-version-history/#v", VERSION.Replace ('.', '_'));
+			}
+		}
+
+		public static void Initialize()
 		{
+			fileSystemState = new FileSystemState ();
+			fileSystemState.Load (FileSystemState.DefaultPathInfo);
+			OS.Current.KeyWrapIterations = fileSystemState.KeyWrapIterations;
+			OS.Current.ThumbprintSalt = fileSystemState.ThumbprintSalt;
+			fileSystemState.KnownKeys.Changed += delegate { OS.Current.NotifyWorkFolderStateChanged(); };
 		}
 
 		public static void OperationFailureHandler (string message, ProgressContext context)
 		{
-			NSAlert alert = NSAlert.WithMessage(message, "OK", null, null, "Check your password and try again");
-			alert.InvokeOnMainThread(() => alert.RunModal());
+			new NSObject().InvokeOnMainThread(() => {
+				NSAlert alert = NSAlert.WithMessage(message, "OK", null, null, "Check your password and try again");
+				alert.RunModal();
+			});
 		}
 
 		public static void OnlineHelp ()
@@ -101,10 +128,12 @@ namespace Axantum.AxCrypt.Mac
 				if (result == 0 || panel.Urls.Length == 0) return;
 				if (!panel.Urls[0].IsFileUrl) return;
 				string filePath = panel.Urls[0].Path;
+				Passphrase generatedPassphrase = passwordController.Passphrase;
 				panel.Close();
+
 				ThreadPool.QueueUserWorkItem(delegate { 
 					using(new NSAutoreleasePool()) {
-						fileSelected(OS.Current.FileInfo(filePath), passwordController.Passphrase); 
+						fileSelected(OS.Current.FileInfo(filePath), generatedPassphrase); 
 					};
 				});
 			});
@@ -136,26 +165,37 @@ namespace Axantum.AxCrypt.Mac
 			return true;
 		}
 
-		public static void DecryptAndOpenFile (ProgressContext progress, Action<string, ProgressContext> failure)
+		public static void DecryptAndOpenFile (ProgressContext progress = null, Action<string, ProgressContext> failure = null)
 		{
-			GetSourceFile((file, passphrase) => {
-				string filePath = Path.GetTempPath();
-				string fileName;
-				AesKey key = passphrase.DerivedPassphrase;
-
-				if (!TryDecrypt(file, filePath, key, progress, out fileName)) {
-					failure("Could not open file", progress);
-					return;
-				}
-
-				IRuntimeFileInfo target = OS.Current.FileInfo(Path.Combine(filePath, fileName));
-
-				ILauncher launcher = OS.Current.Launch(target.FullName);
-				launcher.Exited += delegate {
-					AxCryptFile.EncryptFileWithBackupAndWipe(target, file, key, progress);
-					launcher.Dispose();
-				};
+			GetSourceFile((encryptedDocument, passphrase) => {
+				DecryptAndOpenFile(encryptedDocument, passphrase, progress, failure);
 			});
+		}
+
+		public static void DecryptAndOpenFile(IRuntimeFileInfo encryptedDocument, Passphrase passphrase, ProgressContext progress, Action<string, ProgressContext> failure = null) {
+			string tempPath = Path.GetTempPath();
+			string decryptedFileName;
+			lastUsedKey = passphrase.DerivedPassphrase;
+
+			if (!TryDecrypt(encryptedDocument, tempPath, lastUsedKey, progress, out decryptedFileName)) {
+				failure("Could not open file", progress);
+				return;
+			}
+
+			string fullPathToDecryptedFile = Path.Combine(tempPath, decryptedFileName);
+			IRuntimeFileInfo decryptedFile = OS.Current.FileInfo(fullPathToDecryptedFile);
+
+			NSDictionary userInfo = new NSDictionary(Launcher.TargetFileUserInfoKey, decryptedFile.FullName);
+			NSNotification notification = NSNotification.FromName(Launcher.FileDecryptedNotification, new NSObject(), userInfo);
+			NSNotificationCenter.DefaultCenter.PostNotification(notification);
+
+			ILauncher launcher = OS.Current.Launch (fullPathToDecryptedFile);
+			launcher.Exited += (sender, e) => {
+				fileSystemState.CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
+			};
+
+			fileSystemState.Add (new ActiveFile(encryptedDocument, decryptedFile, lastUsedKey, ActiveFileStatus.AssumedOpenAndDecrypted, launcher));
+			//fileSystemState.Save ();
 		}
 
 		public static void DecryptFile(ProgressContext progress, Action<string, ProgressContext> failure) {
@@ -176,6 +216,12 @@ namespace Axantum.AxCrypt.Mac
 			AboutWindowController controller = new AboutWindowController();
 			controller.ShowWindow((NSObject)sender);
 			controller.SetVersion(VERSION);
+		}
+
+		public static void ShowVersionInfo ()
+		{
+			VersionInformationWindowController versionInfo = new VersionInformationWindowController ();
+			versionInfo.ShowWindow (new NSObject());
 		}
 	}
 }

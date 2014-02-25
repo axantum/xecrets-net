@@ -1,26 +1,33 @@
-using System;
 using MonoTouch.Dialog;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 using System.IO;
+using Axantum.AxCrypt.iOS.Infrastructure;
 
 namespace Axantum.AxCrypt.iOS
 {
 	public class EditableTableViewSource : DialogViewController.Source
 	{
+		public EditableTableViewSource (DialogViewController controller) : base(controller) {
+		}
 
-		public EditableTableViewSource (DialogViewController controller) : base(controller)
+		public override UITableViewCellEditingStyle EditingStyleForRow (UITableView tableView, NSIndexPath indexPath)
 		{
+			return base.Root [indexPath.Section] [indexPath.Row] is ThemedFileElement ? UITableViewCellEditingStyle.Delete : UITableViewCellEditingStyle.None;
 		}
 
 		public override void CommitEditingStyle (UITableView tableView, UITableViewCellEditingStyle editingStyle, NSIndexPath indexPath)
 		{
-			if (editingStyle == UITableViewCellEditingStyle.Delete) {
-				string fileName = Root[indexPath.Section][indexPath.Row].Caption;
-				string dir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-				File.Delete(Path.Combine(dir, fileName) + ".axx");
-				Root[indexPath.Section].Remove(indexPath.Row);
-			}
+			if (editingStyle != UITableViewCellEditingStyle.Delete)
+				return;
+
+			Section section = Root [indexPath.Section];
+			ThemedFileElement fileElement = section [indexPath.Row] as ThemedFileElement;
+			if (fileElement == null)
+				return;
+			string fullPath = BasePath.Expand (fileElement.Caption, fileElement.PathId);
+			File.Delete (fullPath);
+			section.Remove (indexPath.Row);
 		}
 	}
 }

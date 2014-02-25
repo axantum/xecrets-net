@@ -1,43 +1,76 @@
-using System;
 using MonoTouch.UIKit;
-using System.Drawing;
+using System;
 using MonoTouch.Foundation;
-using System.IO;
+using System.Drawing;
 
 namespace Axantum.AxCrypt.iOS
 {
-	public class FilePresenter : UIViewController
+	public class FilePresenter : UIDocumentInteractionControllerDelegate
 	{
-		public event EventHandler Done;
+		UIDocumentInteractionController documentInteractionController;
+		WeakReference<UIViewController> owner;
 
-		private string openFile;
+		public event EventHandler ReadyToPresent = delegate {};
+		public event EventHandler Done = delegate {};
 
-		public FilePresenter (string fileToPresent)
+		public FilePresenter ()
 		{
-			openFile = fileToPresent;
+			this.documentInteractionController = new UIDocumentInteractionController ();
+			this.documentInteractionController.Delegate = this;
 		}
 
-		public override void ViewDidLoad ()
+		public override UIViewController ViewControllerForPreview (UIDocumentInteractionController controller)
 		{
-			base.ViewDidLoad ();
-			RectangleF bounds = UIScreen.MainScreen.Bounds;
-			const float navigationBarHeight = 44;
-			
-			UIWebView webView = new UIWebView(new RectangleF(0, navigationBarHeight, bounds.Width, bounds.Height));
-			webView.ScalesPageToFit = true;
-			
-			NSUrlRequest request = NSUrlRequest.FromUrl(NSUrl.FromFilename(openFile));
-			webView.LoadRequest(request);
-			
-			UINavigationBar navigationBar = new UINavigationBar(new RectangleF(0, 0, bounds.Width, navigationBarHeight)) { Translucent = true } ;
-			navigationBar.SetItems(new UINavigationItem[] {
-				new UINavigationItem(Path.GetFileName(openFile)) {
-					LeftBarButtonItem = new UIBarButtonItem(UIBarButtonSystemItem.Done, Done)
-				}
-			}, true);
-			
-			View.AddSubview(webView);
-			View.AddSubview(navigationBar);
+			UIViewController value;
+			owner.TryGetTarget(out value);
+			return value;
+		}
+
+		public override void WillBeginPreview (UIDocumentInteractionController controller)
+		{
+			ReadyToPresent (controller, EventArgs.Empty);
+		}
+
+		public override void DidEndPreview (UIDocumentInteractionController controller)
+		{
+			Done (controller, EventArgs.Empty);
+		}
+
+		public override UIView ViewForPreview (UIDocumentInteractionController controller)
+		{
+			UIViewController vc = ViewControllerForPreview (controller);
+			if (vc == null)
+				return null;
+			return vc.View;
+		}
+
+		public override System.Drawing.RectangleF RectangleForPreview (UIDocumentInteractionController controller)
+		{
+			UIView view = ViewForPreview (controller);
+			if (view == null)
+				return RectangleF.Empty;
+			return view.Frame;
+		}
+
+		public void Present(string file, UIViewController owner) {
+			this.owner = new WeakReference<UIViewController>(owner);
+
+			NSUrl url = NSUrl.FromFilename (file);
+			this.documentInteractionController.Url = url;
+			this.documentInteractionController.PresentPreview(true);
+		}
+
+		public void Dismiss() {
+			documentInteractionController.Delegate = null;
+			documentInteractionController.DismissMenu (false);
+			documentInteractionController.DismissPreview (false);
+		}
+
+		protected override void Dispose (bool disposing)
+		{
+			base.Dispose (disposing);
+			documentInteractionController.Dispose ();
+			documentInteractionController = null;
 		}
 	}
 }

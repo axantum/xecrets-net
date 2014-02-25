@@ -96,7 +96,7 @@ namespace Axantum.AxCrypt.Mono
             get { return DateTime.UtcNow; }
         }
 
-        public ILauncher Launch(string path)
+        public virtual ILauncher Launch(string path)
         {
             return new Launcher(path);
         }

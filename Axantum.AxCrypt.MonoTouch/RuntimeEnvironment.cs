@@ -22,6 +22,7 @@
  * updates, contributions and contact with the author. You may also visit
  * http://www.axantum.com for more information about the author.
 */
+using Axantum.AxCrypt.Mono;
 
 #endregion Coypright and License
 
@@ -31,84 +32,13 @@ using System.IO;
 using System.Security.Cryptography;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Mono;
 
 namespace Axantum.AxCrypt.MonoTouch
 {
-    public class RuntimeEnvironment : IRuntimeEnvironment
+    public class RuntimeEnvironment : Mono.RuntimeEnvironment
     {
-        public RuntimeEnvironment()
-            : this(".axx")
+        public RuntimeEnvironment() : base(TimeSpan.FromSeconds(1))
         {
-        }
-        
-        public RuntimeEnvironment(string extension)
-        {
-            AxCryptExtension = extension;
-        }
-        
-        public bool IsLittleEndian
-        {
-            get
-            {
-                return BitConverter.IsLittleEndian;
-            }
-        }
-        
-        private RandomNumberGenerator _rng;
-        
-        public byte[] GetRandomBytes(int count)
-        {
-            if (_rng == null)
-            {
-                _rng = RandomNumberGenerator.Create();
-            }
-            
-            byte[] data = new byte[count];
-            _rng.GetBytes(data);
-            return data;
-        }
-        
-        public IRuntimeFileInfo FileInfo(string path)
-        {
-            return new RuntimeFileInfo(path);
-        }
-        
-        public string AxCryptExtension
-        {
-            get;
-            set;
-        }
-        
-        public Platform Platform
-        {
-            get
-            {
-                OperatingSystem os = global::System.Environment.OSVersion;
-                PlatformID pid = os.Platform;
-                switch (pid)
-                {
-                case PlatformID.Win32NT:
-                case PlatformID.Win32S:
-                case PlatformID.Win32Windows:
-                    return Platform.WindowsDesktop;
-                case PlatformID.MacOSX:
-                    return Platform.MacOsx;
-                case PlatformID.Unix:
-                    return Platform.Linux;
-                case PlatformID.WinCE:
-                    return Platform.WindowsMobile;
-                case PlatformID.Xbox:
-                    return Platform.Xbox;
-                default:
-                    return Platform.Unknown;
-                }
-            }
-        }
-        
-        public int StreamBufferSize
-        {
-            get { return 65536; }
         }
         
         public IFileWatcher FileWatcher(string path)
@@ -126,45 +56,11 @@ namespace Axantum.AxCrypt.MonoTouch
                 {
                     string temporaryFolderPath = Path.Combine(Path.GetTempPath(), @"AxCrypt" + Path.DirectorySeparatorChar);
                     IRuntimeFileInfo temporaryFolderInfo = FileInfo(temporaryFolderPath);
-                    temporaryFolderInfo.CreateDirectory();
+					Directory.CreateDirectory (temporaryFolderPath);
                     _temporaryDirectoryInfo = temporaryFolderInfo;
                 }
                 
                 return _temporaryDirectoryInfo;
-            }
-        }
-        
-        public DateTime UtcNow
-        {
-            get { return DateTime.UtcNow; }
-        }
-        
-        public ILauncher Launch(string path)
-        {
-            return new Launcher(path);
-        }
-        
-        public ITiming StartTiming()
-        {
-            return new Timing();
-        }
-        
-        public IWebCaller CreateWebCaller()
-        {
-            return new WebCaller();
-        }
-        
-        private ILogging _logging = null;
-        
-        public ILogging Log
-        {
-            get
-            {
-                if (_logging == null)
-                {
-                    _logging = new Logging();
-                }
-                return _logging;
             }
         }
         
@@ -183,15 +79,5 @@ namespace Axantum.AxCrypt.MonoTouch
         }
         
         public event EventHandler<EventArgs> FileChanged;
-        
-        public IDataProtection DataProtection
-        {
-            get { return new DataProtection(); }
-        }
-        
-        public bool CanTrackProcess
-        {
-            get { return Platform == Platform.WindowsDesktop; }
-        }
     }
 }
