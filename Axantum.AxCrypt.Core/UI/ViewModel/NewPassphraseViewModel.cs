@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Globalization;
 using System.Linq;
@@ -46,6 +47,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             bool defaultIdentityKnown = Instance.FileSystemState.Identities.Any(identity => String.Compare(identity.Name, Environment.UserName, StringComparison.OrdinalIgnoreCase) == 0);
             IdentityName = defaultIdentityKnown ? String.Empty : defaultIdentityName;
             Passphrase = String.Empty;
+            FileName = String.IsNullOrEmpty(_encryptedFileFullName) ? String.Empty : Factory.New<IRuntimeFileInfo>(_encryptedFileFullName).Name;
         }
 
         public string IdentityName { get { return GetProperty<string>("IdentityName"); } set { SetProperty("IdentityName", value); } }
@@ -55,6 +57,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public string Passphrase { get { return GetProperty<string>("Passphrase"); } set { SetProperty("Passphrase", value); } }
 
         public string Verification { get { return GetProperty<string>("Verification"); } set { SetProperty("Verification", value); } }
+
+        public string FileName { get { return GetProperty<string>("FileName"); } set { SetProperty("FileName", value); } }
 
         public override string this[string columnName]
         {
