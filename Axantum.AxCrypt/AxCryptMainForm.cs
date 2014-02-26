@@ -403,6 +403,7 @@ namespace Axantum.AxCrypt
                 DialogResult dialogResult = logOnDialog.ShowDialog(this);
                 if (dialogResult == DialogResult.Retry)
                 {
+                    e.Passphrase = logOnDialog.PassphraseTextBox.Text;
                     e.CreateNew = true;
                     return;
                 }

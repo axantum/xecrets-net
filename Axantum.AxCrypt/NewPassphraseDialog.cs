@@ -46,9 +46,8 @@ namespace Axantum.AxCrypt
             InitializeComponent();
 
             SetAutoValidateViaReflectionToAvoidMoMaWarning();
-            PassphraseTextBox.Text = passphrase;
 
-            _viewModel = new NewPassphraseViewModel(Environment.UserName, encryptedFileFullName);
+            _viewModel = new NewPassphraseViewModel(passphrase, Environment.UserName, encryptedFileFullName);
 
             NameTextBox.TextChanged += (sender, e) => { _viewModel.IdentityName = NameTextBox.Text; };
             PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
@@ -57,6 +56,8 @@ namespace Axantum.AxCrypt
 
             _viewModel.BindPropertyChanged("ShowPassphrase", (bool show) => { PassphraseTextBox.UseSystemPasswordChar = VerifyPassphraseTextbox.UseSystemPasswordChar = !show; });
             _viewModel.BindPropertyChanged("FileName", (string fileName) => { FileNameTextBox.Text = fileName; FileNamePanel.Visible = !String.IsNullOrEmpty(fileName); });
+            _viewModel.BindPropertyChanged("Passphrase", (string p) => { PassphraseTextBox.Text = p; });
+            _viewModel.BindPropertyChanged("Verification", (string p) => { VerifyPassphraseTextbox.Text = p; });
         }
 
         private void EncryptPassphraseDialog_Load(object sender, EventArgs e)

@@ -623,6 +623,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter Passphrase.
+        /// </summary>
+        internal static string PassphrasePrompt {
+            get {
+                return ResourceManager.GetString("PassphrasePrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Passphrases do not match.
         /// </summary>
         internal static string PassphraseVerificationMismatch {

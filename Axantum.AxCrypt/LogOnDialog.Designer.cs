@@ -30,18 +30,57 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogOnDialog));
+            this._errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.PassphraseGroupBox = new System.Windows.Forms.GroupBox();
+            this.ShowPassphraseCheckBox = new System.Windows.Forms.CheckBox();
+            this.PassphraseTextBox = new System.Windows.Forms.TextBox();
             this._panel1 = new System.Windows.Forms.Panel();
             this._newButton = new System.Windows.Forms.Button();
             this._buttonCancel = new System.Windows.Forms.Button();
             this._buttonOk = new System.Windows.Forms.Button();
-            this.PassphraseGroupBox = new System.Windows.Forms.GroupBox();
-            this.ShowPassphraseCheckBox = new System.Windows.Forms.CheckBox();
-            this.PassphraseTextBox = new System.Windows.Forms.TextBox();
-            this._errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this._panel1.SuspendLayout();
-            this.PassphraseGroupBox.SuspendLayout();
+            this.FileNamePanel = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.FileNameTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.PassphraseGroupBox.SuspendLayout();
+            this._panel1.SuspendLayout();
+            this.FileNamePanel.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // _errorProvider1
+            // 
+            this._errorProvider1.ContainerControl = this;
+            // 
+            // panel1
+            // 
+            resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Controls.Add(this.PassphraseGroupBox);
+            this.panel1.Name = "panel1";
+            // 
+            // PassphraseGroupBox
+            // 
+            this.PassphraseGroupBox.Controls.Add(this.ShowPassphraseCheckBox);
+            this.PassphraseGroupBox.Controls.Add(this._panel1);
+            this.PassphraseGroupBox.Controls.Add(this.PassphraseTextBox);
+            resources.ApplyResources(this.PassphraseGroupBox, "PassphraseGroupBox");
+            this.PassphraseGroupBox.Name = "PassphraseGroupBox";
+            this.PassphraseGroupBox.TabStop = false;
+            // 
+            // ShowPassphraseCheckBox
+            // 
+            resources.ApplyResources(this.ShowPassphraseCheckBox, "ShowPassphraseCheckBox");
+            this.ShowPassphraseCheckBox.Name = "ShowPassphraseCheckBox";
+            this.ShowPassphraseCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // PassphraseTextBox
+            // 
+            resources.ApplyResources(this.PassphraseTextBox, "PassphraseTextBox");
+            this.PassphraseTextBox.Name = "PassphraseTextBox";
+            this.PassphraseTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.PassphraseTextBox_Validating);
+            this.PassphraseTextBox.Validated += new System.EventHandler(this.PassphraseTextBox_Validated);
             // 
             // _panel1
             // 
@@ -77,30 +116,23 @@
             this._buttonOk.UseVisualStyleBackColor = true;
             this._buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             // 
-            // PassphraseGroupBox
+            // FileNamePanel
             // 
-            resources.ApplyResources(this.PassphraseGroupBox, "PassphraseGroupBox");
-            this.PassphraseGroupBox.Controls.Add(this.ShowPassphraseCheckBox);
-            this.PassphraseGroupBox.Controls.Add(this.PassphraseTextBox);
-            this.PassphraseGroupBox.Name = "PassphraseGroupBox";
-            this.PassphraseGroupBox.TabStop = false;
+            resources.ApplyResources(this.FileNamePanel, "FileNamePanel");
+            this.FileNamePanel.Controls.Add(this.groupBox1);
+            this.FileNamePanel.Name = "FileNamePanel";
             // 
-            // ShowPassphraseCheckBox
+            // groupBox1
             // 
-            resources.ApplyResources(this.ShowPassphraseCheckBox, "ShowPassphraseCheckBox");
-            this.ShowPassphraseCheckBox.Name = "ShowPassphraseCheckBox";
-            this.ShowPassphraseCheckBox.UseVisualStyleBackColor = true;
+            this.groupBox1.Controls.Add(this.FileNameTextBox);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.TabStop = false;
             // 
-            // PassphraseTextBox
+            // FileNameTextBox
             // 
-            resources.ApplyResources(this.PassphraseTextBox, "PassphraseTextBox");
-            this.PassphraseTextBox.Name = "PassphraseTextBox";
-            this.PassphraseTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.PassphraseTextBox_Validating);
-            this.PassphraseTextBox.Validated += new System.EventHandler(this.PassphraseTextBox_Validated);
-            // 
-            // _errorProvider1
-            // 
-            this._errorProvider1.ContainerControl = this;
+            resources.ApplyResources(this.FileNameTextBox, "FileNameTextBox");
+            this.FileNameTextBox.Name = "FileNameTextBox";
             // 
             // LogOnDialog
             // 
@@ -109,18 +141,22 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this._buttonCancel;
             this.CausesValidation = false;
-            this.Controls.Add(this._panel1);
-            this.Controls.Add(this.PassphraseGroupBox);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.FileNamePanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "LogOnDialog";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Activated += new System.EventHandler(this.LogOnDialog_Activated);
             this.Load += new System.EventHandler(this.EncryptPassphraseDialog_Load);
-            this._panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.PassphraseGroupBox.ResumeLayout(false);
             this.PassphraseGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).EndInit();
+            this._panel1.ResumeLayout(false);
+            this.FileNamePanel.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -128,13 +164,17 @@
 
         #endregion
 
+        private System.Windows.Forms.ErrorProvider _errorProvider1;
+        private System.Windows.Forms.Panel panel1;
+        internal System.Windows.Forms.GroupBox PassphraseGroupBox;
+        internal System.Windows.Forms.CheckBox ShowPassphraseCheckBox;
+        internal System.Windows.Forms.TextBox PassphraseTextBox;
         private System.Windows.Forms.Panel _panel1;
+        private System.Windows.Forms.Button _newButton;
         private System.Windows.Forms.Button _buttonCancel;
         private System.Windows.Forms.Button _buttonOk;
-        internal System.Windows.Forms.GroupBox PassphraseGroupBox;
-        internal System.Windows.Forms.TextBox PassphraseTextBox;
-        private System.Windows.Forms.ErrorProvider _errorProvider1;
-        internal System.Windows.Forms.CheckBox ShowPassphraseCheckBox;
-        private System.Windows.Forms.Button _newButton;
+        private System.Windows.Forms.Panel FileNamePanel;
+        private System.Windows.Forms.GroupBox groupBox1;
+        internal System.Windows.Forms.TextBox FileNameTextBox;
     }
 }

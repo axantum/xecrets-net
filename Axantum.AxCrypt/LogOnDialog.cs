@@ -52,8 +52,9 @@ namespace Axantum.AxCrypt
             PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
             ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
 
-            _viewModel.BindPropertyChanged("IdentityName", (string id) => { PassphraseGroupBox.Text = !String.IsNullOrEmpty(id) ? Resources.EnterPassphraseForIdentityPrompt.InvariantFormat(id) : String.Empty; });
+            _viewModel.BindPropertyChanged("IdentityName", (string id) => { PassphraseGroupBox.Text = !String.IsNullOrEmpty(id) ? Resources.EnterPassphraseForIdentityPrompt.InvariantFormat(id) : Resources.PassphrasePrompt; });
             _viewModel.BindPropertyChanged("ShowPassphrase", (bool show) => { PassphraseTextBox.UseSystemPasswordChar = !show; });
+            _viewModel.BindPropertyChanged("FileName", (string fileName) => { FileNameTextBox.Text = fileName; FileNamePanel.Visible = !String.IsNullOrEmpty(fileName); });
         }
 
         private void EncryptPassphraseDialog_Load(object sender, EventArgs e)
@@ -74,6 +75,11 @@ namespace Axantum.AxCrypt
             if (!ValidateChildren(ValidationConstraints.Visible))
             {
                 DialogResult = DialogResult.None;
+                return;
+            }
+            if (!String.IsNullOrEmpty(_viewModel.FileName) && String.IsNullOrEmpty(_viewModel.IdentityName))
+            {
+                DialogResult = DialogResult.Retry;
             }
         }
 

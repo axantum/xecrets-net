@@ -36,17 +36,18 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     {
         private string _encryptedFileFullName;
 
-        public NewPassphraseViewModel(string defaultIdentityName, string encryptedFileFullName)
+        public NewPassphraseViewModel(string passphrase, string defaultIdentityName, string encryptedFileFullName)
         {
             _encryptedFileFullName = encryptedFileFullName;
-            InitializePropertyValues(defaultIdentityName);
+            InitializePropertyValues(passphrase, defaultIdentityName);
         }
 
-        private void InitializePropertyValues(string defaultIdentityName)
+        private void InitializePropertyValues(string passphrase, string defaultIdentityName)
         {
             bool defaultIdentityKnown = Instance.FileSystemState.Identities.Any(identity => String.Compare(identity.Name, Environment.UserName, StringComparison.OrdinalIgnoreCase) == 0);
             IdentityName = defaultIdentityKnown ? String.Empty : defaultIdentityName;
-            Passphrase = String.Empty;
+            Passphrase = passphrase ?? String.Empty;
+            Verification = passphrase ?? String.Empty;
             FileName = String.IsNullOrEmpty(_encryptedFileFullName) ? String.Empty : Factory.New<IRuntimeFileInfo>(_encryptedFileFullName).Name;
         }
 

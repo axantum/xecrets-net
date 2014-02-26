@@ -26,6 +26,8 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Globalization;
 using System.Linq;
@@ -46,6 +48,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             IdentityName = identityName;
             Passphrase = String.Empty;
+            FileName = String.IsNullOrEmpty(_encryptedFileFullName) ? String.Empty : Factory.New<IRuntimeFileInfo>(_encryptedFileFullName).Name;
         }
 
         public string IdentityName { get { return GetProperty<string>("IdentityName"); } set { SetProperty("IdentityName", value); } }
@@ -53,6 +56,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public bool ShowPassphrase { get { return GetProperty<bool>("ShowPassphrase"); } set { SetProperty("ShowPassphrase", value); } }
 
         public string Passphrase { get { return GetProperty<string>("Passphrase"); } set { SetProperty("Passphrase", value); } }
+
+        public string FileName { get { return GetProperty<string>("FileName"); } set { SetProperty("FileName", value); } }
 
         public override string this[string columnName]
         {
@@ -82,11 +87,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             switch (columnName)
             {
                 case "Passphrase":
-                    if (!IsPassphraseValidForFileIfAny(Passphrase, _encryptedFileFullName))
+                    bool passphraseValid = IsPassphraseValidForFileIfAny(Passphrase, _encryptedFileFullName);
+                    if (passphraseValid && IsPassphraseAKnownIdentity())
                     {
-                        return false;
+                        return true;
                     }
-                    return IsPassphraseAKnownIdentity();
+                    return passphraseValid;
 
                 default:
                     throw new ArgumentException("Cannot validate property.", columnName);
@@ -97,7 +103,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             if (String.IsNullOrEmpty(encryptedFileFullName))
             {
-                return true;
+                return false;
             }
             if (Factory.New<AxCryptFactory>().CreatePassphrase(passphrase, encryptedFileFullName) != null)
             {
@@ -110,8 +116,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private bool IsPassphraseAKnownIdentity()
         {
             SymmetricKeyThumbprint thumbprint = new GenericPassphrase(Passphrase).Thumbprint;
-            if (Instance.FileSystemState.Identities.Any(identity => (String.IsNullOrEmpty(IdentityName) || IdentityName == identity.Name) && identity.Thumbprint == thumbprint))
+            PassphraseIdentity id = Instance.FileSystemState.Identities.FirstOrDefault(identity => (String.IsNullOrEmpty(IdentityName) || IdentityName == identity.Name) && identity.Thumbprint == thumbprint);
+            if (id != null)
             {
+                IdentityName = id.Name;
                 return true;
             }
             ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;

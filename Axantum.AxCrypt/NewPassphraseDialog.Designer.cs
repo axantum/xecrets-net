@@ -112,6 +112,7 @@
             resources.ApplyResources(this._buttonOk, "_buttonOk");
             this._buttonOk.Name = "_buttonOk";
             this._buttonOk.UseVisualStyleBackColor = true;
+            this._buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             // 
             // _groupBox1
             // 

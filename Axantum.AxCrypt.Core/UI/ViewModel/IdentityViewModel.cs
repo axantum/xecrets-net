@@ -160,6 +160,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 DisplayPassphrase = _userSettings.DisplayEncryptPassphrase,
                 Identity = identity,
+                EncryptedFileFullName = encryptedFileFullName,
             };
             OnLoggingOn(logOnArgs);
 

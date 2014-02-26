@@ -340,4 +340,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
   <data name="WrongPassphrase" xml:space="preserve">
     <value>Wrong Passphrase. Please try again.</value>
   </data>
+  <data name="PassphrasePrompt" xml:space="preserve">
+    <value>Enter Passphrase</value>
+  </data>
 </root>
