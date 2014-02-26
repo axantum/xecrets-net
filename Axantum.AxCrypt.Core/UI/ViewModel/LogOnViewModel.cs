@@ -87,12 +87,18 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             switch (columnName)
             {
                 case "Passphrase":
-                    bool passphraseValid = IsPassphraseValidForFileIfAny(Passphrase, _encryptedFileFullName);
-                    if (passphraseValid && IsPassphraseAKnownIdentity())
+                    bool isPassphraseAKnownIdentity = IsPassphraseAKnownIdentity();
+                    if (!IsPassphraseValidForFileIfAny(Passphrase, _encryptedFileFullName))
                     {
-                        return true;
+                        ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
+                        return false;
                     }
-                    return passphraseValid;
+                    if (!isPassphraseAKnownIdentity)
+                    {
+                        ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
+                        return false;
+                    }
+                    return true;
 
                 default:
                     throw new ArgumentException("Cannot validate property.", columnName);
@@ -103,13 +109,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             if (String.IsNullOrEmpty(encryptedFileFullName))
             {
-                return false;
+                return true;
             }
             if (Factory.New<AxCryptFactory>().CreatePassphrase(passphrase, encryptedFileFullName) != null)
             {
                 return true;
             }
-            ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
             return false;
         }
 
@@ -122,7 +127,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 IdentityName = id.Name;
                 return true;
             }
-            ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
             return false;
         }
     }
