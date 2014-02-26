@@ -139,7 +139,6 @@ namespace Axantum.AxCrypt.Core.Test
             npvm.Passphrase = "abc1234";
             npvm.Verification = "abc12345";
 
-            Assert.That(npvm["Passphrase"], Is.Not.EqualTo(""));
             Assert.That(npvm["Verification"], Is.Not.EqualTo(""));
             Assert.That(npvm.ValidationError, Is.EqualTo((int)ValidationError.VerificationPassphraseWrong));
         }
