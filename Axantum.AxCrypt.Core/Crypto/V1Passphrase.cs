@@ -57,7 +57,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             DerivationIterations = 0;
             DerivedKey = new SymmetricKey(derivedKey);
             Passphrase = passphrase;
-            CryptoName = V1AesCrypto.InternalName;
+            CryptoName = CryptoName.AES_128_V1;
         }
     }
 }

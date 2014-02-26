@@ -25,17 +25,15 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI.ViewModel;
+using Axantum.AxCrypt.Properties;
 using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
-using System.Security.Principal;
 using System.Windows.Forms;
-using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.Session;
-using Axantum.AxCrypt.Core.UI.ViewModel;
-using Axantum.AxCrypt.Properties;
 
 namespace Axantum.AxCrypt
 {
@@ -43,14 +41,14 @@ namespace Axantum.AxCrypt
     {
         private NewPassphraseViewModel _viewModel;
 
-        public NewPassphraseDialog(string passphrase)
+        public NewPassphraseDialog(string passphrase, string encryptedFileFullName)
         {
             InitializeComponent();
 
             SetAutoValidateViaReflectionToAvoidMoMaWarning();
             PassphraseTextBox.Text = passphrase;
 
-            _viewModel = new NewPassphraseViewModel(Environment.UserName);
+            _viewModel = new NewPassphraseViewModel(Environment.UserName, encryptedFileFullName);
 
             NameTextBox.TextChanged += (sender, e) => { _viewModel.IdentityName = NameTextBox.Text; };
             PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
@@ -96,6 +94,11 @@ namespace Axantum.AxCrypt
             {
                 e.Cancel = true;
                 _errorProvider1.SetError(VerifyPassphraseTextbox, Resources.PassphraseVerificationMismatch);
+            }
+            if (_viewModel["Passphrase"].Length > 0)
+            {
+                e.Cancel = true;
+                _errorProvider1.SetError(PassphraseTextBox, Resources.WrongPassphrase);
             }
         }
 

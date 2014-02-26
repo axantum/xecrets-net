@@ -53,6 +53,7 @@
     <Compile Include="AxCryptFactory.cs" />
     <Compile Include="Crypto\CounterModeCryptoTransform.cs" />
     <Compile Include="Crypto\CryptoBase.cs" />
+    <Compile Include="Crypto\CryptoName.cs" />
     <Compile Include="Crypto\Hmac.cs" />
     <Compile Include="Crypto\ICrypto.cs" />
     <Compile Include="Crypto\IPassphrase.cs" />

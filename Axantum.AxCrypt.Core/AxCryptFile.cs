@@ -107,7 +107,7 @@ namespace Axantum.AxCrypt.Core
 
             using (Stream sourceStream = new ProgressStream(sourceFile.OpenRead(), progress))
             {
-                using (IAxCryptDocument document = new AxCryptFactory().CreateDocument(key))
+                using (IAxCryptDocument document = Factory.New<AxCryptFactory>().CreateDocument(key))
                 {
                     document.FileName = sourceFile.Name;
                     document.CreationTimeUtc = sourceFile.CreationTimeUtc;
@@ -373,7 +373,7 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("progress");
             }
 
-            IAxCryptDocument document = new AxCryptFactory().CreateDocument(passphrase, new ProgressStream(sourceFile.OpenRead(), progress));
+            IAxCryptDocument document = Factory.New<AxCryptFactory>().CreateDocument(passphrase, new ProgressStream(sourceFile.OpenRead(), progress));
             return document;
         }
 
@@ -398,7 +398,7 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("progress");
             }
 
-            IAxCryptDocument document = new AxCryptFactory().CreateDocument(key, new ProgressStream(sourceFile.OpenRead(), progress));
+            IAxCryptDocument document = Factory.New<AxCryptFactory>().CreateDocument(key, new ProgressStream(sourceFile.OpenRead(), progress));
             return document;
         }
 

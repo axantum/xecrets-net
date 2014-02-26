@@ -27,10 +27,10 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
@@ -39,10 +39,8 @@ namespace Axantum.AxCrypt.Core
 {
     public class AxCryptFactory
     {
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public IEnumerable<string> CryptographicModes
+        public AxCryptFactory()
         {
-            get { return new string[] { V1AesCrypto.InternalName, V2AesCrypto.InternalName }; }
         }
 
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
@@ -53,19 +51,19 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("key");
             }
 
-            if (key.CryptoName == V1AesCrypto.InternalName)
+            if (key.CryptoName == CryptoName.AES_128_V1)
             {
                 return new V1AesCrypto(key);
             }
-            if (key.CryptoName == V2AesCrypto.InternalName)
+            if (key.CryptoName == CryptoName.AES_256)
             {
                 return new V2AesCrypto(key);
             }
-            if (key.CryptoName.Length == 0 && key.DerivedKey.Length == 16)
+            if (key.CryptoName == CryptoName.Unknown && key.DerivedKey.Length == 16)
             {
                 return new V1AesCrypto(key);
             }
-            if (key.CryptoName.Length == 0 && key.DerivedKey.Length == 32)
+            if (key.CryptoName == CryptoName.Unknown && key.DerivedKey.Length == 32)
             {
                 return new V2AesCrypto(key);
             }
@@ -73,14 +71,14 @@ namespace Axantum.AxCrypt.Core
         }
 
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public IPassphrase CreatePassphrase(string passphrase, string cryptoName)
+        public IPassphrase CreatePassphrase(string passphrase, CryptoName cryptoName)
         {
             switch (cryptoName)
             {
-                case V2AesCrypto.InternalName:
+                case CryptoName.AES_256:
                     return new V2Passphrase(passphrase, 256);
 
-                case V1AesCrypto.InternalName:
+                case CryptoName.AES_128_V1:
                     return new V1Passphrase(passphrase);
             }
             throw new InternalErrorException("Invalid CryptoName in parameter 'cryptoName'.");
@@ -92,17 +90,42 @@ namespace Axantum.AxCrypt.Core
             return new V2Passphrase(passphrase, 256);
         }
 
+        public virtual IPassphrase CreatePassphrase(string passphrase, string encryptedFileFullName)
+        {
+            IPassphrase key = Factory.New<AxCryptFactory>().CreatePassphrase(passphrase, Factory.New<IRuntimeFileInfo>(encryptedFileFullName));
+            return key;
+        }
+
+        public virtual IPassphrase CreatePassphrase(string passphrase, IRuntimeFileInfo encryptedFileInfo)
+        {
+            using (Stream encryptedStream = encryptedFileInfo.OpenRead())
+            {
+                Headers headers = new Headers();
+                AxCryptReader reader = headers.Load(encryptedStream);
+
+                IPassphrase key = reader.Crypto(headers, passphrase).Key;
+                using (IAxCryptDocument document = CreateDocument(key, headers, reader))
+                {
+                    if (document.PassphraseIsValid)
+                    {
+                        return key;
+                    }
+                }
+            }
+            return null;
+        }
+
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public IAxCryptDocument CreateDocument(IPassphrase key)
         {
             IAxCryptDocument document;
             switch (key.CryptoName)
             {
-                case V1AesCrypto.InternalName:
+                case CryptoName.AES_128_V1:
                     document = new V1AxCryptDocument(new V1AesCrypto(key), Instance.UserSettings.V1KeyWrapIterations);
                     break;
 
-                case V2AesCrypto.InternalName:
+                case CryptoName.AES_256:
                     document = new V2AxCryptDocument(new V2AesCrypto(key), Instance.UserSettings.V2KeyWrapIterations);
                     break;
 

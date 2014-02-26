@@ -50,6 +50,8 @@ namespace Axantum.AxCrypt.Core.Test
             Mock<FileSystemState> fileSystemStateMock = new Mock<FileSystemState>();
             fileSystemStateMock.Setup<IList<PassphraseIdentity>>(f => f.Identities).Returns(_identities);
             Factory.Instance.Singleton<FileSystemState>(() => fileSystemStateMock.Object);
+
+            Factory.Instance.Register<AxCryptFactory>(() => new AxCryptFactory());
         }
 
         [TearDown]
@@ -61,7 +63,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestConstructor()
         {
-            LogOnViewModel lovm = new LogOnViewModel("Identity");
+            LogOnViewModel lovm = new LogOnViewModel("Identity", String.Empty);
 
             Assert.That(lovm.IdentityName, Is.EqualTo("Identity"));
             Assert.That(lovm.Passphrase, Is.EqualTo(""));
@@ -70,7 +72,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestShowPassphrase()
         {
-            LogOnViewModel lovm = new LogOnViewModel("Identity");
+            LogOnViewModel lovm = new LogOnViewModel("Identity", String.Empty);
 
             Assert.That(lovm.ShowPassphrase, Is.False);
 
@@ -82,7 +84,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestValidatePropertyThatCannotBeValidated()
         {
-            LogOnViewModel lovm = new LogOnViewModel("Me");
+            LogOnViewModel lovm = new LogOnViewModel("Me", String.Empty);
             string s = null;
             Assert.Throws<ArgumentException>(() => { s = lovm["ShowPassphrase"]; });
             Assert.That(s, Is.Null, "Not a real assertion, only to make the variable used for FxCop.");
@@ -100,7 +102,7 @@ namespace Axantum.AxCrypt.Core.Test
             environmentMock.Setup<bool>(f => f.IsLittleEndian).Returns(true);
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => environmentMock.Object);
 
-            LogOnViewModel lovm = new LogOnViewModel("Me");
+            LogOnViewModel lovm = new LogOnViewModel("Me", String.Empty);
 
             _identities.Add(new PassphraseIdentity("Me", new V1Passphrase("abc1234")));
 
@@ -122,7 +124,7 @@ namespace Axantum.AxCrypt.Core.Test
             environmentMock.Setup<bool>(f => f.IsLittleEndian).Returns(true);
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => environmentMock.Object);
 
-            LogOnViewModel lovm = new LogOnViewModel("Me");
+            LogOnViewModel lovm = new LogOnViewModel("Me", String.Empty);
 
             _identities.Add(new PassphraseIdentity("Me", new V1Passphrase("abc1234")));
 
@@ -135,7 +137,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestValidateNonExistingPropertyName()
         {
-            LogOnViewModel lovm = new LogOnViewModel("Me");
+            LogOnViewModel lovm = new LogOnViewModel("Me", String.Empty);
             string s = null;
             Assert.Throws<ArgumentException>(() => { s = lovm["NonExisting"]; });
             Assert.That(s, Is.Null, "Not a real assertion, only to make the variable used for FxCop.");

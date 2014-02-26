@@ -49,27 +49,27 @@
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider2)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // _panel1
             // 
-            resources.ApplyResources(this._panel1, "panel1");
+            resources.ApplyResources(this._panel1, "_panel1");
             this._panel1.Controls.Add(this._buttonCancel);
             this._panel1.Controls.Add(this._buttonOk);
-            this._panel1.Name = "panel1";
+            this._panel1.Name = "_panel1";
             // 
-            // buttonCancel
+            // _buttonCancel
             // 
             this._buttonCancel.CausesValidation = false;
             this._buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            resources.ApplyResources(this._buttonCancel, "buttonCancel");
-            this._buttonCancel.Name = "buttonCancel";
+            resources.ApplyResources(this._buttonCancel, "_buttonCancel");
+            this._buttonCancel.Name = "_buttonCancel";
             this._buttonCancel.UseVisualStyleBackColor = true;
             // 
-            // buttonOk
+            // _buttonOk
             // 
             this._buttonOk.CausesValidation = false;
             this._buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            resources.ApplyResources(this._buttonOk, "buttonOk");
-            this._buttonOk.Name = "buttonOk";
+            resources.ApplyResources(this._buttonOk, "_buttonOk");
+            this._buttonOk.Name = "_buttonOk";
             this._buttonOk.UseVisualStyleBackColor = true;
             this._buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             // 
@@ -96,10 +96,10 @@
             this.VerifyPassphraseTextbox.Validating += new System.ComponentModel.CancelEventHandler(this.VerifyPassphraseTextbox_Validating);
             this.VerifyPassphraseTextbox.Validated += new System.EventHandler(this.VerifyPassphraseTextbox_Validated);
             // 
-            // label1
+            // _label1
             // 
-            resources.ApplyResources(this._label1, "label1");
-            this._label1.Name = "label1";
+            resources.ApplyResources(this._label1, "_label1");
+            this._label1.Name = "_label1";
             // 
             // PassphraseTextBox
             // 
@@ -107,15 +107,15 @@
             resources.ApplyResources(this.PassphraseTextBox, "PassphraseTextBox");
             this.PassphraseTextBox.Name = "PassphraseTextBox";
             // 
-            // errorProvider1
+            // _errorProvider1
             // 
             this._errorProvider1.ContainerControl = this;
             // 
-            // groupBox1
+            // _groupBox1
             // 
             this._groupBox1.Controls.Add(this.NameTextBox);
-            resources.ApplyResources(this._groupBox1, "groupBox1");
-            this._groupBox1.Name = "groupBox1";
+            resources.ApplyResources(this._groupBox1, "_groupBox1");
+            this._groupBox1.Name = "_groupBox1";
             this._groupBox1.TabStop = false;
             // 
             // NameTextBox
@@ -125,11 +125,11 @@
             this.NameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.NameTextBox_Validating);
             this.NameTextBox.Validated += new System.EventHandler(this.NameTextBox_Validated);
             // 
-            // errorProvider2
+            // _errorProvider2
             // 
             this._errorProvider2.ContainerControl = this;
             // 
-            // EncryptPassphraseDialog
+            // NewPassphraseDialog
             // 
             this.AcceptButton = this._buttonOk;
             resources.ApplyResources(this, "$this");
@@ -139,7 +139,7 @@
             this.Controls.Add(this._groupBox1);
             this.Controls.Add(this._panel1);
             this.Controls.Add(this.PassphraseGroupBox);
-            this.Name = "EncryptPassphraseDialog";
+            this.Name = "NewPassphraseDialog";
             this.Load += new System.EventHandler(this.EncryptPassphraseDialog_Load);
             this._panel1.ResumeLayout(false);
             this.PassphraseGroupBox.ResumeLayout(false);

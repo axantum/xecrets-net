@@ -58,6 +58,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Singleton<IStatusChecker>(() => new FakeStatusChecker());
             Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
 
+            Factory.Instance.Register<AxCryptFactory>(() => new AxCryptFactory());
             Factory.Instance.Register<AxCryptFile>(() => new AxCryptFile());
             Factory.Instance.Register<ActiveFileAction>(() => new ActiveFileAction());
             Factory.Instance.Register<FileOperation>(() => new FileOperation(Instance.FileSystemState, Instance.SessionNotify));

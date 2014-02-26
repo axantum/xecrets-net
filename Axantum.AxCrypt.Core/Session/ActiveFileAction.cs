@@ -257,11 +257,12 @@ namespace Axantum.AxCrypt.Core.Session
 
             try
             {
+                IPassphrase key = Factory.New<AxCryptFactory>().CreatePassphrase(activeFile.Key.Passphrase, activeFile.EncryptedFileInfo);
                 using (Stream activeFileStream = activeFile.DecryptedFileInfo.OpenRead())
                 {
                     Factory.New<AxCryptFile>().WriteToFileWithBackup(activeFile.EncryptedFileInfo, (Stream destination) =>
                     {
-                        AxCryptFile.Encrypt(activeFile.DecryptedFileInfo, destination, activeFile.Key, AxCryptOptions.EncryptWithCompression, progress);
+                        AxCryptFile.Encrypt(activeFile.DecryptedFileInfo, destination, key, AxCryptOptions.EncryptWithCompression, progress);
                     }, progress);
                 }
             }

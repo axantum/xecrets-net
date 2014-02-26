@@ -17,7 +17,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             protected set;
         }
 
-        public string CryptoName
+        public CryptoName CryptoName
         {
             get;
             protected set;

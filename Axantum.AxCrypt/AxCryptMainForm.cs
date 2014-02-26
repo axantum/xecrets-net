@@ -331,7 +331,7 @@ namespace Axantum.AxCrypt
             _decryptAndRemoveFromListToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(_mainViewModel.SelectedRecentFiles); };
             _decryptToolStripButton.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(null); };
             _decryptToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(null); };
-            _encryptionKeyToolStripButton.Click += (sender, e) => { _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(new V2AesCrypto().Name); };
+            _encryptionKeyToolStripButton.Click += (sender, e) => { _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(CryptoName.AES_256); };
             _encryptToolStripButton.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
             _encryptToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
             _openEncryptedToolStripButton.Click += (sender, e) => { _fileOperationViewModel.OpenFilesFromFolder.Execute(String.Empty); };
@@ -379,7 +379,7 @@ namespace Axantum.AxCrypt
 
         private void HandleCreateNewLogOn(LogOnEventArgs e)
         {
-            using (NewPassphraseDialog passphraseDialog = new NewPassphraseDialog(e.Passphrase))
+            using (NewPassphraseDialog passphraseDialog = new NewPassphraseDialog(e.Passphrase, e.EncryptedFileFullName))
             {
                 passphraseDialog.ShowPassphraseCheckBox.Checked = e.DisplayPassphrase;
                 DialogResult dialogResult = passphraseDialog.ShowDialog(this);
@@ -397,7 +397,7 @@ namespace Axantum.AxCrypt
 
         private void HandleExistingLogOn(LogOnEventArgs e)
         {
-            using (LogOnDialog logOnDialog = new LogOnDialog(e.Identity.Name))
+            using (LogOnDialog logOnDialog = new LogOnDialog(e.Identity.Name, e.EncryptedFileFullName))
             {
                 logOnDialog.ShowPassphraseCheckBox.Checked = e.DisplayPassphrase;
                 DialogResult dialogResult = logOnDialog.ShowDialog(this);

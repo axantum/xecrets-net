@@ -28,7 +28,6 @@
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -148,13 +147,10 @@ namespace Axantum.AxCrypt.Core.Extensions
         {
             foreach (IPassphrase knownKey in Instance.KnownKeys.Keys)
             {
-                using (IAxCryptDocument document = Factory.New<AxCryptFile>().Document(fileInfo, knownKey, new ProgressContext()))
+                key = Factory.New<AxCryptFactory>().CreatePassphrase(knownKey.Passphrase, fileInfo);
+                if (key != null)
                 {
-                    if (document.PassphraseIsValid)
-                    {
-                        key = knownKey;
-                        return true;
-                    }
+                    return true;
                 }
             }
             key = null;

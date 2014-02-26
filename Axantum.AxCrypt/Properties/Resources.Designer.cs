@@ -724,5 +724,14 @@ namespace Axantum.AxCrypt.Properties {
                 return ResourceManager.GetString("WipeFileSelectFileDialogTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong Passphrase. Please try again..
+        /// </summary>
+        internal static string WrongPassphrase {
+            get {
+                return ResourceManager.GetString("WrongPassphrase", resourceCulture);
+            }
+        }
     }
 }

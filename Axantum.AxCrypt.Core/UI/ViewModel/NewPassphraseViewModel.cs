@@ -33,7 +33,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
     public class NewPassphraseViewModel : ViewModelBase
     {
-        public NewPassphraseViewModel(string defaultIdentityName)
+        private string _encryptedFileFullName;
+
+        public NewPassphraseViewModel(string defaultIdentityName, string encryptedFileFullName)
+        {
+            _encryptedFileFullName = encryptedFileFullName;
+            InitializePropertyValues(defaultIdentityName);
+        }
+
+        private void InitializePropertyValues(string defaultIdentityName)
         {
             bool defaultIdentityKnown = Instance.FileSystemState.Identities.Any(identity => String.Compare(identity.Name, Environment.UserName, StringComparison.OrdinalIgnoreCase) == 0);
             IdentityName = defaultIdentityKnown ? String.Empty : defaultIdentityName;
@@ -63,29 +71,59 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private string Validate(string columnName)
         {
+            if (ValidateInternal(columnName))
+            {
+                return String.Empty;
+            }
+            return ValidationError.ToString(CultureInfo.InvariantCulture);
+        }
+
+        private bool ValidateInternal(string columnName)
+        {
             switch (columnName)
             {
                 case "Passphrase":
-                case "Verification":
-                    if (String.Compare(Passphrase, Verification, StringComparison.Ordinal) == 0)
+                    if (!IsPassphraseValidForFileIfAny(Passphrase, _encryptedFileFullName))
                     {
-                        return String.Empty;
+                        ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
+                        return false;
                     }
-                    ValidationError = (int)ViewModel.ValidationError.VerificationPassphraseWrong;
+                    break;
+
+                case "Verification":
+                    if (!ValidateVerification())
+                    {
+                        ValidationError = (int)ViewModel.ValidationError.VerificationPassphraseWrong;
+                        return false;
+                    }
                     break;
 
                 case "IdentityName":
-                    if (!Instance.FileSystemState.Identities.Any(i => i.Name == IdentityName))
+                    if (Instance.FileSystemState.Identities.Any(i => i.Name == IdentityName))
                     {
-                        return String.Empty;
+                        ValidationError = (int)ViewModel.ValidationError.IdentityExistsAlready;
+                        return false;
                     }
-                    ValidationError = (int)ViewModel.ValidationError.IdentityExistsAlready;
                     break;
 
                 default:
                     throw new ArgumentException("Cannot validate property.", columnName);
             }
-            return ValidationError.ToString(CultureInfo.InvariantCulture);
+            return true;
+        }
+
+        private bool ValidateVerification()
+        {
+            return String.Compare(Passphrase, Verification, StringComparison.Ordinal) == 0;
+        }
+
+        private bool IsPassphraseValidForFileIfAny(string passphrase, string encryptedFileFullName)
+        {
+            if (String.IsNullOrEmpty(encryptedFileFullName))
+            {
+                return true;
+            }
+            return Factory.New<AxCryptFactory>().CreatePassphrase(passphrase, encryptedFileFullName) != null;
         }
     }
 }

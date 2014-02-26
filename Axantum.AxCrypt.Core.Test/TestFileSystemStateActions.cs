@@ -32,6 +32,7 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
+using Moq;
 using NUnit.Framework;
 using System;
 using System.IO;
@@ -117,6 +118,13 @@ namespace Axantum.AxCrypt.Core.Test
             DateTime utcJustNow = utcNow.AddMinutes(-1);
             FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
             FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcJustNow, utcJustNow, utcJustNow, Stream.Null);
+
+            Mock<AxCryptFactory> axCryptFactoryMock = new Mock<AxCryptFactory>();
+            axCryptFactoryMock.Setup<IPassphrase>(m => m.CreatePassphrase(It.IsAny<string>(), It.IsAny<IRuntimeFileInfo>())).Returns((string passphrase, IRuntimeFileInfo fileInfo) =>
+            {
+                return new V1Passphrase(passphrase);
+            });
+            Factory.Instance.Register<AxCryptFactory>(() => axCryptFactoryMock.Object);
 
             ActiveFile activeFile;
             activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedFile1), Factory.New<IRuntimeFileInfo>(_decryptedFile1), new V1Passphrase("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted);
@@ -450,6 +458,13 @@ namespace Axantum.AxCrypt.Core.Test
             DateTime utcNow = OS.Current.UtcNow;
             FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
             FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
+
+            Mock<AxCryptFactory> axCryptFactoryMock = new Mock<AxCryptFactory>();
+            axCryptFactoryMock.Setup<IPassphrase>(m => m.CreatePassphrase(It.IsAny<string>(), It.IsAny<IRuntimeFileInfo>())).Returns((string passphrase, IRuntimeFileInfo fileInfo) =>
+            {
+                return new V1Passphrase(passphrase);
+            });
+            Factory.Instance.Register<AxCryptFactory>(() => axCryptFactoryMock.Object);
 
             IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_encryptedFile1);
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_decryptedFile1);

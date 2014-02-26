@@ -188,7 +188,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(Path.GetFileName(destinationPath), Is.EqualTo("alternative-name.axx"), "The alternative name should be used, since the default existed.");
             IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
             Assert.That(destinationInfo.Exists, "After encryption the destination file should be created.");
-            using (IAxCryptDocument document = new AxCryptFactory().CreateDocument(key))
+            using (IAxCryptDocument document = Factory.New<AxCryptFactory>().CreateDocument(key))
             {
                 using (Stream stream = destinationInfo.OpenRead())
                 {

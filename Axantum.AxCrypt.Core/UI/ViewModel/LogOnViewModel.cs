@@ -34,8 +34,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
     public class LogOnViewModel : ViewModelBase
     {
-        public LogOnViewModel(string identityName)
+        private string _encryptedFileFullName;
+
+        public LogOnViewModel(string identityName, string encryptedFileFullName)
         {
+            _encryptedFileFullName = encryptedFileFullName;
             InitializePropertyValues(identityName);
         }
 
@@ -67,21 +70,52 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private string Validate(string columnName)
         {
+            if (ValidateInternal(columnName))
+            {
+                return String.Empty;
+            }
+            return ValidationError.ToString(CultureInfo.InvariantCulture);
+        }
+
+        private bool ValidateInternal(string columnName)
+        {
             switch (columnName)
             {
                 case "Passphrase":
-                    SymmetricKeyThumbprint thumbprint = new V1Passphrase(Passphrase).Thumbprint;
-                    if (Instance.FileSystemState.Identities.Any(identity => (String.IsNullOrEmpty(IdentityName) || IdentityName == identity.Name) && identity.Thumbprint == thumbprint))
+                    if (!IsPassphraseValidForFileIfAny(Passphrase, _encryptedFileFullName))
                     {
-                        return String.Empty;
+                        return false;
                     }
-                    ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
-                    break;
+                    return IsPassphraseAKnownIdentity();
 
                 default:
                     throw new ArgumentException("Cannot validate property.", columnName);
             }
-            return ValidationError.ToString(CultureInfo.InvariantCulture);
+        }
+
+        private bool IsPassphraseValidForFileIfAny(string passphrase, string encryptedFileFullName)
+        {
+            if (String.IsNullOrEmpty(encryptedFileFullName))
+            {
+                return true;
+            }
+            if (Factory.New<AxCryptFactory>().CreatePassphrase(passphrase, encryptedFileFullName) != null)
+            {
+                return true;
+            }
+            ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
+            return false;
+        }
+
+        private bool IsPassphraseAKnownIdentity()
+        {
+            SymmetricKeyThumbprint thumbprint = new GenericPassphrase(Passphrase).Thumbprint;
+            if (Instance.FileSystemState.Identities.Any(identity => (String.IsNullOrEmpty(IdentityName) || IdentityName == identity.Name) && identity.Thumbprint == thumbprint))
+            {
+                return true;
+            }
+            ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
+            return false;
         }
     }
 }

@@ -25,11 +25,11 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Session;
 using System;
-using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Extensions
 {
@@ -43,6 +43,21 @@ namespace Axantum.AxCrypt.Core.Extensions
         public static bool HasMask(this ActiveFileStatus status, ActiveFileStatus mask)
         {
             return (status & mask) == mask;
+        }
+
+        public static string ToLabel(this CryptoName cryptoName)
+        {
+            string s = cryptoName.ToString().Replace('_', '-');
+            if (s == "Unknown")
+            {
+                return String.Empty;
+            }
+            int n;
+            if (Int32.TryParse(s, NumberStyles.Integer, CultureInfo.InvariantCulture, out n))
+            {
+                return String.Empty;
+            }
+            return s;
         }
     }
 }
