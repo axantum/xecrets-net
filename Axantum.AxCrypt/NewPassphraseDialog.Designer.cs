@@ -124,6 +124,8 @@
             // 
             resources.ApplyResources(this.NameTextBox, "NameTextBox");
             this.NameTextBox.Name = "NameTextBox";
+            this.NameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.NameTextBox_Validating);
+            this.NameTextBox.Validated += new System.EventHandler(this.NameTextBox_Validated);
             // 
             // PassphraseGroupBox
             // 
@@ -145,6 +147,8 @@
             // 
             resources.ApplyResources(this.VerifyPassphraseTextbox, "VerifyPassphraseTextbox");
             this.VerifyPassphraseTextbox.Name = "VerifyPassphraseTextbox";
+            this.VerifyPassphraseTextbox.Validating += new System.ComponentModel.CancelEventHandler(this.VerifyPassphraseTextbox_Validating);
+            this.VerifyPassphraseTextbox.Validated += new System.EventHandler(this.VerifyPassphraseTextbox_Validated);
             // 
             // _label1
             // 
@@ -159,12 +163,15 @@
             // 
             // NewPassphraseDialog
             // 
+            this.AcceptButton = this._buttonOk;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CausesValidation = false;
+            this.CancelButton = this._buttonCancel;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.FileNamePanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "NewPassphraseDialog";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Load += new System.EventHandler(this.EncryptPassphraseDialog_Load);
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider2)).EndInit();
