@@ -61,6 +61,7 @@
     <Compile Include="FakeDataProtection.cs" />
     <Compile Include="FakeDelayTimer.cs" />
     <Compile Include="FakeFileWatcher.cs" />
+    <Compile Include="FakeIterationCalculator.cs" />
     <Compile Include="FakeRandomGenerator.cs" />
     <Compile Include="FakeRequestClient.cs" />
     <Compile Include="FakeRequestServer.cs" />

@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt
             Factory.Instance.Singleton<WorkFolder>(() => new WorkFolder(workFolderPath), () => Factory.Instance.Singleton<WorkFolderWatcher>());
             Factory.Instance.Singleton<ILogging>(() => new Logging());
             Factory.Instance.Singleton<CommandService>(() => new CommandService(new HttpRequestServer(), new HttpRequestClient()));
-            Factory.Instance.Singleton<IUserSettings>(() => new UserSettings(Factory.Instance.Singleton<WorkFolder>().FileInfo.Combine("UserSettings.txt"), new IterationCalculator()));
+            Factory.Instance.Singleton<IUserSettings>(() => new UserSettings(Factory.Instance.Singleton<WorkFolder>().FileInfo.Combine("UserSettings.txt"), Factory.New<IterationCalculator>()));
             Factory.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(Factory.Instance.Singleton<WorkFolder>().FileInfo.Combine("FileSystemState.xml")));
             Factory.Instance.Singleton<KnownKeys>(() => new KnownKeys(Instance.FileSystemState, Instance.SessionNotify));
             Factory.Instance.Singleton<ParallelFileOperation>(() => new ParallelFileOperation());
@@ -92,6 +92,7 @@ namespace Axantum.AxCrypt
             Factory.Instance.Register<int, KeyWrapSalt>((length) => new KeyWrapSalt(length));
             Factory.Instance.Register<Version, UpdateCheck>((version) => new UpdateCheck(version));
             Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
+            Factory.Instance.Register<IterationCalculator>(() => new IterationCalculator());
 
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
             Factory.Instance.Register<string, IFileWatcher>((path) => new FileWatcher(path, new DelayedAction(new DelayTimer(), Instance.UserSettings.SessionNotificationMinimumIdle)));
