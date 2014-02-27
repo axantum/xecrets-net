@@ -88,7 +88,14 @@ namespace Axantum.AxCrypt
             if (_viewModel["Passphrase"].Length > 0)
             {
                 e.Cancel = true;
-                _errorProvider1.SetError(PassphraseTextBox, Resources.UnkownLogOn);
+                if (String.IsNullOrEmpty(_viewModel.FileName))
+                {
+                    _errorProvider1.SetError(PassphraseTextBox, Resources.UnkownLogOn);
+                }
+                else
+                {
+                    _errorProvider1.SetError(PassphraseTextBox, Resources.WrongPassphrase);
+                }
             }
         }
 
