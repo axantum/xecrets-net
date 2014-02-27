@@ -206,33 +206,28 @@ namespace Axantum.AxCrypt.Core.Reader
         private void ParseHeaderBlock(HeaderBlockType headerBlockType, byte[] dataBlock)
         {
             bool isFirst = CurrentItemType == AxCryptItemType.MagicGuid;
-            CurrentItemType = AxCryptItemType.HeaderBlock;
-
-            if (headerBlockType == HeaderBlockType.Preamble)
-            {
-                if (!isFirst)
-                {
-                    throw new FileFormatException("Preamble can only be first.", ErrorStatus.FileFormatError);
-                }
-                CurrentHeaderBlock = new PreambleHeaderBlock(dataBlock);
-                return;
-            }
-            else
-            {
-                if (isFirst)
-                {
-                    throw new FileFormatException("Preamble must be first.", ErrorStatus.FileFormatError);
-                }
-            }
-
             switch (headerBlockType)
             {
+                case HeaderBlockType.Preamble:
+                    if (!isFirst)
+                    {
+                        throw new FileFormatException("Preamble can only be first.", ErrorStatus.FileFormatError);
+                    }
+                    break;
+
                 case HeaderBlockType.Encrypted:
                 case HeaderBlockType.None:
                 case HeaderBlockType.Any:
                     throw new FileFormatException("Illegal header block type.", ErrorStatus.FileFormatError);
+                default:
+                    if (isFirst)
+                    {
+                        throw new FileFormatException("Preamble must be first.", ErrorStatus.FileFormatError);
+                    }
+                    break;
             }
 
+            CurrentItemType = AxCryptItemType.HeaderBlock;
             CurrentHeaderBlock = HeaderBlockFactory(headerBlockType, dataBlock);
             return;
         }

@@ -160,13 +160,16 @@
     <Compile Include="TestUnrecognizedHeaderBlock .cs" />
     <Compile Include="TestUpdateCheck.cs" />
     <Compile Include="TestUserSettings.cs" />
+    <Compile Include="TestV1AxCryptReader.cs" />
     <Compile Include="TestV2AesCrypto.cs" />
     <Compile Include="TestV2AxCryptDocument.cs" />
+    <Compile Include="TestV2AxCryptReader.cs" />
     <Compile Include="TestV2DocumentHeaders.cs" />
     <Compile Include="TestV2HmacStreamTest.cs" />
     <Compile Include="TestV2KeyWrapHeaderBlock.cs" />
     <Compile Include="TestVersionHeaderBlock .cs" />
     <Compile Include="TestViewModelBaseTest.cs" />
+    <Compile Include="TestVXAxCryptReader.cs" />
     <Compile Include="TestWatchedFolder.cs" />
     <Compile Include="TestWatchedFolderChangedEventArgsTest.cs" />
     <Compile Include="TestWorkerGroup.cs" />
