@@ -148,10 +148,10 @@ namespace Axantum.AxCrypt.Core.Session
             progress.AddTotal(encryptedPaths.Count());
             foreach (IRuntimeFileInfo encryptedPath in encryptedPaths)
             {
-                ActiveFile activeFile = Instance.FileSystemState.FindEncryptedPath(encryptedPath.FullName);
+                ActiveFile activeFile = Instance.FileSystemState.FindActiveFileFromEncryptedPath(encryptedPath.FullName);
                 if (activeFile != null)
                 {
-                    Instance.FileSystemState.Remove(activeFile);
+                    Instance.FileSystemState.RemoveActiveFile(activeFile);
                 }
                 progress.AddCount(1);
             }

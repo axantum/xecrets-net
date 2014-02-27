@@ -349,12 +349,12 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(mvm.RemoveRecentFiles.CanExecute(null), Is.True, "RemoveRecentFiles should be executable by default.");
 
                 mvm.RemoveRecentFiles.Execute(new string[] { file2 });
-                mockFileSystemState.Verify(x => x.Remove(It.IsAny<ActiveFile>()), Times.Once, "Exactly one recent file should be removed.");
+                mockFileSystemState.Verify(x => x.RemoveActiveFile(It.IsAny<ActiveFile>()), Times.Once, "Exactly one recent file should be removed.");
 
                 mockFileSystemState.ResetCalls();
                 mvm.RemoveRecentFiles.Execute(new string[] { file2 });
             }
-            mockFileSystemState.Verify(x => x.Remove(It.IsAny<ActiveFile>()), Times.Never, "There is no longer any matching file, so no call to remove should happen.");
+            mockFileSystemState.Verify(x => x.RemoveActiveFile(It.IsAny<ActiveFile>()), Times.Never, "There is no longer any matching file, so no call to remove should happen.");
         }
 
         [Test]

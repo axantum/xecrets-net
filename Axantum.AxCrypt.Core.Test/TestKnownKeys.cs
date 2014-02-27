@@ -193,7 +193,7 @@ namespace Axantum.AxCrypt.Core.Test
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
             FakeRuntimeFileInfo.AddFolder(@"C:\WatchedFolder\");
             Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder\"));
-            IEnumerable<WatchedFolder> watchedFolders = knownKeys.WatchedFolders;
+            IEnumerable<WatchedFolder> watchedFolders = knownKeys.LoggedOnWatchedFolders;
 
             Assert.That(watchedFolders.Count(), Is.EqualTo(0), "When not logged on, no watched folders should be known.");
         }
@@ -209,7 +209,7 @@ namespace Axantum.AxCrypt.Core.Test
             Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder1\", key1.Thumbprint));
             Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder2\", key2.Thumbprint));
             knownKeys.DefaultEncryptionKey = key2;
-            IEnumerable<WatchedFolder> watchedFolders = knownKeys.WatchedFolders;
+            IEnumerable<WatchedFolder> watchedFolders = knownKeys.LoggedOnWatchedFolders;
 
             Assert.That(watchedFolders.Count(), Is.EqualTo(1), "Only one of the two watched folders should be shown.");
             Assert.That(watchedFolders.First().Thumbprint, Is.EqualTo(key2.Thumbprint), "The returned watched folder should be number 2.");

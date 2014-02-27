@@ -369,8 +369,8 @@ namespace Axantum.AxCrypt.Core.Test
             };
             mvm.EncryptFiles.Execute(null);
 
-            Assert.That(Instance.FileSystemState.FindEncryptedPath(@"C:\Folder\File1-txt.axx"), Is.Not.Null);
-            Assert.That(Instance.FileSystemState.FindEncryptedPath(@"C:\Folder\File2-txt.axx"), Is.Not.Null);
+            Assert.That(Instance.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File1-txt.axx"), Is.Not.Null);
+            Assert.That(Instance.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File2-txt.axx"), Is.Not.Null);
             Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
             axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IRuntimeFileInfo>(), It.IsAny<IRuntimeFileInfo>(), It.IsAny<IPassphrase>(), It.IsAny<IProgressContext>()), Times.Exactly(2));
         }
@@ -802,10 +802,10 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
             mvm.AddRecentFiles.Execute(new string[] { @"C:\Folder\File1.txt", @"C:\Folder\File2.txt", @"C:\Folder\File3-txt.axx" });
 
-            Assert.That(Instance.FileSystemState.FindEncryptedPath(@"C:\Folder\File1-txt.axx"), Is.Null);
-            Assert.That(Instance.FileSystemState.FindEncryptedPath(@"C:\Folder\File1-txt.1.axx"), Is.Not.Null);
-            Assert.That(Instance.FileSystemState.FindEncryptedPath(@"C:\Folder\File2-txt.axx"), Is.Not.Null);
-            Assert.That(Instance.FileSystemState.FindEncryptedPath(@"C:\Folder\File3-txt.axx"), Is.Null);
+            Assert.That(Instance.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File1-txt.axx"), Is.Null);
+            Assert.That(Instance.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File1-txt.1.axx"), Is.Not.Null);
+            Assert.That(Instance.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File2-txt.axx"), Is.Not.Null);
+            Assert.That(Instance.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File3-txt.axx"), Is.Null);
             Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
             axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IRuntimeFileInfo>(), It.Is<IRuntimeFileInfo>(r => r.FullName == @"C:\Folder\File1-txt.1.axx"), It.IsAny<IPassphrase>(), It.IsAny<IProgressContext>()), Times.Once);
             axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IRuntimeFileInfo>(), It.Is<IRuntimeFileInfo>(r => r.FullName == @"C:\Folder\File2-txt.axx"), It.IsAny<IPassphrase>(), It.IsAny<IProgressContext>()), Times.Once);

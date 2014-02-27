@@ -154,21 +154,37 @@ namespace Axantum.AxCrypt.Core.Session
                 Save();
                 return;
             }
-            if (fileInfo.Type() == FileInfoTypes.EncryptableFile)
-            {
-                if (!Instance.KnownKeys.WatchedFolders.Any(f => f.Path == watchedFolder.Path))
-                {
-                    return;
-                }
-            }
-            if (fileInfo.Type() != FileInfoTypes.NonExisting)
+            if (IsEncryptableFileButNotInLoggedOnWatchedFolder(watchedFolder, fileInfo))
             {
                 return;
             }
-            ActiveFile removed = FindEncryptedPath(fileInfo.FullName);
-            if (removed != null)
+            if (IsExisting(fileInfo))
             {
-                Remove(removed);
+                return;
+            }
+            RemoveDeletedActiveFile(fileInfo);
+        }
+
+        private static bool IsEncryptableFileButNotInLoggedOnWatchedFolder(WatchedFolder watchedFolder, IRuntimeFileInfo fileInfo)
+        {
+            if (fileInfo.Type() != FileInfoTypes.EncryptableFile)
+            {
+                return false;
+            }
+            return !Instance.KnownKeys.LoggedOnWatchedFolders.Any(f => f.Path == watchedFolder.Path);
+        }
+
+        private static bool IsExisting(IRuntimeFileInfo fileInfo)
+        {
+            return fileInfo.Type() != FileInfoTypes.NonExisting;
+        }
+
+        private void RemoveDeletedActiveFile(IRuntimeFileInfo fileInfo)
+        {
+            ActiveFile removedActiveFile = FindActiveFileFromEncryptedPath(fileInfo.FullName);
+            if (removedActiveFile != null)
+            {
+                RemoveActiveFile(removedActiveFile);
                 Save();
             }
         }
@@ -230,7 +246,7 @@ namespace Axantum.AxCrypt.Core.Session
         /// </summary>
         /// <param name="decryptedPath">Full path to an encrypted file.</param>
         /// <returns>An ActiveFile instance, or null if not found in file system state.</returns>
-        public ActiveFile FindEncryptedPath(string encryptedPath)
+        public ActiveFile FindActiveFileFromEncryptedPath(string encryptedPath)
         {
             if (encryptedPath == null)
             {
@@ -271,7 +287,7 @@ namespace Axantum.AxCrypt.Core.Session
         /// Remove a file from the volatile file system state. To persist, call Save().
         /// </summary>
         /// <param name="activeFile">An active file to remove</param>
-        public virtual void Remove(ActiveFile activeFile)
+        public virtual void RemoveActiveFile(ActiveFile activeFile)
         {
             if (activeFile == null)
             {

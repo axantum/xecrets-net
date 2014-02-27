@@ -63,13 +63,22 @@ namespace Axantum.AxCrypt.Core.Test
 
         public static void HandleFileChanged(string path)
         {
+            if (path == null)
+            {
+                throw new ArgumentNullException("path");
+            }
             foreach (KeyValuePair<string, FakeFileWatcher> fileWatcher in _fileWatchers)
             {
                 if (fileWatcher.Value.disposed)
                 {
                     continue;
                 }
-                if (((System.IO.Path.GetDirectoryName(path) ?? String.Empty) + @"\").StartsWith(fileWatcher.Key, StringComparison.Ordinal))
+                string key = fileWatcher.Key;
+                if (!key.EndsWith(System.IO.Path.DirectorySeparatorChar.ToString()))
+                {
+                    key += System.IO.Path.DirectorySeparatorChar;
+                }
+                if (((path.Substring(0, path.Length - System.IO.Path.GetFileName(path).Length))).StartsWith(key, StringComparison.Ordinal))
                 {
                     fileWatcher.Value.OnChanged(new FileWatcherEventArgs(path));
                 }

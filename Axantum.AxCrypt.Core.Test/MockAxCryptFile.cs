@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         public Action<IEnumerable<IRuntimeFileInfo>, IPassphrase, IProgressContext> EncryptFilesUniqueWithBackupAndWipeMock { get; set; }
 
-        public override void EncryptFilesUniqueWithBackupAndWipe(IEnumerable<IRuntimeFileInfo> folderInfos, IPassphrase encryptionKey, IProgressContext progress)
+        public override void EncryptFoldersUniqueWithBackupAndWipe(IEnumerable<IRuntimeFileInfo> folderInfos, IPassphrase encryptionKey, IProgressContext progress)
         {
             EncryptFilesUniqueWithBackupAndWipeMock(folderInfos, encryptionKey, progress);
         }

@@ -141,7 +141,7 @@ namespace Axantum.AxCrypt.Core
             EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, key, progress);
         }
 
-        public virtual void EncryptFilesUniqueWithBackupAndWipe(IEnumerable<IRuntimeFileInfo> folders, IPassphrase encryptionKey, IProgressContext progress)
+        public virtual void EncryptFoldersUniqueWithBackupAndWipe(IEnumerable<IRuntimeFileInfo> folders, IPassphrase encryptionKey, IProgressContext progress)
         {
             progress.NotifyLevelStart();
             try

@@ -93,6 +93,12 @@ namespace Axantum.AxCrypt.Core.Test
             AddFile(path, true, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, null);
         }
 
+        public static void RemoveFileOrFolder(string path)
+        {
+            _fakeFileSystem.Remove(path);
+            FakeFileWatcher.HandleFileChanged(path);
+        }
+
         public static void ClearFiles()
         {
             _fakeFileSystem.Clear();

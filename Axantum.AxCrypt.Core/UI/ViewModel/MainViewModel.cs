@@ -277,7 +277,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void SetWatchedFolders()
         {
-            WatchedFolders = Instance.KnownKeys.WatchedFolders.Select(wf => wf.Path).ToList();
+            WatchedFolders = Instance.KnownKeys.LoggedOnWatchedFolders.Select(wf => wf.Path).ToList();
         }
 
         private void SetRecentFiles()
@@ -294,7 +294,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void SetFilesArePending()
         {
             IList<ActiveFile> openFiles = _fileSystemState.DecryptedActiveFiles;
-            FilesArePending = openFiles.Count > 0 || Instance.KnownKeys.WatchedFolders.SelectMany(wf => Factory.New<IRuntimeFileInfo>(wf.Path).ListEncryptable()).Any();
+            FilesArePending = openFiles.Count > 0 || Instance.KnownKeys.LoggedOnWatchedFolders.SelectMany(wf => Factory.New<IRuntimeFileInfo>(wf.Path).ListEncryptable()).Any();
         }
 
         private void SetLogOnState(bool isLoggedOn)
@@ -338,10 +338,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             foreach (string file in files)
             {
-                ActiveFile activeFile = _fileSystemState.FindEncryptedPath(file);
+                ActiveFile activeFile = _fileSystemState.FindActiveFileFromEncryptedPath(file);
                 if (activeFile != null)
                 {
-                    _fileSystemState.Remove(activeFile);
+                    _fileSystemState.RemoveActiveFile(activeFile);
                 }
             }
         }

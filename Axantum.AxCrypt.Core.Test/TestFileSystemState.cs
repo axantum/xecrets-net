@@ -111,7 +111,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(wasHere, Is.True, "After the Add(), the changed event should have been raised.");
 
                 wasHere = false;
-                state.Remove(activeFile);
+                state.RemoveActiveFile(activeFile);
                 Assert.That(wasHere, Is.True, "After the Remove(), the changed event should have been raised.");
                 Assert.That(state.ActiveFiles.Count(), Is.EqualTo(0), "After the Remove() the state should have no active files.");
             }
@@ -141,10 +141,10 @@ namespace Axantum.AxCrypt.Core.Test
                 ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedAxxPath), Factory.New<IRuntimeFileInfo>(_decryptedTxtPath), new GenericPassphrase("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable);
                 state.Add(activeFile);
 
-                ActiveFile byEncryptedPath = state.FindEncryptedPath(_encryptedAxxPath);
+                ActiveFile byEncryptedPath = state.FindActiveFileFromEncryptedPath(_encryptedAxxPath);
                 Assert.That(byEncryptedPath.EncryptedFileInfo.FullName, Is.EqualTo(_encryptedAxxPath), "The search should return the same path.");
 
-                ActiveFile notFoundEncrypted = state.FindEncryptedPath(Path.Combine(_rootPath, "notfoundfile.txt"));
+                ActiveFile notFoundEncrypted = state.FindActiveFileFromEncryptedPath(Path.Combine(_rootPath, "notfoundfile.txt"));
                 Assert.That(notFoundEncrypted, Is.Null, "A search that does not succeed should return null.");
             }
         }
@@ -245,9 +245,9 @@ namespace Axantum.AxCrypt.Core.Test
                 Func<ActiveFile, ActiveFile> nullAction = null;
                 IRuntimeFileInfo nullFileInfo = null;
 
-                Assert.Throws<ArgumentNullException>(() => { state.Remove(nullActiveFile); });
+                Assert.Throws<ArgumentNullException>(() => { state.RemoveActiveFile(nullActiveFile); });
                 Assert.Throws<ArgumentNullException>(() => { state.Add(nullActiveFile); });
-                Assert.Throws<ArgumentNullException>(() => { state.FindEncryptedPath(nullPath); });
+                Assert.Throws<ArgumentNullException>(() => { state.FindActiveFileFromEncryptedPath(nullPath); });
                 Assert.Throws<ArgumentNullException>(() => { state.ForEach(ChangedEventMode.RaiseAlways, nullAction); });
                 Assert.Throws<ArgumentNullException>(() => { FileSystemState.Create(nullFileInfo); });
             }
@@ -326,6 +326,22 @@ namespace Axantum.AxCrypt.Core.Test
 
                 Factory.New<IRuntimeFileInfo>(_encryptedAxxPath).Delete();
                 Assert.That(state.ActiveFileCount, Is.EqualTo(0), "When deleted, the active file count should be zero again.");
+            }
+        }
+
+        [Test]
+        public static void TestWatchedFolderRemoved()
+        {
+            using (FileSystemState state = FileSystemState.Create(Instance.WorkFolder.FileInfo.Combine("mystate.txt")))
+            {
+                FakeRuntimeFileInfo.AddFolder(_rootPath);
+                state.AddWatchedFolder(new WatchedFolder(_rootPath, SymmetricKeyThumbprint.Zero));
+
+                Assert.That(state.WatchedFolders.Count(), Is.EqualTo(1));
+
+                FakeRuntimeFileInfo.RemoveFileOrFolder(_rootPath);
+
+                Assert.That(state.WatchedFolders.Count(), Is.EqualTo(0));
             }
         }
 

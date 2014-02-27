@@ -122,7 +122,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private IPassphrase AskForLogOnOrDecryptPassphraseAction(string encryptedFileFullName)
         {
-            ActiveFile openFile = _fileSystemState.FindEncryptedPath(encryptedFileFullName);
+            ActiveFile openFile = _fileSystemState.FindActiveFileFromEncryptedPath(encryptedFileFullName);
             if (openFile == null || openFile.Thumbprint == null)
             {
                 return AskForLogOnPassphraseAction(PassphraseIdentity.Empty, encryptedFileFullName);

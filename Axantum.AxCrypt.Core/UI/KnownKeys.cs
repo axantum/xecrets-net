@@ -163,7 +163,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public IEnumerable<WatchedFolder> WatchedFolders
+        public IEnumerable<WatchedFolder> LoggedOnWatchedFolders
         {
             get
             {

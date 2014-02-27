@@ -204,12 +204,12 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
 
             IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
-            ActiveFile destinationActiveFile = Instance.FileSystemState.FindEncryptedPath(fileInfo.FullName);
+            ActiveFile destinationActiveFile = Instance.FileSystemState.FindActiveFileFromEncryptedPath(fileInfo.FullName);
             Assert.That(destinationActiveFile.DecryptedFileInfo.LastWriteTimeUtc, Is.Not.EqualTo(utcNow), "The decryption should restore the time stamp of the original file, and this is not now.");
             destinationActiveFile.DecryptedFileInfo.SetFileTimes(utcNow, utcNow, utcNow);
             status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, keys, new ProgressContext());
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed this time too.");
-            destinationActiveFile = Instance.FileSystemState.FindEncryptedPath(fileInfo.FullName);
+            destinationActiveFile = Instance.FileSystemState.FindActiveFileFromEncryptedPath(fileInfo.FullName);
             Assert.That(destinationActiveFile.DecryptedFileInfo.LastWriteTimeUtc, Is.EqualTo(utcNow), "There should be no decryption again necessary, and thus the time stamp should be as just set.");
         }
 
@@ -226,7 +226,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
 
             IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
-            ActiveFile destinationActiveFile = Instance.FileSystemState.FindEncryptedPath(fileInfo.FullName);
+            ActiveFile destinationActiveFile = Instance.FileSystemState.FindActiveFileFromEncryptedPath(fileInfo.FullName);
             Assert.That(destinationActiveFile.DecryptedFileInfo.LastWriteTimeUtc, Is.Not.EqualTo(utcNow), "The decryption should restore the time stamp of the original file, and this is not now.");
             destinationActiveFile.DecryptedFileInfo.SetFileTimes(utcNow, utcNow, utcNow);
 
@@ -234,7 +234,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, badKeys, new ProgressContext());
             Assert.That(status, Is.EqualTo(FileOperationStatus.InvalidKey), "The launch should fail this time, since the key is not known.");
-            destinationActiveFile = Instance.FileSystemState.FindEncryptedPath(fileInfo.FullName);
+            destinationActiveFile = Instance.FileSystemState.FindActiveFileFromEncryptedPath(fileInfo.FullName);
             Assert.That(destinationActiveFile.DecryptedFileInfo.LastWriteTimeUtc, Is.EqualTo(utcNow), "There should be no decryption, and thus the time stamp should be as just set.");
         }
 
@@ -349,7 +349,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
 
             IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
-            ActiveFile destinationActiveFile = Instance.FileSystemState.FindEncryptedPath(fileInfo.FullName);
+            ActiveFile destinationActiveFile = Instance.FileSystemState.FindActiveFileFromEncryptedPath(fileInfo.FullName);
             destinationActiveFile.DecryptedFileInfo.Delete();
             destinationActiveFile = new ActiveFile(destinationActiveFile, ActiveFileStatus.NotDecrypted);
             Instance.FileSystemState.Add(destinationActiveFile);

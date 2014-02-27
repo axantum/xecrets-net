@@ -87,7 +87,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             List<KnownFolder> updatedFolders = new List<KnownFolder>();
             foreach (KnownFolder folder in knownFolders)
             {
-                KnownFolder updated = new KnownFolder(folder, _knownKeys.WatchedFolders.Any(f => f.Path == folder.MyFullPath.FullName));
+                KnownFolder updated = new KnownFolder(folder, _knownKeys.LoggedOnWatchedFolders.Any(f => f.Path == folder.MyFullPath.FullName));
                 updatedFolders.Add(updated);
             }
             return updatedFolders;

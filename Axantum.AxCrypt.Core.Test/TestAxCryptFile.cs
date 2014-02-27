@@ -504,7 +504,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             V1Passphrase passphrase = new V1Passphrase("allan");
 
-            Factory.New<AxCryptFile>().EncryptFilesUniqueWithBackupAndWipe(new IRuntimeFileInfo[] { sourceFolderInfo }, passphrase, new ProgressContext());
+            Factory.New<AxCryptFile>().EncryptFoldersUniqueWithBackupAndWipe(new IRuntimeFileInfo[] { sourceFolderInfo }, passphrase, new ProgressContext());
 
             Assert.That(sourceFileInfo.Exists, Is.False, "The source should be wiped.");
             Assert.That(destinationFileInfo.Exists, Is.True, "The destination should be created and exist now.");
@@ -523,7 +523,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             V1Passphrase passphrase = new V1Passphrase("allan");
 
-            Factory.New<AxCryptFile>().EncryptFilesUniqueWithBackupAndWipe(new IRuntimeFileInfo[] { sourceFolderInfo }, passphrase, new ProgressContext());
+            Factory.New<AxCryptFile>().EncryptFoldersUniqueWithBackupAndWipe(new IRuntimeFileInfo[] { sourceFolderInfo }, passphrase, new ProgressContext());
 
             Assert.That(sourceFileInfo.Exists, Is.False, "The source should be wiped.");
             Assert.That(alternateDestinationFileInfo.Exists, Is.True, "The destination should be created and exist now.");

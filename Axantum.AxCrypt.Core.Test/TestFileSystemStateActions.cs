@@ -143,7 +143,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeEnvironment.Instance.TimeFunction = () => DateTime.UtcNow;
             Factory.New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "The file should be detected as modified, because it is considered open and decrypted, has a proper key, is modified, no running process so it should be re-encrypted and deleted.");
-            activeFile = Instance.FileSystemState.FindEncryptedPath(_encryptedFile1);
+            activeFile = Instance.FileSystemState.FindActiveFileFromEncryptedPath(_encryptedFile1);
             Assert.That(activeFile, Is.Not.Null, "The encrypted file should be found.");
             Assert.That(activeFile.IsModified, Is.False, "The file should no longer be flagged as modified.");
             Assert.That(activeFile.Status.HasMask(ActiveFileStatus.NotDecrypted), Is.True, "The file should no longer be decrypted, since it was re-encrypted and deleted.");
@@ -170,14 +170,14 @@ namespace Axantum.AxCrypt.Core.Test
                 changedWasRaised = true;
             });
 
-            activeFile = Instance.FileSystemState.FindEncryptedPath(_encryptedFile1);
+            activeFile = Instance.FileSystemState.FindActiveFileFromEncryptedPath(_encryptedFile1);
             Assert.That(activeFile.Key, Is.Null, "The key should be null after loading of new FileSystemState");
 
             Instance.KnownKeys.Add(passphrase);
             Factory.New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "The ActiveFile should be modified because there is now a known key.");
 
-            activeFile = Instance.FileSystemState.FindEncryptedPath(_encryptedFile1);
+            activeFile = Instance.FileSystemState.FindActiveFileFromEncryptedPath(_encryptedFile1);
             Assert.That(activeFile.Key, Is.Not.Null, "The key should not be null after the checking of active files.");
         }
 
@@ -205,7 +205,7 @@ namespace Axantum.AxCrypt.Core.Test
                 changedWasRaised = true;
             });
 
-            activeFile = Instance.FileSystemState.FindEncryptedPath(_encryptedFile1);
+            activeFile = Instance.FileSystemState.FindActiveFileFromEncryptedPath(_encryptedFile1);
             Assert.That(activeFile.Key, Is.Null, "The key should be null after loading of new FileSystemState");
 
             Factory.New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
@@ -216,7 +216,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because the file was modified as well and thus cannot be deleted.");
 
-            activeFile = Instance.FileSystemState.FindEncryptedPath(_encryptedFile1);
+            activeFile = Instance.FileSystemState.FindActiveFileFromEncryptedPath(_encryptedFile1);
             Assert.That(activeFile.Key, Is.Null, "The key should still be null after the checking of active files.");
 
             Assert.That(activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "The file should still be there.");
@@ -269,14 +269,14 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.FakeRuntimeEnvironment.Platform = Platform.Unknown;
             Factory.New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "No change should be raised when the file is not modified and not Desktop Windows.");
-            activeFile = Instance.FileSystemState.FindEncryptedPath(_encryptedFile1);
+            activeFile = Instance.FileSystemState.FindActiveFileFromEncryptedPath(_encryptedFile1);
             Assert.That(activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "Nothing should happen with the file when not running as Desktop Windows.");
 
             SetupAssembly.FakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
             changedWasRaised = false;
             Factory.New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "Since the file should be deleted because running as Desktop Windows the changed event should be raised.");
-            activeFile = Instance.FileSystemState.FindEncryptedPath(_encryptedFile1);
+            activeFile = Instance.FileSystemState.FindActiveFileFromEncryptedPath(_encryptedFile1);
             Assert.That(activeFile.Status.HasMask(ActiveFileStatus.NotDecrypted), Is.True, "The file should be deleted and marked as Not Decrypted when running as Desktop Windows.");
         }
 
@@ -322,7 +322,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
 
             Assert.That(changedWasRaised, Is.True, "The ActiveFile should be modified because it should now be marked as not shareable.");
-            activeFile = Instance.FileSystemState.FindEncryptedPath(_encryptedFile1);
+            activeFile = Instance.FileSystemState.FindActiveFileFromEncryptedPath(_encryptedFile1);
             Assert.That(activeFile.Status.HasMask(ActiveFileStatus.NotShareable), Is.True, "The ActiveFile should be marked as not shareable after the checking of active files.");
         }
 
@@ -348,7 +348,7 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.FakeRuntimeEnvironment.Platform = Platform.WindowsDesktop;
             Factory.New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
 
-            activeFile = Instance.FileSystemState.FindEncryptedPath(_encryptedFile1);
+            activeFile = Instance.FileSystemState.FindActiveFileFromEncryptedPath(_encryptedFile1);
             Assert.That(changedWasRaised, Is.False, "No changed event should be raised because no change should occur since the process is active.");
             Assert.That(activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "The ActiveFile plain text should not be deleted after the checking of active files because the launcher is active.");
         }
@@ -375,7 +375,7 @@ namespace Axantum.AxCrypt.Core.Test
             fakeLauncher.HasExited = true;
             Factory.New<ActiveFileAction>().CheckActiveFiles(ChangedEventMode.RaiseOnlyOnModified, new ProgressContext());
 
-            activeFile = Instance.FileSystemState.FindEncryptedPath(_encryptedFile1);
+            activeFile = Instance.FileSystemState.FindActiveFileFromEncryptedPath(_encryptedFile1);
             Assert.That(changedWasRaised, Is.True, "A changed event should be raised because the process has exited.");
             Assert.That(activeFile.Status.HasMask(ActiveFileStatus.NotDecrypted), Is.True, "The ActiveFile plain text should be deleted after the checking of active files because the launcher is no longer active.");
             Assert.That(activeFile.Status.HasMask(ActiveFileStatus.NotShareable), Is.False, "The file should be shareable after checking of active files because the launcher is no longer active.");
@@ -420,7 +420,7 @@ namespace Axantum.AxCrypt.Core.Test
                 FakeRuntimeFileInfo.OpeningForWrite -= eventHandler;
             }
 
-            activeFile = Instance.FileSystemState.FindEncryptedPath(_encryptedFile1);
+            activeFile = Instance.FileSystemState.FindActiveFileFromEncryptedPath(_encryptedFile1);
             Assert.That(changedWasRaised, Is.True, "A changed event should be raised because it should now be NotShareable.");
             Assert.That(activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted), Is.True, "The ActiveFile plain text should still be there after the checking of active files because the file is NotShareable.");
             Assert.That(activeFile.Status.HasMask(ActiveFileStatus.NotShareable), Is.True, "The ActiveFile plain text should be NotShareable after the checking of active files because the file could not be deleted.");
@@ -485,7 +485,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Factory.New<ActiveFileAction>().PurgeActiveFiles(new ProgressContext());
 
-            activeFile = Instance.FileSystemState.FindEncryptedPath(_encryptedFile1);
+            activeFile = Instance.FileSystemState.FindActiveFileFromEncryptedPath(_encryptedFile1);
             Assert.That(changedWasRaised, Is.True, "A changed event should be raised because the decrypted file is modified.");
             Assert.That(activeFile.Status.HasMask(ActiveFileStatus.NotDecrypted), Is.True, "The NotShareable not withstanding, the purge should have updated the file and removed the decrypted file.");
         }
@@ -586,12 +586,12 @@ namespace Axantum.AxCrypt.Core.Test
             Instance.FileSystemState.Add(activeFile);
             Instance.FileSystemState.Save();
 
-            ActiveFile beforeRemoval = Instance.FileSystemState.FindEncryptedPath(encryptedFileInfo.FullName);
+            ActiveFile beforeRemoval = Instance.FileSystemState.FindActiveFileFromEncryptedPath(encryptedFileInfo.FullName);
             Assert.That(beforeRemoval, Is.Not.Null, "Before being removed, the ActiveFile should be possible to find.");
 
             Factory.New<ActiveFileAction>().RemoveRecentFiles(new IRuntimeFileInfo[] { Factory.New<IRuntimeFileInfo>(encryptedFileInfo.FullName) }, new ProgressContext());
 
-            ActiveFile afterRemoval = Instance.FileSystemState.FindEncryptedPath(encryptedFileInfo.FullName);
+            ActiveFile afterRemoval = Instance.FileSystemState.FindActiveFileFromEncryptedPath(encryptedFileInfo.FullName);
             Assert.That(afterRemoval, Is.Null, "After being removed, the ActiveFile should not be possible to find.");
         }
 
@@ -605,12 +605,12 @@ namespace Axantum.AxCrypt.Core.Test
             Instance.FileSystemState.Add(activeFile);
             Instance.FileSystemState.Save();
 
-            ActiveFile beforeRemoval = Instance.FileSystemState.FindEncryptedPath(encryptedFileInfo.FullName);
+            ActiveFile beforeRemoval = Instance.FileSystemState.FindActiveFileFromEncryptedPath(encryptedFileInfo.FullName);
             Assert.That(beforeRemoval, Is.Not.Null, "Before being removed, the ActiveFile should be possible to find.");
 
             Assert.DoesNotThrow(() => { Factory.New<ActiveFileAction>().RemoveRecentFiles(new IRuntimeFileInfo[] { Factory.New<IRuntimeFileInfo>(encryptedFileInfo.FullName + ".notfound") }, new ProgressContext()); });
 
-            ActiveFile afterFailedRemoval = Instance.FileSystemState.FindEncryptedPath(encryptedFileInfo.FullName);
+            ActiveFile afterFailedRemoval = Instance.FileSystemState.FindActiveFileFromEncryptedPath(encryptedFileInfo.FullName);
             Assert.That(afterFailedRemoval, Is.Not.Null, "After failed removal, the ActiveFile should still be possible to find.");
         }
     }

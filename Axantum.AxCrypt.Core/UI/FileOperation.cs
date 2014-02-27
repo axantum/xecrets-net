@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt.Core.UI
                 return FileOperationStatus.FileDoesNotExist;
             }
 
-            ActiveFile destinationActiveFile = _fileSystemState.FindEncryptedPath(fileInfo.FullName);
+            ActiveFile destinationActiveFile = _fileSystemState.FindActiveFileFromEncryptedPath(fileInfo.FullName);
 
             if (destinationActiveFile == null || !destinationActiveFile.DecryptedFileInfo.Exists)
             {
@@ -115,7 +115,7 @@ namespace Axantum.AxCrypt.Core.UI
 
             IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(encryptedFile);
 
-            ActiveFile encryptedActiveFile = _fileSystemState.FindEncryptedPath(encryptedFileInfo.FullName);
+            ActiveFile encryptedActiveFile = _fileSystemState.FindActiveFileFromEncryptedPath(encryptedFileInfo.FullName);
             if (encryptedActiveFile == null || !encryptedActiveFile.DecryptedFileInfo.Exists)
             {
                 IRuntimeFileInfo destinationFolderInfo = GetTemporaryDestinationFolder(encryptedActiveFile);
