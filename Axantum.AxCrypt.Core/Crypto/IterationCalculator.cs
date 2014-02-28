@@ -50,19 +50,6 @@ namespace Axantum.AxCrypt.Core.Crypto
             return defaultIterations;
         }
 
-        public virtual long V2KeyDerivationIterations()
-        {
-            long iterationsPerSecond = IterationsPerSecond(V2KeyDerivationIterate);
-            long defaultIterations = iterationsPerSecond / 20;
-
-            if (defaultIterations < 10000)
-            {
-                defaultIterations = 10000;
-            }
-
-            return defaultIterations;
-        }
-
         public virtual long V2KeyWrapIterations()
         {
             long iterationsPerSecond = IterationsPerSecond(V2KeyWrapIterate);
@@ -100,12 +87,6 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 return keyWrap.Wrap(new SymmetricKey(128));
             }
-        }
-
-        private static object V2KeyDerivationIterate(int iterations)
-        {
-            V2Passphrase passphrase = new V2Passphrase("A dummy passphrase", new byte[32], iterations, 256);
-            return passphrase.DerivedKey;
         }
 
         private static object V2KeyWrapIterate(int iterations)

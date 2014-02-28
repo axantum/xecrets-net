@@ -138,12 +138,6 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store("V2KeyWrapIterations", value); }
         }
 
-        public long V2KeyDerivationIterations
-        {
-            get { return Load("V2KeyDerivationIterations", () => _keyWrapIterationCalculator.V2KeyDerivationIterations()); }
-            set { Store("V2KeyDerivationIterations", value); }
-        }
-
         public KeyWrapSalt ThumbprintSalt
         {
             get { return Load("ThumbprintSalt", () => Factory.New<int, KeyWrapSalt>(64)); }

@@ -76,35 +76,6 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestMinimumGuaranteeV2KeyDerivationIterations()
-        {
-            DateTime now = DateTime.UtcNow;
-            int callCounter = -1;
-            bool shouldTerminate = false;
-            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () =>
-            {
-                if (shouldTerminate)
-                {
-                    throw new InvalidOperationException("There should be no more calls at this point.");
-                }
-                if (callCounter++ == 0)
-                {
-                    return now;
-                }
-                if (callCounter < 5)
-                {
-                    return now.AddMilliseconds(callCounter * 50);
-                }
-                shouldTerminate = true;
-                return now.AddMilliseconds(500);
-            };
-
-            long iterations = new IterationCalculator().V2KeyDerivationIterations();
-
-            Assert.That(iterations, Is.EqualTo(10000), "The minimum guarantee should hold.");
-        }
-
-        [Test]
         public static void TestMinimumGuaranteeV2KeyWrapIterations()
         {
             DateTime now = DateTime.UtcNow;
@@ -178,31 +149,6 @@ namespace Axantum.AxCrypt.Core.Test
             };
 
             long iterations = new IterationCalculator().V2KeyWrapIterations();
-
-            Assert.That(iterations, Is.EqualTo(12500), "If we do 125000 iterations in 500ms, the result should be 12500 as default iterations.");
-        }
-
-        [Test]
-        public static void TestCalculatedV2KeyDerivationIterations()
-        {
-            DateTime now = DateTime.UtcNow;
-            int callCounter = -1;
-            bool shouldTerminate = false;
-            SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () =>
-            {
-                if (shouldTerminate)
-                {
-                    throw new InvalidOperationException("There should be no more calls at this point.");
-                }
-                if (callCounter++ == 0)
-                {
-                    return now;
-                }
-                // Reach 500 ms after 125 calls.
-                return now.AddMilliseconds(callCounter * 4);
-            };
-
-            long iterations = new IterationCalculator().V2KeyDerivationIterations();
 
             Assert.That(iterations, Is.EqualTo(12500), "If we do 125000 iterations in 500ms, the result should be 12500 as default iterations.");
         }

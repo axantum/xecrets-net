@@ -38,11 +38,6 @@ namespace Axantum.AxCrypt.Core.Test
             return 10;
         }
 
-        public override long V2KeyDerivationIterations()
-        {
-            return 10;
-        }
-
         public override long V2KeyWrapIterations()
         {
             return 10;

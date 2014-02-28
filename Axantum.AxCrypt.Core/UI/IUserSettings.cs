@@ -67,8 +67,6 @@ namespace Axantum.AxCrypt.Core.UI
 
         long V2KeyWrapIterations { get; set; }
 
-        long V2KeyDerivationIterations { get; set; }
-
         KeyWrapSalt ThumbprintSalt { get; set; }
 
         TimeSpan SessionNotificationMinimumIdle { get; set; }
