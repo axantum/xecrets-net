@@ -154,7 +154,7 @@ namespace Axantum.AxCrypt.Core.Session
                 Save();
                 return;
             }
-            if (IsEncryptableFileButNotInLoggedOnWatchedFolder(watchedFolder, fileInfo))
+            if (!fileInfo.IsEncrypted())
             {
                 return;
             }
@@ -163,15 +163,6 @@ namespace Axantum.AxCrypt.Core.Session
                 return;
             }
             RemoveDeletedActiveFile(fileInfo);
-        }
-
-        private static bool IsEncryptableFileButNotInLoggedOnWatchedFolder(WatchedFolder watchedFolder, IRuntimeFileInfo fileInfo)
-        {
-            if (fileInfo.Type() != FileInfoTypes.EncryptableFile)
-            {
-                return false;
-            }
-            return !Instance.KnownKeys.LoggedOnWatchedFolders.Any(f => f.Path == watchedFolder.Path);
         }
 
         private static bool IsExisting(IRuntimeFileInfo fileInfo)
@@ -246,7 +237,7 @@ namespace Axantum.AxCrypt.Core.Session
         /// </summary>
         /// <param name="decryptedPath">Full path to an encrypted file.</param>
         /// <returns>An ActiveFile instance, or null if not found in file system state.</returns>
-        public ActiveFile FindActiveFileFromEncryptedPath(string encryptedPath)
+        public virtual ActiveFile FindActiveFileFromEncryptedPath(string encryptedPath)
         {
             if (encryptedPath == null)
             {
