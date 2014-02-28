@@ -36,7 +36,8 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// Represent a salted thumb print for a symmetric key. Instances of this class are immutable. A thumb print is
     /// typically only valid and comparable on the same computer and log on where it was created. However, it *is*
     /// only based on the passphrase, and some user-specific values. It always uses the same crypto, the same
-    /// passphrase will have the same thumbprint regardless of which crypto is actually used.
+    /// passphrase will have the same thumbprint regardless of which crypto is actually used when encrypting data
+    /// with the corresponding passphrase.
     /// </summary>
     [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
     public class SymmetricKeyThumbprint : IEquatable<SymmetricKeyThumbprint>

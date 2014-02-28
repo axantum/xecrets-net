@@ -34,7 +34,7 @@ using System.Security.Cryptography;
 namespace Axantum.AxCrypt.Core.Crypto
 {
     /// <summary>
-    /// Implements AES Key Wrap Specification - http://csrc.nist.gov/groups/ST/toolkit/documents/kms/key-wrap.pdf .
+    /// Implements AES (Generalized to any symmetric cipher) Key Wrap Specification - http://csrc.nist.gov/groups/ST/toolkit/documents/kms/key-wrap.pdf .
     /// </summary>
     public class KeyWrap : IDisposable
     {
@@ -42,7 +42,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private long _iterations;
         private readonly KeyWrapMode _mode;
-        private SymmetricAlgorithm _aes = new AesManaged();
+        private SymmetricAlgorithm _algorithm;
 
         /// <summary>
         /// Create a KeyWrap instance for wrapping or unwrapping
@@ -59,7 +59,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// Create a KeyWrap instance for wrapping or unwrapping
         /// </summary>
         /// <param name="key">The key wrapping key</param>
-        /// <param name="salt">An optional salt, or null if none. AxCrypt uses a salt.</param>
+        /// <param name="salt">A salt. This is required by AxCrypt, although the algorithm supports not using a salt.</param>
         /// <param name="iterations">The number of wrapping iterations, at least 6</param>
         /// <param name="mode">Use original specification mode or AxCrypt mode (only difference is that 't' is little endian in AxCrypt mode)</param>
         public KeyWrap(ICrypto crypto, KeyWrapSalt salt, long iterations, KeyWrapMode mode)
@@ -72,8 +72,8 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new ArgumentNullException("salt");
             }
-            _aes = crypto.CreateAlgorithm();
-            if (salt.Length != 0 && salt.Length < _aes.Key.Length)
+            _algorithm = crypto.CreateAlgorithm();
+            if (salt.Length != 0 && salt.Length < _algorithm.Key.Length)
             {
                 throw new InternalErrorException("salt length is incorrect");
             }
@@ -89,15 +89,15 @@ namespace Axantum.AxCrypt.Core.Crypto
 
             _iterations = iterations;
 
-            byte[] saltedKey = _aes.Key;
-            saltedKey.Xor(salt.GetBytes().Reduce(_aes.Key.Length));
+            byte[] saltedKey = _algorithm.Key;
+            saltedKey.Xor(salt.GetBytes().Reduce(_algorithm.Key.Length));
 
-            _aes.Mode = CipherMode.ECB;
-            _aes.KeySize = saltedKey.Length * 8;
-            _aes.Key = saltedKey;
-            _aes.Padding = PaddingMode.None;
+            _algorithm.Mode = CipherMode.ECB;
+            _algorithm.KeySize = saltedKey.Length * 8;
+            _algorithm.Key = saltedKey;
+            _algorithm.Padding = PaddingMode.None;
 
-            _A = new byte[_aes.BlockSize / 8 / 2];
+            _A = new byte[_algorithm.BlockSize / 8 / 2];
             for (int i = 0; i < _A.Length; ++i)
             {
                 _A[i] = 0xA6;
@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public int BlockSize
         {
-            get { return _aes.BlockSize / 8; }
+            get { return _algorithm.BlockSize / 8; }
         }
 
         public byte[] Wrap(byte[] keyMaterial)
@@ -115,9 +115,9 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new ArgumentNullException("keyMaterial");
             }
-            if (_aes == null)
+            if (_algorithm == null)
             {
-                throw new ObjectDisposedException("_aes");
+                throw new ObjectDisposedException("_algorithm");
             }
 
             byte[] wrapped = new byte[keyMaterial.Length + _A.Length];
@@ -125,35 +125,35 @@ namespace Axantum.AxCrypt.Core.Crypto
 
             Array.Copy(keyMaterial, 0, wrapped, _A.Length, keyMaterial.Length);
 
-            ICryptoTransform encryptor = _aes.CreateEncryptor();
+            ICryptoTransform encryptor = _algorithm.CreateEncryptor();
 
             byte[] block = new byte[encryptor.InputBlockSize];
-
-            // wrapped[0..7] contains the A (IV) of the Key Wrap algorithm,
+            int halfBlockLength = block.Length / 2;
+            // wrapped[0..halfBlockLength-1] contains the A (IV) of the Key Wrap algorithm,
             // the rest is 'Key Data'. We do the transform in-place.
             for (int j = 0; j < _iterations; j++)
             {
-                for (int i = 1; i <= keyMaterial.Length / 8; i++)
+                for (int i = 1; i <= keyMaterial.Length / halfBlockLength; i++)
                 {
                     // B = AESE(K, A | R[i])
-                    Array.Copy(wrapped, 0, block, 0, 8);
-                    Array.Copy(wrapped, i * 8, block, 8, 8);
+                    Array.Copy(wrapped, 0, block, 0, halfBlockLength);
+                    Array.Copy(wrapped, i * halfBlockLength, block, halfBlockLength, halfBlockLength);
                     byte[] b = encryptor.TransformFinalBlock(block, 0, encryptor.InputBlockSize);
                     // A = MSB64(B) XOR t where t = (n * j) + i
-                    long t = ((keyMaterial.Length / 8) * j) + i;
+                    long t = ((keyMaterial.Length / halfBlockLength) * j) + i;
                     switch (_mode)
                     {
                         case KeyWrapMode.Specification:
-                            b.Xor(0, t.GetBigEndianBytes(), 0, 8);
+                            b.Xor(0, t.GetBigEndianBytes(), 0, halfBlockLength);
                             break;
 
                         case KeyWrapMode.AxCrypt:
-                            b.Xor(0, t.GetLittleEndianBytes(), 0, 8);
+                            b.Xor(0, t.GetLittleEndianBytes(), 0, halfBlockLength);
                             break;
                     }
-                    Array.Copy(b, 0, wrapped, 0, 8);
+                    Array.Copy(b, 0, wrapped, 0, halfBlockLength);
                     // R[i] = LSB64(B)
-                    Array.Copy(b, 8, wrapped, i * 8, 8);
+                    Array.Copy(b, halfBlockLength, wrapped, i * halfBlockLength, halfBlockLength);
                 }
             }
 
@@ -171,9 +171,9 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new ArgumentNullException("keyToWrap");
             }
-            if (_aes == null)
+            if (_algorithm == null)
             {
-                throw new ObjectDisposedException("_aes");
+                throw new ObjectDisposedException("_algorithm");
             }
             return Wrap(keyToWrap.GetBytes());
         }
@@ -185,9 +185,9 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>The unwrapped key data, or a zero-length array if the unwrap was unsuccessful due to wrong key</returns>
         public byte[] Unwrap(byte[] wrapped)
         {
-            if (_aes == null)
+            if (_algorithm == null)
             {
-                throw new ObjectDisposedException("_aes");
+                throw new ObjectDisposedException("_algorithm");
             }
             if (wrapped.Length % 8 != 0)
             {
@@ -201,7 +201,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             int wrappedKeyLength = wrapped.Length - _A.Length;
 
             wrapped = (byte[])wrapped.Clone();
-            ICryptoTransform decryptor = _aes.CreateDecryptor();
+            ICryptoTransform decryptor = _algorithm.CreateDecryptor();
 
             byte[] block = new byte[decryptor.InputBlockSize];
 
@@ -263,13 +263,13 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 return;
             }
-            if (_aes == null)
+            if (_algorithm == null)
             {
                 return;
             }
             // Clear() is implemented as a call to Dispose(), but Mono does not implement Dispose(), so this avoids a MoMA warning.
-            _aes.Clear();
-            _aes = null;
+            _algorithm.Clear();
+            _algorithm = null;
         }
 
         ~KeyWrap()
