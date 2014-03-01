@@ -29,6 +29,7 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
+using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -213,6 +214,28 @@ namespace Axantum.AxCrypt.Core.Test
                 handler.HandleNotification(sessionEvent);
             }
             Assert.That(callTimes, Is.EqualTo(2));
+        }
+
+        [Test]
+        public static void TestNotificationEncryptPendingFilesInLoggedOnFolders()
+        {
+            Mock<AxCryptFile> mock = new Mock<AxCryptFile>();
+            mock.Setup(acf => acf.EncryptFoldersUniqueWithBackupAndWipe(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<IPassphrase>(), It.IsAny<IProgressContext>()));
+
+            SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, Factory.New<ActiveFileAction>(), mock.Object);
+            IPassphrase defaultKey = new V2Passphrase("default", 256);
+            Instance.KnownKeys.DefaultEncryptionKey = defaultKey;
+
+            List<SessionNotification> sessionEvents = new List<SessionNotification>();
+            sessionEvents.Add(new SessionNotification(SessionNotificationType.WatchedFolderAdded, defaultKey, @"C:\My Documents\"));
+            sessionEvents.Add(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new GenericPassphrase("passphrase"), @"C:\My Documents\"));
+            sessionEvents.Add(new SessionNotification(SessionNotificationType.EncryptPendingFiles));
+
+            foreach (SessionNotification sessionEvent in sessionEvents)
+            {
+                handler.HandleNotification(sessionEvent);
+            }
+            mock.Verify(acf => acf.EncryptFoldersUniqueWithBackupAndWipe(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<IPassphrase>(), It.IsAny<IProgressContext>()), Times.Exactly(3));
         }
     }
 }
