@@ -25,17 +25,17 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
-using NUnit.Framework;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
+using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -232,6 +232,9 @@ namespace Axantum.AxCrypt.Core.Test
                 byte[] actuallyLittleEndianBytes = 0x0102030405060708L.GetBigEndianBytes();
                 Assert.That(actuallyLittleEndianBytes, Is.EqualTo(new byte[] { 0x08, 0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01 }), "Getting big endian long, thinking we are big endian but in fact are not, will get us little endian bytes.");
 
+                byte[] actuallyIntLittleEndianBytes = 0x01020304.GetBigEndianBytes();
+                Assert.That(actuallyIntLittleEndianBytes, Is.EqualTo(new byte[] { 0x04, 0x03, 0x02, 0x01 }), "Getting big endian int, thinking we are big endian but in fact are not, will get us little endian bytes.");
+
                 byte[] actuallyStillLittleEndianBytes = 0x0102030405060708L.GetLittleEndianBytes();
                 Assert.That(actuallyStillLittleEndianBytes, Is.EqualTo(new byte[] { 0x08, 0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01 }), "Getting little endian long, thinking we are big endian but in fact are not, will still get us little endian.");
 
@@ -242,6 +245,9 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 byte[] actuallyStillBigEndianBytes = 0x0102030405060708L.GetBigEndianBytes();
                 Assert.That(actuallyStillBigEndianBytes, Is.EqualTo(new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 }), "Getting big endian long, thinking we are little endian but in fact are not, will still get us big endian bytes.");
+
+                byte[] actuallyIntStillBigEndianBytes = 0x01020304.GetBigEndianBytes();
+                Assert.That(actuallyIntStillBigEndianBytes, Is.EqualTo(new byte[] { 0x01, 0x02, 0x03, 0x04 }), "Getting big endian int, thinking we are little endian but in fact are not, will still get us big endian bytes.");
 
                 byte[] actuallyBigEndianBytes = 0x0102030405060708L.GetLittleEndianBytes();
                 Assert.That(actuallyBigEndianBytes, Is.EqualTo(new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 }), "Getting little endian long, thinking we are big endian but in fact are not, will get us big endian bytes.");
@@ -464,6 +470,41 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(CryptoName.AES_128_V1.ToLabel(), Is.EqualTo("AES-128-V1"));
             Assert.That(CryptoName.Unknown.ToLabel(), Is.EqualTo(String.Empty));
             Assert.That(((CryptoName)(-1)).ToLabel(), Is.EqualTo(String.Empty));
+        }
+
+        [Test]
+        public static void TestReduceByteArrayTooShort()
+        {
+            byte[] big = new byte[5];
+            byte[] reduced;
+
+            Assert.Throws<ArgumentException>(() => reduced = big.Reduce(6));
+        }
+
+        [Test]
+        public static void TestFromHexBadArguments()
+        {
+            string nullString = null;
+            Assert.Throws<ArgumentNullException>(() => nullString.FromHex());
+
+            Assert.Throws<ArgumentException>(() => "01A".FromHex());
+        }
+
+        [Test]
+        public static void TestCopyToWithBufferSize()
+        {
+            using (Stream input = new MemoryStream())
+            {
+                input.Write(new byte[] { 1, 2, 3, 4 }, 0, 4);
+                input.Position = 0;
+                using (MemoryStream output = new MemoryStream())
+                {
+                    StreamExtensions.CopyTo(input, output, 2);
+
+                    byte[] copy = output.ToArray();
+                    Assert.That(copy.IsEquivalentTo(new byte[] { 1, 2, 3, 4 }));
+                }
+            }
         }
     }
 }
