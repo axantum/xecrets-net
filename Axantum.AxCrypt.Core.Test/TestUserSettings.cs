@@ -25,13 +25,13 @@
 
 #endregion Coypright and License
 
+using System;
+using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.UI;
 using Moq;
 using NUnit.Framework;
-using System;
-using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -105,6 +105,9 @@ namespace Axantum.AxCrypt.Core.Test
 
             settings.SessionNotificationMinimumIdle = new TimeSpan(1, 2, 3);
             Assert.That(settings.SessionNotificationMinimumIdle, Is.EqualTo(new TimeSpan(1, 2, 3)), "The value should be this.");
+
+            settings.V2KeyWrapIterations = 999;
+            Assert.That(settings.V2KeyWrapIterations, Is.EqualTo(999));
         }
 
         [Test]

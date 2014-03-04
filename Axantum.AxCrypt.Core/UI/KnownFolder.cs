@@ -25,9 +25,9 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Linq;
+using Axantum.AxCrypt.Core.IO;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -51,6 +51,18 @@ namespace Axantum.AxCrypt.Core.UI
 
         public KnownFolder(string rootFullPath, string myRelativePath, object image, Uri providerUrl)
         {
+            if (rootFullPath == null)
+            {
+                throw new ArgumentNullException("rootFullPath");
+            }
+            if (myRelativePath == null)
+            {
+                throw new ArgumentNullException("myRelativePath");
+            }
+            if (image == null)
+            {
+                throw new ArgumentNullException("image");
+            }
             RootFullPath = Factory.New<IRuntimeFileInfo>(rootFullPath);
             MyFullPath = RootFullPath.Combine(myRelativePath);
             Image = image;
@@ -60,6 +72,10 @@ namespace Axantum.AxCrypt.Core.UI
 
         public KnownFolder(KnownFolder knownFolder, bool enabled)
         {
+            if (knownFolder == null)
+            {
+                throw new ArgumentNullException("knownFolder");
+            }
             RootFullPath = knownFolder.RootFullPath;
             MyFullPath = knownFolder.MyFullPath;
             Image = knownFolder.Image;
