@@ -30,7 +30,8 @@
     <DebugSymbols>True</DebugSymbols>
     <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <UseSGen>false</UseSGen>
-    <I18n />
+    <I18n>
+    </I18n>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>none</DebugType>
@@ -76,46 +77,9 @@
     <Compile Include="MainMenu.xib.designer.cs">
       <DependentUpon>MainMenu.xib</DependentUpon>
     </Compile>
-    <Compile Include="AppController.cs" />
-    <Compile Include="Views\CreatePassphraseView.cs" />
-    <Compile Include="Views\CreatePassphraseView.designer.cs">
-      <DependentUpon>CreatePassphraseView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PasswordView.cs" />
-    <Compile Include="Views\PasswordView.designer.cs">
-      <DependentUpon>PasswordView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\AboutWindow.cs" />
-    <Compile Include="Windows\AboutWindow.designer.cs">
-      <DependentUpon>AboutWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\MainWindow.cs" />
-    <Compile Include="Windows\MainWindow.designer.cs">
-      <DependentUpon>MainWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\OpenFileFromFinder.cs" />
-    <Compile Include="Windows\OpenFileFromFinderController.cs" />
-    <Compile Include="Windows\OpenFileFromFinder.designer.cs">
-      <DependentUpon>OpenFileFromFinder.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\MainWindowController.cs" />
-    <Compile Include="Views\PasswordViewController.cs" />
-    <Compile Include="Views\CreatePassphraseViewController.cs" />
-    <Compile Include="Windows\AboutWindowController.cs" />
-    <Compile Include="Windows\VersionInformationWindow.cs" />
-    <Compile Include="Windows\VersionInformationWindowController.cs" />
-    <Compile Include="Windows\VersionInformationWindow.designer.cs">
-      <DependentUpon>VersionInformationWindow.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainMenu.xib" />
-    <InterfaceDefinition Include="Views\CreatePassphraseView.xib" />
-    <InterfaceDefinition Include="Views\PasswordView.xib" />
-    <InterfaceDefinition Include="Windows\AboutWindow.xib" />
-    <InterfaceDefinition Include="Windows\MainWindow.xib" />
-    <InterfaceDefinition Include="Windows\OpenFileFromFinder.xib" />
-    <InterfaceDefinition Include="Windows\VersionInformationWindow.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -137,17 +101,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\" />
-    <Folder Include="Windows\" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\logo_axantum.png">
       <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
     </BundleResource>
     <BundleResource Include="Resources\AxCryptIcon128.png">
-      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
-    </BundleResource>
-    <BundleResource Include="Resources\tretton37.png">
       <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
     </BundleResource>
     <BundleResource Include="Resources\AxCryptIcon128.icns">
