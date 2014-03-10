@@ -98,6 +98,7 @@
     <Compile Include="TestFileOperationsController.cs" />
     <Compile Include="TestFileOperationViewModel.cs" />
     <Compile Include="TestFileSystemStateActions.cs" />
+    <Compile Include="TestHeaders.cs" />
     <Compile Include="TestKnownFolder.cs" />
     <Compile Include="TestPbkdf2HmacSha512.cs" />
     <Compile Include="TestV1AesCrypto.cs" />

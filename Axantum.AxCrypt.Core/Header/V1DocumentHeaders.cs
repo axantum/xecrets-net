@@ -88,7 +88,7 @@ namespace Axantum.AxCrypt.Core.Header
         public bool Load(Headers headers)
         {
             _headers = headers;
-            _headers.EnsureFileFormatVersion(0, 3);
+            _headers.EnsureFileFormatVersion(1, 3);
 
             if (GetMasterKey() != null)
             {

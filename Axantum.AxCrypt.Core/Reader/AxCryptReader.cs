@@ -76,7 +76,7 @@ namespace Axantum.AxCrypt.Core.Reader
         /// <summary>
         /// Gets the type of the current item
         /// </summary>
-        public AxCryptItemType CurrentItemType { get; protected set; }
+        public virtual AxCryptItemType CurrentItemType { get; protected set; }
 
         public HeaderBlock CurrentHeaderBlock { get; private set; }
 
