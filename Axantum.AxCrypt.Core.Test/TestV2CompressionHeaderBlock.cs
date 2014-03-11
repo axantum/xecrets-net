@@ -26,22 +26,33 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.Runtime;
+using NUnit.Framework;
+using System;
+using System.Linq;
 
-namespace Axantum.AxCrypt.Core.Header
+namespace Axantum.AxCrypt.Core.Test
 {
-    public abstract class EncryptedHeaderBlock : HeaderBlock
+    [TestFixture]
+    public static class TestV2CompressionHeaderBlock
     {
-        public ICrypto HeaderCrypto { get; set; }
-
-        protected EncryptedHeaderBlock(HeaderBlockType headerBlockType, byte[] dataBlock)
-            : base(headerBlockType, dataBlock)
+        [Test]
+        public static void TestClone()
         {
-        }
+            Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
+            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
 
-        protected object CopyTo(EncryptedHeaderBlock headerBlock)
-        {
-            headerBlock.HeaderCrypto = HeaderCrypto;
-            return headerBlock;
+            V2CompressionHeaderBlock compressionHeaderBlock = new V2CompressionHeaderBlock();
+            compressionHeaderBlock.HeaderCrypto = new V2AesCrypto();
+            compressionHeaderBlock.IsCompressed = false;
+            Assert.That(compressionHeaderBlock.IsCompressed, Is.False);
+
+            compressionHeaderBlock.IsCompressed = true;
+            V2CompressionHeaderBlock clone = (V2CompressionHeaderBlock)compressionHeaderBlock.Clone();
+            Assert.That(clone.IsCompressed, Is.True);
+
+            Factory.Instance.Clear();
         }
     }
 }
