@@ -146,5 +146,31 @@ namespace Axantum.AxCrypt.Core.Test
             }
             Assert.That(keyData, Is.EquivalentTo(expectedOriginalKeyData));
         }
+
+        [Test]
+        public static void TestMasterIVWithWrongKeyEncryptingCrypto()
+        {
+            Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
+
+            IPassphrase keyEncryptingKey = new V2Passphrase("secret", Instance.RandomGenerator.Generate(32), 100, 256);
+            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(keyEncryptingKey, new SymmetricIV(128)), 125);
+
+            SymmetricIV iv = header.MasterIV(new V2AesCrypto(new V2Passphrase("another secret", 256)));
+
+            Assert.That(iv, Is.Null);
+        }
+
+        [Test]
+        public static void TestClone()
+        {
+            Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
+
+            IPassphrase keyEncryptingKey = new V2Passphrase("secret", Instance.RandomGenerator.Generate(32), 100, 256);
+            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(keyEncryptingKey, new SymmetricIV(128)), 125);
+
+            V2KeyWrapHeaderBlock clone = (V2KeyWrapHeaderBlock)header.Clone();
+
+            Assert.That(header.GetDataBlockBytes(), Is.EquivalentTo(clone.GetDataBlockBytes()));
+        }
     }
 }
