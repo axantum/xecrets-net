@@ -45,7 +45,7 @@ namespace Axantum.AxCrypt.Core.Header
 
         public override object Clone()
         {
-            V1UnicodeFileNameInfoHeaderBlock block = new V1UnicodeFileNameInfoHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
+            V2UnicodeFileNameInfoHeaderBlock block = new V2UnicodeFileNameInfoHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
             return block;
         }
 

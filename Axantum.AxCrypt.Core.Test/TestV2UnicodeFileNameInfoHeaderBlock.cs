@@ -1,0 +1,82 @@
+﻿#region Coypright and License
+
+/*
+ * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
+ *
+ * This file is part of AxCrypt.
+ *
+ * AxCrypt is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * AxCrypt is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with AxCrypt.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * The source is maintained at http://bitbucket.org/axantum/axcrypt-net please visit for
+ * updates, contributions and contact with the author. You may also visit
+ * http://www.axantum.com for more information about the author.
+*/
+
+#endregion Coypright and License
+
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.Runtime;
+using NUnit.Framework;
+using System;
+using System.Linq;
+
+namespace Axantum.AxCrypt.Core.Test
+{
+    [TestFixture]
+    public static class TestV2UnicodeFileNameInfoHeaderBlock
+    {
+        [SetUp]
+        public static void Setup()
+        {
+        }
+
+        [TearDown]
+        public static void Teardown()
+        {
+            Factory.Instance.Clear();
+        }
+
+        [Test]
+        public static void TestClone()
+        {
+            Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
+            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
+
+            V2UnicodeFileNameInfoHeaderBlock headerBlock = new V2UnicodeFileNameInfoHeaderBlock();
+            headerBlock.HeaderCrypto = new V2AesCrypto();
+            headerBlock.FileName = "A file name";
+            Assert.That(headerBlock.FileName, Is.EqualTo("A file name"));
+
+            V2UnicodeFileNameInfoHeaderBlock clone = (V2UnicodeFileNameInfoHeaderBlock)headerBlock.Clone();
+            Assert.That(headerBlock.FileName, Is.EqualTo("A file name"));
+        }
+
+        [Test]
+        public static void TestBadDataCausedByBadKeyForExamnple()
+        {
+            Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
+            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
+
+            V2UnicodeFileNameInfoHeaderBlock headerBlock = new V2UnicodeFileNameInfoHeaderBlock();
+            headerBlock.HeaderCrypto = new V2AesCrypto();
+            headerBlock.FileName = "A file name";
+            Assert.That(headerBlock.FileName, Is.EqualTo("A file name"));
+
+            headerBlock.HeaderCrypto = new V2AesCrypto(new V2Passphrase("passphrase", 256));
+            string s;
+            Assert.Throws<InvalidOperationException>(() => s = headerBlock.FileName);
+        }
+    }
+}
