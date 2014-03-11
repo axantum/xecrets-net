@@ -133,5 +133,54 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(hmacFromHeaders, Is.EqualTo(hmacFromCalculation));
             }
         }
+
+        [Test]
+        public static void TestLoadWithInvalidPassphrase()
+        {
+            Headers headers = new Headers();
+
+            ICrypto realKeyEncryptingCrypto = new V2AesCrypto(new V2Passphrase("RealKey", 256), new SymmetricIV(128));
+            headers.HeaderBlocks.Add(new PreambleHeaderBlock());
+            headers.HeaderBlocks.Add(new VersionHeaderBlock(new byte[] { 4, 0, 2, 0, 0 }));
+            headers.HeaderBlocks.Add(new V2KeyWrapHeaderBlock(realKeyEncryptingCrypto, 10));
+            headers.HeaderBlocks.Add(new FileInfoHeaderBlock());
+            headers.HeaderBlocks.Add(new V2CompressionHeaderBlock());
+            headers.HeaderBlocks.Add(new V2UnicodeFileNameInfoHeaderBlock());
+            headers.HeaderBlocks.Add(new DataHeaderBlock());
+
+            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("WrongKey", 256), new SymmetricIV(128))))
+            {
+                Assert.That(documentHeaders.Load(headers), Is.False);
+            }
+        }
+
+        [Test]
+        public static void TestWriteStartWithHmacWithNullArgument()
+        {
+            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("Key", 256), new SymmetricIV(128))))
+            {
+                Assert.Throws<ArgumentNullException>(() => documentHeaders.WriteStartWithHmac(null));
+            }
+        }
+
+        [Test]
+        public static void TestKeyEncryptingCryptoPropertyGetter()
+        {
+            ICrypto keyEncryptingCrypto = new V2AesCrypto(new V2Passphrase("Key", 256), new SymmetricIV(128));
+            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(keyEncryptingCrypto))
+            {
+                Assert.That(Object.ReferenceEquals(keyEncryptingCrypto, documentHeaders.KeyEncryptingCrypto));
+            }
+        }
+
+        [Test]
+        public static void TestHeadersPropertyGetter()
+        {
+            ICrypto keyEncryptingCrypto = new V2AesCrypto(new V2Passphrase("Key", 256), new SymmetricIV(128));
+            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(keyEncryptingCrypto))
+            {
+                Assert.That(documentHeaders.Headers.HeaderBlocks.Count, Is.EqualTo(0));
+            }
+        }
     }
 }
