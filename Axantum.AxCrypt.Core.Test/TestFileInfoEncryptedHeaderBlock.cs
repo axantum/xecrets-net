@@ -33,7 +33,7 @@ using System;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public static class TestFileInfoHeaderBlock
+    public static class TestFileInfoEncryptedHeaderBlock
     {
         [SetUp]
         public static void Setup()
@@ -50,8 +50,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestNonUtcFileTimes()
         {
-            FileInfoHeaderBlock fileInfoHeaderBlock = new FileInfoHeaderBlock();
-            fileInfoHeaderBlock.HeaderCrypto = new V1AesCrypto(new GenericPassphrase("nonutc"));
+            FileInfoEncryptedHeaderBlock fileInfoHeaderBlock = new FileInfoEncryptedHeaderBlock(new V1AesCrypto(new GenericPassphrase("nonutc")));
 
             DateTime utcNow = OS.Current.UtcNow;
             DateTime localNow = utcNow.ToLocalTime();

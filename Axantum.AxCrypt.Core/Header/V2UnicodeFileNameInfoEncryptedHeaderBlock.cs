@@ -25,27 +25,29 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Text;
 
 namespace Axantum.AxCrypt.Core.Header
 {
-    public class V2UnicodeFileNameInfoHeaderBlock : EncryptedHeaderBlock
+    public class V2UnicodeFileNameInfoEncryptedHeaderBlock : EncryptedHeaderBlock
     {
-        public V2UnicodeFileNameInfoHeaderBlock(byte[] dataBlock)
+        public V2UnicodeFileNameInfoEncryptedHeaderBlock(byte[] dataBlock)
             : base(HeaderBlockType.UnicodeFileNameInfo, dataBlock)
         {
         }
 
-        public V2UnicodeFileNameInfoHeaderBlock()
+        public V2UnicodeFileNameInfoEncryptedHeaderBlock(ICrypto headerCrypto)
             : this(new byte[0])
         {
+            HeaderCrypto = headerCrypto;
         }
 
         public override object Clone()
         {
-            V2UnicodeFileNameInfoHeaderBlock block = new V2UnicodeFileNameInfoHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
+            V2UnicodeFileNameInfoEncryptedHeaderBlock block = new V2UnicodeFileNameInfoEncryptedHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
             return CopyTo(block);
         }
 

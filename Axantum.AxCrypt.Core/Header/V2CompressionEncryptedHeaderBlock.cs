@@ -25,26 +25,29 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using System;
 
 namespace Axantum.AxCrypt.Core.Header
 {
-    public class V2CompressionHeaderBlock : EncryptedHeaderBlock
+    public class V2CompressionEncryptedHeaderBlock : EncryptedHeaderBlock
     {
-        public V2CompressionHeaderBlock(byte[] dataBlock)
+        public V2CompressionEncryptedHeaderBlock(byte[] dataBlock)
             : base(HeaderBlockType.Compression, dataBlock)
         {
         }
 
-        public V2CompressionHeaderBlock()
+        public V2CompressionEncryptedHeaderBlock(ICrypto headerCrypto)
             : this(new byte[1])
         {
+            HeaderCrypto = headerCrypto;
+            IsCompressed = false;
         }
 
         public override object Clone()
         {
-            V2CompressionHeaderBlock block = new V2CompressionHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
+            V2CompressionEncryptedHeaderBlock block = new V2CompressionEncryptedHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
             return CopyTo(block);
         }
 

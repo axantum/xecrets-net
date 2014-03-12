@@ -67,22 +67,22 @@ namespace Axantum.AxCrypt.Core.Reader
                     return new DataHeaderBlock(dataBlock);
 
                 case HeaderBlockType.FileNameInfo:
-                    return new V1FileNameInfoHeaderBlock(dataBlock);
+                    return new V1FileNameInfoEncryptedHeaderBlock(dataBlock);
 
                 case HeaderBlockType.EncryptionInfo:
-                    return new V1EncryptionInfoHeaderBlock(dataBlock);
+                    return new V1EncryptionInfoEncryptedHeaderBlock(dataBlock);
 
                 case HeaderBlockType.CompressionInfo:
-                    return new V1CompressionInfoHeaderBlock(dataBlock);
+                    return new V1CompressionInfoEncryptedHeaderBlock(dataBlock);
 
                 case HeaderBlockType.FileInfo:
-                    return new FileInfoHeaderBlock(dataBlock);
+                    return new FileInfoEncryptedHeaderBlock(dataBlock);
 
                 case HeaderBlockType.Compression:
-                    return new V1CompressionHeaderBlock(dataBlock);
+                    return new V1CompressionEncryptedHeaderBlock(dataBlock);
 
                 case HeaderBlockType.UnicodeFileNameInfo:
-                    return new V1UnicodeFileNameInfoHeaderBlock(dataBlock);
+                    return new V1UnicodeFileNameInfoEncryptedHeaderBlock(dataBlock);
             }
             return new UnrecognizedHeaderBlock(headerBlockType, dataBlock);
         }

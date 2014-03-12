@@ -143,9 +143,9 @@ namespace Axantum.AxCrypt.Core.Test
             headers.HeaderBlocks.Add(new PreambleHeaderBlock());
             headers.HeaderBlocks.Add(new VersionHeaderBlock(new byte[] { 4, 0, 2, 0, 0 }));
             headers.HeaderBlocks.Add(new V2KeyWrapHeaderBlock(realKeyEncryptingCrypto, 10));
-            headers.HeaderBlocks.Add(new FileInfoHeaderBlock());
-            headers.HeaderBlocks.Add(new V2CompressionHeaderBlock());
-            headers.HeaderBlocks.Add(new V2UnicodeFileNameInfoHeaderBlock());
+            headers.HeaderBlocks.Add(new FileInfoEncryptedHeaderBlock(new V2AesCrypto()));
+            headers.HeaderBlocks.Add(new V2CompressionEncryptedHeaderBlock(new V2AesCrypto()));
+            headers.HeaderBlocks.Add(new V2UnicodeFileNameInfoEncryptedHeaderBlock(new V2AesCrypto()));
             headers.HeaderBlocks.Add(new DataHeaderBlock());
 
             using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("WrongKey", 256), new SymmetricIV(128))))

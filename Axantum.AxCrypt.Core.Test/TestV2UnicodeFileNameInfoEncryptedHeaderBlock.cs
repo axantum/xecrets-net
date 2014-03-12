@@ -35,7 +35,7 @@ using System.Linq;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public static class TestV2UnicodeFileNameInfoHeaderBlock
+    public static class TestV2UnicodeFileNameInfoEncryptedHeaderBlock
     {
         [SetUp]
         public static void Setup()
@@ -54,12 +54,11 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
 
-            V2UnicodeFileNameInfoHeaderBlock headerBlock = new V2UnicodeFileNameInfoHeaderBlock();
-            headerBlock.HeaderCrypto = new V2AesCrypto();
+            V2UnicodeFileNameInfoEncryptedHeaderBlock headerBlock = new V2UnicodeFileNameInfoEncryptedHeaderBlock(new V2AesCrypto());
             headerBlock.FileName = "A file name";
             Assert.That(headerBlock.FileName, Is.EqualTo("A file name"));
 
-            V2UnicodeFileNameInfoHeaderBlock clone = (V2UnicodeFileNameInfoHeaderBlock)headerBlock.Clone();
+            V2UnicodeFileNameInfoEncryptedHeaderBlock clone = (V2UnicodeFileNameInfoEncryptedHeaderBlock)headerBlock.Clone();
             Assert.That(headerBlock.FileName, Is.EqualTo("A file name"));
         }
 
@@ -69,8 +68,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
 
-            V2UnicodeFileNameInfoHeaderBlock headerBlock = new V2UnicodeFileNameInfoHeaderBlock();
-            headerBlock.HeaderCrypto = new V2AesCrypto();
+            V2UnicodeFileNameInfoEncryptedHeaderBlock headerBlock = new V2UnicodeFileNameInfoEncryptedHeaderBlock(new V2AesCrypto());
             headerBlock.FileName = "A file name";
             Assert.That(headerBlock.FileName, Is.EqualTo("A file name"));
 

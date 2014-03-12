@@ -120,9 +120,9 @@
     <Compile Include="TestDocumentHeaders.cs" />
     <Compile Include="TestExceptions.cs" />
     <Compile Include="TestExtensions.cs" />
-    <Compile Include="TestFileInfoHeaderBlock.cs" />
+    <Compile Include="TestFileInfoEncryptedHeaderBlock.cs" />
     <Compile Include="TestFileLock.cs" />
-    <Compile Include="TestFileNameInfoHeaderBlock.cs" />
+    <Compile Include="TestFileNameInfoEncryptedHeaderBlock.cs" />
     <Compile Include="TestFileSystemState.cs" />
     <Compile Include="TestFileWatcher.cs" />
     <Compile Include="TestIdentityViewModel.cs" />
@@ -159,7 +159,7 @@
     </Compile>
     <Compile Include="TestThreadWorker.cs" />
     <Compile Include="TestThreadWorkerProgressContext.cs" />
-    <Compile Include="TestUnicodeFileNameInfoHeaderBlock .cs" />
+    <Compile Include="TestV1UnicodeFileNameInfoEncryptedHeaderBlock.cs" />
     <Compile Include="TestUnrecognizedHeaderBlock .cs" />
     <Compile Include="TestUpdateCheck.cs" />
     <Compile Include="TestUserSettings.cs" />
@@ -167,13 +167,13 @@
     <Compile Include="TestV2AesCrypto.cs" />
     <Compile Include="TestV2AxCryptDocument.cs" />
     <Compile Include="TestV2AxCryptReader.cs" />
-    <Compile Include="TestV2CompressionHeaderBlock.cs" />
+    <Compile Include="TestV2CompressionEncryptedHeaderBlock.cs" />
     <Compile Include="TestV2DocumentHeaders.cs" />
     <Compile Include="TestV2HmacHeaderBlock.cs" />
     <Compile Include="TestV2HmacStreamTest.cs" />
     <Compile Include="TestV2KeyWrapHeaderBlock.cs" />
-    <Compile Include="TestV2PlaintextLengthsHeaderBlock.cs" />
-    <Compile Include="TestV2UnicodeFileNameInfoHeaderBlock.cs" />
+    <Compile Include="TestV2PlainTextLengthsEncryptedHeaderBlock.cs" />
+    <Compile Include="TestV2UnicodeFileNameInfoEncryptedHeaderBlock.cs" />
     <Compile Include="TestVersionHeaderBlock .cs" />
     <Compile Include="TestViewModelBaseTest.cs" />
     <Compile Include="TestVXAxCryptReader.cs" />

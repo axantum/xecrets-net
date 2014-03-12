@@ -25,26 +25,28 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using System;
 
 namespace Axantum.AxCrypt.Core.Header
 {
-    public class FileInfoHeaderBlock : EncryptedHeaderBlock
+    public class FileInfoEncryptedHeaderBlock : EncryptedHeaderBlock
     {
         private const int CreationTimeOffset = 0;
         private const int LastAccessTimeOffset = 8;
         private const int LastWriteTimeOffset = 16;
         private static readonly long WindowsTimeTicksStart = new DateTime(1601, 1, 1).Ticks;
 
-        public FileInfoHeaderBlock(byte[] dataBlock)
+        public FileInfoEncryptedHeaderBlock(byte[] dataBlock)
             : base(HeaderBlockType.FileInfo, dataBlock)
         {
         }
 
-        public FileInfoHeaderBlock()
+        public FileInfoEncryptedHeaderBlock(ICrypto headerCrypto)
             : this(new byte[0])
         {
+            HeaderCrypto = headerCrypto;
         }
 
         private void EnsureDataBlock()
@@ -65,7 +67,7 @@ namespace Axantum.AxCrypt.Core.Header
 
         public override object Clone()
         {
-            FileInfoHeaderBlock block = new FileInfoHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
+            FileInfoEncryptedHeaderBlock block = new FileInfoEncryptedHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
             return CopyTo(block);
         }
 

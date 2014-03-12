@@ -34,10 +34,15 @@ using System.Text;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public static class TestUnicodeFileNameInfoHeaderBlock
+    public static class TestV1UnicodeFileNameInfoEncryptedHeaderBlock
     {
-        private class UnicodeFileNameInfoHeaderBlockForTest : V1UnicodeFileNameInfoHeaderBlock
+        private class UnicodeFileNameInfoHeaderBlockForTest : V1UnicodeFileNameInfoEncryptedHeaderBlock
         {
+            public UnicodeFileNameInfoHeaderBlockForTest(ICrypto headerCrypto)
+                : base(headerCrypto)
+            {
+            }
+
             public void SetBadNameWithoutEndingNul()
             {
                 byte[] rawFileName = Encoding.ASCII.GetBytes("ABCDEFGHIJK.LMNO");
@@ -62,8 +67,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestNonTerminatingFileName()
         {
-            UnicodeFileNameInfoHeaderBlockForTest unicodeFileInfoHeaderBlock = new UnicodeFileNameInfoHeaderBlockForTest();
-            unicodeFileInfoHeaderBlock.HeaderCrypto = new V1AesCrypto(new GenericPassphrase("passphrase"));
+            UnicodeFileNameInfoHeaderBlockForTest unicodeFileInfoHeaderBlock = new UnicodeFileNameInfoHeaderBlockForTest(new V1AesCrypto(new GenericPassphrase("passphrase")));
 
             unicodeFileInfoHeaderBlock.FileName = "ABCDEFGHIJ.LMN";
             unicodeFileInfoHeaderBlock.SetBadNameWithoutEndingNul();

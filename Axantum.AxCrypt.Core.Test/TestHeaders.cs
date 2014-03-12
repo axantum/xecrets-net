@@ -119,7 +119,7 @@ namespace Axantum.AxCrypt.Core.Test
             headers.HeaderBlocks.Add(new VersionHeaderBlock(new byte[] { 4, 1, 2, 0, 0 }));
             headers.HeaderBlocks.Add(new DataHeaderBlock());
 
-            FileInfoHeaderBlock fileInfoHeaderBlock = headers.FindHeaderBlock<FileInfoHeaderBlock>();
+            FileInfoEncryptedHeaderBlock fileInfoHeaderBlock = headers.FindHeaderBlock<FileInfoEncryptedHeaderBlock>();
             Assert.That(fileInfoHeaderBlock, Is.Null);
         }
 

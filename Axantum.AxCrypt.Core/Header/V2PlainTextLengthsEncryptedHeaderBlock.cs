@@ -32,14 +32,14 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Header
 {
-    public class V2PlaintextLengthsHeaderBlock : EncryptedHeaderBlock
+    public class V2PlainTextLengthsEncryptedHeaderBlock : EncryptedHeaderBlock
     {
-        public V2PlaintextLengthsHeaderBlock(byte[] dataBlock)
+        public V2PlainTextLengthsEncryptedHeaderBlock(byte[] dataBlock)
             : base(HeaderBlockType.PlaintextLengths, dataBlock)
         {
         }
 
-        public V2PlaintextLengthsHeaderBlock(ICrypto headerCrypto)
+        public V2PlainTextLengthsEncryptedHeaderBlock(ICrypto headerCrypto)
             : this(new byte[sizeof(long) + sizeof(long)])
         {
             HeaderCrypto = headerCrypto;
@@ -49,7 +49,7 @@ namespace Axantum.AxCrypt.Core.Header
 
         public override object Clone()
         {
-            V2PlaintextLengthsHeaderBlock clone = new V2PlaintextLengthsHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
+            V2PlainTextLengthsEncryptedHeaderBlock clone = new V2PlainTextLengthsEncryptedHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
             return CopyTo(clone);
         }
 

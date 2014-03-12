@@ -31,21 +31,24 @@ using System;
 
 namespace Axantum.AxCrypt.Core.Header
 {
-    public class V1EncryptionInfoHeaderBlock : EncryptedHeaderBlock
+    public class V1EncryptionInfoEncryptedHeaderBlock : EncryptedHeaderBlock
     {
-        public V1EncryptionInfoHeaderBlock(byte[] dataBlock)
+        public V1EncryptionInfoEncryptedHeaderBlock(byte[] dataBlock)
             : base(HeaderBlockType.EncryptionInfo, dataBlock)
         {
         }
 
-        public V1EncryptionInfoHeaderBlock()
+        public V1EncryptionInfoEncryptedHeaderBlock(ICrypto headerCrypto)
             : this(new byte[0])
         {
+            HeaderCrypto = headerCrypto;
+            PlaintextLength = 0;
+            IV = new SymmetricIV(new byte[16]);
         }
 
         public override object Clone()
         {
-            V1EncryptionInfoHeaderBlock block = new V1EncryptionInfoHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
+            V1EncryptionInfoEncryptedHeaderBlock block = new V1EncryptionInfoEncryptedHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
             return CopyTo(block);
         }
 

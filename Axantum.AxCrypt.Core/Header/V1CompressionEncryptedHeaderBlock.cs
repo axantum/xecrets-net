@@ -25,45 +25,46 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using System;
 
 namespace Axantum.AxCrypt.Core.Header
 {
-    public class V1CompressionInfoHeaderBlock : EncryptedHeaderBlock
+    public class V1CompressionEncryptedHeaderBlock : EncryptedHeaderBlock
     {
-        public V1CompressionInfoHeaderBlock(byte[] dataBlock)
-            : base(HeaderBlockType.CompressionInfo, dataBlock)
+        public V1CompressionEncryptedHeaderBlock(byte[] dataBlock)
+            : base(HeaderBlockType.Compression, dataBlock)
         {
         }
 
-        public V1CompressionInfoHeaderBlock()
-            : this(Instance.RandomGenerator.Generate(16))
+        public V1CompressionEncryptedHeaderBlock(ICrypto headerCrypto)
+            : this(new byte[16])
         {
+            HeaderCrypto = headerCrypto;
+            IsCompressed = false;
         }
 
         public override object Clone()
         {
-            V1CompressionInfoHeaderBlock block = new V1CompressionInfoHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
+            V1CompressionEncryptedHeaderBlock block = new V1CompressionEncryptedHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
             return CopyTo(block);
         }
 
-        /// <summary>
-        /// The uncompressed size of the data
-        /// </summary>
-        public long UncompressedLength
+        public bool IsCompressed
         {
             get
             {
                 byte[] rawBlock = HeaderCrypto.Decrypt(GetDataBlockBytesReference());
-                long normalSize = rawBlock.GetLittleEndianValue(0, sizeof(long));
-                return normalSize;
+                Int32 isCompressed = (Int32)rawBlock.GetLittleEndianValue(0, sizeof(Int32));
+                return isCompressed != 0;
             }
 
             set
             {
-                byte[] normalSizeBytes = value.GetLittleEndianBytes();
-                Array.Copy(normalSizeBytes, 0, GetDataBlockBytesReference(), 0, normalSizeBytes.Length);
+                int isCompressed = value ? 1 : 0;
+                byte[] isCompressedBytes = isCompressed.GetLittleEndianBytes();
+                Array.Copy(isCompressedBytes, 0, GetDataBlockBytesReference(), 0, isCompressedBytes.Length);
                 byte[] encryptedBlock = HeaderCrypto.Encrypt(GetDataBlockBytesReference());
                 SetDataBlockBytesReference(encryptedBlock);
             }

@@ -35,7 +35,7 @@ using System.Linq;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public static class TestV2CompressionHeaderBlock
+    public static class TestV2CompressionEncryptedHeaderBlock
     {
         [Test]
         public static void TestClone()
@@ -43,13 +43,12 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
 
-            V2CompressionHeaderBlock compressionHeaderBlock = new V2CompressionHeaderBlock();
-            compressionHeaderBlock.HeaderCrypto = new V2AesCrypto();
+            V2CompressionEncryptedHeaderBlock compressionHeaderBlock = new V2CompressionEncryptedHeaderBlock(new V2AesCrypto());
             compressionHeaderBlock.IsCompressed = false;
             Assert.That(compressionHeaderBlock.IsCompressed, Is.False);
 
             compressionHeaderBlock.IsCompressed = true;
-            V2CompressionHeaderBlock clone = (V2CompressionHeaderBlock)compressionHeaderBlock.Clone();
+            V2CompressionEncryptedHeaderBlock clone = (V2CompressionEncryptedHeaderBlock)compressionHeaderBlock.Clone();
             Assert.That(clone.IsCompressed, Is.True);
 
             Factory.Instance.Clear();

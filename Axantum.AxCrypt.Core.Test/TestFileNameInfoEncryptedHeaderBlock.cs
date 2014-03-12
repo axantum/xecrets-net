@@ -34,10 +34,15 @@ using System.Text;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public static class TestFileNameInfoHeaderBlock
+    public static class TestFileNameInfoEncryptedHeaderBlock
     {
-        private class FileNameInfoHeaderBlockForTest : V1FileNameInfoHeaderBlock
+        private class FileNameInfoHeaderBlockForTest : V1FileNameInfoEncryptedHeaderBlock
         {
+            public FileNameInfoHeaderBlockForTest()
+                : base(new V1AesCrypto())
+            {
+            }
+
             public void SetBadNameWithoutEndingNul()
             {
                 byte[] rawFileName = Encoding.ASCII.GetBytes("ABCDEFGHIJK.LMNO");
