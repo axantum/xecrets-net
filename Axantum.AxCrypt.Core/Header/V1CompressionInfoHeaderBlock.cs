@@ -45,7 +45,7 @@ namespace Axantum.AxCrypt.Core.Header
         public override object Clone()
         {
             V1CompressionInfoHeaderBlock block = new V1CompressionInfoHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
-            return block;
+            return CopyTo(block);
         }
 
         /// <summary>

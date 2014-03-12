@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Core.Header
         public override object Clone()
         {
             FileInfoHeaderBlock block = new FileInfoHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
-            return block;
+            return CopyTo(block);
         }
 
         public DateTime CreationTimeUtc

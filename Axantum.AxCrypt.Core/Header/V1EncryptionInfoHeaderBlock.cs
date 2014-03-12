@@ -25,9 +25,9 @@
 
 #endregion Coypright and License
 
-using System;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
+using System;
 
 namespace Axantum.AxCrypt.Core.Header
 {
@@ -46,7 +46,7 @@ namespace Axantum.AxCrypt.Core.Header
         public override object Clone()
         {
             V1EncryptionInfoHeaderBlock block = new V1EncryptionInfoHeaderBlock((byte[])GetDataBlockBytesReference().Clone());
-            return block;
+            return CopyTo(block);
         }
 
         private void EnsureDataBlock()
