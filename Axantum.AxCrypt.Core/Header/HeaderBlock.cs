@@ -104,7 +104,7 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 return false;
             }
-            return GetDataBlockBytesReference().IsEquivalentTo(other.GetDataBlockBytesReference());
+            return HeaderBlockType == other.HeaderBlockType && GetDataBlockBytesReference().IsEquivalentTo(other.GetDataBlockBytesReference());
         }
 
         public override bool Equals(object obj)
@@ -120,7 +120,7 @@ namespace Axantum.AxCrypt.Core.Header
 
         public override int GetHashCode()
         {
-            int hashcode = 0;
+            int hashcode = (int)HeaderBlockType;
             foreach (byte b in GetDataBlockBytesReference())
             {
                 hashcode += b;
