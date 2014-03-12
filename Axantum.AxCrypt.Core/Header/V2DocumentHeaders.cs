@@ -169,8 +169,7 @@ namespace Axantum.AxCrypt.Core.Header
         {
             WriteGeneralHeaders(hmacStream);
 
-            V2PlaintextLengthsHeaderBlock lengths = new V2PlaintextLengthsHeaderBlock();
-            lengths.HeaderCrypto = new V2AesCrypto(new GenericPassphrase(DataEncryptingKey), DataEncryptingIV, LENGTHSINFO_KEYSTREAM_INDEX);
+            V2PlaintextLengthsHeaderBlock lengths = new V2PlaintextLengthsHeaderBlock(new V2AesCrypto(new GenericPassphrase(DataEncryptingKey), DataEncryptingIV, LENGTHSINFO_KEYSTREAM_INDEX));
             lengths.PlaintextLength = plaintextLength;
             lengths.CompressedPlaintextLength = compressedPlaintextLength;
             lengths.Write(hmacStream);

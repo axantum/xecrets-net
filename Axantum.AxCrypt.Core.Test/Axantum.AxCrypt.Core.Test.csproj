@@ -172,6 +172,7 @@
     <Compile Include="TestV2HmacHeaderBlock.cs" />
     <Compile Include="TestV2HmacStreamTest.cs" />
     <Compile Include="TestV2KeyWrapHeaderBlock.cs" />
+    <Compile Include="TestV2PlaintextLengthsHeaderBlock.cs" />
     <Compile Include="TestV2UnicodeFileNameInfoHeaderBlock.cs" />
     <Compile Include="TestVersionHeaderBlock .cs" />
     <Compile Include="TestViewModelBaseTest.cs" />
