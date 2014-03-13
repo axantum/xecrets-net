@@ -35,6 +35,7 @@ using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Security;
@@ -546,6 +547,36 @@ namespace Axantum.AxCrypt.Core.Test
                 mvm.Title = "AxCrypt Title";
 
                 Assert.That(mvm.Title, Is.EqualTo("AxCrypt Title"));
+            }
+        }
+
+        [Test]
+        public static void TestNotifyWatchedFolderAdded()
+        {
+            Instance.KnownKeys.DefaultEncryptionKey = new V2Passphrase("passphrase", 256);
+            FakeRuntimeFileInfo.AddFolder(@"C:\MyFolders\Folder1");
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                Assert.That(mvm.WatchedFolders.Count(), Is.EqualTo(0));
+
+                Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\MyFolders\Folder1", Instance.KnownKeys.DefaultEncryptionKey.Thumbprint));
+
+                Assert.That(mvm.WatchedFolders.Count(), Is.EqualTo(1));
+                Assert.That(mvm.WatchedFolders.First(), Is.EqualTo(@"C:\MyFolders\Folder1"));
+            }
+        }
+
+        [Test]
+        public static void TestSetFilesArePending()
+        {
+            Instance.KnownKeys.DefaultEncryptionKey = new V2Passphrase("passphrase", 256);
+            FakeRuntimeFileInfo.AddFolder(@"C:\MyFolders\Folder1");
+            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            {
+                Assert.That(mvm.FilesArePending, Is.False);
+                Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\MyFolders\Folder1", Instance.KnownKeys.DefaultEncryptionKey.Thumbprint));
+                FakeRuntimeFileInfo.AddFile(@"C:\MyFolders\Folder1\Encryptable.txt", Stream.Null);
+                Assert.That(mvm.FilesArePending, Is.True);
             }
         }
     }
