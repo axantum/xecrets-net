@@ -81,13 +81,13 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new ArgumentNullException("key");
             }
-            if (!IsValidKeyLength(key.DerivedKey.Length))
-            {
-                throw new ArgumentException("Key length is invalid.");
-            }
             if (iv == null)
             {
                 throw new ArgumentNullException("iv");
+            }
+            if (!IsValidKeyLength(key.DerivedKey.Length))
+            {
+                throw new ArgumentException("Key length is invalid.");
             }
             if (iv.Length != BlockLength)
             {

@@ -62,6 +62,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void Setup()
         {
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
+            Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
         }
 
         [TearDown]
@@ -123,6 +124,77 @@ namespace Axantum.AxCrypt.Core.Test
             crypto = new V2AesCrypto(key, new SymmetricIV(iv), ++blockCounter, 0);
             byte[] cipherText4 = crypto.Encrypt(nistPlaintext4);
             Assert.That(cipherText4.IsEquivalentTo(nistCiphertext4));
+        }
+
+        [Test]
+        public static void TestName()
+        {
+            ICrypto crypto = new V2AesCrypto();
+
+            Assert.That(crypto.Name, Is.EqualTo("AES-256"));
+        }
+
+        private class PassphraseForTest : IPassphrase
+        {
+            public SymmetricKey DerivedKey
+            {
+                get;
+                set;
+            }
+
+            public string Passphrase
+            {
+                get { throw new NotImplementedException(); }
+            }
+
+            public byte[] GetDerivationSalt()
+            {
+                throw new NotImplementedException();
+            }
+
+            public long DerivationIterations
+            {
+                get { throw new NotImplementedException(); }
+            }
+
+            public CryptoId CryptoId
+            {
+                get { throw new NotImplementedException(); }
+            }
+
+            public SymmetricKeyThumbprint Thumbprint
+            {
+                get { throw new NotImplementedException(); }
+            }
+
+            public bool Equals(IPassphrase other)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        [Test]
+        public static void TestConstructorWithBadArguments()
+        {
+            IPassphrase nullKey = null;
+            SymmetricIV nullIV = null;
+
+            PassphraseForTest testKey = new PassphraseForTest();
+            SymmetricIV testIV = new SymmetricIV(128);
+
+            ICrypto crypto = null;
+            Assert.Throws<ArgumentNullException>(() => crypto = new V2AesCrypto(nullKey, testIV));
+            Assert.Throws<ArgumentNullException>(() => crypto = new V2AesCrypto(testKey, nullIV));
+
+            testKey.DerivedKey = new SymmetricKey(64);
+            Assert.Throws<ArgumentException>(() => crypto = new V2AesCrypto(testKey, testIV));
+
+            testKey.DerivedKey = new SymmetricKey(256);
+            testIV = new SymmetricIV(64);
+            Assert.Throws<ArgumentException>(() => crypto = new V2AesCrypto(testKey, testIV));
+
+            testIV = new SymmetricIV(128);
+            Assert.DoesNotThrow(() => crypto = new V2AesCrypto(testKey, testIV));
         }
     }
 }
