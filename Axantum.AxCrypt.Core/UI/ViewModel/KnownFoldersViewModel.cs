@@ -70,11 +70,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     continue;
                 }
-                if (knownFolder.MyFullPath.Exists)
+                if (knownFolder.MyFullPath.IsExistingFile)
                 {
-                    return;
+                    continue;
                 }
-                if (!knownFolder.MyFullPath.IsFolder)
+                if (!knownFolder.MyFullPath.IsExistingFolder)
                 {
                     knownFolder.MyFullPath.CreateFolder();
                 }

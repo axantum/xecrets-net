@@ -225,7 +225,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
 
             IRuntimeFileInfo fileInfo = files.First();
-            if (!fileInfo.IsFolder)
+            if (!fileInfo.IsExistingFolder)
             {
                 return false;
             }

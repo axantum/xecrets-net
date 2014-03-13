@@ -82,7 +82,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
             IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
-            Assert.That(destinationInfo.Exists, "After encryption the destination file should be created.");
+            Assert.That(destinationInfo.IsExistingFile, "After encryption the destination file should be created.");
             using (IAxCryptDocument document = new V1AxCryptDocument())
             {
                 using (Stream stream = destinationInfo.OpenRead())
@@ -113,7 +113,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
             IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
-            Assert.That(destinationInfo.Exists, "After encryption the destination file should be created.");
+            Assert.That(destinationInfo.IsExistingFile, "After encryption the destination file should be created.");
             using (IAxCryptDocument document = new V1AxCryptDocument())
             {
                 using (Stream stream = destinationInfo.OpenRead())
@@ -145,7 +145,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(!queryEncryptionPassphraseWasCalled, "No query of encryption passphrase should be needed since there is a default set.");
 
             IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
-            Assert.That(destinationInfo.Exists, "After encryption the destination file should be created.");
+            Assert.That(destinationInfo.IsExistingFile, "After encryption the destination file should be created.");
             using (IAxCryptDocument document = new V1AxCryptDocument())
             {
                 using (Stream stream = destinationInfo.OpenRead())
@@ -187,7 +187,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(Path.GetFileName(destinationPath), Is.EqualTo("alternative-name.axx"), "The alternative name should be used, since the default existed.");
             IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
-            Assert.That(destinationInfo.Exists, "After encryption the destination file should be created.");
+            Assert.That(destinationInfo.IsExistingFile, "After encryption the destination file should be created.");
             using (IAxCryptDocument document = Factory.New<AxCryptFactory>().CreateDocument(key))
             {
                 using (Stream stream = destinationInfo.OpenRead())
@@ -253,7 +253,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
             Assert.That(knownKeyWasAdded, "A new known key was used, so the KnownKeyAdded event should have been raised.");
             IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
-            Assert.That(destinationInfo.Exists, "After decryption the destination file should be created.");
+            Assert.That(destinationInfo.IsExistingFile, "After decryption the destination file should be created.");
 
             string fileContent;
             using (Stream stream = destinationInfo.OpenRead())
@@ -289,7 +289,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
             Assert.That(knownKeyWasAdded, "A new known key was used, so the KnownKeyAdded event should have been raised.");
             IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
-            Assert.That(destinationInfo.Exists, "After decryption the destination file should be created.");
+            Assert.That(destinationInfo.IsExistingFile, "After decryption the destination file should be created.");
 
             string fileContent;
             using (Stream stream = destinationInfo.OpenRead())
@@ -414,7 +414,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
 
             IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(launcher.Path);
-            Assert.That(destinationInfo.Exists, "After decryption the destination file should be created.");
+            Assert.That(destinationInfo.IsExistingFile, "After decryption the destination file should be created.");
 
             string fileContent;
             using (Stream stream = destinationInfo.OpenRead())
@@ -455,7 +455,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
 
             IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(launcher.Path);
-            Assert.That(destinationInfo.Exists, "After decryption the destination file should be created.");
+            Assert.That(destinationInfo.IsExistingFile, "After decryption the destination file should be created.");
 
             string fileContent;
             using (Stream stream = destinationInfo.OpenRead())
@@ -507,7 +507,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(!knownKeyWasAdded, "An already known key was used, so the KnownKeyAdded event should not have been raised.");
             Assert.That(!passphraseWasQueried, "An already known key was used, so the there should be no need to query for a passphrase.");
             IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
-            Assert.That(destinationInfo.Exists, "After decryption the destination file should be created.");
+            Assert.That(destinationInfo.IsExistingFile, "After decryption the destination file should be created.");
 
             string fileContent;
             using (Stream stream = destinationInfo.OpenRead())
@@ -559,7 +559,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(knownKeyWasAdded, "A new known key was used, so the KnownKeyAdded event should have been raised.");
             Assert.That(passphraseTry, Is.EqualTo(3), "The third key was the correct one.");
             IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
-            Assert.That(destinationInfo.Exists, "After decryption the destination file should be created.");
+            Assert.That(destinationInfo.IsExistingFile, "After decryption the destination file should be created.");
 
             string fileContent;
             using (Stream stream = destinationInfo.OpenRead())
@@ -635,7 +635,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The wipe should indicate success.");
 
             IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
-            Assert.That(!fileInfo.Exists, "The file should not exist after wiping.");
+            Assert.That(!fileInfo.IsExistingFile, "The file should not exist after wiping.");
         }
 
         [Test]
@@ -661,7 +661,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
             IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
-            Assert.That(!destinationInfo.Exists, "After wiping the destination file should not exist.");
+            Assert.That(!destinationInfo.IsExistingFile, "After wiping the destination file should not exist.");
         }
 
         [Test]
@@ -676,7 +676,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(status, Is.EqualTo(FileOperationStatus.Canceled), "The wipe should indicate cancellation.");
 
             IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
-            Assert.That(fileInfo.Exists, "The file should still exist after wiping that was canceled during confirmation.");
+            Assert.That(fileInfo.IsExistingFile, "The file should still exist after wiping that was canceled during confirmation.");
         }
 
         [Test]
@@ -691,7 +691,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The wipe should indicate success even when skipping.");
 
             IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
-            Assert.That(fileInfo.Exists, "The file should still exist after wiping that was skipped during confirmation.");
+            Assert.That(fileInfo.IsExistingFile, "The file should still exist after wiping that was skipped during confirmation.");
         }
 
         [Test]
@@ -713,14 +713,14 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The wipe should indicate success.");
 
             IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
-            Assert.That(!fileInfo.Exists, "The file should not exist after wiping.");
+            Assert.That(!fileInfo.IsExistingFile, "The file should not exist after wiping.");
 
             Assert.DoesNotThrow(() => { status = controller.WipeFile(Factory.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath)); });
             Assert.That(status, Is.EqualTo(FileOperationStatus.Success), "The wipe should indicate success.");
             progress.NotifyLevelFinished();
 
             fileInfo = Factory.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath);
-            Assert.That(!fileInfo.Exists, "The file should not exist after wiping.");
+            Assert.That(!fileInfo.IsExistingFile, "The file should not exist after wiping.");
         }
 
         [Test]

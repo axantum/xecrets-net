@@ -101,12 +101,12 @@ namespace Axantum.AxCrypt.Core.IO
         void SetFileTimes(DateTime creationTimeUtc, DateTime lastAccessTimeUtc, DateTime lastWriteTimeUtc);
 
         /// <summary>
-        /// Gets a value indicating whether the file this <see cref="IRuntimeFileInfo"/> represents exists in the underlying file system.
+        /// Gets a value indicating whether the file this <see cref="IRuntimeFileInfo"/> represents exists in the underlying file system and is a file.
         /// </summary>
         /// <value>
         ///   <c>true</c> if exists; otherwise, <c>false</c>.
         /// </value>
-        bool Exists { get; }
+        bool IsExistingFile { get; }
 
         /// <summary>
         /// Moves the underlying file to a new location.
@@ -120,12 +120,12 @@ namespace Axantum.AxCrypt.Core.IO
         void Delete();
 
         /// <summary>
-        /// Gets a value indicating whether this instance is folder.
+        /// Gets a value indicating whether this instance is folder that exists.
         /// </summary>
         /// <value>
         ///   <c>true</c> if this instance is folder; otherwise, <c>false</c>.
         /// </value>
-        bool IsFolder { get; }
+        bool IsExistingFolder { get; }
 
         /// <summary>
         /// Enumerate all files (not folders) in this folder, if it's a folder.

@@ -131,17 +131,17 @@ namespace Axantum.AxCrypt.Mono.Test
 
                 string otherTempFileName = runtimeFileInfo.FullName + ".copy";
                 IRuntimeFileInfo otherTempRuntimeFileInfo = new RuntimeFileInfo(otherTempFileName);
-                Assert.That(otherTempRuntimeFileInfo.Exists, Is.False, "The new temp file should not exist.");
-                Assert.That(runtimeFileInfo.Exists, Is.True, "The old temp file should exist.");
+                Assert.That(otherTempRuntimeFileInfo.IsExistingFile, Is.False, "The new temp file should not exist.");
+                Assert.That(runtimeFileInfo.IsExistingFile, Is.True, "The old temp file should exist.");
                 runtimeFileInfo.MoveTo(otherTempRuntimeFileInfo.FullName);
-                Assert.That(otherTempRuntimeFileInfo.Exists, Is.True, "The new temp file should exist after moving the old here.");
-                Assert.That(runtimeFileInfo.Exists, Is.True, "The old temp file should exist still because it has changed to refer to the new file.");
+                Assert.That(otherTempRuntimeFileInfo.IsExistingFile, Is.True, "The new temp file should exist after moving the old here.");
+                Assert.That(runtimeFileInfo.IsExistingFile, Is.True, "The old temp file should exist still because it has changed to refer to the new file.");
             }
             finally
             {
                 runtimeFileInfo.Delete();
             }
-            Assert.That(runtimeFileInfo.Exists, Is.False, "The file should have been deleted now.");
+            Assert.That(runtimeFileInfo.IsExistingFile, Is.False, "The file should have been deleted now.");
 
             IRuntimeFileInfo notEncryptedRuntimeFileInfo = new RuntimeFileInfo("file.txt");
             IRuntimeFileInfo encryptedRuntimeFileInfo = notEncryptedRuntimeFileInfo.CreateEncryptedName();

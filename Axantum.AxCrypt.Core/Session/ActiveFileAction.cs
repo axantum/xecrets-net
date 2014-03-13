@@ -212,7 +212,7 @@ namespace Axantum.AxCrypt.Core.Session
                 return activeFile;
             }
 
-            if (!activeFile.DecryptedFileInfo.Exists)
+            if (!activeFile.DecryptedFileInfo.IsExistingFile)
             {
                 return activeFile;
             }

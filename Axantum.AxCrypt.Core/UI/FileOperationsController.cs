@@ -231,7 +231,7 @@ namespace Axantum.AxCrypt.Core.UI
             IRuntimeFileInfo destinationFileInfo = Factory.New<IRuntimeFileInfo>(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
             _eventArgs.SaveFileFullName = destinationFileInfo.FullName;
             _eventArgs.OpenFileFullName = sourceFileInfo.FullName;
-            if (destinationFileInfo.Exists)
+            if (destinationFileInfo.IsExistingFile)
             {
                 OnQuerySaveFileAs(_eventArgs);
                 if (_eventArgs.Cancel)
@@ -276,7 +276,7 @@ namespace Axantum.AxCrypt.Core.UI
 
             IRuntimeFileInfo destination = Factory.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(fileInfo.FullName), _eventArgs.AxCryptDocument.FileName));
             _eventArgs.SaveFileFullName = destination.FullName;
-            if (destination.Exists)
+            if (destination.IsExistingFile)
             {
                 OnQuerySaveFileAs(_eventArgs);
                 if (_eventArgs.Cancel)

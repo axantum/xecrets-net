@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core.UI
 
             _keyWrapIterationCalculator = keyWrapIterationCalculator;
 
-            if (_persistanceFileInfo.Exists)
+            if (_persistanceFileInfo.IsExistingFile)
             {
                 using (JsonReader reader = new JsonTextReader(new StreamReader(_persistanceFileInfo.OpenRead())))
                 {

@@ -101,7 +101,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                IEnumerable<WatchedFolder> folders = WatchedFoldersInternal.Where(folder => Factory.New<IRuntimeFileInfo>(folder.Path).IsFolder).ToList();
+                IEnumerable<WatchedFolder> folders = WatchedFoldersInternal.Where(folder => Factory.New<IRuntimeFileInfo>(folder.Path).IsExistingFolder).ToList();
                 return folders;
             }
             private set
@@ -127,7 +127,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return false;
             }
-            if (!Factory.New<IRuntimeFileInfo>(watchedFolder.Path).IsFolder)
+            if (!Factory.New<IRuntimeFileInfo>(watchedFolder.Path).IsExistingFolder)
             {
                 return false;
             }
@@ -148,7 +148,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void HandleWatchedFolderChanges(WatchedFolder watchedFolder, IRuntimeFileInfo fileInfo)
         {
-            if (watchedFolder.Path == fileInfo.FullName && !fileInfo.IsFolder)
+            if (watchedFolder.Path == fileInfo.FullName && !fileInfo.IsExistingFolder)
             {
                 RemoveWatchedFolder(fileInfo);
                 Save();
@@ -377,7 +377,7 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("path");
             }
 
-            if (path.Exists)
+            if (path.IsExistingFile)
             {
                 return CreateFileSystemState(path);
             }

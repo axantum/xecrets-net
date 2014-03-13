@@ -295,7 +295,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.Throws<OperationCanceledException>(() => { Factory.New<AxCryptFile>().WriteToFileWithBackup(destinationFileInfo, (Stream stream) => { throw new OperationCanceledException(); }, new ProgressContext()); });
                 string tempFilePath = _rootPath.PathCombine("Written", "File.bak");
                 IRuntimeFileInfo tempFileInfo = Factory.New<IRuntimeFileInfo>(tempFilePath);
-                Assert.That(tempFileInfo.Exists, Is.False, "The .bak file should be removed.");
+                Assert.That(tempFileInfo.IsExistingFile, Is.False, "The .bak file should be removed.");
             }
         }
 
@@ -305,7 +305,7 @@ namespace Axantum.AxCrypt.Core.Test
             string destinationFilePath = _rootPath.PathCombine("Written", "AnExistingFile.txt");
             IRuntimeFileInfo destinationFileInfo = Factory.New<IRuntimeFileInfo>(destinationFilePath);
             IRuntimeFileInfo bakFileInfo = Factory.New<IRuntimeFileInfo>(_rootPath.PathCombine("Written", "AnExistingFile.bak"));
-            Assert.That(bakFileInfo.Exists, Is.False, "The file should not exist to start with.");
+            Assert.That(bakFileInfo.IsExistingFile, Is.False, "The file should not exist to start with.");
             using (Stream writeStream = destinationFileInfo.OpenWrite())
             {
                 byte[] bytes = Encoding.UTF8.GetBytes("A string");
@@ -321,7 +321,7 @@ namespace Axantum.AxCrypt.Core.Test
                     Assert.That(readString, Is.EqualTo("A string with some text"), "Where expecting the same string to be read back.");
                 }
             }
-            Assert.That(bakFileInfo.Exists, Is.False, "The file should not exist afterwards either.");
+            Assert.That(bakFileInfo.IsExistingFile, Is.False, "The file should not exist afterwards either.");
         }
 
         [Test]
@@ -341,9 +341,9 @@ namespace Axantum.AxCrypt.Core.Test
             using (Stream writeStream = fileInfo.OpenWrite())
             {
             }
-            Assert.That(fileInfo.Exists, "Now it should exist.");
+            Assert.That(fileInfo.IsExistingFile, "Now it should exist.");
             Factory.New<AxCryptFile>().Wipe(fileInfo, new ProgressContext());
-            Assert.That(!fileInfo.Exists, "And now it should not exist after wiping.");
+            Assert.That(!fileInfo.IsExistingFile, "And now it should not exist after wiping.");
         }
 
         [Test]
@@ -383,8 +383,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             Factory.New<AxCryptFile>().EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, key, progress);
 
-            Assert.That(sourceFileInfo.Exists, Is.False, "The source should be wiped.");
-            Assert.That(destinationFileInfo.Exists, Is.True, "The destination should be created and exist now.");
+            Assert.That(sourceFileInfo.IsExistingFile, Is.False, "The source should be wiped.");
+            Assert.That(destinationFileInfo.IsExistingFile, Is.True, "The destination should be created and exist now.");
         }
 
         [Test]
@@ -420,8 +420,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             IRuntimeFileInfo sourceFileInfo = Factory.New<IRuntimeFileInfo>(sourceFilePath);
             IRuntimeFileInfo destinationFileInfo = Factory.New<IRuntimeFileInfo>(destinationFilePath);
-            Assert.That(sourceFileInfo.Exists, Is.False, "The source should be wiped.");
-            Assert.That(destinationFileInfo.Exists, Is.True, "The destination should be created and exist now.");
+            Assert.That(sourceFileInfo.IsExistingFile, Is.False, "The source should be wiped.");
+            Assert.That(destinationFileInfo.IsExistingFile, Is.True, "The destination should be created and exist now.");
         }
 
         [Test]
@@ -431,13 +431,13 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo destinationFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
             V1Passphrase passphrase = new V1Passphrase("a");
 
-            Assert.That(sourceFileInfo.Exists, Is.True, "The source should exist.");
-            Assert.That(destinationFileInfo.Exists, Is.False, "The source should not exist yet.");
+            Assert.That(sourceFileInfo.IsExistingFile, Is.True, "The source should exist.");
+            Assert.That(destinationFileInfo.IsExistingFile, Is.False, "The source should not exist yet.");
 
             Factory.New<AxCryptFile>().DecryptFileUniqueWithWipeOfOriginal(sourceFileInfo, passphrase, new ProgressContext());
 
-            Assert.That(sourceFileInfo.Exists, Is.False, "The source should be wiped.");
-            Assert.That(destinationFileInfo.Exists, Is.True, "The destination should be created and exist now.");
+            Assert.That(sourceFileInfo.IsExistingFile, Is.False, "The source should be wiped.");
+            Assert.That(destinationFileInfo.IsExistingFile, Is.True, "The destination should be created and exist now.");
         }
 
         [Test]
@@ -452,13 +452,13 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo destinationFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
             V1Passphrase passphrase = new V1Passphrase("a");
 
-            Assert.That(sourceFileInfo.Exists, Is.True, "The source should exist.");
-            Assert.That(destinationFileInfo.Exists, Is.False, "The source should not exist yet.");
+            Assert.That(sourceFileInfo.IsExistingFile, Is.True, "The source should exist.");
+            Assert.That(destinationFileInfo.IsExistingFile, Is.False, "The source should not exist yet.");
 
             Factory.New<AxCryptFile>().DecryptFilesInsideFolderUniqueWithWipeOfOriginal(sourceFolderInfo, passphrase, new ProgressContext());
 
-            Assert.That(sourceFileInfo.Exists, Is.False, "The source should be wiped.");
-            Assert.That(destinationFileInfo.Exists, Is.True, "The destination should be created and exist now.");
+            Assert.That(sourceFileInfo.IsExistingFile, Is.False, "The source should be wiped.");
+            Assert.That(destinationFileInfo.IsExistingFile, Is.True, "The destination should be created and exist now.");
         }
 
         [Test]
@@ -472,8 +472,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             Factory.New<AxCryptFile>().EncryptFileUniqueWithBackupAndWipe(sourceFileInfo, passphrase, new ProgressContext());
 
-            Assert.That(sourceFileInfo.Exists, Is.False, "The source should be wiped.");
-            Assert.That(destinationFileInfo.Exists, Is.True, "The destination should be created and exist now.");
+            Assert.That(sourceFileInfo.IsExistingFile, Is.False, "The source should be wiped.");
+            Assert.That(destinationFileInfo.IsExistingFile, Is.True, "The destination should be created and exist now.");
         }
 
         [Test]
@@ -490,8 +490,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             Factory.New<AxCryptFile>().EncryptFileUniqueWithBackupAndWipe(sourceFileInfo, passphrase, new ProgressContext());
 
-            Assert.That(sourceFileInfo.Exists, Is.False, "The source should be wiped.");
-            Assert.That(alternateDestinationFileInfo.Exists, Is.True, "The destination should be created and exist now.");
+            Assert.That(sourceFileInfo.IsExistingFile, Is.False, "The source should be wiped.");
+            Assert.That(alternateDestinationFileInfo.IsExistingFile, Is.True, "The destination should be created and exist now.");
         }
 
         [Test]
@@ -506,8 +506,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             Factory.New<AxCryptFile>().EncryptFoldersUniqueWithBackupAndWipe(new IRuntimeFileInfo[] { sourceFolderInfo }, passphrase, new ProgressContext());
 
-            Assert.That(sourceFileInfo.Exists, Is.False, "The source should be wiped.");
-            Assert.That(destinationFileInfo.Exists, Is.True, "The destination should be created and exist now.");
+            Assert.That(sourceFileInfo.IsExistingFile, Is.False, "The source should be wiped.");
+            Assert.That(destinationFileInfo.IsExistingFile, Is.True, "The destination should be created and exist now.");
         }
 
         [Test]
@@ -525,8 +525,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             Factory.New<AxCryptFile>().EncryptFoldersUniqueWithBackupAndWipe(new IRuntimeFileInfo[] { sourceFolderInfo }, passphrase, new ProgressContext());
 
-            Assert.That(sourceFileInfo.Exists, Is.False, "The source should be wiped.");
-            Assert.That(alternateDestinationFileInfo.Exists, Is.True, "The destination should be created and exist now.");
+            Assert.That(sourceFileInfo.IsExistingFile, Is.False, "The source should be wiped.");
+            Assert.That(alternateDestinationFileInfo.IsExistingFile, Is.True, "The destination should be created and exist now.");
         }
 
         [Test]
@@ -557,7 +557,7 @@ namespace Axantum.AxCrypt.Core.Test
                 ((IProgressContext)sender).Cancel = true;
             };
             Assert.Throws<OperationCanceledException>(() => { Factory.New<AxCryptFile>().Wipe(fileInfo, progress); });
-            Assert.That(!fileInfo.Exists, "The file should be completely wiped, even if canceled at start.");
+            Assert.That(!fileInfo.IsExistingFile, "The file should be completely wiped, even if canceled at start.");
         }
     }
 }

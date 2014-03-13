@@ -290,11 +290,16 @@ namespace Axantum.AxCrypt.Core.Test
             get { return _file.FullName; }
         }
 
-        public bool Exists
+        public bool IsExistingFile
         {
             get
             {
-                return _fakeFileSystem.ContainsKey(_file.FullName);
+                FakeFileInfo fileInfo;
+                if (_fakeFileSystem.TryGetValue(_file.FullName, out fileInfo))
+                {
+                    return !fileInfo.IsFolder;
+                }
+                return false;
             }
         }
 
@@ -351,7 +356,7 @@ namespace Axantum.AxCrypt.Core.Test
             AddFile(FullName, new MemoryStream());
         }
 
-        public bool IsFolder
+        public bool IsExistingFolder
         {
             get
             {
@@ -363,7 +368,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             get
             {
-                if (!IsFolder)
+                if (!IsExistingFolder)
                 {
                     return new IRuntimeFileInfo[0];
                 }

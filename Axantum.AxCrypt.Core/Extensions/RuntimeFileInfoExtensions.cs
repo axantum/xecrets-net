@@ -41,11 +41,11 @@ namespace Axantum.AxCrypt.Core.Extensions
     {
         public static FileInfoTypes Type(this IRuntimeFileInfo fileInfo)
         {
-            if (!fileInfo.Exists)
+            if (!fileInfo.IsExistingFile && !fileInfo.IsExistingFolder)
             {
                 return FileInfoTypes.NonExisting;
             }
-            if (fileInfo.IsFolder)
+            if (fileInfo.IsExistingFolder)
             {
                 return FileInfoTypes.Folder;
             }

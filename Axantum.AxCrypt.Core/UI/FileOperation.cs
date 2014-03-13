@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
 
             IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(file);
-            if (!fileInfo.Exists)
+            if (!fileInfo.IsExistingFile)
             {
                 if (Instance.Log.IsWarningEnabled)
                 {
@@ -76,7 +76,7 @@ namespace Axantum.AxCrypt.Core.UI
 
             ActiveFile destinationActiveFile = _fileSystemState.FindActiveFileFromEncryptedPath(fileInfo.FullName);
 
-            if (destinationActiveFile == null || !destinationActiveFile.DecryptedFileInfo.Exists)
+            if (destinationActiveFile == null || !destinationActiveFile.DecryptedFileInfo.IsExistingFile)
             {
                 IRuntimeFileInfo destinationFolderInfo = GetTemporaryDestinationFolder(destinationActiveFile);
                 destinationActiveFile = TryDecrypt(fileInfo, destinationFolderInfo, keys, progress);
@@ -116,7 +116,7 @@ namespace Axantum.AxCrypt.Core.UI
             IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(encryptedFile);
 
             ActiveFile encryptedActiveFile = _fileSystemState.FindActiveFileFromEncryptedPath(encryptedFileInfo.FullName);
-            if (encryptedActiveFile == null || !encryptedActiveFile.DecryptedFileInfo.Exists)
+            if (encryptedActiveFile == null || !encryptedActiveFile.DecryptedFileInfo.IsExistingFile)
             {
                 IRuntimeFileInfo destinationFolderInfo = GetTemporaryDestinationFolder(encryptedActiveFile);
                 encryptedActiveFile = DecryptActiveFileDocument(encryptedFileInfo, destinationFolderInfo, document, progress);

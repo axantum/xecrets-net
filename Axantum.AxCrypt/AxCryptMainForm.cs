@@ -458,7 +458,7 @@ namespace Axantum.AxCrypt
                 if (e.SelectedFiles != null && e.SelectedFiles.Count > 0 && !String.IsNullOrEmpty(e.SelectedFiles[0]))
                 {
                     IRuntimeFileInfo initialFolder = Factory.New<IRuntimeFileInfo>(e.SelectedFiles[0]);
-                    if (initialFolder.IsFolder)
+                    if (initialFolder.IsExistingFolder)
                     {
                         ofd.InitialDirectory = initialFolder.FullName;
                     }

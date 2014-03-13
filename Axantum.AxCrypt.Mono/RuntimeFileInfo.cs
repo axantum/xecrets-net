@@ -182,7 +182,7 @@ namespace Axantum.AxCrypt.Mono
         /// <value>
         ///   <c>true</c> if exists; otherwise, <c>false</c>.
         /// </value>
-        public bool Exists
+        public bool IsExistingFile
         {
             get
             {
@@ -198,7 +198,7 @@ namespace Axantum.AxCrypt.Mono
         public void MoveTo(string destinationFileName)
         {
             IRuntimeFileInfo destination = Factory.New<IRuntimeFileInfo>(destinationFileName);
-            if (destination.Exists)
+            if (destination.IsExistingFile)
             {
                 try
                 {
@@ -255,7 +255,7 @@ namespace Axantum.AxCrypt.Mono
         ///   <c>true</c> if this instance is folder that exists; otherwise, <c>false</c>.
         /// </value>
         /// <exception cref="System.NotImplementedException"></exception>
-        public bool IsFolder
+        public bool IsExistingFolder
         {
             get
             {
@@ -271,7 +271,7 @@ namespace Axantum.AxCrypt.Mono
         {
             get
             {
-                if (!IsFolder)
+                if (!IsExistingFolder)
                 {
                     return new IRuntimeFileInfo[0];
                 }

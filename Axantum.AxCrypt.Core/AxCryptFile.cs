@@ -310,7 +310,7 @@ namespace Axantum.AxCrypt.Core
             }
             catch (Exception)
             {
-                if (destinationFile.Exists)
+                if (destinationFile.IsExistingFile)
                 {
                     Wipe(destinationFile, progress);
                 }
@@ -425,14 +425,14 @@ namespace Axantum.AxCrypt.Core
             }
             catch (Exception)
             {
-                if (temporaryFileInfo.Exists)
+                if (temporaryFileInfo.IsExistingFile)
                 {
                     Wipe(temporaryFileInfo, progress);
                 }
                 throw;
             }
 
-            if (destinationFileInfo.Exists)
+            if (destinationFileInfo.IsExistingFile)
             {
                 string backupFilePath = MakeAlternatePath(destinationFileInfo, ".bak");
                 IRuntimeFileInfo backupFileInfo = Factory.New<IRuntimeFileInfo>(destinationFileInfo.FullName);
@@ -473,7 +473,7 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("fileInfo");
             }
-            if (!fileInfo.Exists)
+            if (!fileInfo.IsExistingFile)
             {
                 return;
             }
@@ -488,7 +488,7 @@ namespace Axantum.AxCrypt.Core
             do
             {
                 randomName = GenerateRandomFileName(fileInfo.FullName);
-            } while (Factory.New<IRuntimeFileInfo>(randomName).Exists);
+            } while (Factory.New<IRuntimeFileInfo>(randomName).IsExistingFile);
             IRuntimeFileInfo moveToFileInfo = Factory.New<IRuntimeFileInfo>(fileInfo.FullName);
             moveToFileInfo.MoveTo(randomName);
 
