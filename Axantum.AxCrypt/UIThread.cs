@@ -57,7 +57,12 @@ namespace Axantum.AxCrypt
                 action();
                 return;
             }
-            _context.Send((state) => { action(); }, null);
+            Exception exception = null;
+            _context.Send((state) => { try { action(); } catch (Exception ex) { exception = ex; } }, null);
+            if (exception != null)
+            {
+                throw new Exception("Exception on UI Thread", exception);
+            }
         }
     }
 }

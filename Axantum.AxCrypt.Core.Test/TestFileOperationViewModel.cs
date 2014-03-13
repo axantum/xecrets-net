@@ -873,19 +873,24 @@ namespace Axantum.AxCrypt.Core.Test
             axCryptFileMock.Setup<IAxCryptDocument>(m => m.Document(It.IsAny<IRuntimeFileInfo>(), It.IsAny<string>(), It.IsAny<IProgressContext>())).Returns((IRuntimeFileInfo fileInfo, string passphrase, IProgressContext progress) =>
             {
                 V1AxCryptDocument acd = new V1AxCryptDocument(new V1AesCrypto(new V1Passphrase(passphrase)), 17);
-                if (++count == 2)
-                {
-                    acd.PassphraseIsValid = false;
-                    return acd;
-                }
+                count++;
                 acd.PassphraseIsValid = true;
                 acd.DocumentHeaders.FileName = fileInfo.FullName.Replace("-txt.axx", ".txt");
                 return acd;
+            });
+            axCryptFileMock.Setup<IAxCryptDocument>(m => m.Document(It.IsAny<IRuntimeFileInfo>(), It.IsAny<IPassphrase>(), It.IsAny<IProgressContext>())).Returns((IRuntimeFileInfo fileInfo, IPassphrase key, IProgressContext progress) =>
+            {
+                count++;
+                return null;
             });
             Factory.Instance.Register<AxCryptFile>(() => axCryptFileMock.Object);
 
             Mock<FileOperation> fileOperationMock = new Mock<FileOperation>(Instance.FileSystemState, Instance.SessionNotify);
             Factory.Instance.Register<FileOperation>(() => fileOperationMock.Object);
+
+            Mock<AxCryptFactory> axCryptFactoryMock = new Mock<AxCryptFactory>();
+            axCryptFactoryMock.Setup(acf => acf.CreatePassphrase(It.IsAny<string>(), It.IsAny<IRuntimeFileInfo>())).Returns((string passphrase, IRuntimeFileInfo fileInfo) => new V1Passphrase(passphrase));
+            Factory.Instance.Register<AxCryptFactory>(() => axCryptFactoryMock.Object);
 
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
             mvm.IdentityViewModel.CryptoId = CryptoId.Aes_128_V1;
