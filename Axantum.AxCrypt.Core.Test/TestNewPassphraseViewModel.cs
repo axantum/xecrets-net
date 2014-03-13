@@ -27,11 +27,13 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -152,6 +154,18 @@ namespace Axantum.AxCrypt.Core.Test
             string s = null;
             Assert.Throws<ArgumentException>(() => { s = npvm["NonExisting"]; });
             Assert.That(s, Is.Null, "Not a real assertion, only to make the variable used for FxCop.");
+        }
+
+        [Test]
+        public static void TestValidateWrongPassphraseWithRealFile()
+        {
+            FakeRuntimeFileInfo.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
+            NewPassphraseViewModel npvm = new NewPassphraseViewModel(Environment.UserName, String.Empty, @"C:\My Folder\MyFile-txt.axx");
+            npvm.Passphrase = "b";
+            npvm.Verification = "b";
+
+            Assert.That(npvm["Passphrase"], Is.Not.EqualTo(""));
+            Assert.That(npvm.ValidationError, Is.EqualTo((int)ValidationError.WrongPassphrase));
         }
     }
 }
