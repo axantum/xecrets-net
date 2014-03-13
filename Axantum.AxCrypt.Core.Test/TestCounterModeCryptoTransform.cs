@@ -52,17 +52,27 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestConstructorWithBadArguments()
         {
             SymmetricAlgorithm algorithm = new AesManaged();
-            ICryptoTransform transform;
+            ICryptoTransform transform = null;
 
-            algorithm.Mode = CipherMode.CBC;
-            Assert.Throws<ArgumentException>(() => transform = new CounterModeCryptoTransform(algorithm, 0, 0));
+            try
+            {
+                algorithm.Mode = CipherMode.CBC;
+                Assert.Throws<ArgumentException>(() => transform = new CounterModeCryptoTransform(algorithm, 0, 0));
 
-            algorithm.Mode = CipherMode.ECB;
-            algorithm.Padding = PaddingMode.PKCS7;
-            Assert.Throws<ArgumentException>(() => transform = new CounterModeCryptoTransform(algorithm, 0, 0));
+                algorithm.Mode = CipherMode.ECB;
+                algorithm.Padding = PaddingMode.PKCS7;
+                Assert.Throws<ArgumentException>(() => transform = new CounterModeCryptoTransform(algorithm, 0, 0));
 
-            algorithm.Padding = PaddingMode.None;
-            Assert.DoesNotThrow(() => transform = new CounterModeCryptoTransform(algorithm, 0, 0));
+                algorithm.Padding = PaddingMode.None;
+                Assert.DoesNotThrow(() => transform = new CounterModeCryptoTransform(algorithm, 0, 0));
+            }
+            finally
+            {
+                if (transform != null)
+                {
+                    transform.Dispose();
+                }
+            }
         }
 
         [Test]
@@ -71,9 +81,10 @@ namespace Axantum.AxCrypt.Core.Test
             SymmetricAlgorithm algorithm = new AesManaged();
             algorithm.Mode = CipherMode.ECB;
             algorithm.Padding = PaddingMode.None;
-            ICryptoTransform transform = new CounterModeCryptoTransform(algorithm, 0, 0);
-
-            Assert.That(transform.CanReuseTransform);
+            using (ICryptoTransform transform = new CounterModeCryptoTransform(algorithm, 0, 0))
+            {
+                Assert.That(transform.CanReuseTransform);
+            }
         }
 
         [Test]
@@ -82,10 +93,11 @@ namespace Axantum.AxCrypt.Core.Test
             SymmetricAlgorithm algorithm = new AesManaged();
             algorithm.Mode = CipherMode.ECB;
             algorithm.Padding = PaddingMode.None;
-            ICryptoTransform transform = new CounterModeCryptoTransform(algorithm, 0, 0);
-
-            Assert.Throws<ArgumentException>(() => transform.TransformBlock(new byte[transform.InputBlockSize + 1], 0, transform.InputBlockSize + 1, new byte[transform.InputBlockSize + 1], 0));
-            Assert.DoesNotThrow(() => transform.TransformBlock(new byte[transform.InputBlockSize], 0, transform.InputBlockSize, new byte[transform.InputBlockSize], 0));
+            using (ICryptoTransform transform = new CounterModeCryptoTransform(algorithm, 0, 0))
+            {
+                Assert.Throws<ArgumentException>(() => transform.TransformBlock(new byte[transform.InputBlockSize + 1], 0, transform.InputBlockSize + 1, new byte[transform.InputBlockSize + 1], 0));
+                Assert.DoesNotThrow(() => transform.TransformBlock(new byte[transform.InputBlockSize], 0, transform.InputBlockSize, new byte[transform.InputBlockSize], 0));
+            }
         }
     }
 }
