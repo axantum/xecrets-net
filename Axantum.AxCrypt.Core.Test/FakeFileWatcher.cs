@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt.Core.Test
                     continue;
                 }
                 string key = fileWatcher.Key;
-                if (!key.EndsWith(System.IO.Path.DirectorySeparatorChar.ToString()))
+                if (!key.EndsWith(System.IO.Path.DirectorySeparatorChar.ToString(), StringComparison.Ordinal))
                 {
                     key += System.IO.Path.DirectorySeparatorChar;
                 }

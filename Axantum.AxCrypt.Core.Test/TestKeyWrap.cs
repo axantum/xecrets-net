@@ -215,7 +215,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             KeyWrapSalt salt = new KeyWrapSalt(31);
 
-            Assert.Throws<InternalErrorException>(() => new KeyWrap(new V2AesCrypto(new V2Passphrase("secret", 256)), salt, 100, KeyWrapMode.Specification));
+            KeyWrap wrap;
+            Assert.Throws<InternalErrorException>(() => wrap = new KeyWrap(new V2AesCrypto(new V2Passphrase("secret", 256)), salt, 100, KeyWrapMode.Specification));
         }
 
         [Test]

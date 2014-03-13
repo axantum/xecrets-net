@@ -35,7 +35,7 @@ using System.Linq;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public static class TestV2PlainTextLengthsEncryptedHeaderBlock
+    public static class TestV2PlaintextLengthsEncryptedHeaderBlock
     {
         [SetUp]
         public static void Setup()
@@ -53,8 +53,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestClone()
         {
-            V2PlainTextLengthsEncryptedHeaderBlock block = new V2PlainTextLengthsEncryptedHeaderBlock(new V2AesCrypto(new V2Passphrase("secret", 256)));
-            V2PlainTextLengthsEncryptedHeaderBlock clone = (V2PlainTextLengthsEncryptedHeaderBlock)block.Clone();
+            V2PlaintextLengthsEncryptedHeaderBlock block = new V2PlaintextLengthsEncryptedHeaderBlock(new V2AesCrypto(new V2Passphrase("secret", 256)));
+            V2PlaintextLengthsEncryptedHeaderBlock clone = (V2PlaintextLengthsEncryptedHeaderBlock)block.Clone();
 
             Assert.That(!Object.ReferenceEquals(block.GetDataBlockBytes(), clone.GetDataBlockBytes()));
             Assert.That(block.GetDataBlockBytes(), Is.EquivalentTo(clone.GetDataBlockBytes()));
@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestPlaintextLength()
         {
-            V2PlainTextLengthsEncryptedHeaderBlock block = new V2PlainTextLengthsEncryptedHeaderBlock(new V2AesCrypto(new V2Passphrase("secret", 256)));
+            V2PlaintextLengthsEncryptedHeaderBlock block = new V2PlaintextLengthsEncryptedHeaderBlock(new V2AesCrypto(new V2Passphrase("secret", 256)));
 
             Assert.That(block.PlaintextLength, Is.EqualTo(0));
 
@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestCompressedPlaintextLength()
         {
-            V2PlainTextLengthsEncryptedHeaderBlock block = new V2PlainTextLengthsEncryptedHeaderBlock(new V2AesCrypto(new V2Passphrase("secret", 256)));
+            V2PlaintextLengthsEncryptedHeaderBlock block = new V2PlaintextLengthsEncryptedHeaderBlock(new V2AesCrypto(new V2Passphrase("secret", 256)));
 
             Assert.That(block.CompressedPlaintextLength, Is.EqualTo(0));
 

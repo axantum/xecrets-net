@@ -59,11 +59,11 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(headerBlock.FileName, Is.EqualTo("A file name"));
 
             V2UnicodeFileNameInfoEncryptedHeaderBlock clone = (V2UnicodeFileNameInfoEncryptedHeaderBlock)headerBlock.Clone();
-            Assert.That(headerBlock.FileName, Is.EqualTo("A file name"));
+            Assert.That(clone.FileName, Is.EqualTo("A file name"));
         }
 
         [Test]
-        public static void TestBadDataCausedByBadKeyForExamnple()
+        public static void TestBadDataCausedByBadKeyForExample()
         {
             Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());

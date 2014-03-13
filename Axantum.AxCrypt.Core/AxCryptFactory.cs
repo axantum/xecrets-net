@@ -51,37 +51,37 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("key");
             }
 
-            if (key.CryptoName == CryptoName.AES_128_V1)
+            if (key.CryptoId == CryptoId.Aes_128_V1)
             {
                 return new V1AesCrypto(key);
             }
-            if (key.CryptoName == CryptoName.AES_256)
+            if (key.CryptoId == CryptoId.Aes_256)
             {
                 return new V2AesCrypto(key);
             }
-            if (key.CryptoName == CryptoName.Unknown && key.DerivedKey.Length == 16)
+            if (key.CryptoId == CryptoId.Unknown && key.DerivedKey.Length == 16)
             {
                 return new V1AesCrypto(key);
             }
-            if (key.CryptoName == CryptoName.Unknown && key.DerivedKey.Length == 32)
+            if (key.CryptoId == CryptoId.Unknown && key.DerivedKey.Length == 32)
             {
                 return new V2AesCrypto(key);
             }
-            throw new InternalErrorException("Invalid CryptoName in parameter 'key'.");
+            throw new InternalErrorException("Invalid CryptoId in parameter 'key'.");
         }
 
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public IPassphrase CreatePassphrase(string passphrase, CryptoName cryptoName)
+        public IPassphrase CreatePassphrase(string passphrase, CryptoId cryptoId)
         {
-            switch (cryptoName)
+            switch (cryptoId)
             {
-                case CryptoName.AES_256:
+                case CryptoId.Aes_256:
                     return new V2Passphrase(passphrase, 256);
 
-                case CryptoName.AES_128_V1:
+                case CryptoId.Aes_128_V1:
                     return new V1Passphrase(passphrase);
             }
-            throw new InternalErrorException("Invalid CryptoName in parameter 'cryptoName'.");
+            throw new InternalErrorException("Invalid CryptoId in parameter 'cryptoId'.");
         }
 
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
@@ -119,18 +119,18 @@ namespace Axantum.AxCrypt.Core
         public IAxCryptDocument CreateDocument(IPassphrase key)
         {
             IAxCryptDocument document;
-            switch (key.CryptoName)
+            switch (key.CryptoId)
             {
-                case CryptoName.AES_128_V1:
+                case CryptoId.Aes_128_V1:
                     document = new V1AxCryptDocument(new V1AesCrypto(key), Instance.UserSettings.V1KeyWrapIterations);
                     break;
 
-                case CryptoName.AES_256:
+                case CryptoId.Aes_256:
                     document = new V2AxCryptDocument(new V2AesCrypto(key), Instance.UserSettings.V2KeyWrapIterations);
                     break;
 
                 default:
-                    throw new InternalErrorException("Invalid CryptoName in parameter 'cryptoName'.");
+                    throw new InternalErrorException("Invalid CryptoId in key.");
             }
             return document;
         }

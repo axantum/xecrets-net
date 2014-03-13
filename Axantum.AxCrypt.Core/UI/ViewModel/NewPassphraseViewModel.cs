@@ -122,7 +122,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return String.Compare(Passphrase, Verification, StringComparison.Ordinal) == 0;
         }
 
-        private bool IsPassphraseValidForFileIfAny(string passphrase, string encryptedFileFullName)
+        private static bool IsPassphraseValidForFileIfAny(string passphrase, string encryptedFileFullName)
         {
             if (String.IsNullOrEmpty(encryptedFileFullName))
             {

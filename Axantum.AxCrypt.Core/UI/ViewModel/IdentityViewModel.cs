@@ -48,15 +48,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             Passphrase = null;
 
-            LogOnLogOff = new DelegateAction<CryptoName>((cryptoName) => Passphrase = LogOnLogOffAction(cryptoName));
+            LogOnLogOff = new DelegateAction<CryptoId>((cryptoId) => Passphrase = LogOnLogOffAction(cryptoId));
             AskForLogOnOrDecryptPassphrase = new DelegateAction<string>((name) => Passphrase = AskForLogOnOrDecryptPassphraseAction(name));
             AskForLogOnPassphrase = new DelegateAction<PassphraseIdentity>((id) => Passphrase = AskForLogOnPassphraseAction(id, String.Empty));
-            CryptoName = CryptoName.AES_256;
+            CryptoId = CryptoId.Aes_256;
         }
 
         public IPassphrase Passphrase { get { return GetProperty<IPassphrase>("Passphrase"); } set { SetProperty("Passphrase", value); } }
 
-        public CryptoName CryptoName { get { return GetProperty<CryptoName>("CryptoName"); } set { SetProperty("CryptoName", value); } }
+        public CryptoId CryptoId { get { return GetProperty<CryptoId>("CryptoId"); } set { SetProperty("CryptoId", value); } }
 
         public IAction LogOnLogOff { get; private set; }
 
@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        private IPassphrase LogOnLogOffAction(CryptoName cryptoName)
+        private IPassphrase LogOnLogOffAction(CryptoId cryptoId)
         {
             if (_knownKeys.IsLoggedOn)
             {
@@ -83,7 +83,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return null;
             }
 
-            CryptoName = cryptoName != CryptoName.Unknown ? cryptoName : CryptoName.AES_256;
+            CryptoId = cryptoId != CryptoId.Unknown ? cryptoId : CryptoId.Aes_256;
 
             IPassphrase passphrase;
             if (_fileSystemState.Identities.Any())
@@ -106,12 +106,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             if (!_fileSystemState.Identities.Any())
             {
-                return Factory.New<AxCryptFactory>().CreatePassphrase(passphrase, CryptoName);
+                return Factory.New<AxCryptFactory>().CreatePassphrase(passphrase, CryptoId);
             }
 
             foreach (PassphraseIdentity identity in _fileSystemState.Identities)
             {
-                IPassphrase candidate = Factory.New<AxCryptFactory>().CreatePassphrase(passphrase, identity.CryptoName);
+                IPassphrase candidate = Factory.New<AxCryptFactory>().CreatePassphrase(passphrase, identity.CryptoId);
                 if (identity.Thumbprint == candidate.Thumbprint)
                 {
                     return candidate;
@@ -197,7 +197,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             _userSettings.DisplayEncryptPassphrase = logOnArgs.DisplayPassphrase;
 
-            IPassphrase passphrase = Factory.New<AxCryptFactory>().CreatePassphrase(logOnArgs.Passphrase, CryptoName);
+            IPassphrase passphrase = Factory.New<AxCryptFactory>().CreatePassphrase(logOnArgs.Passphrase, CryptoId);
             PassphraseIdentity identity = _fileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == passphrase.Thumbprint);
             if (identity != null)
             {

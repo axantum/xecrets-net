@@ -105,7 +105,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        private bool IsPassphraseValidForFileIfAny(string passphrase, string encryptedFileFullName)
+        private static bool IsPassphraseValidForFileIfAny(string passphrase, string encryptedFileFullName)
         {
             if (String.IsNullOrEmpty(encryptedFileFullName))
             {

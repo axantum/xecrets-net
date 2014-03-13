@@ -70,7 +70,7 @@ namespace Axantum.AxCrypt.Core.Reader
                     return new V2UnicodeFileNameInfoEncryptedHeaderBlock(dataBlock);
 
                 case HeaderBlockType.PlaintextLengths:
-                    return new V2PlainTextLengthsEncryptedHeaderBlock(dataBlock);
+                    return new V2PlaintextLengthsEncryptedHeaderBlock(dataBlock);
 
                 case HeaderBlockType.V2Hmac:
                     return new V2HmacHeaderBlock(dataBlock);

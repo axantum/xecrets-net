@@ -45,9 +45,9 @@ namespace Axantum.AxCrypt.Core.Extensions
             return (status & mask) == mask;
         }
 
-        public static string ToLabel(this CryptoName cryptoName)
+        public static string ToLabel(this CryptoId cryptoId)
         {
-            string s = cryptoName.ToString().Replace('_', '-');
+            string s = cryptoId.ToString().Replace('_', '-');
             if (s == "Unknown")
             {
                 return String.Empty;
@@ -57,7 +57,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             {
                 return String.Empty;
             }
-            return s;
+            return s.ToUpperInvariant();
         }
     }
 }

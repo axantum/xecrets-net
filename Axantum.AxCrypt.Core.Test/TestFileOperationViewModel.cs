@@ -190,7 +190,7 @@ namespace Axantum.AxCrypt.Core.Test
             Instance.KnownKeys.DefaultEncryptionKey = id.Key;
 
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
-            mvm.IdentityViewModel.LogOnLogOff.Execute(CryptoName.Unknown);
+            mvm.IdentityViewModel.LogOnLogOff.Execute(CryptoId.Unknown);
 
             Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(0));
         }
@@ -204,13 +204,13 @@ namespace Axantum.AxCrypt.Core.Test
             Instance.FileSystemState.Identities.Add(identity);
 
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
-            mvm.IdentityViewModel.CryptoName = CryptoName.AES_128_V1;
+            mvm.IdentityViewModel.CryptoId = CryptoId.Aes_128_V1;
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
                 e.Passphrase = "a";
             };
 
-            mvm.IdentityViewModel.LogOnLogOff.Execute(CryptoName.Unknown);
+            mvm.IdentityViewModel.LogOnLogOff.Execute(CryptoId.Unknown);
 
             Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(1));
             Assert.That(Instance.KnownKeys.IsLoggedOn, Is.True);
@@ -225,7 +225,7 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Passphrase = "b";
                 e.Name = "Name";
             };
-            mvm.IdentityViewModel.LogOnLogOff.Execute(CryptoName.Unknown);
+            mvm.IdentityViewModel.LogOnLogOff.Execute(CryptoId.Unknown);
 
             Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(1));
             Assert.That(Instance.KnownKeys.IsLoggedOn, Is.True);
@@ -241,7 +241,7 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Passphrase = String.Empty;
             };
 
-            mvm.IdentityViewModel.LogOnLogOff.Execute(CryptoName.Unknown);
+            mvm.IdentityViewModel.LogOnLogOff.Execute(CryptoId.Unknown);
 
             Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(0));
             Assert.That(Instance.KnownKeys.IsLoggedOn, Is.False);
@@ -501,7 +501,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Register<AxCryptFactory>(() => axCryptFactoryMock.Object);
 
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
-            mvm.IdentityViewModel.CryptoName = CryptoName.AES_128_V1;
+            mvm.IdentityViewModel.CryptoId = CryptoId.Aes_128_V1;
             mvm.SelectingFiles += (sender, e) =>
             {
                 e.SelectedFiles.Add(@"C:\Folder\File1-txt.axx");
@@ -540,7 +540,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Register<AxCryptFile>(() => axCryptFileMock.Object);
 
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
-            mvm.IdentityViewModel.CryptoName = CryptoName.AES_128_V1;
+            mvm.IdentityViewModel.CryptoId = CryptoId.Aes_128_V1;
             mvm.SelectingFiles += (sender, e) =>
             {
                 e.SelectedFiles.Clear();
@@ -579,7 +579,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Register<AxCryptFile>(() => axCryptFileMock.Object);
 
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
-            mvm.IdentityViewModel.CryptoName = CryptoName.AES_128_V1;
+            mvm.IdentityViewModel.CryptoId = CryptoId.Aes_128_V1;
             mvm.SelectingFiles += (sender, e) =>
             {
                 e.Cancel = true;
@@ -642,7 +642,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Register<AxCryptFile>(() => axCryptFileMock.Object);
 
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
-            mvm.IdentityViewModel.CryptoName = CryptoName.AES_128_V1;
+            mvm.IdentityViewModel.CryptoId = CryptoId.Aes_128_V1;
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
                 e.Passphrase = "b";
@@ -845,7 +845,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Register<FileOperation>(() => fileOperationMock.Object);
 
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
-            mvm.IdentityViewModel.CryptoName = CryptoName.AES_128_V1;
+            mvm.IdentityViewModel.CryptoId = CryptoId.Aes_128_V1;
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
                 e.Passphrase = "b";
@@ -888,7 +888,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Register<FileOperation>(() => fileOperationMock.Object);
 
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
-            mvm.IdentityViewModel.CryptoName = CryptoName.AES_128_V1;
+            mvm.IdentityViewModel.CryptoId = CryptoId.Aes_128_V1;
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
                 if (count == 2)

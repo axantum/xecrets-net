@@ -17,7 +17,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             protected set;
         }
 
-        public CryptoName CryptoName
+        public CryptoId CryptoId
         {
             get;
             protected set;
@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 return false;
             }
-            return CryptoName == other.CryptoName && DerivedKey == other.DerivedKey && Passphrase == other.Passphrase;
+            return CryptoId == other.CryptoId && DerivedKey == other.DerivedKey && Passphrase == other.Passphrase;
         }
 
         #endregion IEquatable<SymmetricKey> Members
@@ -86,7 +86,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public override int GetHashCode()
         {
-            return CryptoName.GetHashCode() ^ DerivedKey.GetHashCode() ^ Passphrase.GetHashCode();
+            return CryptoId.GetHashCode() ^ DerivedKey.GetHashCode() ^ Passphrase.GetHashCode();
         }
     }
 }

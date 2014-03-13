@@ -56,7 +56,6 @@ namespace Axantum.AxCrypt.Core.Reader
                 lookAheadStream = new LookAheadStream(inputStream);
             }
             InputStream = lookAheadStream;
-            CurrentItemType = AxCryptItemType.None;
         }
 
         public virtual void Reinterpret(IList<HeaderBlock> inputHeaders, IList<HeaderBlock> outputHeaders)

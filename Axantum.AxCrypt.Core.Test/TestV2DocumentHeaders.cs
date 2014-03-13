@@ -198,7 +198,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestUnkonwnEncryptedHeader()
+        public static void TestUnknownEncryptedHeader()
         {
             Headers headers = new Headers();
 

@@ -135,7 +135,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEofAxCryptReader()
+        public static void TestEndOfFileAxCryptReader()
         {
             Mock<AxCryptReader> mockAxCryptReader = new Mock<AxCryptReader>(Stream.Null);
             mockAxCryptReader.Setup(r => r.Read()).Returns(false);

@@ -39,7 +39,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestBadConstructorArgument()
         {
-            Assert.Throws<ArgumentNullException>(() => new V2HmacHeaderBlock(null));
+            V2HmacHeaderBlock headerBlock;
+            Assert.Throws<ArgumentNullException>(() => headerBlock = new V2HmacHeaderBlock(null));
         }
 
         [Test]
