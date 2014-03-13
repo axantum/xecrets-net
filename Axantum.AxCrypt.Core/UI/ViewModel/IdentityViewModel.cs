@@ -104,11 +104,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private IPassphrase KeyFromPassphrase(string passphrase)
         {
-            if (!_fileSystemState.Identities.Any())
-            {
-                return Factory.New<AxCryptFactory>().CreatePassphrase(passphrase, CryptoId);
-            }
-
             foreach (PassphraseIdentity identity in _fileSystemState.Identities)
             {
                 IPassphrase candidate = Factory.New<AxCryptFactory>().CreatePassphrase(passphrase, identity.CryptoId);

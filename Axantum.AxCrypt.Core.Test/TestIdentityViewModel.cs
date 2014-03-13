@@ -367,5 +367,44 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(Instance.KnownKeys.DefaultEncryptionKey.Thumbprint, Is.EqualTo(passphrase.Thumbprint));
             Assert.That(Instance.FileSystemState.Identities.Count(), Is.EqualTo(1));
         }
+
+        [Test]
+        public static void AskForLogOnPassphraseWithKnownIdentity()
+        {
+            V2Passphrase passphrase = new V2Passphrase("aaa", 256);
+            PassphraseIdentity id = new PassphraseIdentity("Test User", passphrase);
+            Instance.FileSystemState.Identities.Add(id);
+
+            IdentityViewModel ivm = new IdentityViewModel(Instance.FileSystemState, Instance.KnownKeys, Instance.UserSettings);
+            ivm.LoggingOn += (sender, e) =>
+            {
+                e.Passphrase = "aaa";
+            };
+
+            ivm.AskForLogOnPassphrase.Execute(null);
+
+            Assert.That(ivm.Passphrase.Passphrase, Is.EqualTo("aaa"));
+            Assert.That(Instance.KnownKeys.DefaultEncryptionKey.Thumbprint, Is.EqualTo(passphrase.Thumbprint));
+            Assert.That(Instance.FileSystemState.Identities.Count(), Is.EqualTo(1));
+        }
+
+        [Test]
+        public static void AskForLogOnPassphraseWithKnownIdentityButWrongPassphraseEntered()
+        {
+            V2Passphrase passphrase = new V2Passphrase("aaa", 256);
+            PassphraseIdentity id = new PassphraseIdentity("Test User", passphrase);
+            Instance.FileSystemState.Identities.Add(id);
+
+            IdentityViewModel ivm = new IdentityViewModel(Instance.FileSystemState, Instance.KnownKeys, Instance.UserSettings);
+            ivm.LoggingOn += (sender, e) =>
+            {
+                e.Passphrase = "bbb";
+            };
+
+            ivm.AskForLogOnPassphrase.Execute(null);
+
+            Assert.That(ivm.Passphrase, Is.Null);
+            Assert.That(Instance.FileSystemState.Identities.Count(), Is.EqualTo(1));
+        }
     }
 }
