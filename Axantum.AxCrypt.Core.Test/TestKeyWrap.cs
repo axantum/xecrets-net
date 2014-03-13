@@ -200,5 +200,35 @@ namespace Axantum.AxCrypt.Core.Test
                 keyWrap.Dispose();
             });
         }
+
+        [Test]
+        public static void TestUnwrapWithBadArgument()
+        {
+            using (KeyWrap keyWrap = new KeyWrap(new V2AesCrypto(), 100, KeyWrapMode.Specification))
+            {
+                Assert.Throws<InternalErrorException>(() => keyWrap.Unwrap(new byte[25]));
+            }
+        }
+
+        [Test]
+        public static void TestConstructorWithBadSaltLength()
+        {
+            KeyWrapSalt salt = new KeyWrapSalt(31);
+
+            Assert.Throws<InternalErrorException>(() => new KeyWrap(new V2AesCrypto(new V2Passphrase("secret", 256)), salt, 100, KeyWrapMode.Specification));
+        }
+
+        [Test]
+        public static void TestWrapWithBadArgument()
+        {
+            using (KeyWrap keyWrap = new KeyWrap(new V2AesCrypto(), 100, KeyWrapMode.Specification))
+            {
+                byte[] nullKeyMaterial = null;
+                Assert.Throws<ArgumentNullException>(() => keyWrap.Wrap(nullKeyMaterial));
+
+                keyWrap.Dispose();
+                Assert.Throws<ObjectDisposedException>(() => keyWrap.Wrap(new byte[0]));
+            }
+        }
     }
 }

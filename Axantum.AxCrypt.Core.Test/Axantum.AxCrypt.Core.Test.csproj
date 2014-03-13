@@ -93,6 +93,7 @@
     <Compile Include="TestDelayedAction.cs" />
     <Compile Include="TestDelegateAction.cs" />
     <Compile Include="TestDelegateTraceListener.cs" />
+    <Compile Include="TestEncryptedDataPartBlock.cs" />
     <Compile Include="TestFactoryRegistry.cs" />
     <Compile Include="TestFileOperation.cs" />
     <Compile Include="TestFileOperationsController.cs" />

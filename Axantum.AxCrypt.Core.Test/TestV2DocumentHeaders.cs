@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
 using System;
 using System.IO;
@@ -143,9 +144,9 @@ namespace Axantum.AxCrypt.Core.Test
             headers.HeaderBlocks.Add(new PreambleHeaderBlock());
             headers.HeaderBlocks.Add(new VersionHeaderBlock(new byte[] { 4, 0, 2, 0, 0 }));
             headers.HeaderBlocks.Add(new V2KeyWrapHeaderBlock(realKeyEncryptingCrypto, 10));
-            headers.HeaderBlocks.Add(new FileInfoEncryptedHeaderBlock(new V2AesCrypto()));
-            headers.HeaderBlocks.Add(new V2CompressionEncryptedHeaderBlock(new V2AesCrypto()));
-            headers.HeaderBlocks.Add(new V2UnicodeFileNameInfoEncryptedHeaderBlock(new V2AesCrypto()));
+            headers.HeaderBlocks.Add(new FileInfoEncryptedHeaderBlock(new byte[0]));
+            headers.HeaderBlocks.Add(new V2CompressionEncryptedHeaderBlock(new byte[1]));
+            headers.HeaderBlocks.Add(new V2UnicodeFileNameInfoEncryptedHeaderBlock(new byte[0]));
             headers.HeaderBlocks.Add(new DataHeaderBlock());
 
             using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("WrongKey", 256), new SymmetricIV(128))))
@@ -180,6 +181,40 @@ namespace Axantum.AxCrypt.Core.Test
             using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(keyEncryptingCrypto))
             {
                 Assert.That(documentHeaders.Headers.HeaderBlocks.Count, Is.EqualTo(0));
+            }
+        }
+
+        private class UnknownEncryptedHeaderBlock : EncryptedHeaderBlock
+        {
+            public UnknownEncryptedHeaderBlock(byte[] dataBlock)
+                : base((HeaderBlockType)199, dataBlock)
+            {
+            }
+
+            public override object Clone()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        [Test]
+        public static void TestUnkonwnEncryptedHeader()
+        {
+            Headers headers = new Headers();
+
+            ICrypto realKeyEncryptingCrypto = new V2AesCrypto(new V2Passphrase("A key", 256), new SymmetricIV(128));
+            headers.HeaderBlocks.Add(new PreambleHeaderBlock());
+            headers.HeaderBlocks.Add(new VersionHeaderBlock(new byte[] { 4, 0, 2, 0, 0 }));
+            headers.HeaderBlocks.Add(new V2KeyWrapHeaderBlock(realKeyEncryptingCrypto, 10));
+            headers.HeaderBlocks.Add(new FileInfoEncryptedHeaderBlock(new byte[0]));
+            headers.HeaderBlocks.Add(new V2CompressionEncryptedHeaderBlock(new byte[1]));
+            headers.HeaderBlocks.Add(new V2UnicodeFileNameInfoEncryptedHeaderBlock(new byte[0]));
+            headers.HeaderBlocks.Add(new UnknownEncryptedHeaderBlock(new byte[0]));
+            headers.HeaderBlocks.Add(new DataHeaderBlock());
+
+            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("A key", 256), new SymmetricIV(128))))
+            {
+                Assert.Throws<InternalErrorException>(() => documentHeaders.Load(headers));
             }
         }
     }
