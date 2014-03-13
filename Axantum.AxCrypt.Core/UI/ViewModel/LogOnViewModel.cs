@@ -87,13 +87,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             switch (columnName)
             {
                 case "Passphrase":
-                    bool isPassphraseAKnownIdentity = IsPassphraseAKnownIdentity();
-                    if (!IsPassphraseValidForFileIfAny(Passphrase, _encryptedFileFullName))
+                    if (!IsPassphraseAKnownIdentity())
                     {
                         ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
                         return false;
                     }
-                    if (!isPassphraseAKnownIdentity)
+                    if (!IsPassphraseValidForFileIfAny(Passphrase, _encryptedFileFullName))
                     {
                         ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
                         return false;

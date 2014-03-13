@@ -28,12 +28,14 @@
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -46,6 +48,8 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
+            SetupAssembly.AssemblySetup();
+
             _identities = new List<PassphraseIdentity>();
             Mock<FileSystemState> fileSystemStateMock = new Mock<FileSystemState>();
             fileSystemStateMock.Setup<IList<PassphraseIdentity>>(f => f.Identities).Returns(_identities);
@@ -57,7 +61,7 @@ namespace Axantum.AxCrypt.Core.Test
         [TearDown]
         public static void Teardown()
         {
-            Factory.Instance.Clear();
+            SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
@@ -141,6 +145,45 @@ namespace Axantum.AxCrypt.Core.Test
             string s = null;
             Assert.Throws<ArgumentException>(() => { s = lovm["NonExisting"]; });
             Assert.That(s, Is.Null, "Not a real assertion, only to make the variable used for FxCop.");
+        }
+
+        [Test]
+        public static void TestValidateWrongPassphraseWithRealFile()
+        {
+            _identities.Add(new PassphraseIdentity(Environment.UserName, new V1Passphrase("a")));
+
+            FakeRuntimeFileInfo.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
+            LogOnViewModel npvm = new LogOnViewModel(Environment.UserName, @"C:\My Folder\MyFile-txt.axx");
+            npvm.Passphrase = "b";
+
+            Assert.That(npvm["Passphrase"], Is.Not.EqualTo(""));
+            Assert.That(npvm.ValidationError, Is.EqualTo((int)ValidationError.WrongPassphrase));
+        }
+
+        [Test]
+        public static void TestValidateCorrectPassphraseWithRealFile()
+        {
+            _identities.Add(new PassphraseIdentity(Environment.UserName, new V1Passphrase("a")));
+
+            FakeRuntimeFileInfo.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
+            LogOnViewModel npvm = new LogOnViewModel(Environment.UserName, @"C:\My Folder\MyFile-txt.axx");
+            npvm.Passphrase = "a";
+
+            Assert.That(npvm["Passphrase"], Is.EqualTo(""));
+            Assert.That(npvm.ValidationError, Is.EqualTo((int)ValidationError.None));
+        }
+
+        [Test]
+        public static void TestValidateWrongButKnownPassphraseWithRealFile()
+        {
+            _identities.Add(new PassphraseIdentity(Environment.UserName, new V1Passphrase("b")));
+
+            FakeRuntimeFileInfo.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
+            LogOnViewModel npvm = new LogOnViewModel(Environment.UserName, @"C:\My Folder\MyFile-txt.axx");
+            npvm.Passphrase = "b";
+
+            Assert.That(npvm["Passphrase"], Is.Not.EqualTo(""));
+            Assert.That(npvm.ValidationError, Is.EqualTo((int)ValidationError.WrongPassphrase));
         }
     }
 }
