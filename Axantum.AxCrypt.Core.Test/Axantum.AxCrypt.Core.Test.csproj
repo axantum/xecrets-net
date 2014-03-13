@@ -103,7 +103,9 @@
     <Compile Include="TestHeaderBlock.cs" />
     <Compile Include="TestHeaders.cs" />
     <Compile Include="TestKnownFolder.cs" />
+    <Compile Include="TestPassphraseBase.cs" />
     <Compile Include="TestPbkdf2HmacSha512.cs" />
+    <Compile Include="TestRandomGenerator.cs" />
     <Compile Include="TestV1AesCrypto.cs" />
     <Compile Include="TestSymmetricIV.cs" />
     <Compile Include="TestSymmetricKey.cs" />

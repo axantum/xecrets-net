@@ -26,23 +26,39 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
+using NUnit.Framework;
 using System;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
-    internal class FakeRandomGenerator : IRandomGenerator
+    [TestFixture]
+    public static class TestRandomGenerator
     {
-        private byte _randomForTest = 0;
-
-        public byte[] Generate(int count)
+        [SetUp]
+        public static void Setup()
         {
-            byte[] bytes = new byte[count];
-            for (int i = 0; i < count; ++i)
-            {
-                bytes[i] = _randomForTest++;
-            }
-            return bytes;
+        }
+
+        [TearDown]
+        public static void Teardown()
+        {
+            Factory.Instance.Clear();
+        }
+
+        [Test]
+        public static void TestGenerate()
+        {
+            RandomGenerator generator = new RandomGenerator();
+
+            byte[] randomBytes = generator.Generate(100);
+            Assert.That(randomBytes.Length, Is.EqualTo(100), "Ensuring we really got the right number of bytes.");
+            Assert.That(randomBytes, Is.Not.EquivalentTo(new byte[100]), "It is not in practice possible that all zero bytes are returned by GetRandomBytes().");
+
+            randomBytes = generator.Generate(1000);
+            double average = randomBytes.Average(b => b);
+            Assert.That(average >= 115 && average <= 140, "Unscientific, but the sample sequence should not vary much from a mean of 127.5, but was {0}".InvariantFormat(average));
         }
     }
 }
