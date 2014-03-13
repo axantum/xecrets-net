@@ -73,5 +73,13 @@ namespace Axantum.AxCrypt.Core.Test
                 if (new V1AesCrypto(key, iv, CipherMode.CBC, PaddingMode.None) == null) { }
             });
         }
+
+        [Test]
+        public static void TestName()
+        {
+            V1AesCrypto ICrypto = new V1AesCrypto();
+
+            Assert.That(ICrypto.Name, Is.EqualTo("AES-128-V1"));
+        }
     }
 }

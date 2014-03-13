@@ -90,6 +90,7 @@
     <Compile Include="TestCommandLine.cs" />
     <Compile Include="TestCommandService.cs" />
     <Compile Include="TestCommandServiceEventArgsTest.cs" />
+    <Compile Include="TestCounterModeCryptoTransform.cs" />
     <Compile Include="TestDelayedAction.cs" />
     <Compile Include="TestDelegateAction.cs" />
     <Compile Include="TestDelegateTraceListener.cs" />
