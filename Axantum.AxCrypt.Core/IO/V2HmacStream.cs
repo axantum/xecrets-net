@@ -161,20 +161,25 @@ namespace Axantum.AxCrypt.Core.IO
 
         protected override void Dispose(bool disposing)
         {
+            if (_disposed)
+            {
+                return;
+            }
             if (disposing)
             {
-                if (_disposed)
-                {
-                    return;
-                }
-                if (_hmac != null)
-                {
-                    _hmac.Clear();
-                    _hmac = null;
-                }
-                _disposed = true;
+                DisposeInternal();
             }
             base.Dispose(disposing);
+        }
+
+        private void DisposeInternal()
+        {
+            if (_hmac != null)
+            {
+                _hmac.Clear();
+                _hmac = null;
+            }
+            _disposed = true;
         }
 
         private void EnsureNotDisposed()

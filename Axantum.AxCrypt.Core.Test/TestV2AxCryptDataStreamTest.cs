@@ -38,7 +38,7 @@ using System.Text;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public static class TestV2AxCryptDataStream
+    public static class TestV2AxCryptDataStreamTest
     {
         [SetUp]
         public static void Setup()

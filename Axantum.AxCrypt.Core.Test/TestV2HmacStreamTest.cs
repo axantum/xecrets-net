@@ -170,5 +170,59 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(result, Is.EquivalentTo(hmac_sha_512));
         }
+
+        [Test]
+        public static void TestConstructorNullArgument()
+        {
+            byte[] nullBytes = null;
+            Stream stream;
+            Assert.Throws<ArgumentNullException>(() => stream = new V2HmacStream(nullBytes));
+        }
+
+        [Test]
+        public static void TestNotSupportedMethods()
+        {
+            using (V2HmacStream stream = new V2HmacStream(new byte[512]))
+            {
+                Assert.Throws<NotSupportedException>(() => stream.Read(new byte[1], 0, 1));
+                Assert.Throws<NotSupportedException>(() => stream.Seek(0, SeekOrigin.Begin));
+                Assert.Throws<NotSupportedException>(() => stream.SetLength(0));
+                Assert.Throws<NotSupportedException>(() => stream.Position = 0);
+            }
+        }
+
+        [Test]
+        public static void TestCapabilities()
+        {
+            using (V2HmacStream stream = new V2HmacStream(new byte[512]))
+            {
+                Assert.That(stream.CanRead, Is.False);
+                Assert.That(stream.CanSeek, Is.False);
+                Assert.That(stream.CanWrite, Is.True);
+            }
+        }
+
+        [Test]
+        public static void TestPosition()
+        {
+            using (V2HmacStream stream = new V2HmacStream(new byte[512]))
+            {
+                Assert.That(stream.Position, Is.EqualTo(0));
+                stream.Write(new byte[1], 0, 1);
+                Assert.That(stream.Position, Is.EqualTo(1));
+                Assert.That(stream.Length, Is.EqualTo(1));
+            }
+        }
+
+        [Test]
+        public static void TestDispose()
+        {
+            using (V2HmacStream stream = new V2HmacStream(new byte[512]))
+            {
+                stream.Dispose();
+                Assert.DoesNotThrow(() => stream.Dispose());
+                Assert.Throws<ObjectDisposedException>(() => stream.Write(new byte[1], 0, 1));
+            }
+        }
     }
 }

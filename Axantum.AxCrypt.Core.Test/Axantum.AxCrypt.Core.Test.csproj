@@ -170,7 +170,7 @@
     <Compile Include="TestUserSettings.cs" />
     <Compile Include="TestV1AxCryptReader.cs" />
     <Compile Include="TestV2AesCrypto.cs" />
-    <Compile Include="TestV2AxCryptDataStream.cs" />
+    <Compile Include="TestV2AxCryptDataStreamTest.cs" />
     <Compile Include="TestV2AxCryptDocument.cs" />
     <Compile Include="TestV2AxCryptReader.cs" />
     <Compile Include="TestV2CompressionEncryptedHeaderBlock.cs" />
