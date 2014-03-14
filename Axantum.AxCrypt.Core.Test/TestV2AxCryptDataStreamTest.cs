@@ -218,21 +218,21 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestNotImplementedMethods()
+        public static void TestNotSupportedMethods()
         {
             using (V2AxCryptDataStream stream = new V2AxCryptDataStream(Stream.Null))
             {
                 long position;
-                Assert.Throws<NotImplementedException>(() => position = stream.Position);
-                Assert.Throws<NotImplementedException>(() => stream.Position = 0);
+                Assert.Throws<NotSupportedException>(() => position = stream.Position);
+                Assert.Throws<NotSupportedException>(() => stream.Position = 0);
 
                 Assert.That(stream.CanSeek, Is.False);
 
                 long length;
-                Assert.Throws<NotImplementedException>(() => length = stream.Length);
-                Assert.Throws<NotImplementedException>(() => stream.SetLength(0));
+                Assert.Throws<NotSupportedException>(() => length = stream.Length);
+                Assert.Throws<NotSupportedException>(() => stream.SetLength(0));
 
-                Assert.Throws<NotImplementedException>(() => position = stream.Seek(0, SeekOrigin.Begin));
+                Assert.Throws<NotSupportedException>(() => position = stream.Seek(0, SeekOrigin.Begin));
             }
         }
     }

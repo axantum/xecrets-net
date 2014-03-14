@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core.UI;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -50,6 +51,7 @@ namespace Axantum.AxCrypt
             get { return !_control.InvokeRequired; }
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is to marshal the exception possibly between threads and then throw a new one.")]
         public void RunOnUIThread(Action action)
         {
             if (IsOnUIThread)
@@ -61,7 +63,7 @@ namespace Axantum.AxCrypt
             _context.Send((state) => { try { action(); } catch (Exception ex) { exception = ex; } }, null);
             if (exception != null)
             {
-                throw new Exception("Exception on UI Thread", exception);
+                throw new InvalidOperationException("Exception on UI Thread", exception);
             }
         }
     }
