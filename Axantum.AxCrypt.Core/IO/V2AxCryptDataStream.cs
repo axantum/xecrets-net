@@ -1,11 +1,43 @@
-﻿using Axantum.AxCrypt.Core.Header;
+﻿#region Coypright and License
+
+/*
+ * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
+ *
+ * This file is part of AxCrypt.
+ *
+ * AxCrypt is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * AxCrypt is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with AxCrypt.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * The source is maintained at http://bitbucket.org/axantum/axcrypt-net please visit for
+ * updates, contributions and contact with the author. You may also visit
+ * http://www.axantum.com for more information about the author.
+*/
+
+#endregion Coypright and License
+
+using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Reader;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.IO;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core.IO
 {
+    /// <summary>
+    /// Read and Write data to an encrypted data stream, wrapping the data during write in EncryptedDataPartBlock
+    /// blocks. During read, interpret and strip the EncryptedDataPartBlock structure, returning raw data.
+    /// </summary>
     public class V2AxCryptDataStream : Stream
     {
         public static readonly int WriteChunkSize = 65536;
@@ -18,11 +50,20 @@ namespace Axantum.AxCrypt.Core.IO
 
         private int _offset;
 
+        /// <summary>
+        /// Instantiate an instance of a stream to write to.
+        /// </summary>
+        /// <param name="hmacStream">A stream to pass all data to, typically to calculate an HMAC.</param>
         public V2AxCryptDataStream(Stream hmacStream)
         {
             _hmacStream = hmacStream;
         }
 
+        /// <summary>
+        /// Instantiate an instance of a stream to read from.
+        /// </summary>
+        /// <param name="reader">An AxCrypt reader where EnryptedDataPartBlock parts are read from.</param>
+        /// <param name="hmacStream">A stream to pass all data to, typically to calculate an HMAC.</param>
         public V2AxCryptDataStream(AxCryptReader reader, Stream hmacStream)
             : this(hmacStream)
         {
@@ -72,17 +113,21 @@ namespace Axantum.AxCrypt.Core.IO
 
         public override long Length
         {
-            get { return 0; }
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public override long Position
         {
             get
             {
-                return 0;
+                throw new NotImplementedException();
             }
             set
             {
+                throw new NotImplementedException();
             }
         }
 
@@ -127,12 +172,12 @@ namespace Axantum.AxCrypt.Core.IO
         {
             if (!_reader.Read())
             {
-                return false;
+                throw new FileFormatException("Unexpected end of file during read of encrypted data stream.");
             }
 
             if (_reader.CurrentItemType != AxCryptItemType.HeaderBlock)
             {
-                return false;
+                throw new FileFormatException("Unexpected block type encountered during read of encrypted data stream.");
             }
 
             if (_reader.CurrentHeaderBlock.HeaderBlockType != HeaderBlockType.EncryptedDataPart)

@@ -186,14 +186,14 @@ namespace Axantum.AxCrypt.Core.Reader
             }
             HeaderBlockType headerBlockType = (HeaderBlockType)blockType;
 
-            byte[] dataBLock = new byte[headerBlockLength];
-            if (!InputStream.ReadExact(dataBLock))
+            byte[] dataBlock = new byte[headerBlockLength];
+            if (!InputStream.ReadExact(dataBlock))
             {
                 CurrentItemType = AxCryptItemType.EndOfStream;
                 return;
             }
 
-            ParseHeaderBlock(headerBlockType, dataBLock);
+            ParseHeaderBlock(headerBlockType, dataBlock);
 
             DataHeaderBlock dataHeaderBlock = CurrentHeaderBlock as DataHeaderBlock;
             if (dataHeaderBlock != null)
