@@ -134,10 +134,7 @@ namespace Axantum.AxCrypt.Core.IO
                     pushBack.Push(byteBuffer);
                 }
             }
-            //if (count > 0)
-            //{
             bytesRead += _inputStream.Read(buffer, offset, count);
-            //}
             return bytesRead;
         }
 

@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
@@ -216,6 +217,30 @@ namespace Axantum.AxCrypt.Core.Test
                     using (MemoryStream plaintextStream = new MemoryStream())
                     {
                         Assert.Throws<CryptographicException>(() => { document.DecryptTo(plaintextStream); });
+                    }
+                }
+            }
+        }
+
+        [Test]
+        public static void TestDecryptWithCorruptHeaderCausingEarlyException()
+        {
+            V1Passphrase passphrase = new V1Passphrase("Å ä Ö");
+            using (V1AxCryptDocument document = new V1AxCryptDocument())
+            {
+                using (MemoryStream encryptedFile = FakeRuntimeFileInfo.ExpandableMemoryStream((byte[])Resources.david_copperfield_key__aa_ae_oe__ulu_txt.Clone()))
+                {
+                    bool keyIsOk = document.Load(passphrase, encryptedFile);
+                    Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
+
+                    HeaderBlock toCorrupt = document.DocumentHeaders.Headers.FindHeaderBlock<V1CompressionEncryptedHeaderBlock>();
+                    int i = document.DocumentHeaders.Headers.HeaderBlocks.IndexOf(toCorrupt);
+                    document.DocumentHeaders.Headers.HeaderBlocks.RemoveAt(i);
+                    document.DocumentHeaders.Headers.HeaderBlocks.Add(new V1CompressionEncryptedHeaderBlock(new byte[7]));
+
+                    using (MemoryStream plaintextStream = new MemoryStream())
+                    {
+                        Assert.Throws<NullReferenceException>(() => { document.DecryptTo(plaintextStream); });
                     }
                 }
             }
@@ -631,6 +656,53 @@ namespace Axantum.AxCrypt.Core.Test
                     {
                         document.CopyEncryptedTo(outputDocumentHeaders, changedStream);
                     });
+                }
+            }
+        }
+
+        [Test]
+        public static void TestReaderNotPositionedAtData()
+        {
+            using (MemoryStream encryptedFile = new MemoryStream(Resources.david_copperfield_key__aa_ae_oe__ulu_txt))
+            {
+                Headers headers = new Headers();
+                AxCryptReader reader = headers.Load(encryptedFile);
+                using (V1AxCryptDocument document = new V1AxCryptDocument())
+                {
+                    IPassphrase key = new V1Passphrase("Å ä Ö");
+                    bool keyIsOk = document.Load(key, reader, headers);
+                    Assert.That(keyIsOk, Is.True);
+
+                    reader.SetStartOfData();
+                    Assert.Throws<InvalidOperationException>(() => document.DecryptTo(Stream.Null));
+                }
+            }
+        }
+
+        [Test]
+        public static void TestHmacThrowsWhenTooLittleData()
+        {
+            using (MemoryStream plaintext = new MemoryStream(Resources.uncompressable_zip))
+            {
+                using (MemoryStream encryptedFile = new MemoryStream())
+                {
+                    using (V1AxCryptDocument encryptingDocument = new V1AxCryptDocument(new V1AesCrypto(new V1Passphrase("a")), 10))
+                    {
+                        encryptingDocument.EncryptTo(plaintext, encryptedFile, AxCryptOptions.EncryptWithoutCompression);
+                    }
+
+                    encryptedFile.Position = 0;
+                    Headers headers = new Headers();
+                    AxCryptReader reader = headers.Load(encryptedFile);
+                    using (V1AxCryptDocument document = new V1AxCryptDocument())
+                    {
+                        IPassphrase key = new V1Passphrase("a");
+                        bool keyIsOk = document.Load(key, reader, headers);
+                        Assert.That(keyIsOk, Is.True);
+
+                        reader.InputStream.Read(new byte[16], 0, 16);
+                        Assert.Throws<InvalidOperationException>(() => document.DecryptTo(Stream.Null));
+                    }
                 }
             }
         }

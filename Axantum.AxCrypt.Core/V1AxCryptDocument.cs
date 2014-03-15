@@ -293,13 +293,13 @@ namespace Axantum.AxCrypt.Core
                     }
                 }
             }
-            catch (IndexOutOfRangeException)
+            catch (Exception)
             {
-                throw savedExceptionIfCloseCausesException;
-            }
-            catch (CryptographicException)
-            {
-                throw savedExceptionIfCloseCausesException;
+                if (savedExceptionIfCloseCausesException != null)
+                {
+                    throw savedExceptionIfCloseCausesException;
+                }
+                throw;
             }
         }
 
@@ -322,14 +322,6 @@ namespace Axantum.AxCrypt.Core
         {
             get
             {
-                if (_disposed)
-                {
-                    throw new ObjectDisposedException(GetType().FullName);
-                }
-                if (_reader.CurrentItemType != AxCryptItemType.EndOfStream)
-                {
-                    throw new InvalidOperationException("There is no valid HMAC until the encrypted data stream is read to end.");
-                }
                 if (_hmacStream.Length != _expectedTotalHmacLength)
                 {
                     throw new InvalidOperationException("There is no valid HMAC until the encrypted data stream is read to end.");

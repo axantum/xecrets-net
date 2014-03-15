@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Core.IO
         /// and optionally sending the data to a presumed hmacStream.
         /// </summary>
         /// <param name="inputStream">A stream positioned at the first byte of data</param>
-        /// <param name="hmacStream">A stream where all data read is mirrored, presumably to calculate an HMAC. If null, ignored.</param>
+        /// <param name="hmacStream">A stream where all data read is mirrored, presumably to calculate an HMAC.</param>
         /// <param name="length">The exact number of bytes to expect and read from the input stream</param>
         public V1AxCryptDataStream(Stream inputStream, Stream hmacStream, long length)
         {

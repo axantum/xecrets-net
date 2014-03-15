@@ -559,5 +559,22 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<OperationCanceledException>(() => { Factory.New<AxCryptFile>().Wipe(fileInfo, progress); });
             Assert.That(!fileInfo.IsExistingFile, "The file should be completely wiped, even if canceled at start.");
         }
+
+        [Test]
+        public static void TestDocumentNullArguments()
+        {
+            IRuntimeFileInfo nullSourceFile = null;
+            string nullPassphrase = null;
+            IProgressContext nullProgress = null;
+
+            IRuntimeFileInfo sourceFile = Factory.New<IRuntimeFileInfo>(@"C:\Folder\File.txt");
+            string passphrase = "allan";
+            IProgressContext progress = new ProgressContext();
+
+            IAxCryptDocument document;
+            Assert.Throws<ArgumentNullException>(() => document = Factory.New<AxCryptFile>().Document(nullSourceFile, passphrase, progress));
+            Assert.Throws<ArgumentNullException>(() => document = Factory.New<AxCryptFile>().Document(sourceFile, nullPassphrase, progress));
+            Assert.Throws<ArgumentNullException>(() => document = Factory.New<AxCryptFile>().Document(sourceFile, passphrase, nullProgress));
+        }
     }
 }
