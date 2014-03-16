@@ -162,6 +162,11 @@ namespace Axantum.AxCrypt.Core
         /// <param name="outputPlaintextStream">The resulting plain text stream.</param>
         public void DecryptTo(Stream outputPlaintextStream)
         {
+            if (outputPlaintextStream == null)
+            {
+                throw new ArgumentNullException("outputPlaintextStream");
+            }
+
             if (!PassphraseIsValid)
             {
                 throw new InternalErrorException("Passsphrase is not valid!");
@@ -171,14 +176,14 @@ namespace Axantum.AxCrypt.Core
             {
                 using (Stream encryptedDataStream = CreateEncryptedDataStream())
                 {
-                    DecryptEncryptedDataStream(outputPlaintextStream, decryptor, encryptedDataStream);
+                    encryptedDataStream.DecryptTo(outputPlaintextStream, decryptor, DocumentHeaders.IsCompressed);
                 }
             }
 
             DocumentHeaders.Trailers(_reader);
             if (DocumentHeaders.HmacStream.Hmac != DocumentHeaders.Hmac)
             {
-                throw new Axantum.AxCrypt.Core.Runtime.InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
+                throw new Axantum.AxCrypt.Core.Runtime.IncorrectDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
             }
         }
 
@@ -192,51 +197,6 @@ namespace Axantum.AxCrypt.Core
             _reader.SetStartOfData();
             V2AxCryptDataStream encryptedDataStream = new V2AxCryptDataStream(_reader, DocumentHeaders.HmacStream);
             return encryptedDataStream;
-        }
-
-        private void DecryptEncryptedDataStream(Stream outputPlaintextStream, ICryptoTransform decryptor, Stream encryptedDataStream)
-        {
-            Exception savedExceptionIfCloseCausesCryptographicException = null;
-            try
-            {
-                if (DocumentHeaders.IsCompressed)
-                {
-                    using (CryptoStream deflatedPlaintextStream = new CryptoStream(encryptedDataStream, decryptor, CryptoStreamMode.Read))
-                    {
-                        using (ZInputStream inflatedPlaintextStream = new ZInputStream(deflatedPlaintextStream))
-                        {
-                            try
-                            {
-                                inflatedPlaintextStream.CopyTo(outputPlaintextStream);
-                            }
-                            catch (Exception ex)
-                            {
-                                savedExceptionIfCloseCausesCryptographicException = ex;
-                                throw;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    using (Stream plainStream = new CryptoStream(encryptedDataStream, decryptor, CryptoStreamMode.Read))
-                    {
-                        try
-                        {
-                            plainStream.CopyTo(outputPlaintextStream);
-                        }
-                        catch (Exception ex)
-                        {
-                            savedExceptionIfCloseCausesCryptographicException = ex;
-                            throw;
-                        }
-                    }
-                }
-            }
-            catch (CryptographicException)
-            {
-                throw savedExceptionIfCloseCausesCryptographicException;
-            }
         }
 
         public string FileName

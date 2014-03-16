@@ -205,7 +205,7 @@ namespace Axantum.AxCrypt.Core
 
                     if (Hmac != DocumentHeaders.Headers.Hmac)
                     {
-                        throw new Axantum.AxCrypt.Core.Runtime.InvalidDataException("HMAC validation error in the input stream.", ErrorStatus.HmacValidationError);
+                        throw new Axantum.AxCrypt.Core.Runtime.IncorrectDataException("HMAC validation error in the input stream.", ErrorStatus.HmacValidationError);
                     }
                 }
 
@@ -244,62 +244,13 @@ namespace Axantum.AxCrypt.Core
             {
                 using (V1AxCryptDataStream encryptedDataStream = CreateEncryptedDataStream(_reader.InputStream, DocumentHeaders.CipherTextLength))
                 {
-                    DecryptEncryptedDataStream(outputPlaintextStream, decryptor, encryptedDataStream);
+                    encryptedDataStream.DecryptTo(outputPlaintextStream, decryptor, DocumentHeaders.IsCompressed);
                 }
             }
 
             if (Hmac != DocumentHeaders.Headers.Hmac)
             {
-                throw new Axantum.AxCrypt.Core.Runtime.InvalidDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
-            }
-        }
-
-        private void DecryptEncryptedDataStream(Stream outputPlaintextStream, ICryptoTransform decryptor, Stream encryptedDataStream)
-        {
-            Exception savedExceptionIfCloseCausesException = null;
-            try
-            {
-                if (DocumentHeaders.IsCompressed)
-                {
-                    using (CryptoStream deflatedPlaintextStream = new CryptoStream(encryptedDataStream, decryptor, CryptoStreamMode.Read))
-                    {
-                        using (ZInputStream inflatedPlaintextStream = new ZInputStream(deflatedPlaintextStream))
-                        {
-                            try
-                            {
-                                inflatedPlaintextStream.CopyTo(outputPlaintextStream);
-                            }
-                            catch (Exception ex)
-                            {
-                                savedExceptionIfCloseCausesException = ex;
-                                throw;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    using (Stream plainStream = new CryptoStream(encryptedDataStream, decryptor, CryptoStreamMode.Read))
-                    {
-                        try
-                        {
-                            plainStream.CopyTo(outputPlaintextStream);
-                        }
-                        catch (Exception ex)
-                        {
-                            savedExceptionIfCloseCausesException = ex;
-                            throw;
-                        }
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                if (savedExceptionIfCloseCausesException != null)
-                {
-                    throw savedExceptionIfCloseCausesException;
-                }
-                throw;
+                throw new Axantum.AxCrypt.Core.Runtime.IncorrectDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
             }
         }
 

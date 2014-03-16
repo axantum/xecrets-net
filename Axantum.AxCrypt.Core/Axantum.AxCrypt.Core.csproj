@@ -162,7 +162,7 @@
     <Compile Include="Runtime\ILogging.cs" />
     <Compile Include="Runtime\IRuntimeEnvironment.cs" />
     <Compile Include="Runtime\InternalErrorException.cs" />
-    <Compile Include="Runtime\InvalidDataException.cs" />
+    <Compile Include="Runtime\IncorrectDataException.cs" />
     <Compile Include="IO\V1AxCryptDataStream.cs" />
     <Compile Include="IO\V1HmacStream.cs" />
     <Compile Include="IO\IRuntimeFileInfo.cs" />

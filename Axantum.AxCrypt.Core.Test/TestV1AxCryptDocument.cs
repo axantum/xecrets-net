@@ -379,7 +379,7 @@ namespace Axantum.AxCrypt.Core.Test
                 bool keyIsOk = document.Load(passphrase, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 document.DocumentHeaders.Headers.Hmac = new V1Hmac(new byte[V1Hmac.RequiredLength]);
-                Assert.Throws<Axantum.AxCrypt.Core.Runtime.InvalidDataException>(() =>
+                Assert.Throws<Axantum.AxCrypt.Core.Runtime.IncorrectDataException>(() =>
                 {
                     document.DecryptTo(Stream.Null);
                 });
@@ -652,7 +652,7 @@ namespace Axantum.AxCrypt.Core.Test
                     byte[] modifiedHmacBytes = document.DocumentHeaders.Headers.Hmac.GetBytes();
                     modifiedHmacBytes[0] += 1;
                     document.DocumentHeaders.Headers.Hmac = new V1Hmac(modifiedHmacBytes);
-                    Assert.Throws<Axantum.AxCrypt.Core.Runtime.InvalidDataException>(() =>
+                    Assert.Throws<Axantum.AxCrypt.Core.Runtime.IncorrectDataException>(() =>
                     {
                         document.CopyEncryptedTo(outputDocumentHeaders, changedStream);
                     });

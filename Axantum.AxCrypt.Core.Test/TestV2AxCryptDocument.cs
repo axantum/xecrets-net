@@ -27,7 +27,10 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Reader;
+using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
 using System;
 using System.IO;
@@ -243,6 +246,180 @@ namespace Axantum.AxCrypt.Core.Test
                             }
 
                             Assert.That(plain.IsEquivalentTo(text));
+                        }
+                    }
+                }
+            }
+        }
+
+        [Test]
+        public static void TestEncryptToInvalidArguments()
+        {
+            Stream nullStream = null;
+
+            using (IAxCryptDocument document = new V2AxCryptDocument())
+            {
+                Assert.Throws<ArgumentNullException>(() => document.EncryptTo(nullStream, Stream.Null, AxCryptOptions.EncryptWithCompression));
+                Assert.Throws<ArgumentNullException>(() => document.EncryptTo(Stream.Null, nullStream, AxCryptOptions.EncryptWithCompression));
+                Assert.Throws<ArgumentException>(() => document.EncryptTo(Stream.Null, Stream.Null, AxCryptOptions.None));
+                Assert.Throws<ArgumentException>(() => document.EncryptTo(Stream.Null, Stream.Null, AxCryptOptions.EncryptWithCompression | AxCryptOptions.EncryptWithoutCompression));
+            }
+        }
+
+        [Test]
+        public static void TestLoadWithInvalidPassphrase()
+        {
+            IPassphrase key = new V2Passphrase("passphrase", 256);
+            using (MemoryStream inputStream = new MemoryStream())
+            {
+                byte[] text = Instance.RandomGenerator.Generate(1000);
+                inputStream.Write(text, 0, text.Length);
+                inputStream.Position = 0;
+                using (MemoryStream outputStream = new MemoryStream())
+                {
+                    using (IAxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(key), 113))
+                    {
+                        document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithCompression);
+
+                        outputStream.Position = 0;
+                        using (IAxCryptDocument decryptedDocument = new V2AxCryptDocument())
+                        {
+                            Assert.That(decryptedDocument.Load(new V2Passphrase("incorrect", 256), outputStream), Is.False);
+                        }
+                    }
+                }
+            }
+        }
+
+        [Test]
+        public static void TestDecryptToWithInvalidArgument()
+        {
+            Stream nullStream = null;
+
+            using (IAxCryptDocument document = new V2AxCryptDocument())
+            {
+                Assert.Throws<ArgumentNullException>(() => document.DecryptTo(nullStream));
+            }
+
+            IPassphrase key = new V2Passphrase("passphrase", 256);
+            using (MemoryStream inputStream = new MemoryStream())
+            {
+                byte[] text = Instance.RandomGenerator.Generate(1000);
+                inputStream.Write(text, 0, text.Length);
+                inputStream.Position = 0;
+                using (MemoryStream outputStream = new MemoryStream())
+                {
+                    using (IAxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(key), 113))
+                    {
+                        document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithCompression);
+
+                        outputStream.Position = 0;
+                        using (IAxCryptDocument decryptedDocument = new V2AxCryptDocument())
+                        {
+                            Assert.That(decryptedDocument.Load(new V2Passphrase("incorrect", 256), outputStream), Is.False);
+                            Assert.Throws<InternalErrorException>(() => decryptedDocument.DecryptTo(Stream.Null));
+                        }
+                    }
+                }
+            }
+        }
+
+        [Test]
+        public static void TestDecryptWithInvalidHmac()
+        {
+            IPassphrase key = new V2Passphrase("passphrase", 256);
+            using (MemoryStream inputStream = new MemoryStream())
+            {
+                byte[] text = Instance.RandomGenerator.Generate(1000);
+                inputStream.Write(text, 0, text.Length);
+                inputStream.Position = 0;
+                using (MemoryStream outputStream = new MemoryStream())
+                {
+                    using (IAxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(key), 113))
+                    {
+                        document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithoutCompression);
+
+                        outputStream.Position = 1000;
+                        int b = outputStream.ReadByte();
+                        outputStream.Position = 1000;
+                        outputStream.WriteByte((byte)(b + 1));
+                        outputStream.Position = 0;
+
+                        using (IAxCryptDocument decryptedDocument = new V2AxCryptDocument())
+                        {
+                            Assert.That(decryptedDocument.Load(key, outputStream), Is.True);
+                            Assert.Throws<Axantum.AxCrypt.Core.Runtime.IncorrectDataException>(() => decryptedDocument.DecryptTo(Stream.Null));
+                        }
+                    }
+                }
+            }
+        }
+
+        [Test]
+        public static void TestDecryptToWithReaderWronglyPositioned()
+        {
+            IPassphrase key = new V2Passphrase("passphrase", 256);
+            using (MemoryStream inputStream = new MemoryStream())
+            {
+                byte[] text = Instance.RandomGenerator.Generate(1000);
+                inputStream.Write(text, 0, text.Length);
+                inputStream.Position = 0;
+                using (MemoryStream outputStream = new MemoryStream())
+                {
+                    using (IAxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(key), 113))
+                    {
+                        document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithCompression);
+
+                        outputStream.Position = 0;
+                        using (V2AxCryptDocument decryptedDocument = new V2AxCryptDocument())
+                        {
+                            Headers headers = new Headers();
+                            AxCryptReader reader = headers.Load(outputStream);
+
+                            Assert.That(decryptedDocument.Load(key, reader, headers), Is.True);
+                            reader.SetStartOfData();
+                            Assert.Throws<InvalidOperationException>(() => decryptedDocument.DecryptTo(Stream.Null));
+                        }
+                    }
+                }
+            }
+        }
+
+        [Test]
+        public static void TestDocumentHeaderProperties()
+        {
+            IPassphrase key = new V2Passphrase("properties", 256);
+            using (MemoryStream inputStream = new MemoryStream())
+            {
+                byte[] text = Instance.RandomGenerator.Generate(500);
+                inputStream.Write(text, 0, text.Length);
+                inputStream.Position = 0;
+                using (MemoryStream outputStream = new MemoryStream())
+                {
+                    using (IAxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(key), 15))
+                    {
+                        DateTime utcNow = OS.Current.UtcNow;
+                        DateTime lastWrite = utcNow.AddHours(1);
+                        DateTime lastAccess = utcNow.AddHours(2);
+                        DateTime create = utcNow.AddHours(3);
+
+                        document.CreationTimeUtc = create;
+                        document.LastAccessTimeUtc = lastAccess;
+                        document.LastWriteTimeUtc = lastWrite;
+
+                        document.FileName = "Property Test.txt";
+                        document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithCompression);
+
+                        outputStream.Position = 0;
+                        using (IAxCryptDocument decryptedDocument = new V2AxCryptDocument())
+                        {
+                            Assert.That(decryptedDocument.Load(new V2Passphrase("properties", 256), outputStream), Is.True);
+
+                            Assert.That(decryptedDocument.CreationTimeUtc, Is.EqualTo(create));
+                            Assert.That(decryptedDocument.LastAccessTimeUtc, Is.EqualTo(lastAccess));
+                            Assert.That(decryptedDocument.LastWriteTimeUtc, Is.EqualTo(lastWrite));
+                            Assert.That(decryptedDocument.FileName, Is.EqualTo("Property Test.txt"));
+                            Assert.That(decryptedDocument.KeyEncryptingCrypto.Key.Thumbprint, Is.EqualTo(document.KeyEncryptingCrypto.Key.Thumbprint));
                         }
                     }
                 }

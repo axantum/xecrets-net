@@ -31,34 +31,34 @@ using System.Runtime.Serialization;
 namespace Axantum.AxCrypt.Core.Runtime
 {
     [Serializable]
-    public class InvalidDataException : AxCryptException
+    public class IncorrectDataException : AxCryptException
     {
-        public InvalidDataException()
+        public IncorrectDataException()
             : base()
         {
         }
 
-        public InvalidDataException(string message)
+        public IncorrectDataException(string message)
             : this(message, ErrorStatus.DataError)
         {
         }
 
-        public InvalidDataException(string message, ErrorStatus errorStatus)
+        public IncorrectDataException(string message, ErrorStatus errorStatus)
             : base(message, errorStatus)
         {
         }
 
-        protected InvalidDataException(SerializationInfo info, StreamingContext context)
+        protected IncorrectDataException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
 
-        public InvalidDataException(string message, Exception innerException)
+        public IncorrectDataException(string message, Exception innerException)
             : this(message, ErrorStatus.DataError, innerException)
         {
         }
 
-        public InvalidDataException(string message, ErrorStatus errorStatus, Exception innerException)
+        public IncorrectDataException(string message, ErrorStatus errorStatus, Exception innerException)
             : base(message, errorStatus, innerException)
         {
         }

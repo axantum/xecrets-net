@@ -78,13 +78,13 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(ace.ErrorStatus, Is.EqualTo(ErrorStatus.Unknown), "Parameterless constructor should result in status Unknown.");
             }
 
-            Assert.Throws<Axantum.AxCrypt.Core.Runtime.InvalidDataException>(() =>
+            Assert.Throws<Axantum.AxCrypt.Core.Runtime.IncorrectDataException>(() =>
             {
-                throw new Axantum.AxCrypt.Core.Runtime.InvalidDataException();
+                throw new Axantum.AxCrypt.Core.Runtime.IncorrectDataException();
             });
             try
             {
-                throw new Axantum.AxCrypt.Core.Runtime.InvalidDataException();
+                throw new Axantum.AxCrypt.Core.Runtime.IncorrectDataException();
             }
             catch (AxCryptException ace)
             {
@@ -142,7 +142,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 try
                 {
-                    throw new Axantum.AxCrypt.Core.Runtime.InvalidDataException("Testing inner", ice);
+                    throw new Axantum.AxCrypt.Core.Runtime.IncorrectDataException("Testing inner", ice);
                 }
                 catch (AxCryptException ace)
                 {
@@ -178,13 +178,13 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(deserializedFfe.Message, Is.EqualTo("A test-exception"), "The deserialized message should be the same as the original.");
             }
 
-            Axantum.AxCrypt.Core.Runtime.InvalidDataException ide = new Axantum.AxCrypt.Core.Runtime.InvalidDataException("A test-exception");
+            Axantum.AxCrypt.Core.Runtime.IncorrectDataException ide = new Axantum.AxCrypt.Core.Runtime.IncorrectDataException("A test-exception");
             IFormatter ideFormatter = new BinaryFormatter();
             using (Stream stream = new MemoryStream())
             {
                 ideFormatter.Serialize(stream, ide);
                 stream.Position = 0;
-                Axantum.AxCrypt.Core.Runtime.InvalidDataException deserializedFfe = (Axantum.AxCrypt.Core.Runtime.InvalidDataException)ideFormatter.Deserialize(stream);
+                Axantum.AxCrypt.Core.Runtime.IncorrectDataException deserializedFfe = (Axantum.AxCrypt.Core.Runtime.IncorrectDataException)ideFormatter.Deserialize(stream);
                 Assert.That(deserializedFfe.ErrorStatus, Is.EqualTo(ErrorStatus.DataError), "The deserialized status should be the same as the original.");
                 Assert.That(deserializedFfe.Message, Is.EqualTo("A test-exception"), "The deserialized message should be the same as the original.");
             }

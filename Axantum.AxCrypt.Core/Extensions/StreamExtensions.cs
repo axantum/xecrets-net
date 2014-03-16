@@ -25,9 +25,11 @@
 
 #endregion Coypright and License
 
+using Org.BouncyCastle.Utilities.Zlib;
 using System;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Core.Extensions
 {
@@ -82,6 +84,55 @@ namespace Axantum.AxCrypt.Core.Extensions
                 bufferRemainingCount = buffer.Length;
             }
             return totalDone;
+        }
+
+        public static void DecryptTo(this Stream encryptedInputStream, Stream plaintextOutputStream, ICryptoTransform decryptor, bool isCompressed)
+        {
+            Exception savedExceptionIfCloseCausesException = null;
+            try
+            {
+                if (isCompressed)
+                {
+                    using (Stream deflatedPlaintextStream = new CryptoStream(encryptedInputStream, decryptor, CryptoStreamMode.Read))
+                    {
+                        using (Stream inflatedPlaintextStream = new ZInputStream(deflatedPlaintextStream))
+                        {
+                            try
+                            {
+                                inflatedPlaintextStream.CopyTo(plaintextOutputStream);
+                            }
+                            catch (Exception ex)
+                            {
+                                savedExceptionIfCloseCausesException = ex;
+                                throw;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    using (Stream plainStream = new CryptoStream(encryptedInputStream, decryptor, CryptoStreamMode.Read))
+                    {
+                        try
+                        {
+                            plainStream.CopyTo(plaintextOutputStream);
+                        }
+                        catch (Exception ex)
+                        {
+                            savedExceptionIfCloseCausesException = ex;
+                            throw;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                if (savedExceptionIfCloseCausesException != null)
+                {
+                    throw savedExceptionIfCloseCausesException;
+                }
+                throw;
+            }
         }
     }
 }
