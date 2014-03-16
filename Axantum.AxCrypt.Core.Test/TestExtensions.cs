@@ -34,6 +34,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
+using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Threading;
 
@@ -505,6 +506,18 @@ namespace Axantum.AxCrypt.Core.Test
                     Assert.That(copy.IsEquivalentTo(new byte[] { 1, 2, 3, 4 }));
                 }
             }
+        }
+
+        [Test]
+        public static void TestDecryptToBadArgumentsCausingEarlyException()
+        {
+            Stream nullStream = null;
+            ICryptoTransform nullEncryptor = null;
+            ICryptoTransform encryptor = new V2AesCrypto().CreateDecryptingTransform();
+
+            Assert.Throws<ArgumentNullException>(() => nullStream.DecryptTo(Stream.Null, encryptor, true));
+            Assert.Throws<ArgumentNullException>(() => Stream.Null.DecryptTo(nullStream, encryptor, true));
+            Assert.Throws<ArgumentNullException>(() => Stream.Null.DecryptTo(Stream.Null, nullEncryptor, true));
         }
     }
 }

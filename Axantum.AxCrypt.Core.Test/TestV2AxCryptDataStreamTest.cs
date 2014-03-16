@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
@@ -87,6 +88,11 @@ namespace Axantum.AxCrypt.Core.Test
                         return new EncryptedDataPartBlock(dataBlock);
                 }
                 return new UnrecognizedHeaderBlock(headerBlockType, dataBlock);
+            }
+
+            public override IAxCryptDocument Document(IPassphrase key, Headers headers)
+            {
+                throw new NotImplementedException();
             }
         }
 

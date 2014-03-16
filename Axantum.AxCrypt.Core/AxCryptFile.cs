@@ -113,6 +113,7 @@ namespace Axantum.AxCrypt.Core
                     document.CreationTimeUtc = sourceFile.CreationTimeUtc;
                     document.LastAccessTimeUtc = sourceFile.LastAccessTimeUtc;
                     document.LastWriteTimeUtc = sourceFile.LastWriteTimeUtc;
+
                     document.EncryptTo(sourceStream, destinationStream, options);
                 }
             }

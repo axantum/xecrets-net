@@ -72,6 +72,8 @@ namespace Axantum.AxCrypt.Core.Reader
 
         public abstract ICrypto Crypto(Headers headers, string passphrase);
 
+        public abstract IAxCryptDocument Document(IPassphrase key, Headers headers);
+
         /// <summary>
         /// Gets the type of the current item
         /// </summary>

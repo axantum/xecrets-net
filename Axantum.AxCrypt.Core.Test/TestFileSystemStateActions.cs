@@ -119,11 +119,12 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
             FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcJustNow, utcJustNow, utcJustNow, Stream.Null);
 
-            Mock<AxCryptFactory> axCryptFactoryMock = new Mock<AxCryptFactory>();
+            Mock<AxCryptFactory> axCryptFactoryMock = new Mock<AxCryptFactory>() { CallBase = true };
             axCryptFactoryMock.Setup<IPassphrase>(m => m.CreatePassphrase(It.IsAny<string>(), It.IsAny<IRuntimeFileInfo>())).Returns((string passphrase, IRuntimeFileInfo fileInfo) =>
             {
                 return new V1Passphrase(passphrase);
             });
+            axCryptFactoryMock.Setup(acf => acf.CreatePassphrase(It.IsAny<string>(), It.Is<CryptoId>((CryptoId cryptoId) => cryptoId == CryptoId.Aes_128_V1))).Returns((string passphrase, CryptoId cryptoId) => new V1Passphrase(passphrase));
             Factory.Instance.Register<AxCryptFactory>(() => axCryptFactoryMock.Object);
 
             ActiveFile activeFile;
@@ -459,7 +460,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
             FakeRuntimeFileInfo.AddFile(_decryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
 
-            Mock<AxCryptFactory> axCryptFactoryMock = new Mock<AxCryptFactory>();
+            Mock<AxCryptFactory> axCryptFactoryMock = new Mock<AxCryptFactory>() { CallBase = true };
             axCryptFactoryMock.Setup<IPassphrase>(m => m.CreatePassphrase(It.IsAny<string>(), It.IsAny<IRuntimeFileInfo>())).Returns((string passphrase, IRuntimeFileInfo fileInfo) =>
             {
                 return new V1Passphrase(passphrase);

@@ -498,6 +498,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 return new V1Passphrase(passphrase);
             });
+            axCryptFactoryMock.Setup(acf => acf.CreatePassphrase(It.IsAny<string>(), It.Is<CryptoId>((CryptoId cryptoId) => cryptoId == CryptoId.Aes_128_V1))).Returns((string passphrase, CryptoId cryptoId) => new V1Passphrase(passphrase));
             Factory.Instance.Register<AxCryptFactory>(() => axCryptFactoryMock.Object);
 
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
@@ -839,6 +840,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 return new V1Passphrase(passphrase);
             });
+            axCryptFactoryMock.Setup(acf => acf.CreatePassphrase(It.IsAny<string>(), It.Is<CryptoId>((CryptoId cryptoId) => cryptoId == CryptoId.Aes_128_V1))).Returns((string passphrase, CryptoId cryptoId) => new V1Passphrase(passphrase));
             Factory.Instance.Register<AxCryptFactory>(() => axCryptFactoryMock.Object);
 
             Mock<FileOperation> fileOperationMock = new Mock<FileOperation>(Instance.FileSystemState, Instance.SessionNotify);
@@ -890,6 +892,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Mock<AxCryptFactory> axCryptFactoryMock = new Mock<AxCryptFactory>();
             axCryptFactoryMock.Setup(acf => acf.CreatePassphrase(It.IsAny<string>(), It.IsAny<IRuntimeFileInfo>())).Returns((string passphrase, IRuntimeFileInfo fileInfo) => new V1Passphrase(passphrase));
+            axCryptFactoryMock.Setup(acf => acf.CreatePassphrase(It.IsAny<string>(), It.Is<CryptoId>((CryptoId cryptoId) => cryptoId == CryptoId.Aes_128_V1))).Returns((string passphrase, CryptoId cryptoId) => new V1Passphrase(passphrase));
             Factory.Instance.Register<AxCryptFactory>(() => axCryptFactoryMock.Object);
 
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();

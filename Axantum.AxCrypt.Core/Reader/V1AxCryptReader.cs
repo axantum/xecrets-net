@@ -96,5 +96,13 @@ namespace Axantum.AxCrypt.Core.Reader
         {
             return new V1AesCrypto(new V1Passphrase(passphrase));
         }
+
+        public override IAxCryptDocument Document(IPassphrase key, Headers headers)
+        {
+            V1AxCryptDocument v1Document = new V1AxCryptDocument();
+            v1Document.Load(key, this, headers);
+
+            return v1Document;
+        }
     }
 }

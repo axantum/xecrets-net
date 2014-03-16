@@ -91,6 +91,19 @@ namespace Axantum.AxCrypt.Core.Extensions
             Exception savedExceptionIfCloseCausesException = null;
             try
             {
+                if (encryptedInputStream == null)
+                {
+                    throw new ArgumentNullException("encryptedIntputStream");
+                }
+                if (plaintextOutputStream == null)
+                {
+                    throw new ArgumentNullException("plaintextOutputStream");
+                }
+                if (decryptor == null)
+                {
+                    throw new ArgumentNullException("decryptor");
+                }
+
                 if (isCompressed)
                 {
                     using (Stream deflatedPlaintextStream = new CryptoStream(encryptedInputStream, decryptor, CryptoStreamMode.Read))

@@ -29,9 +29,7 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
-using Axantum.AxCrypt.Core.Runtime;
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 
@@ -39,39 +37,7 @@ namespace Axantum.AxCrypt.Core
 {
     public class AxCryptFactory
     {
-        public AxCryptFactory()
-        {
-        }
-
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public ICrypto CreateCrypto(IPassphrase key)
-        {
-            if (key == null)
-            {
-                throw new ArgumentNullException("key");
-            }
-
-            if (key.CryptoId == CryptoId.Aes_128_V1)
-            {
-                return new V1AesCrypto(key);
-            }
-            if (key.CryptoId == CryptoId.Aes_256)
-            {
-                return new V2AesCrypto(key);
-            }
-            if (key.CryptoId == CryptoId.Unknown && key.DerivedKey.Length == 16)
-            {
-                return new V1AesCrypto(key);
-            }
-            if (key.CryptoId == CryptoId.Unknown && key.DerivedKey.Length == 32)
-            {
-                return new V2AesCrypto(key);
-            }
-            throw new InternalErrorException("Invalid CryptoId in parameter 'key'.");
-        }
-
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public IPassphrase CreatePassphrase(string passphrase, CryptoId cryptoId)
+        public virtual IPassphrase CreatePassphrase(string passphrase, CryptoId cryptoId)
         {
             switch (cryptoId)
             {
@@ -81,18 +47,12 @@ namespace Axantum.AxCrypt.Core
                 case CryptoId.Aes_128_V1:
                     return new V1Passphrase(passphrase);
             }
-            throw new InternalErrorException("Invalid CryptoId in parameter 'cryptoId'.");
-        }
-
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public IPassphrase CreatePassphrase(string passphrase)
-        {
-            return new V2Passphrase(passphrase, 256);
+            throw new ArgumentException("Invalid CryptoId in parameter 'cryptoId'.");
         }
 
         public virtual IPassphrase CreatePassphrase(string passphrase, string encryptedFileFullName)
         {
-            IPassphrase key = Factory.New<AxCryptFactory>().CreatePassphrase(passphrase, Factory.New<IRuntimeFileInfo>(encryptedFileFullName));
+            IPassphrase key = CreatePassphrase(passphrase, Factory.New<IRuntimeFileInfo>(encryptedFileFullName));
             return key;
         }
 
@@ -104,7 +64,7 @@ namespace Axantum.AxCrypt.Core
                 AxCryptReader reader = headers.Load(encryptedStream);
 
                 IPassphrase key = reader.Crypto(headers, passphrase).Key;
-                using (IAxCryptDocument document = CreateDocument(key, headers, reader))
+                using (IAxCryptDocument document = reader.Document(key, headers))
                 {
                     if (document.PassphraseIsValid)
                     {
@@ -115,8 +75,7 @@ namespace Axantum.AxCrypt.Core
             return null;
         }
 
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public IAxCryptDocument CreateDocument(IPassphrase key)
+        public virtual IAxCryptDocument CreateDocument(IPassphrase key)
         {
             IAxCryptDocument document;
             switch (key.CryptoId)
@@ -130,7 +89,7 @@ namespace Axantum.AxCrypt.Core
                     break;
 
                 default:
-                    throw new InternalErrorException("Invalid CryptoId in key.");
+                    throw new ArgumentException("Invalid CryptoId in key.");
             }
             return document;
         }
@@ -141,14 +100,13 @@ namespace Axantum.AxCrypt.Core
         /// <param name="passphrase">The passphrase.</param>
         /// <param name="fileInfo">The file to use.</param>
         /// <returns></returns>
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public IAxCryptDocument CreateDocument(string passphrase, Stream inputStream)
+        public virtual IAxCryptDocument CreateDocument(string passphrase, Stream inputStream)
         {
             Headers headers = new Headers();
             AxCryptReader reader = headers.Load(inputStream);
 
             IPassphrase key = reader.Crypto(headers, passphrase).Key;
-            return CreateDocument(key, headers, reader);
+            return reader.Document(key, headers);
         }
 
         /// <summary>
@@ -156,40 +114,12 @@ namespace Axantum.AxCrypt.Core
         /// </summary>
         /// <param name="fileInfo"></param>
         /// <returns></returns>
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public IAxCryptDocument CreateDocument(IPassphrase key, Stream inputStream)
+        public virtual IAxCryptDocument CreateDocument(IPassphrase key, Stream inputStream)
         {
             Headers headers = new Headers();
             AxCryptReader reader = headers.Load(inputStream);
 
-            return CreateDocument(key, headers, reader);
-        }
-
-        private static IAxCryptDocument CreateDocument(IPassphrase key, Headers headers, AxCryptReader reader)
-        {
-            VersionHeaderBlock versionHeader = headers.FindHeaderBlock<VersionHeaderBlock>();
-            IAxCryptDocument document;
-            switch (versionHeader.FileVersionMajor)
-            {
-                case 1:
-                case 2:
-                case 3:
-                    V1AxCryptDocument v1Document = new V1AxCryptDocument();
-                    v1Document.Load(key, reader, headers);
-                    document = v1Document;
-                    break;
-
-                case 4:
-                    V2AxCryptDocument v2Document = new V2AxCryptDocument();
-                    v2Document.Load(key, reader, headers);
-                    document = v2Document;
-                    break;
-
-                default:
-                    throw new FileFormatException("Too new file version. Please upgrade.");
-            }
-
-            return document;
+            return reader.Document(key, headers);
         }
     }
 }

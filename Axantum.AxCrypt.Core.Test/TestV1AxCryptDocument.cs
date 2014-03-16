@@ -223,30 +223,6 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptWithCorruptHeaderCausingEarlyException()
-        {
-            V1Passphrase passphrase = new V1Passphrase("Å ä Ö");
-            using (V1AxCryptDocument document = new V1AxCryptDocument())
-            {
-                using (MemoryStream encryptedFile = FakeRuntimeFileInfo.ExpandableMemoryStream((byte[])Resources.david_copperfield_key__aa_ae_oe__ulu_txt.Clone()))
-                {
-                    bool keyIsOk = document.Load(passphrase, encryptedFile);
-                    Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
-
-                    HeaderBlock toCorrupt = document.DocumentHeaders.Headers.FindHeaderBlock<V1CompressionEncryptedHeaderBlock>();
-                    int i = document.DocumentHeaders.Headers.HeaderBlocks.IndexOf(toCorrupt);
-                    document.DocumentHeaders.Headers.HeaderBlocks.RemoveAt(i);
-                    document.DocumentHeaders.Headers.HeaderBlocks.Add(new V1CompressionEncryptedHeaderBlock(new byte[7]));
-
-                    using (MemoryStream plaintextStream = new MemoryStream())
-                    {
-                        Assert.Throws<NullReferenceException>(() => { document.DecryptTo(plaintextStream); });
-                    }
-                }
-            }
-        }
-
-        [Test]
         public static void TestDecryptCompressedWithTruncatedFile()
         {
             V1Passphrase passphrase = new V1Passphrase("Å ä Ö");

@@ -94,6 +94,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 Assert.Throws<NotImplementedException>(() => reader.Crypto(new GenericPassphrase("test")));
                 Assert.Throws<NotImplementedException>(() => reader.Crypto(new Headers(), "testing"));
+                Assert.Throws<NotImplementedException>(() => reader.Document(new GenericPassphrase("test"), new Headers()));
             }
         }
     }

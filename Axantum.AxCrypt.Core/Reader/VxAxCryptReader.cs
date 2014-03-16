@@ -83,5 +83,10 @@ namespace Axantum.AxCrypt.Core.Reader
         {
             throw new NotImplementedException();
         }
+
+        public override IAxCryptDocument Document(IPassphrase key, Headers headers)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
