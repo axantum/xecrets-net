@@ -128,7 +128,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             ICryptoTransform encryptor = _algorithm.CreateEncryptor();
 
             byte[] block = new byte[encryptor.InputBlockSize];
-            int halfBlockLength = block.Length / 2;
+            int halfBlockLength = _A.Length;
             // wrapped[0..halfBlockLength-1] contains the A (IV) of the Key Wrap algorithm,
             // the rest is 'Key Data'. We do the transform in-place.
             for (int j = 0; j < _iterations; j++)
@@ -189,13 +189,14 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new ObjectDisposedException("_algorithm");
             }
-            if (wrapped.Length % 8 != 0)
+            int halfBlockLength = _A.Length;
+            if (wrapped.Length % halfBlockLength != 0)
             {
-                throw new InternalErrorException("The length of the wrapped data must a multiple of 8 bytes.");
+                throw new InternalErrorException("The length of the wrapped data must a multiple of half the algorithm block size.");
             }
             if (wrapped.Length < 24)
             {
-                throw new InternalErrorException("The length of the wrapped data must be large enough to accomdate at least a 128-bit key.");
+                throw new InternalErrorException("The length of the wrapped data must be large enough to accomodate at least a 128-bit key.");
             }
 
             int wrappedKeyLength = wrapped.Length - _A.Length;
@@ -209,29 +210,29 @@ namespace Axantum.AxCrypt.Core.Crypto
             // the rest is 'Wrapped Key Data', R[1], ..., R[n]. We do the transform in-place.
             for (long j = _iterations - 1; j >= 0; --j)
             {
-                for (int i = wrappedKeyLength / 8; i >= 1; --i)
+                for (int i = wrappedKeyLength / halfBlockLength; i >= 1; --i)
                 {
-                    long t = ((wrappedKeyLength / 8) * j) + i;
+                    long t = ((wrappedKeyLength / halfBlockLength) * j) + i;
                     // MSB(B) = A XOR t
-                    Array.Copy(wrapped, 0, block, 0, 8);
+                    Array.Copy(wrapped, 0, block, 0, halfBlockLength);
                     switch (_mode)
                     {
                         case KeyWrapMode.Specification:
-                            block.Xor(0, t.GetBigEndianBytes(), 0, 8);
+                            block.Xor(0, t.GetBigEndianBytes(), 0, halfBlockLength);
                             break;
 
                         case KeyWrapMode.AxCrypt:
-                            block.Xor(0, t.GetLittleEndianBytes(), 0, 8);
+                            block.Xor(0, t.GetLittleEndianBytes(), 0, halfBlockLength);
                             break;
                     }
                     // LSB(B) = R[i]
-                    Array.Copy(wrapped, i * 8, block, 8, 8);
+                    Array.Copy(wrapped, i * halfBlockLength, block, halfBlockLength, halfBlockLength);
                     // B = AESD(K, X xor t | R[i]) where t = (n * j) + i
                     byte[] b = decryptor.TransformFinalBlock(block, 0, decryptor.InputBlockSize);
                     // A = MSB(B)
-                    Array.Copy(b, 0, wrapped, 0, 8);
+                    Array.Copy(b, 0, wrapped, 0, halfBlockLength);
                     // R[i] = LSB(B)
-                    Array.Copy(b, 8, wrapped, i * 8, 8);
+                    Array.Copy(b, halfBlockLength, wrapped, i * halfBlockLength, halfBlockLength);
                 }
             }
 
