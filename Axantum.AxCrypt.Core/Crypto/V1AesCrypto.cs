@@ -103,6 +103,11 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </value>
         public override SymmetricAlgorithm CreateAlgorithm()
         {
+            return CreateAlgorithmInternal();
+        }
+
+        private SymmetricAlgorithm CreateAlgorithmInternal()
+        {
             SymmetricAlgorithm algorithm = CreateRawAlgorithm();
             algorithm.Key = Key.DerivedKey.GetBytes();
             algorithm.IV = _iv.GetBytes();
@@ -124,7 +129,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>The decrypted result minus any padding</returns>
         public override byte[] Decrypt(byte[] cipherText)
         {
-            using (SymmetricAlgorithm aes = CreateAlgorithm())
+            using (SymmetricAlgorithm aes = CreateAlgorithmInternal())
             {
                 using (ICryptoTransform decryptor = aes.CreateDecryptor())
                 {
@@ -141,7 +146,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>The cipher text, complete with any padding</returns>
         public override byte[] Encrypt(byte[] plaintext)
         {
-            using (SymmetricAlgorithm aes = CreateAlgorithm())
+            using (SymmetricAlgorithm aes = CreateAlgorithmInternal())
             {
                 using (ICryptoTransform encryptor = aes.CreateEncryptor())
                 {
@@ -157,7 +162,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>A new decrypting transformation instance</returns>
         public override ICryptoTransform CreateDecryptingTransform()
         {
-            using (SymmetricAlgorithm aes = CreateAlgorithm())
+            using (SymmetricAlgorithm aes = CreateAlgorithmInternal())
             {
                 return aes.CreateDecryptor();
             }
@@ -169,7 +174,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>A new encrypting transformation instance</returns>
         public override ICryptoTransform CreateEncryptingTransform()
         {
-            using (SymmetricAlgorithm aes = CreateAlgorithm())
+            using (SymmetricAlgorithm aes = CreateAlgorithmInternal())
             {
                 return aes.CreateEncryptor();
             }

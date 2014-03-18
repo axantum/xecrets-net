@@ -131,6 +131,11 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </value>
         public override SymmetricAlgorithm CreateAlgorithm()
         {
+            return CreateAlgorithmInternal();
+        }
+
+        private SymmetricAlgorithm CreateAlgorithmInternal()
+        {
             SymmetricAlgorithm algorithm = CreateRawAlgorithm();
             algorithm.Key = Key.DerivedKey.GetBytes();
             algorithm.IV = _iv.GetBytes();
@@ -171,7 +176,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private byte[] Transform(byte[] plaintext)
         {
-            using (SymmetricAlgorithm algorithm = CreateAlgorithm())
+            using (SymmetricAlgorithm algorithm = CreateAlgorithmInternal())
             {
                 using (ICryptoTransform transform = new CounterModeCryptoTransform(algorithm, _blockCounter, _blockOffset))
                 {
@@ -188,7 +193,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </returns>
         public override ICryptoTransform CreateDecryptingTransform()
         {
-            return new CounterModeCryptoTransform(CreateAlgorithm(), _blockCounter, _blockOffset);
+            return new CounterModeCryptoTransform(CreateAlgorithmInternal(), _blockCounter, _blockOffset);
         }
 
         /// <summary>
@@ -199,7 +204,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </returns>
         public override ICryptoTransform CreateEncryptingTransform()
         {
-            return new CounterModeCryptoTransform(CreateAlgorithm(), _blockCounter, _blockOffset);
+            return new CounterModeCryptoTransform(CreateAlgorithmInternal(), _blockCounter, _blockOffset);
         }
     }
 }
