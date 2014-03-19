@@ -28,7 +28,6 @@
 using Axantum.AxCrypt.Core.Crypto;
 using NUnit.Framework;
 using System;
-using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -60,17 +59,17 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.Throws<ArgumentNullException>(() =>
             {
-                if (new V1AesCrypto(null, iv, CipherMode.CBC, PaddingMode.None) == null) { }
+                if (new V1AesCrypto(null, iv) == null) { }
             });
 
             Assert.Throws<ArgumentNullException>(() =>
             {
-                if (new V1AesCrypto(key, null, CipherMode.CBC, PaddingMode.None) == null) { }
+                if (new V1AesCrypto(key, null) == null) { }
             });
 
             Assert.DoesNotThrow(() =>
             {
-                if (new V1AesCrypto(key, iv, CipherMode.CBC, PaddingMode.None) == null) { }
+                if (new V1AesCrypto(key, iv) == null) { }
             });
         }
 

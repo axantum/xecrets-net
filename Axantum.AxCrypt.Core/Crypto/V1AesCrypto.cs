@@ -37,10 +37,6 @@ namespace Axantum.AxCrypt.Core.Crypto
     {
         internal const string InternalName = "AES-128-V1";
 
-        private CipherMode _cipherMode;
-
-        private PaddingMode _paddingMode;
-
         private SymmetricIV _iv;
 
         static V1AesCrypto()
@@ -56,9 +52,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         /// <param name="key">The key</param>
         /// <param name="iv">Initial Vector</param>
-        /// <param name="cipherMode">Mode of operation, typically CBC</param>
-        /// <param name="paddingMode">Padding mode, typically PCS7</param>
-        public V1AesCrypto(IPassphrase key, SymmetricIV iv, CipherMode cipherMode, PaddingMode paddingMode)
+        public V1AesCrypto(IPassphrase key, SymmetricIV iv)
         {
             if (key == null)
             {
@@ -71,16 +65,14 @@ namespace Axantum.AxCrypt.Core.Crypto
 
             Key = key;
             _iv = iv;
-            _cipherMode = cipherMode;
-            _paddingMode = paddingMode;
         }
 
         /// <summary>
-        /// Instantiate an AES transform with zero IV, CBC and no padding.
+        /// Instantiate an AES transform with zero IV.
         /// </summary>
         /// <param name="key">The key</param>
         public V1AesCrypto(IPassphrase key)
-            : this(key, SymmetricIV.Zero128, CipherMode.CBC, PaddingMode.None)
+            : this(key, SymmetricIV.Zero128)
         {
         }
 
@@ -117,8 +109,6 @@ namespace Axantum.AxCrypt.Core.Crypto
             SymmetricAlgorithm algorithm = CreateRawAlgorithm();
             algorithm.Key = Key.DerivedKey.GetBytes();
             algorithm.IV = _iv.GetBytes();
-            algorithm.Mode = _cipherMode;
-            algorithm.Padding = _paddingMode;
 
             return algorithm;
         }
@@ -137,6 +127,8 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             using (SymmetricAlgorithm aes = CreateAlgorithmInternal())
             {
+                aes.Mode = CipherMode.CBC;
+                aes.Padding = PaddingMode.None;
                 using (ICryptoTransform decryptor = aes.CreateDecryptor())
                 {
                     byte[] plaintext = decryptor.TransformFinalBlock(cipherText, 0, cipherText.Length);
@@ -154,6 +146,8 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             using (SymmetricAlgorithm aes = CreateAlgorithmInternal())
             {
+                aes.Mode = CipherMode.CBC;
+                aes.Padding = PaddingMode.None;
                 using (ICryptoTransform encryptor = aes.CreateEncryptor())
                 {
                     byte[] cipherText = encryptor.TransformFinalBlock(plaintext, 0, plaintext.Length);
@@ -170,6 +164,8 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             using (SymmetricAlgorithm aes = CreateAlgorithmInternal())
             {
+                aes.Mode = CipherMode.CBC;
+                aes.Padding = PaddingMode.PKCS7;
                 return aes.CreateDecryptor();
             }
         }
@@ -182,6 +178,8 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             using (SymmetricAlgorithm aes = CreateAlgorithmInternal())
             {
+                aes.Mode = CipherMode.CBC;
+                aes.Padding = PaddingMode.PKCS7;
                 return aes.CreateEncryptor();
             }
         }

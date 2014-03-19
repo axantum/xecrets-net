@@ -60,9 +60,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <param name="iv">Initial Vector, will be XOR:ed with the counter value</param>
         /// <param name="blockCounter">The block counter.</param>
         /// <param name="blockOffset">The block offset.</param>
-        /// <exception cref="System.ArgumentNullException">key
-        /// or
-        /// iv</exception>
+        /// <exception cref="System.ArgumentNullException">key or iv</exception>
         public V2AesCrypto(IPassphrase key, SymmetricIV iv, long blockCounter, int blockOffset)
             : this(key, iv)
         {

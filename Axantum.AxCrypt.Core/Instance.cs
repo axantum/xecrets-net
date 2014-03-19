@@ -109,5 +109,10 @@ namespace Axantum.AxCrypt.Core
         {
             get { return Factory.Instance.Singleton<IRandomGenerator>(); }
         }
+
+        public static CryptoFactory CryptoFactory
+        {
+            get { return Factory.Instance.Singleton<CryptoFactory>(); }
+        }
     }
 }

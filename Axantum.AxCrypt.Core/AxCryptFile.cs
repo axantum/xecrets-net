@@ -47,7 +47,7 @@ namespace Axantum.AxCrypt.Core
         /// <param name="destination">The destination file</param>
         /// <remarks>It is the callers responsibility to ensure that the source file exists, that the destination file
         /// does not exist and can be created etc.</remarks>
-        public virtual void Encrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, IPassphrase passphrase, AxCryptOptions options, IProgressContext progress)
+        public virtual void Encrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, IPassphrase key, AxCryptOptions options, IProgressContext progress)
         {
             if (sourceFile == null)
             {
@@ -57,9 +57,9 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("destinationFile");
             }
-            if (passphrase == null)
+            if (key == null)
             {
-                throw new ArgumentNullException("passphrase");
+                throw new ArgumentNullException("key");
             }
             if (progress == null)
             {
@@ -70,7 +70,7 @@ namespace Axantum.AxCrypt.Core
             {
                 using (Stream destinationStream = destinationFile.OpenWrite())
                 {
-                    using (IAxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase), Instance.UserSettings.V1KeyWrapIterations))
+                    using (IAxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(key), Instance.UserSettings.V1KeyWrapIterations))
                     {
                         document.FileName = sourceFile.Name;
                         document.CreationTimeUtc = sourceFile.CreationTimeUtc;

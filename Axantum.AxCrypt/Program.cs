@@ -82,6 +82,7 @@ namespace Axantum.AxCrypt
             Factory.Instance.Singleton<ProcessState>(() => new ProcessState());
             Factory.Instance.Singleton<SessionNotify>(() => new SessionNotify());
             Factory.Instance.Singleton<IRandomGenerator>(() => new RandomGenerator());
+            Factory.Instance.Singleton<CryptoFactory>(() => new CryptoFactory());
 
             Factory.Instance.Register<AxCryptFactory>(() => new AxCryptFactory());
             Factory.Instance.Register<AxCryptFile>(() => new AxCryptFile());
