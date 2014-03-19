@@ -51,14 +51,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AxCryptFactory.cs" />
+    <Compile Include="Crypto\BlockAlgorithmKeyWrapTransform.cs" />
     <Compile Include="Crypto\CounterModeCryptoTransform.cs" />
     <Compile Include="Crypto\CryptoBase.cs" />
     <Compile Include="Crypto\CryptoId.cs" />
     <Compile Include="Crypto\Hmac.cs" />
     <Compile Include="Crypto\ICrypto.cs" />
+    <Compile Include="Crypto\IKeyWrapTransform.cs" />
     <Compile Include="Crypto\IPassphrase.cs" />
     <Compile Include="Crypto\IRandomGenerator.cs" />
     <Compile Include="Crypto\GenericPassphrase.cs" />
+    <Compile Include="Crypto\KeyWrapDirection.cs" />
     <Compile Include="Crypto\PassphraseBase.cs" />
     <Compile Include="Crypto\Pbkdf2HmacSha512.cs" />
     <Compile Include="Crypto\RandomGenerator.cs" />

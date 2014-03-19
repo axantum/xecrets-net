@@ -122,10 +122,8 @@ namespace Axantum.AxCrypt.Core.Header
             }
 
             byte[] unwrappedKeyData;
-            using (KeyWrap keyWrap = new KeyWrap(new V1AesCrypto(keyEncryptingKey), salt, Iterations, KeyWrapMode.AxCrypt))
-            {
-                unwrappedKeyData = keyWrap.Unwrap(wrappedKeyData);
-            }
+            KeyWrap keyWrap = new KeyWrap(salt, Iterations, KeyWrapMode.AxCrypt);
+            unwrappedKeyData = keyWrap.Unwrap(new V1AesCrypto(keyEncryptingKey), wrappedKeyData);
             return unwrappedKeyData;
         }
 
@@ -133,21 +131,17 @@ namespace Axantum.AxCrypt.Core.Header
         {
             SymmetricKey masterKey = new SymmetricKey(keyEncryptingCrypto.Key.DerivedKey.Length * 8);
             KeyWrapSalt salt = new KeyWrapSalt(masterKey.Length);
-            using (KeyWrap keyWrap = new KeyWrap(keyEncryptingCrypto, salt, keyWrapIterations, KeyWrapMode.AxCrypt))
-            {
-                byte[] wrappedKeyData = keyWrap.Wrap(masterKey);
-                Set(wrappedKeyData, salt, keyWrapIterations);
-            }
+            KeyWrap keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.AxCrypt);
+            byte[] wrappedKeyData = keyWrap.Wrap(keyEncryptingCrypto, masterKey);
+            Set(wrappedKeyData, salt, keyWrapIterations);
         }
 
         public void RewrapMasterKey(SymmetricKey masterKey, SymmetricKey keyEncryptingKey)
         {
             KeyWrapSalt salt = new KeyWrapSalt(keyEncryptingKey.Length);
-            using (KeyWrap keyWrap = new KeyWrap(new V1AesCrypto(new GenericPassphrase(keyEncryptingKey)), salt, Iterations, KeyWrapMode.AxCrypt))
-            {
-                byte[] wrappedKeyData = keyWrap.Wrap(masterKey);
-                Set(wrappedKeyData, salt, Iterations);
-            }
+            KeyWrap keyWrap = new KeyWrap(salt, Iterations, KeyWrapMode.AxCrypt);
+            byte[] wrappedKeyData = keyWrap.Wrap(new V1AesCrypto(new GenericPassphrase(keyEncryptingKey)), masterKey);
+            Set(wrappedKeyData, salt, Iterations);
         }
     }
 }

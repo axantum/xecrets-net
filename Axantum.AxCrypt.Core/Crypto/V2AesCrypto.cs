@@ -123,15 +123,15 @@ namespace Axantum.AxCrypt.Core.Crypto
         }
 
         /// <summary>
-        /// Create an instance of the underlying symmetric algorithm.
+        /// Create an instance of a transform suitable for NIST Key Wrap.
         /// </summary>
         /// <returns></returns>
         /// <value>
-        /// An instance of the algorithm.
+        /// An instance of the transform.
         /// </value>
-        public override SymmetricAlgorithm CreateAlgorithm()
+        public override IKeyWrapTransform CreateKeyWrapTransform(KeyWrapSalt salt, KeyWrapDirection keyWrapDirection)
         {
-            return CreateAlgorithmInternal();
+            return new BlockAlgorithmKeyWrapTransform(CreateAlgorithmInternal(), salt, keyWrapDirection);
         }
 
         private SymmetricAlgorithm CreateAlgorithmInternal()

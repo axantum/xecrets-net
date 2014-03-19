@@ -52,17 +52,26 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </value>
         IPassphrase Key { get; }
 
+        /// <summary>
+        /// Gets the underlying algorithm block length in bytes
+        /// </summary>
         int BlockLength { get; }
 
+        /// <summary>
+        /// Check if the provided length in bytes is appropriate for the underlying algorithm.
+        /// </summary>
+        /// <param name="length">Proposed key length in bytes.</param>
+        /// <returns>true if the length is valid for the algorithm.</returns>
         bool IsValidKeyLength(int length);
 
         /// <summary>
-        /// Create an instance of the underlying symmetric algorithm.
+        /// Create an instance of a transform suitable for NIST Key Wrap.
         /// </summary>
+        /// <returns></returns>
         /// <value>
-        /// An instance of the algorithm.
+        /// An instance of the transform.
         /// </value>
-        SymmetricAlgorithm CreateAlgorithm();
+        IKeyWrapTransform CreateKeyWrapTransform(KeyWrapSalt salt, KeyWrapDirection keyWrapDirection);
 
         /// <summary>
         /// Decrypt in one operation.

@@ -83,20 +83,16 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             ICrypto dummyCrypto = new V1AesCrypto(new GenericPassphrase("A dummy passphrase"));
             KeyWrapSalt dummySalt = new KeyWrapSalt(16);
-            using (KeyWrap keyWrap = new KeyWrap(dummyCrypto, dummySalt, iterations, KeyWrapMode.AxCrypt))
-            {
-                return keyWrap.Wrap(new SymmetricKey(128));
-            }
+            KeyWrap keyWrap = new KeyWrap(dummySalt, iterations, KeyWrapMode.AxCrypt);
+            return keyWrap.Wrap(dummyCrypto, new SymmetricKey(128));
         }
 
         private static object V2KeyWrapIterate(int iterations)
         {
             ICrypto dummyCrypto = new V2AesCrypto(new GenericPassphrase(new SymmetricKey(256)));
             KeyWrapSalt dummySalt = new KeyWrapSalt(32);
-            using (KeyWrap keyWrap = new KeyWrap(dummyCrypto, dummySalt, iterations, KeyWrapMode.AxCrypt))
-            {
-                return keyWrap.Wrap(new SymmetricKey(256));
-            }
+            KeyWrap keyWrap = new KeyWrap(dummySalt, iterations, KeyWrapMode.AxCrypt);
+            return keyWrap.Wrap(dummyCrypto, new SymmetricKey(256));
         }
     }
 }

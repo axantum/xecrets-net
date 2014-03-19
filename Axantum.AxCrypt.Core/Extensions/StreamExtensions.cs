@@ -86,27 +86,27 @@ namespace Axantum.AxCrypt.Core.Extensions
             return totalDone;
         }
 
-        public static void DecryptTo(this Stream encryptedInputStream, Stream plaintextOutputStream, ICryptoTransform decryptor, bool isCompressed)
+        public static void DecryptTo(this Stream encryptedInputStream, Stream plaintextOutputStream, ICryptoTransform transform, bool isCompressed)
         {
             Exception savedExceptionIfCloseCausesException = null;
             try
             {
                 if (encryptedInputStream == null)
                 {
-                    throw new ArgumentNullException("encryptedIntputStream");
+                    throw new ArgumentNullException("encryptedInputStream");
                 }
                 if (plaintextOutputStream == null)
                 {
                     throw new ArgumentNullException("plaintextOutputStream");
                 }
-                if (decryptor == null)
+                if (transform == null)
                 {
-                    throw new ArgumentNullException("decryptor");
+                    throw new ArgumentNullException("transform");
                 }
 
                 if (isCompressed)
                 {
-                    using (Stream deflatedPlaintextStream = new CryptoStream(encryptedInputStream, decryptor, CryptoStreamMode.Read))
+                    using (Stream deflatedPlaintextStream = new CryptoStream(encryptedInputStream, transform, CryptoStreamMode.Read))
                     {
                         using (Stream inflatedPlaintextStream = new ZInputStream(deflatedPlaintextStream))
                         {
@@ -124,7 +124,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                 }
                 else
                 {
-                    using (Stream plainStream = new CryptoStream(encryptedInputStream, decryptor, CryptoStreamMode.Read))
+                    using (Stream plainStream = new CryptoStream(encryptedInputStream, transform, CryptoStreamMode.Read))
                     {
                         try
                         {

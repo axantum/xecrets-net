@@ -15,6 +15,12 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private IPassphrase _key;
 
+        /// <summary>
+        /// Gets the key associated with this instance.
+        /// </summary>
+        /// <value>
+        /// The key.
+        /// </value>
         public IPassphrase Key
         {
             get
@@ -28,26 +34,66 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
         }
 
+        /// <summary>
+        /// Gets the underlying algorithm block length in bytes
+        /// </summary>
         public int BlockLength
         {
             get { return _blockLength; }
         }
 
-        public abstract SymmetricAlgorithm CreateAlgorithm();
+        /// <summary>
+        /// Create an instance of a transform suitable for NIST Key Wrap.
+        /// </summary>
+        /// <param name="salt"></param>
+        /// <param name="keyWrapDirection"></param>
+        /// <returns></returns>
+        /// <value>
+        /// An instance of the transform.
+        ///   </value>
+        public abstract IKeyWrapTransform CreateKeyWrapTransform(KeyWrapSalt salt, KeyWrapDirection keyWrapDirection);
 
+        /// <summary>
+        /// Decrypt in one operation.
+        /// </summary>
+        /// <param name="cipherText"></param>
+        /// <returns>
+        /// The decrypted result minus any padding
+        /// </returns>
         public abstract byte[] Decrypt(byte[] cipherText);
 
+        /// <summary>
+        /// Encrypt in one operation
+        /// </summary>
+        /// <param name="plaintext">The complete plaintext bytes</param>
+        /// <returns>
+        /// The cipher text, complete with any padding
+        /// </returns>
         public abstract byte[] Encrypt(byte[] plaintext);
 
+        /// <summary>
+        /// Using this instances parameters, create a decryptor
+        /// </summary>
+        /// <returns>
+        /// A new decrypting transformation instance
+        /// </returns>
         public abstract ICryptoTransform CreateDecryptingTransform();
 
+        /// <summary>
+        /// Using this instances parameters, create an encryptor
+        /// </summary>
+        /// <returns>
+        /// A new encrypting transformation instance
+        /// </returns>
         public abstract ICryptoTransform CreateEncryptingTransform();
 
         /// <summary>
-        /// Check if a key length is valid for AES
+        /// Check if the provided length in bytes is appropriate for the underlying algorithm.
         /// </summary>
-        /// <param name="length">The length in bytes</param>
-        /// <returns>true if the length in bytes is a valid key length for AES</returns>
+        /// <param name="length">Proposed key length in bytes.</param>
+        /// <returns>
+        /// true if the length is valid for the algorithm.
+        /// </returns>
         public bool IsValidKeyLength(int length)
         {
             return _validKeyLengths.Contains(length);

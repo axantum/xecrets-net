@@ -70,8 +70,8 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
 
             ICrypto crypto = new V1AesCrypto(new V1Passphrase(key.Passphrase));
-            KeyWrap keyWrap = new KeyWrap(crypto, salt, iterations, KeyWrapMode.Specification);
-            byte[] wrap = keyWrap.Wrap(new V1Passphrase(key.Passphrase).DerivedKey);
+            KeyWrap keyWrap = new KeyWrap(salt, iterations, KeyWrapMode.Specification);
+            byte[] wrap = keyWrap.Wrap(crypto, crypto.Key.DerivedKey);
 
             _bytes = wrap.Reduce(8);
         }
