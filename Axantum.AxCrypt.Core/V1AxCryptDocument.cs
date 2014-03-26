@@ -223,7 +223,7 @@ namespace Axantum.AxCrypt.Core
         {
             get
             {
-                _dataCrypto = new V1AesCrypto(DocumentHeaders.DataSubkey.Key, DocumentHeaders.IV);
+                _dataCrypto = Instance.CryptoFactory.Legacy.CreateCrypto(DocumentHeaders.DataSubkey.Key, DocumentHeaders.IV, 0);
 
                 return _dataCrypto;
             }

@@ -57,6 +57,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(Instance.WorkFolder.FileInfo.Combine("FileSystemState.xml")));
             Factory.Instance.Singleton<IStatusChecker>(() => new FakeStatusChecker());
             Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
+            Factory.Instance.Singleton<CryptoFactory>(() => CreateCryptoFactory());
 
             Factory.Instance.Register<AxCryptFactory>(() => new AxCryptFactory());
             Factory.Instance.Register<AxCryptFile>(() => new AxCryptFile());
@@ -72,6 +73,15 @@ namespace Axantum.AxCrypt.Core.Test
             Instance.UserSettings.V1KeyWrapIterations = 1234;
             Instance.UserSettings.ThumbprintSalt = KeyWrapSalt.Zero;
             Instance.Log.SetLevel(LogLevel.Debug);
+        }
+
+        private static CryptoFactory CreateCryptoFactory()
+        {
+            CryptoFactory factory = new CryptoFactory();
+            factory.Add(() => new V2Aes256CryptoFactory());
+            factory.Add(() => new V1Aes128CryptoFactory());
+
+            return factory;
         }
 
         public static void AssemblyTeardown()

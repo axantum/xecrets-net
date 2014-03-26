@@ -10,8 +10,6 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public CryptoFactory()
         {
-            Add(() => new V2Aes256CryptoFactory());
-            Add(() => new V1Aes128CryptoFactory());
         }
 
         public void Add(Func<ICryptoFactory> factory)

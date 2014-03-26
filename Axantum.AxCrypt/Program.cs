@@ -37,6 +37,7 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -82,7 +83,7 @@ namespace Axantum.AxCrypt
             Factory.Instance.Singleton<ProcessState>(() => new ProcessState());
             Factory.Instance.Singleton<SessionNotify>(() => new SessionNotify());
             Factory.Instance.Singleton<IRandomGenerator>(() => new RandomGenerator());
-            Factory.Instance.Singleton<CryptoFactory>(() => new CryptoFactory());
+            Factory.Instance.Singleton<CryptoFactory>(() => CreateCryptoFactory());
 
             Factory.Instance.Register<AxCryptFactory>(() => new AxCryptFactory());
             Factory.Instance.Register<AxCryptFile>(() => new AxCryptFile());
@@ -98,6 +99,16 @@ namespace Axantum.AxCrypt
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
             Factory.Instance.Register<string, IFileWatcher>((path) => new FileWatcher(path, new DelayedAction(new DelayTimer(), Instance.UserSettings.SessionNotificationMinimumIdle)));
             Factory.Instance.Register<string, IRuntimeFileInfo>((path) => new RuntimeFileInfo(path));
+        }
+
+        private static CryptoFactory CreateCryptoFactory()
+        {
+            CryptoFactory factory = new CryptoFactory();
+            foreach (Func<ICryptoFactory> activator in CryptoFactoryDiscovery.Discover(Assembly.GetAssembly(typeof(CryptoFactory))))
+            {
+                factory.Add(activator);
+            }
+            return factory;
         }
 
         private static void WireupEvents()
