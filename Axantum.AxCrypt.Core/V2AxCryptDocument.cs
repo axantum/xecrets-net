@@ -82,7 +82,7 @@ namespace Axantum.AxCrypt.Core
         public bool Load(IPassphrase key, AxCryptReader reader, Headers headers)
         {
             _reader = reader;
-            DocumentHeaders = new V2DocumentHeaders(new V2AesCrypto(key));
+            DocumentHeaders = new V2DocumentHeaders(Instance.CryptoFactory.Default.CreateCrypto(key, SymmetricIV.Zero128, 0));
             PassphraseIsValid = DocumentHeaders.Load(headers);
             if (!PassphraseIsValid)
             {

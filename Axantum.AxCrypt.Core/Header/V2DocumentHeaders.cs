@@ -140,13 +140,13 @@ namespace Axantum.AxCrypt.Core.Header
             switch (headerBlockType)
             {
                 case HeaderBlockType.FileInfo:
-                    return new V2AesCrypto(new GenericPassphrase(DataEncryptingKey), DataEncryptingIV, FILEINFO_KEYSTREAM_INDEX);
+                    return Instance.CryptoFactory.Default.CreateCrypto(new GenericPassphrase(DataEncryptingKey), DataEncryptingIV, FILEINFO_KEYSTREAM_INDEX);
 
                 case HeaderBlockType.Compression:
-                    return new V2AesCrypto(new GenericPassphrase(DataEncryptingKey), DataEncryptingIV, COMPRESSIONINFO_KEYSTREAM_INDEX);
+                    return Instance.CryptoFactory.Default.CreateCrypto(new GenericPassphrase(DataEncryptingKey), DataEncryptingIV, COMPRESSIONINFO_KEYSTREAM_INDEX);
 
                 case HeaderBlockType.UnicodeFileNameInfo:
-                    return new V2AesCrypto(new GenericPassphrase(DataEncryptingKey), DataEncryptingIV, FILENAMEINFO_KEYSTREAM_INDEX);
+                    return Instance.CryptoFactory.Default.CreateCrypto(new GenericPassphrase(DataEncryptingKey), DataEncryptingIV, FILENAMEINFO_KEYSTREAM_INDEX);
             }
             throw new InternalErrorException("Unexpected header block type. Can't determine Header Cryptop.");
         }
@@ -173,7 +173,7 @@ namespace Axantum.AxCrypt.Core.Header
         {
             WriteGeneralHeaders(hmacStream);
 
-            V2PlaintextLengthsEncryptedHeaderBlock lengths = new V2PlaintextLengthsEncryptedHeaderBlock(new V2AesCrypto(new GenericPassphrase(DataEncryptingKey), DataEncryptingIV, LENGTHSINFO_KEYSTREAM_INDEX));
+            V2PlaintextLengthsEncryptedHeaderBlock lengths = new V2PlaintextLengthsEncryptedHeaderBlock(Instance.CryptoFactory.Default.CreateCrypto(new GenericPassphrase(DataEncryptingKey), DataEncryptingIV, LENGTHSINFO_KEYSTREAM_INDEX));
             lengths.PlaintextLength = plaintextLength;
             lengths.CompressedPlaintextLength = compressedPlaintextLength;
             lengths.Write(hmacStream);
@@ -218,12 +218,12 @@ namespace Axantum.AxCrypt.Core.Header
 
         public ICrypto CreateDataCrypto()
         {
-            return new V2AesCrypto(new GenericPassphrase(DataEncryptingKey), DataEncryptingIV, DATA_KEYSTREAM_INDEX);
+            return Instance.CryptoFactory.Default.CreateCrypto(new GenericPassphrase(DataEncryptingKey), DataEncryptingIV, DATA_KEYSTREAM_INDEX);
         }
 
         public byte[] GetHmacKey()
         {
-            ICrypto hmacKeyCrypto = new V2AesCrypto(new GenericPassphrase(DataEncryptingKey), DataEncryptingIV, HMACKEY_KEYSTREAM_INDEX);
+            ICrypto hmacKeyCrypto = Instance.CryptoFactory.Default.CreateCrypto(new GenericPassphrase(DataEncryptingKey), DataEncryptingIV, HMACKEY_KEYSTREAM_INDEX);
             byte[] key = new byte[V2Hmac.RequiredLength];
             key = hmacKeyCrypto.Encrypt(key);
 

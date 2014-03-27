@@ -53,7 +53,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestHeaderBlockFactory()
         {
-            ICrypto crypto = new V1AesCrypto(new V1Passphrase("passphrase"));
+            ICrypto crypto = new V1AesCrypto(new V1Passphrase("passphrase"), SymmetricIV.Zero128);
             V1DocumentHeaders headers = new V1DocumentHeaders(crypto, 10);
             using (MemoryStream stream = new MemoryStream())
             {

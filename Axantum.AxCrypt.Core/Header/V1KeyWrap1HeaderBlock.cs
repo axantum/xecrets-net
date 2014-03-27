@@ -123,7 +123,7 @@ namespace Axantum.AxCrypt.Core.Header
 
             byte[] unwrappedKeyData;
             KeyWrap keyWrap = new KeyWrap(salt, Iterations, KeyWrapMode.AxCrypt);
-            unwrappedKeyData = keyWrap.Unwrap(new V1AesCrypto(keyEncryptingKey), wrappedKeyData);
+            unwrappedKeyData = keyWrap.Unwrap(Instance.CryptoFactory.Legacy.CreateCrypto(keyEncryptingKey, SymmetricIV.Zero128, 0), wrappedKeyData);
             return unwrappedKeyData;
         }
 
@@ -140,7 +140,7 @@ namespace Axantum.AxCrypt.Core.Header
         {
             KeyWrapSalt salt = new KeyWrapSalt(keyEncryptingKey.Length);
             KeyWrap keyWrap = new KeyWrap(salt, Iterations, KeyWrapMode.AxCrypt);
-            byte[] wrappedKeyData = keyWrap.Wrap(new V1AesCrypto(new GenericPassphrase(keyEncryptingKey)), masterKey);
+            byte[] wrappedKeyData = keyWrap.Wrap(Instance.CryptoFactory.Legacy.CreateCrypto(new GenericPassphrase(keyEncryptingKey), SymmetricIV.Zero128, 0), masterKey);
             Set(wrappedKeyData, salt, Iterations);
         }
     }

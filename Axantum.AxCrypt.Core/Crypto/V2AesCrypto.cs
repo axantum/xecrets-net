@@ -53,27 +53,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
         }
 
-        /// <summary>
-        /// Instantiate a transformation
-        /// </summary>
-        /// <param name="key">The key</param>
-        /// <param name="iv">Initial Vector, will be XOR:ed with the counter value</param>
-        /// <param name="blockCounter">The block counter.</param>
-        /// <param name="blockOffset">The block offset.</param>
-        /// <exception cref="System.ArgumentNullException">key or iv</exception>
-        public V2AesCrypto(IPassphrase key, SymmetricIV iv, long blockCounter, int blockOffset)
-            : this(key, iv)
-        {
-            _blockCounter = blockCounter;
-            _blockOffset = blockOffset;
-        }
-
         public V2AesCrypto(IPassphrase key, SymmetricIV iv, long keyStreamOffset)
-            : this(key, iv, keyStreamOffset / iv.Length, (int)(keyStreamOffset % iv.Length))
-        {
-        }
-
-        public V2AesCrypto(IPassphrase key, SymmetricIV iv)
         {
             if (key == null)
             {
@@ -94,16 +74,8 @@ namespace Axantum.AxCrypt.Core.Crypto
 
             Key = key;
             _iv = iv;
-        }
-
-        public V2AesCrypto(IPassphrase key)
-            : this(key, SymmetricIV.Zero128)
-        {
-        }
-
-        public V2AesCrypto()
-            : this(new GenericPassphrase(SymmetricKey.Zero256))
-        {
+            _blockCounter = keyStreamOffset / iv.Length;
+            _blockOffset = (int)(keyStreamOffset % iv.Length);
         }
 
         /// <summary>

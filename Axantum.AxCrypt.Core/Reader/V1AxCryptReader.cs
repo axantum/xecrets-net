@@ -89,12 +89,12 @@ namespace Axantum.AxCrypt.Core.Reader
 
         public override ICrypto Crypto(IPassphrase key)
         {
-            return new V1AesCrypto(key);
+            return Instance.CryptoFactory.Legacy.CreateCrypto(key, SymmetricIV.Zero128, 0);
         }
 
         public override ICrypto Crypto(Headers headers, string passphrase)
         {
-            return new V1AesCrypto(new V1Passphrase(passphrase));
+            return Crypto(new V1Passphrase(passphrase));
         }
 
         public override IAxCryptDocument Document(IPassphrase key, Headers headers)

@@ -60,7 +60,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             byte[] unwrapped;
             KeyWrap keyWrap = new KeyWrap(6, KeyWrapMode.Specification);
-            unwrapped = keyWrap.Unwrap(new V1AesCrypto(_keyEncryptingKey), _wrapped);
+            unwrapped = keyWrap.Unwrap(new V1AesCrypto(_keyEncryptingKey, SymmetricIV.Zero128), _wrapped);
 
             Assert.That(unwrapped, Is.EquivalentTo(_keyData.GetBytes()), "Unwrapped the wrong data");
         }
@@ -70,14 +70,14 @@ namespace Axantum.AxCrypt.Core.Test
         {
             byte[] wrapped;
             KeyWrap keyWrap = new KeyWrap(6, KeyWrapMode.Specification);
-            wrapped = keyWrap.Wrap(new V1AesCrypto(_keyEncryptingKey), _keyData);
+            wrapped = keyWrap.Wrap(new V1AesCrypto(_keyEncryptingKey, SymmetricIV.Zero128), _keyData);
 
             Assert.That(wrapped, Is.EquivalentTo(_wrapped), "The wrapped data is not correct according to specification.");
 
             keyWrap = new KeyWrap(6, KeyWrapMode.Specification);
             Assert.Throws<ArgumentNullException>(() =>
             {
-                wrapped = keyWrap.Wrap(new V1AesCrypto(_keyEncryptingKey), (SymmetricKey)null);
+                wrapped = keyWrap.Wrap(new V1AesCrypto(_keyEncryptingKey, SymmetricIV.Zero128), (SymmetricKey)null);
             });
         }
 
@@ -90,10 +90,10 @@ namespace Axantum.AxCrypt.Core.Test
             long iterations = 12345;
             byte[] wrapped;
             KeyWrap keyWrap = new KeyWrap(salt, iterations, KeyWrapMode.AxCrypt);
-            wrapped = keyWrap.Wrap(new V1AesCrypto(keyEncryptingKey), keyToWrap);
+            wrapped = keyWrap.Wrap(new V1AesCrypto(keyEncryptingKey, SymmetricIV.Zero128), keyToWrap);
             byte[] unwrapped;
             keyWrap = new KeyWrap(salt, iterations, KeyWrapMode.AxCrypt);
-            unwrapped = keyWrap.Unwrap(new V1AesCrypto(keyEncryptingKey), wrapped);
+            unwrapped = keyWrap.Unwrap(new V1AesCrypto(keyEncryptingKey, SymmetricIV.Zero128), wrapped);
 
             Assert.That(unwrapped, Is.EquivalentTo(keyToWrap.GetBytes()), "The unwrapped data should be equal to original.");
         }
@@ -107,10 +107,10 @@ namespace Axantum.AxCrypt.Core.Test
             long iterations = 23456;
             byte[] wrapped;
             KeyWrap keyWrap = new KeyWrap(salt, iterations, KeyWrapMode.Specification);
-            wrapped = keyWrap.Wrap(new V1AesCrypto(keyEncryptingKey), keyToWrap);
+            wrapped = keyWrap.Wrap(new V1AesCrypto(keyEncryptingKey, SymmetricIV.Zero128), keyToWrap);
             byte[] unwrapped;
             keyWrap = new KeyWrap(salt, iterations, KeyWrapMode.Specification);
-            unwrapped = keyWrap.Unwrap(new V1AesCrypto(keyEncryptingKey), wrapped);
+            unwrapped = keyWrap.Unwrap(new V1AesCrypto(keyEncryptingKey, SymmetricIV.Zero128), wrapped);
 
             Assert.That(unwrapped, Is.EquivalentTo(keyToWrap.GetBytes()), "The unwrapped data should be equal to original.");
         }
@@ -119,7 +119,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestKeyWrapConstructorWithBadArgument()
         {
             KeyWrap keyWrap = new KeyWrap(6, KeyWrapMode.Specification);
-            Assert.Throws<InternalErrorException>(() => { keyWrap.Unwrap(new V1AesCrypto(_keyEncryptingKey), _keyData.GetBytes()); }, "Calling with too short wrapped data.");
+            Assert.Throws<InternalErrorException>(() => { keyWrap.Unwrap(new V1AesCrypto(_keyEncryptingKey, SymmetricIV.Zero128), _keyData.GetBytes()); }, "Calling with too short wrapped data.");
 
             Assert.Throws<InternalErrorException>(() =>
             {
@@ -151,7 +151,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestUnwrapWithBadArgument()
         {
             KeyWrap keyWrap = new KeyWrap(100, KeyWrapMode.Specification);
-            Assert.Throws<InternalErrorException>(() => keyWrap.Unwrap(new V2AesCrypto(), new byte[25]));
+            Assert.Throws<InternalErrorException>(() => keyWrap.Unwrap(new V2AesCrypto(new GenericPassphrase(SymmetricKey.Zero256), SymmetricIV.Zero128, 0), new byte[25]));
         }
 
         [Test]
@@ -160,7 +160,7 @@ namespace Axantum.AxCrypt.Core.Test
             KeyWrap keyWrap = new KeyWrap(100, KeyWrapMode.Specification);
             {
                 byte[] nullKeyMaterial = null;
-                Assert.Throws<ArgumentNullException>(() => keyWrap.Wrap(new V2AesCrypto(), nullKeyMaterial));
+                Assert.Throws<ArgumentNullException>(() => keyWrap.Wrap(new V2AesCrypto(new GenericPassphrase(SymmetricKey.Zero256), SymmetricIV.Zero128, 0), nullKeyMaterial));
             }
         }
     }

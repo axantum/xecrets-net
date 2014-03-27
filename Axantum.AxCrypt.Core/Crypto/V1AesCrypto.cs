@@ -68,20 +68,6 @@ namespace Axantum.AxCrypt.Core.Crypto
         }
 
         /// <summary>
-        /// Instantiate an AES transform with zero IV.
-        /// </summary>
-        /// <param name="key">The key</param>
-        public V1AesCrypto(IPassphrase key)
-            : this(key, SymmetricIV.Zero128)
-        {
-        }
-
-        public V1AesCrypto()
-            : this(new GenericPassphrase(SymmetricKey.Zero128))
-        {
-        }
-
-        /// <summary>
         /// Gets the name.
         /// </summary>
         /// <value>

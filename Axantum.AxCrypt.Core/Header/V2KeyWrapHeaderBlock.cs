@@ -134,7 +134,7 @@ namespace Axantum.AxCrypt.Core.Header
 
         public byte[] UnwrapMasterKey(ICrypto keyEncryptingCrypto)
         {
-            keyEncryptingCrypto = new V2AesCrypto(new V2Passphrase(keyEncryptingCrypto.Key.Passphrase, GetDerivationSalt(), DerivationIterations, keyEncryptingCrypto.Key.DerivedKey.Length * 8));
+            keyEncryptingCrypto = Instance.CryptoFactory.Default.CreateCrypto(new V2Passphrase(keyEncryptingCrypto.Key.Passphrase, GetDerivationSalt(), DerivationIterations, keyEncryptingCrypto.Key.DerivedKey.Length * 8), SymmetricIV.Zero128, 0);
             byte[] saltBytes = new byte[keyEncryptingCrypto.Key.DerivedKey.Length];
             Array.Copy(GetDataBlockBytesReference(), WRAP_SALT_OFFSET, saltBytes, 0, saltBytes.Length);
             KeyWrapSalt salt = new KeyWrapSalt(saltBytes);

@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
 
             block[0] = subKeyValue;
-            _subKey = new GenericPassphrase(new SymmetricKey(new V1AesCrypto(masterKey).Encrypt(block)));
+            _subKey = new GenericPassphrase(new SymmetricKey(Instance.CryptoFactory.Legacy.CreateCrypto(masterKey, SymmetricIV.Zero128, 0).Encrypt(block)));
         }
 
         /// <summary>

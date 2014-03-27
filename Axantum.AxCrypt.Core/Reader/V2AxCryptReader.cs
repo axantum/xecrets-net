@@ -83,7 +83,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
         public override ICrypto Crypto(IPassphrase key)
         {
-            return new V2AesCrypto(key);
+            return Instance.CryptoFactory.Default.CreateCrypto(key, SymmetricIV.Zero128, 0);
         }
 
         public override ICrypto Crypto(Headers headers, string passphrase)

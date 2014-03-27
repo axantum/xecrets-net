@@ -91,7 +91,7 @@ namespace Axantum.AxCrypt.Core.Test
                     Assert.That(headers, Is.EqualTo(1), "We're expecting exactly one KeyWrap1 block to be found!");
                     byte[] wrapped = keyWrapHeaderBlock.GetKeyData();
                     KeyWrap keyWrap = new KeyWrap(keyWrapHeaderBlock.Salt, keyWrapHeaderBlock.Iterations, KeyWrapMode.AxCrypt);
-                    byte[] unwrapped = keyWrap.Unwrap(new V1AesCrypto(new V1Passphrase("a")), wrapped);
+                    byte[] unwrapped = keyWrap.Unwrap(new V1AesCrypto(new V1Passphrase("a"), SymmetricIV.Zero128), wrapped);
                     Assert.That(unwrapped.Length, Is.Not.EqualTo(0), "An unwrapped key is invalid if it is returned as a zero-length array.");
                 }
             }

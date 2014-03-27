@@ -109,19 +109,19 @@ namespace Axantum.AxCrypt.Core.Test
             long blockCounter = nistInitCounter.GetBigEndianValue(8, 8);
             ICrypto crypto;
 
-            crypto = new V2AesCrypto(key, new SymmetricIV(iv), blockCounter, 0);
+            crypto = new V2AesCrypto(key, new SymmetricIV(iv), 16 * blockCounter);
             byte[] cipherText1 = crypto.Encrypt(nistPlaintext1);
             Assert.That(cipherText1.IsEquivalentTo(nistCiphertext1));
 
-            crypto = new V2AesCrypto(key, new SymmetricIV(iv), ++blockCounter, 0);
+            crypto = new V2AesCrypto(key, new SymmetricIV(iv), 16 * ++blockCounter);
             byte[] cipherText2 = crypto.Encrypt(nistPlaintext2);
             Assert.That(cipherText2.IsEquivalentTo(nistCiphertext2));
 
-            crypto = new V2AesCrypto(key, new SymmetricIV(iv), ++blockCounter, 0);
+            crypto = new V2AesCrypto(key, new SymmetricIV(iv), 16 * ++blockCounter);
             byte[] cipherText3 = crypto.Encrypt(nistPlaintext3);
             Assert.That(cipherText3.IsEquivalentTo(nistCiphertext3));
 
-            crypto = new V2AesCrypto(key, new SymmetricIV(iv), ++blockCounter, 0);
+            crypto = new V2AesCrypto(key, new SymmetricIV(iv), 16 * ++blockCounter);
             byte[] cipherText4 = crypto.Encrypt(nistPlaintext4);
             Assert.That(cipherText4.IsEquivalentTo(nistCiphertext4));
         }
@@ -129,7 +129,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestName()
         {
-            ICrypto crypto = new V2AesCrypto();
+            ICrypto crypto = new V2AesCrypto(new GenericPassphrase(SymmetricKey.Zero256), SymmetricIV.Zero128, 0);
 
             Assert.That(crypto.Name, Is.EqualTo("AES-256"));
         }
@@ -183,18 +183,18 @@ namespace Axantum.AxCrypt.Core.Test
             SymmetricIV testIV = new SymmetricIV(128);
 
             ICrypto crypto = null;
-            Assert.Throws<ArgumentNullException>(() => crypto = new V2AesCrypto(nullKey, testIV));
-            Assert.Throws<ArgumentNullException>(() => crypto = new V2AesCrypto(testKey, nullIV));
+            Assert.Throws<ArgumentNullException>(() => crypto = new V2AesCrypto(nullKey, testIV, 0));
+            Assert.Throws<ArgumentNullException>(() => crypto = new V2AesCrypto(testKey, nullIV, 0));
 
             testKey.DerivedKey = new SymmetricKey(64);
-            Assert.Throws<ArgumentException>(() => crypto = new V2AesCrypto(testKey, testIV));
+            Assert.Throws<ArgumentException>(() => crypto = new V2AesCrypto(testKey, testIV, 0));
 
             testKey.DerivedKey = new SymmetricKey(256);
             testIV = new SymmetricIV(64);
-            Assert.Throws<ArgumentException>(() => crypto = new V2AesCrypto(testKey, testIV));
+            Assert.Throws<ArgumentException>(() => crypto = new V2AesCrypto(testKey, testIV, 0));
 
             testIV = new SymmetricIV(128);
-            Assert.DoesNotThrow(() => crypto = new V2AesCrypto(testKey, testIV));
+            Assert.DoesNotThrow(() => crypto = new V2AesCrypto(testKey, testIV, 0));
         }
     }
 }

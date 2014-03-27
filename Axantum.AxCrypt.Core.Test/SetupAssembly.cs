@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt.Core.Test
             Instance.Log.SetLevel(LogLevel.Debug);
         }
 
-        private static CryptoFactory CreateCryptoFactory()
+        public static CryptoFactory CreateCryptoFactory()
         {
             CryptoFactory factory = new CryptoFactory();
             factory.Add(() => new V2Aes256CryptoFactory());

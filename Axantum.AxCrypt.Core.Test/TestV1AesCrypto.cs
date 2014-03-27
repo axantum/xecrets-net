@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.Throws<ArgumentNullException>(() =>
             {
-                if (new V1AesCrypto(null) == null) { }
+                if (new V1AesCrypto(null, SymmetricIV.Zero128) == null) { }
             });
 
             Assert.Throws<ArgumentNullException>(() =>
@@ -76,7 +76,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestName()
         {
-            V1AesCrypto ICrypto = new V1AesCrypto();
+            V1AesCrypto ICrypto = new V1AesCrypto(new GenericPassphrase(SymmetricKey.Zero128), SymmetricIV.Zero128);
 
             Assert.That(ICrypto.Name, Is.EqualTo("AES-128-V1"));
         }

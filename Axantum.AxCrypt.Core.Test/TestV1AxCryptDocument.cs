@@ -419,7 +419,7 @@ namespace Axantum.AxCrypt.Core.Test
                 using (Stream changedStream = new MemoryStream())
                 {
                     V1DocumentHeaders outputDocumentHeaders = new V1DocumentHeaders(document.DocumentHeaders);
-                    outputDocumentHeaders.RewrapMasterKey(new V1AesCrypto(newPassphrase));
+                    outputDocumentHeaders.RewrapMasterKey(new V1AesCrypto(newPassphrase, SymmetricIV.Zero128));
 
                     document.CopyEncryptedTo(outputDocumentHeaders, changedStream);
                     changedStream.Position = 0;
@@ -450,7 +450,7 @@ namespace Axantum.AxCrypt.Core.Test
                 using (Stream outputStream = new MemoryStream())
                 {
                     V1Passphrase passphrase = new V1Passphrase("a");
-                    using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase), 47))
+                    using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase, SymmetricIV.Zero128), 47))
                     {
                         document.DocumentHeaders.FileName = "MyFile.txt";
                         document.DocumentHeaders.CreationTimeUtc = creationTimeUtc;
@@ -489,7 +489,7 @@ namespace Axantum.AxCrypt.Core.Test
                 using (Stream outputStream = new MemoryStream())
                 {
                     V1Passphrase passphrase = new V1Passphrase("a");
-                    using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase), 53))
+                    using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase, SymmetricIV.Zero128), 53))
                     {
                         document.DocumentHeaders.FileName = "MyFile.txt";
                         document.DocumentHeaders.CreationTimeUtc = creationTimeUtc;
@@ -591,7 +591,7 @@ namespace Axantum.AxCrypt.Core.Test
                         Assert.Throws<ArgumentException>(() => { document.EncryptTo(inputStream, outputStream, AxCryptOptions.None); });
 
                         V1Passphrase passphrase = new V1Passphrase("a");
-                        V1DocumentHeaders headers = new V1DocumentHeaders(new V1AesCrypto(passphrase), 13);
+                        V1DocumentHeaders headers = new V1DocumentHeaders(new V1AesCrypto(passphrase, SymmetricIV.Zero128), 13);
 
                         Assert.Throws<ArgumentNullException>(() => { document.CopyEncryptedTo(null, outputStream); });
                         Assert.Throws<ArgumentNullException>(() => { document.CopyEncryptedTo(headers, null); });
@@ -623,7 +623,7 @@ namespace Axantum.AxCrypt.Core.Test
                 using (Stream changedStream = new MemoryStream())
                 {
                     V1DocumentHeaders outputDocumentHeaders = new V1DocumentHeaders(document.DocumentHeaders);
-                    outputDocumentHeaders.RewrapMasterKey(new V1AesCrypto(newPassphrase));
+                    outputDocumentHeaders.RewrapMasterKey(new V1AesCrypto(newPassphrase, SymmetricIV.Zero128));
 
                     byte[] modifiedHmacBytes = document.DocumentHeaders.Headers.Hmac.GetBytes();
                     modifiedHmacBytes[0] += 1;
@@ -662,7 +662,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 using (MemoryStream encryptedFile = new MemoryStream())
                 {
-                    using (V1AxCryptDocument encryptingDocument = new V1AxCryptDocument(new V1AesCrypto(new V1Passphrase("a")), 10))
+                    using (V1AxCryptDocument encryptingDocument = new V1AxCryptDocument(new V1AesCrypto(new V1Passphrase("a"), SymmetricIV.Zero128), 10))
                     {
                         encryptingDocument.EncryptTo(plaintext, encryptedFile, AxCryptOptions.EncryptWithoutCompression);
                     }

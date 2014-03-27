@@ -69,7 +69,7 @@ namespace Axantum.AxCrypt.Core.Crypto
                 throw new ArgumentNullException("salt");
             }
 
-            ICrypto crypto = new V1AesCrypto(new V1Passphrase(key.Passphrase));
+            ICrypto crypto = Instance.CryptoFactory.Legacy.CreateCrypto(new V1Passphrase(key.Passphrase), SymmetricIV.Zero128, 0);
             KeyWrap keyWrap = new KeyWrap(salt, iterations, KeyWrapMode.Specification);
             byte[] wrap = keyWrap.Wrap(crypto, crypto.Key.DerivedKey);
 

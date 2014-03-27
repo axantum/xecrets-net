@@ -81,11 +81,11 @@ namespace Axantum.AxCrypt.Core
             switch (key.CryptoId)
             {
                 case CryptoId.Aes_128_V1:
-                    document = new V1AxCryptDocument(new V1AesCrypto(key), Instance.UserSettings.V1KeyWrapIterations);
+                    document = new V1AxCryptDocument(Instance.CryptoFactory.Legacy.CreateCrypto(key, SymmetricIV.Zero128, 0), Instance.UserSettings.V1KeyWrapIterations);
                     break;
 
                 case CryptoId.Aes_256:
-                    document = new V2AxCryptDocument(new V2AesCrypto(key), Instance.UserSettings.V2KeyWrapIterations);
+                    document = new V2AxCryptDocument(Instance.CryptoFactory.Default.CreateCrypto(key, SymmetricIV.Zero128, 0), Instance.UserSettings.V2KeyWrapIterations);
                     break;
 
                 default:
