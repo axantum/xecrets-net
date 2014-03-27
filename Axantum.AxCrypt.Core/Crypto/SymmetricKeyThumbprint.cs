@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         /// <param name="key">The key to thumbprint.</param>
         /// <param name="salt">The salt to use.</param>
-        public SymmetricKeyThumbprint(IPassphrase key, KeyWrapSalt salt, long iterations)
+        public SymmetricKeyThumbprint(IPassphrase key, Salt salt, long iterations)
         {
             if (key == null)
             {

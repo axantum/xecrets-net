@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Core.Header
             return keyData;
         }
 
-        protected void Set(byte[] wrapped, KeyWrapSalt salt, long keyWrapIterations)
+        protected void Set(byte[] wrapped, Salt salt, long keyWrapIterations)
         {
             if (wrapped == null)
             {
@@ -82,14 +82,14 @@ namespace Axantum.AxCrypt.Core.Header
             Array.Copy(iterationsBytes, 0, GetDataBlockBytesReference(), 16 + 8 + 16, sizeof(uint));
         }
 
-        public KeyWrapSalt Salt
+        public Salt Salt
         {
             get
             {
                 byte[] salt = new byte[16];
                 Array.Copy(GetDataBlockBytesReference(), 16 + 8, salt, 0, salt.Length);
 
-                return new KeyWrapSalt(salt);
+                return new Salt(salt);
             }
         }
 
@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt.Core.Header
         public byte[] UnwrapMasterKey(ICrypto keyEncryptingCrypto, byte fileVersionMajor)
         {
             byte[] wrappedKeyData = GetKeyData();
-            KeyWrapSalt salt = Salt;
+            Salt salt = Salt;
             IPassphrase keyEncryptingKey = keyEncryptingCrypto.Key;
             if (fileVersionMajor <= 1)
             {
@@ -118,7 +118,7 @@ namespace Axantum.AxCrypt.Core.Header
 
                 byte[] badSalt = new byte[salt.Length];
                 Array.Copy(salt.GetBytes(), 0, badSalt, 0, 4);
-                salt = new KeyWrapSalt(badSalt);
+                salt = new Salt(badSalt);
             }
 
             byte[] unwrappedKeyData;
@@ -130,7 +130,7 @@ namespace Axantum.AxCrypt.Core.Header
         private void Initialize(ICrypto keyEncryptingCrypto, long keyWrapIterations)
         {
             SymmetricKey masterKey = new SymmetricKey(keyEncryptingCrypto.Key.DerivedKey.Length * 8);
-            KeyWrapSalt salt = new KeyWrapSalt(masterKey.Length);
+            Salt salt = new Salt(masterKey.Length * 8);
             KeyWrap keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.AxCrypt);
             byte[] wrappedKeyData = keyWrap.Wrap(keyEncryptingCrypto, masterKey);
             Set(wrappedKeyData, salt, keyWrapIterations);
@@ -138,7 +138,7 @@ namespace Axantum.AxCrypt.Core.Header
 
         public void RewrapMasterKey(SymmetricKey masterKey, SymmetricKey keyEncryptingKey)
         {
-            KeyWrapSalt salt = new KeyWrapSalt(keyEncryptingKey.Length);
+            Salt salt = new Salt(keyEncryptingKey.Length * 8);
             KeyWrap keyWrap = new KeyWrap(salt, Iterations, KeyWrapMode.AxCrypt);
             byte[] wrappedKeyData = keyWrap.Wrap(Instance.CryptoFactory.Legacy.CreateCrypto(new GenericPassphrase(keyEncryptingKey), SymmetricIV.Zero128, 0), masterKey);
             Set(wrappedKeyData, salt, Iterations);

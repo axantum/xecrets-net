@@ -71,7 +71,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <value>
         /// An instance of the transform.
         /// </value>
-        IKeyWrapTransform CreateKeyWrapTransform(KeyWrapSalt salt, KeyWrapDirection keyWrapDirection);
+        IKeyWrapTransform CreateKeyWrapTransform(Salt salt, KeyWrapDirection keyWrapDirection);
 
         /// <summary>
         /// Decrypt in one operation.

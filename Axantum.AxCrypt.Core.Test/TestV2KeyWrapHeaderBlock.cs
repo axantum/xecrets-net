@@ -118,7 +118,7 @@ namespace Axantum.AxCrypt.Core.Test
             mock.Setup<byte[]>(x => x.Generate(It.IsAny<int>())).Returns<int>(v => new byte[v]);
             Factory.Instance.Singleton<IRandomGenerator>(() => mock.Object);
 
-            IPassphrase keyEncryptingKey = new V2Passphrase("secret", Instance.RandomGenerator.Generate(32), 100, 256);
+            IPassphrase keyEncryptingKey = new V2Passphrase("secret", new Salt(256), 100, 256);
             V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(keyEncryptingKey, new SymmetricIV(128), 0), 250);
 
             byte[] keyData = header.UnwrapMasterKey(new V2AesCrypto(keyEncryptingKey, new SymmetricIV(128), 0));
@@ -133,7 +133,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
 
-            IPassphrase keyEncryptingKey = new V2Passphrase("secret", Instance.RandomGenerator.Generate(32), 100, 256);
+            IPassphrase keyEncryptingKey = new V2Passphrase("secret", new Salt(256), 100, 256);
             V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(keyEncryptingKey, new SymmetricIV(128), 0), 125);
 
             byte[] keyData = header.UnwrapMasterKey(new V2AesCrypto(keyEncryptingKey, new SymmetricIV(128), 0));
@@ -153,7 +153,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
 
-            IPassphrase keyEncryptingKey = new V2Passphrase("secret", Instance.RandomGenerator.Generate(32), 100, 256);
+            IPassphrase keyEncryptingKey = new V2Passphrase("secret", new Salt(256), 100, 256);
             V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(keyEncryptingKey, new SymmetricIV(128), 0), 125);
 
             SymmetricIV iv = header.MasterIV(new V2AesCrypto(new V2Passphrase("another secret", 256), SymmetricIV.Zero128, 0));
@@ -166,7 +166,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
 
-            IPassphrase keyEncryptingKey = new V2Passphrase("secret", Instance.RandomGenerator.Generate(32), 100, 256);
+            IPassphrase keyEncryptingKey = new V2Passphrase("secret", new Salt(256), 100, 256);
             V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(keyEncryptingKey, new SymmetricIV(128), 0), 125);
 
             V2KeyWrapHeaderBlock clone = (V2KeyWrapHeaderBlock)header.Clone();

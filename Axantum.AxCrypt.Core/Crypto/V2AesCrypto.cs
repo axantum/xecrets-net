@@ -99,7 +99,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <value>
         /// An instance of the transform.
         /// </value>
-        public override IKeyWrapTransform CreateKeyWrapTransform(KeyWrapSalt salt, KeyWrapDirection keyWrapDirection)
+        public override IKeyWrapTransform CreateKeyWrapTransform(Salt salt, KeyWrapDirection keyWrapDirection)
         {
             return new BlockAlgorithmKeyWrapTransform(CreateAlgorithmInternal(), salt, keyWrapDirection);
         }

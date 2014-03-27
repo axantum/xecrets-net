@@ -25,13 +25,13 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.UI;
 using Moq;
 using NUnit.Framework;
+using System;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -99,7 +99,7 @@ namespace Axantum.AxCrypt.Core.Test
             settings.V1KeyWrapIterations = 1234;
             Assert.That(settings.V1KeyWrapIterations, Is.EqualTo(1234), "The value should be this.");
 
-            KeyWrapSalt salt = new KeyWrapSalt(16);
+            Salt salt = new Salt(128);
             settings.ThumbprintSalt = salt;
             Assert.That(settings.ThumbprintSalt.GetBytes(), Is.EqualTo(salt.GetBytes()), "The value should be this.");
 
@@ -122,7 +122,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestThumbprintSaltDefault()
         {
-            KeyWrapSalt salt = new KeyWrapSalt(16);
+            Salt salt = new Salt(128);
             Factory.Instance.Register((int n) => salt);
             UserSettings settings = new UserSettings(Factory.New<IRuntimeFileInfo>(@"C:\Folder\UserSettings.txt"), new FakeIterationCalculator());
 
@@ -174,8 +174,8 @@ namespace Axantum.AxCrypt.Core.Test
             UserSettings settings = new UserSettings(Factory.New<IRuntimeFileInfo>(@"C:\Folder\UserSettings.txt"), new FakeIterationCalculator());
             settings.Store<string>("MyKey", "NotASalt");
 
-            KeyWrapSalt salt = new KeyWrapSalt(16);
-            KeyWrapSalt loadedSalt = settings.Load("MyKey", () => salt);
+            Salt salt = new Salt(128);
+            Salt loadedSalt = settings.Load("MyKey", () => salt);
             Assert.That(loadedSalt.GetBytes(), Is.EquivalentTo(salt.GetBytes()), "Since the value is invalid, but there is a fallback this should be returned.");
         }
 

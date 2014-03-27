@@ -36,7 +36,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         string Passphrase { get; }
 
-        byte[] GetDerivationSalt();
+        Salt DerivationSalt { get; }
 
         long DerivationIterations { get; }
 

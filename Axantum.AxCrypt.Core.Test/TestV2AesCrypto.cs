@@ -147,9 +147,9 @@ namespace Axantum.AxCrypt.Core.Test
                 get { throw new NotImplementedException(); }
             }
 
-            public byte[] GetDerivationSalt()
+            public Salt DerivationSalt
             {
-                throw new NotImplementedException();
+                get { throw new NotImplementedException(); }
             }
 
             public long DerivationIterations

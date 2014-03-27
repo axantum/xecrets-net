@@ -50,16 +50,10 @@ namespace Axantum.AxCrypt.Core.Crypto
             protected set;
         }
 
-        private byte[] _derivationSalt;
-
-        public byte[] GetDerivationSalt()
+        public Salt DerivationSalt
         {
-            return (byte[])_derivationSalt.Clone();
-        }
-
-        protected void SetDerivationSalt(byte[] derivationSalt)
-        {
-            _derivationSalt = (byte[])derivationSalt.Clone();
+            get;
+            protected set;
         }
 
         public long DerivationIterations { get; protected set; }

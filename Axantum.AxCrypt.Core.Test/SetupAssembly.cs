@@ -71,7 +71,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Register<IterationCalculator>(() => new FakeIterationCalculator());
 
             Instance.UserSettings.V1KeyWrapIterations = 1234;
-            Instance.UserSettings.ThumbprintSalt = KeyWrapSalt.Zero;
+            Instance.UserSettings.ThumbprintSalt = Salt.Zero;
             Instance.Log.SetLevel(LogLevel.Debug);
         }
 

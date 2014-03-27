@@ -32,7 +32,7 @@ using System;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public static class TestKeyWrapSalt
+    public static class TestSalt
     {
         [SetUp]
         public static void Setup()
@@ -49,46 +49,46 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestMethodsEtc()
         {
-            KeyWrapSalt salt = null;
+            Salt salt = null;
             Assert.DoesNotThrow(() =>
             {
-                salt = new KeyWrapSalt(0);
+                salt = new Salt(0);
                 Assert.That(salt.Length, Is.EqualTo(0), "As a special case, zero length salt is supported - equivalent to no salt.");
 
-                salt = new KeyWrapSalt(16);
+                salt = new Salt(128);
                 Assert.That(salt.Length, Is.EqualTo(16), "The length should be what was asked for.");
                 Assert.That(salt.GetBytes(), Is.Not.EquivalentTo(new byte[16]), "A random salt is not likely to be all zeros.");
 
-                salt = new KeyWrapSalt(24);
+                salt = new Salt(192);
                 Assert.That(salt.Length, Is.EqualTo(24), "The length should be what was asked for.");
                 Assert.That(salt.GetBytes(), Is.Not.EquivalentTo(new byte[24]), "A random salt is not likely to be all zeros.");
 
-                salt = new KeyWrapSalt(32);
+                salt = new Salt(256);
                 Assert.That(salt.Length, Is.EqualTo(32), "The length should be what was asked for.");
                 Assert.That(salt.GetBytes(), Is.Not.EquivalentTo(new byte[32]), "A random salt is not likely to be all zeros.");
 
-                salt = new KeyWrapSalt(new byte[16]);
+                salt = new Salt(new byte[16]);
                 Assert.That(salt.GetBytes(), Is.EquivalentTo(new byte[16]), "A salt with all zeros was requested.");
 
-                salt = new KeyWrapSalt(new byte[24]);
+                salt = new Salt(new byte[24]);
                 Assert.That(salt.GetBytes(), Is.EquivalentTo(new byte[24]), "A salt with all zeros was requested.");
 
-                salt = new KeyWrapSalt(new byte[32]);
+                salt = new Salt(new byte[32]);
                 Assert.That(salt.GetBytes(), Is.EquivalentTo(new byte[32]), "A salt with all zeros was requested.");
 
-                salt = new KeyWrapSalt(new byte[0]);
+                salt = new Salt(new byte[0]);
                 Assert.That(salt.Length, Is.EqualTo(0), "As a special case, zero length salt is supported - equivalent to no salt.");
             }
             );
 
             Assert.Throws<ArgumentNullException>(() =>
             {
-                salt = new KeyWrapSalt(null);
+                salt = new Salt(null);
             });
 
             Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
-                salt = new KeyWrapSalt(-16);
+                salt = new Salt(-128);
             });
         }
     }

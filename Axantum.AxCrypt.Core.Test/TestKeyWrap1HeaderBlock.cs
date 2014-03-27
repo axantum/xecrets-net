@@ -42,7 +42,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
             }
 
-            public void SetValuesDirect(byte[] wrapped, KeyWrapSalt salt, long iterations)
+            public void SetValuesDirect(byte[] wrapped, Salt salt, long iterations)
             {
                 Set(wrapped, salt, iterations);
             }
@@ -65,8 +65,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             KeyWrap1HeaderBlockForTest keyWrap1HeaderBlock = new KeyWrap1HeaderBlockForTest(new V1AesCrypto(new GenericPassphrase("passphrase"), SymmetricIV.Zero128));
 
-            KeyWrapSalt okSalt = new KeyWrapSalt(16);
-            KeyWrapSalt badSalt = new KeyWrapSalt(32);
+            Salt okSalt = new Salt(128);
+            Salt badSalt = new Salt(256);
 
             Assert.Throws<ArgumentNullException>(() =>
             {

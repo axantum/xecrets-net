@@ -36,7 +36,7 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// </summary>
     public class KeyWrap
     {
-        private KeyWrapSalt _salt;
+        private Salt _salt;
 
         private long _iterations;
 
@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <param name="iterations">The number of wrapping iterations, at least 6</param>
         /// <param name="mode">Use original specification mode or AxCrypt mode (only difference is that 't' is little endian in AxCrypt mode)</param>
         public KeyWrap(long iterations, KeyWrapMode mode)
-            : this(KeyWrapSalt.Zero, iterations, mode)
+            : this(Salt.Zero, iterations, mode)
         {
         }
 
@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <param name="salt">A salt. This is required by AxCrypt, although the algorithm supports not using a salt.</param>
         /// <param name="iterations">The number of wrapping iterations, at least 6</param>
         /// <param name="mode">Use original specification mode or AxCrypt mode (only difference is that 't' is little endian in AxCrypt mode)</param>
-        public KeyWrap(KeyWrapSalt salt, long iterations, KeyWrapMode mode)
+        public KeyWrap(Salt salt, long iterations, KeyWrapMode mode)
         {
             if (salt == null)
             {

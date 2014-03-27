@@ -89,7 +89,7 @@ namespace Axantum.AxCrypt.Core.Reader
         public override ICrypto Crypto(Headers headers, string passphrase)
         {
             V2KeyWrapHeaderBlock keyWrap = headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
-            IPassphrase key = new V2Passphrase(passphrase, keyWrap.GetDerivationSalt(), keyWrap.DerivationIterations, 256);
+            IPassphrase key = new V2Passphrase(passphrase, keyWrap.DerivationSalt, keyWrap.DerivationIterations, 256);
 
             return Crypto(key);
         }

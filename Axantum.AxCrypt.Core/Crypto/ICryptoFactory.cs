@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         string Name { get; }
 
-        IPassphrase CreatePassphrase(string passphrase, byte[] salt, int iterations);
+        IPassphrase CreatePassphrase(string passphrase, Salt salt, int iterations);
 
         ICrypto CreateCrypto(IPassphrase key, SymmetricIV iv, long keyStreamOffset);
     }

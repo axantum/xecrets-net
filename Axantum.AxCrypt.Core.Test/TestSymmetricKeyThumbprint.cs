@@ -51,8 +51,8 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestInvalidArguments()
         {
             IPassphrase nullKey = null;
-            KeyWrapSalt nullSalt = null;
-            Assert.Throws<ArgumentNullException>(() => { if (new SymmetricKeyThumbprint(nullKey, new KeyWrapSalt(16), 10) == null) { } });
+            Salt nullSalt = null;
+            Assert.Throws<ArgumentNullException>(() => { if (new SymmetricKeyThumbprint(nullKey, new Salt(128), 10) == null) { } });
             Assert.Throws<ArgumentNullException>(() => { if (new SymmetricKeyThumbprint(new GenericPassphrase("passphrase"), nullSalt, 10) == null) { } });
         }
 
@@ -61,15 +61,15 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IPassphrase key1 = new GenericPassphrase("key");
             IPassphrase key2 = new GenericPassphrase("key");
-            KeyWrapSalt salt1 = new KeyWrapSalt(16);
-            KeyWrapSalt salt2 = new KeyWrapSalt(salt1.GetBytes());
+            Salt salt1 = new Salt(128);
+            Salt salt2 = new Salt(salt1.GetBytes());
 
             SymmetricKeyThumbprint thumbprint1 = new SymmetricKeyThumbprint(key1, salt1, 10);
             SymmetricKeyThumbprint thumbprint2 = new SymmetricKeyThumbprint(key2, salt2, 10);
 
             Assert.That(thumbprint1 == thumbprint2, "Two thumb prints made from the same key and salt bytes, although different AesKey instances should be equivalent.");
 
-            SymmetricKeyThumbprint thumbprint3 = new SymmetricKeyThumbprint(new GenericPassphrase("passphrase"), new KeyWrapSalt(16), 10);
+            SymmetricKeyThumbprint thumbprint3 = new SymmetricKeyThumbprint(new GenericPassphrase("passphrase"), new Salt(128), 10);
             Assert.That(thumbprint2 != thumbprint3, "Two very different keys and salts should not be equivalent.");
         }
 
@@ -78,8 +78,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IPassphrase key1 = new GenericPassphrase("samekey");
             IPassphrase key2 = new GenericPassphrase("samekey");
-            KeyWrapSalt salt1 = new KeyWrapSalt(16);
-            KeyWrapSalt salt2 = new KeyWrapSalt(16);
+            Salt salt1 = new Salt(128);
+            Salt salt2 = new Salt(128);
 
             SymmetricKeyThumbprint thumbprint1a = new SymmetricKeyThumbprint(key1, salt1, 13);
             SymmetricKeyThumbprint thumbprint1a_alias = thumbprint1a;
@@ -110,8 +110,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             GenericPassphrase key1 = new GenericPassphrase("samekey");
             GenericPassphrase key2 = new GenericPassphrase("samekey");
-            KeyWrapSalt salt1 = new KeyWrapSalt(16);
-            KeyWrapSalt salt2 = new KeyWrapSalt(16);
+            Salt salt1 = new Salt(128);
+            Salt salt2 = new Salt(128);
 
             SymmetricKeyThumbprint thumbprint1a = new SymmetricKeyThumbprint(key1, salt1, 17);
             SymmetricKeyThumbprint thumbprint1b = new SymmetricKeyThumbprint(key1, salt2, 17);

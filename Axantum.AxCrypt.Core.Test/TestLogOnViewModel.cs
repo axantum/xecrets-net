@@ -98,7 +98,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestValidatePassphraseOk()
         {
             Mock<IUserSettings> userSettingsMock = new Mock<IUserSettings>();
-            userSettingsMock.Setup<KeyWrapSalt>(f => f.ThumbprintSalt).Returns(KeyWrapSalt.Zero);
+            userSettingsMock.Setup<Salt>(f => f.ThumbprintSalt).Returns(Salt.Zero);
             userSettingsMock.Setup<long>(f => f.V1KeyWrapIterations).Returns(10);
             Factory.Instance.Singleton<IUserSettings>(() => userSettingsMock.Object);
 
@@ -120,7 +120,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestValidatePassphraseNotOk()
         {
             Mock<IUserSettings> userSettingsMock = new Mock<IUserSettings>();
-            userSettingsMock.Setup<KeyWrapSalt>(f => f.ThumbprintSalt).Returns(KeyWrapSalt.Zero);
+            userSettingsMock.Setup<Salt>(f => f.ThumbprintSalt).Returns(Salt.Zero);
             userSettingsMock.Setup<long>(f => f.V1KeyWrapIterations).Returns(10);
             Factory.Instance.Singleton<IUserSettings>(() => userSettingsMock.Object);
 

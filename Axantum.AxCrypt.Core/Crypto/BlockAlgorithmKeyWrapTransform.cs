@@ -12,7 +12,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private ICryptoTransform _transform;
 
-        public BlockAlgorithmKeyWrapTransform(SymmetricAlgorithm symmetricAlgorithm, KeyWrapSalt salt, KeyWrapDirection keyWrapDirection)
+        public BlockAlgorithmKeyWrapTransform(SymmetricAlgorithm symmetricAlgorithm, Salt salt, KeyWrapDirection keyWrapDirection)
         {
             if (salt.Length != 0 && salt.Length < symmetricAlgorithm.Key.Length)
             {

@@ -13,7 +13,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public GenericPassphrase(string passphrase)
         {
-            SetDerivationSalt(new byte[0]);
+            DerivationSalt = Salt.Zero;
             DerivationIterations = 1;
             DerivedKey = SymmetricKey.Zero128;
             Passphrase = passphrase;

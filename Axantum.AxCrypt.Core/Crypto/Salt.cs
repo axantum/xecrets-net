@@ -35,7 +35,7 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// A salt for the Symmetrical Key Wrap. Instances of this class are immutable.
     /// </summary>
     [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
-    public class KeyWrapSalt
+    public class Salt
     {
         [DataMember(Name = "Salt")]
         private readonly byte[] _salt;
@@ -43,31 +43,34 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <summary>
         /// An instance of KeyWrapSalt with all zeroes.
         /// </summary>
-        [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "The reference type 'AesIV' is, in fact, immutable.")]
-        public static readonly KeyWrapSalt Zero = new KeyWrapSalt(new byte[0]);
-
-        private KeyWrapSalt()
-        {
-        }
+        [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "The reference type 'Salt' is, in fact, immutable.")]
+        public static readonly Salt Zero = new Salt(new byte[0]);
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="KeyWrapSalt"/> class.
+        /// Required for DataContract deserialization
         /// </summary>
-        /// <param name="length">The length of the salt in bytes.</param>
-        public KeyWrapSalt(int length)
+        private Salt()
         {
-            if (length < 0)
-            {
-                throw new ArgumentOutOfRangeException("length");
-            }
-            _salt = Instance.RandomGenerator.Generate(length);
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="KeyWrapSalt"/> class.
+        /// Initializes a new instance of the <see cref="Salt"/> class.
+        /// </summary>
+        /// <param name="length">The length of the salt in bits.</param>
+        public Salt(int size)
+        {
+            if (size < 0)
+            {
+                throw new ArgumentOutOfRangeException("size");
+            }
+            _salt = Instance.RandomGenerator.Generate(size / 8);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Salt"/> class.
         /// </summary>
         /// <param name="length">The salt. It must be a valid symmetric key length.</param>
-        public KeyWrapSalt(byte[] salt)
+        public Salt(byte[] salt)
         {
             if (salt == null)
             {

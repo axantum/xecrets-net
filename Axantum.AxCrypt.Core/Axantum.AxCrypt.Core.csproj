@@ -142,7 +142,7 @@
     <Compile Include="Crypto\HeaderSubkey.cs" />
     <Compile Include="Crypto\KeyWrap.cs" />
     <Compile Include="Crypto\KeyWrapMode.cs" />
-    <Compile Include="Crypto\KeyWrapSalt.cs" />
+    <Compile Include="Crypto\Salt.cs" />
     <Compile Include="Crypto\V1Passphrase.cs" />
     <Compile Include="Crypto\Subkey.cs" />
     <Compile Include="OS.cs" />

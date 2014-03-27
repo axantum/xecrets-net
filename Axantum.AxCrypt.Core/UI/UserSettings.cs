@@ -138,9 +138,9 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store("V2KeyWrapIterations", value); }
         }
 
-        public KeyWrapSalt ThumbprintSalt
+        public Salt ThumbprintSalt
         {
-            get { return Load("ThumbprintSalt", () => Factory.New<int, KeyWrapSalt>(64)); }
+            get { return Load("ThumbprintSalt", () => Factory.New<int, Salt>(512)); }
             set { Store("ThumbprintSalt", JsonConvert.SerializeObject(value)); }
         }
 
@@ -205,21 +205,21 @@ namespace Axantum.AxCrypt.Core.UI
             return fallback;
         }
 
-        public KeyWrapSalt Load(string key, Func<KeyWrapSalt> fallbackAction)
+        public Salt Load(string key, Func<Salt> fallbackAction)
         {
             string value;
             if (_settings.TryGetValue(key, out value))
             {
                 try
                 {
-                    return JsonConvert.DeserializeObject<KeyWrapSalt>(value);
+                    return JsonConvert.DeserializeObject<Salt>(value);
                 }
                 catch (JsonException)
                 {
                 }
             }
 
-            KeyWrapSalt fallback = fallbackAction();
+            Salt fallback = fallbackAction();
             this[key] = JsonConvert.SerializeObject(fallback);
             return fallback;
         }
