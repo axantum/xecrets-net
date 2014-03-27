@@ -35,6 +35,8 @@ namespace Axantum.AxCrypt.Mono
 {
     internal class Launcher : ILauncher
     {
+        private readonly object _disposeLock = new object();
+
         private Process _process;
 
         private string _path;
@@ -66,8 +68,11 @@ namespace Axantum.AxCrypt.Mono
             OnExited(e);
             _process.Exited -= Process_Exited;
             _process.WaitForExit();
-            _process.Dispose();
-            _process = null;
+            lock (_disposeLock)
+            {
+                _process.Dispose();
+                _process = null;
+            }
         }
 
         #region ILauncher Members
@@ -76,7 +81,13 @@ namespace Axantum.AxCrypt.Mono
 
         public bool HasExited
         {
-            get { return _process == null || _process.HasExited; }
+            get
+            {
+                lock (_disposeLock)
+                {
+                    return _process == null || _process.HasExited;
+                }
+            }
         }
 
         public bool WasStarted
@@ -102,6 +113,14 @@ namespace Axantum.AxCrypt.Mono
             {
                 return;
             }
+            lock (_disposeLock)
+            {
+                DisposeInternal();
+            }
+        }
+
+        private void DisposeInternal()
+        {
             if (_process == null)
             {
                 return;
