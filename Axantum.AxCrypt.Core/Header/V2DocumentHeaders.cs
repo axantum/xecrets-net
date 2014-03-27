@@ -93,6 +93,10 @@ namespace Axantum.AxCrypt.Core.Header
         {
             _headers = headers;
             _headers.EnsureFileFormatVersion(4, 4);
+
+            V2KeyWrapHeaderBlock v2KeyWrapHeaderBlock = _headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
+            v2KeyWrapHeaderBlock.Crypto = _keyEncryptingCrypto;
+
             if (DataEncryptingKey == null)
             {
                 return false;
@@ -203,7 +207,7 @@ namespace Axantum.AxCrypt.Core.Header
             get
             {
                 V2KeyWrapHeaderBlock keyHeaderBlock = _headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
-                return keyHeaderBlock.MasterKey(_keyEncryptingCrypto);
+                return keyHeaderBlock.MasterKey;
             }
         }
 
@@ -212,7 +216,7 @@ namespace Axantum.AxCrypt.Core.Header
             get
             {
                 V2KeyWrapHeaderBlock keyHeaderBlock = _headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
-                return keyHeaderBlock.MasterIV(_keyEncryptingCrypto);
+                return keyHeaderBlock.MasterIV;
             }
         }
 

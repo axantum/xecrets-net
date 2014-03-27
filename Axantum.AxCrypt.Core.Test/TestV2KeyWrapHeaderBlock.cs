@@ -121,11 +121,11 @@ namespace Axantum.AxCrypt.Core.Test
             IPassphrase keyEncryptingKey = new V2Passphrase("secret", new Salt(256), 100, 256);
             V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(keyEncryptingKey, new SymmetricIV(128), 0), 250);
 
-            byte[] keyData = header.UnwrapMasterKey(new V2AesCrypto(keyEncryptingKey, new SymmetricIV(128), 0));
-            Assert.That(keyData.Length, Is.EqualTo(48));
+            SymmetricKey key = header.MasterKey;
+            Assert.That(key.GetBytes(), Is.EquivalentTo(new byte[32]));
 
-            byte[] expectedOriginalKeyData = new byte[48];
-            Assert.That(keyData, Is.EquivalentTo(expectedOriginalKeyData));
+            SymmetricIV iv = header.MasterIV;
+            Assert.That(iv.GetBytes(), Is.EquivalentTo(new byte[16]));
         }
 
         [Test]
@@ -136,16 +136,22 @@ namespace Axantum.AxCrypt.Core.Test
             IPassphrase keyEncryptingKey = new V2Passphrase("secret", new Salt(256), 100, 256);
             V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(keyEncryptingKey, new SymmetricIV(128), 0), 125);
 
-            byte[] keyData = header.UnwrapMasterKey(new V2AesCrypto(keyEncryptingKey, new SymmetricIV(128), 0));
-            Assert.That(keyData.Length, Is.EqualTo(48));
+            SymmetricKey key = header.MasterKey;
+            Assert.That(key.GetBytes(), Is.EquivalentTo(ByteSequence(key.GetBytes()[0], key.Length)));
 
-            byte[] expectedOriginalKeyData = new byte[48];
-            expectedOriginalKeyData[0] = keyData[0];
-            for (int i = 1; i < expectedOriginalKeyData.Length; ++i)
+            SymmetricIV iv = header.MasterIV;
+            Assert.That(iv.GetBytes(), Is.EquivalentTo(ByteSequence(iv.GetBytes()[0], iv.Length)));
+        }
+
+        private static byte[] ByteSequence(byte start, int length)
+        {
+            byte[] sequence = new byte[length];
+            sequence[0] = start;
+            for (int i = 1; i < sequence.Length; ++i)
             {
-                expectedOriginalKeyData[i] = (byte)(expectedOriginalKeyData[i - 1] + 1);
+                sequence[i] = (byte)(sequence[i - 1] + 1);
             }
-            Assert.That(keyData, Is.EquivalentTo(expectedOriginalKeyData));
+            return sequence;
         }
 
         [Test]
@@ -156,7 +162,8 @@ namespace Axantum.AxCrypt.Core.Test
             IPassphrase keyEncryptingKey = new V2Passphrase("secret", new Salt(256), 100, 256);
             V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(keyEncryptingKey, new SymmetricIV(128), 0), 125);
 
-            SymmetricIV iv = header.MasterIV(new V2AesCrypto(new V2Passphrase("another secret", 256), SymmetricIV.Zero128, 0));
+            header.Crypto = new V2AesCrypto(new V2Passphrase("another secret", 256), SymmetricIV.Zero128, 0);
+            SymmetricIV iv = header.MasterIV;
 
             Assert.That(iv, Is.Null);
         }
