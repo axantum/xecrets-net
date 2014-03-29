@@ -32,6 +32,11 @@ namespace Axantum.AxCrypt.Core.Crypto
 {
     public abstract class PassphraseBase : IPassphrase
     {
+        public virtual bool IsLegacy
+        {
+            get { throw new NotImplementedException(); }
+        }
+
         public SymmetricKey DerivedKey
         {
             get;

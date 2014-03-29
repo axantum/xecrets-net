@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             public override int Compare(ActiveFile x, ActiveFile y)
             {
-                return (ReverseSort ? -1 : 1) * x.LastActivityTimeUtc.CompareTo(y.LastActivityTimeUtc);
+                return (ReverseSort ? -1 : 1) * x.Properties.LastActivityTimeUtc.CompareTo(y.Properties.LastActivityTimeUtc);
             }
         }
 

@@ -241,17 +241,17 @@ namespace Axantum.AxCrypt.Core.Test
 
             FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2001, 1, 1);
             FakeRuntimeFileInfo.AddFile(file1, null);
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new GenericPassphrase("passphrase1"), ActiveFileStatus.NotDecrypted);
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new GenericPassphrase("passphrase1"), ActiveFileStatus.NotDecrypted, true);
             Instance.FileSystemState.Add(activeFile);
 
             FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2002, 2, 2);
             FakeRuntimeFileInfo.AddFile(file2, null);
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file2), Factory.New<IRuntimeFileInfo>(decrypted2), new GenericPassphrase("passphrase2"), ActiveFileStatus.NotDecrypted);
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file2), Factory.New<IRuntimeFileInfo>(decrypted2), new GenericPassphrase("passphrase2"), ActiveFileStatus.NotDecrypted, true);
             Instance.FileSystemState.Add(activeFile);
 
             FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2003, 3, 3);
             FakeRuntimeFileInfo.AddFile(file3, null);
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file3), Factory.New<IRuntimeFileInfo>(decrypted3), new GenericPassphrase("passphrase"), ActiveFileStatus.NotDecrypted);
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file3), Factory.New<IRuntimeFileInfo>(decrypted3), new GenericPassphrase("passphrase"), ActiveFileStatus.NotDecrypted, true);
             Instance.FileSystemState.Add(activeFile);
 
             ActiveFileComparer comparer;
@@ -294,22 +294,22 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2001, 1, 1);
                 FakeRuntimeFileInfo.AddFile(file1, null);
-                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new GenericPassphrase("passphrase1"), ActiveFileStatus.AssumedOpenAndDecrypted);
+                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new GenericPassphrase("passphrase1"), ActiveFileStatus.AssumedOpenAndDecrypted, true);
                 Instance.FileSystemState.Add(activeFile);
 
                 FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2002, 2, 2);
                 FakeRuntimeFileInfo.AddFile(file2, null);
-                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file2), Factory.New<IRuntimeFileInfo>(decrypted2), new GenericPassphrase("passphrase2"), ActiveFileStatus.NotDecrypted);
+                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file2), Factory.New<IRuntimeFileInfo>(decrypted2), new GenericPassphrase("passphrase2"), ActiveFileStatus.NotDecrypted, true);
                 Instance.FileSystemState.Add(activeFile);
 
                 FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2003, 3, 3);
                 FakeRuntimeFileInfo.AddFile(file3, null);
-                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file3), Factory.New<IRuntimeFileInfo>(decrypted3), new GenericPassphrase("passphrase3"), ActiveFileStatus.NotDecrypted);
+                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file3), Factory.New<IRuntimeFileInfo>(decrypted3), new GenericPassphrase("passphrase3"), ActiveFileStatus.NotDecrypted, true);
                 Instance.FileSystemState.Add(activeFile);
 
                 Assert.That(mvm.FilesArePending, Is.True);
 
-                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new GenericPassphrase("passphrase"), ActiveFileStatus.NotDecrypted);
+                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new GenericPassphrase("passphrase"), ActiveFileStatus.NotDecrypted, true);
                 Instance.FileSystemState.Add(activeFile);
 
                 Assert.That(mvm.FilesArePending, Is.False);
@@ -334,15 +334,15 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile;
 
             FakeRuntimeFileInfo.AddFile(file1, null);
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new GenericPassphrase("passphrase1"), ActiveFileStatus.NotDecrypted);
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new GenericPassphrase("passphrase1"), ActiveFileStatus.NotDecrypted, true);
             Instance.FileSystemState.Add(activeFile);
 
             FakeRuntimeFileInfo.AddFile(file2, null);
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file2), Factory.New<IRuntimeFileInfo>(decrypted2), new GenericPassphrase("passphrase2"), ActiveFileStatus.NotDecrypted);
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file2), Factory.New<IRuntimeFileInfo>(decrypted2), new GenericPassphrase("passphrase2"), ActiveFileStatus.NotDecrypted, true);
             Instance.FileSystemState.Add(activeFile);
 
             FakeRuntimeFileInfo.AddFile(file3, null);
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file3), Factory.New<IRuntimeFileInfo>(decrypted3), new GenericPassphrase("passphrase"), ActiveFileStatus.NotDecrypted);
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file3), Factory.New<IRuntimeFileInfo>(decrypted3), new GenericPassphrase("passphrase"), ActiveFileStatus.NotDecrypted, true);
             Instance.FileSystemState.Add(activeFile);
 
             using (MainViewModel mvm = Factory.New<MainViewModel>())
@@ -387,7 +387,7 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile;
 
             FakeRuntimeFileInfo.AddFile(file1, null);
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new GenericPassphrase("passphrase1"), ActiveFileStatus.NotDecrypted);
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new GenericPassphrase("passphrase1"), ActiveFileStatus.NotDecrypted, true);
             Instance.FileSystemState.Add(activeFile);
 
             Instance.KnownKeys.Add(new GenericPassphrase("passphrase2"));

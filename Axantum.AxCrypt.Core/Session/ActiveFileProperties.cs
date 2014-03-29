@@ -27,23 +27,34 @@
 
 using System;
 using System.Linq;
+using System.Runtime.Serialization;
 
-namespace Axantum.AxCrypt.Core.Crypto
+namespace Axantum.AxCrypt.Core.Session
 {
-    public interface IPassphrase : IEquatable<IPassphrase>
+    [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
+    public class ActiveFileProperties
     {
-        bool IsLegacy { get; }
+        public ActiveFileProperties(DateTime lastActivityTimeUtc, DateTime lastEncryptionWriteTimeUtc, bool isLegacyEncrypted)
+        {
+            LastActivityTimeUtc = lastActivityTimeUtc;
+            LastEncryptionWriteTimeUtc = lastEncryptionWriteTimeUtc;
+            IsLegacyEncrypted = isLegacyEncrypted;
+        }
 
-        SymmetricKey DerivedKey { get; }
+        [DataMember(Name = "IsLegacyEncrypted")]
+        public bool IsLegacyEncrypted
+        {
+            get;
+            private set;
+        }
 
-        string Passphrase { get; }
+        [DataMember]
+        public DateTime LastActivityTimeUtc { get; private set; }
 
-        Salt DerivationSalt { get; }
-
-        long DerivationIterations { get; }
-
-        CryptoId CryptoId { get; }
-
-        SymmetricKeyThumbprint Thumbprint { get; }
+        /// <summary>
+        /// Records the Last Write Time that was valid at the most recent encryption update of the encrypted file.
+        /// </summary>
+        [DataMember]
+        public DateTime LastEncryptionWriteTimeUtc { get; private set; }
     }
 }

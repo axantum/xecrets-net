@@ -175,7 +175,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IPassphrase key = new V1Passphrase("p");
 
-            ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(@"C:\Folder\File1-txt.axx"), Factory.New<IRuntimeFileInfo>(@"C:\Folder\File1.txt"), key, ActiveFileStatus.NotDecrypted);
+            ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(@"C:\Folder\File1-txt.axx"), Factory.New<IRuntimeFileInfo>(@"C:\Folder\File1.txt"), key, ActiveFileStatus.NotDecrypted, true);
             Instance.FileSystemState.Add(activeFile);
 
             PassphraseIdentity id = null;
@@ -199,7 +199,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IPassphrase key = new V1Passphrase("p");
 
-            ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(@"C:\Folder\File1-txt.axx"), Factory.New<IRuntimeFileInfo>(@"C:\Folder\File1.txt"), key, ActiveFileStatus.NotDecrypted);
+            ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(@"C:\Folder\File1-txt.axx"), Factory.New<IRuntimeFileInfo>(@"C:\Folder\File1.txt"), key, ActiveFileStatus.NotDecrypted, true);
             Instance.FileSystemState.Add(activeFile);
 
             PassphraseIdentity id = new PassphraseIdentity("Test User", key);

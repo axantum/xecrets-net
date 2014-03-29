@@ -136,6 +136,11 @@ namespace Axantum.AxCrypt.Core.Test
 
         private class PassphraseForTest : IPassphrase
         {
+            public bool IsLegacy
+            {
+                get { throw new NotImplementedException(); }
+            }
+
             public SymmetricKey DerivedKey
             {
                 get;

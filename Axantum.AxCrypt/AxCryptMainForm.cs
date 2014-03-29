@@ -783,8 +783,8 @@ namespace Axantum.AxCrypt
             UpdateStatusDependentPropertiesOfListViewItem(item, activeFile);
 
             item.SubItems["EncryptedPath"].Text = activeFile.EncryptedFileInfo.FullName;
-            item.SubItems["Date"].Text = activeFile.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
-            item.SubItems["Date"].Tag = activeFile.LastActivityTimeUtc;
+            item.SubItems["Date"].Text = activeFile.Properties.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
+            item.SubItems["Date"].Tag = activeFile.Properties.LastActivityTimeUtc;
         }
 
         private static void UpdateStatusDependentPropertiesOfListViewItem(ListViewItem item, ActiveFile activeFile)

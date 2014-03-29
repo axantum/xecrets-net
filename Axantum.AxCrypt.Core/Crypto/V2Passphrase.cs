@@ -55,5 +55,13 @@ namespace Axantum.AxCrypt.Core.Crypto
             : this(passphrase, new Salt(256), DERIVATION_ITERATIONS, keySize)
         {
         }
+
+        public override bool IsLegacy
+        {
+            get
+            {
+                return false;
+            }
+        }
     }
 }

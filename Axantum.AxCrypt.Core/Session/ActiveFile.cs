@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("activeFile");
             }
             Initialize(activeFile);
-            LastActivityTimeUtc = activeFile.LastActivityTimeUtc;
+            Properties = new ActiveFileProperties(activeFile.Properties.LastActivityTimeUtc, Properties.LastEncryptionWriteTimeUtc, activeFile.Properties.IsLegacyEncrypted);
             Key = null;
         }
 
@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("key");
             }
             Initialize(activeFile);
-            LastActivityTimeUtc = activeFile.LastActivityTimeUtc;
+            Properties = new ActiveFileProperties(activeFile.Properties.LastActivityTimeUtc, Properties.LastEncryptionWriteTimeUtc, activeFile.Properties.IsLegacyEncrypted);
             Key = key;
         }
 
@@ -87,11 +87,11 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("activeFile");
             }
             Initialize(activeFile);
-            LastEncryptionWriteTimeUtc = lastEncryptionWriteTimeUtc;
+            Properties = new ActiveFileProperties(activeFile.Properties.LastActivityTimeUtc, lastEncryptionWriteTimeUtc, activeFile.Properties.IsLegacyEncrypted);
             Status = status;
         }
 
-        public ActiveFile(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, IPassphrase key, ActiveFileStatus status)
+        public ActiveFile(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, IPassphrase key, ActiveFileStatus status, bool isLegacyEncrypted)
         {
             if (encryptedFileInfo == null)
             {
@@ -105,23 +105,22 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 throw new ArgumentNullException("key");
             }
-            Initialize(encryptedFileInfo, decryptedFileInfo, decryptedFileInfo.LastWriteTimeUtc, key, null, status);
+            Initialize(encryptedFileInfo, decryptedFileInfo, key, null, status, new ActiveFileProperties(OS.Current.UtcNow, decryptedFileInfo.LastWriteTimeUtc, isLegacyEncrypted));
         }
 
         private void Initialize(ActiveFile other)
         {
-            Initialize(other.EncryptedFileInfo, other.DecryptedFileInfo, other.LastEncryptionWriteTimeUtc, other.Key, other.Thumbprint, other.Status);
+            Initialize(other.EncryptedFileInfo, other.DecryptedFileInfo, other.Key, other.Thumbprint, other.Status, other.Properties);
         }
 
-        private void Initialize(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, DateTime lastWriteTimeUtc, IPassphrase key, SymmetricKeyThumbprint thumbprint, ActiveFileStatus status)
+        private void Initialize(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, IPassphrase key, SymmetricKeyThumbprint thumbprint, ActiveFileStatus status, ActiveFileProperties properties)
         {
             EncryptedFileInfo = Factory.New<IRuntimeFileInfo>(encryptedFileInfo.FullName);
             DecryptedFileInfo = Factory.New<IRuntimeFileInfo>(decryptedFileInfo.FullName);
             Key = key;
             Thumbprint = thumbprint;
             Status = status;
-            LastActivityTimeUtc = OS.Current.UtcNow;
-            LastEncryptionWriteTimeUtc = lastWriteTimeUtc;
+            Properties = new ActiveFileProperties(OS.Current.UtcNow, properties.LastEncryptionWriteTimeUtc, properties.IsLegacyEncrypted);
         }
 
         public IRuntimeFileInfo DecryptedFileInfo
@@ -149,7 +148,7 @@ namespace Axantum.AxCrypt.Core.Session
                 }
                 return _thumbprint;
             }
-            set
+            private set
             {
                 _thumbprint = value;
             }
@@ -206,18 +205,16 @@ namespace Axantum.AxCrypt.Core.Session
         public ActiveFileStatus Status { get; private set; }
 
         [DataMember]
-        public DateTime LastActivityTimeUtc { get; private set; }
-
-        /// <summary>
-        /// Records the Last Write Time that was valid at the most recent encryption update of the encrypted file.
-        /// </summary>
-        [DataMember]
-        private DateTime LastEncryptionWriteTimeUtc { get; set; }
+        public ActiveFileProperties Properties { get; private set; }
 
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context)
         {
             DecryptedFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(_decryptedFolder, _decryptedName));
+            if (Properties == null)
+            {
+                Properties = new ActiveFileProperties(default(DateTime), default(DateTime), false);
+            }
         }
 
         private IPassphrase _key;
@@ -257,10 +254,10 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     return false;
                 }
-                bool isModified = DecryptedFileInfo.LastWriteTimeUtc > LastEncryptionWriteTimeUtc;
+                bool isModified = DecryptedFileInfo.LastWriteTimeUtc > Properties.LastEncryptionWriteTimeUtc;
                 if (Instance.Log.IsInfoEnabled)
                 {
-                    Instance.Log.LogInfo("IsModified == '{0}' for file '{3}' info last write time '{1}' and active file last write time '{2}'".InvariantFormat(isModified.ToString(), DecryptedFileInfo.LastWriteTimeUtc.ToString(), LastEncryptionWriteTimeUtc.ToString(), DecryptedFileInfo.Name));
+                    Instance.Log.LogInfo("IsModified == '{0}' for file '{3}' info last write time '{1}' and active file last write time '{2}'".InvariantFormat(isModified.ToString(), DecryptedFileInfo.LastWriteTimeUtc.ToString(), Properties.LastEncryptionWriteTimeUtc.ToString(), DecryptedFileInfo.Name));
                 }
                 return isModified;
             }

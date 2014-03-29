@@ -34,6 +34,8 @@ namespace Axantum.AxCrypt.Core
 {
     public interface IAxCryptDocument : IDisposable
     {
+        bool IsLegacy { get; }
+
         bool PassphraseIsValid { get; }
 
         string FileName { get; set; }

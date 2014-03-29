@@ -59,5 +59,13 @@ namespace Axantum.AxCrypt.Core.Crypto
             Passphrase = passphrase;
             CryptoId = CryptoId.Aes_128_V1;
         }
+
+        public override bool IsLegacy
+        {
+            get
+            {
+                return true;
+            }
+        }
     }
 }
