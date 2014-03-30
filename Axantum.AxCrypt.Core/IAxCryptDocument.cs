@@ -25,17 +25,15 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.IO;
 using System.Linq;
+using Axantum.AxCrypt.Core.Crypto;
 
 namespace Axantum.AxCrypt.Core
 {
     public interface IAxCryptDocument : IDisposable
     {
-        bool IsLegacy { get; }
-
         bool PassphraseIsValid { get; }
 
         string FileName { get; set; }

@@ -63,11 +63,6 @@ namespace Axantum.AxCrypt.Core
 
         private AxCryptReader _reader;
 
-        public bool IsLegacy
-        {
-            get { return false; }
-        }
-
         public bool PassphraseIsValid { get; set; }
 
         public bool Load(IPassphrase key, Stream inputStream)

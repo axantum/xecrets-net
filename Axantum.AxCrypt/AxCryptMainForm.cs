@@ -261,6 +261,10 @@ namespace Axantum.AxCrypt
                 case 2:
                     Preferences.RecentFilesEncryptedPathWidth = _recentFilesListView.Columns[e.ColumnIndex].Width;
                     break;
+
+                case 3:
+                    Preferences.RecentFilesCryptoNameWidth = _recentFilesListView.Columns[e.ColumnIndex].Width;
+                    break;
             }
         }
 
@@ -278,6 +282,7 @@ namespace Axantum.AxCrypt
             _recentFilesListView.Columns[0].Width = Preferences.RecentFilesDocumentWidth.Fallback(_recentFilesListView.Columns[0].Width);
             _recentFilesListView.Columns[1].Width = Preferences.RecentFilesDateTimeWidth.Fallback(_recentFilesListView.Columns[1].Width);
             _recentFilesListView.Columns[2].Width = Preferences.RecentFilesEncryptedPathWidth.Fallback(_recentFilesListView.Columns[2].Width);
+            _recentFilesListView.Columns[3].Width = Preferences.RecentFilesCryptoNameWidth.Fallback(_recentFilesListView.Columns[3].Width);
 
             _mainViewModel.RecentFilesComparer = GetComparer(Preferences.RecentFilesSortColumn, !Preferences.RecentFilesAscending);
         }
@@ -722,6 +727,9 @@ namespace Axantum.AxCrypt
                     ListViewItem.ListViewSubItem encryptedPathColumn = item.SubItems.Add(String.Empty);
                     encryptedPathColumn.Name = "EncryptedPath";
 
+                    ListViewItem.ListViewSubItem cryptoNameColumn = item.SubItems.Add(String.Empty);
+                    cryptoNameColumn.Name = "CryptoName";
+
                     _recentFilesListView.Items.Add(item);
 
                     UpdateListViewItem(item, file);
@@ -785,6 +793,7 @@ namespace Axantum.AxCrypt
             item.SubItems["EncryptedPath"].Text = activeFile.EncryptedFileInfo.FullName;
             item.SubItems["Date"].Text = activeFile.Properties.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
             item.SubItems["Date"].Tag = activeFile.Properties.LastActivityTimeUtc;
+            item.SubItems["CryptoName"].Text = Instance.CryptoFactory.Create(activeFile.Properties.CryptoId).Name;
         }
 
         private static void UpdateStatusDependentPropertiesOfListViewItem(ListViewItem item, ActiveFile activeFile)
@@ -933,6 +942,10 @@ namespace Axantum.AxCrypt
 
                 case 2:
                     comparer = ActiveFileComparer.EncryptedNameComparer;
+                    break;
+
+                case 3:
+                    comparer = ActiveFileComparer.CryptoNameComparer;
                     break;
 
                 default:

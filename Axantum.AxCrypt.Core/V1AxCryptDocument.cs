@@ -61,11 +61,6 @@ namespace Axantum.AxCrypt.Core
 
         public V1DocumentHeaders DocumentHeaders { get; private set; }
 
-        public bool IsLegacy
-        {
-            get { return true; }
-        }
-
         public bool PassphraseIsValid { get; set; }
 
         public bool Load(IPassphrase key, Stream inputStream)

@@ -58,11 +58,21 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
+        private class CryptoNameComparerImpl : ActiveFileComparer
+        {
+            public override int Compare(ActiveFile x, ActiveFile y)
+            {
+                return (ReverseSort ? -1 : 1) * Instance.CryptoFactory.Create(x.Properties.CryptoId).Name.CompareTo(Instance.CryptoFactory.Create(y.Properties.CryptoId).Name);
+            }
+        }
+
         public static ActiveFileComparer EncryptedNameComparer { get { return new EncryptedNameComparerImpl(); } }
 
         public static ActiveFileComparer DecryptedNameComparer { get { return new DecryptedNameComparerImpl(); } }
 
         public static ActiveFileComparer DateComparer { get { return new DateComparerImpl(); } }
+
+        public static ActiveFileComparer CryptoNameComparer { get { return new CryptoNameComparerImpl(); } }
 
         public abstract int Compare(ActiveFile x, ActiveFile y);
 

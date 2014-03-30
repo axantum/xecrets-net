@@ -75,6 +75,7 @@
             this._watchedFoldersdecryptTemporarilyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._watchedFoldersOpenExplorerHereMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._progressBackgroundWorker = new Axantum.AxCrypt.ProgressBackground(this.components);
+            this._cryptoName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._mainToolStrip.SuspendLayout();
             this._mainMenuStrip.SuspendLayout();
             this._recentFilesContextMenuStrip.SuspendLayout();
@@ -426,7 +427,8 @@
             this._recentFilesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this._decryptedFileColumnHeader,
             this._lastAccessTimeColumnHeader,
-            this._encryptedPathColumnHeader});
+            this._encryptedPathColumnHeader,
+            this._cryptoName});
             resources.ApplyResources(this._recentFilesListView, "_recentFilesListView");
             this._recentFilesListView.FullRowSelect = true;
             this._recentFilesListView.Name = "_recentFilesListView";
@@ -483,6 +485,10 @@
             // 
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
+            // 
+            // _cryptoName
+            // 
+            resources.ApplyResources(this._cryptoName, "_cryptoName");
             // 
             // AxCryptMainForm
             // 
@@ -572,6 +578,7 @@
         private System.Windows.Forms.TabPage _watchedFoldersTabPage;
         private System.Windows.Forms.ToolStripMenuItem _clearPassphraseMemoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator _toolStripSeparator8;
+        private System.Windows.Forms.ColumnHeader _cryptoName;
     }
 }
 
