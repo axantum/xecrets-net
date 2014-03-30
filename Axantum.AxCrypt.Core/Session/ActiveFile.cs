@@ -25,14 +25,14 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
 
 namespace Axantum.AxCrypt.Core.Session
 {
@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("activeFile");
             }
             Initialize(activeFile);
-            Properties = new ActiveFileProperties(activeFile.Properties.LastActivityTimeUtc, Properties.LastEncryptionWriteTimeUtc, activeFile.Properties.IsLegacyEncrypted);
+            Properties = new ActiveFileProperties(activeFile.Properties.LastActivityTimeUtc, Properties.LastEncryptionWriteTimeUtc, activeFile.Properties.CryptoId);
             Key = null;
         }
 
@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("key");
             }
             Initialize(activeFile);
-            Properties = new ActiveFileProperties(activeFile.Properties.LastActivityTimeUtc, Properties.LastEncryptionWriteTimeUtc, activeFile.Properties.IsLegacyEncrypted);
+            Properties = new ActiveFileProperties(activeFile.Properties.LastActivityTimeUtc, Properties.LastEncryptionWriteTimeUtc, activeFile.Properties.CryptoId);
             Key = key;
         }
 
@@ -87,11 +87,11 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("activeFile");
             }
             Initialize(activeFile);
-            Properties = new ActiveFileProperties(activeFile.Properties.LastActivityTimeUtc, lastEncryptionWriteTimeUtc, activeFile.Properties.IsLegacyEncrypted);
+            Properties = new ActiveFileProperties(activeFile.Properties.LastActivityTimeUtc, lastEncryptionWriteTimeUtc, activeFile.Properties.CryptoId);
             Status = status;
         }
 
-        public ActiveFile(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, IPassphrase key, ActiveFileStatus status, bool isLegacyEncrypted)
+        public ActiveFile(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, IPassphrase key, ActiveFileStatus status, Guid cryptoId)
         {
             if (encryptedFileInfo == null)
             {
@@ -105,7 +105,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 throw new ArgumentNullException("key");
             }
-            Initialize(encryptedFileInfo, decryptedFileInfo, key, null, status, new ActiveFileProperties(OS.Current.UtcNow, decryptedFileInfo.LastWriteTimeUtc, isLegacyEncrypted));
+            Initialize(encryptedFileInfo, decryptedFileInfo, key, null, status, new ActiveFileProperties(OS.Current.UtcNow, decryptedFileInfo.LastWriteTimeUtc, cryptoId));
         }
 
         private void Initialize(ActiveFile other)
@@ -120,7 +120,7 @@ namespace Axantum.AxCrypt.Core.Session
             Key = key;
             Thumbprint = thumbprint;
             Status = status;
-            Properties = new ActiveFileProperties(OS.Current.UtcNow, properties.LastEncryptionWriteTimeUtc, properties.IsLegacyEncrypted);
+            Properties = new ActiveFileProperties(OS.Current.UtcNow, properties.LastEncryptionWriteTimeUtc, properties.CryptoId);
         }
 
         public IRuntimeFileInfo DecryptedFileInfo
@@ -213,7 +213,7 @@ namespace Axantum.AxCrypt.Core.Session
             DecryptedFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(_decryptedFolder, _decryptedName));
             if (Properties == null)
             {
-                Properties = new ActiveFileProperties(default(DateTime), default(DateTime), false);
+                Properties = new ActiveFileProperties(default(DateTime), default(DateTime), Guid.Empty);
             }
         }
 

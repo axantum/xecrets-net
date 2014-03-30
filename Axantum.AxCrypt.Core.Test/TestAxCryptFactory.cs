@@ -25,12 +25,12 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Runtime;
-using NUnit.Framework;
 using System;
 using System.IO;
 using System.Linq;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Runtime;
+using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Core.Test
             AxCryptFactory axFactory = new AxCryptFactory();
 
             IPassphrase key;
-            Assert.Throws<ArgumentException>(() => key = axFactory.CreatePassphrase("asdf", (CryptoId)(-1)));
+            Assert.Throws<ArgumentException>(() => key = axFactory.CreatePassphrase("asdf", Guid.Empty));
         }
 
         private class TestingPassphrase : GenericPassphrase
@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Core.Test
             public TestingPassphrase(string passphrase)
                 : base(passphrase)
             {
-                CryptoId = (CryptoId)99;
+                CryptoId = new Guid();
             }
         }
 

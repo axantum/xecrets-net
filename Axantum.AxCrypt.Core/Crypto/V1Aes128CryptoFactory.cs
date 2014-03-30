@@ -34,6 +34,11 @@ namespace Axantum.AxCrypt.Core.Crypto
     {
         private static readonly Guid _id = new Guid("1673BBEF-A56A-43AC-AB16-E14D2BAD1CBF");
 
+        public IPassphrase CreatePassphrase(string passphrase)
+        {
+            return new V1Passphrase(passphrase);
+        }
+
         public IPassphrase CreatePassphrase(string passphrase, Salt salt, int iterations)
         {
             return new V1Passphrase(passphrase);

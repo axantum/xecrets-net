@@ -25,12 +25,12 @@
 
 #endregion Coypright and License
 
+using System;
+using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
-using System;
-using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -136,11 +136,6 @@ namespace Axantum.AxCrypt.Core.Test
 
         private class PassphraseForTest : IPassphrase
         {
-            public bool IsLegacy
-            {
-                get { throw new NotImplementedException(); }
-            }
-
             public SymmetricKey DerivedKey
             {
                 get;
@@ -162,7 +157,7 @@ namespace Axantum.AxCrypt.Core.Test
                 get { throw new NotImplementedException(); }
             }
 
-            public CryptoId CryptoId
+            public Guid CryptoId
             {
                 get { throw new NotImplementedException(); }
             }

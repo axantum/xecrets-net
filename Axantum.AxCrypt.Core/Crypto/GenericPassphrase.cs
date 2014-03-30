@@ -17,7 +17,6 @@ namespace Axantum.AxCrypt.Core.Crypto
             DerivationIterations = 1;
             DerivedKey = SymmetricKey.Zero128;
             Passphrase = passphrase;
-            CryptoId = CryptoId.Unknown;
         }
     }
 }

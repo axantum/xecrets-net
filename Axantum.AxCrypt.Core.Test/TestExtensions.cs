@@ -25,11 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
-using NUnit.Framework;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -37,6 +32,11 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Threading;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
+using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -462,15 +462,6 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(@"C:\Windows\System.drv", null);
             fileInfo = Factory.New<IRuntimeFileInfo>(@"C:\Windows\System.drv");
             Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.OtherFile));
-        }
-
-        [Test]
-        public static void TestCryptoNameToLabel()
-        {
-            Assert.That(CryptoId.Aes_256.ToLabel(), Is.EqualTo("AES-256"));
-            Assert.That(CryptoId.Aes_128_V1.ToLabel(), Is.EqualTo("AES-128-V1"));
-            Assert.That(CryptoId.Unknown.ToLabel(), Is.EqualTo(String.Empty));
-            Assert.That(((CryptoId)(-1)).ToLabel(), Is.EqualTo(String.Empty));
         }
 
         [Test]

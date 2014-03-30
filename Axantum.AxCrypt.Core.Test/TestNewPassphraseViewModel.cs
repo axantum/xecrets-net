@@ -25,16 +25,16 @@
 
 #endregion Coypright and License
 
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Moq;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -72,7 +72,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestConstructorWithKnownDefaultIdentity()
         {
-            _identities.Add(new PassphraseIdentity(Environment.UserName, CryptoId.Aes_128_V1));
+            _identities.Add(new PassphraseIdentity(Environment.UserName, new V1Aes128CryptoFactory().Id));
             NewPassphraseViewModel npvm = new NewPassphraseViewModel(String.Empty, Environment.UserName, String.Empty);
 
             Assert.That(npvm.IdentityName, Is.EqualTo(String.Empty));
@@ -103,7 +103,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestValidateIdentityAlreadyExistsFails()
         {
-            _identities.Add(new PassphraseIdentity("Identity", CryptoId.Aes_256));
+            _identities.Add(new PassphraseIdentity("Identity", new V2Aes256CryptoFactory().Id));
             NewPassphraseViewModel npvm = new NewPassphraseViewModel(Environment.UserName, String.Empty, String.Empty);
             npvm.IdentityName = "Identity";
 

@@ -25,12 +25,12 @@
 
 #endregion Coypright and License
 
+using System;
+using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
-using System;
-using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -40,6 +40,16 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
+            Factory.Instance.Singleton<CryptoFactory>(() => CreateCryptoFactory());
+        }
+
+        private static CryptoFactory CreateCryptoFactory()
+        {
+            CryptoFactory factory = new CryptoFactory();
+            factory.Add(() => new V2Aes256CryptoFactory());
+            factory.Add(() => new V1Aes128CryptoFactory());
+
+            return factory;
         }
 
         [TearDown]

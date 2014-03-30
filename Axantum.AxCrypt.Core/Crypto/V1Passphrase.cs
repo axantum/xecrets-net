@@ -57,15 +57,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             DerivationIterations = 0;
             DerivedKey = new SymmetricKey(derivedKey);
             Passphrase = passphrase;
-            CryptoId = CryptoId.Aes_128_V1;
-        }
-
-        public override bool IsLegacy
-        {
-            get
-            {
-                return true;
-            }
+            CryptoId = Instance.CryptoFactory.Legacy.Id;
         }
     }
 }

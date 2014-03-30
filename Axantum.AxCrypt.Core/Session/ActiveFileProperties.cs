@@ -34,15 +34,15 @@ namespace Axantum.AxCrypt.Core.Session
     [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
     public class ActiveFileProperties
     {
-        public ActiveFileProperties(DateTime lastActivityTimeUtc, DateTime lastEncryptionWriteTimeUtc, bool isLegacyEncrypted)
+        public ActiveFileProperties(DateTime lastActivityTimeUtc, DateTime lastEncryptionWriteTimeUtc, Guid cryptoId)
         {
             LastActivityTimeUtc = lastActivityTimeUtc;
             LastEncryptionWriteTimeUtc = lastEncryptionWriteTimeUtc;
-            IsLegacyEncrypted = isLegacyEncrypted;
+            CryptoId = cryptoId;
         }
 
-        [DataMember(Name = "IsLegacyEncrypted")]
-        public bool IsLegacyEncrypted
+        [DataMember(Name = "CryptoId")]
+        public Guid CryptoId
         {
             get;
             private set;

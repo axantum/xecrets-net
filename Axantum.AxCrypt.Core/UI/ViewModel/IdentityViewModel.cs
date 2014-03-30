@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Linq;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Session;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
@@ -48,15 +48,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             Passphrase = null;
 
-            LogOnLogOff = new DelegateAction<CryptoId>((cryptoId) => Passphrase = LogOnLogOffAction(cryptoId));
+            LogOnLogOff = new DelegateAction<Guid>((cryptoId) => Passphrase = LogOnLogOffAction(cryptoId));
             AskForLogOnOrDecryptPassphrase = new DelegateAction<string>((name) => Passphrase = AskForLogOnOrDecryptPassphraseAction(name));
             AskForLogOnPassphrase = new DelegateAction<PassphraseIdentity>((id) => Passphrase = AskForLogOnPassphraseAction(id, String.Empty));
-            CryptoId = CryptoId.Aes_256;
+            CryptoId = Instance.CryptoFactory.Default.Id;
         }
 
         public IPassphrase Passphrase { get { return GetProperty<IPassphrase>("Passphrase"); } set { SetProperty("Passphrase", value); } }
 
-        public CryptoId CryptoId { get { return GetProperty<CryptoId>("CryptoId"); } set { SetProperty("CryptoId", value); } }
+        public Guid CryptoId { get { return GetProperty<Guid>("CryptoId"); } set { SetProperty("CryptoId", value); } }
 
         public IAction LogOnLogOff { get; private set; }
 
@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        private IPassphrase LogOnLogOffAction(CryptoId cryptoId)
+        private IPassphrase LogOnLogOffAction(Guid cryptoId)
         {
             if (_knownKeys.IsLoggedOn)
             {
@@ -83,7 +83,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return null;
             }
 
-            CryptoId = cryptoId != CryptoId.Unknown ? cryptoId : CryptoId.Aes_256;
+            CryptoId = cryptoId != Guid.Empty ? cryptoId : Instance.CryptoFactory.Default.Id;
 
             IPassphrase passphrase;
             if (_fileSystemState.Identities.Any())

@@ -32,7 +32,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 {
     public interface IPassphrase : IEquatable<IPassphrase>
     {
-        bool IsLegacy { get; }
+        Guid CryptoId { get; }
 
         SymmetricKey DerivedKey { get; }
 
@@ -41,8 +41,6 @@ namespace Axantum.AxCrypt.Core.Crypto
         Salt DerivationSalt { get; }
 
         long DerivationIterations { get; }
-
-        CryptoId CryptoId { get; }
 
         SymmetricKeyThumbprint Thumbprint { get; }
     }

@@ -32,9 +32,10 @@ namespace Axantum.AxCrypt.Core.Crypto
 {
     public abstract class PassphraseBase : IPassphrase
     {
-        public virtual bool IsLegacy
+        public Guid CryptoId
         {
-            get { throw new NotImplementedException(); }
+            get;
+            protected set;
         }
 
         public SymmetricKey DerivedKey
@@ -44,12 +45,6 @@ namespace Axantum.AxCrypt.Core.Crypto
         }
 
         public string Passphrase
-        {
-            get;
-            protected set;
-        }
-
-        public CryptoId CryptoId
         {
             get;
             protected set;

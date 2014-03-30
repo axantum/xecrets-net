@@ -58,7 +58,6 @@
     <Compile Include="Crypto\CounterModeCryptoTransform.cs" />
     <Compile Include="Crypto\CryptoBase.cs" />
     <Compile Include="Crypto\CryptoFactory.cs" />
-    <Compile Include="Crypto\CryptoId.cs" />
     <Compile Include="Crypto\Hmac.cs" />
     <Compile Include="Crypto\ICrypto.cs" />
     <Compile Include="Crypto\ICryptoFactory.cs" />

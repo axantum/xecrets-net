@@ -25,17 +25,17 @@
 
 #endregion Coypright and License
 
+using System;
+using System.IO;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Test.Properties;
 using NUnit.Framework;
-using System;
-using System.IO;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -75,15 +75,15 @@ namespace Axantum.AxCrypt.Core.Test
             IPassphrase nullKey = null;
             ActiveFile nullActiveFile = null;
 
-            ActiveFile originalActiveFile = new ActiveFile(decryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, true);
+            ActiveFile originalActiveFile = new ActiveFile(decryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullActiveFile) == null) { } });
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullActiveFile, key) == null) { } });
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(originalActiveFile, nullKey) == null) { } });
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullActiveFile, ActiveFileStatus.None) == null) { } });
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullActiveFile, DateTime.MinValue, ActiveFileStatus.None) == null) { } });
-            Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullFileInfo, decryptedFileInfo, new GenericPassphrase("a"), ActiveFileStatus.None, false) == null) { } });
-            Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(encryptedFileInfo, nullFileInfo, new GenericPassphrase("b"), ActiveFileStatus.None, true) == null) { } });
-            Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(encryptedFileInfo, decryptedFileInfo, nullKey, ActiveFileStatus.None, false) == null) { } });
+            Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullFileInfo, decryptedFileInfo, new GenericPassphrase("a"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id) == null) { } });
+            Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(encryptedFileInfo, nullFileInfo, new GenericPassphrase("b"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id) == null) { } });
+            Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(encryptedFileInfo, decryptedFileInfo, nullKey, ActiveFileStatus.None, new V1Aes128CryptoFactory().Id) == null) { } });
         }
 
         [Test]
@@ -93,7 +93,7 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
             IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
 
-            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, true);
+            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
             decryptedFileInfo = activeFile.DecryptedFileInfo;
             Assert.That(decryptedFileInfo.IsExistingFile, Is.True, "The file should exist in the fake file system.");
             Assert.That(decryptedFileInfo.FullName, Is.EqualTo(_testTextPath), "The file should be named as it was in the constructor");
@@ -120,7 +120,7 @@ namespace Axantum.AxCrypt.Core.Test
             IPassphrase key = new GenericPassphrase("key");
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
             IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
-            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, true);
+            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
             IPassphrase newKey = new GenericPassphrase("newKey");
 
             ActiveFile newActiveFile = new ActiveFile(activeFile, newKey);
@@ -139,7 +139,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (MemoryStream stream = new MemoryStream())
             {
                 DataContractSerializer serializer = new DataContractSerializer(typeof(ActiveFile));
-                ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, true);
+                ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
                 serializer.WriteObject(stream, activeFile);
                 stream.Position = 0;
                 ActiveFile deserializedActiveFile = (ActiveFile)serializer.ReadObject(stream);
@@ -157,7 +157,7 @@ namespace Axantum.AxCrypt.Core.Test
             IPassphrase key = new GenericPassphrase("key");
             using (MemoryStream stream = new MemoryStream())
             {
-                ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, true);
+                ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
                 Assert.Throws<ArgumentNullException>(() =>
                 {
                     IPassphrase nullKey = null;
@@ -171,7 +171,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "doesnotexist.txt"));
             IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
-            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new GenericPassphrase("new"), ActiveFileStatus.None, true);
+            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new GenericPassphrase("new"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
             Assert.That(activeFile.IsModified, Is.False, "A non-existing decrypted file should not be treated as modified.");
         }
 
@@ -181,7 +181,7 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile;
             IPassphrase key = new GenericPassphrase("key");
 
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(@"C:\encrypted.axx"), Factory.New<IRuntimeFileInfo>(@"C:\decrypted.txt"), key, ActiveFileStatus.NotDecrypted, true);
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(@"C:\encrypted.axx"), Factory.New<IRuntimeFileInfo>(@"C:\decrypted.txt"), key, ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.EncryptedWithKnownKey));
 
             activeFile = new ActiveFile(activeFile);
