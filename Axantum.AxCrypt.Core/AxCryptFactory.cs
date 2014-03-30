@@ -37,11 +37,6 @@ namespace Axantum.AxCrypt.Core
 {
     public class AxCryptFactory
     {
-        public virtual IPassphrase CreatePassphrase(string passphrase, Guid cryptoId)
-        {
-            return Instance.CryptoFactory.Create(cryptoId).CreatePassphrase(passphrase);
-        }
-
         public virtual IPassphrase CreatePassphrase(string passphrase, string encryptedFileFullName)
         {
             IPassphrase key = CreatePassphrase(passphrase, Factory.New<IRuntimeFileInfo>(encryptedFileFullName));

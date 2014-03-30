@@ -11,8 +11,6 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private static int _blockLength;
 
-        public abstract string Name { get; }
-
         private IPassphrase _key;
 
         /// <summary>

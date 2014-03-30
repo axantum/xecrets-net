@@ -53,6 +53,7 @@
     <Compile Include="AxCryptFactory.cs" />
     <Compile Include="Crypto\CryptoFactoryDiscovery.cs" />
     <Compile Include="Crypto\V1Aes128CryptoFactory.cs" />
+    <Compile Include="Crypto\V2Aes128CryptoFactory.cs" />
     <Compile Include="Crypto\V2Aes256CryptoFactory.cs" />
     <Compile Include="Crypto\BlockAlgorithmKeyWrapTransform.cs" />
     <Compile Include="Crypto\CounterModeCryptoTransform.cs" />

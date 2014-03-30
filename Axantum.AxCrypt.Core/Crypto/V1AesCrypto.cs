@@ -68,17 +68,6 @@ namespace Axantum.AxCrypt.Core.Crypto
         }
 
         /// <summary>
-        /// Gets the name.
-        /// </summary>
-        /// <value>
-        /// The name.
-        /// </value>
-        public override string Name
-        {
-            get { return InternalName; }
-        }
-
-        /// <summary>
         /// Create an instance of tranform suitable for NIST Key Wrap
         /// </summary>
         /// <returns></returns>

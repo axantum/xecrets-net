@@ -126,14 +126,6 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(cipherText4.IsEquivalentTo(nistCiphertext4));
         }
 
-        [Test]
-        public static void TestName()
-        {
-            ICrypto crypto = new V2AesCrypto(new GenericPassphrase(SymmetricKey.Zero256), SymmetricIV.Zero128, 0);
-
-            Assert.That(crypto.Name, Is.EqualTo("AES-256"));
-        }
-
         private class PassphraseForTest : IPassphrase
         {
             public SymmetricKey DerivedKey

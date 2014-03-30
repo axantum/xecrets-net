@@ -52,15 +52,6 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Clear();
         }
 
-        [Test]
-        public static void TestCreatePassphraseBadArgument()
-        {
-            AxCryptFactory axFactory = new AxCryptFactory();
-
-            IPassphrase key;
-            Assert.Throws<ArgumentException>(() => key = axFactory.CreatePassphrase("asdf", Guid.Empty));
-        }
-
         private class TestingPassphrase : GenericPassphrase
         {
             public TestingPassphrase(string passphrase)

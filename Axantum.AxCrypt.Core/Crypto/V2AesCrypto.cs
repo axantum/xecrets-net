@@ -79,20 +79,6 @@ namespace Axantum.AxCrypt.Core.Crypto
         }
 
         /// <summary>
-        /// Gets the unique name of the algorithm implementation.
-        /// </summary>
-        /// <value>
-        /// The name. This must be a short, language independent name usable both as an internal identifier, and as a display name.
-        /// Typical values are "AES-128", "AES-256". The UI may use these as indexes for localized or clearer names, but if unknown
-        /// the UI must be able to fallback and actually display this identifier as a selector for example in the UI. This is to
-        /// support plug-in algorithm implementations in the future.
-        /// </value>
-        public override string Name
-        {
-            get { return InternalName; }
-        }
-
-        /// <summary>
         /// Create an instance of a transform suitable for NIST Key Wrap.
         /// </summary>
         /// <returns></returns>

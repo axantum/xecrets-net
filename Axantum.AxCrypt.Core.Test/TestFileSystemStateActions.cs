@@ -124,7 +124,6 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 return new V1Passphrase(passphrase);
             });
-            axCryptFactoryMock.Setup(acf => acf.CreatePassphrase(It.IsAny<string>(), It.Is<Guid>((Guid cryptoId) => cryptoId == Instance.CryptoFactory.Legacy.Id))).Returns((string passphrase, Guid cryptoId) => new V1Passphrase(passphrase));
             Factory.Instance.Register<AxCryptFactory>(() => axCryptFactoryMock.Object);
 
             ActiveFile activeFile;

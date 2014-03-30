@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public int Priority
         {
-            get { return 200000; }
+            get { return 300000; }
         }
 
         public Guid Id

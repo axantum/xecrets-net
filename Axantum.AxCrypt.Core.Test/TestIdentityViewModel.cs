@@ -143,7 +143,7 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Cancel = true;
             };
 
-            ivm.Passphrase = Factory.New<AxCryptFactory>().CreatePassphrase("testing", new V2Aes256CryptoFactory().Id);
+            ivm.Passphrase = new V2Passphrase("testing", 256);
             ivm.LogOnLogOff.Execute(Guid.Empty);
 
             Assert.That(Instance.KnownKeys.IsLoggedOn, Is.False, "Not logged on.");

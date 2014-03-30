@@ -25,9 +25,9 @@
 
 #endregion Coypright and License
 
+using System;
 using Axantum.AxCrypt.Core.Crypto;
 using NUnit.Framework;
-using System;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -71,14 +71,6 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 if (new V1AesCrypto(key, iv) == null) { }
             });
-        }
-
-        [Test]
-        public static void TestName()
-        {
-            V1AesCrypto ICrypto = new V1AesCrypto(new GenericPassphrase(SymmetricKey.Zero128), SymmetricIV.Zero128);
-
-            Assert.That(ICrypto.Name, Is.EqualTo("AES-128-V1"));
         }
     }
 }

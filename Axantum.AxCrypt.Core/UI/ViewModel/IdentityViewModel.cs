@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             foreach (PassphraseIdentity identity in _fileSystemState.Identities)
             {
-                IPassphrase candidate = Factory.New<AxCryptFactory>().CreatePassphrase(passphrase, identity.CryptoId);
+                IPassphrase candidate = Instance.CryptoFactory.Create(identity.CryptoId).CreatePassphrase(passphrase);
                 if (identity.Thumbprint == candidate.Thumbprint)
                 {
                     return candidate;
@@ -192,7 +192,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             _userSettings.DisplayEncryptPassphrase = logOnArgs.DisplayPassphrase;
 
-            IPassphrase passphrase = Factory.New<AxCryptFactory>().CreatePassphrase(logOnArgs.Passphrase, CryptoId);
+            IPassphrase passphrase = Instance.CryptoFactory.Create(CryptoId).CreatePassphrase(logOnArgs.Passphrase);
             PassphraseIdentity identity = _fileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == passphrase.Thumbprint);
             if (identity != null)
             {
