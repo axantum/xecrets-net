@@ -72,9 +72,9 @@ namespace Axantum.AxCrypt.Core
             ICryptoFactory factory = Instance.CryptoFactory.Create(key.CryptoId);
             if (factory.Id == Instance.CryptoFactory.Legacy.Id)
             {
-                return new V1AxCryptDocument(factory.CreateCrypto(key, SymmetricIV.Zero128, 0), Instance.UserSettings.V1KeyWrapIterations);
+                return new V1AxCryptDocument(factory.CreateCrypto(key), Instance.UserSettings.V1KeyWrapIterations);
             }
-            return new V2AxCryptDocument(factory.CreateCrypto(key, SymmetricIV.Zero128, 0), Instance.UserSettings.V2KeyWrapIterations); ;
+            return new V2AxCryptDocument(factory.CreateCrypto(key), Instance.UserSettings.V2KeyWrapIterations); ;
         }
 
         /// <summary>

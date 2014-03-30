@@ -81,7 +81,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private static object V1KeyWrapIterate(int iterations)
         {
-            ICrypto dummyCrypto = Instance.CryptoFactory.Legacy.CreateCrypto(new GenericPassphrase("A dummy passphrase"), SymmetricIV.Zero128, 0);
+            ICrypto dummyCrypto = Instance.CryptoFactory.Legacy.CreateCrypto(new GenericPassphrase("A dummy passphrase"));
             Salt dummySalt = new Salt(128);
             KeyWrap keyWrap = new KeyWrap(dummySalt, iterations, KeyWrapMode.AxCrypt);
             return keyWrap.Wrap(dummyCrypto, new SymmetricKey(128));
@@ -89,7 +89,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private static object V2KeyWrapIterate(int iterations)
         {
-            ICrypto dummyCrypto = Instance.CryptoFactory.Default.CreateCrypto(new GenericPassphrase(new SymmetricKey(256)), SymmetricIV.Zero128, 0);
+            ICrypto dummyCrypto = Instance.CryptoFactory.Default.CreateCrypto(new GenericPassphrase(new SymmetricKey(256)));
             Salt dummySalt = new Salt(256);
             KeyWrap keyWrap = new KeyWrap(dummySalt, iterations, KeyWrapMode.AxCrypt);
             return keyWrap.Wrap(dummyCrypto, new SymmetricKey(256));

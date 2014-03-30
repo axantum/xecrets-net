@@ -25,8 +25,8 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Runtime;
 using System;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
 
             block[0] = subKeyValue;
-            _subKey = new GenericPassphrase(new SymmetricKey(Instance.CryptoFactory.Legacy.CreateCrypto(masterKey, SymmetricIV.Zero128, 0).Encrypt(block)));
+            _subKey = new GenericPassphrase(new SymmetricKey(Instance.CryptoFactory.Legacy.CreateCrypto(masterKey).Encrypt(block)));
         }
 
         /// <summary>

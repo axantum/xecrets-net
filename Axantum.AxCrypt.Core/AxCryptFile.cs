@@ -25,16 +25,16 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -70,7 +70,7 @@ namespace Axantum.AxCrypt.Core
             {
                 using (Stream destinationStream = destinationFile.OpenWrite())
                 {
-                    using (IAxCryptDocument document = new V1AxCryptDocument(Instance.CryptoFactory.Legacy.CreateCrypto(key, SymmetricIV.Zero128, 0), Instance.UserSettings.V1KeyWrapIterations))
+                    using (IAxCryptDocument document = new V1AxCryptDocument(Instance.CryptoFactory.Legacy.CreateCrypto(key), Instance.UserSettings.V1KeyWrapIterations))
                     {
                         document.FileName = sourceFile.Name;
                         document.CreationTimeUtc = sourceFile.CreationTimeUtc;

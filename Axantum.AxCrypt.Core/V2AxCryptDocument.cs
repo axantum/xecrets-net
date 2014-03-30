@@ -25,6 +25,10 @@
 
 #endregion Coypright and License
 
+using System;
+using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Header;
@@ -32,10 +36,6 @@ using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Org.BouncyCastle.Utilities.Zlib;
-using System;
-using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -87,7 +87,7 @@ namespace Axantum.AxCrypt.Core
         public bool Load(IPassphrase key, AxCryptReader reader, Headers headers)
         {
             _reader = reader;
-            DocumentHeaders = new V2DocumentHeaders(Instance.CryptoFactory.Default.CreateCrypto(key, SymmetricIV.Zero128, 0));
+            DocumentHeaders = new V2DocumentHeaders(Instance.CryptoFactory.Default.CreateCrypto(key));
             PassphraseIsValid = DocumentHeaders.Load(headers);
             if (!PassphraseIsValid)
             {
