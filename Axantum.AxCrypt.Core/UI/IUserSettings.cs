@@ -25,14 +25,16 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.Linq;
+using Axantum.AxCrypt.Core.Crypto;
 
 namespace Axantum.AxCrypt.Core.UI
 {
     public interface IUserSettings
     {
+        void Delete();
+
         string this[string key]
         {
             get;

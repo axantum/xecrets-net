@@ -405,22 +405,22 @@
     <value>&amp;Svenska</value>
   </data>
   <data name="_languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 24</value>
+    <value>233, 24</value>
   </data>
   <data name="_languageToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Language</value>
   </data>
   <data name="_debugOptionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 24</value>
+    <value>233, 24</value>
   </data>
   <data name="_debugOptionsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Debug</value>
   </data>
   <data name="_clearPassphraseMemoryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 24</value>
+    <value>233, 24</value>
   </data>
   <data name="_clearPassphraseMemoryToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Clear Passphrase Memory</value>
+    <value>&amp;Clear All Settings and Exit</value>
   </data>
   <data name="_optionsToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1471,6 +1471,12 @@
   <data name="&gt;&gt;_encryptedPathColumnHeader.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;_cryptoName.Name" xml:space="preserve">
+    <value>_cryptoName</value>
+  </data>
+  <data name="&gt;&gt;_cryptoName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;_watchedFoldersRemoveMenuItem.Name" xml:space="preserve">
     <value>_watchedFoldersRemoveMenuItem</value>
   </data>
@@ -1494,12 +1500,6 @@
   </data>
   <data name="&gt;&gt;_progressBackgroundWorker.Type" xml:space="preserve">
     <value>Axantum.AxCrypt.ProgressBackground, Axantum.AxCrypt, Version=2.0.956.1, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
-  </data>
-  <data name="&gt;&gt;_cryptoName.Name" xml:space="preserve">
-    <value>_cryptoName</value>
-  </data>
-  <data name="&gt;&gt;_cryptoName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AxCryptMainForm</value>

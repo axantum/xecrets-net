@@ -25,14 +25,14 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
+using Newtonsoft.Json;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -70,6 +70,11 @@ namespace Axantum.AxCrypt.Core.UI
                 NullValueHandling = NullValueHandling.Include,
             };
             return JsonSerializer.Create(serializerSettings);
+        }
+
+        public void Delete()
+        {
+            _persistanceFileInfo.Delete();
         }
 
         public string CultureName

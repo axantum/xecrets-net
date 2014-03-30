@@ -1105,5 +1105,12 @@ namespace Axantum.AxCrypt
                 _mainViewModel = null;
             }
         }
+
+        private void ClearPassphraseMemoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Instance.UserSettings.Delete();
+            Instance.FileSystemState.Delete();
+            Application.Exit();
+        }
     }
 }

@@ -69,13 +69,13 @@
             this._decryptedFileColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._lastAccessTimeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._encryptedPathColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._cryptoName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._statusTabControl = new System.Windows.Forms.TabControl();
             this._watchedFoldersContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this._watchedFoldersRemoveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._watchedFoldersdecryptTemporarilyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._watchedFoldersOpenExplorerHereMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._progressBackgroundWorker = new Axantum.AxCrypt.ProgressBackground(this.components);
-            this._cryptoName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._mainToolStrip.SuspendLayout();
             this._mainMenuStrip.SuspendLayout();
             this._recentFilesContextMenuStrip.SuspendLayout();
@@ -294,6 +294,7 @@
             // 
             this._clearPassphraseMemoryToolStripMenuItem.Name = "_clearPassphraseMemoryToolStripMenuItem";
             resources.ApplyResources(this._clearPassphraseMemoryToolStripMenuItem, "_clearPassphraseMemoryToolStripMenuItem");
+            this._clearPassphraseMemoryToolStripMenuItem.Click += new System.EventHandler(this.ClearPassphraseMemoryToolStripMenuItem_Click);
             // 
             // _exitToolStripMenuItem
             // 
@@ -448,6 +449,10 @@
             // 
             resources.ApplyResources(this._encryptedPathColumnHeader, "_encryptedPathColumnHeader");
             // 
+            // _cryptoName
+            // 
+            resources.ApplyResources(this._cryptoName, "_cryptoName");
+            // 
             // _statusTabControl
             // 
             resources.ApplyResources(this._statusTabControl, "_statusTabControl");
@@ -485,10 +490,6 @@
             // 
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
-            // 
-            // _cryptoName
-            // 
-            resources.ApplyResources(this._cryptoName, "_cryptoName");
             // 
             // AxCryptMainForm
             // 
