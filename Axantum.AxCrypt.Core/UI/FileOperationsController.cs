@@ -25,12 +25,12 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
 using System;
 using System.IO;
 using System.Linq;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -249,7 +249,7 @@ namespace Axantum.AxCrypt.Core.UI
                     _eventArgs.Status = FileOperationStatus.Canceled;
                     return false;
                 }
-                _eventArgs.Key = new V1Passphrase(_eventArgs.Passphrase);
+                _eventArgs.Key = Instance.CryptoFactory.Default.CreatePassphrase(_eventArgs.Passphrase);
             }
             else
             {

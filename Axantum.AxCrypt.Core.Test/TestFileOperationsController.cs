@@ -25,16 +25,16 @@
 
 #endregion Coypright and License
 
+using System;
+using System.IO;
+using System.Linq;
+using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
-using System;
-using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -83,11 +83,11 @@ namespace Axantum.AxCrypt.Core.Test
 
             IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
             Assert.That(destinationInfo.IsExistingFile, "After encryption the destination file should be created.");
-            using (IAxCryptDocument document = new V1AxCryptDocument())
+            using (IAxCryptDocument document = new V2AxCryptDocument())
             {
                 using (Stream stream = destinationInfo.OpenRead())
                 {
-                    document.Load(new V1Passphrase("allan"), stream);
+                    document.Load(new V2Passphrase("allan", 256), stream);
                     Assert.That(document.PassphraseIsValid, "The encrypted document should be valid and encrypted with the passphrase given.");
                 }
             }
@@ -114,11 +114,11 @@ namespace Axantum.AxCrypt.Core.Test
 
             IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
             Assert.That(destinationInfo.IsExistingFile, "After encryption the destination file should be created.");
-            using (IAxCryptDocument document = new V1AxCryptDocument())
+            using (IAxCryptDocument document = new V2AxCryptDocument())
             {
                 using (Stream stream = destinationInfo.OpenRead())
                 {
-                    document.Load(new V1Passphrase("allan"), stream);
+                    document.Load(new V2Passphrase("allan", 256), stream);
                     Assert.That(document.PassphraseIsValid, "The encrypted document should be valid and encrypted with the passphrase given.");
                 }
             }
