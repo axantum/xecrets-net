@@ -43,6 +43,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
             Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
             Factory.Instance.Singleton<CryptoFactory>(() => CreateCryptoFactory());
+            Factory.Instance.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
         }
 
         private static CryptoFactory CreateCryptoFactory()

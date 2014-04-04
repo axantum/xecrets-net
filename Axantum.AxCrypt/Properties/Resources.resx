@@ -319,7 +319,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>This AxCrypt Identity already exists</value>
   </data>
   <data name="EnterPassphraseForIdentityPrompt" xml:space="preserve">
-    <value>Enter passphrase for '{0}'</value>
+    <value>Identity '{0}' passphrase</value>
   </data>
   <data name="DocumentsLibrary" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\DocumentsLibrary.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

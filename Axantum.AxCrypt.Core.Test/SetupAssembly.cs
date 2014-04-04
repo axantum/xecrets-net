@@ -25,15 +25,15 @@
 
 #endregion Coypright and License
 
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -58,6 +58,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Singleton<IStatusChecker>(() => new FakeStatusChecker());
             Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
             Factory.Instance.Singleton<CryptoFactory>(() => CreateCryptoFactory());
+            Factory.Instance.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
 
             Factory.Instance.Register<AxCryptFactory>(() => new AxCryptFactory());
             Factory.Instance.Register<AxCryptFile>(() => new AxCryptFile());

@@ -160,7 +160,8 @@ namespace Axantum.AxCrypt.Core.Header
 
         private byte[] UnwrapMasterKeyData()
         {
-            ICrypto keyEncryptingCrypto = Instance.CryptoFactory.Default.CreateCrypto(new V2Passphrase(_crypto.Key.Passphrase, DerivationSalt, DerivationIterations, _crypto.Key.DerivedKey.Length * 8));
+            IPassphrase key = Instance.CryptoFactory.Default.CreatePassphrase(_crypto.Key.Passphrase, DerivationSalt, DerivationIterations);
+            ICrypto keyEncryptingCrypto = Instance.CryptoFactory.Default.CreateCrypto(key);
             byte[] saltBytes = new byte[keyEncryptingCrypto.Key.DerivedKey.Length];
             Array.Copy(GetDataBlockBytesReference(), WRAP_SALT_OFFSET, saltBytes, 0, saltBytes.Length);
             Salt salt = new Salt(saltBytes);

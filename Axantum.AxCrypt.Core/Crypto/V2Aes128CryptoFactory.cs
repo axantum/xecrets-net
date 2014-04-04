@@ -7,7 +7,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 {
     public class V2Aes128CryptoFactory : ICryptoFactory
     {
-        private static readonly Guid _id = new Guid("2B0CCBB0-B978-4BC3-A293-F97585F06557");
+        private static readonly Guid _id = CryptoFactory.Aes128Id;
 
         public IPassphrase CreatePassphrase(string passphrase)
         {

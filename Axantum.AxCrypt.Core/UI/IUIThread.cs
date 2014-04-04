@@ -37,5 +37,7 @@ namespace Axantum.AxCrypt.Core.UI
         bool IsOnUIThread { get; }
 
         void RunOnUIThread(Action action);
+
+        void PostOnUIThread(Action ation);
     }
 }

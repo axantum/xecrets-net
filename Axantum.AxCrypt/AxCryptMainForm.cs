@@ -91,7 +91,7 @@ namespace Axantum.AxCrypt
 
             Instance.Log.Logged += (logger, loggingEventArgs) =>
             {
-                Instance.UIThread.RunOnUIThread(() =>
+                Instance.UIThread.PostOnUIThread(() =>
                 {
                     string formatted = "{0} {1}".InvariantFormat(OS.Current.UtcNow.ToString("o", CultureInfo.InvariantCulture), loggingEventArgs.Message.TrimLogMessage());
                     _logOutputTextBox.AppendText(formatted);
@@ -402,7 +402,7 @@ namespace Axantum.AxCrypt
 
         private void HandleExistingLogOn(LogOnEventArgs e)
         {
-            using (LogOnDialog logOnDialog = new LogOnDialog(e.Identity.Name, e.EncryptedFileFullName))
+            using (LogOnDialog logOnDialog = new LogOnDialog(e.Identity.Name, e.EncryptedFileFullName, e.Identity.CryptoId))
             {
                 logOnDialog.ShowPassphraseCheckBox.Checked = e.DisplayPassphrase;
                 DialogResult dialogResult = logOnDialog.ShowDialog(this);
@@ -1111,6 +1111,16 @@ namespace Axantum.AxCrypt
             Instance.UserSettings.Delete();
             Instance.FileSystemState.Delete();
             Application.Exit();
+        }
+
+        private void ProToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Factory.Instance.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
+        }
+
+        private void FreeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Factory.Instance.Singleton<ICryptoPolicy>(() => new FreeCryptoPolicy());
         }
     }
 }

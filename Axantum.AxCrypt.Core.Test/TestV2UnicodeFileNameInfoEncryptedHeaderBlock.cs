@@ -41,6 +41,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void Setup()
         {
             Factory.Instance.Singleton<CryptoFactory>(() => CreateCryptoFactory());
+            Factory.Instance.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
         }
 
         private static CryptoFactory CreateCryptoFactory()

@@ -25,12 +25,12 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Globalization;
 using System.Linq;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Session;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
@@ -38,9 +38,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     {
         private string _encryptedFileFullName;
 
-        public LogOnViewModel(string identityName, string encryptedFileFullName)
+        private Guid _cryptoId;
+
+        public LogOnViewModel(string identityName, string encryptedFileFullName, Guid cryptoId)
         {
             _encryptedFileFullName = encryptedFileFullName;
+            _cryptoId = cryptoId;
             InitializePropertyValues(identityName);
         }
 

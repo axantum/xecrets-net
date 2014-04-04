@@ -44,6 +44,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Singleton<ILogging>(() => new FakeLogging());
             Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
             Factory.Instance.Singleton<CryptoFactory>(() => SetupAssembly.CreateCryptoFactory());
+            Factory.Instance.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
         }
 
         [TearDown]

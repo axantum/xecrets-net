@@ -26,30 +26,16 @@
 #endregion Coypright and License
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
-using Axantum.AxCrypt.Core.UI;
+using System.Text;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Core.Crypto
 {
-    internal class FakeUIThread : IUIThread
+    public interface ICryptoPolicy
     {
-        public FakeUIThread()
-        {
-            RunOnUIThreadAction = (action) => action();
-        }
+        ICryptoFactory Default(IEnumerable<Func<ICryptoFactory>> factories);
 
-        public bool IsOnUIThread { get; set; }
-
-        public Action<Action> RunOnUIThreadAction { get; set; }
-
-        public void RunOnUIThread(Action action)
-        {
-            RunOnUIThreadAction(action);
-        }
-
-        public void PostOnUIThread(Action action)
-        {
-            RunOnUIThreadAction(action);
-        }
+        ICryptoFactory Legacy(IEnumerable<Func<ICryptoFactory>> factories);
     }
 }

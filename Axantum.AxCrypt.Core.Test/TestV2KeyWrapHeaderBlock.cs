@@ -25,13 +25,13 @@
 
 #endregion Coypright and License
 
+using System;
+using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Runtime;
 using Moq;
 using NUnit.Framework;
-using System;
-using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -51,6 +51,10 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
             Factory.Instance.Singleton<CryptoFactory>(() => SetupAssembly.CreateCryptoFactory());
+            Factory.Instance.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
+            Factory.Instance.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
+            Factory.Instance.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
+            Factory.Instance.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
         }
 
         [TearDown]

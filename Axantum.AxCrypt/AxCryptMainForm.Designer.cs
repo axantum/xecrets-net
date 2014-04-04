@@ -50,6 +50,9 @@
             this._debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._checkVersionNowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._setUpdateCheckUrlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cryptoPolicyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.proToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.freeeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._viewHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -306,7 +309,8 @@
             // 
             this._debugToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._checkVersionNowToolStripMenuItem,
-            this._setUpdateCheckUrlToolStripMenuItem});
+            this._setUpdateCheckUrlToolStripMenuItem,
+            this.cryptoPolicyToolStripMenuItem});
             this._debugToolStripMenuItem.Name = "_debugToolStripMenuItem";
             resources.ApplyResources(this._debugToolStripMenuItem, "_debugToolStripMenuItem");
             // 
@@ -320,6 +324,26 @@
             this._setUpdateCheckUrlToolStripMenuItem.Name = "_setUpdateCheckUrlToolStripMenuItem";
             resources.ApplyResources(this._setUpdateCheckUrlToolStripMenuItem, "_setUpdateCheckUrlToolStripMenuItem");
             this._setUpdateCheckUrlToolStripMenuItem.Click += new System.EventHandler(this.SetUpdateCheckUrlToolStripMenuItem_Click);
+            // 
+            // cryptoPolicyToolStripMenuItem
+            // 
+            this.cryptoPolicyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.proToolStripMenuItem,
+            this.freeeToolStripMenuItem});
+            this.cryptoPolicyToolStripMenuItem.Name = "cryptoPolicyToolStripMenuItem";
+            resources.ApplyResources(this.cryptoPolicyToolStripMenuItem, "cryptoPolicyToolStripMenuItem");
+            // 
+            // proToolStripMenuItem
+            // 
+            this.proToolStripMenuItem.Name = "proToolStripMenuItem";
+            resources.ApplyResources(this.proToolStripMenuItem, "proToolStripMenuItem");
+            this.proToolStripMenuItem.Click += new System.EventHandler(this.ProToolStripMenuItem_Click);
+            // 
+            // freeeToolStripMenuItem
+            // 
+            this.freeeToolStripMenuItem.Name = "freeeToolStripMenuItem";
+            resources.ApplyResources(this.freeeToolStripMenuItem, "freeeToolStripMenuItem");
+            this.freeeToolStripMenuItem.Click += new System.EventHandler(this.FreeToolStripMenuItem_Click);
             // 
             // _helpToolStripMenuItem
             // 
@@ -580,6 +604,9 @@
         private System.Windows.Forms.ToolStripMenuItem _clearPassphraseMemoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator _toolStripSeparator8;
         private System.Windows.Forms.ColumnHeader _cryptoName;
+        private System.Windows.Forms.ToolStripMenuItem cryptoPolicyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem proToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem freeeToolStripMenuItem;
     }
 }
 

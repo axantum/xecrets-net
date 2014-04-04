@@ -25,16 +25,16 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.UI.ViewModel;
-using Axantum.AxCrypt.Properties;
 using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
+using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI.ViewModel;
+using Axantum.AxCrypt.Properties;
 
 namespace Axantum.AxCrypt
 {
@@ -42,12 +42,12 @@ namespace Axantum.AxCrypt
     {
         private LogOnViewModel _viewModel;
 
-        public LogOnDialog(string identityName, string encryptedFileFullName)
+        public LogOnDialog(string identityName, string encryptedFileFullName, Guid cryptoId)
         {
             InitializeComponent();
             SetAutoValidateViaReflectionToAvoidMoMaWarning();
 
-            _viewModel = new LogOnViewModel(identityName, encryptedFileFullName);
+            _viewModel = new LogOnViewModel(identityName, encryptedFileFullName, cryptoId);
 
             PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
             ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };

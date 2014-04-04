@@ -25,12 +25,12 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
+using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt
 {
@@ -51,8 +51,18 @@ namespace Axantum.AxCrypt
             get { return !_control.InvokeRequired; }
         }
 
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is to marshal the exception possibly between threads and then throw a new one.")]
         public void RunOnUIThread(Action action)
+        {
+            DoOnUIThreadInternal(action, _context.Send);
+        }
+
+        public void PostOnUIThread(Action action)
+        {
+            DoOnUIThreadInternal(action, _context.Post);
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is to marshal the exception possibly between threads and then throw a new one.")]
+        private void DoOnUIThreadInternal(Action action, Action<SendOrPostCallback, object> method)
         {
             if (IsOnUIThread)
             {
@@ -60,7 +70,7 @@ namespace Axantum.AxCrypt
                 return;
             }
             Exception exception = null;
-            _context.Send((state) => { try { action(); } catch (Exception ex) { exception = ex; } }, null);
+            method((state) => { try { action(); } catch (Exception ex) { exception = ex; } }, null);
             if (exception != null)
             {
                 throw new InvalidOperationException("Exception on UI Thread", exception);
