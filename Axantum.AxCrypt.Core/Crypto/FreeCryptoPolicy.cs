@@ -49,6 +49,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             List<Guid> orderedIds = new List<Guid>();
             orderedIds.Add(CryptoFactory.Aes128Id);
             orderedIds.AddRange(factories.Where(f => f().Id != CryptoFactory.Aes128Id && f().Id != CryptoFactory.Aes128V1Id).Select(f => f().Id));
+            orderedIds.Add(CryptoFactory.Aes128V1Id);
             return orderedIds;
         }
     }
