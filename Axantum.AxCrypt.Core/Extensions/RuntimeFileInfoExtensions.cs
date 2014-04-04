@@ -25,15 +25,15 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Extensions
 {
@@ -147,7 +147,7 @@ namespace Axantum.AxCrypt.Core.Extensions
         {
             foreach (IPassphrase knownKey in Instance.KnownKeys.Keys)
             {
-                key = Factory.New<AxCryptFactory>().CreatePassphrase(knownKey.Passphrase, fileInfo);
+                key = Factory.New<AxCryptFactory>().CreatePassphrase(knownKey.Passphrase, fileInfo, knownKey.CryptoId);
                 if (key != null)
                 {
                     return true;

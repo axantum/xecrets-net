@@ -95,7 +95,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                         ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
                         return false;
                     }
-                    if (!IsPassphraseValidForFileIfAny(Passphrase, _encryptedFileFullName))
+                    if (!IsPassphraseValidForFileIfAny(Passphrase, _encryptedFileFullName, _cryptoId))
                     {
                         ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
                         return false;
@@ -107,13 +107,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        private static bool IsPassphraseValidForFileIfAny(string passphrase, string encryptedFileFullName)
+        private static bool IsPassphraseValidForFileIfAny(string passphrase, string encryptedFileFullName, Guid cryptoId)
         {
             if (String.IsNullOrEmpty(encryptedFileFullName))
             {
                 return true;
             }
-            if (Factory.New<AxCryptFactory>().CreatePassphrase(passphrase, encryptedFileFullName) != null)
+            if (Factory.New<AxCryptFactory>().CreatePassphrase(passphrase, encryptedFileFullName, cryptoId) != null)
             {
                 return true;
             }

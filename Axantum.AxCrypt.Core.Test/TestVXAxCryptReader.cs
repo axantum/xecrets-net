@@ -25,13 +25,13 @@
 
 #endregion Coypright and License
 
+using System;
+using System.IO;
+using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Reader;
 using NUnit.Framework;
-using System;
-using System.IO;
-using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -93,7 +93,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (VXAxCryptReader reader = new VXAxCryptReader(Stream.Null))
             {
                 Assert.Throws<NotImplementedException>(() => reader.Crypto(new GenericPassphrase("test")));
-                Assert.Throws<NotImplementedException>(() => reader.Crypto(new Headers(), "testing"));
+                Assert.Throws<NotImplementedException>(() => reader.Crypto(new Headers(), "testing", Guid.Empty));
                 Assert.Throws<NotImplementedException>(() => reader.Document(new GenericPassphrase("test"), new Headers()));
             }
         }

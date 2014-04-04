@@ -83,7 +83,7 @@ namespace Axantum.AxCrypt.Core.Test
             headerBlock.FileName = "A file name";
             Assert.That(headerBlock.FileName, Is.EqualTo("A file name"));
 
-            headerBlock.HeaderCrypto = new V2AesCrypto(new V2Passphrase("passphrase", 256), SymmetricIV.Zero128, 0);
+            headerBlock.HeaderCrypto = new V2AesCrypto(new V2Passphrase("passphrase", 256, CryptoFactory.Aes256Id), SymmetricIV.Zero128, 0);
             string s;
             Assert.Throws<InvalidOperationException>(() => s = headerBlock.FileName);
         }

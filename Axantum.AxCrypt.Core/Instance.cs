@@ -25,13 +25,13 @@
 
 #endregion Coypright and License
 
+using System;
+using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Ipc;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
-using System;
-using System.Linq;
 
 namespace Axantum.AxCrypt.Core
 {

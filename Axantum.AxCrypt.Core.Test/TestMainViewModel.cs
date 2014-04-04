@@ -553,7 +553,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestNotifyWatchedFolderAdded()
         {
-            Instance.KnownKeys.DefaultEncryptionKey = new V2Passphrase("passphrase", 256);
+            Instance.KnownKeys.DefaultEncryptionKey = new V2Passphrase("passphrase", 256, CryptoFactory.Aes256Id);
             FakeRuntimeFileInfo.AddFolder(@"C:\MyFolders\Folder1");
             using (MainViewModel mvm = Factory.New<MainViewModel>())
             {
@@ -569,7 +569,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSetFilesArePending()
         {
-            Instance.KnownKeys.DefaultEncryptionKey = new V2Passphrase("passphrase", 256);
+            Instance.KnownKeys.DefaultEncryptionKey = new V2Passphrase("passphrase", 256, CryptoFactory.Aes256Id);
             FakeRuntimeFileInfo.AddFolder(@"C:\MyFolders\Folder1");
             using (MainViewModel mvm = Factory.New<MainViewModel>())
             {

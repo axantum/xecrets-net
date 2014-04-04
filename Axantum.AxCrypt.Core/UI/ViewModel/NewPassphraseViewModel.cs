@@ -25,16 +25,19 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Globalization;
 using System.Linq;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Session;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
     public class NewPassphraseViewModel : ViewModelBase
     {
         private string _encryptedFileFullName;
+
+        private Guid _cryptoId = Guid.Empty;
 
         public NewPassphraseViewModel(string passphrase, string defaultIdentityName, string encryptedFileFullName)
         {
@@ -44,7 +47,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void InitializePropertyValues(string passphrase, string defaultIdentityName)
         {
-            bool defaultIdentityKnown = Instance.FileSystemState.Identities.Any(identity => String.Compare(identity.Name, Environment.UserName, StringComparison.OrdinalIgnoreCase) == 0);
+            PassphraseIdentity identity = Instance.FileSystemState.Identities.FirstOrDefault(id => String.Compare(id.Name, Environment.UserName, StringComparison.OrdinalIgnoreCase) == 0);
+            bool defaultIdentityKnown = identity != null;
+            _cryptoId = defaultIdentityKnown ? identity.CryptoId : Guid.Empty;
             IdentityName = defaultIdentityKnown ? String.Empty : defaultIdentityName;
             Passphrase = passphrase ?? String.Empty;
             Verification = passphrase ?? String.Empty;
@@ -88,7 +93,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             switch (columnName)
             {
                 case "Passphrase":
-                    if (!IsPassphraseValidForFileIfAny(Passphrase, _encryptedFileFullName))
+                    if (!IsPassphraseValidForFileIfAny(Passphrase, _encryptedFileFullName, _cryptoId))
                     {
                         ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
                         return false;
@@ -122,13 +127,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return String.Compare(Passphrase, Verification, StringComparison.Ordinal) == 0;
         }
 
-        private static bool IsPassphraseValidForFileIfAny(string passphrase, string encryptedFileFullName)
+        private static bool IsPassphraseValidForFileIfAny(string passphrase, string encryptedFileFullName, Guid cryptoId)
         {
             if (String.IsNullOrEmpty(encryptedFileFullName))
             {
                 return true;
             }
-            return Factory.New<AxCryptFactory>().CreatePassphrase(passphrase, encryptedFileFullName) != null;
+            return Factory.New<AxCryptFactory>().CreatePassphrase(passphrase, encryptedFileFullName, cryptoId) != null;
         }
     }
 }

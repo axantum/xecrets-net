@@ -43,5 +43,13 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             return factories.First(f => f().Id == CryptoFactory.Aes128V1Id)();
         }
+
+        public IEnumerable<Guid> OrderedIds(IEnumerable<Func<ICryptoFactory>> factories)
+        {
+            List<Guid> orderedIds = new List<Guid>();
+            orderedIds.Add(CryptoFactory.Aes256Id);
+            orderedIds.AddRange(factories.Where(f => f().Id != CryptoFactory.Aes256Id && f().Id != CryptoFactory.Aes128V1Id).Select(f => f().Id));
+            return orderedIds;
+        }
     }
 }

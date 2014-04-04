@@ -25,15 +25,15 @@
 
 #endregion Coypright and License
 
+using System;
+using System.Drawing;
+using System.IO;
+using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using NUnit.Framework;
-using System;
-using System.Drawing;
-using System.IO;
-using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -79,7 +79,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(vm.KnownFolders.First().Enabled, Is.False);
             Assert.That(vm.KnownFolders.Last().Enabled, Is.False);
 
-            knownKeys.DefaultEncryptionKey = new V2Passphrase("aaa", 256);
+            knownKeys.DefaultEncryptionKey = new V2Passphrase("aaa", 256, CryptoFactory.Aes256Id);
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(2));
             Assert.That(vm.KnownFolders.First().Enabled, Is.True);
             Assert.That(vm.KnownFolders.Last().Enabled, Is.True);
@@ -98,8 +98,8 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFolder(folder1.MyFullPath.FullName);
             FakeRuntimeFileInfo.AddFolder(folder2.MyFullPath.FullName);
 
-            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(folder1.MyFullPath.FullName, new V2Passphrase("PassPhrase", 256).Thumbprint));
-            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(folder2.MyFullPath.FullName, new V2Passphrase("aaa", 256).Thumbprint));
+            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(folder1.MyFullPath.FullName, new V2Passphrase("PassPhrase", 256, CryptoFactory.Aes256Id).Thumbprint));
+            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(folder2.MyFullPath.FullName, new V2Passphrase("aaa", 256, CryptoFactory.Aes256Id).Thumbprint));
 
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
             KnownFoldersViewModel vm = new KnownFoldersViewModel(Instance.FileSystemState, Instance.SessionNotify, knownKeys);
@@ -111,7 +111,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(vm.KnownFolders.First().Enabled, Is.False);
             Assert.That(vm.KnownFolders.Last().Enabled, Is.False);
 
-            knownKeys.DefaultEncryptionKey = new V2Passphrase("aaa", 256);
+            knownKeys.DefaultEncryptionKey = new V2Passphrase("aaa", 256, CryptoFactory.Aes256Id);
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(2));
             Assert.That(vm.KnownFolders.First().Enabled, Is.False);
             Assert.That(vm.KnownFolders.Last().Enabled, Is.True);
@@ -135,7 +135,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(vm.KnownFolders.First().Enabled, Is.False);
             Assert.That(vm.KnownFolders.Last().Enabled, Is.False);
 
-            knownKeys.DefaultEncryptionKey = new V2Passphrase("aaa", 256);
+            knownKeys.DefaultEncryptionKey = new V2Passphrase("aaa", 256, CryptoFactory.Aes256Id);
             Assert.That(Instance.FileSystemState.WatchedFolders.Count(), Is.EqualTo(1));
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(2));
             Assert.That(vm.KnownFolders.First().Enabled, Is.False);

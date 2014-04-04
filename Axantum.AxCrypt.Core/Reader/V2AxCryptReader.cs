@@ -86,12 +86,12 @@ namespace Axantum.AxCrypt.Core.Reader
             return Instance.CryptoFactory.Default.CreateCrypto(key);
         }
 
-        public override ICrypto Crypto(Headers headers, string passphrase)
+        public override ICrypto Crypto(Headers headers, string passphrase, Guid cryptoId)
         {
             V2KeyWrapHeaderBlock keyWrap = headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
-            IPassphrase key = Instance.CryptoFactory.Default.CreatePassphrase(passphrase, keyWrap.DerivationSalt, keyWrap.DerivationIterations);
-
-            return Crypto(key);
+            ICryptoFactory cryptoFactory = Instance.CryptoFactory.Create(cryptoId);
+            IPassphrase key = cryptoFactory.CreatePassphrase(passphrase, keyWrap.DerivationSalt, keyWrap.DerivationIterations);
+            return cryptoFactory.CreateCrypto(key);
         }
 
         public override IAxCryptDocument Document(IPassphrase key, Headers headers)

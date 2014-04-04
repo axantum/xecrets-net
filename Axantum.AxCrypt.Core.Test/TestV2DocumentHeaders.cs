@@ -25,15 +25,15 @@
 
 #endregion Coypright and License
 
+using System;
+using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
-using System;
-using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileTimes()
         {
-            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("v2passx", 256), new SymmetricIV(128), 0), 10))
+            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("v2passx", 256, CryptoFactory.Aes256Id), new SymmetricIV(128), 0), 10))
             {
                 DateTime now = DateTime.UtcNow;
                 headers.LastAccessTimeUtc = now;
@@ -71,7 +71,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestCompression()
         {
-            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("v2pass", 256), new SymmetricIV(128), 0), 10))
+            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("v2pass", 256, CryptoFactory.Aes256Id), new SymmetricIV(128), 0), 10))
             {
                 headers.IsCompressed = true;
                 Assert.That(headers.IsCompressed, Is.True);
@@ -84,7 +84,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestUnicodeFileNameShort()
         {
-            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("v2passz", 256), new SymmetricIV(128), 0), 10))
+            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("v2passz", 256, CryptoFactory.Aes256Id), new SymmetricIV(128), 0), 10))
             {
                 headers.FileName = "My Secret Document.txt";
                 Assert.That(headers.FileName, Is.EqualTo("My Secret Document.txt"));
@@ -94,7 +94,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestUnicodeFileNameLong()
         {
-            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("v2passy", 256), new SymmetricIV(128), 0), 10))
+            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("v2passy", 256, CryptoFactory.Aes256Id), new SymmetricIV(128), 0), 10))
             {
                 string longName = "When in the Course of human events, it becomes necessary for one people to dissolve the political bands which have connected them with another, and to assume among the powers of the earth, the separate and equal station to which the Laws of Nature and of Nature's God entitle them, a decent respect to the opinions of mankind requires that they should declare the causes which impel them to the separation.";
                 Assert.That(longName.Length, Is.GreaterThan(256));
@@ -107,7 +107,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestWriteWithHmac()
         {
-            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("v2passzz", 256), new SymmetricIV(128), 0), 20))
+            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("v2passzz", 256, CryptoFactory.Aes256Id), new SymmetricIV(128), 0), 20))
             {
                 byte[] output;
                 using (MemoryStream outputStream = new MemoryStream())
@@ -140,7 +140,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Headers headers = new Headers();
 
-            ICrypto realKeyEncryptingCrypto = new V2AesCrypto(new V2Passphrase("RealKey", 256), new SymmetricIV(128), 0);
+            ICrypto realKeyEncryptingCrypto = new V2AesCrypto(new V2Passphrase("RealKey", 256, CryptoFactory.Aes256Id), new SymmetricIV(128), 0);
             headers.HeaderBlocks.Add(new PreambleHeaderBlock());
             headers.HeaderBlocks.Add(new VersionHeaderBlock(new byte[] { 4, 0, 2, 0, 0 }));
             headers.HeaderBlocks.Add(new V2KeyWrapHeaderBlock(realKeyEncryptingCrypto, 10));
@@ -149,7 +149,7 @@ namespace Axantum.AxCrypt.Core.Test
             headers.HeaderBlocks.Add(new V2UnicodeFileNameInfoEncryptedHeaderBlock(new byte[0]));
             headers.HeaderBlocks.Add(new DataHeaderBlock());
 
-            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("WrongKey", 256), new SymmetricIV(128), 0)))
+            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("WrongKey", 256, CryptoFactory.Aes256Id), new SymmetricIV(128), 0)))
             {
                 Assert.That(documentHeaders.Load(headers), Is.False);
             }
@@ -158,7 +158,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestWriteStartWithHmacWithNullArgument()
         {
-            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("Key", 256), new SymmetricIV(128), 0)))
+            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("Key", 256, CryptoFactory.Aes256Id), new SymmetricIV(128), 0)))
             {
                 Assert.Throws<ArgumentNullException>(() => documentHeaders.WriteStartWithHmac(null));
             }
@@ -167,7 +167,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestKeyEncryptingCryptoPropertyGetter()
         {
-            ICrypto keyEncryptingCrypto = new V2AesCrypto(new V2Passphrase("Key", 256), new SymmetricIV(128), 0);
+            ICrypto keyEncryptingCrypto = new V2AesCrypto(new V2Passphrase("Key", 256, CryptoFactory.Aes256Id), new SymmetricIV(128), 0);
             using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(keyEncryptingCrypto))
             {
                 Assert.That(Object.ReferenceEquals(keyEncryptingCrypto, documentHeaders.KeyEncryptingCrypto));
@@ -177,7 +177,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestHeadersPropertyGetter()
         {
-            ICrypto keyEncryptingCrypto = new V2AesCrypto(new V2Passphrase("Key", 256), new SymmetricIV(128), 0);
+            ICrypto keyEncryptingCrypto = new V2AesCrypto(new V2Passphrase("Key", 256, CryptoFactory.Aes256Id), new SymmetricIV(128), 0);
             using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(keyEncryptingCrypto))
             {
                 Assert.That(documentHeaders.Headers.HeaderBlocks.Count, Is.EqualTo(0));
@@ -202,7 +202,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Headers headers = new Headers();
 
-            ICrypto realKeyEncryptingCrypto = new V2AesCrypto(new V2Passphrase("A key", 256), new SymmetricIV(128), 0);
+            ICrypto realKeyEncryptingCrypto = new V2AesCrypto(new V2Passphrase("A key", 256, CryptoFactory.Aes256Id), new SymmetricIV(128), 0);
             headers.HeaderBlocks.Add(new PreambleHeaderBlock());
             headers.HeaderBlocks.Add(new VersionHeaderBlock(new byte[] { 4, 0, 2, 0, 0 }));
             headers.HeaderBlocks.Add(new V2KeyWrapHeaderBlock(realKeyEncryptingCrypto, 10));
@@ -212,7 +212,7 @@ namespace Axantum.AxCrypt.Core.Test
             headers.HeaderBlocks.Add(new UnknownEncryptedHeaderBlock(new byte[0]));
             headers.HeaderBlocks.Add(new DataHeaderBlock());
 
-            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("A key", 256), new SymmetricIV(128), 0)))
+            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("A key", 256, CryptoFactory.Aes256Id), new SymmetricIV(128), 0)))
             {
                 Assert.Throws<InternalErrorException>(() => documentHeaders.Load(headers));
             }

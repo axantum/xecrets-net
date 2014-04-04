@@ -36,12 +36,12 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public IPassphrase CreatePassphrase(string passphrase)
         {
-            return new V2Passphrase(passphrase, 256);
+            return new V2Passphrase(passphrase, 256, Id);
         }
 
         public IPassphrase CreatePassphrase(string passphrase, Salt salt, int iterations)
         {
-            return new V2Passphrase(passphrase, salt, iterations, 256);
+            return new V2Passphrase(passphrase, salt, iterations, 256, Id);
         }
 
         public ICrypto CreateCrypto(IPassphrase key)

@@ -25,15 +25,15 @@
 
 #endregion Coypright and License
 
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Session
 {
@@ -257,7 +257,7 @@ namespace Axantum.AxCrypt.Core.Session
 
             try
             {
-                IPassphrase key = Factory.New<AxCryptFactory>().CreatePassphrase(activeFile.Key.Passphrase, activeFile.EncryptedFileInfo);
+                IPassphrase key = Factory.New<AxCryptFactory>().CreatePassphrase(activeFile.Key.Passphrase, activeFile.EncryptedFileInfo, activeFile.Key.CryptoId);
                 using (Stream activeFileStream = activeFile.DecryptedFileInfo.OpenRead())
                 {
                     Factory.New<AxCryptFile>().WriteToFileWithBackup(activeFile.EncryptedFileInfo, (Stream destination) =>

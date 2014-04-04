@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
@@ -37,20 +38,20 @@ namespace Axantum.AxCrypt.Core
 {
     public class AxCryptFactory
     {
-        public virtual IPassphrase CreatePassphrase(string passphrase, string encryptedFileFullName)
+        public virtual IPassphrase CreatePassphrase(string passphrase, string encryptedFileFullName, Guid cryptoId)
         {
-            IPassphrase key = CreatePassphrase(passphrase, Factory.New<IRuntimeFileInfo>(encryptedFileFullName));
+            IPassphrase key = CreatePassphrase(passphrase, Factory.New<IRuntimeFileInfo>(encryptedFileFullName), cryptoId);
             return key;
         }
 
-        public virtual IPassphrase CreatePassphrase(string passphrase, IRuntimeFileInfo encryptedFileInfo)
+        public virtual IPassphrase CreatePassphrase(string passphrase, IRuntimeFileInfo encryptedFileInfo, Guid cryptoId)
         {
             using (Stream encryptedStream = encryptedFileInfo.OpenRead())
             {
                 Headers headers = new Headers();
                 AxCryptReader reader = headers.Load(encryptedStream);
 
-                IPassphrase key = reader.Crypto(headers, passphrase).Key;
+                IPassphrase key = reader.Crypto(headers, passphrase, cryptoId).Key;
                 using (IAxCryptDocument document = reader.Document(key, headers))
                 {
                     if (document.PassphraseIsValid)
@@ -83,8 +84,18 @@ namespace Axantum.AxCrypt.Core
             Headers headers = new Headers();
             AxCryptReader reader = headers.Load(inputStream);
 
-            IPassphrase key = reader.Crypto(headers, passphrase).Key;
-            return reader.Document(key, headers);
+            IEnumerable<Guid> cryptoIds = Instance.CryptoFactory.OrderedIds;
+            IAxCryptDocument document = null;
+            foreach (Guid cryptoId in cryptoIds)
+            {
+                IPassphrase key = reader.Crypto(headers, passphrase, cryptoId).Key;
+                document = reader.Document(key, headers);
+                if (document.PassphraseIsValid)
+                {
+                    return document;
+                }
+            }
+            return document;
         }
 
         /// <summary>

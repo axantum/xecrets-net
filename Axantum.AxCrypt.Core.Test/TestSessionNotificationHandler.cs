@@ -224,7 +224,7 @@ namespace Axantum.AxCrypt.Core.Test
             mock.Setup(acf => acf.EncryptFoldersUniqueWithBackupAndWipe(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<IPassphrase>(), It.IsAny<IProgressContext>()));
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, Factory.New<ActiveFileAction>(), mock.Object);
-            IPassphrase defaultKey = new V2Passphrase("default", 256);
+            IPassphrase defaultKey = new V2Passphrase("default", 256, CryptoFactory.Aes256Id);
             Instance.KnownKeys.DefaultEncryptionKey = defaultKey;
             Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\My Documents\", defaultKey.Thumbprint));
 

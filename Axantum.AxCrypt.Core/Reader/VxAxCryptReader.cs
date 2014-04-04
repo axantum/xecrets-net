@@ -25,11 +25,11 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Header;
 using System;
 using System.IO;
 using System.Linq;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Header;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
@@ -79,7 +79,7 @@ namespace Axantum.AxCrypt.Core.Reader
             throw new NotImplementedException();
         }
 
-        public override ICrypto Crypto(Headers headers, string passphrase)
+        public override ICrypto Crypto(Headers headers, string passphrase, Guid cryptoId)
         {
             throw new NotImplementedException();
         }

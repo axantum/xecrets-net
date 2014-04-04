@@ -143,7 +143,7 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Cancel = true;
             };
 
-            ivm.Passphrase = new V2Passphrase("testing", 256);
+            ivm.Passphrase = new V2Passphrase("testing", 256, CryptoFactory.Aes256Id);
             ivm.LogOnLogOff.Execute(Guid.Empty);
 
             Assert.That(Instance.KnownKeys.IsLoggedOn, Is.False, "Not logged on.");
@@ -347,7 +347,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void AskForNewLogOnPassphraseWithKnownIdentity()
         {
-            V2Passphrase passphrase = new V2Passphrase("aaa", 256);
+            V2Passphrase passphrase = new V2Passphrase("aaa", 256, CryptoFactory.Aes256Id);
             PassphraseIdentity id = new PassphraseIdentity("Test User", passphrase);
             Instance.FileSystemState.Identities.Add(id);
 
@@ -371,7 +371,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void AskForLogOnPassphraseWithKnownIdentity()
         {
-            V2Passphrase passphrase = new V2Passphrase("aaa", 256);
+            V2Passphrase passphrase = new V2Passphrase("aaa", 256, CryptoFactory.Aes256Id);
             PassphraseIdentity id = new PassphraseIdentity("Test User", passphrase);
             Instance.FileSystemState.Identities.Add(id);
 
@@ -391,7 +391,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void AskForLogOnPassphraseWithKnownIdentityButWrongPassphraseEntered()
         {
-            V2Passphrase passphrase = new V2Passphrase("aaa", 256);
+            V2Passphrase passphrase = new V2Passphrase("aaa", 256, CryptoFactory.Aes256Id);
             PassphraseIdentity id = new PassphraseIdentity("Test User", passphrase);
             Instance.FileSystemState.Identities.Add(id);
 

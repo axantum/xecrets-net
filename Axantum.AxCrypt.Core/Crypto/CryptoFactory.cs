@@ -25,12 +25,24 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public ICryptoFactory Create(Guid id)
         {
+            if (id == Guid.Empty)
+            {
+                return Default;
+            }
             Func<ICryptoFactory> factory;
             if (_factories.TryGetValue(id, out factory))
             {
                 return factory();
             }
             throw new ArgumentException("CryptoFactory not found.", "id");
+        }
+
+        public IEnumerable<Guid> OrderedIds
+        {
+            get
+            {
+                return Factory.Instance.Singleton<ICryptoPolicy>().OrderedIds(_factories.Values);
+            }
         }
 
         public ICryptoFactory Default

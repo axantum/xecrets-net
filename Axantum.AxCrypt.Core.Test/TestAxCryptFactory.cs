@@ -76,7 +76,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestV2Document()
         {
-            IPassphrase key = new V2Passphrase("properties", 256);
+            IPassphrase key = new V2Passphrase("properties", 256, CryptoFactory.Aes256Id);
             using (MemoryStream inputStream = new MemoryStream())
             {
                 byte[] text = Instance.RandomGenerator.Generate(500);

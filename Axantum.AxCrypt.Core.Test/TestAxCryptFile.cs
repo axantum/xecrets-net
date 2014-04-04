@@ -25,15 +25,15 @@
 
 #endregion Coypright and License
 
+using System;
+using System.IO;
+using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
-using System;
-using System.IO;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -413,7 +413,7 @@ namespace Axantum.AxCrypt.Core.Test
             string sourceFilePath = _davidCopperfieldTxtPath;
             string destinationFilePath = Path.Combine(Path.GetDirectoryName(sourceFilePath), "David Copperfield-txt.axx");
 
-            IPassphrase key = new V2Passphrase("b", 256);
+            IPassphrase key = new V2Passphrase("b", 256, CryptoFactory.Aes256Id);
             ProgressContext progress = new ProgressContext();
 
             Factory.New<AxCryptFile>().EncryptFileWithBackupAndWipe(sourceFilePath, destinationFilePath, key, progress);

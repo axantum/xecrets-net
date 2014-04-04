@@ -42,17 +42,17 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// Initializes a new instance of the <see cref="V2Passphrase"/> class.
         /// </summary>
         /// <param name="passphrase">The passphrase.</param>
-        public V2Passphrase(string passphrase, Salt salt, long iterations, int keySize)
+        public V2Passphrase(string passphrase, Salt salt, long iterations, int keySize, Guid cryptoId)
         {
             DerivationSalt = salt;
             DerivationIterations = iterations;
             DerivedKey = new SymmetricKey(new Pbkdf2HmacSha512(passphrase, salt, iterations).GetBytes().Reduce(keySize / 8));
             Passphrase = passphrase;
-            CryptoId = Instance.CryptoFactory.Default.Id;
+            CryptoId = cryptoId;
         }
 
-        public V2Passphrase(string passphrase, int keySize)
-            : this(passphrase, new Salt(256), DERIVATION_ITERATIONS, keySize)
+        public V2Passphrase(string passphrase, int keySize, Guid cryptoId)
+            : this(passphrase, new Salt(256), DERIVATION_ITERATIONS, keySize, cryptoId)
         {
         }
     }

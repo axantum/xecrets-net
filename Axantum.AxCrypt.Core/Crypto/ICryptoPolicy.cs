@@ -37,5 +37,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         ICryptoFactory Default(IEnumerable<Func<ICryptoFactory>> factories);
 
         ICryptoFactory Legacy(IEnumerable<Func<ICryptoFactory>> factories);
+
+        IEnumerable<Guid> OrderedIds(IEnumerable<Func<ICryptoFactory>> factories);
     }
 }

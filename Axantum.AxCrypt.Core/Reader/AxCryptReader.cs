@@ -25,14 +25,14 @@
 
 #endregion Coypright and License
 
+using System;
+using System.Collections.Generic;
+using System.IO;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
-using System;
-using System.Collections.Generic;
-using System.IO;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
@@ -70,7 +70,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
         public abstract ICrypto Crypto(IPassphrase key);
 
-        public abstract ICrypto Crypto(Headers headers, string passphrase);
+        public abstract ICrypto Crypto(Headers headers, string passphrase, Guid cryptoId);
 
         public abstract IAxCryptDocument Document(IPassphrase key, Headers headers);
 

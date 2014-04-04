@@ -92,7 +92,7 @@ namespace Axantum.AxCrypt.Core.Reader
             return Instance.CryptoFactory.Legacy.CreateCrypto(key);
         }
 
-        public override ICrypto Crypto(Headers headers, string passphrase)
+        public override ICrypto Crypto(Headers headers, string passphrase, Guid cryptoId)
         {
             return Crypto(Instance.CryptoFactory.Legacy.CreatePassphrase(passphrase));
         }
