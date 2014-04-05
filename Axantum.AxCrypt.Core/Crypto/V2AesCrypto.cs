@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new ArgumentNullException("iv");
             }
-            if (!IsValidKeyLength(key.DerivedKey.Length))
+            if (!IsValidKeyLength(key.DerivedKey.Size / 8))
             {
                 throw new ArgumentException("Key length is invalid.");
             }

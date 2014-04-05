@@ -112,7 +112,7 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 // Due to a bug in 1.1 and earlier we only used a truncated part of the key and salt :-(
                 // Compensate for this here. Users should be warned if FileVersionMajor <= 1 .
-                byte[] badKey = new byte[keyEncryptingKey.DerivedKey.Length];
+                byte[] badKey = new byte[keyEncryptingKey.DerivedKey.Size / 8];
                 Array.Copy(keyEncryptingCrypto.Key.DerivedKey.GetBytes(), 0, badKey, 0, 4);
                 keyEncryptingKey = new GenericPassphrase(new SymmetricKey(badKey));
 
@@ -129,8 +129,8 @@ namespace Axantum.AxCrypt.Core.Header
 
         private void Initialize(ICrypto keyEncryptingCrypto, long keyWrapIterations)
         {
-            SymmetricKey masterKey = new SymmetricKey(keyEncryptingCrypto.Key.DerivedKey.Length * 8);
-            Salt salt = new Salt(masterKey.Length * 8);
+            SymmetricKey masterKey = new SymmetricKey(keyEncryptingCrypto.Key.DerivedKey.Size);
+            Salt salt = new Salt(masterKey.Size);
             KeyWrap keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.AxCrypt);
             byte[] wrappedKeyData = keyWrap.Wrap(keyEncryptingCrypto, masterKey);
             Set(wrappedKeyData, salt, keyWrapIterations);
@@ -138,7 +138,7 @@ namespace Axantum.AxCrypt.Core.Header
 
         public void RewrapMasterKey(SymmetricKey masterKey, SymmetricKey keyEncryptingKey)
         {
-            Salt salt = new Salt(keyEncryptingKey.Length * 8);
+            Salt salt = new Salt(keyEncryptingKey.Size);
             KeyWrap keyWrap = new KeyWrap(salt, Iterations, KeyWrapMode.AxCrypt);
             byte[] wrappedKeyData = keyWrap.Wrap(Instance.CryptoFactory.Legacy.CreateCrypto(new GenericPassphrase(keyEncryptingKey)), masterKey);
             Set(wrappedKeyData, salt, Iterations);

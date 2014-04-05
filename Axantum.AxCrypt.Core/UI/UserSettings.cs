@@ -131,16 +131,14 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store("DisplayDecryptPassphrase", value); }
         }
 
-        public long V1KeyWrapIterations
+        public long GetKeyWrapIterations(Guid cryptoId)
         {
-            get { return Load("V1KeyWrapIterations", () => _keyWrapIterationCalculator.V1KeyWrapIterations()); }
-            set { Store("V1KeyWrapIterations", value); }
+            return Load(cryptoId.ToString("N"), () => _keyWrapIterationCalculator.KeyWrapIterations(cryptoId));
         }
 
-        public long V2KeyWrapIterations
+        public void SetKeyWrapIterations(Guid cryptoId, long iterations)
         {
-            get { return Load("V2KeyWrapIterations", () => _keyWrapIterationCalculator.V2KeyWrapIterations()); }
-            set { Store("V2KeyWrapIterations", value); }
+            Store(cryptoId.ToString("N"), iterations);
         }
 
         public Salt ThumbprintSalt

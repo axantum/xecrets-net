@@ -69,12 +69,12 @@ namespace Axantum.AxCrypt.Core.Crypto
                 throw new ArgumentNullException("salt");
             }
 
-            ICryptoFactory factory = Instance.CryptoFactory.Legacy;
-            ICrypto crypto = factory.CreateCrypto(factory.CreatePassphrase(key.Passphrase));
+            ICryptoFactory factory = Instance.CryptoFactory.Preferrred;
+            ICrypto crypto = factory.CreateCrypto(factory.CreatePassphrase(key.Passphrase, salt, (int)CryptoFactory.DerivationIterations));
             KeyWrap keyWrap = new KeyWrap(salt, iterations, KeyWrapMode.Specification);
             byte[] wrap = keyWrap.Wrap(crypto, crypto.Key.DerivedKey);
 
-            _bytes = wrap.Reduce(8);
+            _bytes = wrap.Reduce(6);
         }
 
         #region IEquatable<AesKeyThumbprint> Members

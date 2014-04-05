@@ -65,9 +65,9 @@ namespace Axantum.AxCrypt.Core.UI
 
         bool DisplayDecryptPassphrase { get; set; }
 
-        long V1KeyWrapIterations { get; set; }
+        long GetKeyWrapIterations(Guid cryptoId);
 
-        long V2KeyWrapIterations { get; set; }
+        void SetKeyWrapIterations(Guid cryptoId, long iterations);
 
         Salt ThumbprintSalt { get; set; }
 

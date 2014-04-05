@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
-using NUnit.Framework;
 using System;
 using System.Linq;
+using Axantum.AxCrypt.Core.Crypto;
+using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -61,7 +61,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IPassphrase key1 = new GenericPassphrase("key");
             IPassphrase key2 = new GenericPassphrase("key");
-            Salt salt1 = new Salt(128);
+            Salt salt1 = new Salt(512);
             Salt salt2 = new Salt(salt1.GetBytes());
 
             SymmetricKeyThumbprint thumbprint1 = new SymmetricKeyThumbprint(key1, salt1, 10);
@@ -69,7 +69,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(thumbprint1 == thumbprint2, "Two thumb prints made from the same key and salt bytes, although different AesKey instances should be equivalent.");
 
-            SymmetricKeyThumbprint thumbprint3 = new SymmetricKeyThumbprint(new GenericPassphrase("passphrase"), new Salt(128), 10);
+            SymmetricKeyThumbprint thumbprint3 = new SymmetricKeyThumbprint(new GenericPassphrase("passphrase"), new Salt(512), 10);
             Assert.That(thumbprint2 != thumbprint3, "Two very different keys and salts should not be equivalent.");
         }
 
@@ -78,8 +78,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IPassphrase key1 = new GenericPassphrase("samekey");
             IPassphrase key2 = new GenericPassphrase("samekey");
-            Salt salt1 = new Salt(128);
-            Salt salt2 = new Salt(128);
+            Salt salt1 = new Salt(512);
+            Salt salt2 = new Salt(512);
 
             SymmetricKeyThumbprint thumbprint1a = new SymmetricKeyThumbprint(key1, salt1, 13);
             SymmetricKeyThumbprint thumbprint1a_alias = thumbprint1a;
@@ -110,8 +110,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             GenericPassphrase key1 = new GenericPassphrase("samekey");
             GenericPassphrase key2 = new GenericPassphrase("samekey");
-            Salt salt1 = new Salt(128);
-            Salt salt2 = new Salt(128);
+            Salt salt1 = new Salt(512);
+            Salt salt2 = new Salt(512);
 
             SymmetricKeyThumbprint thumbprint1a = new SymmetricKeyThumbprint(key1, salt1, 17);
             SymmetricKeyThumbprint thumbprint1b = new SymmetricKeyThumbprint(key1, salt2, 17);

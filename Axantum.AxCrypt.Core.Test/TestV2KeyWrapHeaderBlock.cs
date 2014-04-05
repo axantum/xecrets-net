@@ -141,7 +141,7 @@ namespace Axantum.AxCrypt.Core.Test
             V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(keyEncryptingKey, new SymmetricIV(128), 0), 125);
 
             SymmetricKey key = header.MasterKey;
-            Assert.That(key.GetBytes(), Is.EquivalentTo(ByteSequence(key.GetBytes()[0], key.Length)));
+            Assert.That(key.GetBytes(), Is.EquivalentTo(ByteSequence(key.GetBytes()[0], key.Size / 8)));
 
             SymmetricIV iv = header.MasterIV;
             Assert.That(iv.GetBytes(), Is.EquivalentTo(ByteSequence(iv.GetBytes()[0], iv.Length)));

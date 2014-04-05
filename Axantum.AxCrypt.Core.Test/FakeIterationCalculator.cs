@@ -25,20 +25,15 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.Linq;
+using Axantum.AxCrypt.Core.Crypto;
 
 namespace Axantum.AxCrypt.Core.Test
 {
     public class FakeIterationCalculator : IterationCalculator
     {
-        public override long V1KeyWrapIterations()
-        {
-            return 10;
-        }
-
-        public override long V2KeyWrapIterations()
+        public override long KeyWrapIterations(Guid cryptoId)
         {
             return 10;
         }

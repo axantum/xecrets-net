@@ -99,7 +99,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Mock<IUserSettings> userSettingsMock = new Mock<IUserSettings>();
             userSettingsMock.Setup<Salt>(f => f.ThumbprintSalt).Returns(Salt.Zero);
-            userSettingsMock.Setup<long>(f => f.V1KeyWrapIterations).Returns(10);
+            userSettingsMock.Setup<long>(f => f.GetKeyWrapIterations(It.IsAny<Guid>())).Returns(10);
             Factory.Instance.Singleton<IUserSettings>(() => userSettingsMock.Object);
 
             Mock<IRuntimeEnvironment> environmentMock = new Mock<IRuntimeEnvironment>();
@@ -121,7 +121,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Mock<IUserSettings> userSettingsMock = new Mock<IUserSettings>();
             userSettingsMock.Setup<Salt>(f => f.ThumbprintSalt).Returns(Salt.Zero);
-            userSettingsMock.Setup<long>(f => f.V1KeyWrapIterations).Returns(10);
+            userSettingsMock.Setup<long>(f => f.GetKeyWrapIterations(It.IsAny<Guid>())).Returns(10);
             Factory.Instance.Singleton<IUserSettings>(() => userSettingsMock.Object);
 
             Mock<IRuntimeEnvironment> environmentMock = new Mock<IRuntimeEnvironment>();

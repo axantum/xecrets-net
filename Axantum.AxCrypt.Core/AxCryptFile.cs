@@ -70,7 +70,7 @@ namespace Axantum.AxCrypt.Core
             {
                 using (Stream destinationStream = destinationFile.OpenWrite())
                 {
-                    using (IAxCryptDocument document = new V1AxCryptDocument(Instance.CryptoFactory.Legacy.CreateCrypto(key), Instance.UserSettings.V1KeyWrapIterations))
+                    using (IAxCryptDocument document = new V1AxCryptDocument(Instance.CryptoFactory.Legacy.CreateCrypto(key), Instance.UserSettings.GetKeyWrapIterations(CryptoFactory.Aes128V1Id)))
                     {
                         document.FileName = sourceFile.Name;
                         document.CreationTimeUtc = sourceFile.CreationTimeUtc;

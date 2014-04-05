@@ -71,7 +71,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Register<string, IFileWatcher>((path) => new FakeFileWatcher(path));
             Factory.Instance.Register<IterationCalculator>(() => new FakeIterationCalculator());
 
-            Instance.UserSettings.V1KeyWrapIterations = 1234;
+            Instance.UserSettings.SetKeyWrapIterations(CryptoFactory.Aes128V1Id, 1234);
             Instance.UserSettings.ThumbprintSalt = Salt.Zero;
             Instance.Log.SetLevel(LogLevel.Debug);
         }

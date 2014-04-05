@@ -25,9 +25,9 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Diagnostics.CodeAnalysis;
+using Axantum.AxCrypt.Core.Extensions;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -74,11 +74,11 @@ namespace Axantum.AxCrypt.Core.Crypto
             return (byte[])_symmetricKey.Clone();
         }
 
-        public int Length
+        public int Size
         {
             get
             {
-                return _symmetricKey.Length;
+                return _symmetricKey.Length * 8;
             }
         }
 

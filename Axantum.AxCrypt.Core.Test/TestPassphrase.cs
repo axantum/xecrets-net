@@ -25,9 +25,9 @@
 
 #endregion Coypright and License
 
+using System;
 using Axantum.AxCrypt.Core.Crypto;
 using NUnit.Framework;
-using System;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             V1Passphrase passphrase = new V1Passphrase("A Passphrase");
             SymmetricKey derivedKey = passphrase.DerivedKey;
-            Assert.That(derivedKey.Length, Is.EqualTo(16), "The default derived key is 128 bits.");
+            Assert.That(derivedKey.Size, Is.EqualTo(128), "The default derived key is 128 bits.");
 
             Assert.Throws<ArgumentNullException>(() =>
             {

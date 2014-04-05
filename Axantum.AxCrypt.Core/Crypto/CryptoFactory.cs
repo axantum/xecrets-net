@@ -12,6 +12,8 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public static readonly Guid Aes128V1Id = new Guid("1673BBEF-A56A-43AC-AB16-E14D2BAD1CBF");
 
+        public static readonly long DerivationIterations = 1000;
+
         private Dictionary<Guid, Func<ICryptoFactory>> _factories = new Dictionary<Guid, Func<ICryptoFactory>>();
 
         public CryptoFactory()
@@ -58,6 +60,14 @@ namespace Axantum.AxCrypt.Core.Crypto
             get
             {
                 return Factory.Instance.Singleton<ICryptoPolicy>().Legacy(_factories.Values);
+            }
+        }
+
+        public ICryptoFactory Preferrred
+        {
+            get
+            {
+                return _factories.Values.OrderByDescending(f => f().Priority).First()();
             }
         }
     }

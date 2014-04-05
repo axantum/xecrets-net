@@ -36,8 +36,6 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// </summary>
     public class V2Passphrase : PassphraseBase
     {
-        private const long DERIVATION_ITERATIONS = 1000;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="V2Passphrase"/> class.
         /// </summary>
@@ -52,7 +50,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         }
 
         public V2Passphrase(string passphrase, int keySize, Guid cryptoId)
-            : this(passphrase, new Salt(256), DERIVATION_ITERATIONS, keySize, cryptoId)
+            : this(passphrase, new Salt(256), CryptoFactory.DerivationIterations, keySize, cryptoId)
         {
         }
     }
