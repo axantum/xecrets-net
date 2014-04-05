@@ -42,12 +42,12 @@ namespace Axantum.AxCrypt
     {
         private LogOnViewModel _viewModel;
 
-        public LogOnDialog(string identityName, string encryptedFileFullName, Guid cryptoId)
+        public LogOnDialog(string identityName, string encryptedFileFullName)
         {
             InitializeComponent();
             SetAutoValidateViaReflectionToAvoidMoMaWarning();
 
-            _viewModel = new LogOnViewModel(identityName, encryptedFileFullName, cryptoId);
+            _viewModel = new LogOnViewModel(identityName, encryptedFileFullName);
 
             PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
             ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };

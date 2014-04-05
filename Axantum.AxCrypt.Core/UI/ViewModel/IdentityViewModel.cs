@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             foreach (PassphraseIdentity identity in _fileSystemState.Identities)
             {
-                IPassphrase candidate = Instance.CryptoFactory.Create(identity.CryptoId).CreatePassphrase(passphrase);
+                IPassphrase candidate = Instance.CryptoFactory.Default.CreatePassphrase(passphrase);
                 if (identity.Thumbprint == candidate.Thumbprint)
                 {
                     return candidate;

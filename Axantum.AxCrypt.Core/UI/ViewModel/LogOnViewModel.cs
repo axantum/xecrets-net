@@ -38,12 +38,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     {
         private string _encryptedFileFullName;
 
-        private Guid _cryptoId;
-
-        public LogOnViewModel(string identityName, string encryptedFileFullName, Guid cryptoId)
+        public LogOnViewModel(string identityName, string encryptedFileFullName)
         {
             _encryptedFileFullName = encryptedFileFullName;
-            _cryptoId = cryptoId;
             InitializePropertyValues(identityName);
         }
 
@@ -95,7 +92,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                         ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
                         return false;
                     }
-                    if (!IsPassphraseValidForFileIfAny(Passphrase, _encryptedFileFullName, _cryptoId))
+                    if (!IsPassphraseValidForFileIfAny(Passphrase, _encryptedFileFullName))
                     {
                         ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
                         return false;
@@ -107,13 +104,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        private static bool IsPassphraseValidForFileIfAny(string passphrase, string encryptedFileFullName, Guid cryptoId)
+        private static bool IsPassphraseValidForFileIfAny(string passphrase, string encryptedFileFullName)
         {
             if (String.IsNullOrEmpty(encryptedFileFullName))
             {
                 return true;
             }
-            if (Factory.New<AxCryptFactory>().CreatePassphrase(passphrase, encryptedFileFullName, cryptoId) != null)
+            if (Factory.New<AxCryptFactory>().CreatePassphrase(passphrase, Factory.New<IRuntimeFileInfo>(encryptedFileFullName), Instance.CryptoFactory.OrderedIds) != null)
             {
                 return true;
             }
@@ -123,10 +120,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private bool IsPassphraseAKnownIdentity()
         {
             SymmetricKeyThumbprint thumbprint = new GenericPassphrase(Passphrase).Thumbprint;
-            PassphraseIdentity id = Instance.FileSystemState.Identities.FirstOrDefault(identity => (String.IsNullOrEmpty(IdentityName) || IdentityName == identity.Name) && identity.Thumbprint == thumbprint);
-            if (id != null)
+            PassphraseIdentity identity = Instance.FileSystemState.Identities.FirstOrDefault(id => (String.IsNullOrEmpty(IdentityName) || IdentityName == id.Name) && id.Thumbprint == thumbprint);
+            if (identity != null)
             {
-                IdentityName = id.Name;
+                IdentityName = identity.Name;
                 return true;
             }
             return false;

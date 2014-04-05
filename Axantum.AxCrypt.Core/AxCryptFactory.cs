@@ -38,13 +38,20 @@ namespace Axantum.AxCrypt.Core
 {
     public class AxCryptFactory
     {
-        public virtual IPassphrase CreatePassphrase(string passphrase, string encryptedFileFullName, Guid cryptoId)
+        public virtual IPassphrase CreatePassphrase(string passphrase, IRuntimeFileInfo encryptedFileInfo, IEnumerable<Guid> cryptoIds)
         {
-            IPassphrase key = CreatePassphrase(passphrase, Factory.New<IRuntimeFileInfo>(encryptedFileFullName), cryptoId);
-            return key;
+            foreach (Guid cryptoId in cryptoIds)
+            {
+                IPassphrase key = CreatePassphraseInternal(passphrase, encryptedFileInfo, cryptoId);
+                if (key != null)
+                {
+                    return key;
+                }
+            }
+            return null;
         }
 
-        public virtual IPassphrase CreatePassphrase(string passphrase, IRuntimeFileInfo encryptedFileInfo, Guid cryptoId)
+        private static IPassphrase CreatePassphraseInternal(string passphrase, IRuntimeFileInfo encryptedFileInfo, Guid cryptoId)
         {
             using (Stream encryptedStream = encryptedFileInfo.OpenRead())
             {

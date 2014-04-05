@@ -37,8 +37,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     {
         private string _encryptedFileFullName;
 
-        private Guid _cryptoId = Guid.Empty;
-
         public NewPassphraseViewModel(string passphrase, string defaultIdentityName, string encryptedFileFullName)
         {
             _encryptedFileFullName = encryptedFileFullName;
@@ -49,7 +47,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             PassphraseIdentity identity = Instance.FileSystemState.Identities.FirstOrDefault(id => String.Compare(id.Name, Environment.UserName, StringComparison.OrdinalIgnoreCase) == 0);
             bool defaultIdentityKnown = identity != null;
-            _cryptoId = defaultIdentityKnown ? identity.CryptoId : Guid.Empty;
             IdentityName = defaultIdentityKnown ? String.Empty : defaultIdentityName;
             Passphrase = passphrase ?? String.Empty;
             Verification = passphrase ?? String.Empty;
@@ -93,7 +90,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             switch (columnName)
             {
                 case "Passphrase":
-                    if (!IsPassphraseValidForFileIfAny(Passphrase, _encryptedFileFullName, _cryptoId))
+                    if (!IsPassphraseValidForFileIfAny(Passphrase, _encryptedFileFullName))
                     {
                         ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
                         return false;
@@ -127,13 +124,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return String.Compare(Passphrase, Verification, StringComparison.Ordinal) == 0;
         }
 
-        private static bool IsPassphraseValidForFileIfAny(string passphrase, string encryptedFileFullName, Guid cryptoId)
+        private static bool IsPassphraseValidForFileIfAny(string passphrase, string encryptedFileFullName)
         {
             if (String.IsNullOrEmpty(encryptedFileFullName))
             {
                 return true;
             }
-            return Factory.New<AxCryptFactory>().CreatePassphrase(passphrase, encryptedFileFullName, cryptoId) != null;
+            return Factory.New<AxCryptFactory>().CreatePassphrase(passphrase, Factory.New<IRuntimeFileInfo>(encryptedFileFullName), Instance.CryptoFactory.OrderedIds) != null;
         }
     }
 }

@@ -147,7 +147,7 @@ namespace Axantum.AxCrypt.Core.Extensions
         {
             foreach (IPassphrase knownKey in Instance.KnownKeys.Keys)
             {
-                key = Factory.New<AxCryptFactory>().CreatePassphrase(knownKey.Passphrase, fileInfo, knownKey.CryptoId);
+                key = Factory.New<AxCryptFactory>().CreatePassphrase(knownKey.Passphrase, fileInfo, new Guid[] { knownKey.CryptoId });
                 if (key != null)
                 {
                     return true;

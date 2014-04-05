@@ -264,7 +264,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void AskForNewLogOnPassphrase()
         {
             string defaultPassphrase = null;
-            Instance.FileSystemState.Identities.Add(new PassphraseIdentity("One Existing Identity", new V1Aes128CryptoFactory().Id));
+            Instance.FileSystemState.Identities.Add(new PassphraseIdentity("One Existing Identity"));
             IdentityViewModel ivm = new IdentityViewModel(Instance.FileSystemState, Instance.KnownKeys, Instance.UserSettings);
             ivm.CryptoId = new V1Aes128CryptoFactory().Id;
             ivm.LoggingOn += (sender, e) =>
@@ -320,7 +320,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void AskForNewLogOnPassphraseWithCancel()
         {
             string defaultPassphrase = null;
-            Instance.FileSystemState.Identities.Add(new PassphraseIdentity("One Existing Identity", new V1Aes128CryptoFactory().Id));
+            Instance.FileSystemState.Identities.Add(new PassphraseIdentity("One Existing Identity"));
             IdentityViewModel ivm = new IdentityViewModel(Instance.FileSystemState, Instance.KnownKeys, Instance.UserSettings);
             ivm.LoggingOn += (sender, e) =>
             {

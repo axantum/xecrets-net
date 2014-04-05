@@ -72,7 +72,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestConstructorWithKnownDefaultIdentity()
         {
-            _identities.Add(new PassphraseIdentity(Environment.UserName, new V1Aes128CryptoFactory().Id));
+            _identities.Add(new PassphraseIdentity(Environment.UserName));
             NewPassphraseViewModel npvm = new NewPassphraseViewModel(String.Empty, Environment.UserName, String.Empty);
 
             Assert.That(npvm.IdentityName, Is.EqualTo(String.Empty));
@@ -103,7 +103,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestValidateIdentityAlreadyExistsFails()
         {
-            _identities.Add(new PassphraseIdentity("Identity", new V2Aes256CryptoFactory().Id));
+            _identities.Add(new PassphraseIdentity("Identity"));
             NewPassphraseViewModel npvm = new NewPassphraseViewModel(Environment.UserName, String.Empty, String.Empty);
             npvm.IdentityName = "Identity";
 

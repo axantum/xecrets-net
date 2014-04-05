@@ -38,6 +38,12 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         ICryptoFactory Legacy(IEnumerable<Func<ICryptoFactory>> factories);
 
+        /// <summary>
+        /// Return a list of CryptoId's in a suitable order of preference and relevance, to be used to
+        /// try and match a passphrase against a file.
+        /// </summary>
+        /// <param name="factories">The available ICryptoFactory's to select from.</param>
+        /// <returns>A list of CryptoId's to try in the order provided.</returns>
         IEnumerable<Guid> OrderedIds(IEnumerable<Func<ICryptoFactory>> factories);
     }
 }

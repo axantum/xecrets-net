@@ -39,6 +39,11 @@ namespace Axantum.AxCrypt.Core.Crypto
             throw new ArgumentException("CryptoFactory not found.", "id");
         }
 
+        /// <summary>
+        /// Return a list of CryptoId's in a suitable order of preference and relevance, to be used to
+        /// try and match a passphrase against a file.
+        /// </summary>
+        /// <returns>A list of CryptoId's to try in the order provided.</returns>
         public IEnumerable<Guid> OrderedIds
         {
             get

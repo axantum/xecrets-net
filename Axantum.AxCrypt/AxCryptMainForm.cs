@@ -402,7 +402,7 @@ namespace Axantum.AxCrypt
 
         private void HandleExistingLogOn(LogOnEventArgs e)
         {
-            using (LogOnDialog logOnDialog = new LogOnDialog(e.Identity.Name, e.EncryptedFileFullName, e.Identity.CryptoId))
+            using (LogOnDialog logOnDialog = new LogOnDialog(e.Identity.Name, e.EncryptedFileFullName))
             {
                 logOnDialog.ShowPassphraseCheckBox.Checked = e.DisplayPassphrase;
                 DialogResult dialogResult = logOnDialog.ShowDialog(this);
