@@ -87,12 +87,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             switch (columnName)
             {
                 case "Passphrase":
-                    if (!IsPassphraseAKnownIdentity())
+                    if (!IsPassphraseValidForFileIfAny(Passphrase, _encryptedFileFullName))
                     {
                         ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
                         return false;
                     }
-                    if (!IsPassphraseValidForFileIfAny(Passphrase, _encryptedFileFullName))
+                    bool isKnownIdentity = IsKnownIdentity();
+                    if (String.IsNullOrEmpty(_encryptedFileFullName) && !isKnownIdentity)
                     {
                         ValidationError = (int)ViewModel.ValidationError.WrongPassphrase;
                         return false;
@@ -117,7 +118,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return false;
         }
 
-        private bool IsPassphraseAKnownIdentity()
+        private bool IsKnownIdentity()
         {
             SymmetricKeyThumbprint thumbprint = new GenericPassphrase(Passphrase).Thumbprint;
             PassphraseIdentity identity = Instance.FileSystemState.Identities.FirstOrDefault(id => (String.IsNullOrEmpty(IdentityName) || IdentityName == id.Name) && id.Thumbprint == thumbprint);
