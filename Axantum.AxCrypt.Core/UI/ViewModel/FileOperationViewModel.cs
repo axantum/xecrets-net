@@ -157,7 +157,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             _fileOperation.DoFiles(files.Select(f => Factory.New<IRuntimeFileInfo>(f)).ToList(), OpenEncryptedWork, (status) => { });
         }
 
-        private FileOperationStatus DecryptFileWork(IRuntimeFileInfo file, IProgressContext progress)
+        private FileOperationContext DecryptFileWork(IRuntimeFileInfo file, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(progress);
 
@@ -185,7 +185,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
             {
-                if (_statusChecker.CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
+                if (_statusChecker.CheckStatusAndShowMessage(e.Status.Status, e.OpenFileFullName))
                 {
                     Factory.New<ActiveFileAction>().RemoveRecentFiles(new IRuntimeFileInfo[] { Factory.New<IRuntimeFileInfo>(e.OpenFileFullName) }, progress);
                 }
@@ -194,7 +194,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return operationsController.DecryptFile(file);
         }
 
-        private FileOperationStatus WipeFileWork(IRuntimeFileInfo file, IProgressContext progress)
+        private FileOperationContext WipeFileWork(IRuntimeFileInfo file, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(progress);
 
@@ -217,7 +217,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     return;
                 }
-                if (Instance.StatusChecker.CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
+                if (Instance.StatusChecker.CheckStatusAndShowMessage(e.Status.Status, e.OpenFileFullName))
                 {
                     Factory.New<ActiveFileAction>().RemoveRecentFiles(new IRuntimeFileInfo[] { Factory.New<IRuntimeFileInfo>(e.SaveFileFullName) }, progress);
                 }
@@ -226,7 +226,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return operationsController.WipeFile(file);
         }
 
-        private FileOperationStatus OpenEncryptedWork(IRuntimeFileInfo file, IProgressContext progress)
+        private FileOperationContext OpenEncryptedWork(IRuntimeFileInfo file, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(progress);
 
@@ -239,11 +239,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
             {
-                if (e.Status == FileOperationStatus.Canceled)
+                if (e.Status.Status == FileOperationStatus.Canceled)
                 {
                     return;
                 }
-                _statusChecker.CheckStatusAndShowMessage(e.Status, e.OpenFileFullName);
+                _statusChecker.CheckStatusAndShowMessage(e.Status.Status, e.OpenFileFullName);
             };
 
             return operationsController.DecryptAndLaunch(file);
@@ -260,7 +260,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             e.Passphrase = IdentityViewModel.Passphrase.Passphrase;
         }
 
-        private FileOperationStatus EncryptFileWork(IRuntimeFileInfo file, IProgressContext progress)
+        private FileOperationContext EncryptFileWork(IRuntimeFileInfo file, IProgressContext progress)
         {
             FileOperationsController operationsController = Factory.New<IProgressContext, FileOperationsController>(progress);
 
@@ -292,12 +292,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
             {
-                if (e.Status == FileOperationStatus.FileAlreadyEncrypted)
+                if (e.Status.Status == FileOperationStatus.FileAlreadyEncrypted)
                 {
-                    e.Status = FileOperationStatus.Success;
+                    e.Status = new FileOperationContext(String.Empty, FileOperationStatus.Success);
                     return;
                 }
-                if (_statusChecker.CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
+                if (_statusChecker.CheckStatusAndShowMessage(e.Status.Status, e.OpenFileFullName))
                 {
                     IRuntimeFileInfo encryptedInfo = Factory.New<IRuntimeFileInfo>(e.SaveFileFullName);
                     IRuntimeFileInfo decryptedInfo = Factory.New<IRuntimeFileInfo>(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
@@ -310,7 +310,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return operationsController.EncryptFile(file);
         }
 
-        private FileOperationStatus EncryptFileNonInteractiveWork(IRuntimeFileInfo fullName, IProgressContext progress)
+        private FileOperationContext EncryptFileNonInteractiveWork(IRuntimeFileInfo fullName, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(progress);
 
@@ -321,7 +321,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
             {
-                if (_statusChecker.CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
+                if (_statusChecker.CheckStatusAndShowMessage(e.Status.Status, e.OpenFileFullName))
                 {
                     IRuntimeFileInfo encryptedInfo = Factory.New<IRuntimeFileInfo>(e.SaveFileFullName);
                     IRuntimeFileInfo decryptedInfo = Factory.New<IRuntimeFileInfo>(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
@@ -334,7 +334,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return operationsController.EncryptFile(fullName);
         }
 
-        private FileOperationStatus VerifyAndAddActiveWork(IRuntimeFileInfo fullName, IProgressContext progress)
+        private FileOperationContext VerifyAndAddActiveWork(IRuntimeFileInfo fullName, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(progress);
 
@@ -347,7 +347,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
             {
-                if (_statusChecker.CheckStatusAndShowMessage(e.Status, e.OpenFileFullName))
+                if (_statusChecker.CheckStatusAndShowMessage(e.Status.Status, e.OpenFileFullName))
                 {
                     IRuntimeFileInfo encryptedInfo = Factory.New<IRuntimeFileInfo>(e.OpenFileFullName);
                     IRuntimeFileInfo decryptedInfo = Factory.New<IRuntimeFileInfo>(e.SaveFileFullName);
@@ -374,10 +374,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             OpenFilesAction(fileSelectionArgs.SelectedFiles);
         }
 
-        private FileOperationStatus DecryptFolderWork(IRuntimeFileInfo folder, IProgressContext progress)
+        private FileOperationContext DecryptFolderWork(IRuntimeFileInfo folder, IProgressContext progress)
         {
-            Factory.New<AxCryptFile>().DecryptFilesInsideFolderUniqueWithWipeOfOriginal(folder, _knownKeys.DefaultEncryptionKey, progress);
-            return FileOperationStatus.Success;
+            Factory.New<AxCryptFile>().DecryptFilesInsideFolderUniqueWithWipeOfOriginal(folder, _knownKeys.DefaultEncryptionKey, _statusChecker, progress);
+            return new FileOperationContext(String.Empty, FileOperationStatus.Success);
         }
 
         private void AddRecentFilesAction(IEnumerable<string> files)

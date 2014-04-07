@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.ComponentModel;
 using System.Linq;
+using Axantum.AxCrypt.Core.Crypto;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -36,7 +36,7 @@ namespace Axantum.AxCrypt.Core.UI
     {
         public FileOperationEventArgs()
         {
-            Status = FileOperationStatus.Unknown;
+            Status = new FileOperationContext(String.Empty, FileOperationStatus.Unknown);
         }
 
         public string SaveFileFullName { get; set; }
@@ -53,6 +53,6 @@ namespace Axantum.AxCrypt.Core.UI
 
         public IAxCryptDocument AxCryptDocument { get; set; }
 
-        public FileOperationStatus Status { get; set; }
+        public FileOperationContext Status { get; set; }
     }
 }

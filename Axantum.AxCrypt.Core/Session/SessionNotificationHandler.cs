@@ -25,11 +25,11 @@
 
 #endregion Coypright and License
 
+using System;
+using System.Linq;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.UI;
-using System;
-using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Session
 {
@@ -43,12 +43,15 @@ namespace Axantum.AxCrypt.Core.Session
 
         private AxCryptFile _axCryptFile;
 
-        public SessionNotificationHandler(FileSystemState fileSystemState, KnownKeys knownKeys, ActiveFileAction activeFileAction, AxCryptFile axCryptFile)
+        private IStatusChecker _statusChecker;
+
+        public SessionNotificationHandler(FileSystemState fileSystemState, KnownKeys knownKeys, ActiveFileAction activeFileAction, AxCryptFile axCryptFile, IStatusChecker statusChecker)
         {
             _fileSystemState = fileSystemState;
             _knownKeys = knownKeys;
             _activeFileAction = activeFileAction;
             _axCryptFile = axCryptFile;
+            _statusChecker = statusChecker;
         }
 
         public virtual void HandleNotification(SessionNotification notification)
@@ -66,9 +69,9 @@ namespace Axantum.AxCrypt.Core.Session
                     {
                         progress.NotifyLevelFinished();
                     }
-                    return FileOperationStatus.Success;
+                    return new FileOperationContext(String.Empty, FileOperationStatus.Success);
                 },
-                (FileOperationStatus status) =>
+                (FileOperationContext status) =>
                 {
                 });
         }
@@ -90,7 +93,7 @@ namespace Axantum.AxCrypt.Core.Session
                     IRuntimeFileInfo removedFolderInfo = Factory.New<IRuntimeFileInfo>(notification.FullName);
                     if (removedFolderInfo.IsExistingFolder)
                     {
-                        _axCryptFile.DecryptFilesInsideFolderUniqueWithWipeOfOriginal(removedFolderInfo, notification.Key, progress);
+                        _axCryptFile.DecryptFilesInsideFolderUniqueWithWipeOfOriginal(removedFolderInfo, notification.Key, _statusChecker, progress);
                     }
                     break;
 

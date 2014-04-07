@@ -53,8 +53,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             var mockParallelFile = new Mock<ParallelFileOperation>();
             _allCompleted = false;
-            mockParallelFile.Setup(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()))
-                .Callback<IEnumerable<IRuntimeFileInfo>, Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>, Action<FileOperationStatus>>((files, work, allComplete) => { allComplete(FileOperationStatus.Success); _allCompleted = true; });
+            mockParallelFile.Setup(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()))
+                .Callback<IEnumerable<IRuntimeFileInfo>, Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>, Action<FileOperationContext>>((files, work, allComplete) => { allComplete(new FileOperationContext(String.Empty, FileOperationStatus.Success)); _allCompleted = true; });
             Factory.Instance.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
         }
 
@@ -82,8 +82,8 @@ namespace Axantum.AxCrypt.Core.Test
             Instance.FileSystemState.Identities.Add(id);
             Instance.KnownKeys.DefaultEncryptionKey = id.Key;
             mvm.AddRecentFiles.Execute(new string[] { file1, file2, decrypted1 });
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()), Times.Once);
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()), Times.Once);
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
         }
 
         [Test]
@@ -97,7 +97,7 @@ namespace Axantum.AxCrypt.Core.Test
             };
             mvm.DecryptFiles.Execute(null);
 
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
         }
 
         [Test]
@@ -111,7 +111,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             mvm.DecryptFiles.Execute(null);
 
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()), Times.Never);
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Never);
         }
 
         [Test]
@@ -126,7 +126,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             mvm.DecryptFiles.Execute(new string[] { @"C:\Folder\File3.axx" });
 
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
         }
 
         [Test]
@@ -141,7 +141,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             mvm.EncryptFiles.Execute(null);
 
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
         }
 
         [Test]
@@ -155,7 +155,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             mvm.EncryptFiles.Execute(null);
 
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()), Times.Never);
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Never);
         }
 
         [Test]
@@ -170,7 +170,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             mvm.EncryptFiles.Execute(new string[] { @"C:\Folder\File3.txt" });
 
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
         }
 
         [Test]
@@ -179,7 +179,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
             mvm.OpenFiles.Execute(new string[] { @"C:\Folder\File3.txt" });
             Assert.That(_allCompleted, Is.True);
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
         }
 
         [Test]
@@ -259,7 +259,7 @@ namespace Axantum.AxCrypt.Core.Test
             mvm.DecryptFolders.Execute(new string[] { @"C:\Folder\" });
 
             Assert.That(_allCompleted, Is.True);
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
         }
 
         [Test]
@@ -281,7 +281,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             mvm.WipeFiles.Execute(null);
 
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
         }
 
         [Test]
@@ -295,7 +295,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             mvm.WipeFiles.Execute(null);
 
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()), Times.Never);
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Never);
         }
 
         [Test]
@@ -310,7 +310,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             mvm.WipeFiles.Execute(new string[] { @"C:\Folder\File3.txt" });
 
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
         }
 
         [Test]
@@ -326,7 +326,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             mvm.OpenFilesFromFolder.Execute(@"C:\Folder\");
 
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()), Times.Never);
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Never);
         }
 
         [Test]
@@ -344,7 +344,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             mvm.OpenFilesFromFolder.Execute(@"C:\Folder\");
 
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(files => files.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()), Times.Once);
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(files => files.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
         }
 
         [Test]
@@ -371,7 +371,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(Instance.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File1-txt.axx"), Is.Not.Null);
             Assert.That(Instance.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File2-txt.axx"), Is.Not.Null);
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
             axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IRuntimeFileInfo>(), It.IsAny<IRuntimeFileInfo>(), It.IsAny<IPassphrase>(), It.IsAny<IProgressContext>()), Times.Exactly(2));
         }
 
@@ -398,7 +398,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(@"C:\Folder\File1-txt.axx", null);
             mvm.EncryptFiles.Execute(new string[] { @"C:\Folder\File1.txt" });
 
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
             axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IRuntimeFileInfo>(), It.IsAny<IRuntimeFileInfo>(), It.IsAny<IPassphrase>(), It.IsAny<IProgressContext>()), Times.Exactly(1));
         }
 
@@ -415,7 +415,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             mvm.EncryptFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx" });
 
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
             axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IRuntimeFileInfo>(), It.IsAny<IRuntimeFileInfo>(), It.IsAny<IPassphrase>(), It.IsAny<IProgressContext>()), Times.Never);
         }
 
@@ -444,7 +444,7 @@ namespace Axantum.AxCrypt.Core.Test
             mvm.EncryptFiles.Execute(new string[] { @"C:\Folder\File1.txt" });
 
             Assert.That(logginOn, Is.False);
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
             axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IRuntimeFileInfo>(), It.IsAny<IRuntimeFileInfo>(), It.IsAny<IPassphrase>(), It.IsAny<IProgressContext>()), Times.Never);
         }
 
@@ -466,7 +466,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             mvm.EncryptFiles.Execute(new string[] { @"C:\Folder\File1.txt" });
 
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
             axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IRuntimeFileInfo>(), It.IsAny<IRuntimeFileInfo>(), It.IsAny<IPassphrase>(), It.IsAny<IProgressContext>()), Times.Never);
         }
 
@@ -516,7 +516,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(@"C:\Folder\File2-txt.axx", null);
             mvm.DecryptFiles.Execute(null);
 
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
             axCryptFileMock.Verify(m => m.DecryptFile(It.IsAny<IAxCryptDocument>(), It.IsAny<string>(), It.IsAny<IProgressContext>()), Times.Exactly(2));
             axCryptFileMock.Verify(m => m.Wipe(It.IsAny<IRuntimeFileInfo>(), It.IsAny<IProgressContext>()), Times.Exactly(2));
             Assert.That(Instance.KnownKeys.IsLoggedOn, Is.True);
@@ -555,7 +555,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(@"C:\Folder\File1.txt", null);
             mvm.DecryptFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx" });
 
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
             axCryptFileMock.Verify(m => m.DecryptFile(It.Is<IAxCryptDocument>((a) => a.FileName == @"File1.txt"), It.Is<string>((s) => s == @"C:\Folder\Copy of File1.txt"), It.IsAny<IProgressContext>()), Times.Once);
             axCryptFileMock.Verify(m => m.Wipe(It.Is<IRuntimeFileInfo>((i) => i.FullName == @"C:\Folder\File1-txt.axx"), It.IsAny<IProgressContext>()), Times.Once);
             Assert.That(Instance.KnownKeys.IsLoggedOn, Is.True);
@@ -593,7 +593,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(@"C:\Folder\File1.txt", null);
             mvm.DecryptFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx" });
 
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 0), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()), Times.Never);
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 0), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Never);
             axCryptFileMock.Verify(m => m.DecryptFile(It.IsAny<IAxCryptDocument>(), It.IsAny<string>(), It.IsAny<IProgressContext>()), Times.Never);
             axCryptFileMock.Verify(m => m.Wipe(It.IsAny<IRuntimeFileInfo>(), It.IsAny<IProgressContext>()), Times.Never);
             Assert.That(Instance.KnownKeys.IsLoggedOn, Is.True);
@@ -618,7 +618,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(@"C:\Folder\File1-txt.axx", null);
             mvm.DecryptFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx" });
 
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 0), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()), Times.Never);
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 0), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Never);
             axCryptFileMock.Verify(m => m.DecryptFile(It.IsAny<IAxCryptDocument>(), It.IsAny<string>(), It.IsAny<IProgressContext>()), Times.Never);
             axCryptFileMock.Verify(m => m.Wipe(It.IsAny<IRuntimeFileInfo>(), It.IsAny<IProgressContext>()), Times.Never);
             Assert.That(Instance.KnownKeys.IsLoggedOn, Is.False);
@@ -651,7 +651,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(@"C:\Folder\File1-txt.axx", null);
             mvm.AddRecentFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx" });
 
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()), Times.Once);
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
             Assert.That(Instance.KnownKeys.IsLoggedOn, Is.True);
             Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(1));
         }
@@ -684,7 +684,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(@"C:\Folder\File2-txt.axx", null);
             mvm.AddRecentFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx" });
 
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()), Times.Once);
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
             Assert.That(Instance.KnownKeys.IsLoggedOn, Is.False);
             Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(0));
             Assert.That(logonTries, Is.EqualTo(1), "There should be only one logon try, since the first one cancels.");
@@ -708,7 +708,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(@"C:\Folder\File2-txt.axx", null);
             mvm.WipeFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx" });
 
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()), Times.Once);
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
             axCryptFileMock.Verify(m => m.Wipe(It.IsAny<IRuntimeFileInfo>(), It.IsAny<IProgressContext>()), Times.Exactly(2));
         }
 
@@ -735,7 +735,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(@"C:\Folder\File3-txt.axx", null);
             mvm.WipeFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx", @"C:\Folder\File3-txt.axx" });
 
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 3), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()), Times.Once);
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 3), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
             axCryptFileMock.Verify(m => m.Wipe(It.Is<IRuntimeFileInfo>(r => r.FullName == @"C:\Folder\File1-txt.axx"), It.IsAny<IProgressContext>()), Times.Once);
             axCryptFileMock.Verify(m => m.Wipe(It.Is<IRuntimeFileInfo>(r => r.FullName == @"C:\Folder\File2-txt.axx"), It.IsAny<IProgressContext>()), Times.Never);
             axCryptFileMock.Verify(m => m.Wipe(It.Is<IRuntimeFileInfo>(r => r.FullName == @"C:\Folder\File3-txt.axx"), It.IsAny<IProgressContext>()), Times.Once);
@@ -768,7 +768,7 @@ namespace Axantum.AxCrypt.Core.Test
             mvm.WipeFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx", @"C:\Folder\File3-txt.axx" });
 
             Assert.That(callTimes, Is.EqualTo(2), "Only the first two calls should be made.");
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 3), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()), Times.Once);
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 3), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
             axCryptFileMock.Verify(m => m.Wipe(It.IsAny<IRuntimeFileInfo>(), It.IsAny<IProgressContext>()), Times.Once);
             axCryptFileMock.Verify(m => m.Wipe(It.Is<IRuntimeFileInfo>(r => r.FullName == @"C:\Folder\File1-txt.axx"), It.IsAny<IProgressContext>()), Times.Once);
             axCryptFileMock.Verify(m => m.Wipe(It.Is<IRuntimeFileInfo>(r => r.FullName == @"C:\Folder\File2-txt.axx"), It.IsAny<IProgressContext>()), Times.Never);
@@ -806,7 +806,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(Instance.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File1-txt.1.axx"), Is.Not.Null);
             Assert.That(Instance.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File2-txt.axx"), Is.Not.Null);
             Assert.That(Instance.FileSystemState.FindActiveFileFromEncryptedPath(@"C:\Folder\File3-txt.axx"), Is.Null);
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
             axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IRuntimeFileInfo>(), It.Is<IRuntimeFileInfo>(r => r.FullName == @"C:\Folder\File1-txt.1.axx"), It.IsAny<IPassphrase>(), It.IsAny<IProgressContext>()), Times.Once);
             axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IRuntimeFileInfo>(), It.Is<IRuntimeFileInfo>(r => r.FullName == @"C:\Folder\File2-txt.axx"), It.IsAny<IPassphrase>(), It.IsAny<IProgressContext>()), Times.Once);
         }
@@ -855,7 +855,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(@"C:\Folder\File2-txt.axx", null);
             mvm.OpenFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx" });
 
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
             fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.Is<string>(s => s == @"C:\Folder\File1-txt.axx"), It.IsAny<IAxCryptDocument>(), It.IsAny<IProgressContext>()), Times.Once);
             fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.Is<string>(s => s == @"C:\Folder\File2-txt.axx"), It.IsAny<IAxCryptDocument>(), It.IsAny<IProgressContext>()), Times.Once);
             Assert.That(Instance.KnownKeys.IsLoggedOn, Is.True);
@@ -908,7 +908,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(@"C:\Folder\File2-txt.axx", null);
             mvm.OpenFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx" });
 
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus>>(), It.IsAny<Action<FileOperationStatus>>()));
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 2), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
             fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.Is<string>(s => s == @"C:\Folder\File1-txt.axx"), It.IsAny<IAxCryptDocument>(), It.IsAny<IProgressContext>()), Times.Once);
             fileOperationMock.Verify(f => f.OpenAndLaunchApplication(It.Is<string>(s => s == @"C:\Folder\File2-txt.axx"), It.IsAny<IAxCryptDocument>(), It.IsAny<IProgressContext>()), Times.Never);
             Assert.That(Instance.KnownKeys.IsLoggedOn, Is.True);
@@ -935,8 +935,8 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
             mvm.DecryptFolders.Execute(new string[] { @"C:\Folder1\", @"C:\Folder2\" });
 
-            axCryptFileMock.Verify(m => m.DecryptFilesInsideFolderUniqueWithWipeOfOriginal(It.Is<IRuntimeFileInfo>(r => r.FullName == @"C:\Folder1\"), It.IsAny<IPassphrase>(), It.IsAny<IProgressContext>()), Times.Once);
-            axCryptFileMock.Verify(m => m.DecryptFilesInsideFolderUniqueWithWipeOfOriginal(It.Is<IRuntimeFileInfo>(r => r.FullName == @"C:\Folder2\"), It.IsAny<IPassphrase>(), It.IsAny<IProgressContext>()), Times.Once);
+            axCryptFileMock.Verify(m => m.DecryptFilesInsideFolderUniqueWithWipeOfOriginal(It.Is<IRuntimeFileInfo>(r => r.FullName == @"C:\Folder1\"), It.IsAny<IPassphrase>(), It.IsAny<IStatusChecker>(), It.IsAny<IProgressContext>()), Times.Once);
+            axCryptFileMock.Verify(m => m.DecryptFilesInsideFolderUniqueWithWipeOfOriginal(It.Is<IRuntimeFileInfo>(r => r.FullName == @"C:\Folder2\"), It.IsAny<IPassphrase>(), It.IsAny<IStatusChecker>(), It.IsAny<IProgressContext>()), Times.Once);
         }
     }
 }

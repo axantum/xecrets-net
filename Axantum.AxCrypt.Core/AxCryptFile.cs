@@ -34,6 +34,7 @@ using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core
@@ -323,7 +324,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        public virtual void DecryptFilesInsideFolderUniqueWithWipeOfOriginal(IRuntimeFileInfo folderInfo, IPassphrase decryptionKey, IProgressContext progress)
+        public virtual void DecryptFilesInsideFolderUniqueWithWipeOfOriginal(IRuntimeFileInfo folderInfo, IPassphrase decryptionKey, IStatusChecker statusChecker, IProgressContext progress)
         {
             IEnumerable<IRuntimeFileInfo> files = folderInfo.ListEncrypted();
             Instance.ParallelFileOperation.DoFiles(files, (file, context) =>
@@ -331,17 +332,20 @@ namespace Axantum.AxCrypt.Core
                 context.LeaveSingleThread();
                 return DecryptFileUniqueWithWipeOfOriginal(file, decryptionKey, context);
             },
-            (status) => { });
+            (status) =>
+            {
+                statusChecker.CheckStatusAndShowMessage(status.Status, status.FullName);
+            });
         }
 
-        public FileOperationStatus DecryptFileUniqueWithWipeOfOriginal(IRuntimeFileInfo fileInfo, IPassphrase decryptionKey, IProgressContext progress)
+        public FileOperationContext DecryptFileUniqueWithWipeOfOriginal(IRuntimeFileInfo fileInfo, IPassphrase decryptionKey, IProgressContext progress)
         {
             progress.NotifyLevelStart();
             using (IAxCryptDocument document = Factory.New<AxCryptFile>().Document(fileInfo, decryptionKey, progress))
             {
                 if (!document.PassphraseIsValid)
                 {
-                    return FileOperationStatus.Canceled;
+                    return new FileOperationContext(fileInfo.FullName, FileOperationStatus.Canceled);
                 }
 
                 IRuntimeFileInfo destinationFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(fileInfo.FullName), document.FileName));
@@ -350,7 +354,7 @@ namespace Axantum.AxCrypt.Core
             }
             Wipe(fileInfo, progress);
             progress.NotifyLevelFinished();
-            return FileOperationStatus.Success;
+            return new FileOperationContext(String.Empty, FileOperationStatus.Success);
         }
 
         public virtual void DecryptFile(IAxCryptDocument document, string decryptedFileFullName, IProgressContext progress)
@@ -399,8 +403,22 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("progress");
             }
 
-            IAxCryptDocument document = Factory.New<AxCryptFactory>().CreateDocument(key, new ProgressStream(sourceFile.OpenRead(), progress));
-            return document;
+            try
+            {
+                IAxCryptDocument document = Factory.New<AxCryptFactory>().CreateDocument(key, new ProgressStream(sourceFile.OpenRead(), progress));
+                return document;
+            }
+            catch (AxCryptException ace)
+            {
+                ace.DisplayContext = sourceFile.FullName;
+                throw;
+            }
+            catch (Exception ex)
+            {
+                AxCryptException ace = new InternalErrorException("An unhandled exception occurred.", ErrorStatus.Unknown, ex);
+                ace.DisplayContext = sourceFile.FullName;
+                throw ace;
+            }
         }
 
         public void WriteToFileWithBackup(IRuntimeFileInfo destinationFileInfo, Action<Stream> writeFileStreamTo, IProgressContext progress)

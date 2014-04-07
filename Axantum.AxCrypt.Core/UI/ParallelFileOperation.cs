@@ -25,11 +25,11 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// <param name="files">The files to operation on.</param>
         /// <param name="work">The work to do for each file.</param>
         /// <param name="allComplete">The completion callback after *all* files have been processed.</param>
-        public virtual void DoFiles(IEnumerable<IRuntimeFileInfo> files, Func<IRuntimeFileInfo, IProgressContext, FileOperationStatus> work, Action<FileOperationStatus> allComplete)
+        public virtual void DoFiles(IEnumerable<IRuntimeFileInfo> files, Func<IRuntimeFileInfo, IProgressContext, FileOperationContext> work, Action<FileOperationContext> allComplete)
         {
             WorkerGroup workerGroup = null;
             Instance.ProgressBackground.Work(
@@ -59,7 +59,7 @@ namespace Axantum.AxCrypt.Core.UI
                         foreach (IRuntimeFileInfo file in files)
                         {
                             IThreadWorker worker = workerGroup.CreateWorker(true);
-                            if (workerGroup.FirstError != FileOperationStatus.Success)
+                            if (workerGroup.FirstError.Status != FileOperationStatus.Success)
                             {
                                 worker.Abort();
                                 break;
@@ -76,7 +76,7 @@ namespace Axantum.AxCrypt.Core.UI
                         return workerGroup.FirstError;
                     }
                 },
-                (FileOperationStatus status) =>
+                (FileOperationContext status) =>
                 {
                     allComplete(status);
                 });

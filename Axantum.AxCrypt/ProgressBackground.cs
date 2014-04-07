@@ -25,14 +25,14 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.UI;
 using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
+using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt
 {
@@ -83,10 +83,9 @@ namespace Axantum.AxCrypt
         /// <summary>
         /// Perform a background operation with support for progress bars and cancel.
         /// </summary>
-        /// <param name="displayText">A text that may be used as a reference in various messages.</param>
         /// <param name="workFunction">A 'work' delegate, taking a ProgressContext and return a FileOperationStatus. Executed on a background thread. Not the calling/GUI thread.</param>
         /// <param name="complete">A 'complete' delegate, taking the final status. Executed on the GUI thread.</param>
-        public void Work(Func<IProgressContext, FileOperationStatus> workFunction, Action<FileOperationStatus> complete)
+        public void Work(Func<IProgressContext, FileOperationContext> workFunction, Action<FileOperationContext> complete)
         {
             Instance.UIThread.RunOnUIThread(() =>
             {
@@ -94,7 +93,7 @@ namespace Axantum.AxCrypt
             });
         }
 
-        private void BackgroundWorkWithProgressOnUIThread(Func<IProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
+        private void BackgroundWorkWithProgressOnUIThread(Func<IProgressContext, FileOperationContext> work, Action<FileOperationContext> complete)
         {
             IProgressContext progress = new CancelProgressContext(new ProgressContext());
             ProgressBar progressBar = CreateProgressBar(progress);

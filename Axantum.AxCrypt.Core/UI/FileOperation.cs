@@ -49,7 +49,7 @@ namespace Axantum.AxCrypt.Core.UI
             _sessionNotify = sessionNotify;
         }
 
-        public FileOperationStatus OpenAndLaunchApplication(string file, IEnumerable<IPassphrase> keys, IProgressContext progress)
+        public FileOperationContext OpenAndLaunchApplication(string file, IEnumerable<IPassphrase> keys, IProgressContext progress)
         {
             if (file == null)
             {
@@ -71,7 +71,7 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     Instance.Log.LogWarning("Tried to open non-existing '{0}'.".InvariantFormat(fileInfo.FullName));
                 }
-                return FileOperationStatus.FileDoesNotExist;
+                return new FileOperationContext(fileInfo.FullName, FileOperationStatus.FileDoesNotExist);
             }
 
             ActiveFile destinationActiveFile = _fileSystemState.FindActiveFileFromEncryptedPath(fileInfo.FullName);
@@ -88,17 +88,17 @@ namespace Axantum.AxCrypt.Core.UI
 
             if (destinationActiveFile == null)
             {
-                return FileOperationStatus.InvalidKey;
+                return new FileOperationContext(fileInfo.FullName, FileOperationStatus.InvalidKey);
             }
 
             _fileSystemState.Add(destinationActiveFile);
             _fileSystemState.Save();
 
-            FileOperationStatus status = LaunchApplicationForDocument(destinationActiveFile);
+            FileOperationContext status = LaunchApplicationForDocument(destinationActiveFile);
             return status;
         }
 
-        public virtual FileOperationStatus OpenAndLaunchApplication(string encryptedFile, IAxCryptDocument document, IProgressContext progress)
+        public virtual FileOperationContext OpenAndLaunchApplication(string encryptedFile, IAxCryptDocument document, IProgressContext progress)
         {
             if (encryptedFile == null)
             {
@@ -129,11 +129,11 @@ namespace Axantum.AxCrypt.Core.UI
             _fileSystemState.Add(encryptedActiveFile);
             _fileSystemState.Save();
 
-            FileOperationStatus status = LaunchApplicationForDocument(encryptedActiveFile);
+            FileOperationContext status = LaunchApplicationForDocument(encryptedActiveFile);
             return status;
         }
 
-        private FileOperationStatus LaunchApplicationForDocument(ActiveFile destinationActiveFile)
+        private FileOperationContext LaunchApplicationForDocument(ActiveFile destinationActiveFile)
         {
             ILauncher process;
             try
@@ -161,7 +161,7 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     Instance.Log.LogError("Could not launch application for '{0}', Win32Exception was '{1}'.".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName, w32ex.Message));
                 }
-                return FileOperationStatus.CannotStartApplication;
+                return new FileOperationContext(destinationActiveFile.DecryptedFileInfo.FullName, FileOperationStatus.CannotStartApplication);
             }
 
             if (Instance.Log.IsWarningEnabled)
@@ -181,7 +181,7 @@ namespace Axantum.AxCrypt.Core.UI
             _fileSystemState.Add(destinationActiveFile, process);
             _fileSystemState.Save();
 
-            return FileOperationStatus.Success;
+            return new FileOperationContext(String.Empty, FileOperationStatus.Success);
         }
 
         private void process_Exited(object sender, EventArgs e)

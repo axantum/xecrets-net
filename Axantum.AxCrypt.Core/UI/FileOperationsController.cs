@@ -171,7 +171,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// return value and status do not conclusive indicate success. Only a failure return
         /// is conclusive.
         /// </remarks>
-        public FileOperationStatus EncryptFile(IRuntimeFileInfo fileInfo)
+        public FileOperationContext EncryptFile(IRuntimeFileInfo fileInfo)
         {
             return DoFile(fileInfo, EncryptFilePreparation, EncryptFileOperation);
         }
@@ -181,7 +181,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         /// <param name="sourceFile">The full path to an encrypted file.</param>
         /// <returns>The resulting status of the operation.</returns>
-        public FileOperationStatus DecryptFile(IRuntimeFileInfo fileInfo)
+        public FileOperationContext DecryptFile(IRuntimeFileInfo fileInfo)
         {
             return DoFile(fileInfo, DecryptFilePreparation, DecryptFileOperation);
         }
@@ -192,7 +192,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         /// <param name="fileInfo">The full path to an encrypted file.</param>
         /// <returns>A FileOperationStatus indicating the result of the operation.</returns>
-        public FileOperationStatus DecryptAndLaunch(IRuntimeFileInfo fileInfo)
+        public FileOperationContext DecryptAndLaunch(IRuntimeFileInfo fileInfo)
         {
             return DoFile(fileInfo, DecryptAndLaunchPreparation, DecryptAndLaunchFileOperation);
         }
@@ -202,7 +202,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         /// <param name="fileInfo">The file to verify.</param>
         /// <returns>FileOperationStatus.Success if  the file is encrypted with a known key.</returns>
-        public FileOperationStatus VerifyEncrypted(IRuntimeFileInfo fileInfo)
+        public FileOperationContext VerifyEncrypted(IRuntimeFileInfo fileInfo)
         {
             return DoFile(fileInfo, DecryptAndLaunchPreparation, GetDocumentInfo);
         }
@@ -212,7 +212,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         /// <param name="fileInfo">The full name of the file to wipe</param>
         /// <returns>A FileOperationStatus indicating the result of the operation.</returns>
-        public FileOperationStatus WipeFile(IRuntimeFileInfo fileInfo)
+        public FileOperationContext WipeFile(IRuntimeFileInfo fileInfo)
         {
             return DoFile(fileInfo, WipeFilePreparation, WipeFileOperation);
         }
@@ -225,7 +225,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             if (String.Compare(Path.GetExtension(sourceFileInfo.FullName), OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
             {
-                _eventArgs.Status = FileOperationStatus.FileAlreadyEncrypted;
+                _eventArgs.Status = new FileOperationContext(sourceFileInfo.FullName, FileOperationStatus.FileAlreadyEncrypted);
                 return false;
             }
             IRuntimeFileInfo destinationFileInfo = Factory.New<IRuntimeFileInfo>(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
@@ -236,7 +236,7 @@ namespace Axantum.AxCrypt.Core.UI
                 OnQuerySaveFileAs(_eventArgs);
                 if (_eventArgs.Cancel)
                 {
-                    _eventArgs.Status = FileOperationStatus.Canceled;
+                    _eventArgs.Status = new FileOperationContext(sourceFileInfo.FullName, FileOperationStatus.Canceled);
                     return false;
                 }
             }
@@ -246,7 +246,7 @@ namespace Axantum.AxCrypt.Core.UI
                 OnQueryEncryptionPassphrase(_eventArgs);
                 if (_eventArgs.Cancel)
                 {
-                    _eventArgs.Status = FileOperationStatus.Canceled;
+                    _eventArgs.Status = new FileOperationContext(sourceFileInfo.FullName, FileOperationStatus.Canceled);
                     return false;
                 }
                 _eventArgs.Key = Instance.CryptoFactory.Default.CreatePassphrase(_eventArgs.Passphrase);
@@ -263,7 +263,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             Factory.New<AxCryptFile>().EncryptFileWithBackupAndWipe(_eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, _eventArgs.Key, _progress);
 
-            _eventArgs.Status = FileOperationStatus.Success;
+            _eventArgs.Status = new FileOperationContext(String.Empty, FileOperationStatus.Success);
             return true;
         }
 
@@ -281,7 +281,7 @@ namespace Axantum.AxCrypt.Core.UI
                 OnQuerySaveFileAs(_eventArgs);
                 if (_eventArgs.Cancel)
                 {
-                    _eventArgs.Status = FileOperationStatus.Canceled;
+                    _eventArgs.Status = new FileOperationContext(fileInfo.FullName, FileOperationStatus.Canceled);
                     return false;
                 }
             }
@@ -305,7 +305,7 @@ namespace Axantum.AxCrypt.Core.UI
 
             _progress.NotifyLevelFinished();
 
-            _eventArgs.Status = FileOperationStatus.Success;
+            _eventArgs.Status = new FileOperationContext(String.Empty, FileOperationStatus.Success);
             return true;
         }
 
@@ -337,7 +337,7 @@ namespace Axantum.AxCrypt.Core.UI
                 }
             }
 
-            _eventArgs.Status = FileOperationStatus.Success;
+            _eventArgs.Status = new FileOperationContext(String.Empty, FileOperationStatus.Success);
             return true;
         }
 
@@ -353,7 +353,7 @@ namespace Axantum.AxCrypt.Core.UI
                 _eventArgs.AxCryptDocument = null;
             }
 
-            _eventArgs.Status = FileOperationStatus.Success;
+            _eventArgs.Status = new FileOperationContext(String.Empty, FileOperationStatus.Success);
             return true;
         }
 
@@ -368,7 +368,7 @@ namespace Axantum.AxCrypt.Core.UI
             OnWipeQueryConfirmation(_eventArgs);
             if (_eventArgs.Cancel)
             {
-                _eventArgs.Status = FileOperationStatus.Canceled;
+                _eventArgs.Status = new FileOperationContext(fileInfo.FullName, FileOperationStatus.Canceled);
                 return false;
             }
 
@@ -383,7 +383,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             if (_eventArgs.Skip)
             {
-                _eventArgs.Status = FileOperationStatus.Success;
+                _eventArgs.Status = new FileOperationContext(String.Empty, FileOperationStatus.Success);
                 return true;
             }
 
@@ -391,7 +391,7 @@ namespace Axantum.AxCrypt.Core.UI
             Factory.New<AxCryptFile>().Wipe(Factory.New<IRuntimeFileInfo>(_eventArgs.SaveFileFullName), _progress);
             _progress.NotifyLevelFinished();
 
-            _eventArgs.Status = FileOperationStatus.Success;
+            _eventArgs.Status = new FileOperationContext(String.Empty, FileOperationStatus.Success);
             return true;
         }
 
@@ -414,12 +414,12 @@ namespace Axantum.AxCrypt.Core.UI
                     OnQueryDecryptionPassphrase(e);
                     if (e.Cancel)
                     {
-                        e.Status = FileOperationStatus.Canceled;
+                        e.Status = new FileOperationContext(sourceFileInfo.FullName, FileOperationStatus.Canceled);
                         return false;
                     }
                     if (e.Skip)
                     {
-                        e.Status = FileOperationStatus.Success;
+                        e.Status = new FileOperationContext(String.Empty, FileOperationStatus.Success);
                         return true;
                     }
                     e.AxCryptDocument = Factory.New<AxCryptFile>().Document(sourceFileInfo, e.Passphrase, _progress);
@@ -440,7 +440,7 @@ namespace Axantum.AxCrypt.Core.UI
                     e.AxCryptDocument.Dispose();
                     e.AxCryptDocument = null;
                 }
-                FileOperationStatus status = ioex is FileNotFoundException ? FileOperationStatus.FileDoesNotExist : FileOperationStatus.Exception;
+                FileOperationContext status = new FileOperationContext(sourceFileInfo.FullName, ioex is FileNotFoundException ? FileOperationStatus.FileDoesNotExist : FileOperationStatus.Exception);
                 e.Status = status;
                 return false;
             }
@@ -451,7 +451,7 @@ namespace Axantum.AxCrypt.Core.UI
             return true;
         }
 
-        private FileOperationStatus DoFile(IRuntimeFileInfo fileInfo, Func<IRuntimeFileInfo, bool> preparation, Func<bool> operation)
+        private FileOperationContext DoFile(IRuntimeFileInfo fileInfo, Func<IRuntimeFileInfo, bool> preparation, Func<bool> operation)
         {
             try
             {
@@ -477,18 +477,18 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 if (_progress.Cancel)
                 {
-                    _eventArgs.Status = FileOperationStatus.Canceled;
+                    _eventArgs.Status = new FileOperationContext(fileInfo.FullName, FileOperationStatus.Canceled);
                     return ok;
                 }
                 Instance.UIThread.RunOnUIThread(() => ok = preparation(fileInfo));
-                if (_eventArgs.Status == FileOperationStatus.Canceled)
+                if (_eventArgs.Status.Status == FileOperationStatus.Canceled)
                 {
                     _progress.Cancel = true;
                 }
             }
             catch (Exception)
             {
-                _eventArgs.Status = FileOperationStatus.Exception;
+                _eventArgs.Status = new FileOperationContext(fileInfo.FullName, FileOperationStatus.Exception);
                 throw;
             }
             finally

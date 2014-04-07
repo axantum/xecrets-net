@@ -35,6 +35,8 @@ namespace Axantum.AxCrypt.Core.Runtime
     {
         public ErrorStatus ErrorStatus { get; set; }
 
+        public string DisplayContext { get; set; }
+
         protected AxCryptException()
             : base()
         {

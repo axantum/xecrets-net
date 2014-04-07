@@ -33,6 +33,7 @@ using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
+using Moq;
 using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -452,10 +453,12 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo destinationFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
             V1Passphrase passphrase = new V1Passphrase("a");
 
+            Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
+
             Assert.That(sourceFileInfo.IsExistingFile, Is.True, "The source should exist.");
             Assert.That(destinationFileInfo.IsExistingFile, Is.False, "The source should not exist yet.");
 
-            Factory.New<AxCryptFile>().DecryptFilesInsideFolderUniqueWithWipeOfOriginal(sourceFolderInfo, passphrase, new ProgressContext());
+            Factory.New<AxCryptFile>().DecryptFilesInsideFolderUniqueWithWipeOfOriginal(sourceFolderInfo, passphrase, mockStatusChecker.Object, new ProgressContext());
 
             Assert.That(sourceFileInfo.IsExistingFile, Is.False, "The source should be wiped.");
             Assert.That(destinationFileInfo.IsExistingFile, Is.True, "The destination should be created and exist now.");

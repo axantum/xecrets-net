@@ -32,7 +32,7 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public interface IProgressBackground
     {
-        void Work(Func<IProgressContext, FileOperationStatus> workFunction, Action<FileOperationStatus> complete);
+        void Work(Func<IProgressContext, FileOperationContext> workFunction, Action<FileOperationContext> complete);
 
         void WaitForIdle();
 

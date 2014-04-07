@@ -365,7 +365,9 @@ namespace Axantum.AxCrypt.Core.Test
 
             Factory.Instance.Register<ActiveFileAction>(() => mockActiveFileAction.Object);
 
-            Factory.Instance.Register<SessionNotificationHandler>(() => new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, Factory.New<ActiveFileAction>(), Factory.New<AxCryptFile>()));
+            Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
+
+            Factory.Instance.Register<SessionNotificationHandler>(() => new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, Factory.New<ActiveFileAction>(), Factory.New<AxCryptFile>(), mockStatusChecker.Object));
             Instance.SessionNotify.Notification += (sender, e) => Factory.New<SessionNotificationHandler>().HandleNotification(e.Notification);
 
             using (MainViewModel mvm = Factory.New<MainViewModel>())

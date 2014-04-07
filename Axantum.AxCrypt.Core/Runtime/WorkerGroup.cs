@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Linq;
 using System.Threading;
+using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
@@ -160,7 +160,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             _concurrencyControlSemaphore = new Semaphore(maxConcurrent, maxConcurrent);
             _maxConcurrencyCount = maxConcurrent;
             _singleThread = new SingleThread();
-            FirstError = FileOperationStatus.Success;
+            FirstError = new FileOperationContext(String.Empty, FileOperationStatus.Success);
             progress.NotifyLevelStart();
             Progress = new WorkerGroupProgressContext(progress, _singleThread);
         }
@@ -240,11 +240,11 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private void HandleThreadWorkerCompletedEvent(object sender, ThreadWorkerEventArgs e)
         {
-            if (e.Result != FileOperationStatus.Success)
+            if (e.Result.Status != FileOperationStatus.Success)
             {
                 lock (_firstErrorLock)
                 {
-                    if (FirstError == FileOperationStatus.Success)
+                    if (FirstError.Status == FileOperationStatus.Success)
                     {
                         FirstError = e.Result;
                     }
@@ -263,7 +263,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// <summary>
         /// The first error reported. Subsequent errors may be missed.
         /// </summary>
-        public FileOperationStatus FirstError { get; private set; }
+        public FileOperationContext FirstError { get; private set; }
 
         private void AcquireOneConcurrencyRight()
         {

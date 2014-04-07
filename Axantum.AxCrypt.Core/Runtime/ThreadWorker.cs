@@ -25,11 +25,11 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.UI;
 using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading;
+using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
@@ -54,9 +54,6 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// <summary>
         /// Create a thread worker.
         /// </summary>
-        /// <param name="displayText">A text that may be used in messages as a reference for users.</param>
-        /// <param name="work">A 'work' delegate. Executed on a separate thread, not the GUI thread.</param>
-        /// <param name="complete">A 'complete' delegate. Executed on the original thread, typically the GUI thread.</param>
         public ThreadWorker(IProgressContext progress, bool startOnUIThread)
         {
             _startOnUIThread = startOnUIThread;
@@ -104,7 +101,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// </summary>
         public void Abort()
         {
-            _e.Result = FileOperationStatus.Aborted;
+            _e.Result = new FileOperationContext(String.Empty, FileOperationStatus.Aborted);
             OnCompleting(_e);
             CompleteWorker();
         }
@@ -137,7 +134,12 @@ namespace Axantum.AxCrypt.Core.Runtime
             }
             catch (OperationCanceledException)
             {
-                e.Result = FileOperationStatus.Canceled;
+                e.Result = new FileOperationContext(String.Empty, FileOperationStatus.Canceled);
+            }
+            catch (AxCryptException ace)
+            {
+                e.Result = new FileOperationContext(ace.DisplayContext, FileOperationStatus.Exception);
+                throw;
             }
         }
 
@@ -147,11 +149,17 @@ namespace Axantum.AxCrypt.Core.Runtime
             {
                 if (e.Error != null)
                 {
-                    _e.Result = FileOperationStatus.Exception;
+                    AxCryptException ace = e.Error as AxCryptException;
+                    string displayContext = String.Empty;
+                    if (ace != null)
+                    {
+                        displayContext = ace.DisplayContext;
+                    }
+                    _e.Result = new FileOperationContext(displayContext, FileOperationStatus.Exception);
                 }
                 else
                 {
-                    _e.Result = (FileOperationStatus)e.Result;
+                    _e.Result = (FileOperationContext)e.Result;
                 }
                 OnCompleting(_e);
             }

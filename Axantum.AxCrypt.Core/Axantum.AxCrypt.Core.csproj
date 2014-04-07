@@ -89,6 +89,7 @@
     <Compile Include="Reader\V2AxCryptReader.cs" />
     <Compile Include="Reader\VXAxCryptReader.cs" />
     <Compile Include="Session\ActiveFileProperties.cs" />
+    <Compile Include="UI\FileOperationContext.cs" />
     <Compile Include="V1AxCryptDocument.cs" />
     <Compile Include="V2AxCryptDocument.cs" />
     <Compile Include="CommandLine.cs" />

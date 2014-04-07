@@ -25,26 +25,26 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Linq;
+using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core.Test
 {
     internal class FakeProgressBackground : IProgressBackground
     {
-        public void Work(Func<IProgressContext, FileOperationStatus> work, Action<FileOperationStatus> complete)
+        public void Work(Func<IProgressContext, FileOperationContext> work, Action<FileOperationContext> complete)
         {
             Busy = true;
             OnWorkStatusChanged();
-            FileOperationStatus status = FileOperationStatus.Unknown;
+            FileOperationContext status = new FileOperationContext(String.Empty, FileOperationStatus.Unknown);
             try
             {
                 status = work(new ProgressContext());
             }
             catch (OperationCanceledException)
             {
-                status = FileOperationStatus.Canceled;
+                status = new FileOperationContext(String.Empty, FileOperationStatus.Canceled);
             }
             complete(status);
             Busy = false;

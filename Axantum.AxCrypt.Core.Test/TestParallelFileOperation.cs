@@ -25,12 +25,12 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.UI;
-using NUnit.Framework;
 using System;
 using System.Linq;
 using System.Threading;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.UI;
+using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -60,7 +60,7 @@ namespace Axantum.AxCrypt.Core.Test
                 (info, progress) =>
                 {
                     ++callCount;
-                    return FileOperationStatus.Success;
+                    return new FileOperationContext(String.Empty, FileOperationStatus.Success);
                 },
                 (status) =>
                 {
@@ -91,10 +91,10 @@ namespace Axantum.AxCrypt.Core.Test
                     int result = Interlocked.Increment(ref callCount);
                     if (result == 1)
                     {
-                        return FileOperationStatus.UnspecifiedError;
+                        return new FileOperationContext(String.Empty, FileOperationStatus.UnspecifiedError);
                     }
                     Thread.Sleep(1);
-                    return FileOperationStatus.Success;
+                    return new FileOperationContext(String.Empty, FileOperationStatus.Success);
                 },
                 (status) => { });
             Assert.That(callCount, Is.LessThanOrEqualTo(2), "There are several files, but max concurrency is two, so there could be up to two calls.");

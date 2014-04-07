@@ -27,25 +27,21 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using Axantum.AxCrypt.Core.UI;
 
-namespace Axantum.AxCrypt.Core.Runtime
+namespace Axantum.AxCrypt.Core.UI
 {
-    public class ThreadWorkerEventArgs : EventArgs
+    public class FileOperationContext
     {
-        public ThreadWorkerEventArgs(IProgressContext progress)
+        public FileOperationContext(string fullName, FileOperationStatus status)
         {
-            Progress = progress;
-            Result = new FileOperationContext(String.Empty, FileOperationStatus.Success);
+            FullName = fullName;
+            Status = status;
         }
 
-        public int ProgressPercentage { get; set; }
+        public string FullName { get; private set; }
 
-        public IProgressContext Progress { get; private set; }
-
-        public FileOperationContext Result { get; set; }
+        public FileOperationStatus Status { get; private set; }
     }
 }

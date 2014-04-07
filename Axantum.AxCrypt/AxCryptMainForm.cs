@@ -116,6 +116,7 @@ namespace Axantum.AxCrypt
             Factory.Instance.Singleton<IUIThread>(() => new UIThread(this));
             Factory.Instance.Singleton<IProgressBackground>(() => _progressBackgroundWorker);
             Factory.Instance.Singleton<IStatusChecker>(() => this);
+            Factory.Instance.Register<SessionNotificationHandler>(() => new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, Factory.New<ActiveFileAction>(), Factory.New<AxCryptFile>(), this));
 
             Factory.Instance.Register<IdentityViewModel>(() => new IdentityViewModel(Instance.FileSystemState, Instance.KnownKeys, Instance.UserSettings));
             Factory.Instance.Register<FileOperationViewModel>(() => new FileOperationViewModel(Instance.FileSystemState, Instance.SessionNotify, Instance.KnownKeys, Instance.ParallelFileOperation, Factory.Instance.Singleton<IStatusChecker>(), Factory.New<IdentityViewModel>()));
