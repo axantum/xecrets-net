@@ -111,6 +111,10 @@ namespace Axantum.AxCrypt.Core.Session
                     _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(_knownKeys.LoggedOnWatchedFolders.Select(wf => Factory.New<IRuntimeFileInfo>(wf.Path)), _knownKeys.DefaultEncryptionKey, progress);
                     break;
 
+                case SessionNotificationType.PurgeActiveFiles:
+                    _fileSystemState.PurgeActiveFiles();
+                    break;
+
                 case SessionNotificationType.WatchedFolderChange:
                 case SessionNotificationType.ProcessExit:
                 case SessionNotificationType.ActiveFileChange:

@@ -35,6 +35,7 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core
@@ -334,6 +335,7 @@ namespace Axantum.AxCrypt.Core
             },
             (status) =>
             {
+                Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.PurgeActiveFiles));
                 statusChecker.CheckStatusAndShowMessage(status.Status, status.FullName);
             });
         }

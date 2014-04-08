@@ -274,6 +274,19 @@ namespace Axantum.AxCrypt.Core.Session
             Add(activeFile);
         }
 
+        public virtual void PurgeActiveFiles()
+        {
+            foreach (ActiveFile activeFile in ActiveFiles)
+            {
+                if (activeFile.EncryptedFileInfo.IsExistingFile)
+                {
+                    continue;
+                }
+                RemoveActiveFile(activeFile);
+            }
+            Save();
+        }
+
         /// <summary>
         /// Remove a file from the volatile file system state. To persist, call Save().
         /// </summary>
