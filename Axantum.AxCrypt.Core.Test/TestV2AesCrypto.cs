@@ -144,7 +144,7 @@ namespace Axantum.AxCrypt.Core.Test
                 get { throw new NotImplementedException(); }
             }
 
-            public long DerivationIterations
+            public int DerivationIterations
             {
                 get { throw new NotImplementedException(); }
             }

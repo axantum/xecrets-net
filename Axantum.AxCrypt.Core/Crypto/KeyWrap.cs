@@ -25,9 +25,9 @@
 
 #endregion Coypright and License
 
+using System;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
-using System;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -38,17 +38,17 @@ namespace Axantum.AxCrypt.Core.Crypto
     {
         private Salt _salt;
 
-        private long _iterations;
+        private long _keyWrapIterations;
 
         private readonly KeyWrapMode _mode;
 
         /// <summary>
         /// Create a KeyWrap instance for wrapping or unwrapping
         /// </summary>
-        /// <param name="iterations">The number of wrapping iterations, at least 6</param>
+        /// <param name="keyWrapIterations">The number of wrapping iterations, at least 6</param>
         /// <param name="mode">Use original specification mode or AxCrypt mode (only difference is that 't' is little endian in AxCrypt mode)</param>
-        public KeyWrap(long iterations, KeyWrapMode mode)
-            : this(Salt.Zero, iterations, mode)
+        public KeyWrap(long keyWrapIterations, KeyWrapMode mode)
+            : this(Salt.Zero, keyWrapIterations, mode)
         {
         }
 
@@ -56,17 +56,17 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// Create a KeyWrap instance for wrapping or unwrapping
         /// </summary>
         /// <param name="salt">A salt. This is required by AxCrypt, although the algorithm supports not using a salt.</param>
-        /// <param name="iterations">The number of wrapping iterations, at least 6</param>
+        /// <param name="keyWrapIterations">The number of wrapping iterations, at least 6</param>
         /// <param name="mode">Use original specification mode or AxCrypt mode (only difference is that 't' is little endian in AxCrypt mode)</param>
-        public KeyWrap(Salt salt, long iterations, KeyWrapMode mode)
+        public KeyWrap(Salt salt, long keyWrapIterations, KeyWrapMode mode)
         {
             if (salt == null)
             {
                 throw new ArgumentNullException("salt");
             }
-            if (iterations < 6)
+            if (keyWrapIterations < 6)
             {
-                throw new InternalErrorException("iterations");
+                throw new InternalErrorException("keyWrapIterations");
             }
             if (mode != KeyWrapMode.Specification && mode != KeyWrapMode.AxCrypt)
             {
@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
             _salt = salt;
             _mode = mode;
-            _iterations = iterations;
+            _keyWrapIterations = keyWrapIterations;
         }
 
         public byte[] Wrap(ICrypto crypto, byte[] keyMaterial)
@@ -107,7 +107,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             int halfBlockLength = encryptor.BlockLength / 2;
             // wrapped[0..halfBlockLength-1] contains the A (IV) of the Key Wrap algorithm,
             // the rest is 'Key Data'. We do the transform in-place.
-            for (int j = 0; j < _iterations; j++)
+            for (int j = 0; j < _keyWrapIterations; j++)
             {
                 for (int i = 1; i <= keyMaterial.Length / halfBlockLength; i++)
                 {
@@ -191,7 +191,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
             // wrapped[0..7] contains the A (IV) of the Key Wrap algorithm,
             // the rest is 'Wrapped Key Data', R[1], ..., R[n]. We do the transform in-place.
-            for (long j = _iterations - 1; j >= 0; --j)
+            for (long j = _keyWrapIterations - 1; j >= 0; --j)
             {
                 for (int i = wrappedKeyLength / halfBlockLength; i >= 1; --i)
                 {

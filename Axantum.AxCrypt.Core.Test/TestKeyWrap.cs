@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
+using System;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
-using System;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -87,12 +87,12 @@ namespace Axantum.AxCrypt.Core.Test
             SymmetricKey keyToWrap = new SymmetricKey(new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 });
             IPassphrase keyEncryptingKey = new GenericPassphrase(new SymmetricKey(new byte[] { 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 }));
             Salt salt = new Salt(new byte[] { 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 });
-            long iterations = 12345;
+            long keyWrapIterations = 12345;
             byte[] wrapped;
-            KeyWrap keyWrap = new KeyWrap(salt, iterations, KeyWrapMode.AxCrypt);
+            KeyWrap keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.AxCrypt);
             wrapped = keyWrap.Wrap(new V1AesCrypto(keyEncryptingKey, SymmetricIV.Zero128), keyToWrap);
             byte[] unwrapped;
-            keyWrap = new KeyWrap(salt, iterations, KeyWrapMode.AxCrypt);
+            keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.AxCrypt);
             unwrapped = keyWrap.Unwrap(new V1AesCrypto(keyEncryptingKey, SymmetricIV.Zero128), wrapped);
 
             Assert.That(unwrapped, Is.EquivalentTo(keyToWrap.GetBytes()), "The unwrapped data should be equal to original.");
@@ -104,12 +104,12 @@ namespace Axantum.AxCrypt.Core.Test
             SymmetricKey keyToWrap = new SymmetricKey(new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 });
             IPassphrase keyEncryptingKey = new GenericPassphrase(new SymmetricKey(new byte[] { 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 }));
             Salt salt = new Salt(new byte[] { 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 });
-            long iterations = 23456;
+            long keyWrapIterations = 23456;
             byte[] wrapped;
-            KeyWrap keyWrap = new KeyWrap(salt, iterations, KeyWrapMode.Specification);
+            KeyWrap keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.Specification);
             wrapped = keyWrap.Wrap(new V1AesCrypto(keyEncryptingKey, SymmetricIV.Zero128), keyToWrap);
             byte[] unwrapped;
-            keyWrap = new KeyWrap(salt, iterations, KeyWrapMode.Specification);
+            keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.Specification);
             unwrapped = keyWrap.Unwrap(new V1AesCrypto(keyEncryptingKey, SymmetricIV.Zero128), wrapped);
 
             Assert.That(unwrapped, Is.EquivalentTo(keyToWrap.GetBytes()), "The unwrapped data should be equal to original.");

@@ -67,7 +67,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         long GetKeyWrapIterations(Guid cryptoId);
 
-        void SetKeyWrapIterations(Guid cryptoId, long iterations);
+        void SetKeyWrapIterations(Guid cryptoId, long keyWrapIterations);
 
         Salt ThumbprintSalt { get; set; }
 

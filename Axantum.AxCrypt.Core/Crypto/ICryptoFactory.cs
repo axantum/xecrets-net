@@ -49,10 +49,22 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         IPassphrase CreatePassphrase(string passphrase);
 
-        IPassphrase CreatePassphrase(string passphrase, Salt salt, int iterations);
+        IPassphrase CreatePassphrase(string passphrase, Salt salt, int derivationIterations);
 
+        /// <summary>
+        /// Instantiate an approriate ICrypto implementation.
+        /// </summary>
+        /// <param name="key">The key to use. It will be converted to the correct CryptoId if required.</param>
+        /// <returns>An instance of an appropriate ICrypto implementation.</returns>
         ICrypto CreateCrypto(IPassphrase key);
 
+        /// <summary>
+        /// Instantiate an approriate ICrypto implementation.
+        /// </summary>
+        /// <param name="key">The key to use. It will be converted to the correct CryptoId if required.</param>
+        /// <param name="iv"></param>
+        /// <param name="keyStreamOffset"></param>
+        /// <returns>An instance of an appropriate ICrypto implementation.</returns>
         ICrypto CreateCrypto(IPassphrase key, SymmetricIV iv, long keyStreamOffset);
     }
 }

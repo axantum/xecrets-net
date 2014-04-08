@@ -12,7 +12,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public static readonly Guid Aes128V1Id = new Guid("1673BBEF-A56A-43AC-AB16-E14D2BAD1CBF");
 
-        public static readonly long DerivationIterations = 1000;
+        public static readonly int DerivationIterations = 1000;
 
         private Dictionary<Guid, Func<ICryptoFactory>> _factories = new Dictionary<Guid, Func<ICryptoFactory>>();
 

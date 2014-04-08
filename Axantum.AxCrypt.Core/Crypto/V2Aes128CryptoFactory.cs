@@ -14,19 +14,19 @@ namespace Axantum.AxCrypt.Core.Crypto
             return new V2Passphrase(passphrase, 128, Id);
         }
 
-        public IPassphrase CreatePassphrase(string passphrase, Salt salt, int iterations)
+        public IPassphrase CreatePassphrase(string passphrase, Salt salt, int derivationIterations)
         {
-            return new V2Passphrase(passphrase, salt, iterations, 128, Id);
+            return new V2Passphrase(passphrase, salt, derivationIterations, 128, Id);
         }
 
         public ICrypto CreateCrypto(IPassphrase key)
         {
-            return new V2AesCrypto(key, SymmetricIV.Zero128, 0);
+            return new V2AesCrypto(key.EnsureCryptoFactory(Id), SymmetricIV.Zero128, 0);
         }
 
         public ICrypto CreateCrypto(IPassphrase key, SymmetricIV iv, long keyStreamOffset)
         {
-            return new V2AesCrypto(key, iv, keyStreamOffset);
+            return new V2AesCrypto(key.EnsureCryptoFactory(Id), iv, keyStreamOffset);
         }
 
         public int Priority

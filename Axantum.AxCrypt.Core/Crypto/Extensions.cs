@@ -26,22 +26,27 @@
 #endregion Coypright and License
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
-    public interface IPassphrase : IEquatable<IPassphrase>
+    public static class Extensions
     {
-        Guid CryptoId { get; }
-
-        SymmetricKey DerivedKey { get; }
-
-        string Passphrase { get; }
-
-        Salt DerivationSalt { get; }
-
-        int DerivationIterations { get; }
-
-        SymmetricKeyThumbprint Thumbprint { get; }
+        /// <summary>
+        /// Ensure that the key provided is for the right ICryptoFactory implementation.
+        /// </summary>
+        /// <param name="key">The key to ensure.</param>
+        /// <param name="cryptoId">The id of the ICryptoFactory to use.</param>
+        /// <returns>An IPassphrase for the appropriate ICryptoFactor. It may be the unchanged 'key' parameter.</returns>
+        public static IPassphrase EnsureCryptoFactory(this IPassphrase key, Guid cryptoId)
+        {
+            if (key.CryptoId == cryptoId || key.CryptoId == Guid.Empty)
+            {
+                return key;
+            }
+            return Instance.CryptoFactory.Create(cryptoId).CreatePassphrase(key.Passphrase, key.DerivationSalt, key.DerivationIterations);
+        }
     }
 }

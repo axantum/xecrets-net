@@ -79,9 +79,9 @@ namespace Axantum.AxCrypt.Core.Header
         {
             get
             {
-                long iterations = GetDataBlockBytesReference().GetLittleEndianValue(WRAP_ITERATIONS_OFFSET, sizeof(uint));
+                long keyWrapIterations = GetDataBlockBytesReference().GetLittleEndianValue(WRAP_ITERATIONS_OFFSET, sizeof(uint));
 
-                return iterations;
+                return keyWrapIterations;
             }
         }
 
@@ -89,9 +89,9 @@ namespace Axantum.AxCrypt.Core.Header
         {
             get
             {
-                long iterations = GetDataBlockBytesReference().GetLittleEndianValue(PASSPHRASE_DERIVATION_ITERATIONS_OFFSET, PASSPHRASE_DERIVATION_ITERATIONS_LENGTH);
+                int derivationIterations = (int)GetDataBlockBytesReference().GetLittleEndianValue(PASSPHRASE_DERIVATION_ITERATIONS_OFFSET, PASSPHRASE_DERIVATION_ITERATIONS_LENGTH);
 
-                return (int)iterations;
+                return derivationIterations;
             }
             set
             {
@@ -127,7 +127,7 @@ namespace Axantum.AxCrypt.Core.Header
         private void Initialize(long keyWrapIterations)
         {
             DerivationSalt = _crypto.Key.DerivationSalt;
-            DerivationIterations = (int)_crypto.Key.DerivationIterations;
+            DerivationIterations = _crypto.Key.DerivationIterations;
 
             Salt salt = new Salt(_crypto.Key.DerivedKey.Size);
             KeyWrap keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.Specification);
@@ -136,12 +136,12 @@ namespace Axantum.AxCrypt.Core.Header
             Set(wrappedKeyData, salt, keyWrapIterations);
         }
 
-        private void Set(byte[] wrapped, Salt salt, long iterations)
+        private void Set(byte[] wrapped, Salt salt, long keyWrapIterations)
         {
             Array.Copy(wrapped, 0, GetDataBlockBytesReference(), 0, wrapped.Length);
             Array.Copy(salt.GetBytes(), 0, GetDataBlockBytesReference(), WRAP_SALT_OFFSET, salt.Length);
-            byte[] iterationsBytes = iterations.GetLittleEndianBytes();
-            Array.Copy(iterationsBytes, 0, GetDataBlockBytesReference(), WRAP_ITERATIONS_OFFSET, WRAP_ITERATIONS_LENGTH);
+            byte[] keyWrapIterationsBytes = keyWrapIterations.GetLittleEndianBytes();
+            Array.Copy(keyWrapIterationsBytes, 0, GetDataBlockBytesReference(), WRAP_ITERATIONS_OFFSET, WRAP_ITERATIONS_LENGTH);
         }
 
         private byte[] _unwrappedKeyData;

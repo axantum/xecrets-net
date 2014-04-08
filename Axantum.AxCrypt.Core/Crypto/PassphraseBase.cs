@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             protected set;
         }
 
-        public long DerivationIterations { get; protected set; }
+        public int DerivationIterations { get; protected set; }
 
         private SymmetricKeyThumbprint _thumbprint;
 

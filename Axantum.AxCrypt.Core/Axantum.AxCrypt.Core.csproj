@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="AxCryptFactory.cs" />
     <Compile Include="Crypto\CryptoFactoryDiscovery.cs" />
+    <Compile Include="Crypto\Extensions.cs" />
     <Compile Include="Crypto\FreeCryptoPolicy.cs" />
     <Compile Include="Crypto\ICryptoPolicy.cs" />
     <Compile Include="Crypto\ProCryptoPolicy.cs" />

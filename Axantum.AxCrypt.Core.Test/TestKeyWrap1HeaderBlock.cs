@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
+using System;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using NUnit.Framework;
-using System;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -42,9 +42,9 @@ namespace Axantum.AxCrypt.Core.Test
             {
             }
 
-            public void SetValuesDirect(byte[] wrapped, Salt salt, long iterations)
+            public void SetValuesDirect(byte[] wrapped, Salt salt, long keyWrapIterations)
             {
-                Set(wrapped, salt, iterations);
+                Set(wrapped, salt, keyWrapIterations);
             }
         }
 

@@ -25,12 +25,12 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
 using System.Text;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -44,9 +44,9 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <summary>Initializes a new instance of the <see cref="T:System.Security.Cryptography.Rfc2898DeriveBytes" /> class using a password, a salt, and number of iterations to derive the key.</summary>
         /// <param name="password">The password used to derive the key. </param>
         /// <param name="salt">The key salt used to derive the key.</param>
-        /// <param name="iterations">The number of iterations for the operation. </param>
+        /// <param name="derivationIterations">The number of iterations for the operation. </param>
         /// <exception cref="T:System.ArgumentNullException">The password or salt is null. </exception>
-        public Pbkdf2HmacSha512(string password, Salt salt, long iterations)
+        public Pbkdf2HmacSha512(string password, Salt salt, int derivationIterations)
         {
             if (password == null)
             {
@@ -56,12 +56,12 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new ArgumentNullException("salt");
             }
-            if (iterations <= 0)
+            if (derivationIterations <= 0)
             {
-                throw new ArgumentOutOfRangeException("iterations", "Must be greater than 0.");
+                throw new ArgumentOutOfRangeException("derivationIterations", "Must be greater than 0.");
             }
 
-            _bytes = F(password, salt, iterations);
+            _bytes = F(password, salt, derivationIterations);
         }
 
         /// <summary>Returns the pseudo-random key for this object.</summary>
@@ -80,7 +80,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private static readonly byte[] _empty = new byte[0];
 
-        private static byte[] F(string password, Salt salt, long iterations)
+        private static byte[] F(string password, Salt salt, int derivationIterations)
         {
             HMACSHA512 hmacsha512 = new HMACSHA512(new UTF8Encoding(false).GetBytes(password));
 
@@ -93,7 +93,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             byte[] u = hmacsha512.Hash;
             byte[] un = u;
 
-            for (int c = 2; c <= iterations; ++c)
+            for (int c = 2; c <= derivationIterations; ++c)
             {
                 hmacsha512.Initialize();
                 hmacsha512.TransformBlock(u, 0, u.Length, null, 0);

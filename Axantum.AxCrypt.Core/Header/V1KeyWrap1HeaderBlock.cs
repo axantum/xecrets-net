@@ -93,13 +93,13 @@ namespace Axantum.AxCrypt.Core.Header
             }
         }
 
-        public long Iterations
+        public long KeyWrapIterations
         {
             get
             {
-                long iterations = GetDataBlockBytesReference().GetLittleEndianValue(16 + 8 + 16, sizeof(uint));
+                long keyWrapIterations = GetDataBlockBytesReference().GetLittleEndianValue(16 + 8 + 16, sizeof(uint));
 
-                return iterations;
+                return keyWrapIterations;
             }
         }
 
@@ -122,7 +122,7 @@ namespace Axantum.AxCrypt.Core.Header
             }
 
             byte[] unwrappedKeyData;
-            KeyWrap keyWrap = new KeyWrap(salt, Iterations, KeyWrapMode.AxCrypt);
+            KeyWrap keyWrap = new KeyWrap(salt, KeyWrapIterations, KeyWrapMode.AxCrypt);
             unwrappedKeyData = keyWrap.Unwrap(Instance.CryptoFactory.Legacy.CreateCrypto(keyEncryptingKey), wrappedKeyData);
             return unwrappedKeyData;
         }
@@ -139,9 +139,9 @@ namespace Axantum.AxCrypt.Core.Header
         public void RewrapMasterKey(SymmetricKey masterKey, SymmetricKey keyEncryptingKey)
         {
             Salt salt = new Salt(keyEncryptingKey.Size);
-            KeyWrap keyWrap = new KeyWrap(salt, Iterations, KeyWrapMode.AxCrypt);
+            KeyWrap keyWrap = new KeyWrap(salt, KeyWrapIterations, KeyWrapMode.AxCrypt);
             byte[] wrappedKeyData = keyWrap.Wrap(Instance.CryptoFactory.Legacy.CreateCrypto(new GenericPassphrase(keyEncryptingKey)), masterKey);
-            Set(wrappedKeyData, salt, Iterations);
+            Set(wrappedKeyData, salt, KeyWrapIterations);
         }
     }
 }

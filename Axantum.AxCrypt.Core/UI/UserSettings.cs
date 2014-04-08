@@ -136,9 +136,9 @@ namespace Axantum.AxCrypt.Core.UI
             return Load(cryptoId.ToString("N"), () => _keyWrapIterationCalculator.KeyWrapIterations(cryptoId));
         }
 
-        public void SetKeyWrapIterations(Guid cryptoId, long iterations)
+        public void SetKeyWrapIterations(Guid cryptoId, long keyWrapIterations)
         {
-            Store(cryptoId.ToString("N"), iterations);
+            Store(cryptoId.ToString("N"), keyWrapIterations);
         }
 
         public Salt ThumbprintSalt

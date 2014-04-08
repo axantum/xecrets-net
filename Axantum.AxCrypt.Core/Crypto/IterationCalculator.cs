@@ -51,9 +51,9 @@ namespace Axantum.AxCrypt.Core.Crypto
             return defaultIterations;
         }
 
-        private static long IterationsPerSecond(Guid cryptoId, Func<Guid, int, object> iterate)
+        private static long IterationsPerSecond(Guid cryptoId, Func<Guid, long, object> iterate)
         {
-            int iterationsIncrement = 1000;
+            long iterationsIncrement = 1000;
             long totalIterations = 0;
             DateTime startTime = OS.Current.UtcNow;
             DateTime endTime;
@@ -67,13 +67,13 @@ namespace Axantum.AxCrypt.Core.Crypto
             return iterationsPerSecond;
         }
 
-        private static object KeyWrapIterate(Guid cryptoId, int iterations)
+        private static object KeyWrapIterate(Guid cryptoId, long keyWrapIterations)
         {
             ICryptoFactory factory = Instance.CryptoFactory.Create(cryptoId);
             IPassphrase dummyPassphrase = factory.CreatePassphrase("A dummy passphrase");
             ICrypto dummyCrypto = factory.CreateCrypto(dummyPassphrase);
             Salt dummySalt = new Salt(dummyCrypto.Key.DerivedKey.Size);
-            KeyWrap keyWrap = new KeyWrap(dummySalt, iterations, KeyWrapMode.Specification);
+            KeyWrap keyWrap = new KeyWrap(dummySalt, keyWrapIterations, KeyWrapMode.Specification);
             byte[] wrapped = keyWrap.Wrap(dummyCrypto, new SymmetricKey(dummyCrypto.Key.DerivedKey.Size));
             return wrapped;
         }
