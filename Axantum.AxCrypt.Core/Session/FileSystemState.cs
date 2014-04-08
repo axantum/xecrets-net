@@ -35,6 +35,7 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core.Session
 {
@@ -118,6 +119,10 @@ namespace Axantum.AxCrypt.Core.Session
             if (AddWatchedFolderInternal(watchedFolder))
             {
                 Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderAdded, Instance.KnownKeys.DefaultEncryptionKey, watchedFolder.Path));
+            }
+            else
+            {
+                Instance.StatusChecker.CheckStatusAndShowMessage(FileOperationStatus.FolderAlreadyWatched, watchedFolder.Path);
             }
         }
 

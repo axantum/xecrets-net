@@ -872,6 +872,10 @@ namespace Axantum.AxCrypt
                     Resources.InvalidPath.InvariantFormat(displayContext).ShowWarning();
                     break;
 
+                case FileOperationStatus.FolderAlreadyWatched:
+                    Resources.FolderAlreadyWatched.InvariantFormat(displayContext).ShowWarning();
+                    break;
+
                 default:
                     Resources.UnrecognizedError.InvariantFormat(displayContext).ShowWarning();
                     break;

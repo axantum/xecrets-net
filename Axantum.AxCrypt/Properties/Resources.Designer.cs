@@ -448,6 +448,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Folder &apos;{0}&apos; already watched..
+        /// </summary>
+        internal static string FolderAlreadyWatched {
+            get {
+                return ResourceManager.GetString("FolderAlreadyWatched", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon GoogleDrive {

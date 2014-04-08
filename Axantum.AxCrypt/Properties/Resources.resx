@@ -343,4 +343,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
   <data name="PassphrasePrompt" xml:space="preserve">
     <value>Enter Passphrase</value>
   </data>
+  <data name="FolderAlreadyWatched" xml:space="preserve">
+    <value>Folder '{0}' already watched.</value>
+  </data>
 </root>
