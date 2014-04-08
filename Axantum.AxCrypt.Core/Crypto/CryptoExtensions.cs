@@ -32,7 +32,7 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
-    public static class Extensions
+    public static class CryptoExtensions
     {
         /// <summary>
         /// Ensure that the key provided is for the right ICryptoFactory implementation.

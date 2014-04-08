@@ -34,11 +34,11 @@ namespace Axantum.AxCrypt.Core.Crypto
 {
     public static class CryptoFactoryDiscovery
     {
-        public static IEnumerable<Func<ICryptoFactory>> Discover(Assembly assembly)
+        public static IEnumerable<CryptoFactoryCreator> Discover(Assembly assembly)
         {
             IEnumerable<Type> types = from t in assembly.GetExportedTypes() where t.GetInterfaces().Contains(typeof(ICryptoFactory)) select t;
 
-            List<Func<ICryptoFactory>> factories = new List<Func<ICryptoFactory>>();
+            List<CryptoFactoryCreator> factories = new List<CryptoFactoryCreator>();
             foreach (Type t in types)
             {
                 factories.Add(() => Activator.CreateInstance(t) as ICryptoFactory);

@@ -38,6 +38,6 @@ namespace Axantum.AxCrypt.Core.UI
 
         void RunOnUIThread(Action action);
 
-        void PostOnUIThread(Action ation);
+        void PostOnUIThread(Action action);
     }
 }

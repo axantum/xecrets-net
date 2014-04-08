@@ -34,9 +34,9 @@ namespace Axantum.AxCrypt.Core.Crypto
 {
     public interface ICryptoPolicy
     {
-        ICryptoFactory Default(IEnumerable<Func<ICryptoFactory>> factories);
+        ICryptoFactory DefaultCryptoFactory(IEnumerable<CryptoFactoryCreator> factories);
 
-        ICryptoFactory Legacy(IEnumerable<Func<ICryptoFactory>> factories);
+        ICryptoFactory LegacyCryptoFactory(IEnumerable<CryptoFactoryCreator> factories);
 
         /// <summary>
         /// Return a list of CryptoId's in a suitable order of preference and relevance, to be used to
@@ -44,6 +44,6 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         /// <param name="factories">The available ICryptoFactory's to select from.</param>
         /// <returns>A list of CryptoId's to try in the order provided.</returns>
-        IEnumerable<Guid> OrderedIds(IEnumerable<Func<ICryptoFactory>> factories);
+        IEnumerable<Guid> OrderedCryptoIds(IEnumerable<CryptoFactoryCreator> factories);
     }
 }

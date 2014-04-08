@@ -62,14 +62,14 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             if (passphrase == null)
             {
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException("passphrase");
             }
             if (salt == null)
             {
                 throw new ArgumentNullException("salt");
             }
 
-            ICryptoFactory factory = Instance.CryptoFactory.Preferrred;
+            ICryptoFactory factory = Instance.CryptoFactory.Preferred;
             ICrypto crypto = factory.CreateCrypto(factory.CreatePassphrase(passphrase, salt, (int)CryptoFactory.DerivationIterations));
             KeyWrap keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.Specification);
             byte[] wrap = keyWrap.Wrap(crypto, crypto.Key.DerivedKey);

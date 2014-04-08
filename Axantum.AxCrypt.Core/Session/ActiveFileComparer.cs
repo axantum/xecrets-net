@@ -62,7 +62,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             public override int Compare(ActiveFile x, ActiveFile y)
             {
-                return (ReverseSort ? -1 : 1) * Instance.CryptoFactory.Create(x.Properties.CryptoId).Name.CompareTo(Instance.CryptoFactory.Create(y.Properties.CryptoId).Name);
+                return (ReverseSort ? -1 : 1) * String.Compare(Instance.CryptoFactory.Create(x.Properties.CryptoId).Name, Instance.CryptoFactory.Create(y.Properties.CryptoId).Name, StringComparison.OrdinalIgnoreCase);
             }
         }
 

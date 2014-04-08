@@ -14,13 +14,13 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public static readonly int DerivationIterations = 1000;
 
-        private Dictionary<Guid, Func<ICryptoFactory>> _factories = new Dictionary<Guid, Func<ICryptoFactory>>();
+        private Dictionary<Guid, CryptoFactoryCreator> _factories = new Dictionary<Guid, CryptoFactoryCreator>();
 
         public CryptoFactory()
         {
         }
 
-        public void Add(Func<ICryptoFactory> factory)
+        public void Add(CryptoFactoryCreator factory)
         {
             _factories.Add(factory().Id, factory);
         }
@@ -31,7 +31,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 return Default;
             }
-            Func<ICryptoFactory> factory;
+            CryptoFactoryCreator factory;
             if (_factories.TryGetValue(id, out factory))
             {
                 return factory();
@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             get
             {
-                return Factory.Instance.Singleton<ICryptoPolicy>().OrderedIds(_factories.Values);
+                return Factory.Instance.Singleton<ICryptoPolicy>().OrderedCryptoIds(_factories.Values);
             }
         }
 
@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             get
             {
-                return Factory.Instance.Singleton<ICryptoPolicy>().Default(_factories.Values);
+                return Factory.Instance.Singleton<ICryptoPolicy>().DefaultCryptoFactory(_factories.Values);
             }
         }
 
@@ -64,11 +64,11 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             get
             {
-                return Factory.Instance.Singleton<ICryptoPolicy>().Legacy(_factories.Values);
+                return Factory.Instance.Singleton<ICryptoPolicy>().LegacyCryptoFactory(_factories.Values);
             }
         }
 
-        public ICryptoFactory Preferrred
+        public ICryptoFactory Preferred
         {
             get
             {

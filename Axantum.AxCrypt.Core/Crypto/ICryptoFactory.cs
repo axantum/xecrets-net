@@ -30,6 +30,8 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
+    public delegate ICryptoFactory CryptoFactoryCreator();
+
     public interface ICryptoFactory
     {
         int Priority { get; }

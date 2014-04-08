@@ -104,7 +104,7 @@ namespace Axantum.AxCrypt
         private static CryptoFactory CreateCryptoFactory()
         {
             CryptoFactory factory = new CryptoFactory();
-            foreach (Func<ICryptoFactory> activator in CryptoFactoryDiscovery.Discover(Assembly.GetAssembly(typeof(CryptoFactory))))
+            foreach (CryptoFactoryCreator activator in CryptoFactoryDiscovery.Discover(Assembly.GetAssembly(typeof(CryptoFactory))))
             {
                 factory.Add(activator);
             }

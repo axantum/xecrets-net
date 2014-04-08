@@ -34,12 +34,12 @@ namespace Axantum.AxCrypt.Core.Crypto
 {
     public class ProCryptoPolicy : ICryptoPolicy
     {
-        public ICryptoFactory Default(IEnumerable<Func<ICryptoFactory>> factories)
+        public ICryptoFactory DefaultCryptoFactory(IEnumerable<CryptoFactoryCreator> factories)
         {
             return factories.First(f => f().Id == CryptoFactory.Aes256Id)();
         }
 
-        public ICryptoFactory Legacy(IEnumerable<Func<ICryptoFactory>> factories)
+        public ICryptoFactory LegacyCryptoFactory(IEnumerable<CryptoFactoryCreator> factories)
         {
             return factories.First(f => f().Id == CryptoFactory.Aes128V1Id)();
         }
@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         /// <param name="factories">The available ICryptoFactory's to select from.</param>
         /// <returns>A list of CryptoId's to try in the order provided.</returns>
-        public IEnumerable<Guid> OrderedIds(IEnumerable<Func<ICryptoFactory>> factories)
+        public IEnumerable<Guid> OrderedCryptoIds(IEnumerable<CryptoFactoryCreator> factories)
         {
             List<Guid> orderedIds = new List<Guid>();
             orderedIds.Add(CryptoFactory.Aes256Id);
