@@ -109,7 +109,7 @@
     <Target Name="_AxMergeAndSign"
             Inputs="$(MSBuildProjectFullPath);@(MainAssembly);@(IlmergeAssemblies)"
             Outputs="$(OutputPath)AxCrypt.exe;$(OutputPath)AxCrypt.pdb"
-            Condition=" '$(Configuration)' == 'Release' And '$(OutputType)' == 'Winexe' And '$(KeyContainerName)' != '' And '$(SignAssembly)' == 'true' ">
+            Condition="'$(OutputType)' == 'Winexe' And '$(KeyContainerName)' != '' And '$(SignAssembly)' == 'true' ">
         <Exec Command="&quot;..\SolutionItems\Ilmerge.exe&quot; /delaysign /keyfile:..\SolutionItems\AxantumStrongName.pub /attr:&quot;@(MainAssembly)&quot; /targetplatform:v4,&quot;$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client&quot; /out:&quot;$(OutputPath)AxCrypt.exe&quot; &quot;@(MainAssembly)&quot; @(IlmergeAssemblies->'&quot;%(FullPath)&quot;', ' ')" />
         <Exec Command="&quot;..\SolutionItems\sn.exe&quot; -Rca &quot;$(OutputPath)AxCrypt.exe&quot; $(KeyContainerName)" />
         <MSBuild Projects="$(MSBuildProjectFullPath)"
