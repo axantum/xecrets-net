@@ -30,7 +30,6 @@ using NDesk.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -55,6 +54,7 @@ namespace Axantum.AxCrypt.Core
             OptionSetCollection options = new OptionSetCollection()
             {
                 {"x", var => Exit = true},
+                {"b=", (int batch) => {}},
             };
             IList<string> files = options.Parse(_arguments);
             Run(files);
