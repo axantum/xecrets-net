@@ -41,6 +41,8 @@ namespace Axantum.AxCrypt.Core
 
         private bool Exit { get; set; }
 
+        private bool Encrypt { get; set; }
+
         private static readonly IEnumerable<string> NoArguments = new string[0];
 
         public CommandLine(string startPath, IEnumerable<string> arguments)
@@ -54,20 +56,38 @@ namespace Axantum.AxCrypt.Core
             OptionSetCollection options = new OptionSetCollection()
             {
                 {"x", var => Exit = true},
+                {"z", var => Encrypt = true},
+                {"t", var => {}},
                 {"b=", (int batch) => {}},
             };
             IList<string> files = options.Parse(_arguments);
+            if (!ValidateArguments())
+            {
+                return;
+            }
             Run(files);
+        }
+
+        private bool ValidateArguments()
+        {
+            return true;
         }
 
         private void Run(IList<string> files)
         {
+            if (Encrypt)
+            {
+                CallService(CommandVerb.Encrypt, files);
+            }
             if (Exit)
             {
                 CallService(CommandVerb.Exit, NoArguments);
                 return;
             }
-            CallService(CommandVerb.Open, files);
+            if (!Encrypt)
+            {
+                CallService(CommandVerb.Open, files);
+            }
         }
 
         private void CallService(CommandVerb verb, IEnumerable<string> files)

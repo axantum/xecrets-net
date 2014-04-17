@@ -44,7 +44,7 @@ namespace Axantum.AxCrypt
         public NewPassphraseDialog(string passphrase, string encryptedFileFullName)
         {
             InitializeComponent();
-
+            StartPosition = FormStartPosition.CenterParent;
             SetAutoValidateViaReflectionToAvoidMoMaWarning();
 
             _viewModel = new NewPassphraseViewModel(passphrase, Environment.UserName, encryptedFileFullName);

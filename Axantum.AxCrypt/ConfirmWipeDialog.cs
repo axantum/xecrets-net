@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
@@ -14,6 +10,7 @@ namespace Axantum.AxCrypt
         public ConfirmWipeDialog()
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterParent;
         }
 
         private void ConfirmWipeDialog_Load(object sender, EventArgs e)
@@ -23,7 +20,6 @@ namespace Axantum.AxCrypt
 
         private void promptLabel_Click(object sender, EventArgs e)
         {
-
         }
     }
 }

@@ -25,12 +25,12 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
@@ -112,6 +112,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             files = files ?? SelectFiles(FileSelectionType.Encrypt);
             if (!files.Any())
+            {
+                return;
+            }
+            if (!_knownKeys.IsLoggedOn)
+            {
+                IdentityViewModel.AskForLogOnPassphrase.Execute(PassphraseIdentity.Empty);
+            }
+            if (!_knownKeys.IsLoggedOn)
             {
                 return;
             }
@@ -266,28 +274,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
             {
-                FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[] { e.SaveFileFullName })
-                {
-                    FileSelectionType = FileSelectionType.SaveAsEncrypted,
-                };
-                OnSelectingFiles(fileSelectionArgs);
-                if (fileSelectionArgs.Cancel)
-                {
-                    e.Cancel = true;
-                    return;
-                }
-                e.SaveFileFullName = fileSelectionArgs.SelectedFiles[0];
-            };
-
-            operationsController.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
-            {
-                IdentityViewModel.AskForLogOnPassphrase.Execute(PassphraseIdentity.Empty);
-                if (IdentityViewModel.Passphrase == null)
-                {
-                    e.Cancel = true;
-                    return;
-                }
-                e.Passphrase = IdentityViewModel.Passphrase.Passphrase;
+                e.SaveFileFullName = Factory.New<IRuntimeFileInfo>(e.SaveFileFullName).FullName.CreateUniqueFile();
             };
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
@@ -308,30 +295,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             };
 
             return operationsController.EncryptFile(file);
-        }
-
-        private FileOperationContext EncryptFileNonInteractiveWork(IRuntimeFileInfo fullName, IProgressContext progress)
-        {
-            FileOperationsController operationsController = new FileOperationsController(progress);
-
-            operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
-            {
-                e.SaveFileFullName = Factory.New<IRuntimeFileInfo>(e.SaveFileFullName).FullName.CreateUniqueFile();
-            };
-
-            operationsController.Completed += (object sender, FileOperationEventArgs e) =>
-            {
-                if (_statusChecker.CheckStatusAndShowMessage(e.Status.Status, e.OpenFileFullName))
-                {
-                    IRuntimeFileInfo encryptedInfo = Factory.New<IRuntimeFileInfo>(e.SaveFileFullName);
-                    IRuntimeFileInfo decryptedInfo = Factory.New<IRuntimeFileInfo>(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
-                    ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key, ActiveFileStatus.NotDecrypted, e.Key.CryptoId);
-                    _fileSystemState.Add(activeFile);
-                    _fileSystemState.Save();
-                }
-            };
-
-            return operationsController.EncryptFile(fullName);
         }
 
         private FileOperationContext VerifyAndAddActiveWork(IRuntimeFileInfo fullName, IProgressContext progress)
@@ -394,7 +357,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void ProcessEncryptableFilesDroppedInRecentList(IEnumerable<IRuntimeFileInfo> encryptableFiles)
         {
-            _fileOperation.DoFiles(encryptableFiles, EncryptFileNonInteractiveWork, (status) => { });
+            _fileOperation.DoFiles(encryptableFiles, EncryptFileWork, (status) => { });
         }
 
         private void HandleSessionChanged(object sender, SessionNotificationEventArgs e)

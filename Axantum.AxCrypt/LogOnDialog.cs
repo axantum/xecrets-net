@@ -25,16 +25,16 @@
 
 #endregion Coypright and License
 
-using System;
-using System.ComponentModel;
-using System.Linq;
-using System.Reflection;
-using System.Windows.Forms;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Properties;
+using System;
+using System.ComponentModel;
+using System.Linq;
+using System.Reflection;
+using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
 {
@@ -45,6 +45,7 @@ namespace Axantum.AxCrypt
         public LogOnDialog(string identityName, string encryptedFileFullName)
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterParent;
             SetAutoValidateViaReflectionToAvoidMoMaWarning();
 
             _viewModel = new LogOnViewModel(identityName, encryptedFileFullName);
