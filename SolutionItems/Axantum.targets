@@ -74,7 +74,7 @@
 
     <!-- Use the parameter AxAuthenticodeFile to determine the file name. -->
     <Target Name="AxAuthenticodeSignOneFile">
-        <Exec Command="&quot;$(_AxSignToolPath)&quot; sign /sha1 $(_AxCertificateThumbprint) /sm /v /t &quot;$(_AxTimeStampUrl)&quot; &quot;$(AxAuthenticodeFile)&quot; &gt;nul"
+        <Exec Command="&quot;$(_AxSignToolPath)&quot; sign /sha1 $(_AxCertificateThumbprint) /sm /v /t &quot;$(_AxTimeStampUrl)&quot; &quot;$(AxAuthenticodeFile)&quot;"
               Condition=" '$(Configuration)' == 'Release' And Exists('$(_AxSignToolPath)') "
               ContinueOnError="true">
             <Output TaskParameter="ExitCode"
