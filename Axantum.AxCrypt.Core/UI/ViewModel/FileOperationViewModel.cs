@@ -133,6 +133,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return;
             }
+            if (!_knownKeys.IsLoggedOn)
+            {
+                IdentityViewModel.AskForLogOnPassphrase.Execute(PassphraseIdentity.Empty);
+            }
+            if (!_knownKeys.IsLoggedOn)
+            {
+                return;
+            }
             _fileOperation.DoFiles(files.Select(f => Factory.New<IRuntimeFileInfo>(f)).ToList(), DecryptFileWork, (status) => { });
         }
 

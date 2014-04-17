@@ -37,6 +37,7 @@ namespace Axantum.AxCrypt.Core.Ipc
     {
         Unknown,
         Encrypt,
+        Decrypt,
         Open,
         Show,
         Exit,

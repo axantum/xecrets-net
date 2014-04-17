@@ -564,6 +564,11 @@ namespace Axantum.AxCrypt
                     _fileOperationViewModel.EncryptFiles.Execute(e.Paths);
                     break;
 
+                case CommandVerb.Decrypt:
+                    RestoreWindowWithFocus();
+                    _fileOperationViewModel.DecryptFiles.Execute(e.Paths);
+                    break;
+
                 case CommandVerb.Open:
                     RestoreWindowWithFocus();
                     _fileOperationViewModel.OpenFiles.Execute(e.Paths);

@@ -43,6 +43,8 @@ namespace Axantum.AxCrypt.Core
 
         private bool Encrypt { get; set; }
 
+        private bool Decrypt { get; set; }
+
         private static readonly IEnumerable<string> NoArguments = new string[0];
 
         public CommandLine(string startPath, IEnumerable<string> arguments)
@@ -57,6 +59,7 @@ namespace Axantum.AxCrypt.Core
             {
                 {"x", var => Exit = true},
                 {"z", var => Encrypt = true},
+                {"d", var => Decrypt = true},
                 {"t", var => {}},
                 {"b=", (int batch) => {}},
             };
@@ -70,6 +73,10 @@ namespace Axantum.AxCrypt.Core
 
         private bool ValidateArguments()
         {
+            if (Encrypt && Decrypt)
+            {
+                return false;
+            }
             return true;
         }
 
@@ -79,12 +86,16 @@ namespace Axantum.AxCrypt.Core
             {
                 CallService(CommandVerb.Encrypt, files);
             }
+            if (Decrypt)
+            {
+                CallService(CommandVerb.Decrypt, files);
+            }
             if (Exit)
             {
                 CallService(CommandVerb.Exit, NoArguments);
                 return;
             }
-            if (!Encrypt)
+            if (!Encrypt && !Decrypt)
             {
                 CallService(CommandVerb.Open, files);
             }
