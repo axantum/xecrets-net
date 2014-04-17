@@ -75,21 +75,21 @@
     <!-- Use the parameter AxAuthenticodeFile to determine the file name. -->
     <Target Name="AxAuthenticodeSignOneFile">
         <Exec Command="&quot;$(_AxSignToolPath)&quot; sign /sha1 $(_AxCertificateThumbprint) /sm /v /t &quot;$(_AxTimeStampUrl)&quot; &quot;$(AxAuthenticodeFile)&quot;"
-              Condition=" '$(Configuration)' == 'Release' And Exists('$(_AxSignToolPath)') "
+              Condition=" Exists('$(_AxSignToolPath)') "
               ContinueOnError="true">
             <Output TaskParameter="ExitCode"
                     PropertyName="_AxExitCode" />
         </Exec>
         <!-- Retry once if there's an error we're not ignoring errors-->
         <Exec Command="&quot;$(_AxSignToolPath)&quot; sign /sha1 $(_AxCertificateThumbprint) /sm /v /t &quot;$(_AxTimeStampUrl)&quot; &quot;$(AxAuthenticodeFile)&quot; &gt;nul"
-              Condition=" '$(Configuration)' == 'Release' And Exists('$(_AxSignToolPath)') And '$(_AxExitCode)' != '0' And '$(_AxIgnoreSignToolErrors)' == 'false' "
+              Condition=" Exists('$(_AxSignToolPath)') And '$(_AxExitCode)' != '0' And '$(_AxIgnoreSignToolErrors)' == 'false' "
               ContinueOnError="true">
             <Output TaskParameter="ExitCode"
                     PropertyName="_AxExitCode" />
         </Exec>
         <!-- Retry again if there's an error we're not ignoring errors-->
         <Exec Command="&quot;$(_AxSignToolPath)&quot; sign /sha1 $(_AxCertificateThumbprint) /sm /v /t &quot;$(_AxTimeStampUrl)&quot; &quot;$(AxAuthenticodeFile)&quot; &gt;nul"
-              Condition=" '$(Configuration)' == 'Release' And Exists('$(_AxSignToolPath)') And '$(_AxExitCode)' != '0' And '$(_AxIgnoreSignToolErrors)' == 'false' "
+              Condition=" Exists('$(_AxSignToolPath)') And '$(_AxExitCode)' != '0' And '$(_AxIgnoreSignToolErrors)' == 'false' "
               ContinueOnError="true">
             <Output TaskParameter="ExitCode"
                     PropertyName="_AxExitCode" />
