@@ -25,12 +25,6 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
-using System.Linq;
-using System.Threading;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
@@ -38,6 +32,12 @@ using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Moq;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.IO;
+using System.Linq;
+using System.Threading;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -133,6 +133,10 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestEncryptFilesInteractively()
         {
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
+            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            {
+                e.Passphrase = "a";
+            };
             mvm.SelectingFiles += (sender, e) =>
             {
                 e.SelectedFiles.Add(@"C:\Folder\File1.txt");
@@ -162,6 +166,10 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestEncryptFilesWithList()
         {
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
+            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            {
+                e.Passphrase = "a";
+            };
             mvm.SelectingFiles += (sender, e) =>
             {
                 e.SelectedFiles.Add(@"C:\Folder\File1.txt");
@@ -412,38 +420,13 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Register<AxCryptFile>(() => axCryptFileMock.Object);
 
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
+            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
+            {
+                e.Passphrase = "a";
+            };
 
             mvm.EncryptFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx" });
 
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
-            axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IRuntimeFileInfo>(), It.IsAny<IRuntimeFileInfo>(), It.IsAny<IPassphrase>(), It.IsAny<IProgressContext>()), Times.Never);
-        }
-
-        [Test]
-        public static void TestEncryptFilesWithSaveAsCanceledAction()
-        {
-            Factory.Instance.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
-            Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
-
-            Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
-            Factory.Instance.Register<AxCryptFile>(() => axCryptFileMock.Object);
-
-            FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
-            mvm.SelectingFiles += (sender, e) =>
-            {
-                e.Cancel = true;
-            };
-
-            bool logginOn = false;
-            mvm.IdentityViewModel.LoggingOn += (sender, e) =>
-            {
-                logginOn = true;
-            };
-
-            FakeRuntimeFileInfo.AddFile(@"C:\Folder\File1-txt.axx", null);
-            mvm.EncryptFiles.Execute(new string[] { @"C:\Folder\File1.txt" });
-
-            Assert.That(logginOn, Is.False);
             Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
             axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IRuntimeFileInfo>(), It.IsAny<IRuntimeFileInfo>(), It.IsAny<IPassphrase>(), It.IsAny<IProgressContext>()), Times.Never);
         }
@@ -458,7 +441,6 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Register<AxCryptFile>(() => axCryptFileMock.Object);
 
             FileOperationViewModel mvm = Factory.New<FileOperationViewModel>();
-
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
             {
                 e.Cancel = true;
@@ -466,7 +448,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             mvm.EncryptFiles.Execute(new string[] { @"C:\Folder\File1.txt" });
 
-            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
+            Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Never);
             axCryptFileMock.Verify(m => m.EncryptFileWithBackupAndWipe(It.IsAny<IRuntimeFileInfo>(), It.IsAny<IRuntimeFileInfo>(), It.IsAny<IPassphrase>(), It.IsAny<IProgressContext>()), Times.Never);
         }
 
