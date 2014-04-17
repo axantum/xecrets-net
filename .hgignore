@@ -19,3 +19,4 @@ test-results/*
 *.gitignore
 packages/*
 Axantum.AxCrypt.Core.Test/*.tmp
+*.bak
