@@ -44,5 +44,6 @@ namespace Axantum.AxCrypt.Core.Ipc
         Exit,
         Wipe,
         About,
+        Register,
     }
 }

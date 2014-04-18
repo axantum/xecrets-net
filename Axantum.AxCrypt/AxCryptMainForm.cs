@@ -591,6 +591,10 @@ namespace Axantum.AxCrypt
                     RestoreWindowWithFocus();
                     break;
 
+                case CommandVerb.Register:
+                    Process.Start("https://www.axantum.com/Xecrets/LoggedOff/Register.aspx");
+                    break;
+
                 case CommandVerb.About:
                     RestoreWindowWithFocus();
                     using (AboutBox aboutBox = new AboutBox())

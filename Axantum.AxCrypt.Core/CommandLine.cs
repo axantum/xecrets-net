@@ -43,13 +43,15 @@ namespace Axantum.AxCrypt.Core
             Wipe,
         }
 
+        [Flags]
         private enum InclusiveOptions
         {
-            NoneSet,
-            LogOff,
-            Exit,
-            Show,
-            About,
+            NoneSet = 0,
+            LogOff = 1,
+            Exit = 2,
+            Show = 4,
+            About = 8,
+            Register = 16,
         }
 
         private MutuallyExclusiveOptions _mutuallyExclusiveOptions = MutuallyExclusiveOptions.NoneSet;
@@ -79,6 +81,7 @@ namespace Axantum.AxCrypt.Core
                 {"w", var => SetMutuallyExclusiveOption(MutuallyExclusiveOptions.Wipe)},
                 {"show", var => _inclusiveOptions |= InclusiveOptions.Show},
                 {"about", var => _inclusiveOptions |= InclusiveOptions.About},
+                {"register", var => _inclusiveOptions |= InclusiveOptions.Register},
                 {"t", var => _inclusiveOptions |= InclusiveOptions.LogOff},
                 {"x", var => _inclusiveOptions |= InclusiveOptions.Exit},
                 {"b=", (int batch) => {}},
@@ -148,6 +151,10 @@ namespace Axantum.AxCrypt.Core
             if (_inclusiveOptions.HasFlag(InclusiveOptions.About))
             {
                 CallService(CommandVerb.About, NoArguments);
+            }
+            if (_inclusiveOptions.HasFlag(InclusiveOptions.Register))
+            {
+                CallService(CommandVerb.Register, NoArguments);
             }
             if (_inclusiveOptions.HasFlag(InclusiveOptions.LogOff))
             {
