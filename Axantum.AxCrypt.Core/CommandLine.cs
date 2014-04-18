@@ -49,6 +49,7 @@ namespace Axantum.AxCrypt.Core
             LogOff,
             Exit,
             Show,
+            About,
         }
 
         private MutuallyExclusiveOptions _mutuallyExclusiveOptions = MutuallyExclusiveOptions.NoneSet;
@@ -77,6 +78,7 @@ namespace Axantum.AxCrypt.Core
                 {"d", var => SetMutuallyExclusiveOption(MutuallyExclusiveOptions.Decrypt)},
                 {"w", var => SetMutuallyExclusiveOption(MutuallyExclusiveOptions.Wipe)},
                 {"show", var => _inclusiveOptions |= InclusiveOptions.Show},
+                {"about", var => _inclusiveOptions |= InclusiveOptions.About},
                 {"t", var => _inclusiveOptions |= InclusiveOptions.LogOff},
                 {"x", var => _inclusiveOptions |= InclusiveOptions.Exit},
                 {"b=", (int batch) => {}},
@@ -124,18 +126,28 @@ namespace Axantum.AxCrypt.Core
                     CallService(CommandVerb.Wipe, files);
                     break;
 
+                case MutuallyExclusiveOptions.NoneSet:
+                    if (files.Any())
+                    {
+                        CallService(CommandVerb.Open, files);
+                    }
+                    else
+                    {
+                        CallService(CommandVerb.Show, NoArguments);
+                    }
+                    break;
+
                 default:
                     break;
-            }
-
-            if (_mutuallyExclusiveOptions == MutuallyExclusiveOptions.NoneSet)
-            {
-                CallService(CommandVerb.Open, files);
             }
 
             if (_inclusiveOptions.HasFlag(InclusiveOptions.Show))
             {
                 CallService(CommandVerb.Show, NoArguments);
+            }
+            if (_inclusiveOptions.HasFlag(InclusiveOptions.About))
+            {
+                CallService(CommandVerb.About, NoArguments);
             }
             if (_inclusiveOptions.HasFlag(InclusiveOptions.LogOff))
             {

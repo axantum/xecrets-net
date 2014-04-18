@@ -590,6 +590,14 @@ namespace Axantum.AxCrypt
                 case CommandVerb.Show:
                     RestoreWindowWithFocus();
                     break;
+
+                case CommandVerb.About:
+                    RestoreWindowWithFocus();
+                    using (AboutBox aboutBox = new AboutBox())
+                    {
+                        aboutBox.ShowDialog();
+                    }
+                    break;
             }
         }
 
