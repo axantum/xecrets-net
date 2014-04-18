@@ -574,11 +574,21 @@ namespace Axantum.AxCrypt
                     _fileOperationViewModel.OpenFiles.Execute(e.Paths);
                     break;
 
+                case CommandVerb.Wipe:
+                    RestoreWindowWithFocus();
+                    _fileOperationViewModel.WipeFiles.Execute(e.Paths);
+                    break;
+
+                case CommandVerb.LogOff:
+                    Instance.KnownKeys.LogOff();
+                    break;
+
                 case CommandVerb.Exit:
                     Application.Exit();
                     break;
 
                 case CommandVerb.Show:
+                    RestoreWindowWithFocus();
                     break;
             }
         }

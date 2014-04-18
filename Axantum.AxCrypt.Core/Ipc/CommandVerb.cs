@@ -40,6 +40,8 @@ namespace Axantum.AxCrypt.Core.Ipc
         Decrypt,
         Open,
         Show,
+        LogOff,
         Exit,
+        Wipe,
     }
 }

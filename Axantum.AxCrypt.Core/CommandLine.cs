@@ -35,15 +35,31 @@ namespace Axantum.AxCrypt.Core
 {
     public class CommandLine
     {
+        private enum MutuallyExclusiveOptions
+        {
+            NoneSet,
+            Encrypt,
+            Decrypt,
+            Wipe,
+        }
+
+        private enum InclusiveOptions
+        {
+            NoneSet,
+            LogOff,
+            Exit,
+            Show,
+        }
+
+        private MutuallyExclusiveOptions _mutuallyExclusiveOptions = MutuallyExclusiveOptions.NoneSet;
+
+        private InclusiveOptions _inclusiveOptions = InclusiveOptions.NoneSet;
+
+        private bool _commandLineError = false;
+
         private string _startPath;
 
         private IEnumerable<string> _arguments;
-
-        private bool Exit { get; set; }
-
-        private bool Encrypt { get; set; }
-
-        private bool Decrypt { get; set; }
 
         private static readonly IEnumerable<string> NoArguments = new string[0];
 
@@ -57,10 +73,12 @@ namespace Axantum.AxCrypt.Core
         {
             OptionSetCollection options = new OptionSetCollection()
             {
-                {"x", var => Exit = true},
-                {"z", var => Encrypt = true},
-                {"d", var => Decrypt = true},
-                {"t", var => {}},
+                {"z", var => SetMutuallyExclusiveOption(MutuallyExclusiveOptions.Encrypt)},
+                {"d", var => SetMutuallyExclusiveOption(MutuallyExclusiveOptions.Decrypt)},
+                {"w", var => SetMutuallyExclusiveOption(MutuallyExclusiveOptions.Wipe)},
+                {"show", var => _inclusiveOptions |= InclusiveOptions.Show},
+                {"t", var => _inclusiveOptions |= InclusiveOptions.LogOff},
+                {"x", var => _inclusiveOptions |= InclusiveOptions.Exit},
                 {"b=", (int batch) => {}},
             };
             IList<string> files = options.Parse(_arguments);
@@ -71,9 +89,19 @@ namespace Axantum.AxCrypt.Core
             Run(files);
         }
 
+        private void SetMutuallyExclusiveOption(MutuallyExclusiveOptions option)
+        {
+            if (_mutuallyExclusiveOptions != MutuallyExclusiveOptions.NoneSet)
+            {
+                _commandLineError = true;
+                return;
+            }
+            _mutuallyExclusiveOptions = option;
+        }
+
         private bool ValidateArguments()
         {
-            if (Encrypt && Decrypt)
+            if (_commandLineError)
             {
                 return false;
             }
@@ -82,22 +110,40 @@ namespace Axantum.AxCrypt.Core
 
         private void Run(IList<string> files)
         {
-            if (Encrypt)
+            switch (_mutuallyExclusiveOptions)
             {
-                CallService(CommandVerb.Encrypt, files);
+                case MutuallyExclusiveOptions.Encrypt:
+                    CallService(CommandVerb.Encrypt, files);
+                    break;
+
+                case MutuallyExclusiveOptions.Decrypt:
+                    CallService(CommandVerb.Decrypt, files);
+                    break;
+
+                case MutuallyExclusiveOptions.Wipe:
+                    CallService(CommandVerb.Wipe, files);
+                    break;
+
+                default:
+                    break;
             }
-            if (Decrypt)
-            {
-                CallService(CommandVerb.Decrypt, files);
-            }
-            if (Exit)
-            {
-                CallService(CommandVerb.Exit, NoArguments);
-                return;
-            }
-            if (!Encrypt && !Decrypt)
+
+            if (_mutuallyExclusiveOptions == MutuallyExclusiveOptions.NoneSet)
             {
                 CallService(CommandVerb.Open, files);
+            }
+
+            if (_inclusiveOptions.HasFlag(InclusiveOptions.Show))
+            {
+                CallService(CommandVerb.Show, NoArguments);
+            }
+            if (_inclusiveOptions.HasFlag(InclusiveOptions.LogOff))
+            {
+                CallService(CommandVerb.LogOff, NoArguments);
+            }
+            if (_inclusiveOptions.HasFlag(InclusiveOptions.Exit))
+            {
+                CallService(CommandVerb.Exit, NoArguments);
             }
         }
 
