@@ -45,6 +45,7 @@
     <PropertyGroup>
         <_AxCryptMajor>2</_AxCryptMajor>
         <_AxCryptMinor>0</_AxCryptMinor>
+        <AxBuildNumber Condition=" '$(AxBuildNumber)' == '' ">0</AxBuildNumber>
     </PropertyGroup>
     <PropertyGroup>
         <_AxIsAxantumDeveloper>false</_AxIsAxantumDeveloper>
@@ -101,10 +102,8 @@
                  Importance="high" />
     </Target>
 
-    <UsingTask TaskName="HgVersionFile"
-               AssemblyFile="..\SolutionItems\MSBuildVersioning.dll" />
-    <UsingTask TaskName="HgVersionInformation"
-               AssemblyFile="..\SolutionItems\MSBuildVersioning.dll" />
+    <UsingTask TaskName="TemplateFileTask"
+               AssemblyFile="..\SolutionItems\MSBuild.Axantum.Tasks.dll" />
 
     <Target Name="_AxMergeAndSign"
             Inputs="$(MSBuildProjectFullPath);@(MainAssembly);@(IlmergeAssemblies)"
@@ -121,15 +120,9 @@
         </ItemGroup>
     </Target>
 
-    <Target Name="_AxSetRevisionFromSourceControl">
-        <HgVersionInformation IgnoreToolNotFound="true">
-            <Output TaskParameter="Revision"
-                    PropertyName="_AxSourceControlRevision" />
-            <Output TaskParameter="Dirty"
-                    PropertyName="_AxSourceControlDirty" />
-        </HgVersionInformation>
-        <PropertyGroup Condition=" '$(_AxSourceControlRevision)' != '' ">
-            <_AxVersionedFileName>AxCrypt-$(_AxCryptMajor).$(_AxCryptMinor).$(_AxSourceControlRevision).$(_AxSourceControlDirty).exe</_AxVersionedFileName>
+    <Target Name="_AxSetVersionedFileName">
+        <PropertyGroup Condition=" '$(AxBuildNumber)' != '' ">
+            <_AxVersionedFileName>AxCrypt-$(_AxCryptMajor).$(_AxCryptMinor).$(AxBuildNumber).0.exe</_AxVersionedFileName>
         </PropertyGroup>
     </Target>
 
@@ -146,7 +139,7 @@
     </Target>
 
     <Target Name="_AxSetRevisionAndCopyToVersionedFileName"
-            DependsOnTargets="_AxSetRevisionFromSourceControl;_AxCopyToVersionedFileName"
+            DependsOnTargets="_AxSetVersionedFileName;_AxCopyToVersionedFileName"
             Condition=" '$(Configuration)' == 'Release' And '$(OutputType)' == 'Winexe' And '$(KeyContainerName)' != '' And '$(SignAssembly)' == 'true' ">
     </Target>
 
@@ -160,15 +153,23 @@
 
     <Target Name="_AxFixupVersion"
             Inputs="Properties\AssemblyInfo.template;$(MSBuildProjectFullPath)"
-            Outputs="$(IntermediateOutputPath)\AssemblyInfo.cs"
+            Outputs="$(IntermediateOutputPath)AssemblyInfo.cs"
             Condition=" Exists('Properties\AssemblyInfo.template') ">
         <MakeDir Directories="$(IntermediateOutputPath)" />
-        <HgVersionFile TemplateFile="Properties\AssemblyInfo.template"
-                       DestinationFile="$(IntermediateOutputPath)\AssemblyInfo.cs"
-                       IgnoreToolNotFound="true" />
         <ItemGroup>
-            <Compile Include="$(IntermediateOutputPath)\AssemblyInfo.cs" />
-            <FileWrites Include="$(IntermediateOutputPath)\AssemblyInfo.cs" />
+            <_AxTemplateValues Include="$REVNUM$">
+                <Value>$(AxBuildNumber)</Value>
+            </_AxTemplateValues>
+            <_AxTemplateValues Include="$DIRTY$">
+                <Value>0</Value>
+            </_AxTemplateValues>
+        </ItemGroup>
+        <TemplateFileTask TemplateFile="Properties\AssemblyInfo.template"
+                          TargetFile="$(IntermediateOutputPath)AssemblyInfo.cs"
+                          Values="@(_AxTemplateValues)" />
+        <ItemGroup>
+            <Compile Include="$(IntermediateOutputPath)AssemblyInfo.cs" />
+            <FileWrites Include="$(IntermediateOutputPath)AssemblyInfo.cs" />
         </ItemGroup>
     </Target>
 

@@ -35,6 +35,7 @@
     <Content Include="Moq\lib\net35\Moq.xml" />
     <Content Include="Moq\lib\net40\Moq.dll" />
     <Content Include="Moq\lib\net40\Moq.xml" />
+    <Content Include="MSBuild.Axantum.Tasks.dll" />
     <Content Include="MSBuildVersioning.dll" />
     <Content Include="HowToBuild.txt" />
     <Content Include="Newtonsoft.Json.dll" />
