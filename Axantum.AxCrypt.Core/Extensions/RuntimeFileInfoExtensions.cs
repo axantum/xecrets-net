@@ -25,15 +25,16 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
-using System.Linq;
-using System.Text.RegularExpressions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Axantum.AxCrypt.Core.Extensions
 {
@@ -141,6 +142,25 @@ namespace Axantum.AxCrypt.Core.Extensions
             encryptedName += OS.Current.AxCryptExtension;
 
             return Factory.New<IRuntimeFileInfo>(encryptedName);
+        }
+
+        /// <summary>
+        /// Creates a random unique unique name in the same folder.
+        /// </summary>
+        /// <param name="fileInfo">The file information representing the new unique random name.</param>
+        /// <returns></returns>
+        public static IRuntimeFileInfo CreateRandomUniqueName(this IRuntimeFileInfo fileInfo)
+        {
+            while (true)
+            {
+                int r = Math.Abs(BitConverter.ToInt32(Instance.RandomGenerator.Generate(sizeof(int)), 0));
+                string alternatePath = Path.Combine(Path.GetDirectoryName(fileInfo.FullName), r.ToString(CultureInfo.InvariantCulture) + Path.GetExtension(fileInfo.FullName));
+                IRuntimeFileInfo alternateFileInfo = Factory.New<IRuntimeFileInfo>(alternatePath);
+                if (!alternateFileInfo.IsExistingFile && !alternateFileInfo.IsExistingFolder)
+                {
+                    return alternateFileInfo;
+                }
+            }
         }
 
         public static bool TryFindDecryptionKey(this IRuntimeFileInfo fileInfo, out IPassphrase key)

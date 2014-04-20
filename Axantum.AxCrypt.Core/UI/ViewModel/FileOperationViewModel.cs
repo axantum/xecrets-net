@@ -74,6 +74,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             OpenFiles = new DelegateAction<IEnumerable<string>>((files) => OpenFilesAction(files));
             DecryptFolders = new DelegateAction<IEnumerable<string>>((folders) => DecryptFoldersAction(folders), (folders) => _knownKeys.IsLoggedOn);
             WipeFiles = new DelegateAction<IEnumerable<string>>((files) => WipeFilesAction(files));
+            RandomRenameFiles = new DelegateAction<IEnumerable<string>>((files) => RandomRenameFilesAction(files));
             OpenFilesFromFolder = new DelegateAction<string>((folder) => OpenFilesFromFolderAction(folder), (folder) => _knownKeys.IsLoggedOn);
             AddRecentFiles = new DelegateAction<IEnumerable<string>>((files) => AddRecentFilesAction(files));
         }
@@ -87,6 +88,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public IAction DecryptFolders { get; private set; }
 
         public IAction WipeFiles { get; private set; }
+
+        public IAction RandomRenameFiles { get; private set; }
 
         public IAction OpenFilesFromFolder { get; private set; }
 
@@ -152,6 +155,16 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return;
             }
             _fileOperation.DoFiles(files.Select(f => Factory.New<IRuntimeFileInfo>(f)).ToList(), WipeFileWork, (status) => { });
+        }
+
+        private void RandomRenameFilesAction(IEnumerable<string> files)
+        {
+            files = files ?? SelectFiles(FileSelectionType.Encrypt);
+            if (!files.Any())
+            {
+                return;
+            }
+            _fileOperation.DoFiles(files.Select(f => Factory.New<IRuntimeFileInfo>(f)).ToList(), RandomRenameFileWork, (status) => { });
         }
 
         private IEnumerable<string> SelectFiles(FileSelectionType fileSelectionType)
@@ -240,6 +253,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             };
 
             return operationsController.WipeFile(file);
+        }
+
+        private FileOperationContext RandomRenameFileWork(IRuntimeFileInfo file, IProgressContext progress)
+        {
+            file.MoveTo(file.CreateRandomUniqueName().FullName);
+
+            return new FileOperationContext(file.FullName, FileOperationStatus.Success);
         }
 
         private FileOperationContext OpenEncryptedWork(IRuntimeFileInfo file, IProgressContext progress)

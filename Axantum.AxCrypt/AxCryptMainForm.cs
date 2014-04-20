@@ -560,23 +560,23 @@ namespace Axantum.AxCrypt
             switch (e.RequestCommand)
             {
                 case CommandVerb.Encrypt:
-                    RestoreWindowWithFocus();
                     _fileOperationViewModel.EncryptFiles.Execute(e.Paths);
                     break;
 
                 case CommandVerb.Decrypt:
-                    RestoreWindowWithFocus();
                     _fileOperationViewModel.DecryptFiles.Execute(e.Paths);
                     break;
 
                 case CommandVerb.Open:
-                    RestoreWindowWithFocus();
                     _fileOperationViewModel.OpenFiles.Execute(e.Paths);
                     break;
 
                 case CommandVerb.Wipe:
-                    RestoreWindowWithFocus();
                     _fileOperationViewModel.WipeFiles.Execute(e.Paths);
+                    break;
+
+                case CommandVerb.RandomRename:
+                    _fileOperationViewModel.RandomRenameFiles.Execute(e.Paths);
                     break;
 
                 case CommandVerb.LogOff:

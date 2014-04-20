@@ -41,6 +41,7 @@ namespace Axantum.AxCrypt.Core
             Encrypt,
             Decrypt,
             Wipe,
+            RandomRename,
         }
 
         [Flags]
@@ -79,6 +80,7 @@ namespace Axantum.AxCrypt.Core
                 {"z", var => SetMutuallyExclusiveOption(MutuallyExclusiveOptions.Encrypt)},
                 {"d", var => SetMutuallyExclusiveOption(MutuallyExclusiveOptions.Decrypt)},
                 {"w", var => SetMutuallyExclusiveOption(MutuallyExclusiveOptions.Wipe)},
+                {"h", var => SetMutuallyExclusiveOption(MutuallyExclusiveOptions.RandomRename)},
                 {"show", var => _inclusiveOptions |= InclusiveOptions.Show},
                 {"about", var => _inclusiveOptions |= InclusiveOptions.About},
                 {"register", var => _inclusiveOptions |= InclusiveOptions.Register},
@@ -127,6 +129,10 @@ namespace Axantum.AxCrypt.Core
 
                 case MutuallyExclusiveOptions.Wipe:
                     CallService(CommandVerb.Wipe, files);
+                    break;
+
+                case MutuallyExclusiveOptions.RandomRename:
+                    CallService(CommandVerb.RandomRename, files);
                     break;
 
                 case MutuallyExclusiveOptions.NoneSet:

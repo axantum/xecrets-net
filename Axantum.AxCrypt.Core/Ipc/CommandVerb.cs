@@ -43,6 +43,7 @@ namespace Axantum.AxCrypt.Core.Ipc
         LogOff,
         Exit,
         Wipe,
+        RandomRename,
         About,
         Register,
     }
