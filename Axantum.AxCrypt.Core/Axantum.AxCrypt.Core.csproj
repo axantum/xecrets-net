@@ -86,6 +86,10 @@
     <Compile Include="IAxCryptDocument.cs" />
     <Compile Include="IO\V2AxCryptDataStream.cs" />
     <Compile Include="IO\V2HmacStream.cs" />
+    <Compile Include="Ipc\ArgumentBundles.cs" />
+    <Compile Include="Ipc\CommandCompleteArgs.cs" />
+    <Compile Include="Ipc\CommandHandler.cs" />
+    <Compile Include="Ipc\CommandItem.cs" />
     <Compile Include="Reader\AxCryptReader.cs" />
     <Compile Include="Reader\V2AxCryptReader.cs" />
     <Compile Include="Reader\VXAxCryptReader.cs" />

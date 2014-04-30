@@ -107,8 +107,9 @@ namespace Axantum.AxCrypt
             BindToFileOperationViewModel();
 
             Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.SessionStart));
-            Instance.CommandService.Received += AxCryptMainForm_Request;
+            Instance.CommandService.Received += Factory.Instance.Singleton<CommandHandler>().RequestReceived;
             Instance.CommandService.StartListening();
+            Factory.Instance.Singleton<CommandHandler>().CommandComplete += AxCryptMainForm_CommandComplete;
         }
 
         private void RegisterTypeFactories()
@@ -550,37 +551,33 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void AxCryptMainForm_Request(object sender, CommandServiceEventArgs e)
+        private void AxCryptMainForm_CommandComplete(object sender, CommandCompleteArgs e)
         {
             Instance.UIThread.RunOnUIThread(() => DoRequest(e));
         }
 
-        private void DoRequest(CommandServiceEventArgs e)
+        private void DoRequest(CommandCompleteArgs e)
         {
-            switch (e.RequestCommand)
+            switch (e.Verb)
             {
                 case CommandVerb.Encrypt:
-                    _fileOperationViewModel.EncryptFiles.Execute(e.Paths);
+                    _fileOperationViewModel.EncryptFiles.Execute(e.Arguments);
                     break;
 
                 case CommandVerb.Decrypt:
-                    _fileOperationViewModel.DecryptFiles.Execute(e.Paths);
+                    _fileOperationViewModel.DecryptFiles.Execute(e.Arguments);
                     break;
 
                 case CommandVerb.Open:
-                    _fileOperationViewModel.OpenFiles.Execute(e.Paths);
+                    _fileOperationViewModel.OpenFiles.Execute(e.Arguments);
                     break;
 
                 case CommandVerb.Wipe:
-                    _fileOperationViewModel.WipeFiles.Execute(e.Paths);
+                    _fileOperationViewModel.WipeFiles.Execute(e.Arguments);
                     break;
 
                 case CommandVerb.RandomRename:
-                    _fileOperationViewModel.RandomRenameFiles.Execute(e.Paths);
-                    break;
-
-                case CommandVerb.LogOff:
-                    Instance.KnownKeys.LogOff();
+                    _fileOperationViewModel.RandomRenameFiles.Execute(e.Arguments);
                     break;
 
                 case CommandVerb.Exit:

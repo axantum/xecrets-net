@@ -75,12 +75,12 @@ namespace Axantum.AxCrypt.Core.Test
             bool wasExit = false;
             _fakeServer.Request += (sender, e) =>
             {
-                wasExit = e.Command.RequestCommand == CommandVerb.Exit;
+                wasExit = e.Command.Verb == CommandVerb.Exit;
             };
 
             _fakeClient.FakeDispatcher = (command) => { _fakeServer.AcceptRequest(command); return CommandStatus.Success; };
 
-            CommandLine cl = new CommandLine("axcrypt.exe", new string[] { "-x" });
+            CommandLine cl = new CommandLine("axcrypt.exe", new string[] { "-exit" });
             FakeRuntimeEnvironment.Instance.IsFirstInstanceRunning = true;
             cl.Execute();
 

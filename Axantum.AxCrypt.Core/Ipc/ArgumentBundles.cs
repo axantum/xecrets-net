@@ -25,44 +25,45 @@
 
 #endregion Coypright and License
 
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Ipc
 {
-    [JsonObject(MemberSerialization.OptIn)]
-    public class CommandServiceEventArgs : EventArgs
+    public class ArgumentBundles
     {
-        [JsonProperty("verb")]
-        public CommandVerb Verb { get; private set; }
+        private Dictionary<int, List<string>> _bundles = new Dictionary<int, List<string>>();
 
-        [JsonProperty("arguments")]
-        public IList<string> Arguments { get; private set; }
-
-        [JsonProperty("bundleid")]
-        public int BundleId { get; private set; }
-
-        public CommandServiceEventArgs()
+        public IEnumerable<string> Arguments(int bundleId)
         {
-            Verb = CommandVerb.Unknown;
-            BundleId = -1;
-            Arguments = new List<string>();
+            List<string> arguments;
+            lock (_bundles)
+            {
+                if (!_bundles.TryGetValue(bundleId, out arguments))
+                {
+                    return new string[0];
+                }
+                _bundles.Remove(bundleId);
+            }
+            return arguments;
         }
 
-        public CommandServiceEventArgs(CommandVerb verb, int bundleId, IEnumerable<string> arguments)
+        public void AddArguments(int bundleId, IEnumerable<string> argumentsToAdd)
         {
-            Verb = verb;
-            BundleId = bundleId;
-            Arguments = new List<string>(arguments);
-        }
-
-        public CommandServiceEventArgs(CommandVerb verb, int bundleId, params string[] arguments)
-        {
-            Verb = verb;
-            BundleId = bundleId;
-            Arguments = new List<string>(arguments);
+            List<string> arguments;
+            lock (_bundles)
+            {
+                if (!_bundles.TryGetValue(bundleId, out arguments))
+                {
+                    arguments = new List<string>();
+                    _bundles.Add(bundleId, arguments);
+                }
+                foreach (string argument in argumentsToAdd)
+                {
+                    arguments.Add(argument);
+                }
+            }
         }
     }
 }

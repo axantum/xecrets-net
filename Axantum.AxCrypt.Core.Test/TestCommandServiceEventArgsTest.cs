@@ -44,8 +44,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             args = JsonConvert.DeserializeObject<CommandServiceEventArgs>(json);
 
-            Assert.That(args.RequestCommand, Is.EqualTo(CommandVerb.Unknown));
-            Assert.That(args.Paths.Count(), Is.EqualTo(0));
+            Assert.That(args.Verb, Is.EqualTo(CommandVerb.Unknown));
+            Assert.That(args.Arguments.Count(), Is.EqualTo(0));
         }
     }
 }

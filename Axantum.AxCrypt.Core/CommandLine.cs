@@ -35,32 +35,6 @@ namespace Axantum.AxCrypt.Core
 {
     public class CommandLine
     {
-        private enum MutuallyExclusiveOptions
-        {
-            NoneSet,
-            Encrypt,
-            Decrypt,
-            Wipe,
-            RandomRename,
-        }
-
-        [Flags]
-        private enum InclusiveOptions
-        {
-            NoneSet = 0,
-            LogOff = 1,
-            Exit = 2,
-            Show = 4,
-            About = 8,
-            Register = 16,
-        }
-
-        private MutuallyExclusiveOptions _mutuallyExclusiveOptions = MutuallyExclusiveOptions.NoneSet;
-
-        private InclusiveOptions _inclusiveOptions = InclusiveOptions.NoneSet;
-
-        private bool _commandLineError = false;
-
         private string _startPath;
 
         private IEnumerable<string> _arguments;
@@ -75,107 +49,55 @@ namespace Axantum.AxCrypt.Core
 
         public void Execute()
         {
+            List<CommandItem> _commandItems = new List<CommandItem>();
+            int bundleId = 0;
+            CommandVerb fileVerb = CommandVerb.Unknown;
+
             OptionSetCollection options = new OptionSetCollection()
             {
-                {"z", var => SetMutuallyExclusiveOption(MutuallyExclusiveOptions.Encrypt)},
-                {"d", var => SetMutuallyExclusiveOption(MutuallyExclusiveOptions.Decrypt)},
-                {"w", var => SetMutuallyExclusiveOption(MutuallyExclusiveOptions.Wipe)},
-                {"h", var => SetMutuallyExclusiveOption(MutuallyExclusiveOptions.RandomRename)},
-                {"show", var => _inclusiveOptions |= InclusiveOptions.Show},
-                {"about", var => _inclusiveOptions |= InclusiveOptions.About},
-                {"register", var => _inclusiveOptions |= InclusiveOptions.Register},
-                {"t", var => _inclusiveOptions |= InclusiveOptions.LogOff},
-                {"x", var => _inclusiveOptions |= InclusiveOptions.Exit},
-                {"b=", (int batch) => {}},
+                {"batch", var => bundleId = 0},
+                {"bundle=", (int id) => bundleId = id},
+                {"files", var => fileVerb = CommandVerb.AddFiles},
+                {"encrypt", var => fileVerb = CommandVerb.Encrypt},
+                {"decrypt", var => fileVerb = CommandVerb.Decrypt},
+                {"wipe", var =>  fileVerb = CommandVerb.Wipe},
+                {"open", var =>  fileVerb = CommandVerb.Open},
+                {"rename", var => fileVerb = CommandVerb.RandomRename},
+                {"show", var => _commandItems.Add(new CommandItem(CommandVerb.Show, bundleId, NoArguments))},
+                {"exit", var => _commandItems.Add(new CommandItem(CommandVerb.Exit, bundleId, NoArguments))},
+                {"use_application=", (string path) => _commandItems.Add(new CommandItem(CommandVerb.UseForOpen, bundleId, new string[]{path}))},
+                {"login=", (string name) =>_commandItems.Add(new CommandItem(CommandVerb.Login, bundleId, new string[]{name}))},
+                {"passphrase=", (string passphrase) => _commandItems.Add(new CommandItem(CommandVerb.SetPassphrase, bundleId, new string[]{passphrase}))},
+                {"key_file=", (string path) => _commandItems.Add(new CommandItem(CommandVerb.SetKeyFile, bundleId, new string[]{path}))},
+                {"about", var => _commandItems.Add(new CommandItem(CommandVerb.About, bundleId, NoArguments))},
+                {"register", var => _commandItems.Add(new CommandItem(CommandVerb.Register, bundleId, NoArguments))},
             };
-            IList<string> files = options.Parse(_arguments);
-            if (!ValidateArguments())
+            IList<string> arguments = options.Parse(_arguments);
+            if (fileVerb == CommandVerb.Unknown)
             {
+                fileVerb = bundleId == 0 ? CommandVerb.Open : CommandVerb.AddFiles;
+            }
+            _commandItems.Add(new CommandItem(fileVerb, bundleId, arguments));
+            Run(_commandItems);
+        }
+
+        private void Run(IList<CommandItem> commandItems)
+        {
+            if (commandItems.Count == 0)
+            {
+                EnsureFirstInstanceRunning();
                 return;
             }
-            Run(files);
-        }
-
-        private void SetMutuallyExclusiveOption(MutuallyExclusiveOptions option)
-        {
-            if (_mutuallyExclusiveOptions != MutuallyExclusiveOptions.NoneSet)
+            foreach (CommandItem commandItem in commandItems)
             {
-                _commandLineError = true;
-                return;
-            }
-            _mutuallyExclusiveOptions = option;
-        }
-
-        private bool ValidateArguments()
-        {
-            if (_commandLineError)
-            {
-                return false;
-            }
-            return true;
-        }
-
-        private void Run(IList<string> files)
-        {
-            switch (_mutuallyExclusiveOptions)
-            {
-                case MutuallyExclusiveOptions.Encrypt:
-                    CallService(CommandVerb.Encrypt, files);
-                    break;
-
-                case MutuallyExclusiveOptions.Decrypt:
-                    CallService(CommandVerb.Decrypt, files);
-                    break;
-
-                case MutuallyExclusiveOptions.Wipe:
-                    CallService(CommandVerb.Wipe, files);
-                    break;
-
-                case MutuallyExclusiveOptions.RandomRename:
-                    CallService(CommandVerb.RandomRename, files);
-                    break;
-
-                case MutuallyExclusiveOptions.NoneSet:
-                    if (files.Any())
-                    {
-                        CallService(CommandVerb.Open, files);
-                    }
-                    else
-                    {
-                        CallService(CommandVerb.Show, NoArguments);
-                    }
-                    break;
-
-                default:
-                    break;
-            }
-
-            if (_inclusiveOptions.HasFlag(InclusiveOptions.Show))
-            {
-                CallService(CommandVerb.Show, NoArguments);
-            }
-            if (_inclusiveOptions.HasFlag(InclusiveOptions.About))
-            {
-                CallService(CommandVerb.About, NoArguments);
-            }
-            if (_inclusiveOptions.HasFlag(InclusiveOptions.Register))
-            {
-                CallService(CommandVerb.Register, NoArguments);
-            }
-            if (_inclusiveOptions.HasFlag(InclusiveOptions.LogOff))
-            {
-                CallService(CommandVerb.LogOff, NoArguments);
-            }
-            if (_inclusiveOptions.HasFlag(InclusiveOptions.Exit))
-            {
-                CallService(CommandVerb.Exit, NoArguments);
+                CallService(commandItem.Verb, commandItem.BundleId, commandItem.Arguments);
             }
         }
 
-        private void CallService(CommandVerb verb, IEnumerable<string> files)
+        private void CallService(CommandVerb verb, int batchId, IEnumerable<string> files)
         {
             EnsureFirstInstanceRunning();
-            CommandStatus status = Instance.CommandService.Call(verb, files);
+            CommandStatus status = Instance.CommandService.Call(verb, batchId, files);
             if (status == CommandStatus.Success)
             {
                 return;

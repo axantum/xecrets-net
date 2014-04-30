@@ -25,44 +25,22 @@
 
 #endregion Coypright and License
 
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Ipc
 {
-    [JsonObject(MemberSerialization.OptIn)]
-    public class CommandServiceEventArgs : EventArgs
+    public class CommandCompleteArgs : EventArgs
     {
-        [JsonProperty("verb")]
         public CommandVerb Verb { get; private set; }
 
-        [JsonProperty("arguments")]
-        public IList<string> Arguments { get; private set; }
+        public IEnumerable<string> Arguments { get; private set; }
 
-        [JsonProperty("bundleid")]
-        public int BundleId { get; private set; }
-
-        public CommandServiceEventArgs()
-        {
-            Verb = CommandVerb.Unknown;
-            BundleId = -1;
-            Arguments = new List<string>();
-        }
-
-        public CommandServiceEventArgs(CommandVerb verb, int bundleId, IEnumerable<string> arguments)
+        public CommandCompleteArgs(CommandVerb verb, IEnumerable<string> arguments)
         {
             Verb = verb;
-            BundleId = bundleId;
-            Arguments = new List<string>(arguments);
-        }
-
-        public CommandServiceEventArgs(CommandVerb verb, int bundleId, params string[] arguments)
-        {
-            Verb = verb;
-            BundleId = bundleId;
-            Arguments = new List<string>(arguments);
+            Arguments = arguments;
         }
     }
 }

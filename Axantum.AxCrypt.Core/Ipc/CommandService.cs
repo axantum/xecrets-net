@@ -49,15 +49,15 @@ namespace Axantum.AxCrypt.Core.Ipc
             OnReceived(e.Command);
         }
 
-        public CommandStatus Call(CommandVerb verb, params string[] paths)
+        public CommandStatus Call(CommandVerb verb, int bundleId, params string[] arguments)
         {
-            return Call(verb, new List<string>(paths));
+            return Call(verb, bundleId, new List<string>(arguments));
         }
 
-        public CommandStatus Call(CommandVerb verb, IEnumerable<string> paths)
+        public CommandStatus Call(CommandVerb verb, int bundleId, IEnumerable<string> arguments)
         {
             CommandStatus status;
-            status = _client.Dispatch(new CommandServiceEventArgs(verb, paths));
+            status = _client.Dispatch(new CommandServiceEventArgs(verb, bundleId, arguments));
             return status;
         }
 

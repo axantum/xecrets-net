@@ -36,15 +36,20 @@ namespace Axantum.AxCrypt.Core.Ipc
     public enum CommandVerb
     {
         Unknown,
+        AddFiles,
         Encrypt,
         Decrypt,
         Open,
         Show,
-        LogOff,
         Exit,
         Wipe,
         RandomRename,
         About,
         Register,
+        UseForOpen,
+        ShowLogOn,
+        SetPassphrase,
+        SetKeyFile,
+        Login,
     }
 }

@@ -25,13 +25,6 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Threading;
-using System.Windows.Forms;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
@@ -40,6 +33,13 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Mono;
+using System;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
 {
@@ -85,6 +85,7 @@ namespace Axantum.AxCrypt
             Factory.Instance.Singleton<IRandomGenerator>(() => new RandomGenerator());
             Factory.Instance.Singleton<CryptoFactory>(() => CreateCryptoFactory());
             Factory.Instance.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
+            Factory.Instance.Singleton<CommandHandler>(() => new CommandHandler());
 
             Factory.Instance.Register<AxCryptFactory>(() => new AxCryptFactory());
             Factory.Instance.Register<AxCryptFile>(() => new AxCryptFile());
@@ -129,7 +130,7 @@ namespace Axantum.AxCrypt
         {
             if (!OS.Current.IsFirstInstance)
             {
-                Instance.CommandService.Call(CommandVerb.Show);
+                Instance.CommandService.Call(CommandVerb.Show, -1);
                 return;
             }
             Application.EnableVisualStyles();

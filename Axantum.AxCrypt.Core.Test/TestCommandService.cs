@@ -40,10 +40,10 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestCall()
         {
             IRequestServer serverMock = Mock.Of<IRequestServer>();
-            IRequestClient clientMock = Mock.Of<IRequestClient>(x => x.Dispatch(It.Is<CommandServiceEventArgs>(ca => ca.RequestCommand == CommandVerb.Open)) == CommandStatus.Success);
+            IRequestClient clientMock = Mock.Of<IRequestClient>(x => x.Dispatch(It.Is<CommandServiceEventArgs>(ca => ca.Verb == CommandVerb.Open)) == CommandStatus.Success);
 
             CommandService service = new CommandService(serverMock, clientMock);
-            CommandStatus status = service.Call(CommandVerb.Open, @"C:\folder\file.axx");
+            CommandStatus status = service.Call(CommandVerb.Open, -1, @"C:\folder\file.axx");
 
             Assert.That(status, Is.EqualTo(CommandStatus.Success), "The call should indicate success.");
         }
@@ -68,9 +68,9 @@ namespace Axantum.AxCrypt.Core.Test
 
             CommandService service = new CommandService(serverMock, clientMock);
             bool received = false;
-            service.Received += (sender, e) => received = e.RequestCommand == CommandVerb.Exit;
+            service.Received += (sender, e) => received = e.Verb == CommandVerb.Exit;
 
-            Mock.Get(serverMock).Raise(s => s.Request += null, new RequestCommandEventArgs(new CommandServiceEventArgs(CommandVerb.Exit)));
+            Mock.Get(serverMock).Raise(s => s.Request += null, new RequestCommandEventArgs(new CommandServiceEventArgs(CommandVerb.Exit, -1)));
 
             Assert.That(received, Is.True, "A command should be received.");
         }
