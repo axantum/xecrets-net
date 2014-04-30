@@ -77,7 +77,10 @@ namespace Axantum.AxCrypt.Core
             {
                 fileVerb = bundleId == 0 ? CommandVerb.Open : CommandVerb.AddFiles;
             }
-            _commandItems.Add(new CommandItem(fileVerb, bundleId, arguments));
+            if (arguments.Count > 0 || bundleId != 0)
+            {
+                _commandItems.Add(new CommandItem(fileVerb, bundleId, arguments));
+            }
             Run(_commandItems);
         }
 

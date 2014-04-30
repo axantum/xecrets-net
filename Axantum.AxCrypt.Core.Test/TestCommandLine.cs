@@ -80,7 +80,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             _fakeClient.FakeDispatcher = (command) => { _fakeServer.AcceptRequest(command); return CommandStatus.Success; };
 
-            CommandLine cl = new CommandLine("axcrypt.exe", new string[] { "-exit" });
+            CommandLine cl = new CommandLine("axcrypt.exe", new string[] { "--exit" });
             FakeRuntimeEnvironment.Instance.IsFirstInstanceRunning = true;
             cl.Execute();
 
