@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
@@ -43,7 +44,7 @@ namespace Axantum.AxCrypt.Mono.Test
         [SetUp]
         public static void Setup()
         {
-            _tempPath = Path.Combine(Path.GetTempPath(), @"Axantum.AxCrypt.Mono.Test.TestFileWatcher\");
+            _tempPath = Path.Combine(Path.GetTempPath(), @"Axantum.AxCrypt.Mono.Test.TestFileWatcher").NormalizeFolderPath();
             Directory.CreateDirectory(_tempPath);
 
             Factory.Instance.Register<string, IFileWatcher>((path) => new FileWatcher(path, new DelayedAction(new DelayTimer(), TimeSpan.FromMilliseconds(1))));
