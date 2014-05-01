@@ -187,6 +187,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             testIV = new SymmetricIV(128);
             Assert.DoesNotThrow(() => crypto = new V2AesCrypto(testKey, testIV, 0));
+
+			Assert.That (crypto, Is.Not.Null);
         }
     }
 }

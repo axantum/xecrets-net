@@ -69,8 +69,9 @@ namespace Axantum.AxCrypt.Core.Test
 
             IPassphrase key = new TestingPassphrase("toohigh");
 
-            IAxCryptDocument document;
+            IAxCryptDocument document = null;
             Assert.Throws<ArgumentException>(() => document = axFactory.CreateDocument(key));
+			Assert.That (document, Is.Null);
         }
 
         [Test]

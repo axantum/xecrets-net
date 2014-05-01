@@ -175,8 +175,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestConstructorNullArgument()
         {
             byte[] nullBytes = null;
-            Stream stream;
+            Stream stream = null;
             Assert.Throws<ArgumentNullException>(() => stream = new V2HmacStream(nullBytes));
+			Assert.That(stream, Is.Null);
         }
 
         [Test]

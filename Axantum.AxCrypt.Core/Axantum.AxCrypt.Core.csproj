@@ -11,9 +11,8 @@
     <RootNamespace>Axantum.AxCrypt.Core</RootNamespace>
     <AssemblyName>Axantum.AxCrypt.Core</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <AssemblyOriginatorKeyFile>AxantumStrongName.pfx</AssemblyOriginatorKeyFile>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -33,9 +32,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
-  </PropertyGroup>
-  <PropertyGroup>
-    <DelaySign>false</DelaySign>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
@@ -81,7 +77,6 @@
     <Compile Include="Header\V2DocumentHeaders.cs" />
     <Compile Include="Header\V2HmacHeaderBlock.cs" />
     <Compile Include="Header\V2KeyWrapHeaderBlock.cs" />
-    <Compile Include="Header\V2PlaintextLengthsEncryptedHeaderBlock.cs" />
     <Compile Include="Header\V2UnicodeFileNameInfoEncryptedHeaderBlock.cs" />
     <Compile Include="IAxCryptDocument.cs" />
     <Compile Include="IO\V2AxCryptDataStream.cs" />
@@ -92,7 +87,7 @@
     <Compile Include="Ipc\CommandItem.cs" />
     <Compile Include="Reader\AxCryptReader.cs" />
     <Compile Include="Reader\V2AxCryptReader.cs" />
-    <Compile Include="Reader\VXAxCryptReader.cs" />
+    <Compile Include="Reader\VxAxCryptReader.cs" />
     <Compile Include="Session\ActiveFileProperties.cs" />
     <Compile Include="UI\FileOperationContext.cs" />
     <Compile Include="V1AxCryptDocument.cs" />
@@ -251,6 +246,7 @@
     <Compile Include="UI\VersionEventArgs.cs" />
     <Compile Include="UI\VersionResponse.cs" />
     <Compile Include="UI\VersionUpdateStatus.cs" />
+    <Compile Include="Header\V2PlainTextLengthsEncryptedHeaderBlock.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />

@@ -184,8 +184,9 @@ namespace Axantum.AxCrypt.Core.Test
                     {
                         using (TextReader textReader = new StreamReader(axCryptDataStreamReader, Encoding.UTF8))
                         {
-                            string text;
+                            string text = null;
                             Assert.Throws<FileFormatException>(() => text = textReader.ReadToEnd());
+							Assert.That(text, Is.Null);
                         }
                     }
                 }
@@ -215,8 +216,9 @@ namespace Axantum.AxCrypt.Core.Test
                     {
                         using (TextReader textReader = new StreamReader(axCryptDataStreamReader, Encoding.UTF8))
                         {
-                            string text;
+                            string text = null;
                             Assert.Throws<FileFormatException>(() => text = textReader.ReadToEnd());
+							Assert.That(text, Is.Null);
                         }
                     }
                 }

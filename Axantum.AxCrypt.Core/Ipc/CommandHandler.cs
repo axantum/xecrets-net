@@ -34,8 +34,6 @@ namespace Axantum.AxCrypt.Core.Ipc
     {
         private static ArgumentBundles _bundles = new ArgumentBundles();
 
-        private readonly object _lock = new object();
-
         public void RequestReceived(object sender, CommandServiceEventArgs e)
         {
             switch (e.Verb)

@@ -11,8 +11,7 @@
     <RootNamespace>Axantum.AxCrypt.Core.Test</RootNamespace>
     <AssemblyName>Axantum.AxCrypt.Core.Test</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -34,18 +33,11 @@
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup>
-    <DelaySign>false</DelaySign>
-  </PropertyGroup>
-  <PropertyGroup>
     <AssemblyOriginatorKeyFile>AxantumStrongName.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Moq">
       <HintPath>..\SolutionItems\Moq\lib\net40\Moq.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\SolutionItems\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -54,6 +46,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="nunit.framework">
       <HintPath>..\SolutionItems\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\SolutionItems\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -160,9 +155,6 @@
     <Compile Include="TestSessionEvent.cs" />
     <Compile Include="TestSessionNotificationHandler.cs" />
     <Compile Include="TestSessionNotificationMonitor.cs" />
-    <Compile Include="TestSubkey.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="TestThreadWorker.cs" />
     <Compile Include="TestThreadWorkerProgressContext.cs" />
     <Compile Include="TestV1UnicodeFileNameInfoEncryptedHeaderBlock.cs" />
@@ -179,7 +171,6 @@
     <Compile Include="TestV2HmacHeaderBlock.cs" />
     <Compile Include="TestV2HmacStreamTest.cs" />
     <Compile Include="TestV2KeyWrapHeaderBlock.cs" />
-    <Compile Include="TestV2PlaintextLengthsEncryptedHeaderBlock.cs" />
     <Compile Include="TestV2UnicodeFileNameInfoEncryptedHeaderBlock.cs" />
     <Compile Include="TestVersionHeaderBlock .cs" />
     <Compile Include="TestViewModelBaseTest.cs" />
@@ -189,6 +180,10 @@
     <Compile Include="TestWorkerGroup.cs" />
     <Compile Include="TestWorkerGroupProgressContext.cs" />
     <Compile Include="TestWorkFolderWatcher.cs" />
+    <Compile Include="TestSubKey.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TestV2PlainTextLengthsEncryptedHeaderBlock.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />

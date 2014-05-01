@@ -468,9 +468,10 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestReduceByteArrayTooShort()
         {
             byte[] big = new byte[5];
-            byte[] reduced;
+            byte[] reduced = null;
 
             Assert.Throws<ArgumentException>(() => reduced = big.Reduce(6));
+			Assert.That (reduced, Is.Null);
         }
 
         [Test]

@@ -574,10 +574,11 @@ namespace Axantum.AxCrypt.Core.Test
             string passphrase = "allan";
             IProgressContext progress = new ProgressContext();
 
-            IAxCryptDocument document;
+            IAxCryptDocument document = null;
             Assert.Throws<ArgumentNullException>(() => document = Factory.New<AxCryptFile>().Document(nullSourceFile, passphrase, progress));
             Assert.Throws<ArgumentNullException>(() => document = Factory.New<AxCryptFile>().Document(sourceFile, nullPassphrase, progress));
             Assert.Throws<ArgumentNullException>(() => document = Factory.New<AxCryptFile>().Document(sourceFile, passphrase, nullProgress));
+			Assert.That (document, Is.Null);
         }
     }
 }

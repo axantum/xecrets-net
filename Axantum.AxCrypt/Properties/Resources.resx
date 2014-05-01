@@ -325,7 +325,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>..\resources\DocumentsLibrary.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DropBox" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\dropbox.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\resources\DropBox.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="GoogleDrive" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\GoogleDrive.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
