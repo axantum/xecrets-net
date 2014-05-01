@@ -73,6 +73,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         public static void AddFile(string path, bool isFolder, DateTime creationTimeUtc, DateTime lastAccessTimeUtc, DateTime lastWriteTimeUtc, Stream stream)
         {
+            path = path.NormalizeFilePath();
             FakeFileInfo fileInfo = new FakeFileInfo { FullName = path, CreationTimeUtc = creationTimeUtc, LastAccessTimeUtc = lastAccessTimeUtc, LastWriteTimeUtc = lastWriteTimeUtc, Stream = stream, IsFolder = isFolder, };
             _fakeFileSystem.Add(path, fileInfo);
             FakeFileWatcher.HandleFileChanged(path);
@@ -95,6 +96,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         public static void RemoveFileOrFolder(string path)
         {
+            path = path.NormalizeFilePath();
             _fakeFileSystem.Remove(path);
             FakeFileWatcher.HandleFileChanged(path);
         }
@@ -106,6 +108,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         public FakeRuntimeFileInfo(string fullName)
         {
+            fullName = fullName.NormalizeFilePath();
             DateTime utcNow = OS.Current.UtcNow;
             if (_fakeFileSystem.ContainsKey(fullName))
             {
@@ -305,6 +308,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         public void MoveTo(string destinationFileName)
         {
+            destinationFileName = destinationFileName.NormalizeFilePath();
             OnMoving();
             FakeFileInfo source = _fakeFileSystem[_file.FullName];
             _fakeFileSystem.Remove(_file.FullName);
@@ -399,6 +403,7 @@ namespace Axantum.AxCrypt.Core.Test
         /// </returns>
         public IRuntimeFileInfo Combine(string path)
         {
+            path = path.NormalizeFilePath();
             return new FakeRuntimeFileInfo(Path.Combine(FullName, path));
         }
     }

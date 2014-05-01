@@ -135,6 +135,28 @@ namespace Axantum.AxCrypt.Core.Extensions
             return Factory.New<IRuntimeFileInfo>(value).NormalizeFolder().FullName;
         }
 
+        public static string NormalizeFilePath(this string filePath)
+        {
+            filePath = filePath.Replace(Path.DirectorySeparatorChar == '/' ? '\\' : '/', Path.DirectorySeparatorChar);
+            return filePath;
+        }
+
+        public static string NormalizeFolderPath(this string folder)
+        {
+            folder = folder.NormalizeFilePath();
+            int directorySeparatorChars = 0;
+            while (folder[folder.Length - (directorySeparatorChars + 1)] == Path.DirectorySeparatorChar)
+            {
+                ++directorySeparatorChars;
+            }
+
+            if (directorySeparatorChars == 0)
+            {
+                return folder + Path.DirectorySeparatorChar;
+            }
+            return folder.Substring(0, folder.Length - (directorySeparatorChars - 1));
+        }
+
         public static byte[] FromHex(this string hex)
         {
             if (hex == null)

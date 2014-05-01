@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Test.Properties;
@@ -535,7 +536,7 @@ namespace Axantum.AxCrypt.Core.Test
             mvm.SelectingFiles += (sender, e) =>
             {
                 e.SelectedFiles.Clear();
-                e.SelectedFiles.Add(@"C:\Folder\Copy of File1.txt");
+                e.SelectedFiles.Add(@"C:\Folder\Copy of File1.txt".NormalizeFilePath());
             };
 
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
@@ -544,11 +545,11 @@ namespace Axantum.AxCrypt.Core.Test
             };
             FakeRuntimeFileInfo.AddFile(@"C:\Folder\File1-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
             FakeRuntimeFileInfo.AddFile(@"C:\Folder\File1.txt", null);
-            mvm.DecryptFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx" });
+            mvm.DecryptFiles.Execute(new string[] { @"C:\Folder\File1-txt.axx".NormalizeFilePath() });
 
             Mock.Get(Instance.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
-            axCryptFileMock.Verify(m => m.DecryptFile(It.Is<IAxCryptDocument>((a) => a.FileName == @"File1.txt"), It.Is<string>((s) => s == @"C:\Folder\Copy of File1.txt"), It.IsAny<IProgressContext>()), Times.Once);
-            axCryptFileMock.Verify(m => m.Wipe(It.Is<IRuntimeFileInfo>((i) => i.FullName == @"C:\Folder\File1-txt.axx"), It.IsAny<IProgressContext>()), Times.Once);
+            axCryptFileMock.Verify(m => m.DecryptFile(It.Is<IAxCryptDocument>((a) => a.FileName == @"File1.txt"), It.Is<string>((s) => s == @"C:\Folder\Copy of File1.txt".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
+            axCryptFileMock.Verify(m => m.Wipe(It.Is<IRuntimeFileInfo>((i) => i.FullName == @"C:\Folder\File1-txt.axx".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
             Assert.That(Instance.KnownKeys.IsLoggedOn, Is.True);
         }
 

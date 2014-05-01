@@ -25,14 +25,8 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Security;
-using System.Text.RegularExpressions;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
@@ -40,6 +34,13 @@ using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Moq;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Net.Security;
+using System.Text.RegularExpressions;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -206,7 +207,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (MainViewModel mvm = Factory.New<MainViewModel>())
             {
-                string folder1Path = @"C:\Folder1\FilesFolder\";
+                string folder1Path = @"C:\Folder1\FilesFolder\".NormalizeFilePath();
                 mvm.DragAndDropFiles = new string[] { folder1Path, };
                 Assert.That(mvm.DroppableAsWatchedFolder, Is.False, "A folder that does not exist is not a candidate for watched folders.");
 
@@ -214,11 +215,11 @@ namespace Axantum.AxCrypt.Core.Test
                 mvm.DragAndDropFiles = new string[] { folder1Path, };
                 Assert.That(mvm.DroppableAsWatchedFolder, Is.True, "This is a candidate for watched folders.");
 
-                OS.PathFilters.Add(new Regex(@"^C:\\Folder1\\"));
+                OS.PathFilters.Add(new Regex(@"^C:\{0}Folder1\{0}".InvariantFormat(Path.DirectorySeparatorChar)));
                 mvm.DragAndDropFiles = new string[] { folder1Path, };
                 Assert.That(mvm.DroppableAsWatchedFolder, Is.False, "A folder that matches a path filter is not a candidate for watched folders.");
 
-                string folder2Path = @"C:\Folder1\FilesFolder2\";
+                string folder2Path = @"C:\Folder1\FilesFolder2\".NormalizeFilePath();
                 FakeRuntimeFileInfo.AddFolder(folder2Path);
                 OS.PathFilters.Clear();
 
