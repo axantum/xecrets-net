@@ -144,7 +144,7 @@ namespace Axantum.AxCrypt.Core.IO
                     return read;
                 }
                 int available = _buffer.Length - _offset;
-                int thisread = count > available ? available : count;
+                int thisread = (count - read) > available ? available : count - read;
 
                 Array.Copy(_buffer, _offset, buffer, offset, thisread);
                 offset += thisread;
