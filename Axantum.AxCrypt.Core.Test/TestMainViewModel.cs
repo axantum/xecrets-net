@@ -264,9 +264,9 @@ namespace Axantum.AxCrypt.Core.Test
                 mvm.RecentFilesComparer = comparer;
                 recentFiles = mvm.RecentFiles.ToList();
 
-                Assert.That(recentFiles[0].EncryptedFileInfo.FullName, Is.EqualTo(file1), "Sorted by Date, this should be number 1.");
-                Assert.That(recentFiles[1].EncryptedFileInfo.FullName, Is.EqualTo(file2), "Sorted by Date, this should be number 2.");
-                Assert.That(recentFiles[2].EncryptedFileInfo.FullName, Is.EqualTo(file3), "Sorted by Date, this should be number 3.");
+                Assert.That(recentFiles[0].EncryptedFileInfo.FullName, Is.EqualTo(file1.NormalizeFilePath()), "Sorted by Date, this should be number 1.");
+                Assert.That(recentFiles[1].EncryptedFileInfo.FullName, Is.EqualTo(file2.NormalizeFilePath()), "Sorted by Date, this should be number 2.");
+                Assert.That(recentFiles[2].EncryptedFileInfo.FullName, Is.EqualTo(file3.NormalizeFilePath()), "Sorted by Date, this should be number 3.");
 
                 comparer = ActiveFileComparer.DateComparer;
                 comparer.ReverseSort = true;
@@ -274,9 +274,9 @@ namespace Axantum.AxCrypt.Core.Test
                 recentFiles = mvm.RecentFiles.ToList();
             }
 
-            Assert.That(recentFiles[0].EncryptedFileInfo.FullName, Is.EqualTo(file3), "Sorted by Date in reverse, this should be number 1.");
-            Assert.That(recentFiles[1].EncryptedFileInfo.FullName, Is.EqualTo(file2), "Sorted by Date, this should be number 2.");
-            Assert.That(recentFiles[2].EncryptedFileInfo.FullName, Is.EqualTo(file1), "Sorted by Date, this should be number 3.");
+            Assert.That(recentFiles[0].EncryptedFileInfo.FullName, Is.EqualTo(file3.NormalizeFilePath()), "Sorted by Date in reverse, this should be number 1.");
+            Assert.That(recentFiles[1].EncryptedFileInfo.FullName, Is.EqualTo(file2.NormalizeFilePath()), "Sorted by Date, this should be number 2.");
+            Assert.That(recentFiles[2].EncryptedFileInfo.FullName, Is.EqualTo(file1.NormalizeFilePath()), "Sorted by Date, this should be number 3.");
         }
 
         [Test]
@@ -565,7 +565,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\MyFolders\Folder1", Instance.KnownKeys.DefaultEncryptionKey.Thumbprint));
 
                 Assert.That(mvm.WatchedFolders.Count(), Is.EqualTo(1));
-                Assert.That(mvm.WatchedFolders.First(), Is.EqualTo(@"C:\MyFolders\Folder1"));
+                Assert.That(mvm.WatchedFolders.First(), Is.EqualTo(@"C:\MyFolders\Folder1".NormalizeFolderPath()));
             }
         }
 

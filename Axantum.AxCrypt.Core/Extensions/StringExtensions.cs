@@ -144,8 +144,12 @@ namespace Axantum.AxCrypt.Core.Extensions
         public static string NormalizeFolderPath(this string folder)
         {
             folder = folder.NormalizeFilePath();
+            if (String.Compare(folder, Path.GetPathRoot(folder), StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                return folder;
+            }
             int directorySeparatorChars = 0;
-            while (folder[folder.Length - (directorySeparatorChars + 1)] == Path.DirectorySeparatorChar)
+            while (folder.Length - (directorySeparatorChars + 1) > 0 && folder[folder.Length - (directorySeparatorChars + 1)] == Path.DirectorySeparatorChar)
             {
                 ++directorySeparatorChars;
             }

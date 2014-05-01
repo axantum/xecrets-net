@@ -351,7 +351,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestCreateUniqueFileFirstIsOk()
         {
             string unique = @"C:\temp\test.txt".CreateUniqueFile();
-            Assert.That(unique, Is.EqualTo(@"C:\temp\test.txt"));
+            Assert.That(unique, Is.EqualTo(@"C:\temp\test.txt".NormalizeFilePath()));
         }
 
         [Test]
@@ -362,17 +362,17 @@ namespace Axantum.AxCrypt.Core.Test
             {
             }
             string unique = @"C:\temp\test.txt".CreateUniqueFile();
-            Assert.That(unique, Is.EqualTo(@"C:\temp\test.1.txt"));
+            Assert.That(unique, Is.EqualTo(@"C:\temp\test.1.txt".NormalizeFilePath()));
         }
 
         [Test]
         public static void TestCreateUniqueFileReallyCreates()
         {
             string unique = @"C:\temp\test.txt".CreateUniqueFile();
-            Assert.That(unique, Is.EqualTo(@"C:\temp\test.txt"));
+            Assert.That(unique, Is.EqualTo(@"C:\temp\test.txt".NormalizeFilePath()));
 
             unique = @"C:\temp\test.txt".CreateUniqueFile();
-            Assert.That(unique, Is.EqualTo(@"C:\temp\test.1.txt"));
+            Assert.That(unique, Is.EqualTo(@"C:\temp\test.1.txt".NormalizeFilePath()));
         }
 
         [Test]
@@ -395,7 +395,7 @@ namespace Axantum.AxCrypt.Core.Test
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable")]
         public static void TestIsEncryptable()
         {
-            OS.PathFilters.Add(new Regex(@"^C:\\Windows\\(?!Temp$)"));
+            OS.PathFilters.Add(new Regex(@"^C:\{0}Windows\{0}(?!Temp$)".InvariantFormat(Path.DirectorySeparatorChar)));
 
             Assert.That(Factory.New<IRuntimeFileInfo>(@"C:\Temp\test.txt").IsEncryptable(), Is.True);
             Assert.That(Factory.New<IRuntimeFileInfo>(@"C:\Windows\test.txt").IsEncryptable(), Is.False);
@@ -458,7 +458,7 @@ namespace Axantum.AxCrypt.Core.Test
             fileInfo = Factory.New<IRuntimeFileInfo>(@"c:\not-there.txt");
             Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.NonExisting));
 
-            OS.PathFilters.Add(new Regex(@"^C:\\Windows\\"));
+            OS.PathFilters.Add(new Regex(@"^C:\{0}Windows\{0}".InvariantFormat(Path.DirectorySeparatorChar)));
             FakeRuntimeFileInfo.AddFile(@"C:\Windows\System.drv", null);
             fileInfo = Factory.New<IRuntimeFileInfo>(@"C:\Windows\System.drv");
             Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.OtherFile));

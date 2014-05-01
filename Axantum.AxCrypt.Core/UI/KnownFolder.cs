@@ -28,6 +28,7 @@
 using System;
 using System.Linq;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Extensions;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -63,8 +64,8 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 throw new ArgumentNullException("image");
             }
-            RootFullPath = Factory.New<IRuntimeFileInfo>(rootFullPath);
-            MyFullPath = RootFullPath.Combine(myRelativePath);
+            RootFullPath = Factory.New<IRuntimeFileInfo>(rootFullPath.NormalizeFolderPath());
+            MyFullPath = RootFullPath.Combine(myRelativePath).NormalizeFolder();
             Image = image;
             ProviderUrl = providerUrl;
             Enabled = false;

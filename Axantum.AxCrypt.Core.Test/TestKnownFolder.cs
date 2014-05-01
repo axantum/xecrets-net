@@ -59,8 +59,8 @@ namespace Axantum.AxCrypt.Core.Test
             Uri providerUrl = new Uri("http://localhost/AxCrypt/");
 
             KnownFolder kf = new KnownFolder(@"C:\Users\AxCrypt\My Documents", @"AxCrypt", image, providerUrl);
-            Assert.That(kf.RootFullPath.FullName, Is.EqualTo(@"C:\Users\AxCrypt\My Documents".NormalizeFilePath()));
-            Assert.That(kf.MyFullPath.FullName, Is.EqualTo(@"C:\Users\AxCrypt\My Documents\AxCrypt".NormalizeFilePath()));
+            Assert.That(kf.RootFullPath.FullName, Is.EqualTo(@"C:\Users\AxCrypt\My Documents".NormalizeFolderPath()));
+            Assert.That(kf.MyFullPath.FullName, Is.EqualTo(@"C:\Users\AxCrypt\My Documents\AxCrypt".NormalizeFolderPath()));
             Assert.That(kf.Image, Is.EqualTo(image));
             Assert.That(kf.ProviderUrl, Is.EqualTo(providerUrl));
             Assert.That(kf.Enabled, Is.False);
@@ -75,8 +75,8 @@ namespace Axantum.AxCrypt.Core.Test
             KnownFolder kf = new KnownFolder(@"C:\Users\AxCrypt\My Documents", @"AxCrypt", image, providerUrl);
             KnownFolder kfCopy = new KnownFolder(kf, true);
 
-            Assert.That(kfCopy.RootFullPath.FullName, Is.EqualTo(@"C:\Users\AxCrypt\My Documents".NormalizeFilePath()));
-            Assert.That(kfCopy.MyFullPath.FullName, Is.EqualTo(@"C:\Users\AxCrypt\My Documents\AxCrypt".NormalizeFilePath()));
+            Assert.That(kfCopy.RootFullPath.FullName, Is.EqualTo(@"C:\Users\AxCrypt\My Documents".NormalizeFolderPath()));
+            Assert.That(kfCopy.MyFullPath.FullName, Is.EqualTo(@"C:\Users\AxCrypt\My Documents\AxCrypt".NormalizeFolderPath()));
             Assert.That(kfCopy.Image, Is.EqualTo(image));
             Assert.That(kfCopy.ProviderUrl, Is.EqualTo(providerUrl));
             Assert.That(kfCopy.Enabled, Is.True);

@@ -91,7 +91,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         public static void AddFolder(string path)
         {
-            AddFile(path, true, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, null);
+            AddFile(path.NormalizeFolderPath(), true, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, null);
         }
 
         public static void RemoveFileOrFolder(string path)

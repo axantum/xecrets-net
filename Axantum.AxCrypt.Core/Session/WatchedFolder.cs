@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -59,7 +60,7 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("thumbprint");
             }
 
-            Path = path;
+            Path = path.NormalizeFolderPath();
             Thumbprint = thumbprint;
             Initialize(new StreamingContext());
         }

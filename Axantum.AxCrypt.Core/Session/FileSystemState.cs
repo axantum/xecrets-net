@@ -248,6 +248,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 throw new ArgumentNullException("encryptedPath");
             }
+            encryptedPath = encryptedPath.NormalizeFilePath();
             ActiveFile activeFile;
             lock (_activeFilesByEncryptedPath)
             {

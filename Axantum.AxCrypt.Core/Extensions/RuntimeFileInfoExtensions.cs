@@ -91,18 +91,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                 throw new ArgumentException("The path must be a non-empty string.", "folder");
             }
 
-            string normalizedFolder = folder.FullName.Replace(Path.DirectorySeparatorChar == '/' ? '\\' : '/', Path.DirectorySeparatorChar);
-            int directorySeparatorChars = 0;
-            while (normalizedFolder[normalizedFolder.Length - (directorySeparatorChars + 1)] == Path.DirectorySeparatorChar)
-            {
-                ++directorySeparatorChars;
-            }
-
-            if (directorySeparatorChars == 0)
-            {
-                return Factory.New<IRuntimeFileInfo>(normalizedFolder + Path.DirectorySeparatorChar);
-            }
-            return Factory.New<IRuntimeFileInfo>(normalizedFolder.Substring(0, normalizedFolder.Length - (directorySeparatorChars - 1)));
+            return Factory.New<IRuntimeFileInfo>(folder.FullName.NormalizeFolderPath());
         }
 
         public static bool IsEncrypted(this IRuntimeFileInfo fullName)
