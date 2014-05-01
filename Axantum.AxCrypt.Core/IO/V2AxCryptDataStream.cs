@@ -135,18 +135,22 @@ namespace Axantum.AxCrypt.Core.IO
 
         public override int Read(byte[] buffer, int offset, int count)
         {
-            if (_eof || !DataInBuffer())
+            int read = 0;
+            while (read < count)
             {
-                _eof = true;
-                return 0;
+                if (_eof || !DataInBuffer())
+                {
+                    _eof = true;
+                    return read;
+                }
+                int available = _buffer.Length - _offset;
+                int thisread = count > available ? available : count;
+
+                Array.Copy(_buffer, _offset, buffer, offset, thisread);
+                offset += thisread;
+                _offset += thisread;
+                read += thisread;
             }
-
-            int available = _buffer.Length - _offset;
-            int read = count > available ? available : count;
-
-            Array.Copy(_buffer, _offset, buffer, offset, read);
-
-            _offset += read;
             return read;
         }
 

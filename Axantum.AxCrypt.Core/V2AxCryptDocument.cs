@@ -140,6 +140,8 @@ namespace Axantum.AxCrypt.Core
                 }
                 DocumentHeaders.WriteEndWithHmac(outputHmacStream, _plaintextLength, _compressedPlaintextLength);
             }
+            outputStream.Flush();
+            outputStream.SetLength(outputStream.Position);
         }
 
         private void EncryptWithCompressionInternal(Stream inputStream, CryptoStream encryptingStream)
