@@ -72,6 +72,10 @@ namespace Axantum.AxCrypt
             {
                 DialogResult = DialogResult.Retry;
             }
+            else
+            {
+                DialogResult = DialogResult.OK;
+            }
         }
 
         private bool AdHocValidationDueToMonoLimitations()

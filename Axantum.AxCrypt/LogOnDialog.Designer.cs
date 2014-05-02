@@ -100,7 +100,7 @@
             // 
             // _buttonOk
             // 
-            this._buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this._buttonOk.DialogResult = System.Windows.Forms.DialogResult.None;
             resources.ApplyResources(this._buttonOk, "_buttonOk");
             this._buttonOk.Name = "_buttonOk";
             this._buttonOk.UseVisualStyleBackColor = true;
@@ -133,6 +133,7 @@
             // LogOnDialog
             // 
             this.AcceptButton = this._buttonOk;
+            this.CancelButton = this._buttonCancel;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this._buttonCancel;
