@@ -127,6 +127,11 @@ namespace Axantum.AxCrypt
 
         private static void SetupPathFilters()
         {
+            if (OS.Current.Platform != Platform.WindowsDesktop)
+            {
+                return;
+            }
+
             OS.PathFilters.Add(new Regex(@"\\\.dropbox$"));
             OS.PathFilters.Add(new Regex(@"\\desktop\.ini$"));
             OS.PathFilters.Add(new Regex(@".*\.tmp$"));

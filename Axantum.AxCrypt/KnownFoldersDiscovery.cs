@@ -25,14 +25,16 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Properties;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using Axantum.AxCrypt.Core.UI;
-using Axantum.AxCrypt.Properties;
-using Microsoft.Win32;
 
 namespace Axantum.AxCrypt
 {
@@ -41,6 +43,10 @@ namespace Axantum.AxCrypt
         public static IEnumerable<KnownFolder> Discover()
         {
             List<KnownFolder> knownFolders = new List<KnownFolder>();
+            if (OS.Current.Platform != Platform.WindowsDesktop)
+            {
+                return knownFolders;
+            }
 
             CheckDocumentsLibrary(knownFolders);
             CheckDropBox(knownFolders);
