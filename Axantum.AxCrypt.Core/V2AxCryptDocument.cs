@@ -25,10 +25,6 @@
 
 #endregion Coypright and License
 
-using System;
-using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Header;
@@ -36,6 +32,10 @@ using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Org.BouncyCastle.Utilities.Zlib;
+using System;
+using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -140,8 +140,6 @@ namespace Axantum.AxCrypt.Core
                 }
                 DocumentHeaders.WriteEndWithHmac(outputHmacStream, _plaintextLength, _compressedPlaintextLength);
             }
-            outputStream.Flush();
-            outputStream.SetLength(outputStream.Position);
         }
 
         private void EncryptWithCompressionInternal(Stream inputStream, CryptoStream encryptingStream)
