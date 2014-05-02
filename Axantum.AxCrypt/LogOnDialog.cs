@@ -67,7 +67,7 @@ namespace Axantum.AxCrypt
             if (OS.Current.Platform == Platform.WindowsDesktop)
             {
                 PropertyInfo propertyInfo = typeof(LogOnDialog).GetProperty("AutoValidate");
-                propertyInfo.SetValue(this, AutoValidate.EnableAllowFocusChange, null);
+                propertyInfo.SetValue(this, AutoValidate.Disable, null);
             }
         }
 
@@ -115,6 +115,11 @@ namespace Axantum.AxCrypt
             TopMost = true;
             BringToFront();
             Focus();
+        }
+
+        private void PassphraseTextBox_Enter(object sender, EventArgs e)
+        {
+            _errorProvider1.Clear();
         }
     }
 }

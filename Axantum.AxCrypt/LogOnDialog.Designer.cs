@@ -34,11 +34,11 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.PassphraseGroupBox = new System.Windows.Forms.GroupBox();
             this.ShowPassphraseCheckBox = new System.Windows.Forms.CheckBox();
-            this.PassphraseTextBox = new System.Windows.Forms.TextBox();
             this._panel1 = new System.Windows.Forms.Panel();
             this._newButton = new System.Windows.Forms.Button();
             this._buttonCancel = new System.Windows.Forms.Button();
             this._buttonOk = new System.Windows.Forms.Button();
+            this.PassphraseTextBox = new System.Windows.Forms.TextBox();
             this.FileNamePanel = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.FileNameTextBox = new System.Windows.Forms.TextBox();
@@ -72,15 +72,9 @@
             // ShowPassphraseCheckBox
             // 
             resources.ApplyResources(this.ShowPassphraseCheckBox, "ShowPassphraseCheckBox");
+            this.ShowPassphraseCheckBox.CausesValidation = false;
             this.ShowPassphraseCheckBox.Name = "ShowPassphraseCheckBox";
             this.ShowPassphraseCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // PassphraseTextBox
-            // 
-            resources.ApplyResources(this.PassphraseTextBox, "PassphraseTextBox");
-            this.PassphraseTextBox.Name = "PassphraseTextBox";
-            this.PassphraseTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.PassphraseTextBox_Validating);
-            this.PassphraseTextBox.Validated += new System.EventHandler(this.PassphraseTextBox_Validated);
             // 
             // _panel1
             // 
@@ -109,12 +103,19 @@
             // 
             // _buttonOk
             // 
-            this._buttonOk.CausesValidation = false;
             this._buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             resources.ApplyResources(this._buttonOk, "_buttonOk");
             this._buttonOk.Name = "_buttonOk";
             this._buttonOk.UseVisualStyleBackColor = true;
             this._buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
+            // 
+            // PassphraseTextBox
+            // 
+            resources.ApplyResources(this.PassphraseTextBox, "PassphraseTextBox");
+            this.PassphraseTextBox.Name = "PassphraseTextBox";
+            this.PassphraseTextBox.Enter += new System.EventHandler(this.PassphraseTextBox_Enter);
+            this.PassphraseTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.PassphraseTextBox_Validating);
+            this.PassphraseTextBox.Validated += new System.EventHandler(this.PassphraseTextBox_Validated);
             // 
             // FileNamePanel
             // 
@@ -131,6 +132,7 @@
             // 
             // FileNameTextBox
             // 
+            this.FileNameTextBox.CausesValidation = false;
             resources.ApplyResources(this.FileNameTextBox, "FileNameTextBox");
             this.FileNameTextBox.Name = "FileNameTextBox";
             // 

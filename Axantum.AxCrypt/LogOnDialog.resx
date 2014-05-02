@@ -195,6 +195,108 @@
   <data name="panel1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="ShowPassphraseCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ShowPassphraseCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ShowPassphraseCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 53</value>
+  </data>
+  <data name="ShowPassphraseCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 17</value>
+  </data>
+  <data name="ShowPassphraseCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="ShowPassphraseCheckBox.Text" xml:space="preserve">
+    <value>Show Passphrase</value>
+  </data>
+  <data name="&gt;&gt;ShowPassphraseCheckBox.Name" xml:space="preserve">
+    <value>ShowPassphraseCheckBox</value>
+  </data>
+  <data name="&gt;&gt;ShowPassphraseCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ShowPassphraseCheckBox.Parent" xml:space="preserve">
+    <value>PassphraseGroupBox</value>
+  </data>
+  <data name="&gt;&gt;ShowPassphraseCheckBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="_panel1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;_newButton.Name" xml:space="preserve">
+    <value>_newButton</value>
+  </data>
+  <data name="&gt;&gt;_newButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_newButton.Parent" xml:space="preserve">
+    <value>_panel1</value>
+  </data>
+  <data name="&gt;&gt;_newButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="_panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 85</value>
+  </data>
+  <data name="_panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>273, 37</value>
+  </data>
+  <data name="_panel1.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;_panel1.Name" xml:space="preserve">
+    <value>_panel1</value>
+  </data>
+  <data name="&gt;&gt;_panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_panel1.Parent" xml:space="preserve">
+    <value>PassphraseGroupBox</value>
+  </data>
+  <data name="&gt;&gt;_panel1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="PassphraseTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 20</value>
+  </data>
+  <data name="PassphraseTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 20</value>
+  </data>
+  <data name="PassphraseTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;PassphraseTextBox.Name" xml:space="preserve">
+    <value>PassphraseTextBox</value>
+  </data>
+  <data name="&gt;&gt;PassphraseTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;PassphraseTextBox.Parent" xml:space="preserve">
+    <value>PassphraseGroupBox</value>
+  </data>
+  <data name="&gt;&gt;PassphraseTextBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="PassphraseGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 6</value>
+  </data>
+  <data name="PassphraseGroupBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 13, 13</value>
+  </data>
+  <data name="PassphraseGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>298, 131</value>
+  </data>
+  <data name="PassphraseGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="PassphraseGroupBox.Text" xml:space="preserve">
+    <value>Enter Passphrase</value>
+  </data>
   <data name="&gt;&gt;PassphraseGroupBox.Name" xml:space="preserve">
     <value>PassphraseGroupBox</value>
   </data>
@@ -663,156 +765,6 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ShowPassphraseCheckBox.Name" xml:space="preserve">
-    <value>ShowPassphraseCheckBox</value>
-  </data>
-  <data name="&gt;&gt;ShowPassphraseCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ShowPassphraseCheckBox.Parent" xml:space="preserve">
-    <value>PassphraseGroupBox</value>
-  </data>
-  <data name="&gt;&gt;ShowPassphraseCheckBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;_panel1.Name" xml:space="preserve">
-    <value>_panel1</value>
-  </data>
-  <data name="&gt;&gt;_panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;_panel1.Parent" xml:space="preserve">
-    <value>PassphraseGroupBox</value>
-  </data>
-  <data name="&gt;&gt;_panel1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;PassphraseTextBox.Name" xml:space="preserve">
-    <value>PassphraseTextBox</value>
-  </data>
-  <data name="&gt;&gt;PassphraseTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;PassphraseTextBox.Parent" xml:space="preserve">
-    <value>PassphraseGroupBox</value>
-  </data>
-  <data name="&gt;&gt;PassphraseTextBox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="PassphraseGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 6</value>
-  </data>
-  <data name="PassphraseGroupBox.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 13, 13</value>
-  </data>
-  <data name="PassphraseGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>298, 131</value>
-  </data>
-  <data name="PassphraseGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="PassphraseGroupBox.Text" xml:space="preserve">
-    <value>Enter Passphrase</value>
-  </data>
-  <data name="&gt;&gt;PassphraseGroupBox.Name" xml:space="preserve">
-    <value>PassphraseGroupBox</value>
-  </data>
-  <data name="&gt;&gt;PassphraseGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;PassphraseGroupBox.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;PassphraseGroupBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="ShowPassphraseCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="ShowPassphraseCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="ShowPassphraseCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 53</value>
-  </data>
-  <data name="ShowPassphraseCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 17</value>
-  </data>
-  <data name="ShowPassphraseCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="ShowPassphraseCheckBox.Text" xml:space="preserve">
-    <value>Show Passphrase</value>
-  </data>
-  <data name="&gt;&gt;ShowPassphraseCheckBox.Name" xml:space="preserve">
-    <value>ShowPassphraseCheckBox</value>
-  </data>
-  <data name="&gt;&gt;ShowPassphraseCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ShowPassphraseCheckBox.Parent" xml:space="preserve">
-    <value>PassphraseGroupBox</value>
-  </data>
-  <data name="&gt;&gt;ShowPassphraseCheckBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="PassphraseTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 20</value>
-  </data>
-  <data name="PassphraseTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>242, 20</value>
-  </data>
-  <data name="PassphraseTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;PassphraseTextBox.Name" xml:space="preserve">
-    <value>PassphraseTextBox</value>
-  </data>
-  <data name="&gt;&gt;PassphraseTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;PassphraseTextBox.Parent" xml:space="preserve">
-    <value>PassphraseGroupBox</value>
-  </data>
-  <data name="&gt;&gt;PassphraseTextBox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="_panel1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;_newButton.Name" xml:space="preserve">
-    <value>_newButton</value>
-  </data>
-  <data name="&gt;&gt;_newButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;_newButton.Parent" xml:space="preserve">
-    <value>_panel1</value>
-  </data>
-  <data name="&gt;&gt;_newButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="_panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 85</value>
-  </data>
-  <data name="_panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 37</value>
-  </data>
-  <data name="_panel1.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;_panel1.Name" xml:space="preserve">
-    <value>_panel1</value>
-  </data>
-  <data name="&gt;&gt;_panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;_panel1.Parent" xml:space="preserve">
-    <value>PassphraseGroupBox</value>
-  </data>
-  <data name="&gt;&gt;_panel1.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="_newButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
