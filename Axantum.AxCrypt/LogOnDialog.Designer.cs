@@ -72,7 +72,6 @@
             // ShowPassphraseCheckBox
             // 
             resources.ApplyResources(this.ShowPassphraseCheckBox, "ShowPassphraseCheckBox");
-            this.ShowPassphraseCheckBox.CausesValidation = false;
             this.ShowPassphraseCheckBox.Name = "ShowPassphraseCheckBox";
             this.ShowPassphraseCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -86,7 +85,6 @@
             // 
             // _newButton
             // 
-            this._newButton.CausesValidation = false;
             this._newButton.DialogResult = System.Windows.Forms.DialogResult.Retry;
             resources.ApplyResources(this._newButton, "_newButton");
             this._newButton.Name = "_newButton";
@@ -95,7 +93,6 @@
             // 
             // _buttonCancel
             // 
-            this._buttonCancel.CausesValidation = false;
             this._buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this._buttonCancel, "_buttonCancel");
             this._buttonCancel.Name = "_buttonCancel";
@@ -114,8 +111,6 @@
             resources.ApplyResources(this.PassphraseTextBox, "PassphraseTextBox");
             this.PassphraseTextBox.Name = "PassphraseTextBox";
             this.PassphraseTextBox.Enter += new System.EventHandler(this.PassphraseTextBox_Enter);
-            this.PassphraseTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.PassphraseTextBox_Validating);
-            this.PassphraseTextBox.Validated += new System.EventHandler(this.PassphraseTextBox_Validated);
             // 
             // FileNamePanel
             // 
@@ -132,7 +127,6 @@
             // 
             // FileNameTextBox
             // 
-            this.FileNameTextBox.CausesValidation = false;
             resources.ApplyResources(this.FileNameTextBox, "FileNameTextBox");
             this.FileNameTextBox.Name = "FileNameTextBox";
             // 
