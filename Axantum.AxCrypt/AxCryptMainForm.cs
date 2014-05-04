@@ -182,6 +182,7 @@ namespace Axantum.AxCrypt
                 {
                     Application.DoEvents();
                 }
+                WarnIfAnyDecryptedFiles();
             };
 
             _encryptToolStripButton.Tag = FileInfoTypes.EncryptableFile;
@@ -954,6 +955,10 @@ namespace Axantum.AxCrypt
         private void EncryptPendingFiles()
         {
             _mainViewModel.EncryptPendingFiles.Execute(null);
+        }
+
+        private void WarnIfAnyDecryptedFiles()
+        {
             IEnumerable<ActiveFile> openFiles = _mainViewModel.DecryptedFiles;
             if (!openFiles.Any())
             {
