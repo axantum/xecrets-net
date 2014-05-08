@@ -25,9 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -35,6 +32,9 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Extensions
 {
@@ -159,6 +159,16 @@ namespace Axantum.AxCrypt.Core.Extensions
                 key = Factory.New<AxCryptFactory>().CreatePassphrase(knownKey.Passphrase, fileInfo, new Guid[] { knownKey.CryptoId });
                 if (key != null)
                 {
+                    return true;
+                }
+            }
+            foreach (IPassphrase knownKey in Instance.KnownKeys.Keys)
+            {
+                IEnumerable<Guid> otherIds = Instance.CryptoFactory.OrderedIds.Where(g => g != knownKey.CryptoId);
+                key = Factory.New<AxCryptFactory>().CreatePassphrase(knownKey.Passphrase, fileInfo, otherIds);
+                if (key != null)
+                {
+                    Instance.KnownKeys.Add(key);
                     return true;
                 }
             }
