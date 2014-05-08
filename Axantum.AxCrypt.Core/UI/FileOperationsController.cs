@@ -253,7 +253,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
             else
             {
-                _eventArgs.Key = Instance.KnownKeys.DefaultEncryptionKey;
+                _eventArgs.Key = Instance.CryptoFactory.Default.CreatePassphrase(Instance.KnownKeys.DefaultEncryptionKey.Passphrase);
             }
 
             return true;

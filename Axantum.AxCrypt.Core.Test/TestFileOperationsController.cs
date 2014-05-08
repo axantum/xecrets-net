@@ -127,6 +127,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptFileWithDefaultEncryptionKey()
         {
+            Factory.Instance.Singleton<ICryptoPolicy>(() => new LegacyCryptoPolicy());
             Instance.KnownKeys.DefaultEncryptionKey = new V1Passphrase("default");
             FileOperationsController controller = new FileOperationsController();
             bool queryEncryptionPassphraseWasCalled = false;

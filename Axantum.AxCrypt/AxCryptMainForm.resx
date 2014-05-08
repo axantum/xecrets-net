@@ -480,6 +480,12 @@
   <data name="freeeToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Free</value>
   </data>
+  <data name="legacyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 24</value>
+  </data>
+  <data name="legacyToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Legacy</value>
+  </data>
   <data name="cryptoPolicyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>197, 24</value>
   </data>
@@ -1535,7 +1541,13 @@
     <value>_progressBackgroundWorker</value>
   </data>
   <data name="&gt;&gt;_progressBackgroundWorker.Type" xml:space="preserve">
-    <value>Axantum.AxCrypt.ProgressBackground, Axantum.AxCrypt, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
+    <value>Axantum.AxCrypt.Forms.ProgressBackground, Axantum.AxCrypt.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
+  </data>
+  <data name="&gt;&gt;legacyToolStripMenuItem.Name" xml:space="preserve">
+    <value>legacyToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;legacyToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AxCryptMainForm</value>

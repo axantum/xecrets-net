@@ -51,6 +51,7 @@
     <Compile Include="Crypto\CryptoExtensions.cs" />
     <Compile Include="Crypto\FreeCryptoPolicy.cs" />
     <Compile Include="Crypto\ICryptoPolicy.cs" />
+    <Compile Include="Crypto\LegacyCryptoPolicy.cs" />
     <Compile Include="Crypto\ProCryptoPolicy.cs" />
     <Compile Include="Crypto\V1Aes128CryptoFactory.cs" />
     <Compile Include="Crypto\V2Aes128CryptoFactory.cs" />

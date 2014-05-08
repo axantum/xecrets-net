@@ -79,6 +79,7 @@
             this._watchedFoldersdecryptTemporarilyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._watchedFoldersOpenExplorerHereMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.ProgressBackground(this.components);
+            this.legacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainToolStrip.SuspendLayout();
             this._mainMenuStrip.SuspendLayout();
             this._recentFilesContextMenuStrip.SuspendLayout();
@@ -329,7 +330,8 @@
             // 
             this.cryptoPolicyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.proToolStripMenuItem,
-            this.freeeToolStripMenuItem});
+            this.freeeToolStripMenuItem,
+            this.legacyToolStripMenuItem});
             this.cryptoPolicyToolStripMenuItem.Name = "cryptoPolicyToolStripMenuItem";
             resources.ApplyResources(this.cryptoPolicyToolStripMenuItem, "cryptoPolicyToolStripMenuItem");
             // 
@@ -517,6 +519,12 @@
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
             // 
+            // legacyToolStripMenuItem
+            // 
+            this.legacyToolStripMenuItem.Name = "legacyToolStripMenuItem";
+            resources.ApplyResources(this.legacyToolStripMenuItem, "legacyToolStripMenuItem");
+            this.legacyToolStripMenuItem.Click += new System.EventHandler(this.LegacyToolStripMenuItem_Click);
+            // 
             // AxCryptMainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -609,6 +617,7 @@
         private System.Windows.Forms.ToolStripMenuItem cryptoPolicyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem proToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem freeeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem legacyToolStripMenuItem;
     }
 }
 

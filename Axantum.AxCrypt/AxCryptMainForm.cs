@@ -1178,6 +1178,12 @@ namespace Axantum.AxCrypt
             Factory.Instance.Singleton<ICryptoPolicy>(() => new FreeCryptoPolicy());
         }
 
+        private void LegacyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetCheckedToolStripMenuItem(sender);
+            Factory.Instance.Singleton<ICryptoPolicy>(() => new LegacyCryptoPolicy());
+        }
+
         private static void SetCheckedToolStripMenuItem(object sender)
         {
             ToolStripMenuItem item = sender as ToolStripMenuItem;
