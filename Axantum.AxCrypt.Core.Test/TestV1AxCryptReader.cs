@@ -25,13 +25,13 @@
 
 #endregion Coypright and License
 
+using System;
+using System.IO;
+using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Reader;
 using NUnit.Framework;
-using System;
-using System.IO;
-using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -77,19 +77,6 @@ namespace Axantum.AxCrypt.Core.Test
                     Assert.That(reader.Read(), Is.False);
                     Assert.That(reader.CurrentItemType, Is.EqualTo(AxCryptItemType.EndOfStream));
                 }
-            }
-        }
-
-        [Test]
-        public static void TestGetCrypto()
-        {
-            using (V1AxCryptReader reader = new V1AxCryptReader(Stream.Null))
-            {
-                IPassphrase key = new V1Passphrase("allan");
-                ICrypto crypto = reader.Crypto(key);
-
-                Assert.That(crypto is V1AesCrypto, Is.True);
-                Assert.That(crypto.Key.Passphrase, Is.EqualTo(key.Passphrase));
             }
         }
     }

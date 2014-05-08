@@ -61,11 +61,6 @@ namespace Axantum.AxCrypt.Core.Test
             {
             }
 
-            public override Crypto.ICrypto Crypto(Crypto.IPassphrase key)
-            {
-                throw new NotImplementedException();
-            }
-
             public override Crypto.ICrypto Crypto(Headers headers, string passphrase, Guid cryptoId)
             {
                 throw new NotImplementedException();
@@ -186,7 +181,7 @@ namespace Axantum.AxCrypt.Core.Test
                         {
                             string text = null;
                             Assert.Throws<FileFormatException>(() => text = textReader.ReadToEnd());
-							Assert.That(text, Is.Null);
+                            Assert.That(text, Is.Null);
                         }
                     }
                 }
@@ -218,7 +213,7 @@ namespace Axantum.AxCrypt.Core.Test
                         {
                             string text = null;
                             Assert.Throws<FileFormatException>(() => text = textReader.ReadToEnd());
-							Assert.That(text, Is.Null);
+                            Assert.That(text, Is.Null);
                         }
                     }
                 }

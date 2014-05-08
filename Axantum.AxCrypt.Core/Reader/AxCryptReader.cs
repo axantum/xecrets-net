@@ -68,8 +68,6 @@ namespace Axantum.AxCrypt.Core.Reader
             CurrentItemType = AxCryptItemType.Data;
         }
 
-        public abstract ICrypto Crypto(IPassphrase key);
-
         public abstract ICrypto Crypto(Headers headers, string passphrase, Guid cryptoId);
 
         public abstract IAxCryptDocument Document(IPassphrase key, Headers headers);

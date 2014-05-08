@@ -74,11 +74,6 @@ namespace Axantum.AxCrypt.Core.Reader
             InputStream = null;
         }
 
-        public override ICrypto Crypto(IPassphrase key)
-        {
-            throw new NotImplementedException();
-        }
-
         public override ICrypto Crypto(Headers headers, string passphrase, Guid cryptoId)
         {
             throw new NotImplementedException();

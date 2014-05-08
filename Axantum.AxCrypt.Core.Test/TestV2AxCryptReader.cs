@@ -52,18 +52,6 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestGetCryptoFromKey()
-        {
-            using (V2AxCryptReader reader = new V2AxCryptReader(Stream.Null))
-            {
-                ICrypto crypto = reader.Crypto(new GenericPassphrase("test"));
-
-                Assert.That(crypto is V2AesCrypto);
-                Assert.That(crypto.Key.Passphrase, Is.EqualTo("test"));
-            }
-        }
-
-        [Test]
         public static void TestGetCryptoFromHeaders()
         {
             ICrypto crypto = new V2AesCrypto(new V2Passphrase("passphrase", 256, CryptoFactory.Aes256Id), SymmetricIV.Zero128, 0);

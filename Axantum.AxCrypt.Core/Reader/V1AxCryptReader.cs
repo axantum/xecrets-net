@@ -87,14 +87,9 @@ namespace Axantum.AxCrypt.Core.Reader
             return new UnrecognizedHeaderBlock(headerBlockType, dataBlock);
         }
 
-        public override ICrypto Crypto(IPassphrase key)
-        {
-            return Instance.CryptoFactory.Legacy.CreateCrypto(key);
-        }
-
         public override ICrypto Crypto(Headers headers, string passphrase, Guid cryptoId)
         {
-            return Crypto(Instance.CryptoFactory.Legacy.CreatePassphrase(passphrase));
+            return Instance.CryptoFactory.Legacy.CreateCrypto(Instance.CryptoFactory.Legacy.CreatePassphrase(passphrase));
         }
 
         public override IAxCryptDocument Document(IPassphrase key, Headers headers)

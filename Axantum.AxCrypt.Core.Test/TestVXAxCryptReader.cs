@@ -92,7 +92,6 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (VXAxCryptReader reader = new VXAxCryptReader(Stream.Null))
             {
-                Assert.Throws<NotImplementedException>(() => reader.Crypto(new GenericPassphrase("test")));
                 Assert.Throws<NotImplementedException>(() => reader.Crypto(new Headers(), "testing", Guid.Empty));
                 Assert.Throws<NotImplementedException>(() => reader.Document(new GenericPassphrase("test"), new Headers()));
             }
