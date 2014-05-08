@@ -335,6 +335,8 @@
             // 
             // proToolStripMenuItem
             // 
+            this.proToolStripMenuItem.Checked = true;
+            this.proToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.proToolStripMenuItem.Name = "proToolStripMenuItem";
             resources.ApplyResources(this.proToolStripMenuItem, "proToolStripMenuItem");
             this.proToolStripMenuItem.Click += new System.EventHandler(this.ProToolStripMenuItem_Click);
@@ -580,7 +582,7 @@
         private System.Windows.Forms.ToolStripMenuItem _checkVersionNowToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _viewHelpMenuItem;
-        private ProgressBackground _progressBackgroundWorker;
+        private Axantum.AxCrypt.ProgressBackground _progressBackgroundWorker;
         private System.Windows.Forms.TabPage _logTabPage;
         private System.Windows.Forms.TextBox _logOutputTextBox;
         private System.Windows.Forms.ListView _watchedFoldersListView;

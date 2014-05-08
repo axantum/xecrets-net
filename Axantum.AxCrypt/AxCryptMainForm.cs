@@ -25,16 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Ipc;
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.Session;
-using Axantum.AxCrypt.Core.UI;
-using Axantum.AxCrypt.Core.UI.ViewModel;
-using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -48,6 +38,16 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
+using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Ipc;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Core.UI.ViewModel;
+using Axantum.AxCrypt.Properties;
 
 namespace Axantum.AxCrypt
 {
@@ -1168,12 +1168,24 @@ namespace Axantum.AxCrypt
 
         private void ProToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            SetCheckedToolStripMenuItem(sender);
             Factory.Instance.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
         }
 
         private void FreeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            SetCheckedToolStripMenuItem(sender);
             Factory.Instance.Singleton<ICryptoPolicy>(() => new FreeCryptoPolicy());
+        }
+
+        private static void SetCheckedToolStripMenuItem(object sender)
+        {
+            ToolStripMenuItem item = sender as ToolStripMenuItem;
+            foreach (ToolStripItem tsi in item.GetCurrentParent().Items)
+            {
+                ((ToolStripMenuItem)tsi).Checked = false;
+            }
+            item.Checked = true;
         }
     }
 }

@@ -1535,7 +1535,7 @@
     <value>_progressBackgroundWorker</value>
   </data>
   <data name="&gt;&gt;_progressBackgroundWorker.Type" xml:space="preserve">
-    <value>Axantum.AxCrypt.ProgressBackground, Axantum.AxCrypt, Version=2.0.956.1, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
+    <value>Axantum.AxCrypt.ProgressBackground, Axantum.AxCrypt, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AxCryptMainForm</value>
