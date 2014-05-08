@@ -25,13 +25,13 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
-using Newtonsoft.Json;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Threading;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
+using Newtonsoft.Json;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -62,6 +62,8 @@ namespace Axantum.AxCrypt.Core.UI
         public virtual event EventHandler<VersionEventArgs> VersionUpdate;
 
         private ManualResetEvent _done = new ManualResetEvent(true);
+
+        private readonly object _doneLock = new object();
 
         /// <summary>
         /// Perform a background version check. The VersionUpdate event is guaranteed to be
@@ -99,7 +101,7 @@ namespace Axantum.AxCrypt.Core.UI
                 return;
             }
 
-            lock (_done)
+            lock (_doneLock)
             {
                 if (!_done.WaitOne(TimeSpan.Zero, false))
                 {

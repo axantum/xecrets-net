@@ -104,7 +104,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestWriteWithHmac()
         {
             using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Passphrase("v2passzz", 256, CryptoFactory.Aes256Id), new SymmetricIV(128), 0), 20))

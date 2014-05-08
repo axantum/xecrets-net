@@ -51,20 +51,20 @@ namespace Axantum.AxCrypt.Core.Ipc
                 case CommandVerb.Wipe:
                 case CommandVerb.RandomRename:
                     _bundles.AddArguments(e.BundleId, e.Arguments);
-                    OnCommandComplete(new CommandCompleteArgs(e.Verb, _bundles.Arguments(e.BundleId)));
+                    OnCommandComplete(new CommandCompleteEventArgs(e.Verb, _bundles.Arguments(e.BundleId)));
                     break;
 
                 default:
-                    OnCommandComplete(new CommandCompleteArgs(e.Verb, e.Arguments));
+                    OnCommandComplete(new CommandCompleteEventArgs(e.Verb, e.Arguments));
                     break;
             }
         }
 
-        public event EventHandler<CommandCompleteArgs> CommandComplete;
+        public event EventHandler<CommandCompleteEventArgs> CommandComplete;
 
-        protected virtual void OnCommandComplete(CommandCompleteArgs e)
+        protected virtual void OnCommandComplete(CommandCompleteEventArgs e)
         {
-            EventHandler<CommandCompleteArgs> handler = CommandComplete;
+            EventHandler<CommandCompleteEventArgs> handler = CommandComplete;
             if (handler != null)
             {
                 handler(this, e);

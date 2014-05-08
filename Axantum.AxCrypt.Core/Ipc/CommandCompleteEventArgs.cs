@@ -31,13 +31,13 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Ipc
 {
-    public class CommandCompleteArgs : EventArgs
+    public class CommandCompleteEventArgs : EventArgs
     {
         public CommandVerb Verb { get; private set; }
 
         public IEnumerable<string> Arguments { get; private set; }
 
-        public CommandCompleteArgs(CommandVerb verb, IEnumerable<string> arguments)
+        public CommandCompleteEventArgs(CommandVerb verb, IEnumerable<string> arguments)
         {
             Verb = verb;
             Arguments = arguments;

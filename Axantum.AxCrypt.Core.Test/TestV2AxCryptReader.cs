@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.AssemblyTeardown();
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestGetCryptoFromHeaders()
         {
             ICrypto crypto = new V2AesCrypto(new V2Passphrase("passphrase", 256, CryptoFactory.Aes256Id), SymmetricIV.Zero128, 0);

@@ -109,7 +109,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(FileLock.IsLocked(fileInfo1), Is.False, "There should be no lock for this file again.");
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestFileLockDoubleDispose()
         {
             Assert.DoesNotThrow(() =>

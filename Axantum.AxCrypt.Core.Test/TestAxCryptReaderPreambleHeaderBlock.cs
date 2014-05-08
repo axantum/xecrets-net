@@ -25,14 +25,14 @@
 
 #endregion Coypright and License
 
+using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Test.Properties;
 using NUnit.Framework;
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -95,7 +95,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestFindPreambleHeaderBlockFromSimpleFile()
         {
             using (Stream testStream = FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt))

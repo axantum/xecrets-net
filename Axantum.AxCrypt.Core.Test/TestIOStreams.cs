@@ -25,13 +25,13 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
-using NUnit.Framework;
 using System;
 using System.IO;
 using System.IO.Compression;
 using System.Text;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
+using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -210,7 +210,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestLookAheadStream()
         {
             Assert.Throws<ArgumentNullException>(() =>
@@ -316,7 +316,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestNonClosingStream()
         {
             Assert.Throws<ArgumentNullException>(() =>

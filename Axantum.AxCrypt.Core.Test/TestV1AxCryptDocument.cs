@@ -25,6 +25,12 @@
 
 #endregion Coypright and License
 
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
@@ -33,12 +39,6 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.IO;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -602,7 +602,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestDoubleDispose()
         {
             V1AxCryptDocument document = new V1AxCryptDocument();

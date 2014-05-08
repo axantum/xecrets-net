@@ -70,6 +70,7 @@
     <Compile Include="FakeRuntimeFileInfo.cs" />
     <Compile Include="FakeTiming.cs" />
     <Compile Include="FakeWebCaller.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="MockAxCryptFile.cs" />
     <Compile Include="MockFileSystemStateActions.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

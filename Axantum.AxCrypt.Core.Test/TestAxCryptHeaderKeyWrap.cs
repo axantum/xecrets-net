@@ -25,13 +25,13 @@
 
 #endregion Coypright and License
 
+using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Test.Properties;
 using NUnit.Framework;
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.AssemblyTeardown();
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This is test, readability and coding ease is a concern, not performance.")]
         public void TestUnwrapFromSimpleFile()
         {

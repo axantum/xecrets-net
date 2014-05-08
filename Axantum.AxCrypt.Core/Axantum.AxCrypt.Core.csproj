@@ -83,7 +83,7 @@
     <Compile Include="IO\V2AxCryptDataStream.cs" />
     <Compile Include="IO\V2HmacStream.cs" />
     <Compile Include="Ipc\ArgumentBundles.cs" />
-    <Compile Include="Ipc\CommandCompleteArgs.cs" />
+    <Compile Include="Ipc\CommandCompleteEventArgs.cs" />
     <Compile Include="Ipc\CommandHandler.cs" />
     <Compile Include="Ipc\CommandItem.cs" />
     <Compile Include="Reader\AxCryptReader.cs" />
@@ -110,10 +110,10 @@
     <Compile Include="IO\LockingStream.cs" />
     <Compile Include="Ipc\IRequestServer.cs" />
     <Compile Include="Ipc\IRequestClient.cs" />
-    <Compile Include="Ipc\CommandServiceArgs.cs" />
+    <Compile Include="Ipc\CommandServiceEventArgs.cs" />
     <Compile Include="Ipc\CommandService.cs" />
     <Compile Include="Ipc\CommandVerb.cs" />
-    <Compile Include="Ipc\RequestCommandArgs.cs" />
+    <Compile Include="Ipc\RequestCommandEventArgs.cs" />
     <Compile Include="Ipc\CommandStatus.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

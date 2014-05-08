@@ -25,6 +25,10 @@
 
 #endregion Coypright and License
 
+using System;
+using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Header;
@@ -32,10 +36,6 @@ using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Org.BouncyCastle.Utilities.Zlib;
-using System;
-using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -99,6 +99,7 @@ namespace Axantum.AxCrypt.Core
         /// <param name="outputDocumentHeaders"></param>
         /// <param name="inputStream"></param>
         /// <param name="outputStream"></param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
         public void EncryptTo(Stream inputStream, Stream outputStream, AxCryptOptions options)
         {
             if (inputStream == null)

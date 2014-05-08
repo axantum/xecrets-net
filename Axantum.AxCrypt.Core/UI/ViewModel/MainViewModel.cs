@@ -25,16 +25,16 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
@@ -328,7 +328,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.SessionStart));
         }
 
-        private void EncryptPendingFilesAction()
+        private static void EncryptPendingFilesAction()
         {
             Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.EncryptPendingFiles));
         }

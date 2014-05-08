@@ -25,14 +25,14 @@
 
 #endregion Coypright and License
 
+using System;
+using System.IO;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Test.Properties;
 using NUnit.Framework;
-using System;
-using System.IO;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.AssemblyTeardown();
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestConstructor()
         {
             Assert.Throws<ArgumentNullException>(() =>
@@ -84,7 +84,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestFactoryMethod()
         {
             Assert.Throws<ArgumentNullException>(() =>
@@ -104,7 +104,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestObjectDisposed()
         {
             using (Stream inputStream = FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
@@ -254,7 +254,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestTooShortStream()
         {
             using (MemoryStream inputStream = new MemoryStream())
@@ -307,7 +307,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestKeyWrap2HeaderBlock()
         {
             using (MemoryStream inputStream = new MemoryStream())
@@ -333,7 +333,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestUnrecognizedHeaderBlock()
         {
             using (MemoryStream inputStream = new MemoryStream())

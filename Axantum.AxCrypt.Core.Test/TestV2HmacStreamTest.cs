@@ -1,10 +1,10 @@
-﻿using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
-using NUnit.Framework;
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
+using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -148,7 +148,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(result, Is.EquivalentTo(hmac_sha_512));
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Rfc", Justification = "This is well-known acronymn")]
         public static void Rfc4231TestCase7WithChaining()
         {
@@ -177,7 +177,7 @@ namespace Axantum.AxCrypt.Core.Test
             byte[] nullBytes = null;
             Stream stream = null;
             Assert.Throws<ArgumentNullException>(() => stream = new V2HmacStream(nullBytes));
-			Assert.That(stream, Is.Null);
+            Assert.That(stream, Is.Null);
         }
 
         [Test]

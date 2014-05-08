@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
 using System.Linq;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Axantum.AxCrypt.Core.Ipc
 {
@@ -50,6 +50,6 @@ namespace Axantum.AxCrypt.Core.Ipc
         ShowLogOn,
         SetPassphrase,
         SetKeyFile,
-        Login,
+        LogOn,
     }
 }

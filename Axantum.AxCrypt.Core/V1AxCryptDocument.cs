@@ -104,6 +104,7 @@ namespace Axantum.AxCrypt.Core
         /// </summary>
         /// <param name="inputStream"></param>
         /// <param name="outputStream"></param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
         public void EncryptTo(Stream inputStream, Stream outputStream, AxCryptOptions options)
         {
             if (inputStream == null)

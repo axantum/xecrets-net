@@ -557,12 +557,12 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void AxCryptMainForm_CommandComplete(object sender, CommandCompleteArgs e)
+        private void AxCryptMainForm_CommandComplete(object sender, CommandCompleteEventArgs e)
         {
             Instance.UIThread.RunOnUIThread(() => DoRequest(e));
         }
 
-        private void DoRequest(CommandCompleteArgs e)
+        private void DoRequest(CommandCompleteEventArgs e)
         {
             switch (e.Verb)
             {

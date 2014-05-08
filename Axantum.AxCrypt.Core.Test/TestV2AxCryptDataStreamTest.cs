@@ -91,7 +91,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestSimpleReadWrite()
         {
             using (MemoryStream dataPartStream = new MemoryStream())
@@ -122,7 +122,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestLongerReadWrite()
         {
             byte[] bytesToWrite = new FakeRandomGenerator().Generate(V2AxCryptDataStream.WriteChunkSize + V2AxCryptDataStream.WriteChunkSize / 2);
@@ -157,7 +157,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestUnexpectedEndOfFile()
         {
             using (MemoryStream dataPartStream = new MemoryStream())
@@ -188,7 +188,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestUnexpectedBlockType()
         {
             using (MemoryStream dataPartStream = new MemoryStream())

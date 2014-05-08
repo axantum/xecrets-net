@@ -25,11 +25,12 @@
 
 #endregion Coypright and License
 
-using Org.BouncyCastle.Utilities.Zlib;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using Org.BouncyCastle.Utilities.Zlib;
 
 namespace Axantum.AxCrypt.Core.Extensions
 {
@@ -86,6 +87,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             return totalDone;
         }
 
+        [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
         public static void DecryptTo(this Stream encryptedInputStream, Stream plaintextOutputStream, ICryptoTransform transform, bool isCompressed)
         {
             Exception savedExceptionIfCloseCausesException = null;

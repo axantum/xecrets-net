@@ -25,14 +25,14 @@
 
 #endregion Coypright and License
 
+using System;
+using System.IO;
+using System.Linq;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
-using System;
-using System.IO;
-using System.Linq;
 
 namespace Axantum.AxCrypt.Mono.Test
 {
@@ -102,7 +102,7 @@ namespace Axantum.AxCrypt.Mono.Test
             }
         }
 
-        [Test]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestDoubleDispose()
         {
             Assert.DoesNotThrow(() =>
