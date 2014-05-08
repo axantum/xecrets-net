@@ -108,9 +108,6 @@
     </Compile>
     <Compile Include="Extensions.cs" />
     <Compile Include="Preferences.cs" />
-    <Compile Include="ProgressBackground.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <DependentUpon>Settings.settings</DependentUpon>
@@ -188,6 +185,10 @@
     <ProjectReference Include="..\Axantum.AxCrypt.Core\Axantum.AxCrypt.Core.csproj">
       <Project>{966E9510-1A1D-46C7-97B5-460A0FF9B89F}</Project>
       <Name>Axantum.AxCrypt.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Axantum.AxCrypt.Forms\Axantum.AxCrypt.Forms.csproj">
+      <Project>{ac7c1ecd-4543-4cf3-8938-32f3d8cb89d5}</Project>
+      <Name>Axantum.AxCrypt.Forms</Name>
     </ProjectReference>
     <ProjectReference Include="..\Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.csproj">
       <Project>{CE9E8614-8DC5-4757-9384-3C416AB61A47}</Project>

@@ -78,7 +78,7 @@
             this._watchedFoldersRemoveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._watchedFoldersdecryptTemporarilyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._watchedFoldersOpenExplorerHereMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._progressBackgroundWorker = new Axantum.AxCrypt.ProgressBackground(this.components);
+            this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.ProgressBackground(this.components);
             this._mainToolStrip.SuspendLayout();
             this._mainMenuStrip.SuspendLayout();
             this._recentFilesContextMenuStrip.SuspendLayout();
@@ -582,7 +582,7 @@
         private System.Windows.Forms.ToolStripMenuItem _checkVersionNowToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _viewHelpMenuItem;
-        private Axantum.AxCrypt.ProgressBackground _progressBackgroundWorker;
+        private Axantum.AxCrypt.Forms.ProgressBackground _progressBackgroundWorker;
         private System.Windows.Forms.TabPage _logTabPage;
         private System.Windows.Forms.TextBox _logOutputTextBox;
         private System.Windows.Forms.ListView _watchedFoldersListView;

@@ -34,7 +34,7 @@ using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 
-namespace Axantum.AxCrypt
+namespace Axantum.AxCrypt.Forms
 {
     /// <summary>
     /// Background thread operations with progress bar support

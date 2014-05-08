@@ -13,16 +13,22 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionItems", "SolutionIt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt", "Axantum.AxCrypt\Axantum.AxCrypt.csproj", "{0998224C-F45E-4EBF-A944-7FFBCB2DB134}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Forms", "Axantum.AxCrypt.Forms\Axantum.AxCrypt.Forms.csproj", "{AC7C1ECD-4543-4CF3-8938-32F3D8CB89D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0998224C-F45E-4EBF-A944-7FFBCB2DB134}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0998224C-F45E-4EBF-A944-7FFBCB2DB134}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0998224C-F45E-4EBF-A944-7FFBCB2DB134}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0998224C-F45E-4EBF-A944-7FFBCB2DB134}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2689B1EF-29AF-4F3E-A7EC-C87FF66DC403}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2689B1EF-29AF-4F3E-A7EC-C87FF66DC403}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2689B1EF-29AF-4F3E-A7EC-C87FF66DC403}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -31,16 +37,19 @@ Global
 		{79C4901A-BCAA-49AA-A789-6A8F97ACC881}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79C4901A-BCAA-49AA-A789-6A8F97ACC881}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79C4901A-BCAA-49AA-A789-6A8F97ACC881}.Release|Any CPU.Build.0 = Release|Any CPU
-		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{966E9510-1A1D-46C7-97B5-460A0FF9B89F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A60D139A-7DBC-4BC5-976A-D89C32C913AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A60D139A-7DBC-4BC5-976A-D89C32C913AD}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CE9E8614-8DC5-4757-9384-3C416AB61A47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0998224C-F45E-4EBF-A944-7FFBCB2DB134}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0998224C-F45E-4EBF-A944-7FFBCB2DB134}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0998224C-F45E-4EBF-A944-7FFBCB2DB134}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0998224C-F45E-4EBF-A944-7FFBCB2DB134}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC7C1ECD-4543-4CF3-8938-32F3D8CB89D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC7C1ECD-4543-4CF3-8938-32F3D8CB89D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC7C1ECD-4543-4CF3-8938-32F3D8CB89D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC7C1ECD-4543-4CF3-8938-32F3D8CB89D5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Axantum.AxCrypt\Axantum.AxCrypt.csproj
@@ -50,8 +59,5 @@ Global
 		$1.inheritsSet = VisualStudio
 		$1.inheritsScope = text/plain
 		$1.scope = text/plain
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
