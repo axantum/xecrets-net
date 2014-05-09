@@ -25,19 +25,21 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
-using Newtonsoft.Json;
 
 namespace Axantum.AxCrypt.Core.UI
 {
     public class UserSettings : IUserSettings
     {
+        public int CurrentSettingsVersion { get { return 1; } }
+
         private Dictionary<string, string> _settings = new Dictionary<string, string>();
 
         private IRuntimeFileInfo _persistanceFileInfo;
@@ -50,13 +52,16 @@ namespace Axantum.AxCrypt.Core.UI
 
             _keyWrapIterationCalculator = keyWrapIterationCalculator;
 
-            if (_persistanceFileInfo.IsExistingFile)
+            if (!_persistanceFileInfo.IsExistingFile)
             {
-                using (JsonReader reader = new JsonTextReader(new StreamReader(_persistanceFileInfo.OpenRead())))
-                {
-                    JsonSerializer serializer = CreateSerializer();
-                    _settings = serializer.Deserialize<Dictionary<string, string>>(reader);
-                }
+                SettingsVersion = CurrentSettingsVersion;
+                return;
+            }
+
+            using (JsonReader reader = new JsonTextReader(new StreamReader(_persistanceFileInfo.OpenRead())))
+            {
+                JsonSerializer serializer = CreateSerializer();
+                _settings = serializer.Deserialize<Dictionary<string, string>>(reader);
             }
         }
 
@@ -75,6 +80,7 @@ namespace Axantum.AxCrypt.Core.UI
         public void Delete()
         {
             _persistanceFileInfo.Delete();
+            _settings = new Dictionary<string, string>();
         }
 
         public string CultureName
@@ -151,6 +157,12 @@ namespace Axantum.AxCrypt.Core.UI
         {
             get { return Load("WorkFolderMinimumIdle", TimeSpan.FromMilliseconds(500)); }
             set { Store("WorkFolderMinimumIdle", value); }
+        }
+
+        public int SettingsVersion
+        {
+            get { return Load("SettingsVersion", 0); }
+            set { Store("SettingsVersion", value); }
         }
 
         public string this[string key]

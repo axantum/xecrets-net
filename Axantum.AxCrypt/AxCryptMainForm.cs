@@ -25,6 +25,16 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Ipc;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Core.UI.ViewModel;
+using Axantum.AxCrypt.Properties;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -38,16 +48,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
-using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Ipc;
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.Session;
-using Axantum.AxCrypt.Core.UI;
-using Axantum.AxCrypt.Core.UI.ViewModel;
-using Axantum.AxCrypt.Properties;
 
 namespace Axantum.AxCrypt
 {
@@ -110,6 +110,15 @@ namespace Axantum.AxCrypt
             Instance.CommandService.Received += Factory.Instance.Singleton<CommandHandler>().RequestReceived;
             Instance.CommandService.StartListening();
             Factory.Instance.Singleton<CommandHandler>().CommandComplete += AxCryptMainForm_CommandComplete;
+        }
+
+        private void AxCryptMainForm_Shown(object sender, EventArgs e)
+        {
+            if (Instance.UserSettings.SettingsVersion < Instance.UserSettings.CurrentSettingsVersion)
+            {
+                Resources.UserSettingsFormatChangeNeedsReset.ShowWarning();
+                ClearPassphraseMemoryToolStripMenuItem_Click(sender, e);
+            }
         }
 
         private void RegisterTypeFactories()
@@ -1069,6 +1078,7 @@ namespace Axantum.AxCrypt
                 Instance.Log.LogInfo("Set new UI language culture to '{0}'.".InvariantFormat(Instance.UserSettings.CultureName));
             }
             Resources.LanguageChangeRestartPrompt.ShowWarning();
+            Application.Exit();
         }
 
         private void LanguageToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
@@ -1163,6 +1173,7 @@ namespace Axantum.AxCrypt
         {
             Instance.UserSettings.Delete();
             Instance.FileSystemState.Delete();
+            Instance.UserSettings.SettingsVersion = Instance.UserSettings.CurrentSettingsVersion;
             Application.Exit();
         }
 

@@ -22,6 +22,7 @@
  * updates, contributions and contact with the author. You may also visit
  * http://www.axantum.com for more information about the author.
 */
+
 using System.IO;
 
 #endregion Coypright and License
@@ -81,6 +82,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             CryptoFactory factory = new CryptoFactory();
             factory.Add(() => new V2Aes256CryptoFactory());
+            factory.Add(() => new V2Aes128CryptoFactory());
             factory.Add(() => new V1Aes128CryptoFactory());
 
             return factory;

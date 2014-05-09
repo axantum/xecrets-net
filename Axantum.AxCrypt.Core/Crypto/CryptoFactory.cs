@@ -68,11 +68,11 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
         }
 
-        public ICryptoFactory Preferred
+        public ICryptoFactory Minimum
         {
             get
             {
-                return _factories.Values.OrderByDescending(f => f().Priority).First()();
+                return Create(Aes128Id);
             }
         }
     }

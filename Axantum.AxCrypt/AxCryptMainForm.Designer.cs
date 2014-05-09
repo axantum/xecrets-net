@@ -53,6 +53,7 @@
             this.cryptoPolicyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.proToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.freeeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.legacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._viewHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,7 +80,6 @@
             this._watchedFoldersdecryptTemporarilyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._watchedFoldersOpenExplorerHereMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.ProgressBackground(this.components);
-            this.legacyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainToolStrip.SuspendLayout();
             this._mainMenuStrip.SuspendLayout();
             this._recentFilesContextMenuStrip.SuspendLayout();
@@ -349,6 +349,12 @@
             resources.ApplyResources(this.freeeToolStripMenuItem, "freeeToolStripMenuItem");
             this.freeeToolStripMenuItem.Click += new System.EventHandler(this.FreeToolStripMenuItem_Click);
             // 
+            // legacyToolStripMenuItem
+            // 
+            this.legacyToolStripMenuItem.Name = "legacyToolStripMenuItem";
+            resources.ApplyResources(this.legacyToolStripMenuItem, "legacyToolStripMenuItem");
+            this.legacyToolStripMenuItem.Click += new System.EventHandler(this.LegacyToolStripMenuItem_Click);
+            // 
             // _helpToolStripMenuItem
             // 
             this._helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -519,12 +525,6 @@
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
             // 
-            // legacyToolStripMenuItem
-            // 
-            this.legacyToolStripMenuItem.Name = "legacyToolStripMenuItem";
-            resources.ApplyResources(this.legacyToolStripMenuItem, "legacyToolStripMenuItem");
-            this.legacyToolStripMenuItem.Click += new System.EventHandler(this.LegacyToolStripMenuItem_Click);
-            // 
             // AxCryptMainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -536,6 +536,7 @@
             this.MainMenuStrip = this._mainMenuStrip;
             this.Name = "AxCryptMainForm";
             this.Load += new System.EventHandler(this.AxCryptMainForm_Load);
+            this.Shown += new System.EventHandler(this.AxCryptMainForm_Shown);
             this._mainToolStrip.ResumeLayout(false);
             this._mainToolStrip.PerformLayout();
             this._mainMenuStrip.ResumeLayout(false);

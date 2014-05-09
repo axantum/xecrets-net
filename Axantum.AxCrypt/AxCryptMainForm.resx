@@ -140,7 +140,7 @@
   <data name="_openEncryptedToolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEE0AABBNAWeMAeAAAAOvSURBVFhHvZZJTxRRFIX5N3ZNP6D7l4Du/AeuABUVZ2Vo
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAOvSURBVFhHvZZJTxRRFIX5N3ZNP6D7l4Du/AeuABUVZ2Vo
         UEBBZFJAEBxwlkUnhSZuTLtuFkYlunBg1UjEcD236t2q16+rqukYOMm3IaHPOe/eelUt7qpb9F55paZ5
         CZ4ZPPVK7mM35hFYViyBBY17bsmet4stwY+tepTJa8Ur8FLxAjwHz8BTxROP3BWXYE4wJ/cBWAZL4D5Y
         BAtg3iVnziFr1iplB9CNxZyNTXPT+CHQzcX4HlDmzl0EmM4KsE+tndnQ3JlJC7DPrZ07obkzjQC3zQB7
@@ -187,7 +187,7 @@
   <data name="_decryptToolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEE0AABBNAWeMAeAAAAR1SURBVFhHvZbbTxRnGMb5b9yZ2Y2RC40HBi+MxES48A9Q
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAR1SURBVFhHvZbbTxRnGMb5b9yZ2Y2RC40HBi+MxES48A9Q
         403hQq+88YBUaukByqIc5NgFCizLHlhQykGasSZNGktsbGJJs0STBhLSBsxCW1Kq+/Z5d75v59thdoFY
         +yW/CwaY3/PMfIcp8T/yBwOzAWvfzIApFw8Dln/C75AEcUEMRBRG/ZYe1oMl2Zs9ClBR5gSzYEYwDb4G
         U+Ch4EGA/JN+gpwgJ38CxEEMRMEYiICwn4wRg7RhzSoeQBVLOYvdcrd4HKhyKR4FQm4MIcBAsQDvqbUx
@@ -267,7 +267,7 @@
     <value>36, 47</value>
   </data>
   <data name="_mainToolStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 27</value>
+    <value>0, 24</value>
   </data>
   <data name="_mainToolStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>824, 50</value>
@@ -305,7 +305,7 @@
 </value>
   </data>
   <data name="_openEncryptedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 24</value>
+    <value>161, 22</value>
   </data>
   <data name="_openEncryptedToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Open Encrypted</value>
@@ -327,7 +327,7 @@
 </value>
   </data>
   <data name="_encryptToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 24</value>
+    <value>161, 22</value>
   </data>
   <data name="_encryptToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Encrypt</value>
@@ -349,13 +349,13 @@
 </value>
   </data>
   <data name="_decryptToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 24</value>
+    <value>161, 22</value>
   </data>
   <data name="_decryptToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Decrypt</value>
   </data>
   <data name="_toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 6</value>
+    <value>158, 6</value>
   </data>
   <data name="_closeOpenFilesToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -375,49 +375,49 @@
 </value>
   </data>
   <data name="_closeOpenFilesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 24</value>
+    <value>161, 22</value>
   </data>
   <data name="_closeOpenFilesToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Clean Decrypted</value>
   </data>
   <data name="_toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 6</value>
+    <value>158, 6</value>
   </data>
   <data name="_wipeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 24</value>
+    <value>161, 22</value>
   </data>
   <data name="_wipeToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Secure Delete</value>
   </data>
   <data name="_toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 6</value>
+    <value>158, 6</value>
   </data>
   <data name="_englishLanguageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 24</value>
+    <value>116, 22</value>
   </data>
   <data name="_englishLanguageToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;English</value>
   </data>
   <data name="_swedishLanguageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 24</value>
+    <value>116, 22</value>
   </data>
   <data name="_swedishLanguageToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Svenska</value>
   </data>
   <data name="_languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 24</value>
+    <value>207, 22</value>
   </data>
   <data name="_languageToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Language</value>
   </data>
   <data name="_debugOptionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 24</value>
+    <value>207, 22</value>
   </data>
   <data name="_debugOptionsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Debug</value>
   </data>
   <data name="_clearPassphraseMemoryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 24</value>
+    <value>207, 22</value>
   </data>
   <data name="_clearPassphraseMemoryToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Clear All Settings and Exit</value>
@@ -439,79 +439,79 @@
 </value>
   </data>
   <data name="_optionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 24</value>
+    <value>161, 22</value>
   </data>
   <data name="_optionsToolStripMenuItem.Text" xml:space="preserve">
     <value>O&amp;ptions</value>
   </data>
   <data name="_exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 24</value>
+    <value>161, 22</value>
   </data>
   <data name="_exitToolStripMenuItem.Text" xml:space="preserve">
     <value>E&amp;xit</value>
   </data>
   <data name="_fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 23</value>
+    <value>37, 20</value>
   </data>
   <data name="_fileToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;File</value>
   </data>
   <data name="_checkVersionNowToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 24</value>
+    <value>177, 22</value>
   </data>
   <data name="_checkVersionNowToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Check Version Now</value>
   </data>
   <data name="_setUpdateCheckUrlToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 24</value>
+    <value>177, 22</value>
   </data>
   <data name="_setUpdateCheckUrlToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Options</value>
   </data>
   <data name="proToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 24</value>
+    <value>111, 22</value>
   </data>
   <data name="proToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Pro</value>
   </data>
   <data name="freeeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 24</value>
+    <value>111, 22</value>
   </data>
   <data name="freeeToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Free</value>
   </data>
   <data name="legacyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 24</value>
+    <value>111, 22</value>
   </data>
   <data name="legacyToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Legacy</value>
   </data>
   <data name="cryptoPolicyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 24</value>
+    <value>177, 22</value>
   </data>
   <data name="cryptoPolicyToolStripMenuItem.Text" xml:space="preserve">
     <value>Crypto &amp;Policy</value>
   </data>
   <data name="_debugToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 23</value>
+    <value>54, 20</value>
   </data>
   <data name="_debugToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Debug</value>
   </data>
   <data name="_viewHelpMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 24</value>
+    <value>127, 22</value>
   </data>
   <data name="_viewHelpMenuItem.Text" xml:space="preserve">
     <value>&amp;View Help</value>
   </data>
   <data name="_aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 24</value>
+    <value>127, 22</value>
   </data>
   <data name="_aboutToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;About</value>
   </data>
   <data name="_helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 23</value>
+    <value>44, 20</value>
   </data>
   <data name="_helpToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Help</value>
@@ -520,7 +520,7 @@
     <value>0, 0</value>
   </data>
   <data name="_mainMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>824, 27</value>
+    <value>824, 24</value>
   </data>
   <data name="_mainMenuStrip.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -574,19 +574,19 @@
     <value>290, 17</value>
   </metadata>
   <data name="_removeRecentFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>367, 24</value>
+    <value>326, 22</value>
   </data>
   <data name="_removeRecentFileToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Remove from list without decrypting document</value>
   </data>
   <data name="_decryptAndRemoveFromListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>367, 24</value>
+    <value>326, 22</value>
   </data>
   <data name="_decryptAndRemoveFromListToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Decrypt and remove from list</value>
   </data>
   <data name="_recentFilesContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>368, 52</value>
+    <value>327, 48</value>
   </data>
   <data name="&gt;&gt;_recentFilesContextMenuStrip.Name" xml:space="preserve">
     <value>_recentFilesContextMenuStrip</value>
@@ -598,13 +598,13 @@
     <value>712, 17</value>
   </metadata>
   <data name="_progressContextCancelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 24</value>
+    <value>110, 22</value>
   </data>
   <data name="_progressContextCancelToolStripMenuItem.Text" xml:space="preserve">
     <value>Cancel</value>
   </data>
   <data name="_progressContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 28</value>
+    <value>111, 26</value>
   </data>
   <data name="&gt;&gt;_progressContextMenuStrip.Name" xml:space="preserve">
     <value>_progressContextMenuStrip</value>
@@ -826,25 +826,25 @@
     <value>915, 17</value>
   </metadata>
   <data name="_watchedFoldersRemoveMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>207, 24</value>
+    <value>185, 22</value>
   </data>
   <data name="_watchedFoldersRemoveMenuItem.Text" xml:space="preserve">
     <value>&amp;Decrypt Permanently</value>
   </data>
   <data name="_watchedFoldersdecryptTemporarilyMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>207, 24</value>
+    <value>185, 22</value>
   </data>
   <data name="_watchedFoldersdecryptTemporarilyMenuItem.Text" xml:space="preserve">
     <value>Decrypt &amp;Temporarily</value>
   </data>
   <data name="_watchedFoldersOpenExplorerHereMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>207, 24</value>
+    <value>185, 22</value>
   </data>
   <data name="_watchedFoldersOpenExplorerHereMenuItem.Text" xml:space="preserve">
     <value>Open &amp;Explorer Here</value>
   </data>
   <data name="_watchedFoldersContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 76</value>
+    <value>186, 70</value>
   </data>
   <data name="&gt;&gt;_watchedFoldersContextMenuStrip.Name" xml:space="preserve">
     <value>_watchedFoldersContextMenuStrip</value>
@@ -1453,6 +1453,12 @@
   <data name="&gt;&gt;freeeToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;legacyToolStripMenuItem.Name" xml:space="preserve">
+    <value>legacyToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;legacyToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;_helpToolStripMenuItem.Name" xml:space="preserve">
     <value>_helpToolStripMenuItem</value>
   </data>
@@ -1542,12 +1548,6 @@
   </data>
   <data name="&gt;&gt;_progressBackgroundWorker.Type" xml:space="preserve">
     <value>Axantum.AxCrypt.Forms.ProgressBackground, Axantum.AxCrypt.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
-  </data>
-  <data name="&gt;&gt;legacyToolStripMenuItem.Name" xml:space="preserve">
-    <value>legacyToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;legacyToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AxCryptMainForm</value>

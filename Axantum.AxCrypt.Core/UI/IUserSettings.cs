@@ -25,9 +25,9 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.Linq;
-using Axantum.AxCrypt.Core.Crypto;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -72,5 +72,9 @@ namespace Axantum.AxCrypt.Core.UI
         Salt ThumbprintSalt { get; set; }
 
         TimeSpan SessionNotificationMinimumIdle { get; set; }
+
+        int SettingsVersion { get; set; }
+
+        int CurrentSettingsVersion { get; }
     }
 }
