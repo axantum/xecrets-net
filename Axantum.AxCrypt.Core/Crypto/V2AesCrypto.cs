@@ -32,12 +32,10 @@ using System.Security.Cryptography;
 namespace Axantum.AxCrypt.Core.Crypto
 {
     /// <summary>
-    /// Implements V2 AES Cryptography, briefly AES-256 in CTR-Mode.
+    /// Implements V2 AES Cryptography
     /// </summary>
     public class V2AesCrypto : CryptoBase
     {
-        internal const string InternalName = "AES-256";
-
         private SymmetricIV _iv;
 
         private long _blockCounter;
