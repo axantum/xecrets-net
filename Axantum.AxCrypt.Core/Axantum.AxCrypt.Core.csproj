@@ -73,6 +73,7 @@
     <Compile Include="Crypto\Pbkdf2HmacSha512.cs" />
     <Compile Include="Crypto\RandomGenerator.cs" />
     <Compile Include="Crypto\V2AesCrypto.cs" />
+    <Compile Include="Crypto\V2CryptoBase.cs" />
     <Compile Include="Crypto\V2Passphrase.cs" />
     <Compile Include="Header\EncryptedDataPartBlock.cs" />
     <Compile Include="Header\V2CompressionEncryptedHeaderBlock.cs" />

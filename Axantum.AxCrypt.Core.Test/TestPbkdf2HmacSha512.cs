@@ -356,7 +356,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<ArgumentOutOfRangeException>(() => pbkdf = new Pbkdf2HmacSha512("passphrase", Salt.Zero, -1));
 
             Assert.DoesNotThrow(() => pbkdf = new Pbkdf2HmacSha512("passphrase", Salt.Zero, 10));
-			Assert.That (pbkdf, Is.Not.Null);
+            Assert.That(pbkdf, Is.Not.Null);
         }
 
         [Test]
@@ -366,7 +366,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             byte[] bytes = pbkdf.GetBytes();
             Assert.Throws<InternalErrorException>(() => bytes = pbkdf.GetBytes());
-			Assert.That (bytes, Is.Not.Null);
+            Assert.That(bytes, Is.Not.Null);
         }
     }
 }
