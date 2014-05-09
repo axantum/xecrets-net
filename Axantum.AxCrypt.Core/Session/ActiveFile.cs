@@ -25,14 +25,14 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
 
 namespace Axantum.AxCrypt.Core.Session
 {
@@ -279,7 +279,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     return Key != null ? ActiveFileVisualState.EncryptedWithKnownKey : ActiveFileVisualState.EncryptedWithoutKnownKey;
                 }
-                throw new InvalidOperationException("ActiveFile in an unhandled visual state.");
+                throw new InvalidOperationException("ActiveFile in an unhandled visual state.".InvariantFormat());
             }
         }
     }
