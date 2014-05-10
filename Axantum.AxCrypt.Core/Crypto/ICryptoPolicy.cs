@@ -28,7 +28,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -37,13 +36,5 @@ namespace Axantum.AxCrypt.Core.Crypto
         ICryptoFactory DefaultCryptoFactory(IEnumerable<CryptoFactoryCreator> factories);
 
         ICryptoFactory LegacyCryptoFactory(IEnumerable<CryptoFactoryCreator> factories);
-
-        /// <summary>
-        /// Return a list of CryptoId's in a suitable order of preference and relevance, to be used to
-        /// try and match a passphrase against a file.
-        /// </summary>
-        /// <param name="factories">The available ICryptoFactory's to select from.</param>
-        /// <returns>A list of CryptoId's to try in the order provided.</returns>
-        IEnumerable<Guid> OrderedCryptoIds(IEnumerable<CryptoFactoryCreator> factories);
     }
 }

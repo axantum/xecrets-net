@@ -40,6 +40,9 @@ namespace Axantum.AxCrypt.Core.Crypto
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "The reference type 'SymmetricIV' is, in fact, immutable.")]
         public static readonly SymmetricIV Zero128 = new SymmetricIV(new byte[128 / 8]);
 
+        [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "The reference type 'SymmetricIV' is, in fact, immutable.")]
+        public static readonly SymmetricIV Zero64 = new SymmetricIV(new byte[64 / 8]);
+
         /// <summary>
         /// Instantiate a new random IV
         /// </summary>

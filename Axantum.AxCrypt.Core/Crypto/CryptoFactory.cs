@@ -16,10 +16,6 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private Dictionary<Guid, CryptoFactoryCreator> _factories = new Dictionary<Guid, CryptoFactoryCreator>();
 
-        public CryptoFactory()
-        {
-        }
-
         public void Add(CryptoFactoryCreator factory)
         {
             _factories.Add(factory().Id, factory);
@@ -53,7 +49,15 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             get
             {
-                return Factory.Instance.Singleton<ICryptoPolicy>().OrderedCryptoIds(_factories.Values);
+                Guid defaultId = Default.Id;
+                Guid legacyId = Legacy.Id;
+
+                List<Guid> orderedIds = new List<Guid>();
+                orderedIds.Add(defaultId);
+                orderedIds.AddRange(_factories.Values.Where(f => f().Id != defaultId && f().Id != legacyId).Select(f => f().Id));
+                orderedIds.Add(legacyId);
+
+                return orderedIds;
             }
         }
 
@@ -69,7 +73,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             get
             {
-                return Factory.Instance.Singleton<ICryptoPolicy>().LegacyCryptoFactory(_factories.Values);
+                return Create(Aes128V1Id);
             }
         }
 
