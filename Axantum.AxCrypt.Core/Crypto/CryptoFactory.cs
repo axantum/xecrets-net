@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             get
             {
-                return Factory.Instance.Singleton<ICryptoPolicy>().DefaultCryptoFactory(_factories.Values);
+                return Factory.Instance.Singleton<ICryptoPolicy>().DefaultCryptoFactory(_factories.Values.OrderByDescending(f => f().Priority));
             }
         }
 

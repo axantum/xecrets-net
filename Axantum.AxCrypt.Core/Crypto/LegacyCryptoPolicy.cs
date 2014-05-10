@@ -33,6 +33,8 @@ namespace Axantum.AxCrypt.Core.Crypto
 {
     public class LegacyCryptoPolicy : ICryptoPolicy
     {
+        public string Name { get { return "Legacy"; } }
+
         public ICryptoFactory DefaultCryptoFactory(IEnumerable<CryptoFactoryCreator> factories)
         {
             return factories.First(f => f().Id == CryptoFactory.Aes128V1Id)();

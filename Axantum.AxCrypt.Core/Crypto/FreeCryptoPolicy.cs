@@ -33,6 +33,8 @@ namespace Axantum.AxCrypt.Core.Crypto
 {
     public class FreeCryptoPolicy : ICryptoPolicy
     {
+        public string Name { get { return "Free"; } }
+
         public ICryptoFactory DefaultCryptoFactory(IEnumerable<CryptoFactoryCreator> factories)
         {
             return factories.First(f => f().Id == CryptoFactory.Aes128Id)();

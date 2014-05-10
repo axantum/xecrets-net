@@ -33,9 +33,11 @@ namespace Axantum.AxCrypt.Core.Crypto
 {
     public class ProCryptoPolicy : ICryptoPolicy
     {
+        public string Name { get { return "Pro"; } }
+
         public ICryptoFactory DefaultCryptoFactory(IEnumerable<CryptoFactoryCreator> factories)
         {
-            return factories.First(f => f().Id == CryptoFactory.Aes256Id)();
+            return factories.First()();
         }
     }
 }

@@ -34,6 +34,7 @@ using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Mono;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -106,16 +107,14 @@ namespace Axantum.AxCrypt
 
         private static CryptoFactory CreateCryptoFactory(string startPath)
         {
+            IEnumerable<Assembly> extraAssemblies = new DirectoryInfo(Path.GetDirectoryName(startPath)).GetFiles("*.dll").Select(f => Assembly.LoadFrom(f.FullName));
+            IEnumerable<Type> types = TypeDiscovery.Interfaces<ICryptoFactory>(extraAssemblies);
+
             CryptoFactory factory = new CryptoFactory();
-
-            CryptoFactoryDiscovery.Discover(Assembly.GetAssembly(typeof(CryptoFactory)), factory);
-
-            DirectoryInfo folder = new DirectoryInfo(Path.GetDirectoryName(startPath));
-            foreach (FileInfo file in folder.GetFiles("*.dll"))
+            foreach (Type type in types)
             {
-                CryptoFactoryDiscovery.Discover(Assembly.LoadFrom(file.FullName), factory);
+                factory.Add(() => Activator.CreateInstance(type) as ICryptoFactory);
             }
-
             return factory;
         }
 

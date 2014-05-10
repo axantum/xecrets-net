@@ -30,24 +30,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Axantum.AxCrypt.Core.Crypto
+namespace Axantum.AxCrypt.Core.Runtime
 {
-    public static class CryptoFactoryDiscovery
+    public static class TypeDiscovery
     {
-        public static void Discover(Assembly assembly, CryptoFactory factory)
+        public static IEnumerable<Type> Interfaces<I>(IEnumerable<Assembly> extraAssemblies) where I : class
         {
-            IEnumerable<Type> types = from t in assembly.GetExportedTypes() where t.GetInterfaces().Contains(typeof(ICryptoFactory)) select t;
-            if (!types.Any())
+            List<Type> interfaces = new List<Type>();
+            foreach (Assembly assembly in new Assembly[] { Assembly.GetAssembly(typeof(I)) }.Concat(extraAssemblies))
             {
-                return;
+                ScanAssemblyForNewInterfaces<I>(assembly, interfaces);
             }
+            return interfaces;
+        }
+
+        private static void ScanAssemblyForNewInterfaces<I>(Assembly assembly, IList<Type> interfaces)
+        {
+            IEnumerable<Type> types = from t in assembly.GetExportedTypes() where t.GetInterfaces().Contains(typeof(I)) select t;
+
             foreach (Type t in types)
             {
-                if (factory.TypeNameExists(t.FullName))
+                if (!interfaces.Any(i => i.FullName == t.FullName))
                 {
-                    continue;
+                    interfaces.Add(t);
                 }
-                factory.Add(() => Activator.CreateInstance(t) as ICryptoFactory);
             }
         }
     }
