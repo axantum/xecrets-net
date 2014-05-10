@@ -468,24 +468,6 @@
   <data name="_setUpdateCheckUrlToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Options</value>
   </data>
-  <data name="proToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 22</value>
-  </data>
-  <data name="proToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Pro</value>
-  </data>
-  <data name="freeeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 22</value>
-  </data>
-  <data name="freeeToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Free</value>
-  </data>
-  <data name="legacyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 22</value>
-  </data>
-  <data name="legacyToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Legacy</value>
-  </data>
   <data name="cryptoPolicyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 22</value>
   </data>
@@ -1439,24 +1421,6 @@
     <value>cryptoPolicyToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;cryptoPolicyToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;proToolStripMenuItem.Name" xml:space="preserve">
-    <value>proToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;proToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;freeeToolStripMenuItem.Name" xml:space="preserve">
-    <value>freeeToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;freeeToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;legacyToolStripMenuItem.Name" xml:space="preserve">
-    <value>legacyToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;legacyToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;_helpToolStripMenuItem.Name" xml:space="preserve">

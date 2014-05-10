@@ -87,6 +87,7 @@ namespace Axantum.AxCrypt
             Factory.Instance.Singleton<SessionNotify>(() => new SessionNotify());
             Factory.Instance.Singleton<IRandomGenerator>(() => new RandomGenerator());
             Factory.Instance.Singleton<CryptoFactory>(() => CreateCryptoFactory(startPath));
+            Factory.Instance.Singleton<CryptoPolicy>(() => CreateCryptoPolicy(startPath));
             Factory.Instance.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
             Factory.Instance.Singleton<CommandHandler>(() => new CommandHandler());
 
@@ -116,6 +117,12 @@ namespace Axantum.AxCrypt
                 factory.Add(() => Activator.CreateInstance(type) as ICryptoFactory);
             }
             return factory;
+        }
+
+        private static CryptoPolicy CreateCryptoPolicy(string startPath)
+        {
+            IEnumerable<Assembly> extraAssemblies = new DirectoryInfo(Path.GetDirectoryName(startPath)).GetFiles("*.dll").Select(f => Assembly.LoadFrom(f.FullName));
+            return new CryptoPolicy(extraAssemblies);
         }
 
         private static void WireupEvents()

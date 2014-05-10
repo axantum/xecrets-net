@@ -204,6 +204,21 @@ namespace Axantum.AxCrypt
             _recentFilesListView.SmallImageList = CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources();
             _recentFilesListView.LargeImageList = CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources();
             _recentFilesListView.ColumnWidthChanged += RecentFilesListView_ColumnWidthChanged;
+
+            InitializePolicyMenu();
+        }
+
+        private void InitializePolicyMenu()
+        {
+            string currentPolicyName = Factory.Instance.Singleton<ICryptoPolicy>().Name;
+            foreach (string policyName in Factory.Instance.Singleton<CryptoPolicy>().PolicyNames)
+            {
+                ToolStripMenuItem item = new ToolStripMenuItem();
+                item.Text = policyName;
+                item.Checked = policyName == currentPolicyName;
+                item.Click += PolicyMenuItem_Click;
+                cryptoPolicyToolStripMenuItem.DropDownItems.Add(item);
+            }
         }
 
         private void InitializeNotifyIcon()
@@ -1181,32 +1196,24 @@ namespace Axantum.AxCrypt
             Application.Exit();
         }
 
-        private void ProToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SetCheckedToolStripMenuItem(sender);
-            Factory.Instance.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
-        }
-
-        private void FreeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SetCheckedToolStripMenuItem(sender);
-            Factory.Instance.Singleton<ICryptoPolicy>(() => new FreeCryptoPolicy());
-        }
-
-        private void LegacyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SetCheckedToolStripMenuItem(sender);
-            Factory.Instance.Singleton<ICryptoPolicy>(() => new LegacyCryptoPolicy());
-        }
-
-        private static void SetCheckedToolStripMenuItem(object sender)
+        private void PolicyMenuItem_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem item = sender as ToolStripMenuItem;
+            SetCheckedToolStripMenuItem(item);
+            Factory.Instance.Singleton<ICryptoPolicy>(() => Factory.Instance.Singleton<CryptoPolicy>().Create(item.Text));
+        }
+
+        private static void SetCheckedToolStripMenuItem(ToolStripMenuItem item)
+        {
             foreach (ToolStripItem tsi in item.GetCurrentParent().Items)
             {
                 ((ToolStripMenuItem)tsi).Checked = false;
             }
             item.Checked = true;
+        }
+
+        private void CryptoPolicyToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
         }
     }
 }
