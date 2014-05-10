@@ -349,4 +349,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
   <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
     <value>You have updated AxCrypt. Unfortunately, your configuration must be reset. After restarting, your preferences and settings will unfortunately be lost. We apologize for the inconvenience. Your encrypted files are still safe and ok.</value>
   </data>
+  <data name="FileIsLockedWarning" xml:space="preserve">
+    <value>'{0}' is open in another application. Please close it and try again.</value>
+  </data>
 </root>

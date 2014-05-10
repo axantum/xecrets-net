@@ -219,6 +219,14 @@ namespace Axantum.AxCrypt.Core.Test
             return new NonClosingStream(fakeFileInfo.Stream);
         }
 
+        public bool IsLocked
+        {
+            get
+            {
+                return false;
+            }
+        }
+
         public string Name
         {
             get

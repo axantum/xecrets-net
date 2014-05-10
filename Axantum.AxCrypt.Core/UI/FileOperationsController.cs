@@ -25,12 +25,12 @@
 
 #endregion Coypright and License
 
-using System;
-using System.IO;
-using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using System;
+using System.IO;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -228,6 +228,13 @@ namespace Axantum.AxCrypt.Core.UI
                 _eventArgs.Status = new FileOperationContext(sourceFileInfo.FullName, FileOperationStatus.FileAlreadyEncrypted);
                 return false;
             }
+
+            if (sourceFileInfo.IsLocked)
+            {
+                _eventArgs.Status = new FileOperationContext(sourceFileInfo.FullName, FileOperationStatus.FileLocked);
+                return false;
+            }
+
             IRuntimeFileInfo destinationFileInfo = Factory.New<IRuntimeFileInfo>(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
             _eventArgs.SaveFileFullName = destinationFileInfo.FullName;
             _eventArgs.OpenFileFullName = sourceFileInfo.FullName;
@@ -269,6 +276,12 @@ namespace Axantum.AxCrypt.Core.UI
 
         private bool DecryptFilePreparation(IRuntimeFileInfo fileInfo)
         {
+            if (fileInfo.IsLocked)
+            {
+                _eventArgs.Status = new FileOperationContext(fileInfo.FullName, FileOperationStatus.FileLocked);
+                return false;
+            }
+
             if (!OpenAxCryptDocument(fileInfo, _eventArgs) || _eventArgs.Skip)
             {
                 return false;
@@ -359,6 +372,12 @@ namespace Axantum.AxCrypt.Core.UI
 
         private bool WipeFilePreparation(IRuntimeFileInfo fileInfo)
         {
+            if (fileInfo.IsLocked)
+            {
+                _eventArgs.Status = new FileOperationContext(fileInfo.FullName, FileOperationStatus.FileLocked);
+                return false;
+            }
+
             _eventArgs.OpenFileFullName = fileInfo.FullName;
             _eventArgs.SaveFileFullName = fileInfo.FullName;
             if (_progress.AllItemsConfirmed)

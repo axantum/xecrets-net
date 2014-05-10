@@ -429,6 +429,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; is open in another application. Please close it and try again..
+        /// </summary>
+        internal static string FileIsLockedWarning {
+            get {
+                return ResourceManager.GetString("FileIsLockedWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap fileknownkeygreen16 {

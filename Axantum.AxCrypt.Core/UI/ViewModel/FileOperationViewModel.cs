@@ -214,7 +214,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
             {
-                if (_statusChecker.CheckStatusAndShowMessage(e.Status.Status, e.OpenFileFullName))
+                if (_statusChecker.CheckStatusAndShowMessage(e.Status.Status, e.Status.FullName))
                 {
                     Factory.New<ActiveFileAction>().RemoveRecentFiles(new IRuntimeFileInfo[] { Factory.New<IRuntimeFileInfo>(e.OpenFileFullName) }, progress);
                 }
@@ -246,7 +246,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     return;
                 }
-                if (Instance.StatusChecker.CheckStatusAndShowMessage(e.Status.Status, e.OpenFileFullName))
+                if (Instance.StatusChecker.CheckStatusAndShowMessage(e.Status.Status, e.Status.FullName))
                 {
                     Factory.New<ActiveFileAction>().RemoveRecentFiles(new IRuntimeFileInfo[] { Factory.New<IRuntimeFileInfo>(e.SaveFileFullName) }, progress);
                 }
@@ -312,7 +312,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     e.Status = new FileOperationContext(String.Empty, FileOperationStatus.Success);
                     return;
                 }
-                if (_statusChecker.CheckStatusAndShowMessage(e.Status.Status, e.OpenFileFullName))
+                if (_statusChecker.CheckStatusAndShowMessage(e.Status.Status, e.Status.FullName))
                 {
                     IRuntimeFileInfo encryptedInfo = Factory.New<IRuntimeFileInfo>(e.SaveFileFullName);
                     IRuntimeFileInfo decryptedInfo = Factory.New<IRuntimeFileInfo>(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));

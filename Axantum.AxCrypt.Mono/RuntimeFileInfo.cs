@@ -88,6 +88,24 @@ namespace Axantum.AxCrypt.Mono
             return new LockingStream(this, stream);
         }
 
+        public bool IsLocked
+        {
+            get
+            {
+                try
+                {
+                    using (Stream stream = _file.Open(FileMode.Open, FileAccess.ReadWrite, FileShare.None))
+                    {
+                        return false;
+                    }
+                }
+                catch (IOException)
+                {
+                    return true;
+                }
+            }
+        }
+
         /// <summary>
         /// Get the Name part without the folder part of the path.
         /// </summary>

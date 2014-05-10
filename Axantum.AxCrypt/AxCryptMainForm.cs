@@ -929,6 +929,10 @@ namespace Axantum.AxCrypt
                     Resources.FolderAlreadyWatched.InvariantFormat(displayContext).ShowWarning();
                     break;
 
+                case FileOperationStatus.FileLocked:
+                    Resources.FileIsLockedWarning.InvariantFormat(displayContext).ShowWarning();
+                    break;
+
                 default:
                     Resources.UnrecognizedError.InvariantFormat(displayContext).ShowWarning();
                     break;

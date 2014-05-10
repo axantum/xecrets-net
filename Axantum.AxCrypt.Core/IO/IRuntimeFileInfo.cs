@@ -49,6 +49,12 @@ namespace Axantum.AxCrypt.Core.IO
         Stream OpenWrite();
 
         /// <summary>
+        /// Determine if the file is currently unavailable for exclusive locking.
+        /// </summary>
+        /// <returns></returns>
+        bool IsLocked { get; }
+
+        /// <summary>
         /// Creates a folder in the underlying file system with the path of this instance.
         /// </summary>
         void CreateFolder();

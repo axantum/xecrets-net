@@ -45,5 +45,6 @@ namespace Axantum.AxCrypt.Core.UI
         Aborted,
         FileAlreadyEncrypted,
         FolderAlreadyWatched,
+        FileLocked,
     }
 }
