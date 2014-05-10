@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 
@@ -7,10 +6,6 @@ namespace Axantum.AxCrypt.Core.Crypto
 {
     public abstract class CryptoBase : ICrypto
     {
-        private static ICollection<int> _validKeyLengths;
-
-        private static int _blockLength;
-
         private IPassphrase _key;
 
         /// <summary>
@@ -32,13 +27,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
         }
 
-        /// <summary>
-        /// Gets the underlying algorithm block length in bytes
-        /// </summary>
-        public int BlockLength
-        {
-            get { return _blockLength; }
-        }
+        public abstract int BlockLength { get; }
 
         /// <summary>
         /// Create an instance of a transform suitable for NIST Key Wrap.
@@ -84,35 +73,5 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// A new encrypting transformation instance
         /// </returns>
         public abstract ICryptoTransform CreateEncryptingTransform();
-
-        /// <summary>
-        /// Check if the provided length in bytes is appropriate for the underlying algorithm.
-        /// </summary>
-        /// <param name="length">Proposed key length in bytes.</param>
-        /// <returns>
-        /// true if the length is valid for the algorithm.
-        /// </returns>
-        public bool IsValidKeyLength(int length)
-        {
-            return _validKeyLengths.Contains(length);
-        }
-
-        protected static void SetValidKeyLengths(KeySizes[] legalKeySizes)
-        {
-            List<int> validKeyLengths = new List<int>();
-            foreach (KeySizes keySizes in legalKeySizes)
-            {
-                for (int validKeySizeInBits = keySizes.MinSize; validKeySizeInBits <= keySizes.MaxSize; validKeySizeInBits += keySizes.SkipSize)
-                {
-                    validKeyLengths.Add(validKeySizeInBits / 8);
-                }
-            }
-            _validKeyLengths = validKeyLengths;
-        }
-
-        protected static void SetBlockLength(int blockLength)
-        {
-            _blockLength = blockLength;
-        }
     }
 }

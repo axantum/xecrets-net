@@ -34,7 +34,9 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public byte[] TransformBlock(byte[] block)
         {
-            return _transform.TransformFinalBlock(block, 0, BlockLength);
+            byte[] transformed = new byte[block.Length];
+            _transform.TransformBlock(block, 0, block.Length, transformed, 0);
+            return transformed;
         }
 
         public byte[] A()

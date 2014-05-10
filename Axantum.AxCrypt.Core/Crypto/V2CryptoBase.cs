@@ -12,27 +12,8 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private int _blockOffset;
 
-        private static bool _isInitialized = false;
-
-        private void StaticInitialize()
-        {
-            if (_isInitialized)
-            {
-                return;
-            }
-            _isInitialized = true;
-
-            using (SymmetricAlgorithm algorithm = CreateRawAlgorithm())
-            {
-                SetValidKeyLengths(algorithm.LegalKeySizes);
-                SetBlockLength(algorithm.BlockSize / 8);
-            }
-        }
-
         public V2CryptoBase(IPassphrase key, SymmetricIV iv, long keyStreamOffset)
         {
-            StaticInitialize();
-
             if (key == null)
             {
                 throw new ArgumentNullException("key");
@@ -41,19 +22,30 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new ArgumentNullException("iv");
             }
-            if (!IsValidKeyLength(key.DerivedKey.Size / 8))
+            using (SymmetricAlgorithm algorithm = CreateRawAlgorithm())
             {
-                throw new ArgumentException("Key length is invalid.");
-            }
-            if (iv.Length != BlockLength)
-            {
-                throw new ArgumentException("The IV length must be the same as the algorithm block length.");
+                if (!algorithm.ValidKeySize(key.DerivedKey.Size))
+                {
+                    throw new ArgumentException("Key length is invalid.");
+                }
+                if (iv.Length != algorithm.BlockSize / 8)
+                {
+                    throw new ArgumentException("The IV length must be the same as the algorithm block length.");
+                }
             }
 
             Key = key;
             _iv = iv;
             _blockCounter = keyStreamOffset / iv.Length;
             _blockOffset = (int)(keyStreamOffset % iv.Length);
+        }
+
+        public override int BlockLength
+        {
+            get
+            {
+                return _iv.Length;
+            }
         }
 
         /// <summary>

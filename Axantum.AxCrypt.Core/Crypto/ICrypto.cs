@@ -47,13 +47,6 @@ namespace Axantum.AxCrypt.Core.Crypto
         int BlockLength { get; }
 
         /// <summary>
-        /// Check if the provided length in bytes is appropriate for the underlying algorithm.
-        /// </summary>
-        /// <param name="length">Proposed key length in bytes.</param>
-        /// <returns>true if the length is valid for the algorithm.</returns>
-        bool IsValidKeyLength(int length);
-
-        /// <summary>
         /// Create an instance of a transform suitable for NIST Key Wrap.
         /// </summary>
         /// <returns></returns>

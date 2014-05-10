@@ -39,14 +39,6 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private SymmetricIV _iv;
 
-        static V1AesCrypto()
-        {
-            using (SymmetricAlgorithm algorithm = CreateRawAlgorithm())
-            {
-                SetBlockLength(algorithm.BlockSize / 8);
-            }
-        }
-
         /// <summary>
         /// Instantiate a transformation
         /// </summary>
@@ -62,9 +54,25 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new ArgumentNullException("iv");
             }
+            if (key.DerivedKey.Size != 128)
+            {
+                throw new ArgumentException("Key length is invalid.");
+            }
+            using (SymmetricAlgorithm algorithm = CreateRawAlgorithm())
+            {
+                if (iv.Length != algorithm.BlockSize / 8)
+                {
+                    throw new ArgumentException("The IV length must be the same as the algorithm block length.");
+                }
+            }
 
             Key = key;
             _iv = iv;
+        }
+
+        public override int BlockLength
+        {
+            get { return _iv.Length; }
         }
 
         /// <summary>
