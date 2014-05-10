@@ -25,6 +25,11 @@ namespace Axantum.AxCrypt.Core.Crypto
             _factories.Add(factory().Id, factory);
         }
 
+        public bool TypeNameExists(string fullName)
+        {
+            return _factories.Any(c => c.Value().GetType().FullName == fullName);
+        }
+
         public ICryptoFactory Create(Guid id)
         {
             if (id == Guid.Empty)

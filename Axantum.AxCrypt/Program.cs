@@ -25,13 +25,6 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Threading;
-using System.Windows.Forms;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
@@ -40,6 +33,13 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Mono;
+using System;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
 {
@@ -51,11 +51,12 @@ namespace Axantum.AxCrypt
         [STAThread]
         private static void Main()
         {
-            RegisterTypeFactories();
+            string[] commandLineArgs = Environment.GetCommandLineArgs();
+
+            RegisterTypeFactories(commandLineArgs[0]);
             WireupEvents();
             SetCulture();
 
-            string[] commandLineArgs = Environment.GetCommandLineArgs();
             if (commandLineArgs.Length == 1)
             {
                 RunInteractive();
@@ -69,7 +70,7 @@ namespace Axantum.AxCrypt
             Factory.Instance.Clear();
         }
 
-        private static void RegisterTypeFactories()
+        private static void RegisterTypeFactories(string startPath)
         {
             string workFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"AxCrypt" + Path.DirectorySeparatorChar);
 
@@ -84,7 +85,7 @@ namespace Axantum.AxCrypt
             Factory.Instance.Singleton<ProcessState>(() => new ProcessState());
             Factory.Instance.Singleton<SessionNotify>(() => new SessionNotify());
             Factory.Instance.Singleton<IRandomGenerator>(() => new RandomGenerator());
-            Factory.Instance.Singleton<CryptoFactory>(() => CreateCryptoFactory());
+            Factory.Instance.Singleton<CryptoFactory>(() => CreateCryptoFactory(startPath));
             Factory.Instance.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
             Factory.Instance.Singleton<CommandHandler>(() => new CommandHandler());
 
@@ -103,13 +104,18 @@ namespace Axantum.AxCrypt
             Factory.Instance.Register<string, IRuntimeFileInfo>((path) => new RuntimeFileInfo(path));
         }
 
-        private static CryptoFactory CreateCryptoFactory()
+        private static CryptoFactory CreateCryptoFactory(string startPath)
         {
             CryptoFactory factory = new CryptoFactory();
-            foreach (CryptoFactoryCreator activator in CryptoFactoryDiscovery.Discover(Assembly.GetAssembly(typeof(CryptoFactory))))
+
+            CryptoFactoryDiscovery.Discover(Assembly.GetAssembly(typeof(CryptoFactory)), factory);
+
+            DirectoryInfo folder = new DirectoryInfo(Path.GetDirectoryName(startPath));
+            foreach (FileInfo file in folder.GetFiles("*.dll"))
             {
-                factory.Add(activator);
+                CryptoFactoryDiscovery.Discover(Assembly.LoadFrom(file.FullName), factory);
             }
+
             return factory;
         }
 
