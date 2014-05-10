@@ -34,7 +34,5 @@ namespace Axantum.AxCrypt.Core.Crypto
     public interface ICryptoPolicy
     {
         ICryptoFactory DefaultCryptoFactory(IEnumerable<CryptoFactoryCreator> factories);
-
-        ICryptoFactory LegacyCryptoFactory(IEnumerable<CryptoFactoryCreator> factories);
     }
 }

@@ -37,10 +37,5 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             return factories.First(f => f().Id == CryptoFactory.Aes128V1Id)();
         }
-
-        public ICryptoFactory LegacyCryptoFactory(IEnumerable<CryptoFactoryCreator> factories)
-        {
-            return factories.First(f => f().Id == CryptoFactory.Aes128V1Id)();
-        }
     }
 }
