@@ -33,6 +33,10 @@ namespace Axantum.AxCrypt.Core.Crypto
 {
     public interface ICryptoPolicy
     {
+        int Priority { get; }
+
+        bool Active { get; }
+
         string Name { get; }
 
         ICryptoFactory DefaultCryptoFactory(IEnumerable<CryptoFactoryCreator> factories);

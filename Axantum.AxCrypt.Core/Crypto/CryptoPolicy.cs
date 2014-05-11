@@ -59,5 +59,10 @@ namespace Axantum.AxCrypt.Core.Crypto
                 return _policies.Values.OrderByDescending(p => Instance.CryptoFactory.Create(p).Priority).Select(p => p.Name);
             }
         }
+
+        public ICryptoPolicy CreateDefault()
+        {
+            return _policies.Values.OrderByDescending(p => p.Priority).First();
+        }
     }
 }

@@ -39,5 +39,15 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             return factories.First()();
         }
+
+        public int Priority
+        {
+            get { return 300000; }
+        }
+
+        public bool Active
+        {
+            get { return true; }
+        }
     }
 }

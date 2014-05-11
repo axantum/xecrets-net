@@ -39,5 +39,15 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             return factories.First(f => f().Id == CryptoFactory.Aes128V1Id)();
         }
+
+        public int Priority
+        {
+            get { return 100000; }
+        }
+
+        public bool Active
+        {
+            get { return true; }
+        }
     }
 }

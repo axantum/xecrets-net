@@ -88,7 +88,7 @@ namespace Axantum.AxCrypt
             Factory.Instance.Singleton<IRandomGenerator>(() => new RandomGenerator());
             Factory.Instance.Singleton<CryptoFactory>(() => CreateCryptoFactory(startPath));
             Factory.Instance.Singleton<CryptoPolicy>(() => CreateCryptoPolicy(startPath));
-            Factory.Instance.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
+            Factory.Instance.Singleton<ICryptoPolicy>(() => Factory.Instance.Singleton<CryptoPolicy>().CreateDefault());
             Factory.Instance.Singleton<CommandHandler>(() => new CommandHandler());
 
             Factory.Instance.Register<AxCryptFactory>(() => new AxCryptFactory());
