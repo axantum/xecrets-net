@@ -34,6 +34,14 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public byte[] TransformBlock(byte[] block)
         {
+            if (block == null)
+            {
+                throw new ArgumentNullException("block");
+            }
+            if (block.Length != BlockLength)
+            {
+                throw new ArgumentException("Argument 'block' must be a single block for the algorithm.");
+            }
             byte[] transformed = new byte[block.Length];
             _transform.TransformBlock(block, 0, block.Length, transformed, 0);
             return transformed;
