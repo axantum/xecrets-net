@@ -106,22 +106,22 @@
                AssemblyFile="..\SolutionItems\MSBuild.Axantum.Tasks.dll" />
 
     <Target Name="_AxMergeAndSign"
-            Inputs="$(MSBuildProjectFullPath);@(MainAssembly);@(IlmergeAssemblies)"
-            Outputs="$(OutputPath)AxCrypt.exe;$(OutputPath)AxCrypt.pdb"
+            Inputs="$(MSBuildProjectFullPath);@(MainAssembly);@(_AxIlMergeAssemblies)"
+            Outputs="$(OutputPath)$(_AxMergedBaseFileName).exe;$(OutputPath)$(_AxMergedBaseFileName).pdb"
             Condition="'$(OutputType)' == 'Winexe' And '$(KeyContainerName)' != '' And '$(SignAssembly)' == 'true' ">
 
-        <Exec Command="&quot;..\SolutionItems\Ilmerge.exe&quot; /delaysign /keyfile:..\SolutionItems\AxantumStrongName.pub /attr:&quot;@(MainAssembly)&quot; /targetplatform:v4,&quot;$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client&quot; /out:&quot;$(IntermediateOutputPath)Axantum.AxCrypt.exe&quot; &quot;@(MainAssembly)&quot; @(IlmergeAssemblies->'&quot;%(FullPath)&quot;', ' ')" />
-        <Copy SourceFiles="$(IntermediateOutputPath)Axantum.AxCrypt.exe"
-              DestinationFiles="$(OutputPath)AxCrypt.exe" />
-        <Delete Files="$(IntermediateOutputPath)Axantum.AxCrypt.exe"
-                Condition=" Exists('$(IntermediateOutputPath)Axantum.AxCrypt.exe') " />
-        <Exec Command="&quot;..\SolutionItems\sn.exe&quot; -Rca &quot;$(OutputPath)AxCrypt.exe&quot; $(KeyContainerName)" />
+        <Exec Command="&quot;$(MSBuildThisFileDirectory)Ilmerge.exe&quot; /delaysign &quot;/keyfile:$(MSBuildThisFileDirectory)AxantumStrongName.pub&quot; /attr:&quot;@(MainAssembly)&quot; /targetplatform:v4,&quot;$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client&quot; /out:&quot;$(IntermediateOutputPath)$(AssemblyName).exe&quot; &quot;$(_AxMergeMainExecutable)&quot; @(_AxIlMergeAssemblies->'&quot;%(FullPath)&quot;', ' ')" />
+        <Copy SourceFiles="$(IntermediateOutputPath)$(AssemblyName).exe"
+              DestinationFiles="$(OutputPath)$(_AxMergedBaseFileName).exe" />
+        <Delete Files="$(IntermediateOutputPath)$(AssemblyName).exe"
+                Condition=" Exists('$(IntermediateOutputPath)$(AssemblyName).exe') " />
+        <Exec Command="&quot;$(MSBuildThisFileDirectory)sn.exe&quot; -Rca &quot;$(OutputPath)$(_AxMergedBaseFileName).exe&quot; $(KeyContainerName)" />
         <MSBuild Projects="$(MSBuildProjectFullPath)"
                  Targets="AxAuthenticodeSignOneFile"
-                 Properties="AxAuthenticodeFile=$(OutputPath)AxCrypt.exe" />
+                 Properties="AxAuthenticodeFile=$(OutputPath)$(_AxMergedBaseFileName).exe" />
         <ItemGroup>
-            <FileWrites Include="$(OutputPath)AxCrypt.exe" />
-            <FileWrites Include="$(OutputPath)AxCrypt.pdb" />
+            <FileWrites Include="$(OutputPath)$(_AxMergedBaseFileName).exe" />
+            <FileWrites Include="$(OutputPath)$(_AxMergedBaseFileName).pdb" />
         </ItemGroup>
     </Target>
 
@@ -152,8 +152,12 @@
         <CreateItem Include="@(ReferencePath)"
                     Condition="'%(CopyLocal)'=='true'">
             <Output TaskParameter="Include"
-                    ItemName="IlmergeAssemblies" />
+                    ItemName="_AxIlMergeAssemblies" />
         </CreateItem>
+        <PropertyGroup>
+            <_AxMergedBaseFileName>AxCrypt</_AxMergedBaseFileName>
+            <_AxMergeMainExecutable>@(MainAssembly)</_AxMergeMainExecutable>
+        </PropertyGroup>
     </Target>
 
     <Target Name="_AxFixupVersion"
