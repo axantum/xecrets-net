@@ -132,10 +132,10 @@
     </Target>
 
     <Target Name="_AxCopyToVersionedFileName"
-            Inputs="$(OutputPath)AxCrypt.exe"
+            Inputs="$(OutputPath)$(_AxMergedBaseFileName).exe"
             Outputs="$(OutputPath)$(_AxVersionedFileName)"
             Condition=" '$(_AxVersionedFileName)' != '' ">
-        <Copy SourceFiles="$(OutputPath)AxCrypt.exe"
+        <Copy SourceFiles="$(OutputPath)$(_AxMergedBaseFileName).exe"
               DestinationFiles="$(OutputPath)$(_AxVersionedFileName)"
               SkipUnchangedFiles="true" />
         <ItemGroup>
