@@ -54,7 +54,7 @@
         <_AxIsAxantumBuildServer Condition=" '$(COMPUTERNAME)' == 'SHADOW' ">true</_AxIsAxantumBuildServer>
         <_AxIsAxantum>false</_AxIsAxantum>
         <_AxIsAxantum Condition=" '$(_AxIsAxantumDeveloper)' == 'true' Or '$(_AxIsAxantumBuildServer)' == 'true' ">true</_AxIsAxantum>
-        <_AxSignToolPath>..\SolutionItems\signtool.exe</_AxSignToolPath>
+        <_AxSignToolPath>$(MSBuildThisFileDirectory)signtool.exe</_AxSignToolPath>
         <_AxIsAxantumBuild>true</_AxIsAxantumBuild>
         <_AxBuildserverDistinguishingPath>C:\Build</_AxBuildserverDistinguishingPath>
         <_AxIsBuildServerBuild>false</_AxIsBuildServerBuild>
