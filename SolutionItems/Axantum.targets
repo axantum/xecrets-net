@@ -61,6 +61,9 @@
         <_AxIsBuildServerBuild Condition=" Exists('$(_AxBuildserverDistinguishingPath)') ">true</_AxIsBuildServerBuild>
         <_AxTimeStampUrl>http://timestamp.comodoca.com/authenticode</_AxTimeStampUrl>
         <_AxCertificateThumbprint>fc898fdc88b037ff88ea154ff25a24aea11eda9c</_AxCertificateThumbprint>
+        <_AxIlMergePath Condition=" '$(_AxIlMergePath)' == '' And Exists('$(ProgramFiles(x86))\Microsoft\ILMerge\ILMerge.exe') ">$(ProgramFiles(x86))\Microsoft\ILMerge\ILMerge.exe</_AxIlMergePath>
+        <_AxIlMergePath Condition=" '$(_AxIlMergePath)' == '' And Exists('$(ProgramFiles)\Microsoft\ILMerge\ILMerge.exe') ">$(ProgramFiles)\Microsoft\ILMerge\ILMerge.exe</_AxIlMergePath>
+        <_AxIlMergePath Condition=" '$(_AxIlMergePath)' == '' And Exists('$(MSBuildThisFileDirectory)Ilmerge.exe') ">$(MSBuildThisFileDirectory)Ilmerge.exe</_AxIlMergePath>
     </PropertyGroup>
     <PropertyGroup>
         <UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>
@@ -107,7 +110,7 @@
 
     <Target Name="_AxMergeExe"
             Condition="'$(OutputType)' == 'Winexe' ">
-        <Exec Command="&quot;$(MSBuildThisFileDirectory)Ilmerge.exe&quot; /delaysign &quot;/keyfile:$(MSBuildThisFileDirectory)AxantumStrongName.pub&quot; /attr:&quot;@(MainAssembly)&quot; /targetplatform:v4,&quot;$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client&quot; /out:&quot;$(IntermediateOutputPath)$(AssemblyName).exe&quot; &quot;$(_AxMergeMainExecutable)&quot; @(_AxIlMergeAssemblies->'&quot;%(FullPath)&quot;', ' ')" />
+        <Exec Command="&quot;$(_AxIlMergePath)&quot; /delaysign &quot;/keyfile:$(MSBuildThisFileDirectory)AxantumStrongName.pub&quot; /attr:&quot;@(MainAssembly)&quot; /targetplatform:v4,&quot;$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client&quot; /out:&quot;$(IntermediateOutputPath)$(AssemblyName).exe&quot; &quot;$(_AxMergeMainExecutable)&quot; @(_AxIlMergeAssemblies->'&quot;%(FullPath)&quot;', ' ')" />
         <Copy SourceFiles="$(IntermediateOutputPath)$(AssemblyName).exe"
               DestinationFiles="$(OutputPath)$(_AxMergedBaseFileName).exe" />
         <Delete Files="$(IntermediateOutputPath)$(AssemblyName).exe"
@@ -130,7 +133,7 @@
             Inputs="$(MSBuildProjectFullPath);@(MainAssembly);@(_AxIlMergeAssemblies)"
             Outputs="$(OutputPath)$(_AxMergedBaseFileName).exe"
             DependsOnTargets="_AxMergeExe;_AxSignExe"
-            Condition="'$(OutputType)' == 'Winexe'">
+            Condition=" '$(OutputType)' == 'Winexe' And '$(_AxIlMergePath)' != '' ">
     </Target>
 
     <Target Name="_AxSetVersionedFileName">
