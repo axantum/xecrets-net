@@ -105,24 +105,32 @@
     <UsingTask TaskName="TemplateFileTask"
                AssemblyFile="..\SolutionItems\MSBuild.Axantum.Tasks.dll" />
 
-    <Target Name="_AxMergeAndSign"
-            Inputs="$(MSBuildProjectFullPath);@(MainAssembly);@(_AxIlMergeAssemblies)"
-            Outputs="$(OutputPath)$(_AxMergedBaseFileName).exe;$(OutputPath)$(_AxMergedBaseFileName).pdb"
-            Condition="'$(OutputType)' == 'Winexe' And '$(KeyContainerName)' != '' And '$(SignAssembly)' == 'true' ">
-
+    <Target Name="_AxMergeExe"
+            Condition="'$(OutputType)' == 'Winexe' ">
         <Exec Command="&quot;$(MSBuildThisFileDirectory)Ilmerge.exe&quot; /delaysign &quot;/keyfile:$(MSBuildThisFileDirectory)AxantumStrongName.pub&quot; /attr:&quot;@(MainAssembly)&quot; /targetplatform:v4,&quot;$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client&quot; /out:&quot;$(IntermediateOutputPath)$(AssemblyName).exe&quot; &quot;$(_AxMergeMainExecutable)&quot; @(_AxIlMergeAssemblies->'&quot;%(FullPath)&quot;', ' ')" />
         <Copy SourceFiles="$(IntermediateOutputPath)$(AssemblyName).exe"
               DestinationFiles="$(OutputPath)$(_AxMergedBaseFileName).exe" />
         <Delete Files="$(IntermediateOutputPath)$(AssemblyName).exe"
                 Condition=" Exists('$(IntermediateOutputPath)$(AssemblyName).exe') " />
-        <Exec Command="&quot;$(MSBuildThisFileDirectory)sn.exe&quot; -Rca &quot;$(OutputPath)$(_AxMergedBaseFileName).exe&quot; $(KeyContainerName)" />
-        <MSBuild Projects="$(MSBuildProjectFullPath)"
-                 Targets="AxAuthenticodeSignOneFile"
-                 Properties="AxAuthenticodeFile=$(OutputPath)$(_AxMergedBaseFileName).exe" />
         <ItemGroup>
             <FileWrites Include="$(OutputPath)$(_AxMergedBaseFileName).exe" />
             <FileWrites Include="$(OutputPath)$(_AxMergedBaseFileName).pdb" />
         </ItemGroup>
+    </Target>
+
+    <Target Name="_AxSignExe"
+            Condition="'$(OutputType)' == 'Winexe' And '$(KeyContainerName)' != '' And '$(SignAssembly)' == 'true' ">
+        <Exec Command="&quot;$(MSBuildThisFileDirectory)sn.exe&quot; -Rca &quot;$(OutputPath)$(_AxMergedBaseFileName).exe&quot; $(KeyContainerName)" />
+        <MSBuild Projects="$(MSBuildProjectFullPath)"
+                 Targets="AxAuthenticodeSignOneFile"
+                 Properties="AxAuthenticodeFile=$(OutputPath)$(_AxMergedBaseFileName).exe" />
+    </Target>
+
+    <Target Name="_AxMergeAndSign"
+            Inputs="$(MSBuildProjectFullPath);@(MainAssembly);@(_AxIlMergeAssemblies)"
+            Outputs="$(OutputPath)$(_AxMergedBaseFileName).exe"
+            DependsOnTargets="_AxMergeExe;_AxSignExe"
+            Condition="'$(OutputType)' == 'Winexe'">
     </Target>
 
     <Target Name="_AxSetVersionedFileName">
