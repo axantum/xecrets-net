@@ -212,10 +212,6 @@
         </PropertyGroup>
     </Target>
 
-    <Target Name="_AxPrepareForRun"
-            DependsOnTargets="_AxFindIlMergeAssemblies;_AxMergeAndSign;_AxSetRevisionAndCopyToVersionedFileName">
-    </Target>
-
     <Target Name="_AxSetupStrongNaming"
             Condition=" '$(_AxIsAxantum)' == 'true' ">
         <PropertyGroup>
@@ -226,6 +222,13 @@
 
     <Target Name="_AxCheckBuildEnvironment">
     </Target>
+
+    <PropertyGroup>
+        <PrepareForRunDependsOn>
+            $(PrepareForRunDependsOn);
+            _AxFindIlMergeAssemblies;_AxMergeAndSign
+        </PrepareForRunDependsOn>
+    </PropertyGroup>
 
     <PropertyGroup Condition=" '$(_AxIsAxantum)' == 'true' ">
         <CoreBuildDependsOn>
@@ -240,7 +243,7 @@
         </BuildDependsOn>
         <PrepareForRunDependsOn>
             $(PrepareForRunDependsOn);
-            _AxPrepareForRun
+            _AxSetRevisionAndCopyToVersionedFileName
         </PrepareForRunDependsOn>
     </PropertyGroup>
 
