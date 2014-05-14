@@ -48,6 +48,7 @@
         <AxBuildNumber Condition=" '$(AxBuildNumber)' == '' ">0</AxBuildNumber>
     </PropertyGroup>
     <PropertyGroup>
+        <_AxCanonicalName>AxCrypt</_AxCanonicalName>
         <_AxIsAxantumDeveloper>false</_AxIsAxantumDeveloper>
         <_AxIsAxantumDeveloper Condition=" '$(AX_AXANTUM)' == 'True' ">true</_AxIsAxantumDeveloper>
         <_AxIsAxantumBuildServer>false</_AxIsAxantumBuildServer>
@@ -132,10 +133,17 @@
                  Properties="AxAuthenticodeFile=$(OutputPath)$(_AxMergedBaseFileName).exe" />
     </Target>
 
+    <Target Name="_AxRecopyMerged" Condition=" '$(_AxIsBuildServerBuild)' != 'true' ">
+        <Copy SourceFiles="$(OutputPath)$(_AxMergedBaseFileName).exe"
+              DestinationFiles="$(MSBuildThisFileDirectory)..\Axantum.AxCrypt\bin\$(Configuration)\$(_AxCanonicalName).exe"
+              SkipUnchangedFiles="true"
+              Condition=" '$(_AxMergedBaseFileName)' != '$(_AxCanonicalName)' " />
+    </Target>
+
     <Target Name="_AxMergeAndSign"
             Inputs="$(MSBuildProjectFullPath);@(MainAssembly);@(_AxIlMergeAssemblies)"
-            Outputs="$(OutputPath)$(_AxMergedBaseFileName).exe"
-            DependsOnTargets="_AxMergeExe;_AxSignExe"
+            Outputs="$(OutputPath)$(_AxMergedBaseFileName)"
+            DependsOnTargets="_AxMergeExe;_AxSignExe;_AxRecopyMerged"
             Condition=" '$(OutputType)' == 'Winexe' And '$(_AxIlMergePath)' != '' ">
     </Target>
 
@@ -169,7 +177,7 @@
                     ItemName="_AxIlMergeAssemblies" />
         </CreateItem>
         <PropertyGroup>
-            <_AxMergedBaseFileName>AxCrypt</_AxMergedBaseFileName>
+            <_AxMergedBaseFileName>$(_AxCanonicalName)</_AxMergedBaseFileName>
             <_AxMergeMainExecutable>@(MainAssembly)</_AxMergeMainExecutable>
         </PropertyGroup>
     </Target>
