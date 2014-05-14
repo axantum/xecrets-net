@@ -108,7 +108,7 @@ namespace Axantum.AxCrypt
 
         private static CryptoFactory CreateCryptoFactory(string startPath)
         {
-            IEnumerable<Assembly> extraAssemblies = new DirectoryInfo(Path.GetDirectoryName(startPath)).GetFiles("*.dll").Select(f => Assembly.LoadFrom(f.FullName));
+            IEnumerable<Assembly> extraAssemblies = LoadFromFiles(new DirectoryInfo(Path.GetDirectoryName(startPath)).GetFiles("*.dll"));
             IEnumerable<Type> types = TypeDiscovery.Interfaces<ICryptoFactory>(extraAssemblies);
 
             CryptoFactory factory = new CryptoFactory();
@@ -121,8 +121,25 @@ namespace Axantum.AxCrypt
 
         private static CryptoPolicy CreateCryptoPolicy(string startPath)
         {
-            IEnumerable<Assembly> extraAssemblies = new DirectoryInfo(Path.GetDirectoryName(startPath)).GetFiles("*.dll").Select(f => Assembly.LoadFrom(f.FullName));
+            IEnumerable<Assembly> extraAssemblies = LoadFromFiles(new DirectoryInfo(Path.GetDirectoryName(startPath)).GetFiles("*.dll"));
             return new CryptoPolicy(extraAssemblies);
+        }
+
+        private static IEnumerable<Assembly> LoadFromFiles(IEnumerable<FileInfo> files)
+        {
+            List<Assembly> assemblies = new List<Assembly>();
+            foreach (FileInfo file in files)
+            {
+                try
+                {
+                    assemblies.Add(Assembly.LoadFrom(file.FullName));
+                }
+                catch (BadImageFormatException)
+                {
+                    continue;
+                }
+            }
+            return assemblies;
         }
 
         private static void WireupEvents()
