@@ -25,15 +25,15 @@
 
 #endregion Coypright and License
 
-using System;
-using System.IO;
-using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Test.Properties;
 using NUnit.Framework;
+using System;
+using System.IO;
+using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -110,7 +110,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestKeyEncryptingKey()
         {
-            IPassphrase keyEncryptingKey = new GenericPassphrase("a");
+            IDerivedKey keyEncryptingKey = new GenericPassphrase("a");
             V1DocumentHeaders headers = new V1DocumentHeaders(new V1AesCrypto(keyEncryptingKey, SymmetricIV.Zero128), 57);
             Assert.That(headers.KeyEncryptingCrypto.Key, Is.EqualTo(keyEncryptingKey), "Unexpected key encrypting key retrieved.");
         }

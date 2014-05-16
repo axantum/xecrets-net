@@ -49,16 +49,16 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </value>
         string Name { get; }
 
-        IPassphrase CreatePassphrase(string passphrase);
+        IDerivedKey CreatePassphrase(string passphrase);
 
-        IPassphrase CreatePassphrase(string passphrase, Salt salt, int derivationIterations);
+        IDerivedKey CreatePassphrase(string passphrase, Salt salt, int derivationIterations);
 
         /// <summary>
         /// Instantiate an approriate ICrypto implementation.
         /// </summary>
         /// <param name="key">The key to use. It will be converted to the correct CryptoId if required.</param>
         /// <returns>An instance of an appropriate ICrypto implementation.</returns>
-        ICrypto CreateCrypto(IPassphrase key);
+        ICrypto CreateCrypto(IDerivedKey key);
 
         /// <summary>
         /// Instantiate an approriate ICrypto implementation.
@@ -67,6 +67,6 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <param name="iv"></param>
         /// <param name="keyStreamOffset"></param>
         /// <returns>An instance of an appropriate ICrypto implementation.</returns>
-        ICrypto CreateCrypto(IPassphrase key, SymmetricIV iv, long keyStreamOffset);
+        ICrypto CreateCrypto(IDerivedKey key, SymmetricIV iv, long keyStreamOffset);
     }
 }

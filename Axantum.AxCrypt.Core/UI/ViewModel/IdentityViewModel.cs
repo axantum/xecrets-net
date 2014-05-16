@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             CryptoId = Instance.CryptoFactory.Default.Id;
         }
 
-        public IPassphrase Passphrase { get { return GetProperty<IPassphrase>("Passphrase"); } set { SetProperty("Passphrase", value); } }
+        public IDerivedKey Passphrase { get { return GetProperty<IDerivedKey>("Passphrase"); } set { SetProperty("Passphrase", value); } }
 
         public Guid CryptoId { get { return GetProperty<Guid>("CryptoId"); } set { SetProperty("CryptoId", value); } }
 
@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        private IPassphrase LogOnLogOffAction(Guid cryptoId)
+        private IDerivedKey LogOnLogOffAction(Guid cryptoId)
         {
             if (_knownKeys.IsLoggedOn)
             {
@@ -85,7 +85,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             CryptoId = cryptoId != Guid.Empty ? cryptoId : Instance.CryptoFactory.Default.Id;
 
-            IPassphrase passphrase;
+            IDerivedKey passphrase;
             if (_fileSystemState.Identities.Any())
             {
                 passphrase = AskForLogOnPassphraseAction(PassphraseIdentity.Empty, String.Empty);
@@ -102,11 +102,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return _knownKeys.DefaultEncryptionKey;
         }
 
-        private IPassphrase KeyFromPassphrase(string passphrase)
+        private IDerivedKey KeyFromPassphrase(string passphrase)
         {
             foreach (PassphraseIdentity identity in _fileSystemState.Identities)
             {
-                IPassphrase candidate = Instance.CryptoFactory.Default.CreatePassphrase(passphrase);
+                IDerivedKey candidate = Instance.CryptoFactory.Default.CreatePassphrase(passphrase);
                 if (identity.Thumbprint == candidate.Thumbprint)
                 {
                     return candidate;
@@ -115,7 +115,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return null;
         }
 
-        private IPassphrase AskForLogOnOrDecryptPassphraseAction(string encryptedFileFullName)
+        private IDerivedKey AskForLogOnOrDecryptPassphraseAction(string encryptedFileFullName)
         {
             ActiveFile openFile = _fileSystemState.FindActiveFileFromEncryptedPath(encryptedFileFullName);
             if (openFile == null || openFile.Thumbprint == null)
@@ -132,9 +132,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return AskForLogOnPassphraseAction(identity, encryptedFileFullName);
         }
 
-        private IPassphrase AskForLogOnPassphraseAction(PassphraseIdentity identity, string encryptedFileFullName)
+        private IDerivedKey AskForLogOnPassphraseAction(PassphraseIdentity identity, string encryptedFileFullName)
         {
-            IPassphrase passphrase = AskForLogOnOrEncryptionPassphrase(identity, encryptedFileFullName);
+            IDerivedKey passphrase = AskForLogOnOrEncryptionPassphrase(identity, encryptedFileFullName);
             if (passphrase == null)
             {
                 return null;
@@ -144,7 +144,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return passphrase;
         }
 
-        private IPassphrase AskForLogOnOrEncryptionPassphrase(PassphraseIdentity identity, string encryptedFileFullName)
+        private IDerivedKey AskForLogOnOrEncryptionPassphrase(PassphraseIdentity identity, string encryptedFileFullName)
         {
             if (!_fileSystemState.Identities.Any())
             {
@@ -174,7 +174,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return KeyFromPassphrase(logOnArgs.Passphrase);
         }
 
-        private IPassphrase AskForNewEncryptionPassphrase(string defaultPassphrase, string encryptedFileFullName)
+        private IDerivedKey AskForNewEncryptionPassphrase(string defaultPassphrase, string encryptedFileFullName)
         {
             LogOnEventArgs logOnArgs = new LogOnEventArgs()
             {
@@ -192,7 +192,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             _userSettings.DisplayEncryptPassphrase = logOnArgs.DisplayPassphrase;
 
-            IPassphrase passphrase = Instance.CryptoFactory.Create(CryptoId).CreatePassphrase(logOnArgs.Passphrase);
+            IDerivedKey passphrase = Instance.CryptoFactory.Create(CryptoId).CreatePassphrase(logOnArgs.Passphrase);
             PassphraseIdentity identity = _fileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == passphrase.Thumbprint);
             if (identity != null)
             {

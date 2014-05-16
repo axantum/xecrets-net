@@ -30,7 +30,7 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
-    public abstract class PassphraseBase : IPassphrase
+    public abstract class PassphraseBase : IDerivedKey
     {
         public Guid CryptoId
         {
@@ -79,7 +79,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         /// <param name="other">The instance to compare to</param>
         /// <returns>true if the keys are equivalent</returns>
-        public bool Equals(IPassphrase other)
+        public bool Equals(IDerivedKey other)
         {
             if ((object)other == null)
             {
@@ -92,11 +92,11 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public override bool Equals(object obj)
         {
-            if (obj == null || !typeof(IPassphrase).IsAssignableFrom(obj.GetType()))
+            if (obj == null || !typeof(IDerivedKey).IsAssignableFrom(obj.GetType()))
             {
                 return false;
             }
-            IPassphrase other = (IPassphrase)obj;
+            IDerivedKey other = (IDerivedKey)obj;
 
             return Equals(other);
         }

@@ -168,7 +168,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             FileOperationsController controller = new FileOperationsController();
             string destinationPath = String.Empty;
-            IPassphrase key = null;
+            IDerivedKey key = null;
             controller.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
             {
                 e.Passphrase = "allan";

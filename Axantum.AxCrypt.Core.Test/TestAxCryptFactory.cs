@@ -67,7 +67,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             AxCryptFactory axFactory = new AxCryptFactory();
 
-            IPassphrase key = new TestingPassphrase("toohigh");
+            IDerivedKey key = new TestingPassphrase("toohigh");
 
             IAxCryptDocument document = null;
             Assert.Throws<ArgumentException>(() => document = axFactory.CreateDocument(key));
@@ -77,7 +77,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestV2Document()
         {
-            IPassphrase key = new V2Passphrase("properties", 256, CryptoFactory.Aes256Id);
+            IDerivedKey key = new V2Passphrase("properties", 256, CryptoFactory.Aes256Id);
             using (MemoryStream inputStream = new MemoryStream())
             {
                 byte[] text = Instance.RandomGenerator.Generate(500);

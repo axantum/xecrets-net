@@ -222,7 +222,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         private static void TestEncryptDecryptHelper(int length, AxCryptOptions options)
         {
-            IPassphrase key = new V2Passphrase("passphrase", 256, CryptoFactory.Aes256Id);
+            IDerivedKey key = new V2Passphrase("passphrase", 256, CryptoFactory.Aes256Id);
             using (MemoryStream inputStream = new MemoryStream())
             {
                 byte[] text = Instance.RandomGenerator.Generate(length);
@@ -269,7 +269,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestLoadWithInvalidPassphrase()
         {
-            IPassphrase key = new V2Passphrase("passphrase", 256, CryptoFactory.Aes256Id);
+            IDerivedKey key = new V2Passphrase("passphrase", 256, CryptoFactory.Aes256Id);
             using (MemoryStream inputStream = new MemoryStream())
             {
                 byte[] text = Instance.RandomGenerator.Generate(1000);
@@ -301,7 +301,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.Throws<ArgumentNullException>(() => document.DecryptTo(nullStream));
             }
 
-            IPassphrase key = new V2Passphrase("passphrase", 256, CryptoFactory.Aes256Id);
+            IDerivedKey key = new V2Passphrase("passphrase", 256, CryptoFactory.Aes256Id);
             using (MemoryStream inputStream = new MemoryStream())
             {
                 byte[] text = Instance.RandomGenerator.Generate(1000);
@@ -327,7 +327,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptWithInvalidHmac()
         {
-            IPassphrase key = new V2Passphrase("passphrase", 256, CryptoFactory.Aes256Id);
+            IDerivedKey key = new V2Passphrase("passphrase", 256, CryptoFactory.Aes256Id);
             using (MemoryStream inputStream = new MemoryStream())
             {
                 byte[] text = Instance.RandomGenerator.Generate(1000);
@@ -358,7 +358,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptToWithReaderWronglyPositioned()
         {
-            IPassphrase key = new V2Passphrase("passphrase", 256, CryptoFactory.Aes256Id);
+            IDerivedKey key = new V2Passphrase("passphrase", 256, CryptoFactory.Aes256Id);
             using (MemoryStream inputStream = new MemoryStream())
             {
                 byte[] text = Instance.RandomGenerator.Generate(1000);
@@ -388,7 +388,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDocumentHeaderProperties()
         {
-            IPassphrase key = new V2Passphrase("properties", 256, CryptoFactory.Aes256Id);
+            IDerivedKey key = new V2Passphrase("properties", 256, CryptoFactory.Aes256Id);
             using (MemoryStream inputStream = new MemoryStream())
             {
                 byte[] text = Instance.RandomGenerator.Generate(500);

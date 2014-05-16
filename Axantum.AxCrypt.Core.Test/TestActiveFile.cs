@@ -71,8 +71,8 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo nullFileInfo = null;
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
             IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
-            IPassphrase key = new GenericPassphrase("key");
-            IPassphrase nullKey = null;
+            IDerivedKey key = new GenericPassphrase("key");
+            IDerivedKey nullKey = null;
             ActiveFile nullActiveFile = null;
 
             ActiveFile originalActiveFile = new ActiveFile(decryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
@@ -89,7 +89,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestConstructor()
         {
-            IPassphrase key = new GenericPassphrase("key");
+            IDerivedKey key = new GenericPassphrase("key");
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
             IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
 
@@ -117,11 +117,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestCopyConstructorWithKey()
         {
-            IPassphrase key = new GenericPassphrase("key");
+            IDerivedKey key = new GenericPassphrase("key");
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
             IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
-            IPassphrase newKey = new GenericPassphrase("newKey");
+            IDerivedKey newKey = new GenericPassphrase("newKey");
 
             ActiveFile newActiveFile = new ActiveFile(activeFile, newKey);
             Assert.That(activeFile.Key, Is.Not.EqualTo(newKey), "Ensure that it's really a different key.");
@@ -134,7 +134,7 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
             IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
 
-            IPassphrase key = new GenericPassphrase("key");
+            IDerivedKey key = new GenericPassphrase("key");
 
             using (MemoryStream stream = new MemoryStream())
             {
@@ -154,13 +154,13 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
             IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
 
-            IPassphrase key = new GenericPassphrase("key");
+            IDerivedKey key = new GenericPassphrase("key");
             using (MemoryStream stream = new MemoryStream())
             {
                 ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
                 Assert.Throws<ArgumentNullException>(() =>
                 {
-                    IPassphrase nullKey = null;
+                    IDerivedKey nullKey = null;
                     activeFile.ThumbprintMatch(nullKey);
                 });
             }
@@ -179,7 +179,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestVisualState()
         {
             ActiveFile activeFile;
-            IPassphrase key = new GenericPassphrase("key");
+            IDerivedKey key = new GenericPassphrase("key");
 
             activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(@"C:\encrypted.axx"), Factory.New<IRuntimeFileInfo>(@"C:\decrypted.txt"), key, ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.EncryptedWithKnownKey));

@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(sessionEvent.FullName, Is.EqualTo(String.Empty));
             Assert.That(sessionEvent.Key.Equals(new GenericPassphrase(String.Empty)));
 
-            IPassphrase key = new GenericPassphrase("key");
+            IDerivedKey key = new GenericPassphrase("key");
             sessionEvent = new SessionNotification(SessionNotificationType.KnownKeyChange, key);
             Assert.That(sessionEvent.NotificationType, Is.EqualTo(SessionNotificationType.KnownKeyChange));
             Assert.That(sessionEvent.FullName, Is.EqualTo(String.Empty));
@@ -80,7 +80,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEquality()
         {
-            IPassphrase key = new GenericPassphrase("passphrase1");
+            IDerivedKey key = new GenericPassphrase("passphrase1");
             string fullName = @"C:\Test\Test.txt";
 
             SessionNotification sessionEventA1 = new SessionNotification(SessionNotificationType.ActiveFileChange);

@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncrypt()
         {
-            IPassphrase key = new GenericPassphrase(new SymmetricKey(testKey));
+            IDerivedKey key = new GenericPassphrase(new SymmetricKey(testKey));
             ICrypto crypto = new V2AesCrypto(key, new SymmetricIV(testPlaintext), 0);
 
             byte[] zeroPlain = new byte[testCipertext.Length];
@@ -87,7 +87,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptPartialBlock()
         {
-            IPassphrase key = new GenericPassphrase(new SymmetricKey(testKey));
+            IDerivedKey key = new GenericPassphrase(new SymmetricKey(testKey));
             ICrypto crypto = new V2AesCrypto(key, new SymmetricIV(testPlaintext), 3);
             byte[] zeroPlain = new byte[5];
 
@@ -101,7 +101,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptSeveralBlocks()
         {
-            IPassphrase key = new GenericPassphrase(new SymmetricKey(nistKey));
+            IDerivedKey key = new GenericPassphrase(new SymmetricKey(nistKey));
 
             byte[] iv = new byte[16];
             Array.Copy(nistInitCounter, iv, 8);
@@ -126,7 +126,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(cipherText4.IsEquivalentTo(nistCiphertext4));
         }
 
-        private class PassphraseForTest : IPassphrase
+        private class PassphraseForTest : IDerivedKey
         {
             public SymmetricKey DerivedKey
             {
@@ -159,7 +159,7 @@ namespace Axantum.AxCrypt.Core.Test
                 get { throw new NotImplementedException(); }
             }
 
-            public bool Equals(IPassphrase other)
+            public bool Equals(IDerivedKey other)
             {
                 throw new NotImplementedException();
             }
@@ -168,7 +168,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestConstructorWithBadArguments()
         {
-            IPassphrase nullKey = null;
+            IDerivedKey nullKey = null;
             SymmetricIV nullIV = null;
 
             PassphraseForTest testKey = new PassphraseForTest();

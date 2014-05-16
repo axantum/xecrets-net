@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             IAxCryptDocument nullDocument = null;
             IRuntimeFileInfo nullFileInfo = null;
-            IPassphrase nullKey = null;
+            IDerivedKey nullKey = null;
             ProgressContext nullProgress = null;
             V1Passphrase nullPassphrase = null;
             Stream nullStream = null;
@@ -357,8 +357,8 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo destinationFileInfo = Factory.New<IRuntimeFileInfo>(destinationFilePath);
             IRuntimeFileInfo nullFileInfo = null;
 
-            IPassphrase key = new GenericPassphrase(String.Empty);
-            IPassphrase nullKey = null;
+            IDerivedKey key = new GenericPassphrase(String.Empty);
+            IDerivedKey nullKey = null;
 
             ProgressContext progress = new ProgressContext();
             ProgressContext nullProgress = null;
@@ -378,7 +378,7 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo sourceFileInfo = Factory.New<IRuntimeFileInfo>(sourceFilePath);
             IRuntimeFileInfo destinationFileInfo = Factory.New<IRuntimeFileInfo>(destinationFilePath);
 
-            IPassphrase key = new V1Passphrase("a");
+            IDerivedKey key = new V1Passphrase("a");
 
             ProgressContext progress = new ProgressContext();
 
@@ -396,8 +396,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             string nullFileName = null;
 
-            IPassphrase key = new GenericPassphrase(String.Empty);
-            IPassphrase nullKey = null;
+            IDerivedKey key = new GenericPassphrase(String.Empty);
+            IDerivedKey nullKey = null;
 
             ProgressContext progress = new ProgressContext();
             ProgressContext nullProgress = null;
@@ -414,7 +414,7 @@ namespace Axantum.AxCrypt.Core.Test
             string sourceFilePath = _davidCopperfieldTxtPath;
             string destinationFilePath = Path.Combine(Path.GetDirectoryName(sourceFilePath), "David Copperfield-txt.axx");
 
-            IPassphrase key = new V2Passphrase("b", 256, CryptoFactory.Aes256Id);
+            IDerivedKey key = new V2Passphrase("b", 256, CryptoFactory.Aes256Id);
             ProgressContext progress = new ProgressContext();
 
             Factory.New<AxCryptFile>().EncryptFileWithBackupAndWipe(sourceFilePath, destinationFilePath, key, progress);

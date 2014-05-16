@@ -39,7 +39,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <value>
         /// The key.
         /// </value>
-        IPassphrase Key { get; }
+        IDerivedKey Key { get; }
 
         /// <summary>
         /// Gets the underlying algorithm block length in bytes

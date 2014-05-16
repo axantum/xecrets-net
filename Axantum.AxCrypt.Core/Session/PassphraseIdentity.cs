@@ -48,14 +48,14 @@ namespace Axantum.AxCrypt.Core.Session
             Name = name;
         }
 
-        public PassphraseIdentity(string name, IPassphrase key)
+        public PassphraseIdentity(string name, IDerivedKey key)
             : this(name)
         {
             Key = key;
             Thumbprint = Key.Thumbprint;
         }
 
-        public IPassphrase Key { get; private set; }
+        public IDerivedKey Key { get; private set; }
 
         [DataMember(Name = "Name")]
         public string Name { get; private set; }

@@ -85,8 +85,8 @@ namespace Axantum.AxCrypt.Core.Test
             string file = _helloWorldAxxPath;
             string nullFile = null;
 
-            IEnumerable<IPassphrase> keys = new IPassphrase[] { new V1Passphrase("a") };
-            IEnumerable<IPassphrase> nullKeys = null;
+            IEnumerable<IDerivedKey> keys = new IDerivedKey[] { new V1Passphrase("a") };
+            IEnumerable<IDerivedKey> nullKeys = null;
 
             ProgressContext context = new ProgressContext();
             ProgressContext nullContext = null;
@@ -100,7 +100,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSimpleOpenAndLaunch()
         {
-            IEnumerable<IPassphrase> keys = new IPassphrase[] { new V1Passphrase("a") };
+            IEnumerable<IDerivedKey> keys = new IDerivedKey[] { new V1Passphrase("a") };
 
             var mock = new Mock<FakeRuntimeEnvironment>() { CallBase = true };
             string launcherPath = null;
@@ -184,7 +184,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileDoesNotExist()
         {
-            IEnumerable<IPassphrase> keys = new IPassphrase[] { new V1Passphrase("a") };
+            IEnumerable<IDerivedKey> keys = new IDerivedKey[] { new V1Passphrase("a") };
             FileOperation fileOperation = new FileOperation(Instance.FileSystemState, new SessionNotify());
 
             FileOperationContext status = fileOperation.OpenAndLaunchApplication(_rootPath.PathCombine("Documents", "HelloWorld-NotThere.axx"), keys, new ProgressContext());
@@ -194,7 +194,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileAlreadyDecryptedWithKnownKey()
         {
-            IEnumerable<IPassphrase> keys = new IPassphrase[] { new V1Passphrase("a") };
+            IEnumerable<IDerivedKey> keys = new IDerivedKey[] { new V1Passphrase("a") };
 
             DateTime utcNow = DateTime.UtcNow;
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
@@ -216,7 +216,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileAlreadyDecryptedButWithUnknownKey()
         {
-            IEnumerable<IPassphrase> keys = new IPassphrase[] { new V1Passphrase("a") };
+            IEnumerable<IDerivedKey> keys = new IDerivedKey[] { new V1Passphrase("a") };
 
             DateTime utcNow = DateTime.UtcNow;
             SetupAssembly.FakeRuntimeEnvironment.TimeFunction = () => { return utcNow; };
@@ -230,7 +230,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(destinationActiveFile.DecryptedFileInfo.LastWriteTimeUtc, Is.Not.EqualTo(utcNow), "The decryption should restore the time stamp of the original file, and this is not now.");
             destinationActiveFile.DecryptedFileInfo.SetFileTimes(utcNow, utcNow, utcNow);
 
-            IEnumerable<IPassphrase> badKeys = new IPassphrase[] { new V1Passphrase("b") };
+            IEnumerable<IDerivedKey> badKeys = new IDerivedKey[] { new V1Passphrase("b") };
 
             status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, badKeys, new ProgressContext());
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.InvalidKey), "The launch should fail this time, since the key is not known.");
@@ -241,7 +241,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestInvalidKey()
         {
-            IEnumerable<IPassphrase> keys = new IPassphrase[] { new V1Passphrase("b") };
+            IEnumerable<IDerivedKey> keys = new IDerivedKey[] { new V1Passphrase("b") };
             FileOperation fileOperation = new FileOperation(Instance.FileSystemState, new SessionNotify());
 
             FileOperationContext status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, keys, new ProgressContext());
@@ -251,7 +251,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestNoProcessLaunched()
         {
-            IEnumerable<IPassphrase> keys = new IPassphrase[] { new V1Passphrase("a") };
+            IEnumerable<IDerivedKey> keys = new IDerivedKey[] { new V1Passphrase("a") };
 
             FakeLauncher launcher = null;
             SetupAssembly.FakeRuntimeEnvironment.Launcher = ((string path) =>
@@ -272,7 +272,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestWin32Exception()
         {
-            IEnumerable<IPassphrase> keys = new IPassphrase[] { new V1Passphrase("a") };
+            IEnumerable<IDerivedKey> keys = new IDerivedKey[] { new V1Passphrase("a") };
 
             SetupAssembly.FakeRuntimeEnvironment.Launcher = ((string path) =>
             {
@@ -288,7 +288,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestImmediateExit()
         {
-            IEnumerable<IPassphrase> keys = new IPassphrase[] { new V1Passphrase("a") };
+            IEnumerable<IDerivedKey> keys = new IDerivedKey[] { new V1Passphrase("a") };
 
             FakeLauncher launcher = null;
             SetupAssembly.FakeRuntimeEnvironment.Launcher = ((string path) =>
@@ -310,7 +310,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestExitEvent()
         {
-            IEnumerable<IPassphrase> keys = new IPassphrase[] { new V1Passphrase("a") };
+            IEnumerable<IDerivedKey> keys = new IDerivedKey[] { new V1Passphrase("a") };
 
             FakeLauncher launcher = null;
             SetupAssembly.FakeRuntimeEnvironment.Launcher = ((string path) =>
@@ -341,7 +341,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileContainedByActiveFilesButNotDecrypted()
         {
-            IEnumerable<IPassphrase> keys = new IPassphrase[] { new V1Passphrase("a") };
+            IEnumerable<IDerivedKey> keys = new IDerivedKey[] { new V1Passphrase("a") };
 
             FileOperation fileOperation = new FileOperation(Instance.FileSystemState, new SessionNotify());
             FileOperationContext status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, keys, new ProgressContext());

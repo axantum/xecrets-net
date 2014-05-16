@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core
 
         public bool PassphraseIsValid { get; set; }
 
-        public bool Load(IPassphrase key, Stream inputStream)
+        public bool Load(IDerivedKey key, Stream inputStream)
         {
             Headers headers = new Headers();
             AxCryptReader reader = headers.Load(inputStream);
@@ -77,7 +77,7 @@ namespace Axantum.AxCrypt.Core
         /// </summary>
         /// <param name="inputStream">The stream to read from. Will be disposed when this instance is disposed.</param>
         /// <returns>True if the key was valid, false if it was wrong.</returns>
-        public bool Load(IPassphrase key, AxCryptReader reader, Headers headers)
+        public bool Load(IDerivedKey key, AxCryptReader reader, Headers headers)
         {
             _reader = reader;
             DocumentHeaders = new V1DocumentHeaders(Instance.CryptoFactory.Legacy.CreateCrypto(key));

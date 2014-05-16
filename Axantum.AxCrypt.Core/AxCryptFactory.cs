@@ -25,24 +25,24 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core
 {
     public class AxCryptFactory
     {
-        public virtual IPassphrase CreatePassphrase(string passphrase, IRuntimeFileInfo encryptedFileInfo, IEnumerable<Guid> cryptoIds)
+        public virtual IDerivedKey CreatePassphrase(string passphrase, IRuntimeFileInfo encryptedFileInfo, IEnumerable<Guid> cryptoIds)
         {
             foreach (Guid cryptoId in cryptoIds)
             {
-                IPassphrase key = CreatePassphraseInternal(passphrase, encryptedFileInfo, cryptoId);
+                IDerivedKey key = CreatePassphraseInternal(passphrase, encryptedFileInfo, cryptoId);
                 if (key != null)
                 {
                     return key;
@@ -51,14 +51,14 @@ namespace Axantum.AxCrypt.Core
             return null;
         }
 
-        private static IPassphrase CreatePassphraseInternal(string passphrase, IRuntimeFileInfo encryptedFileInfo, Guid cryptoId)
+        private static IDerivedKey CreatePassphraseInternal(string passphrase, IRuntimeFileInfo encryptedFileInfo, Guid cryptoId)
         {
             using (Stream encryptedStream = encryptedFileInfo.OpenRead())
             {
                 Headers headers = new Headers();
                 AxCryptReader reader = headers.Load(encryptedStream);
 
-                IPassphrase key = reader.Crypto(headers, passphrase, cryptoId).Key;
+                IDerivedKey key = reader.Crypto(headers, passphrase, cryptoId).Key;
                 using (IAxCryptDocument document = reader.Document(key, headers))
                 {
                     if (document.PassphraseIsValid)
@@ -70,7 +70,7 @@ namespace Axantum.AxCrypt.Core
             return null;
         }
 
-        public virtual IAxCryptDocument CreateDocument(IPassphrase key)
+        public virtual IAxCryptDocument CreateDocument(IDerivedKey key)
         {
             ICryptoFactory factory = Instance.CryptoFactory.Create(key.CryptoId);
             if (factory.Id == Instance.CryptoFactory.Legacy.Id)
@@ -95,7 +95,7 @@ namespace Axantum.AxCrypt.Core
             IAxCryptDocument document = null;
             foreach (Guid cryptoId in cryptoIds)
             {
-                IPassphrase key = reader.Crypto(headers, passphrase, cryptoId).Key;
+                IDerivedKey key = reader.Crypto(headers, passphrase, cryptoId).Key;
                 document = reader.Document(key, headers);
                 if (document.PassphraseIsValid)
                 {
@@ -110,7 +110,7 @@ namespace Axantum.AxCrypt.Core
         /// </summary>
         /// <param name="fileInfo"></param>
         /// <returns></returns>
-        public virtual IAxCryptDocument CreateDocument(IPassphrase key, Stream inputStream)
+        public virtual IAxCryptDocument CreateDocument(IDerivedKey key, Stream inputStream)
         {
             Headers headers = new Headers();
             AxCryptReader reader = headers.Load(inputStream);

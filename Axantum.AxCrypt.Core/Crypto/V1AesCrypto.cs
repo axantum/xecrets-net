@@ -44,7 +44,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         /// <param name="key">The key</param>
         /// <param name="iv">Initial Vector</param>
-        public V1AesCrypto(IPassphrase key, SymmetricIV iv)
+        public V1AesCrypto(IDerivedKey key, SymmetricIV iv)
         {
             if (key == null)
             {

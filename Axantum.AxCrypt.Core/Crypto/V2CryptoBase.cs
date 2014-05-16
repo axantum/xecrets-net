@@ -12,7 +12,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private int _blockOffset;
 
-        public V2CryptoBase(IPassphrase key, SymmetricIV iv, long keyStreamOffset)
+        public V2CryptoBase(IDerivedKey key, SymmetricIV iv, long keyStreamOffset)
         {
             if (key == null)
             {

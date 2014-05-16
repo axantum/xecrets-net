@@ -92,7 +92,7 @@ namespace Axantum.AxCrypt.Core.Reader
             return Instance.CryptoFactory.Legacy.CreateCrypto(Instance.CryptoFactory.Legacy.CreatePassphrase(passphrase));
         }
 
-        public override IAxCryptDocument Document(IPassphrase key, Headers headers)
+        public override IAxCryptDocument Document(IDerivedKey key, Headers headers)
         {
             V1AxCryptDocument v1Document = new V1AxCryptDocument();
             v1Document.Load(key, this, headers);

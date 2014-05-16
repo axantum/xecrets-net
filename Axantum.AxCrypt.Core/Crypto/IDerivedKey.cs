@@ -30,7 +30,7 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
-    public interface IPassphrase : IEquatable<IPassphrase>
+    public interface IDerivedKey : IEquatable<IDerivedKey>
     {
         Guid CryptoId { get; }
 

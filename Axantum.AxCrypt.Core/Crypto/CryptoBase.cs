@@ -6,7 +6,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 {
     public abstract class CryptoBase : ICrypto
     {
-        private IPassphrase _key;
+        private IDerivedKey _key;
 
         /// <summary>
         /// Gets the key associated with this instance.
@@ -14,7 +14,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <value>
         /// The key.
         /// </value>
-        public IPassphrase Key
+        public IDerivedKey Key
         {
             get
             {

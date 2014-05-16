@@ -25,15 +25,15 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Session
 {
@@ -121,7 +121,7 @@ namespace Axantum.AxCrypt.Core.Session
         /// <param name="_fileSystemState">The FileSystemState that contains the list of active files.</param>
         /// <param name="key">The newly added key to check the files for a match with.</param>
         /// <returns>True if any file was updated with the new key, False otherwise.</returns>
-        public virtual bool UpdateActiveFileWithKeyIfKeyMatchesThumbprint(IPassphrase key)
+        public virtual bool UpdateActiveFileWithKeyIfKeyMatchesThumbprint(IDerivedKey key)
         {
             bool keyMatch = false;
             Instance.FileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFile) =>
@@ -176,7 +176,7 @@ namespace Axantum.AxCrypt.Core.Session
                 return activeFile;
             }
 
-            IPassphrase key = FindKnownKeyOrNull(activeFile);
+            IDerivedKey key = FindKnownKeyOrNull(activeFile);
             if (activeFile.Key != null)
             {
                 if (key != null)
@@ -193,9 +193,9 @@ namespace Axantum.AxCrypt.Core.Session
             return activeFile;
         }
 
-        private static IPassphrase FindKnownKeyOrNull(ActiveFile activeFile)
+        private static IDerivedKey FindKnownKeyOrNull(ActiveFile activeFile)
         {
-            foreach (IPassphrase key in Instance.KnownKeys.Keys)
+            foreach (IDerivedKey key in Instance.KnownKeys.Keys)
             {
                 if (activeFile.ThumbprintMatch(key))
                 {
@@ -257,7 +257,7 @@ namespace Axantum.AxCrypt.Core.Session
 
             try
             {
-                IPassphrase key = Factory.New<AxCryptFactory>().CreatePassphrase(activeFile.Key.Passphrase, activeFile.EncryptedFileInfo, new Guid[] { activeFile.Key.CryptoId });
+                IDerivedKey key = Factory.New<AxCryptFactory>().CreatePassphrase(activeFile.Key.Passphrase, activeFile.EncryptedFileInfo, new Guid[] { activeFile.Key.CryptoId });
                 using (Stream activeFileStream = activeFile.DecryptedFileInfo.OpenRead())
                 {
                     Factory.New<AxCryptFile>().WriteToFileWithBackup(activeFile.EncryptedFileInfo, (Stream destination) =>

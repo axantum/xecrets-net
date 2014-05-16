@@ -66,7 +66,7 @@
     <Compile Include="Crypto\ICrypto.cs" />
     <Compile Include="Crypto\ICryptoFactory.cs" />
     <Compile Include="Crypto\IKeyWrapTransform.cs" />
-    <Compile Include="Crypto\IPassphrase.cs" />
+    <Compile Include="Crypto\IDerivedKey.cs" />
     <Compile Include="Crypto\IRandomGenerator.cs" />
     <Compile Include="Crypto\GenericPassphrase.cs" />
     <Compile Include="Crypto\KeyWrapDirection.cs" />

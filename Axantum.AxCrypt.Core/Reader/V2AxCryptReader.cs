@@ -85,11 +85,11 @@ namespace Axantum.AxCrypt.Core.Reader
         {
             V2KeyWrapHeaderBlock keyWrap = headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
             ICryptoFactory cryptoFactory = Instance.CryptoFactory.Create(cryptoId);
-            IPassphrase key = cryptoFactory.CreatePassphrase(passphrase, keyWrap.DerivationSalt, keyWrap.DerivationIterations);
+            IDerivedKey key = cryptoFactory.CreatePassphrase(passphrase, keyWrap.DerivationSalt, keyWrap.DerivationIterations);
             return cryptoFactory.CreateCrypto(key);
         }
 
-        public override IAxCryptDocument Document(IPassphrase key, Headers headers)
+        public override IAxCryptDocument Document(IDerivedKey key, Headers headers)
         {
             V2AxCryptDocument v2Document = new V2AxCryptDocument();
             v2Document.Load(key, this, headers);

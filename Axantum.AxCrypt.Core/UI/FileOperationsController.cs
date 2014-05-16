@@ -421,7 +421,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 _progress.NotifyLevelStart();
                 e.OpenFileFullName = sourceFileInfo.FullName;
-                IPassphrase key;
+                IDerivedKey key;
                 if (sourceFileInfo.TryFindDecryptionKey(out key))
                 {
                     e.AxCryptDocument = Factory.New<AxCryptFile>().Document(sourceFileInfo, key, _progress);

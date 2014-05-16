@@ -107,7 +107,7 @@ namespace Axantum.AxCrypt.Core.Header
         {
             byte[] wrappedKeyData = GetKeyData();
             Salt salt = Salt;
-            IPassphrase keyEncryptingKey = keyEncryptingCrypto.Key;
+            IDerivedKey keyEncryptingKey = keyEncryptingCrypto.Key;
             if (fileVersionMajor <= 1)
             {
                 // Due to a bug in 1.1 and earlier we only used a truncated part of the key and salt :-(

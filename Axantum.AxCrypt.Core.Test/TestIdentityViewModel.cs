@@ -173,7 +173,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void AskForLogOnOrDecryptPassphraseActionActiveFile()
         {
-            IPassphrase key = new V1Passphrase("p");
+            IDerivedKey key = new V1Passphrase("p");
 
             ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(@"C:\Folder\File1-txt.axx"), Factory.New<IRuntimeFileInfo>(@"C:\Folder\File1.txt"), key, ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             Instance.FileSystemState.Add(activeFile);
@@ -197,7 +197,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void AskForLogOnOrDecryptPassphraseActionActiveFileWithExistingIdentity()
         {
-            IPassphrase key = new V1Passphrase("p");
+            IDerivedKey key = new V1Passphrase("p");
 
             ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(@"C:\Folder\File1-txt.axx"), Factory.New<IRuntimeFileInfo>(@"C:\Folder\File1.txt"), key, ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             Instance.FileSystemState.Add(activeFile);
@@ -224,7 +224,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void AskForLogOnPassphraseAction()
         {
-            IPassphrase key = new V1Passphrase("ppp");
+            IDerivedKey key = new V1Passphrase("ppp");
 
             PassphraseIdentity id = new PassphraseIdentity("Test User", key);
 
@@ -244,7 +244,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void AskForLogOnPassphraseActionWithCancel()
         {
-            IPassphrase key = new V1Passphrase("ppp");
+            IDerivedKey key = new V1Passphrase("ppp");
 
             PassphraseIdentity id = new PassphraseIdentity("Test User", key);
 

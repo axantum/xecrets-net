@@ -152,9 +152,9 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
         }
 
-        public static bool TryFindDecryptionKey(this IRuntimeFileInfo fileInfo, out IPassphrase key)
+        public static bool TryFindDecryptionKey(this IRuntimeFileInfo fileInfo, out IDerivedKey key)
         {
-            foreach (IPassphrase knownKey in Instance.KnownKeys.Keys)
+            foreach (IDerivedKey knownKey in Instance.KnownKeys.Keys)
             {
                 key = Factory.New<AxCryptFactory>().CreatePassphrase(knownKey.Passphrase, fileInfo, new Guid[] { knownKey.CryptoId });
                 if (key != null)
@@ -162,7 +162,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                     return true;
                 }
             }
-            foreach (IPassphrase knownKey in Instance.KnownKeys.Keys)
+            foreach (IDerivedKey knownKey in Instance.KnownKeys.Keys)
             {
                 IEnumerable<Guid> otherIds = Instance.CryptoFactory.OrderedIds.Where(g => g != knownKey.CryptoId);
                 key = Factory.New<AxCryptFactory>().CreatePassphrase(knownKey.Passphrase, fileInfo, otherIds);

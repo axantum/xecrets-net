@@ -645,7 +645,7 @@ namespace Axantum.AxCrypt.Core.Test
                 AxCryptReader reader = headers.Load(encryptedFile);
                 using (V1AxCryptDocument document = new V1AxCryptDocument())
                 {
-                    IPassphrase key = new V1Passphrase("Å ä Ö");
+                    IDerivedKey key = new V1Passphrase("Å ä Ö");
                     bool keyIsOk = document.Load(key, reader, headers);
                     Assert.That(keyIsOk, Is.True);
 
@@ -672,7 +672,7 @@ namespace Axantum.AxCrypt.Core.Test
                     AxCryptReader reader = headers.Load(encryptedFile);
                     using (V1AxCryptDocument document = new V1AxCryptDocument())
                     {
-                        IPassphrase key = new V1Passphrase("a");
+                        IDerivedKey key = new V1Passphrase("a");
                         bool keyIsOk = document.Load(key, reader, headers);
                         Assert.That(keyIsOk, Is.True);
 

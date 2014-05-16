@@ -70,7 +70,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
         public abstract ICrypto Crypto(Headers headers, string passphrase, Guid cryptoId);
 
-        public abstract IAxCryptDocument Document(IPassphrase key, Headers headers);
+        public abstract IAxCryptDocument Document(IDerivedKey key, Headers headers);
 
         /// <summary>
         /// Gets the type of the current item
