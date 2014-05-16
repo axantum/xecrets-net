@@ -25,13 +25,13 @@
 
 #endregion Coypright and License
 
-using System;
-using System.IO;
-using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Reader;
 using NUnit.Framework;
+using System;
+using System.IO;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -53,7 +53,7 @@ namespace Axantum.AxCrypt.Core.Test
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestHeaderBlockFactory()
         {
-            ICrypto crypto = new V1AesCrypto(new V1Passphrase("passphrase"), SymmetricIV.Zero128);
+            ICrypto crypto = new V1AesCrypto(new V1Passphrase(new Passphrase("passphrase")), SymmetricIV.Zero128);
             V1DocumentHeaders headers = new V1DocumentHeaders(crypto, 10);
             using (MemoryStream stream = new MemoryStream())
             {
@@ -92,8 +92,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (VXAxCryptReader reader = new VXAxCryptReader(Stream.Null))
             {
-                Assert.Throws<NotImplementedException>(() => reader.Crypto(new Headers(), "testing", Guid.Empty));
-                Assert.Throws<NotImplementedException>(() => reader.Document(new GenericPassphrase("test"), new Headers()));
+                Assert.Throws<NotImplementedException>(() => reader.Crypto(new Headers(), new Passphrase("testing"), Guid.Empty));
+                Assert.Throws<NotImplementedException>(() => reader.Document(new Passphrase("test"), CryptoFactory.Aes128V1Id, new Headers()));
             }
         }
     }

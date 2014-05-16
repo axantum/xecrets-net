@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Core.Session
             Key = null;
         }
 
-        public ActiveFile(ActiveFile activeFile, IDerivedKey key)
+        public ActiveFile(ActiveFile activeFile, Passphrase key)
         {
             if (activeFile == null)
             {
@@ -91,7 +91,7 @@ namespace Axantum.AxCrypt.Core.Session
             Status = status;
         }
 
-        public ActiveFile(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, IDerivedKey key, ActiveFileStatus status, Guid cryptoId)
+        public ActiveFile(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, Passphrase key, ActiveFileStatus status, Guid cryptoId)
         {
             if (encryptedFileInfo == null)
             {
@@ -113,7 +113,7 @@ namespace Axantum.AxCrypt.Core.Session
             Initialize(other.EncryptedFileInfo, other.DecryptedFileInfo, other.Key, other.Thumbprint, other.Status, other.Properties);
         }
 
-        private void Initialize(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, IDerivedKey key, SymmetricKeyThumbprint thumbprint, ActiveFileStatus status, ActiveFileProperties properties)
+        private void Initialize(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, Passphrase key, SymmetricKeyThumbprint thumbprint, ActiveFileStatus status, ActiveFileProperties properties)
         {
             EncryptedFileInfo = Factory.New<IRuntimeFileInfo>(encryptedFileInfo.FullName);
             DecryptedFileInfo = Factory.New<IRuntimeFileInfo>(decryptedFileInfo.FullName);
@@ -217,9 +217,9 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private IDerivedKey _key;
+        private Passphrase _key;
 
-        public IDerivedKey Key
+        public Passphrase Key
         {
             get
             {
@@ -236,7 +236,7 @@ namespace Axantum.AxCrypt.Core.Session
         /// </summary>
         /// <param name="key">A key to check against this instances thumbprint.</param>
         /// <returns>true if the thumbprint matches the provided key.</returns>
-        public bool ThumbprintMatch(IDerivedKey key)
+        public bool ThumbprintMatch(Passphrase key)
         {
             if (key == null)
             {

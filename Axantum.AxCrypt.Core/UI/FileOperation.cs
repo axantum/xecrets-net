@@ -25,16 +25,16 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -49,7 +49,7 @@ namespace Axantum.AxCrypt.Core.UI
             _sessionNotify = sessionNotify;
         }
 
-        public FileOperationContext OpenAndLaunchApplication(string file, IEnumerable<IDerivedKey> keys, IProgressContext progress)
+        public FileOperationContext OpenAndLaunchApplication(string file, IEnumerable<Passphrase> keys, IProgressContext progress)
         {
             if (file == null)
             {
@@ -123,7 +123,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
             else
             {
-                encryptedActiveFile = new ActiveFile(encryptedActiveFile, document.KeyEncryptingCrypto.Key);
+                encryptedActiveFile = new ActiveFile(encryptedActiveFile, document.KeyEncryptingCrypto.Key.Passphrase);
             }
 
             _fileSystemState.Add(encryptedActiveFile);
@@ -195,10 +195,10 @@ namespace Axantum.AxCrypt.Core.UI
             _sessionNotify.Notify(new SessionNotification(SessionNotificationType.ProcessExit, path));
         }
 
-        private static ActiveFile TryDecrypt(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFolderInfo, IEnumerable<IDerivedKey> keys, IProgressContext progress)
+        private static ActiveFile TryDecrypt(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFolderInfo, IEnumerable<Passphrase> keys, IProgressContext progress)
         {
             ActiveFile destinationActiveFile = null;
-            foreach (IDerivedKey key in keys)
+            foreach (Passphrase key in keys)
             {
                 if (Instance.Log.IsInfoEnabled)
                 {
@@ -231,7 +231,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 Factory.New<AxCryptFile>().Decrypt(document, destinationFileInfo, AxCryptOptions.SetFileTimes, progress);
             }
-            ActiveFile destinationActiveFile = new ActiveFile(sourceFileInfo, destinationFileInfo, document.KeyEncryptingCrypto.Key, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.IgnoreChange, document.KeyEncryptingCrypto.Key.CryptoId);
+            ActiveFile destinationActiveFile = new ActiveFile(sourceFileInfo, destinationFileInfo, document.KeyEncryptingCrypto.Key.Passphrase, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.IgnoreChange, document.KeyEncryptingCrypto.Key.CryptoId);
             if (Instance.Log.IsInfoEnabled)
             {
                 Instance.Log.LogInfo("File decrypted from '{0}' to '{1}'".InvariantFormat(sourceFileInfo.FullName, destinationActiveFile.DecryptedFileInfo.FullName));
@@ -261,9 +261,9 @@ namespace Axantum.AxCrypt.Core.UI
             return Path.Combine(destinationFolder, Path.GetFileName(fileName));
         }
 
-        private static ActiveFile CheckKeysForAlreadyDecryptedFile(ActiveFile destinationActiveFile, IEnumerable<IDerivedKey> keys, IProgressContext progress)
+        private static ActiveFile CheckKeysForAlreadyDecryptedFile(ActiveFile destinationActiveFile, IEnumerable<Passphrase> keys, IProgressContext progress)
         {
-            foreach (IDerivedKey key in keys)
+            foreach (Passphrase key in keys)
             {
                 using (IAxCryptDocument document = Factory.New<AxCryptFile>().Document(destinationActiveFile.EncryptedFileInfo, key, progress))
                 {

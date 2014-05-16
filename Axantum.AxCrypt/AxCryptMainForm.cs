@@ -862,7 +862,14 @@ namespace Axantum.AxCrypt
             item.SubItems["EncryptedPath"].Text = activeFile.EncryptedFileInfo.FullName;
             item.SubItems["Date"].Text = activeFile.Properties.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
             item.SubItems["Date"].Tag = activeFile.Properties.LastActivityTimeUtc;
-            item.SubItems["CryptoName"].Text = Instance.CryptoFactory.Create(activeFile.Properties.CryptoId).Name;
+            try
+            {
+                item.SubItems["CryptoName"].Text = Instance.CryptoFactory.Create(activeFile.Properties.CryptoId).Name;
+            }
+            catch (ArgumentException)
+            {
+                item.SubItems["CryptoName"].Text = "Unknown";
+            }
         }
 
         private static void UpdateStatusDependentPropertiesOfListViewItem(ListViewItem item, ActiveFile activeFile)

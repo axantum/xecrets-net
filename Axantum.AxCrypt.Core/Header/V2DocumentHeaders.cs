@@ -25,13 +25,13 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Header
 {
@@ -157,7 +157,7 @@ namespace Axantum.AxCrypt.Core.Header
 
         private ICrypto CreateKeyStreamCrypto(long keyStreamOffset)
         {
-            return Instance.CryptoFactory.Create(KeyEncryptingCrypto.Key.CryptoId).CreateCrypto(new GenericPassphrase(DataEncryptingKey), DataEncryptingIV, keyStreamOffset);
+            return Instance.CryptoFactory.Create(KeyEncryptingCrypto.Key.CryptoId).CreateCrypto(DataEncryptingKey, DataEncryptingIV, keyStreamOffset);
         }
 
         public void WriteStartWithHmac(V2HmacStream hmacStream)

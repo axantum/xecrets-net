@@ -25,11 +25,11 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
+using System;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         private class TestingPassphraseBase : PassphraseBase
         {
-            public TestingPassphraseBase(Guid cryptoId, SymmetricKey derivedKey, string passphrase)
+            public TestingPassphraseBase(Guid cryptoId, SymmetricKey derivedKey, Passphrase passphrase)
             {
                 CryptoId = cryptoId;
                 DerivedKey = derivedKey;
@@ -64,8 +64,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             SymmetricKey key1 = new SymmetricKey(128);
             Guid id = new Guid();
-            TestingPassphraseBase p1a = new TestingPassphraseBase(id, key1, "passphrase");
-            TestingPassphraseBase p1b = new TestingPassphraseBase(id, key1, "passphrase");
+            TestingPassphraseBase p1a = new TestingPassphraseBase(id, key1, new Passphrase("passphrase"));
+            TestingPassphraseBase p1b = new TestingPassphraseBase(id, key1, new Passphrase("passphrase"));
             TestingPassphraseBase nullPassphraseBase = null;
 
             Assert.That(p1a.Equals(p1b));

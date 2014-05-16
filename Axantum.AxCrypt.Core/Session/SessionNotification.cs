@@ -33,13 +33,13 @@ namespace Axantum.AxCrypt.Core.Session
 {
     public class SessionNotification : IEquatable<SessionNotification>
     {
-        public IDerivedKey Key { get; private set; }
+        public Passphrase Key { get; private set; }
 
         public string FullName { get; private set; }
 
         public SessionNotificationType NotificationType { get; private set; }
 
-        public SessionNotification(SessionNotificationType notificationType, IDerivedKey key, string fullName)
+        public SessionNotification(SessionNotificationType notificationType, Passphrase key, string fullName)
         {
             NotificationType = notificationType;
             Key = key;
@@ -47,17 +47,17 @@ namespace Axantum.AxCrypt.Core.Session
         }
 
         public SessionNotification(SessionNotificationType notificationType, string fullName)
-            : this(notificationType, new GenericPassphrase(String.Empty), fullName)
+            : this(notificationType, Passphrase.Empty, fullName)
         {
         }
 
-        public SessionNotification(SessionNotificationType notificationType, IDerivedKey key)
+        public SessionNotification(SessionNotificationType notificationType, Passphrase key)
             : this(notificationType, key, String.Empty)
         {
         }
 
         public SessionNotification(SessionNotificationType notificationType)
-            : this(notificationType, new GenericPassphrase(String.Empty), String.Empty)
+            : this(notificationType, Passphrase.Empty, String.Empty)
         {
         }
 

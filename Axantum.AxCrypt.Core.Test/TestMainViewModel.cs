@@ -175,7 +175,7 @@ namespace Axantum.AxCrypt.Core.Test
                 mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
                 Assert.That(mvm.DroppableAsRecent, Is.False, "An encrypted file that does not exist is not a candidate for recent.");
 
-                PassphraseIdentity id = new PassphraseIdentity("Test", new GenericPassphrase("passphrase1"));
+                PassphraseIdentity id = new PassphraseIdentity("Test", new Passphrase("passphrase1"));
                 Instance.FileSystemState.Identities.Add(id);
                 Instance.KnownKeys.DefaultEncryptionKey = id.Key;
                 mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
@@ -194,7 +194,7 @@ namespace Axantum.AxCrypt.Core.Test
                 mvm.DragAndDropFiles = new string[] { decryptedFilePath, };
                 Assert.That(mvm.DroppableAsRecent, Is.False, "An encrpytable file without a valid log on is not droppable as recent.");
 
-                id = new PassphraseIdentity("Test2", new GenericPassphrase("passphrase"));
+                id = new PassphraseIdentity("Test2", new Passphrase("passphrase"));
                 Instance.FileSystemState.Identities.Add(id);
                 Instance.KnownKeys.DefaultEncryptionKey = id.Key;
                 mvm.DragAndDropFiles = new string[] { decryptedFilePath, };
@@ -242,17 +242,17 @@ namespace Axantum.AxCrypt.Core.Test
 
             FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2001, 1, 1);
             FakeRuntimeFileInfo.AddFile(file1, null);
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new GenericPassphrase("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new Passphrase("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             Instance.FileSystemState.Add(activeFile);
 
             FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2002, 2, 2);
             FakeRuntimeFileInfo.AddFile(file2, null);
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file2), Factory.New<IRuntimeFileInfo>(decrypted2), new GenericPassphrase("passphrase2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file2), Factory.New<IRuntimeFileInfo>(decrypted2), new Passphrase("passphrase2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             Instance.FileSystemState.Add(activeFile);
 
             FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2003, 3, 3);
             FakeRuntimeFileInfo.AddFile(file3, null);
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file3), Factory.New<IRuntimeFileInfo>(decrypted3), new GenericPassphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file3), Factory.New<IRuntimeFileInfo>(decrypted3), new Passphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             Instance.FileSystemState.Add(activeFile);
 
             ActiveFileComparer comparer;
@@ -295,22 +295,22 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2001, 1, 1);
                 FakeRuntimeFileInfo.AddFile(file1, null);
-                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new GenericPassphrase("passphrase1"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
+                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new Passphrase("passphrase1"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
                 Instance.FileSystemState.Add(activeFile);
 
                 FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2002, 2, 2);
                 FakeRuntimeFileInfo.AddFile(file2, null);
-                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file2), Factory.New<IRuntimeFileInfo>(decrypted2), new GenericPassphrase("passphrase2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file2), Factory.New<IRuntimeFileInfo>(decrypted2), new Passphrase("passphrase2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
                 Instance.FileSystemState.Add(activeFile);
 
                 FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2003, 3, 3);
                 FakeRuntimeFileInfo.AddFile(file3, null);
-                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file3), Factory.New<IRuntimeFileInfo>(decrypted3), new GenericPassphrase("passphrase3"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file3), Factory.New<IRuntimeFileInfo>(decrypted3), new Passphrase("passphrase3"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
                 Instance.FileSystemState.Add(activeFile);
 
                 Assert.That(mvm.FilesArePending, Is.True);
 
-                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new GenericPassphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new Passphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
                 Instance.FileSystemState.Add(activeFile);
 
                 Assert.That(mvm.FilesArePending, Is.False);
@@ -335,15 +335,15 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile;
 
             FakeRuntimeFileInfo.AddFile(file1, null);
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new GenericPassphrase("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new Passphrase("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             Instance.FileSystemState.Add(activeFile);
 
             FakeRuntimeFileInfo.AddFile(file2, null);
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file2), Factory.New<IRuntimeFileInfo>(decrypted2), new GenericPassphrase("passphrase2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file2), Factory.New<IRuntimeFileInfo>(decrypted2), new Passphrase("passphrase2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             Instance.FileSystemState.Add(activeFile);
 
             FakeRuntimeFileInfo.AddFile(file3, null);
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file3), Factory.New<IRuntimeFileInfo>(decrypted3), new GenericPassphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file3), Factory.New<IRuntimeFileInfo>(decrypted3), new Passphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             Instance.FileSystemState.Add(activeFile);
 
             using (MainViewModel mvm = Factory.New<MainViewModel>())
@@ -390,11 +390,11 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile;
 
             FakeRuntimeFileInfo.AddFile(file1, null);
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new GenericPassphrase("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new Passphrase("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             Instance.FileSystemState.Add(activeFile);
 
-            Instance.KnownKeys.Add(new GenericPassphrase("passphrase2"));
-            PassphraseIdentity id = new PassphraseIdentity("Test", new GenericPassphrase("passphrase"));
+            Instance.KnownKeys.Add(new Passphrase("passphrase2"));
+            PassphraseIdentity id = new PassphraseIdentity("Test", new Passphrase("passphrase"));
             Instance.FileSystemState.Identities.Add(id);
             Instance.KnownKeys.DefaultEncryptionKey = id.Key;
 
@@ -426,7 +426,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             using (MainViewModel mvm = Factory.New<MainViewModel>())
             {
-                PassphraseIdentity id = new PassphraseIdentity("Logged On User", new GenericPassphrase("passphrase"));
+                PassphraseIdentity id = new PassphraseIdentity("Logged On User", new Passphrase("passphrase"));
                 mockFileSystemState.Object.Identities.Add(id);
                 Instance.KnownKeys.DefaultEncryptionKey = id.Key;
 
@@ -448,7 +448,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 Assert.Throws<InvalidOperationException>(() => mvm.RemoveWatchedFolders.Execute(new string[] { }));
 
-                PassphraseIdentity id = new PassphraseIdentity("Logged On User", new GenericPassphrase("passphrase"));
+                PassphraseIdentity id = new PassphraseIdentity("Logged On User", new Passphrase("passphrase"));
                 fileSystemStateMock.Object.Identities.Add(id);
                 Instance.KnownKeys.DefaultEncryptionKey = id.Key;
 
@@ -485,7 +485,7 @@ namespace Axantum.AxCrypt.Core.Test
             using (MainViewModel mvm = Factory.New<MainViewModel>())
             {
             }
-            Assert.Throws<InvalidOperationException>(() => Instance.KnownKeys.DefaultEncryptionKey = new GenericPassphrase("passphrase"), "Should fail since there is no matching identity.");
+            Assert.Throws<InvalidOperationException>(() => Instance.KnownKeys.DefaultEncryptionKey = new Passphrase("passphrase"), "Should fail since there is no matching identity.");
         }
 
         [Test]
@@ -556,7 +556,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestNotifyWatchedFolderAdded()
         {
-            Instance.KnownKeys.DefaultEncryptionKey = new V2Passphrase("passphrase", 256, CryptoFactory.Aes256Id);
+            Instance.KnownKeys.DefaultEncryptionKey = new Passphrase("passphrase");
             FakeRuntimeFileInfo.AddFolder(@"C:\MyFolders\Folder1");
             using (MainViewModel mvm = Factory.New<MainViewModel>())
             {
@@ -572,7 +572,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSetFilesArePending()
         {
-            Instance.KnownKeys.DefaultEncryptionKey = new V2Passphrase("passphrase", 256, CryptoFactory.Aes256Id);
+            Instance.KnownKeys.DefaultEncryptionKey = new Passphrase("passphrase");
             FakeRuntimeFileInfo.AddFolder(@"C:\MyFolders\Folder1");
             using (MainViewModel mvm = Factory.New<MainViewModel>())
             {

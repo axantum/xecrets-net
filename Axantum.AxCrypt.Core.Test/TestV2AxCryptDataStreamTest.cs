@@ -25,16 +25,16 @@
 
 #endregion Coypright and License
 
-using System;
-using System.IO;
-using System.Linq;
-using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
+using System;
+using System.IO;
+using System.Linq;
+using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -61,7 +61,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
             }
 
-            public override Crypto.ICrypto Crypto(Headers headers, string passphrase, Guid cryptoId)
+            public override Crypto.ICrypto Crypto(Headers headers, Passphrase passphrase, Guid cryptoId)
             {
                 throw new NotImplementedException();
             }
@@ -85,7 +85,7 @@ namespace Axantum.AxCrypt.Core.Test
                 return new UnrecognizedHeaderBlock(headerBlockType, dataBlock);
             }
 
-            public override IAxCryptDocument Document(IDerivedKey key, Headers headers)
+            public override IAxCryptDocument Document(Passphrase key, Guid cryptoId, Headers headers)
             {
                 throw new NotImplementedException();
             }

@@ -25,12 +25,13 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
+using NUnit.Framework;
 using System;
 using System.IO;
 using System.Linq;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Runtime;
-using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -45,6 +46,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
             Factory.Instance.Singleton<CryptoFactory>(() => SetupAssembly.CreateCryptoFactory());
             Factory.Instance.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
+            Factory.Instance.Singleton<IUserSettings>(() => new UserSettings(Instance.WorkFolder.FileInfo.Combine("UserSettings.txt"), Factory.New<IterationCalculator>()));
         }
 
         [TearDown]
@@ -56,7 +58,7 @@ namespace Axantum.AxCrypt.Core.Test
         private class TestingPassphrase : GenericPassphrase
         {
             public TestingPassphrase(string passphrase)
-                : base(passphrase)
+                : base(new Passphrase(passphrase))
             {
                 CryptoId = new Guid();
             }
@@ -70,14 +72,14 @@ namespace Axantum.AxCrypt.Core.Test
             IDerivedKey key = new TestingPassphrase("toohigh");
 
             IAxCryptDocument document = null;
-            Assert.Throws<ArgumentException>(() => document = axFactory.CreateDocument(key));
-			Assert.That (document, Is.Null);
+            Assert.Throws<ArgumentException>(() => document = axFactory.CreateDocument(key.Passphrase, key.CryptoId));
+            Assert.That(document, Is.Null);
         }
 
         [Test]
         public static void TestV2Document()
         {
-            IDerivedKey key = new V2Passphrase("properties", 256, CryptoFactory.Aes256Id);
+            IDerivedKey key = new V2Passphrase(new Passphrase("properties"), 256, CryptoFactory.Aes256Id);
             using (MemoryStream inputStream = new MemoryStream())
             {
                 byte[] text = Instance.RandomGenerator.Generate(500);
@@ -91,7 +93,7 @@ namespace Axantum.AxCrypt.Core.Test
                         outputStream.Position = 0;
 
                         AxCryptFactory axFactory = new AxCryptFactory();
-                        IAxCryptDocument decryptedDocument = axFactory.CreateDocument(key, outputStream);
+                        IAxCryptDocument decryptedDocument = axFactory.CreateDocument(key.Passphrase, key.CryptoId, outputStream);
                         Assert.That(decryptedDocument.PassphraseIsValid);
                     }
                 }

@@ -128,7 +128,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestThumbprint()
         {
-            IDerivedKey key1 = new GenericPassphrase("genericPassphrase");
+            Passphrase key1 = new Passphrase("genericPassphrase");
 
             SymmetricKeyThumbprint originalThumbprint = key1.Thumbprint;
             Assert.That(originalThumbprint, Is.EqualTo(key1.Thumbprint), "The thumbprints should be the same.");

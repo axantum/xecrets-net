@@ -25,9 +25,9 @@
 
 #endregion Coypright and License
 
-using System;
 using Axantum.AxCrypt.Core.Crypto;
 using NUnit.Framework;
+using System;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -49,7 +49,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestInvalidArguments()
         {
-            IDerivedKey key = new GenericPassphrase("passphrase");
+            IDerivedKey key = new GenericPassphrase(new Passphrase("passphrase"));
             SymmetricIV iv = new SymmetricIV(128);
 
             Assert.Throws<ArgumentNullException>(() =>

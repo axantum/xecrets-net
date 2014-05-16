@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt.Core
 {
     public class AxCryptFactory
     {
-        public virtual IDerivedKey CreatePassphrase(string passphrase, IRuntimeFileInfo encryptedFileInfo, IEnumerable<Guid> cryptoIds)
+        public virtual IDerivedKey CreatePassphrase(Passphrase passphrase, IRuntimeFileInfo encryptedFileInfo, IEnumerable<Guid> cryptoIds)
         {
             foreach (Guid cryptoId in cryptoIds)
             {
@@ -51,33 +51,32 @@ namespace Axantum.AxCrypt.Core
             return null;
         }
 
-        private static IDerivedKey CreatePassphraseInternal(string passphrase, IRuntimeFileInfo encryptedFileInfo, Guid cryptoId)
+        private static IDerivedKey CreatePassphraseInternal(Passphrase passphrase, IRuntimeFileInfo encryptedFileInfo, Guid cryptoId)
         {
             using (Stream encryptedStream = encryptedFileInfo.OpenRead())
             {
                 Headers headers = new Headers();
                 AxCryptReader reader = headers.Load(encryptedStream);
 
-                IDerivedKey key = reader.Crypto(headers, passphrase, cryptoId).Key;
-                using (IAxCryptDocument document = reader.Document(key, headers))
+                using (IAxCryptDocument document = reader.Document(passphrase, cryptoId, headers))
                 {
                     if (document.PassphraseIsValid)
                     {
-                        return key;
+                        return document.KeyEncryptingCrypto.Key;
                     }
                 }
             }
             return null;
         }
 
-        public virtual IAxCryptDocument CreateDocument(IDerivedKey key)
+        public virtual IAxCryptDocument CreateDocument(Passphrase key, Guid cryptoId)
         {
-            ICryptoFactory factory = Instance.CryptoFactory.Create(key.CryptoId);
+            ICryptoFactory factory = Instance.CryptoFactory.Create(cryptoId);
             if (factory.Id == Instance.CryptoFactory.Legacy.Id)
             {
                 return new V1AxCryptDocument(factory.CreateCrypto(key), Instance.UserSettings.GetKeyWrapIterations(CryptoFactory.Aes128V1Id));
             }
-            return new V2AxCryptDocument(factory.CreateCrypto(key), Instance.UserSettings.GetKeyWrapIterations(key.CryptoId));
+            return new V2AxCryptDocument(factory.CreateCrypto(key), Instance.UserSettings.GetKeyWrapIterations(cryptoId));
         }
 
         /// <summary>
@@ -86,7 +85,7 @@ namespace Axantum.AxCrypt.Core
         /// <param name="passphrase">The passphrase.</param>
         /// <param name="fileInfo">The file to use.</param>
         /// <returns></returns>
-        public virtual IAxCryptDocument CreateDocument(string passphrase, Stream inputStream)
+        public virtual IAxCryptDocument CreateDocument(Passphrase passphrase, Stream inputStream)
         {
             Headers headers = new Headers();
             AxCryptReader reader = headers.Load(inputStream);
@@ -95,8 +94,7 @@ namespace Axantum.AxCrypt.Core
             IAxCryptDocument document = null;
             foreach (Guid cryptoId in cryptoIds)
             {
-                IDerivedKey key = reader.Crypto(headers, passphrase, cryptoId).Key;
-                document = reader.Document(key, headers);
+                document = reader.Document(passphrase, cryptoId, headers);
                 if (document.PassphraseIsValid)
                 {
                     return document;
@@ -110,12 +108,12 @@ namespace Axantum.AxCrypt.Core
         /// </summary>
         /// <param name="fileInfo"></param>
         /// <returns></returns>
-        public virtual IAxCryptDocument CreateDocument(IDerivedKey key, Stream inputStream)
+        public virtual IAxCryptDocument CreateDocument(Passphrase key, Guid cryptoId, Stream inputStream)
         {
             Headers headers = new Headers();
             AxCryptReader reader = headers.Load(inputStream);
 
-            return reader.Document(key, headers);
+            return reader.Document(key, cryptoId, headers);
         }
     }
 }

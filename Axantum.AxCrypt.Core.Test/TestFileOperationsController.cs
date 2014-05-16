@@ -25,16 +25,16 @@
 
 #endregion Coypright and License
 
-using System;
-using System.IO;
-using System.Linq;
-using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
+using System;
+using System.IO;
+using System.Linq;
+using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -87,7 +87,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 using (Stream stream = destinationInfo.OpenRead())
                 {
-                    document.Load(new V2Passphrase("allan", 256, CryptoFactory.Aes256Id), stream);
+                    document.Load(new Passphrase("allan"), CryptoFactory.Aes256Id, stream);
                     Assert.That(document.PassphraseIsValid, "The encrypted document should be valid and encrypted with the passphrase given.");
                 }
             }
@@ -118,7 +118,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 using (Stream stream = destinationInfo.OpenRead())
                 {
-                    document.Load(new V2Passphrase("allan", 256, CryptoFactory.Aes256Id), stream);
+                    document.Load(new Passphrase("allan"), CryptoFactory.Aes256Id, stream);
                     Assert.That(document.PassphraseIsValid, "The encrypted document should be valid and encrypted with the passphrase given.");
                 }
             }
@@ -128,7 +128,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestEncryptFileWithDefaultEncryptionKey()
         {
             Factory.Instance.Singleton<ICryptoPolicy>(() => new LegacyCryptoPolicy());
-            Instance.KnownKeys.DefaultEncryptionKey = new V1Passphrase("default");
+            Instance.KnownKeys.DefaultEncryptionKey = new Passphrase("default");
             FileOperationsController controller = new FileOperationsController();
             bool queryEncryptionPassphraseWasCalled = false;
             controller.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
@@ -151,7 +151,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 using (Stream stream = destinationInfo.OpenRead())
                 {
-                    document.Load(new V1Passphrase("default"), stream);
+                    document.Load(new Passphrase("default"), CryptoFactory.Aes128V1Id, stream);
                     Assert.That(document.PassphraseIsValid, "The encrypted document should be valid and encrypted with the default passphrase given.");
                 }
             }
@@ -189,11 +189,11 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(Path.GetFileName(destinationPath), Is.EqualTo("alternative-name.axx"), "The alternative name should be used, since the default existed.");
             IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
             Assert.That(destinationInfo.IsExistingFile, "After encryption the destination file should be created.");
-            using (IAxCryptDocument document = Factory.New<AxCryptFactory>().CreateDocument(key))
+            using (IAxCryptDocument document = Factory.New<AxCryptFactory>().CreateDocument(key.Passphrase, key.CryptoId))
             {
                 using (Stream stream = destinationInfo.OpenRead())
                 {
-                    document.Load(key, stream);
+                    document.Load(key.Passphrase, key.CryptoId, stream);
                     Assert.That(document.PassphraseIsValid, "The encrypted document should be valid and encrypted with the passphrase given.");
                 }
             }
@@ -242,7 +242,7 @@ namespace Axantum.AxCrypt.Core.Test
             bool knownKeyWasAdded = false;
             controller.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
                 {
-                    knownKeyWasAdded = e.Key.Equals(new V1Passphrase("a"));
+                    knownKeyWasAdded = e.Key.Equals(new V1Passphrase(new Passphrase("a")));
                 };
             string destinationPath = String.Empty;
             controller.Completed += (object sender, FileOperationEventArgs e) =>
@@ -275,7 +275,7 @@ namespace Axantum.AxCrypt.Core.Test
             bool knownKeyWasAdded = false;
             controller.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
             {
-                knownKeyWasAdded = e.Key.Equals(new V1Passphrase("a"));
+                knownKeyWasAdded = e.Key.Equals(new V1Passphrase(new Passphrase("a")));
             };
             string destinationPath = String.Empty;
             FileOperationContext status = new FileOperationContext(String.Empty, FileOperationStatus.Unknown);
@@ -483,10 +483,10 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestDecryptWithKnownKey()
         {
             FileOperationsController controller = new FileOperationsController();
-            Instance.KnownKeys.Add(new V1Passphrase("b"));
-            Instance.KnownKeys.Add(new V1Passphrase("c"));
-            Instance.KnownKeys.Add(new V1Passphrase("a"));
-            Instance.KnownKeys.Add(new V1Passphrase("e"));
+            Instance.KnownKeys.Add(new Passphrase("b"));
+            Instance.KnownKeys.Add(new Passphrase("c"));
+            Instance.KnownKeys.Add(new Passphrase("a"));
+            Instance.KnownKeys.Add(new Passphrase("e"));
             bool passphraseWasQueried = false;
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
             {
@@ -552,7 +552,7 @@ namespace Axantum.AxCrypt.Core.Test
             bool knownKeyWasAdded = false;
             controller.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
             {
-                knownKeyWasAdded = e.Key.Equals(new V1Passphrase("a"));
+                knownKeyWasAdded = e.Key.Equals(new V1Passphrase(new Passphrase("a")));
             };
             FileOperationContext status = controller.DecryptFile(Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath));
 
@@ -755,8 +755,8 @@ namespace Axantum.AxCrypt.Core.Test
                 knownKeyWasAdded = true;
             };
 
-            Instance.KnownKeys.Add(new V1Passphrase("b"));
-            Instance.KnownKeys.Add(new V1Passphrase("c"));
+            Instance.KnownKeys.Add(new Passphrase("b"));
+            Instance.KnownKeys.Add(new Passphrase("c"));
 
             status = controller.VerifyEncrypted(Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success));

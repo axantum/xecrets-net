@@ -35,7 +35,7 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public class KnownKeys
     {
-        private List<IDerivedKey> _keys;
+        private List<Passphrase> _keys;
 
         private FileSystemState _fileSystemState;
 
@@ -45,7 +45,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             _fileSystemState = fileSystemState;
             _notificationMonitor = notificationMonitor;
-            _keys = new List<IDerivedKey>();
+            _keys = new List<Passphrase>();
             _knownThumbprints = new List<SymmetricKeyThumbprint>();
         }
 
@@ -62,7 +62,7 @@ namespace Axantum.AxCrypt.Core.UI
             DefaultEncryptionKey = null;
         }
 
-        public void Add(IDerivedKey key)
+        public void Add(Passphrase key)
         {
             bool changed = false;
             lock (_keys)
@@ -96,18 +96,18 @@ namespace Axantum.AxCrypt.Core.UI
             _notificationMonitor.Notify(new SessionNotification(SessionNotificationType.KnownKeyChange));
         }
 
-        public IEnumerable<IDerivedKey> Keys
+        public IEnumerable<Passphrase> Keys
         {
             get
             {
                 lock (_keys)
                 {
-                    return new List<IDerivedKey>(_keys);
+                    return new List<Passphrase>(_keys);
                 }
             }
         }
 
-        private IDerivedKey _defaultEncryptionKey;
+        private Passphrase _defaultEncryptionKey;
 
         /// <summary>
         /// Gets or sets the default encryption key.
@@ -115,7 +115,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// <value>
         /// The default encryption key, or null if none is known.
         /// </value>
-        public IDerivedKey DefaultEncryptionKey
+        public Passphrase DefaultEncryptionKey
         {
             get
             {
@@ -129,7 +129,7 @@ namespace Axantum.AxCrypt.Core.UI
                 }
                 if (_defaultEncryptionKey != null)
                 {
-                    IDerivedKey oldKey = _defaultEncryptionKey;
+                    Passphrase oldKey = _defaultEncryptionKey;
                     _defaultEncryptionKey = null;
                     _notificationMonitor.Notify(new SessionNotification(SessionNotificationType.LogOff, oldKey));
                 }
@@ -150,7 +150,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         /// <param name="thumbprint">The key to add the fingerprint of</param>
         /// <returns>True if a new thumb print was added, false if it was already known.</returns>
-        private bool AddKnownThumbprint(IDerivedKey key)
+        private bool AddKnownThumbprint(Passphrase key)
         {
             lock (_knownThumbprints)
             {

@@ -70,8 +70,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         private static object KeyWrapIterate(Guid cryptoId, long keyWrapIterations)
         {
             ICryptoFactory factory = Instance.CryptoFactory.Create(cryptoId);
-            IDerivedKey dummyPassphrase = factory.CreatePassphrase("A dummy passphrase");
-            ICrypto dummyCrypto = factory.CreateCrypto(dummyPassphrase);
+            ICrypto dummyCrypto = factory.CreateCrypto(new Passphrase("A dummy passphrase"));
             Salt dummySalt = new Salt(dummyCrypto.Key.DerivedKey.Size);
             KeyWrap keyWrap = new KeyWrap(dummySalt, keyWrapIterations, KeyWrapMode.Specification);
             byte[] wrapped = keyWrap.Wrap(dummyCrypto, new SymmetricKey(dummyCrypto.Key.DerivedKey.Size));

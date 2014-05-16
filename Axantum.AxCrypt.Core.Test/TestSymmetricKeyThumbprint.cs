@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using NUnit.Framework;
+using System;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -50,17 +50,17 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestInvalidArguments()
         {
-            string nullKey = null;
+            Passphrase nullKey = null;
             Salt nullSalt = null;
             Assert.Throws<ArgumentNullException>(() => { if (new SymmetricKeyThumbprint(nullKey, new Salt(128), 10) == null) { } });
-            Assert.Throws<ArgumentNullException>(() => { if (new SymmetricKeyThumbprint("passphrase", nullSalt, 10) == null) { } });
+            Assert.Throws<ArgumentNullException>(() => { if (new SymmetricKeyThumbprint(new Passphrase("passphrase"), nullSalt, 10) == null) { } });
         }
 
         [Test]
         public static void TestAesKeyThumbprintMethods()
         {
-            string key1 = "key";
-            string key2 = "key";
+            Passphrase key1 = new Passphrase("key");
+            Passphrase key2 = new Passphrase("key");
             Salt salt1 = new Salt(512);
             Salt salt2 = new Salt(salt1.GetBytes());
 
@@ -69,15 +69,15 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(thumbprint1 == thumbprint2, "Two thumb prints made from the same key and salt bytes, although different AesKey instances should be equivalent.");
 
-            SymmetricKeyThumbprint thumbprint3 = new SymmetricKeyThumbprint("passphrase", new Salt(512), 10);
+            SymmetricKeyThumbprint thumbprint3 = new SymmetricKeyThumbprint(new Passphrase("passphrase"), new Salt(512), 10);
             Assert.That(thumbprint2 != thumbprint3, "Two very different keys and salts should not be equivalent.");
         }
 
         [Test]
         public static void TestComparisons()
         {
-            string key1 = "samekey";
-            string key2 = "samekey";
+            Passphrase key1 = new Passphrase("samekey");
+            Passphrase key2 = new Passphrase("samekey");
             Salt salt1 = new Salt(512);
             Salt salt2 = new Salt(512);
 
@@ -108,8 +108,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestGetHashCode()
         {
-            string key1 = "samekey";
-            string key2 = "samekey";
+            Passphrase key1 = new Passphrase("samekey");
+            Passphrase key2 = new Passphrase("samekey");
             Salt salt1 = new Salt(512);
             Salt salt2 = new Salt(512);
 

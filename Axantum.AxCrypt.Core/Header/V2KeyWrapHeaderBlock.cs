@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
+using System;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Header
 {
@@ -160,16 +160,13 @@ namespace Axantum.AxCrypt.Core.Header
 
         private byte[] UnwrapMasterKeyData()
         {
-            ICryptoFactory cryptoFactory = Instance.CryptoFactory.Create(Crypto.Key.CryptoId);
-            IDerivedKey key = cryptoFactory.CreatePassphrase(Crypto.Key.Passphrase, DerivationSalt, DerivationIterations);
-            ICrypto keyEncryptingCrypto = cryptoFactory.CreateCrypto(key);
-            byte[] saltBytes = new byte[keyEncryptingCrypto.Key.DerivedKey.Size / 8];
+            byte[] saltBytes = new byte[Crypto.Key.DerivedKey.Size / 8];
             Array.Copy(GetDataBlockBytesReference(), WRAP_SALT_OFFSET, saltBytes, 0, saltBytes.Length);
             Salt salt = new Salt(saltBytes);
 
             KeyWrap keyWrap = new KeyWrap(salt, KeyWrapIterations, KeyWrapMode.Specification);
-            byte[] wrappedKeyData = GetKeyData(keyEncryptingCrypto.BlockLength, keyEncryptingCrypto.Key.DerivedKey.Size / 8);
-            return keyWrap.Unwrap(keyEncryptingCrypto, wrappedKeyData);
+            byte[] wrappedKeyData = GetKeyData(Crypto.BlockLength, Crypto.Key.DerivedKey.Size / 8);
+            return keyWrap.Unwrap(Crypto, wrappedKeyData);
         }
 
         private ICrypto _crypto;

@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestAddNewKnownKey()
         {
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
-            IDerivedKey passphrase = new GenericPassphrase("a");
+            Passphrase passphrase = new Passphrase("a");
             knownKeys.Add(passphrase);
             Assert.That(knownKeys.Keys.First(), Is.EqualTo(passphrase), "The first and only key should be the one just added.");
         }
@@ -65,9 +65,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestAddTwoNewKnownKeys()
         {
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
-            IDerivedKey key1 = new GenericPassphrase("key1");
+            Passphrase key1 = new Passphrase("key1");
             knownKeys.Add(key1);
-            IDerivedKey key2 = new GenericPassphrase("key2");
+            Passphrase key2 = new Passphrase("key2");
             knownKeys.Add(key2);
             Assert.That(knownKeys.Keys.First(), Is.EqualTo(key2), "The first key should be the last one added.");
             Assert.That(knownKeys.Keys.Last(), Is.EqualTo(key1), "The last key should be the first one added.");
@@ -77,7 +77,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestAddSameKeyTwice()
         {
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
-            IDerivedKey key = new GenericPassphrase(String.Empty);
+            Passphrase key = new Passphrase(String.Empty);
             knownKeys.Add(key);
             knownKeys.Add(key);
             Assert.That(knownKeys.Keys.Count(), Is.EqualTo(1), "Only one key should be in the collection even if added twice.");
@@ -88,7 +88,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestDefaultEncryptionKey()
         {
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
-            GenericPassphrase key = new GenericPassphrase(String.Empty);
+            Passphrase key = new Passphrase(String.Empty);
             knownKeys.DefaultEncryptionKey = key;
             Assert.That(knownKeys.DefaultEncryptionKey, Is.EqualTo(key), "The DefaultEncryptionKey should be the one just set as it.");
             Assert.That(knownKeys.Keys.Count(), Is.EqualTo(1), "Only one key should be in the collection.");
@@ -99,9 +99,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestClear()
         {
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
-            GenericPassphrase key1 = new GenericPassphrase("key1");
+            Passphrase key1 = new Passphrase("key1");
             knownKeys.Add(key1);
-            GenericPassphrase key2 = new GenericPassphrase("key2");
+            Passphrase key2 = new Passphrase("key2");
             knownKeys.Add(key2);
             Assert.That(knownKeys.Keys.Count(), Is.EqualTo(2), "There should be two keys in the collection.");
 
@@ -116,9 +116,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestSettingNullDefaultEncryptionKey()
         {
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
-            IDerivedKey key1 = new GenericPassphrase("a");
+            Passphrase key1 = new Passphrase("a");
             knownKeys.Add(key1);
-            IDerivedKey key2 = new GenericPassphrase("B");
+            Passphrase key2 = new Passphrase("B");
             knownKeys.DefaultEncryptionKey = key2;
 
             Assert.That(knownKeys.Keys.Count(), Is.EqualTo(2), "Setting the DefaultEncryptionKey should also add it as a known key.");
@@ -137,7 +137,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 wasChanged |= e.Notification.NotificationType == SessionNotificationType.KnownKeyChange;
             };
-            GenericPassphrase key1 = new GenericPassphrase(String.Empty);
+            Passphrase key1 = Passphrase.Empty;
             knownKeys.Add(key1);
             Assert.That(wasChanged, Is.True, "A new key should trigger the Changed event.");
             wasChanged = false;
@@ -166,12 +166,12 @@ namespace Axantum.AxCrypt.Core.Test
                 }
             };
 
-            knownKeys.DefaultEncryptionKey = new GenericPassphrase("passphrase1");
+            knownKeys.DefaultEncryptionKey = new Passphrase("passphrase1");
             Assert.That(wasLoggedOnCount, Is.EqualTo(1));
             Assert.That(wasLoggedOffCount, Is.EqualTo(0));
             Assert.That(knownKeys.IsLoggedOn, Is.True);
 
-            knownKeys.DefaultEncryptionKey = new GenericPassphrase("passphrase");
+            knownKeys.DefaultEncryptionKey = new Passphrase("passphrase");
             Assert.That(wasLoggedOnCount, Is.EqualTo(2));
             Assert.That(wasLoggedOffCount, Is.EqualTo(1));
             Assert.That(knownKeys.IsLoggedOn, Is.True);
@@ -180,11 +180,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestAddKeyForKnownIdentity()
         {
-            Instance.FileSystemState.Identities.Add(new PassphraseIdentity("Unit Test", new V1Passphrase("a")));
+            Instance.FileSystemState.Identities.Add(new PassphraseIdentity("Unit Test", new Passphrase("a")));
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
-            knownKeys.Add(new V1Passphrase("a"));
+            knownKeys.Add(new Passphrase("a"));
 
-            Assert.That(knownKeys.DefaultEncryptionKey.Equals(new V1Passphrase("a")), "When adding a key that is for a known identity it should be set as the default.");
+            Assert.That(knownKeys.DefaultEncryptionKey.Equals(new Passphrase("a")), "When adding a key that is for a known identity it should be set as the default.");
         }
 
         [Test]
@@ -201,8 +201,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestWatchedFoldersWhenLoggedOn()
         {
-            IDerivedKey key1 = new GenericPassphrase("a");
-            IDerivedKey key2 = new GenericPassphrase("b");
+            Passphrase key1 = new Passphrase("a");
+            Passphrase key2 = new Passphrase("b");
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
             FakeRuntimeFileInfo.AddFolder(@"C:\WatchedFolder1\");
             FakeRuntimeFileInfo.AddFolder(@"C:\WatchedFolder2\");

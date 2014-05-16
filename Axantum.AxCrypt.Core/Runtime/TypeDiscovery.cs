@@ -39,7 +39,13 @@ namespace Axantum.AxCrypt.Core.Runtime
             List<Type> interfaces = new List<Type>();
             foreach (Assembly assembly in new Assembly[] { Assembly.GetAssembly(typeof(I)) }.Concat(extraAssemblies))
             {
-                ScanAssemblyForNewInterfaces<I>(assembly, interfaces);
+                try
+                {
+                    ScanAssemblyForNewInterfaces<I>(assembly, interfaces);
+                }
+                catch (TypeLoadException)
+                {
+                }
             }
             return interfaces;
         }

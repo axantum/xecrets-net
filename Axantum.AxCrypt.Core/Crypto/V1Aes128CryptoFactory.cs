@@ -34,24 +34,34 @@ namespace Axantum.AxCrypt.Core.Crypto
     {
         private static readonly Guid _id = CryptoFactory.Aes128V1Id;
 
-        public IDerivedKey CreatePassphrase(string passphrase)
+        public IDerivedKey CreatePassphrase(Passphrase passphrase)
         {
             return new V1Passphrase(passphrase);
         }
 
-        public IDerivedKey CreatePassphrase(string passphrase, Salt salt, int derivationIterations)
+        public IDerivedKey CreatePassphrase(Passphrase passphrase, Salt salt, int derivationIterations)
         {
             return new V1Passphrase(passphrase);
         }
 
-        public ICrypto CreateCrypto(IDerivedKey key)
+        public ICrypto CreateCrypto(Passphrase passphrase)
         {
-            return new V1AesCrypto(key.EnsureCryptoFactory(Id), SymmetricIV.Zero128);
+            return new V1AesCrypto(CreatePassphrase(passphrase), SymmetricIV.Zero128);
         }
 
-        public ICrypto CreateCrypto(IDerivedKey key, SymmetricIV iv, long keyStreamOffset)
+        public ICrypto CreateCrypto(Passphrase passphrase, SymmetricIV iv, long keyStreamOffset)
         {
-            return new V1AesCrypto(key.EnsureCryptoFactory(Id), iv);
+            return new V1AesCrypto(CreatePassphrase(passphrase), iv);
+        }
+
+        public ICrypto CreateCrypto(SymmetricKey key)
+        {
+            return new V1AesCrypto(new GenericPassphrase(key), SymmetricIV.Zero128);
+        }
+
+        public ICrypto CreateCrypto(SymmetricKey key, SymmetricIV iv, long keyStreamOffset)
+        {
+            return new V1AesCrypto(new GenericPassphrase(key), iv);
         }
 
         public int Priority

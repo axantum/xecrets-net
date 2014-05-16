@@ -32,6 +32,8 @@ namespace Axantum.AxCrypt.Core.Crypto
 {
     public class Passphrase : IEquatable<Passphrase>
     {
+        public static readonly Passphrase Empty = new Passphrase(String.Empty);
+
         public Passphrase(string text)
         {
             Text = text;
@@ -47,7 +49,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 if (_thumbprint == null)
                 {
-                    _thumbprint = new SymmetricKeyThumbprint(Text, Instance.UserSettings.ThumbprintSalt, Instance.UserSettings.GetKeyWrapIterations(Instance.CryptoFactory.Minimum.Id));
+                    _thumbprint = new SymmetricKeyThumbprint(this, Instance.UserSettings.ThumbprintSalt, Instance.UserSettings.GetKeyWrapIterations(Instance.CryptoFactory.Minimum.Id));
                 }
                 return _thumbprint;
             }

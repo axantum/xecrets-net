@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         /// <param name="passphrase">The passphrase to thumbprint.</param>
         /// <param name="salt">The salt to use.</param>
-        public SymmetricKeyThumbprint(string passphrase, Salt salt, long keyWrapIterations)
+        public SymmetricKeyThumbprint(Passphrase passphrase, Salt salt, long keyWrapIterations)
         {
             if (passphrase == null)
             {
@@ -70,7 +70,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
 
             ICryptoFactory factory = Instance.CryptoFactory.Minimum;
-            ICrypto crypto = factory.CreateCrypto(factory.CreatePassphrase(passphrase, salt, (int)CryptoFactory.DerivationIterations));
+            ICrypto crypto = factory.CreateCrypto(factory.CreatePassphrase(passphrase, salt, CryptoFactory.DerivationIterations).DerivedKey);
             KeyWrap keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.Specification);
             byte[] wrap = keyWrap.Wrap(crypto, crypto.Key.DerivedKey);
 

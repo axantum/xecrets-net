@@ -25,9 +25,9 @@
 
 #endregion Coypright and License
 
-using System;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
+using System;
 
 namespace Axantum.AxCrypt.Core.Header
 {
@@ -123,7 +123,7 @@ namespace Axantum.AxCrypt.Core.Header
 
             byte[] unwrappedKeyData;
             KeyWrap keyWrap = new KeyWrap(salt, KeyWrapIterations, KeyWrapMode.AxCrypt);
-            unwrappedKeyData = keyWrap.Unwrap(Instance.CryptoFactory.Legacy.CreateCrypto(keyEncryptingKey), wrappedKeyData);
+            unwrappedKeyData = keyWrap.Unwrap(Instance.CryptoFactory.Legacy.CreateCrypto(keyEncryptingKey.DerivedKey), wrappedKeyData);
             return unwrappedKeyData;
         }
 
@@ -140,7 +140,7 @@ namespace Axantum.AxCrypt.Core.Header
         {
             Salt salt = new Salt(keyEncryptingKey.Size);
             KeyWrap keyWrap = new KeyWrap(salt, KeyWrapIterations, KeyWrapMode.AxCrypt);
-            byte[] wrappedKeyData = keyWrap.Wrap(Instance.CryptoFactory.Legacy.CreateCrypto(new GenericPassphrase(keyEncryptingKey)), masterKey);
+            byte[] wrappedKeyData = keyWrap.Wrap(Instance.CryptoFactory.Legacy.CreateCrypto(keyEncryptingKey), masterKey);
             Set(wrappedKeyData, salt, KeyWrapIterations);
         }
     }

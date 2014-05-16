@@ -25,14 +25,14 @@
 
 #endregion Coypright and License
 
-using System;
-using System.IO;
-using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using NUnit.Framework;
+using System;
+using System.IO;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Core.Test
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestGetCryptoFromHeaders()
         {
-            ICrypto crypto = new V2AesCrypto(new V2Passphrase("passphrase", 256, CryptoFactory.Aes256Id), SymmetricIV.Zero128, 0);
+            ICrypto crypto = new V2AesCrypto(new V2Passphrase(new Passphrase("passphrase"), 256, CryptoFactory.Aes256Id), SymmetricIV.Zero128, 0);
             Headers headers = new Headers();
             V2DocumentHeaders documentHeaders = new V2DocumentHeaders(crypto, 10);
             using (Stream chainedStream = new MemoryStream())
@@ -74,9 +74,9 @@ namespace Axantum.AxCrypt.Core.Test
                                 headers.HeaderBlocks.Add(reader.CurrentHeaderBlock);
                             }
                         }
-                        ICrypto cryptoFromReader = reader.Crypto(headers, "passphrase", Guid.Empty);
+                        ICrypto cryptoFromReader = reader.Crypto(headers, new Passphrase("passphrase"), Guid.Empty);
                         Assert.That(!Object.ReferenceEquals(crypto, cryptoFromReader));
-                        Assert.That(crypto.Key.Equals(cryptoFromReader.Key));
+                        Assert.That(crypto.Key.DerivedKey.Equals(cryptoFromReader.Key.DerivedKey));
                     }
                 }
             }

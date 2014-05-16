@@ -121,7 +121,7 @@ namespace Axantum.AxCrypt.Core.Session
         /// <param name="_fileSystemState">The FileSystemState that contains the list of active files.</param>
         /// <param name="key">The newly added key to check the files for a match with.</param>
         /// <returns>True if any file was updated with the new key, False otherwise.</returns>
-        public virtual bool UpdateActiveFileWithKeyIfKeyMatchesThumbprint(IDerivedKey key)
+        public virtual bool UpdateActiveFileWithKeyIfKeyMatchesThumbprint(Passphrase key)
         {
             bool keyMatch = false;
             Instance.FileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFile) =>
@@ -176,7 +176,7 @@ namespace Axantum.AxCrypt.Core.Session
                 return activeFile;
             }
 
-            IDerivedKey key = FindKnownKeyOrNull(activeFile);
+            Passphrase key = FindKnownKeyOrNull(activeFile);
             if (activeFile.Key != null)
             {
                 if (key != null)
@@ -193,9 +193,9 @@ namespace Axantum.AxCrypt.Core.Session
             return activeFile;
         }
 
-        private static IDerivedKey FindKnownKeyOrNull(ActiveFile activeFile)
+        private static Passphrase FindKnownKeyOrNull(ActiveFile activeFile)
         {
-            foreach (IDerivedKey key in Instance.KnownKeys.Keys)
+            foreach (Passphrase key in Instance.KnownKeys.Keys)
             {
                 if (activeFile.ThumbprintMatch(key))
                 {
@@ -257,12 +257,12 @@ namespace Axantum.AxCrypt.Core.Session
 
             try
             {
-                IDerivedKey key = Factory.New<AxCryptFactory>().CreatePassphrase(activeFile.Key.Passphrase, activeFile.EncryptedFileInfo, new Guid[] { activeFile.Key.CryptoId });
+                IDerivedKey key = Factory.New<AxCryptFactory>().CreatePassphrase(activeFile.Key, activeFile.EncryptedFileInfo, Instance.CryptoFactory.OrderedIds);
                 using (Stream activeFileStream = activeFile.DecryptedFileInfo.OpenRead())
                 {
                     Factory.New<AxCryptFile>().WriteToFileWithBackup(activeFile.EncryptedFileInfo, (Stream destination) =>
                     {
-                        AxCryptFile.Encrypt(activeFile.DecryptedFileInfo, destination, key, AxCryptOptions.EncryptWithCompression, progress);
+                        AxCryptFile.Encrypt(activeFile.DecryptedFileInfo, destination, key.Passphrase, key.CryptoId, AxCryptOptions.EncryptWithCompression, progress);
                     }, progress);
                 }
             }

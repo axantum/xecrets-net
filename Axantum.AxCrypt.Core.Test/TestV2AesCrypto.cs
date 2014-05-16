@@ -25,12 +25,12 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
+using System;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -134,7 +134,7 @@ namespace Axantum.AxCrypt.Core.Test
                 set;
             }
 
-            public string Passphrase
+            public Passphrase Passphrase
             {
                 get { throw new NotImplementedException(); }
             }
@@ -188,7 +188,7 @@ namespace Axantum.AxCrypt.Core.Test
             testIV = new SymmetricIV(128);
             Assert.DoesNotThrow(() => crypto = new V2AesCrypto(testKey, testIV, 0));
 
-			Assert.That (crypto, Is.Not.Null);
+            Assert.That(crypto, Is.Not.Null);
         }
     }
 }

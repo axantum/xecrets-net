@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.IO;
 using System.Linq;
-using Axantum.AxCrypt.Core.Crypto;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -46,7 +46,7 @@ namespace Axantum.AxCrypt.Core
 
         ICrypto KeyEncryptingCrypto { get; }
 
-        bool Load(IDerivedKey key, Stream inputStream);
+        bool Load(Passphrase key, Guid cryptoId, Stream inputStream);
 
         void EncryptTo(Stream inputStream, Stream outputStream, AxCryptOptions options);
 

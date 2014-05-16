@@ -80,7 +80,7 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (AxCryptReaderForTest axCryptReader = new AxCryptReaderForTest(inputStream))
                 {
-                    V1DocumentHeaders documentHeaders = new V1DocumentHeaders(new V1AesCrypto(new GenericPassphrase("secret"), SymmetricIV.Zero128), 15);
+                    V1DocumentHeaders documentHeaders = new V1DocumentHeaders(new V1AesCrypto(new GenericPassphrase(new Passphrase("secret")), SymmetricIV.Zero128), 15);
                     Assert.Throws<InternalErrorException>(() =>
                     {
                         documentHeaders.Load(axCryptReader);
@@ -92,7 +92,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestBadArguments()
         {
-            V1DocumentHeaders documentHeaders = new V1DocumentHeaders(new V1AesCrypto(new GenericPassphrase(String.Empty), SymmetricIV.Zero128), 37);
+            V1DocumentHeaders documentHeaders = new V1DocumentHeaders(new V1AesCrypto(new GenericPassphrase(Passphrase.Empty), SymmetricIV.Zero128), 37);
             Assert.Throws<ArgumentNullException>(() =>
             {
                 documentHeaders.WriteWithHmac(null);
@@ -110,9 +110,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestKeyEncryptingKey()
         {
-            IDerivedKey keyEncryptingKey = new GenericPassphrase("a");
-            V1DocumentHeaders headers = new V1DocumentHeaders(new V1AesCrypto(keyEncryptingKey, SymmetricIV.Zero128), 57);
-            Assert.That(headers.KeyEncryptingCrypto.Key, Is.EqualTo(keyEncryptingKey), "Unexpected key encrypting key retrieved.");
+            Passphrase keyEncryptingKey = new Passphrase("a");
+            V1DocumentHeaders headers = new V1DocumentHeaders(new V1AesCrypto(new V1Passphrase(keyEncryptingKey), SymmetricIV.Zero128), 57);
+            Assert.That(headers.KeyEncryptingCrypto.Key, Is.EqualTo(new V1Passphrase(keyEncryptingKey)), "Unexpected key encrypting key retrieved.");
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
@@ -122,8 +122,8 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 using (AxCryptReader reader = new V1AxCryptReader(testStream))
                 {
-                    V1Passphrase passphrase = new V1Passphrase("b");
-                    V1DocumentHeaders documentHeaders = new V1DocumentHeaders(new V1AesCrypto(passphrase, SymmetricIV.Zero128), 73);
+                    Passphrase passphrase = new Passphrase("b");
+                    V1DocumentHeaders documentHeaders = new V1DocumentHeaders(new V1AesCrypto(new V1Passphrase(passphrase), SymmetricIV.Zero128), 73);
                     bool isPassphraseValid = documentHeaders.Load(reader);
 
                     Assert.That(isPassphraseValid, Is.False, "The passphrase is intentionally wrong for this test case.");
@@ -144,8 +144,8 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 using (Stream outputStream = new MemoryStream())
                 {
-                    V1Passphrase passphrase = new V1Passphrase("a");
-                    using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(passphrase, SymmetricIV.Zero128), 101))
+                    Passphrase passphrase = new Passphrase("a");
+                    using (V1AxCryptDocument document = new V1AxCryptDocument(new V1AesCrypto(new V1Passphrase(passphrase), SymmetricIV.Zero128), 101))
                     {
                         document.FileName = "MyFile.txt";
                         document.CreationTimeUtc = creationTimeUtc;
@@ -158,7 +158,7 @@ namespace Axantum.AxCrypt.Core.Test
                     outputStream.Position = 0;
                     using (IAxCryptDocument document = new V1AxCryptDocument())
                     {
-                        Assert.Throws<FileFormatException>(() => { document.Load(passphrase, outputStream); });
+                        Assert.Throws<FileFormatException>(() => { document.Load(passphrase, CryptoFactory.Aes128V1Id, outputStream); });
                     }
                 }
             }

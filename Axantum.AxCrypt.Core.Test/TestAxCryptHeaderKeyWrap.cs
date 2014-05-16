@@ -25,13 +25,13 @@
 
 #endregion Coypright and License
 
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Test.Properties;
 using NUnit.Framework;
+using System.Diagnostics.CodeAnalysis;
+using System.IO;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -91,7 +91,7 @@ namespace Axantum.AxCrypt.Core.Test
                     Assert.That(headers, Is.EqualTo(1), "We're expecting exactly one KeyWrap1 block to be found!");
                     byte[] wrapped = keyWrapHeaderBlock.GetKeyData();
                     KeyWrap keyWrap = new KeyWrap(keyWrapHeaderBlock.Salt, keyWrapHeaderBlock.KeyWrapIterations, KeyWrapMode.AxCrypt);
-                    byte[] unwrapped = keyWrap.Unwrap(new V1AesCrypto(new V1Passphrase("a"), SymmetricIV.Zero128), wrapped);
+                    byte[] unwrapped = keyWrap.Unwrap(new V1AesCrypto(new V1Passphrase(new Passphrase("a")), SymmetricIV.Zero128), wrapped);
                     Assert.That(unwrapped.Length, Is.Not.EqualTo(0), "An unwrapped key is invalid if it is returned as a zero-length array.");
                 }
             }

@@ -25,6 +25,9 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -32,9 +35,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Extensions
 {
@@ -154,21 +154,11 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static bool TryFindDecryptionKey(this IRuntimeFileInfo fileInfo, out IDerivedKey key)
         {
-            foreach (IDerivedKey knownKey in Instance.KnownKeys.Keys)
+            foreach (Passphrase knownKey in Instance.KnownKeys.Keys)
             {
-                key = Factory.New<AxCryptFactory>().CreatePassphrase(knownKey.Passphrase, fileInfo, new Guid[] { knownKey.CryptoId });
+                key = Factory.New<AxCryptFactory>().CreatePassphrase(knownKey, fileInfo, Instance.CryptoFactory.OrderedIds);
                 if (key != null)
                 {
-                    return true;
-                }
-            }
-            foreach (IDerivedKey knownKey in Instance.KnownKeys.Keys)
-            {
-                IEnumerable<Guid> otherIds = Instance.CryptoFactory.OrderedIds.Where(g => g != knownKey.CryptoId);
-                key = Factory.New<AxCryptFactory>().CreatePassphrase(knownKey.Passphrase, fileInfo, otherIds);
-                if (key != null)
-                {
-                    Instance.KnownKeys.Add(key);
                     return true;
                 }
             }

@@ -25,12 +25,12 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Globalization;
-using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
+using System;
+using System.Globalization;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
@@ -111,7 +111,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return true;
             }
-            if (Factory.New<AxCryptFactory>().CreatePassphrase(passphrase, Factory.New<IRuntimeFileInfo>(encryptedFileFullName), Instance.CryptoFactory.OrderedIds) != null)
+            if (Factory.New<AxCryptFactory>().CreatePassphrase(new Passphrase(passphrase), Factory.New<IRuntimeFileInfo>(encryptedFileFullName), Instance.CryptoFactory.OrderedIds) != null)
             {
                 return true;
             }
@@ -120,7 +120,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private bool IsKnownIdentity()
         {
-            SymmetricKeyThumbprint thumbprint = new GenericPassphrase(Passphrase).Thumbprint;
+            SymmetricKeyThumbprint thumbprint = new Passphrase(Passphrase).Thumbprint;
             PassphraseIdentity identity = Instance.FileSystemState.Identities.FirstOrDefault(id => (String.IsNullOrEmpty(IdentityName) || IdentityName == id.Name) && id.Thumbprint == thumbprint);
             if (identity != null)
             {

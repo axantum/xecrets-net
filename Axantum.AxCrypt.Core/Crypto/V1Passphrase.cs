@@ -40,7 +40,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// Initializes a new instance of the <see cref="V1Passphrase"/> class.
         /// </summary>
         /// <param name="passphrase">The passphrase.</param>
-        public V1Passphrase(string passphrase)
+        public V1Passphrase(Passphrase passphrase)
         {
             if (passphrase == null)
             {
@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
 
             HashAlgorithm hashAlgorithm = new SHA1Managed();
-            byte[] ansiBytes = Encoding.GetEncoding(1252).GetBytes(passphrase);
+            byte[] ansiBytes = Encoding.GetEncoding(1252).GetBytes(passphrase.Text);
             byte[] hash = hashAlgorithm.ComputeHash(ansiBytes);
             byte[] derivedKey = new byte[16];
             Array.Copy(hash, derivedKey, derivedKey.Length);

@@ -86,7 +86,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 case SessionNotificationType.WatchedFolderAdded:
                     IRuntimeFileInfo addedFolderInfo = Factory.New<IRuntimeFileInfo>(notification.FullName);
-                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(new IRuntimeFileInfo[] { addedFolderInfo }, notification.Key, progress);
+                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(new IRuntimeFileInfo[] { addedFolderInfo }, notification.Key, Instance.CryptoFactory.Default.Id, progress);
                     break;
 
                 case SessionNotificationType.WatchedFolderRemoved:
@@ -99,7 +99,7 @@ namespace Axantum.AxCrypt.Core.Session
 
                 case SessionNotificationType.LogOn:
                 case SessionNotificationType.LogOff:
-                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(_fileSystemState.WatchedFolders.Where(wf => wf.Thumbprint == notification.Key.Thumbprint).Select(wf => Factory.New<IRuntimeFileInfo>(wf.Path)), notification.Key, progress);
+                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(_fileSystemState.WatchedFolders.Where(wf => wf.Thumbprint == notification.Key.Thumbprint).Select(wf => Factory.New<IRuntimeFileInfo>(wf.Path)), notification.Key, Instance.CryptoFactory.Default.Id, progress);
                     break;
 
                 case SessionNotificationType.SessionStart:
@@ -108,7 +108,7 @@ namespace Axantum.AxCrypt.Core.Session
 
                 case SessionNotificationType.EncryptPendingFiles:
                     _activeFileAction.PurgeActiveFiles(progress);
-                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(_knownKeys.LoggedOnWatchedFolders.Select(wf => Factory.New<IRuntimeFileInfo>(wf.Path)), _knownKeys.DefaultEncryptionKey, progress);
+                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(_knownKeys.LoggedOnWatchedFolders.Select(wf => Factory.New<IRuntimeFileInfo>(wf.Path)), _knownKeys.DefaultEncryptionKey, Instance.CryptoFactory.Default.Id, progress);
                     break;
 
                 case SessionNotificationType.PurgeActiveFiles:

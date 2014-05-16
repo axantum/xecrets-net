@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestNonTerminatingFileName()
         {
             FileNameInfoHeaderBlockForTest fileInfoHeaderBlock = new FileNameInfoHeaderBlockForTest();
-            fileInfoHeaderBlock.HeaderCrypto = new V1AesCrypto(new GenericPassphrase("nonterminating"), SymmetricIV.Zero128);
+            fileInfoHeaderBlock.HeaderCrypto = new V1AesCrypto(new V1Passphrase(new Passphrase("nonterminating")), SymmetricIV.Zero128);
 
             fileInfoHeaderBlock.FileName = "ABCDEFGHIJK.LMN";
             fileInfoHeaderBlock.SetBadNameWithoutEndingNul();

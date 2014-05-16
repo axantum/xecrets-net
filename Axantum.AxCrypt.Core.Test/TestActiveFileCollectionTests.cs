@@ -25,16 +25,16 @@
 
 #endregion Coypright and License
 
-using System;
-using System.IO;
-using System.Linq;
-using System.Text;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Test.Properties;
 using NUnit.Framework;
+using System;
+using System.IO;
+using System.Linq;
+using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -71,7 +71,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
             IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
-            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new GenericPassphrase("new"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
+            ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new Passphrase("new"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
 
             collection.Add(activeFile);
 
@@ -90,8 +90,8 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo encryptedFileInfo1 = Factory.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "test1-txt.axx"));
             IRuntimeFileInfo decryptedFileInfo2 = Factory.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "test2.txt"));
             IRuntimeFileInfo encryptedFileInfo2 = Factory.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "test2-text.axx"));
-            ActiveFile activeFile1 = new ActiveFile(encryptedFileInfo1, decryptedFileInfo1, new GenericPassphrase("newA"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
-            ActiveFile activeFile2 = new ActiveFile(encryptedFileInfo2, decryptedFileInfo2, new GenericPassphrase("newB"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
+            ActiveFile activeFile1 = new ActiveFile(encryptedFileInfo1, decryptedFileInfo1, new Passphrase("newA"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
+            ActiveFile activeFile2 = new ActiveFile(encryptedFileInfo2, decryptedFileInfo2, new Passphrase("newB"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
 
             ActiveFileCollection collection = new ActiveFileCollection(new ActiveFile[] { activeFile1, activeFile2 });
 

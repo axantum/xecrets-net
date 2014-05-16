@@ -56,9 +56,9 @@ namespace Axantum.AxCrypt.Core.Test
             sessionEvent = new SessionNotification(SessionNotificationType.ProcessExit);
             Assert.That(sessionEvent.NotificationType, Is.EqualTo(SessionNotificationType.ProcessExit));
             Assert.That(sessionEvent.FullName, Is.EqualTo(String.Empty));
-            Assert.That(sessionEvent.Key.Equals(new GenericPassphrase(String.Empty)));
+            Assert.That(sessionEvent.Key.Equals(Passphrase.Empty));
 
-            IDerivedKey key = new GenericPassphrase("key");
+            Passphrase key = new Passphrase("key");
             sessionEvent = new SessionNotification(SessionNotificationType.KnownKeyChange, key);
             Assert.That(sessionEvent.NotificationType, Is.EqualTo(SessionNotificationType.KnownKeyChange));
             Assert.That(sessionEvent.FullName, Is.EqualTo(String.Empty));
@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Test
             sessionEvent = new SessionNotification(SessionNotificationType.ActiveFileChange, fullName);
             Assert.That(sessionEvent.NotificationType, Is.EqualTo(SessionNotificationType.ActiveFileChange));
             Assert.That(sessionEvent.FullName, Is.EqualTo(fullName));
-            Assert.That(sessionEvent.Key.Equals(new GenericPassphrase(String.Empty)));
+            Assert.That(sessionEvent.Key.Equals(Passphrase.Empty));
 
             fullName = @"C:\Test\";
             sessionEvent = new SessionNotification(SessionNotificationType.WatchedFolderAdded, key, fullName);
@@ -80,7 +80,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEquality()
         {
-            IDerivedKey key = new GenericPassphrase("passphrase1");
+            Passphrase key = new Passphrase("passphrase1");
             string fullName = @"C:\Test\Test.txt";
 
             SessionNotification sessionEventA1 = new SessionNotification(SessionNotificationType.ActiveFileChange);
@@ -89,7 +89,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotification sessionEventB1 = new SessionNotification(SessionNotificationType.ActiveFileChange, key);
             SessionNotification sessionEventB2 = new SessionNotification(SessionNotificationType.ActiveFileChange, key);
-            SessionNotification sessionEventB3 = new SessionNotification(SessionNotificationType.ActiveFileChange, new GenericPassphrase("passphrase2"));
+            SessionNotification sessionEventB3 = new SessionNotification(SessionNotificationType.ActiveFileChange, new Passphrase("passphrase2"));
 
             SessionNotification sessionEventC1 = new SessionNotification(SessionNotificationType.ActiveFileChange, fullName);
             SessionNotification sessionEventC2 = new SessionNotification(SessionNotificationType.ActiveFileChange, fullName);
@@ -97,7 +97,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             SessionNotification sessionEventD1 = new SessionNotification(SessionNotificationType.ActiveFileChange, key, fullName);
             SessionNotification sessionEventD2 = new SessionNotification(SessionNotificationType.ActiveFileChange, key, fullName);
-            SessionNotification sessionEventD3 = new SessionNotification(SessionNotificationType.ActiveFileChange, new GenericPassphrase("passphrase"), fullName);
+            SessionNotification sessionEventD3 = new SessionNotification(SessionNotificationType.ActiveFileChange, new Passphrase("passphrase"), fullName);
 
             SessionNotification nullSessionEvent = null;
             SessionNotification sessionEventA1Alias = sessionEventA1;

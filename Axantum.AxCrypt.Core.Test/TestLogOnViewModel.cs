@@ -25,10 +25,6 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
@@ -37,6 +33,10 @@ using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Moq;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -108,7 +108,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             LogOnViewModel lovm = new LogOnViewModel("Me", String.Empty);
 
-            _identities.Add(new PassphraseIdentity("Me", new V1Passphrase("abc1234")));
+            _identities.Add(new PassphraseIdentity("Me", new Passphrase("abc1234")));
 
             lovm.Passphrase = "abc1234";
 
@@ -130,7 +130,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             LogOnViewModel lovm = new LogOnViewModel("Me", String.Empty);
 
-            _identities.Add(new PassphraseIdentity("Me", new V1Passphrase("abc1234")));
+            _identities.Add(new PassphraseIdentity("Me", new Passphrase("abc1234")));
 
             lovm.Passphrase = "abc12345";
 
@@ -150,7 +150,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestValidateWrongPassphraseWithRealFile()
         {
-            _identities.Add(new PassphraseIdentity(Environment.UserName, new V1Passphrase("a")));
+            _identities.Add(new PassphraseIdentity(Environment.UserName, new Passphrase("a")));
 
             FakeRuntimeFileInfo.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
             LogOnViewModel npvm = new LogOnViewModel(Environment.UserName, @"C:\My Folder\MyFile-txt.axx");
@@ -163,7 +163,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestValidateCorrectPassphraseWithRealFile()
         {
-            _identities.Add(new PassphraseIdentity(Environment.UserName, new V1Passphrase("a")));
+            _identities.Add(new PassphraseIdentity(Environment.UserName, new Passphrase("a")));
 
             FakeRuntimeFileInfo.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
             LogOnViewModel npvm = new LogOnViewModel(Environment.UserName, @"C:\My Folder\MyFile-txt.axx");
@@ -176,7 +176,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestValidateWrongButKnownPassphraseWithRealFile()
         {
-            _identities.Add(new PassphraseIdentity(Environment.UserName, new V1Passphrase("b")));
+            _identities.Add(new PassphraseIdentity(Environment.UserName, new Passphrase("b")));
 
             FakeRuntimeFileInfo.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
             LogOnViewModel npvm = new LogOnViewModel(Environment.UserName, @"C:\My Folder\MyFile-txt.axx");

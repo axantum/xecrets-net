@@ -25,12 +25,12 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
+using System;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -83,7 +83,7 @@ namespace Axantum.AxCrypt.Core.Test
             headerBlock.FileName = "A file name";
             Assert.That(headerBlock.FileName, Is.EqualTo("A file name"));
 
-            headerBlock.HeaderCrypto = new V2AesCrypto(new V2Passphrase("passphrase", 256, CryptoFactory.Aes256Id), SymmetricIV.Zero128, 0);
+            headerBlock.HeaderCrypto = new V2AesCrypto(new V2Passphrase(new Passphrase("passphrase"), 256, CryptoFactory.Aes256Id), SymmetricIV.Zero128, 0);
             string s;
             Assert.Throws<InvalidOperationException>(() => s = headerBlock.FileName);
         }

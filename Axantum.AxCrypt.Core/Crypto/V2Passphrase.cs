@@ -25,9 +25,9 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Linq;
-using Axantum.AxCrypt.Core.Extensions;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -40,16 +40,16 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// Initializes a new instance of the <see cref="V2Passphrase"/> class.
         /// </summary>
         /// <param name="passphrase">The passphrase.</param>
-        public V2Passphrase(string passphrase, Salt salt, int derivationIterations, int keySize, Guid cryptoId)
+        public V2Passphrase(Passphrase passphrase, Salt salt, int derivationIterations, int keySize, Guid cryptoId)
         {
             DerivationSalt = salt;
             DerivationIterations = derivationIterations;
-            DerivedKey = new SymmetricKey(new Pbkdf2HmacSha512(passphrase, salt, derivationIterations).GetBytes().Reduce(keySize / 8));
+            DerivedKey = new SymmetricKey(new Pbkdf2HmacSha512(passphrase.Text, salt, derivationIterations).GetBytes().Reduce(keySize / 8));
             Passphrase = passphrase;
             CryptoId = cryptoId;
         }
 
-        public V2Passphrase(string passphrase, int keySize, Guid cryptoId)
+        public V2Passphrase(Passphrase passphrase, int keySize, Guid cryptoId)
             : this(passphrase, new Salt(256), CryptoFactory.DerivationIterations, keySize, cryptoId)
         {
         }

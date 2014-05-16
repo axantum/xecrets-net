@@ -44,7 +44,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             protected set;
         }
 
-        public string Passphrase
+        public Passphrase Passphrase
         {
             get;
             protected set;
@@ -60,7 +60,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private SymmetricKeyThumbprint _thumbprint;
 
-        public SymmetricKeyThumbprint Thumbprint
+        public virtual SymmetricKeyThumbprint Thumbprint
         {
             get
             {

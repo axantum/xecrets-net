@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -9,24 +7,34 @@ namespace Axantum.AxCrypt.Core.Crypto
     {
         private static readonly Guid _id = CryptoFactory.Aes128Id;
 
-        public IDerivedKey CreatePassphrase(string passphrase)
+        public IDerivedKey CreatePassphrase(Passphrase passphrase)
         {
             return new V2Passphrase(passphrase, 128, Id);
         }
 
-        public IDerivedKey CreatePassphrase(string passphrase, Salt salt, int derivationIterations)
+        public IDerivedKey CreatePassphrase(Passphrase passphrase, Salt salt, int derivationIterations)
         {
             return new V2Passphrase(passphrase, salt, derivationIterations, 128, Id);
         }
 
-        public ICrypto CreateCrypto(IDerivedKey key)
+        public ICrypto CreateCrypto(Passphrase passphrase)
         {
-            return new V2AesCrypto(key.EnsureCryptoFactory(Id), SymmetricIV.Zero128, 0);
+            return new V2AesCrypto(new V2Passphrase(passphrase, 128, Id), SymmetricIV.Zero128, 0);
         }
 
-        public ICrypto CreateCrypto(IDerivedKey key, SymmetricIV iv, long keyStreamOffset)
+        public ICrypto CreateCrypto(Passphrase passphrase, SymmetricIV iv, long keyStreamOffset)
         {
-            return new V2AesCrypto(key.EnsureCryptoFactory(Id), iv, keyStreamOffset);
+            return new V2AesCrypto(new V2Passphrase(passphrase, 128, Id), iv, keyStreamOffset);
+        }
+
+        public ICrypto CreateCrypto(SymmetricKey key)
+        {
+            return new V2AesCrypto(new GenericPassphrase(key), SymmetricIV.Zero128, 0);
+        }
+
+        public ICrypto CreateCrypto(SymmetricKey key, SymmetricIV iv, long keyStreamOffset)
+        {
+            return new V2AesCrypto(new GenericPassphrase(key), iv, keyStreamOffset);
         }
 
         public int Priority

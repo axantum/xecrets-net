@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
-using System;
-using System.IO;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
+using System;
+using System.IO;
 
 namespace Axantum.AxCrypt.Core.Reader
 {
@@ -87,12 +87,12 @@ namespace Axantum.AxCrypt.Core.Reader
             return new UnrecognizedHeaderBlock(headerBlockType, dataBlock);
         }
 
-        public override ICrypto Crypto(Headers headers, string passphrase, Guid cryptoId)
+        public override ICrypto Crypto(Headers headers, Passphrase passphrase, Guid cryptoId)
         {
-            return Instance.CryptoFactory.Legacy.CreateCrypto(Instance.CryptoFactory.Legacy.CreatePassphrase(passphrase));
+            return Instance.CryptoFactory.Legacy.CreateCrypto(passphrase);
         }
 
-        public override IAxCryptDocument Document(IDerivedKey key, Headers headers)
+        public override IAxCryptDocument Document(Passphrase key, Guid cryptoId, Headers headers)
         {
             V1AxCryptDocument v1Document = new V1AxCryptDocument();
             v1Document.Load(key, this, headers);
