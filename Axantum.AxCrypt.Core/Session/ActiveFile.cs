@@ -211,10 +211,6 @@ namespace Axantum.AxCrypt.Core.Session
         private void OnDeserialized(StreamingContext context)
         {
             DecryptedFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(_decryptedFolder, _decryptedName));
-            if (Properties == null)
-            {
-                Properties = new ActiveFileProperties(default(DateTime), default(DateTime), Guid.Empty);
-            }
         }
 
         private Passphrase _key;
