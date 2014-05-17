@@ -25,6 +25,11 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
+using NUnit.Framework;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -32,11 +37,6 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Threading;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
-using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -471,7 +471,7 @@ namespace Axantum.AxCrypt.Core.Test
             byte[] reduced = null;
 
             Assert.Throws<ArgumentException>(() => reduced = big.Reduce(6));
-			Assert.That (reduced, Is.Null);
+            Assert.That(reduced, Is.Null);
         }
 
         [Test]
@@ -505,7 +505,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Stream nullStream = null;
             ICryptoTransform nullEncryptor = null;
-            ICryptoTransform encryptor = new V2AesCrypto(new GenericPassphrase(SymmetricKey.Zero256), SymmetricIV.Zero128, 0).CreateDecryptingTransform();
+            ICryptoTransform encryptor = new V2AesCrypto(new V2Aes256CryptoFactory(), new GenericPassphrase(SymmetricKey.Zero256), SymmetricIV.Zero128, 0).CreateDecryptingTransform();
 
             Assert.Throws<ArgumentNullException>(() => nullStream.DecryptTo(Stream.Null, encryptor, true));
             Assert.Throws<ArgumentNullException>(() => Stream.Null.DecryptTo(nullStream, encryptor, true));

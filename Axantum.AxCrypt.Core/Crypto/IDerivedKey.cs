@@ -32,8 +32,6 @@ namespace Axantum.AxCrypt.Core.Crypto
 {
     public interface IDerivedKey : IEquatable<IDerivedKey>
     {
-        Guid CryptoId { get; }
-
         SymmetricKey DerivedKey { get; }
 
         Salt DerivationSalt { get; }

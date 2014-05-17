@@ -32,12 +32,6 @@ namespace Axantum.AxCrypt.Core.Crypto
 {
     public abstract class PassphraseBase : IDerivedKey
     {
-        public Guid CryptoId
-        {
-            get;
-            protected set;
-        }
-
         public SymmetricKey DerivedKey
         {
             get;
@@ -65,7 +59,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 return false;
             }
-            return CryptoId == other.CryptoId && DerivedKey == other.DerivedKey;
+            return DerivedKey == other.DerivedKey;
         }
 
         #endregion IEquatable<SymmetricKey> Members
@@ -83,7 +77,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public override int GetHashCode()
         {
-            return CryptoId.GetHashCode() ^ DerivedKey.GetHashCode();
+            return DerivedKey.GetHashCode();
         }
     }
 }

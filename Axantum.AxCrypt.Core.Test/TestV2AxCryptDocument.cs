@@ -125,7 +125,7 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
-                    using (V2AxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(new V2Passphrase(new Passphrase("Secret"), 256, CryptoFactory.Aes256Id), SymmetricIV.Zero128, 0), 100))
+                    using (V2AxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(new V2Aes256CryptoFactory(), new V2Passphrase(new Passphrase("Secret"), 256, CryptoFactory.Aes256Id), SymmetricIV.Zero128, 0), 100))
                     {
                         document.EncryptTo(inputStream, outputStream, options);
                         output = outputStream.ToArray();
@@ -230,14 +230,14 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
-                    using (IAxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(key, SymmetricIV.Zero128, 0), 113))
+                    using (IAxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(new V2Aes256CryptoFactory(), key, SymmetricIV.Zero128, 0), 113))
                     {
                         document.EncryptTo(inputStream, outputStream, options);
 
                         outputStream.Position = 0;
                         using (IAxCryptDocument decryptedDocument = new V2AxCryptDocument())
                         {
-                            Assert.That(decryptedDocument.Load(new Passphrase("passphrase"), key.CryptoId, outputStream), Is.True);
+                            Assert.That(decryptedDocument.Load(new Passphrase("passphrase"), new V2Aes256CryptoFactory().Id, outputStream), Is.True);
                             byte[] plain;
                             using (MemoryStream decryptedStream = new MemoryStream())
                             {
@@ -277,7 +277,7 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
-                    using (IAxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(key, SymmetricIV.Zero128, 0), 113))
+                    using (IAxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(new V2Aes128CryptoFactory(), key, SymmetricIV.Zero128, 0), 113))
                     {
                         document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithCompression);
 
@@ -309,7 +309,7 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
-                    using (IAxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(key, SymmetricIV.Zero128, 0), 113))
+                    using (IAxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(new V2Aes256CryptoFactory(), key, SymmetricIV.Zero128, 0), 113))
                     {
                         document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithCompression);
 
@@ -335,7 +335,7 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
-                    using (IAxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(key, SymmetricIV.Zero128, 0), 113))
+                    using (IAxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(new V2Aes256CryptoFactory(), key, SymmetricIV.Zero128, 0), 113))
                     {
                         document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithoutCompression);
 
@@ -347,7 +347,7 @@ namespace Axantum.AxCrypt.Core.Test
 
                         using (IAxCryptDocument decryptedDocument = new V2AxCryptDocument())
                         {
-                            Assert.That(decryptedDocument.Load(new Passphrase("passphrase"), key.CryptoId, outputStream), Is.True);
+                            Assert.That(decryptedDocument.Load(new Passphrase("passphrase"), new V2Aes256CryptoFactory().Id, outputStream), Is.True);
                             Assert.Throws<Axantum.AxCrypt.Core.Runtime.IncorrectDataException>(() => decryptedDocument.DecryptTo(Stream.Null));
                         }
                     }
@@ -366,7 +366,7 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
-                    using (IAxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(key, SymmetricIV.Zero128, 0), 113))
+                    using (IAxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(new V2Aes256CryptoFactory(), key, SymmetricIV.Zero128, 0), 113))
                     {
                         document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithCompression);
 
@@ -376,7 +376,7 @@ namespace Axantum.AxCrypt.Core.Test
                             Headers headers = new Headers();
                             AxCryptReader reader = headers.Load(outputStream);
 
-                            Assert.That(decryptedDocument.Load(new Passphrase("passphrase"), key.CryptoId, reader, headers), Is.True);
+                            Assert.That(decryptedDocument.Load(new Passphrase("passphrase"), new V2Aes256CryptoFactory().Id, reader, headers), Is.True);
                             reader.SetStartOfData();
                             Assert.Throws<InvalidOperationException>(() => decryptedDocument.DecryptTo(Stream.Null));
                         }
@@ -396,7 +396,7 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
-                    using (IAxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(key, SymmetricIV.Zero128, 0), 15))
+                    using (IAxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(new V2Aes256CryptoFactory(), key, SymmetricIV.Zero128, 0), 15))
                     {
                         DateTime utcNow = OS.Current.UtcNow;
                         DateTime lastWrite = utcNow.AddHours(1);

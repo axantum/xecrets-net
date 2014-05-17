@@ -444,7 +444,7 @@ namespace Axantum.AxCrypt.Core.UI
                         e.AxCryptDocument = null;
                         continue;
                     }
-                    e.CryptoId = e.AxCryptDocument.KeyEncryptingCrypto.Key.CryptoId;
+                    e.CryptoId = e.AxCryptDocument.KeyEncryptingCrypto.Factory.Id;
                     OnKnownKeyAdded(e);
                 }
             }

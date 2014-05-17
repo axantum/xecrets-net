@@ -157,7 +157,7 @@ namespace Axantum.AxCrypt.Core.Header
 
         private ICrypto CreateKeyStreamCrypto(long keyStreamOffset)
         {
-            return Instance.CryptoFactory.Create(KeyEncryptingCrypto.Key.CryptoId).CreateCrypto(DataEncryptingKey, DataEncryptingIV, keyStreamOffset);
+            return KeyEncryptingCrypto.Factory.CreateCrypto(DataEncryptingKey, DataEncryptingIV, keyStreamOffset);
         }
 
         public void WriteStartWithHmac(V2HmacStream hmacStream)

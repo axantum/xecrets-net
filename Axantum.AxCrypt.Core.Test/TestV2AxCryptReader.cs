@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Core.Test
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestGetCryptoFromHeaders()
         {
-            ICrypto crypto = new V2AesCrypto(new V2Passphrase(new Passphrase("passphrase"), 256, CryptoFactory.Aes256Id), SymmetricIV.Zero128, 0);
+            ICrypto crypto = new V2AesCrypto(new V2Aes256CryptoFactory(), new V2Passphrase(new Passphrase("passphrase"), 256, CryptoFactory.Aes256Id), SymmetricIV.Zero128, 0);
             Headers headers = new Headers();
             V2DocumentHeaders documentHeaders = new V2DocumentHeaders(crypto, 10);
             using (Stream chainedStream = new MemoryStream())

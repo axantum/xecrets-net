@@ -12,8 +12,12 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private int _blockOffset;
 
-        public V2CryptoBase(IDerivedKey key, SymmetricIV iv, long keyStreamOffset)
+        public V2CryptoBase(ICryptoFactory factory, IDerivedKey key, SymmetricIV iv, long keyStreamOffset)
         {
+            if (factory == null)
+            {
+                throw new ArgumentNullException("factory");
+            }
             if (key == null)
             {
                 throw new ArgumentNullException("key");
@@ -34,6 +38,7 @@ namespace Axantum.AxCrypt.Core.Crypto
                 }
             }
 
+            Factory = factory;
             Key = key;
             _iv = iv;
             _blockCounter = keyStreamOffset / iv.Length;

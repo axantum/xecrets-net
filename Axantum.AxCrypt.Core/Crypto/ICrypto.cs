@@ -33,6 +33,8 @@ namespace Axantum.AxCrypt.Core.Crypto
 {
     public interface ICrypto
     {
+        ICryptoFactory Factory { get; }
+
         /// <summary>
         /// Gets the key associated with this instance.
         /// </summary>

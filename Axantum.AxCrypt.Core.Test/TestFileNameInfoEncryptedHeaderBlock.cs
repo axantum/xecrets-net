@@ -39,7 +39,7 @@ namespace Axantum.AxCrypt.Core.Test
         private class FileNameInfoHeaderBlockForTest : V1FileNameInfoEncryptedHeaderBlock
         {
             public FileNameInfoHeaderBlockForTest()
-                : base(new V1AesCrypto(new GenericPassphrase(SymmetricKey.Zero128), SymmetricIV.Zero128))
+                : base(new V1AesCrypto(new V1Aes128CryptoFactory(), new GenericPassphrase(SymmetricKey.Zero128), SymmetricIV.Zero128))
             {
             }
 
@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestNonTerminatingFileName()
         {
             FileNameInfoHeaderBlockForTest fileInfoHeaderBlock = new FileNameInfoHeaderBlockForTest();
-            fileInfoHeaderBlock.HeaderCrypto = new V1AesCrypto(new V1Passphrase(new Passphrase("nonterminating")), SymmetricIV.Zero128);
+            fileInfoHeaderBlock.HeaderCrypto = new V1AesCrypto(new V1Aes128CryptoFactory(), new V1Passphrase(new Passphrase("nonterminating")), SymmetricIV.Zero128);
 
             fileInfoHeaderBlock.FileName = "ABCDEFGHIJK.LMN";
             fileInfoHeaderBlock.SetBadNameWithoutEndingNul();

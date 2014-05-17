@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
 
-            V2UnicodeFileNameInfoEncryptedHeaderBlock headerBlock = new V2UnicodeFileNameInfoEncryptedHeaderBlock(new V2AesCrypto(new GenericPassphrase(SymmetricKey.Zero256), SymmetricIV.Zero128, 0));
+            V2UnicodeFileNameInfoEncryptedHeaderBlock headerBlock = new V2UnicodeFileNameInfoEncryptedHeaderBlock(new V2AesCrypto(new V2Aes256CryptoFactory(), new GenericPassphrase(SymmetricKey.Zero256), SymmetricIV.Zero128, 0));
             headerBlock.FileName = "A file name";
             Assert.That(headerBlock.FileName, Is.EqualTo("A file name"));
 
@@ -79,11 +79,11 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
 
-            V2UnicodeFileNameInfoEncryptedHeaderBlock headerBlock = new V2UnicodeFileNameInfoEncryptedHeaderBlock(new V2AesCrypto(new GenericPassphrase(SymmetricKey.Zero256), SymmetricIV.Zero128, 0));
+            V2UnicodeFileNameInfoEncryptedHeaderBlock headerBlock = new V2UnicodeFileNameInfoEncryptedHeaderBlock(new V2AesCrypto(new V2Aes256CryptoFactory(), new GenericPassphrase(SymmetricKey.Zero256), SymmetricIV.Zero128, 0));
             headerBlock.FileName = "A file name";
             Assert.That(headerBlock.FileName, Is.EqualTo("A file name"));
 
-            headerBlock.HeaderCrypto = new V2AesCrypto(new V2Passphrase(new Passphrase("passphrase"), 256, CryptoFactory.Aes256Id), SymmetricIV.Zero128, 0);
+            headerBlock.HeaderCrypto = new V2AesCrypto(new V2Aes256CryptoFactory(), new V2Passphrase(new Passphrase("passphrase"), 256, CryptoFactory.Aes256Id), SymmetricIV.Zero128, 0);
             string s;
             Assert.Throws<InvalidOperationException>(() => s = headerBlock.FileName);
         }
