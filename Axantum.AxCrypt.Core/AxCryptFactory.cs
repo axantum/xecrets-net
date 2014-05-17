@@ -38,20 +38,19 @@ namespace Axantum.AxCrypt.Core
 {
     public class AxCryptFactory
     {
-        public virtual IDerivedKey CreatePassphrase(Passphrase passphrase, IRuntimeFileInfo encryptedFileInfo, IEnumerable<Guid> cryptoIds)
+        public virtual Guid TryFindCryptoId(Passphrase passphrase, IRuntimeFileInfo encryptedFileInfo, IEnumerable<Guid> cryptoIds)
         {
             foreach (Guid cryptoId in cryptoIds)
             {
-                IDerivedKey key = CreatePassphraseInternal(passphrase, encryptedFileInfo, cryptoId);
-                if (key != null)
+                if (TryOneCryptoId(passphrase, encryptedFileInfo, cryptoId))
                 {
-                    return key;
+                    return cryptoId;
                 }
             }
-            return null;
+            return Guid.Empty;
         }
 
-        private static IDerivedKey CreatePassphraseInternal(Passphrase passphrase, IRuntimeFileInfo encryptedFileInfo, Guid cryptoId)
+        private static bool TryOneCryptoId(Passphrase passphrase, IRuntimeFileInfo encryptedFileInfo, Guid cryptoId)
         {
             using (Stream encryptedStream = encryptedFileInfo.OpenRead())
             {
@@ -62,11 +61,11 @@ namespace Axantum.AxCrypt.Core
                 {
                     if (document.PassphraseIsValid)
                     {
-                        return document.KeyEncryptingCrypto.Key;
+                        return true;
                     }
                 }
             }
-            return null;
+            return false;
         }
 
         public virtual IAxCryptDocument CreateDocument(Passphrase key, Guid cryptoId)

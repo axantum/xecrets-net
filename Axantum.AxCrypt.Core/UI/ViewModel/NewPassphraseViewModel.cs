@@ -131,7 +131,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return true;
             }
-            return Factory.New<AxCryptFactory>().CreatePassphrase(new Passphrase(passphrase), Factory.New<IRuntimeFileInfo>(encryptedFileFullName), Instance.CryptoFactory.OrderedIds) != null;
+            return Factory.New<AxCryptFactory>().TryFindCryptoId(new Passphrase(passphrase), Factory.New<IRuntimeFileInfo>(encryptedFileFullName), Instance.CryptoFactory.OrderedIds) != Guid.Empty;
         }
     }
 }

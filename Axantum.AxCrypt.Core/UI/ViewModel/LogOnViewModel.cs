@@ -111,11 +111,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return true;
             }
-            if (Factory.New<AxCryptFactory>().CreatePassphrase(new Passphrase(passphrase), Factory.New<IRuntimeFileInfo>(encryptedFileFullName), Instance.CryptoFactory.OrderedIds) != null)
-            {
-                return true;
-            }
-            return false;
+            return Factory.New<AxCryptFactory>().TryFindCryptoId(new Passphrase(passphrase), Factory.New<IRuntimeFileInfo>(encryptedFileFullName), Instance.CryptoFactory.OrderedIds) != Guid.Empty;
         }
 
         private bool IsKnownIdentity()

@@ -26,7 +26,6 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using System;
 using System.IO;
@@ -420,12 +419,9 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 _progress.NotifyLevelStart();
                 e.OpenFileFullName = sourceFileInfo.FullName;
-                IDerivedKey key;
-                if (sourceFileInfo.TryFindDecryptionKey(out key))
+                if (TryFindDecryptionKey(sourceFileInfo, e))
                 {
-                    e.AxCryptDocument = Factory.New<AxCryptFile>().Document(sourceFileInfo, key.Passphrase, _progress);
-                    e.Passphrase = key.Passphrase;
-                    e.CryptoId = key.CryptoId;
+                    e.AxCryptDocument = Factory.New<AxCryptFile>().Document(sourceFileInfo, e.Passphrase, _progress);
                 }
 
                 while (e.AxCryptDocument == null)
@@ -468,6 +464,21 @@ namespace Axantum.AxCrypt.Core.UI
                 _progress.NotifyLevelFinished();
             }
             return true;
+        }
+
+        private static bool TryFindDecryptionKey(IRuntimeFileInfo fileInfo, FileOperationEventArgs e)
+        {
+            foreach (Passphrase knownKey in Instance.KnownKeys.Keys)
+            {
+                Guid cryptoId = Factory.New<AxCryptFactory>().TryFindCryptoId(knownKey, fileInfo, Instance.CryptoFactory.OrderedIds);
+                if (cryptoId != Guid.Empty)
+                {
+                    e.CryptoId = cryptoId;
+                    e.Passphrase = knownKey;
+                    return true;
+                }
+            }
+            return false;
         }
 
         private FileOperationContext DoFile(IRuntimeFileInfo fileInfo, Func<IRuntimeFileInfo, bool> preparation, Func<bool> operation)

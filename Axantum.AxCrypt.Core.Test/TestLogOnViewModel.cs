@@ -182,7 +182,7 @@ namespace Axantum.AxCrypt.Core.Test
             LogOnViewModel npvm = new LogOnViewModel(Environment.UserName, @"C:\My Folder\MyFile-txt.axx");
             npvm.Passphrase = "b";
 
-            Assert.That(npvm["Passphrase"], Is.Not.EqualTo(""));
+            Assert.That(npvm["Passphrase"], Is.Not.EqualTo(String.Empty));
             Assert.That(npvm.ValidationError, Is.EqualTo((int)ValidationError.WrongPassphrase));
         }
     }

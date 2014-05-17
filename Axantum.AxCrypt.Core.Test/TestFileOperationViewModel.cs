@@ -486,9 +486,9 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Register<AxCryptFile>(() => axCryptFileMock.Object);
 
             Mock<AxCryptFactory> axCryptFactoryMock = new Mock<AxCryptFactory>();
-            axCryptFactoryMock.Setup<IDerivedKey>(m => m.CreatePassphrase(It.IsAny<Passphrase>(), It.IsAny<IRuntimeFileInfo>(), It.IsAny<IEnumerable<Guid>>())).Returns((Passphrase passphrase, IRuntimeFileInfo fileInfo, IEnumerable<Guid> cryptoIds) =>
+            axCryptFactoryMock.Setup<Guid>(m => m.TryFindCryptoId(It.IsAny<Passphrase>(), It.IsAny<IRuntimeFileInfo>(), It.IsAny<IEnumerable<Guid>>())).Returns((Passphrase passphrase, IRuntimeFileInfo fileInfo, IEnumerable<Guid> cryptoIds) =>
             {
-                return new V1Passphrase(passphrase);
+                return CryptoFactory.Aes128V1Id;
             });
             Factory.Instance.Register<AxCryptFactory>(() => axCryptFactoryMock.Object);
 
@@ -826,9 +826,9 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Register<AxCryptFile>(() => axCryptFileMock.Object);
 
             Mock<AxCryptFactory> axCryptFactoryMock = new Mock<AxCryptFactory>();
-            axCryptFactoryMock.Setup<IDerivedKey>(m => m.CreatePassphrase(It.IsAny<Passphrase>(), It.IsAny<IRuntimeFileInfo>(), It.IsAny<IEnumerable<Guid>>())).Returns((Passphrase passphrase, IRuntimeFileInfo fileInfo, IEnumerable<Guid> cryptoIds) =>
+            axCryptFactoryMock.Setup<Guid>(m => m.TryFindCryptoId(It.IsAny<Passphrase>(), It.IsAny<IRuntimeFileInfo>(), It.IsAny<IEnumerable<Guid>>())).Returns((Passphrase passphrase, IRuntimeFileInfo fileInfo, IEnumerable<Guid> cryptoIds) =>
             {
-                return new V1Passphrase(passphrase);
+                return CryptoFactory.Aes128V1Id;
             });
             Factory.Instance.Register<AxCryptFactory>(() => axCryptFactoryMock.Object);
 
@@ -875,10 +875,10 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Register<FileOperation>(() => fileOperationMock.Object);
 
             Mock<AxCryptFactory> axCryptFactoryMock = new Mock<AxCryptFactory>();
-            axCryptFactoryMock.Setup(acf => acf.CreatePassphrase(It.IsAny<Passphrase>(), It.IsAny<IRuntimeFileInfo>(), It.IsAny<IEnumerable<Guid>>())).Returns((Passphrase passphrase, IRuntimeFileInfo fileInfo, IEnumerable<Guid> cryptoIds) =>
+            axCryptFactoryMock.Setup(acf => acf.TryFindCryptoId(It.IsAny<Passphrase>(), It.IsAny<IRuntimeFileInfo>(), It.IsAny<IEnumerable<Guid>>())).Returns((Passphrase passphrase, IRuntimeFileInfo fileInfo, IEnumerable<Guid> cryptoIds) =>
             {
                 count++;
-                return null;
+                return Guid.Empty;
             });
             Factory.Instance.Register<AxCryptFactory>(() => axCryptFactoryMock.Object);
 
