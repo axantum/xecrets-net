@@ -56,11 +56,11 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <summary>
         /// Instantiate an approriate ICrypto implementation.
         /// </summary>
-        /// <param name="key">The key to use. It will be converted to the correct CryptoId if required.</param>
+        /// <param name="key">The key to use.</param>
         /// <returns>An instance of an appropriate ICrypto implementation.</returns>
         ICrypto CreateCrypto(Passphrase key);
 
-        ICrypto CreateCrypto(SymmetricKey key);
+        ICrypto CreateCrypto(IDerivedKey key);
 
         /// <summary>
         /// Instantiate an approriate ICrypto implementation.

@@ -256,11 +256,10 @@ namespace Axantum.AxCrypt.Core.UI
                     _eventArgs.Status = new FileOperationContext(sourceFileInfo.FullName, FileOperationStatus.Canceled);
                     return false;
                 }
-                _eventArgs.Key = Instance.CryptoFactory.Default.CreatePassphrase(new Passphrase(_eventArgs.Passphrase));
             }
             else
             {
-                _eventArgs.Key = Instance.CryptoFactory.Default.CreatePassphrase(Instance.KnownKeys.DefaultEncryptionKey);
+                _eventArgs.Passphrase = Instance.KnownKeys.DefaultEncryptionKey;
             }
 
             return true;
@@ -268,7 +267,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private bool EncryptFileOperation()
         {
-            Factory.New<AxCryptFile>().EncryptFileWithBackupAndWipe(_eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, _eventArgs.Key.Passphrase, _eventArgs.Key.CryptoId, _progress);
+            Factory.New<AxCryptFile>().EncryptFileWithBackupAndWipe(_eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, _eventArgs.Passphrase, Instance.CryptoFactory.Default.Id, _progress);
 
             _eventArgs.Status = new FileOperationContext(String.Empty, FileOperationStatus.Success);
             return true;
@@ -425,7 +424,8 @@ namespace Axantum.AxCrypt.Core.UI
                 if (sourceFileInfo.TryFindDecryptionKey(out key))
                 {
                     e.AxCryptDocument = Factory.New<AxCryptFile>().Document(sourceFileInfo, key.Passphrase, _progress);
-                    e.Key = key;
+                    e.Passphrase = key.Passphrase;
+                    e.CryptoId = key.CryptoId;
                 }
 
                 while (e.AxCryptDocument == null)
@@ -441,14 +441,14 @@ namespace Axantum.AxCrypt.Core.UI
                         e.Status = new FileOperationContext(String.Empty, FileOperationStatus.Success);
                         return true;
                     }
-                    e.AxCryptDocument = Factory.New<AxCryptFile>().Document(sourceFileInfo, new Passphrase(e.Passphrase), _progress);
+                    e.AxCryptDocument = Factory.New<AxCryptFile>().Document(sourceFileInfo, e.Passphrase, _progress);
                     if (!e.AxCryptDocument.PassphraseIsValid)
                     {
                         e.AxCryptDocument.Dispose();
                         e.AxCryptDocument = null;
                         continue;
                     }
-                    e.Key = e.AxCryptDocument.KeyEncryptingCrypto.Key;
+                    e.CryptoId = e.AxCryptDocument.KeyEncryptingCrypto.Key.CryptoId;
                     OnKnownKeyAdded(e);
                 }
             }

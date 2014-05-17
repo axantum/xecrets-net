@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.ComponentModel;
 using System.Linq;
-using Axantum.AxCrypt.Core.Crypto;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -43,13 +43,13 @@ namespace Axantum.AxCrypt.Core.UI
 
         public string OpenFileFullName { get; set; }
 
-        public string Passphrase { get; set; }
+        public Passphrase Passphrase { get; set; }
+
+        public Guid CryptoId { get; set; }
 
         public bool ConfirmAll { get; set; }
 
         public bool Skip { get; set; }
-
-        public IDerivedKey Key { get; set; }
 
         public IAxCryptDocument AxCryptDocument { get; set; }
 

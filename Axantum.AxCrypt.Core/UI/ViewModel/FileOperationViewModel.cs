@@ -209,7 +209,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
             {
-                _knownKeys.Add(e.Key.Passphrase);
+                _knownKeys.Add(e.Passphrase);
             };
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
@@ -270,7 +270,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
             {
-                _knownKeys.Add(e.Key.Passphrase);
+                _knownKeys.Add(e.Passphrase);
             };
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
@@ -293,7 +293,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 e.Cancel = true;
                 return;
             }
-            e.Passphrase = IdentityViewModel.Passphrase.Text;
+            e.Passphrase = IdentityViewModel.Passphrase;
         }
 
         private FileOperationContext EncryptFileWork(IRuntimeFileInfo file, IProgressContext progress)
@@ -316,7 +316,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     IRuntimeFileInfo encryptedInfo = Factory.New<IRuntimeFileInfo>(e.SaveFileFullName);
                     IRuntimeFileInfo decryptedInfo = Factory.New<IRuntimeFileInfo>(FileOperation.GetTemporaryDestinationName(e.OpenFileFullName));
-                    ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key.Passphrase, ActiveFileStatus.NotDecrypted, e.Key.CryptoId);
+                    ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Passphrase, ActiveFileStatus.NotDecrypted, e.CryptoId);
                     _fileSystemState.Add(activeFile);
                     _fileSystemState.Save();
                 }
@@ -333,7 +333,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
             {
-                _knownKeys.Add(e.Key.Passphrase);
+                _knownKeys.Add(e.Passphrase);
             };
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
@@ -342,7 +342,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     IRuntimeFileInfo encryptedInfo = Factory.New<IRuntimeFileInfo>(e.OpenFileFullName);
                     IRuntimeFileInfo decryptedInfo = Factory.New<IRuntimeFileInfo>(e.SaveFileFullName);
-                    ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Key.Passphrase, ActiveFileStatus.NotDecrypted, e.Key.CryptoId);
+                    ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Passphrase, ActiveFileStatus.NotDecrypted, e.CryptoId);
                     _fileSystemState.Add(activeFile);
                     _fileSystemState.Save();
                 }
