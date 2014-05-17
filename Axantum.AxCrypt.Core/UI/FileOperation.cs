@@ -98,11 +98,15 @@ namespace Axantum.AxCrypt.Core.UI
             return status;
         }
 
-        public virtual FileOperationContext OpenAndLaunchApplication(string encryptedFile, IAxCryptDocument document, IProgressContext progress)
+        public virtual FileOperationContext OpenAndLaunchApplication(string encryptedFile, Passphrase passphrase, IAxCryptDocument document, IProgressContext progress)
         {
             if (encryptedFile == null)
             {
                 throw new ArgumentNullException("encryptedFile");
+            }
+            if (passphrase == null)
+            {
+                throw new ArgumentNullException("passphrase");
             }
             if (document == null)
             {
@@ -123,7 +127,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
             else
             {
-                encryptedActiveFile = new ActiveFile(encryptedActiveFile, document.KeyEncryptingCrypto.Key.Passphrase);
+                encryptedActiveFile = new ActiveFile(encryptedActiveFile, passphrase);
             }
 
             _fileSystemState.Add(encryptedActiveFile);
