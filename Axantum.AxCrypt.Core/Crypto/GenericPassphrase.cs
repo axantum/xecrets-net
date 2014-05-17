@@ -18,13 +18,5 @@ namespace Axantum.AxCrypt.Core.Crypto
             DerivedKey = SymmetricKey.Zero128;
             Passphrase = passphrase;
         }
-
-        public override SymmetricKeyThumbprint Thumbprint
-        {
-            get
-            {
-                throw new NotImplementedException("The Thumprint property cannot be used on a GenericPassphrase instance.");
-            }
-        }
     }
 }

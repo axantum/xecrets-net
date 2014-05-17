@@ -58,20 +58,6 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public int DerivationIterations { get; protected set; }
 
-        private SymmetricKeyThumbprint _thumbprint;
-
-        public virtual SymmetricKeyThumbprint Thumbprint
-        {
-            get
-            {
-                if (_thumbprint == null)
-                {
-                    _thumbprint = new SymmetricKeyThumbprint(Passphrase, Instance.UserSettings.ThumbprintSalt, Instance.UserSettings.GetKeyWrapIterations(Instance.CryptoFactory.Minimum.Id));
-                }
-                return _thumbprint;
-            }
-        }
-
         #region IEquatable<SymmetricKey> Members
 
         /// <summary>

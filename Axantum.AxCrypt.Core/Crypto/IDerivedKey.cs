@@ -41,7 +41,5 @@ namespace Axantum.AxCrypt.Core.Crypto
         Salt DerivationSalt { get; }
 
         int DerivationIterations { get; }
-
-        SymmetricKeyThumbprint Thumbprint { get; }
     }
 }

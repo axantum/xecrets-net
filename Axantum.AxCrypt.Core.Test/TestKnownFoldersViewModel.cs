@@ -98,8 +98,8 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFolder(folder1.MyFullPath.FullName);
             FakeRuntimeFileInfo.AddFolder(folder2.MyFullPath.FullName);
 
-            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(folder1.MyFullPath.FullName, new V2Passphrase(new Passphrase("PassPhrase"), 256, CryptoFactory.Aes256Id).Thumbprint));
-            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(folder2.MyFullPath.FullName, new V2Passphrase(new Passphrase("aaa"), 256, CryptoFactory.Aes256Id).Thumbprint));
+            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(folder1.MyFullPath.FullName, new Passphrase("PassPhrase").Thumbprint));
+            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(folder2.MyFullPath.FullName, new Passphrase("aaa").Thumbprint));
 
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
             KnownFoldersViewModel vm = new KnownFoldersViewModel(Instance.FileSystemState, Instance.SessionNotify, knownKeys);
