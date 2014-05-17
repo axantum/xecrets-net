@@ -246,9 +246,9 @@ namespace Axantum.AxCrypt.Core.Test
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, Factory.New<ActiveFileAction>(), mock.Object, mockStatusChecker.Object);
-            IDerivedKey defaultKey = new V2Passphrase(new Passphrase("default"), 256, CryptoFactory.Aes256Id);
-            Instance.KnownKeys.DefaultEncryptionKey = defaultKey.Passphrase;
-            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\My Documents\", defaultKey.Passphrase.Thumbprint));
+            Passphrase defaultKey = new Passphrase("default");
+            Instance.KnownKeys.DefaultEncryptionKey = defaultKey;
+            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\My Documents\", defaultKey.Thumbprint));
 
             List<SessionNotification> sessionEvents = new List<SessionNotification>();
             sessionEvents.Add(new SessionNotification(SessionNotificationType.EncryptPendingFiles));

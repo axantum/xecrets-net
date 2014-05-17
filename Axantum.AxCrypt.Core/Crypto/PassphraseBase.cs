@@ -44,12 +44,6 @@ namespace Axantum.AxCrypt.Core.Crypto
             protected set;
         }
 
-        public Passphrase Passphrase
-        {
-            get;
-            protected set;
-        }
-
         public Salt DerivationSalt
         {
             get;
@@ -71,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 return false;
             }
-            return CryptoId == other.CryptoId && DerivedKey == other.DerivedKey && Passphrase == other.Passphrase;
+            return CryptoId == other.CryptoId && DerivedKey == other.DerivedKey;
         }
 
         #endregion IEquatable<SymmetricKey> Members
@@ -89,7 +83,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public override int GetHashCode()
         {
-            return CryptoId.GetHashCode() ^ DerivedKey.GetHashCode() ^ Passphrase.GetHashCode();
+            return CryptoId.GetHashCode() ^ DerivedKey.GetHashCode();
         }
     }
 }

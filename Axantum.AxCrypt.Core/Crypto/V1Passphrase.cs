@@ -56,7 +56,6 @@ namespace Axantum.AxCrypt.Core.Crypto
             DerivationSalt = Salt.Zero;
             DerivationIterations = 0;
             DerivedKey = new SymmetricKey(derivedKey);
-            Passphrase = passphrase;
             CryptoId = Instance.CryptoFactory.Legacy.Id;
         }
     }

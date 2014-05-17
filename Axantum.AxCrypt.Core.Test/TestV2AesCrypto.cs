@@ -134,11 +134,6 @@ namespace Axantum.AxCrypt.Core.Test
                 set;
             }
 
-            public Passphrase Passphrase
-            {
-                get { throw new NotImplementedException(); }
-            }
-
             public Salt DerivationSalt
             {
                 get { throw new NotImplementedException(); }

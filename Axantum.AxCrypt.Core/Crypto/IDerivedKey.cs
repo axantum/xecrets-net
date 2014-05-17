@@ -36,8 +36,6 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         SymmetricKey DerivedKey { get; }
 
-        Passphrase Passphrase { get; }
-
         Salt DerivationSalt { get; }
 
         int DerivationIterations { get; }

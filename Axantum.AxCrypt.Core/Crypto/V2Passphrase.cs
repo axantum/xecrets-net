@@ -45,7 +45,6 @@ namespace Axantum.AxCrypt.Core.Crypto
             DerivationSalt = salt;
             DerivationIterations = derivationIterations;
             DerivedKey = new SymmetricKey(new Pbkdf2HmacSha512(passphrase.Text, salt, derivationIterations).GetBytes().Reduce(keySize / 8));
-            Passphrase = passphrase;
             CryptoId = cryptoId;
         }
 

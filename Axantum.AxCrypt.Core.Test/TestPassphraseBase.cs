@@ -51,11 +51,10 @@ namespace Axantum.AxCrypt.Core.Test
 
         private class TestingPassphraseBase : PassphraseBase
         {
-            public TestingPassphraseBase(Guid cryptoId, SymmetricKey derivedKey, Passphrase passphrase)
+            public TestingPassphraseBase(Guid cryptoId, SymmetricKey derivedKey)
             {
                 CryptoId = cryptoId;
                 DerivedKey = derivedKey;
-                Passphrase = passphrase;
             }
         }
 
@@ -64,8 +63,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             SymmetricKey key1 = new SymmetricKey(128);
             Guid id = new Guid();
-            TestingPassphraseBase p1a = new TestingPassphraseBase(id, key1, new Passphrase("passphrase"));
-            TestingPassphraseBase p1b = new TestingPassphraseBase(id, key1, new Passphrase("passphrase"));
+            TestingPassphraseBase p1a = new TestingPassphraseBase(id, key1);
+            TestingPassphraseBase p1b = new TestingPassphraseBase(id, key1);
             TestingPassphraseBase nullPassphraseBase = null;
 
             Assert.That(p1a.Equals(p1b));

@@ -237,7 +237,7 @@ namespace Axantum.AxCrypt.Core.Test
                         outputStream.Position = 0;
                         using (IAxCryptDocument decryptedDocument = new V2AxCryptDocument())
                         {
-                            Assert.That(decryptedDocument.Load(key.Passphrase, key.CryptoId, outputStream), Is.True);
+                            Assert.That(decryptedDocument.Load(new Passphrase("passphrase"), key.CryptoId, outputStream), Is.True);
                             byte[] plain;
                             using (MemoryStream decryptedStream = new MemoryStream())
                             {
@@ -347,7 +347,7 @@ namespace Axantum.AxCrypt.Core.Test
 
                         using (IAxCryptDocument decryptedDocument = new V2AxCryptDocument())
                         {
-                            Assert.That(decryptedDocument.Load(key.Passphrase, key.CryptoId, outputStream), Is.True);
+                            Assert.That(decryptedDocument.Load(new Passphrase("passphrase"), key.CryptoId, outputStream), Is.True);
                             Assert.Throws<Axantum.AxCrypt.Core.Runtime.IncorrectDataException>(() => decryptedDocument.DecryptTo(Stream.Null));
                         }
                     }
@@ -376,7 +376,7 @@ namespace Axantum.AxCrypt.Core.Test
                             Headers headers = new Headers();
                             AxCryptReader reader = headers.Load(outputStream);
 
-                            Assert.That(decryptedDocument.Load(key.Passphrase, key.CryptoId, reader, headers), Is.True);
+                            Assert.That(decryptedDocument.Load(new Passphrase("passphrase"), key.CryptoId, reader, headers), Is.True);
                             reader.SetStartOfData();
                             Assert.Throws<InvalidOperationException>(() => decryptedDocument.DecryptTo(Stream.Null));
                         }
