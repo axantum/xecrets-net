@@ -35,7 +35,7 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestKeyWrap
     {
-        private static IDerivedKey _keyEncryptingKey;
+        private static SymmetricKey _keyEncryptingKey;
         private static SymmetricKey _keyData;
         private static byte[] _wrapped;
 
@@ -44,7 +44,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             SetupAssembly.AssemblySetup();
 
-            _keyEncryptingKey = new GenericPassphrase(new SymmetricKey(new byte[] { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F }));
+            _keyEncryptingKey = new SymmetricKey(new byte[] { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F });
             _keyData = new SymmetricKey(new byte[] { 0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99, 0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF });
             _wrapped = new byte[] { 0x1F, 0xA6, 0x8B, 0x0A, 0x81, 0x12, 0xB4, 0x47, 0xAE, 0xF3, 0x4B, 0xD8, 0xFB, 0x5A, 0x7B, 0x82, 0x9D, 0x3E, 0x86, 0x23, 0x71, 0xD2, 0xCF, 0xE5 };
         }
@@ -60,7 +60,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             byte[] unwrapped;
             KeyWrap keyWrap = new KeyWrap(6, KeyWrapMode.Specification);
-            unwrapped = keyWrap.Unwrap(new V1AesCrypto(new V1Aes128CryptoFactory(), _keyEncryptingKey.DerivedKey, SymmetricIV.Zero128), _wrapped);
+            unwrapped = keyWrap.Unwrap(new V1AesCrypto(new V1Aes128CryptoFactory(), _keyEncryptingKey, SymmetricIV.Zero128), _wrapped);
 
             Assert.That(unwrapped, Is.EquivalentTo(_keyData.GetBytes()), "Unwrapped the wrong data");
         }
@@ -70,14 +70,14 @@ namespace Axantum.AxCrypt.Core.Test
         {
             byte[] wrapped;
             KeyWrap keyWrap = new KeyWrap(6, KeyWrapMode.Specification);
-            wrapped = keyWrap.Wrap(new V1AesCrypto(new V1Aes128CryptoFactory(), _keyEncryptingKey.DerivedKey, SymmetricIV.Zero128), _keyData);
+            wrapped = keyWrap.Wrap(new V1AesCrypto(new V1Aes128CryptoFactory(), _keyEncryptingKey, SymmetricIV.Zero128), _keyData);
 
             Assert.That(wrapped, Is.EquivalentTo(_wrapped), "The wrapped data is not correct according to specification.");
 
             keyWrap = new KeyWrap(6, KeyWrapMode.Specification);
             Assert.Throws<ArgumentNullException>(() =>
             {
-                wrapped = keyWrap.Wrap(new V1AesCrypto(new V1Aes128CryptoFactory(), _keyEncryptingKey.DerivedKey, SymmetricIV.Zero128), (SymmetricKey)null);
+                wrapped = keyWrap.Wrap(new V1AesCrypto(new V1Aes128CryptoFactory(), _keyEncryptingKey, SymmetricIV.Zero128), (SymmetricKey)null);
             });
         }
 
@@ -85,15 +85,14 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestWrapAndUnwrapAxCryptMode()
         {
             SymmetricKey keyToWrap = new SymmetricKey(new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 });
-            IDerivedKey keyEncryptingKey = new GenericPassphrase(new SymmetricKey(new byte[] { 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 }));
             Salt salt = new Salt(new byte[] { 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 });
             long keyWrapIterations = 12345;
             byte[] wrapped;
             KeyWrap keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.AxCrypt);
-            wrapped = keyWrap.Wrap(new V1AesCrypto(new V1Aes128CryptoFactory(), _keyEncryptingKey.DerivedKey, SymmetricIV.Zero128), keyToWrap);
+            wrapped = keyWrap.Wrap(new V1AesCrypto(new V1Aes128CryptoFactory(), _keyEncryptingKey, SymmetricIV.Zero128), keyToWrap);
             byte[] unwrapped;
             keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.AxCrypt);
-            unwrapped = keyWrap.Unwrap(new V1AesCrypto(new V1Aes128CryptoFactory(), _keyEncryptingKey.DerivedKey, SymmetricIV.Zero128), wrapped);
+            unwrapped = keyWrap.Unwrap(new V1AesCrypto(new V1Aes128CryptoFactory(), _keyEncryptingKey, SymmetricIV.Zero128), wrapped);
 
             Assert.That(unwrapped, Is.EquivalentTo(keyToWrap.GetBytes()), "The unwrapped data should be equal to original.");
         }
@@ -102,15 +101,14 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestWrapAndUnwrapSpecificationMode()
         {
             SymmetricKey keyToWrap = new SymmetricKey(new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 });
-            IDerivedKey keyEncryptingKey = new GenericPassphrase(new SymmetricKey(new byte[] { 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 }));
             Salt salt = new Salt(new byte[] { 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 });
             long keyWrapIterations = 23456;
             byte[] wrapped;
             KeyWrap keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.Specification);
-            wrapped = keyWrap.Wrap(new V1AesCrypto(new V1Aes128CryptoFactory(), _keyEncryptingKey.DerivedKey, SymmetricIV.Zero128), keyToWrap);
+            wrapped = keyWrap.Wrap(new V1AesCrypto(new V1Aes128CryptoFactory(), _keyEncryptingKey, SymmetricIV.Zero128), keyToWrap);
             byte[] unwrapped;
             keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.Specification);
-            unwrapped = keyWrap.Unwrap(new V1AesCrypto(new V1Aes128CryptoFactory(), _keyEncryptingKey.DerivedKey, SymmetricIV.Zero128), wrapped);
+            unwrapped = keyWrap.Unwrap(new V1AesCrypto(new V1Aes128CryptoFactory(), _keyEncryptingKey, SymmetricIV.Zero128), wrapped);
 
             Assert.That(unwrapped, Is.EquivalentTo(keyToWrap.GetBytes()), "The unwrapped data should be equal to original.");
         }
@@ -119,7 +117,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestKeyWrapConstructorWithBadArgument()
         {
             KeyWrap keyWrap = new KeyWrap(6, KeyWrapMode.Specification);
-            Assert.Throws<InternalErrorException>(() => { keyWrap.Unwrap(new V1AesCrypto(new V1Aes128CryptoFactory(), _keyEncryptingKey.DerivedKey, SymmetricIV.Zero128), _keyData.GetBytes()); }, "Calling with too short wrapped data.");
+            Assert.Throws<InternalErrorException>(() => { keyWrap.Unwrap(new V1AesCrypto(new V1Aes128CryptoFactory(), _keyEncryptingKey, SymmetricIV.Zero128), _keyData.GetBytes()); }, "Calling with too short wrapped data.");
 
             Assert.Throws<InternalErrorException>(() =>
             {

@@ -26,8 +26,6 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
 using System;
 using System.IO;
@@ -41,26 +39,13 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
-            Factory.Instance.Singleton<ILogging>(() => new FakeLogging());
-            Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
-            Factory.Instance.Singleton<CryptoFactory>(() => SetupAssembly.CreateCryptoFactory());
-            Factory.Instance.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
-            Factory.Instance.Singleton<IUserSettings>(() => new UserSettings(Instance.WorkFolder.FileInfo.Combine("UserSettings.txt"), Factory.New<IterationCalculator>()));
+            SetupAssembly.AssemblySetup();
         }
 
         [TearDown]
         public static void Teardown()
         {
-            Factory.Instance.Clear();
-        }
-
-        private class TestingPassphrase : GenericPassphrase
-        {
-            public TestingPassphrase(string passphrase)
-                : base(new Passphrase(passphrase))
-            {
-            }
+            SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
@@ -68,10 +53,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             AxCryptFactory axFactory = new AxCryptFactory();
 
-            IDerivedKey key = new TestingPassphrase("toohigh");
-
             IAxCryptDocument document = null;
-            Assert.Throws<ArgumentException>(() => document = axFactory.CreateDocument(new Passphrase("toohigh"), new V2Aes256CryptoFactory().Id));
+            Assert.Throws<ArgumentException>(() => document = axFactory.CreateDocument(new Passphrase("toohigh"), Guid.NewGuid()));
             Assert.That(document, Is.Null);
         }
 
