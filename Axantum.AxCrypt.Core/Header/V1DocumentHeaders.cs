@@ -49,7 +49,7 @@ namespace Axantum.AxCrypt.Core.Header
             _headers.HeaderBlocks.Add(new VersionHeaderBlock(_version));
             _headers.HeaderBlocks.Add(new V1KeyWrap1HeaderBlock(_keyEncryptingKey, keyWrapIterations));
 
-            ICrypto headerCrypto = Instance.CryptoFactory.Legacy.CreateCrypto(HeadersSubkey.Key.DerivedKey);
+            ICrypto headerCrypto = Instance.CryptoFactory.Legacy.CreateCrypto(HeadersSubkey.Key);
             _headers.HeaderBlocks.Add(new V1EncryptionInfoEncryptedHeaderBlock(headerCrypto));
             _headers.HeaderBlocks.Add(new V1CompressionEncryptedHeaderBlock(headerCrypto));
             _headers.HeaderBlocks.Add(new FileInfoEncryptedHeaderBlock(headerCrypto));
@@ -114,7 +114,7 @@ namespace Axantum.AxCrypt.Core.Header
 
         private void SetMasterKeyForEncryptedHeaderBlocks(IList<HeaderBlock> headerBlocks)
         {
-            ICrypto headerCrypto = Instance.CryptoFactory.Legacy.CreateCrypto(HeadersSubkey.Key.DerivedKey);
+            ICrypto headerCrypto = Instance.CryptoFactory.Legacy.CreateCrypto(HeadersSubkey.Key);
 
             foreach (HeaderBlock headerBlock in headerBlocks)
             {
@@ -196,7 +196,7 @@ namespace Axantum.AxCrypt.Core.Header
                 {
                     return null;
                 }
-                return new Subkey(new GenericPassphrase(masterKey), HeaderSubkey.Hmac);
+                return new Subkey(masterKey, HeaderSubkey.Hmac);
             }
         }
 
@@ -209,7 +209,7 @@ namespace Axantum.AxCrypt.Core.Header
                 {
                     return null;
                 }
-                return new Subkey(new GenericPassphrase(masterKey), HeaderSubkey.Data);
+                return new Subkey(masterKey, HeaderSubkey.Data);
             }
         }
 
@@ -222,7 +222,7 @@ namespace Axantum.AxCrypt.Core.Header
                 {
                     return null;
                 }
-                return new Subkey(new GenericPassphrase(masterKey), HeaderSubkey.Headers);
+                return new Subkey(masterKey, HeaderSubkey.Headers);
             }
         }
 
@@ -243,7 +243,7 @@ namespace Axantum.AxCrypt.Core.Header
                 V1CompressionInfoEncryptedHeaderBlock compressionInfo = _headers.FindHeaderBlock<V1CompressionInfoEncryptedHeaderBlock>();
                 if (compressionInfo == null)
                 {
-                    ICrypto headerCrypto = Instance.CryptoFactory.Legacy.CreateCrypto(HeadersSubkey.Key.DerivedKey);
+                    ICrypto headerCrypto = Instance.CryptoFactory.Legacy.CreateCrypto(HeadersSubkey.Key);
                     compressionInfo = new V1CompressionInfoEncryptedHeaderBlock(headerCrypto);
                     _headers.HeaderBlocks.Add(compressionInfo);
                 }

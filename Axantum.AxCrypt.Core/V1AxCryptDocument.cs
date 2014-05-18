@@ -91,7 +91,7 @@ namespace Axantum.AxCrypt.Core
                 return false;
             }
 
-            _hmacStream = new V1HmacStream(DocumentHeaders.HmacSubkey.Key.DerivedKey);
+            _hmacStream = new V1HmacStream(DocumentHeaders.HmacSubkey.Key);
             foreach (HeaderBlock header in DocumentHeaders.Headers.HeaderBlocks)
             {
                 if (header.HeaderBlockType != HeaderBlockType.Preamble)
@@ -150,7 +150,7 @@ namespace Axantum.AxCrypt.Core
                 }
                 outputStream.Flush();
                 DocumentHeaders.CipherTextLength = outputStream.Position - outputStartPosition;
-                using (V1HmacStream outputHmacStream = new V1HmacStream(DocumentHeaders.HmacSubkey.Key.DerivedKey, outputStream))
+                using (V1HmacStream outputHmacStream = new V1HmacStream(DocumentHeaders.HmacSubkey.Key, outputStream))
                 {
                     DocumentHeaders.WriteWithHmac(outputHmacStream);
                     outputHmacStream.ReadFrom(outputStream);
@@ -201,7 +201,7 @@ namespace Axantum.AxCrypt.Core
                 throw new InternalErrorException("Passphrase is not valid.");
             }
 
-            using (V1HmacStream hmacStreamOutput = new V1HmacStream(outputDocumentHeaders.HmacSubkey.Key.DerivedKey, cipherStream))
+            using (V1HmacStream hmacStreamOutput = new V1HmacStream(outputDocumentHeaders.HmacSubkey.Key, cipherStream))
             {
                 outputDocumentHeaders.WriteWithHmac(hmacStreamOutput);
                 using (V1AxCryptDataStream encryptedDataStream = CreateEncryptedDataStream(_reader.InputStream, DocumentHeaders.CipherTextLength))
@@ -228,7 +228,7 @@ namespace Axantum.AxCrypt.Core
         {
             get
             {
-                _dataCrypto = Instance.CryptoFactory.Legacy.CreateCrypto(DocumentHeaders.DataSubkey.Key.DerivedKey, DocumentHeaders.IV, 0);
+                _dataCrypto = Instance.CryptoFactory.Legacy.CreateCrypto(DocumentHeaders.DataSubkey.Key, DocumentHeaders.IV, 0);
 
                 return _dataCrypto;
             }

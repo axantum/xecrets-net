@@ -35,7 +35,7 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// </summary>
     public class Subkey
     {
-        private IDerivedKey _subKey;
+        private SymmetricKey _subKey;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Subkey"/> class. Different data is encrypted using
@@ -43,7 +43,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         /// <param name="masterKey">The master key.</param>
         /// <param name="headerSubkey">The header subkey.</param>
-        public Subkey(IDerivedKey masterKey, HeaderSubkey headerSubkey)
+        public Subkey(SymmetricKey masterKey, HeaderSubkey headerSubkey)
         {
             if (masterKey == null)
             {
@@ -75,13 +75,13 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
 
             block[0] = subKeyValue;
-            _subKey = new GenericPassphrase(new SymmetricKey(Instance.CryptoFactory.Legacy.CreateCrypto(masterKey.DerivedKey).Encrypt(block)));
+            _subKey = new SymmetricKey(Instance.CryptoFactory.Legacy.CreateCrypto(masterKey).Encrypt(block));
         }
 
         /// <summary>
         /// Gets the sub key.
         /// </summary>
-        public IDerivedKey Key
+        public SymmetricKey Key
         {
             get
             {
