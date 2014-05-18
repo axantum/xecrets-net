@@ -149,7 +149,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestUnwrapWithBadArgument()
         {
             KeyWrap keyWrap = new KeyWrap(100, KeyWrapMode.Specification);
-            Assert.Throws<InternalErrorException>(() => keyWrap.Unwrap(new V2AesCrypto(new V2Aes256CryptoFactory(), SymmetricKey.Zero256, SymmetricIV.Zero128, 0), new byte[25]));
+            Assert.Throws<InternalErrorException>(() => keyWrap.Unwrap(new V2AesCrypto(SymmetricKey.Zero256, SymmetricIV.Zero128, 0), new byte[25]));
         }
 
         [Test]
@@ -158,7 +158,7 @@ namespace Axantum.AxCrypt.Core.Test
             KeyWrap keyWrap = new KeyWrap(100, KeyWrapMode.Specification);
             {
                 byte[] nullKeyMaterial = null;
-                Assert.Throws<ArgumentNullException>(() => keyWrap.Wrap(new V2AesCrypto(new V2Aes128CryptoFactory(), SymmetricKey.Zero256, SymmetricIV.Zero128, 0), nullKeyMaterial));
+                Assert.Throws<ArgumentNullException>(() => keyWrap.Wrap(new V2AesCrypto(SymmetricKey.Zero256, SymmetricIV.Zero128, 0), nullKeyMaterial));
             }
         }
     }

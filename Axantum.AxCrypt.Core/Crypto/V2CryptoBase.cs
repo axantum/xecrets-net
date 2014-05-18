@@ -15,7 +15,6 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <summary>
         /// Initializes a new instance of the <see cref="V2CryptoBase" /> class.
         /// </summary>
-        /// <param name="factory">The factory.</param>
         /// <param name="key">The key.</param>
         /// <param name="iv">The iv, or null for none.</param>
         /// <param name="keyStreamOffset">The key stream offset.</param>
@@ -27,12 +26,8 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <exception cref="System.ArgumentException">Key length is invalid.
         /// or
         /// The IV length must be the same as the algorithm block length.</exception>
-        protected void Initialize(ICryptoFactory factory, SymmetricKey key, SymmetricIV iv, long keyStreamOffset, SymmetricAlgorithm algorithm)
+        protected void Initialize(SymmetricKey key, SymmetricIV iv, long keyStreamOffset, SymmetricAlgorithm algorithm)
         {
-            if (factory == null)
-            {
-                throw new ArgumentNullException("factory");
-            }
             if (key == null)
             {
                 throw new ArgumentNullException("key");

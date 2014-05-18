@@ -19,7 +19,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public ICrypto CreateCrypto(SymmetricKey key, SymmetricIV iv, long keyStreamOffset)
         {
-            return new V2AesCrypto(this, key, iv, keyStreamOffset);
+            return new V2AesCrypto(key, iv, keyStreamOffset);
         }
 
         public int Priority

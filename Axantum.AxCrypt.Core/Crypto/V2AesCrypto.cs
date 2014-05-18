@@ -43,11 +43,11 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <param name="key">The key.</param>
         /// <param name="iv">The iv, or null for none.</param>
         /// <param name="keyStreamOffset">The key stream offset.</param>
-        public V2AesCrypto(ICryptoFactory factory, SymmetricKey key, SymmetricIV iv, long keyStreamOffset)
+        public V2AesCrypto(SymmetricKey key, SymmetricIV iv, long keyStreamOffset)
         {
             using (SymmetricAlgorithm algorithm = CreateAlgorithmInternal())
             {
-                Initialize(factory, key, iv, keyStreamOffset, algorithm);
+                Initialize(key, iv, keyStreamOffset, algorithm);
             }
         }
 
