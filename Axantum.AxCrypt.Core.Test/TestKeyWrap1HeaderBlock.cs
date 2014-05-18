@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSetBadArguments()
         {
-            KeyWrap1HeaderBlockForTest keyWrap1HeaderBlock = new KeyWrap1HeaderBlockForTest(new V1Passphrase(new Passphrase("passphrase")));
+            KeyWrap1HeaderBlockForTest keyWrap1HeaderBlock = new KeyWrap1HeaderBlockForTest(new V1DerivedKey(new Passphrase("passphrase")));
 
             Salt okSalt = new Salt(128);
             Salt badSalt = new Salt(256);

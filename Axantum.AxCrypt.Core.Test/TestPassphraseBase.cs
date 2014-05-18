@@ -49,7 +49,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Clear();
         }
 
-        private class TestingPassphraseBase : PassphraseBase
+        private class TestingPassphraseBase : DerivedKeyBase
         {
             public TestingPassphraseBase(SymmetricKey derivedKey)
             {

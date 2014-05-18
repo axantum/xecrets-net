@@ -25,31 +25,37 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Extensions;
 using System;
-using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
     /// <summary>
-    /// Derive a SymmetricKey from a string passphrase representation for AxCrypt V2. Instances of this class are immutable.
+    /// Derive a SymmetricKey from a string passphrase representation for AxCrypt. Instances of this class are immutable.
     /// </summary>
-    public class V2Passphrase : PassphraseBase
+    public class V1DerivedKey : DerivedKeyBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="V2Passphrase"/> class.
+        /// Initializes a new instance of the <see cref="V1DerivedKey"/> class.
         /// </summary>
         /// <param name="passphrase">The passphrase.</param>
-        public V2Passphrase(Passphrase passphrase, Salt salt, int derivationIterations, int keySize, Guid cryptoId)
+        public V1DerivedKey(Passphrase passphrase)
         {
-            DerivationSalt = salt;
-            DerivationIterations = derivationIterations;
-            DerivedKey = new SymmetricKey(new Pbkdf2HmacSha512(passphrase.Text, salt, derivationIterations).GetBytes().Reduce(keySize / 8));
-        }
+            if (passphrase == null)
+            {
+                throw new ArgumentNullException("passphrase");
+            }
 
-        public V2Passphrase(Passphrase passphrase, int keySize, Guid cryptoId)
-            : this(passphrase, new Salt(256), CryptoFactory.DerivationIterations, keySize, cryptoId)
-        {
+            HashAlgorithm hashAlgorithm = new SHA1Managed();
+            byte[] ansiBytes = Encoding.GetEncoding(1252).GetBytes(passphrase.Text);
+            byte[] hash = hashAlgorithm.ComputeHash(ansiBytes);
+            byte[] derivedKey = new byte[16];
+            Array.Copy(hash, derivedKey, derivedKey.Length);
+
+            DerivationSalt = Salt.Zero;
+            DerivationIterations = 0;
+            DerivedKey = new SymmetricKey(derivedKey);
         }
     }
 }

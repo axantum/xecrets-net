@@ -30,7 +30,7 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
-    public abstract class PassphraseBase : IDerivedKey
+    public abstract class DerivedKeyBase : IDerivedKey
     {
         public SymmetricKey DerivedKey
         {

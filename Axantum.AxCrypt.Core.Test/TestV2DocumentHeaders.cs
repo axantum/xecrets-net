@@ -142,7 +142,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             headers.HeaderBlocks.Add(new PreambleHeaderBlock());
             headers.HeaderBlocks.Add(new VersionHeaderBlock(new byte[] { 4, 0, 2, 0, 0 }));
-            headers.HeaderBlocks.Add(new V2KeyWrapHeaderBlock(new V2Aes256CryptoFactory(), new V2Passphrase(new Passphrase("RealKey"), 256, V2Aes256CryptoFactory.CryptoId), 10));
+            headers.HeaderBlocks.Add(new V2KeyWrapHeaderBlock(new V2Aes256CryptoFactory(), new V2DerivedKey(new Passphrase("RealKey"), 256, V2Aes256CryptoFactory.CryptoId), 10));
             headers.HeaderBlocks.Add(new FileInfoEncryptedHeaderBlock(new byte[0]));
             headers.HeaderBlocks.Add(new V2CompressionEncryptedHeaderBlock(new byte[1]));
             headers.HeaderBlocks.Add(new V2UnicodeFileNameInfoEncryptedHeaderBlock(new byte[0]));
@@ -166,7 +166,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestHeadersPropertyGetter()
         {
-            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new V2Passphrase(new Passphrase("Key"), 256, V2Aes256CryptoFactory.CryptoId), V2Aes256CryptoFactory.CryptoId))
+            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new V2DerivedKey(new Passphrase("Key"), 256, V2Aes256CryptoFactory.CryptoId), V2Aes256CryptoFactory.CryptoId))
             {
                 Assert.That(documentHeaders.Headers.HeaderBlocks.Count, Is.EqualTo(0));
             }
@@ -189,7 +189,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestUnknownEncryptedHeader()
         {
             Headers headers = new Headers();
-            IDerivedKey key = new V2Passphrase(new Passphrase("A key"), 256, V2Aes256CryptoFactory.CryptoId);
+            IDerivedKey key = new V2DerivedKey(new Passphrase("A key"), 256, V2Aes256CryptoFactory.CryptoId);
             headers.HeaderBlocks.Add(new PreambleHeaderBlock());
             headers.HeaderBlocks.Add(new VersionHeaderBlock(new byte[] { 4, 0, 2, 0, 0 }));
             headers.HeaderBlocks.Add(new V2KeyWrapHeaderBlock(new V2Aes256CryptoFactory(), key, 10));

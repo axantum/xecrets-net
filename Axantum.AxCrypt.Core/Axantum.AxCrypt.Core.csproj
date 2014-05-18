@@ -70,12 +70,12 @@
     <Compile Include="Crypto\IDerivedKey.cs" />
     <Compile Include="Crypto\IRandomGenerator.cs" />
     <Compile Include="Crypto\KeyWrapDirection.cs" />
-    <Compile Include="Crypto\PassphraseBase.cs" />
+    <Compile Include="Crypto\DerivedKeyBase.cs" />
     <Compile Include="Crypto\Pbkdf2HmacSha512.cs" />
     <Compile Include="Crypto\RandomGenerator.cs" />
     <Compile Include="Crypto\V2AesCrypto.cs" />
     <Compile Include="Crypto\V2CryptoBase.cs" />
-    <Compile Include="Crypto\V2Passphrase.cs" />
+    <Compile Include="Crypto\V2DerivedKey.cs" />
     <Compile Include="Header\EncryptedDataPartBlock.cs" />
     <Compile Include="Header\V2CompressionEncryptedHeaderBlock.cs" />
     <Compile Include="Header\V2DocumentHeaders.cs" />
@@ -152,7 +152,7 @@
     <Compile Include="Crypto\KeyWrap.cs" />
     <Compile Include="Crypto\KeyWrapMode.cs" />
     <Compile Include="Crypto\Salt.cs" />
-    <Compile Include="Crypto\V1Passphrase.cs" />
+    <Compile Include="Crypto\V1DerivedKey.cs" />
     <Compile Include="Crypto\Subkey.cs" />
     <Compile Include="OS.cs" />
     <Compile Include="Runtime\DelegateTraceListener.cs" />
