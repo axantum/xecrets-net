@@ -49,9 +49,9 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </value>
         string Name { get; }
 
-        IDerivedKey CreatePassphrase(Passphrase passphrase);
+        IDerivedKey CreateDerivedKey(Passphrase passphrase);
 
-        IDerivedKey CreatePassphrase(Passphrase passphrase, Salt salt, int derivationIterations);
+        IDerivedKey RestoreDerivedKey(Passphrase passphrase, Salt salt, int derivationIterations);
 
         /// <summary>
         /// Instantiate an approriate ICrypto implementation.

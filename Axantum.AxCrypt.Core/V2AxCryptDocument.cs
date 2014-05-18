@@ -87,7 +87,7 @@ namespace Axantum.AxCrypt.Core
             _reader = reader;
             CryptoFactory = Instance.CryptoFactory.Create(cryptoId);
             V2KeyWrapHeaderBlock keyWrap = headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
-            IDerivedKey key = CryptoFactory.CreatePassphrase(passphrase, keyWrap.DerivationSalt, keyWrap.DerivationIterations);
+            IDerivedKey key = CryptoFactory.RestoreDerivedKey(passphrase, keyWrap.DerivationSalt, keyWrap.DerivationIterations);
             DocumentHeaders = new V2DocumentHeaders(key, cryptoId);
             PassphraseIsValid = DocumentHeaders.Load(headers);
             if (!PassphraseIsValid)

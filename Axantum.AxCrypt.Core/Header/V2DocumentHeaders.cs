@@ -57,7 +57,7 @@ namespace Axantum.AxCrypt.Core.Header
         public V2DocumentHeaders(Passphrase passphrase, Guid cryptoId, long keyWrapIterations)
         {
             _cryptoFactory = Instance.CryptoFactory.Create(cryptoId);
-            _keyEncryptingKey = _cryptoFactory.CreatePassphrase(passphrase);
+            _keyEncryptingKey = _cryptoFactory.CreateDerivedKey(passphrase);
             _headers = new Headers();
 
             _headers.HeaderBlocks.Add(new PreambleHeaderBlock());

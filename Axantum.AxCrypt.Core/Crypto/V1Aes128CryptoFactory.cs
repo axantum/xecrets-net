@@ -34,12 +34,12 @@ namespace Axantum.AxCrypt.Core.Crypto
     {
         private static readonly Guid _id = CryptoFactory.Aes128V1Id;
 
-        public IDerivedKey CreatePassphrase(Passphrase passphrase)
+        public IDerivedKey CreateDerivedKey(Passphrase passphrase)
         {
             return new V1Passphrase(passphrase);
         }
 
-        public IDerivedKey CreatePassphrase(Passphrase passphrase, Salt salt, int derivationIterations)
+        public IDerivedKey RestoreDerivedKey(Passphrase passphrase, Salt salt, int derivationIterations)
         {
             return new V1Passphrase(passphrase);
         }

@@ -77,7 +77,7 @@ namespace Axantum.AxCrypt.Core.Test
                         V2KeyWrapHeaderBlock keyWrap = headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
                         SymmetricKey dataEncryptingKey = documentHeaders.DataEncryptingKey;
 
-                        IDerivedKey key = new V2Aes256CryptoFactory().CreatePassphrase(new Passphrase("passphrase"), keyWrap.DerivationSalt, keyWrap.DerivationIterations);
+                        IDerivedKey key = new V2Aes256CryptoFactory().RestoreDerivedKey(new Passphrase("passphrase"), keyWrap.DerivationSalt, keyWrap.DerivationIterations);
                         keyWrap.SetCryptoKey(new V2Aes256CryptoFactory(), key);
 
                         Assert.That(dataEncryptingKey.Equals(documentHeaders.DataEncryptingKey));
