@@ -60,7 +60,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <returns>An instance of an appropriate ICrypto implementation.</returns>
         ICrypto CreateCrypto(Passphrase key);
 
-        ICrypto CreateCrypto(IDerivedKey key);
+        ICrypto CreateCrypto(SymmetricKey key);
 
         /// <summary>
         /// Instantiate an approriate ICrypto implementation.

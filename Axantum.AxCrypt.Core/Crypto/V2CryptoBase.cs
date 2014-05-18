@@ -12,7 +12,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private int _blockOffset;
 
-        public V2CryptoBase(ICryptoFactory factory, IDerivedKey key, SymmetricIV iv, long keyStreamOffset)
+        public V2CryptoBase(ICryptoFactory factory, SymmetricKey key, SymmetricIV iv, long keyStreamOffset)
         {
             if (factory == null)
             {
@@ -28,7 +28,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
             using (SymmetricAlgorithm algorithm = CreateRawAlgorithm())
             {
-                if (!algorithm.ValidKeySize(key.DerivedKey.Size))
+                if (!algorithm.ValidKeySize(key.Size))
                 {
                     throw new ArgumentException("Key length is invalid.");
                 }
@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         private SymmetricAlgorithm CreateAlgorithmInternal()
         {
             SymmetricAlgorithm algorithm = CreateRawAlgorithm();
-            algorithm.Key = Key.DerivedKey.GetBytes();
+            algorithm.Key = Key.GetBytes();
             algorithm.IV = _iv.GetBytes();
             algorithm.Mode = CipherMode.ECB;
             algorithm.Padding = PaddingMode.None;

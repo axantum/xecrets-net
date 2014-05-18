@@ -8,7 +8,7 @@ namespace Axantum.AxCrypt.Core.Crypto
     {
         public ICryptoFactory Factory { get; protected set; }
 
-        private IDerivedKey _key;
+        private SymmetricKey _key;
 
         /// <summary>
         /// Gets the key associated with this instance.
@@ -16,7 +16,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <value>
         /// The key.
         /// </value>
-        public IDerivedKey Key
+        public SymmetricKey Key
         {
             get
             {

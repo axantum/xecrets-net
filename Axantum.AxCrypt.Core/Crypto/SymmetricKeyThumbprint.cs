@@ -70,9 +70,9 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
 
             ICryptoFactory factory = Instance.CryptoFactory.Minimum;
-            ICrypto crypto = factory.CreateCrypto(factory.CreatePassphrase(passphrase, salt, CryptoFactory.DerivationIterations));
+            ICrypto crypto = factory.CreateCrypto(factory.CreatePassphrase(passphrase, salt, CryptoFactory.DerivationIterations).DerivedKey);
             KeyWrap keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.Specification);
-            byte[] wrap = keyWrap.Wrap(crypto, crypto.Key.DerivedKey);
+            byte[] wrap = keyWrap.Wrap(crypto, crypto.Key);
 
             _bytes = wrap.Reduce(6);
         }

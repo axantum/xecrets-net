@@ -33,6 +33,7 @@ using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Org.BouncyCastle.Utilities.Zlib;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -54,12 +55,14 @@ namespace Axantum.AxCrypt.Core
         {
         }
 
-        public V2AxCryptDocument(ICrypto keyEncryptingCrypto, long keyWrapIterations)
+        public V2AxCryptDocument(Passphrase key, Guid cryptoId, long keyWrapIterations)
         {
-            DocumentHeaders = new V2DocumentHeaders(keyEncryptingCrypto, keyWrapIterations);
+            DocumentHeaders = new V2DocumentHeaders(key, cryptoId, keyWrapIterations);
         }
 
         public V2DocumentHeaders DocumentHeaders { get; private set; }
+
+        public ICryptoFactory CryptoFactory { get; private set; }
 
         private AxCryptReader _reader;
 
@@ -79,10 +82,13 @@ namespace Axantum.AxCrypt.Core
         /// </summary>
         /// <param name="stream">The stream to read from. Will be disposed when this instance is disposed.</param>
         /// <returns>True if the key was valid, false if it was wrong.</returns>
-        public bool Load(Passphrase key, Guid cryptoId, AxCryptReader reader, Headers headers)
+        public bool Load(Passphrase passphrase, Guid cryptoId, AxCryptReader reader, Headers headers)
         {
             _reader = reader;
-            DocumentHeaders = new V2DocumentHeaders(reader.Crypto(headers, key, cryptoId));
+            CryptoFactory = Instance.CryptoFactory.Create(cryptoId);
+            V2KeyWrapHeaderBlock keyWrap = headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
+            IDerivedKey key = CryptoFactory.CreatePassphrase(passphrase, keyWrap.DerivationSalt, keyWrap.DerivationIterations);
+            DocumentHeaders = new V2DocumentHeaders(key, cryptoId);
             PassphraseIsValid = DocumentHeaders.Load(headers);
             if (!PassphraseIsValid)
             {
@@ -99,7 +105,7 @@ namespace Axantum.AxCrypt.Core
         /// <param name="outputDocumentHeaders"></param>
         /// <param name="inputStream"></param>
         /// <param name="outputStream"></param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
+        [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
         public void EncryptTo(Stream inputStream, Stream outputStream, AxCryptOptions options)
         {
             if (inputStream == null)
@@ -222,11 +228,6 @@ namespace Axantum.AxCrypt.Core
         {
             get { return DocumentHeaders.LastWriteTimeUtc; }
             set { DocumentHeaders.LastWriteTimeUtc = value; }
-        }
-
-        public ICrypto KeyEncryptingCrypto
-        {
-            get { return DocumentHeaders.KeyEncryptingCrypto; }
         }
 
         public void Dispose()

@@ -89,7 +89,7 @@ namespace Axantum.AxCrypt.Core.Test
             mock.Setup<byte[]>(x => x.Generate(It.Is<int>(v => v == (16 + 16)))).Returns(_keyData128.GetBytes());
             Factory.Instance.Singleton<IRandomGenerator>(() => mock.Object);
 
-            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(new V2Aes128CryptoFactory(), _keyEncryptingKey128, SymmetricIV.Zero128, 0), 6);
+            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2Aes128CryptoFactory(), _keyEncryptingKey128, 6);
 
             byte[] bytes = header.GetDataBlockBytes();
             byte[] wrapped = new byte[24];
@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt.Core.Test
             mock.Setup<byte[]>(x => x.Generate(It.Is<int>(v => v == (32 + 16)))).Returns(_keyData256);
             Factory.Instance.Singleton<IRandomGenerator>(() => mock.Object);
 
-            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(new V2Aes256CryptoFactory(), _keyEncryptingKey256, SymmetricIV.Zero128, 0), 6);
+            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2Aes256CryptoFactory(), _keyEncryptingKey256, 6);
 
             byte[] bytes = header.GetDataBlockBytes();
             byte[] wrapped = new byte[40];
@@ -123,7 +123,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Singleton<IRandomGenerator>(() => mock.Object);
 
             IDerivedKey keyEncryptingKey = new V2Passphrase(new Passphrase("secret"), new Salt(256), 100, 256, CryptoFactory.Aes256Id);
-            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(new V2Aes256CryptoFactory(), keyEncryptingKey, new SymmetricIV(128), 0), 250);
+            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2Aes256CryptoFactory(), keyEncryptingKey, 250);
 
             SymmetricKey key = header.MasterKey;
             Assert.That(key.GetBytes(), Is.EquivalentTo(new byte[32]));
@@ -138,7 +138,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
 
             IDerivedKey keyEncryptingKey = new V2Passphrase(new Passphrase("secret"), new Salt(256), 100, 256, CryptoFactory.Aes256Id);
-            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(new V2Aes256CryptoFactory(), keyEncryptingKey, new SymmetricIV(128), 0), 125);
+            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2Aes256CryptoFactory(), keyEncryptingKey, 125);
 
             SymmetricKey key = header.MasterKey;
             Assert.That(key.GetBytes(), Is.EquivalentTo(ByteSequence(key.GetBytes()[0], key.Size / 8)));
@@ -164,9 +164,9 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
 
             IDerivedKey keyEncryptingKey = new V2Passphrase(new Passphrase("secret"), new Salt(256), 100, 256, CryptoFactory.Aes256Id);
-            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(new V2Aes256CryptoFactory(), keyEncryptingKey, new SymmetricIV(128), 0), 125);
+            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2Aes256CryptoFactory(), keyEncryptingKey, 125);
 
-            header.Crypto = new V2AesCrypto(new V2Aes256CryptoFactory(), new V2Passphrase(new Passphrase("another secret"), 256, CryptoFactory.Aes256Id), SymmetricIV.Zero128, 0);
+            header.SetCryptoKey(new V2Aes256CryptoFactory(), new V2Passphrase(new Passphrase("another secret"), 256, CryptoFactory.Aes256Id));
             SymmetricIV iv = header.MasterIV;
 
             Assert.That(iv, Is.Null);
@@ -178,7 +178,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
 
             IDerivedKey keyEncryptingKey = new V2Passphrase(new Passphrase("secret"), new Salt(256), 100, 256, CryptoFactory.Aes256Id);
-            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2AesCrypto(new V2Aes256CryptoFactory(), keyEncryptingKey, new SymmetricIV(128), 0), 125);
+            V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2Aes256CryptoFactory(), keyEncryptingKey, 125);
 
             V2KeyWrapHeaderBlock clone = (V2KeyWrapHeaderBlock)header.Clone();
 

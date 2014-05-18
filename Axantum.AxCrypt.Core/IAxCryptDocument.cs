@@ -44,7 +44,7 @@ namespace Axantum.AxCrypt.Core
 
         DateTime LastWriteTimeUtc { get; set; }
 
-        ICrypto KeyEncryptingCrypto { get; }
+        ICryptoFactory CryptoFactory { get; }
 
         bool Load(Passphrase key, Guid cryptoId, Stream inputStream);
 

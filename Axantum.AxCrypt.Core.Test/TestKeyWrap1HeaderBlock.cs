@@ -37,8 +37,8 @@ namespace Axantum.AxCrypt.Core.Test
     {
         private class KeyWrap1HeaderBlockForTest : V1KeyWrap1HeaderBlock
         {
-            public KeyWrap1HeaderBlockForTest(ICrypto crypto)
-                : base(crypto, 13)
+            public KeyWrap1HeaderBlockForTest(IDerivedKey key)
+                : base(key, 13)
             {
             }
 
@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSetBadArguments()
         {
-            KeyWrap1HeaderBlockForTest keyWrap1HeaderBlock = new KeyWrap1HeaderBlockForTest(new V1AesCrypto(new V1Aes128CryptoFactory(), new V1Passphrase(new Passphrase("passphrase")), SymmetricIV.Zero128));
+            KeyWrap1HeaderBlockForTest keyWrap1HeaderBlock = new KeyWrap1HeaderBlockForTest(new V1Passphrase(new Passphrase("passphrase")));
 
             Salt okSalt = new Salt(128);
             Salt badSalt = new Salt(256);

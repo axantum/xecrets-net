@@ -74,8 +74,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncrypt()
         {
-            IDerivedKey key = new GenericPassphrase(new SymmetricKey(testKey));
-            ICrypto crypto = new V2AesCrypto(new V2Aes256CryptoFactory(), key, new SymmetricIV(testPlaintext), 0);
+            ICrypto crypto = new V2AesCrypto(new V2Aes256CryptoFactory(), new SymmetricKey(testKey), new SymmetricIV(testPlaintext), 0);
 
             byte[] zeroPlain = new byte[testCipertext.Length];
 
@@ -87,8 +86,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptPartialBlock()
         {
-            IDerivedKey key = new GenericPassphrase(new SymmetricKey(testKey));
-            ICrypto crypto = new V2AesCrypto(new V2Aes256CryptoFactory(), key, new SymmetricIV(testPlaintext), 3);
+            ICrypto crypto = new V2AesCrypto(new V2Aes256CryptoFactory(), new SymmetricKey(testKey), new SymmetricIV(testPlaintext), 3);
             byte[] zeroPlain = new byte[5];
 
             byte[] cipherText = crypto.Encrypt(zeroPlain);
@@ -101,27 +99,25 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptSeveralBlocks()
         {
-            IDerivedKey key = new GenericPassphrase(new SymmetricKey(nistKey));
-
             byte[] iv = new byte[16];
             Array.Copy(nistInitCounter, iv, 8);
 
             long blockCounter = nistInitCounter.GetBigEndianValue(8, 8);
             ICrypto crypto;
 
-            crypto = new V2AesCrypto(new V2Aes256CryptoFactory(), key, new SymmetricIV(iv), 16 * blockCounter);
+            crypto = new V2AesCrypto(new V2Aes256CryptoFactory(), new SymmetricKey(nistKey), new SymmetricIV(iv), 16 * blockCounter);
             byte[] cipherText1 = crypto.Encrypt(nistPlaintext1);
             Assert.That(cipherText1.IsEquivalentTo(nistCiphertext1));
 
-            crypto = new V2AesCrypto(new V2Aes256CryptoFactory(), key, new SymmetricIV(iv), 16 * ++blockCounter);
+            crypto = new V2AesCrypto(new V2Aes256CryptoFactory(), new SymmetricKey(nistKey), new SymmetricIV(iv), 16 * ++blockCounter);
             byte[] cipherText2 = crypto.Encrypt(nistPlaintext2);
             Assert.That(cipherText2.IsEquivalentTo(nistCiphertext2));
 
-            crypto = new V2AesCrypto(new V2Aes256CryptoFactory(), key, new SymmetricIV(iv), 16 * ++blockCounter);
+            crypto = new V2AesCrypto(new V2Aes256CryptoFactory(), new SymmetricKey(nistKey), new SymmetricIV(iv), 16 * ++blockCounter);
             byte[] cipherText3 = crypto.Encrypt(nistPlaintext3);
             Assert.That(cipherText3.IsEquivalentTo(nistCiphertext3));
 
-            crypto = new V2AesCrypto(new V2Aes256CryptoFactory(), key, new SymmetricIV(iv), 16 * ++blockCounter);
+            crypto = new V2AesCrypto(new V2Aes256CryptoFactory(), new SymmetricKey(nistKey), new SymmetricIV(iv), 16 * ++blockCounter);
             byte[] cipherText4 = crypto.Encrypt(nistPlaintext4);
             Assert.That(cipherText4.IsEquivalentTo(nistCiphertext4));
         }
@@ -153,20 +149,20 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestConstructorWithBadArguments()
         {
-            IDerivedKey nullKey = null;
+            SymmetricKey nullKey = null;
             SymmetricIV nullIV = null;
 
-            PassphraseForTest testKey = new PassphraseForTest();
+            SymmetricKey testKey = new PassphraseForTest().DerivedKey;
             SymmetricIV testIV = new SymmetricIV(128);
 
             ICrypto crypto = null;
             Assert.Throws<ArgumentNullException>(() => crypto = new V2AesCrypto(new V2Aes256CryptoFactory(), nullKey, testIV, 0));
             Assert.Throws<ArgumentNullException>(() => crypto = new V2AesCrypto(new V2Aes256CryptoFactory(), testKey, nullIV, 0));
 
-            testKey.DerivedKey = new SymmetricKey(64);
+            testKey = new SymmetricKey(64);
             Assert.Throws<ArgumentException>(() => crypto = new V2AesCrypto(new V2Aes256CryptoFactory(), testKey, testIV, 0));
 
-            testKey.DerivedKey = new SymmetricKey(256);
+            testKey = new SymmetricKey(256);
             testIV = new SymmetricIV(64);
             Assert.Throws<ArgumentException>(() => crypto = new V2AesCrypto(new V2Aes256CryptoFactory(), testKey, testIV, 0));
 

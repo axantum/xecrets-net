@@ -50,13 +50,17 @@ namespace Axantum.AxCrypt.Core
 
         private long _expectedTotalHmacLength = 0;
 
+        public ICryptoFactory CryptoFactory { get; private set; }
+
         public V1AxCryptDocument()
         {
+            CryptoFactory = new V1Aes128CryptoFactory();
         }
 
-        public V1AxCryptDocument(ICrypto keyEncryptingCrypto, long keyWrapIterations)
+        public V1AxCryptDocument(Passphrase passphrase, long keyWrapIterations)
+            : this()
         {
-            DocumentHeaders = new V1DocumentHeaders(keyEncryptingCrypto, keyWrapIterations);
+            DocumentHeaders = new V1DocumentHeaders(passphrase, keyWrapIterations);
         }
 
         public V1DocumentHeaders DocumentHeaders { get; private set; }
@@ -80,7 +84,7 @@ namespace Axantum.AxCrypt.Core
         public bool Load(Passphrase key, AxCryptReader reader, Headers headers)
         {
             _reader = reader;
-            DocumentHeaders = new V1DocumentHeaders(Instance.CryptoFactory.Legacy.CreateCrypto(key));
+            DocumentHeaders = new V1DocumentHeaders(key);
             PassphraseIsValid = DocumentHeaders.Load(headers);
             if (!PassphraseIsValid)
             {
@@ -336,11 +340,6 @@ namespace Axantum.AxCrypt.Core
         {
             get { return DocumentHeaders.LastWriteTimeUtc; }
             set { DocumentHeaders.LastWriteTimeUtc = value; }
-        }
-
-        public ICrypto KeyEncryptingCrypto
-        {
-            get { return DocumentHeaders.KeyEncryptingCrypto; }
         }
     }
 }

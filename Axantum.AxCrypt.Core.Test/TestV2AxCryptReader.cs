@@ -54,9 +54,8 @@ namespace Axantum.AxCrypt.Core.Test
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestGetCryptoFromHeaders()
         {
-            ICrypto crypto = new V2AesCrypto(new V2Aes256CryptoFactory(), new V2Passphrase(new Passphrase("passphrase"), 256, CryptoFactory.Aes256Id), SymmetricIV.Zero128, 0);
             Headers headers = new Headers();
-            V2DocumentHeaders documentHeaders = new V2DocumentHeaders(crypto, 10);
+            V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new Passphrase("passphrase"), CryptoFactory.Aes256Id, 10);
             using (Stream chainedStream = new MemoryStream())
             {
                 using (V2HmacStream stream = new V2HmacStream(new byte[0], chainedStream))
@@ -74,9 +73,10 @@ namespace Axantum.AxCrypt.Core.Test
                                 headers.HeaderBlocks.Add(reader.CurrentHeaderBlock);
                             }
                         }
-                        ICrypto cryptoFromReader = reader.Crypto(headers, new Passphrase("passphrase"), Guid.Empty);
-                        Assert.That(!Object.ReferenceEquals(crypto, cryptoFromReader));
-                        Assert.That(crypto.Key.DerivedKey.Equals(cryptoFromReader.Key.DerivedKey));
+                        V2KeyWrapHeaderBlock keyWrap = headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
+                        SymmetricKey key = new V2Aes256CryptoFactory().CreatePassphrase(new Passphrase("passphrase"), keyWrap.DerivationSalt, keyWrap.DerivationIterations).DerivedKey;
+                        ICrypto cryptoFromReader = reader.Crypto(headers, new Passphrase("passphrase"), CryptoFactory.Aes256Id);
+                        Assert.That(key.Equals(cryptoFromReader.Key));
                     }
                 }
             }

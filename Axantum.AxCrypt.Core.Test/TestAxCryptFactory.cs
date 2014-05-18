@@ -78,7 +78,6 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestV2Document()
         {
-            IDerivedKey key = new V2Passphrase(new Passphrase("properties"), 256, CryptoFactory.Aes256Id);
             using (MemoryStream inputStream = new MemoryStream())
             {
                 byte[] text = Instance.RandomGenerator.Generate(500);
@@ -86,7 +85,7 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
-                    using (V2AxCryptDocument document = new V2AxCryptDocument(new V2AesCrypto(new V2Aes256CryptoFactory(), key, SymmetricIV.Zero128, 0), 15))
+                    using (V2AxCryptDocument document = new V2AxCryptDocument(new Passphrase("properties"), CryptoFactory.Aes256Id, 15))
                     {
                         document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithCompression);
                         outputStream.Position = 0;

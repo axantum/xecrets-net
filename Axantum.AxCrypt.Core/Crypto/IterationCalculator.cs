@@ -71,9 +71,9 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             ICryptoFactory factory = Instance.CryptoFactory.Create(cryptoId);
             ICrypto dummyCrypto = factory.CreateCrypto(new Passphrase("A dummy passphrase"));
-            Salt dummySalt = new Salt(dummyCrypto.Key.DerivedKey.Size);
+            Salt dummySalt = new Salt(dummyCrypto.Key.Size);
             KeyWrap keyWrap = new KeyWrap(dummySalt, keyWrapIterations, KeyWrapMode.Specification);
-            byte[] wrapped = keyWrap.Wrap(dummyCrypto, new SymmetricKey(dummyCrypto.Key.DerivedKey.Size));
+            byte[] wrapped = keyWrap.Wrap(dummyCrypto, new SymmetricKey(dummyCrypto.Key.Size));
             return wrapped;
         }
     }

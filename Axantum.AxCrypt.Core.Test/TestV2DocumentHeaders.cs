@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileTimes()
         {
-            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Aes256CryptoFactory(), new V2Passphrase(new Passphrase("v2passx"), 256, CryptoFactory.Aes256Id), new SymmetricIV(128), 0), 10))
+            using (V2DocumentHeaders headers = new V2DocumentHeaders(new Passphrase("v2passx"), CryptoFactory.Aes256Id, 12))
             {
                 DateTime now = DateTime.UtcNow;
                 headers.LastAccessTimeUtc = now;
@@ -71,7 +71,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestCompression()
         {
-            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Aes256CryptoFactory(), new V2Passphrase(new Passphrase("v2pass"), 256, CryptoFactory.Aes256Id), new SymmetricIV(128), 0), 10))
+            using (V2DocumentHeaders headers = new V2DocumentHeaders(new Passphrase("v2pass"), CryptoFactory.Aes256Id, 10))
             {
                 headers.IsCompressed = true;
                 Assert.That(headers.IsCompressed, Is.True);
@@ -84,7 +84,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestUnicodeFileNameShort()
         {
-            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Aes256CryptoFactory(), new V2Passphrase(new Passphrase("v2passz"), 256, CryptoFactory.Aes256Id), new SymmetricIV(128), 0), 10))
+            using (V2DocumentHeaders headers = new V2DocumentHeaders(new Passphrase("v2passz"), CryptoFactory.Aes256Id, 10))
             {
                 headers.FileName = "My Secret Document.txt";
                 Assert.That(headers.FileName, Is.EqualTo("My Secret Document.txt"));
@@ -94,7 +94,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestUnicodeFileNameLong()
         {
-            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Aes256CryptoFactory(), new V2Passphrase(new Passphrase("v2passy"), 256, CryptoFactory.Aes256Id), new SymmetricIV(128), 0), 10))
+            using (V2DocumentHeaders headers = new V2DocumentHeaders(new Passphrase("v2passy"), CryptoFactory.Aes256Id, 10))
             {
                 string longName = "When in the Course of human events, it becomes necessary for one people to dissolve the political bands which have connected them with another, and to assume among the powers of the earth, the separate and equal station to which the Laws of Nature and of Nature's God entitle them, a decent respect to the opinions of mankind requires that they should declare the causes which impel them to the separation.";
                 Assert.That(longName.Length, Is.GreaterThan(256));
@@ -107,7 +107,7 @@ namespace Axantum.AxCrypt.Core.Test
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestWriteWithHmac()
         {
-            using (V2DocumentHeaders headers = new V2DocumentHeaders(new V2AesCrypto(new V2Aes256CryptoFactory(), new V2Passphrase(new Passphrase("v2passzz"), 256, CryptoFactory.Aes256Id), new SymmetricIV(128), 0), 20))
+            using (V2DocumentHeaders headers = new V2DocumentHeaders(new Passphrase("v2passzz"), CryptoFactory.Aes256Id, 20))
             {
                 byte[] output;
                 using (MemoryStream outputStream = new MemoryStream())
@@ -140,16 +140,15 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Headers headers = new Headers();
 
-            ICrypto realKeyEncryptingCrypto = new V2AesCrypto(new V2Aes256CryptoFactory(), new V2Passphrase(new Passphrase("RealKey"), 256, CryptoFactory.Aes256Id), new SymmetricIV(128), 0);
             headers.HeaderBlocks.Add(new PreambleHeaderBlock());
             headers.HeaderBlocks.Add(new VersionHeaderBlock(new byte[] { 4, 0, 2, 0, 0 }));
-            headers.HeaderBlocks.Add(new V2KeyWrapHeaderBlock(realKeyEncryptingCrypto, 10));
+            headers.HeaderBlocks.Add(new V2KeyWrapHeaderBlock(new V2Aes256CryptoFactory(), new V2Passphrase(new Passphrase("RealKey"), 256, CryptoFactory.Aes256Id), 10));
             headers.HeaderBlocks.Add(new FileInfoEncryptedHeaderBlock(new byte[0]));
             headers.HeaderBlocks.Add(new V2CompressionEncryptedHeaderBlock(new byte[1]));
             headers.HeaderBlocks.Add(new V2UnicodeFileNameInfoEncryptedHeaderBlock(new byte[0]));
             headers.HeaderBlocks.Add(new DataHeaderBlock());
 
-            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new V2AesCrypto(new V2Aes256CryptoFactory(), new V2Passphrase(new Passphrase("WrongKey"), 256, CryptoFactory.Aes256Id), new SymmetricIV(128), 0)))
+            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new Passphrase("WrongKey"), CryptoFactory.Aes256Id, 10))
             {
                 Assert.That(documentHeaders.Load(headers), Is.False);
             }
@@ -158,27 +157,16 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestWriteStartWithHmacWithNullArgument()
         {
-            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new V2AesCrypto(new V2Aes256CryptoFactory(), new V2Passphrase(new Passphrase("Key"), 256, CryptoFactory.Aes256Id), new SymmetricIV(128), 0)))
+            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new Passphrase("Key"), CryptoFactory.Aes256Id, 10))
             {
                 Assert.Throws<ArgumentNullException>(() => documentHeaders.WriteStartWithHmac(null));
             }
         }
 
         [Test]
-        public static void TestKeyEncryptingCryptoPropertyGetter()
-        {
-            ICrypto keyEncryptingCrypto = new V2AesCrypto(new V2Aes256CryptoFactory(), new V2Passphrase(new Passphrase("Key"), 256, CryptoFactory.Aes256Id), new SymmetricIV(128), 0);
-            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(keyEncryptingCrypto))
-            {
-                Assert.That(Object.ReferenceEquals(keyEncryptingCrypto, documentHeaders.KeyEncryptingCrypto));
-            }
-        }
-
-        [Test]
         public static void TestHeadersPropertyGetter()
         {
-            ICrypto keyEncryptingCrypto = new V2AesCrypto(new V2Aes256CryptoFactory(), new V2Passphrase(new Passphrase("Key"), 256, CryptoFactory.Aes256Id), new SymmetricIV(128), 0);
-            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(keyEncryptingCrypto))
+            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new V2Passphrase(new Passphrase("Key"), 256, CryptoFactory.Aes256Id), CryptoFactory.Aes256Id))
             {
                 Assert.That(documentHeaders.Headers.HeaderBlocks.Count, Is.EqualTo(0));
             }
@@ -201,18 +189,17 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestUnknownEncryptedHeader()
         {
             Headers headers = new Headers();
-
-            ICrypto realKeyEncryptingCrypto = new V2AesCrypto(new V2Aes256CryptoFactory(), new V2Passphrase(new Passphrase("A key"), 256, CryptoFactory.Aes256Id), new SymmetricIV(128), 0);
+            IDerivedKey key = new V2Passphrase(new Passphrase("A key"), 256, CryptoFactory.Aes256Id);
             headers.HeaderBlocks.Add(new PreambleHeaderBlock());
             headers.HeaderBlocks.Add(new VersionHeaderBlock(new byte[] { 4, 0, 2, 0, 0 }));
-            headers.HeaderBlocks.Add(new V2KeyWrapHeaderBlock(realKeyEncryptingCrypto, 10));
+            headers.HeaderBlocks.Add(new V2KeyWrapHeaderBlock(new V2Aes256CryptoFactory(), key, 10));
             headers.HeaderBlocks.Add(new FileInfoEncryptedHeaderBlock(new byte[0]));
             headers.HeaderBlocks.Add(new V2CompressionEncryptedHeaderBlock(new byte[1]));
             headers.HeaderBlocks.Add(new V2UnicodeFileNameInfoEncryptedHeaderBlock(new byte[0]));
             headers.HeaderBlocks.Add(new UnknownEncryptedHeaderBlock(new byte[0]));
             headers.HeaderBlocks.Add(new DataHeaderBlock());
 
-            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new V2AesCrypto(new V2Aes256CryptoFactory(), new V2Passphrase(new Passphrase("A key"), realKeyEncryptingCrypto.Key.DerivationSalt, realKeyEncryptingCrypto.Key.DerivationIterations, 256, CryptoFactory.Aes256Id), new SymmetricIV(128), 0)))
+            using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(key, CryptoFactory.Aes256Id))
             {
                 Assert.Throws<InternalErrorException>(() => documentHeaders.Load(headers));
             }

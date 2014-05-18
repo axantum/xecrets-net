@@ -53,8 +53,7 @@ namespace Axantum.AxCrypt.Core.Test
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestPrematureEndOfFile()
         {
-            ICrypto crypto = new V1AesCrypto(new V1Aes128CryptoFactory(), new V1Passphrase(new Passphrase("passphrase")), SymmetricIV.Zero128);
-            V1DocumentHeaders headers = new V1DocumentHeaders(crypto, 10);
+            V1DocumentHeaders headers = new V1DocumentHeaders(new Passphrase("passphrase"), 10);
             using (MemoryStream stream = new MemoryStream())
             {
                 headers.WriteWithoutHmac(stream);

@@ -36,7 +36,7 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// </summary>
     public class V2AesCrypto : V2CryptoBase
     {
-        public V2AesCrypto(ICryptoFactory factory, IDerivedKey key, SymmetricIV iv, long keyStreamOffset)
+        public V2AesCrypto(ICryptoFactory factory, SymmetricKey key, SymmetricIV iv, long keyStreamOffset)
             : base(factory, key, iv, keyStreamOffset)
         {
         }

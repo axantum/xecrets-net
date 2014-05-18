@@ -44,7 +44,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         /// <param name="key">The key</param>
         /// <param name="iv">Initial Vector</param>
-        public V1AesCrypto(ICryptoFactory factory, IDerivedKey key, SymmetricIV iv)
+        public V1AesCrypto(ICryptoFactory factory, SymmetricKey key, SymmetricIV iv)
         {
             if (factory == null)
             {
@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new ArgumentNullException("iv");
             }
-            if (key.DerivedKey.Size != 128)
+            if (key.Size != 128)
             {
                 throw new ArgumentException("Key length is invalid.");
             }
@@ -95,7 +95,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         private SymmetricAlgorithm CreateAlgorithmInternal()
         {
             SymmetricAlgorithm algorithm = CreateRawAlgorithm();
-            algorithm.Key = Key.DerivedKey.GetBytes();
+            algorithm.Key = Key.GetBytes();
             algorithm.IV = _iv.GetBytes();
 
             return algorithm;
