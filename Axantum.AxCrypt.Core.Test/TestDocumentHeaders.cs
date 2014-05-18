@@ -151,7 +151,7 @@ namespace Axantum.AxCrypt.Core.Test
                     outputStream.Position = 0;
                     using (IAxCryptDocument document = new V1AxCryptDocument())
                     {
-                        Assert.Throws<FileFormatException>(() => { document.Load(passphrase, CryptoFactory.Aes128V1Id, outputStream); });
+                        Assert.Throws<FileFormatException>(() => { document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, outputStream); });
                     }
                 }
             }

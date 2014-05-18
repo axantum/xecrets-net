@@ -33,12 +33,6 @@ namespace Axantum.AxCrypt.Core.Crypto
 {
     public class CryptoFactory
     {
-        public static readonly Guid Aes256Id = new Guid("E20F33D4-89E2-4D88-A39C-21DD62FB674F");
-
-        public static readonly Guid Aes128Id = new Guid("2B0CCBB0-B978-4BC3-A293-F97585F06557");
-
-        public static readonly Guid Aes128V1Id = new Guid("1673BBEF-A56A-43AC-AB16-E14D2BAD1CBF");
-
         public static readonly int DerivationIterations = 1000;
 
         private Dictionary<Guid, CryptoFactoryCreator> _factories = new Dictionary<Guid, CryptoFactoryCreator>();
@@ -105,7 +99,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             get
             {
-                return Create(Aes128V1Id);
+                return Create(V1Aes128CryptoFactory.CryptoId);
             }
         }
 
@@ -113,7 +107,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             get
             {
-                return Create(Aes128Id);
+                return Create(V2Aes128CryptoFactory.CryptoId);
             }
         }
     }

@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
-                    using (V2AxCryptDocument document = new V2AxCryptDocument(new Passphrase("properties"), CryptoFactory.Aes256Id, 15))
+                    using (V2AxCryptDocument document = new V2AxCryptDocument(new Passphrase("properties"), V2Aes256CryptoFactory.CryptoId, 15))
                     {
                         document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithCompression);
                         outputStream.Position = 0;

@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Core.Header
             SymmetricKey masterKey = new SymmetricKey(keyEncryptingKey.DerivedKey.Size);
             Salt salt = new Salt(masterKey.Size);
             KeyWrap keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.AxCrypt);
-            byte[] wrappedKeyData = keyWrap.Wrap(Instance.CryptoFactory.Create(CryptoFactory.Aes128V1Id).CreateCrypto(keyEncryptingKey.DerivedKey, null, 0), masterKey);
+            byte[] wrappedKeyData = keyWrap.Wrap(Instance.CryptoFactory.Create(V1Aes128CryptoFactory.CryptoId).CreateCrypto(keyEncryptingKey.DerivedKey, null, 0), masterKey);
             Set(wrappedKeyData, salt, keyWrapIterations);
         }
 

@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Core.Header
 
         public V1DocumentHeaders(Passphrase passphrase)
         {
-            _keyEncryptingKey = Instance.CryptoFactory.Create(CryptoFactory.Aes128V1Id).CreateDerivedKey(passphrase);
+            _keyEncryptingKey = Instance.CryptoFactory.Create(V1Aes128CryptoFactory.CryptoId).CreateDerivedKey(passphrase);
         }
 
         public V1DocumentHeaders(V1DocumentHeaders documentHeaders)

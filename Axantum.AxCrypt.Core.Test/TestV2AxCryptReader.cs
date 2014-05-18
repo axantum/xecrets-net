@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestGetCryptoFromHeaders()
         {
             Headers headers = new Headers();
-            V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new Passphrase("passphrase"), CryptoFactory.Aes256Id, 10);
+            V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new Passphrase("passphrase"), V2Aes256CryptoFactory.CryptoId, 10);
             using (Stream chainedStream = new MemoryStream())
             {
                 using (V2HmacStream stream = new V2HmacStream(new byte[0], chainedStream))

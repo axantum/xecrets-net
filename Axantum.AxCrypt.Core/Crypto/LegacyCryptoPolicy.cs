@@ -37,7 +37,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public ICryptoFactory DefaultCryptoFactory(IEnumerable<CryptoFactoryCreator> factories)
         {
-            return factories.First(f => f().Id == CryptoFactory.Aes128V1Id)();
+            return factories.First(f => f().Id == V1Aes128CryptoFactory.CryptoId)();
         }
 
         public int Priority

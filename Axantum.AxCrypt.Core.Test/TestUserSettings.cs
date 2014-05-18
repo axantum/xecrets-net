@@ -25,13 +25,13 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.UI;
 using Moq;
 using NUnit.Framework;
+using System;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -96,8 +96,8 @@ namespace Axantum.AxCrypt.Core.Test
             settings.DisplayDecryptPassphrase = true;
             Assert.That(settings.DisplayDecryptPassphrase, Is.True, "The value should be this.");
 
-            settings.SetKeyWrapIterations(CryptoFactory.Aes128V1Id, 1234);
-            Assert.That(settings.GetKeyWrapIterations(CryptoFactory.Aes128V1Id), Is.EqualTo(1234), "The value should be this.");
+            settings.SetKeyWrapIterations(V1Aes128CryptoFactory.CryptoId, 1234);
+            Assert.That(settings.GetKeyWrapIterations(V1Aes128CryptoFactory.CryptoId), Is.EqualTo(1234), "The value should be this.");
 
             Salt salt = new Salt(128);
             settings.ThumbprintSalt = salt;
@@ -106,17 +106,17 @@ namespace Axantum.AxCrypt.Core.Test
             settings.SessionNotificationMinimumIdle = new TimeSpan(1, 2, 3);
             Assert.That(settings.SessionNotificationMinimumIdle, Is.EqualTo(new TimeSpan(1, 2, 3)), "The value should be this.");
 
-            settings.SetKeyWrapIterations(CryptoFactory.Aes256Id, 999);
-            Assert.That(settings.GetKeyWrapIterations(CryptoFactory.Aes256Id), Is.EqualTo(999));
+            settings.SetKeyWrapIterations(V2Aes256CryptoFactory.CryptoId, 999);
+            Assert.That(settings.GetKeyWrapIterations(V2Aes256CryptoFactory.CryptoId), Is.EqualTo(999));
         }
 
         [Test]
         public static void TestKeyWrapIterationCalculator()
         {
-            IterationCalculator calculator = Mock.Of<IterationCalculator>(c => c.KeyWrapIterations(It.Is<Guid>(g => g == CryptoFactory.Aes128V1Id)) == 666);
+            IterationCalculator calculator = Mock.Of<IterationCalculator>(c => c.KeyWrapIterations(It.Is<Guid>(g => g == V1Aes128CryptoFactory.CryptoId)) == 666);
 
             UserSettings settings = new UserSettings(Factory.New<IRuntimeFileInfo>(@"C:\Folder\UserSettings.txt"), calculator);
-            Assert.That(settings.GetKeyWrapIterations(CryptoFactory.Aes128V1Id), Is.EqualTo(666));
+            Assert.That(settings.GetKeyWrapIterations(V1Aes128CryptoFactory.CryptoId), Is.EqualTo(666));
         }
 
         [Test]

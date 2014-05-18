@@ -130,7 +130,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 using (Stream stream = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath).OpenRead())
                 {
-                    document.Load(new Passphrase("a"), CryptoFactory.Aes128V1Id, stream);
+                    document.Load(new Passphrase("a"), V1Aes128CryptoFactory.CryptoId, stream);
                     status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, new Passphrase("a"), document, new ProgressContext());
                 }
             }
@@ -158,7 +158,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 using (Stream stream = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath).OpenRead())
                 {
-                    document.Load(new Passphrase("a"), CryptoFactory.Aes128V1Id, stream);
+                    document.Load(new Passphrase("a"), V1Aes128CryptoFactory.CryptoId, stream);
                     status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, new Passphrase("a"), document, new ProgressContext());
                 }
             }

@@ -91,7 +91,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (VXAxCryptReader reader = new VXAxCryptReader(Stream.Null))
             {
-                Assert.Throws<NotImplementedException>(() => reader.Document(new Passphrase("test"), CryptoFactory.Aes128V1Id, new Headers()));
+                Assert.Throws<NotImplementedException>(() => reader.Document(new Passphrase("test"), V1Aes128CryptoFactory.CryptoId, new Headers()));
             }
         }
     }

@@ -49,8 +49,20 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </value>
         string Name { get; }
 
+        /// <summary>
+        /// Creates a new derived key, generating a random salt and an appropriate number of iterations.
+        /// </summary>
+        /// <param name="passphrase">The passphrase.</param>
+        /// <returns>A new IDerivedKey instance.</returns>
         IDerivedKey CreateDerivedKey(Passphrase passphrase);
 
+        /// <summary>
+        /// Restores a derived key with the given salt and iterations.
+        /// </summary>
+        /// <param name="passphrase">The passphrase.</param>
+        /// <param name="salt">The salt.</param>
+        /// <param name="derivationIterations">The derivation iterations.</param>
+        /// <returns>A restored IDerivedKey instance.</returns>
         IDerivedKey RestoreDerivedKey(Passphrase passphrase, Salt salt, int derivationIterations);
 
         /// <summary>

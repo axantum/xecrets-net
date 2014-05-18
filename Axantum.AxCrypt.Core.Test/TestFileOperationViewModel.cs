@@ -488,7 +488,7 @@ namespace Axantum.AxCrypt.Core.Test
             Mock<AxCryptFactory> axCryptFactoryMock = new Mock<AxCryptFactory>();
             axCryptFactoryMock.Setup<Guid>(m => m.TryFindCryptoId(It.IsAny<Passphrase>(), It.IsAny<IRuntimeFileInfo>(), It.IsAny<IEnumerable<Guid>>())).Returns((Passphrase passphrase, IRuntimeFileInfo fileInfo, IEnumerable<Guid> cryptoIds) =>
             {
-                return CryptoFactory.Aes128V1Id;
+                return V1Aes128CryptoFactory.CryptoId;
             });
             Factory.Instance.Register<AxCryptFactory>(() => axCryptFactoryMock.Object);
 
@@ -828,7 +828,7 @@ namespace Axantum.AxCrypt.Core.Test
             Mock<AxCryptFactory> axCryptFactoryMock = new Mock<AxCryptFactory>();
             axCryptFactoryMock.Setup<Guid>(m => m.TryFindCryptoId(It.IsAny<Passphrase>(), It.IsAny<IRuntimeFileInfo>(), It.IsAny<IEnumerable<Guid>>())).Returns((Passphrase passphrase, IRuntimeFileInfo fileInfo, IEnumerable<Guid> cryptoIds) =>
             {
-                return CryptoFactory.Aes128V1Id;
+                return V1Aes128CryptoFactory.CryptoId;
             });
             Factory.Instance.Register<AxCryptFactory>(() => axCryptFactoryMock.Object);
 

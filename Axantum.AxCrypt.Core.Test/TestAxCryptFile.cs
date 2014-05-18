@@ -152,7 +152,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(destinationFileInfo.Name, Is.EqualTo("test-txt.axx"), "Wrong encrypted file name based on the plain text file name.");
             using (Stream destinationStream = destinationFileInfo.OpenWrite())
             {
-                AxCryptFile.Encrypt(sourceFileInfo, destinationStream, new Passphrase("axcrypt"), CryptoFactory.Aes128Id, AxCryptOptions.EncryptWithCompression, new ProgressContext());
+                AxCryptFile.Encrypt(sourceFileInfo, destinationStream, new Passphrase("axcrypt"), V2Aes128CryptoFactory.CryptoId, AxCryptOptions.EncryptWithCompression, new ProgressContext());
             }
 
             using (IAxCryptDocument document = Factory.New<AxCryptFile>().Document(destinationFileInfo, new Passphrase("axcrypt"), new ProgressContext()))
@@ -195,7 +195,7 @@ namespace Axantum.AxCrypt.Core.Test
                 };
                 using (Stream sourceStream = new ProgressStream(sourceFileInfo.OpenRead(), progress))
                 {
-                    bool keyIsOk = document.Load(passphrase, CryptoFactory.Aes128V1Id, sourceStream);
+                    bool keyIsOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, sourceStream);
                     Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                     IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(_rootPath.PathCombine("Destination", "Decrypted.txt"));
 
@@ -264,7 +264,7 @@ namespace Axantum.AxCrypt.Core.Test
             Passphrase passphrase = new Passphrase("Uncompressable");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
             {
-                bool isOk = document.Load(passphrase, CryptoFactory.Aes128V1Id, sourceRuntimeFileInfo.OpenRead());
+                bool isOk = document.Load(passphrase, V1Aes128CryptoFactory.CryptoId, sourceRuntimeFileInfo.OpenRead());
                 Assert.That(isOk, Is.True, "The document should load ok.");
                 Factory.New<AxCryptFile>().Decrypt(document, destinationRuntimeFileInfo, AxCryptOptions.None, new ProgressContext());
                 Assert.That(document.DocumentHeaders.UncompressedLength, Is.EqualTo(0), "Since the data is not compressed, there should not be a CompressionInfo, but in 1.x there is, with value zero.");
@@ -382,7 +382,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             ProgressContext progress = new ProgressContext();
 
-            Factory.New<AxCryptFile>().EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, key, CryptoFactory.Aes128Id, progress);
+            Factory.New<AxCryptFile>().EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, key, V2Aes128CryptoFactory.CryptoId, progress);
 
             Assert.That(sourceFileInfo.IsExistingFile, Is.False, "The source should be wiped.");
             Assert.That(destinationFileInfo.IsExistingFile, Is.True, "The destination should be created and exist now.");
@@ -417,7 +417,7 @@ namespace Axantum.AxCrypt.Core.Test
             Passphrase key = new Passphrase("b");
             ProgressContext progress = new ProgressContext();
 
-            Factory.New<AxCryptFile>().EncryptFileWithBackupAndWipe(sourceFilePath, destinationFilePath, key, CryptoFactory.Aes256Id, progress);
+            Factory.New<AxCryptFile>().EncryptFileWithBackupAndWipe(sourceFilePath, destinationFilePath, key, V2Aes256CryptoFactory.CryptoId, progress);
 
             IRuntimeFileInfo sourceFileInfo = Factory.New<IRuntimeFileInfo>(sourceFilePath);
             IRuntimeFileInfo destinationFileInfo = Factory.New<IRuntimeFileInfo>(destinationFilePath);
@@ -473,7 +473,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Passphrase passphrase = new Passphrase("allan");
 
-            Factory.New<AxCryptFile>().EncryptFileUniqueWithBackupAndWipe(sourceFileInfo, passphrase, CryptoFactory.Aes128V1Id, new ProgressContext());
+            Factory.New<AxCryptFile>().EncryptFileUniqueWithBackupAndWipe(sourceFileInfo, passphrase, V1Aes128CryptoFactory.CryptoId, new ProgressContext());
 
             Assert.That(sourceFileInfo.IsExistingFile, Is.False, "The source should be wiped.");
             Assert.That(destinationFileInfo.IsExistingFile, Is.True, "The destination should be created and exist now.");
@@ -491,7 +491,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Passphrase passphrase = new Passphrase("allan");
 
-            Factory.New<AxCryptFile>().EncryptFileUniqueWithBackupAndWipe(sourceFileInfo, passphrase, CryptoFactory.Aes256Id, new ProgressContext());
+            Factory.New<AxCryptFile>().EncryptFileUniqueWithBackupAndWipe(sourceFileInfo, passphrase, V2Aes256CryptoFactory.CryptoId, new ProgressContext());
 
             Assert.That(sourceFileInfo.IsExistingFile, Is.False, "The source should be wiped.");
             Assert.That(alternateDestinationFileInfo.IsExistingFile, Is.True, "The destination should be created and exist now.");
@@ -507,7 +507,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Passphrase passphrase = new Passphrase("allan");
 
-            Factory.New<AxCryptFile>().EncryptFoldersUniqueWithBackupAndWipe(new IRuntimeFileInfo[] { sourceFolderInfo }, passphrase, CryptoFactory.Aes128V1Id, new ProgressContext());
+            Factory.New<AxCryptFile>().EncryptFoldersUniqueWithBackupAndWipe(new IRuntimeFileInfo[] { sourceFolderInfo }, passphrase, V1Aes128CryptoFactory.CryptoId, new ProgressContext());
 
             Assert.That(sourceFileInfo.IsExistingFile, Is.False, "The source should be wiped.");
             Assert.That(destinationFileInfo.IsExistingFile, Is.True, "The destination should be created and exist now.");
@@ -526,7 +526,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Passphrase passphrase = new Passphrase("allan");
 
-            Factory.New<AxCryptFile>().EncryptFoldersUniqueWithBackupAndWipe(new IRuntimeFileInfo[] { sourceFolderInfo }, passphrase, CryptoFactory.Aes128Id, new ProgressContext());
+            Factory.New<AxCryptFile>().EncryptFoldersUniqueWithBackupAndWipe(new IRuntimeFileInfo[] { sourceFolderInfo }, passphrase, V2Aes128CryptoFactory.CryptoId, new ProgressContext());
 
             Assert.That(sourceFileInfo.IsExistingFile, Is.False, "The source should be wiped.");
             Assert.That(alternateDestinationFileInfo.IsExistingFile, Is.True, "The destination should be created and exist now.");

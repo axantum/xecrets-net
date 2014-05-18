@@ -32,7 +32,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 {
     public class V2Aes256CryptoFactory : ICryptoFactory
     {
-        private static readonly Guid _id = CryptoFactory.Aes256Id;
+        public static readonly Guid CryptoId = new Guid("E20F33D4-89E2-4D88-A39C-21DD62FB674F");
 
         public IDerivedKey CreateDerivedKey(Passphrase passphrase)
         {
@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public Guid Id
         {
-            get { return _id; }
+            get { return CryptoId; }
         }
 
         public string Name

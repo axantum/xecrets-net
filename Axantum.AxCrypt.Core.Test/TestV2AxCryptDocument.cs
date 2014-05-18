@@ -125,7 +125,7 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
-                    using (V2AxCryptDocument document = new V2AxCryptDocument(new Passphrase("Secret"), CryptoFactory.Aes256Id, 100))
+                    using (V2AxCryptDocument document = new V2AxCryptDocument(new Passphrase("Secret"), V2Aes256CryptoFactory.CryptoId, 100))
                     {
                         document.EncryptTo(inputStream, outputStream, options);
                         output = outputStream.ToArray();
@@ -229,7 +229,7 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
-                    using (IAxCryptDocument document = new V2AxCryptDocument(new Passphrase("passphrase"), CryptoFactory.Aes256Id, 113))
+                    using (IAxCryptDocument document = new V2AxCryptDocument(new Passphrase("passphrase"), V2Aes256CryptoFactory.CryptoId, 113))
                     {
                         document.EncryptTo(inputStream, outputStream, options);
 
@@ -275,14 +275,14 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
-                    using (IAxCryptDocument document = new V2AxCryptDocument(new Passphrase("passphrase"), CryptoFactory.Aes256Id, 113))
+                    using (IAxCryptDocument document = new V2AxCryptDocument(new Passphrase("passphrase"), V2Aes256CryptoFactory.CryptoId, 113))
                     {
                         document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithCompression);
 
                         outputStream.Position = 0;
                         using (IAxCryptDocument decryptedDocument = new V2AxCryptDocument())
                         {
-                            Assert.That(decryptedDocument.Load(new Passphrase("incorrect"), CryptoFactory.Aes256Id, outputStream), Is.False);
+                            Assert.That(decryptedDocument.Load(new Passphrase("incorrect"), V2Aes256CryptoFactory.CryptoId, outputStream), Is.False);
                         }
                     }
                 }
@@ -306,14 +306,14 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
-                    using (IAxCryptDocument document = new V2AxCryptDocument(new Passphrase("passphrase"), CryptoFactory.Aes256Id, 113))
+                    using (IAxCryptDocument document = new V2AxCryptDocument(new Passphrase("passphrase"), V2Aes256CryptoFactory.CryptoId, 113))
                     {
                         document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithCompression);
 
                         outputStream.Position = 0;
                         using (IAxCryptDocument decryptedDocument = new V2AxCryptDocument())
                         {
-                            Assert.That(decryptedDocument.Load(new Passphrase("incorrect"), CryptoFactory.Aes256Id, outputStream), Is.False);
+                            Assert.That(decryptedDocument.Load(new Passphrase("incorrect"), V2Aes256CryptoFactory.CryptoId, outputStream), Is.False);
                             Assert.Throws<InternalErrorException>(() => decryptedDocument.DecryptTo(Stream.Null));
                         }
                     }
@@ -331,7 +331,7 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
-                    using (IAxCryptDocument document = new V2AxCryptDocument(new Passphrase("passphrase"), CryptoFactory.Aes256Id, 113))
+                    using (IAxCryptDocument document = new V2AxCryptDocument(new Passphrase("passphrase"), V2Aes256CryptoFactory.CryptoId, 113))
                     {
                         document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithoutCompression);
 
@@ -361,7 +361,7 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
-                    using (IAxCryptDocument document = new V2AxCryptDocument(new Passphrase("passphrase"), CryptoFactory.Aes256Id, 113))
+                    using (IAxCryptDocument document = new V2AxCryptDocument(new Passphrase("passphrase"), V2Aes256CryptoFactory.CryptoId, 113))
                     {
                         document.EncryptTo(inputStream, outputStream, AxCryptOptions.EncryptWithCompression);
 
@@ -390,7 +390,7 @@ namespace Axantum.AxCrypt.Core.Test
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
                 {
-                    using (IAxCryptDocument document = new V2AxCryptDocument(new Passphrase("properties"), CryptoFactory.Aes256Id, 15))
+                    using (IAxCryptDocument document = new V2AxCryptDocument(new Passphrase("properties"), V2Aes256CryptoFactory.CryptoId, 15))
                     {
                         DateTime utcNow = OS.Current.UtcNow;
                         DateTime lastWrite = utcNow.AddHours(1);
@@ -407,7 +407,7 @@ namespace Axantum.AxCrypt.Core.Test
                         outputStream.Position = 0;
                         using (IAxCryptDocument decryptedDocument = new V2AxCryptDocument())
                         {
-                            Assert.That(decryptedDocument.Load(new Passphrase("properties"), CryptoFactory.Aes256Id, outputStream), Is.True);
+                            Assert.That(decryptedDocument.Load(new Passphrase("properties"), V2Aes256CryptoFactory.CryptoId, outputStream), Is.True);
 
                             Assert.That(decryptedDocument.CreationTimeUtc, Is.EqualTo(create));
                             Assert.That(decryptedDocument.LastAccessTimeUtc, Is.EqualTo(lastAccess));

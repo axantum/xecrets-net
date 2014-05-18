@@ -87,7 +87,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 using (Stream stream = destinationInfo.OpenRead())
                 {
-                    document.Load(new Passphrase("allan"), CryptoFactory.Aes256Id, stream);
+                    document.Load(new Passphrase("allan"), V2Aes256CryptoFactory.CryptoId, stream);
                     Assert.That(document.PassphraseIsValid, "The encrypted document should be valid and encrypted with the passphrase given.");
                 }
             }
@@ -118,7 +118,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 using (Stream stream = destinationInfo.OpenRead())
                 {
-                    document.Load(new Passphrase("allan"), CryptoFactory.Aes256Id, stream);
+                    document.Load(new Passphrase("allan"), V2Aes256CryptoFactory.CryptoId, stream);
                     Assert.That(document.PassphraseIsValid, "The encrypted document should be valid and encrypted with the passphrase given.");
                 }
             }
@@ -151,7 +151,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 using (Stream stream = destinationInfo.OpenRead())
                 {
-                    document.Load(new Passphrase("default"), CryptoFactory.Aes128V1Id, stream);
+                    document.Load(new Passphrase("default"), V1Aes128CryptoFactory.CryptoId, stream);
                     Assert.That(document.PassphraseIsValid, "The encrypted document should be valid and encrypted with the default passphrase given.");
                 }
             }
