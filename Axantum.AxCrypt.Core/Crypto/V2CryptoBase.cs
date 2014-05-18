@@ -12,6 +12,21 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private int _blockOffset;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="V2CryptoBase" /> class.
+        /// </summary>
+        /// <param name="factory">The factory.</param>
+        /// <param name="key">The key.</param>
+        /// <param name="iv">The iv, or null for none.</param>
+        /// <param name="keyStreamOffset">The key stream offset.</param>
+        /// <exception cref="System.ArgumentNullException">factory
+        /// or
+        /// key
+        /// or
+        /// iv</exception>
+        /// <exception cref="System.ArgumentException">Key length is invalid.
+        /// or
+        /// The IV length must be the same as the algorithm block length.</exception>
         public V2CryptoBase(ICryptoFactory factory, SymmetricKey key, SymmetricIV iv, long keyStreamOffset)
         {
             if (factory == null)
@@ -22,16 +37,13 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new ArgumentNullException("key");
             }
-            if (iv == null)
-            {
-                throw new ArgumentNullException("iv");
-            }
             using (SymmetricAlgorithm algorithm = CreateRawAlgorithm())
             {
                 if (!algorithm.ValidKeySize(key.Size))
                 {
                     throw new ArgumentException("Key length is invalid.");
                 }
+                iv = iv ?? new SymmetricIV(new byte[algorithm.BlockSize / 8]);
                 if (iv.Length != algorithm.BlockSize / 8)
                 {
                     throw new ArgumentException("The IV length must be the same as the algorithm block length.");

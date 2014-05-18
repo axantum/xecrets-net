@@ -81,13 +81,6 @@ namespace Axantum.AxCrypt.Core.Reader
             return new UnrecognizedHeaderBlock(headerBlockType, dataBlock);
         }
 
-        public override ICrypto Crypto(Headers headers, Passphrase passphrase, Guid cryptoId)
-        {
-            V2KeyWrapHeaderBlock keyWrap = headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
-            ICryptoFactory cryptoFactory = Instance.CryptoFactory.Create(cryptoId);
-            return cryptoFactory.CreateCrypto(cryptoFactory.CreatePassphrase(passphrase, keyWrap.DerivationSalt, keyWrap.DerivationIterations).DerivedKey);
-        }
-
         public override IAxCryptDocument Document(Passphrase key, Guid cryptoId, Headers headers)
         {
             V2AxCryptDocument v2Document = new V2AxCryptDocument();

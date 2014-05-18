@@ -62,11 +62,6 @@ namespace Axantum.AxCrypt.Core.Test
                 if (new V1AesCrypto(new V1Aes128CryptoFactory(), null, iv) == null) { }
             });
 
-            Assert.Throws<ArgumentNullException>(() =>
-            {
-                if (new V1AesCrypto(new V1Aes128CryptoFactory(), key, null) == null) { }
-            });
-
             Assert.DoesNotThrow(() =>
             {
                 if (new V1AesCrypto(new V1Aes128CryptoFactory(), key, iv) == null) { }

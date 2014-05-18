@@ -61,11 +61,6 @@ namespace Axantum.AxCrypt.Core.Test
             {
             }
 
-            public override Crypto.ICrypto Crypto(Headers headers, Passphrase passphrase, Guid cryptoId)
-            {
-                throw new NotImplementedException();
-            }
-
             protected override HeaderBlock HeaderBlockFactory(HeaderBlockType headerBlockType, byte[] dataBlock)
             {
                 switch (headerBlockType)

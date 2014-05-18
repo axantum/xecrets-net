@@ -142,7 +142,7 @@ namespace Axantum.AxCrypt.Core.Header
 
             Salt salt = new Salt(_keyEncryptingKey.DerivedKey.Size);
             KeyWrap keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.Specification);
-            ICrypto crypto = _cryptoFactory.CreateCrypto(_keyEncryptingKey.DerivedKey);
+            ICrypto crypto = _cryptoFactory.CreateCrypto(_keyEncryptingKey.DerivedKey, null, 0);
             _unwrappedKeyData = Instance.RandomGenerator.Generate(_keyEncryptingKey.DerivedKey.Size / 8 + crypto.BlockLength);
             byte[] wrappedKeyData = keyWrap.Wrap(crypto, _unwrappedKeyData);
             Set(wrappedKeyData, salt, keyWrapIterations);
@@ -177,7 +177,7 @@ namespace Axantum.AxCrypt.Core.Header
             Salt salt = new Salt(saltBytes);
 
             KeyWrap keyWrap = new KeyWrap(salt, KeyWrapIterations, KeyWrapMode.Specification);
-            ICrypto crypto = _cryptoFactory.CreateCrypto(_keyEncryptingKey.DerivedKey);
+            ICrypto crypto = _cryptoFactory.CreateCrypto(_keyEncryptingKey.DerivedKey, null, 0);
             byte[] wrappedKeyData = GetKeyData(crypto.BlockLength, _keyEncryptingKey.DerivedKey.Size / 8);
             return keyWrap.Unwrap(crypto, wrappedKeyData);
         }
@@ -204,7 +204,7 @@ namespace Axantum.AxCrypt.Core.Header
                 {
                     return null;
                 }
-                ICrypto crypto = _cryptoFactory.CreateCrypto(_keyEncryptingKey.DerivedKey);
+                ICrypto crypto = _cryptoFactory.CreateCrypto(_keyEncryptingKey.DerivedKey, null, 0);
                 byte[] masterIVBytes = new byte[crypto.BlockLength];
                 Array.Copy(UnwrappedMasterKeyData, _keyEncryptingKey.DerivedKey.Size / 8, masterIVBytes, 0, masterIVBytes.Length);
                 return new SymmetricIV(masterIVBytes);

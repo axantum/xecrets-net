@@ -31,6 +31,7 @@ using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
 using NUnit.Framework;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 
@@ -51,7 +52,7 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.AssemblyTeardown();
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
+        [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestGetCryptoFromHeaders()
         {
             Headers headers = new Headers();
@@ -74,9 +75,12 @@ namespace Axantum.AxCrypt.Core.Test
                             }
                         }
                         V2KeyWrapHeaderBlock keyWrap = headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
-                        SymmetricKey key = new V2Aes256CryptoFactory().CreatePassphrase(new Passphrase("passphrase"), keyWrap.DerivationSalt, keyWrap.DerivationIterations).DerivedKey;
-                        ICrypto cryptoFromReader = reader.Crypto(headers, new Passphrase("passphrase"), CryptoFactory.Aes256Id);
-                        Assert.That(key.Equals(cryptoFromReader.Key));
+                        SymmetricKey dataEncryptingKey = documentHeaders.DataEncryptingKey;
+
+                        IDerivedKey key = new V2Aes256CryptoFactory().CreatePassphrase(new Passphrase("passphrase"), keyWrap.DerivationSalt, keyWrap.DerivationIterations);
+                        keyWrap.SetCryptoKey(new V2Aes256CryptoFactory(), key);
+
+                        Assert.That(dataEncryptingKey.Equals(documentHeaders.DataEncryptingKey));
                     }
                 }
             }
