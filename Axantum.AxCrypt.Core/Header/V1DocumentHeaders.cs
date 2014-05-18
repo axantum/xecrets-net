@@ -47,7 +47,7 @@ namespace Axantum.AxCrypt.Core.Header
         {
             _headers.HeaderBlocks.Add(new PreambleHeaderBlock());
             _headers.HeaderBlocks.Add(new VersionHeaderBlock(_version));
-            _headers.HeaderBlocks.Add(new V1KeyWrap1HeaderBlock(_keyEncryptingKey, keyWrapIterations));
+            _headers.HeaderBlocks.Add(new V1KeyWrap1HeaderBlock(_keyEncryptingKey.DerivedKey, keyWrapIterations));
 
             ICrypto headerCrypto = Instance.CryptoFactory.Legacy.CreateCrypto(HeadersSubkey.Key, null, 0);
             _headers.HeaderBlocks.Add(new V1EncryptionInfoEncryptedHeaderBlock(headerCrypto));

@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt.Core.Header
         {
         }
 
-        public V1KeyWrap1HeaderBlock(IDerivedKey keyEncryptingKey, long keyWrapIterations)
+        public V1KeyWrap1HeaderBlock(SymmetricKey keyEncryptingKey, long keyWrapIterations)
             : this(new byte[44])
         {
             Initialize(keyEncryptingKey, keyWrapIterations);
@@ -121,27 +121,27 @@ namespace Axantum.AxCrypt.Core.Header
                 salt = new Salt(badSalt);
             }
 
-            byte[] unwrappedKeyData;
             KeyWrap keyWrap = new KeyWrap(salt, KeyWrapIterations, KeyWrapMode.AxCrypt);
-            unwrappedKeyData = keyWrap.Unwrap(Instance.CryptoFactory.Legacy.CreateCrypto(masterKeyEncryptingKey, null, 0), wrappedKeyData);
+            byte[] unwrappedKeyData = keyWrap.Unwrap(Instance.CryptoFactory.Legacy.CreateCrypto(masterKeyEncryptingKey, null, 0), wrappedKeyData);
             return unwrappedKeyData;
         }
 
-        private void Initialize(IDerivedKey keyEncryptingKey, long keyWrapIterations)
+        private void Initialize(SymmetricKey keyEncryptingKey, long keyWrapIterations)
         {
-            SymmetricKey masterKey = new SymmetricKey(keyEncryptingKey.DerivedKey.Size);
-            Salt salt = new Salt(masterKey.Size);
-            KeyWrap keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.AxCrypt);
-            byte[] wrappedKeyData = keyWrap.Wrap(Instance.CryptoFactory.Create(V1Aes128CryptoFactory.CryptoId).CreateCrypto(keyEncryptingKey.DerivedKey, null, 0), masterKey);
-            Set(wrappedKeyData, salt, keyWrapIterations);
+            RewrapMasterKey(new SymmetricKey(keyEncryptingKey.Size), keyEncryptingKey, keyWrapIterations);
         }
 
         public void RewrapMasterKey(SymmetricKey masterKey, SymmetricKey keyEncryptingKey)
         {
-            Salt salt = new Salt(keyEncryptingKey.Size);
-            KeyWrap keyWrap = new KeyWrap(salt, KeyWrapIterations, KeyWrapMode.AxCrypt);
+            RewrapMasterKey(masterKey, keyEncryptingKey, KeyWrapIterations);
+        }
+
+        public void RewrapMasterKey(SymmetricKey masterKey, SymmetricKey keyEncryptingKey, long keyWrapIterations)
+        {
+            Salt salt = new Salt(masterKey.Size);
+            KeyWrap keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.AxCrypt);
             byte[] wrappedKeyData = keyWrap.Wrap(Instance.CryptoFactory.Legacy.CreateCrypto(keyEncryptingKey, null, 0), masterKey);
-            Set(wrappedKeyData, salt, KeyWrapIterations);
+            Set(wrappedKeyData, salt, keyWrapIterations);
         }
     }
 }
