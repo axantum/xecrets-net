@@ -26,12 +26,14 @@
 #endregion Coypright and License
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
     public class Passphrase : IEquatable<Passphrase>
     {
+        [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "This type is in fact immutable.")]
         public static readonly Passphrase Empty = new Passphrase(String.Empty);
 
         public Passphrase(string text)

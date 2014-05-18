@@ -109,7 +109,7 @@ namespace Axantum.AxCrypt
         private static CryptoFactory CreateCryptoFactory(string startPath)
         {
             IEnumerable<Assembly> extraAssemblies = LoadFromFiles(new DirectoryInfo(Path.GetDirectoryName(startPath)).GetFiles("*.dll"));
-            IEnumerable<Type> types = TypeDiscovery.Interfaces<ICryptoFactory>(extraAssemblies);
+            IEnumerable<Type> types = TypeDiscovery.Interface(typeof(ICryptoFactory), extraAssemblies);
 
             CryptoFactory factory = new CryptoFactory();
             foreach (Type type in types)

@@ -39,7 +39,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public CryptoPolicy(IEnumerable<Assembly> extraAssemblies)
         {
-            IEnumerable<Type> policyTypes = TypeDiscovery.Interfaces<ICryptoPolicy>(extraAssemblies);
+            IEnumerable<Type> policyTypes = TypeDiscovery.Interface(typeof(ICryptoPolicy), extraAssemblies);
             foreach (Type policyType in policyTypes)
             {
                 ICryptoPolicy instance = Activator.CreateInstance(policyType) as ICryptoPolicy;

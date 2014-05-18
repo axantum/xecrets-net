@@ -122,42 +122,16 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(cipherText4.IsEquivalentTo(nistCiphertext4));
         }
 
-        private class PassphraseForTest : IDerivedKey
-        {
-            public SymmetricKey DerivedKey
-            {
-                get;
-                set;
-            }
-
-            public Salt DerivationSalt
-            {
-                get { throw new NotImplementedException(); }
-            }
-
-            public int DerivationIterations
-            {
-                get { throw new NotImplementedException(); }
-            }
-
-            public bool Equals(IDerivedKey other)
-            {
-                throw new NotImplementedException();
-            }
-        }
-
         [Test]
         public static void TestConstructorWithBadArguments()
         {
             SymmetricKey nullKey = null;
-            SymmetricIV nullIV = null;
 
-            SymmetricKey testKey = new PassphraseForTest().DerivedKey;
+            SymmetricKey testKey = new SymmetricKey(128);
             SymmetricIV testIV = new SymmetricIV(128);
 
             ICrypto crypto = null;
             Assert.Throws<ArgumentNullException>(() => crypto = new V2AesCrypto(new V2Aes256CryptoFactory(), nullKey, testIV, 0));
-            Assert.Throws<ArgumentNullException>(() => crypto = new V2AesCrypto(new V2Aes256CryptoFactory(), testKey, nullIV, 0));
 
             testKey = new SymmetricKey(64);
             Assert.Throws<ArgumentException>(() => crypto = new V2AesCrypto(new V2Aes256CryptoFactory(), testKey, testIV, 0));

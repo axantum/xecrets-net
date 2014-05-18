@@ -9,12 +9,12 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public IDerivedKey CreateDerivedKey(Passphrase passphrase)
         {
-            return new V2DerivedKey(passphrase, 128, Id);
+            return new V2DerivedKey(passphrase, 128);
         }
 
         public IDerivedKey RestoreDerivedKey(Passphrase passphrase, Salt salt, int derivationIterations)
         {
-            return new V2DerivedKey(passphrase, salt, derivationIterations, 128, Id);
+            return new V2DerivedKey(passphrase, salt, derivationIterations, 128);
         }
 
         public ICrypto CreateCrypto(SymmetricKey key, SymmetricIV iv, long keyStreamOffset)

@@ -27,7 +27,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <exception cref="System.ArgumentException">Key length is invalid.
         /// or
         /// The IV length must be the same as the algorithm block length.</exception>
-        public V2CryptoBase(ICryptoFactory factory, SymmetricKey key, SymmetricIV iv, long keyStreamOffset)
+        protected void Initialize(ICryptoFactory factory, SymmetricKey key, SymmetricIV iv, long keyStreamOffset, SymmetricAlgorithm algorithm)
         {
             if (factory == null)
             {
@@ -37,17 +37,14 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new ArgumentNullException("key");
             }
-            using (SymmetricAlgorithm algorithm = CreateRawAlgorithm())
+            if (!algorithm.ValidKeySize(key.Size))
             {
-                if (!algorithm.ValidKeySize(key.Size))
-                {
-                    throw new ArgumentException("Key length is invalid.");
-                }
-                iv = iv ?? new SymmetricIV(new byte[algorithm.BlockSize / 8]);
-                if (iv.Length != algorithm.BlockSize / 8)
-                {
-                    throw new ArgumentException("The IV length must be the same as the algorithm block length.");
-                }
+                throw new ArgumentException("Key length is invalid.");
+            }
+            iv = iv ?? new SymmetricIV(new byte[algorithm.BlockSize / 8]);
+            if (iv.Length != algorithm.BlockSize / 8)
+            {
+                throw new ArgumentException("The IV length must be the same as the algorithm block length.");
             }
 
             Key = key;
@@ -78,7 +75,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private SymmetricAlgorithm CreateAlgorithmInternal()
         {
-            SymmetricAlgorithm algorithm = CreateRawAlgorithm();
+            SymmetricAlgorithm algorithm = CreateAlgorithm();
             algorithm.Key = Key.GetBytes();
             algorithm.IV = _iv.GetBytes();
             algorithm.Mode = CipherMode.ECB;
@@ -87,7 +84,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             return algorithm;
         }
 
-        protected abstract SymmetricAlgorithm CreateRawAlgorithm();
+        protected abstract SymmetricAlgorithm CreateAlgorithm();
 
         /// <summary>
         /// Decrypt in one operation.

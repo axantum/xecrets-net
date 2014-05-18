@@ -34,14 +34,14 @@ namespace Axantum.AxCrypt.Core.Runtime
 {
     public static class TypeDiscovery
     {
-        public static IEnumerable<Type> Interfaces<I>(IEnumerable<Assembly> extraAssemblies) where I : class
+        public static IEnumerable<Type> Interface(Type interfaceToDiscover, IEnumerable<Assembly> extraAssemblies)
         {
             List<Type> interfaces = new List<Type>();
-            foreach (Assembly assembly in new Assembly[] { Assembly.GetAssembly(typeof(I)) }.Concat(extraAssemblies))
+            foreach (Assembly assembly in new Assembly[] { Assembly.GetAssembly(interfaceToDiscover) }.Concat(extraAssemblies))
             {
                 try
                 {
-                    ScanAssemblyForNewInterfaces<I>(assembly, interfaces);
+                    ScanAssemblyForNewInterfaces(interfaceToDiscover, assembly, interfaces);
                 }
                 catch (TypeLoadException)
                 {
@@ -50,9 +50,9 @@ namespace Axantum.AxCrypt.Core.Runtime
             return interfaces;
         }
 
-        private static void ScanAssemblyForNewInterfaces<I>(Assembly assembly, IList<Type> interfaces)
+        private static void ScanAssemblyForNewInterfaces(Type interfaceToDiscover, Assembly assembly, IList<Type> interfaces)
         {
-            IEnumerable<Type> types = from t in assembly.GetExportedTypes() where t.GetInterfaces().Contains(typeof(I)) select t;
+            IEnumerable<Type> types = from t in assembly.GetExportedTypes() where t.GetInterfaces().Contains(interfaceToDiscover) select t;
 
             foreach (Type t in types)
             {

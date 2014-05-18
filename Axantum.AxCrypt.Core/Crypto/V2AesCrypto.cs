@@ -36,12 +36,27 @@ namespace Axantum.AxCrypt.Core.Crypto
     /// </summary>
     public class V2AesCrypto : V2CryptoBase
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="V2AesCrypto"/> class.
+        /// </summary>
+        /// <param name="factory">The factory.</param>
+        /// <param name="key">The key.</param>
+        /// <param name="iv">The iv, or null for none.</param>
+        /// <param name="keyStreamOffset">The key stream offset.</param>
         public V2AesCrypto(ICryptoFactory factory, SymmetricKey key, SymmetricIV iv, long keyStreamOffset)
-            : base(factory, key, iv, keyStreamOffset)
         {
+            using (SymmetricAlgorithm algorithm = CreateAlgorithmInternal())
+            {
+                Initialize(factory, key, iv, keyStreamOffset, algorithm);
+            }
         }
 
-        protected override SymmetricAlgorithm CreateRawAlgorithm()
+        protected override SymmetricAlgorithm CreateAlgorithm()
+        {
+            return CreateAlgorithmInternal();
+        }
+
+        private static SymmetricAlgorithm CreateAlgorithmInternal()
         {
             return new AesManaged();
         }

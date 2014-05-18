@@ -64,7 +64,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestClone()
         {
-            V2PlaintextLengthsEncryptedHeaderBlock block = new V2PlaintextLengthsEncryptedHeaderBlock(new V2AesCrypto(new V2Aes256CryptoFactory(), new V2DerivedKey(new Passphrase("secret"), 256, V2Aes256CryptoFactory.CryptoId).DerivedKey, SymmetricIV.Zero128, 0));
+            V2PlaintextLengthsEncryptedHeaderBlock block = new V2PlaintextLengthsEncryptedHeaderBlock(new V2AesCrypto(new V2Aes256CryptoFactory(), new V2DerivedKey(new Passphrase("secret"), 256).DerivedKey, SymmetricIV.Zero128, 0));
             V2PlaintextLengthsEncryptedHeaderBlock clone = (V2PlaintextLengthsEncryptedHeaderBlock)block.Clone();
 
             Assert.That(!Object.ReferenceEquals(block.GetDataBlockBytes(), clone.GetDataBlockBytes()));
@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestPlaintextLength()
         {
-            V2PlaintextLengthsEncryptedHeaderBlock block = new V2PlaintextLengthsEncryptedHeaderBlock(new V2AesCrypto(new V2Aes256CryptoFactory(), new V2DerivedKey(new Passphrase("secret"), 256, V2Aes256CryptoFactory.CryptoId).DerivedKey, SymmetricIV.Zero128, 0));
+            V2PlaintextLengthsEncryptedHeaderBlock block = new V2PlaintextLengthsEncryptedHeaderBlock(new V2AesCrypto(new V2Aes256CryptoFactory(), new V2DerivedKey(new Passphrase("secret"), 256).DerivedKey, SymmetricIV.Zero128, 0));
 
             Assert.That(block.PlaintextLength, Is.EqualTo(0));
 
@@ -86,7 +86,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestCompressedPlaintextLength()
         {
-            V2PlaintextLengthsEncryptedHeaderBlock block = new V2PlaintextLengthsEncryptedHeaderBlock(new V2AesCrypto(new V2Aes256CryptoFactory(), new V2DerivedKey(new Passphrase("secret"), 256, V2Aes256CryptoFactory.CryptoId).DerivedKey, SymmetricIV.Zero128, 0));
+            V2PlaintextLengthsEncryptedHeaderBlock block = new V2PlaintextLengthsEncryptedHeaderBlock(new V2AesCrypto(new V2Aes256CryptoFactory(), new V2DerivedKey(new Passphrase("secret"), 256).DerivedKey, SymmetricIV.Zero128, 0));
 
             Assert.That(block.CompressedPlaintextLength, Is.EqualTo(0));
 

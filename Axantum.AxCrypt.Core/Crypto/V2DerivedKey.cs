@@ -40,15 +40,15 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// Initializes a new instance of the <see cref="V2DerivedKey"/> class.
         /// </summary>
         /// <param name="passphrase">The passphrase.</param>
-        public V2DerivedKey(Passphrase passphrase, Salt salt, int derivationIterations, int keySize, Guid cryptoId)
+        public V2DerivedKey(Passphrase passphrase, Salt salt, int derivationIterations, int keySize)
         {
             DerivationSalt = salt;
             DerivationIterations = derivationIterations;
             DerivedKey = new SymmetricKey(new Pbkdf2HmacSha512(passphrase.Text, salt, derivationIterations).GetBytes().Reduce(keySize / 8));
         }
 
-        public V2DerivedKey(Passphrase passphrase, int keySize, Guid cryptoId)
-            : this(passphrase, new Salt(256), CryptoFactory.DerivationIterations, keySize, cryptoId)
+        public V2DerivedKey(Passphrase passphrase, int keySize)
+            : this(passphrase, new Salt(256), CryptoFactory.DerivationIterations, keySize)
         {
         }
     }
