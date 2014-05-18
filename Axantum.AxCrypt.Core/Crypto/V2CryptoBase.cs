@@ -50,7 +50,6 @@ namespace Axantum.AxCrypt.Core.Crypto
                 }
             }
 
-            Factory = factory;
             Key = key;
             _iv = iv;
             _blockCounter = keyStreamOffset / iv.Length;

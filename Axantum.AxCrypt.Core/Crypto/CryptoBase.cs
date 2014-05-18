@@ -6,8 +6,6 @@ namespace Axantum.AxCrypt.Core.Crypto
 {
     public abstract class CryptoBase : ICrypto
     {
-        public ICryptoFactory Factory { get; protected set; }
-
         private SymmetricKey _key;
 
         /// <summary>

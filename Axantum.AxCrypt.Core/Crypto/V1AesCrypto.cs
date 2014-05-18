@@ -58,7 +58,6 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new ArgumentException("Key length is invalid.");
             }
-            Factory = factory;
             using (SymmetricAlgorithm algorithm = CreateRawAlgorithm())
             {
                 iv = iv ?? new SymmetricIV(new byte[algorithm.BlockSize / 8]);
