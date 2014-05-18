@@ -44,11 +44,6 @@ namespace Axantum.AxCrypt.Core.Crypto
             return new V2Passphrase(passphrase, salt, derivationIterations, 256, Id);
         }
 
-        public ICrypto CreateCrypto(Passphrase passphrase)
-        {
-            return new V2AesCrypto(this, CreatePassphrase(passphrase).DerivedKey, null, 0);
-        }
-
         public ICrypto CreateCrypto(SymmetricKey key, SymmetricIV iv, long keyStreamOffset)
         {
             return new V2AesCrypto(this, key, iv, keyStreamOffset);

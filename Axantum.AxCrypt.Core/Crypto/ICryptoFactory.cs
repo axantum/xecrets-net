@@ -57,13 +57,6 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// Instantiate an approriate ICrypto implementation.
         /// </summary>
         /// <param name="key">The key to use.</param>
-        /// <returns>An instance of an appropriate ICrypto implementation.</returns>
-        ICrypto CreateCrypto(Passphrase key);
-
-        /// <summary>
-        /// Instantiate an approriate ICrypto implementation.
-        /// </summary>
-        /// <param name="key">The key to use.</param>
         /// <param name="iv">The Initial Vector to use, if relevant or null otherwise.</param>
         /// <param name="keyStreamOffset">The offset in the keystream to start it, if relevant.</param>
         /// <returns>An instance of an appropriate ICrypto implementation.</returns>
