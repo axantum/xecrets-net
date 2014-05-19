@@ -85,6 +85,12 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
+        public bool IncludeSubdirectories
+        {
+            get;
+            set;
+        }
+
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)

@@ -39,6 +39,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         public WorkFolderWatcher()
         {
             _workFolderWatcher = Factory.New<IFileWatcher>(Factory.Instance.Singleton<WorkFolder>().FileInfo.FullName);
+            _workFolderWatcher.IncludeSubdirectories = true;
             _workFolderWatcher.FileChanged += HandleWorkFolderFileChangedEvent;
         }
 

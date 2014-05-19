@@ -25,17 +25,17 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core.Session
 {
@@ -317,6 +317,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 _activeFilesByEncryptedPath[activeFile.EncryptedFileInfo.FullName] = activeFile;
             }
+            Factory.Instance.Singleton<ActiveFileWatcher>().Add(activeFile.EncryptedFileInfo);
         }
 
         [DataMember(Name = "ActiveFiles")]

@@ -61,6 +61,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
             Factory.Instance.Singleton<CryptoFactory>(() => CreateCryptoFactory());
             Factory.Instance.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
+            Factory.Instance.Singleton<ActiveFileWatcher>(() => new ActiveFileWatcher());
 
             Factory.Instance.Register<AxCryptFactory>(() => new AxCryptFactory());
             Factory.Instance.Register<AxCryptFile>(() => new AxCryptFile());

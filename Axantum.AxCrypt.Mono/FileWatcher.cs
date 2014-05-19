@@ -59,10 +59,23 @@ namespace Axantum.AxCrypt.Mono
             _fileSystemWatcher.Renamed += (sender, e) => FileSystemChanged(e.FullPath);
             _fileSystemWatcher.Error += (sender, e) => FileSystemChanged(_fileInfo.FullName);
 
-            _fileSystemWatcher.IncludeSubdirectories = true;
             _fileSystemWatcher.Filter = String.Empty;
             _fileSystemWatcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.CreationTime;
             _fileSystemWatcher.EnableRaisingEvents = true;
+        }
+
+        public bool IncludeSubdirectories
+        {
+            get
+            {
+                return _fileSystemWatcher.IncludeSubdirectories;
+            }
+            set
+            {
+                _fileSystemWatcher.EnableRaisingEvents = false;
+                _fileSystemWatcher.IncludeSubdirectories = value;
+                _fileSystemWatcher.EnableRaisingEvents = true;
+            }
         }
 
         protected virtual void OnDelayedNotification()

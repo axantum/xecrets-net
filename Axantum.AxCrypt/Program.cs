@@ -90,6 +90,7 @@ namespace Axantum.AxCrypt
             Factory.Instance.Singleton<CryptoPolicy>(() => CreateCryptoPolicy(startPath));
             Factory.Instance.Singleton<ICryptoPolicy>(() => Factory.Instance.Singleton<CryptoPolicy>().CreateDefault());
             Factory.Instance.Singleton<CommandHandler>(() => new CommandHandler());
+            Factory.Instance.Singleton<ActiveFileWatcher>(() => new ActiveFileWatcher());
 
             Factory.Instance.Register<AxCryptFactory>(() => new AxCryptFactory());
             Factory.Instance.Register<AxCryptFile>(() => new AxCryptFile());
