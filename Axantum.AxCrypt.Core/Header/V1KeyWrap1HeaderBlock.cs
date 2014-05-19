@@ -131,11 +131,6 @@ namespace Axantum.AxCrypt.Core.Header
             RewrapMasterKey(new SymmetricKey(keyEncryptingKey.Size), keyEncryptingKey, keyWrapIterations);
         }
 
-        public void RewrapMasterKey(SymmetricKey masterKey, SymmetricKey keyEncryptingKey)
-        {
-            RewrapMasterKey(masterKey, keyEncryptingKey, KeyWrapIterations);
-        }
-
         public void RewrapMasterKey(SymmetricKey masterKey, SymmetricKey keyEncryptingKey, long keyWrapIterations)
         {
             Salt salt = new Salt(masterKey.Size);

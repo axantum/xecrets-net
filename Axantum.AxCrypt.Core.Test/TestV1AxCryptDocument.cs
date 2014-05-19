@@ -419,7 +419,7 @@ namespace Axantum.AxCrypt.Core.Test
                 using (Stream changedStream = new MemoryStream())
                 {
                     V1DocumentHeaders outputDocumentHeaders = new V1DocumentHeaders(document.DocumentHeaders);
-                    outputDocumentHeaders.RewrapMasterKey(new V1DerivedKey(newPassphrase));
+                    outputDocumentHeaders.RewrapMasterKey(new V1DerivedKey(newPassphrase), 35);
 
                     document.CopyEncryptedTo(outputDocumentHeaders, changedStream);
                     changedStream.Position = 0;
@@ -623,7 +623,7 @@ namespace Axantum.AxCrypt.Core.Test
                 using (Stream changedStream = new MemoryStream())
                 {
                     V1DocumentHeaders outputDocumentHeaders = new V1DocumentHeaders(document.DocumentHeaders);
-                    outputDocumentHeaders.RewrapMasterKey(new V1DerivedKey(newPassphrase));
+                    outputDocumentHeaders.RewrapMasterKey(new V1DerivedKey(newPassphrase), 15);
 
                     byte[] modifiedHmacBytes = document.DocumentHeaders.Headers.Hmac.GetBytes();
                     modifiedHmacBytes[0] += 1;

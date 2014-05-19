@@ -180,10 +180,10 @@ namespace Axantum.AxCrypt.Core.Header
             return new SymmetricKey(unwrappedKeyData);
         }
 
-        public void RewrapMasterKey(IDerivedKey keyEncryptingKey)
+        public void RewrapMasterKey(IDerivedKey keyEncryptingKey, long keyWrapIterations)
         {
             V1KeyWrap1HeaderBlock keyHeaderBlock = _headers.FindHeaderBlock<V1KeyWrap1HeaderBlock>();
-            keyHeaderBlock.RewrapMasterKey(GetMasterKey(), keyEncryptingKey.DerivedKey);
+            keyHeaderBlock.RewrapMasterKey(GetMasterKey(), keyEncryptingKey.DerivedKey, keyWrapIterations);
             _keyEncryptingKey = keyEncryptingKey;
         }
 
