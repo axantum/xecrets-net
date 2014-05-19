@@ -207,7 +207,7 @@ namespace Axantum.AxCrypt.Core
         /// <param name="destinationFile">The destination file</param>
         /// <param name="passphrase">The passphrase</param>
         /// <returns>true if the passphrase was correct</returns>
-        public bool Decrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, Passphrase key, AxCryptOptions options, IProgressContext progress)
+        public bool Decrypt(IRuntimeFileInfo sourceFile, IRuntimeFileInfo destinationFile, Passphrase passphrase, AxCryptOptions options, IProgressContext progress)
         {
             if (sourceFile == null)
             {
@@ -217,62 +217,65 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("destinationFile");
             }
-            if (key == null)
+            if (passphrase == null)
             {
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException("passphrase");
             }
             if (progress == null)
             {
                 throw new ArgumentNullException("progress");
             }
-            using (IAxCryptDocument document = Document(sourceFile, key, new ProgressContext()))
+
+            DateTime creationTimeUtc, lastAccessTimeUtc, lastWriteTimeUtc;
+            using (IAxCryptDocument document = Document(sourceFile, passphrase, new ProgressContext()))
             {
                 if (!document.PassphraseIsValid)
                 {
                     return false;
                 }
+                creationTimeUtc = document.CreationTimeUtc;
+                lastAccessTimeUtc = document.LastAccessTimeUtc;
+                lastWriteTimeUtc = document.LastWriteTimeUtc;
                 Decrypt(document, destinationFile, options, progress);
+            }
+            try
+            {
+                if (Instance.Log.IsInfoEnabled)
+                {
+                    Instance.Log.LogInfo("Decrypting to '{0}'.".InvariantFormat(destinationFile.Name));
+                }
+
+                using (Stream destinationStream = destinationFile.OpenWrite())
+                {
+                    Decrypt(sourceFile.OpenRead(), destinationStream, passphrase, sourceFile.FullName, progress);
+                }
+
+                if (Instance.Log.IsInfoEnabled)
+                {
+                    Instance.Log.LogInfo("Decrypted to '{0}'.".InvariantFormat(destinationFile.Name));
+                }
+            }
+            catch (Exception)
+            {
+                if (destinationFile.IsExistingFile)
+                {
+                    Wipe(destinationFile, progress);
+                }
+                throw;
+            }
+            if (options.HasMask(AxCryptOptions.SetFileTimes))
+            {
+                destinationFile.SetFileTimes(creationTimeUtc, lastAccessTimeUtc, lastWriteTimeUtc);
             }
             return true;
         }
 
-        /// <summary>
-        /// Decrypt a source file to a destination file, given a passphrase
-        /// </summary>
-        /// <param name="sourceFile">The source file</param>
-        /// <param name="destinationFile">The destination file</param>
-        /// <param name="passphrase">The passphrase</param>
-        /// <returns>true if the passphrase was correct</returns>
-        public string Decrypt(IRuntimeFileInfo sourceFile, string destinationDirectory, Passphrase key, AxCryptOptions options, IProgressContext progress)
+        public void Decrypt(Stream source, Stream destination, Passphrase passphrase, string displayContext, IProgressContext progress)
         {
-            if (sourceFile == null)
+            using (IAxCryptDocument document = Document(source, passphrase, displayContext, progress))
             {
-                throw new ArgumentNullException("sourceFile");
+                document.DecryptTo(destination);
             }
-            if (destinationDirectory == null)
-            {
-                throw new ArgumentNullException("destinationDirectory");
-            }
-            if (key == null)
-            {
-                throw new ArgumentNullException("key");
-            }
-            if (progress == null)
-            {
-                throw new ArgumentNullException("progress");
-            }
-            string destinationFileName = null;
-            using (IAxCryptDocument document = Document(sourceFile, key, new ProgressContext()))
-            {
-                if (!document.PassphraseIsValid)
-                {
-                    return destinationFileName;
-                }
-                destinationFileName = document.FileName;
-                IRuntimeFileInfo destinationFullPath = Factory.New<IRuntimeFileInfo>(Path.Combine(destinationDirectory, destinationFileName));
-                Decrypt(document, destinationFullPath, options, progress);
-            }
-            return destinationFileName;
         }
 
         /// <summary>
@@ -325,6 +328,45 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
+        /// <summary>
+        /// Decrypt a source file to a destination file, given a passphrase
+        /// </summary>
+        /// <param name="sourceFile">The source file</param>
+        /// <param name="destinationFile">The destination file</param>
+        /// <param name="passphrase">The passphrase</param>
+        /// <returns>true if the passphrase was correct</returns>
+        public string Decrypt(IRuntimeFileInfo sourceFile, string destinationDirectory, Passphrase key, AxCryptOptions options, IProgressContext progress)
+        {
+            if (sourceFile == null)
+            {
+                throw new ArgumentNullException("sourceFile");
+            }
+            if (destinationDirectory == null)
+            {
+                throw new ArgumentNullException("destinationDirectory");
+            }
+            if (key == null)
+            {
+                throw new ArgumentNullException("key");
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
+            string destinationFileName = null;
+            using (IAxCryptDocument document = Document(sourceFile, key, new ProgressContext()))
+            {
+                if (!document.PassphraseIsValid)
+                {
+                    return destinationFileName;
+                }
+                destinationFileName = document.FileName;
+                IRuntimeFileInfo destinationFullPath = Factory.New<IRuntimeFileInfo>(Path.Combine(destinationDirectory, destinationFileName));
+                Decrypt(document, destinationFullPath, options, progress);
+            }
+            return destinationFileName;
+        }
+
         public virtual void DecryptFilesInsideFolderUniqueWithWipeOfOriginal(IRuntimeFileInfo folderInfo, Passphrase decryptionKey, IStatusChecker statusChecker, IProgressContext progress)
         {
             IEnumerable<IRuntimeFileInfo> files = folderInfo.ListEncrypted();
@@ -361,6 +403,19 @@ namespace Axantum.AxCrypt.Core
 
         public virtual void DecryptFile(IAxCryptDocument document, string decryptedFileFullName, IProgressContext progress)
         {
+            if (document == null)
+            {
+                throw new ArgumentNullException("document");
+            }
+            if (decryptedFileFullName == null)
+            {
+                throw new ArgumentNullException("decryptedFileFullName");
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
+
             IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(decryptedFileFullName);
             Decrypt(document, decryptedFileInfo, AxCryptOptions.SetFileTimes, progress);
         }
@@ -386,20 +441,53 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("progress");
             }
 
+            return Document(sourceFile.OpenRead(), key, sourceFile.FullName, progress);
+        }
+
+        /// <summary>
+        /// Creates an IAxCryptDocument instance from the specified source stream.
+        /// </summary>
+        /// <param name="source">The source stream. Ownership is passed to the IAxCryptDocument instance which disposes the stream when it is.</param>
+        /// <param name="key">The passphrase.</param>
+        /// <param name="displayContext">The display context.</param>
+        /// <param name="progress">The progress.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// source
+        /// or
+        /// key
+        /// or
+        /// progress
+        /// </exception>
+        public IAxCryptDocument Document(Stream source, Passphrase passphrase, string displayContext, IProgressContext progress)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException("source");
+            }
+            if (passphrase == null)
+            {
+                throw new ArgumentNullException("passphrase");
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
+
             try
             {
-                IAxCryptDocument document = Factory.New<AxCryptFactory>().CreateDocument(key, new ProgressStream(sourceFile.OpenRead(), progress));
+                IAxCryptDocument document = Factory.New<AxCryptFactory>().CreateDocument(passphrase, new ProgressStream(source, progress));
                 return document;
             }
             catch (AxCryptException ace)
             {
-                ace.DisplayContext = sourceFile.FullName;
+                ace.DisplayContext = displayContext;
                 throw;
             }
             catch (Exception ex)
             {
                 AxCryptException ace = new InternalErrorException("An unhandled exception occurred.", ErrorStatus.Unknown, ex);
-                ace.DisplayContext = sourceFile.FullName;
+                ace.DisplayContext = displayContext;
                 throw ace;
             }
         }
