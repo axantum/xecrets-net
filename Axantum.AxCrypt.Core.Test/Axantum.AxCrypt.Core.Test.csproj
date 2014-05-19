@@ -163,7 +163,7 @@
     <Compile Include="TestUpdateCheck.cs" />
     <Compile Include="TestUserSettings.cs" />
     <Compile Include="TestV1AxCryptReader.cs" />
-    <Compile Include="TestV2AES256RegressionCompleteFiles.cs" />
+    <Compile Include="TestV2RegressionCompleteFiles.cs" />
     <Compile Include="TestV2AesCrypto.cs" />
     <Compile Include="TestV2AxCryptDataStreamTest.cs" />
     <Compile Include="TestV2AxCryptDocument.cs" />
@@ -191,9 +191,12 @@
     <None Include="AxantumStrongName.pfx" />
     <None Include="resources\david copperfield-key-%27aa ae oe%27-ulu-txt.axx" />
     <EmbeddedResource Include="resources\Frankenstein-txt-AES256.axx" />
+    <EmbeddedResource Include="resources\Frankenstein-txt-V2AES128.axx" />
     <None Include="resources\helloworld-key-a-txt.axx" />
     <EmbeddedResource Include="resources\short-txt-AES256.axx" />
     <EmbeddedResource Include="resources\snow-jpg-AES256.axx" />
+    <EmbeddedResource Include="resources\short-txt-V2AES128.axx" />
+    <EmbeddedResource Include="resources\snow-jpg-V2AES128.axx" />
     <None Include="resources\tst-0.0b6-key-%27aaaeoe%27-medium-html.axx" />
     <None Include="resources\uncompressable-zip.axx" />
   </ItemGroup>
