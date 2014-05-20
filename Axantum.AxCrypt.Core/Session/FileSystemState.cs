@@ -311,6 +311,22 @@ namespace Axantum.AxCrypt.Core.Session
             OnActiveFileChanged(new ActiveFileChangedEventArgs(activeFile));
         }
 
+        public virtual void ChangeActiveFile(string oldFullName, string newFullName)
+        {
+            ActiveFile activeFile = FindActiveFileFromEncryptedPath(oldFullName);
+            if (activeFile == null)
+            {
+                return;
+            }
+            lock (_activeFilesByEncryptedPath)
+            {
+                _activeFilesByEncryptedPath.Remove(activeFile.EncryptedFileInfo.FullName);
+                activeFile = new ActiveFile(activeFile, Factory.New<IRuntimeFileInfo>(newFullName));
+                _activeFilesByEncryptedPath[activeFile.EncryptedFileInfo.FullName] = activeFile;
+            }
+            OnActiveFileChanged(new ActiveFileChangedEventArgs(activeFile));
+        }
+
         private void AddInternal(ActiveFile activeFile)
         {
             lock (_activeFilesByEncryptedPath)

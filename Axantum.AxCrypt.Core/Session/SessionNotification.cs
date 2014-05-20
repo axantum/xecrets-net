@@ -37,13 +37,26 @@ namespace Axantum.AxCrypt.Core.Session
 
         public string FullName { get; private set; }
 
+        public string OtherFullName { get; private set; }
+
         public SessionNotificationType NotificationType { get; private set; }
 
-        public SessionNotification(SessionNotificationType notificationType, Passphrase key, string fullName)
+        public SessionNotification(SessionNotificationType notificationType, Passphrase key, string fullName, string otherFullName)
         {
             NotificationType = notificationType;
             Key = key;
             FullName = fullName;
+            OtherFullName = otherFullName;
+        }
+
+        public SessionNotification(SessionNotificationType notificationType, Passphrase key, string fullName)
+            : this(notificationType, key, fullName, String.Empty)
+        {
+        }
+
+        public SessionNotification(SessionNotificationType notificationType, string fullName, string otherFullName)
+            : this(notificationType, Passphrase.Empty, fullName, otherFullName)
+        {
         }
 
         public SessionNotification(SessionNotificationType notificationType, string fullName)

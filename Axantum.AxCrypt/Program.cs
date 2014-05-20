@@ -139,6 +139,10 @@ namespace Axantum.AxCrypt
                 {
                     continue;
                 }
+                catch (FileLoadException)
+                {
+                    continue;
+                }
             }
             return assemblies;
         }

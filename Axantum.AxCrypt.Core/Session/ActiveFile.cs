@@ -70,12 +70,28 @@ namespace Axantum.AxCrypt.Core.Session
             Key = key;
         }
 
+        public ActiveFile(ActiveFile activeFile, IRuntimeFileInfo encryptedFileInfo)
+        {
+            if (activeFile == null)
+            {
+                throw new ArgumentNullException("activeFile");
+            }
+            if (encryptedFileInfo == null)
+            {
+                throw new ArgumentNullException("encryptedFileInfo");
+            }
+
+            Initialize(activeFile);
+            EncryptedFileInfo = encryptedFileInfo;
+        }
+
         public ActiveFile(ActiveFile activeFile, ActiveFileStatus status)
         {
             if (activeFile == null)
             {
                 throw new ArgumentNullException("activeFile");
             }
+
             Initialize(activeFile);
             Status = status;
         }

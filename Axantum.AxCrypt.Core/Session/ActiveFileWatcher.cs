@@ -31,7 +31,13 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void HandleWorkFolderFileChangedEvent(object sender, FileWatcherEventArgs e)
         {
-            Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.PurgeActiveFiles, e.FullName));
+            if (String.IsNullOrEmpty(e.OldName))
+            {
+                Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.PurgeActiveFiles, e.FullName));
+                return;
+            }
+
+            Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.FileMove, e.FullName, e.OldName));
         }
 
         public void Dispose()

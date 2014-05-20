@@ -44,7 +44,7 @@ namespace Axantum.AxCrypt.Mono
 
         private DelayedAction _delayedAction;
 
-        private HashSet<string> _notifications = new HashSet<string>();
+        private List<FileWatcherEventArgs> _notifications = new List<FileWatcherEventArgs>();
 
         public FileWatcher(string path, DelayedAction delayedAction)
         {
@@ -53,14 +53,14 @@ namespace Axantum.AxCrypt.Mono
 
             _fileInfo = Factory.New<IRuntimeFileInfo>(path);
             _fileSystemWatcher = new FileSystemWatcher(_fileInfo.FullName);
-            _fileSystemWatcher.Changed += (sender, e) => FileSystemChanged(e.FullPath);
-            _fileSystemWatcher.Created += (sender, e) => FileSystemChanged(e.FullPath);
-            _fileSystemWatcher.Deleted += (sender, e) => FileSystemChanged(e.FullPath);
-            _fileSystemWatcher.Renamed += (sender, e) => FileSystemChanged(e.FullPath);
-            _fileSystemWatcher.Error += (sender, e) => FileSystemChanged(_fileInfo.FullName);
+            _fileSystemWatcher.Changed += (sender, e) => FileSystemChanged(new FileWatcherEventArgs(e.FullPath));
+            _fileSystemWatcher.Created += (sender, e) => FileSystemChanged(new FileWatcherEventArgs(e.FullPath));
+            _fileSystemWatcher.Deleted += (sender, e) => FileSystemChanged(new FileWatcherEventArgs(e.FullPath));
+            _fileSystemWatcher.Renamed += (sender, e) => FileSystemChanged(new FileWatcherEventArgs(e.OldFullPath, e.FullPath));
+            _fileSystemWatcher.Error += (sender, e) => FileSystemChanged(new FileWatcherEventArgs(_fileInfo.FullName));
 
             _fileSystemWatcher.Filter = String.Empty;
-            _fileSystemWatcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.CreationTime;
+            _fileSystemWatcher.NotifyFilter = NotifyFilters.FileName | NotifyFilters.CreationTime;
             _fileSystemWatcher.EnableRaisingEvents = true;
         }
 
@@ -80,20 +80,20 @@ namespace Axantum.AxCrypt.Mono
 
         protected virtual void OnDelayedNotification()
         {
-            List<string> notifications;
+            List<FileWatcherEventArgs> notifications;
             lock (_notifications)
             {
                 if (!_notifications.Any())
                 {
                     return;
                 }
-                notifications = new List<string>(_notifications);
+                notifications = new List<FileWatcherEventArgs>(_notifications);
                 _notifications.Clear();
             }
 
-            foreach (string fullPath in notifications)
+            foreach (FileWatcherEventArgs notification in notifications)
             {
-                OnChanged(new FileWatcherEventArgs(fullPath));
+                OnChanged(notification);
             }
         }
 
@@ -106,15 +106,15 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        private void FileSystemChanged(string fullPath)
+        private void FileSystemChanged(FileWatcherEventArgs e)
         {
             if (Instance.Log.IsInfoEnabled)
             {
-                Instance.Log.LogInfo("Watcher says '{0}' changed.".InvariantFormat(fullPath));
+                Instance.Log.LogInfo("Watcher says '{0}' changed.".InvariantFormat(e.FullName));
             }
             lock (_notifications)
             {
-                _notifications.Add(fullPath);
+                _notifications.Add(e);
             }
             _delayedAction.StartIdleTimer();
         }

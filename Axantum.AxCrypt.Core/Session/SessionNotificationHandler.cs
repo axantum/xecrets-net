@@ -115,6 +115,10 @@ namespace Axantum.AxCrypt.Core.Session
                     _fileSystemState.PurgeActiveFiles();
                     break;
 
+                case SessionNotificationType.FileMove:
+                    _fileSystemState.ChangeActiveFile(notification.OtherFullName, notification.FullName);
+                    break;
+
                 case SessionNotificationType.WatchedFolderChange:
                 case SessionNotificationType.ProcessExit:
                 case SessionNotificationType.ActiveFileChange:
