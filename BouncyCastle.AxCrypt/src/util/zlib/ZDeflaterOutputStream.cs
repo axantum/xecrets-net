@@ -135,8 +135,9 @@ namespace Org.BouncyCastle.Utilities.Zlib {
             z.free();
             z=null;
         }
-        
-        public virtual void Close() {
+
+        protected override void Dispose(bool disposing)
+        {
             try{
                 try{Finish();}
                 catch (IOException) {}
@@ -146,6 +147,7 @@ namespace Org.BouncyCastle.Utilities.Zlib {
                 outp.Dispose();
                 outp=null;
             }
+            base.Dispose(disposing);
         }
     }
 }

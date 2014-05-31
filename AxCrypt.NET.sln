@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt", "Axantum.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Forms", "Axantum.AxCrypt.Forms\Axantum.AxCrypt.Forms.csproj", "{AC7C1ECD-4543-4CF3-8938-32F3D8CB89D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BouncyCastle.AxCrypt", "BouncyCastle.AxCrypt\src\BouncyCastle.AxCrypt.csproj", "{3B5CDE2B-9418-4873-9E13-B0594D7483A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BouncyCastle.AxCrypt", "BouncyCastle.AxCrypt\src\BouncyCastle.AxCrypt.csproj", "{63AA03F0-9C8D-44EA-B2CA-5802CF4F1968}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,10 +49,10 @@ Global
 		{AC7C1ECD-4543-4CF3-8938-32F3D8CB89D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC7C1ECD-4543-4CF3-8938-32F3D8CB89D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC7C1ECD-4543-4CF3-8938-32F3D8CB89D5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3B5CDE2B-9418-4873-9E13-B0594D7483A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3B5CDE2B-9418-4873-9E13-B0594D7483A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3B5CDE2B-9418-4873-9E13-B0594D7483A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3B5CDE2B-9418-4873-9E13-B0594D7483A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63AA03F0-9C8D-44EA-B2CA-5802CF4F1968}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63AA03F0-9C8D-44EA-B2CA-5802CF4F1968}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63AA03F0-9C8D-44EA-B2CA-5802CF4F1968}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63AA03F0-9C8D-44EA-B2CA-5802CF4F1968}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

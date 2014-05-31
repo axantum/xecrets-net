@@ -13,9 +13,9 @@ namespace Org.BouncyCastle.Utilities.IO
 
         public sealed override bool CanWrite { get { return false; } }
 
-        public virtual void Close()
+        protected override void Dispose(bool disposing)
         {
-            Dispose(closed = true);
+            base.Dispose(closed = true);
         }
 
         public sealed override void Flush()

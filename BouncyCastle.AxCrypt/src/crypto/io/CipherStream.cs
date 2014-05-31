@@ -201,7 +201,7 @@ namespace Org.BouncyCastle.Crypto.IO
             set { throw new NotSupportedException(); }
         }
 
-		public virtual void Close()
+		protected override void Dispose(bool disposing)
         {
 			if (outCipher != null)
 			{
@@ -210,6 +210,7 @@ namespace Org.BouncyCastle.Crypto.IO
 				stream.Flush();
 			}
 			stream.Dispose();
+            base.Dispose(disposing);
         }
 
 		public override void Flush()

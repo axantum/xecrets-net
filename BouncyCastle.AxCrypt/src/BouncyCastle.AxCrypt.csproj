@@ -2,18 +2,15 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3B5CDE2B-9418-4873-9E13-B0594D7483A3}</ProjectGuid>
+    <ProjectGuid>{63AA03F0-9C8D-44EA-B2CA-5802CF4F1968}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BouncyCastle.AxCrypt</RootNamespace>
     <AssemblyName>BouncyCastle.AxCrypt</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Profile136</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <AssemblyOriginatorKeyFile>AxantumStrongName.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -36,524 +33,1315 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
-    <Folder Include="Properties\" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\bzip2\src\BZip2Constants.cs">
-      <Link>BZip2Constants.cs</Link>
+    <Compile Include="asn1\Asn1Encodable.cs">
+      <SubType>Code</SubType>
     </Compile>
-    <Compile Include="..\bzip2\src\CBZip2InputStream.cs">
-      <Link>CBZip2InputStream.cs</Link>
+    <Compile Include="asn1\Asn1EncodableVector.cs">
+      <SubType>Code</SubType>
     </Compile>
-    <Compile Include="..\bzip2\src\CBZip2OutputStream.cs">
-      <Link>CBZip2OutputStream.cs</Link>
+    <Compile Include="asn1\Asn1Exception.cs">
+      <SubType>Code</SubType>
     </Compile>
-    <Compile Include="..\bzip2\src\CRC.cs">
-      <Link>CRC.cs</Link>
+    <Compile Include="asn1\ASN1Generator.cs">
+      <SubType>Code</SubType>
     </Compile>
-    <Compile Include="asn1\Asn1Encodable.cs" />
-    <Compile Include="asn1\Asn1EncodableVector.cs" />
-    <Compile Include="asn1\Asn1Exception.cs" />
-    <Compile Include="asn1\ASN1Generator.cs" />
-    <Compile Include="asn1\Asn1InputStream.cs" />
-    <Compile Include="asn1\Asn1Null.cs" />
-    <Compile Include="asn1\Asn1Object.cs" />
-    <Compile Include="asn1\Asn1OctetString.cs" />
-    <Compile Include="asn1\ASN1OctetStringParser.cs" />
-    <Compile Include="asn1\Asn1OutputStream.cs" />
-    <Compile Include="asn1\Asn1ParsingException.cs" />
-    <Compile Include="asn1\Asn1Sequence.cs" />
-    <Compile Include="asn1\ASN1SequenceParser.cs" />
-    <Compile Include="asn1\Asn1Set.cs" />
-    <Compile Include="asn1\ASN1SetParser.cs" />
-    <Compile Include="asn1\ASN1StreamParser.cs" />
-    <Compile Include="asn1\Asn1TaggedObject.cs" />
-    <Compile Include="asn1\ASN1TaggedObjectParser.cs" />
-    <Compile Include="asn1\Asn1Tags.cs" />
-    <Compile Include="asn1\bc\BCObjectIdentifiers.cs" />
-    <Compile Include="asn1\BerApplicationSpecific.cs" />
-    <Compile Include="asn1\BerApplicationSpecificParser.cs" />
-    <Compile Include="asn1\BERGenerator.cs" />
-    <Compile Include="asn1\BerNull.cs" />
-    <Compile Include="asn1\BerOctetString.cs" />
-    <Compile Include="asn1\BEROctetStringGenerator.cs" />
-    <Compile Include="asn1\BEROctetStringParser.cs" />
-    <Compile Include="asn1\BerOutputStream.cs" />
-    <Compile Include="asn1\BerSequence.cs" />
-    <Compile Include="asn1\BERSequenceGenerator.cs" />
-    <Compile Include="asn1\BERSequenceParser.cs" />
-    <Compile Include="asn1\BerSet.cs" />
-    <Compile Include="asn1\BERSetGenerator.cs" />
-    <Compile Include="asn1\BERSetParser.cs" />
-    <Compile Include="asn1\BerTaggedObject.cs" />
-    <Compile Include="asn1\BERTaggedObjectParser.cs" />
-    <Compile Include="asn1\cmp\CAKeyUpdAnnContent.cs" />
-    <Compile Include="asn1\cmp\CertConfirmContent.cs" />
-    <Compile Include="asn1\cmp\CertifiedKeyPair.cs" />
-    <Compile Include="asn1\cmp\CertOrEncCert.cs" />
-    <Compile Include="asn1\cmp\CertRepMessage.cs" />
-    <Compile Include="asn1\cmp\CertResponse.cs" />
-    <Compile Include="asn1\cmp\CertStatus.cs" />
-    <Compile Include="asn1\cmp\Challenge.cs" />
-    <Compile Include="asn1\cmp\CmpCertificate.cs" />
-    <Compile Include="asn1\cmp\CmpObjectIdentifiers.cs" />
-    <Compile Include="asn1\cmp\CrlAnnContent.cs" />
-    <Compile Include="asn1\cmp\ErrorMsgContent.cs" />
-    <Compile Include="asn1\cmp\GenMsgContent.cs" />
-    <Compile Include="asn1\cmp\GenRepContent.cs" />
-    <Compile Include="asn1\cmp\InfoTypeAndValue.cs" />
-    <Compile Include="asn1\cmp\KeyRecRepContent.cs" />
-    <Compile Include="asn1\cmp\OobCertHash.cs" />
-    <Compile Include="asn1\cmp\PbmParameter.cs" />
-    <Compile Include="asn1\cmp\PKIBody.cs" />
-    <Compile Include="asn1\cmp\PKIConfirmContent.cs" />
-    <Compile Include="asn1\cmp\PKIFailureInfo.cs" />
-    <Compile Include="asn1\cmp\PKIFreeText.cs" />
-    <Compile Include="asn1\cmp\PKIHeader.cs" />
-    <Compile Include="asn1\cmp\PKIHeaderBuilder.cs" />
-    <Compile Include="asn1\cmp\PKIMessage.cs" />
-    <Compile Include="asn1\cmp\PKIMessages.cs" />
-    <Compile Include="asn1\cmp\PKIStatus.cs" />
-    <Compile Include="asn1\cmp\PKIStatusInfo.cs" />
-    <Compile Include="asn1\cmp\PollRepContent.cs" />
-    <Compile Include="asn1\cmp\PollReqContent.cs" />
-    <Compile Include="asn1\cmp\PopoDecKeyChallContent.cs" />
-    <Compile Include="asn1\cmp\PopoDecKeyRespContent.cs" />
-    <Compile Include="asn1\cmp\ProtectedPart.cs" />
-    <Compile Include="asn1\cmp\RevAnnContent.cs" />
-    <Compile Include="asn1\cmp\RevDetails.cs" />
-    <Compile Include="asn1\cmp\RevRepContent.cs" />
-    <Compile Include="asn1\cmp\RevRepContentBuilder.cs" />
-    <Compile Include="asn1\cmp\RevReqContent.cs" />
-    <Compile Include="asn1\cms\Attribute.cs" />
-    <Compile Include="asn1\cms\Attributes.cs" />
-    <Compile Include="asn1\cms\AttributeTable.cs" />
-    <Compile Include="asn1\cms\AuthenticatedData.cs" />
-    <Compile Include="asn1\cms\AuthenticatedDataParser.cs" />
-    <Compile Include="asn1\cms\AuthEnvelopedData.cs" />
-    <Compile Include="asn1\cms\AuthEnvelopedDataParser.cs" />
-    <Compile Include="asn1\cms\CMSAttributes.cs" />
-    <Compile Include="asn1\cms\CMSObjectIdentifiers.cs" />
-    <Compile Include="asn1\cms\CompressedData.cs" />
-    <Compile Include="asn1\cms\CompressedDataParser.cs" />
-    <Compile Include="asn1\cms\ContentInfo.cs" />
-    <Compile Include="asn1\cms\ContentInfoParser.cs" />
-    <Compile Include="asn1\cms\ecc\MQVuserKeyingMaterial.cs" />
-    <Compile Include="asn1\cms\EncryptedContentInfo.cs" />
-    <Compile Include="asn1\cms\EncryptedContentInfoParser.cs" />
-    <Compile Include="asn1\cms\EncryptedData.cs" />
-    <Compile Include="asn1\cms\EnvelopedData.cs" />
-    <Compile Include="asn1\cms\EnvelopedDataParser.cs" />
-    <Compile Include="asn1\cms\Evidence.cs" />
-    <Compile Include="asn1\cms\IssuerAndSerialNumber.cs" />
-    <Compile Include="asn1\cms\KEKIdentifier.cs" />
-    <Compile Include="asn1\cms\KEKRecipientInfo.cs" />
-    <Compile Include="asn1\cms\KeyAgreeRecipientIdentifier.cs" />
-    <Compile Include="asn1\cms\KeyAgreeRecipientInfo.cs" />
-    <Compile Include="asn1\cms\KeyTransRecipientInfo.cs" />
-    <Compile Include="asn1\cms\MetaData.cs" />
-    <Compile Include="asn1\cms\OriginatorIdentifierOrKey.cs" />
-    <Compile Include="asn1\cms\OriginatorInfo.cs" />
-    <Compile Include="asn1\cms\OriginatorPublicKey.cs" />
-    <Compile Include="asn1\cms\OtherKeyAttribute.cs" />
-    <Compile Include="asn1\cms\OtherRecipientInfo.cs" />
-    <Compile Include="asn1\cms\PasswordRecipientInfo.cs" />
-    <Compile Include="asn1\cms\RecipientEncryptedKey.cs" />
-    <Compile Include="asn1\cms\RecipientIdentifier.cs" />
-    <Compile Include="asn1\cms\RecipientInfo.cs" />
-    <Compile Include="asn1\cms\RecipientKeyIdentifier.cs" />
-    <Compile Include="asn1\cms\SignedData.cs" />
-    <Compile Include="asn1\cms\SignedDataParser.cs" />
-    <Compile Include="asn1\cms\SignerIdentifier.cs" />
-    <Compile Include="asn1\cms\SignerInfo.cs" />
-    <Compile Include="asn1\cms\Time.cs" />
-    <Compile Include="asn1\cms\TimeStampAndCRL.cs" />
-    <Compile Include="asn1\cms\TimeStampedData.cs" />
-    <Compile Include="asn1\cms\TimeStampedDataParser.cs" />
-    <Compile Include="asn1\cms\TimeStampTokenEvidence.cs" />
-    <Compile Include="asn1\ConstructedOctetStream.cs" />
-    <Compile Include="asn1\crmf\AttributeTypeAndValue.cs" />
-    <Compile Include="asn1\crmf\CertId.cs" />
-    <Compile Include="asn1\crmf\CertReqMessages.cs" />
-    <Compile Include="asn1\crmf\CertReqMsg.cs" />
-    <Compile Include="asn1\crmf\CertRequest.cs" />
-    <Compile Include="asn1\crmf\CertTemplate.cs" />
-    <Compile Include="asn1\crmf\CertTemplateBuilder.cs" />
-    <Compile Include="asn1\crmf\Controls.cs" />
-    <Compile Include="asn1\crmf\CrmfObjectIdentifiers.cs" />
-    <Compile Include="asn1\crmf\EncKeyWithID.cs" />
-    <Compile Include="asn1\crmf\EncryptedKey.cs" />
-    <Compile Include="asn1\crmf\EncryptedValue.cs" />
-    <Compile Include="asn1\crmf\OptionalValidity.cs" />
-    <Compile Include="asn1\crmf\PKIArchiveOptions.cs" />
-    <Compile Include="asn1\crmf\PKIPublicationInfo.cs" />
-    <Compile Include="asn1\crmf\PKMacValue.cs" />
-    <Compile Include="asn1\crmf\PopoPrivKey.cs" />
-    <Compile Include="asn1\crmf\PopoSigningKey.cs" />
-    <Compile Include="asn1\crmf\PopoSigningKeyInput.cs" />
-    <Compile Include="asn1\crmf\ProofOfPossession.cs" />
-    <Compile Include="asn1\crmf\SinglePubInfo.cs" />
-    <Compile Include="asn1\crmf\SubsequentMessage.cs" />
-    <Compile Include="asn1\cryptopro\CryptoProObjectIdentifiers.cs" />
-    <Compile Include="asn1\cryptopro\ECGOST3410NamedCurves.cs" />
-    <Compile Include="asn1\cryptopro\ECGOST3410ParamSetParameters.cs" />
-    <Compile Include="asn1\cryptopro\GOST28147Parameters.cs" />
-    <Compile Include="asn1\cryptopro\GOST3410NamedParameters.cs" />
-    <Compile Include="asn1\cryptopro\GOST3410ParamSetParameters.cs" />
-    <Compile Include="asn1\cryptopro\GOST3410PublicKeyAlgParameters.cs" />
-    <Compile Include="asn1\DefiniteLengthInputStream.cs" />
-    <Compile Include="asn1\DerApplicationSpecific.cs" />
-    <Compile Include="asn1\DerBitString.cs" />
-    <Compile Include="asn1\DerBMPString.cs" />
-    <Compile Include="asn1\DerBoolean.cs" />
-    <Compile Include="asn1\DerEnumerated.cs" />
-    <Compile Include="asn1\DERExternal.cs" />
-    <Compile Include="asn1\DERExternalParser.cs" />
-    <Compile Include="asn1\DerGeneralizedTime.cs" />
-    <Compile Include="asn1\DerGeneralString.cs" />
-    <Compile Include="asn1\DERGenerator.cs" />
-    <Compile Include="asn1\DerIA5String.cs" />
-    <Compile Include="asn1\DerInteger.cs" />
-    <Compile Include="asn1\DerNull.cs" />
-    <Compile Include="asn1\DerNumericString.cs" />
-    <Compile Include="asn1\DerObjectIdentifier.cs" />
-    <Compile Include="asn1\DerOctetString.cs" />
-    <Compile Include="asn1\DEROctetStringParser.cs" />
-    <Compile Include="asn1\DerOutputStream.cs" />
-    <Compile Include="asn1\DerPrintableString.cs" />
-    <Compile Include="asn1\DerSequence.cs" />
-    <Compile Include="asn1\DERSequenceGenerator.cs" />
-    <Compile Include="asn1\DERSequenceParser.cs" />
-    <Compile Include="asn1\DerSet.cs" />
-    <Compile Include="asn1\DERSetGenerator.cs" />
-    <Compile Include="asn1\DERSetParser.cs" />
-    <Compile Include="asn1\DerStringBase.cs" />
-    <Compile Include="asn1\DerT61String.cs" />
-    <Compile Include="asn1\DerTaggedObject.cs" />
-    <Compile Include="asn1\DerUniversalString.cs" />
-    <Compile Include="asn1\DerUnknownTag.cs" />
-    <Compile Include="asn1\DerUTCTime.cs" />
-    <Compile Include="asn1\DerUTF8String.cs" />
-    <Compile Include="asn1\DerVisibleString.cs" />
-    <Compile Include="asn1\eac\EACObjectIdentifiers.cs" />
-    <Compile Include="asn1\esf\CertificateValues.cs" />
-    <Compile Include="asn1\esf\CommitmentTypeIdentifier.cs" />
-    <Compile Include="asn1\esf\CommitmentTypeIndication.cs" />
-    <Compile Include="asn1\esf\CommitmentTypeQualifier.cs" />
-    <Compile Include="asn1\esf\CompleteCertificateRefs.cs" />
-    <Compile Include="asn1\esf\CompleteRevocationRefs.cs" />
-    <Compile Include="asn1\esf\CrlIdentifier.cs" />
-    <Compile Include="asn1\esf\CrlListID.cs" />
-    <Compile Include="asn1\esf\CrlOcspRef.cs" />
-    <Compile Include="asn1\esf\CrlValidatedID.cs" />
-    <Compile Include="asn1\esf\ESFAttributes.cs" />
-    <Compile Include="asn1\esf\OcspIdentifier.cs" />
-    <Compile Include="asn1\esf\OcspListID.cs" />
-    <Compile Include="asn1\esf\OcspResponsesID.cs" />
-    <Compile Include="asn1\esf\OtherCertID.cs" />
-    <Compile Include="asn1\esf\OtherHash.cs" />
-    <Compile Include="asn1\esf\OtherHashAlgAndValue.cs" />
-    <Compile Include="asn1\esf\OtherRevRefs.cs" />
-    <Compile Include="asn1\esf\OtherRevVals.cs" />
-    <Compile Include="asn1\esf\OtherSigningCertificate.cs" />
-    <Compile Include="asn1\esf\RevocationValues.cs" />
-    <Compile Include="asn1\esf\SignaturePolicyId.cs" />
-    <Compile Include="asn1\esf\SignaturePolicyIdentifier.cs" />
-    <Compile Include="asn1\esf\SignerAttribute.cs" />
-    <Compile Include="asn1\esf\SignerLocation.cs" />
-    <Compile Include="asn1\esf\SigPolicyQualifierInfo.cs" />
-    <Compile Include="asn1\ess\ContentHints.cs" />
-    <Compile Include="asn1\ess\ContentIdentifier.cs" />
-    <Compile Include="asn1\ess\ESSCertID.cs" />
-    <Compile Include="asn1\ess\ESSCertIDv2.cs" />
-    <Compile Include="asn1\ess\OtherCertID.cs" />
-    <Compile Include="asn1\ess\OtherSigningCertificate.cs" />
-    <Compile Include="asn1\ess\SigningCertificate.cs" />
-    <Compile Include="asn1\ess\SigningCertificateV2.cs" />
-    <Compile Include="asn1\gnu\GNUObjectIdentifiers.cs" />
-    <Compile Include="asn1\iana\IANAObjectIdentifiers.cs" />
-    <Compile Include="asn1\IAsn1ApplicationSpecificParser.cs" />
-    <Compile Include="asn1\IAsn1Choice.cs" />
-    <Compile Include="asn1\IAsn1Convertible.cs" />
-    <Compile Include="asn1\IAsn1String.cs" />
-    <Compile Include="asn1\icao\CscaMasterList.cs" />
-    <Compile Include="asn1\icao\DataGroupHash.cs" />
-    <Compile Include="asn1\icao\ICAOObjectIdentifiers.cs" />
-    <Compile Include="asn1\icao\LDSSecurityObject.cs" />
-    <Compile Include="asn1\icao\LDSVersionInfo.cs" />
-    <Compile Include="asn1\IndefiniteLengthInputStream.cs" />
-    <Compile Include="asn1\isismtt\ISISMTTObjectIdentifiers.cs" />
-    <Compile Include="asn1\isismtt\ocsp\CertHash.cs" />
-    <Compile Include="asn1\isismtt\ocsp\RequestedCertificate.cs" />
-    <Compile Include="asn1\isismtt\x509\AdditionalInformationSyntax.cs" />
-    <Compile Include="asn1\isismtt\x509\Admissions.cs" />
-    <Compile Include="asn1\isismtt\x509\AdmissionSyntax.cs" />
-    <Compile Include="asn1\isismtt\x509\DeclarationOfMajority.cs" />
-    <Compile Include="asn1\isismtt\x509\MonetaryLimit.cs" />
-    <Compile Include="asn1\isismtt\x509\NamingAuthority.cs" />
-    <Compile Include="asn1\isismtt\x509\ProcurationSyntax.cs" />
-    <Compile Include="asn1\isismtt\x509\ProfessionInfo.cs" />
-    <Compile Include="asn1\isismtt\x509\Restriction.cs" />
-    <Compile Include="asn1\kisa\KISAObjectIdentifiers.cs" />
-    <Compile Include="asn1\LazyASN1InputStream.cs" />
-    <Compile Include="asn1\LazyDERSequence.cs" />
-    <Compile Include="asn1\LazyDERSet.cs" />
-    <Compile Include="asn1\LimitedInputStream.cs" />
-    <Compile Include="asn1\microsoft\MicrosoftObjectIdentifiers.cs" />
-    <Compile Include="asn1\misc\CAST5CBCParameters.cs" />
-    <Compile Include="asn1\misc\MiscObjectIdentifiers.cs" />
-    <Compile Include="asn1\misc\NetscapeCertType.cs" />
-    <Compile Include="asn1\misc\NetscapeRevocationURL.cs" />
-    <Compile Include="asn1\misc\VerisignCzagExtension.cs" />
-    <Compile Include="asn1\mozilla\PublicKeyAndChallenge.cs" />
+    <Compile Include="asn1\Asn1InputStream.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\Asn1Null.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\Asn1Object.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\Asn1OctetString.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ASN1OctetStringParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\Asn1OutputStream.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\Asn1ParsingException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\Asn1Sequence.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ASN1SequenceParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\Asn1Set.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ASN1SetParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ASN1StreamParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\Asn1TaggedObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ASN1TaggedObjectParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\Asn1Tags.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\bc\BCObjectIdentifiers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\BerApplicationSpecific.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\BerApplicationSpecificParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\BERGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\BerNull.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\BerOctetString.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\BEROctetStringGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\BEROctetStringParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\BerOutputStream.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\BerSequence.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\BERSequenceGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\BERSequenceParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\BerSet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\BERSetGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\BERSetParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\BerTaggedObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\BERTaggedObjectParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\CAKeyUpdAnnContent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\CertConfirmContent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\CertifiedKeyPair.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\CertOrEncCert.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\CertRepMessage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\CertResponse.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\CertStatus.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\Challenge.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\CmpCertificate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\CmpObjectIdentifiers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\CrlAnnContent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\ErrorMsgContent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\GenMsgContent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\GenRepContent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\InfoTypeAndValue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\KeyRecRepContent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\OobCertHash.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\PbmParameter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\PKIBody.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\PKIConfirmContent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\PKIFailureInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\PKIFreeText.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\PKIHeader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\PKIHeaderBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\PKIMessage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\PKIMessages.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\PKIStatus.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\PKIStatusInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\PollRepContent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\PollReqContent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\PopoDecKeyChallContent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\PopoDecKeyRespContent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\ProtectedPart.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\RevAnnContent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\RevDetails.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\RevRepContent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\RevRepContentBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cmp\RevReqContent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\Attribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\Attributes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\AttributeTable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\AuthenticatedData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\AuthenticatedDataParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\AuthEnvelopedData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\AuthEnvelopedDataParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\CMSAttributes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\CMSObjectIdentifiers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\CompressedData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\CompressedDataParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\ContentInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\ContentInfoParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\ecc\MQVuserKeyingMaterial.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\EncryptedContentInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\EncryptedContentInfoParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\EncryptedData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\EnvelopedData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\EnvelopedDataParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\Evidence.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\IssuerAndSerialNumber.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\KEKIdentifier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\KEKRecipientInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\KeyAgreeRecipientIdentifier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\KeyAgreeRecipientInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\KeyTransRecipientInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\MetaData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\OriginatorIdentifierOrKey.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\OriginatorInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\OriginatorPublicKey.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\OtherKeyAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\OtherRecipientInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\PasswordRecipientInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\RecipientEncryptedKey.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\RecipientIdentifier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\RecipientInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\RecipientKeyIdentifier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\SignedData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\SignedDataParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\SignerIdentifier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\SignerInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\Time.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\TimeStampAndCRL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\TimeStampedData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\TimeStampedDataParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cms\TimeStampTokenEvidence.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ConstructedOctetStream.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\crmf\AttributeTypeAndValue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\crmf\CertId.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\crmf\CertReqMessages.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\crmf\CertReqMsg.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\crmf\CertRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\crmf\CertTemplate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\crmf\CertTemplateBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\crmf\Controls.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\crmf\CrmfObjectIdentifiers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\crmf\EncKeyWithID.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\crmf\EncryptedKey.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\crmf\EncryptedValue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\crmf\OptionalValidity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\crmf\PKIArchiveOptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\crmf\PKIPublicationInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\crmf\PKMacValue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\crmf\PopoPrivKey.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\crmf\PopoSigningKey.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\crmf\PopoSigningKeyInput.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\crmf\ProofOfPossession.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\crmf\SinglePubInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\crmf\SubsequentMessage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cryptopro\CryptoProObjectIdentifiers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cryptopro\ECGOST3410NamedCurves.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cryptopro\ECGOST3410ParamSetParameters.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cryptopro\GOST28147Parameters.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cryptopro\GOST3410NamedParameters.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cryptopro\GOST3410ParamSetParameters.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\cryptopro\GOST3410PublicKeyAlgParameters.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DefiniteLengthInputStream.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DerApplicationSpecific.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DerBitString.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DerBMPString.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DerBoolean.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DerEnumerated.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DERExternal.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DERExternalParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DerGeneralizedTime.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DerGeneralString.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DERGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DerIA5String.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DerInteger.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DerNull.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DerNumericString.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DerObjectIdentifier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DerOctetString.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DEROctetStringParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DerOutputStream.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DerPrintableString.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DerSequence.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DERSequenceGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DERSequenceParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DerSet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DERSetGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DERSetParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DerStringBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DerT61String.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DerTaggedObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DerUniversalString.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DerUnknownTag.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DerUTCTime.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DerUTF8String.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\DerVisibleString.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\eac\EACObjectIdentifiers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\esf\CertificateValues.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\esf\CommitmentTypeIdentifier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\esf\CommitmentTypeIndication.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\esf\CommitmentTypeQualifier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\esf\CompleteCertificateRefs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\esf\CompleteRevocationRefs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\esf\CrlIdentifier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\esf\CrlListID.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\esf\CrlOcspRef.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\esf\CrlValidatedID.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\esf\ESFAttributes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\esf\OcspIdentifier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\esf\OcspListID.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\esf\OcspResponsesID.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\esf\OtherCertID.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\esf\OtherHash.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\esf\OtherHashAlgAndValue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\esf\OtherRevRefs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\esf\OtherRevVals.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\esf\OtherSigningCertificate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\esf\RevocationValues.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\esf\SignaturePolicyId.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\esf\SignaturePolicyIdentifier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\esf\SignerAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\esf\SignerLocation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\esf\SigPolicyQualifierInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ess\ContentHints.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ess\ContentIdentifier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ess\ESSCertID.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ess\ESSCertIDv2.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ess\OtherCertID.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ess\OtherSigningCertificate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ess\SigningCertificate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ess\SigningCertificateV2.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\gnu\GNUObjectIdentifiers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\iana\IANAObjectIdentifiers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\IAsn1ApplicationSpecificParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\IAsn1Choice.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\IAsn1Convertible.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\IAsn1String.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\icao\CscaMasterList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\icao\DataGroupHash.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\icao\ICAOObjectIdentifiers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\icao\LDSSecurityObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\icao\LDSVersionInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\IndefiniteLengthInputStream.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\isismtt\ISISMTTObjectIdentifiers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\isismtt\ocsp\CertHash.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\isismtt\ocsp\RequestedCertificate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\isismtt\x509\AdditionalInformationSyntax.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\isismtt\x509\Admissions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\isismtt\x509\AdmissionSyntax.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\isismtt\x509\DeclarationOfMajority.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\isismtt\x509\MonetaryLimit.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\isismtt\x509\NamingAuthority.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\isismtt\x509\ProcurationSyntax.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\isismtt\x509\ProfessionInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\isismtt\x509\Restriction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\kisa\KISAObjectIdentifiers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\LazyASN1InputStream.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\LazyDERSequence.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\LazyDERSet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\LimitedInputStream.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\microsoft\MicrosoftObjectIdentifiers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\misc\CAST5CBCParameters.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\misc\MiscObjectIdentifiers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\misc\NetscapeCertType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\misc\NetscapeRevocationURL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\misc\VerisignCzagExtension.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\mozilla\PublicKeyAndChallenge.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="asn1\nist\NISTNamedCurves.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="asn1\nist\NISTObjectIdentifiers.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="asn1\ntt\NTTObjectIdentifiers.cs" />
-    <Compile Include="asn1\ocsp\BasicOCSPResponse.cs" />
-    <Compile Include="asn1\ocsp\CertID.cs" />
-    <Compile Include="asn1\ocsp\CertStatus.cs" />
-    <Compile Include="asn1\ocsp\CrlID.cs" />
-    <Compile Include="asn1\ocsp\OCSPObjectIdentifiers.cs" />
-    <Compile Include="asn1\ocsp\OCSPRequest.cs" />
-    <Compile Include="asn1\ocsp\OCSPResponse.cs" />
-    <Compile Include="asn1\ocsp\OCSPResponseStatus.cs" />
-    <Compile Include="asn1\ocsp\Request.cs" />
-    <Compile Include="asn1\ocsp\ResponderID.cs" />
-    <Compile Include="asn1\ocsp\ResponseBytes.cs" />
-    <Compile Include="asn1\ocsp\ResponseData.cs" />
-    <Compile Include="asn1\ocsp\RevokedInfo.cs" />
-    <Compile Include="asn1\ocsp\ServiceLocator.cs" />
-    <Compile Include="asn1\ocsp\Signature.cs" />
-    <Compile Include="asn1\ocsp\SingleResponse.cs" />
-    <Compile Include="asn1\ocsp\TBSRequest.cs" />
-    <Compile Include="asn1\OidTokenizer.cs" />
-    <Compile Include="asn1\oiw\ElGamalParameter.cs" />
-    <Compile Include="asn1\oiw\OIWObjectIdentifiers.cs" />
-    <Compile Include="asn1\pkcs\Attribute.cs" />
-    <Compile Include="asn1\pkcs\AuthenticatedSafe.cs" />
-    <Compile Include="asn1\pkcs\CertBag.cs" />
-    <Compile Include="asn1\pkcs\CertificationRequest.cs" />
-    <Compile Include="asn1\pkcs\CertificationRequestInfo.cs" />
-    <Compile Include="asn1\pkcs\ContentInfo.cs" />
-    <Compile Include="asn1\pkcs\DHParameter.cs" />
-    <Compile Include="asn1\pkcs\EncryptedData.cs" />
-    <Compile Include="asn1\pkcs\EncryptedPrivateKeyInfo.cs" />
-    <Compile Include="asn1\pkcs\EncryptionScheme.cs" />
-    <Compile Include="asn1\pkcs\IssuerAndSerialNumber.cs" />
-    <Compile Include="asn1\pkcs\KeyDerivationFunc.cs" />
-    <Compile Include="asn1\pkcs\MacData.cs" />
-    <Compile Include="asn1\pkcs\PBEParameter.cs" />
-    <Compile Include="asn1\pkcs\PBES2Parameters.cs" />
-    <Compile Include="asn1\pkcs\PBKDF2Params.cs" />
-    <Compile Include="asn1\pkcs\Pfx.cs" />
-    <Compile Include="asn1\pkcs\PKCS12PBEParams.cs" />
-    <Compile Include="asn1\pkcs\PKCSObjectIdentifiers.cs" />
-    <Compile Include="asn1\pkcs\PrivateKeyInfo.cs" />
-    <Compile Include="asn1\pkcs\RC2CBCParameter.cs" />
-    <Compile Include="asn1\pkcs\RSAESOAEPparams.cs" />
-    <Compile Include="asn1\pkcs\RSAPrivateKeyStructure.cs" />
-    <Compile Include="asn1\pkcs\RSASSAPSSparams.cs" />
-    <Compile Include="asn1\pkcs\SafeBag.cs" />
-    <Compile Include="asn1\pkcs\SignedData.cs" />
-    <Compile Include="asn1\pkcs\SignerInfo.cs" />
-    <Compile Include="asn1\sec\ECPrivateKeyStructure.cs" />
-    <Compile Include="asn1\sec\SECNamedCurves.cs" />
-    <Compile Include="asn1\sec\SECObjectIdentifiers.cs" />
-    <Compile Include="asn1\smime\SMIMEAttributes.cs" />
-    <Compile Include="asn1\smime\SMIMECapabilities.cs" />
-    <Compile Include="asn1\smime\SMIMECapabilitiesAttribute.cs" />
-    <Compile Include="asn1\smime\SMIMECapability.cs" />
-    <Compile Include="asn1\smime\SMIMECapabilityVector.cs" />
-    <Compile Include="asn1\smime\SMIMEEncryptionKeyPreferenceAttribute.cs" />
-    <Compile Include="asn1\teletrust\TeleTrusTNamedCurves.cs" />
-    <Compile Include="asn1\teletrust\TeleTrusTObjectIdentifiers.cs" />
-    <Compile Include="asn1\tsp\Accuracy.cs" />
-    <Compile Include="asn1\tsp\MessageImprint.cs" />
-    <Compile Include="asn1\tsp\TimeStampReq.cs" />
-    <Compile Include="asn1\tsp\TimeStampResp.cs" />
-    <Compile Include="asn1\tsp\TSTInfo.cs" />
-    <Compile Include="asn1\util\Asn1Dump.cs" />
-    <Compile Include="asn1\util\FilterStream.cs" />
-    <Compile Include="asn1\x500\DirectoryString.cs" />
-    <Compile Include="asn1\x509\AccessDescription.cs" />
-    <Compile Include="asn1\x509\AlgorithmIdentifier.cs" />
-    <Compile Include="asn1\x509\AttCertIssuer.cs" />
-    <Compile Include="asn1\x509\AttCertValidityPeriod.cs" />
-    <Compile Include="asn1\x509\Attribute.cs" />
-    <Compile Include="asn1\x509\AttributeCertificate.cs" />
-    <Compile Include="asn1\x509\AttributeCertificateInfo.cs" />
-    <Compile Include="asn1\x509\AttributeTable.cs" />
-    <Compile Include="asn1\x509\AuthorityInformationAccess.cs" />
-    <Compile Include="asn1\x509\AuthorityKeyIdentifier.cs" />
-    <Compile Include="asn1\x509\BasicConstraints.cs" />
-    <Compile Include="asn1\x509\CertificateList.cs" />
-    <Compile Include="asn1\x509\CertificatePair.cs" />
-    <Compile Include="asn1\x509\CertPolicyId.cs" />
-    <Compile Include="asn1\x509\CRLDistPoint.cs" />
-    <Compile Include="asn1\x509\CRLNumber.cs" />
-    <Compile Include="asn1\x509\CRLReason.cs" />
-    <Compile Include="asn1\x509\DigestInfo.cs" />
-    <Compile Include="asn1\x509\DisplayText.cs" />
-    <Compile Include="asn1\x509\DistributionPoint.cs" />
-    <Compile Include="asn1\x509\DistributionPointName.cs" />
-    <Compile Include="asn1\x509\DSAParameter.cs" />
-    <Compile Include="asn1\x509\ExtendedKeyUsage.cs" />
-    <Compile Include="asn1\x509\GeneralName.cs" />
-    <Compile Include="asn1\x509\GeneralNames.cs" />
-    <Compile Include="asn1\x509\GeneralSubtree.cs" />
-    <Compile Include="asn1\x509\Holder.cs" />
-    <Compile Include="asn1\x509\IetfAttrSyntax.cs" />
-    <Compile Include="asn1\x509\IssuerSerial.cs" />
-    <Compile Include="asn1\x509\IssuingDistributionPoint.cs" />
-    <Compile Include="asn1\x509\KeyPurposeId.cs" />
-    <Compile Include="asn1\x509\KeyUsage.cs" />
-    <Compile Include="asn1\x509\NameConstraints.cs" />
-    <Compile Include="asn1\x509\NoticeReference.cs" />
-    <Compile Include="asn1\x509\ObjectDigestInfo.cs" />
-    <Compile Include="asn1\x509\PolicyInformation.cs" />
-    <Compile Include="asn1\x509\PolicyMappings.cs" />
-    <Compile Include="asn1\x509\PolicyQualifierId.cs" />
-    <Compile Include="asn1\x509\PolicyQualifierInfo.cs" />
-    <Compile Include="asn1\x509\PrivateKeyUsagePeriod.cs" />
-    <Compile Include="asn1\x509\qualified\BiometricData.cs" />
-    <Compile Include="asn1\x509\qualified\ETSIQCObjectIdentifiers.cs" />
-    <Compile Include="asn1\x509\qualified\Iso4217CurrencyCode.cs" />
-    <Compile Include="asn1\x509\qualified\MonetaryValue.cs" />
-    <Compile Include="asn1\x509\qualified\QCStatement.cs" />
-    <Compile Include="asn1\x509\qualified\RFC3739QCObjectIdentifiers.cs" />
-    <Compile Include="asn1\x509\qualified\SemanticsInformation.cs" />
-    <Compile Include="asn1\x509\qualified\TypeOfBiometricData.cs" />
-    <Compile Include="asn1\x509\ReasonFlags.cs" />
-    <Compile Include="asn1\x509\RoleSyntax.cs" />
-    <Compile Include="asn1\x509\RSAPublicKeyStructure.cs" />
-    <Compile Include="asn1\x509\sigi\NameOrPseudonym.cs" />
-    <Compile Include="asn1\x509\sigi\PersonalData.cs" />
-    <Compile Include="asn1\x509\sigi\SigIObjectIdentifiers.cs" />
-    <Compile Include="asn1\x509\SubjectDirectoryAttributes.cs" />
-    <Compile Include="asn1\x509\SubjectKeyIdentifier.cs" />
-    <Compile Include="asn1\x509\SubjectPublicKeyInfo.cs" />
-    <Compile Include="asn1\x509\Target.cs" />
-    <Compile Include="asn1\x509\TargetInformation.cs" />
-    <Compile Include="asn1\x509\Targets.cs" />
-    <Compile Include="asn1\x509\TBSCertificateStructure.cs" />
-    <Compile Include="asn1\x509\TBSCertList.cs" />
-    <Compile Include="asn1\x509\Time.cs" />
-    <Compile Include="asn1\x509\UserNotice.cs" />
-    <Compile Include="asn1\x509\V1TBSCertificateGenerator.cs" />
-    <Compile Include="asn1\x509\V2AttributeCertificateInfoGenerator.cs" />
-    <Compile Include="asn1\x509\V2Form.cs" />
-    <Compile Include="asn1\x509\V2TBSCertListGenerator.cs" />
-    <Compile Include="asn1\x509\V3TBSCertificateGenerator.cs" />
-    <Compile Include="asn1\x509\X509Attributes.cs" />
-    <Compile Include="asn1\x509\X509CertificateStructure.cs" />
-    <Compile Include="asn1\x509\X509DefaultEntryConverter.cs" />
-    <Compile Include="asn1\x509\X509Extension.cs" />
-    <Compile Include="asn1\x509\X509Extensions.cs" />
-    <Compile Include="asn1\x509\X509ExtensionsGenerator.cs" />
-    <Compile Include="asn1\x509\X509Name.cs" />
-    <Compile Include="asn1\x509\X509NameEntryConverter.cs" />
-    <Compile Include="asn1\x509\X509NameTokenizer.cs" />
-    <Compile Include="asn1\x509\X509ObjectIdentifiers.cs" />
-    <Compile Include="asn1\x9\DHDomainParameters.cs" />
-    <Compile Include="asn1\x9\DHPublicKey.cs" />
-    <Compile Include="asn1\x9\DHValidationParms.cs" />
-    <Compile Include="asn1\x9\KeySpecificInfo.cs" />
-    <Compile Include="asn1\x9\OtherInfo.cs" />
-    <Compile Include="asn1\x9\X962NamedCurves.cs" />
-    <Compile Include="asn1\x9\X962Parameters.cs" />
-    <Compile Include="asn1\x9\X9Curve.cs" />
-    <Compile Include="asn1\x9\X9ECParameters.cs" />
-    <Compile Include="asn1\x9\X9ECParametersHolder.cs" />
-    <Compile Include="asn1\x9\X9ECPoint.cs" />
-    <Compile Include="asn1\x9\X9FieldElement.cs" />
-    <Compile Include="asn1\x9\X9FieldID.cs" />
-    <Compile Include="asn1\x9\X9IntegerConverter.cs" />
-    <Compile Include="asn1\x9\X9ObjectIdentifiers.cs" />
+    <Compile Include="asn1\ntt\NTTObjectIdentifiers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ocsp\BasicOCSPResponse.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ocsp\CertID.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ocsp\CertStatus.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ocsp\CrlID.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ocsp\OCSPObjectIdentifiers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ocsp\OCSPRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ocsp\OCSPResponse.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ocsp\OCSPResponseStatus.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ocsp\Request.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ocsp\ResponderID.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ocsp\ResponseBytes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ocsp\ResponseData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ocsp\RevokedInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ocsp\ServiceLocator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ocsp\Signature.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ocsp\SingleResponse.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\ocsp\TBSRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\OidTokenizer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\oiw\ElGamalParameter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\oiw\OIWObjectIdentifiers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\pkcs\Attribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\pkcs\AuthenticatedSafe.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\pkcs\CertBag.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\pkcs\CertificationRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\pkcs\CertificationRequestInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\pkcs\ContentInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\pkcs\DHParameter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\pkcs\EncryptedData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\pkcs\EncryptedPrivateKeyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\pkcs\EncryptionScheme.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\pkcs\IssuerAndSerialNumber.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\pkcs\KeyDerivationFunc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\pkcs\MacData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\pkcs\PBEParameter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\pkcs\PBES2Parameters.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\pkcs\PBKDF2Params.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\pkcs\Pfx.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\pkcs\PKCS12PBEParams.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\pkcs\PKCSObjectIdentifiers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\pkcs\PrivateKeyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\pkcs\RC2CBCParameter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\pkcs\RSAESOAEPparams.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\pkcs\RSAPrivateKeyStructure.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\pkcs\RSASSAPSSparams.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\pkcs\SafeBag.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\pkcs\SignedData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\pkcs\SignerInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\sec\ECPrivateKeyStructure.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\sec\SECNamedCurves.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\sec\SECObjectIdentifiers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\smime\SMIMEAttributes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\smime\SMIMECapabilities.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\smime\SMIMECapabilitiesAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\smime\SMIMECapability.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\smime\SMIMECapabilityVector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\smime\SMIMEEncryptionKeyPreferenceAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\teletrust\TeleTrusTNamedCurves.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\teletrust\TeleTrusTObjectIdentifiers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\tsp\Accuracy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\tsp\MessageImprint.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\tsp\TimeStampReq.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\tsp\TimeStampResp.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\tsp\TSTInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\util\Asn1Dump.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\util\Dump.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\util\FilterStream.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x500\DirectoryString.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\AccessDescription.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\AlgorithmIdentifier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\AttCertIssuer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\AttCertValidityPeriod.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\Attribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\AttributeCertificate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\AttributeCertificateInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\AttributeTable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\AuthorityInformationAccess.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\AuthorityKeyIdentifier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\BasicConstraints.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\CertificateList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\CertificatePair.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\CertPolicyId.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\CRLDistPoint.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\CRLNumber.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\CRLReason.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\DigestInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\DisplayText.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\DistributionPoint.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\DistributionPointName.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\DSAParameter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\ExtendedKeyUsage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\GeneralName.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\GeneralNames.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\GeneralSubtree.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\Holder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\IetfAttrSyntax.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\IssuerSerial.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\IssuingDistributionPoint.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\KeyPurposeId.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\KeyUsage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\NameConstraints.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\NoticeReference.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\ObjectDigestInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\PolicyInformation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\PolicyMappings.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\PolicyQualifierId.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\PolicyQualifierInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\PrivateKeyUsagePeriod.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\qualified\BiometricData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\qualified\ETSIQCObjectIdentifiers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\qualified\Iso4217CurrencyCode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\qualified\MonetaryValue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\qualified\QCStatement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\qualified\RFC3739QCObjectIdentifiers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\qualified\SemanticsInformation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\qualified\TypeOfBiometricData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\ReasonFlags.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\RoleSyntax.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\RSAPublicKeyStructure.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\sigi\NameOrPseudonym.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\sigi\PersonalData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\sigi\SigIObjectIdentifiers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\SubjectDirectoryAttributes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\SubjectKeyIdentifier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\SubjectPublicKeyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\Target.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\TargetInformation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\Targets.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\TBSCertificateStructure.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\TBSCertList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\Time.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\UserNotice.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\V1TBSCertificateGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\V2AttributeCertificateInfoGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\V2Form.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\V2TBSCertListGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\V3TBSCertificateGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\X509Attributes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\X509CertificateStructure.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\X509DefaultEntryConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\X509Extension.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\X509Extensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\X509ExtensionsGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\X509Name.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\X509NameEntryConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\X509NameTokenizer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x509\X509ObjectIdentifiers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x9\DHDomainParameters.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x9\DHPublicKey.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x9\DHValidationParms.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x9\KeySpecificInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x9\OtherInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x9\X962NamedCurves.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x9\X962Parameters.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x9\X9Curve.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x9\X9ECParameters.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x9\X9ECParametersHolder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x9\X9ECPoint.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x9\X9FieldElement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x9\X9FieldID.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x9\X9IntegerConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asn1\x9\X9ObjectIdentifiers.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="cms\BaseDigestCalculator.cs" />
-    <Compile Include="cms\CMSAttributeTableGenerationException.cs" />
-    <Compile Include="cms\CMSAttributeTableGenerator.cs" />
-    <Compile Include="cms\CMSAuthenticatedData.cs" />
-    <Compile Include="cms\CMSAuthenticatedDataGenerator.cs" />
-    <Compile Include="cms\CMSAuthenticatedDataParser.cs" />
-    <Compile Include="cms\CMSAuthenticatedDataStreamGenerator.cs" />
-    <Compile Include="cms\CMSAuthenticatedGenerator.cs" />
-    <Compile Include="cms\CMSAuthEnvelopedData.cs" />
-    <Compile Include="cms\CMSAuthEnvelopedGenerator.cs" />
-    <Compile Include="cms\CMSCompressedData.cs" />
-    <Compile Include="cms\CMSCompressedDataGenerator.cs" />
-    <Compile Include="cms\CMSCompressedDataParser.cs" />
-    <Compile Include="cms\CMSCompressedDataStreamGenerator.cs" />
-    <Compile Include="cms\CMSContentInfoParser.cs" />
-    <Compile Include="cms\CMSEnvelopedData.cs" />
-    <Compile Include="cms\CMSEnvelopedDataGenerator.cs" />
-    <Compile Include="cms\CMSEnvelopedDataParser.cs" />
-    <Compile Include="cms\CMSEnvelopedDataStreamGenerator.cs" />
-    <Compile Include="cms\CMSEnvelopedGenerator.cs" />
-    <Compile Include="cms\CMSEnvelopedHelper.cs" />
-    <Compile Include="cms\CMSException.cs" />
-    <Compile Include="cms\CMSPBEKey.cs" />
-    <Compile Include="cms\CMSProcessable.cs" />
-    <Compile Include="cms\CMSProcessableByteArray.cs" />
-    <Compile Include="cms\CMSProcessableInputStream.cs" />
-    <Compile Include="cms\CMSReadable.cs" />
-    <Compile Include="cms\CMSSecureReadable.cs" />
-    <Compile Include="cms\CMSSignedData.cs" />
-    <Compile Include="cms\CMSSignedDataGenerator.cs" />
-    <Compile Include="cms\CMSSignedDataParser.cs" />
-    <Compile Include="cms\CMSSignedDataStreamGenerator.cs" />
-    <Compile Include="cms\CMSSignedGenerator.cs" />
-    <Compile Include="cms\CMSSignedHelper.cs" />
-    <Compile Include="cms\CMSStreamException.cs" />
-    <Compile Include="cms\CMSTypedStream.cs" />
-    <Compile Include="cms\CMSUtils.cs" />
-    <Compile Include="cms\CounterSignatureDigestCalculator.cs" />
-    <Compile Include="cms\DefaultAuthenticatedAttributeTableGenerator.cs" />
-    <Compile Include="cms\DefaultSignedAttributeTableGenerator.cs" />
-    <Compile Include="cms\DigOutputStream.cs" />
-    <Compile Include="cms\IDigestCalculator.cs" />
-    <Compile Include="cms\KEKRecipientInfoGenerator.cs" />
-    <Compile Include="cms\KEKRecipientInformation.cs" />
-    <Compile Include="cms\KeyAgreeRecipientInfoGenerator.cs" />
-    <Compile Include="cms\KeyAgreeRecipientInformation.cs" />
-    <Compile Include="cms\KeyTransRecipientInfoGenerator.cs" />
-    <Compile Include="cms\KeyTransRecipientInformation.cs" />
-    <Compile Include="cms\MacOutputStream.cs" />
-    <Compile Include="cms\NullOutputStream.cs" />
-    <Compile Include="cms\OriginatorId.cs" />
-    <Compile Include="cms\PasswordRecipientInfoGenerator.cs" />
-    <Compile Include="cms\PasswordRecipientInformation.cs" />
-    <Compile Include="cms\PKCS5Scheme2PBEKey.cs" />
-    <Compile Include="cms\PKCS5Scheme2UTF8PBEKey.cs" />
-    <Compile Include="cms\RecipientId.cs" />
-    <Compile Include="cms\RecipientInfoGenerator.cs" />
-    <Compile Include="cms\RecipientInformation.cs" />
-    <Compile Include="cms\RecipientInformationStore.cs" />
-    <Compile Include="cms\SignerId.cs" />
-    <Compile Include="cms\SignerInfoGenerator.cs" />
-    <Compile Include="cms\SignerInformation.cs" />
-    <Compile Include="cms\SignerInformationStore.cs" />
-    <Compile Include="cms\SigOutputStream.cs" />
-    <Compile Include="cms\SimpleAttributeTableGenerator.cs" />
-    <Compile Include="crypto\agreement\DHAgreement.cs" />
-    <Compile Include="crypto\agreement\DHBasicAgreement.cs" />
-    <Compile Include="crypto\agreement\ECDHBasicAgreement.cs" />
-    <Compile Include="crypto\agreement\ECDHCBasicAgreement.cs" />
-    <Compile Include="crypto\agreement\ECDHWithKdfBasicAgreement.cs" />
-    <Compile Include="crypto\agreement\ECMqvBasicAgreement.cs" />
-    <Compile Include="crypto\agreement\ECMqvWithKdfBasicAgreement.cs" />
-    <Compile Include="crypto\agreement\kdf\DHKdfParameters.cs" />
-    <Compile Include="crypto\agreement\kdf\DHKekGenerator.cs" />
-    <Compile Include="crypto\agreement\kdf\ECDHKekGenerator.cs" />
-    <Compile Include="crypto\agreement\srp\SRP6Client.cs" />
-    <Compile Include="crypto\agreement\srp\SRP6Server.cs" />
-    <Compile Include="crypto\agreement\srp\SRP6Utilities.cs" />
-    <Compile Include="crypto\agreement\srp\SRP6VerifierGenerator.cs" />
+    <Compile Include="crypto\agreement\DHAgreement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\agreement\DHBasicAgreement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\agreement\ECDHBasicAgreement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\agreement\ECDHCBasicAgreement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\agreement\ECDHWithKdfBasicAgreement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\agreement\ECMqvBasicAgreement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\agreement\ECMqvWithKdfBasicAgreement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\agreement\kdf\DHKdfParameters.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\agreement\kdf\DHKekGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\agreement\kdf\ECDHKekGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\agreement\srp\SRP6Client.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\agreement\srp\SRP6Server.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\agreement\srp\SRP6Utilities.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\agreement\srp\SRP6VerifierGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="crypto\AsymmetricCipherKeyPair.cs" />
     <Compile Include="crypto\AsymmetricKeyParameter.cs" />
     <Compile Include="crypto\BufferedAeadBlockCipher.cs" />
@@ -632,31 +1420,81 @@
     <Compile Include="crypto\engines\VMPCEngine.cs" />
     <Compile Include="crypto\engines\VMPCKSA3Engine.cs" />
     <Compile Include="crypto\engines\XTEAEngine.cs" />
-    <Compile Include="crypto\generators\BaseKdfBytesGenerator.cs" />
-    <Compile Include="crypto\generators\DesEdeKeyGenerator.cs" />
-    <Compile Include="crypto\generators\DesKeyGenerator.cs" />
-    <Compile Include="crypto\generators\DHBasicKeyPairGenerator.cs" />
-    <Compile Include="crypto\generators\DHKeyGeneratorHelper.cs" />
-    <Compile Include="crypto\generators\DHKeyPairGenerator.cs" />
-    <Compile Include="crypto\generators\DHParametersGenerator.cs" />
-    <Compile Include="crypto\generators\DHParametersHelper.cs" />
-    <Compile Include="crypto\generators\DsaKeyPairGenerator.cs" />
-    <Compile Include="crypto\generators\DsaParametersGenerator.cs" />
-    <Compile Include="crypto\generators\ECKeyPairGenerator.cs" />
-    <Compile Include="crypto\generators\ElGamalKeyPairGenerator.cs" />
-    <Compile Include="crypto\generators\ElGamalParametersGenerator.cs" />
-    <Compile Include="crypto\generators\GOST3410KeyPairGenerator.cs" />
-    <Compile Include="crypto\generators\GOST3410ParametersGenerator.cs" />
-    <Compile Include="crypto\generators\Kdf1BytesGenerator.cs" />
-    <Compile Include="crypto\generators\Kdf2BytesGenerator.cs" />
-    <Compile Include="crypto\generators\Mgf1BytesGenerator.cs" />
-    <Compile Include="crypto\generators\NaccacheSternKeyPairGenerator.cs" />
-    <Compile Include="crypto\generators\OpenSSLPBEParametersGenerator.cs" />
-    <Compile Include="crypto\generators\Pkcs12ParametersGenerator.cs" />
-    <Compile Include="crypto\generators\Pkcs5S1ParametersGenerator.cs" />
-    <Compile Include="crypto\generators\Pkcs5S2ParametersGenerator.cs" />
-    <Compile Include="crypto\generators\RSABlindingFactorGenerator.cs" />
-    <Compile Include="crypto\generators\RsaKeyPairGenerator.cs" />
+    <Compile Include="crypto\generators\BaseKdfBytesGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\generators\DesEdeKeyGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\generators\DesKeyGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\generators\DHBasicKeyPairGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\generators\DHKeyGeneratorHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\generators\DHKeyPairGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\generators\DHParametersGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\generators\DHParametersHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\generators\DsaKeyPairGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\generators\DsaParametersGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\generators\ECKeyPairGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\generators\ElGamalKeyPairGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\generators\ElGamalParametersGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\generators\GOST3410KeyPairGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\generators\GOST3410ParametersGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\generators\Kdf1BytesGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\generators\Kdf2BytesGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\generators\Mgf1BytesGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\generators\NaccacheSternKeyPairGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\generators\OpenSSLPBEParametersGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\generators\Pkcs12ParametersGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\generators\Pkcs5S1ParametersGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\generators\Pkcs5S2ParametersGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\generators\RSABlindingFactorGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="crypto\generators\RsaKeyPairGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="crypto\IAsymmetricBlockCipher.cs" />
     <Compile Include="crypto\IAsymmetricCipherKeyPairGenerator.cs" />
     <Compile Include="crypto\IBasicAgreement.cs" />
@@ -731,7 +1569,9 @@
     <Compile Include="crypto\parameters\DsaValidationParameters.cs" />
     <Compile Include="crypto\parameters\ECDomainParameters.cs" />
     <Compile Include="crypto\parameters\ECKeyGenerationParameters.cs" />
-    <Compile Include="crypto\parameters\ECKeyParameters.cs" />
+    <Compile Include="crypto\parameters\ECKeyParameters.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="crypto\parameters\ECPrivateKeyParameters.cs" />
     <Compile Include="crypto\parameters\ECPublicKeyParameters.cs" />
     <Compile Include="crypto\parameters\ElGamalKeyGenerationParameters.cs" />
@@ -773,18 +1613,6 @@
     <Compile Include="crypto\prng\ReversedWindowGenerator.cs" />
     <Compile Include="crypto\prng\ThreadedSeedGenerator.cs" />
     <Compile Include="crypto\prng\VMPCRandomGenerator.cs" />
-    <Compile Include="crypto\signers\DsaDigestSigner.cs" />
-    <Compile Include="crypto\signers\DsaSigner.cs" />
-    <Compile Include="crypto\signers\ECDsaSigner.cs" />
-    <Compile Include="crypto\signers\ECGOST3410Signer.cs" />
-    <Compile Include="crypto\signers\ECNRSigner.cs" />
-    <Compile Include="crypto\signers\GenericSigner.cs" />
-    <Compile Include="crypto\signers\GOST3410DigestSigner.cs" />
-    <Compile Include="crypto\signers\GOST3410Signer.cs" />
-    <Compile Include="crypto\signers\Iso9796d2PssSigner.cs" />
-    <Compile Include="crypto\signers\Iso9796d2Signer.cs" />
-    <Compile Include="crypto\signers\PssSigner.cs" />
-    <Compile Include="crypto\signers\RsaDigestSigner.cs" />
     <Compile Include="crypto\StreamBlockCipher.cs" />
     <Compile Include="crypto\util\Pack.cs" />
     <Compile Include="math\BigInteger.cs" />
@@ -804,127 +1632,24 @@
     <Compile Include="math\ec\multiplier\WNafPreCompInfo.cs" />
     <Compile Include="math\ec\multiplier\WTauNafMultiplier.cs" />
     <Compile Include="math\ec\multiplier\WTauNafPreCompInfo.cs" />
-    <Compile Include="ocsp\BasicOCSPResp.cs" />
-    <Compile Include="ocsp\BasicOCSPRespGenerator.cs" />
-    <Compile Include="ocsp\CertificateID.cs" />
-    <Compile Include="ocsp\CertificateStatus.cs" />
-    <Compile Include="ocsp\OCSPException.cs" />
-    <Compile Include="ocsp\OCSPReq.cs" />
-    <Compile Include="ocsp\OCSPReqGenerator.cs" />
-    <Compile Include="ocsp\OCSPResp.cs" />
-    <Compile Include="ocsp\OCSPRespGenerator.cs" />
-    <Compile Include="ocsp\OCSPRespStatus.cs" />
-    <Compile Include="ocsp\OCSPUtil.cs" />
-    <Compile Include="ocsp\Req.cs" />
-    <Compile Include="ocsp\RespData.cs" />
-    <Compile Include="ocsp\RespID.cs" />
-    <Compile Include="ocsp\RevokedStatus.cs" />
-    <Compile Include="ocsp\SingleResp.cs" />
-    <Compile Include="ocsp\UnknownStatus.cs" />
-    <Compile Include="openssl\EncryptionException.cs" />
-    <Compile Include="openssl\IPasswordFinder.cs" />
-    <Compile Include="openssl\MiscPemGenerator.cs" />
-    <Compile Include="openssl\PasswordException.cs" />
-    <Compile Include="openssl\PEMException.cs" />
-    <Compile Include="openssl\PEMReader.cs" />
-    <Compile Include="openssl\PEMUtilities.cs" />
-    <Compile Include="openssl\PEMWriter.cs" />
-    <Compile Include="openssl\Pkcs8Generator.cs" />
-    <Compile Include="pkcs\AsymmetricKeyEntry.cs" />
-    <Compile Include="pkcs\EncryptedPrivateKeyInfoFactory.cs" />
-    <Compile Include="pkcs\Pkcs10CertificationRequest.cs" />
-    <Compile Include="pkcs\Pkcs10CertificationRequestDelaySigned.cs" />
-    <Compile Include="pkcs\Pkcs12Entry.cs" />
-    <Compile Include="pkcs\Pkcs12Store.cs" />
-    <Compile Include="pkcs\PKCS12StoreBuilder.cs" />
-    <Compile Include="pkcs\Pkcs12Utilities.cs" />
-    <Compile Include="pkcs\PrivateKeyInfoFactory.cs" />
-    <Compile Include="pkcs\X509CertificateEntry.cs" />
-    <Compile Include="pkix\CertStatus.cs" />
-    <Compile Include="pkix\PkixAttrCertChecker.cs" />
-    <Compile Include="pkix\PkixAttrCertPathBuilder.cs" />
-    <Compile Include="pkix\PkixAttrCertPathValidator.cs" />
-    <Compile Include="pkix\PkixBuilderParameters.cs" />
-    <Compile Include="pkix\PkixCertPath.cs" />
-    <Compile Include="pkix\PkixCertPathBuilder.cs" />
-    <Compile Include="pkix\PkixCertPathBuilderException.cs" />
-    <Compile Include="pkix\PkixCertPathBuilderResult.cs" />
-    <Compile Include="pkix\PkixCertPathChecker.cs" />
-    <Compile Include="pkix\PkixCertPathValidator.cs" />
-    <Compile Include="pkix\PkixCertPathValidatorException.cs" />
-    <Compile Include="pkix\PkixCertPathValidatorResult.cs" />
-    <Compile Include="pkix\PkixCertPathValidatorUtilities.cs" />
-    <Compile Include="pkix\PkixCrlUtilities.cs" />
-    <Compile Include="pkix\PkixNameConstraintValidator.cs" />
-    <Compile Include="pkix\PkixNameConstraintValidatorException.cs" />
-    <Compile Include="pkix\PkixParameters.cs" />
-    <Compile Include="pkix\PkixPolicyNode.cs" />
-    <Compile Include="pkix\ReasonsMask.cs" />
-    <Compile Include="pkix\Rfc3280CertPathUtilities.cs" />
-    <Compile Include="pkix\Rfc3281CertPathUtilities.cs" />
-    <Compile Include="pkix\TrustAnchor.cs" />
     <Compile Include="security\AgreementUtilities.cs" />
-    <Compile Include="security\cert\CertificateEncodingException.cs" />
-    <Compile Include="security\cert\CertificateException.cs" />
-    <Compile Include="security\cert\CertificateExpiredException.cs" />
-    <Compile Include="security\cert\CertificateNotYetValidException.cs" />
-    <Compile Include="security\cert\CertificateParsingException.cs" />
-    <Compile Include="security\cert\CrlException.cs" />
     <Compile Include="security\CipherUtilities.cs" />
     <Compile Include="security\DigestUtilities.cs" />
     <Compile Include="security\DotNetUtilities.cs" />
     <Compile Include="security\GeneralSecurityException.cs" />
-    <Compile Include="security\GeneratorUtilities.cs" />
+    <Compile Include="security\GeneratorUtilities.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="security\InvalidKeyException.cs" />
     <Compile Include="security\InvalidParameterException.cs" />
     <Compile Include="security\KeyException.cs" />
     <Compile Include="security\MacUtilities.cs" />
     <Compile Include="security\NoSuchAlgorithmException.cs" />
     <Compile Include="security\ParameterUtilities.cs" />
-    <Compile Include="security\PbeUtilities.cs" />
-    <Compile Include="security\PrivateKeyFactory.cs" />
-    <Compile Include="security\PublicKeyFactory.cs" />
     <Compile Include="security\SecureRandom.cs" />
     <Compile Include="security\SecurityUtilityException.cs" />
     <Compile Include="security\SignatureException.cs" />
-    <Compile Include="security\SignerUtilities.cs" />
     <Compile Include="security\WrapperUtilities.cs" />
-    <Compile Include="tsp\GenTimeAccuracy.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="tsp\TimeStampRequest.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="tsp\TimeStampRequestGenerator.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="tsp\TimeStampResponse.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="tsp\TimeStampResponseGenerator.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="tsp\TimeStampToken.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="tsp\TimeStampTokenGenerator.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="tsp\TimeStampTokenInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="tsp\TSPAlgorithms.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="tsp\TSPException.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="tsp\TSPUtil.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="tsp\TSPValidationException.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="util\Arrays.cs" />
     <Compile Include="util\BigIntegers.cs" />
     <Compile Include="util\collections\CollectionUtilities.cs" />
@@ -955,13 +1680,6 @@
     <Compile Include="util\Enums.cs" />
     <Compile Include="util\io\BaseInputStream.cs" />
     <Compile Include="util\io\BaseOutputStream.cs" />
-    <Compile Include="util\io\pem\PemGenerationException.cs" />
-    <Compile Include="util\io\pem\PemHeader.cs" />
-    <Compile Include="util\io\pem\PemObject.cs" />
-    <Compile Include="util\io\pem\PemObjectGenerator.cs" />
-    <Compile Include="util\io\pem\PemObjectParser.cs" />
-    <Compile Include="util\io\pem\PemReader.cs" />
-    <Compile Include="util\io\pem\PemWriter.cs" />
     <Compile Include="util\io\PushbackStream.cs" />
     <Compile Include="util\io\StreamOverflowException.cs" />
     <Compile Include="util\io\Streams.cs" />
@@ -984,46 +1702,6 @@
     <Compile Include="util\zlib\ZInputStream.cs" />
     <Compile Include="util\zlib\ZOutputStream.cs" />
     <Compile Include="util\zlib\ZStream.cs" />
-    <Compile Include="x509\AttributeCertificateHolder.cs" />
-    <Compile Include="x509\AttributeCertificateIssuer.cs" />
-    <Compile Include="x509\extension\AuthorityKeyIdentifierStructure.cs" />
-    <Compile Include="x509\extension\SubjectKeyIdentifierStructure.cs" />
-    <Compile Include="x509\extension\X509ExtensionUtil.cs" />
-    <Compile Include="x509\IX509AttributeCertificate.cs" />
-    <Compile Include="x509\IX509Extension.cs" />
-    <Compile Include="x509\PEMParser.cs" />
-    <Compile Include="x509\PrincipalUtil.cs" />
-    <Compile Include="x509\store\IX509Selector.cs" />
-    <Compile Include="x509\store\IX509Store.cs" />
-    <Compile Include="x509\store\IX509StoreParameters.cs" />
-    <Compile Include="x509\store\NoSuchStoreException.cs" />
-    <Compile Include="x509\store\X509AttrCertStoreSelector.cs" />
-    <Compile Include="x509\store\X509CertPairStoreSelector.cs" />
-    <Compile Include="x509\store\X509CertStoreSelector.cs" />
-    <Compile Include="x509\store\X509CollectionStore.cs" />
-    <Compile Include="x509\store\X509CollectionStoreParameters.cs" />
-    <Compile Include="x509\store\X509CrlStoreSelector.cs" />
-    <Compile Include="x509\store\X509StoreException.cs" />
-    <Compile Include="x509\store\X509StoreFactory.cs" />
-    <Compile Include="x509\SubjectPublicKeyInfoFactory.cs" />
-    <Compile Include="x509\X509AttrCertParser.cs" />
-    <Compile Include="x509\X509Attribute.cs" />
-    <Compile Include="x509\X509Certificate.cs" />
-    <Compile Include="x509\X509CertificatePair.cs" />
-    <Compile Include="x509\X509CertificateParser.cs" />
-    <Compile Include="x509\X509CertPairParser.cs" />
-    <Compile Include="x509\X509Crl.cs" />
-    <Compile Include="x509\X509CrlEntry.cs" />
-    <Compile Include="x509\X509CrlParser.cs" />
-    <Compile Include="x509\X509ExtensionBase.cs" />
-    <Compile Include="x509\X509KeyUsage.cs" />
-    <Compile Include="x509\X509SignatureUtil.cs" />
-    <Compile Include="x509\X509Utilities.cs" />
-    <Compile Include="x509\X509V1CertificateGenerator.cs" />
-    <Compile Include="x509\X509V2AttributeCertificate.cs" />
-    <Compile Include="x509\X509V2AttributeCertificateGenerator.cs" />
-    <Compile Include="x509\X509V2CRLGenerator.cs" />
-    <Compile Include="x509\X509V3CertificateGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />
@@ -1031,7 +1709,10 @@
   <ItemGroup>
     <Content Include="ReadMe-AxCrypt.txt" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\SolutionItems\Axantum.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

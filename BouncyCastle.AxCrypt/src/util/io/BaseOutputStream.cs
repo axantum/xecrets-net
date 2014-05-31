@@ -11,7 +11,7 @@ namespace Org.BouncyCastle.Utilities.IO
 		public sealed override bool CanRead { get { return false; } }
         public sealed override bool CanSeek { get { return false; } }
         public sealed override bool CanWrite { get { return !closed; } }
-		public virtual void Close() { Dispose(closed = true); }
+        protected override void Dispose(bool disposing) { closed = true; Dispose(disposing); }
         public override void Flush() {}
         public sealed override long Length { get { throw new NotSupportedException(); } }
         public sealed override long Position

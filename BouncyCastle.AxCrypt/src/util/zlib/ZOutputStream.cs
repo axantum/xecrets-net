@@ -83,8 +83,8 @@ namespace Org.BouncyCastle.Utilities.Zlib
         public sealed override bool CanSeek { get { return false; } }
         public sealed override bool CanWrite { get { return !closed; } }
 
-		public virtual void Close()
-		{
+        protected override void Dispose(bool disposing)
+        {
 			if (this.closed)
 				return;
 
@@ -106,6 +106,7 @@ namespace Org.BouncyCastle.Utilities.Zlib
 				output.Dispose();
 				output = null;
 			}
+            base.Dispose(disposing);
 		}
 
 		public virtual void End()

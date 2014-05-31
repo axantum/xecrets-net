@@ -271,7 +271,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BouncyCastle.AxCrypt\src\BouncyCastle.AxCrypt.csproj">
-      <Project>{3b5cde2b-9418-4873-9e13-b0594d7483a3}</Project>
+      <Project>{63aa03f0-9c8d-44ea-b2ca-5802cf4f1968}</Project>
       <Name>BouncyCastle.AxCrypt</Name>
     </ProjectReference>
   </ItemGroup>

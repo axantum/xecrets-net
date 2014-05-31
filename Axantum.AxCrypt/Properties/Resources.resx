@@ -227,7 +227,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>Your version is old. Please click to check for a newer version.</value>
   </data>
   <data name="OpenEncryptedFileOpenDialogTitle" xml:space="preserve">
-    <value>Select document to decrypt and open</value>
+    <value>Select encrypted document to open</value>
   </data>
   <data name="OpenFileColumnHeader" xml:space="preserve">
     <value>File</value>

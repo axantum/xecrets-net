@@ -623,7 +623,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select document to decrypt and open.
+        ///   Looks up a localized string similar to Select encrypted document to open.
         /// </summary>
         internal static string OpenEncryptedFileOpenDialogTitle {
             get {

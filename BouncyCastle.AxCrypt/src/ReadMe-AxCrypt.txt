@@ -6,6 +6,12 @@ Checksums:	md5	a4b116ac9fc50e9d495968514e15f5eb
 sha1	41ec96c9e96d7c980bd7198347365323a639de6e
 
 The source code is minimally modified in order to compile as a Portable Class Library.
+It is not actually targeted as a PCL since that complicates the build-environment setup,
+and we don't need binary compatibility as long as it compiles on the various platforms.
+
+Some source is excluded because it is not currently needed, however the original source
+is still part of the source code tree, it's just not included in the project unless it's
+needed.
 
 The changes are essentially limited to using ToUpper() ToLower() overloads without culture
 info, changing Stream.Close() to Stream.Dispose() and a minor trick with a ManualResetEvent()

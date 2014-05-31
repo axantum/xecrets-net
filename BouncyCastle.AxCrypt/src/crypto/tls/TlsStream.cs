@@ -29,9 +29,10 @@ namespace Org.BouncyCastle.Crypto.Tls
 			get { return !handler.IsClosed; }
 		}
 
-		public virtual void Close()
-		{
+        protected override void Dispose(bool disposing)
+        {
 			handler.Close();
+            base.Dispose(disposing);
 		}
 
 		public override void Flush()
