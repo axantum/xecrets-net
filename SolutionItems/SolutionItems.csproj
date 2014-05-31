@@ -41,7 +41,6 @@
     <Content Include="MSBuild.Axantum.Tasks.dll" />
     <Content Include="MSBuildVersioning.dll" />
     <Content Include="HowToBuild.txt" />
-    <Content Include="Newtonsoft.Json.dll" />
     <Content Include="nunit.framework.dll" />
     <Content Include="signtool.exe" />
     <Content Include="sn.exe" />
