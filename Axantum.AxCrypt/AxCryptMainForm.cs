@@ -862,13 +862,17 @@ namespace Axantum.AxCrypt
             item.SubItems["EncryptedPath"].Text = activeFile.EncryptedFileInfo.FullName;
             item.SubItems["Date"].Text = activeFile.Properties.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
             item.SubItems["Date"].Tag = activeFile.Properties.LastActivityTimeUtc;
+
+            item.SubItems["CryptoName"].Text = Resources.UnknownCrypto;
             try
             {
-                item.SubItems["CryptoName"].Text = Instance.CryptoFactory.Create(activeFile.Properties.CryptoId).Name;
+                if (activeFile.Properties.CryptoId != Guid.Empty)
+                {
+                    item.SubItems["CryptoName"].Text = Instance.CryptoFactory.Create(activeFile.Properties.CryptoId).Name;
+                }
             }
             catch (ArgumentException)
             {
-                item.SubItems["CryptoName"].Text = "Unknown";
             }
         }
 

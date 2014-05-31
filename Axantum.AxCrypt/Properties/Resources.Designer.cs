@@ -717,6 +717,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unknown.
+        /// </summary>
+        internal static string UnknownCrypto {
+            get {
+                return ResourceManager.GetString("UnknownCrypto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Passphrase is not previously known. Click &apos;New&apos; to create a new Log On..
         /// </summary>
         internal static string UnkownLogOn {

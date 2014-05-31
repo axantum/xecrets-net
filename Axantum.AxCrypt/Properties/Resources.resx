@@ -352,4 +352,8 @@ Includes software from http://www.bouncycastle.org/ .</value>
   <data name="FileIsLockedWarning" xml:space="preserve">
     <value>'{0}' is open in another application. Please close it and try again.</value>
   </data>
+  <data name="UnknownCrypto" xml:space="preserve">
+    <value>Unknown</value>
+    <comment>Displayed when an unknown CryptoId is encountered.</comment>
+  </data>
 </root>

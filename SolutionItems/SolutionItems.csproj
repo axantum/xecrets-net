@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SolutionItems</RootNamespace>
     <AssemblyName>SolutionItems</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <OutputPath>bin\Debug\</OutputPath>
     <TargetFrameworkProfile />
@@ -30,7 +30,6 @@
       <Link>AboutTheSolutions.txt</Link>
     </Content>
     <Content Include="AxCrypt 2.0 Design.html" />
-    <Content Include="BouncyCastle.Crypto.dll" />
     <Content Include="..\CustomDictionary.xml">
       <SubType>Designer</SubType>
     </Content>

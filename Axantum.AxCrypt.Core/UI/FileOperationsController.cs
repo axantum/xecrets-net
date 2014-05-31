@@ -266,7 +266,8 @@ namespace Axantum.AxCrypt.Core.UI
 
         private bool EncryptFileOperation()
         {
-            Factory.New<AxCryptFile>().EncryptFileWithBackupAndWipe(_eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, _eventArgs.Passphrase, Instance.CryptoFactory.Default.Id, _progress);
+            _eventArgs.CryptoId = Instance.CryptoFactory.Default.Id;
+            Factory.New<AxCryptFile>().EncryptFileWithBackupAndWipe(_eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, _eventArgs.Passphrase, _eventArgs.CryptoId, _progress);
 
             _eventArgs.Status = new FileOperationContext(String.Empty, FileOperationStatus.Success);
             return true;
