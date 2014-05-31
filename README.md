@@ -6,7 +6,6 @@ AxCrypt 2.x - Portable Open Source Encryption in C# for .NET/Mono.
 
 * Quick summary
 * Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
 
 ### How To Build? ###
 
