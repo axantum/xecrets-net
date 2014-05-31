@@ -4,8 +4,7 @@ AxCrypt 2.x - Portable Open Source Encryption in C# for .NET/Mono.
 
 ### AxCrypt 2.x ###
 
-* Quick summary
-* Version
+This is still pre-release software. Use with care. API:s may break at any moment.
 
 ### How To Build? ###
 
