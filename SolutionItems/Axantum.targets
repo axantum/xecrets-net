@@ -114,7 +114,7 @@
         <PropertyGroup>
             <_AxIlMergeStrongNameArguments Condition=" '$(KeyContainerName)' != '' And '$(SignAssembly)' == 'true' ">/delaysign &quot;/keyfile:$(MSBuildThisFileDirectory)AxantumStrongName.pub&quot;</_AxIlMergeStrongNameArguments>
         </PropertyGroup>
-        <Exec Command="&quot;$(_AxIlMergePath)&quot; $(_AxIlMergeStrongNameArguments) /attr:&quot;@(MainAssembly)&quot; /targetplatform:v4,&quot;$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5&quot; /out:&quot;$(IntermediateOutputPath)Axantum.AxCrypt.exe&quot; &quot;$(_AxMergeMainExecutable)&quot; @(_AxIlMergeAssemblies->'&quot;%(FullPath)&quot;', ' ')" />
+        <Exec Command="&quot;$(_AxIlMergePath)&quot; $(_AxIlMergeStrongNameArguments) /attr:&quot;@(MainAssembly)&quot; /targetplatform:v4,&quot;$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0&quot; /out:&quot;$(IntermediateOutputPath)Axantum.AxCrypt.exe&quot; &quot;$(_AxMergeMainExecutable)&quot; @(_AxIlMergeAssemblies->'&quot;%(FullPath)&quot;', ' ')" />
         <Copy SourceFiles="$(IntermediateOutputPath)Axantum.AxCrypt.exe"
               DestinationFiles="$(OutputPath)$(_AxMergedBaseFileName).exe" />
         <Delete Files="$(IntermediateOutputPath)Axantum.AxCrypt.exe"
