@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
@@ -149,6 +150,25 @@ namespace Axantum.AxCrypt.Core.Extensions
                     return alternateFileInfo;
                 }
             }
+        }
+
+        public static Passphrase TryFindPassphrase(this IRuntimeFileInfo fileInfo, out Guid cryptoId)
+        {
+            cryptoId = Guid.Empty;
+            if (!fileInfo.IsEncrypted())
+            {
+                return null;
+            }
+
+            foreach (Passphrase knownKey in Instance.KnownKeys.Keys)
+            {
+                cryptoId = Factory.New<AxCryptFactory>().TryFindCryptoId(knownKey, fileInfo, Instance.CryptoFactory.OrderedIds);
+                if (cryptoId != Guid.Empty)
+                {
+                    return knownKey;
+                }
+            }
+            return null;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Axantum.AxCrypt.Core.Session
 {
     public class ActiveFileWatcher : IDisposable
     {
-        private Dictionary<string, IFileWatcher> _workFolderWatchers = new Dictionary<string, IFileWatcher>();
+        private Dictionary<string, IFileWatcher> _activeFileFolderWatchers = new Dictionary<string, IFileWatcher>();
 
         public ActiveFileWatcher()
         {
@@ -17,19 +17,19 @@ namespace Axantum.AxCrypt.Core.Session
         public void Add(IRuntimeFileInfo file)
         {
             string folder = Path.GetDirectoryName(file.FullName);
-            lock (_workFolderWatchers)
+            lock (_activeFileFolderWatchers)
             {
-                if (_workFolderWatchers.ContainsKey(folder))
+                if (_activeFileFolderWatchers.ContainsKey(folder))
                 {
                     return;
                 }
                 IFileWatcher fileWatcher = Factory.New<IFileWatcher>(folder);
-                fileWatcher.FileChanged += HandleWorkFolderFileChangedEvent;
-                _workFolderWatchers.Add(folder, fileWatcher);
+                fileWatcher.FileChanged += HandleActiveFileFolderChangedEvent;
+                _activeFileFolderWatchers.Add(folder, fileWatcher);
             }
         }
 
-        private void HandleWorkFolderFileChangedEvent(object sender, FileWatcherEventArgs e)
+        private void HandleActiveFileFolderChangedEvent(object sender, FileWatcherEventArgs e)
         {
             if (String.IsNullOrEmpty(e.OldName))
             {
@@ -56,13 +56,13 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void DisposeInternal()
         {
-            lock (_workFolderWatchers)
+            lock (_activeFileFolderWatchers)
             {
-                foreach (IFileWatcher fileWatcher in _workFolderWatchers.Values)
+                foreach (IFileWatcher fileWatcher in _activeFileFolderWatchers.Values)
                 {
                     fileWatcher.Dispose();
                 }
-                _workFolderWatchers.Clear();
+                _activeFileFolderWatchers.Clear();
             }
         }
     }

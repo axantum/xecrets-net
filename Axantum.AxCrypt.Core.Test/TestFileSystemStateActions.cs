@@ -593,7 +593,8 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.New<ActiveFileAction>().RemoveRecentFiles(new IRuntimeFileInfo[] { Factory.New<IRuntimeFileInfo>(encryptedFileInfo.FullName) }, new ProgressContext());
 
             ActiveFile afterRemoval = Instance.FileSystemState.FindActiveFileFromEncryptedPath(encryptedFileInfo.FullName);
-            Assert.That(afterRemoval, Is.Null, "After being removed, the ActiveFile should not be possible to find.");
+            Assert.That(afterRemoval, Is.Not.Null, "After being removed, the ActiveFile should still be possible to find.");
+            Assert.That(afterRemoval.Status.HasFlag(ActiveFileStatus.NoLongerActive), "But after the Remove(), the active file should have the inactive flag set.");
         }
 
         [Test]

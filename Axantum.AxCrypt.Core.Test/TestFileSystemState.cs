@@ -113,7 +113,8 @@ namespace Axantum.AxCrypt.Core.Test
                 wasHere = false;
                 state.RemoveActiveFile(activeFile);
                 Assert.That(wasHere, Is.True, "After the Remove(), the changed event should have been raised.");
-                Assert.That(state.ActiveFiles.Count(), Is.EqualTo(0), "After the Remove() the state should have no active files.");
+                Assert.That(state.ActiveFiles.Count(), Is.EqualTo(1), "After the Remove() the state should still have one active files.");
+                Assert.That(state.ActiveFiles.First().Status.HasFlag(ActiveFileStatus.NoLongerActive), "But after the Remove(), the active file should have the inactive flag set.");
             }
         }
 
@@ -325,7 +326,8 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(state.ActiveFileCount, Is.EqualTo(1));
 
                 Factory.New<IRuntimeFileInfo>(_encryptedAxxPath).Delete();
-                Assert.That(state.ActiveFileCount, Is.EqualTo(0), "When deleted, the active file count should be zero again.");
+                Assert.That(state.ActiveFileCount, Is.EqualTo(1), "When deleted, the active file count should still be one.");
+                Assert.That(state.ActiveFiles.First().Status.HasFlag(ActiveFileStatus.NoLongerActive), "But after the Remove(), the active file should have the inactive flag set.");
             }
         }
 

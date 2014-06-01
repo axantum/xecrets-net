@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.IO;
 using System.Linq;
@@ -469,17 +470,16 @@ namespace Axantum.AxCrypt.Core.UI
 
         private static bool TryFindDecryptionKey(IRuntimeFileInfo fileInfo, FileOperationEventArgs e)
         {
-            foreach (Passphrase knownKey in Instance.KnownKeys.Keys)
+            Guid cryptoId;
+            Passphrase passphrase = fileInfo.TryFindPassphrase(out cryptoId);
+            if (passphrase == null)
             {
-                Guid cryptoId = Factory.New<AxCryptFactory>().TryFindCryptoId(knownKey, fileInfo, Instance.CryptoFactory.OrderedIds);
-                if (cryptoId != Guid.Empty)
-                {
-                    e.CryptoId = cryptoId;
-                    e.Passphrase = knownKey;
-                    return true;
-                }
+                return false;
             }
-            return false;
+
+            e.CryptoId = cryptoId;
+            e.Passphrase = passphrase;
+            return true;
         }
 
         private FileOperationContext DoFile(IRuntimeFileInfo fileInfo, Func<IRuntimeFileInfo, bool> preparation, Func<bool> operation)

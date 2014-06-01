@@ -284,11 +284,23 @@ namespace Axantum.AxCrypt.Core.Session
         {
             foreach (ActiveFile activeFile in ActiveFiles)
             {
-                if (activeFile.EncryptedFileInfo.IsExistingFile)
+                if (!activeFile.EncryptedFileInfo.IsExistingFile)
+                {
+                    RemoveActiveFile(activeFile);
+                    continue;
+                }
+                if (!activeFile.Status.HasFlag(ActiveFileStatus.NoLongerActive))
                 {
                     continue;
                 }
-                RemoveActiveFile(activeFile);
+                Guid cryptoId;
+                Passphrase passphrase = activeFile.EncryptedFileInfo.TryFindPassphrase(out cryptoId);
+                if (passphrase == null)
+                {
+                    continue;
+                }
+                ActiveFile resurrectedActiveFile = new ActiveFile(activeFile.EncryptedFileInfo, activeFile.DecryptedFileInfo, passphrase, activeFile.Status & ~ActiveFileStatus.NoLongerActive, cryptoId);
+                Add(resurrectedActiveFile);
             }
             Save();
         }
@@ -305,21 +317,30 @@ namespace Axantum.AxCrypt.Core.Session
             }
             lock (_activeFilesByEncryptedPath)
             {
-                _activeFilesByEncryptedPath.Remove(activeFile.EncryptedFileInfo.FullName);
+                activeFile = new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.NoLongerActive);
+                _activeFilesByEncryptedPath[activeFile.EncryptedFileInfo.FullName] = activeFile;
             }
-            activeFile = new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.NoLongerActive);
             OnActiveFileChanged(new ActiveFileChangedEventArgs(activeFile));
         }
 
         public virtual void ChangeActiveFile(string oldFullName, string newFullName)
         {
-            ActiveFile activeFile = FindActiveFileFromEncryptedPath(oldFullName);
-            if (activeFile == null)
-            {
-                return;
-            }
+            ActiveFile activeFile;
             lock (_activeFilesByEncryptedPath)
             {
+                activeFile = FindActiveFileFromEncryptedPath(oldFullName);
+                if (activeFile == null)
+                {
+                    return;
+                }
+
+                IRuntimeFileInfo newFileInfo = Factory.New<IRuntimeFileInfo>(newFullName);
+                if (!newFileInfo.IsEncrypted())
+                {
+                    RemoveActiveFile(activeFile);
+                    return;
+                }
+
                 _activeFilesByEncryptedPath.Remove(activeFile.EncryptedFileInfo.FullName);
                 activeFile = new ActiveFile(activeFile, Factory.New<IRuntimeFileInfo>(newFullName));
                 _activeFilesByEncryptedPath[activeFile.EncryptedFileInfo.FullName] = activeFile;
