@@ -45,6 +45,6 @@ namespace Axantum.AxCrypt.Core.Session
         NotShareable = 16,
 
         IgnoreChange = 32,
-        NoLongerActive = 64,
+        Inactive = 64,
     }
 }

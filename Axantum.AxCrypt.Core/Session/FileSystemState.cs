@@ -289,7 +289,7 @@ namespace Axantum.AxCrypt.Core.Session
                     RemoveActiveFile(activeFile);
                     continue;
                 }
-                if (!activeFile.Status.HasFlag(ActiveFileStatus.NoLongerActive))
+                if (!activeFile.Status.HasFlag(ActiveFileStatus.Inactive))
                 {
                     continue;
                 }
@@ -299,7 +299,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     continue;
                 }
-                ActiveFile resurrectedActiveFile = new ActiveFile(activeFile.EncryptedFileInfo, activeFile.DecryptedFileInfo, passphrase, activeFile.Status & ~ActiveFileStatus.NoLongerActive, cryptoId);
+                ActiveFile resurrectedActiveFile = new ActiveFile(activeFile.EncryptedFileInfo, activeFile.DecryptedFileInfo, passphrase, activeFile.Status & ~ActiveFileStatus.Inactive, cryptoId);
                 Add(resurrectedActiveFile);
             }
             Save();
@@ -317,7 +317,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
             lock (_activeFilesByEncryptedPath)
             {
-                activeFile = new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.NoLongerActive);
+                activeFile = new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.Inactive);
                 _activeFilesByEncryptedPath[activeFile.EncryptedFileInfo.FullName] = activeFile;
             }
             OnActiveFileChanged(new ActiveFileChangedEventArgs(activeFile));

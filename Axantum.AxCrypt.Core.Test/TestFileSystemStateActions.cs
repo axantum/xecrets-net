@@ -594,7 +594,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             ActiveFile afterRemoval = Instance.FileSystemState.FindActiveFileFromEncryptedPath(encryptedFileInfo.FullName);
             Assert.That(afterRemoval, Is.Not.Null, "After being removed, the ActiveFile should still be possible to find.");
-            Assert.That(afterRemoval.Status.HasFlag(ActiveFileStatus.NoLongerActive), "But after the Remove(), the active file should have the inactive flag set.");
+            Assert.That(afterRemoval.Status.HasFlag(ActiveFileStatus.Inactive), "But after the Remove(), the active file should have the inactive flag set.");
         }
 
         [Test]
