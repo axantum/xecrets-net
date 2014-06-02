@@ -783,7 +783,7 @@ namespace Axantum.AxCrypt
             _recentFilesListView.BeginUpdate();
             try
             {
-                _recentFilesListView.Items.Clear();
+                int i = 0;
                 foreach (ActiveFile file in files)
                 {
                     string text = Path.GetFileName(file.DecryptedFileInfo.FullName);
@@ -799,9 +799,21 @@ namespace Axantum.AxCrypt
                     ListViewItem.ListViewSubItem cryptoNameColumn = item.SubItems.Add(String.Empty);
                     cryptoNameColumn.Name = "CryptoName";
 
-                    _recentFilesListView.Items.Add(item);
-
                     UpdateListViewItem(item, file);
+
+                    if (i < _recentFilesListView.Items.Count && _recentFilesListView.Items[i].Name == item.Name)
+                    {
+                        _recentFilesListView.Items[i] = item;
+                    }
+                    else
+                    {
+                        while (_recentFilesListView.Items.Count > i)
+                        {
+                            _recentFilesListView.Items.RemoveAt(_recentFilesListView.Items.Count - 1);
+                        }
+                        _recentFilesListView.Items.Add(item);
+                    }
+                    ++i;
                 }
                 while (_recentFilesListView.Items.Count > Preferences.RecentFilesMaxNumber)
                 {

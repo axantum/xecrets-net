@@ -53,7 +53,6 @@ namespace Axantum.AxCrypt.Mono
 
             _fileInfo = Factory.New<IRuntimeFileInfo>(path);
             _fileSystemWatcher = new FileSystemWatcher(_fileInfo.FullName);
-            _fileSystemWatcher.Changed += (sender, e) => FileSystemChanged(new FileWatcherEventArgs(e.FullPath));
             _fileSystemWatcher.Created += (sender, e) => FileSystemChanged(new FileWatcherEventArgs(e.FullPath));
             _fileSystemWatcher.Deleted += (sender, e) => FileSystemChanged(new FileWatcherEventArgs(e.FullPath));
             _fileSystemWatcher.Renamed += (sender, e) => FileSystemChanged(new FileWatcherEventArgs(e.OldFullPath, e.FullPath));
