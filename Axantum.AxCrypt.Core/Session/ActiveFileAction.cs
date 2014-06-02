@@ -324,6 +324,8 @@ namespace Axantum.AxCrypt.Core.Session
                     Instance.Log.LogInfo("Deleting '{0}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                 }
                 Factory.New<AxCryptFile>().Wipe(activeFile.DecryptedFileInfo, progress);
+                IRuntimeFileInfo decryptedFolder = Factory.New<IRuntimeFileInfo>(Path.GetDirectoryName(activeFile.DecryptedFileInfo.FullName));
+                decryptedFolder.RemoveFolder();
             }
             catch (IOException)
             {

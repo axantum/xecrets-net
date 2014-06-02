@@ -60,6 +60,12 @@ namespace Axantum.AxCrypt.Core.IO
         void CreateFolder();
 
         /// <summary>
+        /// Removes a folder in the underlying file system with the path of this instance,
+        /// if the folder is empty. If it is not, nothing happens.
+        /// </summary>
+        void RemoveFolder();
+
+        /// <summary>
         /// Creates a file in the underlying system. If it already exists, an AxCryptException is thrown with status FileExists.
         /// </summary>
         void CreateNewFile();

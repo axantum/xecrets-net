@@ -250,6 +250,24 @@ namespace Axantum.AxCrypt.Mono
         }
 
         /// <summary>
+        /// Removes a folder in the underlying file system with the path of this instance,
+        /// if the folder is empty. If it is not, nothing happens.
+        /// </summary>
+        public void RemoveFolder()
+        {
+            if (!IsExistingFolder)
+            {
+                return;
+            }
+            DirectoryInfo di = new DirectoryInfo(_file.FullName);
+            if (di.EnumerateFiles().Any() || di.EnumerateDirectories().Any())
+            {
+                return;
+            }
+            di.Delete();
+        }
+
+        /// <summary>
         /// Creates a file in the underlying system. If it already exists, an AxCryptException is thrown with status FileExists.
         /// </summary>
         public void CreateNewFile()

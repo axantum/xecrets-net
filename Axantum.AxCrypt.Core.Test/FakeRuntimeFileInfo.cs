@@ -414,5 +414,20 @@ namespace Axantum.AxCrypt.Core.Test
             path = path.NormalizeFilePath();
             return new FakeRuntimeFileInfo(Path.Combine(FullName, path));
         }
+
+
+        /// <summary>
+        /// Removes a folder in the underlying file system with the path of this instance,
+        /// if the folder is empty. If it is not, nothing happens.
+        /// </summary>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public void RemoveFolder()
+        {
+            if (!IsExistingFolder)
+            {
+                return;
+            }
+            RemoveFileOrFolder(FullName);
+        }
     }
 }
