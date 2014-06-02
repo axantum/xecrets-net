@@ -341,7 +341,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 if (_statusChecker.CheckStatusAndShowMessage(e.Status.Status, e.OpenFileFullName))
                 {
                     IRuntimeFileInfo encryptedInfo = Factory.New<IRuntimeFileInfo>(e.OpenFileFullName);
-                    IRuntimeFileInfo decryptedInfo = Factory.New<IRuntimeFileInfo>(e.SaveFileFullName);
+                    IRuntimeFileInfo decryptedInfo = Factory.New<IRuntimeFileInfo>(FileOperation.GetTemporaryDestinationName(e.SaveFileFullName));
                     ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.Passphrase, ActiveFileStatus.NotDecrypted, e.CryptoId);
                     _fileSystemState.Add(activeFile);
                     _fileSystemState.Save();
