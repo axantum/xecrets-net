@@ -36,6 +36,11 @@ namespace Axantum.AxCrypt.Core.Ipc
 
         public void RequestReceived(object sender, CommandServiceEventArgs e)
         {
+            if (!Instance.KnownKeys.IsLoggedOn)
+            {
+                OnCommandComplete(new CommandCompleteEventArgs(CommandVerb.Show, new string[0]));
+                return;
+            }
             switch (e.Verb)
             {
                 case CommandVerb.Unknown:

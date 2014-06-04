@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt
     {
         private LogOnViewModel _viewModel;
 
-        public LogOnDialog(string identityName, string encryptedFileFullName)
+        public LogOnDialog(Form parent, string identityName, string encryptedFileFullName)
         {
             InitializeComponent();
 
@@ -46,6 +46,8 @@ namespace Axantum.AxCrypt
             PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
             ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
 
+            Owner = parent;
+            Owner.Activated += (sender, e) => Activate();
             StartPosition = FormStartPosition.CenterParent;
         }
 

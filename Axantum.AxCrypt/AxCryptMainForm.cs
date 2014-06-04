@@ -83,12 +83,60 @@ namespace Axantum.AxCrypt
                 return;
             }
 
+            try
+            {
+                InitializeProgram();
+            }
+            catch
+            {
+                ClearAllSettingsAndReinitialize();
+                throw;
+            }
+        }
+
+        private void InitializeProgram()
+        {
             RegisterTypeFactories();
+            SetupViewModels();
+            AttachLogListener();
+            ConfigureUiOptions();
+            SetupPathFilters();
+            IntializeControls();
+            RestoreUserPreferences();
+            BindToViewModels();
+            BindToFileOperationViewModel();
+            SetupCommandService();
+            SendStartSessionNotification();
+        }
 
-            _mainViewModel = Factory.New<MainViewModel>();
-            _fileOperationViewModel = Factory.New<FileOperationViewModel>();
-            _knownFoldersViewModel = Factory.New<KnownFoldersViewModel>();
+        private void LogOnOrExit()
+        {
+            _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Instance.CryptoFactory.Default.Id);
+            if (!_mainViewModel.LoggedOn)
+            {
+                Application.Exit();
+            }
+        }
 
+        private static void SendStartSessionNotification()
+        {
+            Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.SessionStart));
+        }
+
+        private void SetupCommandService()
+        {
+            Instance.CommandService.Received += Factory.Instance.Singleton<CommandHandler>().RequestReceived;
+            Instance.CommandService.StartListening();
+            Factory.Instance.Singleton<CommandHandler>().CommandComplete += AxCryptMainForm_CommandComplete;
+        }
+
+        private void ConfigureUiOptions()
+        {
+            MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
+        }
+
+        private void AttachLogListener()
+        {
             Instance.Log.Logged += (logger, loggingEventArgs) =>
             {
                 Instance.UIThread.PostOnUIThread(() =>
@@ -97,19 +145,13 @@ namespace Axantum.AxCrypt
                     _logOutputTextBox.AppendText(formatted);
                 });
             };
+        }
 
-            MessageBoxOptions = RightToLeft == RightToLeft.Yes ? MessageBoxOptions.RightAlign | MessageBoxOptions.RtlReading : 0;
-
-            SetupPathFilters();
-            IntializeControls();
-            RestoreUserPreferences();
-            BindToViewModels();
-            BindToFileOperationViewModel();
-
-            Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.SessionStart));
-            Instance.CommandService.Received += Factory.Instance.Singleton<CommandHandler>().RequestReceived;
-            Instance.CommandService.StartListening();
-            Factory.Instance.Singleton<CommandHandler>().CommandComplete += AxCryptMainForm_CommandComplete;
+        private void SetupViewModels()
+        {
+            _mainViewModel = Factory.New<MainViewModel>();
+            _fileOperationViewModel = Factory.New<FileOperationViewModel>();
+            _knownFoldersViewModel = Factory.New<KnownFoldersViewModel>();
         }
 
         private void AxCryptMainForm_Shown(object sender, EventArgs e)
@@ -119,6 +161,7 @@ namespace Axantum.AxCrypt
                 Resources.UserSettingsFormatChangeNeedsReset.ShowWarning();
                 ClearPassphraseMemoryToolStripMenuItem_Click(sender, e);
             }
+            LogOnOrExit();
         }
 
         private void RegisterTypeFactories()
@@ -368,7 +411,7 @@ namespace Axantum.AxCrypt
             _decryptAndRemoveFromListToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(_mainViewModel.SelectedRecentFiles); };
             _decryptToolStripButton.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(null); };
             _decryptToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(null); };
-            _encryptionKeyToolStripButton.Click += (sender, e) => { _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Instance.CryptoFactory.Default.Id); };
+            _encryptionKeyToolStripButton.Click += (sender, e) => { Application.Exit(); };
             _encryptToolStripButton.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
             _encryptToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
             _openEncryptedToolStripButton.Click += (sender, e) => { _fileOperationViewModel.OpenFilesFromFolder.Execute(String.Empty); };
@@ -416,7 +459,7 @@ namespace Axantum.AxCrypt
 
         private void HandleCreateNewLogOn(LogOnEventArgs e)
         {
-            using (NewPassphraseDialog passphraseDialog = new NewPassphraseDialog(e.Passphrase, e.EncryptedFileFullName))
+            using (NewPassphraseDialog passphraseDialog = new NewPassphraseDialog(this, e.Passphrase, e.EncryptedFileFullName))
             {
                 passphraseDialog.ShowPassphraseCheckBox.Checked = e.DisplayPassphrase;
                 DialogResult dialogResult = passphraseDialog.ShowDialog(this);
@@ -434,7 +477,7 @@ namespace Axantum.AxCrypt
 
         private void HandleExistingLogOn(LogOnEventArgs e)
         {
-            using (LogOnDialog logOnDialog = new LogOnDialog(e.Identity.Name, e.EncryptedFileFullName))
+            using (LogOnDialog logOnDialog = new LogOnDialog(this, e.Identity.Name, e.EncryptedFileFullName))
             {
                 logOnDialog.ShowPassphraseCheckBox.Checked = e.DisplayPassphrase;
                 DialogResult dialogResult = logOnDialog.ShowDialog(this);
@@ -1213,10 +1256,15 @@ namespace Axantum.AxCrypt
 
         private void ClearPassphraseMemoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ClearAllSettingsAndReinitialize();
+            Application.Exit();
+        }
+
+        private static void ClearAllSettingsAndReinitialize()
+        {
             Instance.UserSettings.Delete();
             Instance.FileSystemState.Delete();
             Instance.UserSettings.SettingsVersion = Instance.UserSettings.CurrentSettingsVersion;
-            Application.Exit();
         }
 
         private void PolicyMenuItem_Click(object sender, EventArgs e)
