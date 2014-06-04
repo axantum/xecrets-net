@@ -116,6 +116,11 @@ namespace Axantum.AxCrypt
             {
                 Application.Exit();
             }
+            if (_pendingRequest != null)
+            {
+                DoRequest(_pendingRequest);
+                _pendingRequest = null;
+            }
         }
 
         private static void SendStartSessionNotification()
@@ -629,8 +634,15 @@ namespace Axantum.AxCrypt
             Instance.UIThread.RunOnUIThread(() => DoRequest(e));
         }
 
+        private CommandCompleteEventArgs _pendingRequest;
+
         private void DoRequest(CommandCompleteEventArgs e)
         {
+            if (!Instance.KnownKeys.IsLoggedOn)
+            {
+                _pendingRequest = e;
+                return;
+            }
             switch (e.Verb)
             {
                 case CommandVerb.Encrypt:
