@@ -100,7 +100,6 @@
             // 
             // _buttonOk
             // 
-            this._buttonOk.DialogResult = System.Windows.Forms.DialogResult.None;
             resources.ApplyResources(this._buttonOk, "_buttonOk");
             this._buttonOk.Name = "_buttonOk";
             this._buttonOk.UseVisualStyleBackColor = true;
@@ -133,7 +132,6 @@
             // LogOnDialog
             // 
             this.AcceptButton = this._buttonOk;
-            this.CancelButton = this._buttonCancel;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this._buttonCancel;
@@ -141,8 +139,10 @@
             this.Controls.Add(this.FileNamePanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "LogOnDialog";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.TopMost = true;
             this.Activated += new System.EventHandler(this.LogOnDialog_Activated);
             this.Load += new System.EventHandler(this.EncryptPassphraseDialog_Load);
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).EndInit();

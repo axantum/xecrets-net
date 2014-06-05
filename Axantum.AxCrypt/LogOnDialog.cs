@@ -47,7 +47,6 @@ namespace Axantum.AxCrypt
             ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
 
             Owner = parent;
-            Owner.Activated += (sender, e) => Activate();
             StartPosition = FormStartPosition.CenterParent;
         }
 

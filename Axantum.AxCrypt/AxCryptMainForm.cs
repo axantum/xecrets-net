@@ -464,6 +464,7 @@ namespace Axantum.AxCrypt
 
         private void HandleCreateNewLogOn(LogOnEventArgs e)
         {
+            RestoreWindowWithFocus();
             using (NewPassphraseDialog passphraseDialog = new NewPassphraseDialog(this, e.Passphrase, e.EncryptedFileFullName))
             {
                 passphraseDialog.ShowPassphraseCheckBox.Checked = e.DisplayPassphrase;
@@ -482,6 +483,7 @@ namespace Axantum.AxCrypt
 
         private void HandleExistingLogOn(LogOnEventArgs e)
         {
+            RestoreWindowWithFocus();
             using (LogOnDialog logOnDialog = new LogOnDialog(this, e.Identity.Name, e.EncryptedFileFullName))
             {
                 logOnDialog.ShowPassphraseCheckBox.Checked = e.DisplayPassphrase;
@@ -640,6 +642,7 @@ namespace Axantum.AxCrypt
         {
             if (!Instance.KnownKeys.IsLoggedOn)
             {
+                RestoreWindowWithFocus();
                 _pendingRequest = e;
                 return;
             }
@@ -693,17 +696,24 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-            Activate();
-            if (ContainsFocus)
+            if (ContainsFocus && !OwnedForms.Any())
             {
                 return;
             }
-            if (WindowState == FormWindowState.Normal)
+            if (!ContainsFocus)
             {
-                WindowState = FormWindowState.Minimized;
+                if (WindowState == FormWindowState.Normal)
+                {
+                    WindowState = FormWindowState.Minimized;
+                }
+                Show();
+                WindowState = FormWindowState.Normal;
+                Activate();
             }
-            Show();
-            WindowState = FormWindowState.Normal;
+            if (OwnedForms.Any())
+            {
+                OwnedForms.First().Focus();
+            }
         }
 
         private DragDropEffects GetEffectsForMainToolStrip(DragEventArgs e)
