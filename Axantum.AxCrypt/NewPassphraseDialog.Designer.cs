@@ -39,8 +39,6 @@
             this._panel1 = new System.Windows.Forms.Panel();
             this._buttonCancel = new System.Windows.Forms.Button();
             this._buttonOk = new System.Windows.Forms.Button();
-            this._groupBox1 = new System.Windows.Forms.GroupBox();
-            this.NameTextBox = new System.Windows.Forms.TextBox();
             this.PassphraseGroupBox = new System.Windows.Forms.GroupBox();
             this.ShowPassphraseCheckBox = new System.Windows.Forms.CheckBox();
             this.VerifyPassphraseTextbox = new System.Windows.Forms.TextBox();
@@ -52,7 +50,6 @@
             this.FileNamePanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this._panel1.SuspendLayout();
-            this._groupBox1.SuspendLayout();
             this.PassphraseGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,9 +83,9 @@
             // 
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Controls.Add(this._panel1);
-            this.panel1.Controls.Add(this._groupBox1);
             this.panel1.Controls.Add(this.PassphraseGroupBox);
             this.panel1.Name = "panel1";
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // _panel1
             // 
@@ -113,20 +110,6 @@
             this._buttonOk.Name = "_buttonOk";
             this._buttonOk.UseVisualStyleBackColor = true;
             this._buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
-            // 
-            // _groupBox1
-            // 
-            this._groupBox1.Controls.Add(this.NameTextBox);
-            resources.ApplyResources(this._groupBox1, "_groupBox1");
-            this._groupBox1.Name = "_groupBox1";
-            this._groupBox1.TabStop = false;
-            // 
-            // NameTextBox
-            // 
-            resources.ApplyResources(this.NameTextBox, "NameTextBox");
-            this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.NameTextBox_Validating);
-            this.NameTextBox.Validated += new System.EventHandler(this.NameTextBox_Validated);
             // 
             // PassphraseGroupBox
             // 
@@ -182,8 +165,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this._panel1.ResumeLayout(false);
-            this._groupBox1.ResumeLayout(false);
-            this._groupBox1.PerformLayout();
             this.PassphraseGroupBox.ResumeLayout(false);
             this.PassphraseGroupBox.PerformLayout();
             this.ResumeLayout(false);
@@ -199,8 +180,6 @@
         private System.Windows.Forms.Panel _panel1;
         private System.Windows.Forms.Button _buttonCancel;
         private System.Windows.Forms.Button _buttonOk;
-        private System.Windows.Forms.GroupBox _groupBox1;
-        internal System.Windows.Forms.TextBox NameTextBox;
         internal System.Windows.Forms.GroupBox PassphraseGroupBox;
         internal System.Windows.Forms.CheckBox ShowPassphraseCheckBox;
         private System.Windows.Forms.TextBox VerifyPassphraseTextbox;

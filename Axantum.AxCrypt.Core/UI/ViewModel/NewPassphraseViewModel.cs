@@ -38,23 +38,18 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     {
         private string _encryptedFileFullName;
 
-        public NewPassphraseViewModel(string passphrase, string defaultIdentityName, string encryptedFileFullName)
+        public NewPassphraseViewModel(string passphrase, string encryptedFileFullName)
         {
             _encryptedFileFullName = encryptedFileFullName;
-            InitializePropertyValues(passphrase, defaultIdentityName);
+            InitializePropertyValues(passphrase);
         }
 
-        private void InitializePropertyValues(string passphrase, string defaultIdentityName)
+        private void InitializePropertyValues(string passphrase)
         {
-            PassphraseIdentity identity = Instance.FileSystemState.Identities.FirstOrDefault(id => String.Compare(id.Name, Environment.UserName, StringComparison.OrdinalIgnoreCase) == 0);
-            bool defaultIdentityKnown = identity != null;
-            IdentityName = defaultIdentityKnown ? String.Empty : defaultIdentityName;
             Passphrase = passphrase ?? String.Empty;
             Verification = passphrase ?? String.Empty;
             FileName = String.IsNullOrEmpty(_encryptedFileFullName) ? String.Empty : Factory.New<IRuntimeFileInfo>(_encryptedFileFullName).Name;
         }
-
-        public string IdentityName { get { return GetProperty<string>("IdentityName"); } set { SetProperty("IdentityName", value); } }
 
         public bool ShowPassphrase { get { return GetProperty<bool>("ShowPassphrase"); } set { SetProperty("ShowPassphrase", value); } }
 
@@ -102,14 +97,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     if (!ValidateVerification())
                     {
                         ValidationError = (int)ViewModel.ValidationError.VerificationPassphraseWrong;
-                        return false;
-                    }
-                    break;
-
-                case "IdentityName":
-                    if (Instance.FileSystemState.Identities.Any(i => i.Name == IdentityName))
-                    {
-                        ValidationError = (int)ViewModel.ValidationError.IdentityExistsAlready;
                         return false;
                     }
                     break;

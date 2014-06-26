@@ -34,31 +34,26 @@ using System.Runtime.Serialization;
 namespace Axantum.AxCrypt.Core.Session
 {
     /// <summary>
-    /// A passphrase identity, associating a name with a thumbprint and optionally a key.
+    /// A passphrase identity, associating a persisted thumbprint with an optional transient key.
     /// Instances of this class are immutable.
     /// </summary>
     [DataContract(Namespace = "http://www.axantum.com/Serialization/")]
     public class PassphraseIdentity
     {
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "This type is immutable.")]
-        public static readonly PassphraseIdentity Empty = new PassphraseIdentity(String.Empty, Passphrase.Empty);
+        public static readonly PassphraseIdentity Empty = new PassphraseIdentity(Passphrase.Empty);
 
-        public PassphraseIdentity(string name)
+        public PassphraseIdentity()
         {
-            Name = name;
         }
 
-        public PassphraseIdentity(string name, Passphrase key)
-            : this(name)
+        public PassphraseIdentity(Passphrase key)
         {
             Key = key;
             Thumbprint = Key.Thumbprint;
         }
 
         public Passphrase Key { get; private set; }
-
-        [DataMember(Name = "Name")]
-        public string Name { get; private set; }
 
         [DataMember(Name = "Thumbprint")]
         public SymmetricKeyThumbprint Thumbprint { get; private set; }

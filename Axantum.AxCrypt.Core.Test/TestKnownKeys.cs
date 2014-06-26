@@ -180,7 +180,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestAddKeyForKnownIdentity()
         {
-            Instance.FileSystemState.Identities.Add(new PassphraseIdentity("Unit Test", new Passphrase("a")));
+            Instance.FileSystemState.Identities.Add(new PassphraseIdentity(new Passphrase("a")));
             KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
             knownKeys.Add(new Passphrase("a"));
 

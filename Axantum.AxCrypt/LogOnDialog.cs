@@ -38,11 +38,11 @@ namespace Axantum.AxCrypt
     {
         private LogOnViewModel _viewModel;
 
-        public LogOnDialog(Form parent, string identityName, string encryptedFileFullName)
+        public LogOnDialog(Form parent, string encryptedFileFullName)
         {
             InitializeComponent();
 
-            _viewModel = new LogOnViewModel(identityName, encryptedFileFullName);
+            _viewModel = new LogOnViewModel(encryptedFileFullName);
             PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
             ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
 
@@ -69,7 +69,7 @@ namespace Axantum.AxCrypt
                 DialogResult = DialogResult.None;
                 return;
             }
-            if (!String.IsNullOrEmpty(_viewModel.FileName) && String.IsNullOrEmpty(_viewModel.IdentityName))
+            if (!String.IsNullOrEmpty(_viewModel.FileName))
             {
                 DialogResult = DialogResult.Retry;
             }

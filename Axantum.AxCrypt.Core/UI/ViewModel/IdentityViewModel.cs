@@ -199,7 +199,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return passphrase;
             }
 
-            identity = new PassphraseIdentity(logOnArgs.Name, passphrase);
+            identity = new PassphraseIdentity(passphrase);
             _fileSystemState.Identities.Add(identity);
             _fileSystemState.Save();
 

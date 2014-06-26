@@ -42,8 +42,7 @@ namespace Axantum.AxCrypt
         {
             InitializeComponent();
 
-            _viewModel = new NewPassphraseViewModel(passphrase, Environment.UserName, encryptedFileFullName);
-            NameTextBox.TextChanged += (sender, e) => { _viewModel.IdentityName = NameTextBox.Text; };
+            _viewModel = new NewPassphraseViewModel(passphrase, encryptedFileFullName);
             PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
             VerifyPassphraseTextbox.TextChanged += (sender, e) => { _viewModel.Verification = VerifyPassphraseTextbox.Text; };
             ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
@@ -65,15 +64,7 @@ namespace Axantum.AxCrypt
             _viewModel.BindPropertyChanged("Passphrase", (string p) => { PassphraseTextBox.Text = p; });
             _viewModel.BindPropertyChanged("Verification", (string p) => { VerifyPassphraseTextbox.Text = p; });
 
-            if (_viewModel.IdentityName.Length != 0)
-            {
-                NameTextBox.Text = _viewModel.IdentityName;
-                PassphraseTextBox.Focus();
-            }
-            else
-            {
-                NameTextBox.Focus();
-            }
+            PassphraseTextBox.Focus();
         }
 
         private void buttonOk_Click(object sender, EventArgs e)
@@ -101,15 +92,7 @@ namespace Axantum.AxCrypt
             {
                 _errorProvider1.Clear();
             }
-            if (_viewModel["IdentityName"].Length > 0)
-            {
-                _errorProvider2.SetError(NameTextBox, Resources.LogOnExists);
-                validated = false;
-            }
-            else
-            {
-                _errorProvider2.Clear();
-            }
+            _errorProvider2.Clear();
             return validated;
         }
 
@@ -127,6 +110,11 @@ namespace Axantum.AxCrypt
 
         private void NameTextBox_Validated(object sender, EventArgs e)
         {
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

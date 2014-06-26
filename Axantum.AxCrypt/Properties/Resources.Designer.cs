@@ -550,7 +550,7 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &apos;{0}&apos; is Logged On.
+        ///   Looks up a localized string similar to Logged On.
         /// </summary>
         internal static string LoggedOnStatusText {
             get {

@@ -56,8 +56,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public string Title { get { return GetProperty<string>("Title"); } set { SetProperty("Title", value); } }
 
-        public string LogOnName { get { return GetProperty<string>("LogOnName"); } set { SetProperty("LogOnName", value); } }
-
         public PassphraseIdentity Identity { get { return GetProperty<PassphraseIdentity>("Identity"); } set { SetProperty("Identity", value); } }
 
         public IEnumerable<string> WatchedFolders { get { return GetProperty<IEnumerable<string>>("WatchedFolders"); } set { SetProperty("WatchedFolders", value.ToList()); } }
@@ -299,7 +297,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void SetLogOnState(bool isLoggedOn)
         {
-            string name = String.Empty;
             PassphraseIdentity identity = null;
             if (isLoggedOn)
             {
@@ -308,10 +305,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     throw new InvalidOperationException("Attempt to log on without a matching identity being defined.");
                 }
-                name = identity.Name;
             }
             Identity = identity;
-            LogOnName = name;
             LoggedOn = isLoggedOn;
             EncryptFileEnabled = isLoggedOn;
             DecryptFileEnabled = isLoggedOn;

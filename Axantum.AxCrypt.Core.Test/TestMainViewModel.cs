@@ -175,7 +175,7 @@ namespace Axantum.AxCrypt.Core.Test
                 mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
                 Assert.That(mvm.DroppableAsRecent, Is.False, "An encrypted file that does not exist is not a candidate for recent.");
 
-                PassphraseIdentity id = new PassphraseIdentity("Test", new Passphrase("passphrase1"));
+                PassphraseIdentity id = new PassphraseIdentity(new Passphrase("passphrase1"));
                 Instance.FileSystemState.Identities.Add(id);
                 Instance.KnownKeys.DefaultEncryptionKey = id.Key;
                 mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
@@ -194,7 +194,7 @@ namespace Axantum.AxCrypt.Core.Test
                 mvm.DragAndDropFiles = new string[] { decryptedFilePath, };
                 Assert.That(mvm.DroppableAsRecent, Is.False, "An encrpytable file without a valid log on is not droppable as recent.");
 
-                id = new PassphraseIdentity("Test2", new Passphrase("passphrase"));
+                id = new PassphraseIdentity(new Passphrase("passphrase"));
                 Instance.FileSystemState.Identities.Add(id);
                 Instance.KnownKeys.DefaultEncryptionKey = id.Key;
                 mvm.DragAndDropFiles = new string[] { decryptedFilePath, };
@@ -394,7 +394,7 @@ namespace Axantum.AxCrypt.Core.Test
             Instance.FileSystemState.Add(activeFile);
 
             Instance.KnownKeys.Add(new Passphrase("passphrase2"));
-            PassphraseIdentity id = new PassphraseIdentity("Test", new Passphrase("passphrase"));
+            PassphraseIdentity id = new PassphraseIdentity(new Passphrase("passphrase"));
             Instance.FileSystemState.Identities.Add(id);
             Instance.KnownKeys.DefaultEncryptionKey = id.Key;
 
@@ -426,7 +426,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             using (MainViewModel mvm = Factory.New<MainViewModel>())
             {
-                PassphraseIdentity id = new PassphraseIdentity("Logged On User", new Passphrase("passphrase"));
+                PassphraseIdentity id = new PassphraseIdentity(new Passphrase("passphrase"));
                 mockFileSystemState.Object.Identities.Add(id);
                 Instance.KnownKeys.DefaultEncryptionKey = id.Key;
 
@@ -448,7 +448,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 Assert.Throws<InvalidOperationException>(() => mvm.RemoveWatchedFolders.Execute(new string[] { }));
 
-                PassphraseIdentity id = new PassphraseIdentity("Logged On User", new Passphrase("passphrase"));
+                PassphraseIdentity id = new PassphraseIdentity(new Passphrase("passphrase"));
                 fileSystemStateMock.Object.Identities.Add(id);
                 Instance.KnownKeys.DefaultEncryptionKey = id.Key;
 

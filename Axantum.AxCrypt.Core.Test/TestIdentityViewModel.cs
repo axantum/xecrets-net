@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Passphrase passphrase = new Passphrase("p");
 
-            PassphraseIdentity id = new PassphraseIdentity("Test", passphrase);
+            PassphraseIdentity id = new PassphraseIdentity(passphrase);
             Instance.FileSystemState.Identities.Add(id);
 
             IdentityViewModel ivm = new IdentityViewModel(Instance.FileSystemState, Instance.KnownKeys, Instance.UserSettings);
@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Passphrase passphrase = new Passphrase("p");
 
-            PassphraseIdentity id = new PassphraseIdentity("Test", passphrase);
+            PassphraseIdentity id = new PassphraseIdentity(passphrase);
             Instance.FileSystemState.Identities.Add(id);
 
             IdentityViewModel ivm = new IdentityViewModel(Instance.FileSystemState, Instance.KnownKeys, Instance.UserSettings);
@@ -94,7 +94,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Passphrase passphrase = new Passphrase("p");
 
-            PassphraseIdentity id = new PassphraseIdentity("Test", passphrase);
+            PassphraseIdentity id = new PassphraseIdentity(passphrase);
             Instance.FileSystemState.Identities.Add(id);
             Instance.KnownKeys.DefaultEncryptionKey = id.Key;
 
@@ -131,7 +131,6 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(Instance.KnownKeys.IsLoggedOn, Is.True, "Should be logged on.");
             Assert.That(Instance.KnownKeys.DefaultEncryptionKey.Thumbprint, Is.EqualTo(new Passphrase("ccc").Thumbprint));
             Assert.That(Instance.FileSystemState.Identities.Count(), Is.EqualTo(1));
-            Assert.That(Instance.FileSystemState.Identities.First().Name, Is.EqualTo("New User Passphrase"));
         }
 
         [Test]
@@ -202,15 +201,13 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(@"C:\Folder\File1-txt.axx"), Factory.New<IRuntimeFileInfo>(@"C:\Folder\File1.txt"), key, ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             Instance.FileSystemState.Add(activeFile);
 
-            PassphraseIdentity id = new PassphraseIdentity("Test User", key);
+            PassphraseIdentity id = new PassphraseIdentity(key);
             Instance.FileSystemState.Identities.Add(id);
 
-            string name = null;
             IdentityViewModel ivm = new IdentityViewModel(Instance.FileSystemState, Instance.KnownKeys, Instance.UserSettings);
             ivm.CryptoId = new V1Aes128CryptoFactory().Id;
             ivm.LoggingOn += (sender, e) =>
             {
-                name = e.Identity.Name;
                 e.Passphrase = "p";
             };
 
@@ -218,7 +215,6 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(ivm.Passphrase.Text, Is.EqualTo("p"));
             Assert.That(Instance.KnownKeys.DefaultEncryptionKey.Thumbprint, Is.EqualTo(key.Thumbprint));
-            Assert.That(name, Is.EqualTo("Test User"));
         }
 
         [Test]
@@ -226,7 +222,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Passphrase key = new Passphrase("ppp");
 
-            PassphraseIdentity id = new PassphraseIdentity("Test User", key);
+            PassphraseIdentity id = new PassphraseIdentity(key);
 
             IdentityViewModel ivm = new IdentityViewModel(Instance.FileSystemState, Instance.KnownKeys, Instance.UserSettings);
             ivm.CryptoId = new V1Aes128CryptoFactory().Id;
@@ -246,7 +242,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Passphrase key = new Passphrase("ppp");
 
-            PassphraseIdentity id = new PassphraseIdentity("Test User", key);
+            PassphraseIdentity id = new PassphraseIdentity(key);
 
             IdentityViewModel ivm = new IdentityViewModel(Instance.FileSystemState, Instance.KnownKeys, Instance.UserSettings);
             ivm.LoggingOn += (sender, e) =>
@@ -264,7 +260,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void AskForNewLogOnPassphrase()
         {
             string defaultPassphrase = null;
-            Instance.FileSystemState.Identities.Add(new PassphraseIdentity("One Existing Identity"));
+            Instance.FileSystemState.Identities.Add(new PassphraseIdentity());
             IdentityViewModel ivm = new IdentityViewModel(Instance.FileSystemState, Instance.KnownKeys, Instance.UserSettings);
             ivm.CryptoId = new V1Aes128CryptoFactory().Id;
             ivm.LoggingOn += (sender, e) =>
@@ -277,7 +273,6 @@ namespace Axantum.AxCrypt.Core.Test
                 }
                 defaultPassphrase = e.Passphrase;
                 e.Passphrase = "aaa";
-                e.Name = "New User Passphrase";
             };
 
             ivm.AskForLogOnPassphrase.Execute(null);
@@ -286,7 +281,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(ivm.Passphrase.Text, Is.EqualTo("aaa"));
             Assert.That(Instance.KnownKeys.DefaultEncryptionKey.Thumbprint, Is.EqualTo(new Passphrase("aaa").Thumbprint));
 
-            PassphraseIdentity id = Instance.FileSystemState.Identities.FirstOrDefault(i => i.Name == "New User Passphrase");
+            PassphraseIdentity id = Instance.FileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == new Passphrase("aaa").Thumbprint);
             Assert.That(id.Thumbprint, Is.EqualTo(Instance.KnownKeys.DefaultEncryptionKey.Thumbprint));
         }
 
@@ -312,7 +307,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(ivm.Passphrase.Text, Is.EqualTo("aaa"));
             Assert.That(Instance.KnownKeys.DefaultEncryptionKey.Thumbprint, Is.EqualTo(new Passphrase("aaa").Thumbprint));
 
-            PassphraseIdentity id = Instance.FileSystemState.Identities.FirstOrDefault(i => i.Name == "New User Passphrase");
+            PassphraseIdentity id = Instance.FileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == new Passphrase("aaa").Thumbprint);
             Assert.That(id.Thumbprint, Is.EqualTo(Instance.KnownKeys.DefaultEncryptionKey.Thumbprint));
         }
 
@@ -320,7 +315,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void AskForNewLogOnPassphraseWithCancel()
         {
             string defaultPassphrase = null;
-            Instance.FileSystemState.Identities.Add(new PassphraseIdentity("One Existing Identity"));
+            Instance.FileSystemState.Identities.Add(new PassphraseIdentity());
             IdentityViewModel ivm = new IdentityViewModel(Instance.FileSystemState, Instance.KnownKeys, Instance.UserSettings);
             ivm.LoggingOn += (sender, e) =>
             {
@@ -340,7 +335,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(Instance.KnownKeys.DefaultEncryptionKey, Is.Null);
             Assert.That(ivm.Passphrase, Is.Null);
 
-            PassphraseIdentity id = Instance.FileSystemState.Identities.FirstOrDefault(i => i.Name == "New User Passphrase");
+            PassphraseIdentity id = Instance.FileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == new Passphrase("xxx").Thumbprint);
             Assert.That(id, Is.Null);
         }
 
@@ -348,7 +343,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void AskForNewLogOnPassphraseWithKnownIdentity()
         {
             Passphrase passphrase = new Passphrase("aaa");
-            PassphraseIdentity id = new PassphraseIdentity("Test User", passphrase);
+            PassphraseIdentity id = new PassphraseIdentity(passphrase);
             Instance.FileSystemState.Identities.Add(id);
 
             IdentityViewModel ivm = new IdentityViewModel(Instance.FileSystemState, Instance.KnownKeys, Instance.UserSettings);
@@ -372,7 +367,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void AskForLogOnPassphraseWithKnownIdentity()
         {
             Passphrase passphrase = new Passphrase("aaa");
-            PassphraseIdentity id = new PassphraseIdentity("Test User", passphrase);
+            PassphraseIdentity id = new PassphraseIdentity(passphrase);
             Instance.FileSystemState.Identities.Add(id);
 
             IdentityViewModel ivm = new IdentityViewModel(Instance.FileSystemState, Instance.KnownKeys, Instance.UserSettings);
@@ -392,7 +387,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void AskForLogOnPassphraseWithKnownIdentityButWrongPassphraseEntered()
         {
             Passphrase passphrase = new Passphrase("aaa");
-            PassphraseIdentity id = new PassphraseIdentity("Test User", passphrase);
+            PassphraseIdentity id = new PassphraseIdentity(passphrase);
             Instance.FileSystemState.Identities.Add(id);
 
             IdentityViewModel ivm = new IdentityViewModel(Instance.FileSystemState, Instance.KnownKeys, Instance.UserSettings);

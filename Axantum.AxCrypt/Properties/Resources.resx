@@ -211,7 +211,7 @@ Includes software from http://www.bouncycastle.org/ .</value>
     <value>Logged Off</value>
   </data>
   <data name="LoggedOnStatusText" xml:space="preserve">
-    <value>'{0}' is Logged On</value>
+    <value>Logged On</value>
     <comment>Shown in the title bar to display the log on status.</comment>
   </data>
   <data name="NewVersionIsAvailableTooltip" xml:space="preserve">

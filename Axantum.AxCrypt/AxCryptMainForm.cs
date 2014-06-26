@@ -476,7 +476,7 @@ namespace Axantum.AxCrypt
                 }
                 e.DisplayPassphrase = passphraseDialog.ShowPassphraseCheckBox.Checked;
                 e.Passphrase = passphraseDialog.PassphraseTextBox.Text;
-                e.Name = passphraseDialog.NameTextBox.Text;
+                e.Name = String.Empty;
             }
             return;
         }
@@ -484,7 +484,7 @@ namespace Axantum.AxCrypt
         private void HandleExistingLogOn(LogOnEventArgs e)
         {
             RestoreWindowWithFocus();
-            using (LogOnDialog logOnDialog = new LogOnDialog(this, e.Identity.Name, e.EncryptedFileFullName))
+            using (LogOnDialog logOnDialog = new LogOnDialog(this, e.EncryptedFileFullName))
             {
                 logOnDialog.ShowPassphraseCheckBox.Checked = e.DisplayPassphrase;
                 DialogResult dialogResult = logOnDialog.ShowDialog(this);
@@ -772,7 +772,7 @@ namespace Axantum.AxCrypt
             string logonStatus;
             if (isLoggedOn)
             {
-                logonStatus = Resources.LoggedOnStatusText.InvariantFormat(_mainViewModel.LogOnName);
+                logonStatus = Resources.LoggedOnStatusText.InvariantFormat(String.Empty);
             }
             else
             {

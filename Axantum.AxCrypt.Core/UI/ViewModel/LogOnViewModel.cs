@@ -38,20 +38,17 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     {
         private string _encryptedFileFullName;
 
-        public LogOnViewModel(string identityName, string encryptedFileFullName)
+        public LogOnViewModel(string encryptedFileFullName)
         {
             _encryptedFileFullName = encryptedFileFullName;
-            InitializePropertyValues(identityName);
+            InitializePropertyValues();
         }
 
-        private void InitializePropertyValues(string identityName)
+        private void InitializePropertyValues()
         {
-            IdentityName = identityName;
             Passphrase = String.Empty;
             FileName = String.IsNullOrEmpty(_encryptedFileFullName) ? String.Empty : Factory.New<IRuntimeFileInfo>(_encryptedFileFullName).Name;
         }
-
-        public string IdentityName { get { return GetProperty<string>("IdentityName"); } set { SetProperty("IdentityName", value); } }
 
         public bool ShowPassphrase { get { return GetProperty<bool>("ShowPassphrase"); } set { SetProperty("ShowPassphrase", value); } }
 
@@ -117,10 +114,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private bool IsKnownIdentity()
         {
             SymmetricKeyThumbprint thumbprint = new Passphrase(Passphrase).Thumbprint;
-            PassphraseIdentity identity = Instance.FileSystemState.Identities.FirstOrDefault(id => (String.IsNullOrEmpty(IdentityName) || IdentityName == id.Name) && id.Thumbprint == thumbprint);
+            PassphraseIdentity identity = Instance.FileSystemState.Identities.FirstOrDefault(id => id.Thumbprint == thumbprint);
             if (identity != null)
             {
-                IdentityName = identity.Name;
                 return true;
             }
             return false;
