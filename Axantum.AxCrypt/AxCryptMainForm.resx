@@ -474,6 +474,12 @@
   <data name="cryptoPolicyToolStripMenuItem.Text" xml:space="preserve">
     <value>Crypto &amp;Policy</value>
   </data>
+  <data name="loggingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="loggingToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Logging</value>
+  </data>
   <data name="_debugToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 20</value>
   </data>
@@ -594,63 +600,39 @@
   <data name="&gt;&gt;_progressContextMenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="_logOutputTextBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <metadata name="_watchedFoldersContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>915, 17</value>
+  </metadata>
+  <data name="_watchedFoldersRemoveMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 22</value>
   </data>
-  <data name="_logOutputTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+  <data name="_watchedFoldersRemoveMenuItem.Text" xml:space="preserve">
+    <value>&amp;Decrypt Permanently</value>
   </data>
-  <data name="_logOutputTextBox.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="_watchedFoldersdecryptTemporarilyMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 22</value>
   </data>
-  <data name="_logOutputTextBox.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
-    <value>Vertical</value>
+  <data name="_watchedFoldersdecryptTemporarilyMenuItem.Text" xml:space="preserve">
+    <value>Decrypt &amp;Temporarily</value>
   </data>
-  <data name="_logOutputTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>810, 154</value>
+  <data name="_watchedFoldersOpenExplorerHereMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 22</value>
   </data>
-  <data name="_logOutputTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="_watchedFoldersOpenExplorerHereMenuItem.Text" xml:space="preserve">
+    <value>Open &amp;Explorer Here</value>
   </data>
-  <data name="&gt;&gt;_logOutputTextBox.Name" xml:space="preserve">
-    <value>_logOutputTextBox</value>
+  <data name="_watchedFoldersContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 70</value>
   </data>
-  <data name="&gt;&gt;_logOutputTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;_watchedFoldersContextMenuStrip.Name" xml:space="preserve">
+    <value>_watchedFoldersContextMenuStrip</value>
   </data>
-  <data name="&gt;&gt;_logOutputTextBox.Parent" xml:space="preserve">
-    <value>_logTabPage</value>
+  <data name="&gt;&gt;_watchedFoldersContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;_logOutputTextBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="_logTabPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="_logTabPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="_logTabPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>816, 160</value>
-  </data>
-  <data name="_logTabPage.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="_logTabPage.Text" xml:space="preserve">
-    <value>Log Output</value>
-  </data>
-  <data name="&gt;&gt;_logTabPage.Name" xml:space="preserve">
-    <value>_logTabPage</value>
-  </data>
-  <data name="&gt;&gt;_logTabPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;_logTabPage.Parent" xml:space="preserve">
-    <value>_statusTabControl</value>
-  </data>
-  <data name="&gt;&gt;_logTabPage.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
+  <metadata name="_progressBackgroundWorker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1156, 17</value>
+  </metadata>
   <data name="_watchedFolderColumnHeader.Text" xml:space="preserve">
     <value>Folder</value>
   </data>
@@ -804,39 +786,6 @@
   <data name="&gt;&gt;_statusTabControl.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <metadata name="_watchedFoldersContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>915, 17</value>
-  </metadata>
-  <data name="_watchedFoldersRemoveMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
-  </data>
-  <data name="_watchedFoldersRemoveMenuItem.Text" xml:space="preserve">
-    <value>&amp;Decrypt Permanently</value>
-  </data>
-  <data name="_watchedFoldersdecryptTemporarilyMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
-  </data>
-  <data name="_watchedFoldersdecryptTemporarilyMenuItem.Text" xml:space="preserve">
-    <value>Decrypt &amp;Temporarily</value>
-  </data>
-  <data name="_watchedFoldersOpenExplorerHereMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 22</value>
-  </data>
-  <data name="_watchedFoldersOpenExplorerHereMenuItem.Text" xml:space="preserve">
-    <value>Open &amp;Explorer Here</value>
-  </data>
-  <data name="_watchedFoldersContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 70</value>
-  </data>
-  <data name="&gt;&gt;_watchedFoldersContextMenuStrip.Name" xml:space="preserve">
-    <value>_watchedFoldersContextMenuStrip</value>
-  </data>
-  <data name="&gt;&gt;_watchedFoldersContextMenuStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <metadata name="_progressBackgroundWorker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1156, 17</value>
-  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -1423,6 +1372,12 @@
   <data name="&gt;&gt;cryptoPolicyToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;loggingToolStripMenuItem.Name" xml:space="preserve">
+    <value>loggingToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;loggingToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;_helpToolStripMenuItem.Name" xml:space="preserve">
     <value>_helpToolStripMenuItem</value>
   </data>
@@ -1459,6 +1414,30 @@
   <data name="&gt;&gt;_progressContextCancelToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;_watchedFoldersRemoveMenuItem.Name" xml:space="preserve">
+    <value>_watchedFoldersRemoveMenuItem</value>
+  </data>
+  <data name="&gt;&gt;_watchedFoldersRemoveMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_watchedFoldersdecryptTemporarilyMenuItem.Name" xml:space="preserve">
+    <value>_watchedFoldersdecryptTemporarilyMenuItem</value>
+  </data>
+  <data name="&gt;&gt;_watchedFoldersdecryptTemporarilyMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_watchedFoldersOpenExplorerHereMenuItem.Name" xml:space="preserve">
+    <value>_watchedFoldersOpenExplorerHereMenuItem</value>
+  </data>
+  <data name="&gt;&gt;_watchedFoldersOpenExplorerHereMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_progressBackgroundWorker.Name" xml:space="preserve">
+    <value>_progressBackgroundWorker</value>
+  </data>
+  <data name="&gt;&gt;_progressBackgroundWorker.Type" xml:space="preserve">
+    <value>Axantum.AxCrypt.Forms.ProgressBackground, Axantum.AxCrypt.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
+  </data>
   <data name="&gt;&gt;_watchedFolderColumnHeader.Name" xml:space="preserve">
     <value>_watchedFolderColumnHeader</value>
   </data>
@@ -1488,30 +1467,6 @@
   </data>
   <data name="&gt;&gt;_cryptoName.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;_watchedFoldersRemoveMenuItem.Name" xml:space="preserve">
-    <value>_watchedFoldersRemoveMenuItem</value>
-  </data>
-  <data name="&gt;&gt;_watchedFoldersRemoveMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;_watchedFoldersdecryptTemporarilyMenuItem.Name" xml:space="preserve">
-    <value>_watchedFoldersdecryptTemporarilyMenuItem</value>
-  </data>
-  <data name="&gt;&gt;_watchedFoldersdecryptTemporarilyMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;_watchedFoldersOpenExplorerHereMenuItem.Name" xml:space="preserve">
-    <value>_watchedFoldersOpenExplorerHereMenuItem</value>
-  </data>
-  <data name="&gt;&gt;_watchedFoldersOpenExplorerHereMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;_progressBackgroundWorker.Name" xml:space="preserve">
-    <value>_progressBackgroundWorker</value>
-  </data>
-  <data name="&gt;&gt;_progressBackgroundWorker.Type" xml:space="preserve">
-    <value>Axantum.AxCrypt.Forms.ProgressBackground, Axantum.AxCrypt.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AxCryptMainForm</value>

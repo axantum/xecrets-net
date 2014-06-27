@@ -67,7 +67,7 @@ namespace Axantum.AxCrypt
 
         public static MessageBoxOptions MessageBoxOptions { get; private set; }
 
-        private TabPage _hiddenLogTabPage;
+        private DebugLogOutputDialog _debugOutput;
 
         private TabPage _hiddenWatchedFoldersTabPage;
 
@@ -148,8 +148,12 @@ namespace Axantum.AxCrypt
             {
                 Instance.UIThread.PostOnUIThread(() =>
                 {
+                    if (_debugOutput == null|| !_debugOutput.Visible)
+                    {
+                        return;
+                    }
                     string formatted = "{0} {1}".InvariantFormat(OS.Current.UtcNow.ToString("o", CultureInfo.InvariantCulture), loggingEventArgs.Message.TrimLogMessage());
-                    _logOutputTextBox.AppendText(formatted);
+                   _debugOutput.AppendText(formatted);
                 });
             };
         }
@@ -248,7 +252,6 @@ namespace Axantum.AxCrypt
             _decryptToolStripButton.Tag = FileInfoTypes.EncryptedFile;
 
             _hiddenWatchedFoldersTabPage = _statusTabControl.TabPages["_watchedFoldersTabPage"];
-            _hiddenLogTabPage = _statusTabControl.TabPages["_logTabPage"];
 
             _recentFilesListView.SmallImageList = CreateSmallImageListToAvoidLocalizationIssuesWithDesignerAndResources();
             _recentFilesListView.LargeImageList = CreateLargeImageListToAvoidLocalizationIssuesWithDesignerAndResources();
@@ -830,14 +833,6 @@ namespace Axantum.AxCrypt
         {
             _debugOptionsToolStripMenuItem.Checked = enabled;
             _debugToolStripMenuItem.Visible = enabled;
-            if (enabled)
-            {
-                _statusTabControl.TabPages.Add(_hiddenLogTabPage);
-            }
-            else
-            {
-                _statusTabControl.TabPages.Remove(_hiddenLogTabPage);
-            }
         }
 
         private void UpdateWatchedFolders(IEnumerable<string> watchedFolders)
@@ -1060,6 +1055,10 @@ namespace Axantum.AxCrypt
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (_debugOutput != null)
+            {
+                _debugOutput.AllowClose = true;
+            }
             Application.Exit();
         }
 
@@ -1322,6 +1321,17 @@ namespace Axantum.AxCrypt
 
         private void CryptoPolicyToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
+        }
+
+        private void loggingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem item = sender as ToolStripMenuItem;
+            item.Checked = !item.Checked;
+            if (_debugOutput == null)
+            {
+                _debugOutput = new DebugLogOutputDialog();
+            }
+            _debugOutput.Visible = item.Checked;
         }
     }
 }

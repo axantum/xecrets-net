@@ -51,6 +51,7 @@
             this._checkVersionNowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._setUpdateCheckUrlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cryptoPolicyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loggingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._viewHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,8 +61,11 @@
             this._decryptAndRemoveFromListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._progressContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this._progressContextCancelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._logTabPage = new System.Windows.Forms.TabPage();
-            this._logOutputTextBox = new System.Windows.Forms.TextBox();
+            this._watchedFoldersContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this._watchedFoldersRemoveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._watchedFoldersdecryptTemporarilyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._watchedFoldersOpenExplorerHereMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.ProgressBackground(this.components);
             this._watchedFoldersTabPage = new System.Windows.Forms.TabPage();
             this._watchedFoldersListView = new System.Windows.Forms.ListView();
             this._watchedFolderColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -72,20 +76,14 @@
             this._encryptedPathColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._cryptoName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._statusTabControl = new System.Windows.Forms.TabControl();
-            this._watchedFoldersContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this._watchedFoldersRemoveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._watchedFoldersdecryptTemporarilyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._watchedFoldersOpenExplorerHereMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.ProgressBackground(this.components);
             this._mainToolStrip.SuspendLayout();
             this._mainMenuStrip.SuspendLayout();
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
-            this._logTabPage.SuspendLayout();
+            this._watchedFoldersContextMenuStrip.SuspendLayout();
             this._watchedFoldersTabPage.SuspendLayout();
             this._recentFilesTabPage.SuspendLayout();
             this._statusTabControl.SuspendLayout();
-            this._watchedFoldersContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // _mainToolStrip
@@ -308,7 +306,8 @@
             this._debugToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._checkVersionNowToolStripMenuItem,
             this._setUpdateCheckUrlToolStripMenuItem,
-            this.cryptoPolicyToolStripMenuItem});
+            this.cryptoPolicyToolStripMenuItem,
+            this.loggingToolStripMenuItem});
             this._debugToolStripMenuItem.Name = "_debugToolStripMenuItem";
             resources.ApplyResources(this._debugToolStripMenuItem, "_debugToolStripMenuItem");
             // 
@@ -328,6 +327,12 @@
             this.cryptoPolicyToolStripMenuItem.Name = "cryptoPolicyToolStripMenuItem";
             resources.ApplyResources(this.cryptoPolicyToolStripMenuItem, "cryptoPolicyToolStripMenuItem");
             this.cryptoPolicyToolStripMenuItem.DropDownOpening += new System.EventHandler(this.CryptoPolicyToolStripMenuItem_DropDownOpening);
+            // 
+            // loggingToolStripMenuItem
+            // 
+            this.loggingToolStripMenuItem.Name = "loggingToolStripMenuItem";
+            resources.ApplyResources(this.loggingToolStripMenuItem, "loggingToolStripMenuItem");
+            this.loggingToolStripMenuItem.Click += new System.EventHandler(this.loggingToolStripMenuItem_Click);
             // 
             // _helpToolStripMenuItem
             // 
@@ -386,18 +391,34 @@
             resources.ApplyResources(this._progressContextCancelToolStripMenuItem, "_progressContextCancelToolStripMenuItem");
             this._progressContextCancelToolStripMenuItem.Click += new System.EventHandler(this.ProgressContextCancelToolStripMenuItem_Click);
             // 
-            // _logTabPage
+            // _watchedFoldersContextMenuStrip
             // 
-            this._logTabPage.Controls.Add(this._logOutputTextBox);
-            resources.ApplyResources(this._logTabPage, "_logTabPage");
-            this._logTabPage.Name = "_logTabPage";
-            this._logTabPage.UseVisualStyleBackColor = true;
+            this._watchedFoldersContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._watchedFoldersRemoveMenuItem,
+            this._watchedFoldersdecryptTemporarilyMenuItem,
+            this._watchedFoldersOpenExplorerHereMenuItem});
+            this._watchedFoldersContextMenuStrip.Name = "watchedFoldersContextMenuStrip";
+            resources.ApplyResources(this._watchedFoldersContextMenuStrip, "_watchedFoldersContextMenuStrip");
             // 
-            // _logOutputTextBox
+            // _watchedFoldersRemoveMenuItem
             // 
-            resources.ApplyResources(this._logOutputTextBox, "_logOutputTextBox");
-            this._logOutputTextBox.Name = "_logOutputTextBox";
-            this._logOutputTextBox.ReadOnly = true;
+            this._watchedFoldersRemoveMenuItem.Name = "_watchedFoldersRemoveMenuItem";
+            resources.ApplyResources(this._watchedFoldersRemoveMenuItem, "_watchedFoldersRemoveMenuItem");
+            // 
+            // _watchedFoldersdecryptTemporarilyMenuItem
+            // 
+            this._watchedFoldersdecryptTemporarilyMenuItem.Name = "_watchedFoldersdecryptTemporarilyMenuItem";
+            resources.ApplyResources(this._watchedFoldersdecryptTemporarilyMenuItem, "_watchedFoldersdecryptTemporarilyMenuItem");
+            // 
+            // _watchedFoldersOpenExplorerHereMenuItem
+            // 
+            this._watchedFoldersOpenExplorerHereMenuItem.Name = "_watchedFoldersOpenExplorerHereMenuItem";
+            resources.ApplyResources(this._watchedFoldersOpenExplorerHereMenuItem, "_watchedFoldersOpenExplorerHereMenuItem");
+            // 
+            // _progressBackgroundWorker
+            // 
+            this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
+            this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
             // 
             // _watchedFoldersTabPage
             // 
@@ -466,38 +487,8 @@
             resources.ApplyResources(this._statusTabControl, "_statusTabControl");
             this._statusTabControl.Controls.Add(this._recentFilesTabPage);
             this._statusTabControl.Controls.Add(this._watchedFoldersTabPage);
-            this._statusTabControl.Controls.Add(this._logTabPage);
             this._statusTabControl.Name = "_statusTabControl";
             this._statusTabControl.SelectedIndex = 0;
-            // 
-            // _watchedFoldersContextMenuStrip
-            // 
-            this._watchedFoldersContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._watchedFoldersRemoveMenuItem,
-            this._watchedFoldersdecryptTemporarilyMenuItem,
-            this._watchedFoldersOpenExplorerHereMenuItem});
-            this._watchedFoldersContextMenuStrip.Name = "watchedFoldersContextMenuStrip";
-            resources.ApplyResources(this._watchedFoldersContextMenuStrip, "_watchedFoldersContextMenuStrip");
-            // 
-            // _watchedFoldersRemoveMenuItem
-            // 
-            this._watchedFoldersRemoveMenuItem.Name = "_watchedFoldersRemoveMenuItem";
-            resources.ApplyResources(this._watchedFoldersRemoveMenuItem, "_watchedFoldersRemoveMenuItem");
-            // 
-            // _watchedFoldersdecryptTemporarilyMenuItem
-            // 
-            this._watchedFoldersdecryptTemporarilyMenuItem.Name = "_watchedFoldersdecryptTemporarilyMenuItem";
-            resources.ApplyResources(this._watchedFoldersdecryptTemporarilyMenuItem, "_watchedFoldersdecryptTemporarilyMenuItem");
-            // 
-            // _watchedFoldersOpenExplorerHereMenuItem
-            // 
-            this._watchedFoldersOpenExplorerHereMenuItem.Name = "_watchedFoldersOpenExplorerHereMenuItem";
-            resources.ApplyResources(this._watchedFoldersOpenExplorerHereMenuItem, "_watchedFoldersOpenExplorerHereMenuItem");
-            // 
-            // _progressBackgroundWorker
-            // 
-            this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
-            this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
             // 
             // AxCryptMainForm
             // 
@@ -517,12 +508,10 @@
             this._mainMenuStrip.PerformLayout();
             this._recentFilesContextMenuStrip.ResumeLayout(false);
             this._progressContextMenuStrip.ResumeLayout(false);
-            this._logTabPage.ResumeLayout(false);
-            this._logTabPage.PerformLayout();
+            this._watchedFoldersContextMenuStrip.ResumeLayout(false);
             this._watchedFoldersTabPage.ResumeLayout(false);
             this._recentFilesTabPage.ResumeLayout(false);
             this._statusTabControl.ResumeLayout(false);
-            this._watchedFoldersContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -566,30 +555,29 @@
         private System.Windows.Forms.ToolStripMenuItem _aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _viewHelpMenuItem;
         private Axantum.AxCrypt.Forms.ProgressBackground _progressBackgroundWorker;
-        private System.Windows.Forms.TabPage _logTabPage;
-        private System.Windows.Forms.TextBox _logOutputTextBox;
-        private System.Windows.Forms.ListView _watchedFoldersListView;
-        private System.Windows.Forms.TabPage _recentFilesTabPage;
-        private System.Windows.Forms.ListView _recentFilesListView;
-        private System.Windows.Forms.ColumnHeader _decryptedFileColumnHeader;
-        private System.Windows.Forms.ColumnHeader _lastAccessTimeColumnHeader;
-        private System.Windows.Forms.ColumnHeader _encryptedPathColumnHeader;
-        private System.Windows.Forms.TabControl _statusTabControl;
         private System.Windows.Forms.ToolStripButton _encryptionKeyToolStripButton;
         private System.Windows.Forms.ToolStripMenuItem _decryptAndRemoveFromListToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator _toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem _wipeToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator _toolStripSeparator7;
-        private System.Windows.Forms.ColumnHeader _watchedFolderColumnHeader;
         private System.Windows.Forms.ContextMenuStrip _watchedFoldersContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem _watchedFoldersRemoveMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _watchedFoldersdecryptTemporarilyMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _watchedFoldersOpenExplorerHereMenuItem;
-        private System.Windows.Forms.TabPage _watchedFoldersTabPage;
         private System.Windows.Forms.ToolStripMenuItem _clearPassphraseMemoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator _toolStripSeparator8;
-        private System.Windows.Forms.ColumnHeader _cryptoName;
         private System.Windows.Forms.ToolStripMenuItem cryptoPolicyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loggingToolStripMenuItem;
+        private System.Windows.Forms.TabPage _watchedFoldersTabPage;
+        private System.Windows.Forms.ListView _watchedFoldersListView;
+        private System.Windows.Forms.ColumnHeader _watchedFolderColumnHeader;
+        private System.Windows.Forms.TabPage _recentFilesTabPage;
+        private System.Windows.Forms.ListView _recentFilesListView;
+        private System.Windows.Forms.ColumnHeader _decryptedFileColumnHeader;
+        private System.Windows.Forms.ColumnHeader _lastAccessTimeColumnHeader;
+        private System.Windows.Forms.ColumnHeader _encryptedPathColumnHeader;
+        private System.Windows.Forms.ColumnHeader _cryptoName;
+        private System.Windows.Forms.TabControl _statusTabControl;
     }
 }
 
