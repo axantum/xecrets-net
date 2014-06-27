@@ -111,16 +111,18 @@ namespace Axantum.AxCrypt
 
         private void LogOnOrExit()
         {
+            if (_pendingRequest == null)
+            {
+                return;
+            }
             _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Instance.CryptoFactory.Default.Id);
             if (!_mainViewModel.LoggedOn)
             {
-                Application.Exit();
-            }
-            if (_pendingRequest != null)
-            {
-                DoRequest(_pendingRequest);
                 _pendingRequest = null;
+                return;
             }
+            DoRequest(_pendingRequest);
+            _pendingRequest = null;
         }
 
         private static void SendStartSessionNotification()
@@ -166,7 +168,6 @@ namespace Axantum.AxCrypt
                 Resources.UserSettingsFormatChangeNeedsReset.ShowWarning();
                 ClearPassphraseMemoryToolStripMenuItem_Click(sender, e);
             }
-            LogOnOrExit();
         }
 
         private void RegisterTypeFactories()
@@ -416,7 +417,7 @@ namespace Axantum.AxCrypt
             _decryptAndRemoveFromListToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(_mainViewModel.SelectedRecentFiles); };
             _decryptToolStripButton.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(null); };
             _decryptToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(null); };
-            _encryptionKeyToolStripButton.Click += (sender, e) => { Application.Exit(); };
+            _encryptionKeyToolStripButton.Click += (sender, e) => { _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Instance.CryptoFactory.Default.Id); };
             _encryptToolStripButton.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
             _encryptToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
             _openEncryptedToolStripButton.Click += (sender, e) => { _fileOperationViewModel.OpenFilesFromFolder.Execute(String.Empty); };
@@ -640,10 +641,11 @@ namespace Axantum.AxCrypt
 
         private void DoRequest(CommandCompleteEventArgs e)
         {
-            if (!Instance.KnownKeys.IsLoggedOn)
+            if (!IsImmediate(e.Verb) && !Instance.KnownKeys.IsLoggedOn)
             {
                 RestoreWindowWithFocus();
                 _pendingRequest = e;
+                LogOnOrExit();
                 return;
             }
             switch (e.Verb)
@@ -688,6 +690,19 @@ namespace Axantum.AxCrypt
                     }
                     break;
             }
+        }
+
+        private static bool IsImmediate(CommandVerb verb)
+        {
+            switch (verb)
+            {
+                case CommandVerb.Show:
+                case CommandVerb.Exit:
+                case CommandVerb.About:
+                case CommandVerb.Register:
+                    return true;
+            }
+            return false;
         }
 
         private void RestoreWindowWithFocus()

@@ -99,7 +99,15 @@ namespace Axantum.AxCrypt.Core
 
         private void CallService(CommandVerb verb, int batchId, IEnumerable<string> files)
         {
-            EnsureFirstInstanceRunning();
+            bool firstIsRunning = OS.Current.FirstInstanceRunning(TimeSpan.Zero);
+            if (verb == CommandVerb.Exit && !firstIsRunning)
+            {
+                return;
+            }
+            if (!firstIsRunning)
+            {
+                StartFirstInstance();
+            }
             CommandStatus status = Instance.CommandService.Call(verb, batchId, files);
             if (status == CommandStatus.Success)
             {
@@ -114,6 +122,11 @@ namespace Axantum.AxCrypt.Core
             {
                 return;
             }
+            StartFirstInstance();
+        }
+
+        private void StartFirstInstance()
+        {
             using (OS.Current.Launch(_startPath)) { }
             if (OS.Current.FirstInstanceRunning(TimeSpan.FromSeconds(1)))
             {

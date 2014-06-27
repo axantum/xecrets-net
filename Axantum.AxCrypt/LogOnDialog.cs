@@ -69,14 +69,7 @@ namespace Axantum.AxCrypt
                 DialogResult = DialogResult.None;
                 return;
             }
-            if (!String.IsNullOrEmpty(_viewModel.FileName))
-            {
-                DialogResult = DialogResult.Retry;
-            }
-            else
-            {
-                DialogResult = DialogResult.OK;
-            }
+            DialogResult = DialogResult.OK;
         }
 
         private bool AdHocValidationDueToMonoLimitations()
