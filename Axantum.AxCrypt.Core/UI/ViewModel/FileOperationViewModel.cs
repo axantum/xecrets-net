@@ -287,7 +287,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void HandleQueryDecryptionPassphraseEvent(object sender, FileOperationEventArgs e)
         {
-            IdentityViewModel.AskForLogOnOrDecryptPassphrase.Execute(e.OpenFileFullName);
+            IdentityViewModel.AskForDecryptPassphrase.Execute(e.OpenFileFullName);
             if (IdentityViewModel.Passphrase == null)
             {
                 e.Cancel = true;
@@ -333,7 +333,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.KnownKeyAdded += (object sender, FileOperationEventArgs e) =>
             {
-                _knownKeys.Add(e.Passphrase);
+                if (!_fileSystemState.Identities.Any(i => i.Thumbprint == e.Passphrase.Thumbprint))
+                {
+                    _fileSystemState.Identities.Add(new PassphraseIdentity(e.Passphrase));
+                    _fileSystemState.Save();
+                }
+                _knownKeys.DefaultEncryptionKey = e.Passphrase;
             };
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>

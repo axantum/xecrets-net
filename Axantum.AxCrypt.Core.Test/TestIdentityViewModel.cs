@@ -162,10 +162,9 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Passphrase = "p";
             };
 
-            ivm.AskForLogOnOrDecryptPassphrase.Execute(@"C:\Folder\File1-txt.axx");
+            ivm.AskForDecryptPassphrase.Execute(@"C:\Folder\File1-txt.axx");
 
             Assert.That(ivm.Passphrase.Text, Is.EqualTo("p"));
-            Assert.That(Instance.KnownKeys.DefaultEncryptionKey.Thumbprint, Is.EqualTo(new Passphrase("p").Thumbprint));
             Assert.That(id.Thumbprint, Is.EqualTo(PassphraseIdentity.Empty.Thumbprint));
         }
 
@@ -186,10 +185,9 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Passphrase = "p";
             };
 
-            ivm.AskForLogOnOrDecryptPassphrase.Execute(@"C:\Folder\File1-txt.axx");
+            ivm.AskForDecryptPassphrase.Execute(@"C:\Folder\File1-txt.axx");
 
             Assert.That(ivm.Passphrase.Text, Is.EqualTo("p"));
-            Assert.That(Instance.KnownKeys.DefaultEncryptionKey.Thumbprint, Is.EqualTo(key.Thumbprint));
             Assert.That(id.Thumbprint, Is.EqualTo(PassphraseIdentity.Empty.Thumbprint));
         }
 
@@ -211,10 +209,9 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Passphrase = "p";
             };
 
-            ivm.AskForLogOnOrDecryptPassphrase.Execute(@"C:\Folder\File1-txt.axx");
+            ivm.AskForDecryptPassphrase.Execute(@"C:\Folder\File1-txt.axx");
 
             Assert.That(ivm.Passphrase.Text, Is.EqualTo("p"));
-            Assert.That(Instance.KnownKeys.DefaultEncryptionKey.Thumbprint, Is.EqualTo(key.Thumbprint));
         }
 
         [Test]

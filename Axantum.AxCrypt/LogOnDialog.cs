@@ -45,6 +45,7 @@ namespace Axantum.AxCrypt
             _viewModel = new LogOnViewModel(encryptedFileFullName);
             PassphraseTextBox.TextChanged += (sender, e) => { _viewModel.Passphrase = PassphraseTextBox.Text; };
             ShowPassphraseCheckBox.CheckedChanged += (sender, e) => { _viewModel.ShowPassphrase = ShowPassphraseCheckBox.Checked; };
+            _newButton.Enabled = String.IsNullOrEmpty(encryptedFileFullName);
 
             Owner = parent;
             StartPosition = FormStartPosition.CenterParent;

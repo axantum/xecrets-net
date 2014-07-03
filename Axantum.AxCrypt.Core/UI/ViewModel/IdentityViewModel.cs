@@ -49,7 +49,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             Passphrase = null;
 
             LogOnLogOff = new DelegateAction<Guid>((cryptoId) => Passphrase = LogOnLogOffAction(cryptoId));
-            AskForLogOnOrDecryptPassphrase = new DelegateAction<string>((name) => Passphrase = AskForLogOnOrDecryptPassphraseAction(name));
+            AskForDecryptPassphrase = new DelegateAction<string>((name) => Passphrase = AskForDecryptPassphraseAction(name));
             AskForLogOnPassphrase = new DelegateAction<PassphraseIdentity>((id) => Passphrase = AskForLogOnPassphraseAction(id, String.Empty));
             CryptoId = Instance.CryptoFactory.Default.Id;
         }
@@ -60,7 +60,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAction LogOnLogOff { get; private set; }
 
-        public IAction AskForLogOnOrDecryptPassphrase { get; private set; }
+        public IAction AskForDecryptPassphrase { get; private set; }
 
         public IAction AskForLogOnPassphrase { get; private set; }
 
@@ -115,21 +115,24 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return null;
         }
 
-        private Passphrase AskForLogOnOrDecryptPassphraseAction(string encryptedFileFullName)
+        private Passphrase AskForDecryptPassphraseAction(string encryptedFileFullName)
         {
-            ActiveFile openFile = _fileSystemState.FindActiveFileFromEncryptedPath(encryptedFileFullName);
-            if (openFile == null || openFile.Thumbprint == null)
+            LogOnEventArgs logOnArgs = new LogOnEventArgs()
             {
-                return AskForLogOnPassphraseAction(PassphraseIdentity.Empty, encryptedFileFullName);
+                DisplayPassphrase = _userSettings.DisplayEncryptPassphrase,
+                Identity = PassphraseIdentity.Empty,
+                EncryptedFileFullName = encryptedFileFullName,
+            };
+            OnLoggingOn(logOnArgs);
+
+            _userSettings.DisplayEncryptPassphrase = logOnArgs.DisplayPassphrase;
+
+            if (logOnArgs.Cancel || logOnArgs.Passphrase.Length == 0)
+            {
+                return null;
             }
 
-            PassphraseIdentity identity = _fileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == openFile.Thumbprint);
-            if (identity == null)
-            {
-                return AskForLogOnPassphraseAction(PassphraseIdentity.Empty, encryptedFileFullName);
-            }
-
-            return AskForLogOnPassphraseAction(identity, encryptedFileFullName);
+            return new Passphrase(logOnArgs.Passphrase);
         }
 
         private Passphrase AskForLogOnPassphraseAction(PassphraseIdentity identity, string encryptedFileFullName)
