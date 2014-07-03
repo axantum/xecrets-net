@@ -40,6 +40,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChangedEvents();
             SubscribeToModelEvents();
             SetWatchedFolders();
+            SetLogOnState(Instance.KnownKeys.IsLoggedOn);
         }
 
         private void InitializePropertyValues()

@@ -15,15 +15,24 @@ namespace Axantum.AxCrypt
     {
         private WatchedFoldersViewModel _viewModel;
 
-        public WatchedFoldersDialog()
+        private IEnumerable<string> _additional;
+
+        public WatchedFoldersDialog(Form parent, IEnumerable<string> additional)
         {
             InitializeComponent();
+
+            _additional = additional;
+            _viewModel = Factory.New<WatchedFoldersViewModel>();
+
+            Owner = parent;
+            StartPosition = FormStartPosition.CenterParent;
         }
 
         private void WatchedFoldersDialog_Load(object sender, EventArgs e)
         {
-            _viewModel = Factory.New<WatchedFoldersViewModel>();
             BindToViewModel();
+            _viewModel.AddWatchedFolders.Execute(_additional);
+            _additional = new string[0];
         }
 
         private void BindToViewModel()

@@ -148,12 +148,12 @@ namespace Axantum.AxCrypt
             {
                 Instance.UIThread.PostOnUIThread(() =>
                 {
-                    if (_debugOutput == null|| !_debugOutput.Visible)
+                    if (_debugOutput == null || !_debugOutput.Visible)
                     {
                         return;
                     }
                     string formatted = "{0} {1}".InvariantFormat(OS.Current.UtcNow.ToString("o", CultureInfo.InvariantCulture), loggingEventArgs.Message.TrimLogMessage());
-                   _debugOutput.AppendText(formatted);
+                    _debugOutput.AppendText(formatted);
                 });
             };
         }
@@ -455,8 +455,9 @@ namespace Axantum.AxCrypt
             }
             if (_mainViewModel.DroppableAsWatchedFolder)
             {
-                _mainViewModel.AddWatchedFolders.Execute(_mainViewModel.DragAndDropFiles);
-                _statusTabControl.SelectedTab = _watchedFoldersTabPage;
+                //_mainViewModel.AddWatchedFolders.Execute(_mainViewModel.DragAndDropFiles);
+                //_statusTabControl.SelectedTab = _watchedFoldersTabPage;
+                ShowWatchedFolders(_mainViewModel.DragAndDropFiles);
             }
         }
 
@@ -1342,7 +1343,12 @@ namespace Axantum.AxCrypt
 
         private void encryptedFoldersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (WatchedFoldersDialog dialog = new WatchedFoldersDialog())
+            ShowWatchedFolders(new string[0]);
+        }
+
+        private void ShowWatchedFolders(IEnumerable<string> additional)
+        {
+            using (WatchedFoldersDialog dialog = new WatchedFoldersDialog(this, additional))
             {
                 dialog.ShowDialog();
             }
