@@ -185,6 +185,7 @@ namespace Axantum.AxCrypt
             Factory.Instance.Register<FileOperationViewModel>(() => new FileOperationViewModel(Instance.FileSystemState, Instance.SessionNotify, Instance.KnownKeys, Instance.ParallelFileOperation, Factory.Instance.Singleton<IStatusChecker>(), Factory.New<IdentityViewModel>()));
             Factory.Instance.Register<MainViewModel>(() => new MainViewModel(Instance.FileSystemState));
             Factory.Instance.Register<KnownFoldersViewModel>(() => new KnownFoldersViewModel(Instance.FileSystemState, Instance.SessionNotify, Instance.KnownKeys));
+            Factory.Instance.Register<WatchedFoldersViewModel>(() => new WatchedFoldersViewModel(Instance.FileSystemState));
         }
 
         private static void SetupPathFilters()
@@ -388,6 +389,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged("FilesArePending", (bool filesArePending) => { _closeAndRemoveOpenFilesToolStripButton.Enabled = filesArePending; });
             _mainViewModel.BindPropertyChanged("WatchedFolders", (IEnumerable<string> folders) => { UpdateWatchedFolders(folders); });
             _mainViewModel.BindPropertyChanged("WatchedFoldersEnabled", (bool enabled) => { if (enabled) _statusTabControl.TabPages.Add(_hiddenWatchedFoldersTabPage); else _statusTabControl.TabPages.Remove(_hiddenWatchedFoldersTabPage); });
+            _mainViewModel.BindPropertyChanged("WatchedFoldersEnabled", (bool enabled) => { encryptedFoldersToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged("RecentFiles", (IEnumerable<ActiveFile> files) => { UpdateRecentFiles(files); });
             _mainViewModel.BindPropertyChanged("VersionUpdateStatus", (VersionUpdateStatus vus) => { UpdateVersionStatus(vus); });
             _mainViewModel.BindPropertyChanged("DebugMode", (bool enabled) => { UpdateDebugMode(enabled); });
@@ -413,6 +415,10 @@ namespace Axantum.AxCrypt
 
             _knownFoldersViewModel.BindPropertyChanged("KnownFolders", (IEnumerable<KnownFolder> folders) => UpdateKnownFolders(folders));
             _knownFoldersViewModel.KnownFolders = KnownFoldersDiscovery.Discover();
+        }
+
+        private void BindToWatchedFoldersViewModel()
+        {
         }
 
         private void BindToFileOperationViewModel()
@@ -1332,6 +1338,14 @@ namespace Axantum.AxCrypt
                 _debugOutput = new DebugLogOutputDialog();
             }
             _debugOutput.Visible = item.Checked;
+        }
+
+        private void encryptedFoldersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (WatchedFoldersDialog dialog = new WatchedFoldersDialog())
+            {
+                dialog.ShowDialog();
+            }
         }
     }
 }

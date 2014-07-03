@@ -83,6 +83,12 @@
     <Compile Include="DebugLogOutputDialog.Designer.cs">
       <DependentUpon>DebugLogOutputDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="WatchedFoldersDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WatchedFoldersDialog.Designer.cs">
+      <DependentUpon>WatchedFoldersDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="KnownFoldersDiscovery.cs" />
     <Compile Include="LogOnDialog.cs">
       <SubType>Form</SubType>
@@ -127,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DebugLogOutputDialog.resx">
       <DependentUpon>DebugLogOutputDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WatchedFoldersDialog.resx">
+      <DependentUpon>WatchedFoldersDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LogOnDialog.resx">
       <DependentUpon>LogOnDialog.cs</DependentUpon>

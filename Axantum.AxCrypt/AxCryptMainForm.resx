@@ -305,7 +305,7 @@
 </value>
   </data>
   <data name="_openEncryptedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
+    <value>168, 22</value>
   </data>
   <data name="_openEncryptedToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Open Encrypted</value>
@@ -327,7 +327,7 @@
 </value>
   </data>
   <data name="_encryptToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
+    <value>168, 22</value>
   </data>
   <data name="_encryptToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Encrypt</value>
@@ -349,13 +349,19 @@
 </value>
   </data>
   <data name="_decryptToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
+    <value>168, 22</value>
   </data>
   <data name="_decryptToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Decrypt</value>
   </data>
+  <data name="encryptedFoldersToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 22</value>
+  </data>
+  <data name="encryptedFoldersToolStripMenuItem.Text" xml:space="preserve">
+    <value>Encrypted &amp;Folders</value>
+  </data>
   <data name="_toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 6</value>
+    <value>165, 6</value>
   </data>
   <data name="_closeOpenFilesToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -375,22 +381,22 @@
 </value>
   </data>
   <data name="_closeOpenFilesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
+    <value>168, 22</value>
   </data>
   <data name="_closeOpenFilesToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Clean Decrypted</value>
   </data>
   <data name="_toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 6</value>
+    <value>165, 6</value>
   </data>
   <data name="_wipeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
+    <value>168, 22</value>
   </data>
   <data name="_wipeToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Secure Delete</value>
   </data>
   <data name="_toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 6</value>
+    <value>165, 6</value>
   </data>
   <data name="_englishLanguageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 22</value>
@@ -439,13 +445,13 @@
 </value>
   </data>
   <data name="_optionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
+    <value>168, 22</value>
   </data>
   <data name="_optionsToolStripMenuItem.Text" xml:space="preserve">
     <value>O&amp;ptions</value>
   </data>
   <data name="_exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
+    <value>168, 22</value>
   </data>
   <data name="_exitToolStripMenuItem.Text" xml:space="preserve">
     <value>E&amp;xit</value>
@@ -630,9 +636,6 @@
   <data name="&gt;&gt;_watchedFoldersContextMenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="_progressBackgroundWorker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1156, 17</value>
-  </metadata>
   <data name="_watchedFolderColumnHeader.Text" xml:space="preserve">
     <value>Folder</value>
   </data>
@@ -786,6 +789,9 @@
   <data name="&gt;&gt;_statusTabControl.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <metadata name="_progressBackgroundWorker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1156, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -1177,6 +1183,9 @@
         AADAAwAAgAEAAIABAACAAQAAgAEAAIABAACAAQAAgAEAAIABAADwDwAA/D8AAA==
 </value>
   </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>AxCrypt</value>
   </data>
@@ -1432,12 +1441,6 @@
   <data name="&gt;&gt;_watchedFoldersOpenExplorerHereMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;_progressBackgroundWorker.Name" xml:space="preserve">
-    <value>_progressBackgroundWorker</value>
-  </data>
-  <data name="&gt;&gt;_progressBackgroundWorker.Type" xml:space="preserve">
-    <value>Axantum.AxCrypt.Forms.ProgressBackground, Axantum.AxCrypt.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
-  </data>
   <data name="&gt;&gt;_watchedFolderColumnHeader.Name" xml:space="preserve">
     <value>_watchedFolderColumnHeader</value>
   </data>
@@ -1467,6 +1470,18 @@
   </data>
   <data name="&gt;&gt;_cryptoName.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_progressBackgroundWorker.Name" xml:space="preserve">
+    <value>_progressBackgroundWorker</value>
+  </data>
+  <data name="&gt;&gt;_progressBackgroundWorker.Type" xml:space="preserve">
+    <value>Axantum.AxCrypt.Forms.ProgressBackground, Axantum.AxCrypt.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
+  </data>
+  <data name="&gt;&gt;encryptedFoldersToolStripMenuItem.Name" xml:space="preserve">
+    <value>encryptedFoldersToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;encryptedFoldersToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>AxCryptMainForm</value>

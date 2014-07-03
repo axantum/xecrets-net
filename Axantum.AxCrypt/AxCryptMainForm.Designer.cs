@@ -65,7 +65,6 @@
             this._watchedFoldersRemoveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._watchedFoldersdecryptTemporarilyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._watchedFoldersOpenExplorerHereMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.ProgressBackground(this.components);
             this._watchedFoldersTabPage = new System.Windows.Forms.TabPage();
             this._watchedFoldersListView = new System.Windows.Forms.ListView();
             this._watchedFolderColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -76,6 +75,8 @@
             this._encryptedPathColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._cryptoName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._statusTabControl = new System.Windows.Forms.TabControl();
+            this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.ProgressBackground(this.components);
+            this.encryptedFoldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainToolStrip.SuspendLayout();
             this._mainMenuStrip.SuspendLayout();
             this._recentFilesContextMenuStrip.SuspendLayout();
@@ -200,6 +201,7 @@
             this._openEncryptedToolStripMenuItem,
             this._encryptToolStripMenuItem,
             this._decryptToolStripMenuItem,
+            this.encryptedFoldersToolStripMenuItem,
             this._toolStripSeparator6,
             this._closeOpenFilesToolStripMenuItem,
             this._toolStripSeparator3,
@@ -415,11 +417,6 @@
             this._watchedFoldersOpenExplorerHereMenuItem.Name = "_watchedFoldersOpenExplorerHereMenuItem";
             resources.ApplyResources(this._watchedFoldersOpenExplorerHereMenuItem, "_watchedFoldersOpenExplorerHereMenuItem");
             // 
-            // _progressBackgroundWorker
-            // 
-            this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
-            this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
-            // 
             // _watchedFoldersTabPage
             // 
             this._watchedFoldersTabPage.Controls.Add(this._watchedFoldersListView);
@@ -489,6 +486,17 @@
             this._statusTabControl.Controls.Add(this._watchedFoldersTabPage);
             this._statusTabControl.Name = "_statusTabControl";
             this._statusTabControl.SelectedIndex = 0;
+            // 
+            // _progressBackgroundWorker
+            // 
+            this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
+            this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
+            // 
+            // encryptedFoldersToolStripMenuItem
+            // 
+            this.encryptedFoldersToolStripMenuItem.Name = "encryptedFoldersToolStripMenuItem";
+            resources.ApplyResources(this.encryptedFoldersToolStripMenuItem, "encryptedFoldersToolStripMenuItem");
+            this.encryptedFoldersToolStripMenuItem.Click += new System.EventHandler(this.encryptedFoldersToolStripMenuItem_Click);
             // 
             // AxCryptMainForm
             // 
@@ -578,6 +586,7 @@
         private System.Windows.Forms.ColumnHeader _encryptedPathColumnHeader;
         private System.Windows.Forms.ColumnHeader _cryptoName;
         private System.Windows.Forms.TabControl _statusTabControl;
+        private System.Windows.Forms.ToolStripMenuItem encryptedFoldersToolStripMenuItem;
     }
 }
 
