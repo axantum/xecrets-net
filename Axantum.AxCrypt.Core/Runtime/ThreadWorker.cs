@@ -89,13 +89,14 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// </summary>
         public void Join()
         {
+            ManualResetEvent joined;
             lock (_disposeLock)
             {
-                ManualResetEvent joined = _joined;
-                if (joined != null)
-                {
-                    joined.WaitOne();
-                }
+                joined = _joined;
+            }
+            if (joined != null)
+            {
+                joined.WaitOne();
             }
         }
 
