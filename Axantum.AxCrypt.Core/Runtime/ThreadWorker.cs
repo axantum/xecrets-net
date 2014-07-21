@@ -89,14 +89,8 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// </summary>
         public void Join()
         {
-            ManualResetEvent joined;
-            lock (_disposeLock)
+            while (!HasCompleted)
             {
-                joined = _joined;
-            }
-            if (joined != null)
-            {
-                joined.WaitOne();
             }
         }
 
@@ -251,14 +245,17 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private readonly object _disposeLock = new object();
 
+        private readonly object _joinLock = new object();
+
         protected virtual void Dispose(bool disposing)
         {
-            if (disposing)
+            if (!disposing)
             {
-                lock (_disposeLock)
-                {
-                    DisposeInternal();
-                }
+                return;
+            }
+            lock (_disposeLock)
+            {
+                DisposeInternal();
             }
         }
 
