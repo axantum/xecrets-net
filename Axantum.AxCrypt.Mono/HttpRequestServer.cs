@@ -62,6 +62,7 @@ namespace Axantum.AxCrypt.Mono
             }
             catch (HttpListenerException)
             {
+                return;
             }
             if (listener.IsListening)
             {

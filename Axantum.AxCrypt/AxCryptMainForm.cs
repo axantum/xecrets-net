@@ -651,7 +651,7 @@ namespace Axantum.AxCrypt
 
         private void DoRequest(CommandCompleteEventArgs e)
         {
-            if (!IsImmediate(e.Verb) && !Instance.KnownKeys.IsLoggedOn)
+            if ((e.Verb == CommandVerb.Encrypt) && !Instance.KnownKeys.IsLoggedOn)
             {
                 RestoreWindowWithFocus();
                 _pendingRequest = e;
@@ -706,6 +706,7 @@ namespace Axantum.AxCrypt
         {
             switch (verb)
             {
+                case CommandVerb.Wipe:
                 case CommandVerb.Show:
                 case CommandVerb.Exit:
                 case CommandVerb.About:
