@@ -121,7 +121,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 throw new ArgumentNullException("key");
             }
-            Initialize(encryptedFileInfo, decryptedFileInfo, key, null, status, new ActiveFileProperties(OS.Current.UtcNow, decryptedFileInfo.LastWriteTimeUtc, cryptoId));
+            Initialize(encryptedFileInfo, decryptedFileInfo, key, null, status, new ActiveFileProperties(OS.Current.UtcNow, encryptedFileInfo.LastWriteTimeUtc, cryptoId));
         }
 
         private void Initialize(ActiveFile other)
