@@ -145,6 +145,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private FileOperationContext LaunchApplicationForDocument(ActiveFile destinationActiveFile)
         {
+            ActiveFileStatus status = ActiveFileStatus.AssumedOpenAndDecrypted;
             ILauncher process;
             try
             {
@@ -159,6 +160,7 @@ namespace Axantum.AxCrypt.Core.UI
                 }
                 else
                 {
+                    status |= ActiveFileStatus.NoProcessKnown;
                     if (Instance.Log.IsInfoEnabled)
                     {
                         Instance.Log.LogInfo("Starting process for '{0}' did not start a process, assumed handled by the shell.".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName));
@@ -187,7 +189,7 @@ namespace Axantum.AxCrypt.Core.UI
                 Instance.Log.LogInfo("Launched and opened '{0}'.".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName));
             }
 
-            destinationActiveFile = new ActiveFile(destinationActiveFile, ActiveFileStatus.AssumedOpenAndDecrypted);
+            destinationActiveFile = new ActiveFile(destinationActiveFile, status);
             _fileSystemState.Add(destinationActiveFile, process);
             _fileSystemState.Save();
 

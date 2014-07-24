@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public class UserSettings : IUserSettings
     {
-        public int CurrentSettingsVersion { get { return 4; } }
+        public int CurrentSettingsVersion { get { return 6; } }
 
         private Dictionary<string, string> _settings = new Dictionary<string, string>();
 

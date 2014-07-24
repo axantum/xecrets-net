@@ -288,7 +288,15 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return activeFile;
             }
-            if (!activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted) || activeFile.Status.HasMask(ActiveFileStatus.NotShareable))
+            if (!activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
+            {
+                return activeFile;
+            }
+            if (activeFile.Status.HasMask(ActiveFileStatus.NotShareable))
+            {
+                return activeFile;
+            }
+            if (activeFile.Status.HasMask(ActiveFileStatus.NoProcessKnown))
             {
                 return activeFile;
             }

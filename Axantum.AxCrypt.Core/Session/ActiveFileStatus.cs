@@ -46,5 +46,11 @@ namespace Axantum.AxCrypt.Core.Session
 
         IgnoreChange = 32,
         Inactive = 64,
+
+        /// <summary>
+        /// Set when an application was launched for the file, but no process could be seen to be started. This typically happens
+        /// with Windows 8 apps, as well as some multi document softwares such as Word etc.
+        /// </summary>
+        NoProcessKnown = 128,
     }
 }

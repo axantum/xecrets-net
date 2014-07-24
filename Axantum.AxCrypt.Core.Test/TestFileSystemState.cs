@@ -130,7 +130,7 @@ namespace Axantum.AxCrypt.Core.Test
                 FileSystemState reloadedState = FileSystemState.Create(Instance.WorkFolder.FileInfo.Combine("mystate.txt"));
                 Assert.That(reloadedState, Is.Not.Null, "An instance should always be instantiated.");
                 Assert.That(reloadedState.ActiveFiles.Count(), Is.EqualTo(1), "The reloaded state should have one active file.");
-                Assert.That(reloadedState.ActiveFiles.First().Status, Is.EqualTo(ActiveFileStatus.AssumedOpenAndDecrypted), "When reloading saved state, some statuses should be masked away.");
+                Assert.That(reloadedState.ActiveFiles.First().Status, Is.EqualTo(ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NoProcessKnown), "When reloading saved state, some statuses should be masked away and NoProcessKnown added.");
             }
         }
 
