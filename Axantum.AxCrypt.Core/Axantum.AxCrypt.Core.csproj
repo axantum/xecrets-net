@@ -45,6 +45,11 @@
     <Compile Include="AxCryptFactory.cs" />
     <Compile Include="Crypto\CryptoPolicy.cs" />
     <Compile Include="Crypto\Passphrase.cs" />
+    <Compile Include="Crypto\Asymmetric\AsymmetricPrivateKey.cs" />
+    <Compile Include="Crypto\Asymmetric\AsymmetricPublicKey.cs" />
+    <Compile Include="Crypto\Asymmetric\AsymmetricKeyPair.cs" />
+    <Compile Include="Crypto\Asymmetric\BouncyCastleRandomGenerator.cs" />
+    <Compile Include="Crypto\Asymmetric\IAsymmetricKey.cs" />
     <Compile Include="Runtime\TypeDiscovery.cs" />
     <Compile Include="Crypto\CryptoExtensions.cs" />
     <Compile Include="Crypto\FreeCryptoPolicy.cs" />
@@ -277,6 +282,7 @@
       <Name>Newtonsoft.Json.Net40</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\SolutionItems\Axantum.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

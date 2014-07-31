@@ -101,6 +101,7 @@
     <Compile Include="TestKnownFoldersViewModel.cs" />
     <Compile Include="TestPassphraseBase.cs" />
     <Compile Include="TestPbkdf2HmacSha512.cs" />
+    <Compile Include="TestCryptoAsymmetric.cs" />
     <Compile Include="TestRandomGenerator.cs" />
     <Compile Include="TestV1AesCrypto.cs" />
     <Compile Include="TestSymmetricIV.cs" />

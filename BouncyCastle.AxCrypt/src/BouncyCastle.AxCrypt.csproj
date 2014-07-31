@@ -1613,6 +1613,18 @@
     <Compile Include="crypto\prng\ReversedWindowGenerator.cs" />
     <Compile Include="crypto\prng\ThreadedSeedGenerator.cs" />
     <Compile Include="crypto\prng\VMPCRandomGenerator.cs" />
+    <Compile Include="crypto\signers\DsaDigestSigner.cs" />
+    <Compile Include="crypto\signers\DsaSigner.cs" />
+    <Compile Include="crypto\signers\ECDsaSigner.cs" />
+    <Compile Include="crypto\signers\ECGOST3410Signer.cs" />
+    <Compile Include="crypto\signers\ECNRSigner.cs" />
+    <Compile Include="crypto\signers\GenericSigner.cs" />
+    <Compile Include="crypto\signers\GOST3410DigestSigner.cs" />
+    <Compile Include="crypto\signers\GOST3410Signer.cs" />
+    <Compile Include="crypto\signers\Iso9796d2PssSigner.cs" />
+    <Compile Include="crypto\signers\Iso9796d2Signer.cs" />
+    <Compile Include="crypto\signers\PssSigner.cs" />
+    <Compile Include="crypto\signers\RsaDigestSigner.cs" />
     <Compile Include="crypto\StreamBlockCipher.cs" />
     <Compile Include="crypto\util\Pack.cs" />
     <Compile Include="math\BigInteger.cs" />
@@ -1632,7 +1644,52 @@
     <Compile Include="math\ec\multiplier\WNafPreCompInfo.cs" />
     <Compile Include="math\ec\multiplier\WTauNafMultiplier.cs" />
     <Compile Include="math\ec\multiplier\WTauNafPreCompInfo.cs" />
+    <Compile Include="openssl\EncryptionException.cs" />
+    <Compile Include="openssl\IPasswordFinder.cs" />
+    <Compile Include="openssl\MiscPemGenerator.cs" />
+    <Compile Include="openssl\PasswordException.cs" />
+    <Compile Include="openssl\PEMException.cs" />
+    <Compile Include="openssl\PEMReader.cs" />
+    <Compile Include="openssl\PEMUtilities.cs" />
+    <Compile Include="openssl\PEMWriter.cs" />
+    <Compile Include="openssl\Pkcs8Generator.cs" />
+    <Compile Include="pkcs\AsymmetricKeyEntry.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pkcs\EncryptedPrivateKeyInfoFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pkcs\Pkcs10CertificationRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pkcs\Pkcs10CertificationRequestDelaySigned.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pkcs\Pkcs12Entry.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pkcs\Pkcs12Store.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pkcs\PKCS12StoreBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pkcs\Pkcs12Utilities.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pkcs\PrivateKeyInfoFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="pkcs\X509CertificateEntry.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="security\AgreementUtilities.cs" />
+    <Compile Include="security\cert\CertificateEncodingException.cs" />
+    <Compile Include="security\cert\CertificateException.cs" />
+    <Compile Include="security\cert\CertificateExpiredException.cs" />
+    <Compile Include="security\cert\CertificateNotYetValidException.cs" />
+    <Compile Include="security\cert\CertificateParsingException.cs" />
+    <Compile Include="security\cert\CrlException.cs" />
     <Compile Include="security\CipherUtilities.cs" />
     <Compile Include="security\DigestUtilities.cs" />
     <Compile Include="security\DotNetUtilities.cs" />
@@ -1646,9 +1703,13 @@
     <Compile Include="security\MacUtilities.cs" />
     <Compile Include="security\NoSuchAlgorithmException.cs" />
     <Compile Include="security\ParameterUtilities.cs" />
+    <Compile Include="security\PbeUtilities.cs" />
+    <Compile Include="security\PrivateKeyFactory.cs" />
+    <Compile Include="security\PublicKeyFactory.cs" />
     <Compile Include="security\SecureRandom.cs" />
     <Compile Include="security\SecurityUtilityException.cs" />
     <Compile Include="security\SignatureException.cs" />
+    <Compile Include="security\SignerUtilities.cs" />
     <Compile Include="security\WrapperUtilities.cs" />
     <Compile Include="util\Arrays.cs" />
     <Compile Include="util\BigIntegers.cs" />
@@ -1680,6 +1741,13 @@
     <Compile Include="util\Enums.cs" />
     <Compile Include="util\io\BaseInputStream.cs" />
     <Compile Include="util\io\BaseOutputStream.cs" />
+    <Compile Include="util\io\pem\PemGenerationException.cs" />
+    <Compile Include="util\io\pem\PemHeader.cs" />
+    <Compile Include="util\io\pem\PemObject.cs" />
+    <Compile Include="util\io\pem\PemObjectGenerator.cs" />
+    <Compile Include="util\io\pem\PemObjectParser.cs" />
+    <Compile Include="util\io\pem\PemReader.cs" />
+    <Compile Include="util\io\pem\PemWriter.cs" />
     <Compile Include="util\io\PushbackStream.cs" />
     <Compile Include="util\io\StreamOverflowException.cs" />
     <Compile Include="util\io\Streams.cs" />
@@ -1702,6 +1770,126 @@
     <Compile Include="util\zlib\ZInputStream.cs" />
     <Compile Include="util\zlib\ZOutputStream.cs" />
     <Compile Include="util\zlib\ZStream.cs" />
+    <Compile Include="x509\AttributeCertificateHolder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\AttributeCertificateIssuer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\extension\AuthorityKeyIdentifierStructure.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\extension\SubjectKeyIdentifierStructure.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\extension\X509ExtensionUtil.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\IX509AttributeCertificate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\IX509Extension.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\PEMParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\PrincipalUtil.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\store\IX509Selector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\store\IX509Store.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\store\IX509StoreParameters.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\store\NoSuchStoreException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\store\X509AttrCertStoreSelector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\store\X509CertPairStoreSelector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\store\X509CertStoreSelector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\store\X509CollectionStore.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\store\X509CollectionStoreParameters.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\store\X509CrlStoreSelector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\store\X509StoreException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\store\X509StoreFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\SubjectPublicKeyInfoFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\X509AttrCertParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\X509Attribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\X509Certificate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\X509CertificatePair.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\X509CertificateParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\X509CertPairParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\X509Crl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\X509CrlEntry.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\X509CrlParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\X509ExtensionBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\X509KeyUsage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\X509SignatureUtil.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\X509Utilities.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\X509V1CertificateGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\X509V2AttributeCertificate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\X509V2AttributeCertificateGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\X509V2CRLGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="x509\X509V3CertificateGenerator.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />
