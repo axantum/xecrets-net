@@ -94,6 +94,8 @@
     <Compile Include="Reader\VxAxCryptReader.cs" />
     <Compile Include="Session\ActiveFileProperties.cs" />
     <Compile Include="Session\ActiveFileWatcher.cs" />
+    <Compile Include="Session\UserAsymmetricKeys.cs" />
+    <Compile Include="Session\UserAsymmetricKeysStore.cs" />
     <Compile Include="UI\FileOperationContext.cs" />
     <Compile Include="UI\ViewModel\WatchedFoldersViewModel.cs" />
     <Compile Include="V1AxCryptDocument.cs" />

@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Newtonsoft.Json;
 using Org.BouncyCastle.Asn1;
 using Org.BouncyCastle.Asn1.X509;
 using Org.BouncyCastle.Crypto;
@@ -42,14 +43,11 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 {
+    [JsonObject(MemberSerialization.OptIn)]
     public class AsymmetricKeyPair
     {
-        public AsymmetricKeyPair()
+        private AsymmetricKeyPair()
         {
-            AsymmetricCipherKeyPair keyPair = GenerateKeyPair();
-
-            PrivateKey = new AsymmetricPrivateKey(keyPair.Private);
-            PublicKey = new AsymmetricPublicKey(keyPair.Public);
         }
 
         public AsymmetricKeyPair(IAsymmetricKey publicKey, IAsymmetricKey privateKey)
@@ -58,8 +56,20 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
             PrivateKey = privateKey;
         }
 
+        public static AsymmetricKeyPair Create()
+        {
+            AsymmetricCipherKeyPair keyPair = GenerateKeyPair();
+
+            IAsymmetricKey publicKey = new AsymmetricPublicKey(keyPair.Public);
+            IAsymmetricKey privateKey = new AsymmetricPrivateKey(keyPair.Private);
+
+            return new AsymmetricKeyPair(publicKey, privateKey);
+        }
+
+        [JsonProperty("publickey")]
         public IAsymmetricKey PublicKey { get; private set; }
 
+        [JsonProperty("privatekey")]
         public IAsymmetricKey PrivateKey { get; private set; }
 
         private static AsymmetricCipherKeyPair GenerateKeyPair()

@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestKeyPairPem()
         {
-            AsymmetricKeyPair keyPair = new AsymmetricKeyPair();
+            AsymmetricKeyPair keyPair = AsymmetricKeyPair.Create();
 
             string privatePem = keyPair.PrivateKey.Pem;
 

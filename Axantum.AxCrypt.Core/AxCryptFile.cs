@@ -88,6 +88,42 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
+        public void Encrypt(Stream sourceStream, string sourceFileName, IRuntimeFileInfo destinationFileInfo, Passphrase passphrase, AxCryptOptions options, IProgressContext progress)
+        {
+            if (sourceStream == null)
+            {
+                throw new ArgumentNullException("sourceStream");
+            }
+            if (sourceFileName == null)
+            {
+                throw new ArgumentNullException("sourceFileName");
+            }
+            if (destinationFileInfo == null)
+            {
+                throw new ArgumentNullException("destinationFileInfo");
+            }
+            if (passphrase == null)
+            {
+                throw new ArgumentNullException("passphrase");
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
+
+            using (Stream destinationStream = destinationFileInfo.OpenWrite())
+            {
+                using (IAxCryptDocument document = new V1AxCryptDocument(passphrase, Instance.UserSettings.GetKeyWrapIterations(V1Aes128CryptoFactory.CryptoId)))
+                {
+                    document.FileName = sourceFileName;
+                    document.CreationTimeUtc = OS.Current.UtcNow;
+                    document.LastAccessTimeUtc = document.CreationTimeUtc;
+                    document.LastWriteTimeUtc = document.CreationTimeUtc;
+                    document.EncryptTo(sourceStream, destinationStream, options);
+                }
+            }
+        }
+
         public static void Encrypt(IRuntimeFileInfo sourceFile, Stream destinationStream, Passphrase key, Guid cryptoId, AxCryptOptions options, IProgressContext progress)
         {
             if (sourceFile == null)
@@ -200,6 +236,32 @@ namespace Axantum.AxCrypt.Core
             progress.NotifyLevelFinished();
         }
 
+        public bool Decrypt(IRuntimeFileInfo sourceFile, Stream destinationStream, Passphrase passphrase)
+        {
+            if (sourceFile == null)
+            {
+                throw new ArgumentNullException("sourceFile");
+            }
+            if (destinationStream == null)
+            {
+                throw new ArgumentNullException("destinationStream");
+            }
+            if (passphrase == null)
+            {
+                throw new ArgumentNullException("passphrase");
+            }
+
+            using (IAxCryptDocument document = Document(sourceFile, passphrase, new ProgressContext()))
+            {
+                if (!document.PassphraseIsValid)
+                {
+                    return false;
+                }
+                Decrypt(sourceFile.OpenRead(), destinationStream, passphrase, sourceFile.FullName, new ProgressContext());
+            }
+            return true;
+        }
+
         /// <summary>
         /// Decrypt a source file to a destination file, given a passphrase
         /// </summary>
@@ -226,46 +288,13 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("progress");
             }
 
-            DateTime creationTimeUtc, lastAccessTimeUtc, lastWriteTimeUtc;
             using (IAxCryptDocument document = Document(sourceFile, passphrase, new ProgressContext()))
             {
                 if (!document.PassphraseIsValid)
                 {
                     return false;
                 }
-                creationTimeUtc = document.CreationTimeUtc;
-                lastAccessTimeUtc = document.LastAccessTimeUtc;
-                lastWriteTimeUtc = document.LastWriteTimeUtc;
                 Decrypt(document, destinationFile, options, progress);
-            }
-            try
-            {
-                if (Instance.Log.IsInfoEnabled)
-                {
-                    Instance.Log.LogInfo("Decrypting to '{0}'.".InvariantFormat(destinationFile.Name));
-                }
-
-                using (Stream destinationStream = destinationFile.OpenWrite())
-                {
-                    Decrypt(sourceFile.OpenRead(), destinationStream, passphrase, sourceFile.FullName, progress);
-                }
-
-                if (Instance.Log.IsInfoEnabled)
-                {
-                    Instance.Log.LogInfo("Decrypted to '{0}'.".InvariantFormat(destinationFile.Name));
-                }
-            }
-            catch (Exception)
-            {
-                if (destinationFile.IsExistingFile)
-                {
-                    Wipe(destinationFile, progress);
-                }
-                throw;
-            }
-            if (options.HasMask(AxCryptOptions.SetFileTimes))
-            {
-                destinationFile.SetFileTimes(creationTimeUtc, lastAccessTimeUtc, lastWriteTimeUtc);
             }
             return true;
         }

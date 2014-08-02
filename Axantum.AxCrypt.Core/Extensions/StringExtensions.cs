@@ -61,6 +61,23 @@ namespace Axantum.AxCrypt.Core.Extensions
             return formatted;
         }
 
+        /// <summary>
+        /// Create a file name based on an existing, but convert the file name to the pattern used by
+        /// AxCrypt for encrypted files. The original must not already be in that form.
+        /// </summary>
+        /// <param name="fileInfo">A file name representing a file that is not encrypted</param>
+        /// <returns>A corresponding file name representing the encrypted version of the original</returns>
+        public static string CreateEncryptedName(this string fullName)
+        {
+            string extension = Path.GetExtension(fullName);
+            string encryptedName = fullName;
+            encryptedName = encryptedName.Substring(0, encryptedName.Length - extension.Length);
+            encryptedName += extension.Replace('.', '-');
+            encryptedName += OS.Current.AxCryptExtension;
+
+            return encryptedName;
+        }
+
         public static string CreateUniqueFile(this string fullName)
         {
             IRuntimeFileInfo pathInfo = Factory.New<IRuntimeFileInfo>(fullName);

@@ -124,12 +124,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                 throw new InternalErrorException("Can't get encrypted name for a file that cannot be encrypted.");
             }
 
-            string extension = Path.GetExtension(fullName.FullName);
-            string encryptedName = fullName.FullName;
-            encryptedName = encryptedName.Substring(0, encryptedName.Length - extension.Length);
-            encryptedName += extension.Replace('.', '-');
-            encryptedName += OS.Current.AxCryptExtension;
-
+            string encryptedName = fullName.FullName.CreateEncryptedName();
             return Factory.New<IRuntimeFileInfo>(encryptedName);
         }
 
