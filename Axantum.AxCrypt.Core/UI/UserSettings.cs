@@ -165,6 +165,12 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store("SettingsVersion", value); }
         }
 
+        public int AsymmetricKeyBits
+        {
+            get { return Load("AsymmetricKeyBits", 4096); }
+            set { Store("AsymmetricKeyBits", value); }
+        }
+
         public string this[string key]
         {
             get

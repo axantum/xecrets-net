@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Newtonsoft.Json;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Digests;
 using Org.BouncyCastle.Crypto.Encodings;
@@ -40,22 +41,46 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 {
+    [JsonObject(MemberSerialization.OptIn)]
     public class AsymmetricPublicKey : IAsymmetricKey
     {
+        [JsonProperty("pem")]
+        private string _serializedKey
+        {
+            get
+            {
+                return ToPem();
+            }
+            set
+            {
+                Key = FromPem(value);
+            }
+        }
+
         private AsymmetricKeyParameter Key { get; set; }
 
-        internal AsymmetricPublicKey(AsymmetricKeyParameter publicKey)
+        [JsonConstructor]
+        private AsymmetricPublicKey()
         {
-            Key = publicKey;
+        }
+
+        internal AsymmetricPublicKey(AsymmetricKeyParameter publicKeyParameter)
+        {
+            Key = publicKeyParameter;
         }
 
         public AsymmetricPublicKey(string publicKeyPem)
         {
-            using (TextReader reader = new StringReader(publicKeyPem))
+            Key = FromPem(publicKeyPem);
+        }
+
+        private AsymmetricKeyParameter FromPem(string pem)
+        {
+            using (TextReader reader = new StringReader(pem))
             {
                 PemReader pemReader = new PemReader(reader);
 
-                Key = (AsymmetricKeyParameter)pemReader.ReadObject();
+                return (AsymmetricKeyParameter)pemReader.ReadObject();
             }
         }
 
@@ -71,7 +96,7 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 
         public byte[] Transform(byte[] buffer)
         {
-            IAsymmetricBlockCipher cipher = new OaepEncoding(new RsaBlindedEngine(), new Sha512Digest());
+            IAsymmetricBlockCipher cipher = new OaepEncoding(new RsaBlindedEngine(), new BouncyCastleDigest(Factory.New<IPaddingHash>()));
 
             cipher.Init(true, new ParametersWithRandom(Key, BouncyCastleRandomGenerator.CreateSecureRandom()));
             byte[] transformed = cipher.ProcessBlock(buffer, 0, buffer.Length);
@@ -79,9 +104,9 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
             return transformed;
         }
 
-        public string Pem
+        public override string ToString()
         {
-            get { return ToPem(); }
+            return ToPem();
         }
     }
 }

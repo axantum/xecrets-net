@@ -25,16 +25,24 @@
 
 #endregion Coypright and License
 
-using Newtonsoft.Json;
+using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
+namespace Axantum.AxCrypt.Core.Test
 {
-    public interface IAsymmetricKey
+    internal class FakePseudoRandomGenerator : IRandomGenerator
     {
-        byte[] Transform(byte[] buffer);
+        private Random _randomForTest = new Random(0);
+
+        public byte[] Generate(int count)
+        {
+            byte[] bytes = new byte[count];
+            _randomForTest.NextBytes(bytes);
+
+            return bytes;
+        }
     }
 }

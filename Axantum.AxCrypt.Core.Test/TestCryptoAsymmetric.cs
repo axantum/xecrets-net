@@ -38,23 +38,11 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestCryptoAsymmetric
     {
-        private class FakePseudoRandomGenerator : IRandomGenerator
-        {
-            private Random _randomForTest = new Random(0);
-
-            public byte[] Generate(int count)
-            {
-                byte[] bytes = new byte[count];
-                _randomForTest.NextBytes(bytes);
-
-                return bytes;
-            }
-        }
-
         [SetUp]
         public static void Setup()
         {
             Factory.Instance.Singleton<IRandomGenerator>(() => new FakePseudoRandomGenerator());
+            Factory.Instance.Register<IPaddingHash>(() => new PaddingHashForTest());
         }
 
         [TearDown]
@@ -66,22 +54,23 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestKeyPairPem()
         {
-            AsymmetricKeyPair keyPair = AsymmetricKeyPair.Create();
+            AsymmetricKeyPair keyPair = AsymmetricKeyPair.Create(512);
 
-            string privatePem = keyPair.PrivateKey.Pem;
+            string privatePem = keyPair.PrivateKey.ToString();
 
             Assert.That(privatePem.StartsWith("-----BEGIN RSA PRIVATE KEY-----", StringComparison.OrdinalIgnoreCase));
             Assert.That(privatePem.EndsWith("-----END RSA PRIVATE KEY-----" + Environment.NewLine, StringComparison.OrdinalIgnoreCase));
-            Assert.That(privatePem.Length, Is.GreaterThan(3200));
+            Assert.That(privatePem.Length, Is.GreaterThan(500));
+            Assert.That(privatePem.Length, Is.LessThan(600));
 
-            string publicPem = keyPair.PublicKey.Pem;
+            string publicPem = keyPair.PublicKey.ToString();
 
             Assert.That(publicPem.StartsWith("-----BEGIN PUBLIC KEY-----", StringComparison.OrdinalIgnoreCase));
             Assert.That(publicPem.EndsWith("-----END PUBLIC KEY-----" + Environment.NewLine, StringComparison.OrdinalIgnoreCase));
         }
 
         [Test]
-        public static void TestEncryption()
+        public static void TestAsymmetricEncryption()
         {
             IAsymmetricKey key = new AsymmetricPublicKey(_publicKey1);
 
@@ -91,9 +80,8 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(encryptedBytes.Length, Is.EqualTo(512));
         }
 
-
         [Test]
-        public static void TestEncryptionDecryption()
+        public static void TestAsymmetricEncryptionDecryption()
         {
             IAsymmetricKey publicKey = new AsymmetricPublicKey(_publicKey1);
 
@@ -109,7 +97,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFailedDecryptionWrongKey1()
+        public static void TestAsymmetricEncryptionFailedDecryptionWrongKey1()
         {
             IAsymmetricKey publicKey = new AsymmetricPublicKey(_publicKey1);
 
@@ -123,7 +111,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFailedDecryptionWrongKey2()
+        public static void TestAsymmetricEncryptionFailedDecryptionWrongKey2()
         {
             IAsymmetricKey publicKey = new AsymmetricPublicKey(_publicKey2);
 

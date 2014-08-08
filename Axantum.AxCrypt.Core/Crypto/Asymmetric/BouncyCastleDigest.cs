@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,8 +32,48 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 {
-    public interface IAsymmetricKey
+    internal class BouncyCastleDigest : Org.BouncyCastle.Crypto.IDigest
     {
-        byte[] Transform(byte[] buffer);
+        private ICryptoHash _cryptoHash;
+
+        public BouncyCastleDigest(ICryptoHash cryptoHash)
+        {
+            _cryptoHash = cryptoHash;
+        }
+
+        public string AlgorithmName
+        {
+            get { return _cryptoHash.AlgorithmName; }
+        }
+
+        public int GetDigestSize()
+        {
+            return _cryptoHash.HashSize;
+        }
+
+        public int GetByteLength()
+        {
+            return _cryptoHash.BufferLength;
+        }
+
+        public void Update(byte input)
+        {
+            _cryptoHash.Update(input);
+        }
+
+        public void BlockUpdate(byte[] input, int inOff, int length)
+        {
+            _cryptoHash.BlockUpdate(input, inOff, length);
+        }
+
+        public int DoFinal(byte[] output, int outOff)
+        {
+            return _cryptoHash.DoFinal(output, outOff);
+        }
+
+        public void Reset()
+        {
+            _cryptoHash.Reset();
+        }
     }
 }

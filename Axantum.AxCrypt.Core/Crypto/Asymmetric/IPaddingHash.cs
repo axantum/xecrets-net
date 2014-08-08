@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,8 +32,7 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 {
-    public interface IAsymmetricKey
+    public interface IPaddingHash : ICryptoHash
     {
-        byte[] Transform(byte[] buffer);
     }
 }

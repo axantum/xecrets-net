@@ -15,23 +15,36 @@ namespace Axantum.AxCrypt.Core.Session
     [JsonObject(MemberSerialization.OptIn)]
     public class UserAsymmetricKeys
     {
+        [JsonConstructor]
         private UserAsymmetricKeys()
         {
             RecalledPrivateKeys = new List<IAsymmetricKey>();
         }
 
-        public UserAsymmetricKeys(string userEmail)
+        public UserAsymmetricKeys(string userEmail, int bits)
         {
             UserEmail = userEmail;
             RecalledPrivateKeys = new List<IAsymmetricKey>();
-            KeyPair  = AsymmetricKeyPair.Create();
+            KeyPair = AsymmetricKeyPair.Create(bits);
         }
 
         [JsonProperty("useremail")]
         public string UserEmail { get; private set; }
 
         [JsonProperty("recalledprivatekeys")]
-        public IList<IAsymmetricKey> RecalledPrivateKeys { get; private set; }
+        private IList<AsymmetricPrivateKey> _serializedRecalledPrivateKeys;
+
+        public IList<IAsymmetricKey> RecalledPrivateKeys
+        {
+            get
+            {
+                return _serializedRecalledPrivateKeys.Select(k => (IAsymmetricKey)k).ToList();
+            }
+            private set
+            {
+                _serializedRecalledPrivateKeys = value.Select(k => (AsymmetricPrivateKey)k).ToList();
+            }
+        }
 
         [JsonProperty("keypair")]
         public AsymmetricKeyPair KeyPair { get; private set; }

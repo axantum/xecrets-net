@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,8 +32,48 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 {
-    public interface IAsymmetricKey
+    public class PaddingHash : IPaddingHash
     {
-        byte[] Transform(byte[] buffer);
+        private Org.BouncyCastle.Crypto.IDigest _digest;
+
+        public PaddingHash()
+        {
+            _digest = new Org.BouncyCastle.Crypto.Digests.Sha512Digest();
+        }
+
+        public string AlgorithmName
+        {
+            get { return _digest.AlgorithmName; }
+        }
+
+        public int HashSize
+        {
+            get { return _digest.GetDigestSize(); }
+        }
+
+        public int BufferLength
+        {
+            get { return _digest.GetByteLength(); }
+        }
+
+        public void Update(byte input)
+        {
+            _digest.Update(input);
+        }
+
+        public void BlockUpdate(byte[] input, int inOff, int length)
+        {
+            _digest.BlockUpdate(input, inOff, length);
+        }
+
+        public int DoFinal(byte[] output, int outOff)
+        {
+            return _digest.DoFinal(output, outOff);
+        }
+
+        public void Reset()
+        {
+            _digest.Reset();
+        }
     }
 }

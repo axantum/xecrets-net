@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
 using Newtonsoft.Json;
 using Org.BouncyCastle.Asn1;
 using Org.BouncyCastle.Asn1.X509;
@@ -46,35 +47,38 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
     [JsonObject(MemberSerialization.OptIn)]
     public class AsymmetricKeyPair
     {
+        [JsonConstructor]
         private AsymmetricKeyPair()
         {
         }
 
-        public AsymmetricKeyPair(IAsymmetricKey publicKey, IAsymmetricKey privateKey)
+        public AsymmetricKeyPair(AsymmetricPublicKey publicKey, AsymmetricPrivateKey privateKey)
         {
             PublicKey = publicKey;
             PrivateKey = privateKey;
         }
 
-        public static AsymmetricKeyPair Create()
+        public static AsymmetricKeyPair Create(int bits)
         {
-            AsymmetricCipherKeyPair keyPair = GenerateKeyPair();
+            AsymmetricCipherKeyPair keyPair = GenerateKeyPair(bits);
 
-            IAsymmetricKey publicKey = new AsymmetricPublicKey(keyPair.Public);
-            IAsymmetricKey privateKey = new AsymmetricPrivateKey(keyPair.Private);
+            AsymmetricPublicKey publicKey = new AsymmetricPublicKey(keyPair.Public);
+            AsymmetricPrivateKey privateKey = new AsymmetricPrivateKey(keyPair.Private);
 
             return new AsymmetricKeyPair(publicKey, privateKey);
         }
 
         [JsonProperty("publickey")]
-        public IAsymmetricKey PublicKey { get; private set; }
+        [JsonConverter(typeof(InterfaceJsonConverter<AsymmetricPublicKey, IAsymmetricKey>))]
+        public IAsymmetricKey PublicKey { get; set; }
 
         [JsonProperty("privatekey")]
-        public IAsymmetricKey PrivateKey { get; private set; }
+        [JsonConverter(typeof(InterfaceJsonConverter<AsymmetricPrivateKey, IAsymmetricKey>))]
+        public IAsymmetricKey PrivateKey { get; set; }
 
-        private static AsymmetricCipherKeyPair GenerateKeyPair()
+        private static AsymmetricCipherKeyPair GenerateKeyPair(int bits)
         {
-            KeyGenerationParameters keyParameters = new KeyGenerationParameters(BouncyCastleRandomGenerator.CreateSecureRandom(), 4096);
+            KeyGenerationParameters keyParameters = new KeyGenerationParameters(BouncyCastleRandomGenerator.CreateSecureRandom(), bits);
             RsaKeyPairGenerator rsaGenerator = new RsaKeyPairGenerator();
             rsaGenerator.Init(keyParameters);
             AsymmetricCipherKeyPair keyPair = rsaGenerator.GenerateKeyPair();

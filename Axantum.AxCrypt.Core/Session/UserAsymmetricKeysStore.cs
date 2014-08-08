@@ -64,13 +64,22 @@ namespace Axantum.AxCrypt.Core.Session
                 _userKeys = keys;
                 return;
             }
-            _userKeys = new UserAsymmetricKeys(userEmail);
+            _userKeys = new UserAsymmetricKeys(userEmail, Instance.UserSettings.AsymmetricKeyBits);
+        }
+
+        public UserAsymmetricKeys Keys
+        {
+            get
+            {
+                return _userKeys;
+            }
         }
 
         private string UniqueFilePart()
         {
-            TimeSpan timeSince = OS.Current.UtcNow - new DateTime(2010, 1, 1);
-            return timeSince.TotalSeconds.ToString();
+            DateTime now = OS.Current.UtcNow;
+            TimeSpan timeSince = now - new DateTime(now.Year, 1, 1);
+            return ((int)timeSince.TotalSeconds).ToString();
         }
 
         public void Save()
@@ -91,7 +100,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
 
             string json = JsonConvert.SerializeObject(_userKeys);
-            using (Stream stream = _file.OpenWrite())
+            using (Stream stream = new MemoryStream(Encoding.UTF8.GetBytes(json)))
             {
                 Factory.New<AxCryptFile>().Encrypt(stream, originalName, _file, _knownKeys.DefaultEncryptionKey, AxCryptOptions.EncryptWithCompression, new ProgressContext());
             }

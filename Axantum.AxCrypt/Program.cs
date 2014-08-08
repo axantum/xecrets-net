@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Ipc;
 using Axantum.AxCrypt.Core.Runtime;
@@ -101,6 +102,7 @@ namespace Axantum.AxCrypt
             Factory.Instance.Register<Version, UpdateCheck>((version) => new UpdateCheck(version));
             Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
             Factory.Instance.Register<IterationCalculator>(() => new IterationCalculator());
+            Factory.Instance.Register<IPaddingHash>(() => new PaddingHash());
 
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
             Factory.Instance.Register<string, IFileWatcher>((path) => new FileWatcher(path, new DelayedAction(new DelayTimer(), Instance.UserSettings.SessionNotificationMinimumIdle)));

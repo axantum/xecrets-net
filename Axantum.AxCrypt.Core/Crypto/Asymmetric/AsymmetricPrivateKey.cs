@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Runtime;
+using Newtonsoft.Json;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Digests;
 using Org.BouncyCastle.Crypto.Encodings;
@@ -42,9 +43,28 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 {
+    [JsonObject(MemberSerialization.OptIn)]
     public class AsymmetricPrivateKey : IAsymmetricKey
     {
+        [JsonProperty("pem")]
+        private string _serializedKey
+        {
+            get
+            {
+                return ToPem();
+            }
+            set
+            {
+                Key = FromPem(value);
+            }
+        }
+
         public AsymmetricKeyParameter Key { get; private set; }
+
+        [JsonConstructor]
+        private AsymmetricPrivateKey()
+        {
+        }
 
         internal AsymmetricPrivateKey(AsymmetricKeyParameter privateKey)
         {
@@ -53,12 +73,16 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 
         public AsymmetricPrivateKey(string privateKeyPem)
         {
-            using (TextReader reader = new StringReader(privateKeyPem))
+            Key = FromPem(privateKeyPem);
+        }
+
+        private AsymmetricKeyParameter FromPem(string pem)
+        {
+            using (TextReader reader = new StringReader(pem))
             {
                 PemReader pemReader = new PemReader(reader);
 
-                AsymmetricCipherKeyPair keyPair = (AsymmetricCipherKeyPair)pemReader.ReadObject();
-                Key = keyPair.Private;
+                return ((AsymmetricCipherKeyPair)pemReader.ReadObject()).Private;
             }
         }
 
@@ -74,7 +98,7 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 
         public byte[] Transform(byte[] buffer)
         {
-            IAsymmetricBlockCipher cipher = new OaepEncoding(new RsaBlindedEngine(), new Sha512Digest());
+            IAsymmetricBlockCipher cipher = new OaepEncoding(new RsaBlindedEngine(), new BouncyCastleDigest(Factory.New<IPaddingHash>()));
 
             cipher.Init(false, new ParametersWithRandom(Key, BouncyCastleRandomGenerator.CreateSecureRandom()));
             try
@@ -88,9 +112,9 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
             }
         }
 
-        public string Pem
+        public override string ToString()
         {
-            get { return ToPem(); }
+            return ToPem();
         }
     }
 }
