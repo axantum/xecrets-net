@@ -92,6 +92,7 @@ namespace Axantum.AxCrypt
             Factory.Instance.Singleton<ICryptoPolicy>(() => Factory.Instance.Singleton<CryptoPolicy>().CreateDefault());
             Factory.Instance.Singleton<CommandHandler>(() => new CommandHandler());
             Factory.Instance.Singleton<ActiveFileWatcher>(() => new ActiveFileWatcher());
+            Factory.Instance.Singleton<IAsymmetricFactory>(() => new BouncyCastleAsymmetricFactory());
 
             Factory.Instance.Register<AxCryptFactory>(() => new AxCryptFactory());
             Factory.Instance.Register<AxCryptFile>(() => new AxCryptFile());
@@ -102,7 +103,6 @@ namespace Axantum.AxCrypt
             Factory.Instance.Register<Version, UpdateCheck>((version) => new UpdateCheck(version));
             Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
             Factory.Instance.Register<IterationCalculator>(() => new IterationCalculator());
-            Factory.Instance.Register<IPaddingHash>(() => new PaddingHash());
 
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
             Factory.Instance.Register<string, IFileWatcher>((path) => new FileWatcher(path, new DelayedAction(new DelayTimer(), Instance.UserSettings.SessionNotificationMinimumIdle)));

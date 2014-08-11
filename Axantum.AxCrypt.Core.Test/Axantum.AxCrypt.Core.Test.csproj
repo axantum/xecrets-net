@@ -50,6 +50,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CryptoValidation\TestRsaOeap.cs" />
     <Compile Include="Endian.cs" />
     <Compile Include="FakeDataProtection.cs" />
     <Compile Include="FakeDelayTimer.cs" />
@@ -72,7 +73,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="MockAxCryptFile.cs" />
     <Compile Include="MockFileSystemStateActions.cs" />
-    <Compile Include="PaddingHashForTest.cs" />
+    <Compile Include="FakeAsymmetricFactory.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

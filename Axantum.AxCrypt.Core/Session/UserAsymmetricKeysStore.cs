@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core.Extensions;
+﻿using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.UI;
 using Newtonsoft.Json;
@@ -116,7 +117,7 @@ namespace Axantum.AxCrypt.Core.Session
                 }
 
                 string json = Encoding.UTF8.GetString(stream.GetBuffer(), 0, (int)stream.Length);
-                return JsonConvert.DeserializeObject<UserAsymmetricKeys>(json);
+                return JsonConvert.DeserializeObject<UserAsymmetricKeys>(json, Factory.Instance.Singleton<IAsymmetricFactory>().GetConverters());
             }
         }
     }

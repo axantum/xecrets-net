@@ -46,7 +46,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             SetupAssembly.AssemblySetup();
             Factory.Instance.Singleton<IRandomGenerator>(() => new FakePseudoRandomGenerator());
-            Factory.Instance.Register<IPaddingHash>(() => new PaddingHashForTest());
+            Factory.Instance.Singleton<IAsymmetricFactory>(() => new FakeAsymmetricFactory());
             Instance.UserSettings.AsymmetricKeyBits = 512;
         }
 
@@ -82,7 +82,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(store.Keys.KeyPair.PublicKey, Is.Not.Null);
             store.Save();
 
-            AsymmetricKeyPair keyPair = store.Keys.KeyPair;
+            IAsymmetricKeyPair keyPair = store.Keys.KeyPair;
 
             store = new UserAsymmetricKeysStore(workFolder, Instance.KnownKeys);
             store.Load(@"svante@axantum.com");

@@ -81,22 +81,22 @@ namespace Axantum.AxCrypt.Core
         /// <param name="creator">The delegate that creates an instance.</param>
         public void Register<TResult>(Func<TResult> creator)
         {
-            SetAndDisposeIfDisposable(typeof(Func<TResult>), creator);
+            SetAndDisposeIfDisposable(typeof(TResult), creator);
         }
 
         public void Register<TArgument, TResult>(Func<TArgument, TResult> creator)
         {
-            SetAndDisposeIfDisposable(typeof(Func<TArgument, TResult>), creator);
+            SetAndDisposeIfDisposable(typeof(TResult), creator);
         }
 
-        public void Singleton<TArgument>(Func<TArgument> creator)
+        public void Singleton<TResult>(Func<TResult> creator)
         {
             Singleton(creator, () => { });
         }
 
-        public void Singleton<TArgument>(Func<TArgument> creator, Action postAction)
+        public void Singleton<TResult>(Func<TResult> creator, Action postAction)
         {
-            SetAndDisposeIfDisposable(typeof(TArgument), new Creator<TArgument>(creator, postAction));
+            SetAndDisposeIfDisposable(typeof(TResult), new Creator<TResult>(creator, postAction));
         }
 
         private void SetAndDisposeIfDisposable(Type type, object value)
@@ -168,22 +168,34 @@ namespace Axantum.AxCrypt.Core
 
         private TResult CreateInternal<TResult>()
         {
-            object function;
-            if (!_mapping.TryGetValue(typeof(Func<TResult>), out function))
-            {
-                throw new ArgumentException("Unregistered type factory. Initialize with 'Factory.Instance.Register<{0}>(() => {{ return new {0}(); }});'".InvariantFormat(typeof(TResult)));
-            }
-            return ((Func<TResult>)function)();
+            Func<TResult> function = GetTypeFactory<TResult>();
+            return function();
         }
 
         private TResult CreateInternal<TArgument, TResult>(TArgument argument)
         {
+            Func<TArgument, TResult> function = GetTypeFactory<TArgument, TResult>();
+            return function(argument);
+        }
+
+        private Func<TResult> GetTypeFactory<TResult>()
+        {
             object function;
-            if (!_mapping.TryGetValue(typeof(Func<TArgument, TResult>), out function))
+            if (!_mapping.TryGetValue(typeof(TResult), out function))
+            {
+                throw new ArgumentException("Unregistered type factory. Initialize with 'Factory.Instance.Register<{0}>(() => {{ return new {0}(); }});'".InvariantFormat(typeof(TResult)));
+            }
+            return (Func<TResult>)function;
+        }
+
+        private Func<TArgument, TResult> GetTypeFactory<TArgument, TResult>()
+        {
+            object function;
+            if (!_mapping.TryGetValue(typeof(TResult), out function))
             {
                 throw new ArgumentException("Unregistered type factory. Initialize with 'Factory.Instance.Register<{0}, {1}>((argument) => {{ return new {0}(argument); }});'".InvariantFormat(typeof(TArgument), typeof(TResult)));
             }
-            return ((Func<TArgument, TResult>)function)(argument);
+            return (Func<TArgument, TResult>)function;
         }
 
         /// <summary>

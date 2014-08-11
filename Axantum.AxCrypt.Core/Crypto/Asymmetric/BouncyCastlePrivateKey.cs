@@ -44,7 +44,7 @@ using System.Text;
 namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class AsymmetricPrivateKey : IAsymmetricKey
+    internal class BouncyCastlePrivateKey : IAsymmetricPrivateKey
     {
         [JsonProperty("pem")]
         private string _serializedKey
@@ -62,16 +62,16 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
         public AsymmetricKeyParameter Key { get; private set; }
 
         [JsonConstructor]
-        private AsymmetricPrivateKey()
+        private BouncyCastlePrivateKey()
         {
         }
 
-        internal AsymmetricPrivateKey(AsymmetricKeyParameter privateKey)
+        internal BouncyCastlePrivateKey(AsymmetricKeyParameter privateKey)
         {
             Key = privateKey;
         }
 
-        public AsymmetricPrivateKey(string privateKeyPem)
+        public BouncyCastlePrivateKey(string privateKeyPem)
         {
             Key = FromPem(privateKeyPem);
         }
@@ -98,7 +98,7 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 
         public byte[] Transform(byte[] buffer)
         {
-            IAsymmetricBlockCipher cipher = new OaepEncoding(new RsaBlindedEngine(), new BouncyCastleDigest(Factory.New<IPaddingHash>()));
+            IAsymmetricBlockCipher cipher = new OaepEncoding(new RsaBlindedEngine(), new BouncyCastleDigest(Factory.Instance.Singleton<IAsymmetricFactory>().CreatePaddingHash()));
 
             cipher.Init(false, new ParametersWithRandom(Key, BouncyCastleRandomGenerator.CreateSecureRandom()));
             try

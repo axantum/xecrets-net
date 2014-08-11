@@ -1,5 +1,7 @@
 ﻿using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.Extensions;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,35 +20,23 @@ namespace Axantum.AxCrypt.Core.Session
         [JsonConstructor]
         private UserAsymmetricKeys()
         {
-            RecalledPrivateKeys = new List<IAsymmetricKey>();
+            RecalledPrivateKeys = new List<IAsymmetricPrivateKey>();
         }
 
         public UserAsymmetricKeys(string userEmail, int bits)
         {
             UserEmail = userEmail;
-            RecalledPrivateKeys = new List<IAsymmetricKey>();
-            KeyPair = AsymmetricKeyPair.Create(bits);
+            RecalledPrivateKeys = new List<IAsymmetricPrivateKey>();
+            KeyPair = Factory.Instance.Singleton<IAsymmetricFactory>().CreateKeyPair(bits);
         }
 
         [JsonProperty("useremail")]
         public string UserEmail { get; private set; }
 
         [JsonProperty("recalledprivatekeys")]
-        private IList<AsymmetricPrivateKey> _serializedRecalledPrivateKeys;
-
-        public IList<IAsymmetricKey> RecalledPrivateKeys
-        {
-            get
-            {
-                return _serializedRecalledPrivateKeys.Select(k => (IAsymmetricKey)k).ToList();
-            }
-            private set
-            {
-                _serializedRecalledPrivateKeys = value.Select(k => (AsymmetricPrivateKey)k).ToList();
-            }
-        }
+        public IList<IAsymmetricPrivateKey> RecalledPrivateKeys { get; private set; }
 
         [JsonProperty("keypair")]
-        public AsymmetricKeyPair KeyPair { get; private set; }
+        public IAsymmetricKeyPair KeyPair { get; private set; }
     }
 }

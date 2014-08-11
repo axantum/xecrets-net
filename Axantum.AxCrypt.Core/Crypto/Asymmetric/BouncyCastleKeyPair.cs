@@ -45,36 +45,26 @@ using System.Text;
 namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class AsymmetricKeyPair
+    internal class BouncyCastleKeyPair : IAsymmetricKeyPair
     {
         [JsonConstructor]
-        private AsymmetricKeyPair()
+        private BouncyCastleKeyPair()
         {
         }
 
-        public AsymmetricKeyPair(AsymmetricPublicKey publicKey, AsymmetricPrivateKey privateKey)
-        {
-            PublicKey = publicKey;
-            PrivateKey = privateKey;
-        }
-
-        public static AsymmetricKeyPair Create(int bits)
+        public BouncyCastleKeyPair(int bits)
         {
             AsymmetricCipherKeyPair keyPair = GenerateKeyPair(bits);
 
-            AsymmetricPublicKey publicKey = new AsymmetricPublicKey(keyPair.Public);
-            AsymmetricPrivateKey privateKey = new AsymmetricPrivateKey(keyPair.Private);
-
-            return new AsymmetricKeyPair(publicKey, privateKey);
+            PublicKey = new BouncyCastlePublicKey(keyPair.Public);
+            PrivateKey = new BouncyCastlePrivateKey(keyPair.Private);
         }
 
         [JsonProperty("publickey")]
-        [JsonConverter(typeof(InterfaceJsonConverter<AsymmetricPublicKey, IAsymmetricKey>))]
-        public IAsymmetricKey PublicKey { get; set; }
+        public IAsymmetricPublicKey PublicKey { get; private set; }
 
         [JsonProperty("privatekey")]
-        [JsonConverter(typeof(InterfaceJsonConverter<AsymmetricPrivateKey, IAsymmetricKey>))]
-        public IAsymmetricKey PrivateKey { get; set; }
+        public IAsymmetricPrivateKey PrivateKey { get; private set; }
 
         private static AsymmetricCipherKeyPair GenerateKeyPair(int bits)
         {

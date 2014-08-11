@@ -25,61 +25,55 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 {
-    internal class PaddingHashForTest : IPaddingHash
+    internal class BouncyCastlePaddingHash : IPaddingHash
     {
-        private HashAlgorithm _hash;
+        private Org.BouncyCastle.Crypto.IDigest _digest;
 
-        public PaddingHashForTest()
+        public BouncyCastlePaddingHash()
         {
-            Reset();
+            _digest = new Org.BouncyCastle.Crypto.Digests.Sha512Digest();
         }
 
         public string AlgorithmName
         {
-            get { return "MD5"; }
+            get { return _digest.AlgorithmName; }
         }
 
         public int HashSize
         {
-            get { return _hash.HashSize / 8; }
+            get { return _digest.GetDigestSize(); }
         }
 
         public int BufferLength
         {
-            get { return _hash.InputBlockSize / 8; }
+            get { return _digest.GetByteLength(); }
         }
 
         public void Update(byte input)
         {
-            byte[] buffer = new byte[] { input };
-            _hash.TransformBlock(buffer, 0, 1, buffer, 0);
+            _digest.Update(input);
         }
 
-        public void BlockUpdate(byte[] input, int offset, int length)
+        public void BlockUpdate(byte[] input, int inOff, int length)
         {
-            _hash.TransformBlock(input, offset, length, input, offset);
+            _digest.BlockUpdate(input, inOff, length);
         }
 
-        public int DoFinal(byte[] output, int offset)
+        public int DoFinal(byte[] output, int outOff)
         {
-            _hash.TransformFinalBlock(new byte[0], 0, 0);
-            _hash.Hash.CopyTo(output, offset);
-            Reset();
-            return _hash.HashSize / 8;
+            return _digest.DoFinal(output, outOff);
         }
 
         public void Reset()
         {
-            _hash = HashAlgorithm.Create("MD5");
+            _digest.Reset();
         }
     }
 }

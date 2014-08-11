@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Extensions
+namespace Axantum.AxCrypt.Core.IO
 {
-    public class InterfaceJsonConverter<TConcrete, TInterface> : JsonConverter
+    public class AbstractJsonConverter<TAbstract, TConcrete> : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {
-            return typeof(TInterface).IsAssignableFrom(objectType);
+            return objectType == typeof(TAbstract);
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)

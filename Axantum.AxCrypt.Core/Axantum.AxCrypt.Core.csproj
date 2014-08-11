@@ -43,18 +43,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AxCryptFactory.cs" />
+    <Compile Include="Crypto\Asymmetric\BouncyCastleAsymmetricFactory.cs" />
     <Compile Include="Crypto\Asymmetric\BouncyCastleDigest.cs" />
-    <Compile Include="Crypto\Asymmetric\IPaddingHash.cs" />
-    <Compile Include="Crypto\Asymmetric\PaddingHash.cs" />
+    <Compile Include="Crypto\Asymmetric\IAsymmetricFactory.cs" />
+    <Compile Include="Crypto\Asymmetric\IAsymmetricKeyPair.cs" />
+    <Compile Include="Crypto\Asymmetric\IAsymmetricPrivateKey.cs" />
+    <Compile Include="Crypto\Asymmetric\IAsymmetricPublicKey.cs" />
+    <Compile Include="Crypto\Asymmetric\IAsymmetricPaddingHash.cs" />
+    <Compile Include="Crypto\Asymmetric\BouncyCastlePaddingHash.cs" />
     <Compile Include="Crypto\CryptoPolicy.cs" />
     <Compile Include="Crypto\ICryptoHash.cs" />
     <Compile Include="Crypto\Passphrase.cs" />
-    <Compile Include="Crypto\Asymmetric\AsymmetricPrivateKey.cs" />
-    <Compile Include="Crypto\Asymmetric\AsymmetricPublicKey.cs" />
-    <Compile Include="Crypto\Asymmetric\AsymmetricKeyPair.cs" />
+    <Compile Include="Crypto\Asymmetric\BouncyCastlePrivateKey.cs" />
+    <Compile Include="Crypto\Asymmetric\BouncyCastlePublicKey.cs" />
+    <Compile Include="Crypto\Asymmetric\BouncyCastleKeyPair.cs" />
     <Compile Include="Crypto\Asymmetric\BouncyCastleRandomGenerator.cs" />
-    <Compile Include="Crypto\Asymmetric\IAsymmetricKey.cs" />
-    <Compile Include="Extensions\InterfaceJsonConverter.cs" />
+    <Compile Include="IO\AbstractJsonConverter.cs" />
     <Compile Include="Runtime\TypeDiscovery.cs" />
     <Compile Include="Crypto\CryptoExtensions.cs" />
     <Compile Include="Crypto\FreeCryptoPolicy.cs" />
