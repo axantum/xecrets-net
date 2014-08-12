@@ -39,14 +39,14 @@ using System.Text;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public static class TestUserAsymmetricKeysStore
+    public static class TestAsymmetricUserKeysStore
     {
         [SetUp]
         public static void Setup()
         {
             SetupAssembly.AssemblySetup();
             Factory.Instance.Singleton<IRandomGenerator>(() => new FakePseudoRandomGenerator());
-            Factory.Instance.Singleton<IAsymmetricFactory>(() => new FakeAsymmetricFactory());
+            Factory.Instance.Singleton<IAsymmetricFactory>(() => new FakeAsymmetricFactory("MD5"));
             Instance.UserSettings.AsymmetricKeyBits = 512;
         }
 

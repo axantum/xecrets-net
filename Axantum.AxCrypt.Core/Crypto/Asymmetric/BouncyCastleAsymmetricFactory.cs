@@ -36,6 +36,11 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
             return new BouncyCastleKeyPair(bits);
         }
 
+        public IAsymmetricKeyPair CreateKeyPair(byte[] n, byte[] e, byte[] d, byte[] p, byte[] q, byte[] dp, byte[] dq, byte[] qinv)
+        {
+            return new BouncyCastleKeyPair(n, e, d, p, q, dp, dq, qinv);
+        }
+
         public IPaddingHash CreatePaddingHash()
         {
             return new BouncyCastlePaddingHash();

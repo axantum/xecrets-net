@@ -184,7 +184,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             {
                 throw new ArgumentNullException("hex");
             }
-            hex = hex.Replace(" ", String.Empty);
+            hex = hex.Replace(" ", String.Empty).Replace("\r", String.Empty).Replace("\n", String.Empty);
             if (hex.Length % 2 != 0)
             {
                 throw new ArgumentException("Odd number of characters is not allowed in a hex string.");

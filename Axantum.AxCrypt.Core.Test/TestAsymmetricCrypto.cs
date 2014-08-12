@@ -36,13 +36,13 @@ using System.Text;
 namespace Axantum.AxCrypt.Core.Test
 {
     [TestFixture]
-    public static class TestCryptoAsymmetric
+    public static class TestAsymmetricCrypto
     {
         [SetUp]
         public static void Setup()
         {
             Factory.Instance.Singleton<IRandomGenerator>(() => new FakePseudoRandomGenerator());
-            Factory.Instance.Singleton<IAsymmetricFactory>(() => new FakeAsymmetricFactory());
+            Factory.Instance.Singleton<IAsymmetricFactory>(() => new FakeAsymmetricFactory("MD5"));
         }
 
         [TearDown]

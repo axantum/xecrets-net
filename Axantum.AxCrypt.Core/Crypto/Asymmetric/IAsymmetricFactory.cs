@@ -16,6 +16,8 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 
         IAsymmetricKeyPair CreateKeyPair(int bits);
 
+        IAsymmetricKeyPair CreateKeyPair(byte[] n, byte[] e, byte[] d, byte[] p, byte[] q, byte[] dp, byte[] dq, byte[] qinv);
+
         IPaddingHash CreatePaddingHash();
     }
 }

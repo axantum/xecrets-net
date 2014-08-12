@@ -32,6 +32,7 @@ using Org.BouncyCastle.Asn1.X509;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Engines;
 using Org.BouncyCastle.Crypto.Generators;
+using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Math;
 using Org.BouncyCastle.OpenSsl;
 using Org.BouncyCastle.Security;
@@ -55,9 +56,20 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
         public BouncyCastleKeyPair(int bits)
         {
             AsymmetricCipherKeyPair keyPair = GenerateKeyPair(bits);
+            SetKeys(keyPair.Public, keyPair.Private);
+        }
 
-            PublicKey = new BouncyCastlePublicKey(keyPair.Public);
-            PrivateKey = new BouncyCastlePrivateKey(keyPair.Private);
+        public BouncyCastleKeyPair(byte[] n, byte[] e, byte[] d, byte[] p, byte[] q, byte[] dp, byte[] dq, byte[] qinv)
+        {
+            AsymmetricKeyParameter publicKeyParameter = new RsaKeyParameters(false, new BigInteger(n), new BigInteger(e));
+            AsymmetricKeyParameter privateKeyParameter = new RsaPrivateCrtKeyParameters(new BigInteger(n), new BigInteger(e), new BigInteger(d), new BigInteger(p), new BigInteger(q), new BigInteger(dp), new BigInteger(dq), new BigInteger(qinv));
+            SetKeys(publicKeyParameter, privateKeyParameter);
+        }
+
+        private void SetKeys(AsymmetricKeyParameter publicKeyParameter, AsymmetricKeyParameter privateKeyParameter)
+        {
+            PublicKey = new BouncyCastlePublicKey(publicKeyParameter);
+            PrivateKey = new BouncyCastlePrivateKey(privateKeyParameter);
         }
 
         [JsonProperty("publickey")]

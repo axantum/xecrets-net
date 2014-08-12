@@ -39,6 +39,13 @@ namespace Axantum.AxCrypt.Core.Test
     {
         private IAsymmetricFactory _factory = new BouncyCastleAsymmetricFactory();
 
+        private string _paddingHashAlgorithm;
+
+        public FakeAsymmetricFactory(string paddingHashAlgorithm)
+        {
+            _paddingHashAlgorithm = paddingHashAlgorithm;
+        }
+
         public JsonConverter[] GetConverters()
         {
             return _factory.GetConverters();
@@ -59,23 +66,31 @@ namespace Axantum.AxCrypt.Core.Test
             return _factory.CreateKeyPair(bits);
         }
 
+        public IAsymmetricKeyPair CreateKeyPair(byte[] n, byte[] e, byte[] d, byte[] p, byte[] q, byte[] dp, byte[] dq, byte[] qinv)
+        {
+            return _factory.CreateKeyPair(n, e, d, p, q, dp, dq, qinv);
+        }
+
         public IPaddingHash CreatePaddingHash()
         {
-            return new FakePaddingHash();
+            return new FakePaddingHash(_paddingHashAlgorithm);
         }
 
         private class FakePaddingHash : IPaddingHash
         {
             private HashAlgorithm _hash;
 
-            public FakePaddingHash()
+            private string _paddingHashAlgorithm;
+
+            public FakePaddingHash(string paddingHashAlgorithm)
             {
+                _paddingHashAlgorithm = paddingHashAlgorithm;
                 Reset();
             }
 
             public string AlgorithmName
             {
-                get { return "MD5"; }
+                get { return _paddingHashAlgorithm; }
             }
 
             public int HashSize
@@ -109,7 +124,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             public void Reset()
             {
-                _hash = HashAlgorithm.Create("MD5");
+                _hash = HashAlgorithm.Create(_paddingHashAlgorithm);
             }
         }
     }
