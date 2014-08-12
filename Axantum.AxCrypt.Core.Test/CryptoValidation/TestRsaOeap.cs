@@ -630,7 +630,6 @@ c2 2d 05 89 5c ff 8d 3f 64 ed 52 61 d9 2b 26 78
         }
 
         [Test]
-        [Ignore("This test currently fails. Why is to be determined.")]
         public static void TestRSAES_OAEP_Encryption_Example3_4()
         {
             string n, e, d, p, q, dp, dq, qinv, message, seed, encryption;
@@ -644,8 +643,8 @@ c2 2d 05 89 5c ff 8d 3f 64 ed 52 61 d9 2b 26 78
 
             //# Seed:
             seed = @"
-ce 89 28 f6 05 95 58 25 40 08 ba dd 97 94 fa dc
-d2 fd 1f 65
+6e 29 79 f5 2d 68 14 a5 7d 83 b0 90 05 48 88 f1
+19 a5 b9 a3
             ";
 
             //# Encryption:
