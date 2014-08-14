@@ -1150,6 +1150,212 @@ d9 07 1e 1e fa 0b dd 84 d4 c3 e5 13 03 02 d8 f0
             RunOneCase("RSAES-OAEP Encryption Example 5.6", n, e, d, p, q, dp, dq, qinv, message, seed, encryption);
         }
 
+        [Test]
+        public static void TestRSAES_OAEP_Encryption_Example6_1()
+        {
+            string n, e, d, p, q, dp, dq, qinv, message, seed, encryption;
+            SetupKeysExample6(out n, out e, out d, out p, out q, out dp, out dq, out qinv);
+
+            //# Message to be encrypted:
+            message = @"
+40 46 ca 8b aa 33 47 ca 27 f4 9e 0d 81 f9 cc 1d
+71 be 9b a5 17 d4
+            ";
+
+            //# Seed:
+            seed = @"
+dd 0f 6c fe 41 5e 88 e5 a4 69 a5 1f bb a6 df d4
+0a db 43 84
+            ";
+
+            //# Encryption:
+            encryption = @"
+06 30 ee bc d2 85 6c 24 f7 98 80 6e 41 f9 e6 73
+45 ed a9 ce da 38 6a cc 9f ac ae a1 ee ed 06 ac
+e5 83 70 97 18 d9 d1 69 fa df 41 4d 5c 76 f9 29
+96 83 3e f3 05 b7 5b 1e 4b 95 f6 62 a2 0f ae dc
+3b ae 0c 48 27 a8 bf 8a 88 ed bd 57 ec 20 3a 27
+a8 41 f0 2e 43 a6 15 ba b1 a8 ca c0 70 1d e3 4d
+eb de f6 2a 08 80 89 b5 5e c3 6e a7 52 2f d3 ec
+8d 06 b6 a0 73 e6 df 83 31 53 bc 0a ef d9 3b d1
+a3
+            ";
+
+            RunOneCase("RSAES-OAEP Encryption Example 6.1", n, e, d, p, q, dp, dq, qinv, message, seed, encryption);
+        }
+
+        [Test]
+        public static void TestRSAES_OAEP_Encryption_Example6_2()
+        {
+            string n, e, d, p, q, dp, dq, qinv, message, seed, encryption;
+            SetupKeysExample6(out n, out e, out d, out p, out q, out dp, out dq, out qinv);
+
+            //# Message to be encrypted:
+            message = @"
+5c c7 2c 60 23 1d f0 3b 3d 40 f9 b5 79 31 bc 31
+10 9f 97 25 27 f2 8b 19 e7 48 0c 72 88 cb 3c 92
+b2 25 12 21 4e 4b e6 c9 14 79 2d da bd f5 7f aa
+8a a7
+            ";
+
+            //# Seed:
+            seed = @"
+8d 14 bd 94 6a 13 51 14 8f 5c ae 2e d9 a0 c6 53
+e8 5e bd 85
+            ";
+
+            //# Encryption:
+            encryption = @"
+0e bc 37 37 61 73 a4 fd 2f 89 cc 55 c2 ca 62 b2
+6b 11 d5 1c 3c 7c e4 9e 88 45 f7 4e 76 07 31 7c
+43 6b c8 d2 3b 96 67 df eb 9d 08 72 34 b4 7b c6
+83 71 75 ae 5c 05 59 f6 b8 1d 7d 22 41 6d 3e 50
+f4 ac 53 3d 8f 08 12 f2 db 9e 79 1f e9 c7 75 ac
+8b 6a d0 f5 35 ad 9c eb 23 a4 a0 20 14 c5 8a b3
+f8 d3 16 14 99 a2 60 f3 93 48 e7 14 ae 2a 1d 34
+43 20 8f d8 b7 22 cc fd fb 39 3e 98 01 1f 99 e6
+3f
+            ";
+
+            RunOneCase("RSAES-OAEP Encryption Example 6.2", n, e, d, p, q, dp, dq, qinv, message, seed, encryption);
+        }
+
+        [Test]
+        public static void TestRSAES_OAEP_Encryption_Example6_3()
+        {
+            string n, e, d, p, q, dp, dq, qinv, message, seed, encryption;
+            SetupKeysExample6(out n, out e, out d, out p, out q, out dp, out dq, out qinv);
+
+            //# Message to be encrypted:
+            message = @"
+b2 0e 65 13 03 09 2f 4b cc b4 30 70 c0 f8 6d 23
+04 93 62 ed 96 64 2f c5 63 2c 27 db 4a 52 e3 d8
+31 f2 ab 06 8b 23 b1 49 87 9c 00 2f 6b f3 fe ee
+97 59 11 12 56 2c
+            ";
+
+            //# Seed:
+            seed = @"
+6c 07 5b c4 55 20 f1 65 c0 bf 5e a4 c5 df 19 1b
+c9 ef 0e 44
+            ";
+
+            //# Encryption:
+            encryption = @"
+0a 98 bf 10 93 61 93 94 43 6c f6 8d 8f 38 e2 f1
+58 fd e8 ea 54 f3 43 5f 23 9b 8d 06 b8 32 18 44
+20 24 76 ae ed 96 00 94 92 48 0c e3 a8 d7 05 49
+8c 4c 8c 68 f0 15 01 dc 81 db 60 8f 60 08 73 50
+c8 c3 b0 bd 2e 9e f6 a8 14 58 b7 c8 01 b8 9f 2e
+4f e9 9d 49 00 ba 6a 4b 5e 5a 96 d8 65 dc 67 6c
+77 55 92 87 94 13 0d 62 80 a8 16 0a 19 0f 2d f3
+ea 7c f9 aa 02 71 d8 8e 9e 69 05 ec f1 c5 15 2d
+65
+            ";
+
+            RunOneCase("RSAES-OAEP Encryption Example 6.3", n, e, d, p, q, dp, dq, qinv, message, seed, encryption);
+        }
+
+        [Test]
+        public static void TestRSAES_OAEP_Encryption_Example6_4()
+        {
+            string n, e, d, p, q, dp, dq, qinv, message, seed, encryption;
+            SetupKeysExample6(out n, out e, out d, out p, out q, out dp, out dq, out qinv);
+
+            //# Message to be encrypted:
+            message = @"
+68 4e 30 38 c5 c0 41 f7
+            ";
+
+            //# Seed:
+            seed = @"
+3b bc 3b d6 63 7d fe 12 84 69 01 02 9b f5 b0 c0
+71 03 43 9c
+            ";
+
+            //# Encryption:
+            encryption = @"
+00 8e 7a 67 ca cf b5 c4 e2 4b ec 7d ee 14 91 17
+f1 95 98 ce 8c 45 80 8f ef 88 c6 08 ff 9c d6 e6
+95 26 3b 9a 3c 0a d4 b8 ba 4c 95 23 8e 96 a8 42
+2b 85 35 62 9c 8d 53 82 37 44 79 ad 13 fa 39 97
+4b 24 2f 9a 75 9e ea f9 c8 3a d5 a8 ca 18 94 0a
+01 62 ba 75 58 76 df 26 3f 4b d5 0c 65 25 c5 60
+90 26 7c 1f 0e 09 ce 08 99 a0 cf 35 9e 88 12 0a
+bd 9b f8 93 44 5b 3c ae 77 d3 60 73 59 ae 9a 52
+f8
+            ";
+
+            RunOneCase("RSAES-OAEP Encryption Example 6.4", n, e, d, p, q, dp, dq, qinv, message, seed, encryption);
+        }
+
+        [Test]
+        public static void TestRSAES_OAEP_Encryption_Example6_5()
+        {
+            string n, e, d, p, q, dp, dq, qinv, message, seed, encryption;
+            SetupKeysExample6(out n, out e, out d, out p, out q, out dp, out dq, out qinv);
+
+            //# Message to be encrypted:
+            message = @"
+32 48 8c b2 62 d0 41 d6 e4 dd 35 f9 87 bf 3c a6
+96 db 1f 06 ac 29 a4 46 93
+            ";
+
+            //# Seed:
+            seed = @"
+b4 6b 41 89 3e 8b ef 32 6f 67 59 38 3a 83 07 1d
+ae 7f ca bc
+            ";
+
+            //# Encryption:
+            encryption = @"
+00 00 34 74 41 6c 7b 68 bd f9 61 c3 85 73 79 44
+d7 f1 f4 0c b3 95 34 3c 69 3c c0 b4 fe 63 b3 1f
+ed f1 ea ee ac 9c cc 06 78 b3 1d c3 2e 09 77 48
+95 14 c4 f0 90 85 f6 29 8a 96 53 f0 1a ea 40 45
+ff 58 2e e8 87 be 26 ae 57 5b 73 ee f7 f3 77 49
+21 e3 75 a3 d1 9a dd a0 ca 31 aa 18 49 88 7c 1f
+42 ca c9 67 7f 7a 2f 4e 92 3f 6e 5a 86 8b 38 c0
+84 ef 18 75 94 dc 9f 7f 04 8f ea 2e 02 95 53 84
+ab
+            ";
+
+            RunOneCase("RSAES-OAEP Encryption Example 6.5", n, e, d, p, q, dp, dq, qinv, message, seed, encryption);
+        }
+
+        [Test]
+        public static void TestRSAES_OAEP_Encryption_Example6_6()
+        {
+            string n, e, d, p, q, dp, dq, qinv, message, seed, encryption;
+            SetupKeysExample6(out n, out e, out d, out p, out q, out dp, out dq, out qinv);
+
+            //# Message to be encrypted:
+            message = @"
+50 ba 14 be 84 62 72 02 79 c3 06 ba
+            ";
+
+            //# Seed:
+            seed = @"
+0a 24 03 31 2a 41 e3 d5 2f 06 0f bc 13 a6 7d e5
+cf 76 09 a7
+            ";
+
+            //# Encryption:
+            encryption = @"
+0a 02 6d da 5f c8 78 5f 7b d9 bf 75 32 7b 63 e8
+5e 2c 0f de e5 da db 65 eb dc ac 9a e1 de 95 c9
+2c 67 2a b4 33 aa 7a 8e 69 ce 6a 6d 88 97 fa c4
+ac 4a 54 de 84 1a e5 e5 bb ce 76 87 87 9d 79 63
+4c ea 7a 30 68 40 65 c7 14 d5 24 09 b9 28 25 6b
+bf 53 ea bc d5 23 1e b7 25 95 04 53 73 99 bd 29
+16 4b 72 6d 33 a4 6d a7 01 36 0a 41 68 a0 91 cc
+ab 72 d4 4a 62 fe d2 46 c0 ff ea 5b 13 48 ab 54
+70
+            ";
+
+            RunOneCase("RSAES-OAEP Encryption Example 6.6", n, e, d, p, q, dp, dq, qinv, message, seed, encryption);
+        }
+
         private static void SetupKeysExample1(out string n, out string e, out string d, out string p, out string q, out string dp, out string dq, out string qinv)
         {
             //# RSA modulus n:
@@ -1540,6 +1746,93 @@ d9 37 2e 3f fe 81 a3 8b 3e 96 00 fe d0 55 75 4f
 02 7f 18 e7 81 58 a3 4a 5c 5d 5f 86 0a 0f 6c 04
 07 1a 7d 01 31 2c 06 50 62 f1 eb 48 b7 9d 1c 83
 cb
+            ";
+        }
+
+        private static void SetupKeysExample6(out string n, out string e, out string d, out string p, out string q, out string dp, out string dq, out string qinv)
+        {
+            //# ==================================
+            //# Example 6: A 1029-bit RSA Key Pair
+            //# ==================================
+
+            //# ------------------------------
+            //# Components of the RSA Key Pair
+            //# ------------------------------
+
+            //# RSA modulus n:
+            n = @"
+12 b1 7f 6d ad 2e cd 19 ff 46 dc 13 f7 86 0f 09
+e0 e0 cf b6 77 b3 8a 52 59 23 05 ce af 02 2c 16
+6d b9 0d 04 ac 29 e3 3f 7d d1 2d 9f af 66 e0 81
+6b b6 3e ad 26 7c c7 d4 6c 17 c3 7b e2 14 bc a2
+a2 2d 72 3a 64 e4 44 07 43 6b 6f c9 65 72 9a ef
+c2 55 4f 37 6c d5 dc ea 68 29 37 80 a6 2b f3 9d
+00 29 48 5a 16 0b bb 9e 5d c0 97 2d 21 a5 04 f5
+2e 5e e0 28 aa 41 63 32 f5 10 b2 e9 cf f5 f7 22
+af
+            ";
+
+            //# RSA public exponent e:
+            e = @"
+01 00 01
+            ";
+
+            //# RSA private exponent d:
+            d = @"
+02 95 ec a3 56 06 18 36 95 59 ce cd 30 3a a9 cf
+da fc 1d 9f 06 95 9d f7 5f fe f9 29 aa 89 69 61
+bc d1 90 dc 69 97 ed a7 f5 96 3e 72 4d 07 b4 dc
+11 f3 06 5e 5a e9 7d 96 83 51 12 28 0b 90 84 bb
+14 f2 a2 1e bd 4e 88 9d 41 b9 c4 13 2e c1 95 6f
+ca b8 bb 2f ed 05 75 88 49 36 52 2c 5f f7 d3 32
+61 90 48 24 e7 ca de e4 e0 bb 37 2d 24 57 cf 78
+e2 bd 12 86 22 8f f8 3f 10 73 1c e6 3c 90 cf f3
+f9
+            ";
+
+            //# Prime p:
+            p = @"
+04 a6 ce 8b 73 58 df a6 9b dc f7 42 61 70 05 af
+b5 38 5f 5f 3a 58 a2 4e f7 4a 22 a8 c0 5c b7 cc
+38 eb d4 cc 9d 9a 9d 78 9a 62 cd 0f 60 f0 cb 94
+1d 34 23 c9 69 2e fa 4f e3 ad ff 29 0c 47 49 a3
+8b
+            ";
+
+            //# Prime q:
+            q = @"
+04 04 c9 a8 03 37 1f ed b4 c5 be 39 f3 c0 0b 00
+9e 5e 08 a6 3b e1 e4 00 35 cd ac a5 01 1c c7 01
+cf 7e eb cb 99 f0 ff e1 7c fd 0a 4b f7 be fd 2d
+d5 36 ac 94 6d b7 97 fd bc 4a be 8f 29 34 9b 91
+ed
+            ";
+
+            //# p's CRT exponent dP:
+            dp = @"
+03 96 1c 8f 76 0a a2 bd 51 54 c7 aa fd 77 22 5b
+3b ac d0 13 9a e7 b5 94 8e a3 31 1f cc d8 6f b9
+5c 75 af a7 67 28 4b 9b 2d e5 59 57 2f 15 d8 d0
+44 c7 eb 83 a1 be 5f ad f2 cc 37 7c 0d 84 75 29
+4b
+            ";
+
+            //# q's CRT exponent dQ:
+            dq = @"
+02 21 97 e0 66 74 21 96 aa bc 03 fa 2f ee b4 e7
+0b 15 cb 78 7d 61 7a cd 31 bb 75 c7 bc 23 4a d7
+06 f7 c4 8d 21 82 d1 f0 ff 9c 22 8d cf 41 96 7b
+6c 0b a6 d2 c0 ad 11 0a 1b 85 78 31 ec 24 5e 2c
+b1
+            ";
+
+            //# CRT coefficient qInv:
+            qinv = @"
+04 01 c4 c0 c5 3d 45 db db 5e 9d 96 d0 fe cf 42
+75 df 09 74 bc 4a 07 36 b4 a7 4c 32 69 05 3e fb
+68 6a ce 24 06 e2 2c 9e 05 8d db 4a e5 40 62 7a
+e2 fd b0 82 61 e8 e7 e4 bc bc 99 4d aa fa 30 5c
+45
             ";
         }
 
