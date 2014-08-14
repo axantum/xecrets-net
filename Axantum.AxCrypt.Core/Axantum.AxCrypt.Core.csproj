@@ -58,6 +58,8 @@
     <Compile Include="Crypto\Asymmetric\BouncyCastlePublicKey.cs" />
     <Compile Include="Crypto\Asymmetric\BouncyCastleKeyPair.cs" />
     <Compile Include="Crypto\Asymmetric\BouncyCastleRandomGenerator.cs" />
+    <Compile Include="Header\StringEncryptedHeaderBlockBase.cs" />
+    <Compile Include="Header\V2AsymmetricRecipientsEncryptedHeaderBlock.cs" />
     <Compile Include="IO\AbstractJsonConverter.cs" />
     <Compile Include="Runtime\TypeDiscovery.cs" />
     <Compile Include="Crypto\CryptoExtensions.cs" />

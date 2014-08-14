@@ -134,5 +134,7 @@ namespace Axantum.AxCrypt.Core.Header
         UnicodeFileNameInfo = 70,
 
         PlaintextLengths = 101,
+
+        AsymmetricRecipients = 102,
     }
 }

@@ -32,7 +32,7 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Header
 {
-    public class V2UnicodeFileNameInfoEncryptedHeaderBlock : EncryptedHeaderBlock
+    public class V2UnicodeFileNameInfoEncryptedHeaderBlock : StringEncryptedHeaderBlockBase
     {
         public V2UnicodeFileNameInfoEncryptedHeaderBlock(byte[] dataBlock)
             : base(HeaderBlockType.UnicodeFileNameInfo, dataBlock)
@@ -40,9 +40,8 @@ namespace Axantum.AxCrypt.Core.Header
         }
 
         public V2UnicodeFileNameInfoEncryptedHeaderBlock(ICrypto headerCrypto)
-            : this(new byte[0])
+            : base(HeaderBlockType.UnicodeFileNameInfo, headerCrypto)
         {
-            HeaderCrypto = headerCrypto;
         }
 
         public override object Clone()
@@ -55,28 +54,11 @@ namespace Axantum.AxCrypt.Core.Header
         {
             get
             {
-                byte[] rawFileName = HeaderCrypto.Decrypt(GetDataBlockBytesReference());
-
-                int end = rawFileName.Locate(new byte[] { 0, 0, }, 0, rawFileName.Length, 1);
-                if (end == -1)
-                {
-                    throw new InvalidOperationException("Could not find terminating double nul byte in file name");
-                }
-
-                string fileName = Encoding.UTF8.GetString(rawFileName, 0, end);
-
-                return fileName;
+                return StringValue;
             }
-
             set
             {
-                byte[] rawFileName = Encoding.UTF8.GetBytes(value);
-                byte[] doubleNullTerminatedRawFileName = new byte[rawFileName.Length + 2];
-                rawFileName.CopyTo(doubleNullTerminatedRawFileName, 0);
-
-                byte[] dataBlock = Instance.RandomGenerator.Generate(doubleNullTerminatedRawFileName.Length <= 256 ? 256 : doubleNullTerminatedRawFileName.Length);
-                doubleNullTerminatedRawFileName.CopyTo(dataBlock, 0);
-                SetDataBlockBytesReference(HeaderCrypto.Encrypt(dataBlock));
+                StringValue = value;
             }
         }
     }
