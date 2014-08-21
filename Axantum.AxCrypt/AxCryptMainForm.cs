@@ -866,7 +866,19 @@ namespace Axantum.AxCrypt
             _recentFilesListView.BeginUpdate();
             try
             {
-                int i = 0;
+                HashSet<string> newFiles = new HashSet<string>(files.Select(f => f.DecryptedFileInfo.FullName));
+                Dictionary<string, int> currentFiles = new Dictionary<string, int>();
+                for (int i = 0; i < _recentFilesListView.Items.Count; )
+                {
+                    if (!newFiles.Contains(_recentFilesListView.Items[i].Name))
+                    {
+                        _recentFilesListView.Items.RemoveAt(i);
+                        continue;
+                    }
+                    ++i;
+                    currentFiles.Add(_recentFilesListView.Items[i].Name, i);
+                }
+                List<ListViewItem> newItems = new List<ListViewItem>();
                 foreach (ActiveFile file in files)
                 {
                     string text = Path.GetFileName(file.DecryptedFileInfo.FullName);
@@ -883,21 +895,17 @@ namespace Axantum.AxCrypt
                     cryptoNameColumn.Name = "CryptoName";
 
                     UpdateListViewItem(item, file);
-
-                    if (i < _recentFilesListView.Items.Count && _recentFilesListView.Items[i].Name == item.Name)
+                    int i;
+                    if (currentFiles.TryGetValue(item.Name, out i))
                     {
                         _recentFilesListView.Items[i] = item;
                     }
                     else
                     {
-                        while (_recentFilesListView.Items.Count > i)
-                        {
-                            _recentFilesListView.Items.RemoveAt(_recentFilesListView.Items.Count - 1);
-                        }
-                        _recentFilesListView.Items.Add(item);
+                        newItems.Add(item);
                     }
-                    ++i;
                 }
+                _recentFilesListView.Items.AddRange(newItems.ToArray());
                 while (_recentFilesListView.Items.Count > Preferences.RecentFilesMaxNumber)
                 {
                     _recentFilesListView.Items.RemoveAt(_recentFilesListView.Items.Count - 1);
