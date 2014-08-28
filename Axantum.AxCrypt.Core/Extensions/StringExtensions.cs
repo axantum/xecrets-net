@@ -31,6 +31,7 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net.Mail;
 
 namespace Axantum.AxCrypt.Core.Extensions
 {
@@ -196,6 +197,28 @@ namespace Axantum.AxCrypt.Core.Extensions
                 bytes[i] = Byte.Parse(hex.Substring(i + i, 2), NumberStyles.HexNumber, CultureInfo.InvariantCulture);
             }
             return bytes;
+        }
+
+        public static bool IsValidEmailOrEmpty(this string email)
+        {
+            if (String.IsNullOrEmpty(email))
+            {
+                return true;
+            }
+            return email.IsValidEmail();
+        }
+
+        public static bool IsValidEmail(this string email)
+        {
+            try
+            {
+                new MailAddress(email);
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
         }
     }
 }

@@ -495,6 +495,18 @@ namespace Axantum.AxCrypt
         private void HandleExistingLogOn(LogOnEventArgs e)
         {
             RestoreWindowWithFocus();
+            if (!String.IsNullOrEmpty(e.EncryptedFileFullName))
+            {
+                HandleExistingLogOnForEncryptedFile(e);
+            }
+            else
+            {
+                HandleExistingAccountLogOn(e);
+            }
+        }
+
+        private void HandleExistingLogOnForEncryptedFile(LogOnEventArgs e)
+        {
             using (LogOnDialog logOnDialog = new LogOnDialog(this, e.EncryptedFileFullName))
             {
                 logOnDialog.ShowPassphraseCheckBox.Checked = e.DisplayPassphrase;
@@ -502,6 +514,31 @@ namespace Axantum.AxCrypt
                 if (dialogResult == DialogResult.Retry)
                 {
                     e.Passphrase = logOnDialog.PassphraseTextBox.Text;
+                    e.CreateNew = true;
+                    return;
+                }
+
+                if (dialogResult != DialogResult.OK || logOnDialog.PassphraseTextBox.Text.Length == 0)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+                e.DisplayPassphrase = logOnDialog.ShowPassphraseCheckBox.Checked;
+                e.Passphrase = logOnDialog.PassphraseTextBox.Text;
+            }
+            return;
+        }
+
+        private void HandleExistingAccountLogOn(LogOnEventArgs e)
+        {
+            using (LogOnAccountDialog logOnDialog = new LogOnAccountDialog(this))
+            {
+                logOnDialog.ShowPassphraseCheckBox.Checked = e.DisplayPassphrase;
+                DialogResult dialogResult = logOnDialog.ShowDialog(this);
+                if (dialogResult == DialogResult.Retry)
+                {
+                    e.Passphrase = logOnDialog.PassphraseTextBox.Text;
+                    e.UserEmail = logOnDialog.EmailTextBox.Text;
                     e.CreateNew = true;
                     return;
                 }
@@ -1358,6 +1395,14 @@ namespace Axantum.AxCrypt
         private void ShowWatchedFolders(IEnumerable<string> additional)
         {
             using (WatchedFoldersDialog dialog = new WatchedFoldersDialog(this, additional))
+            {
+                dialog.ShowDialog();
+            }
+        }
+
+        private void createAccountToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (CreateNewAccountDialog dialog = new CreateNewAccountDialog(this, String.Empty))
             {
                 dialog.ShowDialog();
             }

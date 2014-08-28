@@ -59,8 +59,10 @@
     <Compile Include="Crypto\Asymmetric\BouncyCastleKeyPair.cs" />
     <Compile Include="Crypto\Asymmetric\BouncyCastleRandomGenerator.cs" />
     <Compile Include="Header\StringEncryptedHeaderBlockBase.cs" />
+    <Compile Include="Header\V2AsymmetricKeyWrapHeaderBlock.cs" />
     <Compile Include="Header\V2AsymmetricRecipientsEncryptedHeaderBlock.cs" />
     <Compile Include="IO\AbstractJsonConverter.cs" />
+    <Compile Include="IO\EmailAddressJsonConverter.cs" />
     <Compile Include="Runtime\TypeDiscovery.cs" />
     <Compile Include="Crypto\CryptoExtensions.cs" />
     <Compile Include="Crypto\FreeCryptoPolicy.cs" />
@@ -108,6 +110,8 @@
     <Compile Include="Session\UserAsymmetricKeys.cs" />
     <Compile Include="Session\UserAsymmetricKeysStore.cs" />
     <Compile Include="UI\FileOperationContext.cs" />
+    <Compile Include="UI\ViewModel\CreateNewAccountViewModel.cs" />
+    <Compile Include="UI\ViewModel\LogOnAccountViewModel.cs" />
     <Compile Include="UI\ViewModel\WatchedFoldersViewModel.cs" />
     <Compile Include="V1AxCryptDocument.cs" />
     <Compile Include="V2AxCryptDocument.cs" />

@@ -1,11 +1,14 @@
-﻿using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+﻿using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.UI;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -16,7 +19,23 @@ namespace Axantum.AxCrypt.Core.Session
     /// </summary>
     public class UserAsymmetricKeysStore
     {
-        private static Regex _filePattern = new Regex(@"Keys-([\d]+)-txt\.axx", RegexOptions.Compiled);
+        private class KeysStoreFile
+        {
+            public KeysStoreFile(UserAsymmetricKeys userKeys, string id, IRuntimeFileInfo file)
+            {
+                UserKeys = userKeys;
+                Id = id;
+                File = file;
+            }
+
+            public UserAsymmetricKeys UserKeys { get; private set; }
+
+            public string Id { get; private set; }
+
+            public IRuntimeFileInfo File { get; private set; }
+        }
+
+        private static Regex _filePattern = new Regex(@"^Keys-([\d]+)-txt\.axx$", RegexOptions.Compiled);
 
         private const string _fileFormat = "Keys-{0}.txt";
 
@@ -24,11 +43,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private KnownKeys _knownKeys;
 
-        private UserAsymmetricKeys _userKeys;
-
-        private IRuntimeFileInfo _file;
-
-        private string _id;
+        private KeysStoreFile _keysStoreFile;
 
         public UserAsymmetricKeysStore(IRuntimeFileInfo folderPath, KnownKeys knownKeys)
         {
@@ -36,43 +51,91 @@ namespace Axantum.AxCrypt.Core.Session
             _knownKeys = knownKeys;
         }
 
-        public void Load(string userEmail)
+        public bool Load(MailAddress userEmail, Passphrase passphrase)
         {
-            _userKeys = null;
-            if (!_knownKeys.IsLoggedOn)
-            {
-                return;
-            }
+            _keysStoreFile = null;
 
-            foreach (IRuntimeFileInfo file in _folderPath.Files)
+            _keysStoreFile = TryLoadKeyStoreFile(userEmail, passphrase);
+            if (_keysStoreFile == null)
             {
-                Match match = _filePattern.Match(file.Name);
-                if (!match.Success)
-                {
-                    continue;
-                }
-                UserAsymmetricKeys keys = TryLoadKeys(file);
+                return false;
+            }
+            _knownKeys.DefaultEncryptionKey = passphrase;
+            return true;
+        }
+
+        public bool IsValidAccountLogOn(MailAddress userEmail, Passphrase passphrase)
+        {
+            return TryLoadKeyStoreFile(userEmail, passphrase) != null;
+        }
+
+        private void CreateInternal(MailAddress userEmail, Passphrase passphrase)
+        {
+            UserAsymmetricKeys userKeys = new UserAsymmetricKeys(userEmail, Instance.UserSettings.AsymmetricKeyBits);
+            string id = UniqueFilePart();
+            IRuntimeFileInfo file = Factory.New<IRuntimeFileInfo>(Path.Combine(_folderPath.FullName, _fileFormat.InvariantFormat(id)).CreateEncryptedName());
+
+            _keysStoreFile = new KeysStoreFile(userKeys, id, file);
+
+            Save(passphrase);
+        }
+
+        private KeysStoreFile TryLoadKeyStoreFile(MailAddress userEmail, Passphrase passphrase)
+        {
+            foreach (IRuntimeFileInfo file in AsymmetricKeyFiles())
+            {
+                UserAsymmetricKeys keys = TryLoadKeys(file, passphrase);
                 if (keys == null)
                 {
                     continue;
                 }
-                if (String.Compare(userEmail, keys.UserEmail, StringComparison.OrdinalIgnoreCase) != 0)
+                if (String.Compare(userEmail.Address, keys.UserEmail.Address, StringComparison.OrdinalIgnoreCase) != 0)
                 {
                     continue;
                 }
-                _id = match.Groups[1].Value;
-                _file = file;
-                _userKeys = keys;
+                return new KeysStoreFile(keys, IdFromFileName(file.Name), file);
+            }
+            return null;
+        }
+
+        private IEnumerable<IRuntimeFileInfo> AsymmetricKeyFiles()
+        {
+            return _folderPath.Files.Where(f => IdFromFileName(f.Name).Length > 0);
+        }
+
+        private string IdFromFileName(string fileName)
+        {
+            Match match = _filePattern.Match(fileName);
+            if (!match.Success)
+            {
+                return String.Empty;
+            }
+            return match.Groups[1].Value;
+        }
+
+        public void Create(MailAddress userEmail, Passphrase passphrase)
+        {
+            _keysStoreFile = TryLoadKeyStoreFile(userEmail, passphrase);
+            if (_keysStoreFile != null)
+            {
                 return;
             }
-            _userKeys = new UserAsymmetricKeys(userEmail, Instance.UserSettings.AsymmetricKeyBits);
+            CreateInternal(userEmail, passphrase);
         }
 
         public UserAsymmetricKeys Keys
         {
             get
             {
-                return _userKeys;
+                return _keysStoreFile.UserKeys;
+            }
+        }
+
+        public bool HasStore
+        {
+            get
+            {
+                return AsymmetricKeyFiles().Any();
             }
         }
 
@@ -83,35 +146,25 @@ namespace Axantum.AxCrypt.Core.Session
             return ((int)timeSince.TotalSeconds).ToString();
         }
 
-        public void Save()
+        public void Save(Passphrase passphrase)
         {
-            if (_userKeys == null)
+            if (_keysStoreFile == null)
             {
                 return;
             }
 
-            if (_id == null)
-            {
-                _id = UniqueFilePart();
-            }
-            string originalName = _fileFormat.InvariantFormat(_id);
-            if (_file == null)
-            {
-                _file = Factory.New<IRuntimeFileInfo>(Path.Combine(_folderPath.FullName, originalName).CreateEncryptedName());
-            }
-
-            string json = JsonConvert.SerializeObject(_userKeys);
+            string json = JsonConvert.SerializeObject(_keysStoreFile.UserKeys);
             using (Stream stream = new MemoryStream(Encoding.UTF8.GetBytes(json)))
             {
-                Factory.New<AxCryptFile>().Encrypt(stream, originalName, _file, _knownKeys.DefaultEncryptionKey, AxCryptOptions.EncryptWithCompression, new ProgressContext());
+                Factory.New<AxCryptFile>().Encrypt(stream, _keysStoreFile.File.Name, _keysStoreFile.File, passphrase, AxCryptOptions.EncryptWithCompression, new ProgressContext());
             }
         }
 
-        private UserAsymmetricKeys TryLoadKeys(IRuntimeFileInfo file)
+        private UserAsymmetricKeys TryLoadKeys(IRuntimeFileInfo file, Passphrase passphrase)
         {
             using (MemoryStream stream = new MemoryStream())
             {
-                if (!Factory.New<AxCryptFile>().Decrypt(file, stream, _knownKeys.DefaultEncryptionKey))
+                if (!Factory.New<AxCryptFile>().Decrypt(file, stream, passphrase))
                 {
                     return null;
                 }

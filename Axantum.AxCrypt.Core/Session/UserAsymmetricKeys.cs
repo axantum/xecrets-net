@@ -1,10 +1,12 @@
 ﻿using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 
 namespace Axantum.AxCrypt.Core.Session
@@ -23,7 +25,7 @@ namespace Axantum.AxCrypt.Core.Session
             RecalledPrivateKeys = new List<IAsymmetricPrivateKey>();
         }
 
-        public UserAsymmetricKeys(string userEmail, int bits)
+        public UserAsymmetricKeys(MailAddress userEmail, int bits)
         {
             UserEmail = userEmail;
             RecalledPrivateKeys = new List<IAsymmetricPrivateKey>();
@@ -31,7 +33,8 @@ namespace Axantum.AxCrypt.Core.Session
         }
 
         [JsonProperty("useremail")]
-        public string UserEmail { get; private set; }
+        [JsonConverter(typeof(EmailAddressJsonConverter))]
+        public MailAddress UserEmail { get; private set; }
 
         [JsonProperty("recalledprivatekeys")]
         public IList<IAsymmetricPrivateKey> RecalledPrivateKeys { get; private set; }

@@ -166,6 +166,7 @@
     <Compile Include="TestUpdateCheck.cs" />
     <Compile Include="TestUserSettings.cs" />
     <Compile Include="TestV1AxCryptReader.cs" />
+    <Compile Include="TestV2AsymmetricRecipientsEncryptedHeaderBlock.cs" />
     <Compile Include="TestV2RegressionCompleteFiles.cs" />
     <Compile Include="TestV2AesCrypto.cs" />
     <Compile Include="TestV2AxCryptDataStreamTest.cs" />
