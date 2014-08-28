@@ -88,7 +88,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        public void Encrypt(Stream sourceStream, string sourceFileName, IRuntimeFileInfo destinationFileInfo, Passphrase passphrase, AxCryptOptions options, IProgressContext progress)
+        public void Encrypt(Stream sourceStream, string sourceFileName, IRuntimeFileInfo destinationFileInfo, Passphrase passphrase, Guid cryptoId, AxCryptOptions options, IProgressContext progress)
         {
             if (sourceStream == null)
             {
@@ -113,7 +113,7 @@ namespace Axantum.AxCrypt.Core
 
             using (Stream destinationStream = destinationFileInfo.OpenWrite())
             {
-                using (IAxCryptDocument document = new V1AxCryptDocument(passphrase, Instance.UserSettings.GetKeyWrapIterations(V1Aes128CryptoFactory.CryptoId)))
+                using (IAxCryptDocument document = Factory.New<AxCryptFactory>().CreateDocument(passphrase, cryptoId))
                 {
                     document.FileName = sourceFileName;
                     document.CreationTimeUtc = OS.Current.UtcNow;

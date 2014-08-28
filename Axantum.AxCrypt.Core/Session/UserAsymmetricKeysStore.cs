@@ -156,7 +156,7 @@ namespace Axantum.AxCrypt.Core.Session
             string json = JsonConvert.SerializeObject(_keysStoreFile.UserKeys);
             using (Stream stream = new MemoryStream(Encoding.UTF8.GetBytes(json)))
             {
-                Factory.New<AxCryptFile>().Encrypt(stream, _keysStoreFile.File.Name, _keysStoreFile.File, passphrase, AxCryptOptions.EncryptWithCompression, new ProgressContext());
+                Factory.New<AxCryptFile>().Encrypt(stream, _keysStoreFile.File.Name, _keysStoreFile.File, passphrase, Instance.CryptoFactory.Default.Id, AxCryptOptions.EncryptWithCompression, new ProgressContext());
             }
         }
 
