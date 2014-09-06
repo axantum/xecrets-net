@@ -245,8 +245,6 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private readonly object _disposeLock = new object();
 
-        private readonly object _joinLock = new object();
-
         protected virtual void Dispose(bool disposing)
         {
             if (!disposing)

@@ -10,16 +10,6 @@ namespace Axantum.AxCrypt.Core.Header
 {
     public class V2AsymmetricKeyWrapHeaderBlock : HeaderBlock
     {
-        private class DataBlock
-        {
-            private byte[] _data;
-
-            public DataBlock(byte[] data)
-            {
-                _data = data;
-            }
-        }
-
         private const int DATABLOCK_LENGTH = 4096 / 8;
 
         public V2AsymmetricKeyWrapHeaderBlock(byte[] dataBlock)

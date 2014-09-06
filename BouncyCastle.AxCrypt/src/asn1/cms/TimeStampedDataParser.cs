@@ -4,7 +4,6 @@ namespace Org.BouncyCastle.Asn1.Cms
 {
 	public class TimeStampedDataParser
 	{
-		private DerInteger version;
 		private DerIA5String dataUri;
 		private MetaData metaData;
 		private Asn1OctetStringParser content;
@@ -14,7 +13,6 @@ namespace Org.BouncyCastle.Asn1.Cms
 		private TimeStampedDataParser(Asn1SequenceParser parser)
 		{
 			this.parser = parser;
-			this.version = DerInteger.GetInstance(parser.ReadObject());
 
 			Asn1Object obj = parser.ReadObject().ToAsn1Object();
 

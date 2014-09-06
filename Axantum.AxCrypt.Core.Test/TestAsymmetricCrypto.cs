@@ -60,7 +60,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(privatePem.StartsWith("-----BEGIN RSA PRIVATE KEY-----", StringComparison.OrdinalIgnoreCase));
             Assert.That(privatePem.EndsWith("-----END RSA PRIVATE KEY-----" + Environment.NewLine, StringComparison.OrdinalIgnoreCase));
-            Assert.That(privatePem.Length, Is.GreaterThan(500));
+            Assert.That(privatePem.Length, Is.GreaterThan(490));
             Assert.That(privatePem.Length, Is.LessThan(600));
 
             string publicPem = keyPair.PublicKey.ToString();

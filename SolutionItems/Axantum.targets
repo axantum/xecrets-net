@@ -65,6 +65,7 @@
         <_AxIlMergePath Condition=" '$(_AxIlMergePath)' == '' And Exists('$(ProgramFiles(x86))\Microsoft\ILMerge\ILMerge.exe') ">$(ProgramFiles(x86))\Microsoft\ILMerge\ILMerge.exe</_AxIlMergePath>
         <_AxIlMergePath Condition=" '$(_AxIlMergePath)' == '' And Exists('$(ProgramFiles)\Microsoft\ILMerge\ILMerge.exe') ">$(ProgramFiles)\Microsoft\ILMerge\ILMerge.exe</_AxIlMergePath>
         <_AxIlMergePath Condition=" '$(_AxIlMergePath)' == '' And Exists('$(MSBuildThisFileDirectory)Ilmerge.exe') ">$(MSBuildThisFileDirectory)Ilmerge.exe</_AxIlMergePath>
+        <_AxIlMergePath Condition=" '$(XAMARINSTUDIO_LAUNCHER)' != '' "></_AxIlMergePath>
     </PropertyGroup>
     <PropertyGroup>
         <UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>
@@ -110,7 +111,7 @@
                AssemblyFile="..\SolutionItems\MSBuild.Axantum.Tasks.dll" />
 
   <Target Name="_AxMergeExe"
-            Condition="'$(OutputType)' == 'Winexe' ">
+            Condition="'$(OutputType)' == 'Winexe' And '$(_AxIlMergePath)' != ''">
         <PropertyGroup>
             <_AxIlMergeStrongNameArguments Condition=" '$(KeyContainerName)' != '' And '$(SignAssembly)' == 'true' ">/delaysign &quot;/keyfile:$(MSBuildThisFileDirectory)AxantumStrongName.pub&quot;</_AxIlMergeStrongNameArguments>
         </PropertyGroup>

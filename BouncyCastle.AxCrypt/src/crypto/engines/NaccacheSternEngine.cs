@@ -20,8 +20,6 @@ namespace Org.BouncyCastle.Crypto.Engines
 
 		private IList[] lookup = null;
 
-		private bool debug = false;
-
 		public string AlgorithmName
 		{
 			get { return "NaccacheStern"; }
@@ -76,7 +74,7 @@ namespace Org.BouncyCastle.Crypto.Engines
 
 		public bool Debug
 		{
-			set { this.debug = value; }
+			set { }
 		}
 
 		/**
