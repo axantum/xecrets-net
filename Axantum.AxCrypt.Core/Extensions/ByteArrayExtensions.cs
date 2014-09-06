@@ -244,5 +244,11 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
             return reduced;
         }
+
+        public static byte[] SetFrom(this byte[] left, byte[] right)
+        {
+            right.CopyTo(left, 0);
+            return left;
+        }
     }
 }

@@ -63,5 +63,15 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             get { return "AES-256"; }
         }
+
+        public int KeySize
+        {
+            get { return 256; }
+        }
+
+        public int BlockSize
+        {
+            get { return 128; }
+        }
     }
 }

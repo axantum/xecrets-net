@@ -139,6 +139,14 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
+        public bool HasKeys
+        {
+            get
+            {
+                return _keysStoreFile != null;
+            }
+        }
+
         private string UniqueFilePart()
         {
             DateTime now = OS.Current.UtcNow;

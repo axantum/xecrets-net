@@ -62,6 +62,7 @@ namespace Axantum.AxCrypt.Core.Test
             Factory.Instance.Singleton<CryptoFactory>(() => CreateCryptoFactory());
             Factory.Instance.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
             Factory.Instance.Singleton<ActiveFileWatcher>(() => new ActiveFileWatcher());
+            Factory.Instance.Singleton<UserAsymmetricKeysStore>(() => new UserAsymmetricKeysStore(Instance.WorkFolder.FileInfo, Instance.KnownKeys));
 
             Factory.Instance.Register<AxCryptFactory>(() => new AxCryptFactory());
             Factory.Instance.Register<AxCryptFile>(() => new AxCryptFile());
