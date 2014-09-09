@@ -167,11 +167,11 @@ namespace Axantum.AxCrypt.Core.UI
                     }
                 }
             }
-            catch (Win32Exception w32ex)
+            catch (Exception ex)
             {
                 if (Instance.Log.IsErrorEnabled)
                 {
-                    Instance.Log.LogError("Could not launch application for '{0}', Win32Exception was '{1}'.".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName, w32ex.Message));
+                    Instance.Log.LogError("Could not launch application for '{0}', Exception was '{1}'.".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName, ex.Message));
                 }
                 return new FileOperationContext(destinationActiveFile.DecryptedFileInfo.FullName, FileOperationStatus.CannotStartApplication);
             }
@@ -249,7 +249,7 @@ namespace Axantum.AxCrypt.Core.UI
         private static ActiveFile DestinationFileInfoFromDocument(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFolderInfo, Passphrase passphrase, IAxCryptDocument document)
         {
             string destinationName = document.FileName;
-            string destinationPath = Path.Combine(destinationFolderInfo.FullName, destinationName);
+            string destinationPath = Instance.Portable.Path().Combine(destinationFolderInfo.FullName, destinationName);
 
             IRuntimeFileInfo destinationFileInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
             ActiveFile destinationActiveFile = new ActiveFile(sourceFileInfo, destinationFileInfo, passphrase, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.IgnoreChange, document.CryptoFactory.Id);
@@ -261,11 +261,11 @@ namespace Axantum.AxCrypt.Core.UI
             string destinationFolder;
             if (destinationActiveFile != null)
             {
-                destinationFolder = Path.GetDirectoryName(destinationActiveFile.DecryptedFileInfo.FullName);
+                destinationFolder = Instance.Portable.Path().GetDirectoryName(destinationActiveFile.DecryptedFileInfo.FullName);
             }
             else
             {
-                destinationFolder = Path.Combine(Factory.Instance.Singleton<WorkFolder>().FileInfo.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + Path.DirectorySeparatorChar);
+                destinationFolder = Instance.Portable.Path().Combine(Factory.Instance.Singleton<WorkFolder>().FileInfo.FullName, Instance.Portable.Path().GetFileNameWithoutExtension(Instance.Portable.Path().GetRandomFileName()) + Instance.Portable.Path().DirectorySeparatorChar);
             }
             IRuntimeFileInfo destinationFolderInfo = Factory.New<IRuntimeFileInfo>(destinationFolder);
             destinationFolderInfo.CreateFolder();
@@ -274,8 +274,8 @@ namespace Axantum.AxCrypt.Core.UI
 
         public static string GetTemporaryDestinationName(string fileName)
         {
-            string destinationFolder = Path.Combine(Factory.Instance.Singleton<WorkFolder>().FileInfo.FullName, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + Path.DirectorySeparatorChar);
-            return Path.Combine(destinationFolder, Path.GetFileName(fileName));
+            string destinationFolder = Instance.Portable.Path().Combine(Factory.Instance.Singleton<WorkFolder>().FileInfo.FullName, Instance.Portable.Path().GetFileNameWithoutExtension(Instance.Portable.Path().GetRandomFileName()) + Instance.Portable.Path().DirectorySeparatorChar);
+            return Instance.Portable.Path().Combine(destinationFolder, Instance.Portable.Path().GetFileName(fileName));
         }
 
         private static ActiveFile CheckKeysForAlreadyDecryptedFile(ActiveFile destinationActiveFile, IEnumerable<Passphrase> keys, IProgressContext progress)

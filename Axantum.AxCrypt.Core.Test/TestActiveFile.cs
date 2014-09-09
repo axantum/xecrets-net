@@ -42,16 +42,22 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestActiveFile
     {
-        private static readonly string _rootPath = Path.GetPathRoot(Environment.CurrentDirectory);
-        private static readonly string _testTextPath = _rootPath.PathCombine("test.txt");
-        private static readonly string _davidCopperfieldTxtPath = _rootPath.PathCombine("Users", "AxCrypt", "David Copperfield.txt");
-        private static readonly string _uncompressedAxxPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).PathCombine("Uncompressed.axx");
-        private static readonly string _helloWorldAxxPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).PathCombine("HelloWorld.axx");
+        private static string _rootPath;
+        private static string _testTextPath;
+        private static string _davidCopperfieldTxtPath;
+        private static string _uncompressedAxxPath;
+        private static string _helloWorldAxxPath;
 
         [SetUp]
         public static void Setup()
         {
             SetupAssembly.AssemblySetup();
+
+            _rootPath = Path.GetPathRoot(Environment.CurrentDirectory);
+            _testTextPath = _rootPath.PathCombine("test.txt");
+            _davidCopperfieldTxtPath = _rootPath.PathCombine("Users", "AxCrypt", "David Copperfield.txt");
+            _uncompressedAxxPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).PathCombine("Uncompressed.axx");
+            _helloWorldAxxPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).PathCombine("HelloWorld.axx");
 
             FakeRuntimeFileInfo.AddFile(_testTextPath, FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.ExpandableMemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
             FakeRuntimeFileInfo.AddFile(_davidCopperfieldTxtPath, FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate5Utc, FakeRuntimeFileInfo.TestDate6Utc, FakeRuntimeFileInfo.ExpandableMemoryStream(Encoding.GetEncoding(1252).GetBytes(Resources.david_copperfield)));

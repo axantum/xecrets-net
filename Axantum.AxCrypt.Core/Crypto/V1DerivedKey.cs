@@ -25,8 +25,8 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Portable;
 using System;
-using System.Security.Cryptography;
 using System.Text;
 
 namespace Axantum.AxCrypt.Core.Crypto
@@ -47,8 +47,8 @@ namespace Axantum.AxCrypt.Core.Crypto
                 throw new ArgumentNullException("passphrase");
             }
 
-            HashAlgorithm hashAlgorithm = new SHA1Managed();
-            byte[] ansiBytes = Encoding.GetEncoding(1252).GetBytes(passphrase.Text);
+            HashAlgorithm hashAlgorithm = Instance.Portable.SHA1Managed();
+            byte[] ansiBytes = Encoding.GetEncoding("Windows-1252").GetBytes(passphrase.Text);
             byte[] hash = hashAlgorithm.ComputeHash(ansiBytes);
             byte[] derivedKey = new byte[16];
             Array.Copy(hash, derivedKey, derivedKey.Length);

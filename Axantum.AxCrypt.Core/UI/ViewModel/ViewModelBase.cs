@@ -131,11 +131,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             get
             {
-                IEnumerable<PropertyDescriptor> properties = TypeDescriptor.GetProperties(GetType()).Cast<PropertyDescriptor>();
+                IEnumerable<string> propertyNames = GetType().GetProperties().Select(pi => pi.Name);
 
                 return
-                    (from property in properties
-                     let error = this[property.Name]
+                    (from name in propertyNames
+                     let error = this[name]
                      where !String.IsNullOrEmpty(error)
                      select error)
                         .Aggregate(new StringBuilder(), (acc, next) => acc.Append(acc.Length > 0 ? " " : String.Empty).Append(next))

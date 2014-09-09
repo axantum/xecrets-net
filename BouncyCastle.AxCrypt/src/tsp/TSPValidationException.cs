@@ -1,12 +1,17 @@
+using System;
+
 namespace Org.BouncyCastle.Tsp
 {
 	/**
 	 * Exception thrown if a TSP request or response fails to validate.
 	 * <p>
-	 * If a failure code is assciated with the exception it can be retrieved using
+	 * If a failure code is associated with the exception it can be retrieved using
 	 * the getFailureCode() method.</p>
 	 */
-	public class TspValidationException
+#if !(NETCF_1_0 || NETCF_2_0 || SILVERLIGHT)
+    [Serializable]
+#endif
+    public class TspValidationException
 		: TspException
 	{
 		private int failureCode;

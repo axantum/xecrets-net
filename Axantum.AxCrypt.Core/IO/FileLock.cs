@@ -27,13 +27,14 @@
 
 using Axantum.AxCrypt.Core.Extensions;
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
 namespace Axantum.AxCrypt.Core.IO
 {
     public class FileLock : IDisposable
     {
-        private static StringCollection _lockedFiles = new StringCollection();
+        private static Collection<string> _lockedFiles = new Collection<string>();
 
         private string _fullPath;
 

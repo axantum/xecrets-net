@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core.IO;
 using System;
+using System.Threading;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
@@ -61,5 +62,9 @@ namespace Axantum.AxCrypt.Core.Runtime
         bool FirstInstanceRunning(TimeSpan timeout);
 
         void ExitApplication(int exitCode);
+
+        void DebugMode(bool enable);
+
+        SynchronizationContext SynchronizationContext { get; }
     }
 }

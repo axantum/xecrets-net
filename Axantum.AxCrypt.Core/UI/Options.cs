@@ -432,12 +432,24 @@ namespace NDesk.Options
 
         protected static T Parse<T>(string value, OptionContext optionContext)
         {
-            TypeConverter conv = TypeDescriptor.GetConverter(typeof(T));
             T t = default(T);
+            if (value == null)
+            {
+                return t;
+            }
             try
             {
-                if (value != null)
-                    t = (T)conv.ConvertFromString(value);
+                switch (typeof(T).ToString())
+                {
+                    case "System.Int32":
+                        return (T)(object)Int32.Parse(value);
+
+                    case "System.String":
+                        return (T)(object)value;
+
+                    case "System.Boolean":
+                        return (T)(object)Boolean.Parse(value);
+                }
             }
             catch (Exception e)
             {
@@ -549,7 +561,6 @@ namespace NDesk.Options
         }
     }
 
-    [Serializable]
     public class OptionException : Exception
     {
         private string option;
@@ -580,25 +591,15 @@ namespace NDesk.Options
             this.option = optionName;
         }
 
-        protected OptionException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-            this.option = info.GetString("OptionName");
-        }
-
         public string OptionName
         {
             get { return this.option; }
         }
-
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            base.GetObjectData(info, context);
-            info.AddValue("OptionName", option);
-        }
     }
 
     public delegate void OptionAction<TKey, TValue>(TKey key, TValue value);
+
+    public delegate TOutput Converter<in TInput, out TOutput>(TInput input);
 
     public class OptionSetCollection : KeyedCollection<string, OptionBase>
     {

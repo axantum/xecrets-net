@@ -25,13 +25,13 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
+using Newtonsoft.Json;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Threading;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
-using Newtonsoft.Json;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public static readonly Version VersionUnknown = new Version();
+        public static readonly Version VersionUnknown = new Version(0, 0, 0, 0);
 
         private Version _currentVersion;
 
@@ -103,7 +103,7 @@ namespace Axantum.AxCrypt.Core.UI
 
             lock (_doneLock)
             {
-                if (!_done.WaitOne(TimeSpan.Zero, false))
+                if (!_done.WaitOne(TimeSpan.Zero))
                 {
                     return;
                 }
@@ -238,7 +238,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
             if (disposing)
             {
-                _done.Close();
+                _done.Dispose();
                 _done = null;
             }
         }

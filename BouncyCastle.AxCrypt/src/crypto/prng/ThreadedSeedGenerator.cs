@@ -1,5 +1,6 @@
 using System;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Org.BouncyCastle.Crypto.Prng
 {
@@ -34,7 +35,27 @@ namespace Org.BouncyCastle.Crypto.Prng
 				int		numBytes,
 				bool	fast)
 			{
-				this.counter = 0;
+#if SILVERLIGHT
+                return DoGenerateSeed(numBytes, fast);
+#else
+                ThreadPriority originalPriority = Thread.CurrentThread.Priority;
+                try
+                {
+                    Thread.CurrentThread.Priority = ThreadPriority.Normal;
+                    return DoGenerateSeed(numBytes, fast);
+                }
+                finally
+                {
+                    Thread.CurrentThread.Priority = originalPriority;
+                }
+#endif
+            }
+
+            private byte[] DoGenerateSeed(
+				int		numBytes,
+				bool	fast)
+            {
+                this.counter = 0;
 				this.stop = false;
 
 				byte[] result = new byte[numBytes];
@@ -45,22 +66,22 @@ namespace Org.BouncyCastle.Crypto.Prng
 
 				for (int i = 0; i < end; i++)
 				{
-					while (this.counter == last)
-					{
-						try
-						{
-                            using (ManualResetEvent mre = new ManualResetEvent(false))
-                            {
-                                mre.WaitOne(1);
-                            }
-						}
-						catch (Exception)
-						{
-							// ignore
-						}
-					}
+				    using (var mre = new ManualResetEvent(false))
+				    {
+				        while (this.counter == last)
+				        {
+				            try
+				            {
+				                mre.WaitOne(1);
+				            }
+				            catch (Exception)
+				            {
+				                // ignore
+				            }
+				        }
+				    }
 
-					last = this.counter;
+				    last = this.counter;
 
 					if (fast)
 					{

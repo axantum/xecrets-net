@@ -96,7 +96,7 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static bool IsEncrypted(this IRuntimeFileInfo fullName)
         {
-            return String.Compare(Path.GetExtension(fullName.FullName), OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0;
+            return String.Compare(Instance.Portable.Path().GetExtension(fullName.FullName), OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0;
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable is a word.")]
@@ -138,7 +138,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             while (true)
             {
                 int r = Math.Abs(BitConverter.ToInt32(Instance.RandomGenerator.Generate(sizeof(int)), 0));
-                string alternatePath = Path.Combine(Path.GetDirectoryName(fileInfo.FullName), r.ToString(CultureInfo.InvariantCulture) + Path.GetExtension(fileInfo.FullName));
+                string alternatePath = Instance.Portable.Path().Combine(Instance.Portable.Path().GetDirectoryName(fileInfo.FullName), r.ToString(CultureInfo.InvariantCulture) + Instance.Portable.Path().GetExtension(fileInfo.FullName));
                 IRuntimeFileInfo alternateFileInfo = Factory.New<IRuntimeFileInfo>(alternatePath);
                 if (!alternateFileInfo.IsExistingFile && !alternateFileInfo.IsExistingFolder)
                 {

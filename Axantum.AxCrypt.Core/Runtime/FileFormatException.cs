@@ -30,7 +30,6 @@ using System.Runtime.Serialization;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
-    [Serializable]
     public class FileFormatException : AxCryptException
     {
         public FileFormatException()
@@ -45,11 +44,6 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         public FileFormatException(string message, ErrorStatus errorStatus)
             : base(message, errorStatus)
-        {
-        }
-
-        protected FileFormatException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
         {
         }
 

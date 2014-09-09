@@ -421,7 +421,10 @@ namespace Axantum.AxCrypt.Core.Session
                 SetRangeInternal(activeFiles, ActiveFileStatus.None);
                 Save();
             }
-            updatedActiveFiles.ForEach(af => OnActiveFileChanged(new ActiveFileChangedEventArgs(af)));
+            foreach (ActiveFile updatedActiveFile in updatedActiveFiles)
+            {
+                OnActiveFileChanged(new ActiveFileChangedEventArgs(updatedActiveFile));
+            }
         }
 
         private IRuntimeFileInfo _path;

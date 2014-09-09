@@ -36,6 +36,8 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
+using Axantum.AxCrypt.Core.Portable;
+using Axantum.AxCrypt.Mono.Portable;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -47,6 +49,7 @@ namespace Axantum.AxCrypt.Core.Test
     {
         public static void AssemblySetup()
         {
+            Factory.Instance.Singleton<IPortableFactory>(() => new PortableFactory());
             Factory.Instance.Singleton<WorkFolder>(() => new WorkFolder(Path.GetPathRoot(Environment.CurrentDirectory) + @"WorkFolder\"));
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
             Factory.Instance.Singleton<ILogging>(() => new FakeLogging());

@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using Moq;
@@ -38,7 +39,7 @@ namespace Axantum.AxCrypt.Core.Test
     public static class TestWorkerGroupProgressContext
     {
         private static Mock<IProgressContext> _progressMock;
-        private static Mock<SingleThread> _singleThreadMock;
+        private static Mock<ISingleThread> _singleThreadMock;
 
         private static WorkerGroupProgressContext _progress;
 
@@ -46,7 +47,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void Setup()
         {
             _progressMock = new Mock<IProgressContext>();
-            _singleThreadMock = new Mock<SingleThread>();
+            _singleThreadMock = new Mock<ISingleThread>();
 
             _progress = new WorkerGroupProgressContext(_progressMock.Object, _singleThreadMock.Object);
         }

@@ -29,12 +29,12 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Org.BouncyCastle.Utilities.Zlib;
 using System;
 using System.IO;
-using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -137,7 +137,7 @@ namespace Axantum.AxCrypt.Core
             using (ICryptoTransform encryptor = DataCrypto.CreateEncryptingTransform())
             {
                 long outputStartPosition = outputStream.Position;
-                using (CryptoStream encryptingStream = new CryptoStream(new NonClosingStream(outputStream), encryptor, CryptoStreamMode.Write))
+                using (Stream encryptingStream = Instance.Portable.CryptoStream(new NonClosingStream(outputStream), encryptor, CryptoStreamMode.Write))
                 {
                     if (isCompressed)
                     {
@@ -163,7 +163,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        private static void EncryptWithCompressionInternal(V1DocumentHeaders outputDocumentHeaders, Stream inputStream, CryptoStream encryptingStream)
+        private static void EncryptWithCompressionInternal(V1DocumentHeaders outputDocumentHeaders, Stream inputStream, Stream encryptingStream)
         {
             using (ZOutputStream deflatingStream = new ZOutputStream(encryptingStream, -1))
             {

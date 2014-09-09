@@ -63,14 +63,14 @@ namespace Axantum.AxCrypt.Core.Header
                     throw new InvalidOperationException("Could not find terminating nul byte in file name");
                 }
 
-                string fileName = Encoding.ASCII.GetString(rawFileName, 0, end);
+                string fileName = Encoding.GetEncoding("us-ascii").GetString(rawFileName, 0, end);
 
                 return fileName;
             }
 
             set
             {
-                byte[] rawFileName = Encoding.ASCII.GetBytes(value);
+                byte[] rawFileName = Encoding.GetEncoding("us-ascii").GetBytes(value);
                 byte[] dataBlock = new byte[rawFileName.Length + 1 + 15 - (rawFileName.Length + 1 + 15) % 16];
                 rawFileName.CopyTo(dataBlock, 0);
                 SetDataBlockBytesReference(HeaderCrypto.Encrypt(dataBlock));

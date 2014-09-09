@@ -25,12 +25,12 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Portable;
+using Org.BouncyCastle.Utilities.Zlib;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
-using Org.BouncyCastle.Utilities.Zlib;
 
 namespace Axantum.AxCrypt.Core.Extensions
 {
@@ -108,7 +108,7 @@ namespace Axantum.AxCrypt.Core.Extensions
 
                 if (isCompressed)
                 {
-                    using (Stream deflatedPlaintextStream = new CryptoStream(encryptedInputStream, transform, CryptoStreamMode.Read))
+                    using (Stream deflatedPlaintextStream = Instance.Portable.CryptoStream(encryptedInputStream, transform, CryptoStreamMode.Read))
                     {
                         using (Stream inflatedPlaintextStream = new ZInputStream(deflatedPlaintextStream))
                         {
@@ -126,7 +126,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                 }
                 else
                 {
-                    using (Stream plainStream = new CryptoStream(encryptedInputStream, transform, CryptoStreamMode.Read))
+                    using (Stream plainStream = Instance.Portable.CryptoStream(encryptedInputStream, transform, CryptoStreamMode.Read))
                     {
                         try
                         {

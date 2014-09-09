@@ -27,11 +27,11 @@
 
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Net.Mail;
 
 namespace Axantum.AxCrypt.Core.Extensions
 {
@@ -70,7 +70,7 @@ namespace Axantum.AxCrypt.Core.Extensions
         /// <returns>A corresponding file name representing the encrypted version of the original</returns>
         public static string CreateEncryptedName(this string fullName)
         {
-            string extension = Path.GetExtension(fullName);
+            string extension = Instance.Portable.Path().GetExtension(fullName);
             string encryptedName = fullName;
             encryptedName = encryptedName.Substring(0, encryptedName.Length - extension.Length);
             encryptedName += extension.Replace('.', '-');
@@ -82,14 +82,14 @@ namespace Axantum.AxCrypt.Core.Extensions
         public static string CreateUniqueFile(this string fullName)
         {
             IRuntimeFileInfo pathInfo = Factory.New<IRuntimeFileInfo>(fullName);
-            string extension = Path.GetExtension(fullName);
+            string extension = Instance.Portable.Path().GetExtension(fullName);
             int version = 0;
             while (true)
             {
                 try
                 {
                     string alternateExtension = (version > 0 ? "." + version.ToString(CultureInfo.InvariantCulture) : String.Empty) + extension;
-                    string alternatePath = Path.Combine(Path.GetDirectoryName(pathInfo.FullName), Path.GetFileNameWithoutExtension(pathInfo.Name) + alternateExtension);
+                    string alternatePath = Instance.Portable.Path().Combine(Instance.Portable.Path().GetDirectoryName(pathInfo.FullName), Instance.Portable.Path().GetFileNameWithoutExtension(pathInfo.Name) + alternateExtension);
                     IRuntimeFileInfo alternateFileInfo = Factory.New<IRuntimeFileInfo>(alternatePath);
                     alternateFileInfo.CreateNewFile();
                     return alternateFileInfo.FullName;
@@ -103,15 +103,6 @@ namespace Axantum.AxCrypt.Core.Extensions
                 }
                 ++version;
             }
-        }
-
-        public static string PathCombine(this string path, params string[] parts)
-        {
-            foreach (string part in parts)
-            {
-                path = Path.Combine(path, part);
-            }
-            return path;
         }
 
         /// <summary>
@@ -149,32 +140,32 @@ namespace Axantum.AxCrypt.Core.Extensions
                 return String.Empty;
             }
 
-            value = value.Replace(Path.DirectorySeparatorChar == '/' ? '\\' : '/', Path.DirectorySeparatorChar);
+            value = value.Replace(Instance.Portable.Path().DirectorySeparatorChar == '/' ? '\\' : '/', Instance.Portable.Path().DirectorySeparatorChar);
             return Factory.New<IRuntimeFileInfo>(value).NormalizeFolder().FullName;
         }
 
         public static string NormalizeFilePath(this string filePath)
         {
-            filePath = filePath.Replace(Path.DirectorySeparatorChar == '/' ? '\\' : '/', Path.DirectorySeparatorChar);
+            filePath = filePath.Replace(Instance.Portable.Path().DirectorySeparatorChar == '/' ? '\\' : '/', Instance.Portable.Path().DirectorySeparatorChar);
             return filePath;
         }
 
         public static string NormalizeFolderPath(this string folder)
         {
             folder = folder.NormalizeFilePath();
-            if (String.Compare(folder, Path.GetPathRoot(folder), StringComparison.OrdinalIgnoreCase) == 0)
+            if (String.Compare(folder, Instance.Portable.Path().GetPathRoot(folder), StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return folder;
             }
             int directorySeparatorChars = 0;
-            while (folder.Length - (directorySeparatorChars + 1) > 0 && folder[folder.Length - (directorySeparatorChars + 1)] == Path.DirectorySeparatorChar)
+            while (folder.Length - (directorySeparatorChars + 1) > 0 && folder[folder.Length - (directorySeparatorChars + 1)] == Instance.Portable.Path().DirectorySeparatorChar)
             {
                 ++directorySeparatorChars;
             }
 
             if (directorySeparatorChars == 0)
             {
-                return folder + Path.DirectorySeparatorChar;
+                return folder + Instance.Portable.Path().DirectorySeparatorChar;
             }
             return folder.Substring(0, folder.Length - (directorySeparatorChars - 1));
         }
@@ -212,7 +203,7 @@ namespace Axantum.AxCrypt.Core.Extensions
         {
             try
             {
-                new MailAddress(email);
+                new EmailAddress(email);
                 return true;
             }
             catch (FormatException)

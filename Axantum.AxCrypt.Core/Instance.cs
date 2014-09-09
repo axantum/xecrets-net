@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Ipc;
+using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
@@ -118,6 +119,11 @@ namespace Axantum.AxCrypt.Core
         public static CryptoFactory CryptoFactory
         {
             get { return Factory.Instance.Singleton<CryptoFactory>(); }
+        }
+
+        public static IPortableFactory Portable
+        {
+            get { return Factory.Instance.Singleton<IPortableFactory>(); }
         }
     }
 }

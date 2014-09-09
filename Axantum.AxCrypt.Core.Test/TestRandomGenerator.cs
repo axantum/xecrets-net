@@ -27,6 +27,8 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Portable;
+using Axantum.AxCrypt.Mono.Portable;
 using NUnit.Framework;
 using System;
 using System.Linq;
@@ -39,6 +41,7 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
+            Factory.Instance.Singleton<IPortableFactory>(() => new PortableFactory());
         }
 
         [TearDown]

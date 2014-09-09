@@ -503,15 +503,14 @@ namespace Axantum.AxCrypt.Core.Test
 
                 mvm.DebugMode = true;
                 logMock.Verify(x => x.SetLevel(It.Is<LogLevel>(ll => ll == LogLevel.Debug)));
-                Assert.That(ServicePointManager.ServerCertificateValidationCallback, Is.Not.Null);
-                Assert.That(ServicePointManager.ServerCertificateValidationCallback(null, null, null, SslPolicyErrors.RemoteCertificateChainErrors | SslPolicyErrors.RemoteCertificateNameMismatch | SslPolicyErrors.RemoteCertificateNotAvailable), Is.True);
+                Assert.That(FakeRuntimeEnvironment.Instance.IsDebugModeEnabled, Is.True);
 
                 logMock.ResetCalls();
 
                 mvm.DebugMode = false;
             }
             logMock.Verify(x => x.SetLevel(It.Is<LogLevel>(ll => ll == LogLevel.Error)));
-            Assert.That(ServicePointManager.ServerCertificateValidationCallback, Is.Null);
+            Assert.That(FakeRuntimeEnvironment.Instance.IsDebugModeEnabled, Is.False);
         }
 
         [Test]

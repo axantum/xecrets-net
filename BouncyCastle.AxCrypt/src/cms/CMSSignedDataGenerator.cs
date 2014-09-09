@@ -145,7 +145,7 @@ namespace Org.BouncyCastle.Cms
 					content.Write(sigStr);
                 }
 
-				sigStr.Dispose();
+                sigStr.Dispose();
 				byte[] sigBytes = sig.GenerateSignature();
 
 				Asn1Set unsignedAttr = null;

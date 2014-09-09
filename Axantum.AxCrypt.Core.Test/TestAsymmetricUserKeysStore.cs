@@ -64,7 +64,7 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo workFolder = Factory.New<IRuntimeFileInfo>(@"C:\Temp");
             UserAsymmetricKeysStore store = new UserAsymmetricKeysStore(workFolder, Instance.KnownKeys);
 
-            store.Create(new MailAddress(@"svante@axantum.com"), new Passphrase("secret"));
+            store.Create(new EmailAddress(@"svante@axantum.com"), new Passphrase("secret"));
             Assert.That(store.Keys.KeyPair.PrivateKey, Is.Not.Null);
             Assert.That(store.Keys.KeyPair.PublicKey, Is.Not.Null);
         }
@@ -76,14 +76,14 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo workFolder = Factory.New<IRuntimeFileInfo>(@"C:\Temp\");
             UserAsymmetricKeysStore store = new UserAsymmetricKeysStore(workFolder, Instance.KnownKeys);
 
-            store.Create(new MailAddress(@"svante@axantum.com"), new Passphrase("secret"));
+            store.Create(new EmailAddress(@"svante@axantum.com"), new Passphrase("secret"));
             Assert.That(store.Keys.KeyPair.PrivateKey, Is.Not.Null);
             Assert.That(store.Keys.KeyPair.PublicKey, Is.Not.Null);
 
             IAsymmetricKeyPair keyPair = store.Keys.KeyPair;
 
             store = new UserAsymmetricKeysStore(workFolder, Instance.KnownKeys);
-            store.Load(new MailAddress(@"svante@axantum.com"), new Passphrase("secret"));
+            store.Load(new EmailAddress(@"svante@axantum.com"), new Passphrase("secret"));
 
             Assert.That(Instance.KnownKeys.DefaultEncryptionKey, Is.EqualTo(new Passphrase("secret")));
             Assert.That(store.Keys.KeyPair.PrivateKey.ToString(), Is.EqualTo(keyPair.PrivateKey.ToString()));
@@ -98,13 +98,13 @@ namespace Axantum.AxCrypt.Core.Test
             UserAsymmetricKeysStore store = new UserAsymmetricKeysStore(workFolder, Instance.KnownKeys);
             Instance.KnownKeys.DefaultEncryptionKey = new Passphrase("secret");
 
-            store.Create(new MailAddress(@"svante@axantum.com"), new Passphrase("secret"));
+            store.Create(new EmailAddress(@"svante@axantum.com"), new Passphrase("secret"));
 
             string text = "AxCrypt encryption rules!";
             byte[] encryptedBytes = store.Keys.KeyPair.PublicKey.Transform(Encoding.UTF8.GetBytes(text));
 
             store = new UserAsymmetricKeysStore(workFolder, Instance.KnownKeys);
-            store.Load(new MailAddress(@"svante@axantum.com"), new Passphrase("secret"));
+            store.Load(new EmailAddress(@"svante@axantum.com"), new Passphrase("secret"));
 
             byte[] decryptedBytes = store.Keys.KeyPair.PrivateKey.Transform(encryptedBytes);
             Assert.That(decryptedBytes != null);

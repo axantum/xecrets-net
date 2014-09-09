@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Portable;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -46,7 +47,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             public override int Compare(ActiveFile x, ActiveFile y)
             {
-                return (ReverseSort ? -1 : 1) * String.Compare(Path.GetFileName(x.DecryptedFileInfo.FullName), Path.GetFileName(y.DecryptedFileInfo.FullName), StringComparison.OrdinalIgnoreCase);
+                return (ReverseSort ? -1 : 1) * String.Compare(Instance.Portable.Path().GetFileName(x.DecryptedFileInfo.FullName), Instance.Portable.Path().GetFileName(y.DecryptedFileInfo.FullName), StringComparison.OrdinalIgnoreCase);
             }
         }
 

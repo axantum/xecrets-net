@@ -27,7 +27,9 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Mono.Portable;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -60,6 +62,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void Setup()
         {
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
+            Factory.Instance.Singleton<IPortableFactory>(() => new PortableFactory());
             Factory.Instance.Singleton<CryptoFactory>(() => SetupAssembly.CreateCryptoFactory());
             Factory.Instance.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
             Factory.Instance.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());

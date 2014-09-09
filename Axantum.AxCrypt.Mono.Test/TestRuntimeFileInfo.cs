@@ -25,14 +25,16 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Globalization;
-using System.IO;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Mono.Portable;
 using NUnit.Framework;
+using System;
+using System.Globalization;
+using System.IO;
 
 namespace Axantum.AxCrypt.Mono.Test
 {
@@ -49,6 +51,7 @@ namespace Axantum.AxCrypt.Mono.Test
             Factory.Instance.Register<string, IFileWatcher>((path) => new FileWatcher(path, new DelayedAction(new DelayTimer(), TimeSpan.FromMilliseconds(1))));
             Factory.Instance.Register<string, IRuntimeFileInfo>((path) => new RuntimeFileInfo(path));
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
+            Factory.Instance.Singleton<IPortableFactory>(() => new PortableFactory());
             Factory.Instance.Singleton<WorkFolder>(() => new WorkFolder(_tempPath));
             Factory.Instance.Singleton<ILogging>(() => new Logging());
         }

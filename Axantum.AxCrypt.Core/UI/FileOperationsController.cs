@@ -26,8 +26,8 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
 using System;
 using System.IO;
 using System.Linq;
@@ -223,7 +223,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         private bool EncryptFilePreparation(IRuntimeFileInfo sourceFileInfo)
         {
-            if (String.Compare(Path.GetExtension(sourceFileInfo.FullName), OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
+            if (String.Compare(Instance.Portable.Path().GetExtension(sourceFileInfo.FullName), OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 _eventArgs.Status = new FileOperationContext(sourceFileInfo.FullName, FileOperationStatus.FileAlreadyEncrypted);
                 return false;
@@ -287,7 +287,7 @@ namespace Axantum.AxCrypt.Core.UI
                 return false;
             }
 
-            IRuntimeFileInfo destination = Factory.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(fileInfo.FullName), _eventArgs.AxCryptDocument.FileName));
+            IRuntimeFileInfo destination = Factory.New<IRuntimeFileInfo>(Instance.Portable.Path().Combine(Instance.Portable.Path().GetDirectoryName(fileInfo.FullName), _eventArgs.AxCryptDocument.FileName));
             _eventArgs.SaveFileFullName = destination.FullName;
             if (destination.IsExistingFile)
             {

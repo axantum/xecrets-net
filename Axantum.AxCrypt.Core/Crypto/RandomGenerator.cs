@@ -25,15 +25,15 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Portable;
 using System;
 using System.Linq;
-using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
     public class RandomGenerator : IRandomGenerator
     {
-        private RandomNumberGenerator _rng = RandomNumberGenerator.Create();
+        private RandomNumberGenerator _rng = Instance.Portable.RandomNumberGenerator();
 
         public byte[] Generate(int count)
         {

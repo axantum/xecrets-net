@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{966E9510-1A1D-46C7-97B5-460A0FF9B89F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Axantum.AxCrypt.Core</RootNamespace>
     <AssemblyName>Axantum.AxCrypt.Core</AssemblyName>
-    <FileAlignment>512</FileAlignment>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile158</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <AssemblyOriginatorKeyFile>AxantumStrongName.pfx</AssemblyOriginatorKeyFile>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -36,13 +36,22 @@
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Xml" />
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <ProjectReference Include="..\BouncyCastle.AxCrypt\BouncyCastle.AxCrypt.csproj">
+      <Project>{3680c939-b21f-4444-b646-42fb4b29a786}</Project>
+      <Name>BouncyCastle.AxCrypt</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Newtonsoft.Json\Newtonsoft.Json.Portable40.csproj">
+      <Project>{959f7f85-c98b-4876-971a-9036224578e4}</Project>
+      <Name>Newtonsoft.Json.Portable40</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AxCryptFactory.cs" />
+    <Compile Include="Portable\AesManaged.cs" />
+    <Compile Include="Portable\CipherMode.cs" />
+    <Compile Include="Portable\IPortableFactory.cs" />
+    <Compile Include="Portable\CryptoStream.cs" />
     <Compile Include="Crypto\Asymmetric\BouncyCastleAsymmetricFactory.cs" />
     <Compile Include="Crypto\Asymmetric\BouncyCastleDigest.cs" />
     <Compile Include="Crypto\Asymmetric\IAsymmetricFactory.cs" />
@@ -63,6 +72,23 @@
     <Compile Include="Header\V2AsymmetricRecipientsEncryptedHeaderBlock.cs" />
     <Compile Include="IO\AbstractJsonConverter.cs" />
     <Compile Include="IO\EmailAddressJsonConverter.cs" />
+    <Compile Include="Portable\CryptoStreamMode.cs" />
+    <Compile Include="Portable\HashAlgorithm.cs" />
+    <Compile Include="Portable\HMAC.cs" />
+    <Compile Include="Portable\HMACSHA1.cs" />
+    <Compile Include="Portable\HMACSHA512.cs" />
+    <Compile Include="Portable\ICloneable.cs" />
+    <Compile Include="Portable\ICryptoTransform.cs" />
+    <Compile Include="Portable\IDataErrorInfo.cs" />
+    <Compile Include="Portable\IPath.cs" />
+    <Compile Include="Portable\ISemaphore.cs" />
+    <Compile Include="Portable\ISingleThread.cs" />
+    <Compile Include="Portable\KeyedHashAlgorithm.cs" />
+    <Compile Include="Portable\KeySizes.cs" />
+    <Compile Include="Portable\PaddingMode.cs" />
+    <Compile Include="Portable\RandomNumberGenerator.cs" />
+    <Compile Include="Portable\SHA1Managed.cs" />
+    <Compile Include="Portable\SymmetricAlgorithm.cs" />
     <Compile Include="Runtime\TypeDiscovery.cs" />
     <Compile Include="Crypto\CryptoExtensions.cs" />
     <Compile Include="Crypto\FreeCryptoPolicy.cs" />
@@ -109,6 +135,7 @@
     <Compile Include="Session\ActiveFileWatcher.cs" />
     <Compile Include="Session\UserAsymmetricKeys.cs" />
     <Compile Include="Session\UserAsymmetricKeysStore.cs" />
+    <Compile Include="UI\EmailAddress.cs" />
     <Compile Include="UI\FileOperationContext.cs" />
     <Compile Include="UI\ViewModel\CreateNewAccountViewModel.cs" />
     <Compile Include="UI\ViewModel\LogOnAccountViewModel.cs" />
@@ -147,7 +174,6 @@
     <Compile Include="Runtime\ISleep.cs" />
     <Compile Include="Runtime\IThreadWorker.cs" />
     <Compile Include="Runtime\LoggingEventArgs.cs" />
-    <Compile Include="Runtime\SingleThread.cs" />
     <Compile Include="Runtime\SleepEventArgs.cs" />
     <Compile Include="Runtime\ThreadWorkerProgressContext.cs" />
     <Compile Include="Runtime\WorkerGroup.cs" />
@@ -165,7 +191,6 @@
     <Compile Include="Crypto\SymmetricIV.cs" />
     <Compile Include="Crypto\SymmetricKey.cs" />
     <Compile Include="Crypto\SymmetricKeyThumbprint.cs" />
-    <Compile Include="Crypto\AxCryptHMACSHA1.cs" />
     <Compile Include="Crypto\V1Hmac.cs" />
     <Compile Include="Crypto\HeaderSubkey.cs" />
     <Compile Include="Crypto\KeyWrap.cs" />
@@ -174,7 +199,6 @@
     <Compile Include="Crypto\V1DerivedKey.cs" />
     <Compile Include="Crypto\Subkey.cs" />
     <Compile Include="OS.cs" />
-    <Compile Include="Runtime\DelegateTraceListener.cs" />
     <Compile Include="ErrorStatus.cs" />
     <Compile Include="Runtime\FileFormatException.cs" />
     <Compile Include="Header\AxCrypt1Guid.cs" />
@@ -222,7 +246,6 @@
     <Compile Include="Session\ActiveFileAction.cs" />
     <Compile Include="Session\ActiveFileStatus.cs" />
     <Compile Include="Session\FileSystemState.cs" />
-    <Compile Include="Runtime\ThreadWorker.cs" />
     <Compile Include="Runtime\ThreadWorkerEventArgs.cs" />
     <Compile Include="Session\PassphraseIdentity.cs" />
     <Compile Include="Session\ProcessState.cs" />
@@ -289,18 +312,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BouncyCastle.AxCrypt\src\BouncyCastle.AxCrypt.csproj">
-      <Project>{63aa03f0-9c8d-44ea-b2ca-5802cf4f1968}</Project>
-      <Name>BouncyCastle.AxCrypt</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Newtonsoft.Json\Newtonsoft.Json.Net40.csproj">
-      <Project>{a9ae40ff-1a21-414a-9fe7-3be13644cc6d}</Project>
-      <Name>Newtonsoft.Json.Net40</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!--<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />-->
   <Import Project="..\SolutionItems\Axantum.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

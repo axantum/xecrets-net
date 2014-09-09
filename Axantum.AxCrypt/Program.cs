@@ -30,10 +30,12 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Ipc;
+using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Mono;
+using Axantum.AxCrypt.Mono.Portable;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -76,6 +78,7 @@ namespace Axantum.AxCrypt
         {
             string workFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"AxCrypt" + Path.DirectorySeparatorChar);
 
+            Factory.Instance.Singleton<IPortableFactory>(() => new PortableFactory());
             Factory.Instance.Singleton<WorkFolderWatcher>(() => new WorkFolderWatcher());
             Factory.Instance.Singleton<WorkFolder>(() => new WorkFolder(workFolderPath), () => Factory.Instance.Singleton<WorkFolderWatcher>());
             Factory.Instance.Singleton<ILogging>(() => new Logging());

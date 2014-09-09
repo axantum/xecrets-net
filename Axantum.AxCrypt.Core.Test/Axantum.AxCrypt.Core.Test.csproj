@@ -11,7 +11,7 @@
     <RootNamespace>Axantum.AxCrypt.Core.Test</RootNamespace>
     <AssemblyName>Axantum.AxCrypt.Core.Test</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -23,6 +23,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +33,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>AxantumStrongName.pfx</AssemblyOriginatorKeyFile>
@@ -52,6 +54,7 @@
   <ItemGroup>
     <Compile Include="CryptoValidation\TestRsaOeap.cs" />
     <Compile Include="Endian.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="FakeDataProtection.cs" />
     <Compile Include="FakeDelayTimer.cs" />
     <Compile Include="FakeFileWatcher.cs" />
@@ -91,7 +94,6 @@
     <Compile Include="TestCounterModeCryptoTransform.cs" />
     <Compile Include="TestDelayedAction.cs" />
     <Compile Include="TestDelegateAction.cs" />
-    <Compile Include="TestDelegateTraceListener.cs" />
     <Compile Include="TestEncryptedDataPartBlock.cs" />
     <Compile Include="TestFactoryRegistry.cs" />
     <Compile Include="TestFileOperation.cs" />
@@ -209,9 +211,13 @@
       <Project>{966E9510-1A1D-46C7-97B5-460A0FF9B89F}</Project>
       <Name>Axantum.AxCrypt.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Newtonsoft.Json\Newtonsoft.Json.Net40.csproj">
-      <Project>{a9ae40ff-1a21-414a-9fe7-3be13644cc6d}</Project>
-      <Name>Newtonsoft.Json.Net40</Name>
+    <ProjectReference Include="..\Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.csproj">
+      <Project>{ce9e8614-8dc5-4757-9384-3c416ab61a47}</Project>
+      <Name>Axantum.AxCrypt.Mono</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Newtonsoft.Json\Newtonsoft.Json.Portable40.csproj">
+      <Project>{959f7f85-c98b-4876-971a-9036224578e4}</Project>
+      <Name>Newtonsoft.Json.Portable40</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-#if !NETCF_1_0
+#if !NETCF_1_0 && !PCL
 
 using System;
 using System.Security.Cryptography;
@@ -11,11 +11,16 @@ namespace Org.BouncyCastle.Crypto.Prng
 	public class CryptoApiRandomGenerator
 		: IRandomGenerator
 	{
-		private readonly RNGCryptoServiceProvider rndProv;
+		private readonly RandomNumberGenerator rndProv;
 
 		public CryptoApiRandomGenerator()
+			: this(new RNGCryptoServiceProvider())
 		{
-			rndProv = new RNGCryptoServiceProvider();
+		}
+
+		public CryptoApiRandomGenerator(RandomNumberGenerator rng)
+		{
+			this.rndProv = rng;
 		}
 
 		#region IRandomGenerator Members

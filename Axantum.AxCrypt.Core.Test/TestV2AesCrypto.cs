@@ -27,7 +27,9 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Mono.Portable;
 using NUnit.Framework;
 using System;
 using System.Linq;
@@ -63,6 +65,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
             Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
+            Factory.Instance.Singleton<IPortableFactory>(() => new PortableFactory());
         }
 
         [TearDown]

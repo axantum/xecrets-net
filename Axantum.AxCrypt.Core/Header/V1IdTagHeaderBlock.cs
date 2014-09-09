@@ -53,8 +53,7 @@ namespace Axantum.AxCrypt.Core.Header
 
         private static Encoding GetEncoding()
         {
-            // The default fall back is "?", and we use the parameterless constructor to avoid Mono Migration Assistant (MoMA) warnings.
-            return Encoding.GetEncoding(1252, new EncoderReplacementFallback(), new DecoderReplacementFallback());
+            return Encoding.GetEncoding("Windows-1252");
         }
 
         public string IdTag

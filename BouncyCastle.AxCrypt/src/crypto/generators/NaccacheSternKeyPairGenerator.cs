@@ -53,6 +53,11 @@ namespace Org.BouncyCastle.Crypto.Generators
 			int certainty = param.Certainty;
 			bool debug = param.IsDebug;
 
+			if (debug)
+			{
+                System.Diagnostics.Debug.WriteLine("Fetching first " + param.CountSmallPrimes + " primes.");
+			}
+
 			IList smallPrimes = findFirstPrimes(param.CountSmallPrimes);
 
 			smallPrimes = permuteList(smallPrimes, rand);
@@ -87,6 +92,10 @@ namespace Org.BouncyCastle.Crypto.Generators
 			BigInteger q;
 
 			long tries = 0;
+			if (debug)
+			{
+                System.Diagnostics.Debug.WriteLine("generating p and q");
+			}
 
 			BigInteger _2au = a.Multiply(u).ShiftLeft(1);
 			BigInteger _2bv = b.Multiply(v).ShiftLeft(1);
@@ -117,20 +126,35 @@ namespace Org.BouncyCastle.Crypto.Generators
 
 				if (!sigma.Gcd(_p.Multiply(_q)).Equals(BigInteger.One))
 				{
+                    System.Diagnostics.Debug.WriteLine("sigma.gcd(_p.mult(_q)) != 1!\n _p: " + _p + "\n _q: " + _q);
 					continue;
 				}
 
 				if (p.Multiply(q).BitLength < strength)
 				{
+					if (debug)
+					{
+                        System.Diagnostics.Debug.WriteLine("key size too small. Should be " + strength + " but is actually "
+							+ p.Multiply(q).BitLength);
+					}
 					continue;
 				}
 				break;
 			}
 
-    		BigInteger n = p.Multiply(q);
+			if (debug)
+			{
+                System.Diagnostics.Debug.WriteLine("needed " + tries + " tries to generate p and q.");
+			}
+
+			BigInteger n = p.Multiply(q);
 			BigInteger phi_n = p.Subtract(BigInteger.One).Multiply(q.Subtract(BigInteger.One));
 			BigInteger g;
 			tries = 0;
+			if (debug)
+			{
+                System.Diagnostics.Debug.WriteLine("generating g");
+			}
 			for (;;)
 			{
 				// TODO After the first loop, just regenerate one randomly-selected gPart each time?
@@ -167,6 +191,10 @@ namespace Org.BouncyCastle.Crypto.Generators
 				{
 					if (g.ModPow(phi_n.Divide((BigInteger)smallPrimes[i]), n).Equals(BigInteger.One))
 					{
+						if (debug)
+						{
+                            System.Diagnostics.Debug.WriteLine("g has order phi(n)/" + smallPrimes[i] + "\n g: " + g);
+						}
 						divisible = true;
 						break;
 					}
@@ -182,26 +210,64 @@ namespace Org.BouncyCastle.Crypto.Generators
 				//if (g.ModPow(phi_n.Divide(BigInteger.ValueOf(4)), n).Equals(BigInteger.One))
 				if (g.ModPow(phi_n.ShiftRight(2), n).Equals(BigInteger.One))
 				{
+					if (debug)
+					{
+                        System.Diagnostics.Debug.WriteLine("g has order phi(n)/4\n g:" + g);
+					}
 					continue;
 				}
 
 				if (g.ModPow(phi_n.Divide(_p), n).Equals(BigInteger.One))
 				{
+					if (debug)
+					{
+                        System.Diagnostics.Debug.WriteLine("g has order phi(n)/p'\n g: " + g);
+					}
 					continue;
 				}
 				if (g.ModPow(phi_n.Divide(_q), n).Equals(BigInteger.One))
 				{
+					if (debug)
+					{
+                        System.Diagnostics.Debug.WriteLine("g has order phi(n)/q'\n g: " + g);
+					}
 					continue;
 				}
 				if (g.ModPow(phi_n.Divide(a), n).Equals(BigInteger.One))
 				{
+					if (debug)
+					{
+                        System.Diagnostics.Debug.WriteLine("g has order phi(n)/a\n g: " + g);
+					}
 					continue;
 				}
 				if (g.ModPow(phi_n.Divide(b), n).Equals(BigInteger.One))
 				{
+					if (debug)
+					{
+                        System.Diagnostics.Debug.WriteLine("g has order phi(n)/b\n g: " + g);
+					}
 					continue;
 				}
 				break;
+			}
+			if (debug)
+			{
+                System.Diagnostics.Debug.WriteLine("needed " + tries + " tries to generate g");
+                System.Diagnostics.Debug.WriteLine("");
+                System.Diagnostics.Debug.WriteLine("found new NaccacheStern cipher variables:");
+                System.Diagnostics.Debug.WriteLine("smallPrimes: " + CollectionUtilities.ToString(smallPrimes));
+                System.Diagnostics.Debug.WriteLine("sigma:...... " + sigma + " (" + sigma.BitLength + " bits)");
+                System.Diagnostics.Debug.WriteLine("a:.......... " + a);
+                System.Diagnostics.Debug.WriteLine("b:.......... " + b);
+                System.Diagnostics.Debug.WriteLine("p':......... " + _p);
+                System.Diagnostics.Debug.WriteLine("q':......... " + _q);
+                System.Diagnostics.Debug.WriteLine("p:.......... " + p);
+                System.Diagnostics.Debug.WriteLine("q:.......... " + q);
+                System.Diagnostics.Debug.WriteLine("n:.......... " + n);
+                System.Diagnostics.Debug.WriteLine("phi(n):..... " + phi_n);
+                System.Diagnostics.Debug.WriteLine("g:.......... " + g);
+                System.Diagnostics.Debug.WriteLine("");
 			}
 
 			return new AsymmetricCipherKeyPair(new NaccacheSternKeyParameters(false, g, n, sigma.BitLength),
@@ -224,7 +290,7 @@ namespace Org.BouncyCastle.Crypto.Generators
 		 *            the ArrayList to be permuted
 		 * @param rand
 		 *            the source of Randomness for permutation
-		 * @return a new ArrayList with the permuted elements.
+		 * @return a new IList with the permuted elements.
 		 */
 		private static IList permuteList(
 			IList           arr,

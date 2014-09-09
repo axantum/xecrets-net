@@ -25,10 +25,11 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
+using System;
+using System.Collections.Generic;
+using System.Threading;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -167,6 +168,26 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 ExitCode = exitCode;
             }
+        }
+
+        public bool IsDebugModeEnabled { get; private set; }
+
+        public void DebugMode(bool enable)
+        {
+            IsDebugModeEnabled = enable;
+        }
+
+        private class FakeSynchronizationContext : SynchronizationContext
+        {
+            public override void Post(SendOrPostCallback callback, object state)
+            {
+                callback(state);
+            }
+        }
+
+        public SynchronizationContext SynchronizationContext
+        {
+            get { return new FakeSynchronizationContext(); }
         }
     }
 }

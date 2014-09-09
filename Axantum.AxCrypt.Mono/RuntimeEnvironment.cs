@@ -28,6 +28,9 @@
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
+using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 
 namespace Axantum.AxCrypt.Mono
@@ -199,6 +202,29 @@ namespace Axantum.AxCrypt.Mono
         public void ExitApplication(int exitCode)
         {
             Environment.Exit(exitCode);
+        }
+
+        public void DebugMode(bool enabled)
+        {
+            if (enabled)
+            {
+                ServicePointManager.ServerCertificateValidationCallback = (object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) =>
+                {
+                    return true;
+                };
+            }
+            else
+            {
+                ServicePointManager.ServerCertificateValidationCallback = null;
+            }
+        }
+
+        public SynchronizationContext SynchronizationContext
+        {
+            get
+            {
+                return SynchronizationContext.Current ?? new SynchronizationContext();
+            }
         }
     }
 }

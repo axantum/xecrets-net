@@ -178,7 +178,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                return Path.GetDirectoryName(DecryptedFileInfo.FullName);
+                return Instance.Portable.Path().GetDirectoryName(DecryptedFileInfo.FullName);
             }
             set
             {
@@ -194,12 +194,12 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                return OS.Current.DataProtection.Protect(Encoding.UTF8.GetBytes(Path.GetFileName(DecryptedFileInfo.FullName)));
+                return OS.Current.DataProtection.Protect(Encoding.UTF8.GetBytes(Instance.Portable.Path().GetFileName(DecryptedFileInfo.FullName)));
             }
             set
             {
                 byte[] bytes = OS.Current.DataProtection.Unprotect(value);
-                _decryptedName = Encoding.UTF8.GetString(bytes);
+                _decryptedName = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
             }
         }
 
@@ -226,7 +226,7 @@ namespace Axantum.AxCrypt.Core.Session
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context)
         {
-            DecryptedFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(_decryptedFolder, _decryptedName));
+            DecryptedFileInfo = Factory.New<IRuntimeFileInfo>(Instance.Portable.Path().Combine(_decryptedFolder, _decryptedName));
             if (Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
             {
                 Status |= ActiveFileStatus.NoProcessKnown;

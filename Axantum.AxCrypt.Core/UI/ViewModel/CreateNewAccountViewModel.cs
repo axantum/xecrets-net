@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Net.Mail;
 using System.Text;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
@@ -105,7 +104,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return null;
             }
-            _keysStore.Create(new MailAddress(UserEmail), new Passphrase(Passphrase));
+            _keysStore.Create(new EmailAddress(UserEmail), new Passphrase(Passphrase));
 
             return null;
         }

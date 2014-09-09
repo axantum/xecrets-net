@@ -12,7 +12,7 @@
     <AssemblyName>Axantum.AxCrypt.Mono</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AssemblyOriginatorKeyFile>AxantumStrongName.pfx</AssemblyOriginatorKeyFile>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -24,6 +24,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +33,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -43,28 +45,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Portable\AxCryptHMACSHA1.cs" />
     <Compile Include="DataProtection.cs" />
     <Compile Include="DelayTimer.cs" />
+    <Compile Include="DelegateTraceListener.cs" />
     <Compile Include="FileWatcher.cs" />
     <Compile Include="HttpRequestClient.cs" />
     <Compile Include="HttpRequestServer.cs" />
     <Compile Include="Launcher.cs" />
     <Compile Include="Logging.cs" />
+    <Compile Include="Portable\CryptographyCryptoTransformWrapper.cs" />
+    <Compile Include="Portable\PortableHashAlgorithmWrapper.cs" />
+    <Compile Include="Portable\PortableHmacWrapper.cs" />
+    <Compile Include="Portable\PortableFactory.cs" />
+    <Compile Include="Portable\PortableCryptoStreamWrapper.cs" />
+    <Compile Include="Portable\PortableCryptoTransformWrapper.cs" />
+    <Compile Include="Portable\PortablePathImplementation.cs" />
+    <Compile Include="Portable\PortableRandomNumberGeneratorWrapper.cs" />
+    <Compile Include="Portable\PortableSymmetricAlgorithmWrapper.cs" />
+    <Compile Include="Portable\PortableSemaphoreWrapper.cs" />
+    <Compile Include="Portable\SingleThread.cs" />
     <Compile Include="RuntimeEnvironment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RuntimeFileInfo.cs" />
     <Compile Include="Sleep.cs" />
+    <Compile Include="ThreadWorker.cs" />
     <Compile Include="Timing.cs" />
     <Compile Include="WebCaller.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Axantum.AxCrypt.Core\Axantum.AxCrypt.Core.csproj">
-      <Project>{966E9510-1A1D-46C7-97B5-460A0FF9B89F}</Project>
+      <Project>{966e9510-1a1d-46c7-97b5-460a0ff9b89f}</Project>
       <Name>Axantum.AxCrypt.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Newtonsoft.Json\Newtonsoft.Json.Net40.csproj">
-      <Project>{a9ae40ff-1a21-414a-9fe7-3be13644cc6d}</Project>
-      <Name>Newtonsoft.Json.Net40</Name>
+    <ProjectReference Include="..\Newtonsoft.Json\Newtonsoft.Json.Portable40.csproj">
+      <Project>{959f7f85-c98b-4876-971a-9036224578e4}</Project>
+      <Name>Newtonsoft.Json.Portable40</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

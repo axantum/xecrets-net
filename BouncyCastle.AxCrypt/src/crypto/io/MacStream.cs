@@ -109,11 +109,14 @@ namespace Org.BouncyCastle.Crypto.IO
 			set { stream.Position = value; }
 		}
 
-        protected override void Dispose(bool disposing)
-        {
-			stream.Dispose();
-            base.Dispose(disposing);
-		}
+	    protected override void Dispose(bool disposing)
+	    {
+	        if (disposing)
+	        {
+	            stream.Dispose();
+	        }
+	        base.Dispose(disposing);
+	    }
 
 		public override void Flush()
 		{

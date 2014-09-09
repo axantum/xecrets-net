@@ -1,5 +1,8 @@
 using System;
+using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 //using System.Security.Permissions;
 
@@ -8,17 +11,12 @@ using System.Reflection;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 //
-#if INCLUDE_IDEA
-[assembly: AssemblyTitle("BouncyCastle.CryptoExt")]
-[assembly: AssemblyDescription("Bouncy Castle Cryptography API (Extended)")]
-#else
 [assembly: AssemblyTitle("BouncyCastle.Crypto")]
 [assembly: AssemblyDescription("Bouncy Castle Cryptography API")]
-#endif
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("The Legion of the Bouncy Castle")]
+[assembly: AssemblyCompany("The Legion of the Bouncy Castle Inc.")]
 [assembly: AssemblyProduct("Bouncy Castle for .NET")]
-[assembly: AssemblyCopyright("Copyright (C) 2000-2011")]
+[assembly: AssemblyCopyright("Copyright (C) 2000-2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -33,7 +31,7 @@ using System.Reflection;
 // You can specify all the values or you can default the Revision and Build Numbers
 // by using the '*' as shown below:
 
-[assembly: AssemblyVersion("1.7.*")]
+[assembly: AssemblyVersion("1.8.*")]
 
 //
 // In order to sign your assembly you must specify a key to use. Refer to the
@@ -60,12 +58,39 @@ using System.Reflection;
 //   (*) Delay Signing is an advanced option - see the Microsoft .NET Framework
 //       documentation for more information on this.
 //
-[assembly: CLSCompliant(true)]
-//[assembly: ComVisible(false)]
 
+[assembly: CLSCompliant(true)]
+#if !PCL
+[assembly: ComVisible(false)]
+#endif
 // Start with no permissions
 //[assembly: PermissionSet(SecurityAction.RequestOptional, Unrestricted=false)]
 //...and explicitly add those we need
 
 // see Org.BouncyCastle.Crypto.Encodings.Pkcs1Encoding.StrictLengthEnabledProperty
 //[assembly: EnvironmentPermission(SecurityAction.RequestOptional, Read="Org.BouncyCastle.Pkcs1.Strict")]
+internal class AssemblyInfo
+{
+    private static string version;
+
+    public static string Version
+    {
+        get
+        {
+            if (version == null)
+            {
+                var ver = (AssemblyVersionAttribute)typeof(AssemblyInfo).Assembly.GetCustomAttributes(typeof(AssemblyVersionAttribute), false).FirstOrDefault();
+                if (ver != null)
+                {
+                    version = ver.Version;
+                }
+
+                // if we're still here, then don't try again
+                if (version == null)
+                    version = string.Empty;
+            }
+
+            return version;
+        }
+    }
+}

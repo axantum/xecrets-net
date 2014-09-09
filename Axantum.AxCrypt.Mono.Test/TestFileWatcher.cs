@@ -25,14 +25,16 @@
 
 #endregion Coypright and License
 
-using System;
-using System.IO;
-using System.Linq;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Mono.Portable;
 using NUnit.Framework;
+using System;
+using System.IO;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Mono.Test
 {
@@ -44,6 +46,8 @@ namespace Axantum.AxCrypt.Mono.Test
         [SetUp]
         public static void Setup()
         {
+            Factory.Instance.Singleton<IPortableFactory>(() => new PortableFactory());
+
             _tempPath = Path.Combine(Path.GetTempPath(), @"Axantum.AxCrypt.Mono.Test.TestFileWatcher").NormalizeFolderPath();
             Directory.CreateDirectory(_tempPath);
 

@@ -152,42 +152,5 @@ namespace Axantum.AxCrypt.Core.Test
                 }
             }
         }
-
-        [Test]
-        public static void TestAxCryptExceptionSerialization()
-        {
-            FileFormatException ffe = new FileFormatException("A test-exception");
-            IFormatter ffeFormatter = new BinaryFormatter();
-            using (Stream stream = new MemoryStream())
-            {
-                ffeFormatter.Serialize(stream, ffe);
-                stream.Position = 0;
-                FileFormatException deserializedFfe = (FileFormatException)ffeFormatter.Deserialize(stream);
-                Assert.That(deserializedFfe.ErrorStatus, Is.EqualTo(ErrorStatus.FileFormatError), "The deserialized status should be the same as the original.");
-                Assert.That(deserializedFfe.Message, Is.EqualTo("A test-exception"), "The deserialized message should be the same as the original.");
-            }
-
-            InternalErrorException iee = new InternalErrorException("A test-exception", ErrorStatus.InternalError);
-            IFormatter ieeFormatter = new BinaryFormatter();
-            using (Stream stream = new MemoryStream())
-            {
-                ieeFormatter.Serialize(stream, iee);
-                stream.Position = 0;
-                InternalErrorException deserializedFfe = (InternalErrorException)ieeFormatter.Deserialize(stream);
-                Assert.That(deserializedFfe.ErrorStatus, Is.EqualTo(ErrorStatus.InternalError), "The deserialized status should be the same as the original.");
-                Assert.That(deserializedFfe.Message, Is.EqualTo("A test-exception"), "The deserialized message should be the same as the original.");
-            }
-
-            Axantum.AxCrypt.Core.Runtime.IncorrectDataException ide = new Axantum.AxCrypt.Core.Runtime.IncorrectDataException("A test-exception");
-            IFormatter ideFormatter = new BinaryFormatter();
-            using (Stream stream = new MemoryStream())
-            {
-                ideFormatter.Serialize(stream, ide);
-                stream.Position = 0;
-                Axantum.AxCrypt.Core.Runtime.IncorrectDataException deserializedFfe = (Axantum.AxCrypt.Core.Runtime.IncorrectDataException)ideFormatter.Deserialize(stream);
-                Assert.That(deserializedFfe.ErrorStatus, Is.EqualTo(ErrorStatus.DataError), "The deserialized status should be the same as the original.");
-                Assert.That(deserializedFfe.Message, Is.EqualTo("A test-exception"), "The deserialized message should be the same as the original.");
-            }
-        }
     }
 }

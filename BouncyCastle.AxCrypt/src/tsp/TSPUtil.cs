@@ -20,8 +20,8 @@ namespace Org.BouncyCastle.Tsp
 {
 	public class TspUtil
 	{
-		//private static ISet EmptySet = CollectionUtilities.ReadOnly(new HashSet());
-		//private static IList EmptyList = CollectionUtilities.ReadOnly(Platform.CreateArrayList());
+		private static ISet EmptySet = CollectionUtilities.ReadOnly(new HashSet());
+		private static IList EmptyList = CollectionUtilities.ReadOnly(Platform.CreateArrayList());
 
 		private static readonly IDictionary digestLengths = Platform.CreateHashtable();
         private static readonly IDictionary digestNames = Platform.CreateHashtable();
@@ -160,19 +160,10 @@ namespace Org.BouncyCastle.Tsp
 		internal static int GetDigestLength(
 			string digestAlgOID)
 		{
-			try
-			{
-				if (digestLengths.Contains(digestAlgOID))
-				{
-					return (int) digestLengths[digestAlgOID];
-				}
+			if (!digestLengths.Contains(digestAlgOID))
+				throw new TspException("digest algorithm cannot be found.");
 
-				return CreateDigestInstance(digestAlgOID).GetDigestSize();
-			}
-			catch (SecurityUtilityException e)
-			{
-				throw new TspException("digest algorithm cannot be found.", e);
-			}
+			return (int)digestLengths[digestAlgOID];
 		}
 
 		internal static IDigest CreateDigestInstance(
@@ -181,6 +172,31 @@ namespace Org.BouncyCastle.Tsp
 	        string digestName = GetDigestAlgName(digestAlgOID);
 
 			return DigestUtilities.GetDigest(digestName);
+		}
+
+		internal static ISet GetCriticalExtensionOids(X509Extensions extensions)
+		{
+			if (extensions == null)
+				return EmptySet;
+
+			return CollectionUtilities.ReadOnly(new HashSet(extensions.GetCriticalExtensionOids()));
+		}
+
+		internal static ISet GetNonCriticalExtensionOids(X509Extensions extensions)
+		{
+			if (extensions == null)
+				return EmptySet;
+
+			// TODO: should probably produce a set that imposes correct ordering
+			return CollectionUtilities.ReadOnly(new HashSet(extensions.GetNonCriticalExtensionOids()));
+		}
+		
+		internal static IList GetExtensionOids(X509Extensions extensions)
+		{
+			if (extensions == null)
+				return EmptyList;
+
+			return CollectionUtilities.ReadOnly(Platform.CreateArrayList(extensions.GetExtensionOids()));
 		}
 	}
 }

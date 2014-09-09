@@ -390,7 +390,7 @@ namespace Axantum.AxCrypt.Core
                     return destinationFileName;
                 }
                 destinationFileName = document.FileName;
-                IRuntimeFileInfo destinationFullPath = Factory.New<IRuntimeFileInfo>(Path.Combine(destinationDirectory, destinationFileName));
+                IRuntimeFileInfo destinationFullPath = Factory.New<IRuntimeFileInfo>(Instance.Portable.Path().Combine(destinationDirectory, destinationFileName));
                 Decrypt(document, destinationFullPath, options, progress);
             }
             return destinationFileName;
@@ -421,7 +421,7 @@ namespace Axantum.AxCrypt.Core
                     return new FileOperationContext(fileInfo.FullName, FileOperationStatus.Canceled);
                 }
 
-                IRuntimeFileInfo destinationFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(fileInfo.FullName), document.FileName));
+                IRuntimeFileInfo destinationFileInfo = Factory.New<IRuntimeFileInfo>(Instance.Portable.Path().Combine(Instance.Portable.Path().GetDirectoryName(fileInfo.FullName), document.FileName));
                 destinationFileInfo = Factory.New<IRuntimeFileInfo>(destinationFileInfo.FullName.CreateUniqueFile());
                 DecryptFile(document, destinationFileInfo.FullName, progress);
             }
@@ -568,7 +568,7 @@ namespace Axantum.AxCrypt.Core
 
         private static string MakeAlternatePath(IRuntimeFileInfo fileInfo, string extension)
         {
-            string alternatePath = Path.Combine(Path.GetDirectoryName(fileInfo.FullName), Path.GetFileNameWithoutExtension(fileInfo.Name) + extension);
+            string alternatePath = Instance.Portable.Path().Combine(Instance.Portable.Path().GetDirectoryName(fileInfo.FullName), Instance.Portable.Path().GetFileNameWithoutExtension(fileInfo.Name) + extension);
             return alternatePath.CreateUniqueFile();
         }
 
@@ -579,9 +579,9 @@ namespace Axantum.AxCrypt.Core
                 throw new ArgumentNullException("fileInfo");
             }
             string axCryptExtension = OS.Current.AxCryptExtension;
-            string originalExtension = Path.GetExtension(fileInfo.Name);
+            string originalExtension = Instance.Portable.Path().GetExtension(fileInfo.Name);
             string modifiedExtension = originalExtension.Length == 0 ? String.Empty : "-" + originalExtension.Substring(1);
-            string axCryptFileName = Path.Combine(Path.GetDirectoryName(fileInfo.FullName), Path.GetFileNameWithoutExtension(fileInfo.Name) + modifiedExtension + axCryptExtension);
+            string axCryptFileName = Instance.Portable.Path().Combine(Instance.Portable.Path().GetDirectoryName(fileInfo.FullName), Instance.Portable.Path().GetFileNameWithoutExtension(fileInfo.Name) + modifiedExtension + axCryptExtension);
 
             return axCryptFileName;
         }
@@ -644,8 +644,8 @@ namespace Axantum.AxCrypt.Core
         {
             const string validFileNameChars = "abcdefghijklmnopqrstuvwxyz";
 
-            string directory = Path.GetDirectoryName(originalFullName);
-            string fileName = Path.GetFileNameWithoutExtension(originalFullName);
+            string directory = Instance.Portable.Path().GetDirectoryName(originalFullName);
+            string fileName = Instance.Portable.Path().GetFileNameWithoutExtension(originalFullName);
 
             int randomLength = fileName.Length < 8 ? 8 : fileName.Length;
             StringBuilder randomName = new StringBuilder(randomLength + 4);
@@ -656,7 +656,7 @@ namespace Axantum.AxCrypt.Core
             }
             randomName.Append(".tmp");
 
-            return Path.Combine(directory, randomName.ToString());
+            return Instance.Portable.Path().Combine(directory, randomName.ToString());
         }
     }
 }

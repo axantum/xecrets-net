@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Net.Mail;
 using System.Text;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
@@ -108,7 +107,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private bool IsValidAccountLogOn()
         {
-            return Instance.AsymmetricKeysStore.IsValidAccountLogOn(new MailAddress(UserEmail), new Passphrase(Passphrase));
+            return Instance.AsymmetricKeysStore.IsValidAccountLogOn(new EmailAddress(UserEmail), new Passphrase(Passphrase));
         }
 
         private bool IsKnownIdentity()

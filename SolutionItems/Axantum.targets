@@ -42,224 +42,224 @@
 <Project ToolsVersion="4.0"
          DefaultTargets="Build"
          xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <PropertyGroup>
-        <_AxCryptMajor>2</_AxCryptMajor>
-        <_AxCryptMinor>0</_AxCryptMinor>
-        <AxBuildNumber Condition=" '$(AxBuildNumber)' == '' ">0</AxBuildNumber>
-    </PropertyGroup>
-    <PropertyGroup>
-        <_AxCanonicalName>AxCrypt</_AxCanonicalName>
-        <_AxIsAxantumDeveloper>false</_AxIsAxantumDeveloper>
-        <_AxIsAxantumDeveloper Condition=" '$(AX_AXANTUM)' == 'True' ">true</_AxIsAxantumDeveloper>
-        <_AxIsAxantumBuildServer>false</_AxIsAxantumBuildServer>
-        <_AxIsAxantumBuildServer Condition=" '$(COMPUTERNAME)' == 'SHADOW' ">true</_AxIsAxantumBuildServer>
-        <_AxIsAxantum>false</_AxIsAxantum>
-        <_AxIsAxantum Condition=" '$(_AxIsAxantumDeveloper)' == 'true' Or '$(_AxIsAxantumBuildServer)' == 'true' ">true</_AxIsAxantum>
-        <_AxSignToolPath>$(MSBuildThisFileDirectory)signtool.exe</_AxSignToolPath>
-        <_AxIsAxantumBuild>true</_AxIsAxantumBuild>
-        <_AxBuildserverDistinguishingPath>C:\Build</_AxBuildserverDistinguishingPath>
-        <_AxIsBuildServerBuild>false</_AxIsBuildServerBuild>
-        <_AxIsBuildServerBuild Condition=" Exists('$(_AxBuildserverDistinguishingPath)') ">true</_AxIsBuildServerBuild>
-        <_AxTimeStampUrl>http://timestamp.comodoca.com/authenticode</_AxTimeStampUrl>
-        <_AxCertificateThumbprint>fc898fdc88b037ff88ea154ff25a24aea11eda9c</_AxCertificateThumbprint>
-        <_AxIlMergePath Condition=" '$(_AxIlMergePath)' == '' And Exists('$(ProgramFiles(x86))\Microsoft\ILMerge\ILMerge.exe') ">$(ProgramFiles(x86))\Microsoft\ILMerge\ILMerge.exe</_AxIlMergePath>
-        <_AxIlMergePath Condition=" '$(_AxIlMergePath)' == '' And Exists('$(ProgramFiles)\Microsoft\ILMerge\ILMerge.exe') ">$(ProgramFiles)\Microsoft\ILMerge\ILMerge.exe</_AxIlMergePath>
-        <_AxIlMergePath Condition=" '$(_AxIlMergePath)' == '' And Exists('$(MSBuildThisFileDirectory)Ilmerge.exe') ">$(MSBuildThisFileDirectory)Ilmerge.exe</_AxIlMergePath>
-    </PropertyGroup>
-    <PropertyGroup>
-        <UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(_AxIsBuildServerBuild)' == 'true' ">
-        <_AxIgnoreSignToolErrors>false</_AxIgnoreSignToolErrors>
-    </PropertyGroup>
+  <PropertyGroup>
+    <_AxCryptMajor>2</_AxCryptMajor>
+    <_AxCryptMinor>0</_AxCryptMinor>
+    <AxBuildNumber Condition=" '$(AxBuildNumber)' == '' ">0</AxBuildNumber>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_AxCanonicalName>AxCrypt</_AxCanonicalName>
+    <_AxIsAxantumDeveloper>false</_AxIsAxantumDeveloper>
+    <_AxIsAxantumDeveloper Condition=" '$(AX_AXANTUM)' == 'True' ">true</_AxIsAxantumDeveloper>
+    <_AxIsAxantumBuildServer>false</_AxIsAxantumBuildServer>
+    <_AxIsAxantumBuildServer Condition=" '$(COMPUTERNAME)' == 'SHADOW' ">true</_AxIsAxantumBuildServer>
+    <_AxIsAxantum>false</_AxIsAxantum>
+    <_AxIsAxantum Condition=" '$(_AxIsAxantumDeveloper)' == 'true' Or '$(_AxIsAxantumBuildServer)' == 'true' ">true</_AxIsAxantum>
+    <_AxSignToolPath>$(MSBuildThisFileDirectory)signtool.exe</_AxSignToolPath>
+    <_AxIsAxantumBuild>true</_AxIsAxantumBuild>
+    <_AxBuildserverDistinguishingPath>C:\Build</_AxBuildserverDistinguishingPath>
+    <_AxIsBuildServerBuild>false</_AxIsBuildServerBuild>
+    <_AxIsBuildServerBuild Condition=" Exists('$(_AxBuildserverDistinguishingPath)') ">true</_AxIsBuildServerBuild>
+    <_AxTimeStampUrl>http://timestamp.comodoca.com/authenticode</_AxTimeStampUrl>
+    <_AxCertificateThumbprint>fc898fdc88b037ff88ea154ff25a24aea11eda9c</_AxCertificateThumbprint>
+    <_AxIlMergePath Condition=" '$(_AxIlMergePath)' == '' And Exists('$(ProgramFiles(x86))\Microsoft\ILMerge\ILMerge.exe') ">$(ProgramFiles(x86))\Microsoft\ILMerge\ILMerge.exe</_AxIlMergePath>
+    <_AxIlMergePath Condition=" '$(_AxIlMergePath)' == '' And Exists('$(ProgramFiles)\Microsoft\ILMerge\ILMerge.exe') ">$(ProgramFiles)\Microsoft\ILMerge\ILMerge.exe</_AxIlMergePath>
+    <_AxIlMergePath Condition=" '$(_AxIlMergePath)' == '' And Exists('$(MSBuildThisFileDirectory)Ilmerge.exe') ">$(MSBuildThisFileDirectory)Ilmerge.exe</_AxIlMergePath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(_AxIsBuildServerBuild)' == 'true' ">
+    <_AxIgnoreSignToolErrors>false</_AxIgnoreSignToolErrors>
+  </PropertyGroup>
 
-    <PropertyGroup Condition=" '$(_AxIsBuildServerBuild)' == 'false' ">
-        <_AxIgnoreSignToolErrors>true</_AxIgnoreSignToolErrors>
-    </PropertyGroup>
+  <PropertyGroup Condition=" '$(_AxIsBuildServerBuild)' == 'false' ">
+    <_AxIgnoreSignToolErrors>true</_AxIgnoreSignToolErrors>
+  </PropertyGroup>
 
-    <!-- Use the parameter AxAuthenticodeFile to determine the file name. -->
-    <Target Name="AxAuthenticodeSignOneFile">
-        <Exec Command="&quot;$(_AxSignToolPath)&quot; sign /sha1 $(_AxCertificateThumbprint) /sm /v /t &quot;$(_AxTimeStampUrl)&quot; &quot;$(AxAuthenticodeFile)&quot;"
-              Condition=" Exists('$(_AxSignToolPath)') "
-              ContinueOnError="true">
-            <Output TaskParameter="ExitCode"
-                    PropertyName="_AxExitCode" />
-        </Exec>
-        <!-- Retry once if there's an error we're not ignoring errors-->
-        <Exec Command="&quot;$(_AxSignToolPath)&quot; sign /sha1 $(_AxCertificateThumbprint) /sm /v /t &quot;$(_AxTimeStampUrl)&quot; &quot;$(AxAuthenticodeFile)&quot; &gt;nul"
-              Condition=" Exists('$(_AxSignToolPath)') And '$(_AxExitCode)' != '0' And '$(_AxIgnoreSignToolErrors)' == 'false' "
-              ContinueOnError="true">
-            <Output TaskParameter="ExitCode"
-                    PropertyName="_AxExitCode" />
-        </Exec>
-        <!-- Retry again if there's an error we're not ignoring errors-->
-        <Exec Command="&quot;$(_AxSignToolPath)&quot; sign /sha1 $(_AxCertificateThumbprint) /sm /v /t &quot;$(_AxTimeStampUrl)&quot; &quot;$(AxAuthenticodeFile)&quot; &gt;nul"
-              Condition=" Exists('$(_AxSignToolPath)') And '$(_AxExitCode)' != '0' And '$(_AxIgnoreSignToolErrors)' == 'false' "
-              ContinueOnError="true">
-            <Output TaskParameter="ExitCode"
-                    PropertyName="_AxExitCode" />
-        </Exec>
-        <!-- Really fail if we're still in error, and we're not ignoring errors. -->
-        <Error Text="Authenticode signing failed even after three retries."
-               Condition=" '$(_AxExitCode)' != 0 And '$(_AxIgnoreSignToolErrors)' == 'false' " />
-        <Message Text="$(MSBuildProjectName) -> Authenticode signed $(AxAuthenticodeFile)"
-                 Importance="high" />
-    </Target>
+  <!-- Use the parameter AxAuthenticodeFile to determine the file name. -->
+  <Target Name="AxAuthenticodeSignOneFile">
+    <Exec Command="&quot;$(_AxSignToolPath)&quot; sign /sha1 $(_AxCertificateThumbprint) /sm /v /t &quot;$(_AxTimeStampUrl)&quot; &quot;$(AxAuthenticodeFile)&quot;"
+          Condition=" Exists('$(_AxSignToolPath)') "
+          ContinueOnError="true">
+      <Output TaskParameter="ExitCode"
+              PropertyName="_AxExitCode" />
+    </Exec>
+    <!-- Retry once if there's an error we're not ignoring errors-->
+    <Exec Command="&quot;$(_AxSignToolPath)&quot; sign /sha1 $(_AxCertificateThumbprint) /sm /v /t &quot;$(_AxTimeStampUrl)&quot; &quot;$(AxAuthenticodeFile)&quot; &gt;nul"
+          Condition=" Exists('$(_AxSignToolPath)') And '$(_AxExitCode)' != '0' And '$(_AxIgnoreSignToolErrors)' == 'false' "
+          ContinueOnError="true">
+      <Output TaskParameter="ExitCode"
+              PropertyName="_AxExitCode" />
+    </Exec>
+    <!-- Retry again if there's an error we're not ignoring errors-->
+    <Exec Command="&quot;$(_AxSignToolPath)&quot; sign /sha1 $(_AxCertificateThumbprint) /sm /v /t &quot;$(_AxTimeStampUrl)&quot; &quot;$(AxAuthenticodeFile)&quot; &gt;nul"
+          Condition=" Exists('$(_AxSignToolPath)') And '$(_AxExitCode)' != '0' And '$(_AxIgnoreSignToolErrors)' == 'false' "
+          ContinueOnError="true">
+      <Output TaskParameter="ExitCode"
+              PropertyName="_AxExitCode" />
+    </Exec>
+    <!-- Really fail if we're still in error, and we're not ignoring errors. -->
+    <Error Text="Authenticode signing failed even after three retries."
+           Condition=" '$(_AxExitCode)' != 0 And '$(_AxIgnoreSignToolErrors)' == 'false' " />
+    <Message Text="$(MSBuildProjectName) -> Authenticode signed $(AxAuthenticodeFile)"
+             Importance="high" />
+  </Target>
 
-    <UsingTask TaskName="TemplateFileTask"
-               AssemblyFile="..\SolutionItems\MSBuild.Axantum.Tasks.dll" />
+  <UsingTask TaskName="TemplateFileTask"
+             AssemblyFile="..\SolutionItems\MSBuild.Axantum.Tasks.dll" />
 
   <Target Name="_AxMergeExe"
             Condition="'$(OutputType)' == 'Winexe' ">
-        <PropertyGroup>
-            <_AxIlMergeStrongNameArguments Condition=" '$(KeyContainerName)' != '' And '$(SignAssembly)' == 'true' ">/delaysign &quot;/keyfile:$(MSBuildThisFileDirectory)AxantumStrongName.pub&quot;</_AxIlMergeStrongNameArguments>
-        </PropertyGroup>
-        <Exec Command="&quot;$(_AxIlMergePath)&quot; $(_AxIlMergeStrongNameArguments) /attr:&quot;@(MainAssembly)&quot; /targetplatform:v4,&quot;$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0&quot; /out:&quot;$(OutputPath)$(_AxMergedBaseFileName).exe&quot; &quot;$(_AxMergeMainExecutable)&quot; @(_AxIlMergeAssemblies->'&quot;%(FullPath)&quot;', ' ')" />
-        <Copy SourceFiles="$(IntermediateOutputPath)$(AssemblyName).pdb"
-              DestinationFiles="$(OutputPath)$(_AxMergedBaseFileName).pdb" />
-      <ItemGroup>
-            <FileWrites Include="$(OutputPath)$(_AxMergedBaseFileName).exe" />
-            <FileWrites Include="$(OutputPath)$(_AxMergedBaseFileName).pdb" />
-        </ItemGroup>
-    </Target>
-
-    <Target Name="_AxSignExe"
-            Condition="'$(OutputType)' == 'Winexe' And '$(KeyContainerName)' != '' And '$(SignAssembly)' == 'true' ">
-        <Exec Command="&quot;$(MSBuildThisFileDirectory)sn.exe&quot; -Rca &quot;$(OutputPath)$(_AxMergedBaseFileName).exe&quot; $(KeyContainerName)" />
-        <MSBuild Projects="$(MSBuildProjectFullPath)"
-                 Targets="AxAuthenticodeSignOneFile"
-                 Properties="AxAuthenticodeFile=$(OutputPath)$(_AxMergedBaseFileName).exe" />
-    </Target>
-
-    <Target Name="_AxRecopyMerged" Condition=" '$(_AxIsBuildServerBuild)' != 'true' ">
-        <Copy SourceFiles="$(OutputPath)$(_AxMergedBaseFileName).exe"
-              DestinationFiles="$(MSBuildThisFileDirectory)..\Axantum.AxCrypt\bin\$(Configuration)\$(_AxCanonicalName).exe"
-              SkipUnchangedFiles="true"
-              Condition=" '$(_AxMergedBaseFileName)' != '$(_AxCanonicalName)' " />
-    </Target>
-
-    <Target Name="_AxMergeAndSign"
-            Inputs="$(MSBuildProjectFullPath);@(MainAssembly);@(_AxIlMergeAssemblies)"
-            Outputs="$(OutputPath)$(_AxMergedBaseFileName).exe"
-            DependsOnTargets="_AxMergeExe;_AxSignExe;_AxRecopyMerged"
-            Condition=" '$(OutputType)' == 'Winexe' And '$(_AxIlMergePath)' != '' ">
-    </Target>
-
-    <Target Name="_AxSetVersionedFileName">
-        <PropertyGroup Condition=" '$(AxBuildNumber)' != '' ">
-            <_AxVersionedFileName>AxCrypt-$(_AxCryptMajor).$(_AxCryptMinor).$(AxBuildNumber).0.exe</_AxVersionedFileName>
-        </PropertyGroup>
-    </Target>
-
-    <Target Name="_AxCopyToVersionedFileName"
-            Inputs="$(OutputPath)$(_AxMergedBaseFileName).exe"
-            Outputs="$(OutputPath)$(_AxVersionedFileName)"
-            Condition=" '$(_AxVersionedFileName)' != '' ">
-        <Copy SourceFiles="$(OutputPath)$(_AxMergedBaseFileName).exe"
-              DestinationFiles="$(OutputPath)$(_AxVersionedFileName)"
-              SkipUnchangedFiles="true" />
-        <ItemGroup>
-            <FileWrites Include="$(OutputPath)$(_AxVersionedFileName)" />
-        </ItemGroup>
-    </Target>
-
-    <Target Name="_AxSetRevisionAndCopyToVersionedFileName"
-            DependsOnTargets="_AxSetVersionedFileName;_AxCopyToVersionedFileName"
-            Condition=" '$(Configuration)' == 'Release' And '$(OutputType)' == 'Winexe' And '$(KeyContainerName)' != '' And '$(SignAssembly)' == 'true' ">
-    </Target>
-
-    <Target Name="_AxFindIlMergeAssemblies">
-        <CreateItem Include="@(ReferencePath)"
-                    Condition="'%(CopyLocal)'=='true'">
-            <Output TaskParameter="Include"
-                    ItemName="_AxIlMergeAssemblies" />
-        </CreateItem>
-        <PropertyGroup>
-            <_AxMergedBaseFileName>$(_AxCanonicalName)</_AxMergedBaseFileName>
-            <_AxMergeMainExecutable>@(MainAssembly)</_AxMergeMainExecutable>
-        </PropertyGroup>
-    </Target>
-
-    <Target Name="_AxFixupVersion"
-            Inputs="Properties\AssemblyInfo.template;$(MSBuildProjectFullPath)"
-            Outputs="$(IntermediateOutputPath)AssemblyInfo.cs"
-            Condition=" Exists('Properties\AssemblyInfo.template') ">
-        <MakeDir Directories="$(IntermediateOutputPath)" />
-        <ItemGroup>
-            <_AxTemplateValues Include="$REVNUM$">
-                <Value>$(AxBuildNumber)</Value>
-            </_AxTemplateValues>
-            <_AxTemplateValues Include="$DIRTY$">
-                <Value>0</Value>
-            </_AxTemplateValues>
-        </ItemGroup>
-        <TemplateFileTask TemplateFile="Properties\AssemblyInfo.template"
-                          TargetFile="$(IntermediateOutputPath)AssemblyInfo.cs"
-                          Values="@(_AxTemplateValues)" />
-        <ItemGroup>
-            <Compile Include="$(IntermediateOutputPath)AssemblyInfo.cs" />
-            <FileWrites Include="$(IntermediateOutputPath)AssemblyInfo.cs" />
-        </ItemGroup>
-    </Target>
-
-    <Target Name="_AxFixupAssemblyStrongNaming"
-            Condition=" '$(KeyContainerName)' == '' And '$(KeyOriginatorFile)' == 'AxantumStrongName.pfx' ">
-        <PropertyGroup>
-            <KeyOriginatorFile></KeyOriginatorFile>
-            <SignAssembly>false</SignAssembly>
-        </PropertyGroup>
-    </Target>
-
-    <Target Name="_AxBeforeBuild"
-            DependsOnTargets="_AxFixupVersion">
-        <PropertyGroup Condition=" '$(_AxIsAxantum)' == 'true' ">
-            <_AxPreviousDefineConstants>$(DefineConstants)</_AxPreviousDefineConstants>
-            <DefineConstants>$(DefineConstants);AXANTUM</DefineConstants>
-        </PropertyGroup>
-    </Target>
-
-    <Target Name="_AxAfterBuild">
-        <PropertyGroup Condition=" '$(_AxIsAxantum)' == 'true' ">
-            <DefineConstants>$(_AxPreviousDefineConstants)</DefineConstants>
-        </PropertyGroup>
-    </Target>
-
-    <Target Name="_AxSetupStrongNaming"
-            Condition=" '$(_AxIsAxantum)' == 'true' ">
-        <PropertyGroup>
-            <KeyOriginatorFile>AxantumStrongName.pfx</KeyOriginatorFile>
-            <SignAssembly>true</SignAssembly>
-        </PropertyGroup>
-    </Target>
-
-    <Target Name="_AxCheckBuildEnvironment">
-    </Target>
-
     <PropertyGroup>
-        <PrepareForRunDependsOn>
-            $(PrepareForRunDependsOn);
-            _AxFindIlMergeAssemblies;_AxMergeAndSign
-        </PrepareForRunDependsOn>
+      <_AxIlMergeStrongNameArguments Condition=" '$(KeyContainerName)' != '' And '$(SignAssembly)' == 'true' ">/delaysign &quot;/keyfile:$(MSBuildThisFileDirectory)AxantumStrongName.pub&quot;</_AxIlMergeStrongNameArguments>
     </PropertyGroup>
+    <Exec Command="&quot;$(_AxIlMergePath)&quot; $(_AxIlMergeStrongNameArguments) /attr:&quot;@(MainAssembly)&quot; /targetplatform:v4,&quot;$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5&quot; /out:&quot;$(OutputPath)$(_AxMergedBaseFileName).exe&quot; &quot;$(_AxMergeMainExecutable)&quot; @(_AxIlMergeAssemblies->'&quot;%(FullPath)&quot;', ' ')" />
+    <Copy SourceFiles="$(IntermediateOutputPath)$(AssemblyName).pdb"
+          DestinationFiles="$(OutputPath)$(_AxMergedBaseFileName).pdb" />
+    <ItemGroup>
+      <FileWrites Include="$(OutputPath)$(_AxMergedBaseFileName).exe" />
+      <FileWrites Include="$(OutputPath)$(_AxMergedBaseFileName).pdb" />
+    </ItemGroup>
+  </Target>
 
+  <Target Name="_AxSignExe"
+          Condition="'$(OutputType)' == 'Winexe' And '$(KeyContainerName)' != '' And '$(SignAssembly)' == 'true' ">
+    <Exec Command="&quot;$(MSBuildThisFileDirectory)sn.exe&quot; -Rca &quot;$(OutputPath)$(_AxMergedBaseFileName).exe&quot; $(KeyContainerName)" />
+    <MSBuild Projects="$(MSBuildProjectFullPath)"
+             Targets="AxAuthenticodeSignOneFile"
+             Properties="AxAuthenticodeFile=$(OutputPath)$(_AxMergedBaseFileName).exe" />
+  </Target>
+
+  <Target Name="_AxRecopyMerged" Condition=" '$(_AxIsBuildServerBuild)' != 'true' ">
+    <Copy SourceFiles="$(OutputPath)$(_AxMergedBaseFileName).exe"
+          DestinationFiles="$(MSBuildThisFileDirectory)..\Axantum.AxCrypt\bin\$(Configuration)\$(_AxCanonicalName).exe"
+          SkipUnchangedFiles="true"
+          Condition=" '$(_AxMergedBaseFileName)' != '$(_AxCanonicalName)' " />
+  </Target>
+
+  <Target Name="_AxMergeAndSign"
+          Inputs="$(MSBuildProjectFullPath);@(MainAssembly);@(_AxIlMergeAssemblies)"
+          Outputs="$(OutputPath)$(_AxMergedBaseFileName).exe"
+          DependsOnTargets="_AxMergeExe;_AxSignExe;_AxRecopyMerged"
+          Condition=" '$(OutputType)' == 'Winexe' And '$(_AxIlMergePath)' != '' ">
+  </Target>
+
+  <Target Name="_AxSetVersionedFileName">
+    <PropertyGroup Condition=" '$(AxBuildNumber)' != '' ">
+      <_AxVersionedFileName>AxCrypt-$(_AxCryptMajor).$(_AxCryptMinor).$(AxBuildNumber).0.exe</_AxVersionedFileName>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="_AxCopyToVersionedFileName"
+          Inputs="$(OutputPath)$(_AxMergedBaseFileName).exe"
+          Outputs="$(OutputPath)$(_AxVersionedFileName)"
+          Condition=" '$(_AxVersionedFileName)' != '' ">
+    <Copy SourceFiles="$(OutputPath)$(_AxMergedBaseFileName).exe"
+          DestinationFiles="$(OutputPath)$(_AxVersionedFileName)"
+          SkipUnchangedFiles="true" />
+    <ItemGroup>
+      <FileWrites Include="$(OutputPath)$(_AxVersionedFileName)" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="_AxSetRevisionAndCopyToVersionedFileName"
+          DependsOnTargets="_AxSetVersionedFileName;_AxCopyToVersionedFileName"
+          Condition=" '$(Configuration)' == 'Release' And '$(OutputType)' == 'Winexe' And '$(KeyContainerName)' != '' And '$(SignAssembly)' == 'true' ">
+  </Target>
+
+  <Target Name="_AxFindIlMergeAssemblies">
+    <CreateItem Include="@(ReferencePath)"
+                Condition="'%(CopyLocal)'=='true'">
+      <Output TaskParameter="Include"
+              ItemName="_AxIlMergeAssemblies" />
+    </CreateItem>
+    <PropertyGroup>
+      <_AxMergedBaseFileName>$(_AxCanonicalName)</_AxMergedBaseFileName>
+      <_AxMergeMainExecutable>@(MainAssembly)</_AxMergeMainExecutable>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="_AxFixupVersion"
+          Inputs="Properties\AssemblyInfo.template;$(MSBuildProjectFullPath)"
+          Outputs="$(IntermediateOutputPath)AssemblyInfo.cs"
+          Condition=" Exists('Properties\AssemblyInfo.template') ">
+    <MakeDir Directories="$(IntermediateOutputPath)" />
+    <ItemGroup>
+      <_AxTemplateValues Include="$REVNUM$">
+        <Value>$(AxBuildNumber)</Value>
+      </_AxTemplateValues>
+      <_AxTemplateValues Include="$DIRTY$">
+        <Value>0</Value>
+      </_AxTemplateValues>
+    </ItemGroup>
+    <TemplateFileTask TemplateFile="Properties\AssemblyInfo.template"
+                      TargetFile="$(IntermediateOutputPath)AssemblyInfo.cs"
+                      Values="@(_AxTemplateValues)" />
+    <ItemGroup>
+      <Compile Include="$(IntermediateOutputPath)AssemblyInfo.cs" />
+      <FileWrites Include="$(IntermediateOutputPath)AssemblyInfo.cs" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="_AxFixupAssemblyStrongNaming"
+          Condition=" '$(KeyContainerName)' == '' And '$(KeyOriginatorFile)' == 'AxantumStrongName.pfx' ">
+    <PropertyGroup>
+      <KeyOriginatorFile></KeyOriginatorFile>
+      <SignAssembly>false</SignAssembly>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="_AxBeforeBuild"
+          DependsOnTargets="_AxFixupVersion">
     <PropertyGroup Condition=" '$(_AxIsAxantum)' == 'true' ">
-        <CoreBuildDependsOn>
-            _AxCheckBuildEnvironment;
-            _AxSetupStrongNaming;
-            $(CoreBuildDependsOn)
-        </CoreBuildDependsOn>
-        <BuildDependsOn>
-            _AxBeforeBuild;
-            $(BuildDependsOn);
-            _AxAfterBuild
-        </BuildDependsOn>
-        <PrepareForRunDependsOn>
-            $(PrepareForRunDependsOn);
-            _AxSetRevisionAndCopyToVersionedFileName
-        </PrepareForRunDependsOn>
+      <_AxPreviousDefineConstants>$(DefineConstants)</_AxPreviousDefineConstants>
+      <DefineConstants>$(DefineConstants);AXANTUM</DefineConstants>
     </PropertyGroup>
+  </Target>
 
-    <Target Name="BeforeCompile"
-            DependsOnTargets="_AxFixupAssemblyStrongNaming">
-    </Target>
+  <Target Name="_AxAfterBuild">
+    <PropertyGroup Condition=" '$(_AxIsAxantum)' == 'true' ">
+      <DefineConstants>$(_AxPreviousDefineConstants)</DefineConstants>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="_AxSetupStrongNaming"
+          Condition=" '$(_AxIsAxantum)' == 'true' ">
+    <PropertyGroup>
+      <KeyOriginatorFile>AxantumStrongName.pfx</KeyOriginatorFile>
+      <SignAssembly>true</SignAssembly>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="_AxCheckBuildEnvironment">
+  </Target>
+
+  <PropertyGroup>
+    <PrepareForRunDependsOn>
+      $(PrepareForRunDependsOn);
+      _AxFindIlMergeAssemblies;_AxMergeAndSign
+    </PrepareForRunDependsOn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(_AxIsAxantum)' == 'true' ">
+    <CoreBuildDependsOn>
+      _AxCheckBuildEnvironment;
+      _AxSetupStrongNaming;
+      $(CoreBuildDependsOn)
+    </CoreBuildDependsOn>
+    <BuildDependsOn>
+      _AxBeforeBuild;
+      $(BuildDependsOn);
+      _AxAfterBuild
+    </BuildDependsOn>
+    <PrepareForRunDependsOn>
+      $(PrepareForRunDependsOn);
+      _AxSetRevisionAndCopyToVersionedFileName
+    </PrepareForRunDependsOn>
+  </PropertyGroup>
+
+  <Target Name="BeforeCompile"
+          DependsOnTargets="_AxFixupAssemblyStrongNaming">
+  </Target>
 </Project>

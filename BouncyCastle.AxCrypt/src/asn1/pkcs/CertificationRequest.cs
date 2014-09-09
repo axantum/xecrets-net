@@ -30,7 +30,7 @@ namespace Org.BouncyCastle.Asn1.Pkcs
 			if (obj != null)
 				return new CertificationRequest((Asn1Sequence)obj);
 
-			throw new ArgumentException("Null object in GetInstance()", "obj");
+			return null;
 		}
 
 		protected CertificationRequest()

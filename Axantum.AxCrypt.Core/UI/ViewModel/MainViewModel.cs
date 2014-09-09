@@ -33,8 +33,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Security;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
@@ -156,19 +154,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private static void UpdateDebugMode(bool enabled)
         {
-            if (enabled)
-            {
-                Instance.Log.SetLevel(LogLevel.Debug);
-                ServicePointManager.ServerCertificateValidationCallback = (object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) =>
-                {
-                    return true;
-                };
-            }
-            else
-            {
-                ServicePointManager.ServerCertificateValidationCallback = null;
-                Instance.Log.SetLevel(LogLevel.Error);
-            }
+            Instance.Log.SetLevel(enabled ? LogLevel.Debug : LogLevel.Error);
+            OS.Current.DebugMode(enabled);
         }
 
         private void UpdateUpdateCheck(Version currentVersion)

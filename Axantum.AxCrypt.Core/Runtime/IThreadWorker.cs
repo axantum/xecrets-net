@@ -32,7 +32,7 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
-    public interface IThreadWorker
+    public interface IThreadWorker : IDisposable
     {
         /// <summary>
         /// Start the asynchronous execution of the work.
@@ -67,9 +67,15 @@ namespace Axantum.AxCrypt.Core.Runtime
         event EventHandler<ThreadWorkerEventArgs> Work;
 
         /// <summary>
-        /// Raised when all is done. Runs on the original thread, typically
+        /// Raised when all is about to be done. Runs on the original thread, typically
         /// the GUI thread.
         /// </summary>
         event EventHandler<ThreadWorkerEventArgs> Completing;
+
+        /// <summary>
+        /// Raised when all is done. Runs on the original thread, typically
+        /// the GUI thread.
+        /// </summary>
+        event EventHandler<ThreadWorkerEventArgs> Completed;
     }
 }
