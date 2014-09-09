@@ -61,7 +61,9 @@ namespace Newtonsoft.Json.Serialization
 
         internal JsonContract KeyContract { get; set; }
 
+#if (NET20 || NET35)
         private readonly bool _isDictionaryValueTypeNullableType;
+#endif
         private readonly Type _genericCollectionDefinitionType;
 
         private Type _genericWrapperType;
@@ -134,10 +136,10 @@ namespace Newtonsoft.Json.Serialization
             DictionaryKeyType = keyType;
             DictionaryValueType = valueType;
 
-            if (DictionaryValueType != null)
-                _isDictionaryValueTypeNullableType = ReflectionUtils.IsNullableType(DictionaryValueType);
-
 #if (NET20 || NET35)
+            if (DictionaryValueType != null)
+            _isDictionaryValueTypeNullableType = ReflectionUtils.IsNullableType(DictionaryValueType);
+
       Type tempDictioanryType;
 
         // bug in .NET 2.0 & 3.5 that Dictionary<TKey, Nullable<TValue>> throws an error when adding null via IDictionary[key] = object
