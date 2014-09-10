@@ -34,6 +34,7 @@ using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Forms;
 using Axantum.AxCrypt.Mono;
 using Axantum.AxCrypt.Mono.Portable;
 using System;
@@ -107,6 +108,7 @@ namespace Axantum.AxCrypt
             Factory.Instance.Register<Version, UpdateCheck>((version) => new UpdateCheck(version));
             Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
             Factory.Instance.Register<IterationCalculator>(() => new IterationCalculator());
+            Factory.Instance.Register<IDataProtection>(() => new DataProtection());
 
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
             Factory.Instance.Register<string, IFileWatcher>((path) => new FileWatcher(path, new DelayedAction(new DelayTimer(), Instance.UserSettings.SessionNotificationMinimumIdle)));

@@ -119,15 +119,6 @@ namespace Axantum.AxCrypt.Core.Test
             return WebCallerCreator();
         }
 
-        #region IRuntimeEnvironment Members
-
-        public IDataProtection DataProtection
-        {
-            get { return new FakeDataProtection(); }
-        }
-
-        #endregion IRuntimeEnvironment Members
-
         public bool CanTrackProcess
         {
             get { return false; }

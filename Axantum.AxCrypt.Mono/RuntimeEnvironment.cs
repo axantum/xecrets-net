@@ -114,11 +114,6 @@ namespace Axantum.AxCrypt.Mono
             return new WebCaller();
         }
 
-        public IDataProtection DataProtection
-        {
-            get { return new DataProtection(); }
-        }
-
         public bool CanTrackProcess
         {
             get { return Platform == Platform.WindowsDesktop; }

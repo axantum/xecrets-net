@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Portable\AxCryptHMACSHA1.cs" />
-    <Compile Include="DataProtection.cs" />
     <Compile Include="DelayTimer.cs" />
     <Compile Include="DelegateTraceListener.cs" />
     <Compile Include="FileWatcher.cs" />

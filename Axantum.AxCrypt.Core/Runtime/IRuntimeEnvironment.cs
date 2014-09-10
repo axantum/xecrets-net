@@ -49,8 +49,6 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         IWebCaller CreateWebCaller();
 
-        IDataProtection DataProtection { get; }
-
         bool CanTrackProcess { get; }
 
         string EnvironmentVariable(string name);

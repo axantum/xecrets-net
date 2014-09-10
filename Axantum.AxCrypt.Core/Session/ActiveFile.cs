@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
@@ -194,11 +195,11 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                return OS.Current.DataProtection.Protect(Encoding.UTF8.GetBytes(Instance.Portable.Path().GetFileName(DecryptedFileInfo.FullName)));
+                return Factory.New<IDataProtection>().Protect(Encoding.UTF8.GetBytes(Instance.Portable.Path().GetFileName(DecryptedFileInfo.FullName)));
             }
             set
             {
-                byte[] bytes = OS.Current.DataProtection.Unprotect(value);
+                byte[] bytes = Factory.New<IDataProtection>().Unprotect(value);
                 _decryptedName = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
             }
         }

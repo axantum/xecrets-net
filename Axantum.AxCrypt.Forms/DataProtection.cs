@@ -25,16 +25,16 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using Axantum.AxCrypt.Core.Runtime;
 
-namespace Axantum.AxCrypt.Mono
+namespace Axantum.AxCrypt.Forms
 {
-    internal class DataProtection : IDataProtection
+    public class DataProtection : IDataProtection
     {
         #region IDataProtection Members
 
