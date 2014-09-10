@@ -235,20 +235,20 @@ namespace Org.BouncyCastle.Pkix
 						// ldap://directory.d-trust.net/CN=D-TRUST
 						// Qualified CA 2003 1:PN,O=D-Trust GmbH,C=DE
 						// skip "ldap://"
-						location = location.Substring(7);
+//						location = location.Substring(7);
 						// after first / baseDN starts
-						string url;//, baseDN;
-						int slashPos = location.IndexOf('/');
-						if (slashPos != -1)
-						{
-							url = "ldap://" + location.Substring(0, slashPos);
+//						string url;//, baseDN;
+//						int slashPos = location.IndexOf('/');
+//						if (slashPos != -1)
+//						{
+//							url = "ldap://" + location.Substring(0, slashPos);
 //							baseDN = location.Substring(slashPos);
-						}
-						else
-						{
-							url = "ldap://" + location;
+//						}
+//						else
+//						{
+//							url = "ldap://" + location;
 //							baseDN = nsull;
-						}
+//						}
 
 						throw Platform.CreateNotImplementedException("LDAP cert/CRL stores");
 

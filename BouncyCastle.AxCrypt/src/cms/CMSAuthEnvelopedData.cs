@@ -17,11 +17,11 @@ namespace Org.BouncyCastle.Cms
 		internal RecipientInformationStore recipientInfoStore;
 		internal ContentInfo contentInfo;
 
-		private OriginatorInfo      originator;
+		// OriginatorInfo      originator;
 		private AlgorithmIdentifier authEncAlg;
-		private Asn1Set             authAttrs;
-		private byte[]              mac;
-		private Asn1Set             unauthAttrs;
+		//private Asn1Set             authAttrs;
+		//private byte[]              mac;
+		//private Asn1Set             unauthAttrs;
 	
 		public CmsAuthEnvelopedData(
 			byte[] authEnvData)
@@ -42,7 +42,7 @@ namespace Org.BouncyCastle.Cms
 
 			AuthEnvelopedData authEnvData = AuthEnvelopedData.GetInstance(contentInfo.Content);
 
-			this.originator = authEnvData.OriginatorInfo;
+			//this.originator = authEnvData.OriginatorInfo;
 
 			//
 	        // read the recipients
@@ -63,9 +63,9 @@ namespace Org.BouncyCastle.Cms
 				recipientInfos, secureReadable);
 
 			// FIXME These need to be passed to the AEAD cipher as AAD (Additional Authenticated Data)
-			this.authAttrs = authEnvData.AuthAttrs;
-			this.mac = authEnvData.Mac.GetOctets();
-			this.unauthAttrs = authEnvData.UnauthAttrs;
+			//this.authAttrs = authEnvData.AuthAttrs;
+			//this.mac = authEnvData.Mac.GetOctets();
+			//this.unauthAttrs = authEnvData.UnauthAttrs;
 		}
 
 		private class AuthEnvelopedSecureReadable : CmsSecureReadable

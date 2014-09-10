@@ -5,7 +5,7 @@ namespace Org.BouncyCastle.Bcpg
 {
     public abstract class OutputStreamPacket
     {
-        private readonly BcpgOutputStream bcpgOut;
+        //private readonly BcpgOutputStream bcpgOut;
 
 		internal OutputStreamPacket(
             BcpgOutputStream bcpgOut)
@@ -13,7 +13,7 @@ namespace Org.BouncyCastle.Bcpg
 			if (bcpgOut == null)
 				throw new ArgumentNullException("bcpgOut");
 
-			this.bcpgOut = bcpgOut;
+		//	this.bcpgOut = bcpgOut;
         }
 
 		public abstract BcpgOutputStream Open();

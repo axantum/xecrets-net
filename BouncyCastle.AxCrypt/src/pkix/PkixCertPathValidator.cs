@@ -193,10 +193,10 @@ namespace Org.BouncyCastle.Pkix
                         -1);
             }
 
-            AlgorithmIdentifier workingAlgId = null;
+            //AlgorithmIdentifier workingAlgId = null;
             try
             {
-                workingAlgId = PkixCertPathValidatorUtilities.GetAlgorithmIdentifier(workingPublicKey);
+                /*workingAlgId = */PkixCertPathValidatorUtilities.GetAlgorithmIdentifier(workingPublicKey);
             }
             catch (PkixCertPathValidatorException e)
             {
@@ -356,7 +356,7 @@ namespace Org.BouncyCastle.Pkix
                         throw new PkixCertPathValidatorException("Next working key could not be retrieved.", e, certPath, index);
                     }
 
-                    workingAlgId = PkixCertPathValidatorUtilities.GetAlgorithmIdentifier(workingPublicKey);
+                    /*workingAlgId = */PkixCertPathValidatorUtilities.GetAlgorithmIdentifier(workingPublicKey);
                     // (f)
 //                    workingPublicKeyAlgorithm = workingAlgId.ObjectID;
                     // (e)
