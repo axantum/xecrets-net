@@ -20,11 +20,6 @@ namespace Axantum.AxCrypt.Mono.Portable
             _rng.GetBytes(data);
         }
 
-        public override void GetNonZeroBytes(byte[] data)
-        {
-            _rng.GetNonZeroBytes(data);
-        }
-
         public override void Dispose()
         {
             _rng.Dispose();

@@ -10,8 +10,6 @@ namespace Axantum.AxCrypt.Core.Portable
     {
         public abstract void GetBytes(byte[] data);
 
-        public abstract void GetNonZeroBytes(byte[] data);
-
         public abstract void Dispose();
     }
 }
