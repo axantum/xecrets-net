@@ -34,7 +34,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Axantum.AxCrypt.Mono
+namespace Axantum.AxCrypt.Desktop
 {
     public class FileWatcher : IFileWatcher
     {

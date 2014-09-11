@@ -48,7 +48,6 @@ namespace Axantum.AxCrypt.Mono.Test
         {
             _tempPath = Path.Combine(Path.GetTempPath(), "Axantum.AxCrypt.Mono.Test.TestRuntimeFileInfo");
             Directory.CreateDirectory(_tempPath);
-            Factory.Instance.Register<string, IFileWatcher>((path) => new FileWatcher(path, new DelayedAction(new DelayTimer(), TimeSpan.FromMilliseconds(1))));
             Factory.Instance.Register<string, IRuntimeFileInfo>((path) => new RuntimeFileInfo(path));
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
             Factory.Instance.Singleton<IPortableFactory>(() => new PortableFactory());

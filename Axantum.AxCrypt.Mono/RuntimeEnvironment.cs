@@ -37,8 +37,6 @@ namespace Axantum.AxCrypt.Mono
 {
     public class RuntimeEnvironment : IRuntimeEnvironment, IDisposable
     {
-        private IFileWatcher _workFolderWatcher;
-
         public RuntimeEnvironment(string extension)
         {
             AxCryptExtension = extension;
@@ -135,11 +133,6 @@ namespace Axantum.AxCrypt.Mono
 
         private void DisposeInternal()
         {
-            if (_workFolderWatcher != null)
-            {
-                _workFolderWatcher.Dispose();
-                _workFolderWatcher = null;
-            }
             if (_firstInstanceMutex != null)
             {
                 _firstInstanceMutex.Close();

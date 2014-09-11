@@ -30,13 +30,14 @@ using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Mono;
 using Axantum.AxCrypt.Mono.Portable;
 using NUnit.Framework;
 using System;
 using System.IO;
 using System.Linq;
 
-namespace Axantum.AxCrypt.Mono.Test
+namespace Axantum.AxCrypt.Desktop.Test
 {
     [TestFixture]
     public static class TestFileWatcher
@@ -62,6 +63,41 @@ namespace Axantum.AxCrypt.Mono.Test
         {
             Factory.Instance.Clear();
             Directory.Delete(_tempPath, true);
+        }
+
+        [Test]
+        public static void TestFileWatcherSimple()
+        {
+            bool wasHere = false;
+            using (IFileWatcher fileWatcher = Factory.New<IFileWatcher>(Instance.WorkFolder.FileInfo.FullName))
+            {
+                fileWatcher.FileChanged += (object sender, FileWatcherEventArgs e) =>
+                {
+                    wasHere = true;
+                };
+                IRuntimeFileInfo tempFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(Instance.WorkFolder.FileInfo.FullName, "AxCryptTestTemp.tmp"));
+                try
+                {
+                    using (Stream stream = tempFileInfo.OpenWrite())
+                    {
+                    }
+                    for (int i = 0; !wasHere && i < 20; ++i)
+                    {
+                        new Sleep().Time(new TimeSpan(0, 0, 0, 0, 100));
+                    }
+                    Assert.That(wasHere, "The FileWatcher should have noticed the creation of a file.");
+                }
+                finally
+                {
+                    wasHere = false;
+                    tempFileInfo.Delete();
+                }
+                for (int i = 0; !wasHere && i < 20; ++i)
+                {
+                    new Sleep().Time(new TimeSpan(0, 0, 0, 0, 100));
+                }
+                Assert.That(wasHere, "The FileWatcher should have noticed the deletion of a file.");
+            }
         }
 
         [Test]

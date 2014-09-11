@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newtonsoft.Json.Portable40"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BouncyCastle.AxCrypt", "BouncyCastle.AxCrypt\BouncyCastle.AxCrypt.csproj", "{3680C939-B21F-4444-B646-42FB4B29A786}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Desktop", "Axantum.AxCrypt.Desktop\Axantum.AxCrypt.Desktop.csproj", "{D64DE570-3A36-49D3-95AA-9262647B04EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Desktop.Test", "Axantum.AxCrypt.Desktop.Test\Axantum.AxCrypt.Desktop.Test.csproj", "{79C1CBFF-B54E-43FC-A4CB-E6AF0AA1D0FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +65,14 @@ Global
 		{3680C939-B21F-4444-B646-42FB4B29A786}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3680C939-B21F-4444-B646-42FB4B29A786}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3680C939-B21F-4444-B646-42FB4B29A786}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D64DE570-3A36-49D3-95AA-9262647B04EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D64DE570-3A36-49D3-95AA-9262647B04EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D64DE570-3A36-49D3-95AA-9262647B04EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D64DE570-3A36-49D3-95AA-9262647B04EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79C1CBFF-B54E-43FC-A4CB-E6AF0AA1D0FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79C1CBFF-B54E-43FC-A4CB-E6AF0AA1D0FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79C1CBFF-B54E-43FC-A4CB-E6AF0AA1D0FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79C1CBFF-B54E-43FC-A4CB-E6AF0AA1D0FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

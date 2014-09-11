@@ -50,7 +50,6 @@ namespace Axantum.AxCrypt.Mono.Test
             _workFolderPath = Path.Combine(Path.GetTempPath(), @"Axantum.AxCrypt.Mono.Test.TestRuntimeEnvironment\");
             Directory.CreateDirectory(_workFolderPath);
 
-            Factory.Instance.Register<string, IFileWatcher>((path) => new FileWatcher(path, new DelayedAction(new DelayTimer(), TimeSpan.FromMilliseconds(1))));
             Factory.Instance.Register<string, IRuntimeFileInfo>((path) => new RuntimeFileInfo(path));
             Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
             Factory.Instance.Singleton<IPortableFactory>(() => new PortableFactory());
@@ -127,41 +126,6 @@ namespace Axantum.AxCrypt.Mono.Test
             DateTime utcNow = DateTime.UtcNow;
             DateTime utcNowAgain = OS.Current.UtcNow;
             Assert.That(utcNowAgain - utcNow < new TimeSpan(0, 0, 1), "The difference should not be greater than one second, that's not reasonable.");
-        }
-
-        [Test]
-        public static void TestFileWatcher()
-        {
-            bool wasHere = false;
-            using (IFileWatcher fileWatcher = Factory.New<IFileWatcher>(Instance.WorkFolder.FileInfo.FullName))
-            {
-                fileWatcher.FileChanged += (object sender, FileWatcherEventArgs e) =>
-                {
-                    wasHere = true;
-                };
-                IRuntimeFileInfo tempFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(Instance.WorkFolder.FileInfo.FullName, "AxCryptTestTemp.tmp"));
-                try
-                {
-                    using (Stream stream = tempFileInfo.OpenWrite())
-                    {
-                    }
-                    for (int i = 0; !wasHere && i < 20; ++i)
-                    {
-                        new Sleep().Time(new TimeSpan(0, 0, 0, 0, 100));
-                    }
-                    Assert.That(wasHere, "The FileWatcher should have noticed the creation of a file.");
-                }
-                finally
-                {
-                    wasHere = false;
-                    tempFileInfo.Delete();
-                }
-                for (int i = 0; !wasHere && i < 20; ++i)
-                {
-                    new Sleep().Time(new TimeSpan(0, 0, 0, 0, 100));
-                }
-                Assert.That(wasHere, "The FileWatcher should have noticed the deletion of a file.");
-            }
         }
     }
 }
