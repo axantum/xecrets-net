@@ -69,13 +69,13 @@ namespace Axantum.AxCrypt.Desktop.Test
         public static void TestFileWatcherSimple()
         {
             bool wasHere = false;
-            using (IFileWatcher fileWatcher = Factory.New<IFileWatcher>(Instance.WorkFolder.FileInfo.FullName))
+            using (IFileWatcher fileWatcher = Factory.New<IFileWatcher>(_tempPath))
             {
                 fileWatcher.FileChanged += (object sender, FileWatcherEventArgs e) =>
                 {
                     wasHere = true;
                 };
-                IRuntimeFileInfo tempFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(Instance.WorkFolder.FileInfo.FullName, "AxCryptTestTemp.tmp"));
+                IRuntimeFileInfo tempFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(_tempPath, "AxCryptTestTemp.tmp"));
                 try
                 {
                     using (Stream stream = tempFileInfo.OpenWrite())

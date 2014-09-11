@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Mono", "Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.csproj", "{CE9E8614-8DC5-4757-9384-3C416AB61A47}"
 EndProject
@@ -26,6 +26,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Desktop.Test", "Axantum.AxCrypt.Desktop.Test\Axantum.AxCrypt.Desktop.Test.csproj", "{79C1CBFF-B54E-43FC-A4CB-E6AF0AA1D0FF}"
 EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.projitems*{79c4901a-bcaa-49aa-a789-6a8f97acc881}*SharedItemsImports = 4
+		Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.projitems*{2689b1ef-29af-4f3e-a7ec-c87ff66dc403}*SharedItemsImports = 4
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
