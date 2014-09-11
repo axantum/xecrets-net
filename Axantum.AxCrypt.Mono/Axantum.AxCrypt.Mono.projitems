@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{E012DEFD-DD3A-411F-BDE3-6BCB12D96120}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Axantum.AxCrypt.Mono</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)DelayTimer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DelegateTraceListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HttpRequestClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HttpRequestServer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Launcher.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logging.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RuntimeEnvironment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RuntimeFileInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sleep.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ThreadWorker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Timing.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WebCaller.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Portable\AxCryptHMACSHA1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Portable\CryptographyCryptoTransformWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Portable\PortableCryptoStreamWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Portable\PortableCryptoTransformWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Portable\PortableFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Portable\PortableHashAlgorithmWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Portable\PortableHmacWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Portable\PortablePathImplementation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Portable\PortableRandomNumberGeneratorWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Portable\PortableSemaphoreWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Portable\PortableSymmetricAlgorithmWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Portable\SingleThread.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Portable\" />
+  </ItemGroup>
+</Project>

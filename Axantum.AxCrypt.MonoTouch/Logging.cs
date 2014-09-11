@@ -36,11 +36,17 @@ using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.MonoTouch
 {
-    internal class Logging : ILogging
+	internal class Logging : ILogging
     {
         private LogLevel _level = LogLevel.Error;
 
         #region ILogging Members
+
+		public event EventHandler<LoggingEventArgs> Logged;
+
+		public void Dispose ()
+		{
+		}
         
         public void SetLevel(LogLevel level)
         {

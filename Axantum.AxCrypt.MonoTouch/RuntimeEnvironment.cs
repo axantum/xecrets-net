@@ -23,6 +23,7 @@
  * http://www.axantum.com for more information about the author.
 */
 using Axantum.AxCrypt.Mono;
+using Axantum.AxCrypt.Core;
 
 #endregion Coypright and License
 
@@ -37,7 +38,7 @@ namespace Axantum.AxCrypt.MonoTouch
 {
     public class RuntimeEnvironment : Mono.RuntimeEnvironment
     {
-        public RuntimeEnvironment() : base(TimeSpan.FromSeconds(1))
+        public RuntimeEnvironment() : base(".axx")
         {
         }
         
@@ -55,7 +56,7 @@ namespace Axantum.AxCrypt.MonoTouch
                 if (_temporaryDirectoryInfo == null)
                 {
                     string temporaryFolderPath = Path.Combine(Path.GetTempPath(), @"AxCrypt" + Path.DirectorySeparatorChar);
-                    IRuntimeFileInfo temporaryFolderInfo = FileInfo(temporaryFolderPath);
+					IRuntimeFileInfo temporaryFolderInfo = Factory.New<IRuntimeFileInfo>(temporaryFolderPath);
 					Directory.CreateDirectory (temporaryFolderPath);
                     _temporaryDirectoryInfo = temporaryFolderInfo;
                 }

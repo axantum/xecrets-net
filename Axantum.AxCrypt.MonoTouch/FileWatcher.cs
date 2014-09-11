@@ -33,33 +33,33 @@ namespace Axantum.AxCrypt.MonoTouch
     /// <summary>
     /// Placeholder-implementation of a FileSystemWatcher as its concept is not available on iOS.
     /// </summary>
-    public class FileWatcher : IFileWatcher
+	public class FileWatcher : IFileWatcher
     {
-        const string UnavailableMessage = "The FileSystemWatcher concept is not available on iOS";
-        
         public FileWatcher (string fileToWatch)
         {
-            throw new NotImplementedException(UnavailableMessage);
         }
         
 #region IFileWatcher implementation
         
-        event EventHandler<FileWatcherEventArgs> IFileWatcher.FileChanged {
-            add {
-                throw new NotImplementedException (UnavailableMessage);
-            }
-            remove {
-                throw new NotImplementedException (UnavailableMessage);
-            }
-        }
+		public event EventHandler<FileWatcherEventArgs> FileChanged;
+
+		protected virtual void OnFileChanged(FileWatcherEventArgs e)
+		{
+			EventHandler<FileWatcherEventArgs> handler = FileChanged;
+			if (handler != null)
+			{
+				handler(this, e);
+			}
+		}
+
+		public bool IncludeSubdirectories { get; set; }
         
 #endregion
         
 #region IDisposable implementation
         
-        void IDisposable.Dispose ()
+        public void Dispose ()
         {
-            throw new NotImplementedException (UnavailableMessage);
         }
         
 #endregion
