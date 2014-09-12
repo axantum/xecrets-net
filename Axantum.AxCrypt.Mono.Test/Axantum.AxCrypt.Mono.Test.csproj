@@ -67,6 +67,10 @@
       <Project>{959F7F85-C98B-4876-971A-9036224578E4}</Project>
       <Name>Newtonsoft.Json.Portable40</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.csproj">
+      <Project>{CE9E8614-8DC5-4757-9384-3C416AB61A47}</Project>
+      <Name>Axantum.AxCrypt.Mono</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />
