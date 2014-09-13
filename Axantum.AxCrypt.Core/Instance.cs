@@ -41,6 +41,19 @@ namespace Axantum.AxCrypt.Core
     /// </summary>
     public static class Instance
     {
+        public static void RegisterTypeFactories(string workFolderPath)
+        {
+            Factory.Instance.Singleton<KnownKeys>(() => new KnownKeys(Instance.FileSystemState, Instance.SessionNotify));
+            Factory.Instance.Singleton<UserAsymmetricKeysStore>(() => new UserAsymmetricKeysStore(Instance.WorkFolder.FileInfo, Instance.KnownKeys));
+            Factory.Instance.Singleton<ParallelFileOperation>(() => new ParallelFileOperation());
+            Factory.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(Instance.WorkFolder.FileInfo.Combine("FileSystemState.xml")));
+            Factory.Instance.Singleton<ProcessState>(() => new ProcessState());
+            Factory.Instance.Singleton<IUserSettings>(() => new UserSettings(Instance.WorkFolder.FileInfo.Combine("UserSettings.txt"), Factory.New<IterationCalculator>()));
+            Factory.Instance.Singleton<SessionNotify>(() => new SessionNotify());
+            Factory.Instance.Singleton<WorkFolder>(() => new WorkFolder(workFolderPath), () => Factory.Instance.Singleton<WorkFolderWatcher>());
+            Factory.Instance.Singleton<IRandomGenerator>(() => new RandomGenerator());
+        }
+
         public static KnownKeys KnownKeys
         {
             get { return Factory.Instance.Singleton<KnownKeys>(); }

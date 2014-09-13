@@ -84,16 +84,35 @@ namespace Axantum.AxCrypt.Core
             SetAndDisposeIfDisposable(typeof(TResult), creator);
         }
 
+        /// <summary>
+        /// Register a method that creates an instance of the given type, taking a single argument.
+        /// A second registration of the same type overwrites the first.
+        /// </summary>
+        /// <typeparam name="TResult">The type to register a factory for.</typeparam>
+        /// <param name="creator">The Func<TArg, TResult> delegate that creates an instance.</param>
         public void Register<TArgument, TResult>(Func<TArgument, TResult> creator)
         {
             SetAndDisposeIfDisposable(typeof(TResult), creator);
         }
 
+        /// <summary>
+        /// Register a method that creates a singleton instance of the given type. This is lazy-evaluated at the first
+        /// request to resolve the type.
+        /// </summary>
+        /// <typeparam name="TResult">The type of the singleton instance.</typeparam>
+        /// <param name="creator">The method delegate that creates the singleton.</param>
         public void Singleton<TResult>(Func<TResult> creator)
         {
             Singleton(creator, () => { });
         }
 
+        /// <summary>
+        /// Register a method that creates a singleton instance of the given type, and an Action delegate to
+        /// execute after creating the instance. Use this to ensure correct dependency ordering.
+        /// </summary>
+        /// <typeparam name="TResult">The type of the singleton instance.</typeparam>
+        /// <param name="creator">The method delegate that creates the singleton.</param>
+        /// <param name="postAction">The method delegate to execute after creating the singleton.</param>
         public void Singleton<TResult>(Func<TResult> creator, Action postAction)
         {
             SetAndDisposeIfDisposable(typeof(TResult), new Creator<TResult>(creator, postAction));
@@ -109,6 +128,12 @@ namespace Axantum.AxCrypt.Core
             _mapping[type] = value;
         }
 
+        /// <summary>
+        /// Resolve a singleton instance of the given type. The method delegate registered to provide the instance is
+        /// only called once, on the first call.
+        /// </summary>
+        /// <typeparam name="TResult">The type of the singleton to resolve.</typeparam>
+        /// <returns>A singleton instance of the given type.</returns>
         public TResult Singleton<TResult>() where TResult : class
         {
             object o;

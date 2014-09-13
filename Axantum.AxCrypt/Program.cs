@@ -79,20 +79,12 @@ namespace Axantum.AxCrypt
         private static void RegisterTypeFactories(string startPath)
         {
             string workFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"AxCrypt" + Path.DirectorySeparatorChar);
-
+            Instance.RegisterTypeFactories(workFolderPath);
             Factory.Instance.Singleton<IPortableFactory>(() => new PortableFactory());
+
             Factory.Instance.Singleton<WorkFolderWatcher>(() => new WorkFolderWatcher());
-            Factory.Instance.Singleton<WorkFolder>(() => new WorkFolder(workFolderPath), () => Factory.Instance.Singleton<WorkFolderWatcher>());
             Factory.Instance.Singleton<ILogging>(() => new Logging());
             Factory.Instance.Singleton<CommandService>(() => new CommandService(new HttpRequestServer(), new HttpRequestClient()));
-            Factory.Instance.Singleton<IUserSettings>(() => new UserSettings(Instance.WorkFolder.FileInfo.Combine("UserSettings.txt"), Factory.New<IterationCalculator>()));
-            Factory.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(Instance.WorkFolder.FileInfo.Combine("FileSystemState.xml")));
-            Factory.Instance.Singleton<KnownKeys>(() => new KnownKeys(Instance.FileSystemState, Instance.SessionNotify));
-            Factory.Instance.Singleton<UserAsymmetricKeysStore>(() => new UserAsymmetricKeysStore(Instance.WorkFolder.FileInfo, Instance.KnownKeys));
-            Factory.Instance.Singleton<ParallelFileOperation>(() => new ParallelFileOperation());
-            Factory.Instance.Singleton<ProcessState>(() => new ProcessState());
-            Factory.Instance.Singleton<SessionNotify>(() => new SessionNotify());
-            Factory.Instance.Singleton<IRandomGenerator>(() => new RandomGenerator());
             Factory.Instance.Singleton<CryptoFactory>(() => CreateCryptoFactory(startPath));
             Factory.Instance.Singleton<CryptoPolicy>(() => CreateCryptoPolicy(startPath));
             Factory.Instance.Singleton<ICryptoPolicy>(() => Factory.Instance.Singleton<CryptoPolicy>().CreateDefault());
