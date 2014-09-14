@@ -79,33 +79,15 @@ namespace Axantum.AxCrypt
         private static void RegisterTypeFactories(string startPath)
         {
             string workFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"AxCrypt" + Path.DirectorySeparatorChar);
-            Instance.RegisterTypeFactories(workFolderPath);
-            Factory.Instance.Singleton<IPortableFactory>(() => new PortableFactory());
 
-            Factory.Instance.Singleton<WorkFolderWatcher>(() => new WorkFolderWatcher());
-            Factory.Instance.Singleton<ILogging>(() => new Logging());
-            Factory.Instance.Singleton<CommandService>(() => new CommandService(new HttpRequestServer(), new HttpRequestClient()));
+            Instance.RegisterTypeFactories(workFolderPath);
+            RuntimeEnvironment.RegisterTypeFactories();
+
             Factory.Instance.Singleton<CryptoFactory>(() => CreateCryptoFactory(startPath));
             Factory.Instance.Singleton<CryptoPolicy>(() => CreateCryptoPolicy(startPath));
             Factory.Instance.Singleton<ICryptoPolicy>(() => Factory.Instance.Singleton<CryptoPolicy>().CreateDefault());
-            Factory.Instance.Singleton<CommandHandler>(() => new CommandHandler());
-            Factory.Instance.Singleton<ActiveFileWatcher>(() => new ActiveFileWatcher());
-            Factory.Instance.Singleton<IAsymmetricFactory>(() => new BouncyCastleAsymmetricFactory());
 
-            Factory.Instance.Register<AxCryptFactory>(() => new AxCryptFactory());
-            Factory.Instance.Register<AxCryptFile>(() => new AxCryptFile());
-            Factory.Instance.Register<ActiveFileAction>(() => new ActiveFileAction());
-            Factory.Instance.Register<ISleep>(() => new Sleep());
-            Factory.Instance.Register<FileOperation>(() => new FileOperation(Instance.FileSystemState, Instance.SessionNotify));
-            Factory.Instance.Register<int, Salt>((size) => new Salt(size));
-            Factory.Instance.Register<Version, UpdateCheck>((version) => new UpdateCheck(version));
-            Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
-            Factory.Instance.Register<IterationCalculator>(() => new IterationCalculator());
             Factory.Instance.Register<IDataProtection>(() => new DataProtection());
-
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
-            Factory.Instance.Register<string, IFileWatcher>((path) => new FileWatcher(path, new DelayedAction(new DelayTimer(), Instance.UserSettings.SessionNotificationMinimumIdle)));
-            Factory.Instance.Register<string, IRuntimeFileInfo>((path) => new RuntimeFileInfo(path));
         }
 
         private static CryptoFactory CreateCryptoFactory(string startPath)

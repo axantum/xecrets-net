@@ -25,8 +25,12 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Ipc;
+using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Mono.Portable;
 using System;
 using System.Net;
 using System.Net.Security;
@@ -37,6 +41,18 @@ namespace Axantum.AxCrypt.Mono
 {
     public class RuntimeEnvironment : IRuntimeEnvironment, IDisposable
     {
+        public static void RegisterTypeFactories()
+        {
+            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
+            Factory.Instance.Singleton<IPortableFactory>(() => new PortableFactory());
+            Factory.Instance.Singleton<ILogging>(() => new Logging());
+            Factory.Instance.Singleton<CommandService>(() => new CommandService(new HttpRequestServer(), new HttpRequestClient()));
+
+            Factory.Instance.Register<ISleep>(() => new Sleep());
+            Factory.Instance.Register<IDelayTimer>(() => new DelayTimer());
+            Factory.Instance.Register<string, IRuntimeFileInfo>((path) => new RuntimeFileInfo(path));
+        }
+
         public RuntimeEnvironment(string extension)
         {
             AxCryptExtension = extension;

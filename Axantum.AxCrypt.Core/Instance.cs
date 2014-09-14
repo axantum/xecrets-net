@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Ipc;
 using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
@@ -50,8 +51,21 @@ namespace Axantum.AxCrypt.Core
             Factory.Instance.Singleton<ProcessState>(() => new ProcessState());
             Factory.Instance.Singleton<IUserSettings>(() => new UserSettings(Instance.WorkFolder.FileInfo.Combine("UserSettings.txt"), Factory.New<IterationCalculator>()));
             Factory.Instance.Singleton<SessionNotify>(() => new SessionNotify());
+            Factory.Instance.Singleton<WorkFolderWatcher>(() => new WorkFolderWatcher());
             Factory.Instance.Singleton<WorkFolder>(() => new WorkFolder(workFolderPath), () => Factory.Instance.Singleton<WorkFolderWatcher>());
             Factory.Instance.Singleton<IRandomGenerator>(() => new RandomGenerator());
+            Factory.Instance.Singleton<CommandHandler>(() => new CommandHandler());
+            Factory.Instance.Singleton<ActiveFileWatcher>(() => new ActiveFileWatcher());
+            Factory.Instance.Singleton<IAsymmetricFactory>(() => new BouncyCastleAsymmetricFactory());
+
+            Factory.Instance.Register<AxCryptFactory>(() => new AxCryptFactory());
+            Factory.Instance.Register<AxCryptFile>(() => new AxCryptFile());
+            Factory.Instance.Register<ActiveFileAction>(() => new ActiveFileAction());
+            Factory.Instance.Register<FileOperation>(() => new FileOperation(Instance.FileSystemState, Instance.SessionNotify));
+            Factory.Instance.Register<int, Salt>((size) => new Salt(size));
+            Factory.Instance.Register<Version, UpdateCheck>((version) => new UpdateCheck(version));
+            Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
+            Factory.Instance.Register<IterationCalculator>(() => new IterationCalculator());
         }
 
         public static KnownKeys KnownKeys
