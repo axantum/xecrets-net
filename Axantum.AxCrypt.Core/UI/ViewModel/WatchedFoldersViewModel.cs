@@ -40,7 +40,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChangedEvents();
             SubscribeToModelEvents();
             SetWatchedFolders();
-            SetLogOnState(Instance.KnownKeys.IsLoggedOn);
+            SetLogOnState(Resolve.KnownKeys.IsLoggedOn);
         }
 
         private void InitializePropertyValues()
@@ -57,12 +57,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => Factory.New<IRuntimeFileInfo>(f))); });
+            BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => TypeMap.Resolve.New<IRuntimeFileInfo>(f))); });
         }
 
         private void SubscribeToModelEvents()
         {
-            Instance.SessionNotify.Notification += HandleSessionChanged;
+            Resolve.SessionNotify.Notification += HandleSessionChanged;
         }
 
         private static bool DetermineDroppableAsWatchedFolder(IEnumerable<IRuntimeFileInfo> files)
@@ -97,7 +97,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
                 case SessionNotificationType.LogOn:
                 case SessionNotificationType.LogOff:
-                    SetLogOnState(Instance.KnownKeys.IsLoggedOn);
+                    SetLogOnState(Resolve.KnownKeys.IsLoggedOn);
                     SetWatchedFolders();
                     break;
             }
@@ -105,7 +105,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void SetWatchedFolders()
         {
-            WatchedFolders = Instance.KnownKeys.LoggedOnWatchedFolders.Select(wf => wf.Path).ToList();
+            WatchedFolders = Resolve.KnownKeys.LoggedOnWatchedFolders.Select(wf => wf.Path).ToList();
         }
 
         private void SetLogOnState(bool isLoggedOn)
@@ -122,7 +122,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             foreach (string folder in folders)
             {
-                _fileSystemState.AddWatchedFolder(new WatchedFolder(folder, Instance.KnownKeys.DefaultEncryptionKey.Thumbprint));
+                _fileSystemState.AddWatchedFolder(new WatchedFolder(folder, Resolve.KnownKeys.DefaultEncryptionKey.Thumbprint));
             }
             _fileSystemState.Save();
         }
@@ -135,7 +135,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             foreach (string watchedFolderPath in folders)
             {
-                _fileSystemState.RemoveWatchedFolder(Factory.New<IRuntimeFileInfo>(watchedFolderPath));
+                _fileSystemState.RemoveWatchedFolder(TypeMap.Resolve.New<IRuntimeFileInfo>(watchedFolderPath));
             }
             _fileSystemState.Save();
         }

@@ -268,7 +268,7 @@ namespace Axantum.AxCrypt.Core.Test
                 didComplete = true;
             };
 
-            using (IThreadWorker threadWorker = Instance.Portable.ThreadWorker(progress, false))
+            using (IThreadWorker threadWorker = Resolve.Portable.ThreadWorker(progress, false))
             {
                 threadWorker.Work += (object sender, ThreadWorkerEventArgs e) =>
                 {

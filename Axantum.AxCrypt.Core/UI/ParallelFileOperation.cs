@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Core.UI
         public virtual void DoFiles(IEnumerable<IRuntimeFileInfo> files, Func<IRuntimeFileInfo, IProgressContext, FileOperationContext> work, Action<FileOperationContext> allComplete)
         {
             WorkerGroup workerGroup = null;
-            Instance.ProgressBackground.Work(
+            Resolve.ProgressBackground.Work(
                 (IProgressContext progress) =>
                 {
                     using (workerGroup = new WorkerGroup(OS.Current.MaxConcurrency, progress))

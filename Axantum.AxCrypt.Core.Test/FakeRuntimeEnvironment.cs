@@ -59,7 +59,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         public static FakeRuntimeEnvironment Instance
         {
-            get { return (FakeRuntimeEnvironment)Factory.Instance.Singleton<IRuntimeEnvironment>(); }
+            get { return (FakeRuntimeEnvironment)TypeMap.Resolve.Singleton<IRuntimeEnvironment>(); }
         }
 
         private static DateTime StandardTimeFunction()

@@ -42,9 +42,9 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
-            Factory.Instance.Singleton<IPortableFactory>(() => new PortableFactory());
-            Factory.Instance.Singleton<CryptoFactory>(() => CreateCryptoFactory());
-            Factory.Instance.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
+            TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
+            TypeMap.Register.Singleton<CryptoFactory>(() => CreateCryptoFactory());
+            TypeMap.Register.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
         }
 
         private static CryptoFactory CreateCryptoFactory()
@@ -59,14 +59,14 @@ namespace Axantum.AxCrypt.Core.Test
         [TearDown]
         public static void Teardown()
         {
-            Factory.Instance.Clear();
+            TypeMap.Register.Clear();
         }
 
         [Test]
         public static void TestClone()
         {
-            Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
+            TypeMap.Register.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
 
             V2UnicodeFileNameInfoEncryptedHeaderBlock headerBlock = new V2UnicodeFileNameInfoEncryptedHeaderBlock(new V2AesCrypto(SymmetricKey.Zero256, SymmetricIV.Zero128, 0));
             headerBlock.FileName = "A file name";
@@ -79,8 +79,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestBadDataCausedByBadKeyForExample()
         {
-            Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
+            TypeMap.Register.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
 
             V2UnicodeFileNameInfoEncryptedHeaderBlock headerBlock = new V2UnicodeFileNameInfoEncryptedHeaderBlock(new V2AesCrypto(SymmetricKey.Zero256, SymmetricIV.Zero128, 0));
             headerBlock.FileName = "A file name";

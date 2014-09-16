@@ -35,7 +35,7 @@ namespace Axantum.AxCrypt.Core.Runtime
     {
         public WorkFolder(string path)
         {
-            FileInfo = Factory.New<IRuntimeFileInfo>(path);
+            FileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(path);
             FileInfo.CreateFolder();
         }
 

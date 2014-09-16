@@ -72,22 +72,22 @@ namespace Axantum.AxCrypt
                 new CommandLine(commandLineArgs[0], commandLineArgs.Skip(1)).Execute();
             }
 
-            Instance.CommandService.Dispose();
-            Factory.Instance.Clear();
+            Resolve.CommandService.Dispose();
+            TypeMap.Register.Clear();
         }
 
         private static void RegisterTypeFactories(string startPath)
         {
             string workFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"AxCrypt" + Path.DirectorySeparatorChar);
 
-            Instance.RegisterTypeFactories(workFolderPath);
+            Resolve.RegisterTypeFactories(workFolderPath);
             RuntimeEnvironment.RegisterTypeFactories();
 
-            Factory.Instance.Singleton<CryptoFactory>(() => CreateCryptoFactory(startPath));
-            Factory.Instance.Singleton<CryptoPolicy>(() => CreateCryptoPolicy(startPath));
-            Factory.Instance.Singleton<ICryptoPolicy>(() => Factory.Instance.Singleton<CryptoPolicy>().CreateDefault());
+            TypeMap.Register.Singleton<CryptoFactory>(() => CreateCryptoFactory(startPath));
+            TypeMap.Register.Singleton<CryptoPolicy>(() => CreateCryptoPolicy(startPath));
+            TypeMap.Register.Singleton<ICryptoPolicy>(() => TypeMap.Resolve.Singleton<CryptoPolicy>().CreateDefault());
 
-            Factory.Instance.Register<IDataProtection>(() => new DataProtection());
+            TypeMap.Register.New<IDataProtection>(() => new DataProtection());
         }
 
         private static CryptoFactory CreateCryptoFactory(string startPath)
@@ -132,23 +132,23 @@ namespace Axantum.AxCrypt
 
         private static void WireupEvents()
         {
-            Instance.SessionNotify.Notification += (sender, e) => Factory.New<SessionNotificationHandler>().HandleNotification(e.Notification);
+            Resolve.SessionNotify.Notification += (sender, e) => TypeMap.Resolve.New<SessionNotificationHandler>().HandleNotification(e.Notification);
         }
 
         private static void SetCulture()
         {
-            if (String.IsNullOrEmpty(Instance.UserSettings.CultureName))
+            if (String.IsNullOrEmpty(Resolve.UserSettings.CultureName))
             {
                 return;
             }
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Instance.UserSettings.CultureName);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Resolve.UserSettings.CultureName);
         }
 
         private static void RunInteractive()
         {
             if (!OS.Current.IsFirstInstance)
             {
-                Instance.CommandService.Call(CommandVerb.Show, -1);
+                Resolve.CommandService.Call(CommandVerb.Show, -1);
                 return;
             }
             Application.EnableVisualStyles();

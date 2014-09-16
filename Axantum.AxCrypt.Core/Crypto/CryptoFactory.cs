@@ -91,7 +91,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             get
             {
-                return Create(Factory.Instance.Singleton<ICryptoPolicy>());
+                return Create(TypeMap.Resolve.Singleton<ICryptoPolicy>());
             }
         }
 

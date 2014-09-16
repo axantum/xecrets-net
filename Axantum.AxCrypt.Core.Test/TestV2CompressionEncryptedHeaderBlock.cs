@@ -42,9 +42,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestClone()
         {
-            Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
-            Factory.Instance.Singleton<IPortableFactory>(() => new PortableFactory());
+            TypeMap.Register.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
+            TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
 
             V2CompressionEncryptedHeaderBlock compressionHeaderBlock = new V2CompressionEncryptedHeaderBlock(new V2AesCrypto(SymmetricKey.Zero256, SymmetricIV.Zero128, 0));
             compressionHeaderBlock.IsCompressed = false;
@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Core.Test
             V2CompressionEncryptedHeaderBlock clone = (V2CompressionEncryptedHeaderBlock)compressionHeaderBlock.Clone();
             Assert.That(clone.IsCompressed, Is.True);
 
-            Factory.Instance.Clear();
+            TypeMap.Register.Clear();
         }
     }
 }

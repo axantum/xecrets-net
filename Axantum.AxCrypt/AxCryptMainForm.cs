@@ -115,7 +115,7 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-            _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Instance.CryptoFactory.Default.Id);
+            _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id);
             if (!_mainViewModel.LoggedOn)
             {
                 _pendingRequest = null;
@@ -127,14 +127,14 @@ namespace Axantum.AxCrypt
 
         private static void SendStartSessionNotification()
         {
-            Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.SessionStart));
+            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.SessionStart));
         }
 
         private void SetupCommandService()
         {
-            Instance.CommandService.Received += Factory.Instance.Singleton<CommandHandler>().RequestReceived;
-            Instance.CommandService.StartListening();
-            Factory.Instance.Singleton<CommandHandler>().CommandComplete += AxCryptMainForm_CommandComplete;
+            Resolve.CommandService.Received += TypeMap.Resolve.Singleton<CommandHandler>().RequestReceived;
+            Resolve.CommandService.StartListening();
+            TypeMap.Resolve.Singleton<CommandHandler>().CommandComplete += AxCryptMainForm_CommandComplete;
         }
 
         private void ConfigureUiOptions()
@@ -144,9 +144,9 @@ namespace Axantum.AxCrypt
 
         private void AttachLogListener()
         {
-            Instance.Log.Logged += (logger, loggingEventArgs) =>
+            Resolve.Log.Logged += (logger, loggingEventArgs) =>
             {
-                Instance.UIThread.PostOnUIThread(() =>
+                Resolve.UIThread.PostOnUIThread(() =>
                 {
                     if (_debugOutput == null || !_debugOutput.Visible)
                     {
@@ -160,14 +160,14 @@ namespace Axantum.AxCrypt
 
         private void SetupViewModels()
         {
-            _mainViewModel = Factory.New<MainViewModel>();
-            _fileOperationViewModel = Factory.New<FileOperationViewModel>();
-            _knownFoldersViewModel = Factory.New<KnownFoldersViewModel>();
+            _mainViewModel = TypeMap.Resolve.New<MainViewModel>();
+            _fileOperationViewModel = TypeMap.Resolve.New<FileOperationViewModel>();
+            _knownFoldersViewModel = TypeMap.Resolve.New<KnownFoldersViewModel>();
         }
 
         private void AxCryptMainForm_Shown(object sender, EventArgs e)
         {
-            if (Instance.UserSettings.SettingsVersion < Instance.UserSettings.CurrentSettingsVersion)
+            if (Resolve.UserSettings.SettingsVersion < Resolve.UserSettings.CurrentSettingsVersion)
             {
                 Resources.UserSettingsFormatChangeNeedsReset.ShowWarning();
                 ClearPassphraseMemoryToolStripMenuItem_Click(sender, e);
@@ -176,16 +176,16 @@ namespace Axantum.AxCrypt
 
         private void RegisterTypeFactories()
         {
-            Factory.Instance.Singleton<IUIThread>(() => new UIThread(this));
-            Factory.Instance.Singleton<IProgressBackground>(() => _progressBackgroundWorker);
-            Factory.Instance.Singleton<IStatusChecker>(() => this);
-            Factory.Instance.Register<SessionNotificationHandler>(() => new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, Factory.New<ActiveFileAction>(), Factory.New<AxCryptFile>(), this));
+            TypeMap.Register.Singleton<IUIThread>(() => new UIThread(this));
+            TypeMap.Register.Singleton<IProgressBackground>(() => _progressBackgroundWorker);
+            TypeMap.Register.Singleton<IStatusChecker>(() => this);
+            TypeMap.Register.New<SessionNotificationHandler>(() => new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownKeys, TypeMap.Resolve.New<ActiveFileAction>(), TypeMap.Resolve.New<AxCryptFile>(), this));
 
-            Factory.Instance.Register<IdentityViewModel>(() => new IdentityViewModel(Instance.FileSystemState, Instance.KnownKeys, Instance.UserSettings));
-            Factory.Instance.Register<FileOperationViewModel>(() => new FileOperationViewModel(Instance.FileSystemState, Instance.SessionNotify, Instance.KnownKeys, Instance.ParallelFileOperation, Factory.Instance.Singleton<IStatusChecker>(), Factory.New<IdentityViewModel>()));
-            Factory.Instance.Register<MainViewModel>(() => new MainViewModel(Instance.FileSystemState));
-            Factory.Instance.Register<KnownFoldersViewModel>(() => new KnownFoldersViewModel(Instance.FileSystemState, Instance.SessionNotify, Instance.KnownKeys));
-            Factory.Instance.Register<WatchedFoldersViewModel>(() => new WatchedFoldersViewModel(Instance.FileSystemState));
+            TypeMap.Register.New<IdentityViewModel>(() => new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownKeys, Resolve.UserSettings));
+            TypeMap.Register.New<FileOperationViewModel>(() => new FileOperationViewModel(Resolve.FileSystemState, Resolve.SessionNotify, Resolve.KnownKeys, Resolve.ParallelFileOperation, TypeMap.Resolve.Singleton<IStatusChecker>(), TypeMap.Resolve.New<IdentityViewModel>()));
+            TypeMap.Register.New<MainViewModel>(() => new MainViewModel(Resolve.FileSystemState));
+            TypeMap.Register.New<KnownFoldersViewModel>(() => new KnownFoldersViewModel(Resolve.FileSystemState, Resolve.SessionNotify, Resolve.KnownKeys));
+            TypeMap.Register.New<WatchedFoldersViewModel>(() => new WatchedFoldersViewModel(Resolve.FileSystemState));
         }
 
         private static void SetupPathFilters()
@@ -263,8 +263,8 @@ namespace Axantum.AxCrypt
 
         private void InitializePolicyMenu()
         {
-            string currentPolicyName = Factory.Instance.Singleton<ICryptoPolicy>().Name;
-            foreach (string policyName in Factory.Instance.Singleton<CryptoPolicy>().PolicyNames)
+            string currentPolicyName = TypeMap.Resolve.Singleton<ICryptoPolicy>().Name;
+            foreach (string policyName in TypeMap.Resolve.Singleton<CryptoPolicy>().PolicyNames)
             {
                 ToolStripMenuItem item = new ToolStripMenuItem();
                 item.Text = policyName;
@@ -426,7 +426,7 @@ namespace Axantum.AxCrypt
             _decryptAndRemoveFromListToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(_mainViewModel.SelectedRecentFiles); };
             _decryptToolStripButton.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(null); };
             _decryptToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.DecryptFiles.Execute(null); };
-            _encryptionKeyToolStripButton.Click += (sender, e) => { _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Instance.CryptoFactory.Default.Id); };
+            _encryptionKeyToolStripButton.Click += (sender, e) => { _fileOperationViewModel.IdentityViewModel.LogOnLogOff.Execute(Resolve.CryptoFactory.Default.Id); };
             _encryptToolStripButton.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
             _encryptToolStripMenuItem.Click += (sender, e) => { _fileOperationViewModel.EncryptFiles.Execute(null); };
             _openEncryptedToolStripButton.Click += (sender, e) => { _fileOperationViewModel.OpenFilesFromFolder.Execute(String.Empty); };
@@ -592,7 +592,7 @@ namespace Axantum.AxCrypt
             {
                 if (e.SelectedFiles != null && e.SelectedFiles.Count > 0 && !String.IsNullOrEmpty(e.SelectedFiles[0]))
                 {
-                    IRuntimeFileInfo initialFolder = Factory.New<IRuntimeFileInfo>(e.SelectedFiles[0]);
+                    IRuntimeFileInfo initialFolder = TypeMap.Resolve.New<IRuntimeFileInfo>(e.SelectedFiles[0]);
                     if (initialFolder.IsExistingFolder)
                     {
                         ofd.InitialDirectory = initialFolder.FullName;
@@ -681,14 +681,14 @@ namespace Axantum.AxCrypt
 
         private void AxCryptMainForm_CommandComplete(object sender, CommandCompleteEventArgs e)
         {
-            Instance.UIThread.RunOnUIThread(() => DoRequest(e));
+            Resolve.UIThread.RunOnUIThread(() => DoRequest(e));
         }
 
         private CommandCompleteEventArgs _pendingRequest;
 
         private void DoRequest(CommandCompleteEventArgs e)
         {
-            if ((e.Verb == CommandVerb.Encrypt) && !Instance.KnownKeys.IsLoggedOn)
+            if ((e.Verb == CommandVerb.Encrypt) && !Resolve.KnownKeys.IsLoggedOn)
             {
                 RestoreWindowWithFocus();
                 _pendingRequest = e;
@@ -1008,7 +1008,7 @@ namespace Axantum.AxCrypt
             {
                 if (activeFile.Properties.CryptoId != Guid.Empty)
                 {
-                    item.SubItems["CryptoName"].Text = Instance.CryptoFactory.Create(activeFile.Properties.CryptoId).Name;
+                    item.SubItems["CryptoName"].Text = Resolve.CryptoFactory.Create(activeFile.Properties.CryptoId).Name;
                 }
             }
             catch (ArgumentException)
@@ -1246,10 +1246,10 @@ namespace Axantum.AxCrypt
 
         private static void SetLanguage(string cultureName)
         {
-            Instance.UserSettings.CultureName = cultureName;
-            if (Instance.Log.IsInfoEnabled)
+            Resolve.UserSettings.CultureName = cultureName;
+            if (Resolve.Log.IsInfoEnabled)
             {
-                Instance.Log.LogInfo("Set new UI language culture to '{0}'.".InvariantFormat(Instance.UserSettings.CultureName));
+                Resolve.Log.LogInfo("Set new UI language culture to '{0}'.".InvariantFormat(Resolve.UserSettings.CultureName));
             }
             Resources.LanguageChangeRestartPrompt.ShowWarning();
             Application.Exit();
@@ -1281,21 +1281,21 @@ namespace Axantum.AxCrypt
 
         private void UpdateToolStripButton_Click(object sender, EventArgs e)
         {
-            Instance.UserSettings.LastUpdateCheckUtc = OS.Current.UtcNow;
-            Process.Start(Instance.UserSettings.UpdateUrl.ToString());
+            Resolve.UserSettings.LastUpdateCheckUtc = OS.Current.UtcNow;
+            Process.Start(Resolve.UserSettings.UpdateUrl.ToString());
         }
 
         private void SetUpdateCheckUrlToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (DebugOptionsDialog dialog = new DebugOptionsDialog())
             {
-                dialog.UpdateCheckServiceUrl.Text = Instance.UserSettings.AxCrypt2VersionCheckUrl.ToString();
+                dialog.UpdateCheckServiceUrl.Text = Resolve.UserSettings.AxCrypt2VersionCheckUrl.ToString();
                 DialogResult result = dialog.ShowDialog();
                 if (result != DialogResult.OK)
                 {
                     return;
                 }
-                Instance.UserSettings.AxCrypt2VersionCheckUrl = new Uri(dialog.UpdateCheckServiceUrl.Text);
+                Resolve.UserSettings.AxCrypt2VersionCheckUrl = new Uri(dialog.UpdateCheckServiceUrl.Text);
             }
         }
 
@@ -1309,12 +1309,12 @@ namespace Axantum.AxCrypt
 
         private void HelpToolStripButton_Click(object sender, EventArgs e)
         {
-            Process.Start(Instance.UserSettings.AxCrypt2HelpUrl.ToString());
+            Process.Start(Resolve.UserSettings.AxCrypt2HelpUrl.ToString());
         }
 
         private void ViewHelpMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start(Instance.UserSettings.AxCrypt2HelpUrl.ToString());
+            Process.Start(Resolve.UserSettings.AxCrypt2HelpUrl.ToString());
         }
 
         /// <summary>
@@ -1351,16 +1351,16 @@ namespace Axantum.AxCrypt
 
         private static void ClearAllSettingsAndReinitialize()
         {
-            Instance.UserSettings.Delete();
-            Instance.FileSystemState.Delete();
-            Instance.UserSettings.SettingsVersion = Instance.UserSettings.CurrentSettingsVersion;
+            Resolve.UserSettings.Delete();
+            Resolve.FileSystemState.Delete();
+            Resolve.UserSettings.SettingsVersion = Resolve.UserSettings.CurrentSettingsVersion;
         }
 
         private void PolicyMenuItem_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem item = sender as ToolStripMenuItem;
             SetCheckedToolStripMenuItem(item);
-            Factory.Instance.Singleton<ICryptoPolicy>(() => Factory.Instance.Singleton<CryptoPolicy>().Create(item.Text));
+            TypeMap.Register.Singleton<ICryptoPolicy>(() => TypeMap.Resolve.Singleton<CryptoPolicy>().Create(item.Text));
         }
 
         private static void SetCheckedToolStripMenuItem(ToolStripMenuItem item)

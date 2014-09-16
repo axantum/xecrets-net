@@ -87,7 +87,7 @@ namespace Axantum.AxCrypt.Forms
         /// <param name="complete">A 'complete' delegate, taking the final status. Executed on the GUI thread.</param>
         public void Work(Func<IProgressContext, FileOperationContext> workFunction, Action<FileOperationContext> complete)
         {
-            Instance.UIThread.RunOnUIThread(() =>
+            Resolve.UIThread.RunOnUIThread(() =>
             {
                 BackgroundWorkWithProgressOnUIThread(workFunction, complete);
             });
@@ -102,7 +102,7 @@ namespace Axantum.AxCrypt.Forms
             {
                 progressBar.Value = e.Percent;
             };
-            IThreadWorker threadWorker = Instance.Portable.ThreadWorker(progress, false);
+            IThreadWorker threadWorker = Resolve.Portable.ThreadWorker(progress, false);
             threadWorker.Work += (object sender, ThreadWorkerEventArgs e) =>
             {
                 e.Result = work(e.Progress);

@@ -70,12 +70,12 @@ namespace Axantum.AxCrypt.Core
 
         public virtual IAxCryptDocument CreateDocument(Passphrase key, Guid cryptoId)
         {
-            ICryptoFactory factory = Instance.CryptoFactory.Create(cryptoId);
-            if (factory.Id == Instance.CryptoFactory.Legacy.Id)
+            ICryptoFactory factory = Resolve.CryptoFactory.Create(cryptoId);
+            if (factory.Id == Resolve.CryptoFactory.Legacy.Id)
             {
-                return new V1AxCryptDocument(key, Instance.UserSettings.GetKeyWrapIterations(V1Aes128CryptoFactory.CryptoId));
+                return new V1AxCryptDocument(key, Resolve.UserSettings.GetKeyWrapIterations(V1Aes128CryptoFactory.CryptoId));
             }
-            return new V2AxCryptDocument(key, cryptoId, Instance.UserSettings.GetKeyWrapIterations(cryptoId));
+            return new V2AxCryptDocument(key, cryptoId, Resolve.UserSettings.GetKeyWrapIterations(cryptoId));
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace Axantum.AxCrypt.Core
             Headers headers = new Headers();
             AxCryptReader reader = headers.Load(inputStream);
 
-            IEnumerable<Guid> cryptoIds = Instance.CryptoFactory.OrderedIds;
+            IEnumerable<Guid> cryptoIds = Resolve.CryptoFactory.OrderedIds;
             IAxCryptDocument document = null;
             foreach (Guid cryptoId in cryptoIds)
             {

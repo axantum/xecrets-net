@@ -53,9 +53,9 @@ namespace Axantum.AxCrypt.Core.Test
             _identities = new List<PassphraseIdentity>();
             Mock<FileSystemState> fileSystemStateMock = new Mock<FileSystemState>();
             fileSystemStateMock.Setup<IList<PassphraseIdentity>>(f => f.Identities).Returns(_identities);
-            Factory.Instance.Singleton<FileSystemState>(() => fileSystemStateMock.Object);
+            TypeMap.Register.Singleton<FileSystemState>(() => fileSystemStateMock.Object);
 
-            Factory.Instance.Register<AxCryptFactory>(() => new AxCryptFactory());
+            TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());
         }
 
         [TearDown]
@@ -99,11 +99,11 @@ namespace Axantum.AxCrypt.Core.Test
             Mock<IUserSettings> userSettingsMock = new Mock<IUserSettings>();
             userSettingsMock.Setup<Salt>(f => f.ThumbprintSalt).Returns(Salt.Zero);
             userSettingsMock.Setup<long>(f => f.GetKeyWrapIterations(It.IsAny<Guid>())).Returns(10);
-            Factory.Instance.Singleton<IUserSettings>(() => userSettingsMock.Object);
+            TypeMap.Register.Singleton<IUserSettings>(() => userSettingsMock.Object);
 
             Mock<IRuntimeEnvironment> environmentMock = new Mock<IRuntimeEnvironment>();
             environmentMock.Setup<bool>(f => f.IsLittleEndian).Returns(true);
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => environmentMock.Object);
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => environmentMock.Object);
 
             LogOnViewModel lovm = new LogOnViewModel(String.Empty);
 
@@ -121,11 +121,11 @@ namespace Axantum.AxCrypt.Core.Test
             Mock<IUserSettings> userSettingsMock = new Mock<IUserSettings>();
             userSettingsMock.Setup<Salt>(f => f.ThumbprintSalt).Returns(Salt.Zero);
             userSettingsMock.Setup<long>(f => f.GetKeyWrapIterations(It.IsAny<Guid>())).Returns(10);
-            Factory.Instance.Singleton<IUserSettings>(() => userSettingsMock.Object);
+            TypeMap.Register.Singleton<IUserSettings>(() => userSettingsMock.Object);
 
             Mock<IRuntimeEnvironment> environmentMock = new Mock<IRuntimeEnvironment>();
             environmentMock.Setup<bool>(f => f.IsLittleEndian).Returns(true);
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => environmentMock.Object);
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => environmentMock.Object);
 
             LogOnViewModel lovm = new LogOnViewModel(String.Empty);
 

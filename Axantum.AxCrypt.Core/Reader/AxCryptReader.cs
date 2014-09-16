@@ -93,9 +93,9 @@ namespace Axantum.AxCrypt.Core.Reader
             AxCryptItemType before = CurrentItemType;
             bool readOk = ReadInternal();
             AxCryptItemType after = CurrentItemType;
-            if (Instance.Log.IsDebugEnabled)
+            if (Resolve.Log.IsDebugEnabled)
             {
-                Instance.Log.LogDebug("AxCryptReader.Read() from type {0} to type {1} : {2}.".InvariantFormat(before, after, CurrentHeaderBlock == null ? "(None)" : CurrentHeaderBlock.GetType().ToString()));
+                Resolve.Log.LogDebug("AxCryptReader.Read() from type {0} to type {1} : {2}.".InvariantFormat(before, after, CurrentHeaderBlock == null ? "(None)" : CurrentHeaderBlock.GetType().ToString()));
             }
             return readOk;
         }

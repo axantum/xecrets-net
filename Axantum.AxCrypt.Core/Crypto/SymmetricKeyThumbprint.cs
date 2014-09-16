@@ -69,7 +69,7 @@ namespace Axantum.AxCrypt.Core.Crypto
                 throw new ArgumentNullException("salt");
             }
 
-            ICryptoFactory factory = Instance.CryptoFactory.Minimum;
+            ICryptoFactory factory = Resolve.CryptoFactory.Minimum;
             ICrypto crypto = factory.CreateCrypto(factory.RestoreDerivedKey(passphrase, salt, CryptoFactory.DerivationIterations).DerivedKey, null, 0);
             KeyWrap keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.Specification);
             byte[] wrap = keyWrap.Wrap(crypto, crypto.Key);

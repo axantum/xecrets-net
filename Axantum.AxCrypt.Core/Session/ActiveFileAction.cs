@@ -52,13 +52,13 @@ namespace Axantum.AxCrypt.Core.Session
         public virtual void PurgeActiveFiles(IProgressContext progress)
         {
             progress.NotifyLevelStart();
-            Instance.FileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFile) =>
+            Resolve.FileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFile) =>
             {
                 if (FileLock.IsLocked(activeFile.DecryptedFileInfo))
                 {
-                    if (Instance.Log.IsInfoEnabled)
+                    if (Resolve.Log.IsInfoEnabled)
                     {
-                        Instance.Log.LogInfo("Not deleting '{0}' because it is marked as locked.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
+                        Resolve.Log.LogInfo("Not deleting '{0}' because it is marked as locked.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                     }
                     return activeFile;
                 }
@@ -89,8 +89,8 @@ namespace Axantum.AxCrypt.Core.Session
         public virtual void CheckActiveFiles(ChangedEventMode mode, IProgressContext progress)
         {
             progress.NotifyLevelStart();
-            progress.AddTotal(Instance.FileSystemState.ActiveFileCount);
-            Instance.FileSystemState.ForEach(mode, (ActiveFile activeFile) =>
+            progress.AddTotal(Resolve.FileSystemState.ActiveFileCount);
+            Resolve.FileSystemState.ForEach(mode, (ActiveFile activeFile) =>
             {
                 try
                 {
@@ -124,7 +124,7 @@ namespace Axantum.AxCrypt.Core.Session
         public virtual bool UpdateActiveFileWithKeyIfKeyMatchesThumbprint(Passphrase key)
         {
             bool keyMatch = false;
-            Instance.FileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFile) =>
+            Resolve.FileSystemState.ForEach(ChangedEventMode.RaiseOnlyOnModified, (ActiveFile activeFile) =>
             {
                 if (activeFile.Key != null)
                 {
@@ -148,14 +148,14 @@ namespace Axantum.AxCrypt.Core.Session
             progress.AddTotal(encryptedPaths.Count());
             foreach (IRuntimeFileInfo encryptedPath in encryptedPaths)
             {
-                ActiveFile activeFile = Instance.FileSystemState.FindActiveFileFromEncryptedPath(encryptedPath.FullName);
+                ActiveFile activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(encryptedPath.FullName);
                 if (activeFile != null)
                 {
-                    Instance.FileSystemState.RemoveActiveFile(activeFile);
+                    Resolve.FileSystemState.RemoveActiveFile(activeFile);
                 }
                 progress.AddCount(1);
             }
-            Instance.FileSystemState.Save();
+            Resolve.FileSystemState.Save();
             progress.NotifyLevelFinished();
         }
 
@@ -195,7 +195,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private static Passphrase FindKnownKeyOrNull(ActiveFile activeFile)
         {
-            foreach (Passphrase key in Instance.KnownKeys.Keys)
+            foreach (Passphrase key in Resolve.KnownKeys.Keys)
             {
                 if (activeFile.ThumbprintMatch(key))
                 {
@@ -224,7 +224,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private static ActiveFile CheckIfProcessExited(ActiveFile activeFile)
         {
-            if (Instance.ProcessState.HasActiveProcess(activeFile))
+            if (Resolve.ProcessState.HasActiveProcess(activeFile))
             {
                 return activeFile;
             }
@@ -232,9 +232,9 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return activeFile;
             }
-            if (Instance.Log.IsInfoEnabled)
+            if (Resolve.Log.IsInfoEnabled)
             {
-                Instance.Log.LogInfo("Process exit for '{0}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
+                Resolve.Log.LogInfo("Process exit for '{0}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
             }
             activeFile = new ActiveFile(activeFile, activeFile.Status & ~ActiveFileStatus.NotShareable);
             return activeFile;
@@ -259,7 +259,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 using (Stream activeFileStream = activeFile.DecryptedFileInfo.OpenRead())
                 {
-                    Factory.New<AxCryptFile>().WriteToFileWithBackup(activeFile.EncryptedFileInfo, (Stream destination) =>
+                    TypeMap.Resolve.New<AxCryptFile>().WriteToFileWithBackup(activeFile.EncryptedFileInfo, (Stream destination) =>
                     {
                         AxCryptFile.Encrypt(activeFile.DecryptedFileInfo, destination, activeFile.Key, activeFile.Properties.CryptoId, AxCryptOptions.EncryptWithCompression, progress);
                     }, progress);
@@ -267,16 +267,16 @@ namespace Axantum.AxCrypt.Core.Session
             }
             catch (IOException)
             {
-                if (Instance.Log.IsWarningEnabled)
+                if (Resolve.Log.IsWarningEnabled)
                 {
-                    Instance.Log.LogWarning("Failed exclusive open modified for '{0}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
+                    Resolve.Log.LogWarning("Failed exclusive open modified for '{0}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                 }
                 activeFile = new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.NotShareable);
                 return activeFile;
             }
-            if (Instance.Log.IsInfoEnabled)
+            if (Resolve.Log.IsInfoEnabled)
             {
-                Instance.Log.LogInfo("Wrote back '{0}' to '{1}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
+                Resolve.Log.LogInfo("Wrote back '{0}' to '{1}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
             }
             activeFile = new ActiveFile(activeFile, activeFile.DecryptedFileInfo.LastWriteTimeUtc, ActiveFileStatus.AssumedOpenAndDecrypted);
             return activeFile;
@@ -307,39 +307,39 @@ namespace Axantum.AxCrypt.Core.Session
 
         private static ActiveFile TryDelete(ActiveFile activeFile, IProgressContext progress)
         {
-            if (Instance.ProcessState.HasActiveProcess(activeFile))
+            if (Resolve.ProcessState.HasActiveProcess(activeFile))
             {
-                if (Instance.Log.IsInfoEnabled)
+                if (Resolve.Log.IsInfoEnabled)
                 {
-                    Instance.Log.LogInfo("Not deleting '{0}' because it has an active process.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
+                    Resolve.Log.LogInfo("Not deleting '{0}' because it has an active process.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                 }
                 return activeFile;
             }
 
             if (activeFile.IsModified)
             {
-                if (Instance.Log.IsInfoEnabled)
+                if (Resolve.Log.IsInfoEnabled)
                 {
-                    Instance.Log.LogInfo("Tried delete '{0}' but it is modified.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
+                    Resolve.Log.LogInfo("Tried delete '{0}' but it is modified.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                 }
                 return activeFile;
             }
 
             try
             {
-                if (Instance.Log.IsInfoEnabled)
+                if (Resolve.Log.IsInfoEnabled)
                 {
-                    Instance.Log.LogInfo("Deleting '{0}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
+                    Resolve.Log.LogInfo("Deleting '{0}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                 }
-                Factory.New<AxCryptFile>().Wipe(activeFile.DecryptedFileInfo, progress);
-                IRuntimeFileInfo decryptedFolder = Factory.New<IRuntimeFileInfo>(Instance.Portable.Path().GetDirectoryName(activeFile.DecryptedFileInfo.FullName));
+                TypeMap.Resolve.New<AxCryptFile>().Wipe(activeFile.DecryptedFileInfo, progress);
+                IRuntimeFileInfo decryptedFolder = TypeMap.Resolve.New<IRuntimeFileInfo>(Resolve.Portable.Path().GetDirectoryName(activeFile.DecryptedFileInfo.FullName));
                 decryptedFolder.RemoveFolder();
             }
             catch (IOException)
             {
-                if (Instance.Log.IsWarningEnabled)
+                if (Resolve.Log.IsWarningEnabled)
                 {
-                    Instance.Log.LogWarning("Wiping failed for '{0}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
+                    Resolve.Log.LogWarning("Wiping failed for '{0}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName));
                 }
                 activeFile = new ActiveFile(activeFile, activeFile.Status | ActiveFileStatus.NotShareable);
                 return activeFile;
@@ -347,9 +347,9 @@ namespace Axantum.AxCrypt.Core.Session
 
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.NotDecrypted);
 
-            if (Instance.Log.IsInfoEnabled)
+            if (Resolve.Log.IsInfoEnabled)
             {
-                Instance.Log.LogInfo("Deleted '{0}' from '{1}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
+                Resolve.Log.LogInfo("Deleted '{0}' from '{1}'.".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
             }
 
             return activeFile;

@@ -82,7 +82,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private static byte[] F(string password, Salt salt, int derivationIterations)
         {
-            HMAC hmacsha512 = Instance.Portable.HMACSHA512(new UTF8Encoding(false).GetBytes(password));
+            HMAC hmacsha512 = Resolve.Portable.HMACSHA512(new UTF8Encoding(false).GetBytes(password));
 
             hmacsha512.TransformBlock(salt.GetBytes(), 0, salt.Length, null, 0);
             byte[] iBytes = 1.GetBigEndianBytes();

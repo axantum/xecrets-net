@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private static SymmetricAlgorithm CreateAlgorithmInternal()
         {
-            return Instance.Portable.AesManaged();
+            return Resolve.Portable.AesManaged();
         }
     }
 }

@@ -41,12 +41,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             Verification = passphrase ?? String.Empty;
 
             UserEmail = String.Empty;
-            ShowPassphrase = Instance.UserSettings.DisplayEncryptPassphrase;
+            ShowPassphrase = Resolve.UserSettings.DisplayEncryptPassphrase;
         }
 
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChangedInternal("ShowPassphrase", (bool show) => Instance.UserSettings.DisplayEncryptPassphrase = show);
+            BindPropertyChangedInternal("ShowPassphrase", (bool show) => Resolve.UserSettings.DisplayEncryptPassphrase = show);
         }
 
         public override string this[string columnName]

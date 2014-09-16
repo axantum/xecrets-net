@@ -26,13 +26,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             UserEmail = userEmail;
             Passphrase = String.Empty;
-            ShowPassphrase = Instance.UserSettings.DisplayEncryptPassphrase;
-            ShowEmail = Instance.AsymmetricKeysStore.HasStore;
+            ShowPassphrase = Resolve.UserSettings.DisplayEncryptPassphrase;
+            ShowEmail = Resolve.AsymmetricKeysStore.HasStore;
         }
 
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChangedInternal("ShowPassphrase", (bool show) => Instance.UserSettings.DisplayEncryptPassphrase = show);
+            BindPropertyChangedInternal("ShowPassphrase", (bool show) => Resolve.UserSettings.DisplayEncryptPassphrase = show);
             BindPropertyChangedInternal("ShowEmail", (bool show) => { if (!ShowEmail) UserEmail = String.Empty; });
         }
 
@@ -107,13 +107,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private bool IsValidAccountLogOn()
         {
-            return Instance.AsymmetricKeysStore.IsValidAccountLogOn(new EmailAddress(UserEmail), new Passphrase(Passphrase));
+            return Resolve.AsymmetricKeysStore.IsValidAccountLogOn(new EmailAddress(UserEmail), new Passphrase(Passphrase));
         }
 
         private bool IsKnownIdentity()
         {
             SymmetricKeyThumbprint thumbprint = new Passphrase(Passphrase).Thumbprint;
-            PassphraseIdentity identity = Instance.FileSystemState.Identities.FirstOrDefault(id => id.Thumbprint == thumbprint);
+            PassphraseIdentity identity = Resolve.FileSystemState.Identities.FirstOrDefault(id => id.Thumbprint == thumbprint);
             if (identity != null)
             {
                 return true;

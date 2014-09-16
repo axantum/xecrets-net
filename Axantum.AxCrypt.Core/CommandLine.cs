@@ -108,7 +108,7 @@ namespace Axantum.AxCrypt.Core
             {
                 StartFirstInstance();
             }
-            CommandStatus status = Instance.CommandService.Call(verb, batchId, files);
+            CommandStatus status = Resolve.CommandService.Call(verb, batchId, files);
             if (status == CommandStatus.Success)
             {
                 return;

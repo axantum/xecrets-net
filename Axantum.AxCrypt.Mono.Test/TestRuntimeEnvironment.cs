@@ -50,18 +50,18 @@ namespace Axantum.AxCrypt.Mono.Test
             _workFolderPath = Path.Combine(Path.GetTempPath(), @"Axantum.AxCrypt.Mono.Test.TestRuntimeEnvironment\");
             Directory.CreateDirectory(_workFolderPath);
 
-            Factory.Instance.Register<string, IRuntimeFileInfo>((path) => new RuntimeFileInfo(path));
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
-            Factory.Instance.Singleton<IPortableFactory>(() => new PortableFactory());
-            Factory.Instance.Singleton<WorkFolder>(() => new WorkFolder(_workFolderPath));
-            Factory.Instance.Singleton<ILogging>(() => new Logging());
-            Factory.Instance.Singleton<IRandomGenerator>(() => new RandomGenerator());
+            TypeMap.Register.New<string, IRuntimeFileInfo>((path) => new RuntimeFileInfo(path));
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
+            TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
+            TypeMap.Register.Singleton<WorkFolder>(() => new WorkFolder(_workFolderPath));
+            TypeMap.Register.Singleton<ILogging>(() => new Logging());
+            TypeMap.Register.Singleton<IRandomGenerator>(() => new RandomGenerator());
         }
 
         [TearDown]
         public static void Teardown()
         {
-            Factory.Instance.Clear();
+            TypeMap.Register.Clear();
             Directory.Delete(_workFolderPath, true);
         }
 
@@ -80,11 +80,11 @@ namespace Axantum.AxCrypt.Mono.Test
         [Test]
         public static void TestRandomBytes()
         {
-            byte[] randomBytes = Instance.RandomGenerator.Generate(100);
+            byte[] randomBytes = Resolve.RandomGenerator.Generate(100);
             Assert.That(randomBytes.Length, Is.EqualTo(100), "Ensuring we really got the right number of bytes.");
             Assert.That(randomBytes, Is.Not.EquivalentTo(new byte[100]), "It is not in practice possible that all zero bytes are returned by GetRandomBytes().");
 
-            randomBytes = Instance.RandomGenerator.Generate(1000);
+            randomBytes = Resolve.RandomGenerator.Generate(1000);
             double average = randomBytes.Average(b => b);
             Assert.That(average >= 115 && average <= 140, "Unscientific, but the sample sequence should not vary much from a mean of 127.5, but was {0}".InvariantFormat(average));
         }
@@ -92,19 +92,19 @@ namespace Axantum.AxCrypt.Mono.Test
         [Test]
         public static void TestRuntimeFileInfo()
         {
-            IRuntimeFileInfo runtimeFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(Path.GetTempPath(), "A File.txt"));
+            IRuntimeFileInfo runtimeFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(Path.GetTempPath(), "A File.txt"));
             Assert.That(runtimeFileInfo is RuntimeFileInfo, "The instance returned should be of type RuntimeFileInfo");
             Assert.That(runtimeFileInfo.Name, Is.EqualTo("A File.txt"));
-            runtimeFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(Path.GetTempPath(), "A File.txt"));
+            runtimeFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(Path.GetTempPath(), "A File.txt"));
             Assert.That(runtimeFileInfo.Name, Is.EqualTo("A File.txt"));
         }
 
         [Test]
         public static void TestTemporaryDirectoryInfo()
         {
-            IRuntimeFileInfo tempInfo = Factory.Instance.Singleton<WorkFolder>().FileInfo;
+            IRuntimeFileInfo tempInfo = TypeMap.Resolve.Singleton<WorkFolder>().FileInfo;
             Assert.That(tempInfo is RuntimeFileInfo, "The instance returned should be of type RuntimeFileInfo");
-            IRuntimeFileInfo tempFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(tempInfo.FullName, "AxCryptTestTemp.tmp"));
+            IRuntimeFileInfo tempFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(tempInfo.FullName, "AxCryptTestTemp.tmp"));
             Assert.DoesNotThrow(() =>
             {
                 try

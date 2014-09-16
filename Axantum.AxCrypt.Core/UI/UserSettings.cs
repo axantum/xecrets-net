@@ -149,7 +149,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public Salt ThumbprintSalt
         {
-            get { return Load("ThumbprintSalt", () => Factory.New<int, Salt>(512)); }
+            get { return Load("ThumbprintSalt", () => TypeMap.Resolve.New<int, Salt>(512)); }
             set { Store("ThumbprintSalt", JsonConvert.SerializeObject(value)); }
         }
 

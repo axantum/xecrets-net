@@ -41,20 +41,20 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
-            Factory.Instance.Singleton<IRandomGenerator>(() => new FakePseudoRandomGenerator());
-            Factory.Instance.Singleton<IAsymmetricFactory>(() => new FakeAsymmetricFactory("MD5"));
+            TypeMap.Register.Singleton<IRandomGenerator>(() => new FakePseudoRandomGenerator());
+            TypeMap.Register.Singleton<IAsymmetricFactory>(() => new FakeAsymmetricFactory("MD5"));
         }
 
         [TearDown]
         public static void Teardown()
         {
-            Factory.Instance.Clear();
+            TypeMap.Register.Clear();
         }
 
         [Test]
         public static void TestKeyPairPem()
         {
-            IAsymmetricKeyPair keyPair = Factory.Instance.Singleton<IAsymmetricFactory>().CreateKeyPair(512);
+            IAsymmetricKeyPair keyPair = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreateKeyPair(512);
 
             string privatePem = keyPair.PrivateKey.ToString();
 
@@ -72,7 +72,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestAsymmetricEncryption()
         {
-            IAsymmetricPublicKey key = Factory.Instance.Singleton<IAsymmetricFactory>().CreatePublicKey(_publicKey1);
+            IAsymmetricPublicKey key = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(_publicKey1);
 
             string text = "AxCrypt is Great!";
             byte[] encryptedBytes = key.Transform(Encoding.UTF8.GetBytes(text));
@@ -83,13 +83,13 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestAsymmetricEncryptionDecryption()
         {
-            IAsymmetricPublicKey publicKey = Factory.Instance.Singleton<IAsymmetricFactory>().CreatePublicKey(_publicKey1);
+            IAsymmetricPublicKey publicKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(_publicKey1);
 
             string text = "AxCrypt is really very great!";
             byte[] encryptedBytes = publicKey.Transform(Encoding.UTF8.GetBytes(text));
             Assert.That(encryptedBytes.Length, Is.EqualTo(512));
 
-            IAsymmetricPrivateKey privateKey = Factory.Instance.Singleton<IAsymmetricFactory>().CreatePrivateKey(_privateKey1);
+            IAsymmetricPrivateKey privateKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(_privateKey1);
             byte[] decryptedBytes = privateKey.Transform(encryptedBytes);
             string decryptedText = Encoding.UTF8.GetString(decryptedBytes);
 
@@ -99,13 +99,13 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestAsymmetricEncryptionFailedDecryptionWrongKey1()
         {
-            IAsymmetricPublicKey publicKey = Factory.Instance.Singleton<IAsymmetricFactory>().CreatePublicKey(_publicKey1);
+            IAsymmetricPublicKey publicKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(_publicKey1);
 
             string text = "AxCrypt is really very great!";
             byte[] encryptedBytes = publicKey.Transform(Encoding.UTF8.GetBytes(text));
             Assert.That(encryptedBytes.Length, Is.EqualTo(512));
 
-            IAsymmetricPrivateKey privateKey = Factory.Instance.Singleton<IAsymmetricFactory>().CreatePrivateKey(_privateKey2);
+            IAsymmetricPrivateKey privateKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(_privateKey2);
             byte[] decryptedBytes = privateKey.Transform(encryptedBytes);
             Assert.That(decryptedBytes, Is.Null);
         }
@@ -113,13 +113,13 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestAsymmetricEncryptionFailedDecryptionWrongKey2()
         {
-            IAsymmetricPublicKey publicKey = Factory.Instance.Singleton<IAsymmetricFactory>().CreatePublicKey(_publicKey2);
+            IAsymmetricPublicKey publicKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePublicKey(_publicKey2);
 
             string text = "AxCrypt is really very great!";
             byte[] encryptedBytes = publicKey.Transform(Encoding.UTF8.GetBytes(text));
             Assert.That(encryptedBytes.Length, Is.EqualTo(512));
 
-            IAsymmetricPrivateKey privateKey = Factory.Instance.Singleton<IAsymmetricFactory>().CreatePrivateKey(_privateKey1);
+            IAsymmetricPrivateKey privateKey = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePrivateKey(_privateKey1);
             byte[] decryptedBytes = privateKey.Transform(encryptedBytes);
             Assert.That(decryptedBytes, Is.Null);
         }

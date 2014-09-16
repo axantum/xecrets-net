@@ -102,7 +102,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                IEnumerable<WatchedFolder> folders = WatchedFoldersInternal.Where(folder => Factory.New<IRuntimeFileInfo>(folder.Path).IsExistingFolder).ToList();
+                IEnumerable<WatchedFolder> folders = WatchedFoldersInternal.Where(folder => TypeMap.Resolve.New<IRuntimeFileInfo>(folder.Path).IsExistingFolder).ToList();
                 return folders;
             }
             private set
@@ -118,11 +118,11 @@ namespace Axantum.AxCrypt.Core.Session
         {
             if (AddWatchedFolderInternal(watchedFolder))
             {
-                Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderAdded, Instance.KnownKeys.DefaultEncryptionKey, watchedFolder.Path));
+                Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderAdded, Resolve.KnownKeys.DefaultEncryptionKey, watchedFolder.Path));
             }
             else
             {
-                Instance.StatusChecker.CheckStatusAndShowMessage(FileOperationStatus.FolderAlreadyWatched, watchedFolder.Path);
+                Resolve.StatusChecker.CheckStatusAndShowMessage(FileOperationStatus.FolderAlreadyWatched, watchedFolder.Path);
             }
         }
 
@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return false;
             }
-            if (!Factory.New<IRuntimeFileInfo>(watchedFolder.Path).IsExistingFolder)
+            if (!TypeMap.Resolve.New<IRuntimeFileInfo>(watchedFolder.Path).IsExistingFolder)
             {
                 return false;
             }
@@ -146,9 +146,9 @@ namespace Axantum.AxCrypt.Core.Session
         private void watchedFolder_Changed(object sender, FileWatcherEventArgs e)
         {
             WatchedFolder watchedFolder = (WatchedFolder)sender;
-            IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(e.FullName);
+            IRuntimeFileInfo fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(e.FullName);
             HandleWatchedFolderChanges(watchedFolder, fileInfo);
-            Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderChange, fileInfo.FullName));
+            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderChange, fileInfo.FullName));
         }
 
         private void HandleWatchedFolderChanges(WatchedFolder watchedFolder, IRuntimeFileInfo fileInfo)
@@ -188,7 +188,7 @@ namespace Axantum.AxCrypt.Core.Session
         public virtual void RemoveWatchedFolder(IRuntimeFileInfo fileInfo)
         {
             WatchedFoldersInternal.Remove(new WatchedFolder(fileInfo.FullName, SymmetricKeyThumbprint.Zero));
-            Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Instance.KnownKeys.DefaultEncryptionKey, fileInfo.FullName));
+            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Resolve.KnownKeys.DefaultEncryptionKey, fileInfo.FullName));
         }
 
         public event EventHandler<ActiveFileChangedEventArgs> ActiveFileChanged;
@@ -276,7 +276,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         public void Add(ActiveFile activeFile, ILauncher process)
         {
-            Instance.ProcessState.Add(process, activeFile);
+            Resolve.ProcessState.Add(process, activeFile);
             Add(activeFile);
         }
 
@@ -334,7 +334,7 @@ namespace Axantum.AxCrypt.Core.Session
                     return;
                 }
 
-                IRuntimeFileInfo newFileInfo = Factory.New<IRuntimeFileInfo>(newFullName);
+                IRuntimeFileInfo newFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(newFullName);
                 if (!newFileInfo.IsEncrypted())
                 {
                     RemoveActiveFile(activeFile);
@@ -342,7 +342,7 @@ namespace Axantum.AxCrypt.Core.Session
                 }
 
                 _activeFilesByEncryptedPath.Remove(activeFile.EncryptedFileInfo.FullName);
-                activeFile = new ActiveFile(activeFile, Factory.New<IRuntimeFileInfo>(newFullName));
+                activeFile = new ActiveFile(activeFile, TypeMap.Resolve.New<IRuntimeFileInfo>(newFullName));
                 _activeFilesByEncryptedPath[activeFile.EncryptedFileInfo.FullName] = activeFile;
             }
             OnActiveFileChanged(new ActiveFileChangedEventArgs(activeFile));
@@ -354,7 +354,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 _activeFilesByEncryptedPath[activeFile.EncryptedFileInfo.FullName] = activeFile;
             }
-            Factory.Instance.Singleton<ActiveFileWatcher>().Add(activeFile.EncryptedFileInfo);
+            TypeMap.Resolve.Singleton<ActiveFileWatcher>().Add(activeFile.EncryptedFileInfo);
         }
 
         [DataMember(Name = "ActiveFiles")]
@@ -443,9 +443,9 @@ namespace Axantum.AxCrypt.Core.Session
             }
 
             FileSystemState fileSystemState = new FileSystemState(path);
-            if (Instance.Log.IsInfoEnabled)
+            if (Resolve.Log.IsInfoEnabled)
             {
-                Instance.Log.LogInfo("No existing FileSystemState. Save location is '{0}'.".InvariantFormat(path.FullName));
+                Resolve.Log.LogInfo("No existing FileSystemState. Save location is '{0}'.".InvariantFormat(path.FullName));
             }
             return fileSystemState;
         }
@@ -463,15 +463,15 @@ namespace Axantum.AxCrypt.Core.Session
                 }
                 catch (Exception ex)
                 {
-                    if (Instance.Log.IsErrorEnabled)
+                    if (Resolve.Log.IsErrorEnabled)
                     {
-                        Instance.Log.LogError("Exception {1} reading {0}. Ignoring and re-initializing state.".InvariantFormat(path.FullName, ex.Message));
+                        Resolve.Log.LogError("Exception {1} reading {0}. Ignoring and re-initializing state.".InvariantFormat(path.FullName, ex.Message));
                     }
                     return new FileSystemState(path);
                 }
-                if (Instance.Log.IsInfoEnabled)
+                if (Resolve.Log.IsInfoEnabled)
                 {
-                    Instance.Log.LogInfo("Loaded FileSystemState from '{0}'.".InvariantFormat(path));
+                    Resolve.Log.LogInfo("Loaded FileSystemState from '{0}'.".InvariantFormat(path));
                 }
                 fileSystemState._path = path;
                 return fileSystemState;
@@ -489,9 +489,9 @@ namespace Axantum.AxCrypt.Core.Session
                     serializer.WriteObject(fileSystemStateStream, this);
                 }
             }
-            if (Instance.Log.IsInfoEnabled)
+            if (Resolve.Log.IsInfoEnabled)
             {
-                Instance.Log.LogInfo("Wrote FileSystemState to '{0}'.".InvariantFormat(_path));
+                Resolve.Log.LogInfo("Wrote FileSystemState to '{0}'.".InvariantFormat(_path));
             }
         }
 

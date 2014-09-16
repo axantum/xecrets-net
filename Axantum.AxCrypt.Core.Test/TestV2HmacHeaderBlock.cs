@@ -47,10 +47,10 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestClone()
         {
-            Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
+            TypeMap.Register.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
 
             V2HmacHeaderBlock headerBlock = new V2HmacHeaderBlock();
-            headerBlock.Hmac = new V2Hmac(Instance.RandomGenerator.Generate(V2Hmac.RequiredLength));
+            headerBlock.Hmac = new V2Hmac(Resolve.RandomGenerator.Generate(V2Hmac.RequiredLength));
 
             V2HmacHeaderBlock clone = (V2HmacHeaderBlock)headerBlock.Clone();
 

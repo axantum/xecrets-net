@@ -42,11 +42,11 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
-            Factory.Instance.Singleton<IPortableFactory>(() => new PortableFactory());
-            Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
-            Factory.Instance.Singleton<CryptoFactory>(() => CreateCryptoFactory());
-            Factory.Instance.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
+            TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
+            TypeMap.Register.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
+            TypeMap.Register.Singleton<CryptoFactory>(() => CreateCryptoFactory());
+            TypeMap.Register.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
         }
 
         private static CryptoFactory CreateCryptoFactory()
@@ -61,7 +61,7 @@ namespace Axantum.AxCrypt.Core.Test
         [TearDown]
         public static void Teardown()
         {
-            Factory.Instance.Clear();
+            TypeMap.Register.Clear();
         }
 
         [Test]

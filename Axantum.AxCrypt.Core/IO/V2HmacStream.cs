@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core.IO
                 throw new ArgumentNullException("key");
             }
 
-            _hmac = Instance.Portable.HMACSHA512(key);
+            _hmac = Resolve.Portable.HMACSHA512(key);
 
             ChainedStream = chainedStream;
         }

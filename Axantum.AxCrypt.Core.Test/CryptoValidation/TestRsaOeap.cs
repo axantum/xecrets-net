@@ -100,13 +100,13 @@ namespace Axantum.AxCrypt.Core.Test.CryptoValidation
         [SetUp]
         public static void Setup()
         {
-            Factory.Instance.Singleton<IAsymmetricFactory>(() => new FakeAsymmetricFactory("SHA1"));
+            TypeMap.Register.Singleton<IAsymmetricFactory>(() => new FakeAsymmetricFactory("SHA1"));
         }
 
         [TearDown]
         public static void Teardown()
         {
-            Factory.Instance.Clear();
+            TypeMap.Register.Clear();
         }
 
         private static byte[] PositiveFromHex(string hex)
@@ -3109,9 +3109,9 @@ e6 1d 44 e1 63 25 1e 20 c7 f6 6e b3 05 11 7c b8
 
         private static void RunOneCase(string testcase, string n, string e, string d, string p, string q, string dp, string dq, string qinv, string message, string seed, string encryption)
         {
-            Factory.Instance.Singleton<IRandomGenerator>(() => new InjectedBytesRandomGenerator(seed.FromHex()));
+            TypeMap.Register.Singleton<IRandomGenerator>(() => new InjectedBytesRandomGenerator(seed.FromHex()));
 
-            IAsymmetricKeyPair keyPair = Factory.Instance.Singleton<IAsymmetricFactory>().CreateKeyPair(PositiveFromHex(n), PositiveFromHex(e), PositiveFromHex(d), PositiveFromHex(p), PositiveFromHex(q), PositiveFromHex(dp), PositiveFromHex(dq), PositiveFromHex(qinv));
+            IAsymmetricKeyPair keyPair = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreateKeyPair(PositiveFromHex(n), PositiveFromHex(e), PositiveFromHex(d), PositiveFromHex(p), PositiveFromHex(q), PositiveFromHex(dp), PositiveFromHex(dq), PositiveFromHex(qinv));
 
             byte[] cipher = keyPair.PublicKey.Transform(message.FromHex());
             Assert.That(cipher, Is.EquivalentTo(encryption.FromHex()), testcase);

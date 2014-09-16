@@ -1,4 +1,4 @@
-#region Coypright and License
+﻿#region Coypright and License
 
 /*
  * AxCrypt - Copyright 2014, Svante Seleborg, All Rights Reserved
@@ -25,39 +25,47 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core
 {
     /// <summary>
-    /// Provides syntactically convenient access to runtime dependent instances.
+    /// Map a type to a class factory creating instances of that type. This is used as a simple dependency injection vehicle
+    /// for types that this library depends on external implementations of for flexibility or unit testing purposes.
     /// </summary>
-    public static class OS
+    public class TypeMap
     {
         /// <summary>
-        /// Gets the current IRuntimeEnvironment platform dependent implementation instance.
+        /// The instance. There can be only one.
         /// </summary>
-        /// <value>
-        /// The current IRuntimeEnvironment platform dependent implementation instance.
-        /// </value>
-        public static IRuntimeEnvironment Current
+        private static TypeMap _instance = new TypeMap();
+
+        /// <summary>
+        /// The type map
+        /// </summary>
+        private Dictionary<Type, object> _mapping = new Dictionary<Type, object>();
+
+        private TypeMap()
+        {
+        }
+
+        public static TypeRegister Register
         {
             get
             {
-                return Resolve.Environment;
+                return new TypeRegister(_instance._mapping);
             }
         }
 
-        private static readonly List<Regex> _pathFilters = new List<Regex>();
-
-        public static IList<Regex> PathFilters
+        public static TypeResolve Resolve
         {
             get
             {
-                return _pathFilters;
+                return new TypeResolve(_instance._mapping);
             }
         }
     }

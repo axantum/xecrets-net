@@ -43,7 +43,7 @@ namespace Axantum.AxCrypt.Core.Header
                 byte[] doubleNullTerminatedRawStringValue = new byte[rawStringValue.Length + 2];
                 rawStringValue.CopyTo(doubleNullTerminatedRawStringValue, 0);
 
-                byte[] dataBlock = Instance.RandomGenerator.Generate(doubleNullTerminatedRawStringValue.Length <= 256 ? 256 : doubleNullTerminatedRawStringValue.Length);
+                byte[] dataBlock = Resolve.RandomGenerator.Generate(doubleNullTerminatedRawStringValue.Length <= 256 ? 256 : doubleNullTerminatedRawStringValue.Length);
                 doubleNullTerminatedRawStringValue.CopyTo(dataBlock, 0);
                 SetDataBlockBytesReference(HeaderCrypto.Encrypt(dataBlock));
             }

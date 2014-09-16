@@ -85,7 +85,7 @@ namespace Axantum.AxCrypt.Core
         public bool Load(Passphrase passphrase, Guid cryptoId, AxCryptReader reader, Headers headers)
         {
             _reader = reader;
-            CryptoFactory = Instance.CryptoFactory.Create(cryptoId);
+            CryptoFactory = Resolve.CryptoFactory.Create(cryptoId);
             V2KeyWrapHeaderBlock keyWrap = headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
             IDerivedKey key = CryptoFactory.RestoreDerivedKey(passphrase, keyWrap.DerivationSalt, keyWrap.DerivationIterations);
             DocumentHeaders = new V2DocumentHeaders(key, cryptoId);
@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Core
                 {
                     using (Stream axCryptDataStream = new V2AxCryptDataStream(outputHmacStream))
                     {
-                        using (Stream encryptingStream = Instance.Portable.CryptoStream(new NonClosingStream(axCryptDataStream), encryptor, CryptoStreamMode.Write))
+                        using (Stream encryptingStream = Resolve.Portable.CryptoStream(new NonClosingStream(axCryptDataStream), encryptor, CryptoStreamMode.Write))
                         {
                             if (DocumentHeaders.IsCompressed)
                             {

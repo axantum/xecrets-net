@@ -18,9 +18,9 @@ namespace Axantum.AxCrypt.Core.Header
         }
 
         public V2AsymmetricKeyWrapHeaderBlock(SymmetricKey masterKey, SymmetricIV masterIV)
-            : this(Instance.RandomGenerator.Generate(DATABLOCK_LENGTH))
+            : this(Resolve.RandomGenerator.Generate(DATABLOCK_LENGTH))
         {
-            byte[] encrypted = Instance.AsymmetricKeysStore.Keys.KeyPair.PublicKey.Transform(masterKey + masterIV);
+            byte[] encrypted = Resolve.AsymmetricKeysStore.Keys.KeyPair.PublicKey.Transform(masterKey + masterIV);
             GetDataBlockBytesReference().SetFrom(encrypted);
         }
 
@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt.Core.Header
             {
                 if (_decryptedDataBlock == null)
                 {
-                    _decryptedDataBlock = Instance.AsymmetricKeysStore.Keys.KeyPair.PrivateKey.Transform(GetDataBlockBytesReference());
+                    _decryptedDataBlock = Resolve.AsymmetricKeysStore.Keys.KeyPair.PrivateKey.Transform(GetDataBlockBytesReference());
                 }
                 return _decryptedDataBlock;
             }

@@ -75,8 +75,8 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestInvalidArguments()
         {
             IRuntimeFileInfo nullFileInfo = null;
-            IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
-            IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
+            IRuntimeFileInfo decryptedFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_testTextPath);
+            IRuntimeFileInfo encryptedFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath);
             Passphrase key = new Passphrase("key");
             Passphrase nullKey = null;
             ActiveFile nullActiveFile = null;
@@ -96,8 +96,8 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestConstructor()
         {
             Passphrase key = new Passphrase("key");
-            IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
-            IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
+            IRuntimeFileInfo decryptedFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_testTextPath);
+            IRuntimeFileInfo encryptedFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath);
 
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
             decryptedFileInfo = activeFile.DecryptedFileInfo;
@@ -124,8 +124,8 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestCopyConstructorWithKey()
         {
             Passphrase key = new Passphrase("key");
-            IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
-            IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
+            IRuntimeFileInfo decryptedFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_testTextPath);
+            IRuntimeFileInfo encryptedFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath);
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, key, ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
             Passphrase newKey = new Passphrase("newKey");
 
@@ -137,8 +137,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestThumbprint()
         {
-            IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
-            IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
+            IRuntimeFileInfo decryptedFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_testTextPath);
+            IRuntimeFileInfo encryptedFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath);
 
             Passphrase key = new Passphrase("key");
 
@@ -157,8 +157,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestThumbprintNullKey()
         {
-            IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
-            IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
+            IRuntimeFileInfo decryptedFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_testTextPath);
+            IRuntimeFileInfo encryptedFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath);
 
             Passphrase key = new Passphrase("key");
             using (MemoryStream stream = new MemoryStream())
@@ -175,8 +175,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestMethodIsModified()
         {
-            IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "doesnotexist.txt"));
-            IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
+            IRuntimeFileInfo decryptedFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "doesnotexist.txt"));
+            IRuntimeFileInfo encryptedFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath);
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new Passphrase("new"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
             Assert.That(activeFile.IsModified, Is.False, "A non-existing decrypted file should not be treated as modified.");
         }
@@ -187,7 +187,7 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile;
             Passphrase key = new Passphrase("key");
 
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(@"C:\encrypted.axx"), Factory.New<IRuntimeFileInfo>(@"C:\decrypted.txt"), key, ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            activeFile = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(@"C:\encrypted.axx"), TypeMap.Resolve.New<IRuntimeFileInfo>(@"C:\decrypted.txt"), key, ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             Assert.That(activeFile.VisualState, Is.EqualTo(ActiveFileVisualState.EncryptedWithKnownKey));
 
             activeFile = new ActiveFile(activeFile);

@@ -96,7 +96,7 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 
         public byte[] Transform(byte[] buffer)
         {
-            IAsymmetricBlockCipher cipher = new OaepEncoding(new RsaBlindedEngine(), new BouncyCastleDigest(Factory.Instance.Singleton<IAsymmetricFactory>().CreatePaddingHash()));
+            IAsymmetricBlockCipher cipher = new OaepEncoding(new RsaBlindedEngine(), new BouncyCastleDigest(TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreatePaddingHash()));
 
             cipher.Init(true, new ParametersWithRandom(Key, BouncyCastleRandomGenerator.CreateSecureRandom()));
             byte[] transformed = cipher.ProcessBlock(buffer, 0, buffer.Length);

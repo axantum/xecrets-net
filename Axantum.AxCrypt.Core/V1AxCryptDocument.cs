@@ -137,7 +137,7 @@ namespace Axantum.AxCrypt.Core
             using (ICryptoTransform encryptor = DataCrypto.CreateEncryptingTransform())
             {
                 long outputStartPosition = outputStream.Position;
-                using (Stream encryptingStream = Instance.Portable.CryptoStream(new NonClosingStream(outputStream), encryptor, CryptoStreamMode.Write))
+                using (Stream encryptingStream = Resolve.Portable.CryptoStream(new NonClosingStream(outputStream), encryptor, CryptoStreamMode.Write))
                 {
                     if (isCompressed)
                     {
@@ -228,7 +228,7 @@ namespace Axantum.AxCrypt.Core
         {
             get
             {
-                _dataCrypto = Instance.CryptoFactory.Legacy.CreateCrypto(DocumentHeaders.DataSubkey.Key, DocumentHeaders.IV, 0);
+                _dataCrypto = Resolve.CryptoFactory.Legacy.CreateCrypto(DocumentHeaders.DataSubkey.Key, DocumentHeaders.IV, 0);
 
                 return _dataCrypto;
             }

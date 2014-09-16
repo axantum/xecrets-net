@@ -64,7 +64,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 throw new ArgumentNullException("image");
             }
-            RootFullPath = Factory.New<IRuntimeFileInfo>(rootFullPath.NormalizeFolderPath());
+            RootFullPath = TypeMap.Resolve.New<IRuntimeFileInfo>(rootFullPath.NormalizeFolderPath());
             MyFullPath = RootFullPath.Combine(myRelativePath).NormalizeFolder();
             Image = image;
             ProviderUrl = providerUrl;

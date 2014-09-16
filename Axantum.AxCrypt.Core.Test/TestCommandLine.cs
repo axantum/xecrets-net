@@ -45,11 +45,11 @@ namespace Axantum.AxCrypt.Core.Test
         public static void Setup()
         {
             SetupAssembly.AssemblySetup();
-            Factory.Instance.Singleton<FakeRequestClient>(() => new FakeRequestClient());
-            Factory.Instance.Singleton<FakeRequestServer>(() => new FakeRequestServer());
-            _fakeClient = Factory.Instance.Singleton<FakeRequestClient>();
-            _fakeServer = Factory.Instance.Singleton<FakeRequestServer>();
-            Factory.Instance.Singleton<CommandService>(() => new CommandService(_fakeServer, _fakeClient));
+            TypeMap.Register.Singleton<FakeRequestClient>(() => new FakeRequestClient());
+            TypeMap.Register.Singleton<FakeRequestServer>(() => new FakeRequestServer());
+            _fakeClient = TypeMap.Resolve.Singleton<FakeRequestClient>();
+            _fakeServer = TypeMap.Resolve.Singleton<FakeRequestServer>();
+            TypeMap.Register.Singleton<CommandService>(() => new CommandService(_fakeServer, _fakeClient));
         }
 
         [TearDown]
@@ -97,7 +97,7 @@ namespace Axantum.AxCrypt.Core.Test
                     FakeRuntimeEnvironment.Instance.IsFirstInstanceRunning = path == "axcrypt.exe";
                     return new FakeLauncher(path);
                 });
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => mock.Object);
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => mock.Object);
 
             _fakeClient.FakeDispatcher = (command) => { _fakeServer.AcceptRequest(command); return CommandStatus.Success; };
             CommandLine cl = new CommandLine("axcrypt.exe", new string[0]);

@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 throw new ArgumentOutOfRangeException("size");
             }
-            _salt = Instance.RandomGenerator.Generate(size / 8);
+            _salt = Resolve.RandomGenerator.Generate(size / 8);
         }
 
         /// <summary>

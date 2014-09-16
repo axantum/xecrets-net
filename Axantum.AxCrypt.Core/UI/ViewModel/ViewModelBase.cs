@@ -105,7 +105,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public void BindPropertyChanged<T>(string name, Action<T> action)
         {
-            Action<T> actionUi = (T arg) => Instance.UIThread.RunOnUIThread(() => action((T)arg));
+            Action<T> actionUi = (T arg) => Resolve.UIThread.RunOnUIThread(() => action((T)arg));
             BindPropertyChangedInternal<T>(name, actionUi);
             actionUi(GetProperty<T>(name));
         }

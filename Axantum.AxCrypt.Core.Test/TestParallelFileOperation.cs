@@ -52,8 +52,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestParallelFileOperationSimple()
         {
-            IRuntimeFileInfo info1 = Factory.New<IRuntimeFileInfo>(@"c:\file1.txt");
-            IRuntimeFileInfo info2 = Factory.New<IRuntimeFileInfo>(@"c:\file2.txt");
+            IRuntimeFileInfo info1 = TypeMap.Resolve.New<IRuntimeFileInfo>(@"c:\file1.txt");
+            IRuntimeFileInfo info2 = TypeMap.Resolve.New<IRuntimeFileInfo>(@"c:\file2.txt");
             ParallelFileOperation pfo = new ParallelFileOperation();
             int callCount = 0;
             pfo.DoFiles(new IRuntimeFileInfo[] { info1, info2 },
@@ -74,14 +74,14 @@ namespace Axantum.AxCrypt.Core.Test
         {
             FakeUIThread fakeUIThread = new FakeUIThread();
             fakeUIThread.IsOnUIThread = true;
-            Factory.Instance.Singleton<IUIThread>(() => fakeUIThread);
+            TypeMap.Register.Singleton<IUIThread>(() => fakeUIThread);
 
             FakeRuntimeEnvironment.Instance.MaxConcurrency = 2;
 
-            IRuntimeFileInfo info1 = Factory.New<IRuntimeFileInfo>(@"c:\file1.txt");
-            IRuntimeFileInfo info2 = Factory.New<IRuntimeFileInfo>(@"c:\file2.txt");
-            IRuntimeFileInfo info3 = Factory.New<IRuntimeFileInfo>(@"c:\file3.txt");
-            IRuntimeFileInfo info4 = Factory.New<IRuntimeFileInfo>(@"c:\file4.txt");
+            IRuntimeFileInfo info1 = TypeMap.Resolve.New<IRuntimeFileInfo>(@"c:\file1.txt");
+            IRuntimeFileInfo info2 = TypeMap.Resolve.New<IRuntimeFileInfo>(@"c:\file2.txt");
+            IRuntimeFileInfo info3 = TypeMap.Resolve.New<IRuntimeFileInfo>(@"c:\file3.txt");
+            IRuntimeFileInfo info4 = TypeMap.Resolve.New<IRuntimeFileInfo>(@"c:\file4.txt");
             ParallelFileOperation pfo = new ParallelFileOperation();
 
             int callCount = 0;

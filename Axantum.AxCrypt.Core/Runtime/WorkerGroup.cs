@@ -169,9 +169,9 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// <param name="progress">The ProgressContext that receives progress notifications</param>
         public WorkerGroup(int maxConcurrent, IProgressContext progress)
         {
-            _concurrencyControlSemaphore = Instance.Portable.Semaphore(maxConcurrent, maxConcurrent);
+            _concurrencyControlSemaphore = Resolve.Portable.Semaphore(maxConcurrent, maxConcurrent);
             _maxConcurrencyCount = maxConcurrent;
-            _singleThread = Instance.Portable.SingleThread();
+            _singleThread = Resolve.Portable.SingleThread();
             FirstError = new FileOperationContext(String.Empty, FileOperationStatus.Success);
             progress.NotifyLevelStart();
             Progress = new WorkerGroupProgressContext(progress, _singleThread);
@@ -245,7 +245,7 @@ namespace Axantum.AxCrypt.Core.Runtime
                 throw new ObjectDisposedException("WorkerGroup");
             }
             AcquireOneConcurrencyRight();
-            IThreadWorker threadWorker = Instance.Portable.ThreadWorker(Progress, startSerializedOnUIThread);
+            IThreadWorker threadWorker = Resolve.Portable.ThreadWorker(Progress, startSerializedOnUIThread);
             threadWorker.Completed += new EventHandler<ThreadWorkerEventArgs>(HandleThreadWorkerCompletedEvent);
             return new ThreadWorkerWrapper(threadWorker);
         }

@@ -43,14 +43,14 @@ namespace Axantum.AxCrypt.Mono
     {
         public static void RegisterTypeFactories()
         {
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
-            Factory.Instance.Singleton<IPortableFactory>(() => new PortableFactory());
-            Factory.Instance.Singleton<ILogging>(() => new Logging());
-            Factory.Instance.Singleton<CommandService>(() => new CommandService(new HttpRequestServer(), new HttpRequestClient()));
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
+            TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
+            TypeMap.Register.Singleton<ILogging>(() => new Logging());
+            TypeMap.Register.Singleton<CommandService>(() => new CommandService(new HttpRequestServer(), new HttpRequestClient()));
 
-            Factory.Instance.Register<ISleep>(() => new Sleep());
-            Factory.Instance.Register<IDelayTimer>(() => new DelayTimer());
-            Factory.Instance.Register<string, IRuntimeFileInfo>((path) => new RuntimeFileInfo(path));
+            TypeMap.Register.New<ISleep>(() => new Sleep());
+            TypeMap.Register.New<IDelayTimer>(() => new DelayTimer());
+            TypeMap.Register.New<string, IRuntimeFileInfo>((path) => new RuntimeFileInfo(path));
         }
 
         public RuntimeEnvironment(string extension)

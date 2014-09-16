@@ -33,7 +33,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 {
     public class RandomGenerator : IRandomGenerator
     {
-        private RandomNumberGenerator _rng = Instance.Portable.RandomNumberGenerator();
+        private RandomNumberGenerator _rng = Resolve.Portable.RandomNumberGenerator();
 
         public byte[] Generate(int count)
         {

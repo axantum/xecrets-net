@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestConstructorWithBadArguments()
         {
-            SymmetricAlgorithm algorithm = Instance.Portable.AesManaged();
+            SymmetricAlgorithm algorithm = Resolve.Portable.AesManaged();
             ICryptoTransform transform = null;
 
             try
@@ -78,7 +78,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestCanReuseTransform()
         {
-            SymmetricAlgorithm algorithm = Instance.Portable.AesManaged();
+            SymmetricAlgorithm algorithm = Resolve.Portable.AesManaged();
             algorithm.Mode = CipherMode.ECB;
             algorithm.Padding = PaddingMode.None;
             using (ICryptoTransform transform = new CounterModeCryptoTransform(algorithm, 0, 0))
@@ -90,7 +90,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestTransformBlockWithBadArgument()
         {
-            SymmetricAlgorithm algorithm = Instance.Portable.AesManaged();
+            SymmetricAlgorithm algorithm = Resolve.Portable.AesManaged();
             algorithm.Mode = CipherMode.ECB;
             algorithm.Padding = PaddingMode.None;
             using (ICryptoTransform transform = new CounterModeCryptoTransform(algorithm, 0, 0))

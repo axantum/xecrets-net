@@ -46,9 +46,9 @@ namespace Axantum.AxCrypt.Core.Test
         public static void Setup()
         {
             SetupAssembly.AssemblySetup();
-            Factory.Instance.Singleton<IRandomGenerator>(() => new FakePseudoRandomGenerator());
-            Factory.Instance.Singleton<IAsymmetricFactory>(() => new FakeAsymmetricFactory("MD5"));
-            Instance.UserSettings.AsymmetricKeyBits = 512;
+            TypeMap.Register.Singleton<IRandomGenerator>(() => new FakePseudoRandomGenerator());
+            TypeMap.Register.Singleton<IAsymmetricFactory>(() => new FakeAsymmetricFactory("MD5"));
+            Resolve.UserSettings.AsymmetricKeyBits = 512;
         }
 
         [TearDown]
@@ -61,8 +61,8 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestSimpleCreateAsymmetricKeysStore()
         {
             FakeRuntimeFileInfo.AddFolder(@"C:\Temp");
-            IRuntimeFileInfo workFolder = Factory.New<IRuntimeFileInfo>(@"C:\Temp");
-            UserAsymmetricKeysStore store = new UserAsymmetricKeysStore(workFolder, Instance.KnownKeys);
+            IRuntimeFileInfo workFolder = TypeMap.Resolve.New<IRuntimeFileInfo>(@"C:\Temp");
+            UserAsymmetricKeysStore store = new UserAsymmetricKeysStore(workFolder, Resolve.KnownKeys);
 
             store.Create(new EmailAddress(@"svante@axantum.com"), new Passphrase("secret"));
             Assert.That(store.Keys.KeyPair.PrivateKey, Is.Not.Null);
@@ -73,8 +73,8 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestCreateAndLoadAsymmetricKeysStore()
         {
             FakeRuntimeFileInfo.AddFolder(@"C:\Temp");
-            IRuntimeFileInfo workFolder = Factory.New<IRuntimeFileInfo>(@"C:\Temp\");
-            UserAsymmetricKeysStore store = new UserAsymmetricKeysStore(workFolder, Instance.KnownKeys);
+            IRuntimeFileInfo workFolder = TypeMap.Resolve.New<IRuntimeFileInfo>(@"C:\Temp\");
+            UserAsymmetricKeysStore store = new UserAsymmetricKeysStore(workFolder, Resolve.KnownKeys);
 
             store.Create(new EmailAddress(@"svante@axantum.com"), new Passphrase("secret"));
             Assert.That(store.Keys.KeyPair.PrivateKey, Is.Not.Null);
@@ -82,10 +82,10 @@ namespace Axantum.AxCrypt.Core.Test
 
             IAsymmetricKeyPair keyPair = store.Keys.KeyPair;
 
-            store = new UserAsymmetricKeysStore(workFolder, Instance.KnownKeys);
+            store = new UserAsymmetricKeysStore(workFolder, Resolve.KnownKeys);
             store.Load(new EmailAddress(@"svante@axantum.com"), new Passphrase("secret"));
 
-            Assert.That(Instance.KnownKeys.DefaultEncryptionKey, Is.EqualTo(new Passphrase("secret")));
+            Assert.That(Resolve.KnownKeys.DefaultEncryptionKey, Is.EqualTo(new Passphrase("secret")));
             Assert.That(store.Keys.KeyPair.PrivateKey.ToString(), Is.EqualTo(keyPair.PrivateKey.ToString()));
             Assert.That(store.Keys.KeyPair.PublicKey.ToString(), Is.EqualTo(keyPair.PublicKey.ToString()));
         }
@@ -94,16 +94,16 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestEncryptCreateLoadDecryptWithAsymmetricKeysStore()
         {
             FakeRuntimeFileInfo.AddFolder(@"C:\Temp");
-            IRuntimeFileInfo workFolder = Factory.New<IRuntimeFileInfo>(@"C:\Temp\");
-            UserAsymmetricKeysStore store = new UserAsymmetricKeysStore(workFolder, Instance.KnownKeys);
-            Instance.KnownKeys.DefaultEncryptionKey = new Passphrase("secret");
+            IRuntimeFileInfo workFolder = TypeMap.Resolve.New<IRuntimeFileInfo>(@"C:\Temp\");
+            UserAsymmetricKeysStore store = new UserAsymmetricKeysStore(workFolder, Resolve.KnownKeys);
+            Resolve.KnownKeys.DefaultEncryptionKey = new Passphrase("secret");
 
             store.Create(new EmailAddress(@"svante@axantum.com"), new Passphrase("secret"));
 
             string text = "AxCrypt encryption rules!";
             byte[] encryptedBytes = store.Keys.KeyPair.PublicKey.Transform(Encoding.UTF8.GetBytes(text));
 
-            store = new UserAsymmetricKeysStore(workFolder, Instance.KnownKeys);
+            store = new UserAsymmetricKeysStore(workFolder, Resolve.KnownKeys);
             store.Load(new EmailAddress(@"svante@axantum.com"), new Passphrase("secret"));
 
             byte[] decryptedBytes = store.Keys.KeyPair.PrivateKey.Transform(encryptedBytes);

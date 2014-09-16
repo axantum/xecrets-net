@@ -227,7 +227,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEndianOptimization()
         {
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment(Endian.Reverse));
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment(Endian.Reverse));
             if (BitConverter.IsLittleEndian)
             {
                 byte[] actuallyLittleEndianBytes = 0x0102030405060708L.GetBigEndianBytes();
@@ -276,24 +276,24 @@ namespace Axantum.AxCrypt.Core.Test
         {
             string rootPath = Path.GetPathRoot(Environment.CurrentDirectory);
             string fileName = rootPath.PathCombine("Users", "Axantum", "A Documents Folder", "My Document.docx");
-            string encryptedFileName = Factory.New<IRuntimeFileInfo>(fileName).CreateEncryptedName().FullName;
+            string encryptedFileName = TypeMap.Resolve.New<IRuntimeFileInfo>(fileName).CreateEncryptedName().FullName;
             Assert.That(encryptedFileName, Is.EqualTo(rootPath.PathCombine("Users", "Axantum", "A Documents Folder", "My Document-docx.axx")), "Standard conversion of file name to encrypted form.");
 
             Assert.Throws<InternalErrorException>(() =>
                  {
-                     string encryptedEncryptedFileName = Factory.New<IRuntimeFileInfo>(encryptedFileName).CreateEncryptedName().FullName;
+                     string encryptedEncryptedFileName = TypeMap.Resolve.New<IRuntimeFileInfo>(encryptedFileName).CreateEncryptedName().FullName;
 
                      // Use the instance to avoid FxCop errors.
                      Object.Equals(encryptedEncryptedFileName, null);
                  });
 
             fileName = rootPath.PathCombine("Users", "Axantum", "A Documents Folder", "My Extensionless File");
-            encryptedFileName = Factory.New<IRuntimeFileInfo>(fileName).CreateEncryptedName().FullName;
+            encryptedFileName = TypeMap.Resolve.New<IRuntimeFileInfo>(fileName).CreateEncryptedName().FullName;
             Assert.That(encryptedFileName, Is.EqualTo(rootPath.PathCombine("Users", "Axantum", "A Documents Folder", "My Extensionless File.axx")), "Conversion of file name without extension to encrypted form.");
 
             Assert.Throws<InternalErrorException>(() =>
             {
-                string encryptedEncryptedFileName = Factory.New<IRuntimeFileInfo>(encryptedFileName).CreateEncryptedName().FullName;
+                string encryptedEncryptedFileName = TypeMap.Resolve.New<IRuntimeFileInfo>(encryptedFileName).CreateEncryptedName().FullName;
 
                 // Use the instance to avoid FxCop errors.
                 Object.Equals(encryptedEncryptedFileName, null);
@@ -357,7 +357,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestCreateUniqueFileFirstIsNotOk()
         {
-            IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(@"C:\temp\test.txt");
+            IRuntimeFileInfo fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(@"C:\temp\test.txt");
             using (Stream stream = fileInfo.OpenWrite())
             {
             }
@@ -397,9 +397,9 @@ namespace Axantum.AxCrypt.Core.Test
         {
             OS.PathFilters.Add(new Regex(@"^C:\{0}Windows\{0}(?!Temp$)".InvariantFormat(Path.DirectorySeparatorChar)));
 
-            Assert.That(Factory.New<IRuntimeFileInfo>(@"C:\Temp\test.txt").IsEncryptable(), Is.True);
-            Assert.That(Factory.New<IRuntimeFileInfo>(@"C:\Windows\test.txt").IsEncryptable(), Is.False);
-            Assert.That(Factory.New<IRuntimeFileInfo>(@"C:\Temp\test-txt.axx").IsEncryptable(), Is.False);
+            Assert.That(TypeMap.Resolve.New<IRuntimeFileInfo>(@"C:\Temp\test.txt").IsEncryptable(), Is.True);
+            Assert.That(TypeMap.Resolve.New<IRuntimeFileInfo>(@"C:\Windows\test.txt").IsEncryptable(), Is.False);
+            Assert.That(TypeMap.Resolve.New<IRuntimeFileInfo>(@"C:\Temp\test-txt.axx").IsEncryptable(), Is.False);
 
             IRuntimeFileInfo nullFileInfo = null;
             Assert.Throws<ArgumentNullException>(() => nullFileInfo.IsEncryptable());
@@ -410,13 +410,13 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IRuntimeFileInfo nullFileInfo = null;
             Assert.Throws<ArgumentNullException>(() => nullFileInfo.NormalizeFolder());
-            Assert.Throws<ArgumentException>(() => Factory.New<IRuntimeFileInfo>(String.Empty).NormalizeFolder());
+            Assert.Throws<ArgumentException>(() => TypeMap.Resolve.New<IRuntimeFileInfo>(String.Empty).NormalizeFolder());
 
             string expected = @"C:\Documents\".Replace('\\', Path.DirectorySeparatorChar);
-            Assert.That(Factory.New<IRuntimeFileInfo>(@"C:\Documents\").NormalizeFolder().FullName, Is.EqualTo(expected));
-            Assert.That(Factory.New<IRuntimeFileInfo>(@"C:/Documents\").NormalizeFolder().FullName, Is.EqualTo(expected));
-            Assert.That(Factory.New<IRuntimeFileInfo>(@"C:\Documents").NormalizeFolder().FullName, Is.EqualTo(expected));
-            Assert.That(Factory.New<IRuntimeFileInfo>(@"C:\Documents\\//").NormalizeFolder().FullName, Is.EqualTo(expected));
+            Assert.That(TypeMap.Resolve.New<IRuntimeFileInfo>(@"C:\Documents\").NormalizeFolder().FullName, Is.EqualTo(expected));
+            Assert.That(TypeMap.Resolve.New<IRuntimeFileInfo>(@"C:/Documents\").NormalizeFolder().FullName, Is.EqualTo(expected));
+            Assert.That(TypeMap.Resolve.New<IRuntimeFileInfo>(@"C:\Documents").NormalizeFolder().FullName, Is.EqualTo(expected));
+            Assert.That(TypeMap.Resolve.New<IRuntimeFileInfo>(@"C:\Documents\\//").NormalizeFolder().FullName, Is.EqualTo(expected));
         }
 
         [Test]
@@ -444,23 +444,23 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestFileInfoTypeExtension()
         {
             FakeRuntimeFileInfo.AddFile(@"c:\test.txt", null);
-            IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(@"c:\test.txt");
+            IRuntimeFileInfo fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(@"c:\test.txt");
             Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.EncryptableFile));
 
             FakeRuntimeFileInfo.AddFile(@"c:\test-txt.axx", null);
-            fileInfo = Factory.New<IRuntimeFileInfo>(@"c:\test-txt.axx");
+            fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(@"c:\test-txt.axx");
             Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.EncryptedFile));
 
             FakeRuntimeFileInfo.AddFolder(@"c:\test\");
-            fileInfo = Factory.New<IRuntimeFileInfo>(@"c:\test\");
+            fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(@"c:\test\");
             Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.Folder));
 
-            fileInfo = Factory.New<IRuntimeFileInfo>(@"c:\not-there.txt");
+            fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(@"c:\not-there.txt");
             Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.NonExisting));
 
             OS.PathFilters.Add(new Regex(@"^C:\{0}Windows\{0}".InvariantFormat(Path.DirectorySeparatorChar)));
             FakeRuntimeFileInfo.AddFile(@"C:\Windows\System.drv", null);
-            fileInfo = Factory.New<IRuntimeFileInfo>(@"C:\Windows\System.drv");
+            fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(@"C:\Windows\System.drv");
             Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.OtherFile));
         }
 

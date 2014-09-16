@@ -13,7 +13,7 @@ namespace Axantum.AxCrypt.Desktop
     {
         public static void RegisterTypeFactories()
         {
-            Factory.Instance.Register<string, IFileWatcher>((path) => new FileWatcher(path, new DelayedAction(Factory.New<IDelayTimer>(), Instance.UserSettings.SessionNotificationMinimumIdle)));
+            TypeMap.Register.New<string, IFileWatcher>((path) => new FileWatcher(path, new DelayedAction(TypeMap.Resolve.New<IDelayTimer>(), Resolve.UserSettings.SessionNotificationMinimumIdle)));
         }
     }
 }

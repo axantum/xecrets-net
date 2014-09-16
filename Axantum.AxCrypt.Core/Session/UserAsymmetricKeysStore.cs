@@ -70,9 +70,9 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void CreateInternal(EmailAddress userEmail, Passphrase passphrase)
         {
-            UserAsymmetricKeys userKeys = new UserAsymmetricKeys(userEmail, Instance.UserSettings.AsymmetricKeyBits);
+            UserAsymmetricKeys userKeys = new UserAsymmetricKeys(userEmail, Resolve.UserSettings.AsymmetricKeyBits);
             string id = UniqueFilePart();
-            IRuntimeFileInfo file = Factory.New<IRuntimeFileInfo>(Instance.Portable.Path().Combine(_folderPath.FullName, _fileFormat.InvariantFormat(id)).CreateEncryptedName());
+            IRuntimeFileInfo file = TypeMap.Resolve.New<IRuntimeFileInfo>(Resolve.Portable.Path().Combine(_folderPath.FullName, _fileFormat.InvariantFormat(id)).CreateEncryptedName());
 
             _keysStoreFile = new KeysStoreFile(userKeys, id, file);
 
@@ -163,7 +163,7 @@ namespace Axantum.AxCrypt.Core.Session
             string json = JsonConvert.SerializeObject(_keysStoreFile.UserKeys);
             using (Stream stream = new MemoryStream(Encoding.UTF8.GetBytes(json)))
             {
-                Factory.New<AxCryptFile>().Encrypt(stream, _keysStoreFile.File.Name, _keysStoreFile.File, passphrase, Instance.CryptoFactory.Default.Id, AxCryptOptions.EncryptWithCompression, new ProgressContext());
+                TypeMap.Resolve.New<AxCryptFile>().Encrypt(stream, _keysStoreFile.File.Name, _keysStoreFile.File, passphrase, Resolve.CryptoFactory.Default.Id, AxCryptOptions.EncryptWithCompression, new ProgressContext());
             }
         }
 
@@ -171,13 +171,13 @@ namespace Axantum.AxCrypt.Core.Session
         {
             using (MemoryStream stream = new MemoryStream())
             {
-                if (!Factory.New<AxCryptFile>().Decrypt(file, stream, passphrase))
+                if (!TypeMap.Resolve.New<AxCryptFile>().Decrypt(file, stream, passphrase))
                 {
                     return null;
                 }
 
                 string json = Encoding.UTF8.GetString(stream.ToArray(), 0, (int)stream.Length);
-                return JsonConvert.DeserializeObject<UserAsymmetricKeys>(json, Factory.Instance.Singleton<IAsymmetricFactory>().GetConverters());
+                return JsonConvert.DeserializeObject<UserAsymmetricKeys>(json, TypeMap.Resolve.Singleton<IAsymmetricFactory>().GetConverters());
             }
         }
     }

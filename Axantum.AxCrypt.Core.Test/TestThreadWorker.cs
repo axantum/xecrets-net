@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationContext returnedStatus = new FileOperationContext(String.Empty, FileOperationStatus.UnspecifiedError);
 
             bool done = false;
-            using (IThreadWorker worker = Instance.Portable.ThreadWorker(new ProgressContext(), false))
+            using (IThreadWorker worker = Resolve.Portable.ThreadWorker(new ProgressContext(), false))
             {
                 worker.Work += (object sender, ThreadWorkerEventArgs e) =>
                     {
@@ -84,7 +84,7 @@ namespace Axantum.AxCrypt.Core.Test
             int progressCalls = 0;
 
             ProgressContext progress = new ProgressContext();
-            using (IThreadWorker worker = Instance.Portable.ThreadWorker(progress, false))
+            using (IThreadWorker worker = Resolve.Portable.ThreadWorker(progress, false))
             {
                 worker.Work += (object sender, ThreadWorkerEventArgs e) =>
                     {
@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestObjectDisposedException()
         {
-            IThreadWorker worker = Instance.Portable.ThreadWorker(new ProgressContext(), false);
+            IThreadWorker worker = Resolve.Portable.ThreadWorker(new ProgressContext(), false);
             worker.Work += (object sender, ThreadWorkerEventArgs e) =>
                 {
                     e.Result = new FileOperationContext(String.Empty, FileOperationStatus.Success);
@@ -133,7 +133,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestCancellationByException()
         {
             bool wasCanceled = false;
-            using (IThreadWorker worker = Instance.Portable.ThreadWorker(new ProgressContext(), false))
+            using (IThreadWorker worker = Resolve.Portable.ThreadWorker(new ProgressContext(), false))
             {
                 worker.Work += (object sender, ThreadWorkerEventArgs e) =>
                     {
@@ -155,7 +155,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             bool wasCanceled = false;
             FakeRuntimeEnvironment environment = (FakeRuntimeEnvironment)OS.Current;
-            using (IThreadWorker worker = Instance.Portable.ThreadWorker(new CancelProgressContext(new ProgressContext()), false))
+            using (IThreadWorker worker = Resolve.Portable.ThreadWorker(new CancelProgressContext(new ProgressContext()), false))
             {
                 worker.Work += (object sender, ThreadWorkerEventArgs e) =>
                 {
@@ -178,7 +178,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestPrepare()
         {
             bool wasPrepared = false;
-            using (IThreadWorker worker = Instance.Portable.ThreadWorker(new ProgressContext(), false))
+            using (IThreadWorker worker = Resolve.Portable.ThreadWorker(new ProgressContext(), false))
             {
                 worker.Prepare += (object sender, ThreadWorkerEventArgs e) =>
                     {
@@ -195,7 +195,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestErrorSetInWorkCompleted()
         {
             bool errorInWork = false;
-            using (IThreadWorker worker = Instance.Portable.ThreadWorker(new ProgressContext(), false))
+            using (IThreadWorker worker = Resolve.Portable.ThreadWorker(new ProgressContext(), false))
             {
                 worker.Work += (object sender, ThreadWorkerEventArgs e) =>
                 {
@@ -215,7 +215,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestHasCompleted()
         {
-            using (IThreadWorker worker = Instance.Portable.ThreadWorker(new ProgressContext(), false))
+            using (IThreadWorker worker = Resolve.Portable.ThreadWorker(new ProgressContext(), false))
             {
                 bool wasCompletedInWork = false;
                 worker.Work += (object sender, ThreadWorkerEventArgs e) =>
@@ -239,7 +239,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestExceptionDuringWork()
         {
             FileOperationContext status = new FileOperationContext(String.Empty, FileOperationStatus.Unknown);
-            using (IThreadWorker worker = Instance.Portable.ThreadWorker(new ProgressContext(), false))
+            using (IThreadWorker worker = Resolve.Portable.ThreadWorker(new ProgressContext(), false))
             {
                 worker.Work += (sender, e) =>
                 {

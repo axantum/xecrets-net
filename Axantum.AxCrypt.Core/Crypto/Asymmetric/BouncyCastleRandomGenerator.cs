@@ -47,13 +47,13 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 
         public void NextBytes(byte[] buffer)
         {
-            byte[] random = Instance.RandomGenerator.Generate(buffer.Length);
+            byte[] random = Resolve.RandomGenerator.Generate(buffer.Length);
             random.CopyTo(buffer, 0);
         }
 
         public void NextBytes(byte[] buffer, int start, int len)
         {
-            byte[] random = Instance.RandomGenerator.Generate(len);
+            byte[] random = Resolve.RandomGenerator.Generate(len);
             Array.Copy(random, 0, buffer, start, len);
         }
 

@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// Instantiate a random key.
         /// </summary>
         public SymmetricKey(int keyBits)
-            : this(Instance.RandomGenerator.Generate(keyBits / 8))
+            : this(Resolve.RandomGenerator.Generate(keyBits / 8))
         {
         }
 

@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Desktop
             _delayedAction = delayedAction;
             _delayedAction.Action += (sender, e) => { OnDelayedNotification(); };
 
-            _fileInfo = Factory.New<IRuntimeFileInfo>(path);
+            _fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(path);
             _fileSystemWatcher = new FileSystemWatcher(_fileInfo.FullName);
             _fileSystemWatcher.Created += (sender, e) => FileSystemChanged(new FileWatcherEventArgs(e.FullPath));
             _fileSystemWatcher.Deleted += (sender, e) => FileSystemChanged(new FileWatcherEventArgs(e.FullPath));
@@ -107,9 +107,9 @@ namespace Axantum.AxCrypt.Desktop
 
         private void FileSystemChanged(FileWatcherEventArgs e)
         {
-            if (Instance.Log.IsInfoEnabled)
+            if (Resolve.Log.IsInfoEnabled)
             {
-                Instance.Log.LogInfo("Watcher says '{0}' changed.".InvariantFormat(e.FullName));
+                Resolve.Log.LogInfo("Watcher says '{0}' changed.".InvariantFormat(e.FullName));
             }
             lock (_notifications)
             {

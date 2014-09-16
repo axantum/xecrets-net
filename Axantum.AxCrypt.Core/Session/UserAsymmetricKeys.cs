@@ -29,7 +29,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             UserEmail = userEmail;
             RecalledPrivateKeys = new List<IAsymmetricPrivateKey>();
-            KeyPair = Factory.Instance.Singleton<IAsymmetricFactory>().CreateKeyPair(bits);
+            KeyPair = TypeMap.Resolve.Singleton<IAsymmetricFactory>().CreateKeyPair(bits);
         }
 
         [JsonProperty("useremail")]

@@ -55,8 +55,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestConstructor()
         {
-            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
-            KnownFoldersViewModel vm = new KnownFoldersViewModel(Instance.FileSystemState, Instance.SessionNotify, knownKeys);
+            KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
+            KnownFoldersViewModel vm = new KnownFoldersViewModel(Resolve.FileSystemState, Resolve.SessionNotify, knownKeys);
 
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(0));
         }
@@ -64,8 +64,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSettingKnownFoldersAndLoggingOnAndOff()
         {
-            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
-            KnownFoldersViewModel vm = new KnownFoldersViewModel(Instance.FileSystemState, Instance.SessionNotify, knownKeys);
+            KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
+            KnownFoldersViewModel vm = new KnownFoldersViewModel(Resolve.FileSystemState, Resolve.SessionNotify, knownKeys);
 
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(0));
 
@@ -98,11 +98,11 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFolder(folder1.MyFullPath.FullName);
             FakeRuntimeFileInfo.AddFolder(folder2.MyFullPath.FullName);
 
-            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(folder1.MyFullPath.FullName, new Passphrase("PassPhrase").Thumbprint));
-            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(folder2.MyFullPath.FullName, new Passphrase("aaa").Thumbprint));
+            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(folder1.MyFullPath.FullName, new Passphrase("PassPhrase").Thumbprint));
+            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(folder2.MyFullPath.FullName, new Passphrase("aaa").Thumbprint));
 
-            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
-            KnownFoldersViewModel vm = new KnownFoldersViewModel(Instance.FileSystemState, Instance.SessionNotify, knownKeys);
+            KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
+            KnownFoldersViewModel vm = new KnownFoldersViewModel(Resolve.FileSystemState, Resolve.SessionNotify, knownKeys);
 
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(0));
 
@@ -125,8 +125,8 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(folder1.MyFullPath.FullName, Stream.Null);
             FakeRuntimeFileInfo.AddFolder(folder2.MyFullPath.FullName);
 
-            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
-            KnownFoldersViewModel vm = new KnownFoldersViewModel(Instance.FileSystemState, Instance.SessionNotify, knownKeys);
+            KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
+            KnownFoldersViewModel vm = new KnownFoldersViewModel(Resolve.FileSystemState, Resolve.SessionNotify, knownKeys);
 
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(0));
 
@@ -136,7 +136,7 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(vm.KnownFolders.Last().Enabled, Is.False);
 
             knownKeys.DefaultEncryptionKey = new Passphrase("aaa");
-            Assert.That(Instance.FileSystemState.WatchedFolders.Count(), Is.EqualTo(1));
+            Assert.That(Resolve.FileSystemState.WatchedFolders.Count(), Is.EqualTo(1));
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(2));
             Assert.That(vm.KnownFolders.First().Enabled, Is.False);
             Assert.That(vm.KnownFolders.Last().Enabled, Is.True);

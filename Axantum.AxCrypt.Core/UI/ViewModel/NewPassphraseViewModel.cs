@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             Passphrase = passphrase ?? String.Empty;
             Verification = passphrase ?? String.Empty;
-            FileName = String.IsNullOrEmpty(_encryptedFileFullName) ? String.Empty : Factory.New<IRuntimeFileInfo>(_encryptedFileFullName).Name;
+            FileName = String.IsNullOrEmpty(_encryptedFileFullName) ? String.Empty : TypeMap.Resolve.New<IRuntimeFileInfo>(_encryptedFileFullName).Name;
         }
 
         public bool ShowPassphrase { get { return GetProperty<bool>("ShowPassphrase"); } set { SetProperty("ShowPassphrase", value); } }
@@ -118,7 +118,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return true;
             }
-            return Factory.New<AxCryptFactory>().TryFindCryptoId(new Passphrase(passphrase), Factory.New<IRuntimeFileInfo>(encryptedFileFullName), Instance.CryptoFactory.OrderedIds) != Guid.Empty;
+            return TypeMap.Resolve.New<AxCryptFactory>().TryFindCryptoId(new Passphrase(passphrase), TypeMap.Resolve.New<IRuntimeFileInfo>(encryptedFileFullName), Resolve.CryptoFactory.OrderedIds) != Guid.Empty;
         }
     }
 }

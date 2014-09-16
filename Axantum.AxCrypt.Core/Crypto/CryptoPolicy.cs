@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             get
             {
-                return _policies.Values.OrderByDescending(p => Instance.CryptoFactory.Create(p).Priority).Select(p => p.Name);
+                return _policies.Values.OrderByDescending(p => Resolve.CryptoFactory.Create(p).Priority).Select(p => p.Name);
             }
         }
 

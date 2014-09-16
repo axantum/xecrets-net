@@ -47,21 +47,21 @@ namespace Axantum.AxCrypt.Desktop.Test
         [SetUp]
         public static void Setup()
         {
-            Factory.Instance.Singleton<IPortableFactory>(() => new PortableFactory());
+            TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
 
             _tempPath = Path.Combine(Path.GetTempPath(), @"Axantum.AxCrypt.Mono.Test.TestFileWatcher").NormalizeFolderPath();
             Directory.CreateDirectory(_tempPath);
 
-            Factory.Instance.Register<string, IFileWatcher>((path) => new FileWatcher(path, new DelayedAction(new DelayTimer(), TimeSpan.FromMilliseconds(1))));
-            Factory.Instance.Register<string, IRuntimeFileInfo>((path) => new RuntimeFileInfo(path));
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
-            Factory.Instance.Singleton<ILogging>(() => new Logging());
+            TypeMap.Register.New<string, IFileWatcher>((path) => new FileWatcher(path, new DelayedAction(new DelayTimer(), TimeSpan.FromMilliseconds(1))));
+            TypeMap.Register.New<string, IRuntimeFileInfo>((path) => new RuntimeFileInfo(path));
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
+            TypeMap.Register.Singleton<ILogging>(() => new Logging());
         }
 
         [TearDown]
         public static void Teardown()
         {
-            Factory.Instance.Clear();
+            TypeMap.Register.Clear();
             Directory.Delete(_tempPath, true);
         }
 
@@ -69,13 +69,13 @@ namespace Axantum.AxCrypt.Desktop.Test
         public static void TestFileWatcherSimple()
         {
             bool wasHere = false;
-            using (IFileWatcher fileWatcher = Factory.New<IFileWatcher>(_tempPath))
+            using (IFileWatcher fileWatcher = TypeMap.Resolve.New<IFileWatcher>(_tempPath))
             {
                 fileWatcher.FileChanged += (object sender, FileWatcherEventArgs e) =>
                 {
                     wasHere = true;
                 };
-                IRuntimeFileInfo tempFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(_tempPath, "AxCryptTestTemp.tmp"));
+                IRuntimeFileInfo tempFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(_tempPath, "AxCryptTestTemp.tmp"));
                 try
                 {
                     using (Stream stream = tempFileInfo.OpenWrite())
@@ -103,7 +103,7 @@ namespace Axantum.AxCrypt.Desktop.Test
         [Test]
         public static void TestCreated()
         {
-            using (IFileWatcher fileWatcher = Factory.New<IFileWatcher>(_tempPath))
+            using (IFileWatcher fileWatcher = TypeMap.Resolve.New<IFileWatcher>(_tempPath))
             {
                 string fileName = String.Empty;
                 fileWatcher.FileChanged += (object sender, FileWatcherEventArgs e) => { fileName = Path.GetFileName(e.FullName); };
@@ -121,7 +121,7 @@ namespace Axantum.AxCrypt.Desktop.Test
         [Test]
         public static void TestMoved()
         {
-            using (IFileWatcher fileWatcher = Factory.New<IFileWatcher>(_tempPath))
+            using (IFileWatcher fileWatcher = TypeMap.Resolve.New<IFileWatcher>(_tempPath))
             {
                 string fileName = String.Empty;
                 fileWatcher.FileChanged += (object sender, FileWatcherEventArgs e) => { fileName = Path.GetFileName(e.FullName); };
@@ -147,7 +147,7 @@ namespace Axantum.AxCrypt.Desktop.Test
         {
             Assert.DoesNotThrow(() =>
             {
-                using (IFileWatcher fileWatcher = Factory.New<IFileWatcher>(_tempPath))
+                using (IFileWatcher fileWatcher = TypeMap.Resolve.New<IFileWatcher>(_tempPath))
                 {
                     fileWatcher.Dispose();
                 }

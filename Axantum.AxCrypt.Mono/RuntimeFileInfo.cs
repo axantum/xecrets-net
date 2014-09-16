@@ -216,7 +216,7 @@ namespace Axantum.AxCrypt.Mono
         /// <param name="destinationFileName">Name of the destination file.</param>
         public void MoveTo(string destinationFileName)
         {
-            IRuntimeFileInfo destination = Factory.New<IRuntimeFileInfo>(destinationFileName);
+            IRuntimeFileInfo destination = TypeMap.Resolve.New<IRuntimeFileInfo>(destinationFileName);
             if (destination.IsExistingFile)
             {
                 try
