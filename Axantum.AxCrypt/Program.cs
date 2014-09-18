@@ -82,6 +82,7 @@ namespace Axantum.AxCrypt
 
             Resolve.RegisterTypeFactories(workFolderPath);
             RuntimeEnvironment.RegisterTypeFactories();
+            DesktopFactory.RegisterTypeFactories();
 
             TypeMap.Register.Singleton<CryptoFactory>(() => CreateCryptoFactory(startPath));
             TypeMap.Register.Singleton<CryptoPolicy>(() => CreateCryptoPolicy(startPath));
