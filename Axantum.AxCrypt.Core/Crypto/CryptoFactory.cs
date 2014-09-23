@@ -22,6 +22,8 @@
  * updates, contributions and contact with the author. You may also visit
  * http://www.axantum.com for more information about the author.
 */
+using System.Reflection;
+using Axantum.AxCrypt.Core.Runtime;
 
 #endregion Coypright and License
 
@@ -36,6 +38,20 @@ namespace Axantum.AxCrypt.Core.Crypto
         public static readonly int DerivationIterations = 1000;
 
         private Dictionary<Guid, CryptoFactoryCreator> _factories = new Dictionary<Guid, CryptoFactoryCreator>();
+
+        public CryptoFactory()
+        {
+        }
+
+        public CryptoFactory(IEnumerable<Assembly> extraAssemblies)
+        {
+            IEnumerable<Type> types = TypeDiscovery.Interface(typeof(ICryptoFactory), extraAssemblies);
+
+            foreach (Type type in types)
+            {
+                Add(() => Activator.CreateInstance(type) as ICryptoFactory);
+            }
+        }
 
         public void Add(CryptoFactoryCreator factory)
         {

@@ -7,6 +7,10 @@ using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.iOS.Infrastructure;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Mono;
+using System.Collections.Generic;
+using System.Reflection;
+using Axantum.AxCrypt.MonoTouch;
+using Axantum.AxCrypt.Core.IO;
 
 namespace Axantum.AxCrypt.iOS
 {
@@ -69,7 +73,14 @@ namespace Axantum.AxCrypt.iOS
 
 		public void RegisterTypeFactories()
 		{
-			Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
+			string workFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"AxCrypt" + Path.DirectorySeparatorChar);
+			IEnumerable<Assembly> extraAssemblies = new Assembly[]{ typeof(Resolve).Assembly };
+
+			Resolve.RegisterTypeFactories(workFolderPath, extraAssemblies);
+			RuntimeEnvironment.RegisterTypeFactories();
+
+			TypeMap.Register.New<IDataProtection>(() => new DataProtection());
+			TypeMap.Register.New<string, IFileWatcher>((path) => new FileWatcher(path));
 		}
 
 		void ShowAbout() {

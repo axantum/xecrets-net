@@ -22,6 +22,8 @@
  * updates, contributions and contact with the author. You may also visit
  * http://www.axantum.com for more information about the author.
 */
+using System.Collections.Generic;
+using System.Reflection;
 
 #endregion Coypright and License
 
@@ -42,7 +44,7 @@ namespace Axantum.AxCrypt.Core
     /// </summary>
     public static class Resolve
     {
-        public static void RegisterTypeFactories(string workFolderPath)
+        public static void RegisterTypeFactories(string workFolderPath, IEnumerable<Assembly> assemblies)
         {
             TypeMap.Register.Singleton<KnownKeys>(() => new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify));
             TypeMap.Register.Singleton<UserAsymmetricKeysStore>(() => new UserAsymmetricKeysStore(Resolve.WorkFolder.FileInfo, Resolve.KnownKeys));
@@ -58,6 +60,10 @@ namespace Axantum.AxCrypt.Core
             TypeMap.Register.Singleton<ActiveFileWatcher>(() => new ActiveFileWatcher());
             TypeMap.Register.Singleton<IAsymmetricFactory>(() => new BouncyCastleAsymmetricFactory());
 
+            TypeMap.Register.Singleton<CryptoFactory>(() => new CryptoFactory(assemblies));
+            TypeMap.Register.Singleton<CryptoPolicy>(() => new CryptoPolicy(assemblies));
+            TypeMap.Register.Singleton<ICryptoPolicy>(() => TypeMap.Resolve.Singleton<CryptoPolicy>().CreateDefault());
+
             TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());
             TypeMap.Register.New<AxCryptFile>(() => new AxCryptFile());
             TypeMap.Register.New<ActiveFileAction>(() => new ActiveFileAction());
@@ -67,7 +73,7 @@ namespace Axantum.AxCrypt.Core
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
             TypeMap.Register.New<IterationCalculator>(() => new IterationCalculator());
         }
-
+            
         public static KnownKeys KnownKeys
         {
             get { return TypeMap.Resolve.Singleton<KnownKeys>(); }

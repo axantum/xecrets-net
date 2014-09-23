@@ -79,35 +79,13 @@ namespace Axantum.AxCrypt
         private static void RegisterTypeFactories(string startPath)
         {
             string workFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"AxCrypt" + Path.DirectorySeparatorChar);
+            IEnumerable<Assembly> extraAssemblies = LoadFromFiles(new DirectoryInfo(Path.GetDirectoryName(startPath)).GetFiles("*.dll"));
 
-            Resolve.RegisterTypeFactories(workFolderPath);
+            Resolve.RegisterTypeFactories(workFolderPath, extraAssemblies);
             RuntimeEnvironment.RegisterTypeFactories();
             DesktopFactory.RegisterTypeFactories();
 
-            TypeMap.Register.Singleton<CryptoFactory>(() => CreateCryptoFactory(startPath));
-            TypeMap.Register.Singleton<CryptoPolicy>(() => CreateCryptoPolicy(startPath));
-            TypeMap.Register.Singleton<ICryptoPolicy>(() => TypeMap.Resolve.Singleton<CryptoPolicy>().CreateDefault());
-
             TypeMap.Register.New<IDataProtection>(() => new DataProtection());
-        }
-
-        private static CryptoFactory CreateCryptoFactory(string startPath)
-        {
-            IEnumerable<Assembly> extraAssemblies = LoadFromFiles(new DirectoryInfo(Path.GetDirectoryName(startPath)).GetFiles("*.dll"));
-            IEnumerable<Type> types = TypeDiscovery.Interface(typeof(ICryptoFactory), extraAssemblies);
-
-            CryptoFactory factory = new CryptoFactory();
-            foreach (Type type in types)
-            {
-                factory.Add(() => Activator.CreateInstance(type) as ICryptoFactory);
-            }
-            return factory;
-        }
-
-        private static CryptoPolicy CreateCryptoPolicy(string startPath)
-        {
-            IEnumerable<Assembly> extraAssemblies = LoadFromFiles(new DirectoryInfo(Path.GetDirectoryName(startPath)).GetFiles("*.dll"));
-            return new CryptoPolicy(extraAssemblies);
         }
 
         private static IEnumerable<Assembly> LoadFromFiles(IEnumerable<FileInfo> files)

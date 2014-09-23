@@ -23,7 +23,7 @@
     <ConsolePause>False</ConsolePause>
     <MtouchDebug>True</MtouchDebug>
     <MtouchLink>None</MtouchLink>
-    <MtouchArch>ARMv7</MtouchArch>
+    <MtouchArch>i386</MtouchArch>
     <MtouchI18n>west</MtouchI18n>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
@@ -112,12 +112,12 @@
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="monotouch" />
     <Reference Include="MonoTouch.Dialog-1" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="BTProgressHUD">
       <HintPath>Components\btprogresshud-1.5\lib\ios\BTProgressHUD.dll</HintPath>
     </Reference>
+    <Reference Include="monotouch" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -191,6 +191,7 @@
   </ItemGroup>
   <Import Project="..\Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.projitems" Label="Shared" Condition="Exists('..\Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <ItemGroup>
     <Content Include="Images\logo.png" />
     <Content Include="Images\App Icons\logo 57x57.png" />

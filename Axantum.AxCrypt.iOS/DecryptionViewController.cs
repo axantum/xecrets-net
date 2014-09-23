@@ -28,11 +28,11 @@ namespace Axantum.AxCrypt.iOS
 			//			context.Progressing += (sender, e) => {
 			//				SetProgress(e.Percent, "Decrypting ...");
 			//			};
-			this.sourceFile = Factory.New<IRuntimeFileInfo>(sourceFilePath);
+			this.sourceFile = TypeMap.Resolve.New<IRuntimeFileInfo>(sourceFilePath);
 		}
 
 		void CreateWorker() {
-			this.worker = Instance.Portable.ThreadWorker(this.context, false);
+			this.worker = Resolve.Portable.ThreadWorker(this.context, false);
 			//worker.Prepare += delegate { SetProgress(0, "Unlocking ..."); };
 			worker.Work += Work;
 			worker.Completed += WorkerCompleted;
@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt.iOS
 		void Work(object sender, ThreadWorkerEventArgs args) {
 			using (NSAutoreleasePool pool = new NSAutoreleasePool()) {
 				string targetDirectory = Path.GetTempPath();
-				string extractedFileName = Factory.New<AxCryptFile>().Decrypt(
+				string extractedFileName = TypeMap.Resolve.New<AxCryptFile>().Decrypt(
 					this.sourceFile, 
 					targetDirectory, 
 					this.key, 
