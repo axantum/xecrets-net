@@ -36,6 +36,7 @@ using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Linq;
+using Axantum.AxCrypt.Core.IO;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -72,6 +73,7 @@ namespace Axantum.AxCrypt.Core
             TypeMap.Register.New<Version, UpdateCheck>((version) => new UpdateCheck(version));
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
             TypeMap.Register.New<IterationCalculator>(() => new IterationCalculator());
+            TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(TypeMap.Resolve.Singleton<IAsymmetricFactory>().GetConverters()));
         }
             
         public static KnownKeys KnownKeys
@@ -157,6 +159,11 @@ namespace Axantum.AxCrypt.Core
         public static IPortableFactory Portable
         {
             get { return TypeMap.Resolve.Singleton<IPortableFactory>(); }
+        }
+
+        public static IStringSerializer Serializer
+        {
+            get { return TypeMap.Resolve.New<IStringSerializer>(); }
         }
     }
 }

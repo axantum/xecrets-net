@@ -1,4 +1,5 @@
 ﻿using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -33,11 +34,11 @@ namespace Axantum.AxCrypt.Core.Header
                 {
                     return new string[0];
                 }
-                return JsonConvert.DeserializeObject<IEnumerable<string>>(StringValue);
+                return Resolve.Serializer.Deserialize<IEnumerable<string>>(StringValue);
             }
             set
             {
-                StringValue = JsonConvert.SerializeObject(value ?? new string[0]);
+                StringValue = Resolve.Serializer.Serialize(value ?? new string[0]);
             }
         }
     }

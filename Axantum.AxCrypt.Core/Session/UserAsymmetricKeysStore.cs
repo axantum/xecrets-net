@@ -160,7 +160,7 @@ namespace Axantum.AxCrypt.Core.Session
                 return;
             }
 
-            string json = JsonConvert.SerializeObject(_keysStoreFile.UserKeys);
+            string json = Resolve.Serializer.Serialize(_keysStoreFile.UserKeys);
             using (Stream stream = new MemoryStream(Encoding.UTF8.GetBytes(json)))
             {
                 TypeMap.Resolve.New<AxCryptFile>().Encrypt(stream, _keysStoreFile.File.Name, _keysStoreFile.File, passphrase, Resolve.CryptoFactory.Default.Id, AxCryptOptions.EncryptWithCompression, new ProgressContext());
@@ -177,7 +177,7 @@ namespace Axantum.AxCrypt.Core.Session
                 }
 
                 string json = Encoding.UTF8.GetString(stream.ToArray(), 0, (int)stream.Length);
-                return JsonConvert.DeserializeObject<UserAsymmetricKeys>(json, TypeMap.Resolve.Singleton<IAsymmetricFactory>().GetConverters());
+                return Resolve.Serializer.Deserialize<UserAsymmetricKeys>(json);
             }
         }
     }

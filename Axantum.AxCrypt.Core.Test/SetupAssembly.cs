@@ -38,6 +38,7 @@ using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Mono.Portable;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -66,6 +67,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
             TypeMap.Register.Singleton<ActiveFileWatcher>(() => new ActiveFileWatcher());
             TypeMap.Register.Singleton<UserAsymmetricKeysStore>(() => new UserAsymmetricKeysStore(Resolve.WorkFolder.FileInfo, Resolve.KnownKeys));
+            TypeMap.Register.Singleton<IAsymmetricFactory>(() => new BouncyCastleAsymmetricFactory());
 
             TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());
             TypeMap.Register.New<AxCryptFile>(() => new AxCryptFile());
@@ -78,6 +80,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<string, IFileWatcher>((path) => new FakeFileWatcher(path));
             TypeMap.Register.New<IterationCalculator>(() => new FakeIterationCalculator());
             TypeMap.Register.New<IDataProtection>(() => new FakeDataProtection());
+            TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(TypeMap.Resolve.Singleton<IAsymmetricFactory>().GetConverters()));
 
             Resolve.UserSettings.SetKeyWrapIterations(V1Aes128CryptoFactory.CryptoId, 1234);
             Resolve.UserSettings.ThumbprintSalt = Salt.Zero;

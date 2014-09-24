@@ -42,6 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AxCryptFactory.cs" />
+    <Compile Include="Crypto\Asymmetric\UserPublicKey.cs" />
+    <Compile Include="IO\IStringSerializer.cs" />
+    <Compile Include="IO\StringSerializer.cs" />
     <Compile Include="Portable\AesManaged.cs" />
     <Compile Include="Portable\CipherMode.cs" />
     <Compile Include="Portable\IPortableFactory.cs" />

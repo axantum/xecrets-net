@@ -25,6 +25,8 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Ipc;
 using Newtonsoft.Json;
 using System;
@@ -39,7 +41,7 @@ namespace Axantum.AxCrypt.Mono
     {
         public CommandStatus Dispatch(CommandServiceEventArgs command)
         {
-            string json = JsonConvert.SerializeObject(command, Formatting.None, new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Include, NullValueHandling = NullValueHandling.Ignore, });
+            string json = Resolve.Serializer.Serialize(command);
 
             WebRequest request = HttpWebRequest.Create(HttpRequestServer.Url);
             try

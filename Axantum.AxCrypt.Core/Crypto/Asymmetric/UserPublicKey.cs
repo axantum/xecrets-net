@@ -25,41 +25,26 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Ipc;
+using Axantum.AxCrypt.Core.UI;
 using Newtonsoft.Json;
-using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
-namespace Axantum.AxCrypt.Core.Test
+namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
 {
-    [TestFixture]
-    public static class TestCommandServiceEventArgsTest
+    /// <summary>
+    /// Holder of the public key for a user, associated with an e-mail.
+    /// </summary>
+    [JsonObject(MemberSerialization.OptIn)]
+    public class UserPublicKey
     {
-        [SetUp]
-        public static void Setup()
-        {
-            TypeMap.Register.New<IStringSerializer>(() => new StringSerializer());
-        }
+        [JsonProperty("email"), JsonConverter(typeof(EmailAddressJsonConverter))]
+        public EmailAddress Email { get; private set; }
 
-        [TearDown]
-        public static void Teardown()
-        {
-            TypeMap.Register.Clear();
-        }
-
-        [Test]
-        public static void TestStringSerialization()
-        {
-            CommandServiceEventArgs args = new CommandServiceEventArgs();
-            string serialized = Resolve.Serializer.Serialize(args);
-
-            args = Resolve.Serializer.Deserialize<CommandServiceEventArgs>(serialized);
-
-            Assert.That(args.Verb, Is.EqualTo(CommandVerb.Unknown));
-            Assert.That(args.Arguments.Count(), Is.EqualTo(0));
-        }
+        [JsonProperty("publickey")]
+        public IAsymmetricPublicKey PublicKey { get; private set; }
     }
 }
