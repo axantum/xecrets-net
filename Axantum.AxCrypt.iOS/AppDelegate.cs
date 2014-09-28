@@ -4,7 +4,7 @@ using MonoTouch.Foundation;
 using MonoTouch.MessageUI;
 using MonoTouch.UIKit;
 using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.iOS.Infrastructure;
+using Axantum.AxCrypt.MonoTouch.Infrastructure;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Mono;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ using System.Reflection;
 using Axantum.AxCrypt.MonoTouch;
 using Axantum.AxCrypt.Core.IO;
 
-namespace Axantum.AxCrypt.iOS
+namespace Axantum.AxCrypt.MonoTouch
 {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the 
 	// User Interface of the application, as well as listening (and optionally responding) to 

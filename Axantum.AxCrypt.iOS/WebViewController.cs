@@ -1,10 +1,10 @@
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
-using Axantum.AxCrypt.iOS.Infrastructure;
+using Axantum.AxCrypt.MonoTouch.Infrastructure;
 using System;
 using BigTed;
 
-namespace Axantum.AxCrypt.iOS
+namespace Axantum.AxCrypt.MonoTouch
 {
 	public class WebViewController : UIViewController
 	{

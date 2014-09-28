@@ -3,7 +3,7 @@ using System.Drawing;
 using MonoTouch.Dialog;
 using System;
 
-namespace Axantum.AxCrypt.iOS.Infrastructure
+namespace Axantum.AxCrypt.MonoTouch.Infrastructure
 {
 	public static class Theme
 	{

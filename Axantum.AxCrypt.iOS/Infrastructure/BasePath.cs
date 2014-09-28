@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using Axantum.AxCrypt.Core;
 
-namespace Axantum.AxCrypt.iOS.Infrastructure
+namespace Axantum.AxCrypt.MonoTouch.Infrastructure
 {
 	public static class BasePath
 	{

@@ -8,9 +8,8 @@
     <ProjectGuid>{3773A07A-71B7-474C-A622-21ED8B8492DD}</ProjectGuid>
     <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Axantum.AxCrypt.iOS</RootNamespace>
+    <RootNamespace>Axantum.AxCrypt.MonoTouch</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>AxantumAxCryptiOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>True</DebugSymbols>
@@ -25,6 +24,7 @@
     <MtouchLink>None</MtouchLink>
     <MtouchArch>i386</MtouchArch>
     <MtouchI18n>west</MtouchI18n>
+    <AssemblyName>AxantumAxCryptMonoTouch</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -38,6 +38,7 @@
     <MtouchArch>ARMv7</MtouchArch>
     <MtouchI18n>
     </MtouchI18n>
+    <AssemblyName>AxantumAxCryptMonoTouch</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>True</DebugSymbols>
@@ -55,6 +56,7 @@
     </IpaPackageName>
     <MtouchI18n>west</MtouchI18n>
     <CodesignProvision>9DA52B33-9272-40CD-9415-64FF17ADC82E</CodesignProvision>
+    <AssemblyName>AxantumAxCryptiOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -74,6 +76,7 @@
     </CustomCommands>
     <MtouchUseLlvm>True</MtouchUseLlvm>
     <MtouchLink>Full</MtouchLink>
+    <AssemblyName>AxantumAxCryptiOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>none</DebugType>
@@ -91,6 +94,7 @@
     <CodesignProvision>9DA52B33-9272-40CD-9415-64FF17ADC82E</CodesignProvision>
     <MtouchUseLlvm>True</MtouchUseLlvm>
     <MtouchUseThumb>True</MtouchUseThumb>
+    <AssemblyName>AxantumAxCryptiOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
     <DebugType>none</DebugType>
@@ -107,6 +111,7 @@
     </IpaPackageName>
     <MtouchUseLlvm>True</MtouchUseLlvm>
     <MtouchUseThumb>True</MtouchUseThumb>
+    <AssemblyName>AxantumAxCryptiOS</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -172,12 +177,6 @@
     <Compile Include="Infrastructure\UIAlertViewOkCancelDelegate.cs" />
     <Compile Include="Infrastructure\EditableTableViewSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="..\Axantum.AxCrypt.MonoTouch\DataProtection.cs">
-      <Link>AxCrypt.MonoTouch\DataProtection.cs</Link>
-    </Compile>
-    <Compile Include="..\Axantum.AxCrypt.MonoTouch\FileWatcher.cs">
-      <Link>AxCrypt.MonoTouch\FileWatcher.cs</Link>
-    </Compile>
     <Compile Include="FileListingViewController.cs" />
     <Compile Include="MainViewController.cs" />
     <Compile Include="Infrastructure\Theme.cs" />
@@ -188,6 +187,8 @@
     <Compile Include="WebViewController.cs" />
     <Compile Include="Infrastructure\ThemedFileElement.cs" />
     <Compile Include="Infrastructure\BasePath.cs" />
+    <Compile Include="DataProtection.cs" />
+    <Compile Include="FileWatcher.cs" />
   </ItemGroup>
   <Import Project="..\Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.projitems" Label="Shared" Condition="Exists('..\Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.projitems')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -212,7 +213,6 @@
     <Folder Include="Infrastructure\" />
     <Folder Include="Images\iTunes Artwork\" />
     <Folder Include="Properties\" />
-    <Folder Include="AxCrypt.MonoTouch\" />
     <Folder Include="Images\AppStore Images\" />
     <Folder Include="Images\AppStore Images\iPad %28Retina%29\" />
     <Folder Include="Images\AppStore Images\iPhone 3.5in\" />

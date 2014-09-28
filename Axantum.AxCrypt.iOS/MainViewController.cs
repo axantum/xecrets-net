@@ -1,9 +1,9 @@
 using System;
 using MonoTouch.Dialog;
 using MonoTouch.UIKit;
-using Axantum.AxCrypt.iOS.Infrastructure;
+using Axantum.AxCrypt.MonoTouch.Infrastructure;
 
-namespace Axantum.AxCrypt.iOS
+namespace Axantum.AxCrypt.MonoTouch
 {
 	public partial class MainViewController : DialogViewController
 	{

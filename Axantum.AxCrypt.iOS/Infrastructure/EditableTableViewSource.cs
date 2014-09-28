@@ -2,9 +2,8 @@ using MonoTouch.Dialog;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 using System.IO;
-using Axantum.AxCrypt.iOS.Infrastructure;
 
-namespace Axantum.AxCrypt.iOS
+namespace Axantum.AxCrypt.MonoTouch.Infrastructure
 {
 	public class EditableTableViewSource : DialogViewController.Source
 	{

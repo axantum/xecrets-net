@@ -1,7 +1,7 @@
 using System;
 using MonoTouch.UIKit;
 
-namespace Axantum.AxCrypt.iOS
+namespace Axantum.AxCrypt.MonoTouch.Infrastructure
 {
 	class UIAlertViewOkCancelDelegate : UIAlertViewDelegate
 	{

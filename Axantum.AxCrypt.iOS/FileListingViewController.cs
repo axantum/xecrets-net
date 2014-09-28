@@ -5,10 +5,10 @@ using System.Linq;
 using MonoTouch.Dialog;
 using MonoTouch.UIKit;
 using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.iOS.Infrastructure;
+using Axantum.AxCrypt.MonoTouch.Infrastructure;
 using MonoTouch.Foundation;
 
-namespace Axantum.AxCrypt.iOS
+namespace Axantum.AxCrypt.MonoTouch
 {
 	public partial class FileListingViewController : DialogViewController
 	{

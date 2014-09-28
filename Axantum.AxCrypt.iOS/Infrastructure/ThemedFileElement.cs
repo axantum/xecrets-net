@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using MonoTouch.UIKit;
 
-namespace Axantum.AxCrypt.iOS.Infrastructure
+namespace Axantum.AxCrypt.MonoTouch.Infrastructure
 {
 	public class ThemedFileElement : StyledStringElement
 	{

@@ -9,7 +9,7 @@ using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core;
 using BigTed;
 
-namespace Axantum.AxCrypt.iOS
+namespace Axantum.AxCrypt.MonoTouch
 {
 	public class DecryptionViewController : UIViewController
 	{

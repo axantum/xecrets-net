@@ -3,7 +3,7 @@ using MonoTouch.Dialog;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 
-namespace Axantum.AxCrypt.iOS.Infrastructure
+namespace Axantum.AxCrypt.MonoTouch.Infrastructure
 {
 	public class ThemedStringElement : StringElement {
 

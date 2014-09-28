@@ -2,8 +2,9 @@ using System;
 using System.IO;
 using MonoTouch.UIKit;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.MonoTouch.Infrastructure;
 
-namespace Axantum.AxCrypt.iOS
+namespace Axantum.AxCrypt.MonoTouch
 {
 	public partial class PassphraseController : IDisposable
 	{
