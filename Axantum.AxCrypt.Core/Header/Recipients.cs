@@ -25,36 +25,31 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
+namespace Axantum.AxCrypt.Core.Header
 {
-    /// <summary>
-    /// Holder of the public key for a user, associated with an e-mail.
-    /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
-    public class UserPublicKey
+    public class Recipients
     {
-        private UserPublicKey()
+        public static readonly Recipients Empty = new Recipients();
+
+        private Recipients()
         {
+            PublicKeys = new UserPublicKey[0];
         }
 
-        public UserPublicKey(EmailAddress email, IAsymmetricPublicKey publicKey)
+        public Recipients(IEnumerable<UserPublicKey> publicKeys)
         {
-            Email = email;
-            PublicKey = publicKey;
+            PublicKeys = publicKeys.ToArray();
         }
 
-        [JsonProperty("email"), JsonConverter(typeof(EmailAddressJsonConverter))]
-        public EmailAddress Email { get; private set; }
-
-        [JsonProperty("publickey")]
-        public IAsymmetricPublicKey PublicKey { get; private set; }
+        [JsonProperty("recipients")]
+        public IList<UserPublicKey> PublicKeys { get; private set; }
     }
 }

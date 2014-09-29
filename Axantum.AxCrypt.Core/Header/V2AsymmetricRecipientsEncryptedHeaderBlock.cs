@@ -26,19 +26,19 @@ namespace Axantum.AxCrypt.Core.Header
             return CopyTo(block);
         }
 
-        public IEnumerable<string> Recipients
+        public Recipients Recipients
         {
             get
             {
                 if (String.IsNullOrEmpty(StringValue))
                 {
-                    return new string[0];
+                    return Recipients.Empty;
                 }
-                return Resolve.Serializer.Deserialize<IEnumerable<string>>(StringValue);
+                return Resolve.Serializer.Deserialize<Recipients>(StringValue);
             }
             set
             {
-                StringValue = Resolve.Serializer.Serialize(value ?? new string[0]);
+                StringValue = Resolve.Serializer.Serialize(value ?? Recipients.Empty);
             }
         }
     }
