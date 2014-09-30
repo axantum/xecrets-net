@@ -25,14 +25,14 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
+using System;
+using System.Collections.Generic;
 
 namespace Axantum.AxCrypt.Core.Test
 {
-    internal class FakeRuntimeEnvironment : IRuntimeEnvironment, IDisposable
+    public class FakeRuntimeEnvironment : IRuntimeEnvironment, IDisposable
     {
         private bool _isLittleEndian = BitConverter.IsLittleEndian;
 

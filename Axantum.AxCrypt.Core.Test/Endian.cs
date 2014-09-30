@@ -27,7 +27,7 @@
 
 namespace Axantum.AxCrypt.Core.Test
 {
-    internal enum Endian
+    public enum Endian
     {
         Reverse,
         Actual

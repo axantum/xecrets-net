@@ -25,15 +25,13 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Axantum.AxCrypt.Core.Runtime;
+using System;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
-    internal class FakeTiming : ITiming
+    public class FakeTiming : ITiming
     {
         public TimeSpan CurrentTiming { get; set; }
 
