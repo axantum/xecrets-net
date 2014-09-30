@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
 
             block[0] = subKeyValue;
-            _subKey = new SymmetricKey(Instance.CryptoFactory.Legacy.CreateCrypto(masterKey, null, 0).Encrypt(block));
+            _subKey = new SymmetricKey(Resolve.CryptoFactory.Legacy.CreateCrypto(masterKey, null, 0).Encrypt(block));
         }
 
         /// <summary>

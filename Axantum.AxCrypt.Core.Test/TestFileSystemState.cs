@@ -67,7 +67,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestLoadNew()
         {
-            using (FileSystemState state = FileSystemState.Create(Instance.WorkFolder.FileInfo.Combine("mystate.txt")))
+            using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.Combine("mystate.txt")))
             {
                 Assert.That(state, Is.Not.Null, "An instance should always be instantiated.");
                 Assert.That(state.ActiveFiles.Count(), Is.EqualTo(0), "A new state should not have any active files.");
@@ -78,17 +78,17 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestLoadExisting()
         {
             ActiveFile activeFile;
-            using (FileSystemState state = FileSystemState.Create(Instance.WorkFolder.FileInfo.Combine("mystate.txt")))
+            using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.Combine("mystate.txt")))
             {
                 Assert.That(state, Is.Not.Null, "An instance should always be instantiated.");
                 Assert.That(state.ActiveFiles.Count(), Is.EqualTo(0), "A new state should not have any active files.");
 
-                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedAxxPath), Factory.New<IRuntimeFileInfo>(_decryptedTxtPath), new Passphrase("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
+                activeFile = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_encryptedAxxPath), TypeMap.Resolve.New<IRuntimeFileInfo>(_decryptedTxtPath), new Passphrase("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
                 state.Add(activeFile);
                 state.Save();
             }
 
-            using (FileSystemState reloadedState = FileSystemState.Create(Instance.WorkFolder.FileInfo.Combine("mystate.txt")))
+            using (FileSystemState reloadedState = FileSystemState.Create(Resolve.WorkFolder.FileInfo.Combine("mystate.txt")))
             {
                 Assert.That(reloadedState, Is.Not.Null, "An instance should always be instantiated.");
                 Assert.That(reloadedState.ActiveFiles.Count(), Is.EqualTo(1), "The reloaded state should have one active file.");
@@ -99,11 +99,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestActiveFileChangedEvent()
         {
-            using (FileSystemState state = FileSystemState.Create(Instance.WorkFolder.FileInfo.Combine("mystate.txt")))
+            using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.Combine("mystate.txt")))
             {
                 bool wasHere;
                 state.ActiveFileChanged += new EventHandler<ActiveFileChangedEventArgs>((object sender, ActiveFileChangedEventArgs e) => { wasHere = true; });
-                ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedAxxPath), Factory.New<IRuntimeFileInfo>(_decryptedTxtPath), new Passphrase("a"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
+                ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_encryptedAxxPath), TypeMap.Resolve.New<IRuntimeFileInfo>(_decryptedTxtPath), new Passphrase("a"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
 
                 wasHere = false;
                 state.Add(activeFile);
@@ -121,13 +121,13 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestStatusMaskAtLoad()
         {
-            using (FileSystemState state = FileSystemState.Create(Instance.WorkFolder.FileInfo.Combine("mystate.txt")))
+            using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.Combine("mystate.txt")))
             {
-                ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedAxxPath), Factory.New<IRuntimeFileInfo>(_decryptedTxtPath), new Passphrase("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
+                ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_encryptedAxxPath), TypeMap.Resolve.New<IRuntimeFileInfo>(_decryptedTxtPath), new Passphrase("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
                 state.Add(activeFile);
                 state.Save();
 
-                FileSystemState reloadedState = FileSystemState.Create(Instance.WorkFolder.FileInfo.Combine("mystate.txt"));
+                FileSystemState reloadedState = FileSystemState.Create(Resolve.WorkFolder.FileInfo.Combine("mystate.txt"));
                 Assert.That(reloadedState, Is.Not.Null, "An instance should always be instantiated.");
                 Assert.That(reloadedState.ActiveFiles.Count(), Is.EqualTo(1), "The reloaded state should have one active file.");
                 Assert.That(reloadedState.ActiveFiles.First().Status, Is.EqualTo(ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NoProcessKnown), "When reloading saved state, some statuses should be masked away and NoProcessKnown added.");
@@ -137,9 +137,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFindEncryptedPath()
         {
-            using (FileSystemState state = FileSystemState.Create(Instance.WorkFolder.FileInfo.Combine("mystate.txt")))
+            using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.Combine("mystate.txt")))
             {
-                ActiveFile activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedAxxPath), Factory.New<IRuntimeFileInfo>(_decryptedTxtPath), new Passphrase("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
+                ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_encryptedAxxPath), TypeMap.Resolve.New<IRuntimeFileInfo>(_decryptedTxtPath), new Passphrase("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
                 state.Add(activeFile);
 
                 ActiveFile byEncryptedPath = state.FindActiveFileFromEncryptedPath(_encryptedAxxPath);
@@ -154,7 +154,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestForEach()
         {
             bool changedEventWasRaised = false;
-            using (FileSystemState state = FileSystemState.Create(Instance.WorkFolder.FileInfo.Combine("mystate.txt")))
+            using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.Combine("mystate.txt")))
             {
                 state.ActiveFileChanged += ((object sender, ActiveFileChangedEventArgs e) =>
                 {
@@ -162,11 +162,11 @@ namespace Axantum.AxCrypt.Core.Test
                 });
 
                 ActiveFile activeFile;
-                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encrypted1AxxPath), Factory.New<IRuntimeFileInfo>(_decrypted1TxtPath), new Passphrase("passphrase1"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
+                activeFile = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_encrypted1AxxPath), TypeMap.Resolve.New<IRuntimeFileInfo>(_decrypted1TxtPath), new Passphrase("passphrase1"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
                 state.Add(activeFile);
-                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encrypted2AxxPath), Factory.New<IRuntimeFileInfo>(_decrypted2TxtPath), new Passphrase("passphrase2"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
+                activeFile = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_encrypted2AxxPath), TypeMap.Resolve.New<IRuntimeFileInfo>(_decrypted2TxtPath), new Passphrase("passphrase2"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
                 state.Add(activeFile);
-                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encrypted3AxxPath), Factory.New<IRuntimeFileInfo>(_decrypted3TxtPath), new Passphrase("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
+                activeFile = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_encrypted3AxxPath), TypeMap.Resolve.New<IRuntimeFileInfo>(_decrypted3TxtPath), new Passphrase("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable, new V1Aes128CryptoFactory().Id);
                 state.Add(activeFile);
                 Assert.That(changedEventWasRaised, Is.True, "The change event should have been raised by the adding of active files.");
 
@@ -205,18 +205,18 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptedActiveFiles()
         {
-            using (FileSystemState state = FileSystemState.Create(Instance.WorkFolder.FileInfo.Combine("mystate.txt")))
+            using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.Combine("mystate.txt")))
             {
-                ActiveFile decryptedFile1 = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedAxxPath), Factory.New<IRuntimeFileInfo>(_decryptedTxtPath), new Passphrase("passphrase1"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
+                ActiveFile decryptedFile1 = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_encryptedAxxPath), TypeMap.Resolve.New<IRuntimeFileInfo>(_decryptedTxtPath), new Passphrase("passphrase1"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
                 state.Add(decryptedFile1);
 
-                ActiveFile decryptedFile2 = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encrypted2AxxPath), Factory.New<IRuntimeFileInfo>(_decrypted2TxtPath), new Passphrase("passphrase2"), ActiveFileStatus.DecryptedIsPendingDelete, new V1Aes128CryptoFactory().Id);
+                ActiveFile decryptedFile2 = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_encrypted2AxxPath), TypeMap.Resolve.New<IRuntimeFileInfo>(_decrypted2TxtPath), new Passphrase("passphrase2"), ActiveFileStatus.DecryptedIsPendingDelete, new V1Aes128CryptoFactory().Id);
                 state.Add(decryptedFile2);
 
-                ActiveFile notDecryptedFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encrypted3AxxPath), Factory.New<IRuntimeFileInfo>(_decrypted3TxtPath), new Passphrase("passphrase3"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+                ActiveFile notDecryptedFile = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_encrypted3AxxPath), TypeMap.Resolve.New<IRuntimeFileInfo>(_decrypted3TxtPath), new Passphrase("passphrase3"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
                 state.Add(notDecryptedFile);
 
-                ActiveFile errorFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encrypted4AxxPath), Factory.New<IRuntimeFileInfo>(_decrypted4TxtPath), new Passphrase("passphrase"), ActiveFileStatus.Error, new V1Aes128CryptoFactory().Id);
+                ActiveFile errorFile = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_encrypted4AxxPath), TypeMap.Resolve.New<IRuntimeFileInfo>(_decrypted4TxtPath), new Passphrase("passphrase"), ActiveFileStatus.Error, new V1Aes128CryptoFactory().Id);
                 state.Add(errorFile);
 
                 IList<ActiveFile> decryptedFiles = state.DecryptedActiveFiles;
@@ -259,18 +259,18 @@ namespace Axantum.AxCrypt.Core.Test
         {
             string badXml = @"<FileSystemState xmlns=""http://www.axantum.com/Serialization/"" xmlns:i=""http://www.w3.org/2001/XMLSchema-instance"">";
 
-            IRuntimeFileInfo stateInfo = Instance.WorkFolder.FileInfo.Combine("mystate.txt");
+            IRuntimeFileInfo stateInfo = Resolve.WorkFolder.FileInfo.Combine("mystate.txt");
             using (Stream stream = stateInfo.OpenWrite())
             {
                 byte[] bytes = Encoding.UTF8.GetBytes(badXml);
                 stream.Write(bytes, 0, bytes.Length);
             }
 
-            using (FileSystemState state = FileSystemState.Create(Instance.WorkFolder.FileInfo.Combine("mystate.txt")))
+            using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.Combine("mystate.txt")))
             {
                 Assert.That(state.ActiveFileCount, Is.EqualTo(0), "After loading damaged state, the count should be zero.");
 
-                ActiveFile decryptedFile1 = new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedAxxPath), Factory.New<IRuntimeFileInfo>(_decryptedTxtPath), new Passphrase("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
+                ActiveFile decryptedFile1 = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_encryptedAxxPath), TypeMap.Resolve.New<IRuntimeFileInfo>(_decryptedTxtPath), new Passphrase("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
                 state.Add(decryptedFile1);
 
                 Assert.That(state.ActiveFileCount, Is.EqualTo(1), "After adding a file, the count should be one.");
@@ -280,7 +280,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestWatchedFolders()
         {
-            using (FileSystemState state = FileSystemState.Create(Instance.WorkFolder.FileInfo.Combine("mystate.txt")))
+            using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.Combine("mystate.txt")))
             {
                 Assert.That(state.WatchedFolders, Is.Not.Null, "There should be a Watched Folders instance.");
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(0), "There should be no Watched folders.");
@@ -295,16 +295,16 @@ namespace Axantum.AxCrypt.Core.Test
                 state.Save();
             }
 
-            using (FileSystemState state = FileSystemState.Create(Instance.WorkFolder.FileInfo.Combine("mystate.txt")))
+            using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.Combine("mystate.txt")))
             {
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(1), "There should be one Watched Folder.");
 
                 Assert.That(state.WatchedFolders.First(), Is.EqualTo(new WatchedFolder(_rootPath, SymmetricKeyThumbprint.Zero)), "The Watched Folder should be equal to this.");
 
-                state.RemoveWatchedFolder(Instance.WorkFolder.FileInfo.Combine("mystate.txt"));
+                state.RemoveWatchedFolder(Resolve.WorkFolder.FileInfo.Combine("mystate.txt"));
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(1), "There should still be one Watched folders.");
 
-                state.RemoveWatchedFolder(Factory.New<IRuntimeFileInfo>(_rootPath));
+                state.RemoveWatchedFolder(TypeMap.Resolve.New<IRuntimeFileInfo>(_rootPath));
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(0), "There should be no Watched folders now.");
             }
         }
@@ -312,7 +312,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestWatchedFolderChanged()
         {
-            using (FileSystemState state = FileSystemState.Create(Instance.WorkFolder.FileInfo.Combine("mystate.txt")))
+            using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.Combine("mystate.txt")))
             {
                 FakeRuntimeFileInfo.AddFolder(_rootPath);
                 state.AddWatchedFolder(new WatchedFolder(_rootPath, SymmetricKeyThumbprint.Zero));
@@ -322,10 +322,10 @@ namespace Axantum.AxCrypt.Core.Test
                 FakeRuntimeFileInfo.AddFile(_encryptedAxxPath, null);
                 Assert.That(state.ActiveFileCount, Is.EqualTo(0));
 
-                state.Add(new ActiveFile(Factory.New<IRuntimeFileInfo>(_encryptedAxxPath), Factory.New<IRuntimeFileInfo>(_decryptedTxtPath), new Passphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id));
+                state.Add(new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_encryptedAxxPath), TypeMap.Resolve.New<IRuntimeFileInfo>(_decryptedTxtPath), new Passphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id));
                 Assert.That(state.ActiveFileCount, Is.EqualTo(1));
 
-                Factory.New<IRuntimeFileInfo>(_encryptedAxxPath).Delete();
+                TypeMap.Resolve.New<IRuntimeFileInfo>(_encryptedAxxPath).Delete();
                 Assert.That(state.ActiveFileCount, Is.EqualTo(1), "When deleted, the active file count should still be one.");
                 Assert.That(state.ActiveFiles.First().Status.HasFlag(ActiveFileStatus.Inactive), "But after the Remove(), the active file should have the inactive flag set.");
             }
@@ -334,7 +334,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestWatchedFolderRemoved()
         {
-            using (FileSystemState state = FileSystemState.Create(Instance.WorkFolder.FileInfo.Combine("mystate.txt")))
+            using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.Combine("mystate.txt")))
             {
                 FakeRuntimeFileInfo.AddFolder(_rootPath);
                 state.AddWatchedFolder(new WatchedFolder(_rootPath, SymmetricKeyThumbprint.Zero));

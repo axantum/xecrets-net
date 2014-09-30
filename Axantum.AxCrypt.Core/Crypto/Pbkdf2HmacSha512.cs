@@ -25,12 +25,12 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Portable;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Security.Cryptography;
 using System.Text;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -82,7 +82,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private static byte[] F(string password, Salt salt, int derivationIterations)
         {
-            HMACSHA512 hmacsha512 = new HMACSHA512(new UTF8Encoding(false).GetBytes(password));
+            HMAC hmacsha512 = Resolve.Portable.HMACSHA512(new UTF8Encoding(false).GetBytes(password));
 
             hmacsha512.TransformBlock(salt.GetBytes(), 0, salt.Length, null, 0);
             byte[] iBytes = 1.GetBigEndianBytes();

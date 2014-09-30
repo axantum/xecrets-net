@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (MemoryStream stream = FakeRuntimeFileInfo.ExpandableMemoryStream(Encoding.UTF8.GetBytes("A short dummy stream")))
             {
-                IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath);
+                IRuntimeFileInfo fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath);
                 using (LockingStream lockingStream = new LockingStream(fileInfo, stream))
                 {
                     Assert.That(FileLock.IsLocked(fileInfo), "The file should be locked now.");

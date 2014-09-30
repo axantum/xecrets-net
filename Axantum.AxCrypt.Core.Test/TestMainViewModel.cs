@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void Setup()
         {
             SetupAssembly.AssemblySetup();
-            Factory.Instance.Singleton<ParallelFileOperation>(() => new ParallelFileOperation());
+            TypeMap.Register.Singleton<ParallelFileOperation>(() => new ParallelFileOperation());
         }
 
         [TearDown]
@@ -66,9 +66,9 @@ namespace Axantum.AxCrypt.Core.Test
             string filePath = @"C:\Folder\File.txt";
 
             var mockEnvironment = new Mock<FakeRuntimeEnvironment>() { CallBase = true };
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => mockEnvironment.Object);
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => mockEnvironment.Object);
 
-            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
                 mvm.OpenSelectedFolder.Execute(filePath);
             }
@@ -79,23 +79,23 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestCurrentVersionPropertyBind()
         {
             UpdateCheck mockedUpdateCheck = null;
-            Factory.Instance.Register<Version, UpdateCheck>((version) => mockedUpdateCheck = new Mock<UpdateCheck>(version).Object);
+            TypeMap.Register.New<Version, UpdateCheck>((version) => mockedUpdateCheck = new Mock<UpdateCheck>(version).Object);
             Version ourVersion = new Version(1, 2, 3, 4);
-            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
                 mvm.CurrentVersion = ourVersion;
             }
 
-            Mock.Get<UpdateCheck>(mockedUpdateCheck).Verify(x => x.CheckInBackground(It.Is<DateTime>((d) => d == Instance.UserSettings.LastUpdateCheckUtc), It.IsAny<string>(), It.IsAny<Uri>(), It.IsAny<Uri>()));
+            Mock.Get<UpdateCheck>(mockedUpdateCheck).Verify(x => x.CheckInBackground(It.Is<DateTime>((d) => d == Resolve.UserSettings.LastUpdateCheckUtc), It.IsAny<string>(), It.IsAny<Uri>(), It.IsAny<Uri>()));
         }
 
         [Test]
         public static void TestUpdateCheckWhenNotExecutable()
         {
             var mockUpdateCheck = new Mock<UpdateCheck>(new Version(1, 2, 3, 4));
-            Factory.Instance.Register<Version, UpdateCheck>((version) => mockUpdateCheck.Object);
+            TypeMap.Register.New<Version, UpdateCheck>((version) => mockUpdateCheck.Object);
 
-            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
                 Assert.That(mvm.UpdateCheck.CanExecute(null), Is.False);
                 Assert.Throws<InvalidOperationException>(() => mvm.UpdateCheck.Execute(new DateTime(2001, 2, 3)));
@@ -107,9 +107,9 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Version ourVersion = new Version(1, 2, 3, 4);
             var mockUpdateCheck = new Mock<UpdateCheck>(ourVersion);
-            Factory.Instance.Register<Version, UpdateCheck>((version) => mockUpdateCheck.Object);
+            TypeMap.Register.New<Version, UpdateCheck>((version) => mockUpdateCheck.Object);
 
-            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
                 mvm.CurrentVersion = ourVersion;
                 Assert.That(mvm.UpdateCheck.CanExecute(null), Is.True);
@@ -124,9 +124,9 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Version ourVersion = new Version(1, 2, 3, 4);
             var mockUpdateCheck = new Mock<UpdateCheck>(ourVersion);
-            Factory.Instance.Register<Version, UpdateCheck>((version) => mockUpdateCheck.Object);
+            TypeMap.Register.New<Version, UpdateCheck>((version) => mockUpdateCheck.Object);
 
-            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
                 mvm.CurrentVersion = ourVersion;
 
@@ -138,7 +138,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDragAndDropFilesPropertyBindSetsDragAndDropFileTypes()
         {
-            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
                 string encryptedFilePath = @"C:\Folder\File-txt.axx";
                 mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
@@ -169,20 +169,20 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDragAndDropFilesPropertyBindSetsDroppableAsRecent()
         {
-            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
                 string encryptedFilePath = @"C:\Folder\File-txt.axx";
                 mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
                 Assert.That(mvm.DroppableAsRecent, Is.False, "An encrypted file that does not exist is not a candidate for recent.");
 
                 PassphraseIdentity id = new PassphraseIdentity(new Passphrase("passphrase1"));
-                Instance.FileSystemState.Identities.Add(id);
-                Instance.KnownKeys.DefaultEncryptionKey = id.Key;
+                Resolve.FileSystemState.Identities.Add(id);
+                Resolve.KnownKeys.DefaultEncryptionKey = id.Key;
                 mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
                 Assert.That(mvm.DroppableAsRecent, Is.False, "An encrypted file that does not exist, even when logged on, is not droppable as recent.");
 
                 FakeRuntimeFileInfo.AddFile(encryptedFilePath, null);
-                Instance.KnownKeys.DefaultEncryptionKey = null;
+                Resolve.KnownKeys.DefaultEncryptionKey = null;
                 mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
                 Assert.That(mvm.DroppableAsRecent, Is.True, "An encrypted file that exist is droppable as recent even when not logged on.");
 
@@ -195,8 +195,8 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(mvm.DroppableAsRecent, Is.False, "An encrpytable file without a valid log on is not droppable as recent.");
 
                 id = new PassphraseIdentity(new Passphrase("passphrase"));
-                Instance.FileSystemState.Identities.Add(id);
-                Instance.KnownKeys.DefaultEncryptionKey = id.Key;
+                Resolve.FileSystemState.Identities.Add(id);
+                Resolve.KnownKeys.DefaultEncryptionKey = id.Key;
                 mvm.DragAndDropFiles = new string[] { decryptedFilePath, };
                 Assert.That(mvm.DroppableAsRecent, Is.True, "An encryptable existing file with a valid log on should be droppable as recent.");
             }
@@ -205,7 +205,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDragAndDropFilesPropertyBindSetsDroppableAsWatchedFolder()
         {
-            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
                 string folder1Path = @"C:\Folder1\FilesFolder\".NormalizeFilePath();
                 mvm.DragAndDropFiles = new string[] { folder1Path, };
@@ -242,24 +242,24 @@ namespace Axantum.AxCrypt.Core.Test
 
             FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2001, 1, 1);
             FakeRuntimeFileInfo.AddFile(file1, null);
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new Passphrase("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
-            Instance.FileSystemState.Add(activeFile);
+            activeFile = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(file1), TypeMap.Resolve.New<IRuntimeFileInfo>(decrypted1), new Passphrase("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            Resolve.FileSystemState.Add(activeFile);
 
             FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2002, 2, 2);
             FakeRuntimeFileInfo.AddFile(file2, null);
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file2), Factory.New<IRuntimeFileInfo>(decrypted2), new Passphrase("passphrase2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
-            Instance.FileSystemState.Add(activeFile);
+            activeFile = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(file2), TypeMap.Resolve.New<IRuntimeFileInfo>(decrypted2), new Passphrase("passphrase2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            Resolve.FileSystemState.Add(activeFile);
 
             FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2003, 3, 3);
             FakeRuntimeFileInfo.AddFile(file3, null);
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file3), Factory.New<IRuntimeFileInfo>(decrypted3), new Passphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
-            Instance.FileSystemState.Add(activeFile);
+            activeFile = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(file3), TypeMap.Resolve.New<IRuntimeFileInfo>(decrypted3), new Passphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            Resolve.FileSystemState.Add(activeFile);
 
             ActiveFileComparer comparer;
             List<ActiveFile> recentFiles;
 
             comparer = ActiveFileComparer.DateComparer;
-            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
                 mvm.RecentFilesComparer = comparer;
                 recentFiles = mvm.RecentFiles.ToList();
@@ -291,27 +291,27 @@ namespace Axantum.AxCrypt.Core.Test
 
             ActiveFile activeFile;
 
-            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
                 FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2001, 1, 1);
                 FakeRuntimeFileInfo.AddFile(file1, null);
-                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new Passphrase("passphrase1"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
-                Instance.FileSystemState.Add(activeFile);
+                activeFile = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(file1), TypeMap.Resolve.New<IRuntimeFileInfo>(decrypted1), new Passphrase("passphrase1"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().Id);
+                Resolve.FileSystemState.Add(activeFile);
 
                 FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2002, 2, 2);
                 FakeRuntimeFileInfo.AddFile(file2, null);
-                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file2), Factory.New<IRuntimeFileInfo>(decrypted2), new Passphrase("passphrase2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
-                Instance.FileSystemState.Add(activeFile);
+                activeFile = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(file2), TypeMap.Resolve.New<IRuntimeFileInfo>(decrypted2), new Passphrase("passphrase2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+                Resolve.FileSystemState.Add(activeFile);
 
                 FakeRuntimeEnvironment.Instance.TimeFunction = () => new DateTime(2003, 3, 3);
                 FakeRuntimeFileInfo.AddFile(file3, null);
-                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file3), Factory.New<IRuntimeFileInfo>(decrypted3), new Passphrase("passphrase3"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
-                Instance.FileSystemState.Add(activeFile);
+                activeFile = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(file3), TypeMap.Resolve.New<IRuntimeFileInfo>(decrypted3), new Passphrase("passphrase3"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+                Resolve.FileSystemState.Add(activeFile);
 
                 Assert.That(mvm.FilesArePending, Is.True);
 
-                activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new Passphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
-                Instance.FileSystemState.Add(activeFile);
+                activeFile = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(file1), TypeMap.Resolve.New<IRuntimeFileInfo>(decrypted1), new Passphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+                Resolve.FileSystemState.Add(activeFile);
 
                 Assert.That(mvm.FilesArePending, Is.False);
             }
@@ -323,7 +323,7 @@ namespace Axantum.AxCrypt.Core.Test
             var mockFileSystemState = new Mock<FileSystemState>() { CallBase = true };
             mockFileSystemState.Setup(x => x.Save());
 
-            Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
+            TypeMap.Register.Singleton<FileSystemState>(() => mockFileSystemState.Object);
 
             string file1 = @"C:\Folder\File3-txt.axx";
             string decrypted1 = @"C:\Folder\File2.txt";
@@ -335,18 +335,18 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile;
 
             FakeRuntimeFileInfo.AddFile(file1, null);
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new Passphrase("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
-            Instance.FileSystemState.Add(activeFile);
+            activeFile = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(file1), TypeMap.Resolve.New<IRuntimeFileInfo>(decrypted1), new Passphrase("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            Resolve.FileSystemState.Add(activeFile);
 
             FakeRuntimeFileInfo.AddFile(file2, null);
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file2), Factory.New<IRuntimeFileInfo>(decrypted2), new Passphrase("passphrase2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
-            Instance.FileSystemState.Add(activeFile);
+            activeFile = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(file2), TypeMap.Resolve.New<IRuntimeFileInfo>(decrypted2), new Passphrase("passphrase2"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            Resolve.FileSystemState.Add(activeFile);
 
             FakeRuntimeFileInfo.AddFile(file3, null);
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file3), Factory.New<IRuntimeFileInfo>(decrypted3), new Passphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
-            Instance.FileSystemState.Add(activeFile);
+            activeFile = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(file3), TypeMap.Resolve.New<IRuntimeFileInfo>(decrypted3), new Passphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            Resolve.FileSystemState.Add(activeFile);
 
-            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
                 Assert.That(mvm.RemoveRecentFiles.CanExecute(null), Is.True, "RemoveRecentFiles should be executable by default.");
 
@@ -364,14 +364,14 @@ namespace Axantum.AxCrypt.Core.Test
         {
             var mockActiveFileAction = new Mock<ActiveFileAction>();
 
-            Factory.Instance.Register<ActiveFileAction>(() => mockActiveFileAction.Object);
+            TypeMap.Register.New<ActiveFileAction>(() => mockActiveFileAction.Object);
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
-            Factory.Instance.Register<SessionNotificationHandler>(() => new SessionNotificationHandler(Instance.FileSystemState, Instance.KnownKeys, Factory.New<ActiveFileAction>(), Factory.New<AxCryptFile>(), mockStatusChecker.Object));
-            Instance.SessionNotify.Notification += (sender, e) => Factory.New<SessionNotificationHandler>().HandleNotification(e.Notification);
+            TypeMap.Register.New<SessionNotificationHandler>(() => new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownKeys, TypeMap.Resolve.New<ActiveFileAction>(), TypeMap.Resolve.New<AxCryptFile>(), mockStatusChecker.Object));
+            Resolve.SessionNotify.Notification += (sender, e) => TypeMap.Resolve.New<SessionNotificationHandler>().HandleNotification(e.Notification);
 
-            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
                 Assert.That(mvm.EncryptPendingFiles.CanExecute(null), Is.True, "PuregRecentFiles should be executable by default.");
 
@@ -390,28 +390,28 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile;
 
             FakeRuntimeFileInfo.AddFile(file1, null);
-            activeFile = new ActiveFile(Factory.New<IRuntimeFileInfo>(file1), Factory.New<IRuntimeFileInfo>(decrypted1), new Passphrase("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
-            Instance.FileSystemState.Add(activeFile);
+            activeFile = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(file1), TypeMap.Resolve.New<IRuntimeFileInfo>(decrypted1), new Passphrase("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            Resolve.FileSystemState.Add(activeFile);
 
-            Instance.KnownKeys.Add(new Passphrase("passphrase2"));
+            Resolve.KnownKeys.Add(new Passphrase("passphrase2"));
             PassphraseIdentity id = new PassphraseIdentity(new Passphrase("passphrase"));
-            Instance.FileSystemState.Identities.Add(id);
-            Instance.KnownKeys.DefaultEncryptionKey = id.Key;
+            Resolve.FileSystemState.Identities.Add(id);
+            Resolve.KnownKeys.DefaultEncryptionKey = id.Key;
 
-            Assert.That(Instance.FileSystemState.ActiveFileCount, Is.EqualTo(1), "One ActiveFile is expected.");
-            Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(2), "Two known keys are expected.");
-            Assert.That(Instance.KnownKeys.DefaultEncryptionKey, Is.Not.Null, "There should be a non-null default encryption key");
+            Assert.That(Resolve.FileSystemState.ActiveFileCount, Is.EqualTo(1), "One ActiveFile is expected.");
+            Assert.That(Resolve.KnownKeys.Keys.Count(), Is.EqualTo(2), "Two known keys are expected.");
+            Assert.That(Resolve.KnownKeys.DefaultEncryptionKey, Is.Not.Null, "There should be a non-null default encryption key");
 
             var sessionNotificationMonitorMock = new Mock<SessionNotify>();
-            Factory.Instance.Singleton<SessionNotify>(() => sessionNotificationMonitorMock.Object);
-            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            TypeMap.Register.Singleton<SessionNotify>(() => sessionNotificationMonitorMock.Object);
+            using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
                 mvm.ClearPassphraseMemory.Execute(null);
             }
 
-            Assert.That(Instance.FileSystemState.ActiveFileCount, Is.EqualTo(0));
-            Assert.That(Instance.KnownKeys.Keys.Count(), Is.EqualTo(0));
-            Assert.That(Instance.KnownKeys.DefaultEncryptionKey, Is.Null);
+            Assert.That(Resolve.FileSystemState.ActiveFileCount, Is.EqualTo(0));
+            Assert.That(Resolve.KnownKeys.Keys.Count(), Is.EqualTo(0));
+            Assert.That(Resolve.KnownKeys.DefaultEncryptionKey, Is.Null);
 
             sessionNotificationMonitorMock.Verify(x => x.Notify(It.Is<SessionNotification>(sn => sn.NotificationType == SessionNotificationType.SessionStart)), Times.Once);
         }
@@ -422,13 +422,13 @@ namespace Axantum.AxCrypt.Core.Test
             var mockFileSystemState = new Mock<FileSystemState>() { CallBase = true };
             mockFileSystemState.Setup(x => x.Save());
 
-            Factory.Instance.Singleton<FileSystemState>(() => mockFileSystemState.Object);
+            TypeMap.Register.Singleton<FileSystemState>(() => mockFileSystemState.Object);
 
-            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
                 PassphraseIdentity id = new PassphraseIdentity(new Passphrase("passphrase"));
                 mockFileSystemState.Object.Identities.Add(id);
-                Instance.KnownKeys.DefaultEncryptionKey = id.Key;
+                Resolve.KnownKeys.DefaultEncryptionKey = id.Key;
 
                 mvm.RemoveWatchedFolders.Execute(new string[] { "File1.txt", "file2.txt" });
             }
@@ -443,14 +443,14 @@ namespace Axantum.AxCrypt.Core.Test
             var fileSystemStateMock = new Mock<FileSystemState>() { CallBase = true };
             fileSystemStateMock.Setup(x => x.Save());
 
-            Factory.Instance.Singleton<FileSystemState>(() => fileSystemStateMock.Object);
-            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            TypeMap.Register.Singleton<FileSystemState>(() => fileSystemStateMock.Object);
+            using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
                 Assert.Throws<InvalidOperationException>(() => mvm.RemoveWatchedFolders.Execute(new string[] { }));
 
                 PassphraseIdentity id = new PassphraseIdentity(new Passphrase("passphrase"));
                 fileSystemStateMock.Object.Identities.Add(id);
-                Instance.KnownKeys.DefaultEncryptionKey = id.Key;
+                Resolve.KnownKeys.DefaultEncryptionKey = id.Key;
 
                 mvm.RemoveWatchedFolders.Execute(new string[] { });
 
@@ -481,11 +481,11 @@ namespace Axantum.AxCrypt.Core.Test
             var fileSystemStateMock = new Mock<FileSystemState>() { CallBase = true };
             fileSystemStateMock.Setup(x => x.Save());
 
-            Factory.Instance.Singleton<FileSystemState>(() => fileSystemStateMock.Object);
-            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            TypeMap.Register.Singleton<FileSystemState>(() => fileSystemStateMock.Object);
+            using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
             }
-            Assert.Throws<InvalidOperationException>(() => Instance.KnownKeys.DefaultEncryptionKey = new Passphrase("passphrase"), "Should fail since there is no matching identity.");
+            Assert.Throws<InvalidOperationException>(() => Resolve.KnownKeys.DefaultEncryptionKey = new Passphrase("passphrase"), "Should fail since there is no matching identity.");
         }
 
         [Test]
@@ -494,30 +494,29 @@ namespace Axantum.AxCrypt.Core.Test
             var fileSystemStateMock = new Mock<FileSystemState>();
             var logMock = new Mock<ILogging>();
 
-            Factory.Instance.Singleton<FileSystemState>(() => fileSystemStateMock.Object);
-            Factory.Instance.Singleton<ILogging>(() => logMock.Object);
+            TypeMap.Register.Singleton<FileSystemState>(() => fileSystemStateMock.Object);
+            TypeMap.Register.Singleton<ILogging>(() => logMock.Object);
 
-            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
                 logMock.ResetCalls();
 
                 mvm.DebugMode = true;
                 logMock.Verify(x => x.SetLevel(It.Is<LogLevel>(ll => ll == LogLevel.Debug)));
-                Assert.That(ServicePointManager.ServerCertificateValidationCallback, Is.Not.Null);
-                Assert.That(ServicePointManager.ServerCertificateValidationCallback(null, null, null, SslPolicyErrors.RemoteCertificateChainErrors | SslPolicyErrors.RemoteCertificateNameMismatch | SslPolicyErrors.RemoteCertificateNotAvailable), Is.True);
+                Assert.That(FakeRuntimeEnvironment.Instance.IsDebugModeEnabled, Is.True);
 
                 logMock.ResetCalls();
 
                 mvm.DebugMode = false;
             }
             logMock.Verify(x => x.SetLevel(It.Is<LogLevel>(ll => ll == LogLevel.Error)));
-            Assert.That(ServicePointManager.ServerCertificateValidationCallback, Is.Null);
+            Assert.That(FakeRuntimeEnvironment.Instance.IsDebugModeEnabled, Is.False);
         }
 
         [Test]
         public static void TestSelectedRecentFiles()
         {
-            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
                 Assert.That(mvm.SelectedRecentFiles.Any(), Is.False);
 
@@ -530,7 +529,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSelectedWatchedFolders()
         {
-            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
                 Assert.That(mvm.SelectedWatchedFolders.Any(), Is.False);
 
@@ -543,7 +542,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestTitle()
         {
-            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
                 Assert.That(mvm.Title.Length, Is.EqualTo(0));
 
@@ -556,13 +555,13 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestNotifyWatchedFolderAdded()
         {
-            Instance.KnownKeys.DefaultEncryptionKey = new Passphrase("passphrase");
+            Resolve.KnownKeys.DefaultEncryptionKey = new Passphrase("passphrase");
             FakeRuntimeFileInfo.AddFolder(@"C:\MyFolders\Folder1");
-            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
                 Assert.That(mvm.WatchedFolders.Count(), Is.EqualTo(0));
 
-                Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\MyFolders\Folder1", Instance.KnownKeys.DefaultEncryptionKey.Thumbprint));
+                Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\MyFolders\Folder1", Resolve.KnownKeys.DefaultEncryptionKey.Thumbprint));
 
                 Assert.That(mvm.WatchedFolders.Count(), Is.EqualTo(1));
                 Assert.That(mvm.WatchedFolders.First(), Is.EqualTo(@"C:\MyFolders\Folder1".NormalizeFolderPath()));
@@ -572,12 +571,12 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSetFilesArePending()
         {
-            Instance.KnownKeys.DefaultEncryptionKey = new Passphrase("passphrase");
+            Resolve.KnownKeys.DefaultEncryptionKey = new Passphrase("passphrase");
             FakeRuntimeFileInfo.AddFolder(@"C:\MyFolders\Folder1");
-            using (MainViewModel mvm = Factory.New<MainViewModel>())
+            using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
                 Assert.That(mvm.FilesArePending, Is.False);
-                Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\MyFolders\Folder1", Instance.KnownKeys.DefaultEncryptionKey.Thumbprint));
+                Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\MyFolders\Folder1", Resolve.KnownKeys.DefaultEncryptionKey.Thumbprint));
                 FakeRuntimeFileInfo.AddFile(@"C:\MyFolders\Folder1\Encryptable.txt", Stream.Null);
                 Assert.That(mvm.FilesArePending, Is.True);
             }

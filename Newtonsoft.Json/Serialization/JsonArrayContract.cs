@@ -57,7 +57,9 @@ namespace Newtonsoft.Json.Serialization
         /// <value><c>true</c> if the collection type is a multidimensional array; otherwise, <c>false</c>.</value>
         public bool IsMultidimensionalArray { get; private set; }
 
+#if (NET20 || NET35)
         private readonly bool _isCollectionItemTypeNullableType;
+#endif
         private readonly Type _genericCollectionDefinitionType;
 
         private Type _genericWrapperType;
@@ -182,10 +184,10 @@ namespace Newtonsoft.Json.Serialization
 
             CanDeserialize = canDeserialize;
 
-            if (CollectionItemType != null)
-                _isCollectionItemTypeNullableType = ReflectionUtils.IsNullableType(CollectionItemType);
-
 #if (NET20 || NET35)
+            if (CollectionItemType != null)
+            _isCollectionItemTypeNullableType = ReflectionUtils.IsNullableType(CollectionItemType);
+
     // bug in .NET 2.0 & 3.5 that List<Nullable<T>> throws an error when adding null via IList.Add(object)
     // wrapper will handle calling Add(T) instead
       if (_isCollectionItemTypeNullableType

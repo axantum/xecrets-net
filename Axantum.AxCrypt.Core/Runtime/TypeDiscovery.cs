@@ -37,7 +37,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         public static IEnumerable<Type> Interface(Type interfaceToDiscover, IEnumerable<Assembly> extraAssemblies)
         {
             List<Type> interfaces = new List<Type>();
-            foreach (Assembly assembly in new Assembly[] { Assembly.GetAssembly(interfaceToDiscover) }.Concat(extraAssemblies))
+            foreach (Assembly assembly in new Assembly[] { interfaceToDiscover.Assembly }.Concat(extraAssemblies))
             {
                 try
                 {

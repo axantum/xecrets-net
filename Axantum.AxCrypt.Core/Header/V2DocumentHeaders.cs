@@ -56,13 +56,18 @@ namespace Axantum.AxCrypt.Core.Header
 
         public V2DocumentHeaders(Passphrase passphrase, Guid cryptoId, long keyWrapIterations)
         {
-            _cryptoFactory = Instance.CryptoFactory.Create(cryptoId);
+            _cryptoFactory = Resolve.CryptoFactory.Create(cryptoId);
             _keyEncryptingKey = _cryptoFactory.CreateDerivedKey(passphrase);
             _headers = new Headers();
 
             _headers.HeaderBlocks.Add(new PreambleHeaderBlock());
             _headers.HeaderBlocks.Add(new VersionHeaderBlock(_version));
-            _headers.HeaderBlocks.Add(new V2KeyWrapHeaderBlock(_cryptoFactory, _keyEncryptingKey, keyWrapIterations));
+            V2KeyWrapHeaderBlock keyWrap = new V2KeyWrapHeaderBlock(_cryptoFactory, _keyEncryptingKey, keyWrapIterations);
+            _headers.HeaderBlocks.Add(keyWrap);
+            if (Resolve.AsymmetricKeysStore.HasKeys)
+            {
+                _headers.HeaderBlocks.Add(new V2AsymmetricKeyWrapHeaderBlock(keyWrap.MasterKey, keyWrap.MasterIV));
+            }
             _headers.HeaderBlocks.Add(new FileInfoEncryptedHeaderBlock(GetHeaderCrypto(HeaderBlockType.FileInfo)));
             _headers.HeaderBlocks.Add(new V2CompressionEncryptedHeaderBlock(GetHeaderCrypto(HeaderBlockType.Compression)));
             _headers.HeaderBlocks.Add(new V2UnicodeFileNameInfoEncryptedHeaderBlock(GetHeaderCrypto(HeaderBlockType.UnicodeFileNameInfo)));
@@ -73,7 +78,7 @@ namespace Axantum.AxCrypt.Core.Header
 
         public V2DocumentHeaders(IDerivedKey key, Guid cryptoId)
         {
-            _cryptoFactory = Instance.CryptoFactory.Create(cryptoId);
+            _cryptoFactory = Resolve.CryptoFactory.Create(cryptoId);
             _keyEncryptingKey = key;
             _headers = new Headers();
         }

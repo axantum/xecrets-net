@@ -91,12 +91,12 @@ namespace Axantum.AxCrypt.Core.Extensions
                 throw new ArgumentException("The path must be a non-empty string.", "folder");
             }
 
-            return Factory.New<IRuntimeFileInfo>(folder.FullName.NormalizeFolderPath());
+            return TypeMap.Resolve.New<IRuntimeFileInfo>(folder.FullName.NormalizeFolderPath());
         }
 
         public static bool IsEncrypted(this IRuntimeFileInfo fullName)
         {
-            return String.Compare(Path.GetExtension(fullName.FullName), OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0;
+            return String.Compare(Resolve.Portable.Path().GetExtension(fullName.FullName), OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0;
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable is a word.")]
@@ -125,7 +125,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
 
             string encryptedName = fullName.FullName.CreateEncryptedName();
-            return Factory.New<IRuntimeFileInfo>(encryptedName);
+            return TypeMap.Resolve.New<IRuntimeFileInfo>(encryptedName);
         }
 
         /// <summary>
@@ -137,9 +137,9 @@ namespace Axantum.AxCrypt.Core.Extensions
         {
             while (true)
             {
-                int r = Math.Abs(BitConverter.ToInt32(Instance.RandomGenerator.Generate(sizeof(int)), 0));
-                string alternatePath = Path.Combine(Path.GetDirectoryName(fileInfo.FullName), r.ToString(CultureInfo.InvariantCulture) + Path.GetExtension(fileInfo.FullName));
-                IRuntimeFileInfo alternateFileInfo = Factory.New<IRuntimeFileInfo>(alternatePath);
+                int r = Math.Abs(BitConverter.ToInt32(Resolve.RandomGenerator.Generate(sizeof(int)), 0));
+                string alternatePath = Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(fileInfo.FullName), r.ToString(CultureInfo.InvariantCulture) + Resolve.Portable.Path().GetExtension(fileInfo.FullName));
+                IRuntimeFileInfo alternateFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(alternatePath);
                 if (!alternateFileInfo.IsExistingFile && !alternateFileInfo.IsExistingFolder)
                 {
                     return alternateFileInfo;
@@ -155,9 +155,9 @@ namespace Axantum.AxCrypt.Core.Extensions
                 return null;
             }
 
-            foreach (Passphrase knownKey in Instance.KnownKeys.Keys)
+            foreach (Passphrase knownKey in Resolve.KnownKeys.Keys)
             {
-                cryptoId = Factory.New<AxCryptFactory>().TryFindCryptoId(knownKey, fileInfo, Instance.CryptoFactory.OrderedIds);
+                cryptoId = TypeMap.Resolve.New<AxCryptFactory>().TryFindCryptoId(knownKey, fileInfo, Resolve.CryptoFactory.OrderedIds);
                 if (cryptoId != Guid.Empty)
                 {
                     return knownKey;

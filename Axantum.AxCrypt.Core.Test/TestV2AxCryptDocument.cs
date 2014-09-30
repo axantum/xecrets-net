@@ -120,7 +120,7 @@ namespace Axantum.AxCrypt.Core.Test
             byte[] hmacKey;
             using (MemoryStream inputStream = new MemoryStream())
             {
-                byte[] text = Instance.RandomGenerator.Generate(length);
+                byte[] text = Resolve.RandomGenerator.Generate(length);
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
@@ -224,7 +224,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (MemoryStream inputStream = new MemoryStream())
             {
-                byte[] text = Instance.RandomGenerator.Generate(length);
+                byte[] text = Resolve.RandomGenerator.Generate(length);
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
@@ -270,7 +270,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (MemoryStream inputStream = new MemoryStream())
             {
-                byte[] text = Instance.RandomGenerator.Generate(1000);
+                byte[] text = Resolve.RandomGenerator.Generate(1000);
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
@@ -301,7 +301,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             using (MemoryStream inputStream = new MemoryStream())
             {
-                byte[] text = Instance.RandomGenerator.Generate(1000);
+                byte[] text = Resolve.RandomGenerator.Generate(1000);
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
@@ -326,7 +326,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (MemoryStream inputStream = new MemoryStream())
             {
-                byte[] text = Instance.RandomGenerator.Generate(1000);
+                byte[] text = Resolve.RandomGenerator.Generate(1000);
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
@@ -356,7 +356,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (MemoryStream inputStream = new MemoryStream())
             {
-                byte[] text = Instance.RandomGenerator.Generate(1000);
+                byte[] text = Resolve.RandomGenerator.Generate(1000);
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())
@@ -385,7 +385,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (MemoryStream inputStream = new MemoryStream())
             {
-                byte[] text = Instance.RandomGenerator.Generate(500);
+                byte[] text = Resolve.RandomGenerator.Generate(500);
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())

@@ -25,9 +25,9 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Portable;
 using System;
 using System.Linq;
-using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private static SymmetricAlgorithm CreateAlgorithmInternal()
         {
-            return new AesManaged();
+            return Resolve.Portable.AesManaged();
         }
     }
 }

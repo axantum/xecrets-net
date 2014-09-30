@@ -50,6 +50,16 @@ namespace Axantum.AxCrypt.Core.Crypto
         string Name { get; }
 
         /// <summary>
+        /// Gets the key size in bits
+        /// </summary>
+        int KeySize { get; }
+
+        /// <summary>
+        /// Gets the block size in bits
+        /// </summary>
+        int BlockSize { get; }
+
+        /// <summary>
         /// Creates a new derived key, generating a random salt and an appropriate number of iterations.
         /// </summary>
         /// <param name="passphrase">The passphrase.</param>

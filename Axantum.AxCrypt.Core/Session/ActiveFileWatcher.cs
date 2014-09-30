@@ -16,14 +16,14 @@ namespace Axantum.AxCrypt.Core.Session
 
         public void Add(IRuntimeFileInfo file)
         {
-            string folder = Path.GetDirectoryName(file.FullName);
+            string folder = Resolve.Portable.Path().GetDirectoryName(file.FullName);
             lock (_activeFileFolderWatchers)
             {
                 if (_activeFileFolderWatchers.ContainsKey(folder))
                 {
                     return;
                 }
-                IFileWatcher fileWatcher = Factory.New<IFileWatcher>(folder);
+                IFileWatcher fileWatcher = TypeMap.Resolve.New<IFileWatcher>(folder);
                 fileWatcher.FileChanged += HandleActiveFileFolderChangedEvent;
                 _activeFileFolderWatchers.Add(folder, fileWatcher);
             }
@@ -33,11 +33,11 @@ namespace Axantum.AxCrypt.Core.Session
         {
             if (String.IsNullOrEmpty(e.OldName))
             {
-                Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.PurgeActiveFiles, e.FullName));
+                Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.PurgeActiveFiles, e.FullName));
                 return;
             }
 
-            Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.FileMove, e.FullName, e.OldName));
+            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.FileMove, e.FullName, e.OldName));
         }
 
         public void Dispose()

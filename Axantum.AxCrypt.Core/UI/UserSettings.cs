@@ -149,8 +149,8 @@ namespace Axantum.AxCrypt.Core.UI
 
         public Salt ThumbprintSalt
         {
-            get { return Load("ThumbprintSalt", () => Factory.New<int, Salt>(512)); }
-            set { Store("ThumbprintSalt", JsonConvert.SerializeObject(value)); }
+            get { return Load("ThumbprintSalt", () => TypeMap.Resolve.New<int, Salt>(512)); }
+            set { Store("ThumbprintSalt", Resolve.Serializer.Serialize(value)); }
         }
 
         public TimeSpan SessionNotificationMinimumIdle
@@ -163,6 +163,12 @@ namespace Axantum.AxCrypt.Core.UI
         {
             get { return Load("SettingsVersion", 0); }
             set { Store("SettingsVersion", value); }
+        }
+
+        public int AsymmetricKeyBits
+        {
+            get { return Load("AsymmetricKeyBits", 4096); }
+            set { Store("AsymmetricKeyBits", value); }
         }
 
         public string this[string key]
@@ -227,7 +233,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 try
                 {
-                    return JsonConvert.DeserializeObject<Salt>(value);
+                    return Resolve.Serializer.Deserialize<Salt>(value);
                 }
                 catch (JsonException)
                 {
@@ -235,7 +241,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
 
             Salt fallback = fallbackAction();
-            this[key] = JsonConvert.SerializeObject(fallback);
+            this[key] = Resolve.Serializer.Serialize(fallback);
             return fallback;
         }
 

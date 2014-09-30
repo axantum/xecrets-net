@@ -36,9 +36,9 @@ namespace Org.BouncyCastle.Cms
 #if NETCF_1_0 || NETCF_2_0 || SILVERLIGHT
 			_in = new FullReaderStream(inStream);
 #else
-            _in = new FullReaderStream(new BufferedStream(inStream, bufSize));
+			_in = new FullReaderStream(new BufferedStream(inStream, bufSize));
 #endif
-        }
+		}
 
 		public string ContentType
 		{
@@ -56,14 +56,14 @@ namespace Org.BouncyCastle.Cms
 			_in.Dispose();
 		}
 
-        private class FullReaderStream : FilterStream
-        {
-            internal FullReaderStream(Stream input)
-                : base(input)
-            {
-            }
+		private class FullReaderStream : FilterStream
+		{
+			internal FullReaderStream(Stream input)
+				: base(input)
+			{
+			}
 
-            public override int Read(byte[]	buf, int off, int len)
+			public override int Read(byte[]	buf, int off, int len)
 			{
 				return Streams.ReadFully(base.s, buf, off, len);
 			}

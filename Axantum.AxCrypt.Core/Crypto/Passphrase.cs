@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 if (_thumbprint == null)
                 {
-                    _thumbprint = new SymmetricKeyThumbprint(this, Instance.UserSettings.ThumbprintSalt, Instance.UserSettings.GetKeyWrapIterations(Instance.CryptoFactory.Minimum.Id));
+                    _thumbprint = new SymmetricKeyThumbprint(this, Resolve.UserSettings.ThumbprintSalt, Resolve.UserSettings.GetKeyWrapIterations(Resolve.CryptoFactory.Minimum.Id));
                 }
                 return _thumbprint;
             }

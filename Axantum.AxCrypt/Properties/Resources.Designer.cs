@@ -138,6 +138,15 @@ namespace Axantum.AxCrypt.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Incorrect e-mail address.
+        /// </summary>
+        internal static string BadEmail {
+            get {
+                return ResourceManager.GetString("BadEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Canceled &apos;{0}&apos;..
         /// </summary>
         internal static string Canceled {

@@ -29,6 +29,7 @@ using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -58,7 +59,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         public static FakeRuntimeEnvironment Instance
         {
-            get { return (FakeRuntimeEnvironment)Factory.Instance.Singleton<IRuntimeEnvironment>(); }
+            get { return (FakeRuntimeEnvironment)TypeMap.Resolve.Singleton<IRuntimeEnvironment>(); }
         }
 
         private static DateTime StandardTimeFunction()
@@ -118,15 +119,6 @@ namespace Axantum.AxCrypt.Core.Test
             return WebCallerCreator();
         }
 
-        #region IRuntimeEnvironment Members
-
-        public IDataProtection DataProtection
-        {
-            get { return new FakeDataProtection(); }
-        }
-
-        #endregion IRuntimeEnvironment Members
-
         public bool CanTrackProcess
         {
             get { return false; }
@@ -167,6 +159,26 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 ExitCode = exitCode;
             }
+        }
+
+        public bool IsDebugModeEnabled { get; private set; }
+
+        public void DebugMode(bool enable)
+        {
+            IsDebugModeEnabled = enable;
+        }
+
+        private class FakeSynchronizationContext : SynchronizationContext
+        {
+            public override void Post(SendOrPostCallback callback, object state)
+            {
+                callback(state);
+            }
+        }
+
+        public SynchronizationContext SynchronizationContext
+        {
+            get { return new FakeSynchronizationContext(); }
         }
     }
 }

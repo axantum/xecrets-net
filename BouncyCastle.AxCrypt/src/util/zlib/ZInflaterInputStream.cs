@@ -116,7 +116,10 @@ namespace Org.BouncyCastle.Utilities.Zlib {
 
         protected override void Dispose(bool disposing)
         {
-            inp.Dispose();
+            if (disposing)
+            {
+                inp.Dispose();
+            }
             base.Dispose(disposing);
         }
     

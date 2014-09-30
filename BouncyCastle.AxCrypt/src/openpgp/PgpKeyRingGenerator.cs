@@ -13,9 +13,9 @@ namespace Org.BouncyCastle.Bcpg.OpenPgp
     public class PgpKeyRingGenerator
     {
         private IList					    keys = Platform.CreateArrayList();
-        private string                      id;
+        //private string                      id;
         private SymmetricKeyAlgorithmTag	encAlgorithm;
-        private int                         certificationLevel;
+        //private int                         certificationLevel;
         private char[]                      passPhrase;
 		private bool						useSha1;
 		private PgpKeyPair                  masterKey;
@@ -71,9 +71,9 @@ namespace Org.BouncyCastle.Bcpg.OpenPgp
             PgpSignatureSubpacketVector	unhashedPackets,
             SecureRandom				rand)
         {
-            this.certificationLevel = certificationLevel;
+            //this.certificationLevel = certificationLevel;
             this.masterKey = masterKey;
-            this.id = id;
+            //this.id = id;
             this.encAlgorithm = encAlgorithm;
             this.passPhrase = passPhrase;
 			this.useSha1 = useSha1;

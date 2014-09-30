@@ -486,6 +486,12 @@
   <data name="loggingToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Logging</value>
   </data>
+  <data name="createAccountToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="createAccountToolStripMenuItem.Text" xml:space="preserve">
+    <value>Create &amp;Account</value>
+  </data>
   <data name="_debugToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 20</value>
   </data>
@@ -1183,9 +1189,6 @@
         AADAAwAAgAEAAIABAACAAQAAgAEAAIABAACAAQAAgAEAAIABAADwDwAA/D8AAA==
 </value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>AxCrypt</value>
   </data>
@@ -1283,6 +1286,12 @@
     <value>_decryptToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;_decryptToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;encryptedFoldersToolStripMenuItem.Name" xml:space="preserve">
+    <value>encryptedFoldersToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;encryptedFoldersToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;_toolStripSeparator6.Name" xml:space="preserve">
@@ -1477,10 +1486,10 @@
   <data name="&gt;&gt;_progressBackgroundWorker.Type" xml:space="preserve">
     <value>Axantum.AxCrypt.Forms.ProgressBackground, Axantum.AxCrypt.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7a861c36d7a69820</value>
   </data>
-  <data name="&gt;&gt;encryptedFoldersToolStripMenuItem.Name" xml:space="preserve">
-    <value>encryptedFoldersToolStripMenuItem</value>
+  <data name="&gt;&gt;createAccountToolStripMenuItem.Name" xml:space="preserve">
+    <value>createAccountToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;encryptedFoldersToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;createAccountToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

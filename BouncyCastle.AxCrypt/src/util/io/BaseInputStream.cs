@@ -1,29 +1,28 @@
 using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace Org.BouncyCastle.Utilities.IO
 {
     public abstract class BaseInputStream : Stream
     {
-        private bool closed;
+		private bool closed;
 
-        public sealed override bool CanRead { get { return !closed; } }
-
+		public sealed override bool CanRead { get { return !closed; } }
         public sealed override bool CanSeek { get { return false; } }
-
         public sealed override bool CanWrite { get { return false; } }
-
-        protected override void Dispose(bool disposing)
+		protected override void Dispose(bool disposing)
         {
-            base.Dispose(closed = true);
+            if (disposing)
+            {
+                closed = true;
+            }
+
+            base.Dispose(disposing);
         }
 
-        public sealed override void Flush()
-        {
-        }
-
+        public sealed override void Flush() {}
         public sealed override long Length { get { throw new NotSupportedException(); } }
-
         public sealed override long Position
         {
             get { throw new NotSupportedException(); }
@@ -40,7 +39,7 @@ namespace Org.BouncyCastle.Utilities.IO
                 {
                     int b = ReadByte();
                     if (b == -1) break;
-                    buffer[pos++] = (byte)b;
+                    buffer[pos++] = (byte) b;
                 }
             }
             catch (IOException)
@@ -50,16 +49,8 @@ namespace Org.BouncyCastle.Utilities.IO
             return pos - offset;
         }
 
-        public sealed override long Seek(long offset, SeekOrigin origin)
-        {
-            throw new NotSupportedException();
-        }
-
-        public sealed override void SetLength(long value) 
-{
- throw new NotSupportedException();
-}
-
+        public sealed override long Seek(long offset, SeekOrigin origin) { throw new NotSupportedException(); }
+        public sealed override void SetLength(long value) { throw new NotSupportedException(); }
         public sealed override void Write(byte[] buffer, int offset, int count) { throw new NotSupportedException(); }
     }
 }

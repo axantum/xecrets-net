@@ -35,6 +35,7 @@
             this._openEncryptedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._encryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._decryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.encryptedFoldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this._closeOpenFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
@@ -76,7 +77,7 @@
             this._cryptoName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._statusTabControl = new System.Windows.Forms.TabControl();
             this._progressBackgroundWorker = new Axantum.AxCrypt.Forms.ProgressBackground(this.components);
-            this.encryptedFoldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainToolStrip.SuspendLayout();
             this._mainMenuStrip.SuspendLayout();
             this._recentFilesContextMenuStrip.SuspendLayout();
@@ -227,6 +228,12 @@
             resources.ApplyResources(this._decryptToolStripMenuItem, "_decryptToolStripMenuItem");
             this._decryptToolStripMenuItem.Name = "_decryptToolStripMenuItem";
             // 
+            // encryptedFoldersToolStripMenuItem
+            // 
+            this.encryptedFoldersToolStripMenuItem.Name = "encryptedFoldersToolStripMenuItem";
+            resources.ApplyResources(this.encryptedFoldersToolStripMenuItem, "encryptedFoldersToolStripMenuItem");
+            this.encryptedFoldersToolStripMenuItem.Click += new System.EventHandler(this.encryptedFoldersToolStripMenuItem_Click);
+            // 
             // _toolStripSeparator6
             // 
             this._toolStripSeparator6.Name = "_toolStripSeparator6";
@@ -309,7 +316,8 @@
             this._checkVersionNowToolStripMenuItem,
             this._setUpdateCheckUrlToolStripMenuItem,
             this.cryptoPolicyToolStripMenuItem,
-            this.loggingToolStripMenuItem});
+            this.loggingToolStripMenuItem,
+            this.createAccountToolStripMenuItem});
             this._debugToolStripMenuItem.Name = "_debugToolStripMenuItem";
             resources.ApplyResources(this._debugToolStripMenuItem, "_debugToolStripMenuItem");
             // 
@@ -492,11 +500,11 @@
             this._progressBackgroundWorker.ProgressBarCreated += new System.EventHandler<System.Windows.Forms.ControlEventArgs>(this.ProgressBackgroundWorker_ProgressBarCreated);
             this._progressBackgroundWorker.ProgressBarClicked += new System.EventHandler<System.Windows.Forms.MouseEventArgs>(this.ProgressBackgroundWorker_ProgressBarClicked);
             // 
-            // encryptedFoldersToolStripMenuItem
+            // createAccountToolStripMenuItem
             // 
-            this.encryptedFoldersToolStripMenuItem.Name = "encryptedFoldersToolStripMenuItem";
-            resources.ApplyResources(this.encryptedFoldersToolStripMenuItem, "encryptedFoldersToolStripMenuItem");
-            this.encryptedFoldersToolStripMenuItem.Click += new System.EventHandler(this.encryptedFoldersToolStripMenuItem_Click);
+            this.createAccountToolStripMenuItem.Name = "createAccountToolStripMenuItem";
+            resources.ApplyResources(this.createAccountToolStripMenuItem, "createAccountToolStripMenuItem");
+            this.createAccountToolStripMenuItem.Click += new System.EventHandler(this.createAccountToolStripMenuItem_Click);
             // 
             // AxCryptMainForm
             // 
@@ -587,6 +595,7 @@
         private System.Windows.Forms.ColumnHeader _cryptoName;
         private System.Windows.Forms.TabControl _statusTabControl;
         private System.Windows.Forms.ToolStripMenuItem encryptedFoldersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createAccountToolStripMenuItem;
     }
 }
 

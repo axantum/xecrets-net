@@ -78,7 +78,7 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
-            Factory.Instance.Singleton<IUIThread>(() => new FakeUIThread());
+            TypeMap.Register.Singleton<IUIThread>(() => new FakeUIThread());
         }
 
         [TearDown]

@@ -25,10 +25,11 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Portable;
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Linq;
 using System.Threading;
-using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
@@ -110,10 +111,21 @@ namespace Axantum.AxCrypt.Core.Runtime
                 remove { _worker.Completing -= value; }
             }
 
+            public event EventHandler<ThreadWorkerEventArgs> Completed
+            {
+                add { _worker.Completed += value; }
+                remove { _worker.Completed -= value; }
+            }
+
+            public void Dispose()
+            {
+                _worker.Dispose();
+            }
+
             #endregion IThreadWorker Members
         }
 
-        private Semaphore _concurrencyControlSemaphore;
+        private ISemaphore _concurrencyControlSemaphore;
 
         private int _maxConcurrencyCount;
 
@@ -121,7 +133,7 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private bool _finished = false;
 
-        private SingleThread _singleThread;
+        private ISingleThread _singleThread;
 
         private readonly object _finishedLock = new object();
 
@@ -149,7 +161,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
         }
 
-        /// <summary>
+        /// <summary
         /// Instantiates a worker group with specified maximum concurrency and external progress reporting. Progress
         /// will be reported on the thread instantiating the ProgressContext used.
         /// </summary>
@@ -157,9 +169,9 @@ namespace Axantum.AxCrypt.Core.Runtime
         /// <param name="progress">The ProgressContext that receives progress notifications</param>
         public WorkerGroup(int maxConcurrent, IProgressContext progress)
         {
-            _concurrencyControlSemaphore = new Semaphore(maxConcurrent, maxConcurrent);
+            _concurrencyControlSemaphore = Resolve.Portable.Semaphore(maxConcurrent, maxConcurrent);
             _maxConcurrencyCount = maxConcurrent;
-            _singleThread = new SingleThread();
+            _singleThread = Resolve.Portable.SingleThread();
             FirstError = new FileOperationContext(String.Empty, FileOperationStatus.Success);
             progress.NotifyLevelStart();
             Progress = new WorkerGroupProgressContext(progress, _singleThread);
@@ -233,7 +245,7 @@ namespace Axantum.AxCrypt.Core.Runtime
                 throw new ObjectDisposedException("WorkerGroup");
             }
             AcquireOneConcurrencyRight();
-            ThreadWorker threadWorker = new ThreadWorker(Progress, startSerializedOnUIThread);
+            IThreadWorker threadWorker = Resolve.Portable.ThreadWorker(Progress, startSerializedOnUIThread);
             threadWorker.Completed += new EventHandler<ThreadWorkerEventArgs>(HandleThreadWorkerCompletedEvent);
             return new ThreadWorkerWrapper(threadWorker);
         }
@@ -304,7 +316,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             NotifyFinishedInternal();
             if (_concurrencyControlSemaphore != null)
             {
-                _concurrencyControlSemaphore.Close();
+                _concurrencyControlSemaphore.Dispose();
                 _concurrencyControlSemaphore = null;
             }
             if (_singleThread != null)

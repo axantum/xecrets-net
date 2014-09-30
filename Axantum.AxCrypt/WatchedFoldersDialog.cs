@@ -22,7 +22,7 @@ namespace Axantum.AxCrypt
             InitializeComponent();
 
             _additional = additional;
-            _viewModel = Factory.New<WatchedFoldersViewModel>();
+            _viewModel = TypeMap.Resolve.New<WatchedFoldersViewModel>();
 
             Owner = parent;
             StartPosition = FormStartPosition.CenterParent;

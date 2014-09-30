@@ -2,83 +2,237 @@
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{623D0558-31DF-4CDA-9424-934B7AFFFA05}</ProjectGuid>
+    <ProjectGuid>{3773A07A-71B7-474C-A622-21ED8B8492DD}</ProjectGuid>
     <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>Axantum.AxCrypt.MonoTouch</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>Axantum.AxCrypt.MonoTouch</AssemblyName>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
-    <CustomCommands>
-      <CustomCommands>
-        <Command type="BeforeBuild" command="mkdir -p ${ProjectDir}/bin" />
-        <Command type="BeforeBuild" command="cp ${SolutionDir}/Axantum.AxCrypt.Core/bin/Debug/Axantum.AxCrypt.Core.dll ${ProjectDir}/bin/Axantum.AxCrypt.Core.dll" />
-      </CustomCommands>
-    </CustomCommands>
+    <MtouchDebug>True</MtouchDebug>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchI18n>west</MtouchI18n>
+    <AssemblyName>AxantumAxCryptMonoTouch</AssemblyName>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
     <Optimize>True</Optimize>
-    <OutputPath>bin\Release</OutputPath>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+    <MtouchUseLlvm>True</MtouchUseLlvm>
+    <MtouchArch>ARMv7</MtouchArch>
+    <MtouchI18n>
+    </MtouchI18n>
+    <AssemblyName>AxantumAxCryptMonoTouch</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>True</MtouchDebug>
+    <MtouchArch>ARMv7</MtouchArch>
+    <IpaPackageName>
+    </IpaPackageName>
+    <MtouchI18n>west</MtouchI18n>
+    <CodesignProvision>9DA52B33-9272-40CD-9415-64FF17ADC82E</CodesignProvision>
+    <AssemblyName>AxantumAxCryptiOS</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchArch>ARMv7</MtouchArch>
+    <MtouchI18n>west</MtouchI18n>
     <CustomCommands>
       <CustomCommands>
         <Command type="BeforeBuild" command="mkdir -p ${ProjectDir}/bin" />
         <Command type="BeforeBuild" command="cp ${SolutionDir}/Axantum.AxCrypt.Core/bin/Release/Axantum.AxCrypt.Core.dll ${ProjectDir}/bin" />
       </CustomCommands>
     </CustomCommands>
+    <MtouchUseLlvm>True</MtouchUseLlvm>
+    <MtouchLink>Full</MtouchLink>
+    <AssemblyName>AxantumAxCryptiOS</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <BuildIpa>True</BuildIpa>
+    <CodesignKey>iPhone Developer: Martina Gawell (RYTWD8L3NQ)</CodesignKey>
+    <MtouchArch>ARMv7</MtouchArch>
+    <MtouchI18n>west</MtouchI18n>
+    <IpaPackageName>
+    </IpaPackageName>
+    <CodesignProvision>9DA52B33-9272-40CD-9415-64FF17ADC82E</CodesignProvision>
+    <MtouchUseLlvm>True</MtouchUseLlvm>
+    <MtouchUseThumb>True</MtouchUseThumb>
+    <AssemblyName>AxantumAxCryptiOS</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\iPhone\AppStore</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignProvision>Automatic:AppStore</CodesignProvision>
+    <MtouchArch>ARMv7</MtouchArch>
+    <MtouchI18n>west</MtouchI18n>
+    <IpaPackageName>
+    </IpaPackageName>
+    <MtouchUseLlvm>True</MtouchUseLlvm>
+    <MtouchUseThumb>True</MtouchUseThumb>
+    <AssemblyName>AxantumAxCryptiOS</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
+    <Reference Include="MonoTouch.Dialog-1" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="BTProgressHUD">
+      <HintPath>Components\btprogresshud-1.5\lib\ios\BTProgressHUD.dll</HintPath>
+    </Reference>
     <Reference Include="monotouch" />
-    <Reference Include="BouncyCastle.Crypto">
-      <HintPath>..\SolutionItems\BouncyCastle.Crypto.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Json" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="Axantum.AxCrypt.Core">
-      <HintPath>bin\Axantum.AxCrypt.Core.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Compile Include="FileWatcher.cs" />
-    <Compile Include="DataProtection.cs" />
-    <Compile Include="Logging.cs" />
-    <Compile Include="RuntimeEnvironment.cs" />
-    <Compile Include="..\Axantum.AxCrypt.Mono\RuntimeFileInfo.cs">
-      <Link>Mono\RuntimeFileInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Mono\Launcher.cs">
-      <Link>Mono\Launcher.cs</Link>
-    </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Mono\Timing.cs">
-      <Link>Mono\Timing.cs</Link>
-    </Compile>
-    <Compile Include="..\Axantum.AxCrypt.Mono\WebCaller.cs">
-      <Link>Mono\WebCaller.cs</Link>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Info.plist" />
     <None Include="AboutThisAssembly.txt" />
+    <None Include="Images\AppStore Images\iPad %28Retina%29\About.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
+    <None Include="Images\AppStore Images\iPad %28Retina%29\Document with actions.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
+    <None Include="Images\AppStore Images\iPad %28Retina%29\Main View.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
+    <None Include="Images\AppStore Images\iPad %28Retina%29\Password entry.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
+    <None Include="Images\AppStore Images\iPhone 3.5in\Document with actions.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
+    <None Include="Images\AppStore Images\iPhone 3.5in\Main View.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
+    <None Include="Images\AppStore Images\iPhone 3.5in\Password entry.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
+    <None Include="Images\AppStore Images\iPhone 3.5in\Received documents.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
+    <None Include="Images\AppStore Images\iPhone 3.5in\Transferred documents.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
+    <None Include="Images\AppStore Images\iPhone 4in\Document with actions.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
+    <None Include="Images\AppStore Images\iPhone 4in\Main View.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
+    <None Include="Images\AppStore Images\iPhone 4in\Password entry.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
+    <None Include="Images\AppStore Images\iPhone 4in\Received documents.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
+    <None Include="Images\AppStore Images\iPhone 4in\Transferred documents.png">
+      <Gettext-ScanForTranslations>False</Gettext-ScanForTranslations>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Mono\" />
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="FilePresenter.cs" />
+    <Compile Include="Infrastructure\UIAlertViewOkCancelDelegate.cs" />
+    <Compile Include="Infrastructure\EditableTableViewSource.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FileListingViewController.cs" />
+    <Compile Include="MainViewController.cs" />
+    <Compile Include="Infrastructure\Theme.cs" />
+    <Compile Include="Infrastructure\Utilities.cs" />
+    <Compile Include="Infrastructure\ThemedStringElement.cs" />
+    <Compile Include="DecryptionViewController.cs" />
+    <Compile Include="PassphraseController.cs" />
+    <Compile Include="WebViewController.cs" />
+    <Compile Include="Infrastructure\ThemedFileElement.cs" />
+    <Compile Include="Infrastructure\BasePath.cs" />
+    <Compile Include="DataProtection.cs" />
+    <Compile Include="FileWatcher.cs" />
+  </ItemGroup>
+  <Import Project="..\Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.projitems" Label="Shared" Condition="Exists('..\Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.projitems')" />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
+  <ItemGroup>
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\App Icons\logo 57x57.png" />
+    <Content Include="Images\App Icons\logo 114x114.png" />
+    <Content Include="Images\App Icons\logo 72x72.png" />
+    <Content Include="Images\App Icons\logo 144x144.png" />
+    <Content Include="Images\Spotlight &amp; Settings Icons\logo 100x100.png" />
+    <Content Include="Images\Spotlight &amp; Settings Icons\logo 29x29.png" />
+    <Content Include="Images\Spotlight &amp; Settings Icons\logo 50x50.png" />
+    <Content Include="Images\Spotlight &amp; Settings Icons\logo 58x58.png" />
+    <Content Include="Images\iTunes Artwork\iTunes Artwork 512x512.png" />
+    <Content Include="Images\iTunes Artwork\iTunes Artwork 1024x1024.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
+    <Folder Include="Images\App Icons\" />
+    <Folder Include="Images\Spotlight &amp; Settings Icons\" />
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Images\iTunes Artwork\" />
+    <Folder Include="Properties\" />
+    <Folder Include="Images\AppStore Images\" />
+    <Folder Include="Images\AppStore Images\iPad %28Retina%29\" />
+    <Folder Include="Images\AppStore Images\iPhone 3.5in\" />
+    <Folder Include="Images\AppStore Images\iPhone 4in\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork" />
+    <ITunesArtwork Include="iTunesArtwork%402x" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default-568h%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Axantum.AxCrypt.Core\Axantum.AxCrypt.Core.csproj">
+      <Project>{966E9510-1A1D-46C7-97B5-460A0FF9B89F}</Project>
+      <Name>Axantum.AxCrypt.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Newtonsoft.Json\Newtonsoft.Json.Portable40.csproj">
+      <Project>{959F7F85-C98B-4876-971A-9036224578E4}</Project>
+      <Name>Newtonsoft.Json.Portable40</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

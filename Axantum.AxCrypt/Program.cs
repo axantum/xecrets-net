@@ -27,12 +27,17 @@
 
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Ipc;
+using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Desktop;
+using Axantum.AxCrypt.Forms;
 using Axantum.AxCrypt.Mono;
+using Axantum.AxCrypt.Mono.Portable;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -67,63 +72,20 @@ namespace Axantum.AxCrypt
                 new CommandLine(commandLineArgs[0], commandLineArgs.Skip(1)).Execute();
             }
 
-            Instance.CommandService.Dispose();
-            Factory.Instance.Clear();
+            Resolve.CommandService.Dispose();
+            TypeMap.Register.Clear();
         }
 
         private static void RegisterTypeFactories(string startPath)
         {
             string workFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"AxCrypt" + Path.DirectorySeparatorChar);
-
-            Factory.Instance.Singleton<WorkFolderWatcher>(() => new WorkFolderWatcher());
-            Factory.Instance.Singleton<WorkFolder>(() => new WorkFolder(workFolderPath), () => Factory.Instance.Singleton<WorkFolderWatcher>());
-            Factory.Instance.Singleton<ILogging>(() => new Logging());
-            Factory.Instance.Singleton<CommandService>(() => new CommandService(new HttpRequestServer(), new HttpRequestClient()));
-            Factory.Instance.Singleton<IUserSettings>(() => new UserSettings(Factory.Instance.Singleton<WorkFolder>().FileInfo.Combine("UserSettings.txt"), Factory.New<IterationCalculator>()));
-            Factory.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(Factory.Instance.Singleton<WorkFolder>().FileInfo.Combine("FileSystemState.xml")));
-            Factory.Instance.Singleton<KnownKeys>(() => new KnownKeys(Instance.FileSystemState, Instance.SessionNotify));
-            Factory.Instance.Singleton<ParallelFileOperation>(() => new ParallelFileOperation());
-            Factory.Instance.Singleton<ProcessState>(() => new ProcessState());
-            Factory.Instance.Singleton<SessionNotify>(() => new SessionNotify());
-            Factory.Instance.Singleton<IRandomGenerator>(() => new RandomGenerator());
-            Factory.Instance.Singleton<CryptoFactory>(() => CreateCryptoFactory(startPath));
-            Factory.Instance.Singleton<CryptoPolicy>(() => CreateCryptoPolicy(startPath));
-            Factory.Instance.Singleton<ICryptoPolicy>(() => Factory.Instance.Singleton<CryptoPolicy>().CreateDefault());
-            Factory.Instance.Singleton<CommandHandler>(() => new CommandHandler());
-            Factory.Instance.Singleton<ActiveFileWatcher>(() => new ActiveFileWatcher());
-
-            Factory.Instance.Register<AxCryptFactory>(() => new AxCryptFactory());
-            Factory.Instance.Register<AxCryptFile>(() => new AxCryptFile());
-            Factory.Instance.Register<ActiveFileAction>(() => new ActiveFileAction());
-            Factory.Instance.Register<ISleep>(() => new Sleep());
-            Factory.Instance.Register<FileOperation>(() => new FileOperation(Instance.FileSystemState, Instance.SessionNotify));
-            Factory.Instance.Register<int, Salt>((size) => new Salt(size));
-            Factory.Instance.Register<Version, UpdateCheck>((version) => new UpdateCheck(version));
-            Factory.Instance.Register<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
-            Factory.Instance.Register<IterationCalculator>(() => new IterationCalculator());
-
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
-            Factory.Instance.Register<string, IFileWatcher>((path) => new FileWatcher(path, new DelayedAction(new DelayTimer(), Instance.UserSettings.SessionNotificationMinimumIdle)));
-            Factory.Instance.Register<string, IRuntimeFileInfo>((path) => new RuntimeFileInfo(path));
-        }
-
-        private static CryptoFactory CreateCryptoFactory(string startPath)
-        {
             IEnumerable<Assembly> extraAssemblies = LoadFromFiles(new DirectoryInfo(Path.GetDirectoryName(startPath)).GetFiles("*.dll"));
-            IEnumerable<Type> types = TypeDiscovery.Interface(typeof(ICryptoFactory), extraAssemblies);
 
-            CryptoFactory factory = new CryptoFactory();
-            foreach (Type type in types)
-            {
-                factory.Add(() => Activator.CreateInstance(type) as ICryptoFactory);
-            }
-            return factory;
-        }
+            Resolve.RegisterTypeFactories(workFolderPath, extraAssemblies);
+            RuntimeEnvironment.RegisterTypeFactories();
+            DesktopFactory.RegisterTypeFactories();
 
-        private static CryptoPolicy CreateCryptoPolicy(string startPath)
-        {
-            IEnumerable<Assembly> extraAssemblies = LoadFromFiles(new DirectoryInfo(Path.GetDirectoryName(startPath)).GetFiles("*.dll"));
-            return new CryptoPolicy(extraAssemblies);
+            TypeMap.Register.New<IDataProtection>(() => new DataProtection());
         }
 
         private static IEnumerable<Assembly> LoadFromFiles(IEnumerable<FileInfo> files)
@@ -149,23 +111,23 @@ namespace Axantum.AxCrypt
 
         private static void WireupEvents()
         {
-            Instance.SessionNotify.Notification += (sender, e) => Factory.New<SessionNotificationHandler>().HandleNotification(e.Notification);
+            Resolve.SessionNotify.Notification += (sender, e) => TypeMap.Resolve.New<SessionNotificationHandler>().HandleNotification(e.Notification);
         }
 
         private static void SetCulture()
         {
-            if (String.IsNullOrEmpty(Instance.UserSettings.CultureName))
+            if (String.IsNullOrEmpty(Resolve.UserSettings.CultureName))
             {
                 return;
             }
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Instance.UserSettings.CultureName);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Resolve.UserSettings.CultureName);
         }
 
         private static void RunInteractive()
         {
             if (!OS.Current.IsFirstInstance)
             {
-                Instance.CommandService.Call(CommandVerb.Show, -1);
+                Resolve.CommandService.Call(CommandVerb.Show, -1);
                 return;
             }
             Application.EnableVisualStyles();

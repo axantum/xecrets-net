@@ -49,6 +49,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public string Name { get; set; }
 
+        public string UserEmail { get; set; }
+
         public string EncryptedFileFullName { get; set; }
 
         public PassphraseIdentity Identity { get; set; }

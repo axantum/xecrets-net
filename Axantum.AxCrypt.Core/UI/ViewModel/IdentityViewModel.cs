@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             LogOnLogOff = new DelegateAction<Guid>((cryptoId) => Passphrase = LogOnLogOffAction(cryptoId));
             AskForDecryptPassphrase = new DelegateAction<string>((name) => Passphrase = AskForDecryptPassphraseAction(name));
             AskForLogOnPassphrase = new DelegateAction<PassphraseIdentity>((id) => Passphrase = AskForLogOnPassphraseAction(id, String.Empty));
-            CryptoId = Instance.CryptoFactory.Default.Id;
+            CryptoId = Resolve.CryptoFactory.Default.Id;
         }
 
         public Passphrase Passphrase { get { return GetProperty<Passphrase>("Passphrase"); } set { SetProperty("Passphrase", value); } }
@@ -83,7 +83,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return null;
             }
 
-            CryptoId = cryptoId != Guid.Empty ? cryptoId : Instance.CryptoFactory.Default.Id;
+            CryptoId = cryptoId != Guid.Empty ? cryptoId : Resolve.CryptoFactory.Default.Id;
 
             Passphrase passphrase;
             if (_fileSystemState.Identities.Any())

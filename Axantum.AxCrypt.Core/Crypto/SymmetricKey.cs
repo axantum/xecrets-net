@@ -25,9 +25,9 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Axantum.AxCrypt.Core.Extensions;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// Instantiate a random key.
         /// </summary>
         public SymmetricKey(int keyBits)
-            : this(Instance.RandomGenerator.Generate(keyBits / 8))
+            : this(Resolve.RandomGenerator.Generate(keyBits / 8))
         {
         }
 
@@ -137,6 +137,18 @@ namespace Axantum.AxCrypt.Core.Crypto
         public static bool operator !=(SymmetricKey left, SymmetricKey right)
         {
             return !(left == right);
+        }
+
+        public static byte[] operator +(SymmetricKey left, SymmetricIV right)
+        {
+            byte[] leftBytes = left.GetBytes();
+            byte[] rightBytes = right.GetBytes();
+            byte[] result = new byte[leftBytes.Length + rightBytes.Length];
+
+            leftBytes.CopyTo(result, 0);
+            rightBytes.CopyTo(result, leftBytes.Length);
+
+            return result;
         }
     }
 }

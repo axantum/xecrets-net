@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Core.Test
             _identities = new List<PassphraseIdentity>();
             Mock<FileSystemState> fileSystemStateMock = new Mock<FileSystemState>();
             fileSystemStateMock.Setup<IList<PassphraseIdentity>>(f => f.Identities).Returns(_identities);
-            Factory.Instance.Singleton<FileSystemState>(() => fileSystemStateMock.Object);
+            TypeMap.Register.Singleton<FileSystemState>(() => fileSystemStateMock.Object);
         }
 
         [TearDown]
@@ -109,7 +109,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestValidatePassphraseOk()
         {
-            Factory.Instance.Register<AxCryptFactory>(() => new AxCryptFactory());
+            TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());
 
             NewPassphraseViewModel npvm = new NewPassphraseViewModel(String.Empty, String.Empty);
 

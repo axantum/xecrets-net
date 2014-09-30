@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// </summary>
         public SymmetricIV(int blockBits)
         {
-            _iv = Instance.RandomGenerator.Generate(blockBits / 8);
+            _iv = Resolve.RandomGenerator.Generate(blockBits / 8);
         }
 
         /// <summary>

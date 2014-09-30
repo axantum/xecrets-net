@@ -1,3 +1,4 @@
+#if !PCL
 using System;
 using System.IO;
 
@@ -41,13 +42,15 @@ namespace Org.BouncyCastle.Cms
 		{
 			Stream inStr = GetInputStream();
 			Streams.PipeAll(inStr, zOut);
-			inStr.Close();
+			inStr.Dispose();
 		}
 
 		/// <returns>The file handle</returns>
+		[Obsolete]
 		public virtual object GetContent()
 		{
 			return _file;
 		}
 	}
 }
+#endif

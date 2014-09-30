@@ -27,6 +27,8 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Portable;
+using Axantum.AxCrypt.Mono.Portable;
 using NUnit.Framework;
 using System;
 using System.Linq;
@@ -39,12 +41,13 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
+            TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
         }
 
         [TearDown]
         public static void Teardown()
         {
-            Factory.Instance.Clear();
+            TypeMap.Register.Clear();
         }
 
         [Test]

@@ -27,7 +27,9 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
+using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Mono.Portable;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -59,18 +61,19 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
-            Factory.Instance.Singleton<CryptoFactory>(() => SetupAssembly.CreateCryptoFactory());
-            Factory.Instance.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
-            Factory.Instance.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
-            Factory.Instance.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
-            Factory.Instance.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
+            TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
+            TypeMap.Register.Singleton<CryptoFactory>(() => SetupAssembly.CreateCryptoFactory());
+            TypeMap.Register.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
+            TypeMap.Register.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
+            TypeMap.Register.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
+            TypeMap.Register.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
         }
 
         [TearDown]
         public static void Teardown()
         {
-            Factory.Instance.Clear();
+            TypeMap.Register.Clear();
         }
 
         [Test]
@@ -97,7 +100,7 @@ namespace Axantum.AxCrypt.Core.Test
             var mock = new Mock<IRandomGenerator>();
             mock.Setup<byte[]>(x => x.Generate(It.Is<int>(v => v == 248))).Returns(new byte[248]);
             mock.Setup<byte[]>(x => x.Generate(It.Is<int>(v => v == (16 + 16)))).Returns(_keyData128.GetBytes());
-            Factory.Instance.Singleton<IRandomGenerator>(() => mock.Object);
+            TypeMap.Register.Singleton<IRandomGenerator>(() => mock.Object);
 
             V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2Aes128CryptoFactory(), _keyEncryptingKey128, 6);
 
@@ -114,7 +117,7 @@ namespace Axantum.AxCrypt.Core.Test
             var mock = new Mock<IRandomGenerator>();
             mock.Setup<byte[]>(x => x.Generate(It.Is<int>(v => v == 248))).Returns(new byte[248]);
             mock.Setup<byte[]>(x => x.Generate(It.Is<int>(v => v == (32 + 16)))).Returns(_keyData256);
-            Factory.Instance.Singleton<IRandomGenerator>(() => mock.Object);
+            TypeMap.Register.Singleton<IRandomGenerator>(() => mock.Object);
 
             V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2Aes256CryptoFactory(), _keyEncryptingKey256, 6);
 
@@ -130,7 +133,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             var mock = new Mock<IRandomGenerator>();
             mock.Setup<byte[]>(x => x.Generate(It.IsAny<int>())).Returns<int>(v => new byte[v]);
-            Factory.Instance.Singleton<IRandomGenerator>(() => mock.Object);
+            TypeMap.Register.Singleton<IRandomGenerator>(() => mock.Object);
 
             IDerivedKey keyEncryptingKey = new V2DerivedKey(new Passphrase("secret"), new Salt(256), 100, 256);
             V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2Aes256CryptoFactory(), keyEncryptingKey, 250);
@@ -145,7 +148,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestUnwrapMasterKeyAndIV256WithNonzeroRandomNumbers()
         {
-            Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
+            TypeMap.Register.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
 
             IDerivedKey keyEncryptingKey = new V2DerivedKey(new Passphrase("secret"), new Salt(256), 100, 256);
             V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2Aes256CryptoFactory(), keyEncryptingKey, 125);
@@ -171,7 +174,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestMasterIVWithWrongKeyEncryptingCrypto()
         {
-            Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
+            TypeMap.Register.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
 
             IDerivedKey keyEncryptingKey = new V2DerivedKey(new Passphrase("secret"), new Salt(256), 100, 256);
             V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2Aes256CryptoFactory(), keyEncryptingKey, 125);
@@ -185,7 +188,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestClone()
         {
-            Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
+            TypeMap.Register.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
 
             IDerivedKey keyEncryptingKey = new V2DerivedKey(new Passphrase("secret"), new Salt(256), 100, 256);
             V2KeyWrapHeaderBlock header = new V2KeyWrapHeaderBlock(new V2Aes256CryptoFactory(), keyEncryptingKey, 125);

@@ -3,16 +3,17 @@ using System.IO;
 
 namespace Org.BouncyCastle.Cms
 {
-    public interface CmsProcessable
-    {
+	public interface CmsProcessable
+	{
 		/// <summary>
 		/// Generic routine to copy out the data we want processed.
 		/// </summary>
 		/// <remarks>
 		/// This routine may be called multiple times.
 		/// </remarks>
-        void Write(Stream outStream);
+		void Write(Stream outStream);
 
-        object GetContent();
-    }
+		[Obsolete]
+		object GetContent();
+	}
 }

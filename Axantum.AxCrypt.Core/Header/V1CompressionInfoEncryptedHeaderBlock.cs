@@ -39,7 +39,7 @@ namespace Axantum.AxCrypt.Core.Header
         }
 
         public V1CompressionInfoEncryptedHeaderBlock(ICrypto headerCrypto)
-            : this(Instance.RandomGenerator.Generate(16))
+            : this(Resolve.RandomGenerator.Generate(16))
         {
             HeaderCrypto = headerCrypto;
             UncompressedLength = 0;

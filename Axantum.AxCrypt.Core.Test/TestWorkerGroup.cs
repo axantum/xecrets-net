@@ -25,12 +25,12 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Linq;
-using System.Threading;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
+using System;
+using System.Linq;
+using System.Threading;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -268,7 +268,7 @@ namespace Axantum.AxCrypt.Core.Test
                 didComplete = true;
             };
 
-            using (ThreadWorker threadWorker = new ThreadWorker(progress))
+            using (IThreadWorker threadWorker = Resolve.Portable.ThreadWorker(progress, false))
             {
                 threadWorker.Work += (object sender, ThreadWorkerEventArgs e) =>
                 {

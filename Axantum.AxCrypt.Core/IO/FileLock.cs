@@ -27,13 +27,14 @@
 
 using Axantum.AxCrypt.Core.Extensions;
 using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
 namespace Axantum.AxCrypt.Core.IO
 {
     public class FileLock : IDisposable
     {
-        private static StringCollection _lockedFiles = new StringCollection();
+        private static Collection<string> _lockedFiles = new Collection<string>();
 
         private string _fullPath;
 
@@ -55,9 +56,9 @@ namespace Axantum.AxCrypt.Core.IO
                     return null;
                 }
                 _lockedFiles.Add(fileInfo.FullName);
-                if (Instance.Log.IsInfoEnabled)
+                if (Resolve.Log.IsInfoEnabled)
                 {
-                    Instance.Log.LogInfo("Locking file '{0}'.".InvariantFormat(fileInfo.FullName));
+                    Resolve.Log.LogInfo("Locking file '{0}'.".InvariantFormat(fileInfo.FullName));
                 }
                 return new FileLock(fileInfo.FullName);
             }
@@ -75,9 +76,9 @@ namespace Axantum.AxCrypt.Core.IO
                 {
                     if (_lockedFiles.Contains(fileInfo.FullName))
                     {
-                        if (Instance.Log.IsInfoEnabled)
+                        if (Resolve.Log.IsInfoEnabled)
                         {
-                            Instance.Log.LogInfo("File '{0}' was found to be locked.".InvariantFormat(fileInfo.FullName));
+                            Resolve.Log.LogInfo("File '{0}' was found to be locked.".InvariantFormat(fileInfo.FullName));
                         }
                         return true;
                     }
@@ -101,9 +102,9 @@ namespace Axantum.AxCrypt.Core.IO
                     return;
                 }
                 _lockedFiles.Remove(_fullPath);
-                if (Instance.Log.IsInfoEnabled)
+                if (Resolve.Log.IsInfoEnabled)
                 {
-                    Instance.Log.LogInfo("Unlocking file '{0}'.".InvariantFormat(_fullPath));
+                    Resolve.Log.LogInfo("Unlocking file '{0}'.".InvariantFormat(_fullPath));
                 }
                 _fullPath = null;
             }

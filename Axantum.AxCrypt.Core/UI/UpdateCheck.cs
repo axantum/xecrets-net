@@ -25,13 +25,13 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
+using Newtonsoft.Json;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Threading;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
-using Newtonsoft.Json;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public static readonly Version VersionUnknown = new Version();
+        public static readonly Version VersionUnknown = new Version(0, 0, 0, 0);
 
         private Version _currentVersion;
 
@@ -93,9 +93,9 @@ namespace Axantum.AxCrypt.Core.UI
             }
             if (lastCheckTimeUtc.AddDays(1) >= OS.Current.UtcNow)
             {
-                if (Instance.Log.IsInfoEnabled)
+                if (Resolve.Log.IsInfoEnabled)
                 {
-                    Instance.Log.LogInfo("Attempt to check for new version was ignored because it is too soon. Returning version {0}.".InvariantFormat(newestKnownVersionValue));
+                    Resolve.Log.LogInfo("Attempt to check for new version was ignored because it is too soon. Returning version {0}.".InvariantFormat(newestKnownVersionValue));
                 }
                 OnVersionUpdate(new VersionEventArgs(newestKnownVersionValue, updateWebpageUrl, CalculateStatus(newestKnownVersionValue, lastCheckTimeUtc)));
                 return;
@@ -103,7 +103,7 @@ namespace Axantum.AxCrypt.Core.UI
 
             lock (_doneLock)
             {
-                if (!_done.WaitOne(TimeSpan.Zero, false))
+                if (!_done.WaitOne(TimeSpan.Zero))
                 {
                     return;
                 }
@@ -136,16 +136,16 @@ namespace Axantum.AxCrypt.Core.UI
 
                 newVersion = ParseVersion(versionResponse.Version);
                 updateWebpageUrl = new Uri(versionResponse.WebReference);
-                if (Instance.Log.IsInfoEnabled)
+                if (Resolve.Log.IsInfoEnabled)
                 {
-                    Instance.Log.LogInfo("Update check reports most recent version {0} at web page {1}".InvariantFormat(newVersion, updateWebpageUrl));
+                    Resolve.Log.LogInfo("Update check reports most recent version {0} at web page {1}".InvariantFormat(newVersion, updateWebpageUrl));
                 }
             }
             catch (Exception ex)
             {
-                if (Instance.Log.IsWarningEnabled)
+                if (Resolve.Log.IsWarningEnabled)
                 {
-                    Instance.Log.LogWarning("Failed call to check for new version with exception {0}.".InvariantFormat(ex));
+                    Resolve.Log.LogWarning("Failed call to check for new version with exception {0}.".InvariantFormat(ex));
                 }
             }
             return new Pair<Version, Uri>(newVersion, updateWebpageUrl);
@@ -238,7 +238,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
             if (disposing)
             {
-                _done.Close();
+                _done.Dispose();
                 _done = null;
             }
         }

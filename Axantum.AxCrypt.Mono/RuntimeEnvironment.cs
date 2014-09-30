@@ -25,16 +25,33 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Ipc;
+using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Mono.Portable;
 using System;
+using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 
 namespace Axantum.AxCrypt.Mono
 {
     public class RuntimeEnvironment : IRuntimeEnvironment, IDisposable
     {
-        private IFileWatcher _workFolderWatcher;
+        public static void RegisterTypeFactories()
+        {
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
+            TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
+            TypeMap.Register.Singleton<ILogging>(() => new Logging());
+            TypeMap.Register.Singleton<CommandService>(() => new CommandService(new HttpRequestServer(), new HttpRequestClient()));
+
+            TypeMap.Register.New<ISleep>(() => new Sleep());
+            TypeMap.Register.New<IDelayTimer>(() => new DelayTimer());
+            TypeMap.Register.New<string, IRuntimeFileInfo>((path) => new RuntimeFileInfo(path));
+        }
 
         public RuntimeEnvironment(string extension)
         {
@@ -111,11 +128,6 @@ namespace Axantum.AxCrypt.Mono
             return new WebCaller();
         }
 
-        public IDataProtection DataProtection
-        {
-            get { return new DataProtection(); }
-        }
-
         public bool CanTrackProcess
         {
             get { return Platform == Platform.WindowsDesktop; }
@@ -137,11 +149,6 @@ namespace Axantum.AxCrypt.Mono
 
         private void DisposeInternal()
         {
-            if (_workFolderWatcher != null)
-            {
-                _workFolderWatcher.Dispose();
-                _workFolderWatcher = null;
-            }
             if (_firstInstanceMutex != null)
             {
                 _firstInstanceMutex.Close();
@@ -169,7 +176,19 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        private EventWaitHandle _firstInstanceRunning = new EventWaitHandle(false, EventResetMode.ManualReset, "Axantum.AxCrypt.NET-FirstInstanceRunning");
+        private EventWaitHandle _firstInstanceRunning;
+
+        private EventWaitHandle FirstInstanceEvent
+        {
+            get
+            {
+                if (_firstInstanceRunning == null)
+                {
+                    _firstInstanceRunning = new EventWaitHandle(false, EventResetMode.ManualReset, "Axantum.AxCrypt.NET-FirstInstanceRunning");
+                }
+                return _firstInstanceRunning;
+            }
+        }
 
         private Mutex _firstInstanceMutex;
 
@@ -184,7 +203,7 @@ namespace Axantum.AxCrypt.Mono
                     _firstInstanceMutex = new Mutex(true, "Axantum.AxCrypt.NET-FirstInstance", out _isFirstInstance);
                     if (_isFirstInstance)
                     {
-                        _firstInstanceRunning.Set();
+                        FirstInstanceEvent.Set();
                     }
                 }
                 return _isFirstInstance;
@@ -193,12 +212,35 @@ namespace Axantum.AxCrypt.Mono
 
         public bool FirstInstanceRunning(TimeSpan timeout)
         {
-            return _firstInstanceRunning.WaitOne(timeout, false);
+            return FirstInstanceEvent.WaitOne(timeout, false);
         }
 
         public void ExitApplication(int exitCode)
         {
             Environment.Exit(exitCode);
+        }
+
+        public void DebugMode(bool enabled)
+        {
+            if (enabled)
+            {
+                ServicePointManager.ServerCertificateValidationCallback = (object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) =>
+                {
+                    return true;
+                };
+            }
+            else
+            {
+                ServicePointManager.ServerCertificateValidationCallback = null;
+            }
+        }
+
+        public SynchronizationContext SynchronizationContext
+        {
+            get
+            {
+                return SynchronizationContext.Current ?? new SynchronizationContext();
+            }
         }
     }
 }

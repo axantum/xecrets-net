@@ -25,11 +25,11 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Portable;
+using NUnit.Framework;
 using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Security.Cryptography;
-using Axantum.AxCrypt.Core.Crypto;
-using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Core.Test
             HMAC hmac = null;
             Assert.Throws<ArgumentNullException>(() =>
             {
-                hmac = AxCryptHMACSHA1.Create(null);
+                hmac = Resolve.Portable.AxCryptHMACSHA1(null);
             });
 
             // Use the instance to avoid FxCop errors.
@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestMethods()
         {
             SymmetricKey key = new SymmetricKey(128);
-            HMAC hmac = AxCryptHMACSHA1.Create(key);
+            HMAC hmac = Resolve.Portable.AxCryptHMACSHA1(key);
 
             Assert.That(hmac.Key, Is.EquivalentTo(key.GetBytes()), "Ensure that we're using the specified key.");
         }

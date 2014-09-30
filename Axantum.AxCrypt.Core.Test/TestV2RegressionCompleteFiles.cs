@@ -73,11 +73,11 @@ namespace Axantum.AxCrypt.Core.Test
 
             Passphrase passphrase = new Passphrase(password);
 
-            bool ok = new AxCryptFile().Decrypt(Factory.New<IRuntimeFileInfo>(source), Factory.New<IRuntimeFileInfo>(destination), passphrase, AxCryptOptions.SetFileTimes, new ProgressContext());
+            bool ok = new AxCryptFile().Decrypt(TypeMap.Resolve.New<IRuntimeFileInfo>(source), TypeMap.Resolve.New<IRuntimeFileInfo>(destination), passphrase, AxCryptOptions.SetFileTimes, new ProgressContext());
             Assert.That(ok, Is.True, "The Decrypt() method should return true for ok.");
 
             byte[] hash;
-            using (Stream plainStream = Factory.New<IRuntimeFileInfo>(destination).OpenRead())
+            using (Stream plainStream = TypeMap.Resolve.New<IRuntimeFileInfo>(destination).OpenRead())
             {
                 HashAlgorithm hashAlgorithm = SHA256.Create();
                 using (Stream cryptoStream = new CryptoStream(plainStream, hashAlgorithm, CryptoStreamMode.Read))

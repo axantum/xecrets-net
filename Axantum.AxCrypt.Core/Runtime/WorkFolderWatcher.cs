@@ -38,18 +38,18 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         public WorkFolderWatcher()
         {
-            _workFolderWatcher = Factory.New<IFileWatcher>(Factory.Instance.Singleton<WorkFolder>().FileInfo.FullName);
+            _workFolderWatcher = TypeMap.Resolve.New<IFileWatcher>(TypeMap.Resolve.Singleton<WorkFolder>().FileInfo.FullName);
             _workFolderWatcher.IncludeSubdirectories = true;
             _workFolderWatcher.FileChanged += HandleWorkFolderFileChangedEvent;
         }
 
         private void HandleWorkFolderFileChangedEvent(object sender, FileWatcherEventArgs e)
         {
-            if (e.FullName == Instance.FileSystemState.PathInfo.FullName)
+            if (e.FullName == Resolve.FileSystemState.PathInfo.FullName)
             {
                 return;
             }
-            Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WorkFolderChange, e.FullName));
+            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WorkFolderChange, e.FullName));
         }
 
         public void Dispose()

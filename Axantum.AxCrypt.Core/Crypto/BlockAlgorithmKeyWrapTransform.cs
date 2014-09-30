@@ -1,8 +1,8 @@
 ﻿using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Linq;
-using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {

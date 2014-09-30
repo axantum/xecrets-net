@@ -42,20 +42,20 @@ namespace Axantum.AxCrypt.Core.Test
         public static void Setup()
         {
             SetupAssembly.AssemblySetup();
-            Factory.Instance.Singleton<FileSystemState>(() => new FileSystemState());
+            TypeMap.Register.Singleton<FileSystemState>(() => new FileSystemState());
         }
 
         [TearDown]
         public static void Teardown()
         {
-            Factory.Instance.Clear();
+            TypeMap.Register.Clear();
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
         public static void TestAddNewKnownKey()
         {
-            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
+            KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
             Passphrase passphrase = new Passphrase("a");
             knownKeys.Add(passphrase);
             Assert.That(knownKeys.Keys.First(), Is.EqualTo(passphrase), "The first and only key should be the one just added.");
@@ -64,7 +64,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestAddTwoNewKnownKeys()
         {
-            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
+            KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
             Passphrase key1 = new Passphrase("key1");
             knownKeys.Add(key1);
             Passphrase key2 = new Passphrase("key2");
@@ -76,7 +76,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestAddSameKeyTwice()
         {
-            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
+            KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
             Passphrase key = new Passphrase(String.Empty);
             knownKeys.Add(key);
             knownKeys.Add(key);
@@ -87,7 +87,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDefaultEncryptionKey()
         {
-            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
+            KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
             Passphrase key = new Passphrase(String.Empty);
             knownKeys.DefaultEncryptionKey = key;
             Assert.That(knownKeys.DefaultEncryptionKey, Is.EqualTo(key), "The DefaultEncryptionKey should be the one just set as it.");
@@ -98,7 +98,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestClear()
         {
-            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
+            KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
             Passphrase key1 = new Passphrase("key1");
             knownKeys.Add(key1);
             Passphrase key2 = new Passphrase("key2");
@@ -115,7 +115,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSettingNullDefaultEncryptionKey()
         {
-            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
+            KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
             Passphrase key1 = new Passphrase("a");
             knownKeys.Add(key1);
             Passphrase key2 = new Passphrase("B");
@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             bool wasChanged = false;
             SessionNotify notificationMonitor = new SessionNotify();
-            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, notificationMonitor);
+            KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, notificationMonitor);
             notificationMonitor.Notification += (object sender, SessionNotificationEventArgs e) =>
             {
                 wasChanged |= e.Notification.NotificationType == SessionNotificationType.KnownKeyChange;
@@ -151,7 +151,7 @@ namespace Axantum.AxCrypt.Core.Test
             int wasLoggedOnCount = 0;
             int wasLoggedOffCount = 0;
             SessionNotify notificationMonitor = new SessionNotify();
-            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, notificationMonitor);
+            KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, notificationMonitor);
             notificationMonitor.Notification += (object sender, SessionNotificationEventArgs e) =>
             {
                 if (e.Notification.NotificationType == SessionNotificationType.LogOn)
@@ -180,8 +180,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestAddKeyForKnownIdentity()
         {
-            Instance.FileSystemState.Identities.Add(new PassphraseIdentity(new Passphrase("a")));
-            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
+            Resolve.FileSystemState.Identities.Add(new PassphraseIdentity(new Passphrase("a")));
+            KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
             knownKeys.Add(new Passphrase("a"));
 
             Assert.That(knownKeys.DefaultEncryptionKey.Equals(new Passphrase("a")), "When adding a key that is for a known identity it should be set as the default.");
@@ -190,9 +190,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestWatchedFoldersNotLoggedOn()
         {
-            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
+            KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
             FakeRuntimeFileInfo.AddFolder(@"C:\WatchedFolder\");
-            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder\"));
+            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder\"));
             IEnumerable<WatchedFolder> watchedFolders = knownKeys.LoggedOnWatchedFolders;
 
             Assert.That(watchedFolders.Count(), Is.EqualTo(0), "When not logged on, no watched folders should be known.");
@@ -203,11 +203,11 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Passphrase key1 = new Passphrase("a");
             Passphrase key2 = new Passphrase("b");
-            KnownKeys knownKeys = new KnownKeys(Instance.FileSystemState, Instance.SessionNotify);
+            KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
             FakeRuntimeFileInfo.AddFolder(@"C:\WatchedFolder1\");
             FakeRuntimeFileInfo.AddFolder(@"C:\WatchedFolder2\");
-            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder1\", key1.Thumbprint));
-            Instance.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder2\", key2.Thumbprint));
+            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder1\", key1.Thumbprint));
+            Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder2\", key2.Thumbprint));
             knownKeys.DefaultEncryptionKey = key2;
             IEnumerable<WatchedFolder> watchedFolders = knownKeys.LoggedOnWatchedFolders;
 

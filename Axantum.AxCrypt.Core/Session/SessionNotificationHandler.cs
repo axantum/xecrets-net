@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         public virtual void HandleNotification(SessionNotification notification)
         {
-            Instance.ProgressBackground.Work(
+            Resolve.ProgressBackground.Work(
                 (IProgressContext progress) =>
                 {
                     progress.NotifyLevelStart();
@@ -78,19 +78,19 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void HandleNotificationInternal(SessionNotification notification, IProgressContext progress)
         {
-            if (Instance.Log.IsInfoEnabled)
+            if (Resolve.Log.IsInfoEnabled)
             {
-                Instance.Log.LogInfo("Received notification type '{0}'.".InvariantFormat(notification.NotificationType));
+                Resolve.Log.LogInfo("Received notification type '{0}'.".InvariantFormat(notification.NotificationType));
             }
             switch (notification.NotificationType)
             {
                 case SessionNotificationType.WatchedFolderAdded:
-                    IRuntimeFileInfo addedFolderInfo = Factory.New<IRuntimeFileInfo>(notification.FullName);
-                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(new IRuntimeFileInfo[] { addedFolderInfo }, notification.Key, Instance.CryptoFactory.Default.Id, progress);
+                    IRuntimeFileInfo addedFolderInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(notification.FullName);
+                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(new IRuntimeFileInfo[] { addedFolderInfo }, notification.Key, Resolve.CryptoFactory.Default.Id, progress);
                     break;
 
                 case SessionNotificationType.WatchedFolderRemoved:
-                    IRuntimeFileInfo removedFolderInfo = Factory.New<IRuntimeFileInfo>(notification.FullName);
+                    IRuntimeFileInfo removedFolderInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(notification.FullName);
                     if (removedFolderInfo.IsExistingFolder)
                     {
                         _axCryptFile.DecryptFilesInsideFolderUniqueWithWipeOfOriginal(removedFolderInfo, notification.Key, _statusChecker, progress);
@@ -99,7 +99,7 @@ namespace Axantum.AxCrypt.Core.Session
 
                 case SessionNotificationType.LogOn:
                 case SessionNotificationType.LogOff:
-                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(_fileSystemState.WatchedFolders.Where(wf => wf.Thumbprint == notification.Key.Thumbprint).Select(wf => Factory.New<IRuntimeFileInfo>(wf.Path)), notification.Key, Instance.CryptoFactory.Default.Id, progress);
+                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(_fileSystemState.WatchedFolders.Where(wf => wf.Thumbprint == notification.Key.Thumbprint).Select(wf => TypeMap.Resolve.New<IRuntimeFileInfo>(wf.Path)), notification.Key, Resolve.CryptoFactory.Default.Id, progress);
                     break;
 
                 case SessionNotificationType.SessionStart:
@@ -108,7 +108,7 @@ namespace Axantum.AxCrypt.Core.Session
 
                 case SessionNotificationType.EncryptPendingFiles:
                     _activeFileAction.PurgeActiveFiles(progress);
-                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(_knownKeys.LoggedOnWatchedFolders.Select(wf => Factory.New<IRuntimeFileInfo>(wf.Path)), _knownKeys.DefaultEncryptionKey, Instance.CryptoFactory.Default.Id, progress);
+                    _axCryptFile.EncryptFoldersUniqueWithBackupAndWipe(_knownKeys.LoggedOnWatchedFolders.Select(wf => TypeMap.Resolve.New<IRuntimeFileInfo>(wf.Path)), _knownKeys.DefaultEncryptionKey, Resolve.CryptoFactory.Default.Id, progress);
                     break;
 
                 case SessionNotificationType.PurgeActiveFiles:

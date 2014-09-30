@@ -49,7 +49,7 @@ namespace Org.BouncyCastle.Cms
 			private readonly string						encOID;
 			private readonly CmsAttributeTableGenerator	sAttr;
 			private readonly CmsAttributeTableGenerator	unsAttr;
-			private readonly Asn1.Cms.AttributeTable	baseSignedTable;
+			//private readonly Asn1.Cms.AttributeTable	baseSignedTable;
 
 			internal SignerInf(
                 CmsSignedGenerator			outer,
@@ -68,7 +68,7 @@ namespace Org.BouncyCastle.Cms
                 this.encOID = encOID;
 	            this.sAttr = sAttr;
 	            this.unsAttr = unsAttr;
-	            this.baseSignedTable = baseSignedTable;
+	            //this.baseSignedTable = baseSignedTable;
             }
 
 			internal AlgorithmIdentifier DigestAlgorithmID
@@ -145,7 +145,7 @@ namespace Org.BouncyCastle.Cms
 					content.Write(sigStr);
                 }
 
-				sigStr.Dispose();
+                sigStr.Dispose();
 				byte[] sigBytes = sig.GenerateSignature();
 
 				Asn1Set unsignedAttr = null;

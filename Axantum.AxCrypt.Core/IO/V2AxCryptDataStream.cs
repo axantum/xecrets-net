@@ -105,10 +105,13 @@ namespace Axantum.AxCrypt.Core.IO
             dataPart.Write(_hmacStream);
         }
 
-        public override void Close()
+        protected override void Dispose(bool disposing)
         {
-            Flush();
-            base.Close();
+            if (disposing)
+            {
+                Flush();
+                base.Dispose(disposing);
+            }
         }
 
         public override long Length

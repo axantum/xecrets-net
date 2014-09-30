@@ -29,9 +29,10 @@ namespace Org.BouncyCastle.Cms
 			CheckSingleUsage();
 
 			Streams.PipeAll(input, output);
-			input.Dispose();
+            input.Dispose();
 		}
 
+		[Obsolete]
 		public object GetContent()
 		{
 			return GetInputStream();

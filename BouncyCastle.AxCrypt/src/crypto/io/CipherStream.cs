@@ -201,15 +201,18 @@ namespace Org.BouncyCastle.Crypto.IO
             set { throw new NotSupportedException(); }
         }
 
-		protected override void Dispose(bool disposing)
+        protected override void Dispose(bool disposing)
         {
-			if (outCipher != null)
-			{
-				byte[] data = outCipher.DoFinal();
-				stream.Write(data, 0, data.Length);
-				stream.Flush();
-			}
-			stream.Dispose();
+            if (disposing)
+            {
+                if (outCipher != null)
+                {
+                    byte[] data = outCipher.DoFinal();
+                    stream.Write(data, 0, data.Length);
+                    stream.Flush();
+                }
+                stream.Dispose();
+            }
             base.Dispose(disposing);
         }
 

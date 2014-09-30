@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
@@ -131,8 +132,8 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void Initialize(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, Passphrase key, SymmetricKeyThumbprint thumbprint, ActiveFileStatus status, ActiveFileProperties properties)
         {
-            EncryptedFileInfo = Factory.New<IRuntimeFileInfo>(encryptedFileInfo.FullName);
-            DecryptedFileInfo = Factory.New<IRuntimeFileInfo>(decryptedFileInfo.FullName);
+            EncryptedFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(encryptedFileInfo.FullName);
+            DecryptedFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(decryptedFileInfo.FullName);
             Key = key;
             Thumbprint = thumbprint;
             Status = status;
@@ -178,7 +179,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                return Path.GetDirectoryName(DecryptedFileInfo.FullName);
+                return Resolve.Portable.Path().GetDirectoryName(DecryptedFileInfo.FullName);
             }
             set
             {
@@ -194,12 +195,12 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                return OS.Current.DataProtection.Protect(Encoding.UTF8.GetBytes(Path.GetFileName(DecryptedFileInfo.FullName)));
+                return TypeMap.Resolve.New<IDataProtection>().Protect(Encoding.UTF8.GetBytes(Resolve.Portable.Path().GetFileName(DecryptedFileInfo.FullName)));
             }
             set
             {
-                byte[] bytes = OS.Current.DataProtection.Unprotect(value);
-                _decryptedName = Encoding.UTF8.GetString(bytes);
+                byte[] bytes = TypeMap.Resolve.New<IDataProtection>().Unprotect(value);
+                _decryptedName = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
             }
         }
 
@@ -213,7 +214,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
             set
             {
-                EncryptedFileInfo = Factory.New<IRuntimeFileInfo>(value);
+                EncryptedFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(value);
             }
         }
 
@@ -226,7 +227,7 @@ namespace Axantum.AxCrypt.Core.Session
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context)
         {
-            DecryptedFileInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(_decryptedFolder, _decryptedName));
+            DecryptedFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Resolve.Portable.Path().Combine(_decryptedFolder, _decryptedName));
             if (Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
             {
                 Status |= ActiveFileStatus.NoProcessKnown;
@@ -271,9 +272,9 @@ namespace Axantum.AxCrypt.Core.Session
                     return false;
                 }
                 bool isModified = DecryptedFileInfo.LastWriteTimeUtc > Properties.LastEncryptionWriteTimeUtc;
-                if (Instance.Log.IsInfoEnabled)
+                if (Resolve.Log.IsInfoEnabled)
                 {
-                    Instance.Log.LogInfo("IsModified == '{0}' for file '{3}' info last write time '{1}' and active file last write time '{2}'".InvariantFormat(isModified.ToString(), DecryptedFileInfo.LastWriteTimeUtc.ToString(), Properties.LastEncryptionWriteTimeUtc.ToString(), DecryptedFileInfo.Name));
+                    Resolve.Log.LogInfo("IsModified == '{0}' for file '{3}' info last write time '{1}' and active file last write time '{2}'".InvariantFormat(isModified.ToString(), DecryptedFileInfo.LastWriteTimeUtc.ToString(), Properties.LastEncryptionWriteTimeUtc.ToString(), DecryptedFileInfo.Name));
                 }
                 return isModified;
             }

@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             using (MemoryStream inputStream = new MemoryStream())
             {
-                byte[] text = Instance.RandomGenerator.Generate(500);
+                byte[] text = Resolve.RandomGenerator.Generate(500);
                 inputStream.Write(text, 0, text.Length);
                 inputStream.Position = 0;
                 using (MemoryStream outputStream = new MemoryStream())

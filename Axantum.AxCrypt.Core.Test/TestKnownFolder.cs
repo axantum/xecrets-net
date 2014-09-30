@@ -27,8 +27,10 @@
 
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Mono.Portable;
 using NUnit.Framework;
 using System;
 using System.Drawing;
@@ -42,14 +44,15 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
-            Factory.Instance.Register<string, IRuntimeFileInfo>((path) => new FakeRuntimeFileInfo(path));
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
+            TypeMap.Register.New<string, IRuntimeFileInfo>((path) => new FakeRuntimeFileInfo(path));
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
+            TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
         }
 
         [TearDown]
         public static void Teardown()
         {
-            Factory.Instance.Clear();
+            TypeMap.Register.Clear();
         }
 
         [Test]

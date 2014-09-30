@@ -19,7 +19,7 @@ namespace Org.BouncyCastle.Cms
 		internal static readonly CmsEnvelopedHelper Instance = new CmsEnvelopedHelper();
 
 		private static readonly IDictionary KeySizes = Platform.CreateHashtable();
-        private static readonly IDictionary BaseCipherNames = Platform.CreateHashtable();
+		private static readonly IDictionary BaseCipherNames = Platform.CreateHashtable();
 
 		static CmsEnvelopedHelper()
 		{
@@ -104,7 +104,7 @@ namespace Org.BouncyCastle.Cms
 		internal static RecipientInformationStore BuildRecipientInformationStore(
 			Asn1Set recipientInfos, CmsSecureReadable secureReadable)
 		{
-            IList infos = Platform.CreateArrayList();
+			IList infos = Platform.CreateArrayList();
 			for (int i = 0; i != recipientInfos.Count; i++)
 			{
 				RecipientInfo info = RecipientInfo.GetInstance(recipientInfos[i]);

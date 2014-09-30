@@ -26,9 +26,9 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Portable;
 using System;
 using System.IO;
-using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Core.IO
 {
@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core.IO
                 throw new ArgumentNullException("key");
             }
 
-            _hmac = new HMACSHA512(key);
+            _hmac = Resolve.Portable.HMACSHA512(key);
 
             ChainedStream = chainedStream;
         }
@@ -176,7 +176,7 @@ namespace Axantum.AxCrypt.Core.IO
         {
             if (_hmac != null)
             {
-                _hmac.Clear();
+                _hmac.Dispose();
                 _hmac = null;
             }
             _disposed = true;

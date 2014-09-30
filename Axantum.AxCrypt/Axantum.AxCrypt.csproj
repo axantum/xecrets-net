@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Axantum.AxCrypt</RootNamespace>
     <AssemblyName>Axantum.AxCrypt</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
@@ -36,6 +36,7 @@
     <WarningLevel>4</WarningLevel>
     <Optimize>False</Optimize>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <OutputPath>bin\Release\</OutputPath>
@@ -49,6 +50,7 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
     <CodeAnalysisFailOnMissingRules>true</CodeAnalysisFailOnMissingRules>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -77,11 +79,23 @@
     <Compile Include="ConfirmWipeDialog.Designer.cs">
       <DependentUpon>ConfirmWipeDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreateNewAccountDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateNewAccountDialog.Designer.cs">
+      <DependentUpon>CreateNewAccountDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="DebugLogOutputDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DebugLogOutputDialog.Designer.cs">
       <DependentUpon>DebugLogOutputDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LogOnAccountDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogOnAccountDialog.Designer.cs">
+      <DependentUpon>LogOnAccountDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="WatchedFoldersDialog.cs">
       <SubType>Form</SubType>
@@ -131,8 +145,14 @@
       <DependentUpon>ConfirmWipeDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="CreateNewAccountDialog.resx">
+      <DependentUpon>CreateNewAccountDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DebugLogOutputDialog.resx">
       <DependentUpon>DebugLogOutputDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogOnAccountDialog.resx">
+      <DependentUpon>LogOnAccountDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WatchedFoldersDialog.resx">
       <DependentUpon>WatchedFoldersDialog.cs</DependentUpon>
@@ -200,6 +220,10 @@
       <Project>{966E9510-1A1D-46C7-97B5-460A0FF9B89F}</Project>
       <Name>Axantum.AxCrypt.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Axantum.AxCrypt.Desktop\Axantum.AxCrypt.Desktop.csproj">
+      <Project>{d64de570-3a36-49d3-95aa-9262647b04ee}</Project>
+      <Name>Axantum.AxCrypt.Desktop</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Axantum.AxCrypt.Forms\Axantum.AxCrypt.Forms.csproj">
       <Project>{ac7c1ecd-4543-4cf3-8938-32f3d8cb89d5}</Project>
       <Name>Axantum.AxCrypt.Forms</Name>
@@ -208,13 +232,13 @@
       <Project>{CE9E8614-8DC5-4757-9384-3C416AB61A47}</Project>
       <Name>Axantum.AxCrypt.Mono</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BouncyCastle.AxCrypt\src\BouncyCastle.AxCrypt.csproj">
-      <Project>{63aa03f0-9c8d-44ea-b2ca-5802cf4f1968}</Project>
+    <ProjectReference Include="..\BouncyCastle.AxCrypt\BouncyCastle.AxCrypt.csproj">
+      <Project>{3680c939-b21f-4444-b646-42fb4b29a786}</Project>
       <Name>BouncyCastle.AxCrypt</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Newtonsoft.Json\Newtonsoft.Json.Net40.csproj">
-      <Project>{a9ae40ff-1a21-414a-9fe7-3be13644cc6d}</Project>
-      <Name>Newtonsoft.Json.Net40</Name>
+    <ProjectReference Include="..\Newtonsoft.Json\Newtonsoft.Json.Portable40.csproj">
+      <Project>{959f7f85-c98b-4876-971a-9036224578e4}</Project>
+      <Name>Newtonsoft.Json.Portable40</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

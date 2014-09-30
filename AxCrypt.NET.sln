@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Mono", "Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.csproj", "{CE9E8614-8DC5-4757-9384-3C416AB61A47}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Core", "Axantum.AxCrypt.Core\Axantum.AxCrypt.Core.csproj", "{966E9510-1A1D-46C7-97B5-460A0FF9B89F}"
@@ -15,11 +17,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt", "Axantum.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Forms", "Axantum.AxCrypt.Forms\Axantum.AxCrypt.Forms.csproj", "{AC7C1ECD-4543-4CF3-8938-32F3D8CB89D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BouncyCastle.AxCrypt", "BouncyCastle.AxCrypt\src\BouncyCastle.AxCrypt.csproj", "{63AA03F0-9C8D-44EA-B2CA-5802CF4F1968}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newtonsoft.Json.Portable40", "Newtonsoft.Json\Newtonsoft.Json.Portable40.csproj", "{959F7F85-C98B-4876-971A-9036224578E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newtonsoft.Json.Net40", "Newtonsoft.Json\Newtonsoft.Json.Net40.csproj", "{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BouncyCastle.AxCrypt", "BouncyCastle.AxCrypt\BouncyCastle.AxCrypt.csproj", "{3680C939-B21F-4444-B646-42FB4B29A786}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Desktop", "Axantum.AxCrypt.Desktop\Axantum.AxCrypt.Desktop.csproj", "{D64DE570-3A36-49D3-95AA-9262647B04EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Desktop.Test", "Axantum.AxCrypt.Desktop.Test\Axantum.AxCrypt.Desktop.Test.csproj", "{79C1CBFF-B54E-43FC-A4CB-E6AF0AA1D0FF}"
 EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.projitems*{79c4901a-bcaa-49aa-a789-6a8f97acc881}*SharedItemsImports = 4
+		Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.projitems*{2689b1ef-29af-4f3e-a7ec-c87ff66dc403}*SharedItemsImports = 4
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -51,14 +61,22 @@ Global
 		{AC7C1ECD-4543-4CF3-8938-32F3D8CB89D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC7C1ECD-4543-4CF3-8938-32F3D8CB89D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC7C1ECD-4543-4CF3-8938-32F3D8CB89D5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{63AA03F0-9C8D-44EA-B2CA-5802CF4F1968}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{63AA03F0-9C8D-44EA-B2CA-5802CF4F1968}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{63AA03F0-9C8D-44EA-B2CA-5802CF4F1968}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{63AA03F0-9C8D-44EA-B2CA-5802CF4F1968}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A9AE40FF-1A21-414A-9FE7-3BE13644CC6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{959F7F85-C98B-4876-971A-9036224578E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{959F7F85-C98B-4876-971A-9036224578E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{959F7F85-C98B-4876-971A-9036224578E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{959F7F85-C98B-4876-971A-9036224578E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3680C939-B21F-4444-B646-42FB4B29A786}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3680C939-B21F-4444-B646-42FB4B29A786}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3680C939-B21F-4444-B646-42FB4B29A786}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3680C939-B21F-4444-B646-42FB4B29A786}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D64DE570-3A36-49D3-95AA-9262647B04EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D64DE570-3A36-49D3-95AA-9262647B04EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D64DE570-3A36-49D3-95AA-9262647B04EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D64DE570-3A36-49D3-95AA-9262647B04EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79C1CBFF-B54E-43FC-A4CB-E6AF0AA1D0FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79C1CBFF-B54E-43FC-A4CB-E6AF0AA1D0FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79C1CBFF-B54E-43FC-A4CB-E6AF0AA1D0FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79C1CBFF-B54E-43FC-A4CB-E6AF0AA1D0FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -25,14 +25,16 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Globalization;
-using System.IO;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Mono.Portable;
 using NUnit.Framework;
+using System;
+using System.Globalization;
+using System.IO;
 
 namespace Axantum.AxCrypt.Mono.Test
 {
@@ -46,17 +48,17 @@ namespace Axantum.AxCrypt.Mono.Test
         {
             _tempPath = Path.Combine(Path.GetTempPath(), "Axantum.AxCrypt.Mono.Test.TestRuntimeFileInfo");
             Directory.CreateDirectory(_tempPath);
-            Factory.Instance.Register<string, IFileWatcher>((path) => new FileWatcher(path, new DelayedAction(new DelayTimer(), TimeSpan.FromMilliseconds(1))));
-            Factory.Instance.Register<string, IRuntimeFileInfo>((path) => new RuntimeFileInfo(path));
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
-            Factory.Instance.Singleton<WorkFolder>(() => new WorkFolder(_tempPath));
-            Factory.Instance.Singleton<ILogging>(() => new Logging());
+            TypeMap.Register.New<string, IRuntimeFileInfo>((path) => new RuntimeFileInfo(path));
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
+            TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
+            TypeMap.Register.Singleton<WorkFolder>(() => new WorkFolder(_tempPath));
+            TypeMap.Register.Singleton<ILogging>(() => new Logging());
         }
 
         [TearDown]
         public static void Teardown()
         {
-            Factory.Instance.Clear();
+            TypeMap.Register.Clear();
             Directory.Delete(_tempPath, true);
         }
 

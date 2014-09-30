@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Portable;
+using Axantum.AxCrypt.Mono.Portable;
+using NUnit.Framework;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.IO;
-using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -14,6 +16,7 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
+            TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
         }
 
         [TearDown]

@@ -398,7 +398,7 @@ namespace Axantum.AxCrypt.Core.Test
                     }
                     files.Add(kvp.Value);
                 }
-                return files.Select((FakeFileInfo fileInfo) => { return Factory.New<IRuntimeFileInfo>(fileInfo.FullName); });
+                return files.Select((FakeFileInfo fileInfo) => { return TypeMap.Resolve.New<IRuntimeFileInfo>(fileInfo.FullName); });
             }
         }
 

@@ -65,14 +65,7 @@ namespace Axantum.AxCrypt.Core.UI
         public ProgressContext(TimeSpan timeToFirstProgress)
         {
             _nextProgressTime = timeToFirstProgress;
-            if (SynchronizationContext.Current == null)
-            {
-                _synchronizationContext = new SynchronizationContext();
-            }
-            else
-            {
-                _synchronizationContext = SynchronizationContext.Current;
-            }
+            _synchronizationContext = OS.Current.SynchronizationContext;
         }
 
         /// <summary>
@@ -108,12 +101,11 @@ namespace Axantum.AxCrypt.Core.UI
             EventHandler<ProgressEventArgs> handler = Progressing;
             if (handler != null)
             {
-                _synchronizationContext.Send(
-                    (object state) =>
-                    {
-                        handler(this, (ProgressEventArgs)e);
-                    },
-                    e);
+                _synchronizationContext.Post((state) =>
+                {
+                    handler(this, (ProgressEventArgs)state);
+                },
+                e);
             }
         }
 

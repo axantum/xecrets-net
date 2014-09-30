@@ -29,6 +29,7 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Org.BouncyCastle.Utilities.Zlib;
@@ -36,7 +37,6 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -85,7 +85,7 @@ namespace Axantum.AxCrypt.Core
         public bool Load(Passphrase passphrase, Guid cryptoId, AxCryptReader reader, Headers headers)
         {
             _reader = reader;
-            CryptoFactory = Instance.CryptoFactory.Create(cryptoId);
+            CryptoFactory = Resolve.CryptoFactory.Create(cryptoId);
             V2KeyWrapHeaderBlock keyWrap = headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
             IDerivedKey key = CryptoFactory.RestoreDerivedKey(passphrase, keyWrap.DerivationSalt, keyWrap.DerivationIterations);
             DocumentHeaders = new V2DocumentHeaders(key, cryptoId);
@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Core
                 {
                     using (Stream axCryptDataStream = new V2AxCryptDataStream(outputHmacStream))
                     {
-                        using (CryptoStream encryptingStream = new CryptoStream(new NonClosingStream(axCryptDataStream), encryptor, CryptoStreamMode.Write))
+                        using (Stream encryptingStream = Resolve.Portable.CryptoStream(new NonClosingStream(axCryptDataStream), encryptor, CryptoStreamMode.Write))
                         {
                             if (DocumentHeaders.IsCompressed)
                             {
@@ -149,7 +149,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        private void EncryptWithCompressionInternal(Stream inputStream, CryptoStream encryptingStream)
+        private void EncryptWithCompressionInternal(Stream inputStream, Stream encryptingStream)
         {
             using (ZOutputStream deflatingStream = new ZOutputStream(encryptingStream, -1))
             {

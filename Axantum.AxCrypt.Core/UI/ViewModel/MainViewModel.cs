@@ -25,16 +25,14 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Security;
-using System.Security.Cryptography.X509Certificates;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
@@ -136,54 +134,43 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DragAndDropFilesTypes = DetermineFileTypes(files.Select(f => Factory.New<IRuntimeFileInfo>(f))); });
-            BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsRecent = DetermineDroppableAsRecent(files.Select(f => Factory.New<IRuntimeFileInfo>(f))); });
-            BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => Factory.New<IRuntimeFileInfo>(f))); });
-            BindPropertyChanged("CurrentVersion", (Version cv) => { if (cv != null) UpdateUpdateCheck(cv); });
-            BindPropertyChanged("DebugMode", (bool enabled) => { UpdateDebugMode(enabled); });
-            BindPropertyChanged("RecentFilesComparer", (ActiveFileComparer comparer) => { SetRecentFiles(); });
+            BindPropertyChangedInternal("DragAndDropFiles", (IEnumerable<string> files) => { DragAndDropFilesTypes = DetermineFileTypes(files.Select(f => TypeMap.Resolve.New<IRuntimeFileInfo>(f))); });
+            BindPropertyChangedInternal("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsRecent = DetermineDroppableAsRecent(files.Select(f => TypeMap.Resolve.New<IRuntimeFileInfo>(f))); });
+            BindPropertyChangedInternal("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => TypeMap.Resolve.New<IRuntimeFileInfo>(f))); });
+            BindPropertyChangedInternal("CurrentVersion", (Version cv) => { if (cv != null) UpdateUpdateCheck(cv); });
+            BindPropertyChangedInternal("DebugMode", (bool enabled) => { UpdateDebugMode(enabled); });
+            BindPropertyChangedInternal("RecentFilesComparer", (ActiveFileComparer comparer) => { SetRecentFiles(); });
         }
 
         private void SubscribeToModelEvents()
         {
-            Instance.SessionNotify.Notification += HandleSessionChanged;
-            Instance.ProgressBackground.WorkStatusChanged += (sender, e) =>
+            Resolve.SessionNotify.Notification += HandleSessionChanged;
+            Resolve.ProgressBackground.WorkStatusChanged += (sender, e) =>
                 {
-                    Working = Instance.ProgressBackground.Busy;
+                    Working = Resolve.ProgressBackground.Busy;
                 };
             _fileSystemState.ActiveFileChanged += HandleActiveFileChangedEvent;
         }
 
         private static void UpdateDebugMode(bool enabled)
         {
-            if (enabled)
-            {
-                Instance.Log.SetLevel(LogLevel.Debug);
-                ServicePointManager.ServerCertificateValidationCallback = (object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) =>
-                {
-                    return true;
-                };
-            }
-            else
-            {
-                ServicePointManager.ServerCertificateValidationCallback = null;
-                Instance.Log.SetLevel(LogLevel.Error);
-            }
+            Resolve.Log.SetLevel(enabled ? LogLevel.Debug : LogLevel.Error);
+            OS.Current.DebugMode(enabled);
         }
 
         private void UpdateUpdateCheck(Version currentVersion)
         {
             DisposeUpdateCheck();
-            _updateCheck = Factory.New<Version, UpdateCheck>(currentVersion);
+            _updateCheck = TypeMap.Resolve.New<Version, UpdateCheck>(currentVersion);
             _updateCheck.VersionUpdate += Handle_VersionUpdate;
-            UpdateCheckAction(Instance.UserSettings.LastUpdateCheckUtc);
+            UpdateCheckAction(Resolve.UserSettings.LastUpdateCheckUtc);
         }
 
         private void Handle_VersionUpdate(object sender, VersionEventArgs e)
         {
-            Instance.UserSettings.LastUpdateCheckUtc = OS.Current.UtcNow;
-            Instance.UserSettings.NewestKnownVersion = e.Version.ToString();
-            Instance.UserSettings.UpdateUrl = e.UpdateWebpageUrl;
+            Resolve.UserSettings.LastUpdateCheckUtc = OS.Current.UtcNow;
+            Resolve.UserSettings.NewestKnownVersion = e.Version.ToString();
+            Resolve.UserSettings.UpdateUrl = e.UpdateWebpageUrl;
 
             UpdatedVersion = e.Version;
             VersionUpdateStatus = e.VersionUpdateStatus;
@@ -212,7 +199,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private static bool DetermineDroppableAsRecent(IEnumerable<IRuntimeFileInfo> files)
         {
-            return files.Any(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile || (Instance.KnownKeys.IsLoggedOn && fileInfo.Type() == FileInfoTypes.EncryptableFile));
+            return files.Any(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile || (Resolve.KnownKeys.IsLoggedOn && fileInfo.Type() == FileInfoTypes.EncryptableFile));
         }
 
         private static bool DetermineDroppableAsWatchedFolder(IEnumerable<IRuntimeFileInfo> files)
@@ -249,12 +236,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     break;
 
                 case SessionNotificationType.LogOn:
-                    SetLogOnState(Instance.KnownKeys.IsLoggedOn);
+                    SetLogOnState(Resolve.KnownKeys.IsLoggedOn);
                     SetWatchedFolders();
                     break;
 
                 case SessionNotificationType.LogOff:
-                    SetLogOnState(Instance.KnownKeys.IsLoggedOn);
+                    SetLogOnState(Resolve.KnownKeys.IsLoggedOn);
                     SetWatchedFolders();
                     break;
 
@@ -275,7 +262,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void SetWatchedFolders()
         {
-            WatchedFolders = Instance.KnownKeys.LoggedOnWatchedFolders.Select(wf => wf.Path).ToList();
+            WatchedFolders = Resolve.KnownKeys.LoggedOnWatchedFolders.Select(wf => wf.Path).ToList();
         }
 
         private void SetRecentFiles()
@@ -292,7 +279,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void SetFilesArePending()
         {
             IList<ActiveFile> openFiles = _fileSystemState.DecryptedActiveFiles;
-            FilesArePending = openFiles.Count > 0 || Instance.KnownKeys.LoggedOnWatchedFolders.SelectMany(wf => Factory.New<IRuntimeFileInfo>(wf.Path).ListEncryptable()).Any();
+            FilesArePending = openFiles.Count > 0 || Resolve.KnownKeys.LoggedOnWatchedFolders.SelectMany(wf => TypeMap.Resolve.New<IRuntimeFileInfo>(wf.Path).ListEncryptable()).Any();
         }
 
         private void SetLogOnState(bool isLoggedOn)
@@ -300,7 +287,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             PassphraseIdentity identity = null;
             if (isLoggedOn)
             {
-                identity = _fileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == Instance.KnownKeys.DefaultEncryptionKey.Thumbprint);
+                identity = _fileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == Resolve.KnownKeys.DefaultEncryptionKey.Thumbprint);
                 if (identity == null)
                 {
                     throw new InvalidOperationException("Attempt to log on without a matching identity being defined.");
@@ -316,16 +303,16 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void ClearPassphraseMemoryAction()
         {
-            IRuntimeFileInfo fileSystemStateInfo = Instance.FileSystemState.PathInfo;
-            Factory.New<AxCryptFile>().Wipe(fileSystemStateInfo, new ProgressContext());
-            Factory.Instance.Singleton<FileSystemState>(() => FileSystemState.Create(fileSystemStateInfo));
-            Factory.Instance.Singleton<KnownKeys>(() => new KnownKeys(_fileSystemState, Instance.SessionNotify));
-            Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.SessionStart));
+            IRuntimeFileInfo fileSystemStateInfo = Resolve.FileSystemState.PathInfo;
+            TypeMap.Resolve.New<AxCryptFile>().Wipe(fileSystemStateInfo, new ProgressContext());
+            TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(fileSystemStateInfo));
+            TypeMap.Register.Singleton<KnownKeys>(() => new KnownKeys(_fileSystemState, Resolve.SessionNotify));
+            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.SessionStart));
         }
 
         private static void EncryptPendingFilesAction()
         {
-            Instance.SessionNotify.Notify(new SessionNotification(SessionNotificationType.EncryptPendingFiles));
+            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.EncryptPendingFiles));
         }
 
         private void RemoveRecentFilesAction(IEnumerable<string> files)
@@ -349,7 +336,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             foreach (string folder in folders)
             {
-                _fileSystemState.AddWatchedFolder(new WatchedFolder(folder, Instance.KnownKeys.DefaultEncryptionKey.Thumbprint));
+                _fileSystemState.AddWatchedFolder(new WatchedFolder(folder, Resolve.KnownKeys.DefaultEncryptionKey.Thumbprint));
             }
             _fileSystemState.Save();
         }
@@ -362,7 +349,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             foreach (string watchedFolderPath in folders)
             {
-                _fileSystemState.RemoveWatchedFolder(Factory.New<IRuntimeFileInfo>(watchedFolderPath));
+                _fileSystemState.RemoveWatchedFolder(TypeMap.Resolve.New<IRuntimeFileInfo>(watchedFolderPath));
             }
             _fileSystemState.Save();
         }
@@ -374,7 +361,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void UpdateCheckAction(DateTime lastUpdateCheckUtc)
         {
-            _updateCheck.CheckInBackground(lastUpdateCheckUtc, Instance.UserSettings.NewestKnownVersion, Instance.UserSettings.AxCrypt2VersionCheckUrl, Instance.UserSettings.UpdateUrl);
+            _updateCheck.CheckInBackground(lastUpdateCheckUtc, Resolve.UserSettings.NewestKnownVersion, Resolve.UserSettings.AxCrypt2VersionCheckUrl, Resolve.UserSettings.UpdateUrl);
         }
 
         public void Dispose()

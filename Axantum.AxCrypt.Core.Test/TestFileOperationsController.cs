@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Core.Test
             FakeRuntimeFileInfo.AddFile(_uncompressedAxxPath, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.uncompressable_zip));
             FakeRuntimeFileInfo.AddFile(_helloWorldAxxPath, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
 
-            Factory.Instance.Singleton<IUIThread>(() => new FakeUIThread());
+            TypeMap.Register.Singleton<IUIThread>(() => new FakeUIThread());
         }
 
         [TearDown]
@@ -78,10 +78,10 @@ namespace Axantum.AxCrypt.Core.Test
                 destinationPath = e.SaveFileFullName;
             };
 
-            FileOperationContext status = controller.EncryptFile(Factory.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath));
+            FileOperationContext status = controller.EncryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
-            IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
+            IRuntimeFileInfo destinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(destinationPath);
             Assert.That(destinationInfo.IsExistingFile, "After encryption the destination file should be created.");
             using (IAxCryptDocument document = new V2AxCryptDocument())
             {
@@ -109,10 +109,10 @@ namespace Axantum.AxCrypt.Core.Test
                 status = e.Status;
             };
 
-            controller.EncryptFile(Factory.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath));
+            controller.EncryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
-            IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
+            IRuntimeFileInfo destinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(destinationPath);
             Assert.That(destinationInfo.IsExistingFile, "After encryption the destination file should be created.");
             using (IAxCryptDocument document = new V2AxCryptDocument())
             {
@@ -127,8 +127,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptFileWithDefaultEncryptionKey()
         {
-            Factory.Instance.Singleton<ICryptoPolicy>(() => new LegacyCryptoPolicy());
-            Instance.KnownKeys.DefaultEncryptionKey = new Passphrase("default");
+            TypeMap.Register.Singleton<ICryptoPolicy>(() => new LegacyCryptoPolicy());
+            Resolve.KnownKeys.DefaultEncryptionKey = new Passphrase("default");
             FileOperationsController controller = new FileOperationsController();
             bool queryEncryptionPassphraseWasCalled = false;
             controller.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
@@ -141,11 +141,11 @@ namespace Axantum.AxCrypt.Core.Test
                     destinationPath = e.SaveFileFullName;
                 };
 
-            FileOperationContext status = controller.EncryptFile(Factory.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath));
+            FileOperationContext status = controller.EncryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
             Assert.That(!queryEncryptionPassphraseWasCalled, "No query of encryption passphrase should be needed since there is a default set.");
 
-            IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
+            IRuntimeFileInfo destinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(destinationPath);
             Assert.That(destinationInfo.IsExistingFile, "After encryption the destination file should be created.");
             using (IAxCryptDocument document = new V1AxCryptDocument())
             {
@@ -160,8 +160,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptFileWhenDestinationExists()
         {
-            IRuntimeFileInfo sourceInfo = Factory.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath);
-            IRuntimeFileInfo expectedDestinationInfo = Factory.New<IRuntimeFileInfo>(AxCryptFile.MakeAxCryptFileName(sourceInfo));
+            IRuntimeFileInfo sourceInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath);
+            IRuntimeFileInfo expectedDestinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(AxCryptFile.MakeAxCryptFileName(sourceInfo));
             using (Stream stream = expectedDestinationInfo.OpenWrite())
             {
             }
@@ -185,13 +185,13 @@ namespace Axantum.AxCrypt.Core.Test
                 cryptoId = e.CryptoId;
             };
 
-            FileOperationContext status = controller.EncryptFile(Factory.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath));
+            FileOperationContext status = controller.EncryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
             Assert.That(Path.GetFileName(destinationPath), Is.EqualTo("alternative-name.axx"), "The alternative name should be used, since the default existed.");
-            IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
+            IRuntimeFileInfo destinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(destinationPath);
             Assert.That(destinationInfo.IsExistingFile, "After encryption the destination file should be created.");
-            using (IAxCryptDocument document = Factory.New<AxCryptFactory>().CreateDocument(key, cryptoId))
+            using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(key, cryptoId))
             {
                 using (Stream stream = destinationInfo.OpenRead())
                 {
@@ -204,8 +204,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptFileWhenCanceledDuringQuerySaveAs()
         {
-            IRuntimeFileInfo sourceInfo = Factory.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath);
-            IRuntimeFileInfo expectedDestinationInfo = Factory.New<IRuntimeFileInfo>(AxCryptFile.MakeAxCryptFileName(sourceInfo));
+            IRuntimeFileInfo sourceInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath);
+            IRuntimeFileInfo expectedDestinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(AxCryptFile.MakeAxCryptFileName(sourceInfo));
             using (Stream stream = expectedDestinationInfo.OpenWrite())
             {
             }
@@ -216,7 +216,7 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Cancel = true;
             };
 
-            FileOperationContext status = controller.EncryptFile(Factory.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath));
+            FileOperationContext status = controller.EncryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Canceled), "The status should indicate cancellation.");
         }
 
@@ -229,7 +229,7 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Cancel = true;
             };
 
-            FileOperationContext status = controller.EncryptFile(Factory.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath));
+            FileOperationContext status = controller.EncryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Canceled), "The status should indicate cancellation.");
         }
 
@@ -251,11 +251,11 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     destinationPath = e.SaveFileFullName;
                 };
-            FileOperationContext status = controller.DecryptFile(Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.DecryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
             Assert.That(knownKeyWasAdded, "A new known key was used, so the KnownKeyAdded event should have been raised.");
-            IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
+            IRuntimeFileInfo destinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(destinationPath);
             Assert.That(destinationInfo.IsExistingFile, "After decryption the destination file should be created.");
 
             string fileContent;
@@ -287,11 +287,11 @@ namespace Axantum.AxCrypt.Core.Test
                 status = e.Status;
             };
 
-            controller.DecryptFile(Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            controller.DecryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
             Assert.That(knownKeyWasAdded, "A new known key was used, so the KnownKeyAdded event should have been raised.");
-            IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
+            IRuntimeFileInfo destinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(destinationPath);
             Assert.That(destinationInfo.IsExistingFile, "After decryption the destination file should be created.");
 
             string fileContent;
@@ -310,7 +310,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 e.Cancel = true;
             };
-            FileOperationContext status = controller.DecryptFile(Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.DecryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Canceled), "The status should indicate cancellation.");
         }
@@ -318,7 +318,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptWithSkipDuringQueryDecryptionPassphrase()
         {
-            IRuntimeFileInfo expectedDestinationInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
+            IRuntimeFileInfo expectedDestinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
             using (Stream stream = expectedDestinationInfo.OpenWrite())
             {
             }
@@ -330,7 +330,7 @@ namespace Axantum.AxCrypt.Core.Test
             };
             bool saveAs = false;
             controller.QuerySaveFileAs += (sender, e) => saveAs = true;
-            FileOperationContext status = controller.DecryptFile(Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.DecryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
             Assert.That(saveAs, Is.False, "No Save As should happen, since skip was indicated.");
@@ -339,7 +339,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptWithCancelDuringQuerySaveAs()
         {
-            IRuntimeFileInfo expectedDestinationInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
+            IRuntimeFileInfo expectedDestinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
             using (Stream stream = expectedDestinationInfo.OpenWrite())
             {
             }
@@ -353,7 +353,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     e.Cancel = true;
                 };
-            FileOperationContext status = controller.DecryptFile(Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.DecryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Canceled), "The status should indicate cancellation.");
         }
@@ -361,7 +361,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptWithAlternativeDestinationName()
         {
-            IRuntimeFileInfo expectedDestinationInfo = Factory.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
+            IRuntimeFileInfo expectedDestinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
             using (Stream stream = expectedDestinationInfo.OpenWrite())
             {
             }
@@ -380,11 +380,11 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 destinationPath = e.SaveFileFullName;
             };
-            FileOperationContext status = controller.DecryptFile(Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.DecryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
-            IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
+            IRuntimeFileInfo destinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(destinationPath);
             string fileContent;
             using (Stream stream = destinationInfo.OpenRead())
             {
@@ -409,14 +409,14 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 e.Passphrase = new Passphrase("a");
             };
-            FileOperationContext status = controller.DecryptAndLaunch(Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.DecryptAndLaunch(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
             Assert.That(launcher, Is.Not.Null, "There should be a call to launch.");
             Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
 
-            IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(launcher.Path);
+            IRuntimeFileInfo destinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(launcher.Path);
             Assert.That(destinationInfo.IsExistingFile, "After decryption the destination file should be created.");
 
             string fileContent;
@@ -450,14 +450,14 @@ namespace Axantum.AxCrypt.Core.Test
                 status = e.Status;
             };
 
-            controller.DecryptAndLaunch(Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            controller.DecryptAndLaunch(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
             Assert.That(launcher, Is.Not.Null, "There should be a call to launch.");
             Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
 
-            IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(launcher.Path);
+            IRuntimeFileInfo destinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(launcher.Path);
             Assert.That(destinationInfo.IsExistingFile, "After decryption the destination file should be created.");
 
             string fileContent;
@@ -477,7 +477,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 e.Cancel = true;
             };
-            FileOperationContext status = controller.DecryptAndLaunch(Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.DecryptAndLaunch(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Canceled), "The status should indicate cancellation.");
         }
 
@@ -485,10 +485,10 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestDecryptWithKnownKey()
         {
             FileOperationsController controller = new FileOperationsController();
-            Instance.KnownKeys.Add(new Passphrase("b"));
-            Instance.KnownKeys.Add(new Passphrase("c"));
-            Instance.KnownKeys.Add(new Passphrase("a"));
-            Instance.KnownKeys.Add(new Passphrase("e"));
+            Resolve.KnownKeys.Add(new Passphrase("b"));
+            Resolve.KnownKeys.Add(new Passphrase("c"));
+            Resolve.KnownKeys.Add(new Passphrase("a"));
+            Resolve.KnownKeys.Add(new Passphrase("e"));
             bool passphraseWasQueried = false;
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
             {
@@ -504,12 +504,12 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 knownKeyWasAdded = true;
             };
-            FileOperationContext status = controller.DecryptFile(Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.DecryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
             Assert.That(!knownKeyWasAdded, "An already known key was used, so the KnownKeyAdded event should not have been raised.");
             Assert.That(!passphraseWasQueried, "An already known key was used, so the there should be no need to query for a passphrase.");
-            IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
+            IRuntimeFileInfo destinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(destinationPath);
             Assert.That(destinationInfo.IsExistingFile, "After decryption the destination file should be created.");
 
             string fileContent;
@@ -556,12 +556,12 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 knownKeyWasAdded = e.Passphrase.Equals(new Passphrase("a"));
             };
-            FileOperationContext status = controller.DecryptFile(Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.DecryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
             Assert.That(knownKeyWasAdded, "A new known key was used, so the KnownKeyAdded event should have been raised.");
             Assert.That(passphraseTry, Is.EqualTo(3), "The third key was the correct one.");
-            IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
+            IRuntimeFileInfo destinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(destinationPath);
             Assert.That(destinationInfo.IsExistingFile, "After decryption the destination file should be created.");
 
             string fileContent;
@@ -590,7 +590,7 @@ namespace Axantum.AxCrypt.Core.Test
                     destinationPath = e.SaveFileFullName;
                 };
             FileOperationContext status = new FileOperationContext(String.Empty, FileOperationStatus.Unknown);
-            Assert.DoesNotThrow(() => { status = controller.DecryptFile(Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath)); });
+            Assert.DoesNotThrow(() => { status = controller.DecryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath)); });
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.FileDoesNotExist), "The status should indicate an exception occurred.");
             Assert.That(String.IsNullOrEmpty(destinationPath), "Since an exception occurred, the destination file should not be created.");
@@ -600,7 +600,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestEncryptFileThatIsAlreadyEncrypted()
         {
             FileOperationsController controller = new FileOperationsController();
-            FileOperationContext status = controller.EncryptFile(Factory.New<IRuntimeFileInfo>("test" + OS.Current.AxCryptExtension));
+            FileOperationContext status = controller.EncryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>("test" + OS.Current.AxCryptExtension));
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.FileAlreadyEncrypted), "The status should indicate that it was already encrypted.");
         }
@@ -619,7 +619,7 @@ namespace Axantum.AxCrypt.Core.Test
                     status = e.Status;
                 };
 
-            controller.DecryptFile(Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            controller.DecryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Canceled), "The status should indicate cancellation.");
         }
@@ -634,10 +634,10 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Skip = false;
                 e.ConfirmAll = false;
             };
-            FileOperationContext status = controller.WipeFile(Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.WipeFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The wipe should indicate success.");
 
-            IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
+            IRuntimeFileInfo fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath);
             Assert.That(!fileInfo.IsExistingFile, "The file should not exist after wiping.");
         }
 
@@ -660,10 +660,10 @@ namespace Axantum.AxCrypt.Core.Test
                 status = e.Status;
             };
 
-            controller.WipeFile(Factory.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath));
+            controller.WipeFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
-            IRuntimeFileInfo destinationInfo = Factory.New<IRuntimeFileInfo>(destinationPath);
+            IRuntimeFileInfo destinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(destinationPath);
             Assert.That(!destinationInfo.IsExistingFile, "After wiping the destination file should not exist.");
         }
 
@@ -675,10 +675,10 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 e.Cancel = true;
             };
-            FileOperationContext status = controller.WipeFile(Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.WipeFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Canceled), "The wipe should indicate cancellation.");
 
-            IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
+            IRuntimeFileInfo fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath);
             Assert.That(fileInfo.IsExistingFile, "The file should still exist after wiping that was canceled during confirmation.");
         }
 
@@ -690,10 +690,10 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 e.Skip = true;
             };
-            FileOperationContext status = controller.WipeFile(Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.WipeFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The wipe should indicate success even when skipping.");
 
-            IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
+            IRuntimeFileInfo fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath);
             Assert.That(fileInfo.IsExistingFile, "The file should still exist after wiping that was skipped during confirmation.");
         }
 
@@ -712,17 +712,17 @@ namespace Axantum.AxCrypt.Core.Test
                 e.ConfirmAll = true;
             };
             progress.NotifyLevelStart();
-            FileOperationContext status = controller.WipeFile(Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.WipeFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The wipe should indicate success.");
 
-            IRuntimeFileInfo fileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
+            IRuntimeFileInfo fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath);
             Assert.That(!fileInfo.IsExistingFile, "The file should not exist after wiping.");
 
-            Assert.DoesNotThrow(() => { status = controller.WipeFile(Factory.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath)); });
+            Assert.DoesNotThrow(() => { status = controller.WipeFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath)); });
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The wipe should indicate success.");
             progress.NotifyLevelFinished();
 
-            fileInfo = Factory.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath);
+            fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath);
             Assert.That(!fileInfo.IsExistingFile, "The file should not exist after wiping.");
         }
 
@@ -742,7 +742,7 @@ namespace Axantum.AxCrypt.Core.Test
                 knownKeyWasAdded = true;
             };
 
-            FileOperationContext status = controller.VerifyEncrypted(Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.VerifyEncrypted(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Canceled));
             Assert.That(knownKeyWasAdded, Is.False);
             Assert.That(passphraseWasQueried, Is.True);
@@ -757,10 +757,10 @@ namespace Axantum.AxCrypt.Core.Test
                 knownKeyWasAdded = true;
             };
 
-            Instance.KnownKeys.Add(new Passphrase("b"));
-            Instance.KnownKeys.Add(new Passphrase("c"));
+            Resolve.KnownKeys.Add(new Passphrase("b"));
+            Resolve.KnownKeys.Add(new Passphrase("c"));
 
-            status = controller.VerifyEncrypted(Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            status = controller.VerifyEncrypted(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success));
             Assert.That(knownKeyWasAdded, Is.True, "A known key should have been added.");
         }

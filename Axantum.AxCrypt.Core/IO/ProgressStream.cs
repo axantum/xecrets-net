@@ -143,7 +143,7 @@ namespace Axantum.AxCrypt.Core.IO
                 return;
             }
 
-            _stream.Close();
+            _stream.Dispose();
             _stream = null;
             _progress.NotifyLevelFinished();
         }

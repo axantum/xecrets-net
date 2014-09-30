@@ -138,14 +138,19 @@ namespace Org.BouncyCastle.Utilities.Zlib {
 
         protected override void Dispose(bool disposing)
         {
-            try{
-                try{Finish();}
-                catch (IOException) {}
-            }
-            finally{
-                End();
-                outp.Dispose();
-                outp=null;
+            if (disposing)
+            {
+                try
+                {
+                    try { Finish(); }
+                    catch (IOException) { }
+                }
+                finally
+                {
+                    End();
+                    outp.Dispose();
+                    outp = null;
+                }
             }
             base.Dispose(disposing);
         }

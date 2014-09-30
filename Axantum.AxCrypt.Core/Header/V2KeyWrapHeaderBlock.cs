@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Header
         private IDerivedKey _keyEncryptingKey;
 
         public V2KeyWrapHeaderBlock(ICryptoFactory cryptoFactory, IDerivedKey keyEncryptingKey, long keyWrapIterations)
-            : this(Instance.RandomGenerator.Generate(DATABLOCK_LENGTH))
+            : this(Resolve.RandomGenerator.Generate(DATABLOCK_LENGTH))
         {
             _cryptoFactory = cryptoFactory;
             _keyEncryptingKey = keyEncryptingKey;
@@ -143,7 +143,7 @@ namespace Axantum.AxCrypt.Core.Header
             Salt salt = new Salt(_keyEncryptingKey.DerivedKey.Size);
             KeyWrap keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.Specification);
             ICrypto crypto = _cryptoFactory.CreateCrypto(_keyEncryptingKey.DerivedKey, null, 0);
-            _unwrappedKeyData = Instance.RandomGenerator.Generate(_keyEncryptingKey.DerivedKey.Size / 8 + crypto.BlockLength);
+            _unwrappedKeyData = Resolve.RandomGenerator.Generate(_keyEncryptingKey.DerivedKey.Size / 8 + crypto.BlockLength);
             byte[] wrappedKeyData = keyWrap.Wrap(crypto, _unwrappedKeyData);
             Set(wrappedKeyData, salt, keyWrapIterations);
         }

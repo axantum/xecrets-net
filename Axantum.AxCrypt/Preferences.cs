@@ -34,24 +34,24 @@ namespace Axantum.AxCrypt
 {
     internal static class Preferences
     {
-        public static int MainWindowWidth { get { return Instance.UserSettings.Load<int>("MainWindowWidth"); } set { Instance.UserSettings.Store("MainWindowWidth", value); } }
+        public static int MainWindowWidth { get { return Resolve.UserSettings.Load<int>("MainWindowWidth"); } set { Resolve.UserSettings.Store("MainWindowWidth", value); } }
 
-        public static int MainWindowHeight { get { return Instance.UserSettings.Load<int>("MainWindowHeight"); } set { Instance.UserSettings.Store("MainWindowHeight", value); } }
+        public static int MainWindowHeight { get { return Resolve.UserSettings.Load<int>("MainWindowHeight"); } set { Resolve.UserSettings.Store("MainWindowHeight", value); } }
 
-        public static Point MainWindowLocation { get { return new Point(Instance.UserSettings.Load<int>("MainWindowLocationX"), Instance.UserSettings.Load<int>("MainWindowLocationY")); } set { Instance.UserSettings.Store("MainWindowLocationX", value.X); Instance.UserSettings.Store("MainWindowLocationY", value.Y); } }
+        public static Point MainWindowLocation { get { return new Point(Resolve.UserSettings.Load<int>("MainWindowLocationX"), Resolve.UserSettings.Load<int>("MainWindowLocationY")); } set { Resolve.UserSettings.Store("MainWindowLocationX", value.X); Resolve.UserSettings.Store("MainWindowLocationY", value.Y); } }
 
-        public static int RecentFilesMaxNumber { get { return Instance.UserSettings.Load<int>("RecentFilesMaxNumber", 250); } set { Instance.UserSettings.Store("RecentFilesMaxNumber", value); } }
+        public static int RecentFilesMaxNumber { get { return Resolve.UserSettings.Load<int>("RecentFilesMaxNumber", 250); } set { Resolve.UserSettings.Store("RecentFilesMaxNumber", value); } }
 
-        public static int RecentFilesDocumentWidth { get { return Instance.UserSettings.Load<int>("RecentFilesDocumentWidth"); } set { Instance.UserSettings.Store("RecentFilesDocumentWidth", value); } }
+        public static int RecentFilesDocumentWidth { get { return Resolve.UserSettings.Load<int>("RecentFilesDocumentWidth"); } set { Resolve.UserSettings.Store("RecentFilesDocumentWidth", value); } }
 
-        public static int RecentFilesDateTimeWidth { get { return Instance.UserSettings.Load<int>("RecentFilesDateTimeWidth"); } set { Instance.UserSettings.Store("RecentFilesDateTimeWidth", value); } }
+        public static int RecentFilesDateTimeWidth { get { return Resolve.UserSettings.Load<int>("RecentFilesDateTimeWidth"); } set { Resolve.UserSettings.Store("RecentFilesDateTimeWidth", value); } }
 
-        public static int RecentFilesEncryptedPathWidth { get { return Instance.UserSettings.Load<int>("RecentFilesEncryptedPathWidth"); } set { Instance.UserSettings.Store("RecentFilesEncryptedPathWidth", value); } }
+        public static int RecentFilesEncryptedPathWidth { get { return Resolve.UserSettings.Load<int>("RecentFilesEncryptedPathWidth"); } set { Resolve.UserSettings.Store("RecentFilesEncryptedPathWidth", value); } }
 
-        public static int RecentFilesCryptoNameWidth { get { return Instance.UserSettings.Load<int>("RecentFilesCryptoNameWidth"); } set { Instance.UserSettings.Store("RecentFilesCryptoNameWidth", value); } }
+        public static int RecentFilesCryptoNameWidth { get { return Resolve.UserSettings.Load<int>("RecentFilesCryptoNameWidth"); } set { Resolve.UserSettings.Store("RecentFilesCryptoNameWidth", value); } }
 
-        public static bool RecentFilesAscending { get { return Instance.UserSettings.Load<bool>("RecentFilesAscending", true); } set { Instance.UserSettings.Store("RecentFilesAscending", value); } }
+        public static bool RecentFilesAscending { get { return Resolve.UserSettings.Load<bool>("RecentFilesAscending", true); } set { Resolve.UserSettings.Store("RecentFilesAscending", value); } }
 
-        public static int RecentFilesSortColumn { get { return Instance.UserSettings.Load<int>("RecentFilesSortColumn", 0); } set { Instance.UserSettings.Store("RecentFilesSortColumn", value); } }
+        public static int RecentFilesSortColumn { get { return Resolve.UserSettings.Load<int>("RecentFilesSortColumn", 0); } set { Resolve.UserSettings.Store("RecentFilesSortColumn", value); } }
     }
 }

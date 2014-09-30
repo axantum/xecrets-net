@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Globalization;
 using System.IO;
 
 using Org.BouncyCastle.Asn1;
@@ -76,12 +75,18 @@ namespace Org.BouncyCastle.Pkcs
 			algorithms.Add("SHA384WITHRSAANDMGF1", PkcsObjectIdentifiers.IdRsassaPss);
 			algorithms.Add("SHA512WITHRSAANDMGF1", PkcsObjectIdentifiers.IdRsassaPss);
 			algorithms.Add("RSAWITHSHA1", new DerObjectIdentifier("1.2.840.113549.1.1.5"));
-			algorithms.Add("RIPEMD160WITHRSAENCRYPTION", new DerObjectIdentifier("1.3.36.3.3.1.2"));
-			algorithms.Add("RIPEMD160WITHRSA", new DerObjectIdentifier("1.3.36.3.3.1.2"));
+			algorithms.Add("RIPEMD128WITHRSAENCRYPTION", TeleTrusTObjectIdentifiers.RsaSignatureWithRipeMD128);
+			algorithms.Add("RIPEMD128WITHRSA", TeleTrusTObjectIdentifiers.RsaSignatureWithRipeMD128);
+			algorithms.Add("RIPEMD160WITHRSAENCRYPTION", TeleTrusTObjectIdentifiers.RsaSignatureWithRipeMD160);
+			algorithms.Add("RIPEMD160WITHRSA", TeleTrusTObjectIdentifiers.RsaSignatureWithRipeMD160);
+			algorithms.Add("RIPEMD256WITHRSAENCRYPTION", TeleTrusTObjectIdentifiers.RsaSignatureWithRipeMD256);
+			algorithms.Add("RIPEMD256WITHRSA", TeleTrusTObjectIdentifiers.RsaSignatureWithRipeMD256);
 			algorithms.Add("SHA1WITHDSA", new DerObjectIdentifier("1.2.840.10040.4.3"));
 			algorithms.Add("DSAWITHSHA1", new DerObjectIdentifier("1.2.840.10040.4.3"));
 			algorithms.Add("SHA224WITHDSA", NistObjectIdentifiers.DsaWithSha224);
 			algorithms.Add("SHA256WITHDSA", NistObjectIdentifiers.DsaWithSha256);
+			algorithms.Add("SHA384WITHDSA", NistObjectIdentifiers.DsaWithSha384);
+			algorithms.Add("SHA512WITHDSA", NistObjectIdentifiers.DsaWithSha512);
 			algorithms.Add("SHA1WITHECDSA", X9ObjectIdentifiers.ECDsaWithSha1);
 			algorithms.Add("SHA224WITHECDSA", X9ObjectIdentifiers.ECDsaWithSha224);
 			algorithms.Add("SHA256WITHECDSA", X9ObjectIdentifiers.ECDsaWithSha256);
@@ -222,7 +227,7 @@ namespace Org.BouncyCastle.Pkcs
 				throw new ArgumentException("key for signing must be private", "signingKey");
 
 //			DerObjectIdentifier sigOid = SignerUtilities.GetObjectIdentifier(signatureAlgorithm);
-			string algorithmName = signatureAlgorithm.ToUpper();
+			string algorithmName = Platform.ToUpperInvariant(signatureAlgorithm);
 			DerObjectIdentifier sigOid = (DerObjectIdentifier) algorithms[algorithmName];
 
 			if (sigOid == null)

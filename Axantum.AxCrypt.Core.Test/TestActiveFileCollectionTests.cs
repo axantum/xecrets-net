@@ -69,8 +69,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             ActiveFileCollection collection = new ActiveFileCollection();
 
-            IRuntimeFileInfo decryptedFileInfo = Factory.New<IRuntimeFileInfo>(_testTextPath);
-            IRuntimeFileInfo encryptedFileInfo = Factory.New<IRuntimeFileInfo>(_helloWorldAxxPath);
+            IRuntimeFileInfo decryptedFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_testTextPath);
+            IRuntimeFileInfo encryptedFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath);
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new Passphrase("new"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
 
             collection.Add(activeFile);
@@ -86,10 +86,10 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestActiveFileCollectionEnumerationConstructor()
         {
-            IRuntimeFileInfo decryptedFileInfo1 = Factory.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "test1.txt"));
-            IRuntimeFileInfo encryptedFileInfo1 = Factory.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "test1-txt.axx"));
-            IRuntimeFileInfo decryptedFileInfo2 = Factory.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "test2.txt"));
-            IRuntimeFileInfo encryptedFileInfo2 = Factory.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "test2-text.axx"));
+            IRuntimeFileInfo decryptedFileInfo1 = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "test1.txt"));
+            IRuntimeFileInfo encryptedFileInfo1 = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "test1-txt.axx"));
+            IRuntimeFileInfo decryptedFileInfo2 = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "test2.txt"));
+            IRuntimeFileInfo encryptedFileInfo2 = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "test2-text.axx"));
             ActiveFile activeFile1 = new ActiveFile(encryptedFileInfo1, decryptedFileInfo1, new Passphrase("newA"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
             ActiveFile activeFile2 = new ActiveFile(encryptedFileInfo2, decryptedFileInfo2, new Passphrase("newB"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
 

@@ -105,14 +105,20 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public void BindPropertyChanged<T>(string name, Action<T> action)
         {
+            Action<T> actionUi = (T arg) => Resolve.UIThread.RunOnUIThread(() => action((T)arg));
+            BindPropertyChangedInternal<T>(name, actionUi);
+            actionUi(GetProperty<T>(name));
+        }
+
+        protected void BindPropertyChangedInternal<T>(string name, Action<T> action)
+        {
             List<Action<object>> actions;
             if (!_actions.TryGetValue(name, out actions))
             {
                 actions = new List<Action<object>>();
                 _actions.Add(name, actions);
             }
-            actions.Add(o => Instance.UIThread.RunOnUIThread(() => action((T)o)));
-            action(GetProperty<T>(name));
+            actions.Add(arg => action((T)arg));
         }
 
         private static object GetProperty(object me, string name)
@@ -125,11 +131,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             get
             {
-                IEnumerable<PropertyDescriptor> properties = TypeDescriptor.GetProperties(GetType()).Cast<PropertyDescriptor>();
+                IEnumerable<string> propertyNames = GetType().GetProperties().Select(pi => pi.Name);
 
                 return
-                    (from property in properties
-                     let error = this[property.Name]
+                    (from name in propertyNames
+                     let error = this[name]
                      where !String.IsNullOrEmpty(error)
                      select error)
                         .Aggregate(new StringBuilder(), (acc, next) => acc.Append(acc.Length > 0 ? " " : String.Empty).Append(next))

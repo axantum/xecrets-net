@@ -30,7 +30,6 @@ using System.Runtime.Serialization;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
-    [Serializable]
     public class IncorrectDataException : AxCryptException
     {
         public IncorrectDataException()
@@ -45,11 +44,6 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         public IncorrectDataException(string message, ErrorStatus errorStatus)
             : base(message, errorStatus)
-        {
-        }
-
-        protected IncorrectDataException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
         {
         }
 

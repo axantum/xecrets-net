@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Globalization;
 using System.IO;
@@ -69,7 +70,7 @@ namespace Axantum.AxCrypt.Core.Extensions
         /// <returns>A corresponding file name representing the encrypted version of the original</returns>
         public static string CreateEncryptedName(this string fullName)
         {
-            string extension = Path.GetExtension(fullName);
+            string extension = Resolve.Portable.Path().GetExtension(fullName);
             string encryptedName = fullName;
             encryptedName = encryptedName.Substring(0, encryptedName.Length - extension.Length);
             encryptedName += extension.Replace('.', '-');
@@ -80,16 +81,16 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static string CreateUniqueFile(this string fullName)
         {
-            IRuntimeFileInfo pathInfo = Factory.New<IRuntimeFileInfo>(fullName);
-            string extension = Path.GetExtension(fullName);
+            IRuntimeFileInfo pathInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(fullName);
+            string extension = Resolve.Portable.Path().GetExtension(fullName);
             int version = 0;
             while (true)
             {
                 try
                 {
                     string alternateExtension = (version > 0 ? "." + version.ToString(CultureInfo.InvariantCulture) : String.Empty) + extension;
-                    string alternatePath = Path.Combine(Path.GetDirectoryName(pathInfo.FullName), Path.GetFileNameWithoutExtension(pathInfo.Name) + alternateExtension);
-                    IRuntimeFileInfo alternateFileInfo = Factory.New<IRuntimeFileInfo>(alternatePath);
+                    string alternatePath = Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(pathInfo.FullName), Resolve.Portable.Path().GetFileNameWithoutExtension(pathInfo.Name) + alternateExtension);
+                    IRuntimeFileInfo alternateFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(alternatePath);
                     alternateFileInfo.CreateNewFile();
                     return alternateFileInfo.FullName;
                 }
@@ -102,15 +103,6 @@ namespace Axantum.AxCrypt.Core.Extensions
                 }
                 ++version;
             }
-        }
-
-        public static string PathCombine(this string path, params string[] parts)
-        {
-            foreach (string part in parts)
-            {
-                path = Path.Combine(path, part);
-            }
-            return path;
         }
 
         /// <summary>
@@ -148,32 +140,32 @@ namespace Axantum.AxCrypt.Core.Extensions
                 return String.Empty;
             }
 
-            value = value.Replace(Path.DirectorySeparatorChar == '/' ? '\\' : '/', Path.DirectorySeparatorChar);
-            return Factory.New<IRuntimeFileInfo>(value).NormalizeFolder().FullName;
+            value = value.Replace(Resolve.Portable.Path().DirectorySeparatorChar == '/' ? '\\' : '/', Resolve.Portable.Path().DirectorySeparatorChar);
+            return TypeMap.Resolve.New<IRuntimeFileInfo>(value).NormalizeFolder().FullName;
         }
 
         public static string NormalizeFilePath(this string filePath)
         {
-            filePath = filePath.Replace(Path.DirectorySeparatorChar == '/' ? '\\' : '/', Path.DirectorySeparatorChar);
+            filePath = filePath.Replace(Resolve.Portable.Path().DirectorySeparatorChar == '/' ? '\\' : '/', Resolve.Portable.Path().DirectorySeparatorChar);
             return filePath;
         }
 
         public static string NormalizeFolderPath(this string folder)
         {
             folder = folder.NormalizeFilePath();
-            if (String.Compare(folder, Path.GetPathRoot(folder), StringComparison.OrdinalIgnoreCase) == 0)
+            if (String.Compare(folder, Resolve.Portable.Path().GetPathRoot(folder), StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return folder;
             }
             int directorySeparatorChars = 0;
-            while (folder.Length - (directorySeparatorChars + 1) > 0 && folder[folder.Length - (directorySeparatorChars + 1)] == Path.DirectorySeparatorChar)
+            while (folder.Length - (directorySeparatorChars + 1) > 0 && folder[folder.Length - (directorySeparatorChars + 1)] == Resolve.Portable.Path().DirectorySeparatorChar)
             {
                 ++directorySeparatorChars;
             }
 
             if (directorySeparatorChars == 0)
             {
-                return folder + Path.DirectorySeparatorChar;
+                return folder + Resolve.Portable.Path().DirectorySeparatorChar;
             }
             return folder.Substring(0, folder.Length - (directorySeparatorChars - 1));
         }
@@ -184,7 +176,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             {
                 throw new ArgumentNullException("hex");
             }
-            hex = hex.Replace(" ", String.Empty);
+            hex = hex.Replace(" ", String.Empty).Replace("\r", String.Empty).Replace("\n", String.Empty);
             if (hex.Length % 2 != 0)
             {
                 throw new ArgumentException("Odd number of characters is not allowed in a hex string.");
@@ -196,6 +188,28 @@ namespace Axantum.AxCrypt.Core.Extensions
                 bytes[i] = Byte.Parse(hex.Substring(i + i, 2), NumberStyles.HexNumber, CultureInfo.InvariantCulture);
             }
             return bytes;
+        }
+
+        public static bool IsValidEmailOrEmpty(this string email)
+        {
+            if (String.IsNullOrEmpty(email))
+            {
+                return true;
+            }
+            return email.IsValidEmail();
+        }
+
+        public static bool IsValidEmail(this string email)
+        {
+            try
+            {
+                new EmailAddress(email);
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
         }
     }
 }

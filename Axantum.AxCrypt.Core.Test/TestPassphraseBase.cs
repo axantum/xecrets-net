@@ -39,14 +39,14 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
-            Factory.Instance.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
-            Factory.Instance.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
+            TypeMap.Register.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
         }
 
         [TearDown]
         public static void Teardown()
         {
-            Factory.Instance.Clear();
+            TypeMap.Register.Clear();
         }
 
         private class TestingPassphraseBase : DerivedKeyBase
