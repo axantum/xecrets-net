@@ -1,10 +1,8 @@
 ﻿using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Portable;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Mono.Portable
 {
@@ -28,6 +26,11 @@ namespace Axantum.AxCrypt.Mono.Portable
         public HashAlgorithm SHA1Managed()
         {
             return new PortableHashAlgorithmWrapper(new System.Security.Cryptography.SHA1Managed());
+        }
+
+        public HashAlgorithm SHA256Managed()
+        {
+            return new PortableHashAlgorithmWrapper(new System.Security.Cryptography.SHA256Managed());
         }
 
         public RandomNumberGenerator RandomNumberGenerator()

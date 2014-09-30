@@ -85,7 +85,6 @@
     <Compile Include="Portable\KeySizes.cs" />
     <Compile Include="Portable\PaddingMode.cs" />
     <Compile Include="Portable\RandomNumberGenerator.cs" />
-    <Compile Include="Portable\SHA1Managed.cs" />
     <Compile Include="Portable\SymmetricAlgorithm.cs" />
     <Compile Include="Runtime\Creator.cs" />
     <Compile Include="Runtime\TypeDiscovery.cs" />

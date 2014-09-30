@@ -2,11 +2,8 @@
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.Portable
 {
@@ -19,6 +16,8 @@ namespace Axantum.AxCrypt.Core.Portable
         SymmetricAlgorithm AesManaged();
 
         HashAlgorithm SHA1Managed();
+
+        HashAlgorithm SHA256Managed();
 
         RandomNumberGenerator RandomNumberGenerator();
 
