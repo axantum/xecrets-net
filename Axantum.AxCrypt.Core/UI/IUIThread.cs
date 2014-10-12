@@ -32,6 +32,12 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.UI
 {
+    /// <summary>
+    /// Define operations on the UI thread. Most UI frameworks have a concept of a single UI thread,
+    /// which must not be blocked and which require some special care when handling. This interface
+    /// defines the funcationality that must be implemented for the target platform UI framework. It
+    /// needs to be implemented per UI framework, i.e. it is even more specific than platform.
+    /// </summary>
     public interface IUIThread
     {
         bool IsOnUIThread { get; }

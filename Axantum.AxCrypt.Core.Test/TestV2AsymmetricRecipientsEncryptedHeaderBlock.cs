@@ -24,14 +24,6 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
         }
 
-        private static CryptoFactory CreateCryptoFactory()
-        {
-            CryptoFactory factory = new CryptoFactory();
-            factory.Add(() => new V2Aes256CryptoFactory());
-
-            return factory;
-        }
-
         [TearDown]
         public static void Teardown()
         {

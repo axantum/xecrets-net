@@ -578,10 +578,22 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("fileInfo");
             }
+
+            string axCryptFileName = Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(fileInfo.FullName), MakeAxCryptFileName(fileInfo.Name));
+            return axCryptFileName;
+        }
+
+        public static string MakeAxCryptFileName(string name)
+        {
+            if (name == null)
+            {
+                throw new ArgumentNullException("name");
+            }
+
             string axCryptExtension = OS.Current.AxCryptExtension;
-            string originalExtension = Resolve.Portable.Path().GetExtension(fileInfo.Name);
+            string originalExtension = Resolve.Portable.Path().GetExtension(name);
             string modifiedExtension = originalExtension.Length == 0 ? String.Empty : "-" + originalExtension.Substring(1);
-            string axCryptFileName = Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(fileInfo.FullName), Resolve.Portable.Path().GetFileNameWithoutExtension(fileInfo.Name) + modifiedExtension + axCryptExtension);
+            string axCryptFileName = Resolve.Portable.Path().GetFileNameWithoutExtension(name) + modifiedExtension + axCryptExtension;
 
             return axCryptFileName;
         }
