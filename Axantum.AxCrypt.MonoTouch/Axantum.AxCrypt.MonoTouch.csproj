@@ -10,6 +10,8 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>Axantum.AxCrypt.MonoTouch</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <ReleaseVersion>0.2</ReleaseVersion>
+    <AssemblyName>AxantumAxCryptMonoTouch</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>True</DebugSymbols>
@@ -24,7 +26,6 @@
     <MtouchLink>None</MtouchLink>
     <MtouchArch>i386</MtouchArch>
     <MtouchI18n>west</MtouchI18n>
-    <AssemblyName>AxantumAxCryptMonoTouch</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -38,7 +39,6 @@
     <MtouchArch>ARMv7</MtouchArch>
     <MtouchI18n>
     </MtouchI18n>
-    <AssemblyName>AxantumAxCryptMonoTouch</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>True</DebugSymbols>
@@ -49,14 +49,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: Svante Seleborg (TD7TZ67QPY)</CodesignKey>
     <MtouchDebug>True</MtouchDebug>
     <MtouchArch>ARMv7</MtouchArch>
     <IpaPackageName>
     </IpaPackageName>
     <MtouchI18n>west</MtouchI18n>
-    <CodesignProvision>9DA52B33-9272-40CD-9415-64FF17ADC82E</CodesignProvision>
-    <AssemblyName>AxantumAxCryptiOS</AssemblyName>
+    <MtouchLink>Full</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -76,7 +75,6 @@
     </CustomCommands>
     <MtouchUseLlvm>True</MtouchUseLlvm>
     <MtouchLink>Full</MtouchLink>
-    <AssemblyName>AxantumAxCryptiOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>none</DebugType>
@@ -86,15 +84,13 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <BuildIpa>True</BuildIpa>
-    <CodesignKey>iPhone Developer: Martina Gawell (RYTWD8L3NQ)</CodesignKey>
+    <CodesignKey>iPhone Developer: Svante Seleborg (TD7TZ67QPY)</CodesignKey>
     <MtouchArch>ARMv7</MtouchArch>
     <MtouchI18n>west</MtouchI18n>
     <IpaPackageName>
     </IpaPackageName>
-    <CodesignProvision>9DA52B33-9272-40CD-9415-64FF17ADC82E</CodesignProvision>
     <MtouchUseLlvm>True</MtouchUseLlvm>
     <MtouchUseThumb>True</MtouchUseThumb>
-    <AssemblyName>AxantumAxCryptiOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
     <DebugType>none</DebugType>
@@ -111,7 +107,6 @@
     </IpaPackageName>
     <MtouchUseLlvm>True</MtouchUseLlvm>
     <MtouchUseThumb>True</MtouchUseThumb>
-    <AssemblyName>AxantumAxCryptiOS</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
