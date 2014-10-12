@@ -28,7 +28,6 @@
 using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 
 namespace Axantum.AxCrypt.Core.IO
 {

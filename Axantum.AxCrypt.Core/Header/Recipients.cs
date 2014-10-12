@@ -50,6 +50,6 @@ namespace Axantum.AxCrypt.Core.Header
         }
 
         [JsonProperty("recipients")]
-        public IList<UserPublicKey> PublicKeys { get; private set; }
+        public IEnumerable<UserPublicKey> PublicKeys { get; private set; }
     }
 }

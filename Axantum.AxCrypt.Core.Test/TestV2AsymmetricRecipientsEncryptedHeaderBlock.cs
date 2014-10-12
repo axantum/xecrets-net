@@ -8,6 +8,7 @@ using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Mono.Portable;
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -42,14 +43,14 @@ namespace Axantum.AxCrypt.Core.Test
             publicKeys.Add(new UserPublicKey(new EmailAddress("bob@email.com"), bobKeyPair.PublicKey));
             Recipients recipients = new Recipients(publicKeys);
             headerBlock.Recipients = recipients;
-            Assert.That(headerBlock.Recipients.PublicKeys[0].Email, Is.EqualTo(new EmailAddress("alice@email.com")));
-            Assert.That(headerBlock.Recipients.PublicKeys[1].Email, Is.EqualTo(new EmailAddress("bob@email.com")));
+            Assert.That(headerBlock.Recipients.PublicKeys.ToList()[0].Email, Is.EqualTo(new EmailAddress("alice@email.com")));
+            Assert.That(headerBlock.Recipients.PublicKeys.ToList()[1].Email, Is.EqualTo(new EmailAddress("bob@email.com")));
 
             V2AsymmetricRecipientsEncryptedHeaderBlock clone = (V2AsymmetricRecipientsEncryptedHeaderBlock)headerBlock.Clone();
-            Assert.That(clone.Recipients.PublicKeys[0].Email, Is.EqualTo(new EmailAddress("alice@email.com")));
-            Assert.That(clone.Recipients.PublicKeys[0].PublicKey.ToString(), Is.EqualTo(aliceKeyPair.PublicKey.ToString()));
-            Assert.That(clone.Recipients.PublicKeys[1].Email, Is.EqualTo(new EmailAddress("bob@email.com")));
-            Assert.That(clone.Recipients.PublicKeys[1].PublicKey.ToString(), Is.EqualTo(bobKeyPair.PublicKey.ToString()));
+            Assert.That(clone.Recipients.PublicKeys.ToList()[0].Email, Is.EqualTo(new EmailAddress("alice@email.com")));
+            Assert.That(clone.Recipients.PublicKeys.ToList()[0].PublicKey.ToString(), Is.EqualTo(aliceKeyPair.PublicKey.ToString()));
+            Assert.That(clone.Recipients.PublicKeys.ToList()[1].Email, Is.EqualTo(new EmailAddress("bob@email.com")));
+            Assert.That(clone.Recipients.PublicKeys.ToList()[1].PublicKey.ToString(), Is.EqualTo(bobKeyPair.PublicKey.ToString()));
         }
     }
 }
