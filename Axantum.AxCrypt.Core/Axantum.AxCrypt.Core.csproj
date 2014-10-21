@@ -42,6 +42,7 @@
     <Compile Include="AxCryptFactory.cs" />
     <Compile Include="Crypto\Asymmetric\UserPublicKey.cs" />
     <Compile Include="Header\Recipients.cs" />
+    <Compile Include="IO\ByteBuffer.cs" />
     <Compile Include="IO\IStringSerializer.cs" />
     <Compile Include="IO\StringSerializer.cs" />
     <Compile Include="Portable\AesManaged.cs" />

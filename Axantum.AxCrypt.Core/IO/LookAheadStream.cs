@@ -36,25 +36,11 @@ namespace Axantum.AxCrypt.Core.IO
     /// </summary>
     public class LookAheadStream : Stream
     {
-        private struct ByteBuffer
-        {
-            public ByteBuffer(byte[] buffer, int offset, int length)
-            {
-                Buffer = buffer;
-                Offset = offset;
-                Length = length;
-            }
-
-            public byte[] Buffer;
-            public int Offset;
-            public int Length;
-        }
-
         private Stream _inputStream;
 
         private bool _disposed = false;
 
-        private Stack<ByteBuffer> pushBack = new Stack<ByteBuffer>();
+        private Stack<ByteBuffer> _pushBack = new Stack<ByteBuffer>();
 
         /// <summary>
         /// Implement a stream wrapper with push back capability thus enabling look ahead.
@@ -112,26 +98,25 @@ namespace Axantum.AxCrypt.Core.IO
         public void Pushback(byte[] buffer, int offset, int length)
         {
             EnsureNotDisposed();
-            pushBack.Push(new ByteBuffer(buffer, offset, length));
+            byte[] pushbackBuffer = new byte[length];
+            Array.Copy(buffer, offset, pushbackBuffer, 0, length);
+            _pushBack.Push(new ByteBuffer(pushbackBuffer));
         }
 
         public override int Read(byte[] buffer, int offset, int count)
         {
             EnsureNotDisposed();
             int bytesRead = 0;
-            while (count > 0 && pushBack.Count > 0)
+            while (count > 0 && _pushBack.Count > 0)
             {
-                ByteBuffer byteBuffer = pushBack.Pop();
-                int length = byteBuffer.Length >= count ? count : byteBuffer.Length;
-                Array.Copy(byteBuffer.Buffer, byteBuffer.Offset, buffer, offset, length);
+                ByteBuffer byteBuffer = _pushBack.Pop();
+                int length = byteBuffer.Read(buffer, offset, count);                
                 offset += length;
                 count -= length;
-                byteBuffer.Length -= length;
-                byteBuffer.Offset += length;
                 bytesRead += length;
-                if (byteBuffer.Length > 0)
+                if (byteBuffer.AvailableForRead > 0)
                 {
-                    pushBack.Push(byteBuffer);
+                    _pushBack.Push(byteBuffer);
                 }
             }
             bytesRead += _inputStream.Read(buffer, offset, count);
@@ -143,6 +128,29 @@ namespace Axantum.AxCrypt.Core.IO
             int bytesRead = Read(buffer, 0, buffer.Length);
 
             return bytesRead == buffer.Length;
+        }
+
+        /// <summary>
+        /// Check if any more data is available in the stream.
+        /// </summary>
+        /// <param name="suggestedNextReadSize">A guess as to the read, optimizes buffering if correct.</param>
+        /// <returns>True if no more bytes can be read from the stream, false otherwise.</returns>
+        public bool IsEmpty(int suggestedNextReadSize)
+        {
+            if (_pushBack.Count > 0)
+            {
+                return false;
+            }
+            byte[] buffer = new byte[suggestedNextReadSize];
+            int count = Read(buffer, 0, buffer.Length);
+            if (count > 0)
+            {
+                ByteBuffer ahead = new ByteBuffer(buffer);
+                ahead.AvailableForRead = count;
+                _pushBack.Push(ahead);
+                return false;
+            }
+            return true;
         }
 
         public override long Seek(long offset, SeekOrigin origin)
