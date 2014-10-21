@@ -32,17 +32,8 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
-    public enum Platform
+    public interface IPlatform
     {
-        Unknown,
-        WindowsDesktop,
-        WindowsMobile,
-        WindowsPhone,
-        WindowsStoreApp,
-        Linux,
-        AppleIos,
-        MacOsx,
-        Android,
-        Xbox,
+        Platform Platform { get; }
     }
 }

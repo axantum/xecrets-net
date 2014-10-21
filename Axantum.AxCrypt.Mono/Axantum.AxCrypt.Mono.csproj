@@ -45,6 +45,7 @@
     <Reference Include="System.Security" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MonoPlatform.cs" />
     <Compile Include="Portable\AxCryptHMACSHA1.cs" />
     <Compile Include="DelayTimer.cs" />
     <Compile Include="DelegateTraceListener.cs" />

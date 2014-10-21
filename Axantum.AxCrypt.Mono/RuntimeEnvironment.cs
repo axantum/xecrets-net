@@ -47,6 +47,7 @@ namespace Axantum.AxCrypt.Mono
             TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
             TypeMap.Register.Singleton<ILogging>(() => new Logging());
             TypeMap.Register.Singleton<CommandService>(() => new CommandService(new HttpRequestServer(), new HttpRequestClient()));
+            TypeMap.Register.Singleton<IPlatform>(() => new MonoPlatform());
 
             TypeMap.Register.New<ISleep>(() => new Sleep());
             TypeMap.Register.New<IDelayTimer>(() => new DelayTimer());
@@ -76,30 +77,7 @@ namespace Axantum.AxCrypt.Mono
         {
             get
             {
-                OperatingSystem os = global::System.Environment.OSVersion;
-                PlatformID pid = os.Platform;
-                switch (pid)
-                {
-                    case PlatformID.Win32NT:
-                    case PlatformID.Win32S:
-                    case PlatformID.Win32Windows:
-                        return Platform.WindowsDesktop;
-
-                    case PlatformID.MacOSX:
-                        return Platform.MacOsx;
-
-                    case PlatformID.Unix:
-                        return Platform.Linux;
-
-                    case PlatformID.WinCE:
-                        return Platform.WindowsMobile;
-
-                    case PlatformID.Xbox:
-                        return Platform.Xbox;
-
-                    default:
-                        return Platform.Unknown;
-                }
+                return TypeMap.Resolve.Singleton<IPlatform>().Platform;
             }
         }
 

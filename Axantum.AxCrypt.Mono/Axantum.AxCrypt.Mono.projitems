@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)HttpRequestServer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Launcher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Logging.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MonoPlatform.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RuntimeEnvironment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RuntimeFileInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sleep.cs" />

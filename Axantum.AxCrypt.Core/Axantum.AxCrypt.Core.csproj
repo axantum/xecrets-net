@@ -86,6 +86,7 @@
     <Compile Include="Portable\RandomNumberGenerator.cs" />
     <Compile Include="Portable\SymmetricAlgorithm.cs" />
     <Compile Include="Runtime\Creator.cs" />
+    <Compile Include="Runtime\IPlatform.cs" />
     <Compile Include="Runtime\TypeDiscovery.cs" />
     <Compile Include="Crypto\CryptoExtensions.cs" />
     <Compile Include="Crypto\FreeCryptoPolicy.cs" />
