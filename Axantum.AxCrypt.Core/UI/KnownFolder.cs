@@ -40,9 +40,9 @@ namespace Axantum.AxCrypt.Core.UI
     /// </remarks>
     public class KnownFolder
     {
-        public IRuntimeFileInfo Folder { get; private set; }
+        public IRuntimeFolderInfo Folder { get; private set; }
 
-        public IRuntimeFileInfo My { get; private set; }
+        public IRuntimeFolderInfo My { get; private set; }
 
         public Uri ProviderUrl { get; private set; }
 

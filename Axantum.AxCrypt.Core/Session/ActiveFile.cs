@@ -267,7 +267,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                if (!DecryptedFileInfo.IsExistingFile)
+                if (!DecryptedFileInfo.IsAvailable)
                 {
                     return false;
                 }

@@ -413,10 +413,10 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<ArgumentException>(() => TypeMap.Resolve.New<IRuntimeFileInfo>(String.Empty).NormalizeFolder());
 
             string expected = @"C:\Documents\".Replace('\\', Path.DirectorySeparatorChar);
-            Assert.That(TypeMap.Resolve.New<IRuntimeFolderInfo>(@"C:\Documents\").NormalizeFolder().FullName, Is.EqualTo(expected));
-            Assert.That(TypeMap.Resolve.New<IRuntimeFolderInfo>(@"C:/Documents\").NormalizeFolder().FullName, Is.EqualTo(expected));
-            Assert.That(TypeMap.Resolve.New<IRuntimeFolderInfo>(@"C:\Documents").NormalizeFolder().FullName, Is.EqualTo(expected));
-            Assert.That(TypeMap.Resolve.New<IRuntimeFolderInfo>(@"C:\Documents\\//").NormalizeFolder().FullName, Is.EqualTo(expected));
+            Assert.That(TypeMap.Resolve.New<IRuntimeFolderInfo>(@"C:\Documents\").FullName, Is.EqualTo(expected));
+            Assert.That(TypeMap.Resolve.New<IRuntimeFolderInfo>(@"C:/Documents\").FullName, Is.EqualTo(expected));
+            Assert.That(TypeMap.Resolve.New<IRuntimeFolderInfo>(@"C:\Documents").FullName, Is.EqualTo(expected));
+            Assert.That(TypeMap.Resolve.New<IRuntimeFolderInfo>(@"C:\Documents\\//").FullName, Is.EqualTo(expected));
         }
 
         [Test]
@@ -452,8 +452,8 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.EncryptedFile));
 
             FakeRuntimeFileInfo.AddFolder(@"c:\test\");
-            fileInfo = TypeMap.Resolve.New<IRuntimeFolderInfo>(@"c:\test\");
-            Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.Folder));
+            IRuntimeFolderInfo folderInfo = TypeMap.Resolve.New<IRuntimeFolderInfo>(@"c:\test\");
+            Assert.That(folderInfo.Type(), Is.EqualTo(FileInfoTypes.Folder));
 
             fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(@"c:\not-there.txt");
             Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.NonExisting));

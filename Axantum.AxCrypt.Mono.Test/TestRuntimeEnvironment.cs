@@ -103,8 +103,8 @@ namespace Axantum.AxCrypt.Mono.Test
         [Test]
         public static void TestTemporaryDirectoryInfo()
         {
-            IRuntimeFileInfo tempInfo = TypeMap.Resolve.Singleton<WorkFolder>().FileInfo;
-            Assert.That(tempInfo is RuntimeFileInfo, "The instance returned should be of type RuntimeFileInfo");
+            IRuntimeFolderInfo tempInfo = TypeMap.Resolve.Singleton<WorkFolder>().FileInfo;
+            Assert.That(tempInfo is RuntimeFolderInfo, "The instance returned should be of type RuntimeFileInfo");
             IRuntimeFileInfo tempFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(tempInfo.FullName, "AxCryptTestTemp.tmp"));
             Assert.DoesNotThrow(() =>
             {

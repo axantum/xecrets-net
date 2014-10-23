@@ -35,8 +35,29 @@ namespace Axantum.AxCrypt.Core.IO
     /// <summary>
     /// Mark that this instance actually represents a folder. Used together with IRuntimeFileInfo
     /// </summary>
-    public interface IRuntimeFolderInfo : IRuntimeFileInfo
+    public interface IRuntimeFolderInfo : IRuntimeItem
     {
+        /// <summary>
+        /// Creates a folder in the underlying file system contained in this instance.
+        /// </summary>
+        void CreateFolder(string item);
+
+        /// <summary>
+        /// Creates a folder in the underlying file system with the path of this instance.
+        /// </summary>
+        void CreateFolder();
+
+        /// <summary>
+        /// Removes a folder in the underlying file system with the path of this instance,
+        /// if the folder is empty. If it is not, nothing happens.
+        /// </summary>
+        void RemoveFolder(string item);
+
+        /// <summary>
+        /// Creates a file in the underlying system. If it already exists, an AxCryptException is thrown with status FileExists.
+        /// </summary>
+        IRuntimeFileInfo CreateNewFile(string item);
+
         /// <summary>
         /// Get a file item from this instance (which must represent a folder or container)..
         /// </summary>
@@ -54,5 +75,10 @@ namespace Axantum.AxCrypt.Core.IO
         /// A new instance representing the file item in the folder or container.
         /// </returns>
         IRuntimeFolderInfo FolderItemInfo(string item);
+
+        /// <summary>
+        /// Enumerate all files (not folders) in this folder, if it's a folder.
+        /// </summary>
+        IEnumerable<IRuntimeFileInfo> Files { get; }
     }
 }

@@ -301,7 +301,7 @@ namespace Axantum.AxCrypt.Core.Test
 
                 Assert.That(state.WatchedFolders.First(), Is.EqualTo(new WatchedFolder(_rootPath, SymmetricKeyThumbprint.Zero)), "The Watched Folder should be equal to this.");
 
-                state.RemoveWatchedFolder(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt"));
+                state.RemoveWatchedFolder(Resolve.WorkFolder.FileInfo.FolderItemInfo("mystate.txt"));
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(1), "There should still be one Watched folders.");
 
                 state.RemoveWatchedFolder(TypeMap.Resolve.New<IRuntimeFolderInfo>(_rootPath));

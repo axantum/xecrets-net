@@ -1,5 +1,5 @@
-﻿using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Extensions;
+﻿using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
@@ -73,12 +73,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
 
             IRuntimeFileInfo fileInfo = files.First();
-            if (!fileInfo.IsExistingFolder)
+            if (!fileInfo.IsAvailable)
             {
                 return false;
             }
 
-            if (!fileInfo.NormalizeFolder().IsEncryptable())
+            if (!fileInfo.IsEncryptable())
             {
                 return false;
             }
@@ -135,7 +135,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             foreach (string watchedFolderPath in folders)
             {
-                _fileSystemState.RemoveWatchedFolder(TypeMap.Resolve.New<IRuntimeFileInfo>(watchedFolderPath));
+                _fileSystemState.RemoveWatchedFolder(TypeMap.Resolve.New<IRuntimeFolderInfo>(watchedFolderPath));
             }
             _fileSystemState.Save();
         }

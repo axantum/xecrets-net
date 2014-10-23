@@ -25,8 +25,10 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -36,16 +38,18 @@ using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Mono
 {
-    public class RuntimeFolderInfo : RuntimeFileInfo, IRuntimeFolderInfo
+    public class RuntimeFolderInfo : RuntimeFileItemBase, IRuntimeFolderInfo
     {
+        private DirectoryInfo _info;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="RuntimeFileInfo"/> class.
         /// </summary>
         /// <param name="fullName">The full path and name of the file or folder.</param>
         /// <exception cref="System.ArgumentNullException">fullName</exception>
-        public RuntimeFolderInfo(string fullName) :
-            base(fullName.NormalizeFolderPath())
+        public RuntimeFolderInfo(string fullName)
         {
+            _info = new DirectoryInfo(fullName.NormalizeFolderPath());
         }
 
         /// <summary>
@@ -72,6 +76,110 @@ namespace Axantum.AxCrypt.Mono
         public IRuntimeFolderInfo FolderItemInfo(string item)
         {
             return new RuntimeFolderInfo(Path.Combine(FullName, item));
+        }
+
+        /// <summary>
+        /// Creates a folder in the underlying file system with the path of this instance.
+        /// </summary>
+        public void CreateFolder(string item)
+        {
+            Directory.CreateDirectory(Path.Combine(_info.FullName, item));
+        }
+
+        public void CreateFolder()
+        {
+            _info.Create();
+        }
+
+        /// <summary>
+        /// Removes a folder in the underlying file system with the path of this instance,
+        /// if the folder is empty. If it is not, nothing happens.
+        /// </summary>
+        public void RemoveFolder(string item)
+        {
+            IRuntimeFolderInfo folder = FolderItemInfo(item);
+            if (!folder.IsAvailable)
+            {
+                return;
+            }
+            DirectoryInfo di = new DirectoryInfo(folder.FullName);
+            if (di.EnumerateFiles().Any() || di.EnumerateDirectories().Any())
+            {
+                return;
+            }
+            di.Delete();
+        }
+
+        /// <summary>
+        /// Creates a file in the underlying system. If it already exists, an AxCryptException is thrown with status FileExists.
+        /// </summary>
+        public IRuntimeFileInfo CreateNewFile(string item)
+        {
+            FileInfo file = new FileInfo(Path.Combine(_info.FullName, item));
+            try
+            {
+                using (FileStream stream = new FileStream(file.FullName, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.None))
+                {
+                    return new RuntimeFileInfo(file.FullName);
+                }
+            }
+            catch (IOException)
+            {
+                throw new InternalErrorException("File exists.", ErrorStatus.FileExists);
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is a folder that exists.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is folder that exists; otherwise, <c>false</c>.
+        /// </value>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public override bool IsAvailable
+        {
+            get
+            {
+                _info.Refresh();
+                return _info.Exists;
+            }
+        }
+
+        /// <summary>
+        /// Enumerate all files (not folders) in this folder, if it's a folder.
+        /// </summary>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public IEnumerable<IRuntimeFileInfo> Files
+        {
+            get
+            {
+                if (!IsAvailable)
+                {
+                    return new IRuntimeFileInfo[0];
+                }
+                DirectoryInfo di = new DirectoryInfo(_info.FullName);
+                return di.GetFiles().Select((FileInfo fi) => { return (IRuntimeFileInfo)new RuntimeFileInfo(fi.FullName); });
+            }
+        }
+
+        public override bool IsFile
+        {
+            get { return false; }
+        }
+
+        public override bool IsFolder
+        {
+            get { return true; }
+        }
+
+        public override string Name
+        {
+            get { return _info.FullName; }
+        }
+
+        public override void Delete()
+        {
+            _info.Delete();
         }
     }
 }

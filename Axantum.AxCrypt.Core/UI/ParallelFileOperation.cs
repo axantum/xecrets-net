@@ -25,11 +25,11 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// <param name="files">The files to operation on.</param>
         /// <param name="work">The work to do for each file.</param>
         /// <param name="allComplete">The completion callback after *all* files have been processed.</param>
-        public virtual void DoFiles(IEnumerable<IRuntimeFileInfo> files, Func<IRuntimeFileInfo, IProgressContext, FileOperationContext> work, Action<FileOperationContext> allComplete)
+        public virtual void DoFiles<T>(IEnumerable<T> files, Func<T, IProgressContext, FileOperationContext> work, Action<FileOperationContext> allComplete)
         {
             WorkerGroup workerGroup = null;
             Resolve.ProgressBackground.Work(
@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     using (workerGroup = new WorkerGroup(OS.Current.MaxConcurrency, progress))
                     {
-                        foreach (IRuntimeFileInfo file in files)
+                        foreach (T file in files)
                         {
                             IThreadWorker worker = workerGroup.CreateWorker(true);
                             if (workerGroup.FirstError.Status != FileOperationStatus.Success)
@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.UI
                                 break;
                             }
 
-                            IRuntimeFileInfo closureOverCopyOfLoopVariableFile = file;
+                            T closureOverCopyOfLoopVariableFile = file;
                             worker.Work += (sender, e) =>
                             {
                                 e.Result = work(closureOverCopyOfLoopVariableFile, new CancelProgressContext(e.Progress));

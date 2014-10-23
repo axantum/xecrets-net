@@ -102,7 +102,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                IEnumerable<WatchedFolder> folders = WatchedFoldersInternal.Where(folder => TypeMap.Resolve.New<IRuntimeFileInfo>(folder.Path).IsExistingFolder).ToList();
+                IEnumerable<WatchedFolder> folders = WatchedFoldersInternal.Where(folder => TypeMap.Resolve.New<IRuntimeFileInfo>(folder.Path).IsAvailable).ToList();
                 return folders;
             }
             private set
@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return false;
             }
-            if (!TypeMap.Resolve.New<IRuntimeFileInfo>(watchedFolder.Path).IsExistingFolder)
+            if (!TypeMap.Resolve.New<IRuntimeFolderInfo>(watchedFolder.Path).IsAvailable)
             {
                 return false;
             }
@@ -151,9 +151,9 @@ namespace Axantum.AxCrypt.Core.Session
             Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderChange, fileInfo.FullName));
         }
 
-        private void HandleWatchedFolderChanges(WatchedFolder watchedFolder, IRuntimeFileInfo fileInfo)
+        private void HandleWatchedFolderChanges(WatchedFolder watchedFolder, IRuntimeItem fileInfo)
         {
-            if (watchedFolder.Path == fileInfo.FullName && !fileInfo.IsExistingFolder)
+            if (watchedFolder.Path == fileInfo.FullName && !fileInfo.IsAvailable)
             {
                 RemoveWatchedFolder(fileInfo);
                 Save();
@@ -170,12 +170,12 @@ namespace Axantum.AxCrypt.Core.Session
             RemoveDeletedActiveFile(fileInfo);
         }
 
-        private static bool IsExisting(IRuntimeFileInfo fileInfo)
+        private static bool IsExisting(IRuntimeItem fileInfo)
         {
             return fileInfo.Type() != FileInfoTypes.NonExisting;
         }
 
-        private void RemoveDeletedActiveFile(IRuntimeFileInfo fileInfo)
+        private void RemoveDeletedActiveFile(IRuntimeItem fileInfo)
         {
             ActiveFile removedActiveFile = FindActiveFileFromEncryptedPath(fileInfo.FullName);
             if (removedActiveFile != null)
@@ -185,10 +185,10 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public virtual void RemoveWatchedFolder(IRuntimeFileInfo fileInfo)
+        public virtual void RemoveWatchedFolder(IRuntimeItem folderInfo)
         {
-            WatchedFoldersInternal.Remove(new WatchedFolder(fileInfo.FullName, SymmetricKeyThumbprint.Zero));
-            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Resolve.KnownKeys.DefaultEncryptionKey, fileInfo.FullName));
+            WatchedFoldersInternal.Remove(new WatchedFolder(folderInfo.FullName, SymmetricKeyThumbprint.Zero));
+            Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Resolve.KnownKeys.DefaultEncryptionKey, folderInfo.FullName));
         }
 
         public event EventHandler<ActiveFileChangedEventArgs> ActiveFileChanged;
@@ -284,7 +284,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             foreach (ActiveFile activeFile in ActiveFiles)
             {
-                if (!activeFile.EncryptedFileInfo.IsExistingFile)
+                if (!activeFile.EncryptedFileInfo.IsAvailable)
                 {
                     RemoveActiveFile(activeFile);
                     continue;
@@ -437,7 +437,7 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("path");
             }
 
-            if (path.IsExistingFile)
+            if (path.IsAvailable)
             {
                 return CreateFileSystemState(path);
             }

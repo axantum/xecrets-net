@@ -238,7 +238,7 @@ namespace Axantum.AxCrypt.Core.UI
             IRuntimeFileInfo destinationFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
             _eventArgs.SaveFileFullName = destinationFileInfo.FullName;
             _eventArgs.OpenFileFullName = sourceFileInfo.FullName;
-            if (destinationFileInfo.IsExistingFile)
+            if (destinationFileInfo.IsAvailable)
             {
                 OnQuerySaveFileAs(_eventArgs);
                 if (_eventArgs.Cancel)
@@ -289,7 +289,7 @@ namespace Axantum.AxCrypt.Core.UI
 
             IRuntimeFileInfo destination = TypeMap.Resolve.New<IRuntimeFileInfo>(Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(fileInfo.FullName), _eventArgs.AxCryptDocument.FileName));
             _eventArgs.SaveFileFullName = destination.FullName;
-            if (destination.IsExistingFile)
+            if (destination.IsAvailable)
             {
                 OnQuerySaveFileAs(_eventArgs);
                 if (_eventArgs.Cancel)

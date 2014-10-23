@@ -40,27 +40,40 @@ namespace Axantum.AxCrypt.Mono
     /// Provides properties and instance methods for the operations with files, and aids in the creation of Stream objects. The underlying file must not
     /// necessarily exist.
     /// </summary>
-    public class RuntimeFileInfo : IRuntimeFileInfo
+    public class RuntimeFileInfo : RuntimeFileItemBase, IRuntimeFileInfo
     {
         private FileInfo _file;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RuntimeFileInfo"/> class.
         /// </summary>
-        /// <param name="fullName">The full path and name of the file or folder.</param>
+        /// <param name="path">The full path and name of the file or folder.</param>
         /// <exception cref="System.ArgumentNullException">fullName</exception>
-        public RuntimeFileInfo(string fullName)
+        public RuntimeFileInfo(string path)
         {
-            if (fullName == null)
+            if (path == null)
             {
-                throw new ArgumentNullException("fullName");
+                throw new ArgumentNullException("path");
             }
-            _file = new FileInfo(fullName.NormalizeFilePath());
+
+            _file = new FileInfo(path);
         }
 
         private RuntimeFileInfo(FileInfo fileInfo)
         {
             _file = fileInfo;
+        }
+
+        protected override string Location
+        {
+            get
+            {
+                return _file.FullName;
+            }
+            set
+            {
+                throw new NotSupportedException("The location cannot be set explictly.");
+            }
         }
 
         /// <summary>
@@ -109,7 +122,7 @@ namespace Axantum.AxCrypt.Mono
         /// <summary>
         /// Get the Name part without the folder part of the path.
         /// </summary>
-        public string Name
+        public override string Name
         {
             get
             {
@@ -190,24 +203,9 @@ namespace Axantum.AxCrypt.Mono
         /// <summary>
         /// Get the full name including drive, directory and file name if any
         /// </summary>
-        public string FullName
+        public override string FullName
         {
             get { return _file.FullName; }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether the file this <see cref="IRuntimeFileInfo" /> represents exists in the underlying file system.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if exists; otherwise, <c>false</c>.
-        /// </value>
-        public bool IsExistingFile
-        {
-            get
-            {
-                _file.Refresh();
-                return _file.Exists;
-            }
         }
 
         /// <summary>
@@ -217,7 +215,7 @@ namespace Axantum.AxCrypt.Mono
         public void MoveTo(string destinationFileName)
         {
             IRuntimeFileInfo destination = TypeMap.Resolve.New<IRuntimeFileInfo>(destinationFileName);
-            if (destination.IsExistingFile)
+            if (destination.IsAvailable)
             {
                 try
                 {
@@ -236,53 +234,9 @@ namespace Axantum.AxCrypt.Mono
         /// <summary>
         /// Deletes the underlying file this instance refers to.
         /// </summary>
-        public void Delete()
+        public override void Delete()
         {
             _file.Delete();
-        }
-
-        /// <summary>
-        /// Creates a folder in the underlying file system with the path of this instance.
-        /// </summary>
-        public void CreateFolder()
-        {
-            Directory.CreateDirectory(_file.FullName);
-        }
-
-        /// <summary>
-        /// Removes a folder in the underlying file system with the path of this instance,
-        /// if the folder is empty. If it is not, nothing happens.
-        /// </summary>
-        public void RemoveFolder()
-        {
-            if (!IsExistingFolder)
-            {
-                return;
-            }
-            DirectoryInfo di = new DirectoryInfo(_file.FullName);
-            if (di.EnumerateFiles().Any() || di.EnumerateDirectories().Any())
-            {
-                return;
-            }
-            di.Delete();
-        }
-
-        /// <summary>
-        /// Creates a file in the underlying system. If it already exists, an AxCryptException is thrown with status FileExists.
-        /// </summary>
-        public void CreateNewFile()
-        {
-            try
-            {
-                using (FileStream stream = new FileStream(_file.FullName, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.None))
-                {
-                    return;
-                }
-            }
-            catch (IOException)
-            {
-                throw new InternalErrorException("File exists.", ErrorStatus.FileExists);
-            }
         }
 
         /// <summary>
@@ -292,29 +246,31 @@ namespace Axantum.AxCrypt.Mono
         ///   <c>true</c> if this instance is folder that exists; otherwise, <c>false</c>.
         /// </value>
         /// <exception cref="System.NotImplementedException"></exception>
-        public bool IsExistingFolder
+        public override bool IsAvailable
         {
             get
             {
-                return (int)_file.Attributes != -1 && (_file.Attributes & FileAttributes.Directory) == FileAttributes.Directory;
+                _file.Refresh();
+                return _file.Exists;
             }
         }
 
-        /// <summary>
-        /// Enumerate all files (not folders) in this folder, if it's a folder.
-        /// </summary>
-        /// <exception cref="System.NotImplementedException"></exception>
-        public IEnumerable<IRuntimeFileInfo> Files
+        public IRuntimeFolderInfo Container
         {
             get
             {
-                if (!IsExistingFolder)
-                {
-                    return new IRuntimeFileInfo[0];
-                }
-                DirectoryInfo di = new DirectoryInfo(_file.FullName);
-                return di.GetFiles().Select((FileInfo fi) => { return (IRuntimeFileInfo)new RuntimeFileInfo(fi); });
+                return new RuntimeFolderInfo(Path.GetDirectoryName(Location));
             }
+        }
+
+        public override bool IsFile
+        {
+            get { return true; }
+        }
+
+        public override bool IsFolder
+        {
+            get { return false; }
         }
     }
 }

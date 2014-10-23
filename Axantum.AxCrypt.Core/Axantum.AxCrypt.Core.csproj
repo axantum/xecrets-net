@@ -44,6 +44,7 @@
     <Compile Include="Header\Recipients.cs" />
     <Compile Include="IO\ByteBuffer.cs" />
     <Compile Include="IO\IRuntimeFolderInfo.cs" />
+    <Compile Include="IO\IRuntimeItem.cs" />
     <Compile Include="IO\IStringSerializer.cs" />
     <Compile Include="IO\StringSerializer.cs" />
     <Compile Include="Portable\AesManaged.cs" />

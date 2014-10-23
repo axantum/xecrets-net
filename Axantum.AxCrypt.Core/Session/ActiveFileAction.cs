@@ -212,7 +212,7 @@ namespace Axantum.AxCrypt.Core.Session
                 return activeFile;
             }
 
-            if (!activeFile.DecryptedFileInfo.IsExistingFile)
+            if (!activeFile.DecryptedFileInfo.IsAvailable)
             {
                 return activeFile;
             }
@@ -333,7 +333,7 @@ namespace Axantum.AxCrypt.Core.Session
                 }
                 TypeMap.Resolve.New<AxCryptFile>().Wipe(activeFile.DecryptedFileInfo, progress);
                 IRuntimeFileInfo decryptedFolder = TypeMap.Resolve.New<IRuntimeFileInfo>(Resolve.Portable.Path().GetDirectoryName(activeFile.DecryptedFileInfo.FullName));
-                decryptedFolder.RemoveFolder();
+                decryptedFolder.Delete();
             }
             catch (IOException)
             {

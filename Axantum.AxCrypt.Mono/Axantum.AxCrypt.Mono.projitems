@@ -18,6 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)MonoPlatform.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RuntimeEnvironment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RuntimeFileInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RuntimeFileItemBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RuntimeFolderInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sleep.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ThreadWorker.cs" />

@@ -26,8 +26,8 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -87,7 +87,7 @@ namespace Axantum.AxCrypt.Core.Session
         [OnDeserialized]
         private void Initialize(StreamingContext context)
         {
-            if (TypeMap.Resolve.New<IRuntimeFolderInfo>(Path).IsExistingFolder)
+            if (TypeMap.Resolve.New<IRuntimeFolderInfo>(Path).IsAvailable)
             {
                 _fileWatcher = TypeMap.Resolve.New<IFileWatcher>(Path);
                 _fileWatcher.FileChanged += _fileWatcher_FileChanged;

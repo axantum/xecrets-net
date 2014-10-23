@@ -210,7 +210,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
 
             IRuntimeFileInfo fileInfo = files.First();
-            if (!fileInfo.IsExistingFolder)
+            if (!fileInfo.IsAvailable)
             {
                 return false;
             }
@@ -279,7 +279,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void SetFilesArePending()
         {
             IList<ActiveFile> openFiles = _fileSystemState.DecryptedActiveFiles;
-            FilesArePending = openFiles.Count > 0 || Resolve.KnownKeys.LoggedOnWatchedFolders.SelectMany(wf => TypeMap.Resolve.New<IRuntimeFileInfo>(wf.Path).ListEncryptable()).Any();
+            FilesArePending = openFiles.Count > 0 || Resolve.KnownKeys.LoggedOnWatchedFolders.SelectMany(wf => TypeMap.Resolve.New<IRuntimeFolderInfo>(wf.Path).ListEncryptable()).Any();
         }
 
         private void SetLogOnState(bool isLoggedOn)
@@ -349,7 +349,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             foreach (string watchedFolderPath in folders)
             {
-                _fileSystemState.RemoveWatchedFolder(TypeMap.Resolve.New<IRuntimeFileInfo>(watchedFolderPath));
+                _fileSystemState.RemoveWatchedFolder(TypeMap.Resolve.New<IRuntimeFolderInfo>(watchedFolderPath));
             }
             _fileSystemState.Save();
         }

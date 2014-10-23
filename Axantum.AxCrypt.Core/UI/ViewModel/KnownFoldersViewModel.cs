@@ -70,13 +70,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     continue;
                 }
-                if (knownFolder.My.IsExistingFile)
+                if (knownFolder.My.IsFile)
                 {
                     continue;
                 }
-                if (!knownFolder.My.IsExistingFolder)
+                if (!knownFolder.My.IsAvailable)
                 {
-                    knownFolder.My.CreateFolder();
+                    knownFolder.Folder.CreateFolder(knownFolder.My.Name);
                 }
                 _fileSystemState.AddWatchedFolder(new WatchedFolder(knownFolder.My.FullName, _knownKeys.DefaultEncryptionKey.Thumbprint));
             }

@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
 
             IRuntimeFileInfo fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(file);
-            if (!fileInfo.IsExistingFile)
+            if (!fileInfo.IsAvailable)
             {
                 if (Resolve.Log.IsWarningEnabled)
                 {
@@ -76,9 +76,9 @@ namespace Axantum.AxCrypt.Core.UI
 
             ActiveFile destinationActiveFile = _fileSystemState.FindActiveFileFromEncryptedPath(fileInfo.FullName);
 
-            if (destinationActiveFile == null || !destinationActiveFile.DecryptedFileInfo.IsExistingFile)
+            if (destinationActiveFile == null || !destinationActiveFile.DecryptedFileInfo.IsAvailable)
             {
-                IRuntimeFileInfo destinationFolderInfo = GetTemporaryDestinationFolder(destinationActiveFile);
+                IRuntimeFolderInfo destinationFolderInfo = GetTemporaryDestinationFolder(destinationActiveFile);
                 destinationActiveFile = TryDecrypt(fileInfo, destinationFolderInfo, keys, progress);
             }
             else
@@ -124,7 +124,7 @@ namespace Axantum.AxCrypt.Core.UI
             _fileSystemState.Add(encryptedActiveFile);
             _fileSystemState.Save();
 
-            if (!encryptedActiveFile.DecryptedFileInfo.IsExistingFile)
+            if (!encryptedActiveFile.DecryptedFileInfo.IsAvailable)
             {
                 DecryptActiveFileDocument(encryptedActiveFile, document, progress);
             }
@@ -133,12 +133,12 @@ namespace Axantum.AxCrypt.Core.UI
 
         private static ActiveFile EnsureDecryptedFolder(Passphrase passphrase, IAxCryptDocument document, IRuntimeFileInfo encryptedFileInfo, ActiveFile encryptedActiveFile)
         {
-            if (encryptedActiveFile != null && encryptedActiveFile.DecryptedFileInfo.IsExistingFile)
+            if (encryptedActiveFile != null && encryptedActiveFile.DecryptedFileInfo.IsAvailable)
             {
                 encryptedActiveFile = new ActiveFile(encryptedActiveFile, passphrase);
                 return encryptedActiveFile;
             }
-            IRuntimeFileInfo destinationFolderInfo = GetTemporaryDestinationFolder(encryptedActiveFile);
+            IRuntimeFolderInfo destinationFolderInfo = GetTemporaryDestinationFolder(encryptedActiveFile);
             encryptedActiveFile = DestinationFileInfoFromDocument(encryptedFileInfo, destinationFolderInfo, passphrase, document);
             return encryptedActiveFile;
         }
@@ -207,7 +207,7 @@ namespace Axantum.AxCrypt.Core.UI
             _sessionNotify.Notify(new SessionNotification(SessionNotificationType.ProcessExit, path));
         }
 
-        private static ActiveFile TryDecrypt(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFolderInfo, IEnumerable<Passphrase> passphrases, IProgressContext progress)
+        private static ActiveFile TryDecrypt(IRuntimeFileInfo sourceFileInfo, IRuntimeFolderInfo destinationFolderInfo, IEnumerable<Passphrase> passphrases, IProgressContext progress)
         {
             ActiveFile destinationActiveFile = null;
             foreach (Passphrase passphrase in passphrases)
@@ -246,7 +246,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        private static ActiveFile DestinationFileInfoFromDocument(IRuntimeFileInfo sourceFileInfo, IRuntimeFileInfo destinationFolderInfo, Passphrase passphrase, IAxCryptDocument document)
+        private static ActiveFile DestinationFileInfoFromDocument(IRuntimeFileInfo sourceFileInfo, IRuntimeFolderInfo destinationFolderInfo, Passphrase passphrase, IAxCryptDocument document)
         {
             string destinationName = document.FileName;
             string destinationPath = Resolve.Portable.Path().Combine(destinationFolderInfo.FullName, destinationName);
@@ -256,7 +256,7 @@ namespace Axantum.AxCrypt.Core.UI
             return destinationActiveFile;
         }
 
-        private static IRuntimeFileInfo GetTemporaryDestinationFolder(ActiveFile destinationActiveFile)
+        private static IRuntimeFolderInfo GetTemporaryDestinationFolder(ActiveFile destinationActiveFile)
         {
             string destinationFolder;
             if (destinationActiveFile != null)
@@ -267,7 +267,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 destinationFolder = Resolve.Portable.Path().Combine(TypeMap.Resolve.Singleton<WorkFolder>().FileInfo.FullName, Resolve.Portable.Path().GetFileNameWithoutExtension(Resolve.Portable.Path().GetRandomFileName()) + Resolve.Portable.Path().DirectorySeparatorChar);
             }
-            IRuntimeFileInfo destinationFolderInfo = TypeMap.Resolve.New<IRuntimeFolderInfo>(destinationFolder);
+            IRuntimeFolderInfo destinationFolderInfo = TypeMap.Resolve.New<IRuntimeFolderInfo>(destinationFolder);
             destinationFolderInfo.CreateFolder();
             return destinationFolderInfo;
         }

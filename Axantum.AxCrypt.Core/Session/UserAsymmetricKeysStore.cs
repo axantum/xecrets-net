@@ -38,13 +38,13 @@ namespace Axantum.AxCrypt.Core.Session
 
         private const string _fileFormat = "Keys-{0}.txt";
 
-        private IRuntimeFileInfo _folderPath;
+        private IRuntimeFolderInfo _folderPath;
 
         private KnownKeys _knownKeys;
 
         private KeysStoreFile _keysStoreFile;
 
-        public UserAsymmetricKeysStore(IRuntimeFileInfo folderPath, KnownKeys knownKeys)
+        public UserAsymmetricKeysStore(IRuntimeFolderInfo folderPath, KnownKeys knownKeys)
         {
             _folderPath = folderPath;
             _knownKeys = knownKeys;

@@ -52,7 +52,7 @@ namespace Axantum.AxCrypt.Core.UI
 
             _keyWrapIterationCalculator = keyWrapIterationCalculator;
 
-            if (!_persistanceFileInfo.IsExistingFile)
+            if (!_persistanceFileInfo.IsAvailable)
             {
                 SettingsVersion = CurrentSettingsVersion;
                 return;

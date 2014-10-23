@@ -180,7 +180,7 @@ namespace Axantum.AxCrypt.Core
             EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, key, cryptoId, progress);
         }
 
-        public virtual void EncryptFoldersUniqueWithBackupAndWipe(IEnumerable<IRuntimeFileInfo> folders, Passphrase encryptionKey, Guid cryptoId, IProgressContext progress)
+        public virtual void EncryptFoldersUniqueWithBackupAndWipe(IEnumerable<IRuntimeFolderInfo> folders, Passphrase encryptionKey, Guid cryptoId, IProgressContext progress)
         {
             progress.NotifyLevelStart();
             try
@@ -345,7 +345,7 @@ namespace Axantum.AxCrypt.Core
             }
             catch (Exception)
             {
-                if (destinationFile.IsExistingFile)
+                if (destinationFile.IsAvailable)
                 {
                     Wipe(destinationFile, progress);
                 }
@@ -396,7 +396,7 @@ namespace Axantum.AxCrypt.Core
             return destinationFileName;
         }
 
-        public virtual void DecryptFilesInsideFolderUniqueWithWipeOfOriginal(IRuntimeFileInfo folderInfo, Passphrase decryptionKey, IStatusChecker statusChecker, IProgressContext progress)
+        public virtual void DecryptFilesInsideFolderUniqueWithWipeOfOriginal(IRuntimeFolderInfo folderInfo, Passphrase decryptionKey, IStatusChecker statusChecker, IProgressContext progress)
         {
             IEnumerable<IRuntimeFileInfo> files = folderInfo.ListEncrypted();
             Resolve.ParallelFileOperation.DoFiles(files, (file, context) =>
@@ -544,14 +544,14 @@ namespace Axantum.AxCrypt.Core
             }
             catch (Exception)
             {
-                if (temporaryFileInfo.IsExistingFile)
+                if (temporaryFileInfo.IsAvailable)
                 {
                     Wipe(temporaryFileInfo, progress);
                 }
                 throw;
             }
 
-            if (destinationFileInfo.IsExistingFile)
+            if (destinationFileInfo.IsAvailable)
             {
                 string backupFilePath = MakeAlternatePath(destinationFileInfo, ".bak");
                 IRuntimeFileInfo backupFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(destinationFileInfo.FullName);
@@ -604,7 +604,7 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("fileInfo");
             }
-            if (!fileInfo.IsExistingFile)
+            if (!fileInfo.IsAvailable)
             {
                 return;
             }
@@ -619,7 +619,7 @@ namespace Axantum.AxCrypt.Core
             do
             {
                 randomName = GenerateRandomFileName(fileInfo.FullName);
-            } while (TypeMap.Resolve.New<IRuntimeFileInfo>(randomName).IsExistingFile);
+            } while (TypeMap.Resolve.New<IRuntimeFileInfo>(randomName).IsAvailable);
             IRuntimeFileInfo moveToFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(fileInfo.FullName);
             moveToFileInfo.MoveTo(randomName);
 

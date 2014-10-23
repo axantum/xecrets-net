@@ -34,7 +34,7 @@ namespace Axantum.AxCrypt.Core.IO
     /// <summary>
     /// Abstraction for FileInfo-related operations. Provides properties and instance methods for the operations with files, and aids in the creation of Stream objects.
     /// </summary>
-    public interface IRuntimeFileInfo
+    public interface IRuntimeFileInfo : IRuntimeItem
     {
         /// <summary>
         /// Opens a stream in read mode for the underlying file.
@@ -53,32 +53,6 @@ namespace Axantum.AxCrypt.Core.IO
         /// </summary>
         /// <returns></returns>
         bool IsLocked { get; }
-
-        /// <summary>
-        /// Creates a folder in the underlying file system with the path of this instance.
-        /// </summary>
-        void CreateFolder();
-
-        /// <summary>
-        /// Removes a folder in the underlying file system with the path of this instance,
-        /// if the folder is empty. If it is not, nothing happens.
-        /// </summary>
-        void RemoveFolder();
-
-        /// <summary>
-        /// Creates a file in the underlying system. If it already exists, an AxCryptException is thrown with status FileExists.
-        /// </summary>
-        void CreateNewFile();
-
-        /// <summary>
-        /// Get the Name part without the folder part of the path.
-        /// </summary>
-        string Name { get; }
-
-        /// <summary>
-        /// Get the full name including drive, directory and file name if any
-        /// </summary>
-        string FullName { get; }
 
         /// <summary>
         /// Gets or sets the creation time UTC.
@@ -113,35 +87,16 @@ namespace Axantum.AxCrypt.Core.IO
         void SetFileTimes(DateTime creationTimeUtc, DateTime lastAccessTimeUtc, DateTime lastWriteTimeUtc);
 
         /// <summary>
-        /// Gets a value indicating whether the file this <see cref="IRuntimeFileInfo"/> represents exists in the underlying file system and is a file.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if exists; otherwise, <c>false</c>.
-        /// </value>
-        bool IsExistingFile { get; }
-
-        /// <summary>
         /// Moves the underlying file to a new location.
         /// </summary>
         /// <param name="destinationFileName">Name of the destination file.</param>
         void MoveTo(string destinationFileName);
 
         /// <summary>
-        /// Deletes the underlying file this instance refers to.
+        /// Gets a folder containing this file, or as close as possible. If the file is on a readon-only medium
+        /// for example, an alternate location may be given. There is no guarantee that the container returned
+        /// actually contains this file.
         /// </summary>
-        void Delete();
-
-        /// <summary>
-        /// Gets a value indicating whether this instance is folder that exists.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is folder; otherwise, <c>false</c>.
-        /// </value>
-        bool IsExistingFolder { get; }
-
-        /// <summary>
-        /// Enumerate all files (not folders) in this folder, if it's a folder.
-        /// </summary>
-        IEnumerable<IRuntimeFileInfo> Files { get; }
+        IRuntimeFolderInfo Container { get; }
     }
 }

@@ -89,9 +89,8 @@ namespace Axantum.AxCrypt.Core.Extensions
                 try
                 {
                     string alternateExtension = (version > 0 ? "." + version.ToString(CultureInfo.InvariantCulture) : String.Empty) + extension;
-                    string alternatePath = Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(pathInfo.FullName), Resolve.Portable.Path().GetFileNameWithoutExtension(pathInfo.Name) + alternateExtension);
-                    IRuntimeFileInfo alternateFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(alternatePath);
-                    alternateFileInfo.CreateNewFile();
+                    string alternateName = Resolve.Portable.Path().GetFileNameWithoutExtension(pathInfo.Name) + alternateExtension;
+                    IRuntimeFileInfo alternateFileInfo = pathInfo.Container.CreateNewFile(alternateName);
                     return alternateFileInfo.FullName;
                 }
                 catch (AxCryptException ace)
