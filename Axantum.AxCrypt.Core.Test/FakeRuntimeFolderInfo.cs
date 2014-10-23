@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         public FakeRuntimeFolderInfo(string path)
         {
-            _fileInfo = new FakeRuntimeFileInfo(path);
+            _fileInfo = new FakeRuntimeFileInfo(path.NormalizeFolderPath());
         }
 
         /// <summary>

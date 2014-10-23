@@ -76,6 +76,11 @@ namespace Axantum.AxCrypt.Core.Test
             path = path.NormalizeFilePath();
             FakeFileInfo fileInfo = new FakeFileInfo { FullName = path, CreationTimeUtc = creationTimeUtc, LastAccessTimeUtc = lastAccessTimeUtc, LastWriteTimeUtc = lastWriteTimeUtc, Stream = stream, IsFolder = isFolder, };
             _fakeFileSystem.Add(path, fileInfo);
+
+            string folder = Resolve.Portable.Path().GetDirectoryName(path).NormalizeFolderPath();
+            fileInfo = new FakeFileInfo { FullName = folder, IsFolder = true, CreationTimeUtc = DateTime.MinValue, LastAccessTimeUtc = DateTime.MinValue, LastWriteTimeUtc = DateTime.MinValue, Stream = null };
+            _fakeFileSystem[folder] = fileInfo;
+
             FakeFileWatcher.HandleFileChanged(path);
         }
 
@@ -308,7 +313,7 @@ namespace Axantum.AxCrypt.Core.Test
                 FakeFileInfo fileInfo;
                 if (_fakeFileSystem.TryGetValue(_file.FullName, out fileInfo))
                 {
-                    return !fileInfo.IsFolder;
+                    return true;
                 }
                 return false;
             }
