@@ -974,7 +974,7 @@ namespace Axantum.AxCrypt
                 button.Click += (sender, e) =>
                 {
                     ToolStripItem item = sender as ToolStripItem;
-                    _fileOperationViewModel.OpenFilesFromFolder.Execute(((KnownFolder)item.Tag).MyFullPath.FullName);
+                    _fileOperationViewModel.OpenFilesFromFolder.Execute(((KnownFolder)item.Tag).My.FullName);
                 };
                 button.Image = (Image)knownFolder.Image;
                 button.Enabled = knownFolder.Enabled;

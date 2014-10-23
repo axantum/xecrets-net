@@ -87,7 +87,7 @@ namespace Axantum.AxCrypt.Core.Session
         [OnDeserialized]
         private void Initialize(StreamingContext context)
         {
-            if (TypeMap.Resolve.New<IRuntimeFileInfo>(Path).IsExistingFolder)
+            if (TypeMap.Resolve.New<IRuntimeFolderInfo>(Path).IsExistingFolder)
             {
                 _fileWatcher = TypeMap.Resolve.New<IFileWatcher>(Path);
                 _fileWatcher.FileChanged += _fileWatcher_FileChanged;

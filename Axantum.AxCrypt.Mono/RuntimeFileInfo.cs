@@ -316,18 +316,5 @@ namespace Axantum.AxCrypt.Mono
                 return di.GetFiles().Select((FileInfo fi) => { return (IRuntimeFileInfo)new RuntimeFileInfo(fi); });
             }
         }
-
-        /// <summary>
-        /// Combine the path of this instance with another path, creating a new instance.
-        /// </summary>
-        /// <param name="path">The path to combine with.</param>
-        /// <returns>
-        /// A new instance representing the combined path.
-        /// </returns>
-        /// <exception cref="System.NotImplementedException"></exception>
-        public IRuntimeFileInfo Combine(string path)
-        {
-            return new RuntimeFileInfo(Path.Combine(FullName, path));
-        }
     }
 }

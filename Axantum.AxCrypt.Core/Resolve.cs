@@ -22,6 +22,7 @@
  * updates, contributions and contact with the author. You may also visit
  * http://www.axantum.com for more information about the author.
 */
+
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -50,9 +51,9 @@ namespace Axantum.AxCrypt.Core
             TypeMap.Register.Singleton<KnownKeys>(() => new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify));
             TypeMap.Register.Singleton<UserAsymmetricKeysStore>(() => new UserAsymmetricKeysStore(Resolve.WorkFolder.FileInfo, Resolve.KnownKeys));
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new ParallelFileOperation());
-            TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(Resolve.WorkFolder.FileInfo.Combine("FileSystemState.xml")));
+            TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("FileSystemState.xml")));
             TypeMap.Register.Singleton<ProcessState>(() => new ProcessState());
-            TypeMap.Register.Singleton<IUserSettings>(() => new UserSettings(Resolve.WorkFolder.FileInfo.Combine("UserSettings.txt"), TypeMap.Resolve.New<IterationCalculator>()));
+            TypeMap.Register.Singleton<IUserSettings>(() => new UserSettings(Resolve.WorkFolder.FileInfo.FileItemInfo("UserSettings.txt"), TypeMap.Resolve.New<IterationCalculator>()));
             TypeMap.Register.Singleton<SessionNotify>(() => new SessionNotify());
             TypeMap.Register.Singleton<WorkFolderWatcher>(() => new WorkFolderWatcher());
             TypeMap.Register.Singleton<WorkFolder>(() => new WorkFolder(workFolderPath), () => TypeMap.Resolve.Singleton<WorkFolderWatcher>());
@@ -75,7 +76,7 @@ namespace Axantum.AxCrypt.Core
             TypeMap.Register.New<IterationCalculator>(() => new IterationCalculator());
             TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(TypeMap.Resolve.Singleton<IAsymmetricFactory>().GetConverters()));
         }
-            
+
         public static KnownKeys KnownKeys
         {
             get { return TypeMap.Resolve.Singleton<KnownKeys>(); }

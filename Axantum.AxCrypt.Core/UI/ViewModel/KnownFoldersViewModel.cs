@@ -66,19 +66,19 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             foreach (KnownFolder knownFolder in folders)
             {
-                if (_fileSystemState.WatchedFolders.Any((wf) => wf.Path == knownFolder.MyFullPath.FullName))
+                if (_fileSystemState.WatchedFolders.Any((wf) => wf.Path == knownFolder.My.FullName))
                 {
                     continue;
                 }
-                if (knownFolder.MyFullPath.IsExistingFile)
+                if (knownFolder.My.IsExistingFile)
                 {
                     continue;
                 }
-                if (!knownFolder.MyFullPath.IsExistingFolder)
+                if (!knownFolder.My.IsExistingFolder)
                 {
-                    knownFolder.MyFullPath.CreateFolder();
+                    knownFolder.My.CreateFolder();
                 }
-                _fileSystemState.AddWatchedFolder(new WatchedFolder(knownFolder.MyFullPath.FullName, _knownKeys.DefaultEncryptionKey.Thumbprint));
+                _fileSystemState.AddWatchedFolder(new WatchedFolder(knownFolder.My.FullName, _knownKeys.DefaultEncryptionKey.Thumbprint));
             }
         }
 
@@ -87,7 +87,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             List<KnownFolder> updatedFolders = new List<KnownFolder>();
             foreach (KnownFolder folder in knownFolders)
             {
-                KnownFolder updated = new KnownFolder(folder, _knownKeys.LoggedOnWatchedFolders.Any(f => f.Path == folder.MyFullPath.FullName));
+                KnownFolder updated = new KnownFolder(folder, _knownKeys.LoggedOnWatchedFolders.Any(f => f.Path == folder.My.FullName));
                 updatedFolders.Add(updated);
             }
             return updatedFolders;

@@ -57,7 +57,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             using (WorkFolderWatcher wfw = new WorkFolderWatcher())
             {
-                string fileName = Resolve.WorkFolder.FileInfo.Combine("New File.txt").FullName;
+                string fileName = Resolve.WorkFolder.FileInfo.FileItemInfo("New File.txt").FullName;
                 FakeRuntimeFileInfo.AddFile(fileName, null);
 
                 Mock.Get(Resolve.SessionNotify).Verify(s => s.Notify(It.Is<SessionNotification>(n => n.NotificationType == SessionNotificationType.WorkFolderChange && n.FullName == fileName)), Times.Once);
@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Test
                 TypeMap.Resolve.New<IRuntimeFileInfo>(fileName).Delete();
                 Mock.Get(Resolve.SessionNotify).Verify(s => s.Notify(It.Is<SessionNotification>(n => n.NotificationType == SessionNotificationType.WorkFolderChange && n.FullName == fileName)), Times.Exactly(2));
 
-                IRuntimeFileInfo fileSystemStateInfo = Resolve.WorkFolder.FileInfo.Combine("FileSystemState.xml");
+                IRuntimeFileInfo fileSystemStateInfo = Resolve.WorkFolder.FileInfo.FileItemInfo("FileSystemState.xml");
                 fileSystemStateInfo.Delete();
                 Mock.Get(Resolve.SessionNotify).Verify(s => s.Notify(It.Is<SessionNotification>(n => n.NotificationType == SessionNotificationType.WorkFolderChange && n.FullName == fileSystemStateInfo.FullName)), Times.Never);
             }

@@ -67,6 +67,7 @@
     <Compile Include="RuntimeEnvironment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RuntimeFileInfo.cs" />
+    <Compile Include="RuntimeFolderInfo.cs" />
     <Compile Include="Sleep.cs" />
     <Compile Include="ThreadWorker.cs" />
     <Compile Include="Timing.cs" />

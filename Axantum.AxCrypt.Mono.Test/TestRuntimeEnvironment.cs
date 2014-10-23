@@ -51,6 +51,7 @@ namespace Axantum.AxCrypt.Mono.Test
             Directory.CreateDirectory(_workFolderPath);
 
             TypeMap.Register.New<string, IRuntimeFileInfo>((path) => new RuntimeFileInfo(path));
+            TypeMap.Register.New<string, IRuntimeFolderInfo>((path) => new RuntimeFolderInfo(path));
             TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
             TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
             TypeMap.Register.Singleton<WorkFolder>(() => new WorkFolder(_workFolderPath));

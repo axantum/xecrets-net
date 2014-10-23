@@ -65,6 +65,7 @@
     <Compile Include="FakeRequestClient.cs" />
     <Compile Include="FakeRequestServer.cs" />
     <Compile Include="FakeProgressBackground.cs" />
+    <Compile Include="FakeRuntimeFolderInfo.cs" />
     <Compile Include="FakeSleep.cs" />
     <Compile Include="FakeStatusChecker.cs" />
     <Compile Include="FakeUIThread.cs" />

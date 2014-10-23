@@ -267,7 +267,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 destinationFolder = Resolve.Portable.Path().Combine(TypeMap.Resolve.Singleton<WorkFolder>().FileInfo.FullName, Resolve.Portable.Path().GetFileNameWithoutExtension(Resolve.Portable.Path().GetRandomFileName()) + Resolve.Portable.Path().DirectorySeparatorChar);
             }
-            IRuntimeFileInfo destinationFolderInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(destinationFolder);
+            IRuntimeFileInfo destinationFolderInfo = TypeMap.Resolve.New<IRuntimeFolderInfo>(destinationFolder);
             destinationFolderInfo.CreateFolder();
             return destinationFolderInfo;
         }

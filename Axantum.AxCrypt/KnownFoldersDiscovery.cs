@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Properties;
@@ -59,7 +60,8 @@ namespace Axantum.AxCrypt
         private static void CheckDocumentsLibrary(IList<KnownFolder> knownFolders)
         {
             Icon icon = Resources.DocumentsLibrary;
-            KnownFolder windowsDesktopFolder = new KnownFolder(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), Resources.MyAxCryptFolderName, icon.ToBitmap(), null);
+            IRuntimeFolderInfo myDocumentsInfo = TypeMap.Resolve.New<IRuntimeFolderInfo>(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+            KnownFolder windowsDesktopFolder = new KnownFolder(myDocumentsInfo, Resources.MyAxCryptFolderName, icon.ToBitmap(), null);
             knownFolders.Add(windowsDesktopFolder);
         }
 
@@ -85,7 +87,8 @@ namespace Axantum.AxCrypt
             }
 
             Icon icon = Resources.DropBox;
-            KnownFolder knownFolder = new KnownFolder(dropBoxFolder, Resources.MyAxCryptFolderName, icon.ToBitmap(), url);
+            IRuntimeFolderInfo dropBoxFolderInfo = TypeMap.Resolve.New<IRuntimeFolderInfo>(dropBoxFolder);
+            KnownFolder knownFolder = new KnownFolder(dropBoxFolderInfo, Resources.MyAxCryptFolderName, icon.ToBitmap(), url);
 
             knownFolders.Add(knownFolder);
         }
@@ -107,7 +110,8 @@ namespace Axantum.AxCrypt
             Uri url = new Uri("https://skydrive.live.com/");
 
             Icon icon = Resources.SkyDrive;
-            KnownFolder knownFolder = new KnownFolder(skyDriveFolder, Resources.MyAxCryptFolderName, icon.ToBitmap(), url);
+            IRuntimeFolderInfo skyDriveFolderInfo = TypeMap.Resolve.New<IRuntimeFolderInfo>(skyDriveFolder);
+            KnownFolder knownFolder = new KnownFolder(skyDriveFolderInfo, Resources.MyAxCryptFolderName, icon.ToBitmap(), url);
 
             knownFolders.Add(knownFolder);
         }
@@ -133,7 +137,8 @@ namespace Axantum.AxCrypt
             Uri url = new Uri("https://drive.google.com/");
 
             Icon icon = Resources.GoogleDrive;
-            KnownFolder knownFolder = new KnownFolder(googleDriveFolder, Resources.MyAxCryptFolderName, icon.ToBitmap(), url);
+            IRuntimeFolderInfo googleDriveFolderInfo = TypeMap.Resolve.New<IRuntimeFolderInfo>(googleDriveFolder);
+            KnownFolder knownFolder = new KnownFolder(googleDriveFolderInfo, Resources.MyAxCryptFolderName, icon.ToBitmap(), url);
             knownFolders.Add(knownFolder);
         }
     }

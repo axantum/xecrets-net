@@ -403,20 +403,6 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         /// <summary>
-        /// Combine the path of this instance with another path, creating a new instance.
-        /// </summary>
-        /// <param name="path">The path to combine with.</param>
-        /// <returns>
-        /// A new instance representing the combined path.
-        /// </returns>
-        public IRuntimeFileInfo Combine(string path)
-        {
-            path = path.NormalizeFilePath();
-            return new FakeRuntimeFileInfo(Path.Combine(FullName, path));
-        }
-
-
-        /// <summary>
         /// Removes a folder in the underlying file system with the path of this instance,
         /// if the folder is empty. If it is not, nothing happens.
         /// </summary>

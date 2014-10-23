@@ -108,7 +108,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void DecryptFoldersAction(IEnumerable<string> folders)
         {
-            _fileOperation.DoFiles(folders.Select(f => TypeMap.Resolve.New<IRuntimeFileInfo>(f)).ToList(), DecryptFolderWork, (status) => { });
+            _fileOperation.DoFiles(folders.Select(f => TypeMap.Resolve.New<IRuntimeFolderInfo>(f)).ToList(), DecryptFolderWork, (status) => { });
         }
 
         private void EncryptFilesAction(IEnumerable<string> files)

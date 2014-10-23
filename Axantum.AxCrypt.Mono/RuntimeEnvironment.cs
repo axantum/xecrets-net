@@ -52,6 +52,7 @@ namespace Axantum.AxCrypt.Mono
             TypeMap.Register.New<ISleep>(() => new Sleep());
             TypeMap.Register.New<IDelayTimer>(() => new DelayTimer());
             TypeMap.Register.New<string, IRuntimeFileInfo>((path) => new RuntimeFileInfo(path));
+            TypeMap.Register.New<string, IRuntimeFolderInfo>((path) => new RuntimeFolderInfo(path));
         }
 
         public RuntimeEnvironment(string extension)

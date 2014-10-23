@@ -54,13 +54,13 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<WorkFolder>(() => new WorkFolder(Path.GetPathRoot(Environment.CurrentDirectory) + @"WorkFolder\"));
             TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
             TypeMap.Register.Singleton<ILogging>(() => new FakeLogging());
-            TypeMap.Register.Singleton<IUserSettings>(() => new UserSettings(Resolve.WorkFolder.FileInfo.Combine("UserSettings.txt"), TypeMap.Resolve.New<IterationCalculator>()));
+            TypeMap.Register.Singleton<IUserSettings>(() => new UserSettings(Resolve.WorkFolder.FileInfo.FileItemInfo("UserSettings.txt"), TypeMap.Resolve.New<IterationCalculator>()));
             TypeMap.Register.Singleton<KnownKeys>(() => new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify));
             TypeMap.Register.Singleton<ProcessState>(() => new ProcessState());
             TypeMap.Register.Singleton<IUIThread>(() => new FakeUIThread());
             TypeMap.Register.Singleton<IProgressBackground>(() => new FakeProgressBackground());
             TypeMap.Register.Singleton<SessionNotify>(() => new SessionNotify());
-            TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(Resolve.WorkFolder.FileInfo.Combine("FileSystemState.xml")));
+            TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("FileSystemState.xml")));
             TypeMap.Register.Singleton<IStatusChecker>(() => new FakeStatusChecker());
             TypeMap.Register.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
             TypeMap.Register.Singleton<CryptoFactory>(() => CreateCryptoFactory());
@@ -77,6 +77,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<FileOperationViewModel>(() => new FileOperationViewModel(Resolve.FileSystemState, Resolve.SessionNotify, Resolve.KnownKeys, Resolve.ParallelFileOperation, TypeMap.Resolve.Singleton<IStatusChecker>(), TypeMap.Resolve.New<IdentityViewModel>()));
             TypeMap.Register.New<MainViewModel>(() => new MainViewModel(Resolve.FileSystemState));
             TypeMap.Register.New<string, IRuntimeFileInfo>((path) => new FakeRuntimeFileInfo(path));
+            TypeMap.Register.New<string, IRuntimeFolderInfo>((path) => new FakeRuntimeFolderInfo(path));
             TypeMap.Register.New<string, IFileWatcher>((path) => new FakeFileWatcher(path));
             TypeMap.Register.New<IterationCalculator>(() => new FakeIterationCalculator());
             TypeMap.Register.New<IDataProtection>(() => new FakeDataProtection());

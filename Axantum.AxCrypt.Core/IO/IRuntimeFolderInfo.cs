@@ -25,20 +25,34 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.IO;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
-namespace Axantum.AxCrypt.Core.Runtime
+namespace Axantum.AxCrypt.Core.IO
 {
-    public class WorkFolder
+    /// <summary>
+    /// Mark that this instance actually represents a folder. Used together with IRuntimeFileInfo
+    /// </summary>
+    public interface IRuntimeFolderInfo : IRuntimeFileInfo
     {
-        public WorkFolder(string path)
-        {
-            FileInfo = TypeMap.Resolve.New<IRuntimeFolderInfo>(path);
-            FileInfo.CreateFolder();
-        }
+        /// <summary>
+        /// Get a file item from this instance (which must represent a folder or container)..
+        /// </summary>
+        /// <param name="item">The name of the file item.</param>
+        /// <returns>
+        /// A new instance representing the file item in the folder or container.
+        /// </returns>
+        IRuntimeFileInfo FileItemInfo(string item);
 
-        public IRuntimeFolderInfo FileInfo { get; private set; }
+        /// <summary>
+        /// Get a folder item from this instance (which must represent a folder or container)..
+        /// </summary>
+        /// <param name="item">The name of the file item.</param>
+        /// <returns>
+        /// A new instance representing the file item in the folder or container.
+        /// </returns>
+        IRuntimeFolderInfo FolderItemInfo(string item);
     }
 }
