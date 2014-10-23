@@ -32,15 +32,16 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.Test
 {
-    internal class FakeRuntimeFolderInfo : FakeRuntimeFileInfo, IRuntimeFolderInfo
+    internal class FakeRuntimeFolderInfo : IRuntimeFolderInfo
     {
+        private FakeRuntimeFileInfo _fileInfo;
+
         public FakeRuntimeFolderInfo(string path)
-            : base(path.NormalizeFolderPath())
         {
+            _fileInfo = new FakeRuntimeFileInfo(path);
         }
 
         /// <summary>
@@ -67,6 +68,69 @@ namespace Axantum.AxCrypt.Core.Test
         {
             path = path.NormalizeFilePath();
             return new FakeRuntimeFolderInfo(Path.Combine(FullName, path));
+        }
+
+        public bool IsFolder
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        public bool IsFile
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        public void CreateFolder(string item)
+        {
+            FakeRuntimeFileInfo.AddFolder(Resolve.Portable.Path().Combine(_fileInfo.FullName, item));
+        }
+
+        public void RemoveFolder(string item)
+        {
+            FakeRuntimeFileInfo.RemoveFileOrFolder(Resolve.Portable.Path().Combine(_fileInfo.FullName, item));
+        }
+
+        public IRuntimeFileInfo CreateNewFile(string item)
+        {
+            FakeRuntimeFileInfo frfi = new FakeRuntimeFileInfo(Resolve.Portable.Path().Combine(_fileInfo.FullName, item));
+            frfi.CreateNewFile();
+            return frfi;
+        }
+
+        public void CreateFolder()
+        {
+            _fileInfo.CreateFolder();
+        }
+
+        public IEnumerable<IRuntimeFileInfo> Files
+        {
+            get { return _fileInfo.Files; }
+        }
+
+        public bool IsAvailable
+        {
+            get { return _fileInfo.IsAvailable; }
+        }
+
+        public string Name
+        {
+            get { return _fileInfo.Name; }
+        }
+
+        public string FullName
+        {
+            get { return _fileInfo.FullName; }
+        }
+
+        public void Delete()
+        {
+            _fileInfo.Delete();
         }
     }
 }

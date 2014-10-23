@@ -296,7 +296,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.Throws<OperationCanceledException>(() => { TypeMap.Resolve.New<AxCryptFile>().WriteToFileWithBackup(destinationFileInfo, (Stream stream) => { throw new OperationCanceledException(); }, new ProgressContext()); });
                 string tempFilePath = _rootPath.PathCombine("Written", "File.bak");
                 IRuntimeFileInfo tempFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(tempFilePath);
-                Assert.That(tempFileInfo.IsExistingFile, Is.False, "The .bak file should be removed.");
+                Assert.That(tempFileInfo.IsAvailable, Is.False, "The .bak file should be removed.");
             }
         }
 
@@ -306,7 +306,7 @@ namespace Axantum.AxCrypt.Core.Test
             string destinationFilePath = _rootPath.PathCombine("Written", "AnExistingFile.txt");
             IRuntimeFileInfo destinationFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(destinationFilePath);
             IRuntimeFileInfo bakFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_rootPath.PathCombine("Written", "AnExistingFile.bak"));
-            Assert.That(bakFileInfo.IsExistingFile, Is.False, "The file should not exist to start with.");
+            Assert.That(bakFileInfo.IsAvailable, Is.False, "The file should not exist to start with.");
             using (Stream writeStream = destinationFileInfo.OpenWrite())
             {
                 byte[] bytes = Encoding.UTF8.GetBytes("A string");
@@ -322,7 +322,7 @@ namespace Axantum.AxCrypt.Core.Test
                     Assert.That(readString, Is.EqualTo("A string with some text"), "Where expecting the same string to be read back.");
                 }
             }
-            Assert.That(bakFileInfo.IsExistingFile, Is.False, "The file should not exist afterwards either.");
+            Assert.That(bakFileInfo.IsAvailable, Is.False, "The file should not exist afterwards either.");
         }
 
         [Test]
@@ -342,9 +342,9 @@ namespace Axantum.AxCrypt.Core.Test
             using (Stream writeStream = fileInfo.OpenWrite())
             {
             }
-            Assert.That(fileInfo.IsExistingFile, "Now it should exist.");
+            Assert.That(fileInfo.IsAvailable, "Now it should exist.");
             TypeMap.Resolve.New<AxCryptFile>().Wipe(fileInfo, new ProgressContext());
-            Assert.That(!fileInfo.IsExistingFile, "And now it should not exist after wiping.");
+            Assert.That(!fileInfo.IsAvailable, "And now it should not exist after wiping.");
         }
 
         [Test]
@@ -384,8 +384,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             TypeMap.Resolve.New<AxCryptFile>().EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, key, V2Aes128CryptoFactory.CryptoId, progress);
 
-            Assert.That(sourceFileInfo.IsExistingFile, Is.False, "The source should be wiped.");
-            Assert.That(destinationFileInfo.IsExistingFile, Is.True, "The destination should be created and exist now.");
+            Assert.That(sourceFileInfo.IsAvailable, Is.False, "The source should be wiped.");
+            Assert.That(destinationFileInfo.IsAvailable, Is.True, "The destination should be created and exist now.");
         }
 
         [Test]
@@ -421,8 +421,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             IRuntimeFileInfo sourceFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(sourceFilePath);
             IRuntimeFileInfo destinationFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(destinationFilePath);
-            Assert.That(sourceFileInfo.IsExistingFile, Is.False, "The source should be wiped.");
-            Assert.That(destinationFileInfo.IsExistingFile, Is.True, "The destination should be created and exist now.");
+            Assert.That(sourceFileInfo.IsAvailable, Is.False, "The source should be wiped.");
+            Assert.That(destinationFileInfo.IsAvailable, Is.True, "The destination should be created and exist now.");
         }
 
         [Test]
@@ -432,13 +432,13 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo destinationFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
             Passphrase passphrase = new Passphrase("a");
 
-            Assert.That(sourceFileInfo.IsExistingFile, Is.True, "The source should exist.");
-            Assert.That(destinationFileInfo.IsExistingFile, Is.False, "The source should not exist yet.");
+            Assert.That(sourceFileInfo.IsAvailable, Is.True, "The source should exist.");
+            Assert.That(destinationFileInfo.IsAvailable, Is.False, "The source should not exist yet.");
 
             TypeMap.Resolve.New<AxCryptFile>().DecryptFileUniqueWithWipeOfOriginal(sourceFileInfo, passphrase, new ProgressContext());
 
-            Assert.That(sourceFileInfo.IsExistingFile, Is.False, "The source should be wiped.");
-            Assert.That(destinationFileInfo.IsExistingFile, Is.True, "The destination should be created and exist now.");
+            Assert.That(sourceFileInfo.IsAvailable, Is.False, "The source should be wiped.");
+            Assert.That(destinationFileInfo.IsAvailable, Is.True, "The destination should be created and exist now.");
         }
 
         [Test]
@@ -448,44 +448,43 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<IProgressBackground>(() => new FakeProgressBackground());
             TypeMap.Register.Singleton<IUIThread>(() => new FakeUIThread());
             IRuntimeFileInfo sourceFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath);
-            sourceFileInfo.CreateFolder();
-            IRuntimeFileInfo sourceFolderInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.GetDirectoryName(sourceFileInfo.FullName));
+            IRuntimeFolderInfo sourceFolderInfo = TypeMap.Resolve.New<IRuntimeFolderInfo>(Path.GetDirectoryName(sourceFileInfo.FullName));
+            sourceFolderInfo.CreateFolder();
             IRuntimeFileInfo destinationFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
             Passphrase passphrase = new Passphrase("a");
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
-            Assert.That(sourceFileInfo.IsExistingFile, Is.True, "The source should exist.");
-            Assert.That(destinationFileInfo.IsExistingFile, Is.False, "The source should not exist yet.");
+            Assert.That(sourceFileInfo.IsAvailable, Is.True, "The source should exist.");
+            Assert.That(destinationFileInfo.IsAvailable, Is.False, "The source should not exist yet.");
 
             TypeMap.Resolve.New<AxCryptFile>().DecryptFilesInsideFolderUniqueWithWipeOfOriginal(sourceFolderInfo, passphrase, mockStatusChecker.Object, new ProgressContext());
 
-            Assert.That(sourceFileInfo.IsExistingFile, Is.False, "The source should be wiped.");
-            Assert.That(destinationFileInfo.IsExistingFile, Is.True, "The destination should be created and exist now.");
+            Assert.That(sourceFileInfo.IsAvailable, Is.False, "The source should be wiped.");
+            Assert.That(destinationFileInfo.IsAvailable, Is.True, "The destination should be created and exist now.");
         }
 
         [Test]
         public static void TestEncryptFileUniqueWithBackupAndWipeWithNoCollision()
         {
             IRuntimeFileInfo sourceFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath);
-            sourceFileInfo.CreateFolder();
+            sourceFileInfo.Container.CreateFolder();
             IRuntimeFileInfo destinationFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(_davidCopperfieldTxtPath), "David Copperfield-txt.axx"));
 
             Passphrase passphrase = new Passphrase("allan");
 
             TypeMap.Resolve.New<AxCryptFile>().EncryptFileUniqueWithBackupAndWipe(sourceFileInfo, passphrase, V1Aes128CryptoFactory.CryptoId, new ProgressContext());
 
-            Assert.That(sourceFileInfo.IsExistingFile, Is.False, "The source should be wiped.");
-            Assert.That(destinationFileInfo.IsExistingFile, Is.True, "The destination should be created and exist now.");
+            Assert.That(sourceFileInfo.IsAvailable, Is.False, "The source should be wiped.");
+            Assert.That(destinationFileInfo.IsAvailable, Is.True, "The destination should be created and exist now.");
         }
 
         [Test]
         public static void TestEncryptFileUniqueWithBackupAndWipeWithCollision()
         {
             IRuntimeFileInfo sourceFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath);
-            sourceFileInfo.CreateFolder();
-            IRuntimeFileInfo destinationFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(_davidCopperfieldTxtPath), "David Copperfield-txt.axx"));
-            destinationFileInfo.CreateNewFile();
+            sourceFileInfo.Container.CreateFolder();
+            IRuntimeFileInfo destinationFileInfo = sourceFileInfo.Container.CreateNewFile("David Copperfield-txt.axx");
 
             IRuntimeFileInfo alternateDestinationFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(_davidCopperfieldTxtPath), "David Copperfield-txt.1.axx"));
 
@@ -493,43 +492,42 @@ namespace Axantum.AxCrypt.Core.Test
 
             TypeMap.Resolve.New<AxCryptFile>().EncryptFileUniqueWithBackupAndWipe(sourceFileInfo, passphrase, V2Aes256CryptoFactory.CryptoId, new ProgressContext());
 
-            Assert.That(sourceFileInfo.IsExistingFile, Is.False, "The source should be wiped.");
-            Assert.That(alternateDestinationFileInfo.IsExistingFile, Is.True, "The destination should be created and exist now.");
+            Assert.That(sourceFileInfo.IsAvailable, Is.False, "The source should be wiped.");
+            Assert.That(alternateDestinationFileInfo.IsAvailable, Is.True, "The destination should be created and exist now.");
         }
 
         [Test]
         public static void TestEncryptFilesUniqueWithBackupAndWipeWithNoCollision()
         {
             IRuntimeFileInfo sourceFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath);
-            sourceFileInfo.CreateFolder();
-            IRuntimeFileInfo sourceFolderInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.GetDirectoryName(sourceFileInfo.FullName));
-            IRuntimeFileInfo destinationFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(_davidCopperfieldTxtPath), "David Copperfield-txt.axx"));
+            sourceFileInfo.Container.CreateFolder();
+            IRuntimeFolderInfo sourceFolderInfo = sourceFileInfo.Container;
+            IRuntimeFileInfo destinationFileInfo = sourceFileInfo.Container.FileItemInfo("David Copperfield-txt.axx");
 
             Passphrase passphrase = new Passphrase("allan");
 
-            TypeMap.Resolve.New<AxCryptFile>().EncryptFoldersUniqueWithBackupAndWipe(new IRuntimeFileInfo[] { sourceFolderInfo }, passphrase, V1Aes128CryptoFactory.CryptoId, new ProgressContext());
+            TypeMap.Resolve.New<AxCryptFile>().EncryptFoldersUniqueWithBackupAndWipe(new IRuntimeFolderInfo[] { sourceFolderInfo }, passphrase, V1Aes128CryptoFactory.CryptoId, new ProgressContext());
 
-            Assert.That(sourceFileInfo.IsExistingFile, Is.False, "The source should be wiped.");
-            Assert.That(destinationFileInfo.IsExistingFile, Is.True, "The destination should be created and exist now.");
+            Assert.That(sourceFileInfo.IsAvailable, Is.False, "The source should be wiped.");
+            Assert.That(destinationFileInfo.IsAvailable, Is.True, "The destination should be created and exist now.");
         }
 
         [Test]
         public static void TestEncryptFilesUniqueWithBackupAndWipeWithCollision()
         {
             IRuntimeFileInfo sourceFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath);
-            sourceFileInfo.CreateFolder();
-            IRuntimeFileInfo sourceFolderInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.GetDirectoryName(sourceFileInfo.FullName));
-            IRuntimeFileInfo destinationFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(_davidCopperfieldTxtPath), "David Copperfield-txt.axx"));
-            destinationFileInfo.CreateNewFile();
+            sourceFileInfo.Container.CreateFolder();
+            IRuntimeFolderInfo sourceFolderInfo = sourceFileInfo.Container;
+            IRuntimeFileInfo destinationFileInfo = sourceFolderInfo.FileItemInfo("David Copperfield-txt.axx");
 
             IRuntimeFileInfo alternateDestinationFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(_davidCopperfieldTxtPath), "David Copperfield-txt.1.axx"));
 
             Passphrase passphrase = new Passphrase("allan");
 
-            TypeMap.Resolve.New<AxCryptFile>().EncryptFoldersUniqueWithBackupAndWipe(new IRuntimeFileInfo[] { sourceFolderInfo }, passphrase, V2Aes128CryptoFactory.CryptoId, new ProgressContext());
+            TypeMap.Resolve.New<AxCryptFile>().EncryptFoldersUniqueWithBackupAndWipe(new IRuntimeFolderInfo[] { sourceFolderInfo }, passphrase, V2Aes128CryptoFactory.CryptoId, new ProgressContext());
 
-            Assert.That(sourceFileInfo.IsExistingFile, Is.False, "The source should be wiped.");
-            Assert.That(alternateDestinationFileInfo.IsExistingFile, Is.True, "The destination should be created and exist now.");
+            Assert.That(sourceFileInfo.IsAvailable, Is.False, "The source should be wiped.");
+            Assert.That(alternateDestinationFileInfo.IsAvailable, Is.True, "The destination should be created and exist now.");
         }
 
         [Test]
@@ -560,7 +558,7 @@ namespace Axantum.AxCrypt.Core.Test
                 ((IProgressContext)sender).Cancel = true;
             };
             Assert.Throws<OperationCanceledException>(() => { TypeMap.Resolve.New<AxCryptFile>().Wipe(fileInfo, progress); });
-            Assert.That(!fileInfo.IsExistingFile, "The file should be completely wiped, even if canceled at start.");
+            Assert.That(!fileInfo.IsAvailable, "The file should be completely wiped, even if canceled at start.");
         }
 
         [Test]

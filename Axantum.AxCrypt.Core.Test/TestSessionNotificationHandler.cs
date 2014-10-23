@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             MockAxCryptFile mock = new MockAxCryptFile();
             bool called = false;
-            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IRuntimeFileInfo> folderInfos, Passphrase encryptionKey, Guid cryptoId, IProgressContext progress) => { called = folderInfos.First().FullName == @"C:\My Documents\".NormalizeFilePath(); };
+            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IRuntimeFolderInfo> folderInfos, Passphrase encryptionKey, Guid cryptoId, IProgressContext progress) => { called = folderInfos.First().FullName == @"C:\My Documents\".NormalizeFilePath(); };
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
@@ -81,7 +81,7 @@ namespace Axantum.AxCrypt.Core.Test
             MockAxCryptFile mock = new MockAxCryptFile();
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
             bool called = false;
-            mock.DecryptFilesUniqueWithWipeOfOriginalMock = (IRuntimeFileInfo fileInfo, Passphrase decryptionKey, IStatusChecker statusChecker, IProgressContext progress) => { called = fileInfo.FullName == @"C:\My Documents\".NormalizeFilePath(); };
+            mock.DecryptFilesUniqueWithWipeOfOriginalMock = (IRuntimeFolderInfo fileInfo, Passphrase decryptionKey, IStatusChecker statusChecker, IProgressContext progress) => { called = fileInfo.FullName == @"C:\My Documents\".NormalizeFilePath(); };
 
             TypeMap.Register.New<AxCryptFile>(() => mock);
 
@@ -98,7 +98,7 @@ namespace Axantum.AxCrypt.Core.Test
             MockAxCryptFile mock = new MockAxCryptFile();
             bool called = false;
             int folderCount = -1;
-            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IRuntimeFileInfo> folderInfos, Passphrase encryptionKey, Guid cryptoId, IProgressContext progress) =>
+            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IRuntimeFolderInfo> folderInfos, Passphrase encryptionKey, Guid cryptoId, IProgressContext progress) =>
             {
                 folderCount = folderInfos.Count();
                 called = true;
@@ -122,7 +122,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             MockAxCryptFile mock = new MockAxCryptFile();
             bool called = false;
-            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IRuntimeFileInfo> folderInfos, Passphrase Passphrase, Guid cryptoId, IProgressContext progress) => { called = true; };
+            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IRuntimeFolderInfo> folderInfos, Passphrase Passphrase, Guid cryptoId, IProgressContext progress) => { called = true; };
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
@@ -219,7 +219,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             MockAxCryptFile mock = new MockAxCryptFile();
             int callTimes = 0;
-            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IRuntimeFileInfo> folderInfos, Passphrase decryptionKey, Guid cryptoId, IProgressContext progress) => { if (folderInfos.First().FullName == @"C:\My Documents\".NormalizeFilePath()) ++callTimes; };
+            mock.EncryptFilesUniqueWithBackupAndWipeMock = (IEnumerable<IRuntimeFolderInfo> folderInfos, Passphrase decryptionKey, Guid cryptoId, IProgressContext progress) => { if (folderInfos.First().FullName == @"C:\My Documents\".NormalizeFilePath()) ++callTimes; };
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
@@ -241,7 +241,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             FakeRuntimeFileInfo.AddFolder(@"C:\My Documents\");
             Mock<AxCryptFile> mock = new Mock<AxCryptFile>();
-            mock.Setup(acf => acf.EncryptFoldersUniqueWithBackupAndWipe(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Passphrase>(), It.IsAny<Guid>(), It.IsAny<IProgressContext>()));
+            mock.Setup(acf => acf.EncryptFoldersUniqueWithBackupAndWipe(It.IsAny<IEnumerable<IRuntimeFolderInfo>>(), It.IsAny<Passphrase>(), It.IsAny<Guid>(), It.IsAny<IProgressContext>()));
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
@@ -257,7 +257,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 handler.HandleNotification(sessionEvent);
             }
-            mock.Verify(acf => acf.EncryptFoldersUniqueWithBackupAndWipe(It.Is<IEnumerable<IRuntimeFileInfo>>(infos => infos.Any((i) => i.FullName == @"C:\My Documents\".NormalizeFolderPath())), It.IsAny<Passphrase>(), It.IsAny<Guid>(), It.IsAny<IProgressContext>()), Times.Exactly(1));
+            mock.Verify(acf => acf.EncryptFoldersUniqueWithBackupAndWipe(It.Is<IEnumerable<IRuntimeFolderInfo>>(infos => infos.Any((i) => i.FullName == @"C:\My Documents\".NormalizeFolderPath())), It.IsAny<Passphrase>(), It.IsAny<Guid>(), It.IsAny<IProgressContext>()), Times.Exactly(1));
         }
     }
 }

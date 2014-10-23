@@ -301,7 +301,7 @@ namespace Axantum.AxCrypt.Core.Test
             get { return _file.FullName; }
         }
 
-        public bool IsExistingFile
+        public bool IsAvailable
         {
             get
             {
@@ -368,19 +368,11 @@ namespace Axantum.AxCrypt.Core.Test
             AddFile(FullName, new MemoryStream());
         }
 
-        public bool IsExistingFolder
-        {
-            get
-            {
-                return _file.IsFolder;
-            }
-        }
-
         public IEnumerable<IRuntimeFileInfo> Files
         {
             get
             {
-                if (!IsExistingFolder)
+                if (!IsAvailable)
                 {
                     return new IRuntimeFileInfo[0];
                 }
@@ -409,11 +401,34 @@ namespace Axantum.AxCrypt.Core.Test
         /// <exception cref="System.NotImplementedException"></exception>
         public void RemoveFolder()
         {
-            if (!IsExistingFolder)
+            if (!IsAvailable)
             {
                 return;
             }
             RemoveFileOrFolder(FullName);
+        }
+
+        public IRuntimeFolderInfo Container
+        {
+            get { return new FakeRuntimeFolderInfo(Resolve.Portable.Path().GetDirectoryName(_file.FullName)); }
+        }
+
+        public virtual bool IsFile
+        {
+            get { return !IsFolder; }
+        }
+
+        public virtual bool IsFolder
+        {
+            get
+            {
+                FakeFileInfo ffi = FindFileInfo();
+                if (ffi == null)
+                {
+                    return true;
+                }
+                return ffi.IsFolder;
+            }
         }
     }
 }

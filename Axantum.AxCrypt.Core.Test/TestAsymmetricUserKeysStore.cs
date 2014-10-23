@@ -34,7 +34,6 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Mail;
 using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -61,7 +60,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestSimpleCreateAsymmetricKeysStore()
         {
             FakeRuntimeFileInfo.AddFolder(@"C:\Temp");
-            IRuntimeFileInfo workFolder = TypeMap.Resolve.New<IRuntimeFolderInfo>(@"C:\Temp");
+            IRuntimeFolderInfo workFolder = TypeMap.Resolve.New<IRuntimeFolderInfo>(@"C:\Temp");
             UserAsymmetricKeysStore store = new UserAsymmetricKeysStore(workFolder, Resolve.KnownKeys);
 
             store.Create(new EmailAddress(@"svante@axantum.com"), new Passphrase("secret"));
@@ -73,7 +72,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestCreateAndLoadAsymmetricKeysStore()
         {
             FakeRuntimeFileInfo.AddFolder(@"C:\Temp");
-            IRuntimeFileInfo workFolder = TypeMap.Resolve.New<IRuntimeFolderInfo>(@"C:\Temp\");
+            IRuntimeFolderInfo workFolder = TypeMap.Resolve.New<IRuntimeFolderInfo>(@"C:\Temp\");
             UserAsymmetricKeysStore store = new UserAsymmetricKeysStore(workFolder, Resolve.KnownKeys);
 
             store.Create(new EmailAddress(@"svante@axantum.com"), new Passphrase("secret"));
@@ -94,7 +93,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestEncryptCreateLoadDecryptWithAsymmetricKeysStore()
         {
             FakeRuntimeFileInfo.AddFolder(@"C:\Temp");
-            IRuntimeFileInfo workFolder = TypeMap.Resolve.New<IRuntimeFolderInfo>(@"C:\Temp\");
+            IRuntimeFolderInfo workFolder = TypeMap.Resolve.New<IRuntimeFolderInfo>(@"C:\Temp\");
             UserAsymmetricKeysStore store = new UserAsymmetricKeysStore(workFolder, Resolve.KnownKeys);
             Resolve.KnownKeys.DefaultEncryptionKey = new Passphrase("secret");
 

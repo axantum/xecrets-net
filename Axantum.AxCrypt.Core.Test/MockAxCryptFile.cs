@@ -53,9 +53,9 @@ namespace Axantum.AxCrypt.Core.Test
             EncryptMock(sourceFile, destinationFile, passphrase, options, progress);
         }
 
-        public Action<IEnumerable<IRuntimeFileInfo>, Passphrase, Guid, IProgressContext> EncryptFilesUniqueWithBackupAndWipeMock { get; set; }
+        public Action<IEnumerable<IRuntimeFolderInfo>, Passphrase, Guid, IProgressContext> EncryptFilesUniqueWithBackupAndWipeMock { get; set; }
 
-        public override void EncryptFoldersUniqueWithBackupAndWipe(IEnumerable<IRuntimeFileInfo> folderInfos, Passphrase encryptionKey, Guid cryptoId, IProgressContext progress)
+        public override void EncryptFoldersUniqueWithBackupAndWipe(IEnumerable<IRuntimeFolderInfo> folderInfos, Passphrase encryptionKey, Guid cryptoId, IProgressContext progress)
         {
             EncryptFilesUniqueWithBackupAndWipeMock(folderInfos, encryptionKey, cryptoId, progress);
         }
@@ -67,9 +67,9 @@ namespace Axantum.AxCrypt.Core.Test
             EncryptFileUniqueWithBackupAndWipeMock(fileInfo, encryptionKey, cryptoId, progress);
         }
 
-        public Action<IRuntimeFileInfo, Passphrase, IStatusChecker, IProgressContext> DecryptFilesUniqueWithWipeOfOriginalMock { get; set; }
+        public Action<IRuntimeFolderInfo, Passphrase, IStatusChecker, IProgressContext> DecryptFilesUniqueWithWipeOfOriginalMock { get; set; }
 
-        public override void DecryptFilesInsideFolderUniqueWithWipeOfOriginal(IRuntimeFileInfo fileInfo, Passphrase decryptionKey, IStatusChecker statusChecker, IProgressContext progress)
+        public override void DecryptFilesInsideFolderUniqueWithWipeOfOriginal(IRuntimeFolderInfo fileInfo, Passphrase decryptionKey, IStatusChecker statusChecker, IProgressContext progress)
         {
             DecryptFilesUniqueWithWipeOfOriginalMock(fileInfo, decryptionKey, statusChecker, progress);
         }

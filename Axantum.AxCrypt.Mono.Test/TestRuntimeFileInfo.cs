@@ -84,7 +84,7 @@ namespace Axantum.AxCrypt.Mono.Test
                 Directory.Delete(testTempFolder, true);
             }
             Assert.That(Directory.Exists(testTempFolder), Is.False, "The test folder should not exist now.");
-            IRuntimeFileInfo directoryInfo = new RuntimeFileInfo(testTempFolder);
+            RuntimeFolderInfo directoryInfo = new RuntimeFolderInfo(testTempFolder);
             directoryInfo.CreateFolder();
             Assert.That(Directory.Exists(testTempFolder), Is.True, "The test folder should exist now.");
             if (Directory.Exists(testTempFolder))
@@ -134,17 +134,17 @@ namespace Axantum.AxCrypt.Mono.Test
 
                 string otherTempFileName = runtimeFileInfo.FullName + ".copy";
                 IRuntimeFileInfo otherTempRuntimeFileInfo = new RuntimeFileInfo(otherTempFileName);
-                Assert.That(otherTempRuntimeFileInfo.IsExistingFile, Is.False, "The new temp file should not exist.");
-                Assert.That(runtimeFileInfo.IsExistingFile, Is.True, "The old temp file should exist.");
+                Assert.That(otherTempRuntimeFileInfo.IsAvailable, Is.False, "The new temp file should not exist.");
+                Assert.That(runtimeFileInfo.IsAvailable, Is.True, "The old temp file should exist.");
                 runtimeFileInfo.MoveTo(otherTempRuntimeFileInfo.FullName);
-                Assert.That(otherTempRuntimeFileInfo.IsExistingFile, Is.True, "The new temp file should exist after moving the old here.");
-                Assert.That(runtimeFileInfo.IsExistingFile, Is.True, "The old temp file should exist still because it has changed to refer to the new file.");
+                Assert.That(otherTempRuntimeFileInfo.IsAvailable, Is.True, "The new temp file should exist after moving the old here.");
+                Assert.That(runtimeFileInfo.IsAvailable, Is.True, "The old temp file should exist still because it has changed to refer to the new file.");
             }
             finally
             {
                 runtimeFileInfo.Delete();
             }
-            Assert.That(runtimeFileInfo.IsExistingFile, Is.False, "The file should have been deleted now.");
+            Assert.That(runtimeFileInfo.IsAvailable, Is.False, "The file should have been deleted now.");
 
             IRuntimeFileInfo notEncryptedRuntimeFileInfo = new RuntimeFileInfo("file.txt");
             IRuntimeFileInfo encryptedRuntimeFileInfo = notEncryptedRuntimeFileInfo.CreateEncryptedName();
