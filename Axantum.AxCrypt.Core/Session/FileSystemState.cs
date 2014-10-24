@@ -102,7 +102,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                IEnumerable<WatchedFolder> folders = WatchedFoldersInternal.Where(folder => TypeMap.Resolve.New<IRuntimeFileInfo>(folder.Path).IsAvailable).ToList();
+                IEnumerable<WatchedFolder> folders = WatchedFoldersInternal.Where(folder => TypeMap.Resolve.New<IRuntimeFolderInfo>(folder.Path).IsAvailable).ToList();
                 return folders;
             }
             private set

@@ -179,6 +179,10 @@ namespace Axantum.AxCrypt.Mono
 
         public override void Delete()
         {
+            if (_info.EnumerateDirectories().Any() || _info.EnumerateFiles().Any())
+            {
+                return;
+            }
             _info.Delete();
         }
 
