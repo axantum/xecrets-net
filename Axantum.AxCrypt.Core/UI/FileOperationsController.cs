@@ -171,7 +171,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// return value and status do not conclusive indicate success. Only a failure return
         /// is conclusive.
         /// </remarks>
-        public FileOperationContext EncryptFile(IRuntimeFileInfo fileInfo)
+        public FileOperationContext EncryptFile(IDataStore fileInfo)
         {
             return DoFile(fileInfo, EncryptFilePreparation, EncryptFileOperation);
         }
@@ -181,7 +181,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         /// <param name="sourceFile">The full path to an encrypted file.</param>
         /// <returns>The resulting status of the operation.</returns>
-        public FileOperationContext DecryptFile(IRuntimeFileInfo fileInfo)
+        public FileOperationContext DecryptFile(IDataStore fileInfo)
         {
             return DoFile(fileInfo, DecryptFilePreparation, DecryptFileOperation);
         }
@@ -192,7 +192,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         /// <param name="fileInfo">The full path to an encrypted file.</param>
         /// <returns>A FileOperationStatus indicating the result of the operation.</returns>
-        public FileOperationContext DecryptAndLaunch(IRuntimeFileInfo fileInfo)
+        public FileOperationContext DecryptAndLaunch(IDataStore fileInfo)
         {
             return DoFile(fileInfo, DecryptAndLaunchPreparation, DecryptAndLaunchFileOperation);
         }
@@ -202,7 +202,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         /// <param name="fileInfo">The file to verify.</param>
         /// <returns>FileOperationStatus.Success if  the file is encrypted with a known key.</returns>
-        public FileOperationContext VerifyEncrypted(IRuntimeFileInfo fileInfo)
+        public FileOperationContext VerifyEncrypted(IDataStore fileInfo)
         {
             return DoFile(fileInfo, DecryptAndLaunchPreparation, GetDocumentInfo);
         }
@@ -212,7 +212,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// </summary>
         /// <param name="fileInfo">The full name of the file to wipe</param>
         /// <returns>A FileOperationStatus indicating the result of the operation.</returns>
-        public FileOperationContext WipeFile(IRuntimeFileInfo fileInfo)
+        public FileOperationContext WipeFile(IDataStore fileInfo)
         {
             return DoFile(fileInfo, WipeFilePreparation, WipeFileOperation);
         }
@@ -221,7 +221,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         #region Private Methods
 
-        private bool EncryptFilePreparation(IRuntimeFileInfo sourceFileInfo)
+        private bool EncryptFilePreparation(IDataStore sourceFileInfo)
         {
             if (String.Compare(Resolve.Portable.Path().GetExtension(sourceFileInfo.FullName), OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0)
             {
@@ -235,7 +235,7 @@ namespace Axantum.AxCrypt.Core.UI
                 return false;
             }
 
-            IRuntimeFileInfo destinationFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
+            IDataStore destinationFileInfo = TypeMap.Resolve.New<IDataStore>(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
             _eventArgs.SaveFileFullName = destinationFileInfo.FullName;
             _eventArgs.OpenFileFullName = sourceFileInfo.FullName;
             if (destinationFileInfo.IsAvailable)
@@ -274,7 +274,7 @@ namespace Axantum.AxCrypt.Core.UI
             return true;
         }
 
-        private bool DecryptFilePreparation(IRuntimeFileInfo fileInfo)
+        private bool DecryptFilePreparation(IDataStore fileInfo)
         {
             if (fileInfo.IsLocked)
             {
@@ -287,7 +287,7 @@ namespace Axantum.AxCrypt.Core.UI
                 return false;
             }
 
-            IRuntimeFileInfo destination = TypeMap.Resolve.New<IRuntimeFileInfo>(Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(fileInfo.FullName), _eventArgs.AxCryptDocument.FileName));
+            IDataStore destination = TypeMap.Resolve.New<IDataStore>(Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(fileInfo.FullName), _eventArgs.AxCryptDocument.FileName));
             _eventArgs.SaveFileFullName = destination.FullName;
             if (destination.IsAvailable)
             {
@@ -314,7 +314,7 @@ namespace Axantum.AxCrypt.Core.UI
                 _eventArgs.AxCryptDocument.Dispose();
                 _eventArgs.AxCryptDocument = null;
             }
-            TypeMap.Resolve.New<AxCryptFile>().Wipe(TypeMap.Resolve.New<IRuntimeFileInfo>(_eventArgs.OpenFileFullName), _progress);
+            TypeMap.Resolve.New<AxCryptFile>().Wipe(TypeMap.Resolve.New<IDataStore>(_eventArgs.OpenFileFullName), _progress);
 
             _progress.NotifyLevelFinished();
 
@@ -322,7 +322,7 @@ namespace Axantum.AxCrypt.Core.UI
             return true;
         }
 
-        private bool DecryptAndLaunchPreparation(IRuntimeFileInfo fileInfo)
+        private bool DecryptAndLaunchPreparation(IDataStore fileInfo)
         {
             if (!OpenAxCryptDocument(fileInfo, _eventArgs))
             {
@@ -370,7 +370,7 @@ namespace Axantum.AxCrypt.Core.UI
             return true;
         }
 
-        private bool WipeFilePreparation(IRuntimeFileInfo fileInfo)
+        private bool WipeFilePreparation(IDataStore fileInfo)
         {
             if (fileInfo.IsLocked)
             {
@@ -407,14 +407,14 @@ namespace Axantum.AxCrypt.Core.UI
             }
 
             _progress.NotifyLevelStart();
-            TypeMap.Resolve.New<AxCryptFile>().Wipe(TypeMap.Resolve.New<IRuntimeFileInfo>(_eventArgs.SaveFileFullName), _progress);
+            TypeMap.Resolve.New<AxCryptFile>().Wipe(TypeMap.Resolve.New<IDataStore>(_eventArgs.SaveFileFullName), _progress);
             _progress.NotifyLevelFinished();
 
             _eventArgs.Status = new FileOperationContext(String.Empty, FileOperationStatus.Success);
             return true;
         }
 
-        private bool OpenAxCryptDocument(IRuntimeFileInfo sourceFileInfo, FileOperationEventArgs e)
+        private bool OpenAxCryptDocument(IDataStore sourceFileInfo, FileOperationEventArgs e)
         {
             e.AxCryptDocument = null;
             try
@@ -468,7 +468,7 @@ namespace Axantum.AxCrypt.Core.UI
             return true;
         }
 
-        private static bool TryFindDecryptionKey(IRuntimeFileInfo fileInfo, FileOperationEventArgs e)
+        private static bool TryFindDecryptionKey(IDataStore fileInfo, FileOperationEventArgs e)
         {
             Guid cryptoId;
             Passphrase passphrase = fileInfo.TryFindPassphrase(out cryptoId);
@@ -482,7 +482,7 @@ namespace Axantum.AxCrypt.Core.UI
             return true;
         }
 
-        private FileOperationContext DoFile(IRuntimeFileInfo fileInfo, Func<IRuntimeFileInfo, bool> preparation, Func<bool> operation)
+        private FileOperationContext DoFile(IDataStore fileInfo, Func<IDataStore, bool> preparation, Func<bool> operation)
         {
             try
             {
@@ -500,7 +500,7 @@ namespace Axantum.AxCrypt.Core.UI
             return _eventArgs.Status;
         }
 
-        private bool RunOnUIThread(IRuntimeFileInfo fileInfo, Func<IRuntimeFileInfo, bool> preparation)
+        private bool RunOnUIThread(IDataStore fileInfo, Func<IDataStore, bool> preparation)
         {
             bool ok = false;
             _progress.EnterSingleThread();

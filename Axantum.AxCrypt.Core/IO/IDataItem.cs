@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.IO
 {
-    public interface IRuntimeItem
+    public interface IDataItem
     {
         /// <summary>
         /// Gets a value indicating whether this instance is available in the underlying file system or otherwise.

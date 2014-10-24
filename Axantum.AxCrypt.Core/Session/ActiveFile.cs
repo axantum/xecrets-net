@@ -71,7 +71,7 @@ namespace Axantum.AxCrypt.Core.Session
             Key = key;
         }
 
-        public ActiveFile(ActiveFile activeFile, IRuntimeFileInfo encryptedFileInfo)
+        public ActiveFile(ActiveFile activeFile, IDataStore encryptedFileInfo)
         {
             if (activeFile == null)
             {
@@ -108,7 +108,7 @@ namespace Axantum.AxCrypt.Core.Session
             Status = status;
         }
 
-        public ActiveFile(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, Passphrase key, ActiveFileStatus status, Guid cryptoId)
+        public ActiveFile(IDataStore encryptedFileInfo, IDataStore decryptedFileInfo, Passphrase key, ActiveFileStatus status, Guid cryptoId)
         {
             if (encryptedFileInfo == null)
             {
@@ -130,23 +130,23 @@ namespace Axantum.AxCrypt.Core.Session
             Initialize(other.EncryptedFileInfo, other.DecryptedFileInfo, other.Key, other.Thumbprint, other.Status, other.Properties);
         }
 
-        private void Initialize(IRuntimeFileInfo encryptedFileInfo, IRuntimeFileInfo decryptedFileInfo, Passphrase key, SymmetricKeyThumbprint thumbprint, ActiveFileStatus status, ActiveFileProperties properties)
+        private void Initialize(IDataStore encryptedFileInfo, IDataStore decryptedFileInfo, Passphrase key, SymmetricKeyThumbprint thumbprint, ActiveFileStatus status, ActiveFileProperties properties)
         {
-            EncryptedFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(encryptedFileInfo.FullName);
-            DecryptedFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(decryptedFileInfo.FullName);
+            EncryptedFileInfo = TypeMap.Resolve.New<IDataStore>(encryptedFileInfo.FullName);
+            DecryptedFileInfo = TypeMap.Resolve.New<IDataStore>(decryptedFileInfo.FullName);
             Key = key;
             Thumbprint = thumbprint;
             Status = status;
             Properties = new ActiveFileProperties(OS.Current.UtcNow, properties.LastEncryptionWriteTimeUtc, properties.CryptoId);
         }
 
-        public IRuntimeFileInfo DecryptedFileInfo
+        public IDataStore DecryptedFileInfo
         {
             get;
             private set;
         }
 
-        public IRuntimeFileInfo EncryptedFileInfo
+        public IDataStore EncryptedFileInfo
         {
             get;
             private set;
@@ -214,7 +214,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
             set
             {
-                EncryptedFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(value);
+                EncryptedFileInfo = TypeMap.Resolve.New<IDataStore>(value);
             }
         }
 
@@ -227,7 +227,7 @@ namespace Axantum.AxCrypt.Core.Session
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context)
         {
-            DecryptedFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Resolve.Portable.Path().Combine(_decryptedFolder, _decryptedName));
+            DecryptedFileInfo = TypeMap.Resolve.New<IDataStore>(Resolve.Portable.Path().Combine(_decryptedFolder, _decryptedName));
             if (Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
             {
                 Status |= ActiveFileStatus.NoProcessKnown;

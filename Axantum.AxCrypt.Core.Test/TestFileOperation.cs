@@ -67,10 +67,10 @@ namespace Axantum.AxCrypt.Core.Test
         {
             SetupAssembly.AssemblySetup();
 
-            FakeRuntimeFileInfo.AddFile(_testTextPath, FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.ExpandableMemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
-            FakeRuntimeFileInfo.AddFile(_davidCopperfieldTxtPath, FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate5Utc, FakeRuntimeFileInfo.TestDate6Utc, FakeRuntimeFileInfo.ExpandableMemoryStream(Encoding.GetEncoding(1252).GetBytes(Resources.david_copperfield)));
-            FakeRuntimeFileInfo.AddFile(_uncompressedAxxPath, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.uncompressable_zip));
-            FakeRuntimeFileInfo.AddFile(_helloWorldAxxPath, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
+            FakeDataStore.AddFile(_testTextPath, FakeDataStore.TestDate1Utc, FakeDataStore.TestDate2Utc, FakeDataStore.TestDate1Utc, FakeDataStore.ExpandableMemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
+            FakeDataStore.AddFile(_davidCopperfieldTxtPath, FakeDataStore.TestDate4Utc, FakeDataStore.TestDate5Utc, FakeDataStore.TestDate6Utc, FakeDataStore.ExpandableMemoryStream(Encoding.GetEncoding(1252).GetBytes(Resources.david_copperfield)));
+            FakeDataStore.AddFile(_uncompressedAxxPath, FakeDataStore.ExpandableMemoryStream(Resources.uncompressable_zip));
+            FakeDataStore.AddFile(_helloWorldAxxPath, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
         }
 
         [TearDown]
@@ -128,7 +128,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
             using (IAxCryptDocument document = new V1AxCryptDocument())
             {
-                using (Stream stream = TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath).OpenRead())
+                using (Stream stream = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath).OpenRead())
                 {
                     document.Load(new Passphrase("a"), V1Aes128CryptoFactory.CryptoId, stream);
                     status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, new Passphrase("a"), document, new ProgressContext());
@@ -156,7 +156,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
             using (IAxCryptDocument document = new V1AxCryptDocument())
             {
-                using (Stream stream = TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath).OpenRead())
+                using (Stream stream = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath).OpenRead())
                 {
                     document.Load(new Passphrase("a"), V1Aes128CryptoFactory.CryptoId, stream);
                     status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, new Passphrase("a"), document, new ProgressContext());
@@ -203,7 +203,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
 
-            IRuntimeFileInfo fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath);
+            IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
             ActiveFile destinationActiveFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(fileInfo.FullName);
             Assert.That(destinationActiveFile.DecryptedFileInfo.LastWriteTimeUtc, Is.Not.EqualTo(utcNow), "The decryption should restore the time stamp of the original file, and this is not now.");
             destinationActiveFile.DecryptedFileInfo.SetFileTimes(utcNow, utcNow, utcNow);
@@ -225,7 +225,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
 
-            IRuntimeFileInfo fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath);
+            IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
             ActiveFile destinationActiveFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(fileInfo.FullName);
             Assert.That(destinationActiveFile.DecryptedFileInfo.LastWriteTimeUtc, Is.Not.EqualTo(utcNow), "The decryption should restore the time stamp of the original file, and this is not now.");
             destinationActiveFile.DecryptedFileInfo.SetFileTimes(utcNow, utcNow, utcNow);
@@ -348,7 +348,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
 
-            IRuntimeFileInfo fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath);
+            IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
             ActiveFile destinationActiveFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(fileInfo.FullName);
             destinationActiveFile.DecryptedFileInfo.Delete();
             destinationActiveFile = new ActiveFile(destinationActiveFile, ActiveFileStatus.NotDecrypted);

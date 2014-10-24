@@ -42,7 +42,7 @@ namespace Axantum.AxCrypt.Core.IO
             _fullPath = fullPath;
         }
 
-        public static FileLock Lock(IRuntimeFileInfo fileInfo)
+        public static FileLock Lock(IDataStore fileInfo)
         {
             if (fileInfo == null)
             {
@@ -63,9 +63,9 @@ namespace Axantum.AxCrypt.Core.IO
             }
         }
 
-        public static bool IsLocked(params IRuntimeFileInfo[] fileInfoParameters)
+        public static bool IsLocked(params IDataStore[] fileInfoParameters)
         {
-            foreach (IRuntimeFileInfo fileInfo in fileInfoParameters)
+            foreach (IDataStore fileInfo in fileInfoParameters)
             {
                 if (fileInfo == null)
                 {

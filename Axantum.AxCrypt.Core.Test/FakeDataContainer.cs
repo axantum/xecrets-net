@@ -35,13 +35,13 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Test
 {
-    internal class FakeRuntimeFolderInfo : IRuntimeFolderInfo
+    internal class FakeDataContainer : IDataContainer
     {
-        private FakeRuntimeFileInfo _fileInfo;
+        private FakeDataStore _fileInfo;
 
-        public FakeRuntimeFolderInfo(string path)
+        public FakeDataContainer(string path)
         {
-            _fileInfo = new FakeRuntimeFileInfo(path.NormalizeFolderPath());
+            _fileInfo = new FakeDataStore(path.NormalizeFolderPath());
         }
 
         /// <summary>
@@ -51,10 +51,10 @@ namespace Axantum.AxCrypt.Core.Test
         /// <returns>
         /// A new instance representing the combined path.
         /// </returns>
-        public IRuntimeFileInfo FileItemInfo(string path)
+        public IDataStore FileItemInfo(string path)
         {
             path = path.NormalizeFilePath();
-            return new FakeRuntimeFileInfo(Path.Combine(FullName, path));
+            return new FakeDataStore(Path.Combine(FullName, path));
         }
 
         /// <summary>
@@ -64,10 +64,10 @@ namespace Axantum.AxCrypt.Core.Test
         /// <returns>
         /// A new instance representing the combined path.
         /// </returns>
-        public IRuntimeFolderInfo FolderItemInfo(string path)
+        public IDataContainer FolderItemInfo(string path)
         {
             path = path.NormalizeFilePath();
-            return new FakeRuntimeFolderInfo(Path.Combine(FullName, path));
+            return new FakeDataContainer(Path.Combine(FullName, path));
         }
 
         public bool IsFolder
@@ -88,17 +88,17 @@ namespace Axantum.AxCrypt.Core.Test
 
         public void CreateFolder(string item)
         {
-            FakeRuntimeFileInfo.AddFolder(Resolve.Portable.Path().Combine(_fileInfo.FullName, item));
+            FakeDataStore.AddFolder(Resolve.Portable.Path().Combine(_fileInfo.FullName, item));
         }
 
         public void RemoveFolder(string item)
         {
-            FakeRuntimeFileInfo.RemoveFileOrFolder(Resolve.Portable.Path().Combine(_fileInfo.FullName, item));
+            FakeDataStore.RemoveFileOrFolder(Resolve.Portable.Path().Combine(_fileInfo.FullName, item));
         }
 
-        public IRuntimeFileInfo CreateNewFile(string item)
+        public IDataStore CreateNewFile(string item)
         {
-            FakeRuntimeFileInfo frfi = new FakeRuntimeFileInfo(Resolve.Portable.Path().Combine(_fileInfo.FullName, item));
+            FakeDataStore frfi = new FakeDataStore(Resolve.Portable.Path().Combine(_fileInfo.FullName, item));
             frfi.CreateNewFile();
             return frfi;
         }
@@ -108,7 +108,7 @@ namespace Axantum.AxCrypt.Core.Test
             _fileInfo.CreateFolder();
         }
 
-        public IEnumerable<IRuntimeFileInfo> Files
+        public IEnumerable<IDataStore> Files
         {
             get { return _fileInfo.Files; }
         }

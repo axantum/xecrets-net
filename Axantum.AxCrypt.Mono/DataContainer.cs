@@ -38,16 +38,16 @@ using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Mono
 {
-    public class RuntimeFolderInfo : RuntimeFileItemBase, IRuntimeFolderInfo
+    public class DataContainer : DataItem, IDataContainer
     {
         private DirectoryInfo _info;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RuntimeFileInfo"/> class.
+        /// Initializes a new instance of the <see cref="DataStore"/> class.
         /// </summary>
         /// <param name="fullName">The full path and name of the file or folder.</param>
         /// <exception cref="System.ArgumentNullException">fullName</exception>
-        public RuntimeFolderInfo(string fullName)
+        public DataContainer(string fullName)
         {
             _info = new DirectoryInfo(fullName.NormalizeFolderPath());
         }
@@ -60,9 +60,9 @@ namespace Axantum.AxCrypt.Mono
         /// A new instance representing the combined path.
         /// </returns>
         /// <exception cref="System.NotImplementedException"></exception>
-        public IRuntimeFileInfo FileItemInfo(string item)
+        public IDataStore FileItemInfo(string item)
         {
-            return new RuntimeFileInfo(Path.Combine(FullName, item));
+            return new DataStore(Path.Combine(FullName, item));
         }
 
         /// <summary>
@@ -73,9 +73,9 @@ namespace Axantum.AxCrypt.Mono
         /// A new instance representing the file item in the folder or container.
         /// </returns>
         /// <exception cref="System.NotImplementedException"></exception>
-        public IRuntimeFolderInfo FolderItemInfo(string item)
+        public IDataContainer FolderItemInfo(string item)
         {
-            return new RuntimeFolderInfo(Path.Combine(FullName, item));
+            return new DataContainer(Path.Combine(FullName, item));
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Axantum.AxCrypt.Mono
         /// </summary>
         public void RemoveFolder(string item)
         {
-            IRuntimeFolderInfo folder = FolderItemInfo(item);
+            IDataContainer folder = FolderItemInfo(item);
             if (!folder.IsAvailable)
             {
                 return;
@@ -113,14 +113,14 @@ namespace Axantum.AxCrypt.Mono
         /// <summary>
         /// Creates a file in the underlying system. If it already exists, an AxCryptException is thrown with status FileExists.
         /// </summary>
-        public IRuntimeFileInfo CreateNewFile(string item)
+        public IDataStore CreateNewFile(string item)
         {
             FileInfo file = new FileInfo(Path.Combine(_info.FullName, item));
             try
             {
                 using (FileStream stream = new FileStream(file.FullName, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.None))
                 {
-                    return new RuntimeFileInfo(file.FullName);
+                    return new DataStore(file.FullName);
                 }
             }
             catch (IOException)
@@ -149,16 +149,16 @@ namespace Axantum.AxCrypt.Mono
         /// Enumerate all files (not folders) in this folder, if it's a folder.
         /// </summary>
         /// <exception cref="System.NotImplementedException"></exception>
-        public IEnumerable<IRuntimeFileInfo> Files
+        public IEnumerable<IDataStore> Files
         {
             get
             {
                 if (!IsAvailable)
                 {
-                    return new IRuntimeFileInfo[0];
+                    return new IDataStore[0];
                 }
                 DirectoryInfo di = new DirectoryInfo(_info.FullName);
-                return di.GetFiles().Select((FileInfo fi) => { return (IRuntimeFileInfo)new RuntimeFileInfo(fi.FullName); });
+                return di.GetFiles().Select((FileInfo fi) => { return (IDataStore)new DataStore(fi.FullName); });
             }
         }
 

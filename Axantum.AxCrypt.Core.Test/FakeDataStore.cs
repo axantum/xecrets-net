@@ -36,7 +36,7 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
-    internal class FakeRuntimeFileInfo : IRuntimeFileInfo
+    internal class FakeDataStore : IDataStore
     {
         private class FakeFileInfo
         {
@@ -115,7 +115,7 @@ namespace Axantum.AxCrypt.Core.Test
             _fakeFileSystem.Clear();
         }
 
-        public FakeRuntimeFileInfo(string fullName)
+        public FakeDataStore(string fullName)
         {
             fullName = fullName.NormalizeFilePath();
             DateTime utcNow = OS.Current.UtcNow;
@@ -377,13 +377,13 @@ namespace Axantum.AxCrypt.Core.Test
             AddFile(FullName, new MemoryStream());
         }
 
-        public IEnumerable<IRuntimeFileInfo> Files
+        public IEnumerable<IDataStore> Files
         {
             get
             {
                 if (!IsAvailable)
                 {
-                    return new IRuntimeFileInfo[0];
+                    return new IDataStore[0];
                 }
 
                 List<FakeFileInfo> files = new List<FakeFileInfo>();
@@ -399,7 +399,7 @@ namespace Axantum.AxCrypt.Core.Test
                     }
                     files.Add(kvp.Value);
                 }
-                return files.Select((FakeFileInfo fileInfo) => { return TypeMap.Resolve.New<IRuntimeFileInfo>(fileInfo.FullName); });
+                return files.Select((FakeFileInfo fileInfo) => { return TypeMap.Resolve.New<IDataStore>(fileInfo.FullName); });
             }
         }
 
@@ -417,9 +417,9 @@ namespace Axantum.AxCrypt.Core.Test
             RemoveFileOrFolder(FullName);
         }
 
-        public IRuntimeFolderInfo Container
+        public IDataContainer Container
         {
-            get { return new FakeRuntimeFolderInfo(Resolve.Portable.Path().GetDirectoryName(_file.FullName)); }
+            get { return new FakeDataContainer(Resolve.Portable.Path().GetDirectoryName(_file.FullName)); }
         }
 
         public virtual bool IsFile

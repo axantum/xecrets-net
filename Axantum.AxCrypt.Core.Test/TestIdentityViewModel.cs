@@ -173,7 +173,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Passphrase key = new Passphrase("p");
 
-            ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(@"C:\Folder\File1-txt.axx"), TypeMap.Resolve.New<IRuntimeFileInfo>(@"C:\Folder\File1.txt"), key, ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(@"C:\Folder\File1-txt.axx"), TypeMap.Resolve.New<IDataStore>(@"C:\Folder\File1.txt"), key, ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             Resolve.FileSystemState.Add(activeFile);
 
             PassphraseIdentity id = null;
@@ -196,7 +196,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Passphrase key = new Passphrase("p");
 
-            ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(@"C:\Folder\File1-txt.axx"), TypeMap.Resolve.New<IRuntimeFileInfo>(@"C:\Folder\File1.txt"), key, ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(@"C:\Folder\File1-txt.axx"), TypeMap.Resolve.New<IDataStore>(@"C:\Folder\File1.txt"), key, ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             Resolve.FileSystemState.Add(activeFile);
 
             PassphraseIdentity id = new PassphraseIdentity(key);

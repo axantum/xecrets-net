@@ -111,7 +111,7 @@ namespace Axantum.AxCrypt.Core.Test
         [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
         public static void TestBadKey()
         {
-            using (Stream testStream = FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
+            using (Stream testStream = FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
             {
                 using (AxCryptReader reader = new V1AxCryptReader(testStream))
                 {
@@ -133,7 +133,7 @@ namespace Axantum.AxCrypt.Core.Test
             DateTime creationTimeUtc = new DateTime(2012, 1, 1, 1, 2, 3, DateTimeKind.Utc);
             DateTime lastAccessTimeUtc = creationTimeUtc + new TimeSpan(1, 0, 0);
             DateTime lastWriteTimeUtc = creationTimeUtc + new TimeSpan(2, 0, 0); ;
-            using (Stream inputStream = FakeRuntimeFileInfo.ExpandableMemoryStream(Encoding.UTF8.GetBytes("AxCrypt is Great!")))
+            using (Stream inputStream = FakeDataStore.ExpandableMemoryStream(Encoding.UTF8.GetBytes("AxCrypt is Great!")))
             {
                 using (Stream outputStream = new MemoryStream())
                 {

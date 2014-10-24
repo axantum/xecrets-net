@@ -57,7 +57,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => TypeMap.Resolve.New<IRuntimeFileInfo>(f))); });
+            BindPropertyChanged("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => TypeMap.Resolve.New<IDataStore>(f))); });
         }
 
         private void SubscribeToModelEvents()
@@ -65,14 +65,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             Resolve.SessionNotify.Notification += HandleSessionChanged;
         }
 
-        private static bool DetermineDroppableAsWatchedFolder(IEnumerable<IRuntimeFileInfo> files)
+        private static bool DetermineDroppableAsWatchedFolder(IEnumerable<IDataStore> files)
         {
             if (files.Count() != 1)
             {
                 return false;
             }
 
-            IRuntimeFileInfo fileInfo = files.First();
+            IDataStore fileInfo = files.First();
             if (!fileInfo.IsAvailable)
             {
                 return false;
@@ -135,7 +135,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             foreach (string watchedFolderPath in folders)
             {
-                _fileSystemState.RemoveWatchedFolder(TypeMap.Resolve.New<IRuntimeFolderInfo>(watchedFolderPath));
+                _fileSystemState.RemoveWatchedFolder(TypeMap.Resolve.New<IDataContainer>(watchedFolderPath));
             }
             _fileSystemState.Save();
         }

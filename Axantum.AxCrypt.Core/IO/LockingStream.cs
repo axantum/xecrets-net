@@ -39,7 +39,7 @@ namespace Axantum.AxCrypt.Core.IO
 
         private FileLock _fileLock;
 
-        public LockingStream(IRuntimeFileInfo fileInfo, Stream stream)
+        public LockingStream(IDataStore fileInfo, Stream stream)
         {
             _stream = stream;
             _fileLock = FileLock.Lock(fileInfo);

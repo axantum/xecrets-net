@@ -40,9 +40,9 @@ namespace Axantum.AxCrypt.Core.UI
     /// </remarks>
     public class KnownFolder
     {
-        public IRuntimeFolderInfo Folder { get; private set; }
+        public IDataContainer Folder { get; private set; }
 
-        public IRuntimeFolderInfo My { get; private set; }
+        public IDataContainer My { get; private set; }
 
         public Uri ProviderUrl { get; private set; }
 
@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public bool Enabled { get; private set; }
 
-        public KnownFolder(IRuntimeFolderInfo knownFolderInfo, string myFolderName, object image, Uri providerUrl)
+        public KnownFolder(IDataContainer knownFolderInfo, string myFolderName, object image, Uri providerUrl)
         {
             if (knownFolderInfo == null)
             {

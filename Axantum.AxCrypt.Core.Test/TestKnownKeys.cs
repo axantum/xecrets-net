@@ -191,7 +191,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestWatchedFoldersNotLoggedOn()
         {
             KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
-            FakeRuntimeFileInfo.AddFolder(@"C:\WatchedFolder\");
+            FakeDataStore.AddFolder(@"C:\WatchedFolder\");
             Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder\"));
             IEnumerable<WatchedFolder> watchedFolders = knownKeys.LoggedOnWatchedFolders;
 
@@ -204,8 +204,8 @@ namespace Axantum.AxCrypt.Core.Test
             Passphrase key1 = new Passphrase("a");
             Passphrase key2 = new Passphrase("b");
             KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
-            FakeRuntimeFileInfo.AddFolder(@"C:\WatchedFolder1\");
-            FakeRuntimeFileInfo.AddFolder(@"C:\WatchedFolder2\");
+            FakeDataStore.AddFolder(@"C:\WatchedFolder1\");
+            FakeDataStore.AddFolder(@"C:\WatchedFolder2\");
             Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder1\", key1.Thumbprint));
             Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(@"C:\WatchedFolder2\", key2.Thumbprint));
             knownKeys.DefaultEncryptionKey = key2;

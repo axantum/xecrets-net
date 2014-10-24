@@ -40,16 +40,16 @@ namespace Axantum.AxCrypt.Mono
     /// Provides properties and instance methods for the operations with files, and aids in the creation of Stream objects. The underlying file must not
     /// necessarily exist.
     /// </summary>
-    public class RuntimeFileInfo : RuntimeFileItemBase, IRuntimeFileInfo
+    public class DataStore : DataItem, IDataStore
     {
         private FileInfo _file;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RuntimeFileInfo"/> class.
+        /// Initializes a new instance of the <see cref="DataStore"/> class.
         /// </summary>
         /// <param name="path">The full path and name of the file or folder.</param>
         /// <exception cref="System.ArgumentNullException">fullName</exception>
-        public RuntimeFileInfo(string path)
+        public DataStore(string path)
         {
             if (path == null)
             {
@@ -59,7 +59,7 @@ namespace Axantum.AxCrypt.Mono
             _file = new FileInfo(path);
         }
 
-        private RuntimeFileInfo(FileInfo fileInfo)
+        private DataStore(FileInfo fileInfo)
         {
             _file = fileInfo;
         }
@@ -214,7 +214,7 @@ namespace Axantum.AxCrypt.Mono
         /// <param name="destinationFileName">Name of the destination file.</param>
         public void MoveTo(string destinationFileName)
         {
-            IRuntimeFileInfo destination = TypeMap.Resolve.New<IRuntimeFileInfo>(destinationFileName);
+            IDataStore destination = TypeMap.Resolve.New<IDataStore>(destinationFileName);
             if (destination.IsAvailable)
             {
                 try
@@ -255,11 +255,11 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        public IRuntimeFolderInfo Container
+        public IDataContainer Container
         {
             get
             {
-                return new RuntimeFolderInfo(Path.GetDirectoryName(Location));
+                return new DataContainer(Path.GetDirectoryName(Location));
             }
         }
 

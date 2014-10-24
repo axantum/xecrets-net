@@ -56,16 +56,16 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileLockInvalidArguments()
         {
-            IRuntimeFileInfo nullInfo = null;
+            IDataStore nullInfo = null;
             Assert.Throws<ArgumentNullException>(() => { FileLock.Lock(nullInfo); });
             Assert.Throws<ArgumentNullException>(() => { FileLock.IsLocked(nullInfo); });
-            Assert.Throws<ArgumentNullException>(() => { FileLock.IsLocked(TypeMap.Resolve.New<IRuntimeFileInfo>(_fileExtPath), nullInfo); });
+            Assert.Throws<ArgumentNullException>(() => { FileLock.IsLocked(TypeMap.Resolve.New<IDataStore>(_fileExtPath), nullInfo); });
         }
 
         [Test]
         public static void TestFileLockMethods()
         {
-            IRuntimeFileInfo fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_fileExtPath);
+            IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(_fileExtPath);
 
             Assert.That(FileLock.IsLocked(fileInfo), Is.False, "There should be no lock for this file yet.");
             using (FileLock lock1 = FileLock.Lock(fileInfo))
@@ -78,7 +78,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileLockWhenLocked()
         {
-            IRuntimeFileInfo fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_fileExtPath);
+            IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(_fileExtPath);
             Assert.That(FileLock.IsLocked(fileInfo), Is.False, "There should be no lock for this file to start with.");
             using (FileLock lock1 = FileLock.Lock(fileInfo))
             {
@@ -96,8 +96,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileLockCaseSensitivity()
         {
-            IRuntimeFileInfo fileInfo1 = TypeMap.Resolve.New<IRuntimeFileInfo>(_fileExtPath);
-            IRuntimeFileInfo fileInfo2 = TypeMap.Resolve.New<IRuntimeFileInfo>(_fileExtPath.ToUpper(CultureInfo.InvariantCulture));
+            IDataStore fileInfo1 = TypeMap.Resolve.New<IDataStore>(_fileExtPath);
+            IDataStore fileInfo2 = TypeMap.Resolve.New<IDataStore>(_fileExtPath.ToUpper(CultureInfo.InvariantCulture));
 
             Assert.That(FileLock.IsLocked(fileInfo1), Is.False, "There should be no lock for this file yet.");
             Assert.That(FileLock.IsLocked(fileInfo2), Is.False, "There should be no lock for this file yet.");
@@ -114,7 +114,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Assert.DoesNotThrow(() =>
             {
-                using (FileLock aLock = FileLock.Lock(TypeMap.Resolve.New<IRuntimeFileInfo>(_fileExtPath)))
+                using (FileLock aLock = FileLock.Lock(TypeMap.Resolve.New<IDataStore>(_fileExtPath)))
                 {
                     aLock.Dispose();
                 }

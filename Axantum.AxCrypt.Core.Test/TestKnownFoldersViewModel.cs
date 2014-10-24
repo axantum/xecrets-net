@@ -70,12 +70,12 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(0));
 
-            IRuntimeFolderInfo betterCloudInfo = TypeMap.Resolve.New<IRuntimeFolderInfo>(@"C:\BetterCloud");
-            IRuntimeFolderInfo fasterCloudInfo = TypeMap.Resolve.New<IRuntimeFolderInfo>(@"C:\FasterCloud");
+            IDataContainer betterCloudInfo = TypeMap.Resolve.New<IDataContainer>(@"C:\BetterCloud");
+            IDataContainer fasterCloudInfo = TypeMap.Resolve.New<IDataContainer>(@"C:\FasterCloud");
             KnownFolder folder1 = new KnownFolder(betterCloudInfo, @"My AxCrypt", new Bitmap(10, 10), null);
             KnownFolder folder2 = new KnownFolder(fasterCloudInfo, @"My AxCrypt", new Bitmap(10, 10), null);
-            FakeRuntimeFileInfo.AddFolder(folder1.My.FullName);
-            FakeRuntimeFileInfo.AddFolder(folder2.My.FullName);
+            FakeDataStore.AddFolder(folder1.My.FullName);
+            FakeDataStore.AddFolder(folder2.My.FullName);
 
             vm.KnownFolders = new KnownFolder[] { folder1, folder2 };
             Assert.That(vm.KnownFolders.Count(), Is.EqualTo(2));
@@ -96,12 +96,12 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestAlreadyKnownFoldersAndLoggingOn()
         {
-            IRuntimeFolderInfo betterCloudInfo = TypeMap.Resolve.New<IRuntimeFolderInfo>(@"C:\BetterCloud");
-            IRuntimeFolderInfo fasterCloudInfo = TypeMap.Resolve.New<IRuntimeFolderInfo>(@"C:\FasterCloud");
+            IDataContainer betterCloudInfo = TypeMap.Resolve.New<IDataContainer>(@"C:\BetterCloud");
+            IDataContainer fasterCloudInfo = TypeMap.Resolve.New<IDataContainer>(@"C:\FasterCloud");
             KnownFolder folder1 = new KnownFolder(betterCloudInfo, @"My AxCrypt", new Bitmap(10, 10), null);
             KnownFolder folder2 = new KnownFolder(fasterCloudInfo, @"My AxCrypt", new Bitmap(10, 10), null);
-            FakeRuntimeFileInfo.AddFolder(folder1.My.FullName);
-            FakeRuntimeFileInfo.AddFolder(folder2.My.FullName);
+            FakeDataStore.AddFolder(folder1.My.FullName);
+            FakeDataStore.AddFolder(folder2.My.FullName);
 
             Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(folder1.My.FullName, new Passphrase("PassPhrase").Thumbprint));
             Resolve.FileSystemState.AddWatchedFolder(new WatchedFolder(folder2.My.FullName, new Passphrase("aaa").Thumbprint));
@@ -125,12 +125,12 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileWasCreatedWhereAKnownFolderWasExpected()
         {
-            IRuntimeFolderInfo betterCloudInfo = TypeMap.Resolve.New<IRuntimeFolderInfo>(@"C:\BetterCloud");
-            IRuntimeFolderInfo fasterCloudInfo = TypeMap.Resolve.New<IRuntimeFolderInfo>(@"C:\FasterCloud");
+            IDataContainer betterCloudInfo = TypeMap.Resolve.New<IDataContainer>(@"C:\BetterCloud");
+            IDataContainer fasterCloudInfo = TypeMap.Resolve.New<IDataContainer>(@"C:\FasterCloud");
             KnownFolder folder1 = new KnownFolder(betterCloudInfo, @"My AxCrypt", new Bitmap(10, 10), null);
             KnownFolder folder2 = new KnownFolder(fasterCloudInfo, @"My AxCrypt", new Bitmap(10, 10), null);
-            FakeRuntimeFileInfo.AddFile(@"C:\BetterCloud\My AxCrypt", Stream.Null);
-            FakeRuntimeFileInfo.AddFolder(folder2.My.FullName);
+            FakeDataStore.AddFile(@"C:\BetterCloud\My AxCrypt", Stream.Null);
+            FakeDataStore.AddFolder(folder2.My.FullName);
 
             KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
             KnownFoldersViewModel vm = new KnownFoldersViewModel(Resolve.FileSystemState, Resolve.SessionNotify, knownKeys);

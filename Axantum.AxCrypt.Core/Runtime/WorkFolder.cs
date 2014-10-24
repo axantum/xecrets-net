@@ -35,10 +35,10 @@ namespace Axantum.AxCrypt.Core.Runtime
     {
         public WorkFolder(string path)
         {
-            FileInfo = TypeMap.Resolve.New<IRuntimeFolderInfo>(path);
+            FileInfo = TypeMap.Resolve.New<IDataContainer>(path);
             FileInfo.CreateFolder();
         }
 
-        public IRuntimeFolderInfo FileInfo { get; private set; }
+        public IDataContainer FileInfo { get; private set; }
     }
 }

@@ -145,7 +145,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestValidateWrongPassphraseWithRealFile()
         {
-            FakeRuntimeFileInfo.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
+            FakeDataStore.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
             NewPassphraseViewModel npvm = new NewPassphraseViewModel(String.Empty, @"C:\My Folder\MyFile-txt.axx");
             npvm.Passphrase = "b";
             npvm.Verification = "b";

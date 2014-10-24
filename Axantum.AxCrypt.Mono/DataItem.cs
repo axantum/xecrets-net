@@ -1,16 +1,22 @@
 ﻿using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Mono
 {
-    public abstract class RuntimeFileItemBase
+    public abstract class DataItem : IDataItem
     {
-        public RuntimeFileItemBase()
+        public static IDataItem Create(string location)
         {
+            if (File.GetAttributes(location).HasFlag(FileAttributes.Directory))
+            {
+                return new DataContainer(location);
+            }
+            return new DataStore(location);
         }
 
         protected virtual string Location { get; set; }

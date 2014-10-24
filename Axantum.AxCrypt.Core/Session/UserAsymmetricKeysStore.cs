@@ -20,7 +20,7 @@ namespace Axantum.AxCrypt.Core.Session
     {
         private class KeysStoreFile
         {
-            public KeysStoreFile(UserAsymmetricKeys userKeys, string id, IRuntimeFileInfo file)
+            public KeysStoreFile(UserAsymmetricKeys userKeys, string id, IDataStore file)
             {
                 UserKeys = userKeys;
                 Id = id;
@@ -31,20 +31,20 @@ namespace Axantum.AxCrypt.Core.Session
 
             public string Id { get; private set; }
 
-            public IRuntimeFileInfo File { get; private set; }
+            public IDataStore File { get; private set; }
         }
 
         private static Regex _filePattern = new Regex(@"^Keys-([\d]+)-txt\.axx$");
 
         private const string _fileFormat = "Keys-{0}.txt";
 
-        private IRuntimeFolderInfo _folderPath;
+        private IDataContainer _folderPath;
 
         private KnownKeys _knownKeys;
 
         private KeysStoreFile _keysStoreFile;
 
-        public UserAsymmetricKeysStore(IRuntimeFolderInfo folderPath, KnownKeys knownKeys)
+        public UserAsymmetricKeysStore(IDataContainer folderPath, KnownKeys knownKeys)
         {
             _folderPath = folderPath;
             _knownKeys = knownKeys;
@@ -72,7 +72,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             UserAsymmetricKeys userKeys = new UserAsymmetricKeys(userEmail, Resolve.UserSettings.AsymmetricKeyBits);
             string id = UniqueFilePart();
-            IRuntimeFileInfo file = TypeMap.Resolve.New<IRuntimeFileInfo>(Resolve.Portable.Path().Combine(_folderPath.FullName, _fileFormat.InvariantFormat(id)).CreateEncryptedName());
+            IDataStore file = TypeMap.Resolve.New<IDataStore>(Resolve.Portable.Path().Combine(_folderPath.FullName, _fileFormat.InvariantFormat(id)).CreateEncryptedName());
 
             _keysStoreFile = new KeysStoreFile(userKeys, id, file);
 
@@ -81,7 +81,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private KeysStoreFile TryLoadKeyStoreFile(EmailAddress userEmail, Passphrase passphrase)
         {
-            foreach (IRuntimeFileInfo file in AsymmetricKeyFiles())
+            foreach (IDataStore file in AsymmetricKeyFiles())
             {
                 UserAsymmetricKeys keys = TryLoadKeys(file, passphrase);
                 if (keys == null)
@@ -97,7 +97,7 @@ namespace Axantum.AxCrypt.Core.Session
             return null;
         }
 
-        private IEnumerable<IRuntimeFileInfo> AsymmetricKeyFiles()
+        private IEnumerable<IDataStore> AsymmetricKeyFiles()
         {
             return _folderPath.Files.Where(f => IdFromFileName(f.Name).Length > 0);
         }
@@ -167,7 +167,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private UserAsymmetricKeys TryLoadKeys(IRuntimeFileInfo file, Passphrase passphrase)
+        private UserAsymmetricKeys TryLoadKeys(IDataStore file, Passphrase passphrase)
         {
             using (MemoryStream stream = new MemoryStream())
             {

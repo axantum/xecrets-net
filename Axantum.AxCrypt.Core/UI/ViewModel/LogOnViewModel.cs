@@ -47,7 +47,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void InitializePropertyValues()
         {
             Passphrase = String.Empty;
-            FileName = String.IsNullOrEmpty(_encryptedFileFullName) ? String.Empty : TypeMap.Resolve.New<IRuntimeFileInfo>(_encryptedFileFullName).Name;
+            FileName = String.IsNullOrEmpty(_encryptedFileFullName) ? String.Empty : TypeMap.Resolve.New<IDataStore>(_encryptedFileFullName).Name;
         }
 
         public bool ShowPassphrase { get { return GetProperty<bool>("ShowPassphrase"); } set { SetProperty("ShowPassphrase", value); } }
@@ -108,7 +108,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return true;
             }
-            return TypeMap.Resolve.New<AxCryptFactory>().TryFindCryptoId(new Passphrase(passphrase), TypeMap.Resolve.New<IRuntimeFileInfo>(encryptedFileFullName), Resolve.CryptoFactory.OrderedIds) != Guid.Empty;
+            return TypeMap.Resolve.New<AxCryptFactory>().TryFindCryptoId(new Passphrase(passphrase), TypeMap.Resolve.New<IDataStore>(encryptedFileFullName), Resolve.CryptoFactory.OrderedIds) != Guid.Empty;
         }
 
         private bool IsKnownIdentity()

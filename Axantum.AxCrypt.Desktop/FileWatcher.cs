@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt.Desktop
 {
     public class FileWatcher : IFileWatcher
     {
-        private IRuntimeFileInfo _fileInfo;
+        private IDataStore _fileInfo;
 
         private FileSystemWatcher _fileSystemWatcher;
 
@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Desktop
             _delayedAction = delayedAction;
             _delayedAction.Action += (sender, e) => { OnDelayedNotification(); };
 
-            _fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(path);
+            _fileInfo = TypeMap.Resolve.New<IDataStore>(path);
             _fileSystemWatcher = new FileSystemWatcher(_fileInfo.FullName);
             _fileSystemWatcher.Created += (sender, e) => FileSystemChanged(new FileWatcherEventArgs(e.FullPath));
             _fileSystemWatcher.Deleted += (sender, e) => FileSystemChanged(new FileWatcherEventArgs(e.FullPath));

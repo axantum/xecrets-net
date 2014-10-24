@@ -134,9 +134,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChangedInternal("DragAndDropFiles", (IEnumerable<string> files) => { DragAndDropFilesTypes = DetermineFileTypes(files.Select(f => TypeMap.Resolve.New<IRuntimeFileInfo>(f))); });
-            BindPropertyChangedInternal("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsRecent = DetermineDroppableAsRecent(files.Select(f => TypeMap.Resolve.New<IRuntimeFileInfo>(f))); });
-            BindPropertyChangedInternal("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => TypeMap.Resolve.New<IRuntimeFolderInfo>(f))); });
+            BindPropertyChangedInternal("DragAndDropFiles", (IEnumerable<string> files) => { DragAndDropFilesTypes = DetermineFileTypes(files.Select(f => TypeMap.Resolve.New<IDataItem>(f))); });
+            BindPropertyChangedInternal("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsRecent = DetermineDroppableAsRecent(files.Select(f => TypeMap.Resolve.New<IDataItem>(f))); });
+            BindPropertyChangedInternal("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => TypeMap.Resolve.New<IDataContainer>(f))); });
             BindPropertyChangedInternal("CurrentVersion", (Version cv) => { if (cv != null) UpdateUpdateCheck(cv); });
             BindPropertyChangedInternal("DebugMode", (bool enabled) => { UpdateDebugMode(enabled); });
             BindPropertyChangedInternal("RecentFilesComparer", (ActiveFileComparer comparer) => { SetRecentFiles(); });
@@ -182,11 +182,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             SetRecentFiles();
         }
 
-        private static FileInfoTypes DetermineFileTypes(IEnumerable<IRuntimeFileInfo> files)
+        private static FileInfoTypes DetermineFileTypes(IEnumerable<IDataItem> files)
         {
             FileInfoTypes types = FileInfoTypes.None;
             FileInfoTypes typesToLookFor = FileInfoTypes.EncryptedFile | FileInfoTypes.EncryptableFile;
-            foreach (IRuntimeFileInfo file in files)
+            foreach (IDataItem file in files)
             {
                 types |= file.Type() & typesToLookFor;
                 if ((types & typesToLookFor) == typesToLookFor)
@@ -197,19 +197,19 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return types;
         }
 
-        private static bool DetermineDroppableAsRecent(IEnumerable<IRuntimeFileInfo> files)
+        private static bool DetermineDroppableAsRecent(IEnumerable<IDataItem> files)
         {
             return files.Any(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile || (Resolve.KnownKeys.IsLoggedOn && fileInfo.Type() == FileInfoTypes.EncryptableFile));
         }
 
-        private static bool DetermineDroppableAsWatchedFolder(IEnumerable<IRuntimeFolderInfo> files)
+        private static bool DetermineDroppableAsWatchedFolder(IEnumerable<IDataContainer> files)
         {
             if (files.Count() != 1)
             {
                 return false;
             }
 
-            IRuntimeFolderInfo fileInfo = files.First();
+            IDataContainer fileInfo = files.First();
             if (!fileInfo.IsAvailable)
             {
                 return false;
@@ -279,7 +279,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void SetFilesArePending()
         {
             IList<ActiveFile> openFiles = _fileSystemState.DecryptedActiveFiles;
-            FilesArePending = openFiles.Count > 0 || Resolve.KnownKeys.LoggedOnWatchedFolders.SelectMany(wf => TypeMap.Resolve.New<IRuntimeFolderInfo>(wf.Path).ListEncryptable()).Any();
+            FilesArePending = openFiles.Count > 0 || Resolve.KnownKeys.LoggedOnWatchedFolders.SelectMany(wf => TypeMap.Resolve.New<IDataContainer>(wf.Path).ListEncryptable()).Any();
         }
 
         private void SetLogOnState(bool isLoggedOn)
@@ -303,7 +303,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void ClearPassphraseMemoryAction()
         {
-            IRuntimeFileInfo fileSystemStateInfo = Resolve.FileSystemState.PathInfo;
+            IDataStore fileSystemStateInfo = Resolve.FileSystemState.PathInfo;
             TypeMap.Resolve.New<AxCryptFile>().Wipe(fileSystemStateInfo, new ProgressContext());
             TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(fileSystemStateInfo));
             TypeMap.Register.Singleton<KnownKeys>(() => new KnownKeys(_fileSystemState, Resolve.SessionNotify));
@@ -349,7 +349,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             foreach (string watchedFolderPath in folders)
             {
-                _fileSystemState.RemoveWatchedFolder(TypeMap.Resolve.New<IRuntimeFolderInfo>(watchedFolderPath));
+                _fileSystemState.RemoveWatchedFolder(TypeMap.Resolve.New<IDataContainer>(watchedFolderPath));
             }
             _fileSystemState.Save();
         }

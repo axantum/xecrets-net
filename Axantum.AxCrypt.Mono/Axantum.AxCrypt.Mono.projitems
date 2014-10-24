@@ -17,9 +17,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Logging.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MonoPlatform.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RuntimeEnvironment.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RuntimeFileInfo.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RuntimeFileItemBase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RuntimeFolderInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataContainer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sleep.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ThreadWorker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Timing.cs" />

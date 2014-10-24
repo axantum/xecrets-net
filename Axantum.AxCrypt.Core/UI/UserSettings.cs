@@ -42,11 +42,11 @@ namespace Axantum.AxCrypt.Core.UI
 
         private Dictionary<string, string> _settings = new Dictionary<string, string>();
 
-        private IRuntimeFileInfo _persistanceFileInfo;
+        private IDataStore _persistanceFileInfo;
 
         private IterationCalculator _keyWrapIterationCalculator;
 
-        public UserSettings(IRuntimeFileInfo fileInfo, IterationCalculator keyWrapIterationCalculator)
+        public UserSettings(IDataStore fileInfo, IterationCalculator keyWrapIterationCalculator)
         {
             _persistanceFileInfo = fileInfo;
 

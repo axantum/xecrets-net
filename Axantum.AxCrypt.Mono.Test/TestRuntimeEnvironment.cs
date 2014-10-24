@@ -50,8 +50,8 @@ namespace Axantum.AxCrypt.Mono.Test
             _workFolderPath = Path.Combine(Path.GetTempPath(), @"Axantum.AxCrypt.Mono.Test.TestRuntimeEnvironment\");
             Directory.CreateDirectory(_workFolderPath);
 
-            TypeMap.Register.New<string, IRuntimeFileInfo>((path) => new RuntimeFileInfo(path));
-            TypeMap.Register.New<string, IRuntimeFolderInfo>((path) => new RuntimeFolderInfo(path));
+            TypeMap.Register.New<string, IDataStore>((path) => new DataStore(path));
+            TypeMap.Register.New<string, IDataContainer>((path) => new DataContainer(path));
             TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
             TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
             TypeMap.Register.Singleton<WorkFolder>(() => new WorkFolder(_workFolderPath));
@@ -93,19 +93,19 @@ namespace Axantum.AxCrypt.Mono.Test
         [Test]
         public static void TestRuntimeFileInfo()
         {
-            IRuntimeFileInfo runtimeFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(Path.GetTempPath(), "A File.txt"));
-            Assert.That(runtimeFileInfo is RuntimeFileInfo, "The instance returned should be of type RuntimeFileInfo");
+            IDataStore runtimeFileInfo = TypeMap.Resolve.New<IDataStore>(Path.Combine(Path.GetTempPath(), "A File.txt"));
+            Assert.That(runtimeFileInfo is DataStore, "The instance returned should be of type DataStore");
             Assert.That(runtimeFileInfo.Name, Is.EqualTo("A File.txt"));
-            runtimeFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(Path.GetTempPath(), "A File.txt"));
+            runtimeFileInfo = TypeMap.Resolve.New<IDataStore>(Path.Combine(Path.GetTempPath(), "A File.txt"));
             Assert.That(runtimeFileInfo.Name, Is.EqualTo("A File.txt"));
         }
 
         [Test]
         public static void TestTemporaryDirectoryInfo()
         {
-            IRuntimeFolderInfo tempInfo = TypeMap.Resolve.Singleton<WorkFolder>().FileInfo;
-            Assert.That(tempInfo is RuntimeFolderInfo, "The instance returned should be of type RuntimeFileInfo");
-            IRuntimeFileInfo tempFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(tempInfo.FullName, "AxCryptTestTemp.tmp"));
+            IDataContainer tempInfo = TypeMap.Resolve.Singleton<WorkFolder>().FileInfo;
+            Assert.That(tempInfo is DataContainer, "The instance returned should be of type DataStore");
+            IDataStore tempFileInfo = TypeMap.Resolve.New<IDataStore>(Path.Combine(tempInfo.FullName, "AxCryptTestTemp.tmp"));
             Assert.DoesNotThrow(() =>
             {
                 try

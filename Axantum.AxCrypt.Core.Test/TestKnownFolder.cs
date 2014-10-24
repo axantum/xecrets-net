@@ -44,8 +44,8 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
-            TypeMap.Register.New<string, IRuntimeFileInfo>((path) => new FakeRuntimeFileInfo(path));
-            TypeMap.Register.New<string, IRuntimeFolderInfo>((path) => new FakeRuntimeFolderInfo(path));
+            TypeMap.Register.New<string, IDataStore>((path) => new FakeDataStore(path));
+            TypeMap.Register.New<string, IDataContainer>((path) => new FakeDataContainer(path));
             TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
             TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
         }
@@ -61,7 +61,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Bitmap image = new Bitmap(32, 32);
             Uri providerUrl = new Uri("http://localhost/AxCrypt/");
-            IRuntimeFolderInfo myInfo = TypeMap.Resolve.New<IRuntimeFolderInfo>(@"C:\Users\AxCrypt\My Documents");
+            IDataContainer myInfo = TypeMap.Resolve.New<IDataContainer>(@"C:\Users\AxCrypt\My Documents");
 
             KnownFolder kf = new KnownFolder(myInfo, @"AxCrypt", image, providerUrl);
             Assert.That(kf.Folder.FullName, Is.EqualTo(@"C:\Users\AxCrypt\My Documents".NormalizeFolderPath()));
@@ -76,7 +76,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Bitmap image = new Bitmap(32, 32);
             Uri providerUrl = new Uri("http://localhost/AxCrypt/");
-            IRuntimeFolderInfo myInfo = TypeMap.Resolve.New<IRuntimeFolderInfo>(@"C:\Users\AxCrypt\My Documents");
+            IDataContainer myInfo = TypeMap.Resolve.New<IDataContainer>(@"C:\Users\AxCrypt\My Documents");
 
             KnownFolder kf = new KnownFolder(myInfo, @"AxCrypt", image, providerUrl);
             KnownFolder kfCopy = new KnownFolder(kf, true);
@@ -96,10 +96,10 @@ namespace Axantum.AxCrypt.Core.Test
 
             Bitmap nullImage = null;
             Uri nullUrl = null;
-            IRuntimeFolderInfo nullInfo = null;
+            IDataContainer nullInfo = null;
             string nullString = null;
 
-            IRuntimeFolderInfo myInfo = TypeMap.Resolve.New<IRuntimeFolderInfo>(@"C:\Users\AxCrypt\My Documents");
+            IDataContainer myInfo = TypeMap.Resolve.New<IDataContainer>(@"C:\Users\AxCrypt\My Documents");
             KnownFolder kf;
 
             Assert.Throws<ArgumentNullException>(() => kf = new KnownFolder(nullInfo, @"AxCrypt", image, providerUrl));

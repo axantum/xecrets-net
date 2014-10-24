@@ -76,8 +76,9 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<IdentityViewModel>(() => new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownKeys, Resolve.UserSettings));
             TypeMap.Register.New<FileOperationViewModel>(() => new FileOperationViewModel(Resolve.FileSystemState, Resolve.SessionNotify, Resolve.KnownKeys, Resolve.ParallelFileOperation, TypeMap.Resolve.Singleton<IStatusChecker>(), TypeMap.Resolve.New<IdentityViewModel>()));
             TypeMap.Register.New<MainViewModel>(() => new MainViewModel(Resolve.FileSystemState));
-            TypeMap.Register.New<string, IRuntimeFileInfo>((path) => new FakeRuntimeFileInfo(path));
-            TypeMap.Register.New<string, IRuntimeFolderInfo>((path) => new FakeRuntimeFolderInfo(path));
+            TypeMap.Register.New<string, IDataStore>((path) => new FakeDataStore(path));
+            TypeMap.Register.New<string, IDataContainer>((path) => new FakeDataContainer(path));
+            TypeMap.Register.New<string, IDataItem>((path) => CreateDataItem(path));
             TypeMap.Register.New<string, IFileWatcher>((path) => new FakeFileWatcher(path));
             TypeMap.Register.New<IterationCalculator>(() => new FakeIterationCalculator());
             TypeMap.Register.New<IDataProtection>(() => new FakeDataProtection());
@@ -86,6 +87,15 @@ namespace Axantum.AxCrypt.Core.Test
             Resolve.UserSettings.SetKeyWrapIterations(V1Aes128CryptoFactory.CryptoId, 1234);
             Resolve.UserSettings.ThumbprintSalt = Salt.Zero;
             Resolve.Log.SetLevel(LogLevel.Debug);
+        }
+
+        private static IDataItem CreateDataItem(string location)
+        {
+            if (location.EndsWith(Path.PathSeparator.ToString()))
+            {
+                return new FakeDataContainer(location);
+            }
+            return new FakeDataStore(location);
         }
 
         public static CryptoFactory CreateCryptoFactory()
@@ -100,7 +110,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         public static void AssemblyTeardown()
         {
-            FakeRuntimeFileInfo.ClearFiles();
+            FakeDataStore.ClearFiles();
             TypeMap.Register.Clear();
         }
 

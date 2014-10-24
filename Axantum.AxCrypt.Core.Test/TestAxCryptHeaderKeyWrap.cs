@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Core.Test
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "This is test, readability and coding ease is a concern, not performance.")]
         public void TestUnwrapFromSimpleFile()
         {
-            using (Stream testStream = FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
+            using (Stream testStream = FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
             {
                 V1KeyWrap1HeaderBlock keyWrapHeaderBlock = null;
                 using (AxCryptReader axCryptReader = new V1AxCryptReader(testStream))

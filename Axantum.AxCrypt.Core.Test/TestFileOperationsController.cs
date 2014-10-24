@@ -50,9 +50,9 @@ namespace Axantum.AxCrypt.Core.Test
         {
             SetupAssembly.AssemblySetup();
 
-            FakeRuntimeFileInfo.AddFile(_davidCopperfieldTxtPath, FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate5Utc, FakeRuntimeFileInfo.TestDate6Utc, FakeRuntimeFileInfo.ExpandableMemoryStream(Encoding.GetEncoding(1252).GetBytes(Resources.david_copperfield)));
-            FakeRuntimeFileInfo.AddFile(_uncompressedAxxPath, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.uncompressable_zip));
-            FakeRuntimeFileInfo.AddFile(_helloWorldAxxPath, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
+            FakeDataStore.AddFile(_davidCopperfieldTxtPath, FakeDataStore.TestDate4Utc, FakeDataStore.TestDate5Utc, FakeDataStore.TestDate6Utc, FakeDataStore.ExpandableMemoryStream(Encoding.GetEncoding(1252).GetBytes(Resources.david_copperfield)));
+            FakeDataStore.AddFile(_uncompressedAxxPath, FakeDataStore.ExpandableMemoryStream(Resources.uncompressable_zip));
+            FakeDataStore.AddFile(_helloWorldAxxPath, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
 
             TypeMap.Register.Singleton<IUIThread>(() => new FakeUIThread());
         }
@@ -77,10 +77,10 @@ namespace Axantum.AxCrypt.Core.Test
                 destinationPath = e.SaveFileFullName;
             };
 
-            FileOperationContext status = controller.EncryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath));
+            FileOperationContext status = controller.EncryptFile(TypeMap.Resolve.New<IDataStore>(_davidCopperfieldTxtPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
-            IRuntimeFileInfo destinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(destinationPath);
+            IDataStore destinationInfo = TypeMap.Resolve.New<IDataStore>(destinationPath);
             Assert.That(destinationInfo.IsAvailable, "After encryption the destination file should be created.");
             using (IAxCryptDocument document = new V2AxCryptDocument())
             {
@@ -108,10 +108,10 @@ namespace Axantum.AxCrypt.Core.Test
                 status = e.Status;
             };
 
-            controller.EncryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath));
+            controller.EncryptFile(TypeMap.Resolve.New<IDataStore>(_davidCopperfieldTxtPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
-            IRuntimeFileInfo destinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(destinationPath);
+            IDataStore destinationInfo = TypeMap.Resolve.New<IDataStore>(destinationPath);
             Assert.That(destinationInfo.IsAvailable, "After encryption the destination file should be created.");
             using (IAxCryptDocument document = new V2AxCryptDocument())
             {
@@ -140,11 +140,11 @@ namespace Axantum.AxCrypt.Core.Test
                     destinationPath = e.SaveFileFullName;
                 };
 
-            FileOperationContext status = controller.EncryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath));
+            FileOperationContext status = controller.EncryptFile(TypeMap.Resolve.New<IDataStore>(_davidCopperfieldTxtPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
             Assert.That(!queryEncryptionPassphraseWasCalled, "No query of encryption passphrase should be needed since there is a default set.");
 
-            IRuntimeFileInfo destinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(destinationPath);
+            IDataStore destinationInfo = TypeMap.Resolve.New<IDataStore>(destinationPath);
             Assert.That(destinationInfo.IsAvailable, "After encryption the destination file should be created.");
             using (IAxCryptDocument document = new V1AxCryptDocument())
             {
@@ -159,8 +159,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptFileWhenDestinationExists()
         {
-            IRuntimeFileInfo sourceInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath);
-            IRuntimeFileInfo expectedDestinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(AxCryptFile.MakeAxCryptFileName(sourceInfo));
+            IDataStore sourceInfo = TypeMap.Resolve.New<IDataStore>(_davidCopperfieldTxtPath);
+            IDataStore expectedDestinationInfo = TypeMap.Resolve.New<IDataStore>(AxCryptFile.MakeAxCryptFileName(sourceInfo));
             using (Stream stream = expectedDestinationInfo.OpenWrite())
             {
             }
@@ -184,11 +184,11 @@ namespace Axantum.AxCrypt.Core.Test
                 cryptoId = e.CryptoId;
             };
 
-            FileOperationContext status = controller.EncryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath));
+            FileOperationContext status = controller.EncryptFile(TypeMap.Resolve.New<IDataStore>(_davidCopperfieldTxtPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
             Assert.That(Path.GetFileName(destinationPath), Is.EqualTo("alternative-name.axx"), "The alternative name should be used, since the default existed.");
-            IRuntimeFileInfo destinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(destinationPath);
+            IDataStore destinationInfo = TypeMap.Resolve.New<IDataStore>(destinationPath);
             Assert.That(destinationInfo.IsAvailable, "After encryption the destination file should be created.");
             using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(key, cryptoId))
             {
@@ -203,8 +203,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestEncryptFileWhenCanceledDuringQuerySaveAs()
         {
-            IRuntimeFileInfo sourceInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath);
-            IRuntimeFileInfo expectedDestinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(AxCryptFile.MakeAxCryptFileName(sourceInfo));
+            IDataStore sourceInfo = TypeMap.Resolve.New<IDataStore>(_davidCopperfieldTxtPath);
+            IDataStore expectedDestinationInfo = TypeMap.Resolve.New<IDataStore>(AxCryptFile.MakeAxCryptFileName(sourceInfo));
             using (Stream stream = expectedDestinationInfo.OpenWrite())
             {
             }
@@ -215,7 +215,7 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Cancel = true;
             };
 
-            FileOperationContext status = controller.EncryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath));
+            FileOperationContext status = controller.EncryptFile(TypeMap.Resolve.New<IDataStore>(_davidCopperfieldTxtPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Canceled), "The status should indicate cancellation.");
         }
 
@@ -228,7 +228,7 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Cancel = true;
             };
 
-            FileOperationContext status = controller.EncryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath));
+            FileOperationContext status = controller.EncryptFile(TypeMap.Resolve.New<IDataStore>(_davidCopperfieldTxtPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Canceled), "The status should indicate cancellation.");
         }
 
@@ -250,11 +250,11 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     destinationPath = e.SaveFileFullName;
                 };
-            FileOperationContext status = controller.DecryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.DecryptFile(TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath));
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
             Assert.That(knownKeyWasAdded, "A new known key was used, so the KnownKeyAdded event should have been raised.");
-            IRuntimeFileInfo destinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(destinationPath);
+            IDataStore destinationInfo = TypeMap.Resolve.New<IDataStore>(destinationPath);
             Assert.That(destinationInfo.IsAvailable, "After decryption the destination file should be created.");
 
             string fileContent;
@@ -286,11 +286,11 @@ namespace Axantum.AxCrypt.Core.Test
                 status = e.Status;
             };
 
-            controller.DecryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            controller.DecryptFile(TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath));
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
             Assert.That(knownKeyWasAdded, "A new known key was used, so the KnownKeyAdded event should have been raised.");
-            IRuntimeFileInfo destinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(destinationPath);
+            IDataStore destinationInfo = TypeMap.Resolve.New<IDataStore>(destinationPath);
             Assert.That(destinationInfo.IsAvailable, "After decryption the destination file should be created.");
 
             string fileContent;
@@ -309,7 +309,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 e.Cancel = true;
             };
-            FileOperationContext status = controller.DecryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.DecryptFile(TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath));
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Canceled), "The status should indicate cancellation.");
         }
@@ -317,7 +317,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptWithSkipDuringQueryDecryptionPassphrase()
         {
-            IRuntimeFileInfo expectedDestinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
+            IDataStore expectedDestinationInfo = TypeMap.Resolve.New<IDataStore>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
             using (Stream stream = expectedDestinationInfo.OpenWrite())
             {
             }
@@ -329,7 +329,7 @@ namespace Axantum.AxCrypt.Core.Test
             };
             bool saveAs = false;
             controller.QuerySaveFileAs += (sender, e) => saveAs = true;
-            FileOperationContext status = controller.DecryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.DecryptFile(TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath));
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
             Assert.That(saveAs, Is.False, "No Save As should happen, since skip was indicated.");
@@ -338,7 +338,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptWithCancelDuringQuerySaveAs()
         {
-            IRuntimeFileInfo expectedDestinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
+            IDataStore expectedDestinationInfo = TypeMap.Resolve.New<IDataStore>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
             using (Stream stream = expectedDestinationInfo.OpenWrite())
             {
             }
@@ -352,7 +352,7 @@ namespace Axantum.AxCrypt.Core.Test
                 {
                     e.Cancel = true;
                 };
-            FileOperationContext status = controller.DecryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.DecryptFile(TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath));
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Canceled), "The status should indicate cancellation.");
         }
@@ -360,7 +360,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestDecryptWithAlternativeDestinationName()
         {
-            IRuntimeFileInfo expectedDestinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
+            IDataStore expectedDestinationInfo = TypeMap.Resolve.New<IDataStore>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
             using (Stream stream = expectedDestinationInfo.OpenWrite())
             {
             }
@@ -379,11 +379,11 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 destinationPath = e.SaveFileFullName;
             };
-            FileOperationContext status = controller.DecryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.DecryptFile(TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath));
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
-            IRuntimeFileInfo destinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(destinationPath);
+            IDataStore destinationInfo = TypeMap.Resolve.New<IDataStore>(destinationPath);
             string fileContent;
             using (Stream stream = destinationInfo.OpenRead())
             {
@@ -408,14 +408,14 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 e.Passphrase = new Passphrase("a");
             };
-            FileOperationContext status = controller.DecryptAndLaunch(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.DecryptAndLaunch(TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath));
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
             Assert.That(launcher, Is.Not.Null, "There should be a call to launch.");
             Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
 
-            IRuntimeFileInfo destinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(launcher.Path);
+            IDataStore destinationInfo = TypeMap.Resolve.New<IDataStore>(launcher.Path);
             Assert.That(destinationInfo.IsAvailable, "After decryption the destination file should be created.");
 
             string fileContent;
@@ -449,14 +449,14 @@ namespace Axantum.AxCrypt.Core.Test
                 status = e.Status;
             };
 
-            controller.DecryptAndLaunch(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            controller.DecryptAndLaunch(TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath));
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
             Assert.That(launcher, Is.Not.Null, "There should be a call to launch.");
             Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
 
-            IRuntimeFileInfo destinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(launcher.Path);
+            IDataStore destinationInfo = TypeMap.Resolve.New<IDataStore>(launcher.Path);
             Assert.That(destinationInfo.IsAvailable, "After decryption the destination file should be created.");
 
             string fileContent;
@@ -476,7 +476,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 e.Cancel = true;
             };
-            FileOperationContext status = controller.DecryptAndLaunch(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.DecryptAndLaunch(TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Canceled), "The status should indicate cancellation.");
         }
 
@@ -503,12 +503,12 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 knownKeyWasAdded = true;
             };
-            FileOperationContext status = controller.DecryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.DecryptFile(TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath));
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
             Assert.That(!knownKeyWasAdded, "An already known key was used, so the KnownKeyAdded event should not have been raised.");
             Assert.That(!passphraseWasQueried, "An already known key was used, so the there should be no need to query for a passphrase.");
-            IRuntimeFileInfo destinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(destinationPath);
+            IDataStore destinationInfo = TypeMap.Resolve.New<IDataStore>(destinationPath);
             Assert.That(destinationInfo.IsAvailable, "After decryption the destination file should be created.");
 
             string fileContent;
@@ -555,12 +555,12 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 knownKeyWasAdded = e.Passphrase.Equals(new Passphrase("a"));
             };
-            FileOperationContext status = controller.DecryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.DecryptFile(TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath));
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
             Assert.That(knownKeyWasAdded, "A new known key was used, so the KnownKeyAdded event should have been raised.");
             Assert.That(passphraseTry, Is.EqualTo(3), "The third key was the correct one.");
-            IRuntimeFileInfo destinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(destinationPath);
+            IDataStore destinationInfo = TypeMap.Resolve.New<IDataStore>(destinationPath);
             Assert.That(destinationInfo.IsAvailable, "After decryption the destination file should be created.");
 
             string fileContent;
@@ -589,7 +589,7 @@ namespace Axantum.AxCrypt.Core.Test
                     destinationPath = e.SaveFileFullName;
                 };
             FileOperationContext status = new FileOperationContext(String.Empty, FileOperationStatus.Unknown);
-            Assert.DoesNotThrow(() => { status = controller.DecryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath)); });
+            Assert.DoesNotThrow(() => { status = controller.DecryptFile(TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath)); });
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.FileDoesNotExist), "The status should indicate an exception occurred.");
             Assert.That(String.IsNullOrEmpty(destinationPath), "Since an exception occurred, the destination file should not be created.");
@@ -599,7 +599,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestEncryptFileThatIsAlreadyEncrypted()
         {
             FileOperationsController controller = new FileOperationsController();
-            FileOperationContext status = controller.EncryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>("test" + OS.Current.AxCryptExtension));
+            FileOperationContext status = controller.EncryptFile(TypeMap.Resolve.New<IDataStore>("test" + OS.Current.AxCryptExtension));
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.FileAlreadyEncrypted), "The status should indicate that it was already encrypted.");
         }
@@ -618,7 +618,7 @@ namespace Axantum.AxCrypt.Core.Test
                     status = e.Status;
                 };
 
-            controller.DecryptFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            controller.DecryptFile(TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath));
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Canceled), "The status should indicate cancellation.");
         }
@@ -633,10 +633,10 @@ namespace Axantum.AxCrypt.Core.Test
                 e.Skip = false;
                 e.ConfirmAll = false;
             };
-            FileOperationContext status = controller.WipeFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.WipeFile(TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The wipe should indicate success.");
 
-            IRuntimeFileInfo fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath);
+            IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
             Assert.That(!fileInfo.IsAvailable, "The file should not exist after wiping.");
         }
 
@@ -659,10 +659,10 @@ namespace Axantum.AxCrypt.Core.Test
                 status = e.Status;
             };
 
-            controller.WipeFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath));
+            controller.WipeFile(TypeMap.Resolve.New<IDataStore>(_davidCopperfieldTxtPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
-            IRuntimeFileInfo destinationInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(destinationPath);
+            IDataStore destinationInfo = TypeMap.Resolve.New<IDataStore>(destinationPath);
             Assert.That(!destinationInfo.IsAvailable, "After wiping the destination file should not exist.");
         }
 
@@ -674,10 +674,10 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 e.Cancel = true;
             };
-            FileOperationContext status = controller.WipeFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.WipeFile(TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Canceled), "The wipe should indicate cancellation.");
 
-            IRuntimeFileInfo fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath);
+            IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
             Assert.That(fileInfo.IsAvailable, "The file should still exist after wiping that was canceled during confirmation.");
         }
 
@@ -689,10 +689,10 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 e.Skip = true;
             };
-            FileOperationContext status = controller.WipeFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.WipeFile(TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The wipe should indicate success even when skipping.");
 
-            IRuntimeFileInfo fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath);
+            IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
             Assert.That(fileInfo.IsAvailable, "The file should still exist after wiping that was skipped during confirmation.");
         }
 
@@ -711,17 +711,17 @@ namespace Axantum.AxCrypt.Core.Test
                 e.ConfirmAll = true;
             };
             progress.NotifyLevelStart();
-            FileOperationContext status = controller.WipeFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.WipeFile(TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The wipe should indicate success.");
 
-            IRuntimeFileInfo fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath);
+            IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
             Assert.That(!fileInfo.IsAvailable, "The file should not exist after wiping.");
 
-            Assert.DoesNotThrow(() => { status = controller.WipeFile(TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath)); });
+            Assert.DoesNotThrow(() => { status = controller.WipeFile(TypeMap.Resolve.New<IDataStore>(_davidCopperfieldTxtPath)); });
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The wipe should indicate success.");
             progress.NotifyLevelFinished();
 
-            fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath);
+            fileInfo = TypeMap.Resolve.New<IDataStore>(_davidCopperfieldTxtPath);
             Assert.That(!fileInfo.IsAvailable, "The file should not exist after wiping.");
         }
 
@@ -741,7 +741,7 @@ namespace Axantum.AxCrypt.Core.Test
                 knownKeyWasAdded = true;
             };
 
-            FileOperationContext status = controller.VerifyEncrypted(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            FileOperationContext status = controller.VerifyEncrypted(TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Canceled));
             Assert.That(knownKeyWasAdded, Is.False);
             Assert.That(passphraseWasQueried, Is.True);
@@ -759,7 +759,7 @@ namespace Axantum.AxCrypt.Core.Test
             Resolve.KnownKeys.Add(new Passphrase("b"));
             Resolve.KnownKeys.Add(new Passphrase("c"));
 
-            status = controller.VerifyEncrypted(TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath));
+            status = controller.VerifyEncrypted(TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath));
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success));
             Assert.That(knownKeyWasAdded, Is.True, "A known key should have been added.");
         }

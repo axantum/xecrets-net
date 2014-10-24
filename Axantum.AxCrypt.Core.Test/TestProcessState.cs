@@ -63,7 +63,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             ProcessState ps = new ProcessState();
 
-            ActiveFile activeFile1 = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(@"C:\encrypted.axx"), TypeMap.Resolve.New<IRuntimeFileInfo>(@"C:\decrypted.txt"), new Passphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            ActiveFile activeFile1 = new ActiveFile(TypeMap.Resolve.New<IDataStore>(@"C:\encrypted.axx"), TypeMap.Resolve.New<IDataStore>(@"C:\decrypted.txt"), new Passphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             ILauncher launcher1 = OS.Current.Launch(activeFile1.EncryptedFileInfo.FullName);
             ps.Add(launcher1, activeFile1);
 
@@ -80,7 +80,7 @@ namespace Axantum.AxCrypt.Core.Test
             fakeLauncher1.HasExited = true;
             Assert.That(ps.HasActiveProcess(activeFile1), Is.False);
 
-            ActiveFile activeFile2 = new ActiveFile(TypeMap.Resolve.New<IRuntimeFileInfo>(@"C:\encrypted2.axx"), TypeMap.Resolve.New<IRuntimeFileInfo>(@"C:\decrypted2.txt"), new Passphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
+            ActiveFile activeFile2 = new ActiveFile(TypeMap.Resolve.New<IDataStore>(@"C:\encrypted2.axx"), TypeMap.Resolve.New<IDataStore>(@"C:\decrypted2.txt"), new Passphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             ILauncher launcher2 = OS.Current.Launch(activeFile2.EncryptedFileInfo.FullName);
             ps.Add(launcher2, activeFile2);
 

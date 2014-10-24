@@ -34,7 +34,7 @@ namespace Axantum.AxCrypt.Core.IO
     /// <summary>
     /// Abstraction for FileInfo-related operations. Provides properties and instance methods for the operations with files, and aids in the creation of Stream objects.
     /// </summary>
-    public interface IRuntimeFileInfo : IRuntimeItem
+    public interface IDataStore : IDataItem
     {
         /// <summary>
         /// Opens a stream in read mode for the underlying file.
@@ -97,6 +97,6 @@ namespace Axantum.AxCrypt.Core.IO
         /// for example, an alternate location may be given. There is no guarantee that the container returned
         /// actually contains this file.
         /// </summary>
-        IRuntimeFolderInfo Container { get; }
+        IDataContainer Container { get; }
     }
 }

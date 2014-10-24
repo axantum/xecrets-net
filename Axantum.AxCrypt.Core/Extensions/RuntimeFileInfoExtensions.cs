@@ -40,7 +40,7 @@ namespace Axantum.AxCrypt.Core.Extensions
 {
     public static class RuntimeFileInfoExtensions
     {
-        public static FileInfoTypes Type(this IRuntimeItem fileInfo)
+        public static FileInfoTypes Type(this IDataItem fileInfo)
         {
             if (!fileInfo.IsAvailable)
             {
@@ -62,7 +62,7 @@ namespace Axantum.AxCrypt.Core.Extensions
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable is a word.")]
-        public static bool IsEncryptable(this IRuntimeItem fileInfo)
+        public static bool IsEncryptable(this IDataItem fileInfo)
         {
             if (fileInfo == null)
             {
@@ -79,20 +79,20 @@ namespace Axantum.AxCrypt.Core.Extensions
             return !fileInfo.IsEncrypted();
         }
 
-        public static bool IsEncrypted(this IRuntimeItem fullName)
+        public static bool IsEncrypted(this IDataItem fullName)
         {
             return String.Compare(Resolve.Portable.Path().GetExtension(fullName.Name), OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0;
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable is a word.")]
-        public static IEnumerable<IRuntimeFileInfo> ListEncryptable(this IRuntimeFolderInfo folderPath)
+        public static IEnumerable<IDataStore> ListEncryptable(this IDataContainer folderPath)
         {
-            return folderPath.Files.Where((IRuntimeFileInfo fileInfo) => { return fileInfo.IsEncryptable(); });
+            return folderPath.Files.Where((IDataStore fileInfo) => { return fileInfo.IsEncryptable(); });
         }
 
-        public static IEnumerable<IRuntimeFileInfo> ListEncrypted(this IRuntimeFolderInfo folderPath)
+        public static IEnumerable<IDataStore> ListEncrypted(this IDataContainer folderPath)
         {
-            return folderPath.Files.Where((IRuntimeFileInfo fileInfo) => { return fileInfo.IsEncrypted(); });
+            return folderPath.Files.Where((IDataStore fileInfo) => { return fileInfo.IsEncrypted(); });
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace Axantum.AxCrypt.Core.Extensions
         /// <param name="fileInfo">A file name representing a file that is not encrypted</param>
         /// <returns>A corresponding file name representing the encrypted version of the original</returns>
         /// <exception cref="InternalErrorException">Can't get encrypted name for a file that already has the encrypted extension.</exception>
-        public static IRuntimeFileInfo CreateEncryptedName(this IRuntimeFileInfo fullName)
+        public static IDataStore CreateEncryptedName(this IDataStore fullName)
         {
             if (fullName.IsEncrypted())
             {
@@ -110,7 +110,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
 
             string encryptedName = fullName.FullName.CreateEncryptedName();
-            return TypeMap.Resolve.New<IRuntimeFileInfo>(encryptedName);
+            return TypeMap.Resolve.New<IDataStore>(encryptedName);
         }
 
         /// <summary>
@@ -118,13 +118,13 @@ namespace Axantum.AxCrypt.Core.Extensions
         /// </summary>
         /// <param name="fileInfo">The file information representing the new unique random name.</param>
         /// <returns></returns>
-        public static IRuntimeFileInfo CreateRandomUniqueName(this IRuntimeFileInfo fileInfo)
+        public static IDataStore CreateRandomUniqueName(this IDataStore fileInfo)
         {
             while (true)
             {
                 int r = Math.Abs(BitConverter.ToInt32(Resolve.RandomGenerator.Generate(sizeof(int)), 0));
                 string alternatePath = Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(fileInfo.FullName), r.ToString(CultureInfo.InvariantCulture) + Resolve.Portable.Path().GetExtension(fileInfo.FullName));
-                IRuntimeFileInfo alternateFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(alternatePath);
+                IDataStore alternateFileInfo = TypeMap.Resolve.New<IDataStore>(alternatePath);
                 if (!alternateFileInfo.IsAvailable)
                 {
                     return alternateFileInfo;
@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
         }
 
-        public static Passphrase TryFindPassphrase(this IRuntimeFileInfo fileInfo, out Guid cryptoId)
+        public static Passphrase TryFindPassphrase(this IDataStore fileInfo, out Guid cryptoId)
         {
             cryptoId = Guid.Empty;
             if (!fileInfo.IsEncrypted())

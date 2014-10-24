@@ -81,7 +81,7 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static string CreateUniqueFile(this string fullName)
         {
-            IRuntimeFileInfo pathInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(fullName);
+            IDataStore pathInfo = TypeMap.Resolve.New<IDataStore>(fullName);
             string extension = Resolve.Portable.Path().GetExtension(fullName);
             int version = 0;
             while (true)
@@ -90,7 +90,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                 {
                     string alternateExtension = (version > 0 ? "." + version.ToString(CultureInfo.InvariantCulture) : String.Empty) + extension;
                     string alternateName = Resolve.Portable.Path().GetFileNameWithoutExtension(pathInfo.Name) + alternateExtension;
-                    IRuntimeFileInfo alternateFileInfo = pathInfo.Container.CreateNewFile(alternateName);
+                    IDataStore alternateFileInfo = pathInfo.Container.CreateNewFile(alternateName);
                     return alternateFileInfo.FullName;
                 }
                 catch (AxCryptException ace)
@@ -140,7 +140,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
 
             value = value.Replace(Resolve.Portable.Path().DirectorySeparatorChar == '/' ? '\\' : '/', Resolve.Portable.Path().DirectorySeparatorChar);
-            return TypeMap.Resolve.New<IRuntimeFolderInfo>(value).FullName;
+            return TypeMap.Resolve.New<IDataContainer>(value).FullName;
         }
 
         public static string NormalizeFilePath(this string filePath)

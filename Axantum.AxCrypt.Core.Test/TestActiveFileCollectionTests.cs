@@ -52,10 +52,10 @@ namespace Axantum.AxCrypt.Core.Test
         {
             SetupAssembly.AssemblySetup();
 
-            FakeRuntimeFileInfo.AddFile(_testTextPath, FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.ExpandableMemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
-            FakeRuntimeFileInfo.AddFile(_davidCopperfieldTxtPath, FakeRuntimeFileInfo.TestDate4Utc, FakeRuntimeFileInfo.TestDate5Utc, FakeRuntimeFileInfo.TestDate6Utc, FakeRuntimeFileInfo.ExpandableMemoryStream(Encoding.GetEncoding(1252).GetBytes(Resources.david_copperfield)));
-            FakeRuntimeFileInfo.AddFile(_uncompressedAxxPath, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.uncompressable_zip));
-            FakeRuntimeFileInfo.AddFile(_helloWorldAxxPath, FakeRuntimeFileInfo.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
+            FakeDataStore.AddFile(_testTextPath, FakeDataStore.TestDate1Utc, FakeDataStore.TestDate2Utc, FakeDataStore.TestDate1Utc, FakeDataStore.ExpandableMemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
+            FakeDataStore.AddFile(_davidCopperfieldTxtPath, FakeDataStore.TestDate4Utc, FakeDataStore.TestDate5Utc, FakeDataStore.TestDate6Utc, FakeDataStore.ExpandableMemoryStream(Encoding.GetEncoding(1252).GetBytes(Resources.david_copperfield)));
+            FakeDataStore.AddFile(_uncompressedAxxPath, FakeDataStore.ExpandableMemoryStream(Resources.uncompressable_zip));
+            FakeDataStore.AddFile(_helloWorldAxxPath, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
         }
 
         [TearDown]
@@ -69,8 +69,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             ActiveFileCollection collection = new ActiveFileCollection();
 
-            IRuntimeFileInfo decryptedFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_testTextPath);
-            IRuntimeFileInfo encryptedFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_helloWorldAxxPath);
+            IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_testTextPath);
+            IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
             ActiveFile activeFile = new ActiveFile(encryptedFileInfo, decryptedFileInfo, new Passphrase("new"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
 
             collection.Add(activeFile);
@@ -86,10 +86,10 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestActiveFileCollectionEnumerationConstructor()
         {
-            IRuntimeFileInfo decryptedFileInfo1 = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "test1.txt"));
-            IRuntimeFileInfo encryptedFileInfo1 = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "test1-txt.axx"));
-            IRuntimeFileInfo decryptedFileInfo2 = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "test2.txt"));
-            IRuntimeFileInfo encryptedFileInfo2 = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(_rootPath, "test2-text.axx"));
+            IDataStore decryptedFileInfo1 = TypeMap.Resolve.New<IDataStore>(Path.Combine(_rootPath, "test1.txt"));
+            IDataStore encryptedFileInfo1 = TypeMap.Resolve.New<IDataStore>(Path.Combine(_rootPath, "test1-txt.axx"));
+            IDataStore decryptedFileInfo2 = TypeMap.Resolve.New<IDataStore>(Path.Combine(_rootPath, "test2.txt"));
+            IDataStore encryptedFileInfo2 = TypeMap.Resolve.New<IDataStore>(Path.Combine(_rootPath, "test2-text.axx"));
             ActiveFile activeFile1 = new ActiveFile(encryptedFileInfo1, decryptedFileInfo1, new Passphrase("newA"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
             ActiveFile activeFile2 = new ActiveFile(encryptedFileInfo2, decryptedFileInfo2, new Passphrase("newB"), ActiveFileStatus.None, new V1Aes128CryptoFactory().Id);
 

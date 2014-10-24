@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt.Core
 {
     public class AxCryptFactory
     {
-        public virtual Guid TryFindCryptoId(Passphrase passphrase, IRuntimeFileInfo encryptedFileInfo, IEnumerable<Guid> cryptoIds)
+        public virtual Guid TryFindCryptoId(Passphrase passphrase, IDataStore encryptedFileInfo, IEnumerable<Guid> cryptoIds)
         {
             foreach (Guid cryptoId in cryptoIds)
             {
@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Core
             return Guid.Empty;
         }
 
-        private static bool TryOneCryptoId(Passphrase passphrase, IRuntimeFileInfo encryptedFileInfo, Guid cryptoId)
+        private static bool TryOneCryptoId(Passphrase passphrase, IDataStore encryptedFileInfo, Guid cryptoId)
         {
             using (Stream encryptedStream = encryptedFileInfo.OpenRead())
             {

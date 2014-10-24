@@ -69,15 +69,15 @@ namespace Axantum.AxCrypt.Core.Test
             string source = Path.Combine(_rootPath, "source.axx");
             string destination = Path.Combine(_rootPath, "destination.file");
             Stream stream = Assembly.GetAssembly(typeof(TestV2RegressionCompleteFiles)).GetManifestResourceStream("Axantum.AxCrypt.Core.Test.resources." + resourceName);
-            FakeRuntimeFileInfo.AddFile(source, FakeRuntimeFileInfo.TestDate1Utc, FakeRuntimeFileInfo.TestDate2Utc, FakeRuntimeFileInfo.TestDate3Utc, stream);
+            FakeDataStore.AddFile(source, FakeDataStore.TestDate1Utc, FakeDataStore.TestDate2Utc, FakeDataStore.TestDate3Utc, stream);
 
             Passphrase passphrase = new Passphrase(password);
 
-            bool ok = new AxCryptFile().Decrypt(TypeMap.Resolve.New<IRuntimeFileInfo>(source), TypeMap.Resolve.New<IRuntimeFileInfo>(destination), passphrase, AxCryptOptions.SetFileTimes, new ProgressContext());
+            bool ok = new AxCryptFile().Decrypt(TypeMap.Resolve.New<IDataStore>(source), TypeMap.Resolve.New<IDataStore>(destination), passphrase, AxCryptOptions.SetFileTimes, new ProgressContext());
             Assert.That(ok, Is.True, "The Decrypt() method should return true for ok.");
 
             byte[] hash;
-            using (Stream plainStream = TypeMap.Resolve.New<IRuntimeFileInfo>(destination).OpenRead())
+            using (Stream plainStream = TypeMap.Resolve.New<IDataStore>(destination).OpenRead())
             {
                 HashAlgorithm hashAlgorithm = SHA256.Create();
                 using (Stream cryptoStream = new CryptoStream(plainStream, hashAlgorithm, CryptoStreamMode.Read))

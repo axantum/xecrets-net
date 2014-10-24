@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Mono.Test
         {
             _tempPath = Path.Combine(Path.GetTempPath(), "Axantum.AxCrypt.Mono.Test.TestRuntimeFileInfo");
             Directory.CreateDirectory(_tempPath);
-            TypeMap.Register.New<string, IRuntimeFileInfo>((path) => new RuntimeFileInfo(path));
+            TypeMap.Register.New<string, IDataStore>((path) => new DataStore(path));
             TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
             TypeMap.Register.Singleton<IPlatform>(() => new MonoPlatform());
             TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
@@ -68,7 +68,7 @@ namespace Axantum.AxCrypt.Mono.Test
         {
             Assert.Throws<ArgumentNullException>(() =>
             {
-                RuntimeFileInfo rfi = new RuntimeFileInfo(null);
+                DataStore rfi = new DataStore(null);
 
                 // Avoid FxCop error
                 Object.Equals(rfi, null);
@@ -84,7 +84,7 @@ namespace Axantum.AxCrypt.Mono.Test
                 Directory.Delete(testTempFolder, true);
             }
             Assert.That(Directory.Exists(testTempFolder), Is.False, "The test folder should not exist now.");
-            RuntimeFolderInfo directoryInfo = new RuntimeFolderInfo(testTempFolder);
+            DataContainer directoryInfo = new DataContainer(testTempFolder);
             directoryInfo.CreateFolder();
             Assert.That(Directory.Exists(testTempFolder), Is.True, "The test folder should exist now.");
             if (Directory.Exists(testTempFolder))
@@ -97,7 +97,7 @@ namespace Axantum.AxCrypt.Mono.Test
         public static void TestMethods()
         {
             string tempFileName = Path.GetTempFileName();
-            IRuntimeFileInfo runtimeFileInfo = new RuntimeFileInfo(tempFileName);
+            IDataStore runtimeFileInfo = new DataStore(tempFileName);
             try
             {
                 using (Stream writeStream = runtimeFileInfo.OpenWrite())
@@ -133,7 +133,7 @@ namespace Axantum.AxCrypt.Mono.Test
                 Assert.That(runtimeFileInfo.FullName, Is.EqualTo(tempFileName), "The FullName should be the same as the underlying FileInfo.FullName.");
 
                 string otherTempFileName = runtimeFileInfo.FullName + ".copy";
-                IRuntimeFileInfo otherTempRuntimeFileInfo = new RuntimeFileInfo(otherTempFileName);
+                IDataStore otherTempRuntimeFileInfo = new DataStore(otherTempFileName);
                 Assert.That(otherTempRuntimeFileInfo.IsAvailable, Is.False, "The new temp file should not exist.");
                 Assert.That(runtimeFileInfo.IsAvailable, Is.True, "The old temp file should exist.");
                 runtimeFileInfo.MoveTo(otherTempRuntimeFileInfo.FullName);
@@ -146,8 +146,8 @@ namespace Axantum.AxCrypt.Mono.Test
             }
             Assert.That(runtimeFileInfo.IsAvailable, Is.False, "The file should have been deleted now.");
 
-            IRuntimeFileInfo notEncryptedRuntimeFileInfo = new RuntimeFileInfo("file.txt");
-            IRuntimeFileInfo encryptedRuntimeFileInfo = notEncryptedRuntimeFileInfo.CreateEncryptedName();
+            IDataStore notEncryptedRuntimeFileInfo = new DataStore("file.txt");
+            IDataStore encryptedRuntimeFileInfo = notEncryptedRuntimeFileInfo.CreateEncryptedName();
             Assert.That(encryptedRuntimeFileInfo.Name, Is.EqualTo("file-txt.axx"), "The encrypted name should be as expected.");
         }
     }

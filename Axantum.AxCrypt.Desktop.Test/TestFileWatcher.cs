@@ -53,7 +53,7 @@ namespace Axantum.AxCrypt.Desktop.Test
             Directory.CreateDirectory(_tempPath);
 
             TypeMap.Register.New<string, IFileWatcher>((path) => new FileWatcher(path, new DelayedAction(new DelayTimer(), TimeSpan.FromMilliseconds(1))));
-            TypeMap.Register.New<string, IRuntimeFileInfo>((path) => new RuntimeFileInfo(path));
+            TypeMap.Register.New<string, IDataStore>((path) => new DataStore(path));
             TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new RuntimeEnvironment(".axx"));
             TypeMap.Register.Singleton<ILogging>(() => new Logging());
         }
@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt.Desktop.Test
                 {
                     wasHere = true;
                 };
-                IRuntimeFileInfo tempFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(_tempPath, "AxCryptTestTemp.tmp"));
+                IDataStore tempFileInfo = TypeMap.Resolve.New<IDataStore>(Path.Combine(_tempPath, "AxCryptTestTemp.tmp"));
                 try
                 {
                     using (Stream stream = tempFileInfo.OpenWrite())

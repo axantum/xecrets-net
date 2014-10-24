@@ -52,11 +52,11 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestParallelFileOperationSimple()
         {
-            IRuntimeFileInfo info1 = TypeMap.Resolve.New<IRuntimeFileInfo>(@"c:\file1.txt");
-            IRuntimeFileInfo info2 = TypeMap.Resolve.New<IRuntimeFileInfo>(@"c:\file2.txt");
+            IDataStore info1 = TypeMap.Resolve.New<IDataStore>(@"c:\file1.txt");
+            IDataStore info2 = TypeMap.Resolve.New<IDataStore>(@"c:\file2.txt");
             ParallelFileOperation pfo = new ParallelFileOperation();
             int callCount = 0;
-            pfo.DoFiles(new IRuntimeFileInfo[] { info1, info2 },
+            pfo.DoFiles(new IDataStore[] { info1, info2 },
                 (info, progress) =>
                 {
                     ++callCount;
@@ -78,14 +78,14 @@ namespace Axantum.AxCrypt.Core.Test
 
             FakeRuntimeEnvironment.Instance.MaxConcurrency = 2;
 
-            IRuntimeFileInfo info1 = TypeMap.Resolve.New<IRuntimeFileInfo>(@"c:\file1.txt");
-            IRuntimeFileInfo info2 = TypeMap.Resolve.New<IRuntimeFileInfo>(@"c:\file2.txt");
-            IRuntimeFileInfo info3 = TypeMap.Resolve.New<IRuntimeFileInfo>(@"c:\file3.txt");
-            IRuntimeFileInfo info4 = TypeMap.Resolve.New<IRuntimeFileInfo>(@"c:\file4.txt");
+            IDataStore info1 = TypeMap.Resolve.New<IDataStore>(@"c:\file1.txt");
+            IDataStore info2 = TypeMap.Resolve.New<IDataStore>(@"c:\file2.txt");
+            IDataStore info3 = TypeMap.Resolve.New<IDataStore>(@"c:\file3.txt");
+            IDataStore info4 = TypeMap.Resolve.New<IDataStore>(@"c:\file4.txt");
             ParallelFileOperation pfo = new ParallelFileOperation();
 
             int callCount = 0;
-            pfo.DoFiles(new IRuntimeFileInfo[] { info1, info2, info3, info4 },
+            pfo.DoFiles(new IDataStore[] { info1, info2, info3, info4 },
                 (info, progress) =>
                 {
                     int result = Interlocked.Increment(ref callCount);

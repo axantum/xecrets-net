@@ -14,7 +14,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
         }
 
-        public void Add(IRuntimeFileInfo file)
+        public void Add(IDataStore file)
         {
             string folder = Resolve.Portable.Path().GetDirectoryName(file.FullName);
             lock (_activeFileFolderWatchers)

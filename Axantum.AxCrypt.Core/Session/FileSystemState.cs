@@ -47,13 +47,13 @@ namespace Axantum.AxCrypt.Core.Session
             Initialize(new StreamingContext());
         }
 
-        private FileSystemState(IRuntimeFileInfo path)
+        private FileSystemState(IDataStore path)
             : this()
         {
             _path = path;
         }
 
-        public IRuntimeFileInfo PathInfo
+        public IDataStore PathInfo
         {
             get
             {
@@ -102,7 +102,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                IEnumerable<WatchedFolder> folders = WatchedFoldersInternal.Where(folder => TypeMap.Resolve.New<IRuntimeFolderInfo>(folder.Path).IsAvailable).ToList();
+                IEnumerable<WatchedFolder> folders = WatchedFoldersInternal.Where(folder => TypeMap.Resolve.New<IDataContainer>(folder.Path).IsAvailable).ToList();
                 return folders;
             }
             private set
@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return false;
             }
-            if (!TypeMap.Resolve.New<IRuntimeFolderInfo>(watchedFolder.Path).IsAvailable)
+            if (!TypeMap.Resolve.New<IDataContainer>(watchedFolder.Path).IsAvailable)
             {
                 return false;
             }
@@ -146,12 +146,12 @@ namespace Axantum.AxCrypt.Core.Session
         private void watchedFolder_Changed(object sender, FileWatcherEventArgs e)
         {
             WatchedFolder watchedFolder = (WatchedFolder)sender;
-            IRuntimeFileInfo fileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(e.FullName);
+            IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(e.FullName);
             HandleWatchedFolderChanges(watchedFolder, fileInfo);
             Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderChange, fileInfo.FullName));
         }
 
-        private void HandleWatchedFolderChanges(WatchedFolder watchedFolder, IRuntimeItem fileInfo)
+        private void HandleWatchedFolderChanges(WatchedFolder watchedFolder, IDataItem fileInfo)
         {
             if (watchedFolder.Path == fileInfo.FullName && !fileInfo.IsAvailable)
             {
@@ -170,12 +170,12 @@ namespace Axantum.AxCrypt.Core.Session
             RemoveDeletedActiveFile(fileInfo);
         }
 
-        private static bool IsExisting(IRuntimeItem fileInfo)
+        private static bool IsExisting(IDataItem fileInfo)
         {
             return fileInfo.Type() != FileInfoTypes.NonExisting;
         }
 
-        private void RemoveDeletedActiveFile(IRuntimeItem fileInfo)
+        private void RemoveDeletedActiveFile(IDataItem fileInfo)
         {
             ActiveFile removedActiveFile = FindActiveFileFromEncryptedPath(fileInfo.FullName);
             if (removedActiveFile != null)
@@ -185,7 +185,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public virtual void RemoveWatchedFolder(IRuntimeItem folderInfo)
+        public virtual void RemoveWatchedFolder(IDataItem folderInfo)
         {
             WatchedFoldersInternal.Remove(new WatchedFolder(folderInfo.FullName, SymmetricKeyThumbprint.Zero));
             Resolve.SessionNotify.Notify(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Resolve.KnownKeys.DefaultEncryptionKey, folderInfo.FullName));
@@ -334,7 +334,7 @@ namespace Axantum.AxCrypt.Core.Session
                     return;
                 }
 
-                IRuntimeFileInfo newFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(newFullName);
+                IDataStore newFileInfo = TypeMap.Resolve.New<IDataStore>(newFullName);
                 if (!newFileInfo.IsEncrypted())
                 {
                     RemoveActiveFile(activeFile);
@@ -342,7 +342,7 @@ namespace Axantum.AxCrypt.Core.Session
                 }
 
                 _activeFilesByEncryptedPath.Remove(activeFile.EncryptedFileInfo.FullName);
-                activeFile = new ActiveFile(activeFile, TypeMap.Resolve.New<IRuntimeFileInfo>(newFullName));
+                activeFile = new ActiveFile(activeFile, TypeMap.Resolve.New<IDataStore>(newFullName));
                 _activeFilesByEncryptedPath[activeFile.EncryptedFileInfo.FullName] = activeFile;
             }
             OnActiveFileChanged(new ActiveFileChangedEventArgs(activeFile));
@@ -427,10 +427,10 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        private IRuntimeFileInfo _path;
+        private IDataStore _path;
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "The actual exception thrown by the de-serialization varies, even by platform, and the idea is to catch those and let the user continue.")]
-        public static FileSystemState Create(IRuntimeFileInfo path)
+        public static FileSystemState Create(IDataStore path)
         {
             if (path == null)
             {
@@ -451,7 +451,7 @@ namespace Axantum.AxCrypt.Core.Session
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "If the state can't be read, the software is rendered useless, so it's better to revert to empty here.")]
-        private static FileSystemState CreateFileSystemState(IRuntimeFileInfo path)
+        private static FileSystemState CreateFileSystemState(IDataStore path)
         {
             using (Stream fileSystemStateStream = path.OpenRead())
             {

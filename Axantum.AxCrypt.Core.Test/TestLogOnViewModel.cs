@@ -151,7 +151,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             _identities.Add(new PassphraseIdentity(new Passphrase("a")));
 
-            FakeRuntimeFileInfo.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
+            FakeDataStore.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
             LogOnViewModel npvm = new LogOnViewModel(@"C:\My Folder\MyFile-txt.axx");
             npvm.Passphrase = "b";
 
@@ -164,7 +164,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             _identities.Add(new PassphraseIdentity(new Passphrase("a")));
 
-            FakeRuntimeFileInfo.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
+            FakeDataStore.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
             LogOnViewModel npvm = new LogOnViewModel(@"C:\My Folder\MyFile-txt.axx");
             npvm.Passphrase = "a";
 
@@ -177,7 +177,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             _identities.Add(new PassphraseIdentity(new Passphrase("b")));
 
-            FakeRuntimeFileInfo.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
+            FakeDataStore.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
             LogOnViewModel npvm = new LogOnViewModel(@"C:\My Folder\MyFile-txt.axx");
             npvm.Passphrase = "b";
 

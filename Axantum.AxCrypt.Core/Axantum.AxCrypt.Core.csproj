@@ -43,8 +43,8 @@
     <Compile Include="Crypto\Asymmetric\UserPublicKey.cs" />
     <Compile Include="Header\Recipients.cs" />
     <Compile Include="IO\ByteBuffer.cs" />
-    <Compile Include="IO\IRuntimeFolderInfo.cs" />
-    <Compile Include="IO\IRuntimeItem.cs" />
+    <Compile Include="IO\IDataContainer.cs" />
+    <Compile Include="IO\IDataItem.cs" />
     <Compile Include="IO\IStringSerializer.cs" />
     <Compile Include="IO\StringSerializer.cs" />
     <Compile Include="Portable\AesManaged.cs" />
@@ -227,7 +227,7 @@
     <Compile Include="Runtime\IncorrectDataException.cs" />
     <Compile Include="IO\V1AxCryptDataStream.cs" />
     <Compile Include="IO\V1HmacStream.cs" />
-    <Compile Include="IO\IRuntimeFileInfo.cs" />
+    <Compile Include="IO\IDataStore.cs" />
     <Compile Include="IO\LookAheadStream.cs" />
     <Compile Include="IO\NonClosingStream.cs" />
     <Compile Include="Header\HeaderBlock.cs" />

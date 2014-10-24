@@ -142,11 +142,11 @@ namespace Axantum.AxCrypt.Core.Session
             return keyMatch;
         }
 
-        public virtual void RemoveRecentFiles(IEnumerable<IRuntimeFileInfo> encryptedPaths, IProgressContext progress)
+        public virtual void RemoveRecentFiles(IEnumerable<IDataStore> encryptedPaths, IProgressContext progress)
         {
             progress.NotifyLevelStart();
             progress.AddTotal(encryptedPaths.Count());
-            foreach (IRuntimeFileInfo encryptedPath in encryptedPaths)
+            foreach (IDataStore encryptedPath in encryptedPaths)
             {
                 ActiveFile activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(encryptedPath.FullName);
                 if (activeFile != null)
