@@ -35,9 +35,9 @@ namespace Axantum.AxCrypt.Mono
             get;
         }
 
-        public virtual string FullName
+        public abstract string FullName
         {
-            get { return Location; }
+            get;
         }
 
         public abstract void Delete();

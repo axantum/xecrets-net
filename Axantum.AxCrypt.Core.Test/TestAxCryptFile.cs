@@ -518,15 +518,16 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFileInfo sourceFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(_davidCopperfieldTxtPath);
             sourceFileInfo.Container.CreateFolder();
             IRuntimeFolderInfo sourceFolderInfo = sourceFileInfo.Container;
-            IRuntimeFileInfo destinationFileInfo = sourceFolderInfo.FileItemInfo("David Copperfield-txt.axx");
-
-            IRuntimeFileInfo alternateDestinationFileInfo = TypeMap.Resolve.New<IRuntimeFileInfo>(Path.Combine(Path.GetDirectoryName(_davidCopperfieldTxtPath), "David Copperfield-txt.1.axx"));
+            IRuntimeFileInfo destinationFileInfo = sourceFolderInfo.CreateNewFile("David Copperfield-txt.axx");
+            IRuntimeFileInfo alternateDestinationFileInfo = sourceFolderInfo.FileItemInfo("David Copperfield-txt.1.axx");
+            Assert.That(alternateDestinationFileInfo.IsAvailable, Is.False, "The destination should not be created and exist yet.");
 
             Passphrase passphrase = new Passphrase("allan");
 
             TypeMap.Resolve.New<AxCryptFile>().EncryptFoldersUniqueWithBackupAndWipe(new IRuntimeFolderInfo[] { sourceFolderInfo }, passphrase, V2Aes128CryptoFactory.CryptoId, new ProgressContext());
 
             Assert.That(sourceFileInfo.IsAvailable, Is.False, "The source should be wiped.");
+
             Assert.That(alternateDestinationFileInfo.IsAvailable, Is.True, "The destination should be created and exist now.");
         }
 

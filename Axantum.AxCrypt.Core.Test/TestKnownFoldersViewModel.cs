@@ -129,7 +129,7 @@ namespace Axantum.AxCrypt.Core.Test
             IRuntimeFolderInfo fasterCloudInfo = TypeMap.Resolve.New<IRuntimeFolderInfo>(@"C:\FasterCloud");
             KnownFolder folder1 = new KnownFolder(betterCloudInfo, @"My AxCrypt", new Bitmap(10, 10), null);
             KnownFolder folder2 = new KnownFolder(fasterCloudInfo, @"My AxCrypt", new Bitmap(10, 10), null);
-            FakeRuntimeFileInfo.AddFile(folder1.My.FullName, Stream.Null);
+            FakeRuntimeFileInfo.AddFile(@"C:\BetterCloud\My AxCrypt", Stream.Null);
             FakeRuntimeFileInfo.AddFolder(folder2.My.FullName);
 
             KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);

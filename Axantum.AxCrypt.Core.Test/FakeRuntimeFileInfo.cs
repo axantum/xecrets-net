@@ -75,11 +75,15 @@ namespace Axantum.AxCrypt.Core.Test
         {
             path = path.NormalizeFilePath();
             FakeFileInfo fileInfo = new FakeFileInfo { FullName = path, CreationTimeUtc = creationTimeUtc, LastAccessTimeUtc = lastAccessTimeUtc, LastWriteTimeUtc = lastWriteTimeUtc, Stream = stream, IsFolder = isFolder, };
-            _fakeFileSystem.Add(path, fileInfo);
+            _fakeFileSystem[path] = fileInfo;
 
-            string folder = Resolve.Portable.Path().GetDirectoryName(path).NormalizeFolderPath();
-            fileInfo = new FakeFileInfo { FullName = folder, IsFolder = true, CreationTimeUtc = DateTime.MinValue, LastAccessTimeUtc = DateTime.MinValue, LastWriteTimeUtc = DateTime.MinValue, Stream = null };
-            _fakeFileSystem[folder] = fileInfo;
+            string folder = Resolve.Portable.Path().GetDirectoryName(path);
+            if (!String.IsNullOrEmpty(folder))
+            {
+                folder = folder.NormalizeFolderPath();
+                fileInfo = new FakeFileInfo { FullName = folder, IsFolder = true, CreationTimeUtc = DateTime.MinValue, LastAccessTimeUtc = DateTime.MinValue, LastWriteTimeUtc = DateTime.MinValue, Stream = null };
+                _fakeFileSystem[folder] = fileInfo;
+            }
 
             FakeFileWatcher.HandleFileChanged(path);
         }

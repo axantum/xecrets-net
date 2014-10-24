@@ -433,7 +433,7 @@ namespace Axantum.AxCrypt.Core.Test
                 mvm.RemoveWatchedFolders.Execute(new string[] { "File1.txt", "file2.txt" });
             }
 
-            mockFileSystemState.Verify(x => x.RemoveWatchedFolder(It.IsAny<IRuntimeFileInfo>()), Times.Exactly(2));
+            mockFileSystemState.Verify(x => x.RemoveWatchedFolder(It.IsAny<IRuntimeFolderInfo>()), Times.Exactly(2));
             mockFileSystemState.Verify(x => x.Save(), Times.Once);
         }
 
@@ -454,7 +454,7 @@ namespace Axantum.AxCrypt.Core.Test
 
                 mvm.RemoveWatchedFolders.Execute(new string[] { });
 
-                fileSystemStateMock.Verify(x => x.RemoveWatchedFolder(It.IsAny<IRuntimeFileInfo>()), Times.Never);
+                fileSystemStateMock.Verify(x => x.RemoveWatchedFolder(It.IsAny<IRuntimeFolderInfo>()), Times.Never);
                 fileSystemStateMock.Verify(x => x.Save(), Times.Never);
 
                 fileSystemStateMock.ResetCalls();
@@ -471,7 +471,7 @@ namespace Axantum.AxCrypt.Core.Test
                 mvm.RemoveWatchedFolders.Execute(new string[] { @"C:\Folder1\" });
             }
 
-            fileSystemStateMock.Verify(x => x.RemoveWatchedFolder(It.IsAny<IRuntimeFileInfo>()), Times.Exactly(1));
+            fileSystemStateMock.Verify(x => x.RemoveWatchedFolder(It.IsAny<IRuntimeFolderInfo>()), Times.Exactly(1));
             fileSystemStateMock.Verify(x => x.Save(), Times.Once);
         }
 

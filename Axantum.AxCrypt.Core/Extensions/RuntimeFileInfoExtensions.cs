@@ -46,6 +46,10 @@ namespace Axantum.AxCrypt.Core.Extensions
             {
                 return FileInfoTypes.NonExisting;
             }
+            if (fileInfo.IsFolder)
+            {
+                return FileInfoTypes.Folder;
+            }
             if (fileInfo.IsEncryptable())
             {
                 return FileInfoTypes.EncryptableFile;

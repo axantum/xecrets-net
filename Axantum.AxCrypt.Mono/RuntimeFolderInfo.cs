@@ -174,12 +174,17 @@ namespace Axantum.AxCrypt.Mono
 
         public override string Name
         {
-            get { return _info.FullName; }
+            get { return _info.Name; }
         }
 
         public override void Delete()
         {
             _info.Delete();
+        }
+
+        public override string FullName
+        {
+            get { return _info.FullName; }
         }
     }
 }

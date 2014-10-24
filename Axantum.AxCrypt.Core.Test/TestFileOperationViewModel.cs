@@ -55,7 +55,9 @@ namespace Axantum.AxCrypt.Core.Test
 
             var mockParallelFile = new Mock<ParallelFileOperation>();
             _allCompleted = false;
-            mockParallelFile.Setup(x => x.DoFiles(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()))
+            mockParallelFile.Setup(x => x.DoFiles<IRuntimeFolderInfo>(It.IsAny<IEnumerable<IRuntimeFolderInfo>>(), It.IsAny<Func<IRuntimeFolderInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()))
+                .Callback<IEnumerable<IRuntimeFolderInfo>, Func<IRuntimeFolderInfo, IProgressContext, FileOperationContext>, Action<FileOperationContext>>((files, work, allComplete) => { allComplete(new FileOperationContext(String.Empty, FileOperationStatus.Success)); _allCompleted = true; });
+            mockParallelFile.Setup(x => x.DoFiles<IRuntimeFileInfo>(It.IsAny<IEnumerable<IRuntimeFileInfo>>(), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()))
                 .Callback<IEnumerable<IRuntimeFileInfo>, Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>, Action<FileOperationContext>>((files, work, allComplete) => { allComplete(new FileOperationContext(String.Empty, FileOperationStatus.Success)); _allCompleted = true; });
             TypeMap.Register.Singleton<ParallelFileOperation>(() => mockParallelFile.Object);
         }
@@ -277,7 +279,7 @@ namespace Axantum.AxCrypt.Core.Test
             mvm.DecryptFolders.Execute(new string[] { @"C:\Folder\" });
 
             Assert.That(_allCompleted, Is.True);
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFileInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFileInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IRuntimeFolderInfo>>(f => f.Count() == 1), It.IsAny<Func<IRuntimeFolderInfo, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()));
         }
 
         [Test]
