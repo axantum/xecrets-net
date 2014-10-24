@@ -136,7 +136,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             BindPropertyChangedInternal("DragAndDropFiles", (IEnumerable<string> files) => { DragAndDropFilesTypes = DetermineFileTypes(files.Select(f => TypeMap.Resolve.New<IRuntimeFileInfo>(f))); });
             BindPropertyChangedInternal("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsRecent = DetermineDroppableAsRecent(files.Select(f => TypeMap.Resolve.New<IRuntimeFileInfo>(f))); });
-            BindPropertyChangedInternal("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => TypeMap.Resolve.New<IRuntimeFileInfo>(f))); });
+            BindPropertyChangedInternal("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => TypeMap.Resolve.New<IRuntimeFolderInfo>(f))); });
             BindPropertyChangedInternal("CurrentVersion", (Version cv) => { if (cv != null) UpdateUpdateCheck(cv); });
             BindPropertyChangedInternal("DebugMode", (bool enabled) => { UpdateDebugMode(enabled); });
             BindPropertyChangedInternal("RecentFilesComparer", (ActiveFileComparer comparer) => { SetRecentFiles(); });
@@ -202,20 +202,20 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return files.Any(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile || (Resolve.KnownKeys.IsLoggedOn && fileInfo.Type() == FileInfoTypes.EncryptableFile));
         }
 
-        private static bool DetermineDroppableAsWatchedFolder(IEnumerable<IRuntimeFileInfo> files)
+        private static bool DetermineDroppableAsWatchedFolder(IEnumerable<IRuntimeFolderInfo> files)
         {
             if (files.Count() != 1)
             {
                 return false;
             }
 
-            IRuntimeFileInfo fileInfo = files.First();
+            IRuntimeFolderInfo fileInfo = files.First();
             if (!fileInfo.IsAvailable)
             {
                 return false;
             }
 
-            if (!fileInfo.NormalizeFolder().IsEncryptable())
+            if (!fileInfo.IsEncryptable())
             {
                 return false;
             }

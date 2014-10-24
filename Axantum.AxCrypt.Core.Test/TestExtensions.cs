@@ -408,10 +408,6 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestNormalizeFolder()
         {
-            IRuntimeFileInfo nullFileInfo = null;
-            Assert.Throws<ArgumentNullException>(() => nullFileInfo.NormalizeFolder());
-            Assert.Throws<ArgumentException>(() => TypeMap.Resolve.New<IRuntimeFileInfo>(String.Empty).NormalizeFolder());
-
             string expected = @"C:\Documents\".Replace('\\', Path.DirectorySeparatorChar);
             Assert.That(TypeMap.Resolve.New<IRuntimeFolderInfo>(@"C:\Documents\").FullName, Is.EqualTo(expected));
             Assert.That(TypeMap.Resolve.New<IRuntimeFolderInfo>(@"C:/Documents\").FullName, Is.EqualTo(expected));

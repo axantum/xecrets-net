@@ -140,7 +140,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
 
             value = value.Replace(Resolve.Portable.Path().DirectorySeparatorChar == '/' ? '\\' : '/', Resolve.Portable.Path().DirectorySeparatorChar);
-            return TypeMap.Resolve.New<IRuntimeFileInfo>(value).NormalizeFolder().FullName;
+            return TypeMap.Resolve.New<IRuntimeFolderInfo>(value).FullName;
         }
 
         public static string NormalizeFilePath(this string filePath)

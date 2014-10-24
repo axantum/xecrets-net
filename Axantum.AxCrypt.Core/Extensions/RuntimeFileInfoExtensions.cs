@@ -79,21 +79,6 @@ namespace Axantum.AxCrypt.Core.Extensions
             return !fileInfo.IsEncrypted();
         }
 
-        public static IRuntimeFileInfo NormalizeFolder(this IRuntimeFileInfo folder)
-        {
-            if (folder == null)
-            {
-                throw new ArgumentNullException("folder");
-            }
-
-            if (folder.FullName.Length == 0)
-            {
-                throw new ArgumentException("The path must be a non-empty string.", "folder");
-            }
-
-            return TypeMap.Resolve.New<IRuntimeFileInfo>(folder.FullName.NormalizeFolderPath());
-        }
-
         public static bool IsEncrypted(this IRuntimeItem fullName)
         {
             return String.Compare(Resolve.Portable.Path().GetExtension(fullName.Name), OS.Current.AxCryptExtension, StringComparison.OrdinalIgnoreCase) == 0;
