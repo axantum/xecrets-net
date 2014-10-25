@@ -47,5 +47,13 @@ namespace Axantum.AxCrypt.Mono
         }
 
         public abstract void Delete();
+
+        public IDataContainer Container
+        {
+            get
+            {
+                return new DataContainer(Path.GetDirectoryName(Location));
+            }
+        }
     }
 }

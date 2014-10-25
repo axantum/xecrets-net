@@ -91,12 +91,5 @@ namespace Axantum.AxCrypt.Core.IO
         /// </summary>
         /// <param name="destinationFileName">Name of the destination file.</param>
         void MoveTo(string destinationFileName);
-
-        /// <summary>
-        /// Gets a folder containing this file, or as close as possible. If the file is on a readon-only medium
-        /// for example, an alternate location may be given. There is no guarantee that the container returned
-        /// actually contains this file.
-        /// </summary>
-        IDataContainer Container { get; }
     }
 }

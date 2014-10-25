@@ -8,6 +8,13 @@ namespace Axantum.AxCrypt.Core.IO
     public interface IDataItem
     {
         /// <summary>
+        /// Gets a folder containing this file, or as close as possible. If the file is on a readon-only medium
+        /// for example, an alternate location may be given. There is no guarantee that the container returned
+        /// actually contains this file.
+        /// </summary>
+        IDataContainer Container { get; }
+
+        /// <summary>
         /// Gets a value indicating whether this instance is available in the underlying file system or otherwise.
         /// </summary>
         /// <value>

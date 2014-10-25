@@ -255,14 +255,6 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        public IDataContainer Container
-        {
-            get
-            {
-                return new DataContainer(Path.GetDirectoryName(Location));
-            }
-        }
-
         public override bool IsFile
         {
             get { return true; }

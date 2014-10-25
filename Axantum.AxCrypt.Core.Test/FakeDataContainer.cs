@@ -132,5 +132,10 @@ namespace Axantum.AxCrypt.Core.Test
         {
             _fileInfo.Delete();
         }
+
+        public IDataContainer Container
+        {
+            get { return new FakeDataContainer(Resolve.Portable.Path().GetDirectoryName(_fileInfo.FullName)); }
+        }
     }
 }
