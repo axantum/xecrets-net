@@ -49,6 +49,11 @@ namespace Axantum.AxCrypt.Mono
         /// <exception cref="System.ArgumentNullException">fullName</exception>
         public DataContainer(string fullName)
         {
+            if (fullName == null)
+            {
+                throw new ArgumentNullException("fullName");
+            }
+
             _info = new DirectoryInfo(fullName.NormalizeFolderPath());
         }
 

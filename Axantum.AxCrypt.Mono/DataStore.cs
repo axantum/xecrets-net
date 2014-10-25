@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt.Mono
                 throw new ArgumentNullException("path");
             }
 
-            _file = new FileInfo(path);
+            _file = new FileInfo(path.NormalizeFilePath());
         }
 
         private DataStore(FileInfo fileInfo)
