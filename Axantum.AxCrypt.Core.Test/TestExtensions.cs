@@ -425,8 +425,8 @@ namespace Axantum.AxCrypt.Core.Test
 
             SetupAssembly.FakeRuntimeEnvironment.EnvironmentVariables.Add("VARIABLE", expected);
 
-            Assert.That("VARIABLE".FolderFromEnvironment(), Is.EqualTo(expected));
-            Assert.That("UNKNOWN".FolderFromEnvironment(), Is.EqualTo(String.Empty));
+            Assert.That("VARIABLE".FolderFromEnvironment().FullName, Is.EqualTo(expected));
+            Assert.That("UNKNOWN".FolderFromEnvironment(), Is.Null);
         }
 
         [Test]

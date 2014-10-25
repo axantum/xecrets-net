@@ -126,7 +126,13 @@ namespace Axantum.AxCrypt.Core.Extensions
             return message.Substring(skipIndex + 1);
         }
 
-        public static string FolderFromEnvironment(this string name)
+        /// <summary>
+        /// Gets a representation of a data container (folder) from an environment name or similar.
+        /// </summary>
+        /// <param name="name">The environment name.</param>
+        /// <returns>A container, or null if the name was not found or was empty.</returns>
+        /// <exception cref="System.ArgumentNullException">name</exception>
+        public static IDataContainer FolderFromEnvironment(this string name)
         {
             if (name == null)
             {
@@ -136,11 +142,10 @@ namespace Axantum.AxCrypt.Core.Extensions
             string value = OS.Current.EnvironmentVariable(name);
             if (String.IsNullOrEmpty(value))
             {
-                return String.Empty;
+                return null;
             }
 
-            value = value.Replace(Resolve.Portable.Path().DirectorySeparatorChar == '/' ? '\\' : '/', Resolve.Portable.Path().DirectorySeparatorChar);
-            return TypeMap.Resolve.New<IDataContainer>(value).FullName;
+            return TypeMap.Resolve.New<IDataContainer>(value);
         }
 
         public static string NormalizeFilePath(this string filePath)

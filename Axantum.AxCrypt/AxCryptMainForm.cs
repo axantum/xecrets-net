@@ -207,12 +207,12 @@ namespace Axantum.AxCrypt
 
         private static void AddEnvironmentVariableBasedPathFilter(string formatRegularExpression, string name)
         {
-            string folder = name.FolderFromEnvironment();
-            if (String.IsNullOrEmpty(folder))
+            IDataContainer folder = name.FolderFromEnvironment();
+            if (folder == null)
             {
                 return;
             }
-            folder = folder.Replace(@"\", @"\\");
+            string espacedPath = folder.FullName.Replace(@"\", @"\\");
             OS.PathFilters.Add(new Regex(formatRegularExpression.InvariantFormat(folder)));
         }
 
