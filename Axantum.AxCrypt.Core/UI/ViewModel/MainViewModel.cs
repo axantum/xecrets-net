@@ -136,7 +136,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             BindPropertyChangedInternal("DragAndDropFiles", (IEnumerable<string> files) => { DragAndDropFilesTypes = DetermineFileTypes(files.Select(f => TypeMap.Resolve.New<IDataItem>(f))); });
             BindPropertyChangedInternal("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsRecent = DetermineDroppableAsRecent(files.Select(f => TypeMap.Resolve.New<IDataItem>(f))); });
-            BindPropertyChangedInternal("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => TypeMap.Resolve.New<IDataContainer>(f))); });
+            BindPropertyChangedInternal("DragAndDropFiles", (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => TypeMap.Resolve.New<IDataItem>(f))); });
             BindPropertyChangedInternal("CurrentVersion", (Version cv) => { if (cv != null) UpdateUpdateCheck(cv); });
             BindPropertyChangedInternal("DebugMode", (bool enabled) => { UpdateDebugMode(enabled); });
             BindPropertyChangedInternal("RecentFilesComparer", (ActiveFileComparer comparer) => { SetRecentFiles(); });
@@ -202,15 +202,20 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return files.Any(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile || (Resolve.KnownKeys.IsLoggedOn && fileInfo.Type() == FileInfoTypes.EncryptableFile));
         }
 
-        private static bool DetermineDroppableAsWatchedFolder(IEnumerable<IDataContainer> files)
+        private static bool DetermineDroppableAsWatchedFolder(IEnumerable<IDataItem> files)
         {
             if (files.Count() != 1)
             {
                 return false;
             }
 
-            IDataContainer fileInfo = files.First();
+            IDataItem fileInfo = files.First();
             if (!fileInfo.IsAvailable)
+            {
+                return false;
+            }
+
+            if (!fileInfo.IsFolder)
             {
                 return false;
             }
