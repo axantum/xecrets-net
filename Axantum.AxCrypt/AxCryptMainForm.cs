@@ -212,8 +212,8 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-            string espacedPath = folder.FullName.Replace(@"\", @"\\");
-            OS.PathFilters.Add(new Regex(formatRegularExpression.InvariantFormat(folder)));
+            string escapedPath = folder.FullName.Replace(@"\", @"\\");
+            OS.PathFilters.Add(new Regex(formatRegularExpression.InvariantFormat(escapedPath)));
         }
 
         private void IntializeControls()

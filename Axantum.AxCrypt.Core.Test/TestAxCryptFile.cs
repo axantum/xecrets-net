@@ -484,7 +484,6 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(_davidCopperfieldTxtPath);
             sourceFileInfo.Container.CreateFolder();
-            IDataStore destinationFileInfo = sourceFileInfo.Container.CreateNewFile("David Copperfield-txt.axx");
 
             IDataStore alternateDestinationFileInfo = TypeMap.Resolve.New<IDataStore>(Path.Combine(Path.GetDirectoryName(_davidCopperfieldTxtPath), "David Copperfield-txt.1.axx"));
 
@@ -518,7 +517,6 @@ namespace Axantum.AxCrypt.Core.Test
             IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(_davidCopperfieldTxtPath);
             sourceFileInfo.Container.CreateFolder();
             IDataContainer sourceFolderInfo = sourceFileInfo.Container;
-            IDataStore destinationFileInfo = sourceFolderInfo.CreateNewFile("David Copperfield-txt.axx");
             IDataStore alternateDestinationFileInfo = sourceFolderInfo.FileItemInfo("David Copperfield-txt.1.axx");
             Assert.That(alternateDestinationFileInfo.IsAvailable, Is.False, "The destination should not be created and exist yet.");
 
