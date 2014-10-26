@@ -61,10 +61,13 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestPurgeInactive()
         {
+            TypeMap.Register.New<ILauncher>(() => new FakeLauncher());
+
             ProcessState ps = new ProcessState();
 
             ActiveFile activeFile1 = new ActiveFile(TypeMap.Resolve.New<IDataStore>(@"C:\encrypted.axx"), TypeMap.Resolve.New<IDataStore>(@"C:\decrypted.txt"), new Passphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
-            ILauncher launcher1 = OS.Current.Launch(activeFile1.EncryptedFileInfo.FullName);
+            ILauncher launcher1 = TypeMap.Resolve.New<ILauncher>();
+            launcher1.Launch(activeFile1.EncryptedFileInfo.FullName);
             ps.Add(launcher1, activeFile1);
 
             Assert.That(ps.HasActiveProcess(activeFile1), Is.True);
@@ -81,7 +84,8 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(ps.HasActiveProcess(activeFile1), Is.False);
 
             ActiveFile activeFile2 = new ActiveFile(TypeMap.Resolve.New<IDataStore>(@"C:\encrypted2.axx"), TypeMap.Resolve.New<IDataStore>(@"C:\decrypted2.txt"), new Passphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
-            ILauncher launcher2 = OS.Current.Launch(activeFile2.EncryptedFileInfo.FullName);
+            ILauncher launcher2 = TypeMap.Resolve.New<ILauncher>();
+            launcher2.Launch(activeFile2.EncryptedFileInfo.FullName);
             ps.Add(launcher2, activeFile2);
 
             Assert.That(ps.HasActiveProcess(activeFile1), Is.False);

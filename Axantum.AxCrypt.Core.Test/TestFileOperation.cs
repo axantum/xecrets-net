@@ -26,7 +26,6 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
@@ -102,10 +101,10 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IEnumerable<Passphrase> keys = new Passphrase[] { new Passphrase("a") };
 
-            var mock = new Mock<FakeRuntimeEnvironment>() { CallBase = true };
+            var mock = new Mock<ILauncher>() { CallBase = true };
             string launcherPath = null;
-            mock.Setup(x => x.Launch(It.IsAny<string>())).Callback((string path) => launcherPath = path).Returns((string path) => new FakeLauncher(path));
-            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => mock.Object);
+            mock.Setup(x => x.Launch(It.IsAny<string>())).Callback((string path) => launcherPath = path);
+            TypeMap.Register.New<ILauncher>(() => mock.Object);
 
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
             FileOperationContext status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, keys, new ProgressContext());
@@ -117,12 +116,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestOpenAndLaunchOfAxCryptDocument()
         {
-            FakeLauncher launcher = null;
-            SetupAssembly.FakeRuntimeEnvironment.Launcher = ((string path) =>
-            {
-                launcher = new FakeLauncher(path);
-                return launcher;
-            });
+            FakeLauncher launcher = new FakeLauncher();
+            bool called = false;
+            TypeMap.Register.New<ILauncher>(() => { called = true; return launcher; });
 
             FileOperationContext status;
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
@@ -136,7 +132,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
-            Assert.That(launcher, Is.Not.Null, "There should be a call to launch.");
+            Assert.That(called, Is.True, "There should be a call to launch.");
             Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
         }
 
@@ -145,13 +141,9 @@ namespace Axantum.AxCrypt.Core.Test
         {
             TestOpenAndLaunchOfAxCryptDocument();
 
-            FakeLauncher launcher = null;
-            SetupAssembly.FakeRuntimeEnvironment.Launcher = ((string path) =>
-            {
-                launcher = new FakeLauncher(path);
-                return launcher;
-            });
-
+            bool called = false;
+            FakeLauncher launcher = new FakeLauncher();
+            TypeMap.Register.New<ILauncher>(() => { called = true; return launcher; });
             FileOperationContext status;
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
             using (IAxCryptDocument document = new V1AxCryptDocument())
@@ -164,7 +156,7 @@ namespace Axantum.AxCrypt.Core.Test
             }
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
-            Assert.That(launcher, Is.Not.Null, "There should be a call to launch.");
+            Assert.That(called, Is.True, "There should be a call to launch.");
             Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
         }
 
@@ -194,6 +186,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileAlreadyDecryptedWithKnownKey()
         {
+            TypeMap.Register.New<ILauncher>(() => new FakeLauncher());
+
             IEnumerable<Passphrase> keys = new Passphrase[] { new Passphrase("a") };
 
             DateTime utcNow = DateTime.UtcNow;
@@ -216,6 +210,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileAlreadyDecryptedButWithUnknownKey()
         {
+            TypeMap.Register.New<ILauncher>(() => new FakeLauncher());
             IEnumerable<Passphrase> keys = new Passphrase[] { new Passphrase("a") };
 
             DateTime utcNow = DateTime.UtcNow;
@@ -253,19 +248,15 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IEnumerable<Passphrase> keys = new Passphrase[] { new Passphrase("a") };
 
-            FakeLauncher launcher = null;
-            SetupAssembly.FakeRuntimeEnvironment.Launcher = ((string path) =>
-            {
-                launcher = new FakeLauncher(path);
-                launcher.WasStarted = false;
-                return launcher;
-            });
+            FakeLauncher launcher = new FakeLauncher();
+            bool called = false;
+            TypeMap.Register.New<ILauncher>(() => { called = true; launcher.WasStarted = false; return launcher; });
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
 
             FileOperationContext status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, keys, new ProgressContext());
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed even if no process was actually launched.");
-            Assert.That(launcher, Is.Not.Null, "There should be a call to launch to try launching.");
+            Assert.That(called, Is.True, "There should be a call to launch to try launching.");
             Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
         }
 
@@ -290,20 +281,15 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IEnumerable<Passphrase> keys = new Passphrase[] { new Passphrase("a") };
 
-            FakeLauncher launcher = null;
-            SetupAssembly.FakeRuntimeEnvironment.Launcher = ((string path) =>
-            {
-                launcher = new FakeLauncher(path);
-                launcher.WasStarted = true;
-                launcher.HasExited = true;
-                return launcher;
-            });
+            FakeLauncher launcher = new FakeLauncher();
+            bool called = false;
+            TypeMap.Register.New<ILauncher>(() => { called = true; launcher.WasStarted = true; launcher.HasExited = true; return launcher; });
 
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
             FileOperationContext status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, keys, new ProgressContext());
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed even if the process exits immediately.");
-            Assert.That(launcher, Is.Not.Null, "There should be a call to launch to try launching.");
+            Assert.That(called, Is.True, "There should be a call to launch to try launching.");
             Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
         }
 
@@ -312,13 +298,9 @@ namespace Axantum.AxCrypt.Core.Test
         {
             IEnumerable<Passphrase> keys = new Passphrase[] { new Passphrase("a") };
 
-            FakeLauncher launcher = null;
-            SetupAssembly.FakeRuntimeEnvironment.Launcher = ((string path) =>
-            {
-                launcher = new FakeLauncher(path);
-                launcher.WasStarted = true;
-                return launcher;
-            });
+            FakeLauncher launcher = new FakeLauncher();
+            bool called = false;
+            TypeMap.Register.New<ILauncher>(() => { called = true; launcher.WasStarted = true; return launcher; });
 
             SessionNotify notificationMonitor = new SessionNotify();
 
@@ -326,7 +308,7 @@ namespace Axantum.AxCrypt.Core.Test
             FileOperationContext status = fileOperation.OpenAndLaunchApplication(_helloWorldAxxPath, keys, new ProgressContext());
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The launch should succeed.");
-            Assert.That(launcher, Is.Not.Null, "There should be a call to launch to try launching.");
+            Assert.That(called, Is.True, "There should be a call to launch to try launching.");
             Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
 
             bool changedWasRaised = false;
@@ -341,6 +323,8 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFileContainedByActiveFilesButNotDecrypted()
         {
+            TypeMap.Register.New<ILauncher>(() => new FakeLauncher());
+
             IEnumerable<Passphrase> keys = new Passphrase[] { new Passphrase("a") };
 
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());

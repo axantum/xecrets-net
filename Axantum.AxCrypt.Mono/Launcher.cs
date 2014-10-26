@@ -33,7 +33,7 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Mono
 {
-    internal class Launcher : ILauncher
+    public class Launcher : ILauncher
     {
         private readonly object _disposeLock = new object();
 
@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt.Mono
 
         private string _path;
 
-        public Launcher(string path)
+        public void Launch(string path)
         {
             _process = Process.Start(path);
             if (_process == null)

@@ -334,7 +334,8 @@ namespace Axantum.AxCrypt.Core.Test
             FakeDataStore.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
             FakeDataStore.AddFile(_decryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
 
-            FakeLauncher fakeLauncher = new FakeLauncher(_decryptedFile1);
+            FakeLauncher fakeLauncher = new FakeLauncher();
+            fakeLauncher.Launch(_decryptedFile1);
             ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedFile1), TypeMap.Resolve.New<IDataStore>(_decryptedFile1), new Passphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted);
             Resolve.FileSystemState.Add(activeFile, fakeLauncher);
@@ -361,7 +362,8 @@ namespace Axantum.AxCrypt.Core.Test
             FakeDataStore.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
             FakeDataStore.AddFile(_decryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
 
-            FakeLauncher fakeLauncher = new FakeLauncher(_decryptedFile1);
+            FakeLauncher fakeLauncher = new FakeLauncher();
+            fakeLauncher.Launch(_decryptedFile1);
             ActiveFile activeFile = new ActiveFile(TypeMap.Resolve.New<IDataStore>(_encryptedFile1), TypeMap.Resolve.New<IDataStore>(_decryptedFile1), new Passphrase("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().Id);
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.NotShareable);
             Resolve.FileSystemState.Add(activeFile, fakeLauncher);

@@ -38,8 +38,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Net.Security;
 using System.Text.RegularExpressions;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -65,14 +63,14 @@ namespace Axantum.AxCrypt.Core.Test
         {
             string filePath = @"C:\Folder\File.txt";
 
-            var mockEnvironment = new Mock<FakeRuntimeEnvironment>() { CallBase = true };
-            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => mockEnvironment.Object);
+            var mock = new Mock<FakeLauncher>() { CallBase = true };
+            TypeMap.Register.New<ILauncher>(() => mock.Object);
 
             using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
                 mvm.OpenSelectedFolder.Execute(filePath);
             }
-            mockEnvironment.Verify(r => r.Launch(filePath));
+            mock.Verify(r => r.Launch(filePath));
         }
 
         [Test]

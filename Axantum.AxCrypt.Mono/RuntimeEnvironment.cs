@@ -93,11 +93,6 @@ namespace Axantum.AxCrypt.Mono
             get { return DateTime.UtcNow; }
         }
 
-        public virtual ILauncher Launch(string path)
-        {
-            return new Launcher(path);
-        }
-
         public ITiming StartTiming()
         {
             return new Timing();

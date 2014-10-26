@@ -32,7 +32,6 @@ using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
@@ -361,7 +360,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private static void OpenSelectedFolderAction(string folder)
         {
-            OS.Current.Launch(folder);
+            TypeMap.Resolve.New<ILauncher>().Launch(folder);
         }
 
         private void UpdateCheckAction(DateTime lastUpdateCheckUtc)

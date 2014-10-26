@@ -96,15 +96,6 @@ namespace Axantum.AxCrypt.Core.Test
 
         public Func<string, ILauncher> Launcher { get; set; }
 
-        public virtual ILauncher Launch(string path)
-        {
-            if (Launcher != null)
-            {
-                return Launcher(path);
-            }
-            return new FakeLauncher(path);
-        }
-
         public ITiming StartTiming()
         {
             return CurrentTiming;

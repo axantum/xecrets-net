@@ -26,18 +26,12 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Crypto.Asymmetric;
-using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Ipc;
-using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
-using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Desktop;
 using Axantum.AxCrypt.Forms;
 using Axantum.AxCrypt.Mono;
-using Axantum.AxCrypt.Mono.Portable;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -86,6 +80,7 @@ namespace Axantum.AxCrypt
             DesktopFactory.RegisterTypeFactories();
 
             TypeMap.Register.New<IDataProtection>(() => new DataProtection());
+            TypeMap.Register.New<ILauncher>(() => new Launcher());
         }
 
         private static IEnumerable<Assembly> LoadFromFiles(IEnumerable<FileInfo> files)

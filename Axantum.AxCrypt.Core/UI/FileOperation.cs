@@ -32,7 +32,6 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
 
@@ -153,7 +152,8 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     Resolve.Log.LogInfo("Starting process for '{0}'".InvariantFormat(destinationActiveFile.DecryptedFileInfo.FullName));
                 }
-                process = OS.Current.Launch(destinationActiveFile.DecryptedFileInfo.FullName);
+                process = TypeMap.Resolve.New<ILauncher>();
+                process.Launch(destinationActiveFile.DecryptedFileInfo.FullName);
                 if (process.WasStarted)
                 {
                     process.Exited += new EventHandler(process_Exited);

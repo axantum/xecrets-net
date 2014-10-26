@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Ipc;
+using Axantum.AxCrypt.Core.Runtime;
 using NDesk.Options;
 using System;
 using System.Collections.Generic;
@@ -127,7 +128,10 @@ namespace Axantum.AxCrypt.Core
 
         private void StartFirstInstance()
         {
-            using (OS.Current.Launch(_startPath)) { }
+            using (ILauncher launcher = TypeMap.Resolve.New<ILauncher>())
+            {
+                launcher.Launch(_startPath);
+            }
             if (OS.Current.FirstInstanceRunning(TimeSpan.FromSeconds(1)))
             {
                 return;

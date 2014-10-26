@@ -1,5 +1,6 @@
 ﻿using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
@@ -142,7 +143,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private static void OpenSelectedFolderAction(string folder)
         {
-            OS.Current.Launch(folder);
+            TypeMap.Resolve.New<ILauncher>().Launch(folder);
         }
     }
 }

@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI;
 using NUnit.Framework;
@@ -395,13 +396,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSimpleDecryptAndLaunch()
         {
-            FakeLauncher launcher = null;
-            FakeRuntimeEnvironment environment = (FakeRuntimeEnvironment)OS.Current;
-            environment.Launcher = ((string path) =>
-            {
-                launcher = new FakeLauncher(path);
-                return launcher;
-            });
+            FakeLauncher launcher = new FakeLauncher();
+            bool called = false;
+            TypeMap.Register.New<ILauncher>(() => { called = true; return launcher; });
 
             FileOperationsController controller = new FileOperationsController();
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
@@ -412,7 +409,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
-            Assert.That(launcher, Is.Not.Null, "There should be a call to launch.");
+            Assert.That(called, Is.True, "There should be a call to launch.");
             Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
 
             IDataStore destinationInfo = TypeMap.Resolve.New<IDataStore>(launcher.Path);
@@ -430,13 +427,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestSimpleDecryptAndLaunchOnThreadWorker()
         {
-            FakeLauncher launcher = null;
-            FakeRuntimeEnvironment environment = (FakeRuntimeEnvironment)OS.Current;
-            environment.Launcher = ((string path) =>
-            {
-                launcher = new FakeLauncher(path);
-                return launcher;
-            });
+            FakeLauncher launcher = new FakeLauncher();
+            bool called = false;
+            TypeMap.Register.New<ILauncher>(() => { called = true; return launcher; });
 
             FileOperationsController controller = new FileOperationsController();
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
@@ -453,7 +446,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             Assert.That(status.Status, Is.EqualTo(FileOperationStatus.Success), "The status should indicate success.");
 
-            Assert.That(launcher, Is.Not.Null, "There should be a call to launch.");
+            Assert.That(called, Is.True, "There should be a call to launch.");
             Assert.That(Path.GetFileName(launcher.Path), Is.EqualTo("HelloWorld-Key-a.txt"), "The file should be decrypted and the name should be the original from the encrypted headers.");
 
             IDataStore destinationInfo = TypeMap.Resolve.New<IDataStore>(launcher.Path);

@@ -90,14 +90,15 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestNeedToLaunchFirstInstance()
         {
-            var mock = new Mock<FakeRuntimeEnvironment>() { CallBase = true };
-            mock.Setup<ILauncher>(x => x.Launch(It.IsAny<string>()))
-                .Returns((string path) =>
+            var mock = new Mock<FakeLauncher>() { CallBase = true };
+            mock.Setup(x => x.Launch(It.IsAny<string>()))
+                .Callback((string path) =>
                 {
                     FakeRuntimeEnvironment.Instance.IsFirstInstanceRunning = path == "axcrypt.exe";
-                    return new FakeLauncher(path);
                 });
-            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => mock.Object);
+
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
+            TypeMap.Register.New<ILauncher>(() => mock.Object);
 
             _fakeClient.FakeDispatcher = (command) => { _fakeServer.AcceptRequest(command); return CommandStatus.Success; };
             CommandLine cl = new CommandLine("axcrypt.exe", new string[0]);
@@ -109,6 +110,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestFailedToLaunchFirstInstance()
         {
+            TypeMap.Register.New<ILauncher>(() => new FakeLauncher());
             _fakeClient.FakeDispatcher = (command) => { _fakeServer.AcceptRequest(command); return CommandStatus.Success; };
             CommandLine cl = new CommandLine("axcrypt.exe", new string[0]);
             Assert.That(FakeRuntimeEnvironment.Instance.IsFirstInstanceRunning, Is.False);

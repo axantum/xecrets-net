@@ -25,11 +25,11 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -37,7 +37,7 @@ namespace Axantum.AxCrypt.Core.Test
     {
         private string _path;
 
-        public FakeLauncher(string path)
+        public virtual void Launch(string path)
         {
             _path = path;
             HasExited = false;

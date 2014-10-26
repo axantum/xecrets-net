@@ -43,8 +43,6 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         DateTime UtcNow { get; }
 
-        ILauncher Launch(string path);
-
         ITiming StartTiming();
 
         IWebCaller CreateWebCaller();
