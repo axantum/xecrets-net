@@ -85,6 +85,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(TypeMap.Resolve.Singleton<IAsymmetricFactory>().GetConverters()));
             TypeMap.Register.New<Core.Portable.AxCryptHMACSHA1>(() => PortableFactory.AxCryptHMACSHA1());
             TypeMap.Register.New<Core.Portable.HMACSHA512>(() => PortableFactory.HMACSHA512());
+            TypeMap.Register.New<Core.Portable.AesManaged>(() => PortableFactory.AesManaged());
 
             Resolve.UserSettings.SetKeyWrapIterations(V1Aes128CryptoFactory.CryptoId, 1234);
             Resolve.UserSettings.ThumbprintSalt = Salt.Zero;

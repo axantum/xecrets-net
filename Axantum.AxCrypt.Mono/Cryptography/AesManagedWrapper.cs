@@ -1,18 +1,18 @@
-﻿using System;
+﻿using Axantum.AxCrypt.Mono.Portable;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Axantum.AxCrypt.Mono.Portable
+namespace Axantum.AxCrypt.Mono.Cryptography
 {
-    internal class PortableSymmetricAlgorithmWrapper : Axantum.AxCrypt.Core.Portable.SymmetricAlgorithm
+    internal class AesManagedWrapper : Axantum.AxCrypt.Core.Portable.AesManaged
     {
         private System.Security.Cryptography.SymmetricAlgorithm _symmetricAlgorithm;
 
-        public PortableSymmetricAlgorithmWrapper(System.Security.Cryptography.SymmetricAlgorithm symmetricAlgorithm)
+        public AesManagedWrapper()
         {
-            _symmetricAlgorithm = symmetricAlgorithm;
+            _symmetricAlgorithm = new System.Security.Cryptography.AesManaged();
         }
 
         public override void Clear()

@@ -17,9 +17,9 @@ namespace Axantum.AxCrypt.Mono.Portable
             return new Mono.Cryptography.HMACSHA512Wrapper();
         }
 
-        public SymmetricAlgorithm AesManaged()
+        public static Core.Portable.AesManaged AesManaged()
         {
-            return new PortableSymmetricAlgorithmWrapper(new System.Security.Cryptography.AesManaged());
+            return new Mono.Cryptography.AesManagedWrapper();
         }
 
         public HashAlgorithm SHA1Managed()

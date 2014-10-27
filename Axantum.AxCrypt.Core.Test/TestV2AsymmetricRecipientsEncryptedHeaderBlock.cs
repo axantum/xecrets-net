@@ -23,6 +23,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(TypeMap.Resolve.Singleton<IAsymmetricFactory>().GetConverters()));
             TypeMap.Register.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
             TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
+            TypeMap.Register.New<Core.Portable.AesManaged>(() => PortableFactory.AesManaged());
         }
 
         [TearDown]

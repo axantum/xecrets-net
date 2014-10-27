@@ -45,6 +45,7 @@
     <Reference Include="System.Security" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cryptography\AesManagedWrapper.cs" />
     <Compile Include="MonoPlatform.cs" />
     <Compile Include="Cryptography\AxCryptHMACSHA1.cs" />
     <Compile Include="DelayTimer.cs" />
@@ -62,7 +63,6 @@
     <Compile Include="Portable\PortableCryptoTransformWrapper.cs" />
     <Compile Include="Portable\PortablePathImplementation.cs" />
     <Compile Include="Portable\PortableRandomNumberGeneratorWrapper.cs" />
-    <Compile Include="Portable\PortableSymmetricAlgorithmWrapper.cs" />
     <Compile Include="Portable\PortableSemaphoreWrapper.cs" />
     <Compile Include="Portable\SingleThread.cs" />
     <Compile Include="RuntimeEnvironment.cs" />

@@ -8,8 +8,6 @@ namespace Axantum.AxCrypt.Core.Portable
 {
     public interface IPortableFactory
     {
-        SymmetricAlgorithm AesManaged();
-
         HashAlgorithm SHA1Managed();
 
         HashAlgorithm SHA256Managed();
