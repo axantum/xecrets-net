@@ -1,5 +1,4 @@
-﻿using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Portable;
+﻿using Axantum.AxCrypt.Core.Portable;
 using System;
 using System.IO;
 using System.Linq;
@@ -8,14 +7,14 @@ namespace Axantum.AxCrypt.Mono.Portable
 {
     public class PortableFactory : IPortableFactory
     {
-        public HMAC AxCryptHMACSHA1(SymmetricKey key)
+        public static Core.Portable.AxCryptHMACSHA1 AxCryptHMACSHA1()
         {
-            return new PortableHmacWrapper(Axantum.AxCrypt.Mono.Portable.AxCryptHMACSHA1.Create(key));
+            return new Mono.Cryptography.AxCryptHMACSHA1Wrapper();
         }
 
-        public HMAC HMACSHA512(byte[] key)
+        public static Core.Portable.HMACSHA512 HMACSHA512()
         {
-            return new PortableHmacWrapper(new System.Security.Cryptography.HMACSHA512(key));
+            return new Mono.Cryptography.HMACSHA512Wrapper();
         }
 
         public SymmetricAlgorithm AesManaged()

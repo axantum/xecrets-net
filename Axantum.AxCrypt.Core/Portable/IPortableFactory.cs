@@ -1,5 +1,4 @@
-﻿using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Runtime;
+﻿using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.IO;
@@ -9,10 +8,6 @@ namespace Axantum.AxCrypt.Core.Portable
 {
     public interface IPortableFactory
     {
-        HMAC AxCryptHMACSHA1(SymmetricKey key);
-
-        HMAC HMACSHA512(byte[] key);
-
         SymmetricAlgorithm AesManaged();
 
         HashAlgorithm SHA1Managed();

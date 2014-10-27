@@ -32,6 +32,7 @@ using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Desktop;
 using Axantum.AxCrypt.Forms;
 using Axantum.AxCrypt.Mono;
+using Axantum.AxCrypt.Mono.Portable;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -81,6 +82,8 @@ namespace Axantum.AxCrypt
 
             TypeMap.Register.New<IDataProtection>(() => new DataProtection());
             TypeMap.Register.New<ILauncher>(() => new Launcher());
+            TypeMap.Register.New<Core.Portable.AxCryptHMACSHA1>(() => PortableFactory.AxCryptHMACSHA1());
+            TypeMap.Register.New<Core.Portable.HMACSHA512>(() => PortableFactory.HMACSHA512());
         }
 
         private static IEnumerable<Assembly> LoadFromFiles(IEnumerable<FileInfo> files)

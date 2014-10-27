@@ -17,6 +17,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void Setup()
         {
             TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
+            TypeMap.Register.New<Core.Portable.HMACSHA512>(() => PortableFactory.HMACSHA512());
         }
 
         [TearDown]

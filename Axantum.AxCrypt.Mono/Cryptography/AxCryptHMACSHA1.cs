@@ -25,11 +25,10 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Axantum.AxCrypt.Mono.Portable
+namespace Axantum.AxCrypt.Mono.Cryptography
 {
     /// <summary>
     /// Calculate HMACSHA1 the AxCrypt way.
@@ -49,19 +48,13 @@ namespace Axantum.AxCrypt.Mono.Portable
         }
 
         /// <summary>
-        /// Initializes a new instance of the AxCryptHMACSHA1 class
-        /// with a provided key.
+        /// Initializes a new instance of the AxCryptHMACSHA1 class.
         /// </summary>
         /// <param name="key">The key</param>
-        public static System.Security.Cryptography.HMAC Create(SymmetricKey key)
+        public static new System.Security.Cryptography.HMAC Create()
         {
-            if (key == null)
-            {
-                throw new ArgumentNullException("key");
-            }
             AxCryptHMACSHA1 hmac = new AxCryptHMACSHA1();
             hmac.BlockSizeValue = 20;
-            hmac.Key = key.GetBytes();
 
             return hmac;
         }

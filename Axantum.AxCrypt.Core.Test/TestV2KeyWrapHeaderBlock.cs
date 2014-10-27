@@ -64,9 +64,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
             TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
             TypeMap.Register.Singleton<CryptoFactory>(() => SetupAssembly.CreateCryptoFactory());
-            TypeMap.Register.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
-            TypeMap.Register.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
-            TypeMap.Register.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
+            TypeMap.Register.New<Core.Portable.HMACSHA512>(() => PortableFactory.HMACSHA512());
             TypeMap.Register.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
         }
 

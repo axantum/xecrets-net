@@ -48,6 +48,7 @@
     <Compile Include="IO\IStringSerializer.cs" />
     <Compile Include="IO\StringSerializer.cs" />
     <Compile Include="Portable\AesManaged.cs" />
+    <Compile Include="Portable\AxCryptHMACSHA1.cs" />
     <Compile Include="Portable\CipherMode.cs" />
     <Compile Include="Portable\IPortableFactory.cs" />
     <Compile Include="Portable\CryptoStream.cs" />

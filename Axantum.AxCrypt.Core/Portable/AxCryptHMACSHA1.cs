@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Portable
 {
-    public abstract class HMACSHA512 : HMAC
+    public abstract class AxCryptHMACSHA1 : HMAC
     {
     }
 }

@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Core.Test
             HMAC hmac = null;
             Assert.Throws<ArgumentNullException>(() =>
             {
-                hmac = Resolve.Portable.AxCryptHMACSHA1(null);
+                hmac = TypeMap.Resolve.New<AxCryptHMACSHA1>().Initialize(null);
             });
 
             // Use the instance to avoid FxCop errors.
@@ -66,7 +66,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void TestMethods()
         {
             SymmetricKey key = new SymmetricKey(128);
-            HMAC hmac = Resolve.Portable.AxCryptHMACSHA1(key);
+            HMAC hmac = TypeMap.Resolve.New<AxCryptHMACSHA1>().Initialize(key);
 
             Assert.That(hmac.Key, Is.EquivalentTo(key.GetBytes()), "Ensure that we're using the specified key.");
         }

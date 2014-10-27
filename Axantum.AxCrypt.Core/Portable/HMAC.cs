@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Axantum.AxCrypt.Core.Crypto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.Portable
 {
@@ -11,5 +11,7 @@ namespace Axantum.AxCrypt.Core.Portable
         protected int BlockSizeValue { get; set; }
 
         public abstract string HashName { get; set; }
+
+        public abstract HMAC Initialize(SymmetricKey key);
     }
 }

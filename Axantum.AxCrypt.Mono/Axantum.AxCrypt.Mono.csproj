@@ -46,16 +46,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MonoPlatform.cs" />
-    <Compile Include="Portable\AxCryptHMACSHA1.cs" />
+    <Compile Include="Cryptography\AxCryptHMACSHA1.cs" />
     <Compile Include="DelayTimer.cs" />
     <Compile Include="DelegateTraceListener.cs" />
     <Compile Include="HttpRequestClient.cs" />
     <Compile Include="HttpRequestServer.cs" />
     <Compile Include="Launcher.cs" />
     <Compile Include="Logging.cs" />
+    <Compile Include="Cryptography\AxCryptHMACSHA1Wrapper.cs" />
     <Compile Include="Portable\CryptographyCryptoTransformWrapper.cs" />
+    <Compile Include="Cryptography\HMACSHA512Wrapper.cs" />
     <Compile Include="Portable\PortableHashAlgorithmWrapper.cs" />
-    <Compile Include="Portable\PortableHmacWrapper.cs" />
     <Compile Include="Portable\PortableFactory.cs" />
     <Compile Include="Portable\PortableCryptoStreamWrapper.cs" />
     <Compile Include="Portable\PortableCryptoTransformWrapper.cs" />

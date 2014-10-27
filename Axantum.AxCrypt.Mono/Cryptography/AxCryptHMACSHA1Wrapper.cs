@@ -1,17 +1,18 @@
-﻿using System;
+﻿using Axantum.AxCrypt.Core.Crypto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Mono.Portable
+namespace Axantum.AxCrypt.Mono.Cryptography
 {
-    internal class PortableHmacWrapper : Axantum.AxCrypt.Core.Portable.HMAC
+    internal class AxCryptHMACSHA1Wrapper : Axantum.AxCrypt.Core.Portable.AxCryptHMACSHA1
     {
         private System.Security.Cryptography.HMAC _hmac;
 
-        public PortableHmacWrapper(System.Security.Cryptography.HMAC hmac)
+        public AxCryptHMACSHA1Wrapper()
         {
-            _hmac = hmac;
+            _hmac = Axantum.AxCrypt.Mono.Cryptography.AxCryptHMACSHA1.Create();
         }
 
         public override string HashName
@@ -66,6 +67,18 @@ namespace Axantum.AxCrypt.Mono.Portable
         public override void Initialize()
         {
             _hmac.Initialize();
+        }
+
+        public override Core.Portable.HMAC Initialize(SymmetricKey key)
+        {
+            if (key == null)
+            {
+                throw new ArgumentNullException("key");
+            }
+
+            _hmac.Initialize();
+            _hmac.Key = key.GetBytes();
+            return this;
         }
 
         public override bool CanReuseTransform
