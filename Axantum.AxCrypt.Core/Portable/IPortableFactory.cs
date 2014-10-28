@@ -14,8 +14,6 @@ namespace Axantum.AxCrypt.Core.Portable
 
         RandomNumberGenerator RandomNumberGenerator();
 
-        Stream CryptoStream(Stream stream, ICryptoTransform transform, CryptoStreamMode mode);
-
         ISemaphore Semaphore(int initialCount, int maximumCoiunt);
 
         IPath Path();

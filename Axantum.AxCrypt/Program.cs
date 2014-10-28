@@ -85,6 +85,7 @@ namespace Axantum.AxCrypt
             TypeMap.Register.New<Core.Portable.AxCryptHMACSHA1>(() => PortableFactory.AxCryptHMACSHA1());
             TypeMap.Register.New<Core.Portable.HMACSHA512>(() => PortableFactory.HMACSHA512());
             TypeMap.Register.New<Core.Portable.AesManaged>(() => PortableFactory.AesManaged());
+            TypeMap.Register.New<Core.Portable.CryptoStream>(() => PortableFactory.CryptoStream());
         }
 
         private static IEnumerable<Assembly> LoadFromFiles(IEnumerable<FileInfo> files)

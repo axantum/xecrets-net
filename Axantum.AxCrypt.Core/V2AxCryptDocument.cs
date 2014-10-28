@@ -132,7 +132,7 @@ namespace Axantum.AxCrypt.Core
                 {
                     using (Stream axCryptDataStream = new V2AxCryptDataStream(outputHmacStream))
                     {
-                        using (Stream encryptingStream = Resolve.Portable.CryptoStream(new NonClosingStream(axCryptDataStream), encryptor, CryptoStreamMode.Write))
+                        using (Stream encryptingStream = TypeMap.Resolve.New<CryptoStream>().Initialize(new NonClosingStream(axCryptDataStream), encryptor, CryptoStreamMode.Write))
                         {
                             if (DocumentHeaders.IsCompressed)
                             {

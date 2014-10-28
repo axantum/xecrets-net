@@ -28,8 +28,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Cryptography\AxCryptHMACSHA1Wrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Cryptography\HMACSHA512Wrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Cryptography\AesManagedWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cryptography\CryptoStreamWrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Portable\CryptographyCryptoTransformWrapper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Portable\PortableCryptoStreamWrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Portable\PortableCryptoTransformWrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Portable\PortableFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Portable\PortableHashAlgorithmWrapper.cs" />

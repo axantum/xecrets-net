@@ -108,7 +108,7 @@ namespace Axantum.AxCrypt.Core.Extensions
 
                 if (isCompressed)
                 {
-                    using (Stream deflatedPlaintextStream = Resolve.Portable.CryptoStream(encryptedInputStream, transform, CryptoStreamMode.Read))
+                    using (Stream deflatedPlaintextStream = TypeMap.Resolve.New<CryptoStream>().Initialize(encryptedInputStream, transform, CryptoStreamMode.Read))
                     {
                         using (Stream inflatedPlaintextStream = new ZInputStream(deflatedPlaintextStream))
                         {
@@ -126,7 +126,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                 }
                 else
                 {
-                    using (Stream plainStream = Resolve.Portable.CryptoStream(encryptedInputStream, transform, CryptoStreamMode.Read))
+                    using (Stream plainStream = TypeMap.Resolve.New<CryptoStream>().Initialize(encryptedInputStream, transform, CryptoStreamMode.Read))
                     {
                         try
                         {

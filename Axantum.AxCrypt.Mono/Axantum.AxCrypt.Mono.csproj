@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cryptography\AesManagedWrapper.cs" />
+    <Compile Include="Cryptography\CryptoStreamWrapper.cs" />
     <Compile Include="MonoPlatform.cs" />
     <Compile Include="Cryptography\AxCryptHMACSHA1.cs" />
     <Compile Include="DelayTimer.cs" />
@@ -59,7 +60,6 @@
     <Compile Include="Cryptography\HMACSHA512Wrapper.cs" />
     <Compile Include="Portable\PortableHashAlgorithmWrapper.cs" />
     <Compile Include="Portable\PortableFactory.cs" />
-    <Compile Include="Portable\PortableCryptoStreamWrapper.cs" />
     <Compile Include="Portable\PortableCryptoTransformWrapper.cs" />
     <Compile Include="Portable\PortablePathImplementation.cs" />
     <Compile Include="Portable\PortableRandomNumberGeneratorWrapper.cs" />

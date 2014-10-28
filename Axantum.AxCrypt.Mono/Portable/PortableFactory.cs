@@ -22,6 +22,11 @@ namespace Axantum.AxCrypt.Mono.Portable
             return new Mono.Cryptography.AesManagedWrapper();
         }
 
+        public static Core.Portable.CryptoStream CryptoStream()
+        {
+            return new Mono.Cryptography.CryptoStreamWrapper();
+        }
+
         public HashAlgorithm SHA1Managed()
         {
             return new PortableHashAlgorithmWrapper(new System.Security.Cryptography.SHA1Managed());
@@ -35,26 +40,6 @@ namespace Axantum.AxCrypt.Mono.Portable
         public RandomNumberGenerator RandomNumberGenerator()
         {
             return new PortableRandomNumberGeneratorWrapper(System.Security.Cryptography.RandomNumberGenerator.Create());
-        }
-
-        public Stream CryptoStream(Stream stream, ICryptoTransform transform, CryptoStreamMode mode)
-        {
-            System.Security.Cryptography.CryptoStreamMode streamMode;
-            switch (mode)
-            {
-                case CryptoStreamMode.Read:
-                    streamMode = System.Security.Cryptography.CryptoStreamMode.Read;
-                    break;
-
-                case CryptoStreamMode.Write:
-                    streamMode = System.Security.Cryptography.CryptoStreamMode.Write;
-                    break;
-
-                default:
-                    streamMode = (System.Security.Cryptography.CryptoStreamMode)mode;
-                    break;
-            }
-            return new PortableCryptoStreamWrapper(new System.Security.Cryptography.CryptoStream(stream, new CryptographyCryptoTransformWrapper(transform), streamMode));
         }
 
         public ISemaphore Semaphore(int initialCount, int maximumCount)

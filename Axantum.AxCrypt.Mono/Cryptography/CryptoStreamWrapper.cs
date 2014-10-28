@@ -1,18 +1,40 @@
-﻿using System;
+﻿using Axantum.AxCrypt.Core.Portable;
+using Axantum.AxCrypt.Mono.Portable;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Mono.Portable
+namespace Axantum.AxCrypt.Mono.Cryptography
 {
-    public class PortableCryptoStreamWrapper : Axantum.AxCrypt.Core.Portable.CryptoStream
+    internal class CryptoStreamWrapper : CryptoStream
     {
         private System.Security.Cryptography.CryptoStream _cryptoStream;
 
-        public PortableCryptoStreamWrapper(System.Security.Cryptography.CryptoStream cryptoStream)
+        public override Stream Initialize(Stream stream, ICryptoTransform transform, CryptoStreamMode mode)
         {
-            _cryptoStream = cryptoStream;
+            System.Security.Cryptography.CryptoStreamMode streamMode;
+            switch (mode)
+            {
+                case CryptoStreamMode.Read:
+                    streamMode = System.Security.Cryptography.CryptoStreamMode.Read;
+                    break;
+
+                case CryptoStreamMode.Write:
+                    streamMode = System.Security.Cryptography.CryptoStreamMode.Write;
+                    break;
+
+                default:
+                    streamMode = (System.Security.Cryptography.CryptoStreamMode)mode;
+                    break;
+            }
+            _cryptoStream = new System.Security.Cryptography.CryptoStream(stream, new CryptographyCryptoTransformWrapper(transform), streamMode);
+            return this;
+        }
+
+        public CryptoStreamWrapper()
+        {
         }
 
         public override bool CanRead
