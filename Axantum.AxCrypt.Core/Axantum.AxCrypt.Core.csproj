@@ -87,6 +87,8 @@
     <Compile Include="Portable\KeySizes.cs" />
     <Compile Include="Portable\PaddingMode.cs" />
     <Compile Include="Portable\RandomNumberGenerator.cs" />
+    <Compile Include="Portable\Sha1.cs" />
+    <Compile Include="Portable\Sha256.cs" />
     <Compile Include="Portable\SymmetricAlgorithm.cs" />
     <Compile Include="Runtime\Creator.cs" />
     <Compile Include="Runtime\IPlatform.cs" />

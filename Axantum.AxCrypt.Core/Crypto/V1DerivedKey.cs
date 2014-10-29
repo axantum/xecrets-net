@@ -47,7 +47,7 @@ namespace Axantum.AxCrypt.Core.Crypto
                 throw new ArgumentNullException("passphrase");
             }
 
-            HashAlgorithm hashAlgorithm = Resolve.Portable.SHA1Managed();
+            HashAlgorithm hashAlgorithm = TypeMap.Resolve.New<Sha1>();
             byte[] ansiBytes = Encoding.GetEncoding("Windows-1252").GetBytes(passphrase.Text);
             byte[] hash = hashAlgorithm.ComputeHash(ansiBytes);
             byte[] derivedKey = new byte[16];

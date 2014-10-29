@@ -8,10 +8,6 @@ namespace Axantum.AxCrypt.Core.Portable
 {
     public interface IPortableFactory
     {
-        HashAlgorithm SHA1Managed();
-
-        HashAlgorithm SHA256Managed();
-
         RandomNumberGenerator RandomNumberGenerator();
 
         ISemaphore Semaphore(int initialCount, int maximumCoiunt);
