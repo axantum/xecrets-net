@@ -39,6 +39,7 @@ using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Mono.Portable;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.Algorithm;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -83,12 +84,12 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<IterationCalculator>(() => new FakeIterationCalculator());
             TypeMap.Register.New<IDataProtection>(() => new FakeDataProtection());
             TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(TypeMap.Resolve.Singleton<IAsymmetricFactory>().GetConverters()));
-            TypeMap.Register.New<Core.Portable.AxCryptHMACSHA1>(() => PortableFactory.AxCryptHMACSHA1());
-            TypeMap.Register.New<Core.Portable.HMACSHA512>(() => PortableFactory.HMACSHA512());
-            TypeMap.Register.New<Core.Portable.AesManaged>(() => PortableFactory.AesManaged());
-            TypeMap.Register.New<Core.Portable.CryptoStream>(() => PortableFactory.CryptoStream());
-            TypeMap.Register.New<Core.Portable.Sha1>(() => PortableFactory.SHA1Managed());
-            TypeMap.Register.New<Core.Portable.Sha256>(() => PortableFactory.SHA256Managed());
+            TypeMap.Register.New<AxCryptHMACSHA1>(() => PortableFactory.AxCryptHMACSHA1());
+            TypeMap.Register.New<HMACSHA512>(() => PortableFactory.HMACSHA512());
+            TypeMap.Register.New<AesManaged>(() => PortableFactory.AesManaged());
+            TypeMap.Register.New<CryptoStream>(() => PortableFactory.CryptoStream());
+            TypeMap.Register.New<Sha1>(() => PortableFactory.SHA1Managed());
+            TypeMap.Register.New<Sha256>(() => PortableFactory.SHA256Managed());
 
             Resolve.UserSettings.SetKeyWrapIterations(V1Aes128CryptoFactory.CryptoId, 1234);
             Resolve.UserSettings.ThumbprintSalt = Salt.Zero;

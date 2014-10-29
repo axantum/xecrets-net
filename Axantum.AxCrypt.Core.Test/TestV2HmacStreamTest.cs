@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core.Extensions;
+﻿using Axantum.AxCrypt.Core.Algorithm;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Mono.Portable;
@@ -17,7 +18,7 @@ namespace Axantum.AxCrypt.Core.Test
         public static void Setup()
         {
             TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
-            TypeMap.Register.New<Core.Portable.HMACSHA512>(() => PortableFactory.HMACSHA512());
+            TypeMap.Register.New<HMACSHA512>(() => PortableFactory.HMACSHA512());
         }
 
         [TearDown]

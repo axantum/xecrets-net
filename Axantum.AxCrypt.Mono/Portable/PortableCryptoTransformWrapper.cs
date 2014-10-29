@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Axantum.AxCrypt.Core.Algorithm;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace Axantum.AxCrypt.Mono.Portable
 {
-    public class PortableCryptoTransformWrapper : Axantum.AxCrypt.Core.Portable.ICryptoTransform
+    public class PortableCryptoTransformWrapper : ICryptoTransform
     {
         private System.Security.Cryptography.ICryptoTransform _cryptoTransform;
 

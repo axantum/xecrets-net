@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core.Crypto;
+﻿using Axantum.AxCrypt.Core.Algorithm;
+using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Mono.Cryptography
 {
-    public class HMACSHA512Wrapper : Core.Portable.HMACSHA512
+    public class HMACSHA512Wrapper : HMACSHA512
     {
         private System.Security.Cryptography.HMAC _hmac;
 
@@ -69,7 +70,7 @@ namespace Axantum.AxCrypt.Mono.Cryptography
             _hmac.Initialize();
         }
 
-        public override Core.Portable.HMAC Initialize(SymmetricKey key)
+        public override HMAC Initialize(SymmetricKey key)
         {
             if (key == null)
             {

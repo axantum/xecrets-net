@@ -1,5 +1,5 @@
-﻿using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Portable;
+﻿using Axantum.AxCrypt.Core.Algorithm;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Linq;

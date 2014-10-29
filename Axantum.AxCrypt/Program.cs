@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Ipc;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
@@ -82,12 +83,12 @@ namespace Axantum.AxCrypt
 
             TypeMap.Register.New<IDataProtection>(() => new DataProtection());
             TypeMap.Register.New<ILauncher>(() => new Launcher());
-            TypeMap.Register.New<Core.Portable.AxCryptHMACSHA1>(() => PortableFactory.AxCryptHMACSHA1());
-            TypeMap.Register.New<Core.Portable.HMACSHA512>(() => PortableFactory.HMACSHA512());
-            TypeMap.Register.New<Core.Portable.AesManaged>(() => PortableFactory.AesManaged());
-            TypeMap.Register.New<Core.Portable.Sha1>(() => PortableFactory.SHA1Managed());
-            TypeMap.Register.New<Core.Portable.Sha256>(() => PortableFactory.SHA256Managed());
-            TypeMap.Register.New<Core.Portable.CryptoStream>(() => PortableFactory.CryptoStream());
+            TypeMap.Register.New<AxCryptHMACSHA1>(() => PortableFactory.AxCryptHMACSHA1());
+            TypeMap.Register.New<HMACSHA512>(() => PortableFactory.HMACSHA512());
+            TypeMap.Register.New<AesManaged>(() => PortableFactory.AesManaged());
+            TypeMap.Register.New<Sha1>(() => PortableFactory.SHA1Managed());
+            TypeMap.Register.New<Sha256>(() => PortableFactory.SHA256Managed());
+            TypeMap.Register.New<CryptoStream>(() => PortableFactory.CryptoStream());
         }
 
         private static IEnumerable<Assembly> LoadFromFiles(IEnumerable<FileInfo> files)

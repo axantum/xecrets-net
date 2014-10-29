@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core.Portable;
+﻿using Axantum.AxCrypt.Core.Algorithm;
+using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Mono.Portable;
 using System;
 using System.Collections.Generic;

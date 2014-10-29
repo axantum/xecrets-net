@@ -25,7 +25,7 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Portable;
+using Axantum.AxCrypt.Core.Algorithm;
 using Org.BouncyCastle.Utilities.Zlib;
 using System;
 using System.Diagnostics.CodeAnalysis;

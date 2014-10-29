@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Portable
+namespace Axantum.AxCrypt.Core.Algorithm
 {
     public abstract class CryptoStream : Stream
     {

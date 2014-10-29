@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Mono.Portable;
+﻿using Axantum.AxCrypt.Core.Algorithm;
+using Axantum.AxCrypt.Mono.Portable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Mono.Cryptography
 {
-    internal class AesManagedWrapper : Axantum.AxCrypt.Core.Portable.AesManaged
+    internal class AesManagedWrapper : Axantum.AxCrypt.Core.Algorithm.AesManaged
     {
         private System.Security.Cryptography.SymmetricAlgorithm _symmetricAlgorithm;
 
@@ -80,132 +81,132 @@ namespace Axantum.AxCrypt.Mono.Cryptography
             }
         }
 
-        public override Core.Portable.KeySizes[] LegalBlockSizes
+        public override KeySizes[] LegalBlockSizes
         {
-            get { return _symmetricAlgorithm.LegalBlockSizes.Select(k => new Core.Portable.KeySizes() { MaxSize = k.MaxSize, MinSize = k.MinSize, SkipSize = k.SkipSize }).ToArray(); }
+            get { return _symmetricAlgorithm.LegalBlockSizes.Select(k => new KeySizes() { MaxSize = k.MaxSize, MinSize = k.MinSize, SkipSize = k.SkipSize }).ToArray(); }
         }
 
-        public override Core.Portable.KeySizes[] LegalKeySizes
+        public override KeySizes[] LegalKeySizes
         {
-            get { return _symmetricAlgorithm.LegalKeySizes.Select(k => new Core.Portable.KeySizes() { MaxSize = k.MaxSize, MinSize = k.MinSize, SkipSize = k.SkipSize }).ToArray(); }
+            get { return _symmetricAlgorithm.LegalKeySizes.Select(k => new KeySizes() { MaxSize = k.MaxSize, MinSize = k.MinSize, SkipSize = k.SkipSize }).ToArray(); }
         }
 
-        public override Core.Portable.CipherMode Mode
+        public override CipherMode Mode
         {
             get
             {
                 switch (_symmetricAlgorithm.Mode)
                 {
                     case System.Security.Cryptography.CipherMode.CBC:
-                        return Core.Portable.CipherMode.CBC;
+                        return CipherMode.CBC;
 
                     case System.Security.Cryptography.CipherMode.CFB:
-                        return Core.Portable.CipherMode.CFB;
+                        return CipherMode.CFB;
 
                     case System.Security.Cryptography.CipherMode.CTS:
-                        return Core.Portable.CipherMode.CTS;
+                        return CipherMode.CTS;
 
                     case System.Security.Cryptography.CipherMode.ECB:
-                        return Core.Portable.CipherMode.ECB;
+                        return CipherMode.ECB;
 
                     case System.Security.Cryptography.CipherMode.OFB:
-                        return Core.Portable.CipherMode.OFB;
+                        return CipherMode.OFB;
                 }
-                return Core.Portable.CipherMode.None;
+                return CipherMode.None;
             }
             set
             {
                 switch (value)
                 {
-                    case Axantum.AxCrypt.Core.Portable.CipherMode.CBC:
+                    case CipherMode.CBC:
                         _symmetricAlgorithm.Mode = System.Security.Cryptography.CipherMode.CBC;
                         break;
 
-                    case Axantum.AxCrypt.Core.Portable.CipherMode.ECB:
+                    case CipherMode.ECB:
                         _symmetricAlgorithm.Mode = System.Security.Cryptography.CipherMode.ECB;
                         break;
 
-                    case Axantum.AxCrypt.Core.Portable.CipherMode.OFB:
+                    case CipherMode.OFB:
                         _symmetricAlgorithm.Mode = System.Security.Cryptography.CipherMode.OFB;
                         break;
 
-                    case Axantum.AxCrypt.Core.Portable.CipherMode.CFB:
+                    case CipherMode.CFB:
                         _symmetricAlgorithm.Mode = System.Security.Cryptography.CipherMode.CFB;
                         break;
 
-                    case Axantum.AxCrypt.Core.Portable.CipherMode.CTS:
+                    case CipherMode.CTS:
                         _symmetricAlgorithm.Mode = System.Security.Cryptography.CipherMode.CTS;
                         break;
                 }
             }
         }
 
-        public override Core.Portable.PaddingMode Padding
+        public override PaddingMode Padding
         {
             get
             {
                 switch (_symmetricAlgorithm.Padding)
                 {
                     case System.Security.Cryptography.PaddingMode.ANSIX923:
-                        return Core.Portable.PaddingMode.ANSIX923;
+                        return PaddingMode.ANSIX923;
 
                     case System.Security.Cryptography.PaddingMode.ISO10126:
-                        return Core.Portable.PaddingMode.ISO10126;
+                        return PaddingMode.ISO10126;
 
                     case System.Security.Cryptography.PaddingMode.None:
-                        return Core.Portable.PaddingMode.None;
+                        return PaddingMode.None;
 
                     case System.Security.Cryptography.PaddingMode.PKCS7:
-                        return Core.Portable.PaddingMode.PKCS7;
+                        return PaddingMode.PKCS7;
 
                     case System.Security.Cryptography.PaddingMode.Zeros:
-                        return Core.Portable.PaddingMode.Zeros;
+                        return PaddingMode.Zeros;
                 };
-                return Core.Portable.PaddingMode.None;
+                return PaddingMode.None;
             }
             set
             {
                 switch (value)
                 {
-                    case Axantum.AxCrypt.Core.Portable.PaddingMode.None:
+                    case PaddingMode.None:
                         _symmetricAlgorithm.Padding = System.Security.Cryptography.PaddingMode.None;
                         break;
 
-                    case Axantum.AxCrypt.Core.Portable.PaddingMode.PKCS7:
+                    case PaddingMode.PKCS7:
                         _symmetricAlgorithm.Padding = System.Security.Cryptography.PaddingMode.PKCS7;
                         break;
 
-                    case Axantum.AxCrypt.Core.Portable.PaddingMode.Zeros:
+                    case PaddingMode.Zeros:
                         _symmetricAlgorithm.Padding = System.Security.Cryptography.PaddingMode.Zeros;
                         break;
 
-                    case Axantum.AxCrypt.Core.Portable.PaddingMode.ANSIX923:
+                    case PaddingMode.ANSIX923:
                         _symmetricAlgorithm.Padding = System.Security.Cryptography.PaddingMode.ANSIX923;
                         break;
 
-                    case Axantum.AxCrypt.Core.Portable.PaddingMode.ISO10126:
+                    case PaddingMode.ISO10126:
                         _symmetricAlgorithm.Padding = System.Security.Cryptography.PaddingMode.ISO10126;
                         break;
                 };
             }
         }
 
-        public override Core.Portable.ICryptoTransform CreateDecryptor()
+        public override ICryptoTransform CreateDecryptor()
         {
             return new PortableCryptoTransformWrapper(_symmetricAlgorithm.CreateDecryptor());
         }
 
-        public override Core.Portable.ICryptoTransform CreateDecryptor(byte[] rgbKey, byte[] rgbIV)
+        public override ICryptoTransform CreateDecryptor(byte[] rgbKey, byte[] rgbIV)
         {
             return new PortableCryptoTransformWrapper(_symmetricAlgorithm.CreateDecryptor(rgbKey, rgbIV));
         }
 
-        public override Core.Portable.ICryptoTransform CreateEncryptor()
+        public override ICryptoTransform CreateEncryptor()
         {
             return new PortableCryptoTransformWrapper(_symmetricAlgorithm.CreateEncryptor());
         }
 
-        public override Core.Portable.ICryptoTransform CreateEncryptor(byte[] rgbKey, byte[] rgbIV)
+        public override ICryptoTransform CreateEncryptor(byte[] rgbKey, byte[] rgbIV)
         {
             return new PortableCryptoTransformWrapper(_symmetricAlgorithm.CreateEncryptor(rgbKey, rgbIV));
         }

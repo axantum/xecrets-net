@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Core.Portable
+namespace Axantum.AxCrypt.Core.Algorithm
 {
     public abstract class Sha256 : HashAlgorithm
     {

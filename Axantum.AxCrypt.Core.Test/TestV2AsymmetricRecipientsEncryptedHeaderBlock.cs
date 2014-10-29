@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core.Crypto;
+﻿using Axantum.AxCrypt.Core.Algorithm;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
@@ -23,7 +24,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(TypeMap.Resolve.Singleton<IAsymmetricFactory>().GetConverters()));
             TypeMap.Register.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
             TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
-            TypeMap.Register.New<Core.Portable.AesManaged>(() => PortableFactory.AesManaged());
+            TypeMap.Register.New<AesManaged>(() => PortableFactory.AesManaged());
         }
 
         [TearDown]

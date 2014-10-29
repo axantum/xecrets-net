@@ -1,4 +1,4 @@
-﻿using Axantum.AxCrypt.Core.Portable;
+﻿using Axantum.AxCrypt.Core.Algorithm;
 using System;
 using System.Linq;
 

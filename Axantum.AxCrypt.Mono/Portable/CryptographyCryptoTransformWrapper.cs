@@ -1,16 +1,16 @@
-﻿using System;
+﻿using Axantum.AxCrypt.Core.Algorithm;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Mono.Portable
 {
     internal class CryptographyCryptoTransformWrapper : System.Security.Cryptography.ICryptoTransform
     {
-        private Axantum.AxCrypt.Core.Portable.ICryptoTransform _cryptoTransform;
+        private ICryptoTransform _cryptoTransform;
 
-        public CryptographyCryptoTransformWrapper(Axantum.AxCrypt.Core.Portable.ICryptoTransform cryptoTransform)
+        public CryptographyCryptoTransformWrapper(ICryptoTransform cryptoTransform)
         {
             _cryptoTransform = cryptoTransform;
         }

@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Portable;
@@ -64,9 +65,9 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
             TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
             TypeMap.Register.Singleton<CryptoFactory>(() => SetupAssembly.CreateCryptoFactory());
-            TypeMap.Register.New<Core.Portable.HMACSHA512>(() => PortableFactory.HMACSHA512());
+            TypeMap.Register.New<HMACSHA512>(() => PortableFactory.HMACSHA512());
             TypeMap.Register.Singleton<ICryptoPolicy>(() => new ProCryptoPolicy());
-            TypeMap.Register.New<Core.Portable.AesManaged>(() => PortableFactory.AesManaged());
+            TypeMap.Register.New<AesManaged>(() => PortableFactory.AesManaged());
         }
 
         [TearDown]
