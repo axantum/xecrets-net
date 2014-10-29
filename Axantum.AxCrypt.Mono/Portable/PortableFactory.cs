@@ -27,14 +27,14 @@ namespace Axantum.AxCrypt.Mono.Portable
             return new Mono.Cryptography.CryptoStreamWrapper();
         }
 
-        public HashAlgorithm SHA1Managed()
+        public static Core.Portable.Sha1 SHA1Managed()
         {
-            return new PortableHashAlgorithmWrapper(new System.Security.Cryptography.SHA1Managed());
+            return new Mono.Cryptography.Sha1Wrapper(new System.Security.Cryptography.SHA1Managed());
         }
 
-        public HashAlgorithm SHA256Managed()
+        public static Core.Portable.Sha256 SHA256Managed()
         {
-            return new PortableHashAlgorithmWrapper(new System.Security.Cryptography.SHA256Managed());
+            return new Mono.Cryptography.Sha256Wrapper(new System.Security.Cryptography.SHA256Managed());
         }
 
         public RandomNumberGenerator RandomNumberGenerator()

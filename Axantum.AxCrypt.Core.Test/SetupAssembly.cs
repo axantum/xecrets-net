@@ -87,6 +87,8 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<Core.Portable.HMACSHA512>(() => PortableFactory.HMACSHA512());
             TypeMap.Register.New<Core.Portable.AesManaged>(() => PortableFactory.AesManaged());
             TypeMap.Register.New<Core.Portable.CryptoStream>(() => PortableFactory.CryptoStream());
+            TypeMap.Register.New<Core.Portable.Sha1>(() => PortableFactory.SHA1Managed());
+            TypeMap.Register.New<Core.Portable.Sha256>(() => PortableFactory.SHA256Managed());
 
             Resolve.UserSettings.SetKeyWrapIterations(V1Aes128CryptoFactory.CryptoId, 1234);
             Resolve.UserSettings.ThumbprintSalt = Salt.Zero;

@@ -85,6 +85,8 @@ namespace Axantum.AxCrypt
             TypeMap.Register.New<Core.Portable.AxCryptHMACSHA1>(() => PortableFactory.AxCryptHMACSHA1());
             TypeMap.Register.New<Core.Portable.HMACSHA512>(() => PortableFactory.HMACSHA512());
             TypeMap.Register.New<Core.Portable.AesManaged>(() => PortableFactory.AesManaged());
+            TypeMap.Register.New<Core.Portable.Sha1>(() => PortableFactory.SHA1Managed());
+            TypeMap.Register.New<Core.Portable.Sha256>(() => PortableFactory.SHA256Managed());
             TypeMap.Register.New<Core.Portable.CryptoStream>(() => PortableFactory.CryptoStream());
         }
 

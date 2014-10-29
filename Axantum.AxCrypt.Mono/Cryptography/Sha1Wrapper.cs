@@ -4,13 +4,13 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Mono.Portable
+namespace Axantum.AxCrypt.Mono.Cryptography
 {
-    internal class PortableHashAlgorithmWrapper : Axantum.AxCrypt.Core.Portable.HashAlgorithm
+    internal class Sha1Wrapper : Core.Portable.Sha1
     {
         private System.Security.Cryptography.HashAlgorithm _hashAlgorithm;
 
-        public PortableHashAlgorithmWrapper(System.Security.Cryptography.HashAlgorithm hashAlgoritm)
+        public Sha1Wrapper(System.Security.Cryptography.HashAlgorithm hashAlgoritm)
         {
             _hashAlgorithm = hashAlgoritm;
         }
