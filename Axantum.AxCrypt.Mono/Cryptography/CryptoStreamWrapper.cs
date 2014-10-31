@@ -30,7 +30,7 @@ namespace Axantum.AxCrypt.Mono.Cryptography
                     streamMode = (System.Security.Cryptography.CryptoStreamMode)mode;
                     break;
             }
-            _cryptoStream = new System.Security.Cryptography.CryptoStream(stream, new CryptographyCryptoTransformWrapper(transform), streamMode);
+            _cryptoStream = new System.Security.Cryptography.CryptoStream(stream, new CryptoTransformUnwrapper(transform), streamMode);
             return this;
         }
 

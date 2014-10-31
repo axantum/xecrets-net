@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Axantum.AxCrypt.Mono.Portable
+namespace Axantum.AxCrypt.Mono.Cryptography
 {
-    internal class PortableRandomNumberGeneratorWrapper : Axantum.AxCrypt.Core.Portable.RandomNumberGenerator
+    internal class RandomNumberGeneratorWrapper : Axantum.AxCrypt.Core.Algorithm.RandomNumberGenerator
     {
         private System.Security.Cryptography.RandomNumberGenerator _rng;
 
-        public PortableRandomNumberGeneratorWrapper(System.Security.Cryptography.RandomNumberGenerator rng)
+        public RandomNumberGeneratorWrapper(System.Security.Cryptography.RandomNumberGenerator rng)
         {
             _rng = rng;
         }

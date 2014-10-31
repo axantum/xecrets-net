@@ -8,8 +8,6 @@ namespace Axantum.AxCrypt.Core.Portable
 {
     public interface IPortableFactory
     {
-        RandomNumberGenerator RandomNumberGenerator();
-
         ISemaphore Semaphore(int initialCount, int maximumCoiunt);
 
         IPath Path();

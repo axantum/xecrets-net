@@ -86,7 +86,7 @@
     <Compile Include="Algorithm\KeyedHashAlgorithm.cs" />
     <Compile Include="Algorithm\KeySizes.cs" />
     <Compile Include="Algorithm\PaddingMode.cs" />
-    <Compile Include="Portable\RandomNumberGenerator.cs" />
+    <Compile Include="Algorithm\RandomNumberGenerator.cs" />
     <Compile Include="Algorithm\Sha1.cs" />
     <Compile Include="Algorithm\Sha256.cs" />
     <Compile Include="Algorithm\SymmetricAlgorithm.cs" />

@@ -58,12 +58,12 @@
     <Compile Include="Launcher.cs" />
     <Compile Include="Logging.cs" />
     <Compile Include="Cryptography\AxCryptHMACSHA1Wrapper.cs" />
-    <Compile Include="Portable\CryptographyCryptoTransformWrapper.cs" />
+    <Compile Include="Cryptography\CryptoTransformUnwrapper.cs" />
     <Compile Include="Cryptography\HMACSHA512Wrapper.cs" />
     <Compile Include="Portable\PortableFactory.cs" />
-    <Compile Include="Portable\PortableCryptoTransformWrapper.cs" />
+    <Compile Include="Cryptography\CryptoTransformWrapper.cs" />
     <Compile Include="Portable\PortablePathImplementation.cs" />
-    <Compile Include="Portable\PortableRandomNumberGeneratorWrapper.cs" />
+    <Compile Include="Cryptography\RandomNumberGeneratorWrapper.cs" />
     <Compile Include="Portable\PortableSemaphoreWrapper.cs" />
     <Compile Include="Portable\SingleThread.cs" />
     <Compile Include="RuntimeEnvironment.cs" />

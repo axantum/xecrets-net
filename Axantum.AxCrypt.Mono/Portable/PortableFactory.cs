@@ -1,5 +1,6 @@
 ﻿using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Portable;
+using Axantum.AxCrypt.Mono.Cryptography;
 using System;
 using System.IO;
 using System.Linq;
@@ -8,9 +9,9 @@ namespace Axantum.AxCrypt.Mono.Portable
 {
     public class PortableFactory : IPortableFactory
     {
-        public static AxCryptHMACSHA1 AxCryptHMACSHA1()
+        public static Core.Algorithm.AxCryptHMACSHA1 AxCryptHMACSHA1()
         {
-            return new Mono.Cryptography.AxCryptHMACSHA1Wrapper();
+            return new AxCryptHMACSHA1Wrapper();
         }
 
         public static HMACSHA512 HMACSHA512()
@@ -38,9 +39,9 @@ namespace Axantum.AxCrypt.Mono.Portable
             return new Mono.Cryptography.Sha256Wrapper(new System.Security.Cryptography.SHA256Managed());
         }
 
-        public RandomNumberGenerator RandomNumberGenerator()
+        public static RandomNumberGenerator RandomNumberGenerator()
         {
-            return new PortableRandomNumberGeneratorWrapper(System.Security.Cryptography.RandomNumberGenerator.Create());
+            return new RandomNumberGeneratorWrapper(System.Security.Cryptography.RandomNumberGenerator.Create());
         }
 
         public ISemaphore Semaphore(int initialCount, int maximumCount)

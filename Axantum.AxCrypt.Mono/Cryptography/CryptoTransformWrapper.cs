@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Axantum.AxCrypt.Mono.Portable
+namespace Axantum.AxCrypt.Mono.Cryptography
 {
-    public class PortableCryptoTransformWrapper : ICryptoTransform
+    public class CryptoTransformWrapper : ICryptoTransform
     {
         private System.Security.Cryptography.ICryptoTransform _cryptoTransform;
 
-        public PortableCryptoTransformWrapper(System.Security.Cryptography.ICryptoTransform cryptoTransform)
+        public CryptoTransformWrapper(System.Security.Cryptography.ICryptoTransform cryptoTransform)
         {
             _cryptoTransform = cryptoTransform;
         }

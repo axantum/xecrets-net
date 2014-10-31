@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Axantum.AxCrypt.Core.Portable
+namespace Axantum.AxCrypt.Core.Algorithm
 {
     public abstract class RandomNumberGenerator : IDisposable
     {

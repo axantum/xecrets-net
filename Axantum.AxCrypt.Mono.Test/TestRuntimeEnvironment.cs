@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
@@ -57,6 +58,7 @@ namespace Axantum.AxCrypt.Mono.Test
             TypeMap.Register.Singleton<WorkFolder>(() => new WorkFolder(_workFolderPath));
             TypeMap.Register.Singleton<ILogging>(() => new Logging());
             TypeMap.Register.Singleton<IRandomGenerator>(() => new RandomGenerator());
+            TypeMap.Register.New<RandomNumberGenerator>(() => PortableFactory.RandomNumberGenerator());
         }
 
         [TearDown]
