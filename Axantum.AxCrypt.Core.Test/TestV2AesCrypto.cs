@@ -67,7 +67,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
             TypeMap.Register.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
             TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
-            TypeMap.Register.New<AesManaged>(() => PortableFactory.AesManaged());
+            TypeMap.Register.New<Aes>(() => PortableFactory.AesManaged());
         }
 
         [TearDown]

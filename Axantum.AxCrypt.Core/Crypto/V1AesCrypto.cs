@@ -100,7 +100,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private static SymmetricAlgorithm CreateRawAlgorithm()
         {
-            return TypeMap.Resolve.New<AesManaged>();
+            return TypeMap.Resolve.New<Aes>();
         }
 
         /// <summary>

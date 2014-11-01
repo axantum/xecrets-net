@@ -46,7 +46,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
             TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
             TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
-            TypeMap.Register.New<AesManaged>(() => PortableFactory.AesManaged());
+            TypeMap.Register.New<Aes>(() => PortableFactory.AesManaged());
 
             V2CompressionEncryptedHeaderBlock compressionHeaderBlock = new V2CompressionEncryptedHeaderBlock(new V2AesCrypto(SymmetricKey.Zero256, SymmetricIV.Zero128, 0));
             compressionHeaderBlock.IsCompressed = false;

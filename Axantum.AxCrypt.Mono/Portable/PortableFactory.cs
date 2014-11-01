@@ -19,7 +19,7 @@ namespace Axantum.AxCrypt.Mono.Portable
             return new Mono.Cryptography.HMACSHA512Wrapper();
         }
 
-        public static AesManaged AesManaged()
+        public static Aes AesManaged()
         {
             return new Mono.Cryptography.AesManagedWrapper();
         }

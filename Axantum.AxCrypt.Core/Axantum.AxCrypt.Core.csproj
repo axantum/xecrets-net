@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <Folder Include="Algorithm\Implementation\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AxCryptFactory.cs" />
@@ -47,7 +48,7 @@
     <Compile Include="IO\IDataItem.cs" />
     <Compile Include="IO\IStringSerializer.cs" />
     <Compile Include="IO\StringSerializer.cs" />
-    <Compile Include="Algorithm\AesManaged.cs" />
+    <Compile Include="Algorithm\Aes.cs" />
     <Compile Include="Algorithm\AxCryptHMACSHA1.cs" />
     <Compile Include="Algorithm\CipherMode.cs" />
     <Compile Include="Portable\IPortableFactory.cs" />

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Core.Algorithm
 {
-    public abstract class AesManaged : SymmetricAlgorithm
+    public abstract class Aes : SymmetricAlgorithm
     {
     }
 }

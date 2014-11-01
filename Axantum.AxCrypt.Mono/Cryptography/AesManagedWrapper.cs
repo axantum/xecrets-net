@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Axantum.AxCrypt.Mono.Cryptography
 {
-    internal class AesManagedWrapper : Axantum.AxCrypt.Core.Algorithm.AesManaged
+    internal class AesManagedWrapper : Axantum.AxCrypt.Core.Algorithm.Aes
     {
         private System.Security.Cryptography.SymmetricAlgorithm _symmetricAlgorithm;
 

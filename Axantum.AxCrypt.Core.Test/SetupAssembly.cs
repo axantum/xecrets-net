@@ -86,7 +86,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(TypeMap.Resolve.Singleton<IAsymmetricFactory>().GetConverters()));
             TypeMap.Register.New<AxCryptHMACSHA1>(() => PortableFactory.AxCryptHMACSHA1());
             TypeMap.Register.New<HMACSHA512>(() => PortableFactory.HMACSHA512());
-            TypeMap.Register.New<AesManaged>(() => PortableFactory.AesManaged());
+            TypeMap.Register.New<Aes>(() => PortableFactory.AesManaged());
             TypeMap.Register.New<CryptoStream>(() => PortableFactory.CryptoStream());
             TypeMap.Register.New<Sha1>(() => PortableFactory.SHA1Managed());
             TypeMap.Register.New<Sha256>(() => PortableFactory.SHA256Managed());
