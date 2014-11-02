@@ -41,17 +41,28 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestFileOperationViewModel
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestFileOperationViewModel
     {
-        private static bool _allCompleted;
+        private bool _allCompleted;
+
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestFileOperationViewModel(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
 
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
 
             var mockParallelFile = new Mock<ParallelFileOperation>();
             _allCompleted = false;
@@ -63,13 +74,13 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestAddRecentFiles()
+        public void TestAddRecentFiles()
         {
             string file1 = @"C:\Folder\File3-txt.axx";
             string decrypted1 = @"C:\Folder\File2.txt";
@@ -91,7 +102,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptFilesInteractively()
+        public void TestDecryptFilesInteractively()
         {
             FileOperationViewModel mvm = TypeMap.Resolve.New<FileOperationViewModel>();
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
@@ -109,7 +120,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptFilesWithCancel()
+        public void TestDecryptFilesWithCancel()
         {
             FileOperationViewModel mvm = TypeMap.Resolve.New<FileOperationViewModel>();
             mvm.SelectingFiles += (sender, e) =>
@@ -123,7 +134,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptFilesWithList()
+        public void TestDecryptFilesWithList()
         {
             FileOperationViewModel mvm = TypeMap.Resolve.New<FileOperationViewModel>();
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
@@ -142,7 +153,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFilesInteractively()
+        public void TestEncryptFilesInteractively()
         {
             FileOperationViewModel mvm = TypeMap.Resolve.New<FileOperationViewModel>();
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
@@ -161,7 +172,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFilesWithCancel()
+        public void TestEncryptFilesWithCancel()
         {
             FileOperationViewModel mvm = TypeMap.Resolve.New<FileOperationViewModel>();
             mvm.SelectingFiles += (sender, e) =>
@@ -175,7 +186,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFilesWithList()
+        public void TestEncryptFilesWithList()
         {
             FileOperationViewModel mvm = TypeMap.Resolve.New<FileOperationViewModel>();
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
@@ -194,7 +205,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestOpenFilesWithList()
+        public void TestOpenFilesWithList()
         {
             FileOperationViewModel mvm = TypeMap.Resolve.New<FileOperationViewModel>();
             mvm.OpenFiles.Execute(new string[] { @"C:\Folder\File3.txt" });
@@ -203,7 +214,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestLogOnLogOffWhenLoggedOn()
+        public void TestLogOnLogOffWhenLoggedOn()
         {
             PassphraseIdentity id = new PassphraseIdentity(new Passphrase("logonwhenloggedon"));
             Resolve.FileSystemState.Identities.Add(id);
@@ -216,7 +227,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestLogOnLogOffWhenLoggedOffAndIdentityKnown()
+        public void TestLogOnLogOffWhenLoggedOffAndIdentityKnown()
         {
             Passphrase passphrase = new Passphrase("a");
 
@@ -237,7 +248,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestLogOnLogOffWhenLoggedOffAndNoIdentityKnown()
+        public void TestLogOnLogOffWhenLoggedOffAndNoIdentityKnown()
         {
             FileOperationViewModel mvm = TypeMap.Resolve.New<FileOperationViewModel>();
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
@@ -253,7 +264,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestLogOnLogOffWhenLoggedOffAndNoIdentityKnownAndNoPassphraseGiven()
+        public void TestLogOnLogOffWhenLoggedOffAndNoIdentityKnownAndNoPassphraseGiven()
         {
             FileOperationViewModel mvm = TypeMap.Resolve.New<FileOperationViewModel>();
             mvm.IdentityViewModel.LoggingOn += (sender, e) =>
@@ -269,7 +280,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptFoldersWhenLoggedIn()
+        public void TestDecryptFoldersWhenLoggedIn()
         {
             PassphraseIdentity id = new PassphraseIdentity(new Passphrase("a"));
             Resolve.FileSystemState.Identities.Add(id);
@@ -283,14 +294,14 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptFoldersWhenNotLoggedIn()
+        public void TestDecryptFoldersWhenNotLoggedIn()
         {
             FileOperationViewModel mvm = TypeMap.Resolve.New<FileOperationViewModel>();
             Assert.Throws<InvalidOperationException>(() => mvm.DecryptFolders.Execute(new string[] { @"C:\Folder\" }));
         }
 
         [Test]
-        public static void TestWipeFilesInteractively()
+        public void TestWipeFilesInteractively()
         {
             FileOperationViewModel mvm = TypeMap.Resolve.New<FileOperationViewModel>();
             mvm.SelectingFiles += (sender, e) =>
@@ -305,7 +316,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWipeFilesWithCancel()
+        public void TestWipeFilesWithCancel()
         {
             FileOperationViewModel mvm = TypeMap.Resolve.New<FileOperationViewModel>();
             mvm.SelectingFiles += (sender, e) =>
@@ -319,7 +330,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWipeFilesWithList()
+        public void TestWipeFilesWithList()
         {
             FileOperationViewModel mvm = TypeMap.Resolve.New<FileOperationViewModel>();
             mvm.SelectingFiles += (sender, e) =>
@@ -334,7 +345,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestOpenFilesFromFolderWithCancelWhenLoggedOn()
+        public void TestOpenFilesFromFolderWithCancelWhenLoggedOn()
         {
             Resolve.KnownKeys.DefaultEncryptionKey = new Passphrase("b");
 
@@ -350,7 +361,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestOpenFilesFromFolderWhenLoggedOn()
+        public void TestOpenFilesFromFolderWhenLoggedOn()
         {
             Resolve.KnownKeys.DefaultEncryptionKey = new Passphrase("c");
 
@@ -368,7 +379,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFilesAction()
+        public void TestEncryptFilesAction()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -396,7 +407,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFilesWithSaveAsAction()
+        public void TestEncryptFilesWithSaveAsAction()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -423,7 +434,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFilesWithAlreadyEncryptedFile()
+        public void TestEncryptFilesWithAlreadyEncryptedFile()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -444,7 +455,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFilesWithCanceledLoggingOnAction()
+        public void TestEncryptFilesWithCanceledLoggingOnAction()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -465,7 +476,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptFileAction()
+        public void TestDecryptFileAction()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -518,7 +529,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptFileFileSaveAsAction()
+        public void TestDecryptFileFileSaveAsAction()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -556,7 +567,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptFileFileSaveAsCanceledAction()
+        public void TestDecryptFileFileSaveAsCanceledAction()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -594,7 +605,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptLoggingOnCanceledAction()
+        public void TestDecryptLoggingOnCanceledAction()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -619,7 +630,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestAddRecentFilesActionAddingEncryptedWithWork()
+        public void TestAddRecentFilesActionAddingEncryptedWithWork()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -650,7 +661,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestAddRecentFilesActionAddingEncryptedButCancelingWithWork()
+        public void TestAddRecentFilesActionAddingEncryptedButCancelingWithWork()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -684,7 +695,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWipeFilesWithWork()
+        public void TestWipeFilesWithWork()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -706,7 +717,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWipeFilesSkippingOneWithWork()
+        public void TestWipeFilesSkippingOneWithWork()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -735,7 +746,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWipeFilesCancelingAfterOneWithWork()
+        public void TestWipeFilesCancelingAfterOneWithWork()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -775,7 +786,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable *is* a word.")]
         [Test]
-        public static void TestAddRecentFilesActionWithEncryptableFilesNonInteractive()
+        public void TestAddRecentFilesActionWithEncryptableFilesNonInteractive()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -805,7 +816,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestOpenFilesActionWithWork()
+        public void TestOpenFilesActionWithWork()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -856,7 +867,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestOpenFilesActionCancelingWithWork()
+        public void TestOpenFilesActionCancelingWithWork()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
@@ -908,7 +919,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptFoldersWithWork()
+        public void TestDecryptFoldersWithWork()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));

@@ -31,25 +31,36 @@ using NUnit.Framework;
 using System;
 using System.Linq;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestCounterModeCryptoTransform
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestCounterModeCryptoTransform
     {
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestCounterModeCryptoTransform(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
+
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestConstructorWithBadArguments()
+        public void TestConstructorWithBadArguments()
         {
             SymmetricAlgorithm algorithm = TypeMap.Resolve.New<Aes>();
             ICryptoTransform transform = null;
@@ -76,7 +87,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestCanReuseTransform()
+        public void TestCanReuseTransform()
         {
             SymmetricAlgorithm algorithm = TypeMap.Resolve.New<Aes>();
             algorithm.Mode = CipherMode.ECB;
@@ -88,7 +99,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestTransformBlockWithBadArgument()
+        public void TestTransformBlockWithBadArgument()
         {
             SymmetricAlgorithm algorithm = TypeMap.Resolve.New<Aes>();
             algorithm.Mode = CipherMode.ECB;

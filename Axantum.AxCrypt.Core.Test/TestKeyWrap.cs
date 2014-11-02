@@ -30,19 +30,30 @@ using Axantum.AxCrypt.Core.Runtime;
 using NUnit.Framework;
 using System;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestKeyWrap
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestKeyWrap
     {
         private static SymmetricKey _keyEncryptingKey;
         private static SymmetricKey _keyData;
         private static byte[] _wrapped;
 
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestKeyWrap(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
+
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
 
             _keyEncryptingKey = new SymmetricKey(new byte[] { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F });
             _keyData = new SymmetricKey(new byte[] { 0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99, 0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF });
@@ -50,13 +61,13 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestUnwrap()
+        public void TestUnwrap()
         {
             byte[] unwrapped;
             KeyWrap keyWrap = new KeyWrap(6, KeyWrapMode.Specification);
@@ -66,7 +77,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWrap()
+        public void TestWrap()
         {
             byte[] wrapped;
             KeyWrap keyWrap = new KeyWrap(6, KeyWrapMode.Specification);
@@ -82,7 +93,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWrapAndUnwrapAxCryptMode()
+        public void TestWrapAndUnwrapAxCryptMode()
         {
             SymmetricKey keyToWrap = new SymmetricKey(new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 });
             Salt salt = new Salt(new byte[] { 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 });
@@ -98,7 +109,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWrapAndUnwrapSpecificationMode()
+        public void TestWrapAndUnwrapSpecificationMode()
         {
             SymmetricKey keyToWrap = new SymmetricKey(new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 });
             Salt salt = new Salt(new byte[] { 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 });
@@ -114,7 +125,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestKeyWrapConstructorWithBadArgument()
+        public void TestKeyWrapConstructorWithBadArgument()
         {
             KeyWrap keyWrap = new KeyWrap(6, KeyWrapMode.Specification);
             Assert.Throws<InternalErrorException>(() => { keyWrap.Unwrap(new V1AesCrypto(new V1Aes128CryptoFactory(), _keyEncryptingKey, SymmetricIV.Zero128), _keyData.GetBytes()); }, "Calling with too short wrapped data.");
@@ -146,14 +157,14 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestUnwrapWithBadArgument()
+        public void TestUnwrapWithBadArgument()
         {
             KeyWrap keyWrap = new KeyWrap(100, KeyWrapMode.Specification);
             Assert.Throws<InternalErrorException>(() => keyWrap.Unwrap(new V2AesCrypto(SymmetricKey.Zero256, SymmetricIV.Zero128, 0), new byte[25]));
         }
 
         [Test]
-        public static void TestWrapWithBadArgument()
+        public void TestWrapWithBadArgument()
         {
             KeyWrap keyWrap = new KeyWrap(100, KeyWrapMode.Specification);
             {

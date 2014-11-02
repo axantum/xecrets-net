@@ -53,8 +53,12 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
-        public static void TestGetCryptoFromHeaders()
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestGetCryptoFromHeaders(CryptoImplementation cryptoImplementation)
         {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
             Headers headers = new Headers();
             V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new Passphrase("passphrase"), V2Aes256CryptoFactory.CryptoId, 10);
             using (Stream chainedStream = new MemoryStream())

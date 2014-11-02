@@ -36,20 +36,31 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestFileOperationsController
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestFileOperationsController
     {
         private static readonly string _rootPath = Path.GetPathRoot(Environment.CurrentDirectory);
         private static readonly string _davidCopperfieldTxtPath = _rootPath.PathCombine("Users", "AxCrypt", "David Copperfield.txt");
         private static readonly string _uncompressedAxxPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Uncompressed.axx");
         private static readonly string _helloWorldAxxPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "HelloWorld.axx");
 
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestFileOperationsController(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
+
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
 
             FakeDataStore.AddFile(_davidCopperfieldTxtPath, FakeDataStore.TestDate4Utc, FakeDataStore.TestDate5Utc, FakeDataStore.TestDate6Utc, FakeDataStore.ExpandableMemoryStream(Encoding.GetEncoding(1252).GetBytes(Resources.david_copperfield)));
             FakeDataStore.AddFile(_uncompressedAxxPath, FakeDataStore.ExpandableMemoryStream(Resources.uncompressable_zip));
@@ -59,13 +70,13 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestSimpleEncryptFile()
+        public void TestSimpleEncryptFile()
         {
             FileOperationsController controller = new FileOperationsController();
             string destinationPath = String.Empty;
@@ -94,7 +105,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestSimpleEncryptFileOnThreadWorker()
+        public void TestSimpleEncryptFileOnThreadWorker()
         {
             FileOperationsController controller = new FileOperationsController();
             controller.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
@@ -125,7 +136,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFileWithDefaultEncryptionKey()
+        public void TestEncryptFileWithDefaultEncryptionKey()
         {
             TypeMap.Register.Singleton<ICryptoPolicy>(() => new LegacyCryptoPolicy());
             Resolve.KnownKeys.DefaultEncryptionKey = new Passphrase("default");
@@ -158,7 +169,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFileWhenDestinationExists()
+        public void TestEncryptFileWhenDestinationExists()
         {
             IDataStore sourceInfo = TypeMap.Resolve.New<IDataStore>(_davidCopperfieldTxtPath);
             IDataStore expectedDestinationInfo = TypeMap.Resolve.New<IDataStore>(AxCryptFile.MakeAxCryptFileName(sourceInfo));
@@ -202,7 +213,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFileWhenCanceledDuringQuerySaveAs()
+        public void TestEncryptFileWhenCanceledDuringQuerySaveAs()
         {
             IDataStore sourceInfo = TypeMap.Resolve.New<IDataStore>(_davidCopperfieldTxtPath);
             IDataStore expectedDestinationInfo = TypeMap.Resolve.New<IDataStore>(AxCryptFile.MakeAxCryptFileName(sourceInfo));
@@ -221,7 +232,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFileWhenCanceledDuringQueryPassphrase()
+        public void TestEncryptFileWhenCanceledDuringQueryPassphrase()
         {
             FileOperationsController controller = new FileOperationsController();
             controller.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
@@ -234,7 +245,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestSimpleDecryptFile()
+        public void TestSimpleDecryptFile()
         {
             FileOperationsController controller = new FileOperationsController();
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
@@ -267,7 +278,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestSimpleDecryptFileOnThreadWorker()
+        public void TestSimpleDecryptFileOnThreadWorker()
         {
             FileOperationsController controller = new FileOperationsController();
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
@@ -303,7 +314,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptWithCancelDuringQueryDecryptionPassphrase()
+        public void TestDecryptWithCancelDuringQueryDecryptionPassphrase()
         {
             FileOperationsController controller = new FileOperationsController();
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
@@ -316,7 +327,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptWithSkipDuringQueryDecryptionPassphrase()
+        public void TestDecryptWithSkipDuringQueryDecryptionPassphrase()
         {
             IDataStore expectedDestinationInfo = TypeMap.Resolve.New<IDataStore>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
             using (Stream stream = expectedDestinationInfo.OpenWrite())
@@ -337,7 +348,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptWithCancelDuringQuerySaveAs()
+        public void TestDecryptWithCancelDuringQuerySaveAs()
         {
             IDataStore expectedDestinationInfo = TypeMap.Resolve.New<IDataStore>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
             using (Stream stream = expectedDestinationInfo.OpenWrite())
@@ -359,7 +370,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptWithAlternativeDestinationName()
+        public void TestDecryptWithAlternativeDestinationName()
         {
             IDataStore expectedDestinationInfo = TypeMap.Resolve.New<IDataStore>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
             using (Stream stream = expectedDestinationInfo.OpenWrite())
@@ -394,7 +405,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestSimpleDecryptAndLaunch()
+        public void TestSimpleDecryptAndLaunch()
         {
             FakeLauncher launcher = new FakeLauncher();
             bool called = false;
@@ -425,7 +436,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestSimpleDecryptAndLaunchOnThreadWorker()
+        public void TestSimpleDecryptAndLaunchOnThreadWorker()
         {
             FakeLauncher launcher = new FakeLauncher();
             bool called = false;
@@ -462,7 +473,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestCanceledDecryptAndLaunch()
+        public void TestCanceledDecryptAndLaunch()
         {
             FileOperationsController controller = new FileOperationsController();
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
@@ -474,7 +485,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptWithKnownKey()
+        public void TestDecryptWithKnownKey()
         {
             FileOperationsController controller = new FileOperationsController();
             Resolve.KnownKeys.Add(new Passphrase("b"));
@@ -513,7 +524,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptFileWithRepeatedPassphraseQueries()
+        public void TestDecryptFileWithRepeatedPassphraseQueries()
         {
             FileOperationsController controller = new FileOperationsController();
             int passphraseTry = 0;
@@ -565,7 +576,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptFileWithExceptionBeforeStartingDecryption()
+        public void TestDecryptFileWithExceptionBeforeStartingDecryption()
         {
             FileOperationsController controller = new FileOperationsController();
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
@@ -589,7 +600,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFileThatIsAlreadyEncrypted()
+        public void TestEncryptFileThatIsAlreadyEncrypted()
         {
             FileOperationsController controller = new FileOperationsController();
             FileOperationContext status = controller.EncryptFile(TypeMap.Resolve.New<IDataStore>("test" + OS.Current.AxCryptExtension));
@@ -598,7 +609,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptWithCancelDuringQueryDecryptionPassphraseOnThreadWorker()
+        public void TestDecryptWithCancelDuringQueryDecryptionPassphraseOnThreadWorker()
         {
             FileOperationsController controller = new FileOperationsController();
             controller.QueryDecryptionPassphrase += (object sender, FileOperationEventArgs e) =>
@@ -617,7 +628,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestSimpleWipe()
+        public void TestSimpleWipe()
         {
             FileOperationsController controller = new FileOperationsController();
             controller.WipeQueryConfirmation += (object sender, FileOperationEventArgs e) =>
@@ -634,7 +645,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestSimpleWipeOnThreadWorker()
+        public void TestSimpleWipeOnThreadWorker()
         {
             FileOperationsController controller = new FileOperationsController();
             controller.WipeQueryConfirmation += (object sender, FileOperationEventArgs e) =>
@@ -660,7 +671,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWipeWithCancel()
+        public void TestWipeWithCancel()
         {
             FileOperationsController controller = new FileOperationsController();
             controller.WipeQueryConfirmation += (object sender, FileOperationEventArgs e) =>
@@ -675,7 +686,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWipeWithSkip()
+        public void TestWipeWithSkip()
         {
             FileOperationsController controller = new FileOperationsController();
             controller.WipeQueryConfirmation += (object sender, FileOperationEventArgs e) =>
@@ -690,7 +701,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWipeWithConfirmAll()
+        public void TestWipeWithConfirmAll()
         {
             ProgressContext progress = new ProgressContext();
             FileOperationsController controller = new FileOperationsController(progress);
@@ -719,7 +730,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestVerifyEncrypted()
+        public void TestVerifyEncrypted()
         {
             FileOperationsController controller = new FileOperationsController();
             bool passphraseWasQueried = false;

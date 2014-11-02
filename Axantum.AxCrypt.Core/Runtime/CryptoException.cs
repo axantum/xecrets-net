@@ -25,22 +25,36 @@
 
 #endregion Coypright and License
 
-namespace Axantum.AxCrypt.Core
+using System;
+using System.Runtime.Serialization;
+
+namespace Axantum.AxCrypt.Core.Runtime
 {
-    public enum ErrorStatus
+    public class CryptoException : AxCryptException
     {
-        Success,
-        Unknown,
-        MagicGuidMissing,
-        InternalError,
-        EndOfStream,
-        TooNewFileFormatVersion,
-        TooOldFileFormatVersion,
-        FileFormatError,
-        HmacValidationError,
-        DataError,
-        Cancel,
-        FileExists,
-        CryptographicErorr,
+        public CryptoException()
+            : base()
+        {
+        }
+
+        public CryptoException(string message)
+            : this(message, ErrorStatus.CryptographicErorr)
+        {
+        }
+
+        public CryptoException(string message, ErrorStatus errorStatus)
+            : base(message, errorStatus)
+        {
+        }
+
+        public CryptoException(string message, Exception innerException)
+            : this(message, ErrorStatus.CryptographicErorr, innerException)
+        {
+        }
+
+        public CryptoException(string message, ErrorStatus errorStatus, Exception innerException)
+            : base(message, errorStatus, innerException)
+        {
+        }
     }
 }

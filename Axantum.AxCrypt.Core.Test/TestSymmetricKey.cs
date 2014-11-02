@@ -125,9 +125,12 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(key1 != key3, "Two really different keys should not compare equal.");
         }
 
-        [Test]
-        public static void TestThumbprint()
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestThumbprint(CryptoImplementation cryptoImplementation)
         {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
             Passphrase key1 = new Passphrase("genericPassphrase");
 
             SymmetricKeyThumbprint originalThumbprint = key1.Thumbprint;

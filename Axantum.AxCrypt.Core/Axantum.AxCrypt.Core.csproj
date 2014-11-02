@@ -101,6 +101,7 @@
     <Compile Include="Algorithm\Sha256.cs" />
     <Compile Include="Algorithm\SymmetricAlgorithm.cs" />
     <Compile Include="Runtime\Creator.cs" />
+    <Compile Include="Runtime\CryptoException.cs" />
     <Compile Include="Runtime\IPlatform.cs" />
     <Compile Include="Runtime\TypeDiscovery.cs" />
     <Compile Include="Crypto\CryptoExtensions.cs" />

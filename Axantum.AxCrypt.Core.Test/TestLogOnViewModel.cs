@@ -38,17 +38,28 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestLogOnViewModel
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestLogOnViewModel
     {
         private static IList<PassphraseIdentity> _identities;
 
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestLogOnViewModel(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
+
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
 
             _identities = new List<PassphraseIdentity>();
             Mock<FileSystemState> fileSystemStateMock = new Mock<FileSystemState>();
@@ -59,13 +70,13 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestConstructor()
+        public void TestConstructor()
         {
             LogOnViewModel lovm = new LogOnViewModel(String.Empty);
 
@@ -73,7 +84,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestShowPassphrase()
+        public void TestShowPassphrase()
         {
             LogOnViewModel lovm = new LogOnViewModel(String.Empty);
 
@@ -85,7 +96,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestValidatePropertyThatCannotBeValidated()
+        public void TestValidatePropertyThatCannotBeValidated()
         {
             LogOnViewModel lovm = new LogOnViewModel(String.Empty);
             string s = null;
@@ -94,7 +105,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestValidatePassphraseOk()
+        public void TestValidatePassphraseOk()
         {
             Mock<IUserSettings> userSettingsMock = new Mock<IUserSettings>();
             userSettingsMock.Setup<Salt>(f => f.ThumbprintSalt).Returns(Salt.Zero);
@@ -116,7 +127,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestValidatePassphraseNotOk()
+        public void TestValidatePassphraseNotOk()
         {
             Mock<IUserSettings> userSettingsMock = new Mock<IUserSettings>();
             userSettingsMock.Setup<Salt>(f => f.ThumbprintSalt).Returns(Salt.Zero);
@@ -138,7 +149,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestValidateNonExistingPropertyName()
+        public void TestValidateNonExistingPropertyName()
         {
             LogOnViewModel lovm = new LogOnViewModel(String.Empty);
             string s = null;
@@ -147,7 +158,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestValidateWrongPassphraseWithRealFile()
+        public void TestValidateWrongPassphraseWithRealFile()
         {
             _identities.Add(new PassphraseIdentity(new Passphrase("a")));
 
@@ -160,7 +171,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestValidateCorrectPassphraseWithRealFile()
+        public void TestValidateCorrectPassphraseWithRealFile()
         {
             _identities.Add(new PassphraseIdentity(new Passphrase("a")));
 
@@ -173,7 +184,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestValidateWrongButKnownPassphraseWithRealFile()
+        public void TestValidateWrongButKnownPassphraseWithRealFile()
         {
             _identities.Add(new PassphraseIdentity(new Passphrase("b")));
 

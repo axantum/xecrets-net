@@ -86,8 +86,6 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<IDataProtection>(() => new FakeDataProtection());
             TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(TypeMap.Resolve.Singleton<IAsymmetricFactory>().GetConverters()));
 
-            AssemblySetupCrypto(CryptoImplementation.Mono);
-
             Resolve.UserSettings.SetKeyWrapIterations(V1Aes128CryptoFactory.CryptoId, 1234);
             Resolve.UserSettings.ThumbprintSalt = Salt.Zero;
             Resolve.Log.SetLevel(LogLevel.Debug);

@@ -153,14 +153,14 @@ namespace Axantum.AxCrypt.Core.Algorithm
 
         public virtual ICryptoTransform CreateDecryptor()
         {
-            return CreateDecryptor(_key, _iv);
+            return CreateDecryptor(Key, IV);
         }
 
         public abstract ICryptoTransform CreateDecryptor(byte[] rgbKey, byte[] rgbIV);
 
         public virtual ICryptoTransform CreateEncryptor()
         {
-            return CreateEncryptor(_key, _iv);
+            return CreateEncryptor(Key, IV);
         }
 
         public abstract ICryptoTransform CreateEncryptor(byte[] rgbKey, byte[] rgbIV);

@@ -35,25 +35,36 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestV2DocumentHeaders
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestV2DocumentHeaders
     {
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestV2DocumentHeaders(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
+
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestFileTimes()
+        public void TestFileTimes()
         {
             using (V2DocumentHeaders headers = new V2DocumentHeaders(new Passphrase("v2passx"), V2Aes256CryptoFactory.CryptoId, 12))
             {
@@ -69,7 +80,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestCompression()
+        public void TestCompression()
         {
             using (V2DocumentHeaders headers = new V2DocumentHeaders(new Passphrase("v2pass"), V2Aes256CryptoFactory.CryptoId, 10))
             {
@@ -82,7 +93,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestUnicodeFileNameShort()
+        public void TestUnicodeFileNameShort()
         {
             using (V2DocumentHeaders headers = new V2DocumentHeaders(new Passphrase("v2passz"), V2Aes256CryptoFactory.CryptoId, 10))
             {
@@ -92,7 +103,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestUnicodeFileNameLong()
+        public void TestUnicodeFileNameLong()
         {
             using (V2DocumentHeaders headers = new V2DocumentHeaders(new Passphrase("v2passy"), V2Aes256CryptoFactory.CryptoId, 10))
             {
@@ -105,7 +116,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
-        public static void TestWriteWithHmac()
+        public void TestWriteWithHmac()
         {
             using (V2DocumentHeaders headers = new V2DocumentHeaders(new Passphrase("v2passzz"), V2Aes256CryptoFactory.CryptoId, 20))
             {
@@ -136,7 +147,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestLoadWithInvalidPassphrase()
+        public void TestLoadWithInvalidPassphrase()
         {
             Headers headers = new Headers();
 
@@ -155,7 +166,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWriteStartWithHmacWithNullArgument()
+        public void TestWriteStartWithHmacWithNullArgument()
         {
             using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new Passphrase("Key"), V2Aes256CryptoFactory.CryptoId, 10))
             {
@@ -164,7 +175,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestHeadersPropertyGetter()
+        public void TestHeadersPropertyGetter()
         {
             using (V2DocumentHeaders documentHeaders = new V2DocumentHeaders(new V2DerivedKey(new Passphrase("Key"), 256), V2Aes256CryptoFactory.CryptoId))
             {
@@ -186,7 +197,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestUnknownEncryptedHeader()
+        public void TestUnknownEncryptedHeader()
         {
             Headers headers = new Headers();
             IDerivedKey key = new V2DerivedKey(new Passphrase("A key"), 256);

@@ -32,26 +32,37 @@ using NUnit.Framework;
 using System;
 using System.Diagnostics.CodeAnalysis;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
     [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", Justification = "Both HMAC and SHA1 are meaningful acronyms and this is the way .NET does the naming.")]
-    public static class TestAxCryptHMACSHA1
+    public class TestAxCryptHMACSHA1
     {
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestAxCryptHMACSHA1(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
+
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestInvalidArguments()
+        public void TestInvalidArguments()
         {
             HMAC hmac = null;
             Assert.Throws<ArgumentNullException>(() =>
@@ -64,7 +75,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestMethods()
+        public void TestMethods()
         {
             SymmetricKey key = new SymmetricKey(128);
             HMAC hmac = TypeMap.Resolve.New<AxCryptHMACSHA1>().Initialize(key);

@@ -39,10 +39,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestFileSystemStateActions
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestFileSystemStateActions
     {
         private static readonly string _pathRoot = Path.GetPathRoot(Environment.CurrentDirectory);
         private static readonly string _documentsFolder = _pathRoot.PathCombine("Documents");
@@ -50,22 +53,30 @@ namespace Axantum.AxCrypt.Core.Test
         private static readonly string _encryptedFile1 = _documentsFolder.PathCombine("Uncompressed.axx");
         private static readonly string _fileSystemStateFilePath = Path.Combine(Path.GetTempPath(), "DummyFileSystemState.xml");
 
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestFileSystemStateActions(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
+
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
 
             TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(TypeMap.Resolve.New<IDataStore>(_fileSystemStateFilePath)));
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestCheckActiveFilesIsNotLocked()
+        public void TestCheckActiveFilesIsNotLocked()
         {
             DateTime utcNow = OS.Current.UtcNow;
             DateTime utcYesterday = utcNow.AddDays(-1);
@@ -85,7 +96,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestCheckActiveFilesIsLocked()
+        public void TestCheckActiveFilesIsLocked()
         {
             DateTime utcNow = OS.Current.UtcNow;
             DateTime utcYesterday = utcNow.AddDays(-1);
@@ -113,7 +124,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestCheckActiveFilesKeyIsSet()
+        public void TestCheckActiveFilesKeyIsSet()
         {
             DateTime utcNow = OS.Current.UtcNow;
             DateTime utcJustNow = utcNow.AddMinutes(-1);
@@ -151,7 +162,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestCheckActiveFilesKeyIsNotSetWithKnownKey()
+        public void TestCheckActiveFilesKeyIsNotSetWithKnownKey()
         {
             DateTime utcNow = OS.Current.UtcNow;
             FakeDataStore.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
@@ -183,7 +194,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestCheckActiveFilesKeyIsNotSetWithoutKnownKey()
+        public void TestCheckActiveFilesKeyIsNotSetWithoutKnownKey()
         {
             DateTime utcNow = OS.Current.UtcNow;
             FakeDataStore.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
@@ -225,7 +236,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestCheckActiveFilesNotDecryptedAndDoesNotExist()
+        public void TestCheckActiveFilesNotDecryptedAndDoesNotExist()
         {
             DateTime utcNow = OS.Current.UtcNow;
             FakeDataStore.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
@@ -250,7 +261,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestCheckActiveFilesNoDeleteWhenNotDesktopWindows()
+        public void TestCheckActiveFilesNoDeleteWhenNotDesktopWindows()
         {
             DateTime utcNow = OS.Current.UtcNow;
             FakeDataStore.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
@@ -282,7 +293,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestCheckActiveFilesUpdateButWithTargetLockedForSharing()
+        public void TestCheckActiveFilesUpdateButWithTargetLockedForSharing()
         {
             DateTime utcNow = OS.Current.UtcNow;
             FakeDataStore.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt));
@@ -328,7 +339,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestTryDeleteButProcessHasNotExited()
+        public void TestTryDeleteButProcessHasNotExited()
         {
             DateTime utcNow = OS.Current.UtcNow;
             FakeDataStore.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
@@ -356,7 +367,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestCheckProcessExitedWhenExited()
+        public void TestCheckProcessExitedWhenExited()
         {
             DateTime utcNow = OS.Current.UtcNow;
             FakeDataStore.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
@@ -385,7 +396,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestTryDeleteButDecryptedSharingLocked()
+        public void TestTryDeleteButDecryptedSharingLocked()
         {
             DateTime utcNow = OS.Current.UtcNow;
             FakeDataStore.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
@@ -421,6 +432,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 FakeDataStore.Deleting -= eventHandler;
                 FakeDataStore.OpeningForWrite -= eventHandler;
+                FakeDataStore.Moving -= eventHandler;
             }
 
             activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_encryptedFile1);
@@ -430,7 +442,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestPurgeActiveFilesWhenFileIsLocked()
+        public void TestPurgeActiveFilesWhenFileIsLocked()
         {
             DateTime utcNow = OS.Current.UtcNow;
             FakeDataStore.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
@@ -456,7 +468,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestPurgeActiveFilesWhenFileIsModified()
+        public void TestPurgeActiveFilesWhenFileIsModified()
         {
             DateTime utcNow = OS.Current.UtcNow;
             FakeDataStore.AddFile(_encryptedFile1, utcNow, utcNow, utcNow, Stream.Null);
@@ -494,7 +506,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestUpdateActiveFileWithKeyIfKeyMatchesThumbprintWithKnownKey()
+        public void TestUpdateActiveFileWithKeyIfKeyMatchesThumbprintWithKnownKey()
         {
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_encryptedFile1);
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_decryptedFile1);
@@ -507,7 +519,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestUpdateActiveFileWithKeyIfKeyMatchesThumbprintWithWrongThumbprint()
+        public void TestUpdateActiveFileWithKeyIfKeyMatchesThumbprintWithWrongThumbprint()
         {
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_encryptedFile1);
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_decryptedFile1);
@@ -524,7 +536,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestUpdateActiveFileWithKeyIfKeyMatchesThumbprintWithMatchingThumbprint()
+        public void TestUpdateActiveFileWithKeyIfKeyMatchesThumbprintWithMatchingThumbprint()
         {
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_encryptedFile1);
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_decryptedFile1);
@@ -540,7 +552,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestUpdateActiveFileButWithNoChangeDueToIrrelevantStatus()
+        public void TestUpdateActiveFileButWithNoChangeDueToIrrelevantStatus()
         {
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_encryptedFile1);
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_decryptedFile1);
@@ -560,7 +572,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestUpdateActiveFileWithEventRaisedSinceItAppearsAProcessHasExited()
+        public void TestUpdateActiveFileWithEventRaisedSinceItAppearsAProcessHasExited()
         {
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_encryptedFile1);
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_decryptedFile1);
@@ -580,7 +592,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestRemoveRecentFile()
+        public void TestRemoveRecentFile()
         {
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_encryptedFile1);
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_decryptedFile1);
@@ -600,7 +612,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestRemoveRecentFileWhenFileDoesNotExist()
+        public void TestRemoveRecentFileWhenFileDoesNotExist()
         {
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_encryptedFile1);
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_decryptedFile1);

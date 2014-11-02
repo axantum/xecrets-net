@@ -47,9 +47,12 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.AssemblyTeardown();
         }
 
-        [Test]
-        public static void TestNonUtcFileTimes()
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestNonUtcFileTimes(CryptoImplementation cryptoImplementation)
         {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
             FileInfoEncryptedHeaderBlock fileInfoHeaderBlock = new FileInfoEncryptedHeaderBlock(new V1AesCrypto(new V1Aes128CryptoFactory(), new V1DerivedKey(new Passphrase("nonutc")).DerivedKey, SymmetricIV.Zero128));
 
             DateTime utcNow = OS.Current.UtcNow;

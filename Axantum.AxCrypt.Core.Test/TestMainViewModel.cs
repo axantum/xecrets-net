@@ -40,26 +40,38 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestMainViewModel
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestMainViewModel
     {
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestMainViewModel(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
+
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
+
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new ParallelFileOperation());
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestOpenSelectedFolderAction()
+        public void TestOpenSelectedFolderAction()
         {
             string filePath = @"C:\Folder\File.txt";
 
@@ -74,7 +86,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestCurrentVersionPropertyBind()
+        public void TestCurrentVersionPropertyBind()
         {
             UpdateCheck mockedUpdateCheck = null;
             TypeMap.Register.New<Version, UpdateCheck>((version) => mockedUpdateCheck = new Mock<UpdateCheck>(version).Object);
@@ -88,7 +100,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestUpdateCheckWhenNotExecutable()
+        public void TestUpdateCheckWhenNotExecutable()
         {
             var mockUpdateCheck = new Mock<UpdateCheck>(new Version(1, 2, 3, 4));
             TypeMap.Register.New<Version, UpdateCheck>((version) => mockUpdateCheck.Object);
@@ -101,7 +113,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestUpdateCheckWhenExecutable()
+        public void TestUpdateCheckWhenExecutable()
         {
             Version ourVersion = new Version(1, 2, 3, 4);
             var mockUpdateCheck = new Mock<UpdateCheck>(ourVersion);
@@ -118,7 +130,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestVersionUpdate()
+        public void TestVersionUpdate()
         {
             Version ourVersion = new Version(1, 2, 3, 4);
             var mockUpdateCheck = new Mock<UpdateCheck>(ourVersion);
@@ -134,7 +146,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDragAndDropFilesPropertyBindSetsDragAndDropFileTypes()
+        public void TestDragAndDropFilesPropertyBindSetsDragAndDropFileTypes()
         {
             using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
@@ -165,7 +177,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDragAndDropFilesPropertyBindSetsDroppableAsRecent()
+        public void TestDragAndDropFilesPropertyBindSetsDroppableAsRecent()
         {
             using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
@@ -201,7 +213,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDragAndDropFilesPropertyBindSetsDroppableAsWatchedFolder()
+        public void TestDragAndDropFilesPropertyBindSetsDroppableAsWatchedFolder()
         {
             using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
@@ -227,7 +239,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestSetRecentFilesComparer()
+        public void TestSetRecentFilesComparer()
         {
             string file1 = @"C:\Folder\File3-txt.axx";
             string decrypted1 = @"C:\Folder\File2.txt";
@@ -278,7 +290,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestOpenFiles()
+        public void TestOpenFiles()
         {
             string file1 = @"C:\Folder\File3-txt.axx";
             string decrypted1 = @"C:\Folder\File2.txt";
@@ -316,7 +328,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestRemoveRecentFiles()
+        public void TestRemoveRecentFiles()
         {
             var mockFileSystemState = new Mock<FileSystemState>() { CallBase = true };
             mockFileSystemState.Setup(x => x.Save());
@@ -358,7 +370,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestPurgeRecentFiles()
+        public void TestPurgeRecentFiles()
         {
             var mockActiveFileAction = new Mock<ActiveFileAction>();
 
@@ -380,7 +392,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestClearPassphraseMemory()
+        public void TestClearPassphraseMemory()
         {
             string file1 = @"C:\Folder\File3-txt.axx";
             string decrypted1 = @"C:\Folder\File2.txt";
@@ -415,7 +427,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestRemoveWatchedFolders()
+        public void TestRemoveWatchedFolders()
         {
             var mockFileSystemState = new Mock<FileSystemState>() { CallBase = true };
             mockFileSystemState.Setup(x => x.Save());
@@ -436,7 +448,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestAddAndRemoveWatchedFolderState()
+        public void TestAddAndRemoveWatchedFolderState()
         {
             var fileSystemStateMock = new Mock<FileSystemState>() { CallBase = true };
             fileSystemStateMock.Setup(x => x.Save());
@@ -474,7 +486,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestSetDefaultEncryptionKeyWithoutIdentity()
+        public void TestSetDefaultEncryptionKeyWithoutIdentity()
         {
             var fileSystemStateMock = new Mock<FileSystemState>() { CallBase = true };
             fileSystemStateMock.Setup(x => x.Save());
@@ -487,7 +499,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestSetDebugMode()
+        public void TestSetDebugMode()
         {
             var fileSystemStateMock = new Mock<FileSystemState>();
             var logMock = new Mock<ILogging>();
@@ -512,7 +524,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestSelectedRecentFiles()
+        public void TestSelectedRecentFiles()
         {
             using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
@@ -525,7 +537,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestSelectedWatchedFolders()
+        public void TestSelectedWatchedFolders()
         {
             using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
@@ -538,7 +550,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestTitle()
+        public void TestTitle()
         {
             using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
@@ -551,7 +563,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestNotifyWatchedFolderAdded()
+        public void TestNotifyWatchedFolderAdded()
         {
             Resolve.KnownKeys.DefaultEncryptionKey = new Passphrase("passphrase");
             FakeDataStore.AddFolder(@"C:\MyFolders\Folder1");
@@ -567,7 +579,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestSetFilesArePending()
+        public void TestSetFilesArePending()
         {
             Resolve.KnownKeys.DefaultEncryptionKey = new Passphrase("passphrase");
             FakeDataStore.AddFolder(@"C:\MyFolders\Folder1");

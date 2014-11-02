@@ -35,10 +35,13 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestFileSystemState
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestFileSystemState
     {
         private static readonly string _rootPath = Path.GetPathRoot(Environment.CurrentDirectory);
         private static readonly string _encryptedAxxPath = Path.Combine(_rootPath, "Encrypted-txt.axx");
@@ -52,20 +55,28 @@ namespace Axantum.AxCrypt.Core.Test
         private static readonly string _decrypted3TxtPath = Path.Combine(_rootPath, "Decrypted3.txt");
         private static readonly string _decrypted4TxtPath = Path.Combine(_rootPath, "Decrypted4.txt");
 
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestFileSystemState(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
+
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestLoadNew()
+        public void TestLoadNew()
         {
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
             {
@@ -75,7 +86,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestLoadExisting()
+        public void TestLoadExisting()
         {
             ActiveFile activeFile;
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
@@ -97,7 +108,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestActiveFileChangedEvent()
+        public void TestActiveFileChangedEvent()
         {
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
             {
@@ -119,7 +130,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestStatusMaskAtLoad()
+        public void TestStatusMaskAtLoad()
         {
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
             {
@@ -135,7 +146,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestFindEncryptedPath()
+        public void TestFindEncryptedPath()
         {
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
             {
@@ -151,7 +162,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestForEach()
+        public void TestForEach()
         {
             bool changedEventWasRaised = false;
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
@@ -203,7 +214,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptedActiveFiles()
+        public void TestDecryptedActiveFiles()
         {
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
             {
@@ -228,7 +239,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDoubleDispose()
+        public void TestDoubleDispose()
         {
             FileSystemState state = new FileSystemState();
             state.Dispose();
@@ -237,7 +248,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestArgumentNull()
+        public void TestArgumentNull()
         {
             using (FileSystemState state = new FileSystemState())
             {
@@ -255,7 +266,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestInvalidXml()
+        public void TestInvalidXml()
         {
             string badXml = @"<FileSystemState xmlns=""http://www.axantum.com/Serialization/"" xmlns:i=""http://www.w3.org/2001/XMLSchema-instance"">";
 
@@ -278,7 +289,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWatchedFolders()
+        public void TestWatchedFolders()
         {
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
             {
@@ -310,7 +321,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWatchedFolderChanged()
+        public void TestWatchedFolderChanged()
         {
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
             {
@@ -332,7 +343,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWatchedFolderRemoved()
+        public void TestWatchedFolderRemoved()
         {
             using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
             {
@@ -348,7 +359,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestChangedEvent()
+        public void TestChangedEvent()
         {
             bool wasHere = false;
 

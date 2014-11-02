@@ -387,8 +387,14 @@ namespace Axantum.AxCrypt.Core.Test
                 }
             };
             FakeDataStore.ExceptionHook += handler;
-            Assert.Throws<InternalErrorException>(() => @"C:\temp\test.txt".CreateUniqueFile());
-            FakeDataStore.ExceptionHook -= handler;
+            try
+            {
+                Assert.Throws<InternalErrorException>(() => @"C:\temp\test.txt".CreateUniqueFile());
+            }
+            finally
+            {
+                FakeDataStore.ExceptionHook -= handler;
+            }
         }
 
         [Test]
@@ -497,9 +503,12 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
-        public static void TestDecryptToBadArgumentsCausingEarlyException()
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestDecryptToBadArgumentsCausingEarlyException(CryptoImplementation cryptoImplementation)
         {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
             Stream nullStream = null;
             ICryptoTransform nullEncryptor = null;
             ICryptoTransform encryptor = new V2AesCrypto(SymmetricKey.Zero256, SymmetricIV.Zero128, 0).CreateDecryptingTransform();

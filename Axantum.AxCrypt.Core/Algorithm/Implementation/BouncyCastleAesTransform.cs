@@ -147,18 +147,25 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
         /// <exception cref="System.Security.Cryptography.CryptographicException">Implementation only supports whole block processing and ECB.</exception>
         public byte[] TransformFinalBlock(byte[] inputBuffer, int inputOffset, int inputCount)
         {
-            byte[] final = new byte[_cipher.GetOutputSize(inputCount)];
-            int len = _cipher.ProcessBytes(inputBuffer, inputOffset, inputCount, final, 0);
-            len += _cipher.DoFinal(final, len);
-            if (len != final.Length)
+            try
             {
-                byte[] shorter = new byte[len];
-                Array.Copy(final, 0, shorter, 0, len);
-                final = shorter;
-            }
+                byte[] final = new byte[_cipher.GetOutputSize(inputCount)];
+                int len = _cipher.ProcessBytes(inputBuffer, inputOffset, inputCount, final, 0);
+                len += _cipher.DoFinal(final, len);
+                if (len != final.Length)
+                {
+                    byte[] shorter = new byte[len];
+                    Array.Copy(final, 0, shorter, 0, len);
+                    final = shorter;
+                }
 
-            _cipher.Reset();
-            return final;
+                _cipher.Reset();
+                return final;
+            }
+            catch (CryptoException ce)
+            {
+                throw new Core.Runtime.CryptoException("Error in cryptographic transformation.", ErrorStatus.CryptographicErorr, ce);
+            }
         }
 
         /// <summary>

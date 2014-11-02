@@ -92,9 +92,12 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(called, Is.True);
         }
 
-        [Test]
-        public static void TestHandleSessionEventLogOn()
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestHandleSessionEventLogOn(CryptoImplementation cryptoImplementation)
         {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
             MockAxCryptFile mock = new MockAxCryptFile();
             bool called = false;
             int folderCount = -1;
@@ -236,9 +239,12 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(callTimes, Is.EqualTo(2));
         }
 
-        [Test]
-        public static void TestNotificationEncryptPendingFilesInLoggedOnFolders()
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestNotificationEncryptPendingFilesInLoggedOnFolders(CryptoImplementation cryptoImplementation)
         {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
             FakeDataStore.AddFolder(@"C:\My Documents\");
             Mock<AxCryptFile> mock = new Mock<AxCryptFile>();
             mock.Setup(acf => acf.EncryptFoldersUniqueWithBackupAndWipe(It.IsAny<IEnumerable<IDataContainer>>(), It.IsAny<Passphrase>(), It.IsAny<Guid>(), It.IsAny<IProgressContext>()));

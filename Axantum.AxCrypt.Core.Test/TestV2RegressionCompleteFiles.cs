@@ -9,57 +9,68 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestV2RegressionCompleteFiles
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestV2RegressionCompleteFiles
     {
         private static readonly string _rootPath = Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
 
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestV2RegressionCompleteFiles(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
+
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestSimpleSmallFile256()
+        public void TestSimpleSmallFile256()
         {
             TestOneFile("short-txt-AES256.axx", "PâsswördètMëd§½ Lôñg|´¨", "2de4823aa40ed2a6d040e7ba67bf60e3b1ae5c1f1bc2391ba8435ec7d1597f49");
         }
 
         [Test]
-        public static void TestLargerUncompressibleFile256()
+        public void TestLargerUncompressibleFile256()
         {
             TestOneFile("snow-jpg-AES256.axx", "PâsswördètMëd§½ Lôñg|´¨", "b541684642894f9385b15ddd62f980e20a730fc036bcb1bbb4bad75b1f4889b4");
         }
 
         [Test]
-        public static void TestLargerCompressibleTextFile256()
+        public void TestLargerCompressibleTextFile256()
         {
             TestOneFile("Frankenstein-txt-AES256.axx", "PâsswördètMëd§½ Lôñg|´¨", "3493994a1a7d891e1a6fb4e3f60c58cbfb3e6f71f12f4c3ffe51c0c9498eb520");
         }
 
         [Test]
-        public static void TestSimpleSmallFile128()
+        public void TestSimpleSmallFile128()
         {
             TestV2RegressionCompleteFiles.TestOneFile("short-txt-V2AES128.axx", "PâsswördètMëd§½ Lôñg|´¨", "2de4823aa40ed2a6d040e7ba67bf60e3b1ae5c1f1bc2391ba8435ec7d1597f49");
         }
 
         [Test]
-        public static void TestLargerUncompressibleFile128()
+        public void TestLargerUncompressibleFile128()
         {
             TestV2RegressionCompleteFiles.TestOneFile("snow-jpg-V2AES128.axx", "PâsswördètMëd§½ Lôñg|´¨", "b541684642894f9385b15ddd62f980e20a730fc036bcb1bbb4bad75b1f4889b4");
         }
 
         [Test]
-        public static void TestLargerCompressibleTextFile128()
+        public void TestLargerCompressibleTextFile128()
         {
             TestV2RegressionCompleteFiles.TestOneFile("Frankenstein-txt-V2AES128.axx", "PâsswördètMëd§½ Lôñg|´¨", "3493994a1a7d891e1a6fb4e3f60c58cbfb3e6f71f12f4c3ffe51c0c9498eb520");
         }

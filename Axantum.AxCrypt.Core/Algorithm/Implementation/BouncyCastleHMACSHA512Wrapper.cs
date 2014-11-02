@@ -43,7 +43,7 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
 
         public BouncyCastleHmacSha512Wrapper()
         {
-            _hmac = new HMac(new BouncyCastleAxCryptSha1ForHmacWrapper(new Sha512Digest()));
+            _hmac = new HMac(new Sha512Digest());
         }
 
         public override HMAC Initialize(SymmetricKey key)
@@ -123,6 +123,7 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
         public override void Initialize()
         {
             _hmac.Init(new KeyParameter(_key));
+            _hash = null;
         }
 
         public override bool CanReuseTransform

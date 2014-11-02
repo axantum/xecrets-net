@@ -30,24 +30,36 @@ using NUnit.Framework;
 using System;
 using System.Linq;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    public static class TestIterationCalculator
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestIterationCalculator
     {
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestIterationCalculator(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
+
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestMinimumGuaranteeV1KeyWrapIterations()
+        public void TestMinimumGuaranteeV1KeyWrapIterations()
         {
             DateTime now = DateTime.UtcNow;
             int callCounter = -1;
@@ -76,7 +88,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestMinimumGuaranteeV2KeyWrapIterations()
+        public void TestMinimumGuaranteeV2KeyWrapIterations()
         {
             DateTime now = DateTime.UtcNow;
             int callCounter = -1;
@@ -105,7 +117,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestCalculatedV1KeyWrapIterations()
+        public void TestCalculatedV1KeyWrapIterations()
         {
             DateTime now = DateTime.UtcNow;
             int callCounter = -1;
@@ -129,7 +141,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestCalculatedV2KeyWrapIterations()
+        public void TestCalculatedV2KeyWrapIterations()
         {
             DateTime now = DateTime.UtcNow;
             int callCounter = -1;

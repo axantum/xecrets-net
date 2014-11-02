@@ -46,9 +46,12 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.AssemblyTeardown();
         }
 
-        [Test]
-        public static void TestInvalidArguments()
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestInvalidArguments(CryptoImplementation cryptoImplementation)
         {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
             SymmetricKey key = new SymmetricKey(128);
             SymmetricIV iv = new SymmetricIV(128);
 

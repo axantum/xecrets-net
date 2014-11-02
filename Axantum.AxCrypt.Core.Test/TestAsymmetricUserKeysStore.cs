@@ -36,28 +36,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestAsymmetricUserKeysStore
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestAsymmetricUserKeysStore
     {
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestAsymmetricUserKeysStore(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
+
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
+
             TypeMap.Register.Singleton<IRandomGenerator>(() => new FakePseudoRandomGenerator());
             TypeMap.Register.Singleton<IAsymmetricFactory>(() => new FakeAsymmetricFactory("MD5"));
             Resolve.UserSettings.AsymmetricKeyBits = 512;
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestSimpleCreateAsymmetricKeysStore()
+        public void TestSimpleCreateAsymmetricKeysStore()
         {
             FakeDataStore.AddFolder(@"C:\Temp");
             IDataContainer workFolder = TypeMap.Resolve.New<IDataContainer>(@"C:\Temp");
@@ -69,7 +81,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestCreateAndLoadAsymmetricKeysStore()
+        public void TestCreateAndLoadAsymmetricKeysStore()
         {
             FakeDataStore.AddFolder(@"C:\Temp");
             IDataContainer workFolder = TypeMap.Resolve.New<IDataContainer>(@"C:\Temp\");
@@ -90,7 +102,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptCreateLoadDecryptWithAsymmetricKeysStore()
+        public void TestEncryptCreateLoadDecryptWithAsymmetricKeysStore()
         {
             FakeDataStore.AddFolder(@"C:\Temp");
             IDataContainer workFolder = TypeMap.Resolve.New<IDataContainer>(@"C:\Temp\");

@@ -40,10 +40,13 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestFileOperation
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestFileOperation
     {
         private static readonly string _rootPath = Path.GetPathRoot(Environment.CurrentDirectory);
         private static readonly string _testTextPath = Path.Combine(_rootPath, "test.txt");
@@ -51,20 +54,28 @@ namespace Axantum.AxCrypt.Core.Test
         private static readonly string _uncompressedAxxPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Uncompressed.axx");
         private static readonly string _helloWorldAxxPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "HelloWorld.axx");
 
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestFileOperation(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
+
         [TestFixtureSetUp]
-        public static void SetupFixture()
+        public void SetupFixture()
         {
         }
 
         [TestFixtureTearDown]
-        public static void TeardownFixture()
+        public void TeardownFixture()
         {
         }
 
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
 
             FakeDataStore.AddFile(_testTextPath, FakeDataStore.TestDate1Utc, FakeDataStore.TestDate2Utc, FakeDataStore.TestDate1Utc, FakeDataStore.ExpandableMemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
             FakeDataStore.AddFile(_davidCopperfieldTxtPath, FakeDataStore.TestDate4Utc, FakeDataStore.TestDate5Utc, FakeDataStore.TestDate6Utc, FakeDataStore.ExpandableMemoryStream(Encoding.GetEncoding(1252).GetBytes(Resources.david_copperfield)));
@@ -73,13 +84,13 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestInvalidArguments()
+        public void TestInvalidArguments()
         {
             string file = _helloWorldAxxPath;
             string nullFile = null;
@@ -97,7 +108,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestSimpleOpenAndLaunch()
+        public void TestSimpleOpenAndLaunch()
         {
             IEnumerable<Passphrase> keys = new Passphrase[] { new Passphrase("a") };
 
@@ -114,7 +125,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestOpenAndLaunchOfAxCryptDocument()
+        public void TestOpenAndLaunchOfAxCryptDocument()
         {
             FakeLauncher launcher = new FakeLauncher();
             bool called = false;
@@ -137,7 +148,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestOpenAndLaunchOfAxCryptDocumentWhenAlreadyDecrypted()
+        public void TestOpenAndLaunchOfAxCryptDocumentWhenAlreadyDecrypted()
         {
             TestOpenAndLaunchOfAxCryptDocument();
 
@@ -161,7 +172,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestOpenAndLaunchOfAxCryptDocumentArgumentNullException()
+        public void TestOpenAndLaunchOfAxCryptDocumentArgumentNullException()
         {
             string nullString = null;
             IAxCryptDocument nullDocument = null;
@@ -174,7 +185,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestFileDoesNotExist()
+        public void TestFileDoesNotExist()
         {
             IEnumerable<Passphrase> keys = new Passphrase[] { new Passphrase("a") };
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
@@ -184,7 +195,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestFileAlreadyDecryptedWithKnownKey()
+        public void TestFileAlreadyDecryptedWithKnownKey()
         {
             TypeMap.Register.New<ILauncher>(() => new FakeLauncher());
 
@@ -208,7 +219,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestFileAlreadyDecryptedButWithUnknownKey()
+        public void TestFileAlreadyDecryptedButWithUnknownKey()
         {
             TypeMap.Register.New<ILauncher>(() => new FakeLauncher());
             IEnumerable<Passphrase> keys = new Passphrase[] { new Passphrase("a") };
@@ -234,7 +245,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestInvalidKey()
+        public void TestInvalidKey()
         {
             IEnumerable<Passphrase> keys = new Passphrase[] { new Passphrase("b") };
             FileOperation fileOperation = new FileOperation(Resolve.FileSystemState, new SessionNotify());
@@ -244,7 +255,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestNoProcessLaunched()
+        public void TestNoProcessLaunched()
         {
             IEnumerable<Passphrase> keys = new Passphrase[] { new Passphrase("a") };
 
@@ -261,7 +272,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWin32Exception()
+        public void TestWin32Exception()
         {
             IEnumerable<Passphrase> keys = new Passphrase[] { new Passphrase("a") };
 
@@ -277,7 +288,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestImmediateExit()
+        public void TestImmediateExit()
         {
             IEnumerable<Passphrase> keys = new Passphrase[] { new Passphrase("a") };
 
@@ -294,7 +305,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestExitEvent()
+        public void TestExitEvent()
         {
             IEnumerable<Passphrase> keys = new Passphrase[] { new Passphrase("a") };
 
@@ -321,7 +332,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestFileContainedByActiveFilesButNotDecrypted()
+        public void TestFileContainedByActiveFilesButNotDecrypted()
         {
             TypeMap.Register.New<ILauncher>(() => new FakeLauncher());
 
@@ -344,7 +355,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestGetTemporaryDestinationName()
+        public void TestGetTemporaryDestinationName()
         {
             string temporaryDestinationName = FileOperation.GetTemporaryDestinationName(_davidCopperfieldTxtPath);
 

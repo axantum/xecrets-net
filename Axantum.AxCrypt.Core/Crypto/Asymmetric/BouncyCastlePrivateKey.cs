@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
                 byte[] transformed = cipher.ProcessBlock(buffer, 0, buffer.Length);
                 return transformed;
             }
-            catch (CryptoException)
+            catch (Org.BouncyCastle.Crypto.CryptoException)
             {
                 return null;
             }

@@ -1,4 +1,6 @@
-﻿using Axantum.AxCrypt.Core.Algorithm;
+﻿using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Algorithm;
+using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,7 +44,14 @@ namespace Axantum.AxCrypt.Mono.Cryptography
 
         public byte[] TransformFinalBlock(byte[] inputBuffer, int inputOffset, int inputCount)
         {
-            return _cryptoTransform.TransformFinalBlock(inputBuffer, inputOffset, inputCount);
+            try
+            {
+                return _cryptoTransform.TransformFinalBlock(inputBuffer, inputOffset, inputCount);
+            }
+            catch (System.Security.Cryptography.CryptographicException ce)
+            {
+                throw new CryptoException("Error in cryptographic transformation.", ErrorStatus.CryptographicErorr, ce);
+            }
         }
 
         public void Dispose()

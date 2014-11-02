@@ -30,25 +30,36 @@ using NUnit.Framework;
 using System;
 using System.Linq;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestSymmetricKeyThumbprint
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestSymmetricKeyThumbprint
     {
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestSymmetricKeyThumbprint(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
+
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestInvalidArguments()
+        public void TestInvalidArguments()
         {
             Passphrase nullKey = null;
             Salt nullSalt = null;
@@ -57,7 +68,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestAesKeyThumbprintMethods()
+        public void TestAesKeyThumbprintMethods()
         {
             Passphrase key1 = new Passphrase("key");
             Passphrase key2 = new Passphrase("key");
@@ -74,7 +85,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestComparisons()
+        public void TestComparisons()
         {
             Passphrase key1 = new Passphrase("samekey");
             Passphrase key2 = new Passphrase("samekey");
@@ -106,7 +117,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestGetHashCode()
+        public void TestGetHashCode()
         {
             Passphrase key1 = new Passphrase("samekey");
             Passphrase key2 = new Passphrase("samekey");

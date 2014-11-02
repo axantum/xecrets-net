@@ -46,6 +46,11 @@ namespace Axantum.AxCrypt.Core.Algorithm.Implementation
 
         public override HMAC Initialize(Core.Crypto.SymmetricKey key)
         {
+            if (key == null)
+            {
+                throw new ArgumentNullException("key");
+            }
+
             Key = key.GetBytes();
             return this;
         }

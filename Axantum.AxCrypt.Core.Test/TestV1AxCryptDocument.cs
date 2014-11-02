@@ -40,25 +40,36 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestV1AxCryptDocument
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestV1AxCryptDocument
     {
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestV1AxCryptDocument(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
+
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestAnsiFileNameFromSimpleFile()
+        public void TestAnsiFileNameFromSimpleFile()
         {
             using (Stream testStream = FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
             {
@@ -74,7 +85,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestUnicodeFileNameFromSimpleFile()
+        public void TestUnicodeFileNameFromSimpleFile()
         {
             using (Stream testStream = FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
             {
@@ -90,7 +101,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestFileNameFromSimpleFileWithUnicode()
+        public void TestFileNameFromSimpleFileWithUnicode()
         {
             using (Stream testStream = FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
             {
@@ -106,7 +117,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestHmacFromSimpleFile()
+        public void TestHmacFromSimpleFile()
         {
             V1Hmac expectedHmac = new V1Hmac(new byte[] { 0xF9, 0xAF, 0x2E, 0x67, 0x7D, 0xCF, 0xC9, 0xFE, 0x06, 0x4B, 0x39, 0x08, 0xE7, 0x5A, 0x87, 0x81 });
             Passphrase passphrase = new Passphrase("a");
@@ -121,7 +132,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         [Test]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", Justification = "This is a test, and they should start with 'Test'.")]
-        public static void TestIsCompressedFromSimpleFile()
+        public void TestIsCompressedFromSimpleFile()
         {
             Passphrase passphrase = new Passphrase("a");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
@@ -135,7 +146,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         [Test]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", Justification = "This is a test, and they should start with 'Test'.")]
-        public static void TestInvalidPassphraseWithSimpleFile()
+        public void TestInvalidPassphraseWithSimpleFile()
         {
             Passphrase passphrase = new Passphrase("b");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
@@ -147,7 +158,7 @@ namespace Axantum.AxCrypt.Core.Test
 
         [Test]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", Justification = "This is a test, and they should start with 'Test'.")]
-        public static void TestIsCompressedFromLargerFile()
+        public void TestIsCompressedFromLargerFile()
         {
             Passphrase passphrase = new Passphrase("Å ä Ö");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
@@ -160,7 +171,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptUncompressedFromSimpleFile()
+        public void TestDecryptUncompressedFromSimpleFile()
         {
             Passphrase passphrase = new Passphrase("a");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
@@ -177,7 +188,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptUncompressedWithCancel()
+        public void TestDecryptUncompressedWithCancel()
         {
             Passphrase passphrase = new Passphrase("a");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
@@ -199,7 +210,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptUncompressedWithPaddingError()
+        public void TestDecryptUncompressedWithPaddingError()
         {
             Passphrase passphrase = new Passphrase("a");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
@@ -216,14 +227,14 @@ namespace Axantum.AxCrypt.Core.Test
                     Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                     using (MemoryStream plaintextStream = new MemoryStream())
                     {
-                        Assert.Throws<CryptographicException>(() => { document.DecryptTo(plaintextStream); });
+                        Assert.Throws<CryptoException>(() => { document.DecryptTo(plaintextStream); });
                     }
                 }
             }
         }
 
         [Test]
-        public static void TestDecryptCompressedWithTruncatedFile()
+        public void TestDecryptCompressedWithTruncatedFile()
         {
             Passphrase passphrase = new Passphrase("Å ä Ö");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
@@ -243,7 +254,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptCompressedWithCancel()
+        public void TestDecryptCompressedWithCancel()
         {
             Passphrase passphrase = new Passphrase("Å ä Ö");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
@@ -265,7 +276,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptCompressedFromLegacy0B6()
+        public void TestDecryptCompressedFromLegacy0B6()
         {
             Passphrase passphrase = new Passphrase("åäö");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
@@ -284,7 +295,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptWithoutLoadFirstFromEmptyFile()
+        public void TestDecryptWithoutLoadFirstFromEmptyFile()
         {
             using (V1AxCryptDocument document = new V1AxCryptDocument())
             {
@@ -296,7 +307,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptAfterFailedLoad()
+        public void TestDecryptAfterFailedLoad()
         {
             using (Stream testStream = new MemoryStream())
             {
@@ -315,7 +326,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptCompressedFromLargerFile()
+        public void TestDecryptCompressedFromLargerFile()
         {
             Passphrase passphrase = new Passphrase("Å ä Ö");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
@@ -335,7 +346,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestHmacCalculationFromSimpleFile()
+        public void TestHmacCalculationFromSimpleFile()
         {
             Passphrase passphrase = new Passphrase("a");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
@@ -347,7 +358,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestFailedHmacCalculationFromSimpleFile()
+        public void TestFailedHmacCalculationFromSimpleFile()
         {
             Passphrase passphrase = new Passphrase("a");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
@@ -363,7 +374,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestNoMagicGuidFound()
+        public void TestNoMagicGuidFound()
         {
             byte[] dummy = Encoding.ASCII.GetBytes("This is a string that generates some bytes, none of which will match the magic GUID");
             Passphrase passphrase = new Passphrase("a");
@@ -374,7 +385,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestInputStreamTooShort()
+        public void TestInputStreamTooShort()
         {
             using (MemoryStream testStream = new MemoryStream())
             {
@@ -389,7 +400,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestFileTimesFromSimpleFile()
+        public void TestFileTimesFromSimpleFile()
         {
             Passphrase passphrase = new Passphrase("a");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
@@ -407,7 +418,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestChangePassphraseForSimpleFile()
+        public void TestChangePassphraseForSimpleFile()
         {
             Passphrase passphrase = new Passphrase("a");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
@@ -440,7 +451,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestSimpleEncryptToWithCompression()
+        public void TestSimpleEncryptToWithCompression()
         {
             DateTime creationTimeUtc = new DateTime(2012, 1, 1, 1, 2, 3, DateTimeKind.Utc);
             DateTime lastAccessTimeUtc = creationTimeUtc + new TimeSpan(1, 0, 0);
@@ -479,7 +490,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestSimpleEncryptToWithoutCompression()
+        public void TestSimpleEncryptToWithoutCompression()
         {
             DateTime creationTimeUtc = new DateTime(2012, 1, 1, 1, 2, 3, DateTimeKind.Utc);
             DateTime lastAccessTimeUtc = creationTimeUtc + new TimeSpan(1, 0, 0);
@@ -576,7 +587,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestInvalidArguments()
+        public void TestInvalidArguments()
         {
             using (Stream inputStream = FakeDataStore.ExpandableMemoryStream(Encoding.UTF8.GetBytes("AxCrypt is Great!")))
             {
@@ -603,7 +614,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
-        public static void TestDoubleDispose()
+        public void TestDoubleDispose()
         {
             V1AxCryptDocument document = new V1AxCryptDocument();
             document.Dispose();
@@ -611,7 +622,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestInvalidHmacInCopyEncryptedTo()
+        public void TestInvalidHmacInCopyEncryptedTo()
         {
             Passphrase passphrase = new Passphrase("a");
             using (V1AxCryptDocument document = new V1AxCryptDocument())
@@ -637,7 +648,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestReaderNotPositionedAtData()
+        public void TestReaderNotPositionedAtData()
         {
             using (MemoryStream encryptedFile = new MemoryStream(Resources.david_copperfield_key__aa_ae_oe__ulu_txt))
             {
@@ -656,7 +667,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestHmacThrowsWhenTooLittleData()
+        public void TestHmacThrowsWhenTooLittleData()
         {
             using (MemoryStream plaintext = new MemoryStream(Resources.uncompressable_zip))
             {

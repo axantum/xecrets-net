@@ -33,27 +33,39 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestKnownKeys
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestKnownKeys
     {
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestKnownKeys(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
+
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
+
             TypeMap.Register.Singleton<FileSystemState>(() => new FileSystemState());
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             TypeMap.Register.Clear();
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestAddNewKnownKey()
+        public void TestAddNewKnownKey()
         {
             KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
             Passphrase passphrase = new Passphrase("a");
@@ -62,7 +74,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestAddTwoNewKnownKeys()
+        public void TestAddTwoNewKnownKeys()
         {
             KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
             Passphrase key1 = new Passphrase("key1");
@@ -74,7 +86,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestAddSameKeyTwice()
+        public void TestAddSameKeyTwice()
         {
             KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
             Passphrase key = new Passphrase(String.Empty);
@@ -85,7 +97,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDefaultEncryptionKey()
+        public void TestDefaultEncryptionKey()
         {
             KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
             Passphrase key = new Passphrase(String.Empty);
@@ -96,7 +108,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestClear()
+        public void TestClear()
         {
             KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
             Passphrase key1 = new Passphrase("key1");
@@ -113,7 +125,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestSettingNullDefaultEncryptionKey()
+        public void TestSettingNullDefaultEncryptionKey()
         {
             KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
             Passphrase key1 = new Passphrase("a");
@@ -128,7 +140,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestChangedEvent()
+        public void TestChangedEvent()
         {
             bool wasChanged = false;
             SessionNotify notificationMonitor = new SessionNotify();
@@ -146,7 +158,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestLoggingOffWhenLoggingOnWhenAlreadyLoggedOn()
+        public void TestLoggingOffWhenLoggingOnWhenAlreadyLoggedOn()
         {
             int wasLoggedOnCount = 0;
             int wasLoggedOffCount = 0;
@@ -178,7 +190,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestAddKeyForKnownIdentity()
+        public void TestAddKeyForKnownIdentity()
         {
             Resolve.FileSystemState.Identities.Add(new PassphraseIdentity(new Passphrase("a")));
             KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
@@ -188,7 +200,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWatchedFoldersNotLoggedOn()
+        public void TestWatchedFoldersNotLoggedOn()
         {
             KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
             FakeDataStore.AddFolder(@"C:\WatchedFolder\");
@@ -199,7 +211,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWatchedFoldersWhenLoggedOn()
+        public void TestWatchedFoldersWhenLoggedOn()
         {
             Passphrase key1 = new Passphrase("a");
             Passphrase key2 = new Passphrase("b");

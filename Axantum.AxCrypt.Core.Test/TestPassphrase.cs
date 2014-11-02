@@ -46,9 +46,12 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.AssemblyTeardown();
         }
 
-        [Test]
-        public static void TestPassphraseConstructor()
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestPassphraseConstructor(CryptoImplementation cryptoImplementation)
         {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
             V1DerivedKey passphrase = new V1DerivedKey(new Passphrase("A Passphrase"));
             SymmetricKey derivedKey = passphrase.DerivedKey;
             Assert.That(derivedKey.Size, Is.EqualTo(128), "The default derived key is 128 bits.");

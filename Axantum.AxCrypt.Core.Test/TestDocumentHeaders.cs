@@ -36,11 +36,21 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestDocumentHeaders
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestDocumentHeaders
     {
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestDocumentHeaders(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
+
         private class AxCryptReaderForTest : V1AxCryptReader
         {
             public AxCryptReaderForTest(Stream inputStream)
@@ -60,19 +70,20 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestInvalidItemType()
+        public void TestInvalidItemType()
         {
             using (MemoryStream inputStream = new MemoryStream())
             {
@@ -91,7 +102,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestBadArguments()
+        public void TestBadArguments()
         {
             V1DocumentHeaders documentHeaders = new V1DocumentHeaders(Passphrase.Empty, 37);
             Assert.Throws<ArgumentNullException>(() =>
@@ -109,7 +120,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
-        public static void TestBadKey()
+        public void TestBadKey()
         {
             using (Stream testStream = FakeDataStore.ExpandableMemoryStream(Resources.helloworld_key_a_txt))
             {
@@ -128,7 +139,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptOfTooNewFileVersion()
+        public void TestDecryptOfTooNewFileVersion()
         {
             DateTime creationTimeUtc = new DateTime(2012, 1, 1, 1, 2, 3, DateTimeKind.Utc);
             DateTime lastAccessTimeUtc = creationTimeUtc + new TimeSpan(1, 0, 0);

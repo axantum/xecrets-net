@@ -33,25 +33,36 @@ using NUnit.Framework;
 using System;
 using System.Linq;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestIdentityViewModel
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestIdentityViewModel
     {
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestIdentityViewModel(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
+
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestLogOnExistingIdentity()
+        public void TestLogOnExistingIdentity()
         {
             Passphrase passphrase = new Passphrase("p");
 
@@ -70,7 +81,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestLogOnExistingIdentityWithCancel()
+        public void TestLogOnExistingIdentityWithCancel()
         {
             Passphrase passphrase = new Passphrase("p");
 
@@ -90,7 +101,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestLogOnLogOffWhenLoggedOn()
+        public void TestLogOnLogOffWhenLoggedOn()
         {
             Passphrase passphrase = new Passphrase("p");
 
@@ -114,7 +125,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestLogOnLogOffWhenLoggedOffAndNoIdentities()
+        public void TestLogOnLogOffWhenLoggedOffAndNoIdentities()
         {
             bool wasCreateNew = false;
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownKeys, Resolve.UserSettings);
@@ -134,7 +145,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestLogOnLogOffWhenLoggedOffAndNoIdentitiesWithCancel()
+        public void TestLogOnLogOffWhenLoggedOffAndNoIdentitiesWithCancel()
         {
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownKeys, Resolve.UserSettings);
             ivm.LoggingOn += (sender, e) =>
@@ -151,7 +162,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void AskForLogOnOrDecryptPassphraseActionNotActiveFile()
+        public void AskForLogOnOrDecryptPassphraseActionNotActiveFile()
         {
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownKeys, Resolve.UserSettings);
             ivm.CryptoId = new V1Aes128CryptoFactory().Id; ;
@@ -169,7 +180,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void AskForLogOnOrDecryptPassphraseActionActiveFile()
+        public void AskForLogOnOrDecryptPassphraseActionActiveFile()
         {
             Passphrase key = new Passphrase("p");
 
@@ -192,7 +203,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void AskForLogOnOrDecryptPassphraseActionActiveFileWithExistingIdentity()
+        public void AskForLogOnOrDecryptPassphraseActionActiveFileWithExistingIdentity()
         {
             Passphrase key = new Passphrase("p");
 
@@ -215,7 +226,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void AskForLogOnPassphraseAction()
+        public void AskForLogOnPassphraseAction()
         {
             Passphrase key = new Passphrase("ppp");
 
@@ -235,7 +246,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void AskForLogOnPassphraseActionWithCancel()
+        public void AskForLogOnPassphraseActionWithCancel()
         {
             Passphrase key = new Passphrase("ppp");
 
@@ -254,7 +265,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void AskForNewLogOnPassphrase()
+        public void AskForNewLogOnPassphrase()
         {
             string defaultPassphrase = null;
             Resolve.FileSystemState.Identities.Add(new PassphraseIdentity());
@@ -283,7 +294,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void AskForNewLogOnPassphraseAutomaticallyBecauseNoIdentitiesExists()
+        public void AskForNewLogOnPassphraseAutomaticallyBecauseNoIdentitiesExists()
         {
             string defaultPassphrase = null;
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownKeys, Resolve.UserSettings);
@@ -309,7 +320,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void AskForNewLogOnPassphraseWithCancel()
+        public void AskForNewLogOnPassphraseWithCancel()
         {
             string defaultPassphrase = null;
             Resolve.FileSystemState.Identities.Add(new PassphraseIdentity());
@@ -337,7 +348,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void AskForNewLogOnPassphraseWithKnownIdentity()
+        public void AskForNewLogOnPassphraseWithKnownIdentity()
         {
             Passphrase passphrase = new Passphrase("aaa");
             PassphraseIdentity id = new PassphraseIdentity(passphrase);
@@ -361,7 +372,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void AskForLogOnPassphraseWithKnownIdentity()
+        public void AskForLogOnPassphraseWithKnownIdentity()
         {
             Passphrase passphrase = new Passphrase("aaa");
             PassphraseIdentity id = new PassphraseIdentity(passphrase);
@@ -381,7 +392,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void AskForLogOnPassphraseWithKnownIdentityButWrongPassphraseEntered()
+        public void AskForLogOnPassphraseWithKnownIdentityButWrongPassphraseEntered()
         {
             Passphrase passphrase = new Passphrase("aaa");
             PassphraseIdentity id = new PassphraseIdentity(passphrase);

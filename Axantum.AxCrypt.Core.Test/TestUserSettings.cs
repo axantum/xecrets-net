@@ -134,15 +134,22 @@ namespace Axantum.AxCrypt.Core.Test
         {
             UserSettings settings = new UserSettings(TypeMap.Resolve.New<IDataStore>(@"C:\Folder\UserSettings.txt"), new FakeIterationCalculator());
             int writeCount = 0;
-            FakeDataStore.OpeningForWrite += (sender, e) => ++writeCount;
+            EventHandler handler = (sender, e) => ++writeCount;
+            FakeDataStore.OpeningForWrite += handler;
+            try
+            {
+                settings.CultureName = "sv-SE";
+                Assert.That(settings.CultureName, Is.EqualTo("sv-SE"), "The value should be this.");
+                Assert.That(writeCount, Is.EqualTo(1), "One opening for write should have happened.");
 
-            settings.CultureName = "sv-SE";
-            Assert.That(settings.CultureName, Is.EqualTo("sv-SE"), "The value should be this.");
-            Assert.That(writeCount, Is.EqualTo(1), "One opening for write should have happened.");
-
-            settings.CultureName = "sv-SE";
-            Assert.That(settings.CultureName, Is.EqualTo("sv-SE"), "The value should be this.");
-            Assert.That(writeCount, Is.EqualTo(1), "Still only one opening for write should have happened.");
+                settings.CultureName = "sv-SE";
+                Assert.That(settings.CultureName, Is.EqualTo("sv-SE"), "The value should be this.");
+                Assert.That(writeCount, Is.EqualTo(1), "Still only one opening for write should have happened.");
+            }
+            finally
+            {
+                FakeDataStore.OpeningForWrite -= handler;
+            }
         }
 
         [Test]

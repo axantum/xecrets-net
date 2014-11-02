@@ -25,13 +25,13 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.IO;
+using NUnit.Framework;
 using System;
 using System.IO;
 using System.IO.Compression;
 using System.Text;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.IO;
-using NUnit.Framework;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -124,9 +124,12 @@ namespace Axantum.AxCrypt.Core.Test
             }
         }
 
-        [Test]
-        public static void TestHmacStream()
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestHmacStream(CryptoImplementation cryptoImplementation)
         {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
             Assert.Throws<ArgumentNullException>(() =>
             {
                 using (V1HmacStream hmacStream = new V1HmacStream(null)) { }

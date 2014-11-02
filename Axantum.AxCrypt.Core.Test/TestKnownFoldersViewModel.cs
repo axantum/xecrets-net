@@ -36,25 +36,36 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestKnownFoldersViewModel
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestKnownFoldersViewModel
     {
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestKnownFoldersViewModel(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
+
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestConstructor()
+        public void TestConstructor()
         {
             KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
             KnownFoldersViewModel vm = new KnownFoldersViewModel(Resolve.FileSystemState, Resolve.SessionNotify, knownKeys);
@@ -63,7 +74,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestSettingKnownFoldersAndLoggingOnAndOff()
+        public void TestSettingKnownFoldersAndLoggingOnAndOff()
         {
             KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
             KnownFoldersViewModel vm = new KnownFoldersViewModel(Resolve.FileSystemState, Resolve.SessionNotify, knownKeys);
@@ -94,7 +105,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestAlreadyKnownFoldersAndLoggingOn()
+        public void TestAlreadyKnownFoldersAndLoggingOn()
         {
             IDataContainer betterCloudInfo = TypeMap.Resolve.New<IDataContainer>(@"C:\BetterCloud");
             IDataContainer fasterCloudInfo = TypeMap.Resolve.New<IDataContainer>(@"C:\FasterCloud");
@@ -123,7 +134,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestFileWasCreatedWhereAKnownFolderWasExpected()
+        public void TestFileWasCreatedWhereAKnownFolderWasExpected()
         {
             IDataContainer betterCloudInfo = TypeMap.Resolve.New<IDataContainer>(@"C:\BetterCloud");
             IDataContainer fasterCloudInfo = TypeMap.Resolve.New<IDataContainer>(@"C:\FasterCloud");

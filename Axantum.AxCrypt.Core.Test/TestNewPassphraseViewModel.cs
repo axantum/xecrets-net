@@ -25,16 +25,16 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Test.Properties;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Moq;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -63,14 +63,17 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public static void TestConstructorWithoutKnownDefaultIdentity()
         {
-            NewPassphraseViewModel npvm = new NewPassphraseViewModel(String.Empty,String.Empty);
+            NewPassphraseViewModel npvm = new NewPassphraseViewModel(String.Empty, String.Empty);
 
             Assert.That(npvm.Passphrase, Is.EqualTo(""));
         }
 
-        [Test]
-        public static void TestConstructorWithKnownDefaultIdentity()
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestConstructorWithKnownDefaultIdentity(CryptoImplementation cryptoImplementation)
         {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
             _identities.Add(new PassphraseIdentity());
             NewPassphraseViewModel npvm = new NewPassphraseViewModel(String.Empty, String.Empty);
 
@@ -142,9 +145,12 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(s, Is.Null, "Not a real assertion, only to make the variable used for FxCop.");
         }
 
-        [Test]
-        public static void TestValidateWrongPassphraseWithRealFile()
+        [TestCase(CryptoImplementation.Mono)]
+        [TestCase(CryptoImplementation.BouncyCastle)]
+        public static void TestValidateWrongPassphraseWithRealFile(CryptoImplementation cryptoImplementation)
         {
+            SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
+
             FakeDataStore.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
             NewPassphraseViewModel npvm = new NewPassphraseViewModel(String.Empty, @"C:\My Folder\MyFile-txt.axx");
             npvm.Passphrase = "b";
