@@ -36,10 +36,13 @@ using System;
 using System.IO;
 using System.Text;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestAxCryptFile
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestAxCryptFile
     {
         private static readonly string _rootPath = Path.GetPathRoot(Environment.CurrentDirectory);
         private static readonly string _testTextPath = Path.Combine(_rootPath, "test.txt");
@@ -47,10 +50,18 @@ namespace Axantum.AxCrypt.Core.Test
         private static readonly string _uncompressedAxxPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Uncompressed.axx");
         private static readonly string _helloWorldAxxPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "HelloWorld.axx");
 
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestAxCryptFile(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
+
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
 
             FakeDataStore.AddFile(_testTextPath, FakeDataStore.TestDate1Utc, FakeDataStore.TestDate2Utc, FakeDataStore.TestDate3Utc, FakeDataStore.ExpandableMemoryStream(Encoding.UTF8.GetBytes("This is a short file")));
             FakeDataStore.AddFile(_davidCopperfieldTxtPath, FakeDataStore.TestDate4Utc, FakeDataStore.TestDate5Utc, FakeDataStore.TestDate6Utc, FakeDataStore.ExpandableMemoryStream(Encoding.GetEncoding(1252).GetBytes(Resources.david_copperfield)));
@@ -59,13 +70,13 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestInvalidArguments()
+        public void TestInvalidArguments()
         {
             IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(_testTextPath);
             IDataStore destinationFileInfo = sourceFileInfo.CreateEncryptedName();
@@ -118,7 +129,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestSmallEncryptDecrypt()
+        public void TestSmallEncryptDecrypt()
         {
             IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(_testTextPath);
             IDataStore destinationFileInfo = sourceFileInfo.CreateEncryptedName();
@@ -145,7 +156,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptToStream()
+        public void TestEncryptToStream()
         {
             IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(_testTextPath);
             IDataStore destinationFileInfo = sourceFileInfo.CreateEncryptedName();
@@ -162,7 +173,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptToDestinationDirectory()
+        public void TestDecryptToDestinationDirectory()
         {
             IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
             string destinationDirectory = Path.Combine(_rootPath, "Encrypted");
@@ -172,7 +183,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptToDestinationDirectoryWithWrongPassphrase()
+        public void TestDecryptToDestinationDirectoryWithWrongPassphrase()
         {
             IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
             string destinationDirectory = Path.Combine(_rootPath, "Encrypted");
@@ -182,7 +193,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptWithCancel()
+        public void TestDecryptWithCancel()
         {
             IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
             Passphrase passphrase = new Passphrase("a");
@@ -207,7 +218,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestLargeEncryptDecrypt()
+        public void TestLargeEncryptDecrypt()
         {
             string sourceFullName = _davidCopperfieldTxtPath;
 
@@ -244,7 +255,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestInvalidPassphrase()
+        public void TestInvalidPassphrase()
         {
             IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(_testTextPath);
             IDataStore encryptedFileInfo = sourceFileInfo.CreateEncryptedName();
@@ -257,7 +268,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestUncompressedEncryptedDecryptAxCrypt17()
+        public void TestUncompressedEncryptedDecryptAxCrypt17()
         {
             IDataStore sourceRuntimeFileInfo = TypeMap.Resolve.New<IDataStore>(_uncompressedAxxPath);
             IDataStore destinationRuntimeFileInfo = TypeMap.Resolve.New<IDataStore>(Path.Combine(Path.GetDirectoryName(_uncompressedAxxPath), "Uncompressed.zip"));
@@ -272,7 +283,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWriteToFileWithBackup()
+        public void TestWriteToFileWithBackup()
         {
             string destinationFilePath = _rootPath.PathCombine("Written", "File.txt");
             using (MemoryStream inputStream = FakeDataStore.ExpandableMemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
@@ -288,7 +299,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWriteToFileWithBackupWithCancel()
+        public void TestWriteToFileWithBackupWithCancel()
         {
             IDataStore destinationFileInfo = TypeMap.Resolve.New<IDataStore>(_rootPath.PathCombine("Written", "File.txt"));
             using (MemoryStream inputStream = FakeDataStore.ExpandableMemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
@@ -301,7 +312,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWriteToFileWithBackupWhenDestinationExists()
+        public void TestWriteToFileWithBackupWhenDestinationExists()
         {
             string destinationFilePath = _rootPath.PathCombine("Written", "AnExistingFile.txt");
             IDataStore destinationFileInfo = TypeMap.Resolve.New<IDataStore>(destinationFilePath);
@@ -326,7 +337,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestMakeAxCryptFileName()
+        public void TestMakeAxCryptFileName()
         {
             string testFile = _rootPath.PathCombine("Directory", "file.txt");
             string axxFile = _rootPath.PathCombine("Directory", "file-txt.axx");
@@ -335,7 +346,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWipe()
+        public void TestWipe()
         {
             string testFile = _rootPath.PathCombine("Folder", "file-to-be-wiped.txt");
             IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(testFile);
@@ -348,7 +359,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFileWithBackupFileInfoAndWipeNullArguments()
+        public void TestEncryptFileWithBackupFileInfoAndWipeNullArguments()
         {
             string sourceFilePath = _davidCopperfieldTxtPath;
             string destinationFilePath = Path.Combine(Path.GetDirectoryName(sourceFilePath), "David Copperfield-txt.axx");
@@ -370,7 +381,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFileWithBackupAndWipeFileInfo()
+        public void TestEncryptFileWithBackupAndWipeFileInfo()
         {
             string sourceFilePath = _davidCopperfieldTxtPath;
             string destinationFilePath = Path.Combine(Path.GetDirectoryName(sourceFilePath), "David Copperfield-txt.axx");
@@ -389,7 +400,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFileWithBackupFileNameAndWipeNullArguments()
+        public void TestEncryptFileWithBackupFileNameAndWipeNullArguments()
         {
             string sourceFilePath = _davidCopperfieldTxtPath;
             string destinationFilePath = Path.Combine(Path.GetDirectoryName(sourceFilePath), "David Copperfield-txt.axx");
@@ -409,7 +420,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFileWithBackupAndWipeFileName()
+        public void TestEncryptFileWithBackupAndWipeFileName()
         {
             string sourceFilePath = _davidCopperfieldTxtPath;
             string destinationFilePath = Path.Combine(Path.GetDirectoryName(sourceFilePath), "David Copperfield-txt.axx");
@@ -426,7 +437,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptFileUniqueWithWipeOfOriginal()
+        public void TestDecryptFileUniqueWithWipeOfOriginal()
         {
             IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
             IDataStore destinationFileInfo = TypeMap.Resolve.New<IDataStore>(Path.Combine(Path.GetDirectoryName(_helloWorldAxxPath), "HelloWorld-Key-a.txt"));
@@ -442,7 +453,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDecryptFilesUniqueWithWipeOfOriginal()
+        public void TestDecryptFilesUniqueWithWipeOfOriginal()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new ParallelFileOperation());
             TypeMap.Register.Singleton<IProgressBackground>(() => new FakeProgressBackground());
@@ -465,7 +476,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFileUniqueWithBackupAndWipeWithNoCollision()
+        public void TestEncryptFileUniqueWithBackupAndWipeWithNoCollision()
         {
             IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(_davidCopperfieldTxtPath);
             sourceFileInfo.Container.CreateFolder();
@@ -480,7 +491,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFileUniqueWithBackupAndWipeWithCollision()
+        public void TestEncryptFileUniqueWithBackupAndWipeWithCollision()
         {
             IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(_davidCopperfieldTxtPath);
             sourceFileInfo.Container.CreateFolder();
@@ -497,7 +508,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFilesUniqueWithBackupAndWipeWithNoCollision()
+        public void TestEncryptFilesUniqueWithBackupAndWipeWithNoCollision()
         {
             IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(_davidCopperfieldTxtPath);
             sourceFileInfo.Container.CreateFolder();
@@ -513,7 +524,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEncryptFilesUniqueWithBackupAndWipeWithCollision()
+        public void TestEncryptFilesUniqueWithBackupAndWipeWithCollision()
         {
             IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(_davidCopperfieldTxtPath);
             sourceFileInfo.Container.CreateFolder();
@@ -532,7 +543,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWipeFileDoesNotExist()
+        public void TestWipeFileDoesNotExist()
         {
             ProgressContext progress = new ProgressContext(TimeSpan.Zero);
             bool progressed = false;
@@ -549,7 +560,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWipeWithDelayedUntilDoneCancel()
+        public void TestWipeWithDelayedUntilDoneCancel()
         {
             IDataStore fileInfo = TypeMap.Resolve.New<IDataStore>(_davidCopperfieldTxtPath);
 
@@ -563,7 +574,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestDocumentNullArguments()
+        public void TestDocumentNullArguments()
         {
             IDataStore nullSourceFile = null;
             Passphrase nullPassphrase = null;

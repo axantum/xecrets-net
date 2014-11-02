@@ -25,18 +25,35 @@
 
 #endregion Coypright and License
 
+using Org.BouncyCastle.Crypto.Digests;
+using Org.BouncyCastle.Crypto.Prng;
+using Org.BouncyCastle.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Axantum.AxCrypt.Core.Algorithm
+namespace Axantum.AxCrypt.Core.Algorithm.Implementation
 {
-    public abstract class RandomNumberGenerator : IDisposable
+    internal class BouncyCastleRandomNumberGenerator : RandomNumberGenerator
     {
-        public abstract void GetBytes(byte[] data);
+        private SecureRandom _rng;
 
-        public abstract void Dispose();
+        public BouncyCastleRandomNumberGenerator()
+        {
+            _rng = new SecureRandom(new DigestRandomGenerator(new Sha512Digest()));
+            _rng.SetSeed(SecureRandom.GetSeed(32));
+        }
+
+        public override void GetBytes(byte[] data)
+        {
+            _rng.NextBytes(data);
+            _rng.SetSeed(SecureRandom.GetSeed(16));
+        }
+
+        public override void Dispose()
+        {
+        }
     }
 }

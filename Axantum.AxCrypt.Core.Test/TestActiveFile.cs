@@ -37,10 +37,13 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
+#pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
+
 namespace Axantum.AxCrypt.Core.Test
 {
-    [TestFixture]
-    public static class TestActiveFile
+    [TestFixture(CryptoImplementation.Mono)]
+    [TestFixture(CryptoImplementation.BouncyCastle)]
+    public class TestActiveFile
     {
         private static string _rootPath;
         private static string _testTextPath;
@@ -48,10 +51,18 @@ namespace Axantum.AxCrypt.Core.Test
         private static string _uncompressedAxxPath;
         private static string _helloWorldAxxPath;
 
+        private CryptoImplementation _cryptoImplementation;
+
+        public TestActiveFile(CryptoImplementation cryptoImplementation)
+        {
+            _cryptoImplementation = cryptoImplementation;
+        }
+
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
             SetupAssembly.AssemblySetup();
+            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
 
             _rootPath = Path.GetPathRoot(Environment.CurrentDirectory);
             _testTextPath = _rootPath.PathCombine("test.txt");
@@ -66,13 +77,13 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [TearDown]
-        public static void Teardown()
+        public void Teardown()
         {
             SetupAssembly.AssemblyTeardown();
         }
 
         [Test]
-        public static void TestInvalidArguments()
+        public void TestInvalidArguments()
         {
             IDataStore nullFileInfo = null;
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_testTextPath);
@@ -93,7 +104,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestConstructor()
+        public void TestConstructor()
         {
             Passphrase key = new Passphrase("key");
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_testTextPath);
@@ -121,7 +132,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestCopyConstructorWithKey()
+        public void TestCopyConstructorWithKey()
         {
             Passphrase key = new Passphrase("key");
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_testTextPath);
@@ -135,7 +146,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestThumbprint()
+        public void TestThumbprint()
         {
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_testTextPath);
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
@@ -155,7 +166,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestThumbprintNullKey()
+        public void TestThumbprintNullKey()
         {
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_testTextPath);
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
@@ -173,7 +184,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestMethodIsModified()
+        public void TestMethodIsModified()
         {
             IDataStore decryptedFileInfo = TypeMap.Resolve.New<IDataStore>(Path.Combine(_rootPath, "doesnotexist.txt"));
             IDataStore encryptedFileInfo = TypeMap.Resolve.New<IDataStore>(_helloWorldAxxPath);
@@ -182,7 +193,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestVisualState()
+        public void TestVisualState()
         {
             ActiveFile activeFile;
             Passphrase key = new Passphrase("key");

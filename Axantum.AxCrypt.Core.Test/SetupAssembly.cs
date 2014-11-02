@@ -40,6 +40,7 @@ using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Mono.Portable;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Algorithm;
+using Axantum.AxCrypt.Core.Algorithm.Implementation;
 
 namespace Axantum.AxCrypt.Core.Test
 {
@@ -84,16 +85,36 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<IterationCalculator>(() => new FakeIterationCalculator());
             TypeMap.Register.New<IDataProtection>(() => new FakeDataProtection());
             TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(TypeMap.Resolve.Singleton<IAsymmetricFactory>().GetConverters()));
-            TypeMap.Register.New<AxCryptHMACSHA1>(() => PortableFactory.AxCryptHMACSHA1());
-            TypeMap.Register.New<HMACSHA512>(() => PortableFactory.HMACSHA512());
-            TypeMap.Register.New<Aes>(() => PortableFactory.AesManaged());
-            TypeMap.Register.New<CryptoStream>(() => PortableFactory.CryptoStream());
-            TypeMap.Register.New<Sha1>(() => PortableFactory.SHA1Managed());
-            TypeMap.Register.New<Sha256>(() => PortableFactory.SHA256Managed());
+
+            AssemblySetupCrypto(CryptoImplementation.Mono);
 
             Resolve.UserSettings.SetKeyWrapIterations(V1Aes128CryptoFactory.CryptoId, 1234);
             Resolve.UserSettings.ThumbprintSalt = Salt.Zero;
             Resolve.Log.SetLevel(LogLevel.Debug);
+        }
+
+        public static void AssemblySetupCrypto(CryptoImplementation cryptoImplementation)
+        {
+            switch (cryptoImplementation)
+            {
+                case CryptoImplementation.Mono:
+                    TypeMap.Register.New<AxCryptHMACSHA1>(() => PortableFactory.AxCryptHMACSHA1());
+                    TypeMap.Register.New<HMACSHA512>(() => PortableFactory.HMACSHA512());
+                    TypeMap.Register.New<Aes>(() => PortableFactory.AesManaged());
+                    TypeMap.Register.New<CryptoStream>(() => PortableFactory.CryptoStream());
+                    TypeMap.Register.New<Sha1>(() => PortableFactory.SHA1Managed());
+                    TypeMap.Register.New<Sha256>(() => PortableFactory.SHA256Managed());
+                    break;
+
+                case CryptoImplementation.BouncyCastle:
+                    TypeMap.Register.New<AxCryptHMACSHA1>(() => BouncyCastleCryptoFactory.AxCryptHMACSHA1());
+                    TypeMap.Register.New<HMACSHA512>(() => BouncyCastleCryptoFactory.HMACSHA512());
+                    TypeMap.Register.New<Aes>(() => BouncyCastleCryptoFactory.Aes());
+                    TypeMap.Register.New<CryptoStream>(() => BouncyCastleCryptoFactory.CryptoStream());
+                    TypeMap.Register.New<Sha1>(() => BouncyCastleCryptoFactory.Sha1());
+                    TypeMap.Register.New<Sha256>(() => BouncyCastleCryptoFactory.Sha256());
+                    break;
+            }
         }
 
         private static IDataItem CreateDataItem(string location)

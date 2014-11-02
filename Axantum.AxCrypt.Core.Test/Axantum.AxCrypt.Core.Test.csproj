@@ -53,6 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CryptoImplementation.cs" />
     <Compile Include="CryptoValidation\TestRsaOeap.cs" />
     <Compile Include="Endian.cs" />
     <Compile Include="Extensions.cs" />
