@@ -41,7 +41,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool Cancel { get; set; }
 
-        public bool CreateNew { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is asking for previously unknown passphrase. This typically results in the UI
+        /// asking for a verification of the passphrase in order to ensure correctness.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is asking for previously unknown passphrase; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsAskingForPreviouslyUnknownPassphrase { get; set; }
 
         public bool DisplayPassphrase { get; set; }
 

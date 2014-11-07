@@ -131,7 +131,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             get
             {
-                IEnumerable<string> propertyNames = GetType().GetProperties().Select(pi => pi.Name);
+                IEnumerable<string> propertyNames = GetType().GetProperties().Select(pi => pi.Name).Where(s => s != "Item" && s != "ValidationError" && s != "Error");
 
                 return
                     (from name in propertyNames

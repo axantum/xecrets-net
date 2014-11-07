@@ -131,7 +131,7 @@ namespace Axantum.AxCrypt.Core.Test
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownKeys, Resolve.UserSettings);
             ivm.LoggingOn += (sender, e) =>
             {
-                wasCreateNew = e.CreateNew;
+                wasCreateNew = e.IsAskingForPreviouslyUnknownPassphrase;
                 e.Passphrase = "ccc";
                 e.Name = "New User Passphrase";
             };
@@ -273,9 +273,9 @@ namespace Axantum.AxCrypt.Core.Test
             ivm.CryptoId = new V1Aes128CryptoFactory().Id;
             ivm.LoggingOn += (sender, e) =>
             {
-                if (!e.CreateNew)
+                if (!e.IsAskingForPreviouslyUnknownPassphrase)
                 {
-                    e.CreateNew = true;
+                    e.IsAskingForPreviouslyUnknownPassphrase = true;
                     e.Passphrase = "xxx";
                     return;
                 }
@@ -301,7 +301,7 @@ namespace Axantum.AxCrypt.Core.Test
             ivm.CryptoId = new V1Aes128CryptoFactory().Id;
             ivm.LoggingOn += (sender, e) =>
             {
-                if (e.CreateNew)
+                if (e.IsAskingForPreviouslyUnknownPassphrase)
                 {
                     defaultPassphrase = e.Passphrase;
                     e.Passphrase = "aaa";
@@ -327,9 +327,9 @@ namespace Axantum.AxCrypt.Core.Test
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownKeys, Resolve.UserSettings);
             ivm.LoggingOn += (sender, e) =>
             {
-                if (!e.CreateNew)
+                if (!e.IsAskingForPreviouslyUnknownPassphrase)
                 {
-                    e.CreateNew = true;
+                    e.IsAskingForPreviouslyUnknownPassphrase = true;
                     e.Passphrase = "xxx";
                     return;
                 }
@@ -357,9 +357,9 @@ namespace Axantum.AxCrypt.Core.Test
             IdentityViewModel ivm = new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownKeys, Resolve.UserSettings);
             ivm.LoggingOn += (sender, e) =>
             {
-                if (!e.CreateNew)
+                if (!e.IsAskingForPreviouslyUnknownPassphrase)
                 {
-                    e.CreateNew = true;
+                    e.IsAskingForPreviouslyUnknownPassphrase = true;
                 }
                 e.Passphrase = "aaa";
             };

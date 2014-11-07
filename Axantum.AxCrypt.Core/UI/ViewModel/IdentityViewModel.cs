@@ -48,6 +48,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             Passphrase = null;
 
+            LogOn = new DelegateAction<Guid>((cryptoId) => Passphrase = LogOnAction(cryptoId));
+            LogOff = new DelegateAction<object>((p) => { LogOffAction(); Passphrase = null; });
             LogOnLogOff = new DelegateAction<Guid>((cryptoId) => Passphrase = LogOnLogOffAction(cryptoId));
             AskForDecryptPassphrase = new DelegateAction<string>((name) => Passphrase = AskForDecryptPassphraseAction(name));
             AskForLogOnPassphrase = new DelegateAction<PassphraseIdentity>((id) => Passphrase = AskForLogOnPassphraseAction(id, String.Empty));
@@ -57,6 +59,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public Passphrase Passphrase { get { return GetProperty<Passphrase>("Passphrase"); } set { SetProperty("Passphrase", value); } }
 
         public Guid CryptoId { get { return GetProperty<Guid>("CryptoId"); } set { SetProperty("CryptoId", value); } }
+
+        public IAction LogOn { get; private set; }
+
+        public IAction LogOff { get; private set; }
 
         public IAction LogOnLogOff { get; private set; }
 
@@ -75,12 +81,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        private Passphrase LogOnLogOffAction(Guid cryptoId)
+        private Passphrase LogOnAction(Guid cryptoId)
         {
             if (_knownKeys.IsLoggedOn)
             {
-                _knownKeys.Clear();
-                return null;
+                return _knownKeys.DefaultEncryptionKey;
             }
 
             CryptoId = cryptoId != Guid.Empty ? cryptoId : Resolve.CryptoFactory.Default.Id;
@@ -100,6 +105,25 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             _knownKeys.DefaultEncryptionKey = passphrase;
             return _knownKeys.DefaultEncryptionKey;
+        }
+
+        private void LogOffAction()
+        {
+            if (!_knownKeys.IsLoggedOn)
+            {
+                return;
+            }
+            _knownKeys.Clear();
+        }
+
+        private Passphrase LogOnLogOffAction(Guid cryptoId)
+        {
+            if (!_knownKeys.IsLoggedOn)
+            {
+                return LogOnAction(cryptoId);
+            }
+            LogOffAction();
+            return null;
         }
 
         private Passphrase KeyFromPassphrase(string passphrase)
@@ -162,7 +186,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             };
             OnLoggingOn(logOnArgs);
 
-            if (logOnArgs.CreateNew)
+            if (logOnArgs.IsAskingForPreviouslyUnknownPassphrase)
             {
                 return AskForNewEncryptionPassphrase(logOnArgs.Passphrase, encryptedFileFullName);
             }
@@ -181,7 +205,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             LogOnEventArgs logOnArgs = new LogOnEventArgs()
             {
-                CreateNew = true,
+                IsAskingForPreviouslyUnknownPassphrase = true,
                 DisplayPassphrase = _userSettings.DisplayEncryptPassphrase,
                 Passphrase = defaultPassphrase,
                 EncryptedFileFullName = encryptedFileFullName,

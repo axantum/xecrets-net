@@ -463,7 +463,7 @@ namespace Axantum.AxCrypt
 
         private void HandleLogOn(LogOnEventArgs e)
         {
-            if (e.CreateNew)
+            if (e.IsAskingForPreviouslyUnknownPassphrase)
             {
                 HandleCreateNewLogOn(e);
             }
@@ -514,7 +514,7 @@ namespace Axantum.AxCrypt
                 if (dialogResult == DialogResult.Retry)
                 {
                     e.Passphrase = logOnDialog.PassphraseTextBox.Text;
-                    e.CreateNew = true;
+                    e.IsAskingForPreviouslyUnknownPassphrase = true;
                     return;
                 }
 
@@ -539,7 +539,7 @@ namespace Axantum.AxCrypt
                 {
                     e.Passphrase = logOnDialog.PassphraseTextBox.Text;
                     e.UserEmail = logOnDialog.EmailTextBox.Text;
-                    e.CreateNew = true;
+                    e.IsAskingForPreviouslyUnknownPassphrase = true;
                     return;
                 }
 

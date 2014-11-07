@@ -100,6 +100,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     }
                     return true;
 
+                case "ShowPassphrase":
+                case "ShowEmail":
+                    return true;
+
                 default:
                     throw new ArgumentException("Cannot validate property.", columnName);
             }
