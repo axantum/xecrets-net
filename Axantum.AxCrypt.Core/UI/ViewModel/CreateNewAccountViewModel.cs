@@ -94,7 +94,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     return !String.IsNullOrEmpty(Passphrase);
 
                 default:
-                    throw new ArgumentException("Cannot validate property.", columnName);
+                    return true;
             }
         }
 
