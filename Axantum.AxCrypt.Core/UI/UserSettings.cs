@@ -61,7 +61,7 @@ namespace Axantum.AxCrypt.Core.UI
             using (JsonReader reader = new JsonTextReader(new StreamReader(_persistanceFileInfo.OpenRead())))
             {
                 JsonSerializer serializer = CreateSerializer();
-                _settings = serializer.Deserialize<Dictionary<string, string>>(reader);
+                _settings = serializer.Deserialize<Dictionary<string, string>>(reader) ?? new Dictionary<string, string>();
             }
         }
 

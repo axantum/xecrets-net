@@ -40,29 +40,46 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private IUserSettings _userSettings;
 
-        public IdentityViewModel(FileSystemState fileSystemState, KnownKeys knownKeys, IUserSettings userSettings)
+        private SessionNotify _sessionNotify;
+
+        public IdentityViewModel(FileSystemState fileSystemState, KnownKeys knownKeys, IUserSettings userSettings, SessionNotify sessionNotify)
         {
             _fileSystemState = fileSystemState;
             _knownKeys = knownKeys;
             _userSettings = userSettings;
+            _sessionNotify = sessionNotify;
 
             Passphrase = null;
 
-            LogOn = new DelegateAction<Guid>((cryptoId) => Passphrase = LogOnAction(cryptoId));
-            LogOff = new DelegateAction<object>((p) => { LogOffAction(); Passphrase = null; });
+            LogOn = new DelegateAction<Guid>((cryptoId) => Passphrase = LogOnAction(cryptoId), (o) => !_knownKeys.IsLoggedOn);
+            LogOff = new DelegateAction<object>((p) => { LogOffAction(); Passphrase = null; }, (o) => _knownKeys.IsLoggedOn);
             LogOnLogOff = new DelegateAction<Guid>((cryptoId) => Passphrase = LogOnLogOffAction(cryptoId));
             AskForDecryptPassphrase = new DelegateAction<string>((name) => Passphrase = AskForDecryptPassphraseAction(name));
             AskForLogOnPassphrase = new DelegateAction<PassphraseIdentity>((id) => Passphrase = AskForLogOnPassphraseAction(id, String.Empty));
             CryptoId = Resolve.CryptoFactory.Default.Id;
+
+            _sessionNotify.Notification += HandleLogOnLogOffNotifications;
+        }
+
+        private void HandleLogOnLogOffNotifications(object sender, SessionNotificationEventArgs e)
+        {
+            switch (e.Notification.NotificationType)
+            {
+                case SessionNotificationType.LogOn:
+                case SessionNotificationType.LogOff:
+                    LogOn.RaiseCanExecuteChanged();
+                    LogOff.RaiseCanExecuteChanged();
+                    break;
+            }
         }
 
         public Passphrase Passphrase { get { return GetProperty<Passphrase>("Passphrase"); } set { SetProperty("Passphrase", value); } }
 
         public Guid CryptoId { get { return GetProperty<Guid>("CryptoId"); } set { SetProperty("CryptoId", value); } }
 
-        public IAction LogOn { get; private set; }
+        public DelegateAction<Guid> LogOn { get; private set; }
 
-        public IAction LogOff { get; private set; }
+        public DelegateAction<object> LogOff { get; private set; }
 
         public IAction LogOnLogOff { get; private set; }
 

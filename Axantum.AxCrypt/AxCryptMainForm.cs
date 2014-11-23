@@ -181,7 +181,7 @@ namespace Axantum.AxCrypt
             TypeMap.Register.Singleton<IStatusChecker>(() => this);
             TypeMap.Register.New<SessionNotificationHandler>(() => new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownKeys, TypeMap.Resolve.New<ActiveFileAction>(), TypeMap.Resolve.New<AxCryptFile>(), this));
 
-            TypeMap.Register.New<IdentityViewModel>(() => new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownKeys, Resolve.UserSettings));
+            TypeMap.Register.New<IdentityViewModel>(() => new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownKeys, Resolve.UserSettings, Resolve.SessionNotify));
             TypeMap.Register.New<FileOperationViewModel>(() => new FileOperationViewModel(Resolve.FileSystemState, Resolve.SessionNotify, Resolve.KnownKeys, Resolve.ParallelFileOperation, TypeMap.Resolve.Singleton<IStatusChecker>(), TypeMap.Resolve.New<IdentityViewModel>()));
             TypeMap.Register.New<MainViewModel>(() => new MainViewModel(Resolve.FileSystemState));
             TypeMap.Register.New<KnownFoldersViewModel>(() => new KnownFoldersViewModel(Resolve.FileSystemState, Resolve.SessionNotify, Resolve.KnownKeys));

@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<AxCryptFile>(() => new AxCryptFile());
             TypeMap.Register.New<ActiveFileAction>(() => new ActiveFileAction());
             TypeMap.Register.New<FileOperation>(() => new FileOperation(Resolve.FileSystemState, Resolve.SessionNotify));
-            TypeMap.Register.New<IdentityViewModel>(() => new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownKeys, Resolve.UserSettings));
+            TypeMap.Register.New<IdentityViewModel>(() => new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownKeys, Resolve.UserSettings, Resolve.SessionNotify));
             TypeMap.Register.New<FileOperationViewModel>(() => new FileOperationViewModel(Resolve.FileSystemState, Resolve.SessionNotify, Resolve.KnownKeys, Resolve.ParallelFileOperation, TypeMap.Resolve.Singleton<IStatusChecker>(), TypeMap.Resolve.New<IdentityViewModel>()));
             TypeMap.Register.New<MainViewModel>(() => new MainViewModel(Resolve.FileSystemState));
             TypeMap.Register.New<string, IDataStore>((path) => new FakeDataStore(path));
