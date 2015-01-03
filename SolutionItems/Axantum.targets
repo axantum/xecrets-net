@@ -65,7 +65,8 @@
     <_AxIlMergePath Condition=" '$(_AxIlMergePath)' == '' And Exists('$(ProgramFiles(x86))\Microsoft\ILMerge\ILMerge.exe') ">$(ProgramFiles(x86))\Microsoft\ILMerge\ILMerge.exe</_AxIlMergePath>
     <_AxIlMergePath Condition=" '$(_AxIlMergePath)' == '' And Exists('$(ProgramFiles)\Microsoft\ILMerge\ILMerge.exe') ">$(ProgramFiles)\Microsoft\ILMerge\ILMerge.exe</_AxIlMergePath>
     <_AxIlMergePath Condition=" '$(_AxIlMergePath)' == '' And Exists('$(MSBuildThisFileDirectory)Ilmerge.exe') ">$(MSBuildThisFileDirectory)Ilmerge.exe</_AxIlMergePath>
-        <_AxIlMergePath Condition=" '$(XAMARINSTUDIO_LAUNCHER)' != '' "></_AxIlMergePath>
+    <_AxIlMergePath Condition=" '$(XAMARINSTUDIO_LAUNCHER)' != '' "></_AxIlMergePath>
+    <_AxIlMergePath Condition=" '$(XAMARIN STUDIO LAUNCHER_LAUNCHER)' != '' "></_AxIlMergePath>
   </PropertyGroup>
   <PropertyGroup>
     <UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>

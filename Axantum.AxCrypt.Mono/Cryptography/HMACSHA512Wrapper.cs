@@ -36,8 +36,17 @@ namespace Axantum.AxCrypt.Mono.Cryptography
             }
             set
             {
-                _hmac.Key = value;
+                _hmac.Key = EnsureBlockSizeForKeyDueToBugInMonoKeyPropertySetter(value);
             }
+        }
+
+        private byte[] EnsureBlockSizeForKeyDueToBugInMonoKeyPropertySetter(byte[] key)
+        {
+            if (key.Length <= 128)
+            {
+                return key;
+            }
+            return new System.Security.Cryptography.SHA512Managed().ComputeHash(key);
         }
 
         public override byte[] ComputeHash(byte[] buffer)
@@ -77,8 +86,8 @@ namespace Axantum.AxCrypt.Mono.Cryptography
                 throw new ArgumentNullException("key");
             }
 
-            _hmac.Initialize();
-            _hmac.Key = key.GetBytes();
+            Initialize();
+            Key = key.GetBytes();
             return this;
         }
 
