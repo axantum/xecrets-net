@@ -179,7 +179,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             FileOperationsController controller = new FileOperationsController();
             string destinationPath = String.Empty;
-            Passphrase key = null;
+            Passphrase passphrase = null;
             controller.QueryEncryptionPassphrase += (object sender, FileOperationEventArgs e) =>
             {
                 e.Passphrase = new Passphrase("allan");
@@ -192,7 +192,7 @@ namespace Axantum.AxCrypt.Core.Test
             controller.Completed += (object sender, FileOperationEventArgs e) =>
             {
                 destinationPath = e.SaveFileFullName;
-                key = e.Passphrase;
+                passphrase = e.Passphrase;
                 cryptoId = e.CryptoId;
             };
 
@@ -202,11 +202,11 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(Path.GetFileName(destinationPath), Is.EqualTo("alternative-name.axx"), "The alternative name should be used, since the default existed.");
             IDataStore destinationInfo = TypeMap.Resolve.New<IDataStore>(destinationPath);
             Assert.That(destinationInfo.IsAvailable, "After encryption the destination file should be created.");
-            using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(key, cryptoId))
+            using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(new EncryptionParameters { Passphrase = passphrase, CryptoId = cryptoId }))
             {
                 using (Stream stream = destinationInfo.OpenRead())
                 {
-                    document.Load(key, cryptoId, stream);
+                    document.Load(passphrase, cryptoId, stream);
                     Assert.That(document.PassphraseIsValid, "The encrypted document should be valid and encrypted with the passphrase given.");
                 }
             }

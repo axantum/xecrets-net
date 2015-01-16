@@ -113,7 +113,7 @@ namespace Axantum.AxCrypt.Core
 
             using (Stream destinationStream = destinationFileInfo.OpenWrite())
             {
-                using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(passphrase, cryptoId))
+                using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(new EncryptionParameters { Passphrase = passphrase, CryptoId = cryptoId }))
                 {
                     document.FileName = sourceFileName;
                     document.CreationTimeUtc = OS.Current.UtcNow;
@@ -124,7 +124,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        public static void Encrypt(IDataStore sourceFile, Stream destinationStream, Passphrase key, Guid cryptoId, AxCryptOptions options, IProgressContext progress)
+        public static void Encrypt(IDataStore sourceFile, Stream destinationStream, Passphrase passphrase, Guid cryptoId, AxCryptOptions options, IProgressContext progress)
         {
             if (sourceFile == null)
             {
@@ -134,9 +134,9 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("destinationStream");
             }
-            if (key == null)
+            if (passphrase == null)
             {
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException("passphrase");
             }
             if (progress == null)
             {
@@ -145,7 +145,7 @@ namespace Axantum.AxCrypt.Core
 
             using (Stream sourceStream = new ProgressStream(sourceFile.OpenRead(), progress))
             {
-                using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(key, cryptoId))
+                using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(new EncryptionParameters { Passphrase = passphrase, CryptoId = cryptoId }))
                 {
                     document.FileName = sourceFile.Name;
                     document.CreationTimeUtc = sourceFile.CreationTimeUtc;
@@ -505,7 +505,12 @@ namespace Axantum.AxCrypt.Core
 
             try
             {
-                IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(passphrase, new ProgressStream(source, progress));
+                DecryptionParameters parameters = new DecryptionParameters
+                {
+                    Passphrase = passphrase,
+                    CryptoIds = Resolve.CryptoFactory.OrderedIds,
+                };
+                IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(parameters, new ProgressStream(source, progress));
                 return document;
             }
             catch (AxCryptException ace)

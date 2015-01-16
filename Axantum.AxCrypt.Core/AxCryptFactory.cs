@@ -68,14 +68,14 @@ namespace Axantum.AxCrypt.Core
             return false;
         }
 
-        public virtual IAxCryptDocument CreateDocument(Passphrase key, Guid cryptoId)
+        public virtual IAxCryptDocument CreateDocument(EncryptionParameters parameters)
         {
-            ICryptoFactory factory = Resolve.CryptoFactory.Create(cryptoId);
-            if (factory.Id == Resolve.CryptoFactory.Legacy.Id)
+            long keyWrapIterations = Resolve.UserSettings.GetKeyWrapIterations(parameters.CryptoId);
+            if (parameters.CryptoId == V1Aes128CryptoFactory.CryptoId)
             {
-                return new V1AxCryptDocument(key, Resolve.UserSettings.GetKeyWrapIterations(V1Aes128CryptoFactory.CryptoId));
+                return new V1AxCryptDocument(parameters.Passphrase, keyWrapIterations);
             }
-            return new V2AxCryptDocument(key, cryptoId, Resolve.UserSettings.GetKeyWrapIterations(cryptoId));
+            return new V2AxCryptDocument(parameters.Passphrase, parameters.CryptoId, keyWrapIterations);
         }
 
         /// <summary>
@@ -84,35 +84,21 @@ namespace Axantum.AxCrypt.Core
         /// <param name="passphrase">The passphrase.</param>
         /// <param name="fileInfo">The file to use.</param>
         /// <returns></returns>
-        public virtual IAxCryptDocument CreateDocument(Passphrase passphrase, Stream inputStream)
+        public virtual IAxCryptDocument CreateDocument(DecryptionParameters parameters, Stream inputStream)
         {
             Headers headers = new Headers();
             AxCryptReader reader = headers.Load(inputStream);
 
-            IEnumerable<Guid> cryptoIds = Resolve.CryptoFactory.OrderedIds;
             IAxCryptDocument document = null;
-            foreach (Guid cryptoId in cryptoIds)
+            foreach (Guid cryptoId in parameters.CryptoIds)
             {
-                document = reader.Document(passphrase, cryptoId, headers);
+                document = reader.Document(parameters.Passphrase, cryptoId, headers);
                 if (document.PassphraseIsValid)
                 {
                     return document;
                 }
             }
             return document;
-        }
-
-        /// <summary>
-        /// Instantiate an instance of IAxCryptDocument appropriate for the file provided, i.e. V1 or V2.
-        /// </summary>
-        /// <param name="fileInfo"></param>
-        /// <returns></returns>
-        public virtual IAxCryptDocument CreateDocument(Passphrase key, Guid cryptoId, Stream inputStream)
-        {
-            Headers headers = new Headers();
-            AxCryptReader reader = headers.Load(inputStream);
-
-            return reader.Document(key, cryptoId, headers);
         }
     }
 }

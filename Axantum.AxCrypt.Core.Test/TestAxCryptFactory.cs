@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Test
             AxCryptFactory axFactory = new AxCryptFactory();
 
             IAxCryptDocument document = null;
-            Assert.Throws<ArgumentException>(() => document = axFactory.CreateDocument(new Passphrase("toohigh"), Guid.NewGuid()));
+            Assert.Throws<ArgumentException>(() => document = axFactory.CreateDocument(new EncryptionParameters { Passphrase = new Passphrase("toohigh"), CryptoId = Guid.NewGuid() }));
             Assert.That(document, Is.Null);
         }
 
@@ -85,7 +85,12 @@ namespace Axantum.AxCrypt.Core.Test
                         outputStream.Position = 0;
 
                         AxCryptFactory axFactory = new AxCryptFactory();
-                        IAxCryptDocument decryptedDocument = axFactory.CreateDocument(new Passphrase("properties"), new V2Aes256CryptoFactory().Id, outputStream);
+                        DecryptionParameters parameters = new DecryptionParameters
+                        {
+                            Passphrase = new Passphrase("properties"),
+                            CryptoIds = new Guid[] { new V2Aes256CryptoFactory().Id },
+                        };
+                        IAxCryptDocument decryptedDocument = axFactory.CreateDocument(parameters, outputStream);
                         Assert.That(decryptedDocument.PassphraseIsValid);
                     }
                 }
