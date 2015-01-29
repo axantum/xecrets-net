@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
@@ -124,7 +125,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        public static void Encrypt(IDataStore sourceFile, Stream destinationStream, Passphrase passphrase, Guid cryptoId, AxCryptOptions options, IProgressContext progress)
+        public static void Encrypt(IDataStore sourceFile, Stream destinationStream, EncryptionParameters encryptionParameters, AxCryptOptions options, IProgressContext progress)
         {
             if (sourceFile == null)
             {
@@ -134,9 +135,9 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("destinationStream");
             }
-            if (passphrase == null)
+            if (encryptionParameters == null)
             {
-                throw new ArgumentNullException("passphrase");
+                throw new ArgumentNullException("encryptionParameters");
             }
             if (progress == null)
             {
@@ -145,7 +146,7 @@ namespace Axantum.AxCrypt.Core
 
             using (Stream sourceStream = new ProgressStream(sourceFile.OpenRead(), progress))
             {
-                using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(new EncryptionParameters { Passphrase = passphrase, CryptoId = cryptoId }))
+                using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFactory>().CreateDocument(encryptionParameters))
                 {
                     document.FileName = sourceFile.Name;
                     document.CreationTimeUtc = sourceFile.CreationTimeUtc;
@@ -157,7 +158,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        public void EncryptFileWithBackupAndWipe(string sourceFile, string destinationFile, Passphrase key, Guid cryptoId, IProgressContext progress)
+        public void EncryptFileWithBackupAndWipe(string sourceFile, string destinationFile, Passphrase passphrase, Guid cryptoId, IProgressContext progress)
         {
             if (sourceFile == null)
             {
@@ -167,9 +168,9 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("destinationFile");
             }
-            if (key == null)
+            if (passphrase == null)
             {
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException("passphrase");
             }
             if (progress == null)
             {
@@ -177,10 +178,10 @@ namespace Axantum.AxCrypt.Core
             }
             IDataStore sourceFileInfo = TypeMap.Resolve.New<IDataStore>(sourceFile);
             IDataStore destinationFileInfo = TypeMap.Resolve.New<IDataStore>(destinationFile);
-            EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, key, cryptoId, progress);
+            EncryptFileWithBackupAndWipe(sourceFileInfo, destinationFileInfo, passphrase, cryptoId, progress);
         }
 
-        public virtual void EncryptFoldersUniqueWithBackupAndWipe(IEnumerable<IDataContainer> folders, Passphrase encryptionKey, Guid cryptoId, IProgressContext progress)
+        public virtual void EncryptFoldersUniqueWithBackupAndWipe(IEnumerable<IDataContainer> folders, Passphrase passphrase, Guid cryptoId, IProgressContext progress)
         {
             progress.NotifyLevelStart();
             try
@@ -189,7 +190,7 @@ namespace Axantum.AxCrypt.Core
                 progress.AddTotal(files.Count());
                 foreach (IDataStore file in files)
                 {
-                    EncryptFileUniqueWithBackupAndWipe(file, encryptionKey, cryptoId, progress);
+                    EncryptFileUniqueWithBackupAndWipe(file, passphrase, cryptoId, progress);
                     progress.AddCount(1);
                 }
             }
@@ -199,14 +200,19 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        public virtual void EncryptFileUniqueWithBackupAndWipe(IDataStore fileInfo, Passphrase encryptionKey, Guid cryptoId, IProgressContext progress)
+        public static EncryptionParameters GetEncryptionParameters(IDataStore file, Passphrase passphrase, Guid cryptoId)
+        {
+            return new EncryptionParameters { CryptoId = cryptoId, Passphrase = passphrase, PublicKeys = new IAsymmetricPublicKey[0] };
+        }
+
+        public virtual void EncryptFileUniqueWithBackupAndWipe(IDataStore fileInfo, Passphrase passphrase, Guid cryptoId, IProgressContext progress)
         {
             IDataStore destinationFileInfo = fileInfo.CreateEncryptedName();
             destinationFileInfo = TypeMap.Resolve.New<IDataStore>(destinationFileInfo.FullName.CreateUniqueFile());
-            EncryptFileWithBackupAndWipe(fileInfo, destinationFileInfo, encryptionKey, cryptoId, progress);
+            EncryptFileWithBackupAndWipe(fileInfo, destinationFileInfo, passphrase, cryptoId, progress);
         }
 
-        public virtual void EncryptFileWithBackupAndWipe(IDataStore sourceFileInfo, IDataStore destinationFileInfo, Passphrase key, Guid cryptoId, IProgressContext progress)
+        public virtual void EncryptFileWithBackupAndWipe(IDataStore sourceFileInfo, IDataStore destinationFileInfo, Passphrase passphrase, Guid cryptoId, IProgressContext progress)
         {
             if (sourceFileInfo == null)
             {
@@ -216,9 +222,9 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("destinationFileInfo");
             }
-            if (key == null)
+            if (passphrase == null)
             {
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException("passphrase");
             }
             if (progress == null)
             {
@@ -229,7 +235,7 @@ namespace Axantum.AxCrypt.Core
             {
                 WriteToFileWithBackup(destinationFileInfo, (Stream destination) =>
                 {
-                    Encrypt(sourceFileInfo, destination, key, cryptoId, AxCryptOptions.EncryptWithCompression, progress);
+                    Encrypt(sourceFileInfo, destination, GetEncryptionParameters(destinationFileInfo, passphrase, cryptoId), AxCryptOptions.EncryptWithCompression, progress);
                 }, progress);
             }
             Wipe(sourceFileInfo, progress);

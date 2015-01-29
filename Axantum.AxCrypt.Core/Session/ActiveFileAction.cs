@@ -261,7 +261,8 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     TypeMap.Resolve.New<AxCryptFile>().WriteToFileWithBackup(activeFile.EncryptedFileInfo, (Stream destination) =>
                     {
-                        AxCryptFile.Encrypt(activeFile.DecryptedFileInfo, destination, activeFile.Key, activeFile.Properties.CryptoId, AxCryptOptions.EncryptWithCompression, progress);
+                        EncryptionParameters parameters = AxCryptFile.GetEncryptionParameters(activeFile.DecryptedFileInfo, activeFile.Key, activeFile.Properties.CryptoId);
+                        AxCryptFile.Encrypt(activeFile.DecryptedFileInfo, destination, parameters, AxCryptOptions.EncryptWithCompression, progress);
                     }, progress);
                 }
             }

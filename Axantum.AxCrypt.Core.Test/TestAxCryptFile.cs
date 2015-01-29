@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Test.Properties;
@@ -88,6 +89,7 @@ namespace Axantum.AxCrypt.Core.Test
             Passphrase nullKey = null;
             ProgressContext nullProgress = null;
             Passphrase nullPassphrase = null;
+            EncryptionParameters nullEncryptionParameters = null;
             Stream nullStream = null;
             string nullString = null;
             Action<Stream> nullStreamAction = null;
@@ -97,10 +99,10 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Encrypt(sourceFileInfo, destinationFileInfo, nullPassphrase, AxCryptOptions.EncryptWithCompression, new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Encrypt(sourceFileInfo, destinationFileInfo, new Passphrase("axcrypt"), AxCryptOptions.EncryptWithCompression, nullProgress); });
 
-            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(nullFileInfo, new MemoryStream(), Passphrase.Empty, Guid.Empty, AxCryptOptions.None, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(sourceFileInfo, nullStream, Passphrase.Empty, Guid.Empty, AxCryptOptions.None, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(sourceFileInfo, new MemoryStream(), nullKey, Guid.Empty, AxCryptOptions.None, new ProgressContext()); });
-            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(sourceFileInfo, new MemoryStream(), Passphrase.Empty, Guid.Empty, AxCryptOptions.None, nullProgress); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(nullFileInfo, new MemoryStream(), EncryptionParameters.Empty, AxCryptOptions.None, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(sourceFileInfo, nullStream, EncryptionParameters.Empty, AxCryptOptions.None, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(sourceFileInfo, new MemoryStream(), nullEncryptionParameters, AxCryptOptions.None, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { AxCryptFile.Encrypt(sourceFileInfo, new MemoryStream(), EncryptionParameters.Empty, AxCryptOptions.None, nullProgress); });
 
             Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Decrypt(nullDocument, decryptedFileInfo, AxCryptOptions.SetFileTimes, new ProgressContext()); });
             Assert.Throws<ArgumentNullException>(() => { TypeMap.Resolve.New<AxCryptFile>().Decrypt(document, nullFileInfo, AxCryptOptions.SetFileTimes, new ProgressContext()); });
@@ -163,7 +165,8 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(destinationFileInfo.Name, Is.EqualTo("test-txt.axx"), "Wrong encrypted file name based on the plain text file name.");
             using (Stream destinationStream = destinationFileInfo.OpenWrite())
             {
-                AxCryptFile.Encrypt(sourceFileInfo, destinationStream, new Passphrase("axcrypt"), V2Aes128CryptoFactory.CryptoId, AxCryptOptions.EncryptWithCompression, new ProgressContext());
+                EncryptionParameters parameters = new EncryptionParameters { Passphrase = new Passphrase("axcrypt"), CryptoId = V2Aes128CryptoFactory.CryptoId, PublicKeys = new IAsymmetricPublicKey[0] };
+                AxCryptFile.Encrypt(sourceFileInfo, destinationStream, parameters, AxCryptOptions.EncryptWithCompression, new ProgressContext());
             }
 
             using (IAxCryptDocument document = TypeMap.Resolve.New<AxCryptFile>().Document(destinationFileInfo, new Passphrase("axcrypt"), new ProgressContext()))

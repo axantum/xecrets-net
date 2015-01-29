@@ -39,6 +39,11 @@ namespace Axantum.AxCrypt.Core.Crypto
     public class EncryptionParameters
     {
         /// <summary>
+        /// An empty set of encryption parameters.
+        /// </summary>
+        public static readonly EncryptionParameters Empty = new EncryptionParameters { Passphrase = Passphrase.Empty, CryptoId = Guid.Empty, PublicKeys = new IAsymmetricPublicKey[0] };
+
+        /// <summary>
         /// Gets or sets the passphrase. A passphrase is always required.
         /// </summary>
         /// <value>
