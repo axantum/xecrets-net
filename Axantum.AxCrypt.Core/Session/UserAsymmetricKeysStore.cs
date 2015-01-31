@@ -52,8 +52,6 @@ namespace Axantum.AxCrypt.Core.Session
 
         public bool Load(EmailAddress userEmail, Passphrase passphrase)
         {
-            _keysStoreFile = null;
-
             _keysStoreFile = TryLoadKeyStoreFile(userEmail, passphrase);
             if (_keysStoreFile == null)
             {
