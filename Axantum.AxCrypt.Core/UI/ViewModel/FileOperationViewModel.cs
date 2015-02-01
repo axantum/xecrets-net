@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
@@ -120,7 +121,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             if (!_knownKeys.IsLoggedOn)
             {
-                IdentityViewModel.AskForLogOnPassphrase.Execute(PassphraseIdentity.Empty);
+                IdentityViewModel.AskForLogOnPassphrase.Execute(Passphrase.Empty);
             }
             if (!_knownKeys.IsLoggedOn)
             {
@@ -138,7 +139,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             if (!_knownKeys.IsLoggedOn)
             {
-                IdentityViewModel.AskForLogOnPassphrase.Execute(PassphraseIdentity.Empty);
+                IdentityViewModel.AskForLogOnPassphrase.Execute(Passphrase.Empty);
             }
             if (!_knownKeys.IsLoggedOn)
             {
@@ -272,7 +273,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 if (!_fileSystemState.Identities.Any(i => i.Thumbprint == e.Passphrase.Thumbprint))
                 {
-                    _fileSystemState.Identities.Add(new PassphraseIdentity(e.Passphrase));
+                    _fileSystemState.Identities.Add(e.Passphrase);
                     _fileSystemState.Save();
                 }
                 _knownKeys.Add(e.Passphrase);
@@ -340,7 +341,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 if (!_fileSystemState.Identities.Any(i => i.Thumbprint == e.Passphrase.Thumbprint))
                 {
-                    _fileSystemState.Identities.Add(new PassphraseIdentity(e.Passphrase));
+                    _fileSystemState.Identities.Add(e.Passphrase);
                     _fileSystemState.Save();
                 }
                 _knownKeys.DefaultEncryptionKey = e.Passphrase;

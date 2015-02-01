@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
@@ -53,7 +54,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public string Title { get { return GetProperty<string>("Title"); } set { SetProperty("Title", value); } }
 
-        public PassphraseIdentity Identity { get { return GetProperty<PassphraseIdentity>("Identity"); } set { SetProperty("Identity", value); } }
+        public Passphrase Identity { get { return GetProperty<Passphrase>("Identity"); } set { SetProperty("Identity", value); } }
 
         public IEnumerable<string> WatchedFolders { get { return GetProperty<IEnumerable<string>>("WatchedFolders"); } set { SetProperty("WatchedFolders", value.ToList()); } }
 
@@ -288,7 +289,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void SetLogOnState(bool isLoggedOn)
         {
-            PassphraseIdentity identity = null;
+            Passphrase identity = null;
             if (isLoggedOn)
             {
                 identity = _fileSystemState.Identities.FirstOrDefault(i => i.Thumbprint == Resolve.KnownKeys.DefaultEncryptionKey.Thumbprint);

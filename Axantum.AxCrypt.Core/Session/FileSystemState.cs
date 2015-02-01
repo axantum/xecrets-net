@@ -64,20 +64,20 @@ namespace Axantum.AxCrypt.Core.Session
         [OnDeserializing]
         private void Initialize(StreamingContext context)
         {
-            Identities = new List<PassphraseIdentity>();
+            Identities = new List<Passphrase>();
             _activeFilesByEncryptedPath = new Dictionary<string, ActiveFile>();
         }
 
         [OnDeserialized]
         private void Finalize(StreamingContext context)
         {
-            Identities = new List<PassphraseIdentity>(Identities);
+            Identities = new List<Passphrase>(Identities);
         }
 
         private Dictionary<string, ActiveFile> _activeFilesByEncryptedPath;
 
         [DataMember(Name = "PassphraseIdentities")]
-        public virtual IList<PassphraseIdentity> Identities
+        public virtual IList<Passphrase> Identities
         {
             get;
             private set;

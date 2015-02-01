@@ -93,9 +93,9 @@ namespace Axantum.AxCrypt.Core.Test
             FakeDataStore.AddFile(decrypted2, null);
 
             FileOperationViewModel mvm = TypeMap.Resolve.New<FileOperationViewModel>();
-            PassphraseIdentity id = new PassphraseIdentity(new Passphrase("asdf"));
+            Passphrase id = new Passphrase("asdf");
             Resolve.FileSystemState.Identities.Add(id);
-            Resolve.KnownKeys.DefaultEncryptionKey = id.Key;
+            Resolve.KnownKeys.DefaultEncryptionKey = id;
             mvm.AddRecentFiles.Execute(new string[] { file1, file2, decrypted1 });
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFiles(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, FileOperationContext>>(), It.IsAny<Action<FileOperationContext>>()), Times.Once);
@@ -216,9 +216,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestLogOnLogOffWhenLoggedOn()
         {
-            PassphraseIdentity id = new PassphraseIdentity(new Passphrase("logonwhenloggedon"));
+            Passphrase id = new Passphrase("logonwhenloggedon");
             Resolve.FileSystemState.Identities.Add(id);
-            Resolve.KnownKeys.DefaultEncryptionKey = id.Key;
+            Resolve.KnownKeys.DefaultEncryptionKey = id;
 
             FileOperationViewModel mvm = TypeMap.Resolve.New<FileOperationViewModel>();
             mvm.IdentityViewModel.LogOnLogOff.Execute(Guid.Empty);
@@ -231,7 +231,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Passphrase passphrase = new Passphrase("a");
 
-            PassphraseIdentity identity = new PassphraseIdentity(passphrase);
+            Passphrase identity = passphrase;
             Resolve.FileSystemState.Identities.Add(identity);
 
             FileOperationViewModel mvm = TypeMap.Resolve.New<FileOperationViewModel>();
@@ -282,9 +282,9 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestDecryptFoldersWhenLoggedIn()
         {
-            PassphraseIdentity id = new PassphraseIdentity(new Passphrase("a"));
+            Passphrase id = new Passphrase("a");
             Resolve.FileSystemState.Identities.Add(id);
-            Resolve.KnownKeys.DefaultEncryptionKey = id.Key;
+            Resolve.KnownKeys.DefaultEncryptionKey = id;
 
             FileOperationViewModel mvm = TypeMap.Resolve.New<FileOperationViewModel>();
             mvm.DecryptFolders.Execute(new string[] { @"C:\Folder\" });
@@ -791,9 +791,9 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
-            PassphraseIdentity id = new PassphraseIdentity(new Passphrase("d"));
+            Passphrase id = new Passphrase("d");
             Resolve.FileSystemState.Identities.Add(id);
-            Resolve.KnownKeys.DefaultEncryptionKey = id.Key;
+            Resolve.KnownKeys.DefaultEncryptionKey = id;
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
             TypeMap.Register.New<AxCryptFile>(() => axCryptFileMock.Object);
@@ -927,9 +927,9 @@ namespace Axantum.AxCrypt.Core.Test
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
             TypeMap.Register.New<AxCryptFile>(() => axCryptFileMock.Object);
 
-            PassphraseIdentity id = new PassphraseIdentity(new Passphrase("e"));
+            Passphrase id = new Passphrase("e");
             Resolve.FileSystemState.Identities.Add(id);
-            Resolve.KnownKeys.DefaultEncryptionKey = id.Key;
+            Resolve.KnownKeys.DefaultEncryptionKey = id;
 
             FakeDataStore.AddFile(@"C:\Folder1\File1-txt.axx", null);
             FakeDataStore.AddFile(@"C:\Folder1\File2-txt.axx", null);

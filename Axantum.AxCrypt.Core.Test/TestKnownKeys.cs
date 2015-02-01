@@ -192,7 +192,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestAddKeyForKnownIdentity()
         {
-            Resolve.FileSystemState.Identities.Add(new PassphraseIdentity(new Passphrase("a")));
+            Resolve.FileSystemState.Identities.Add(new Passphrase("a"));
             KnownKeys knownKeys = new KnownKeys(Resolve.FileSystemState, Resolve.SessionNotify);
             knownKeys.Add(new Passphrase("a"));
 

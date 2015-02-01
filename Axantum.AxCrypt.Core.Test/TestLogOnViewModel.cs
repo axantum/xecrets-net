@@ -46,7 +46,7 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture(CryptoImplementation.BouncyCastle)]
     public class TestLogOnViewModel
     {
-        private static IList<PassphraseIdentity> _identities;
+        private static IList<Passphrase> _identities;
 
         private CryptoImplementation _cryptoImplementation;
 
@@ -61,9 +61,9 @@ namespace Axantum.AxCrypt.Core.Test
             SetupAssembly.AssemblySetup();
             SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
 
-            _identities = new List<PassphraseIdentity>();
+            _identities = new List<Passphrase>();
             Mock<FileSystemState> fileSystemStateMock = new Mock<FileSystemState>();
-            fileSystemStateMock.Setup<IList<PassphraseIdentity>>(f => f.Identities).Returns(_identities);
+            fileSystemStateMock.Setup<IList<Passphrase>>(f => f.Identities).Returns(_identities);
             TypeMap.Register.Singleton<FileSystemState>(() => fileSystemStateMock.Object);
 
             TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());
@@ -118,7 +118,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             LogOnViewModel lovm = new LogOnViewModel(String.Empty);
 
-            _identities.Add(new PassphraseIdentity(new Passphrase("abc1234")));
+            _identities.Add(new Passphrase("abc1234"));
 
             lovm.Passphrase = "abc1234";
 
@@ -140,7 +140,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             LogOnViewModel lovm = new LogOnViewModel(String.Empty);
 
-            _identities.Add(new PassphraseIdentity(new Passphrase("abc1234")));
+            _identities.Add(new Passphrase("abc1234"));
 
             lovm.Passphrase = "abc12345";
 
@@ -160,7 +160,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestValidateWrongPassphraseWithRealFile()
         {
-            _identities.Add(new PassphraseIdentity(new Passphrase("a")));
+            _identities.Add(new Passphrase("a"));
 
             FakeDataStore.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
             LogOnViewModel npvm = new LogOnViewModel(@"C:\My Folder\MyFile-txt.axx");
@@ -173,7 +173,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestValidateCorrectPassphraseWithRealFile()
         {
-            _identities.Add(new PassphraseIdentity(new Passphrase("a")));
+            _identities.Add(new Passphrase("a"));
 
             FakeDataStore.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
             LogOnViewModel npvm = new LogOnViewModel(@"C:\My Folder\MyFile-txt.axx");
@@ -186,7 +186,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestValidateWrongButKnownPassphraseWithRealFile()
         {
-            _identities.Add(new PassphraseIdentity(new Passphrase("b")));
+            _identities.Add(new Passphrase("b"));
 
             FakeDataStore.AddFile(@"C:\My Folder\MyFile-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
             LogOnViewModel npvm = new LogOnViewModel(@"C:\My Folder\MyFile-txt.axx");

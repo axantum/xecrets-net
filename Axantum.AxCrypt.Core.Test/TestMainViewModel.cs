@@ -185,9 +185,9 @@ namespace Axantum.AxCrypt.Core.Test
                 mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
                 Assert.That(mvm.DroppableAsRecent, Is.False, "An encrypted file that does not exist is not a candidate for recent.");
 
-                PassphraseIdentity id = new PassphraseIdentity(new Passphrase("passphrase1"));
+                Passphrase id = new Passphrase("passphrase1");
                 Resolve.FileSystemState.Identities.Add(id);
-                Resolve.KnownKeys.DefaultEncryptionKey = id.Key;
+                Resolve.KnownKeys.DefaultEncryptionKey = id;
                 mvm.DragAndDropFiles = new string[] { encryptedFilePath, };
                 Assert.That(mvm.DroppableAsRecent, Is.False, "An encrypted file that does not exist, even when logged on, is not droppable as recent.");
 
@@ -204,9 +204,9 @@ namespace Axantum.AxCrypt.Core.Test
                 mvm.DragAndDropFiles = new string[] { decryptedFilePath, };
                 Assert.That(mvm.DroppableAsRecent, Is.False, "An encrpytable file without a valid log on is not droppable as recent.");
 
-                id = new PassphraseIdentity(new Passphrase("passphrase"));
+                id = new Passphrase("passphrase");
                 Resolve.FileSystemState.Identities.Add(id);
-                Resolve.KnownKeys.DefaultEncryptionKey = id.Key;
+                Resolve.KnownKeys.DefaultEncryptionKey = id;
                 mvm.DragAndDropFiles = new string[] { decryptedFilePath, };
                 Assert.That(mvm.DroppableAsRecent, Is.True, "An encryptable existing file with a valid log on should be droppable as recent.");
             }
@@ -404,9 +404,9 @@ namespace Axantum.AxCrypt.Core.Test
             Resolve.FileSystemState.Add(activeFile);
 
             Resolve.KnownKeys.Add(new Passphrase("passphrase2"));
-            PassphraseIdentity id = new PassphraseIdentity(new Passphrase("passphrase"));
+            Passphrase id = new Passphrase("passphrase");
             Resolve.FileSystemState.Identities.Add(id);
-            Resolve.KnownKeys.DefaultEncryptionKey = id.Key;
+            Resolve.KnownKeys.DefaultEncryptionKey = id;
 
             Assert.That(Resolve.FileSystemState.ActiveFileCount, Is.EqualTo(1), "One ActiveFile is expected.");
             Assert.That(Resolve.KnownKeys.Keys.Count(), Is.EqualTo(2), "Two known keys are expected.");
@@ -436,9 +436,9 @@ namespace Axantum.AxCrypt.Core.Test
 
             using (MainViewModel mvm = TypeMap.Resolve.New<MainViewModel>())
             {
-                PassphraseIdentity id = new PassphraseIdentity(new Passphrase("passphrase"));
+                Passphrase id = new Passphrase("passphrase");
                 mockFileSystemState.Object.Identities.Add(id);
-                Resolve.KnownKeys.DefaultEncryptionKey = id.Key;
+                Resolve.KnownKeys.DefaultEncryptionKey = id;
 
                 mvm.RemoveWatchedFolders.Execute(new string[] { "File1.txt", "file2.txt" });
             }
@@ -458,9 +458,9 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 Assert.Throws<InvalidOperationException>(() => mvm.RemoveWatchedFolders.Execute(new string[] { }));
 
-                PassphraseIdentity id = new PassphraseIdentity(new Passphrase("passphrase"));
+                Passphrase id = new Passphrase("passphrase");
                 fileSystemStateMock.Object.Identities.Add(id);
-                Resolve.KnownKeys.DefaultEncryptionKey = id.Key;
+                Resolve.KnownKeys.DefaultEncryptionKey = id;
 
                 mvm.RemoveWatchedFolders.Execute(new string[] { });
 

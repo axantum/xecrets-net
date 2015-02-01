@@ -41,16 +41,16 @@ namespace Axantum.AxCrypt.Core.Test
     [TestFixture]
     public static class TestNewPassphraseViewModel
     {
-        private static IList<PassphraseIdentity> _identities;
+        private static IList<Passphrase> _identities;
 
         [SetUp]
         public static void Setup()
         {
             SetupAssembly.AssemblySetup();
 
-            _identities = new List<PassphraseIdentity>();
+            _identities = new List<Passphrase>();
             Mock<FileSystemState> fileSystemStateMock = new Mock<FileSystemState>();
-            fileSystemStateMock.Setup<IList<PassphraseIdentity>>(f => f.Identities).Returns(_identities);
+            fileSystemStateMock.Setup<IList<Passphrase>>(f => f.Identities).Returns(_identities);
             TypeMap.Register.Singleton<FileSystemState>(() => fileSystemStateMock.Object);
         }
 
@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
-            _identities.Add(new PassphraseIdentity());
+            _identities.Add(new Passphrase());
             NewPassphraseViewModel npvm = new NewPassphraseViewModel(String.Empty, String.Empty);
 
             Assert.That(npvm.Passphrase, Is.EqualTo(String.Empty));

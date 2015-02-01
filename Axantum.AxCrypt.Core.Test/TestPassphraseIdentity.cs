@@ -62,14 +62,14 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         public void TestEmptyField()
         {
-            PassphraseIdentity zero = new PassphraseIdentity(Passphrase.Empty);
-            PassphraseIdentity nonzero = new PassphraseIdentity(new Passphrase("something"));
+            Passphrase zero = Passphrase.Empty;
+            Passphrase nonzero = new Passphrase("something");
 
-            Assert.That(zero.Key.Equals(PassphraseIdentity.Empty.Key));
-            Assert.That(zero.Thumbprint, Is.EqualTo(PassphraseIdentity.Empty.Thumbprint));
+            Assert.That(zero.Equals(Passphrase.Empty));
+            Assert.That(zero.Thumbprint, Is.EqualTo(Passphrase.Empty.Thumbprint));
 
-            Assert.That(!nonzero.Key.Equals(PassphraseIdentity.Empty.Key));
-            Assert.That(nonzero.Thumbprint, Is.Not.EqualTo(PassphraseIdentity.Empty.Thumbprint));
+            Assert.That(!nonzero.Equals(Passphrase.Empty));
+            Assert.That(nonzero.Thumbprint, Is.Not.EqualTo(Passphrase.Empty.Thumbprint));
         }
     }
 }

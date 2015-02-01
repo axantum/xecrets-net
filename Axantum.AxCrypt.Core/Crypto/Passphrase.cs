@@ -28,13 +28,19 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Runtime.Serialization;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
+    [DataContract(Namespace = "http://www.axantum.com/Serialization/", Name = "PassphraseIdentity")]
     public class Passphrase : IEquatable<Passphrase>
     {
         [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "This type is in fact immutable.")]
         public static readonly Passphrase Empty = new Passphrase(String.Empty);
+
+        public Passphrase()
+        {
+        }
 
         public Passphrase(string text)
         {
@@ -45,15 +51,26 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         private SymmetricKeyThumbprint _thumbprint;
 
+        [DataMember(Name = "Thumbprint")]
         public SymmetricKeyThumbprint Thumbprint
         {
             get
             {
-                if (_thumbprint == null)
+                if (_thumbprint != null)
                 {
-                    _thumbprint = new SymmetricKeyThumbprint(this, Resolve.UserSettings.ThumbprintSalt, Resolve.UserSettings.GetKeyWrapIterations(Resolve.CryptoFactory.Minimum.Id));
+                    return _thumbprint;
                 }
+                if (Text == null)
+                {
+                    return null;
+                }
+                _thumbprint = new SymmetricKeyThumbprint(this, Resolve.UserSettings.ThumbprintSalt, Resolve.UserSettings.GetKeyWrapIterations(Resolve.CryptoFactory.Minimum.Id));
                 return _thumbprint;
+            }
+
+            private set
+            {
+                _thumbprint = value;
             }
         }
 

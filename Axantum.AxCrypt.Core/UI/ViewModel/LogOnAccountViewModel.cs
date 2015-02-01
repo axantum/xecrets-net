@@ -117,7 +117,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private bool IsKnownIdentity()
         {
             SymmetricKeyThumbprint thumbprint = new Passphrase(Passphrase).Thumbprint;
-            PassphraseIdentity identity = Resolve.FileSystemState.Identities.FirstOrDefault(id => id.Thumbprint == thumbprint);
+            Passphrase identity = Resolve.FileSystemState.Identities.FirstOrDefault(id => id.Thumbprint == thumbprint);
             if (identity != null)
             {
                 return true;
